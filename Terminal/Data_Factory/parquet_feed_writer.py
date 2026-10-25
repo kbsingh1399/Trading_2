@@ -61,6 +61,10 @@ def write_parquet_feed(
     t0 = time.perf_counter()
     ensure_directories()
 
+    # Convert single dict to list of dicts if needed
+    if isinstance(data, dict):
+        data = [data]
+
     # Convert records to Arrow Table if needed
     if isinstance(data, list):
         if not data:

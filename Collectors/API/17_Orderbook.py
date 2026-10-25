@@ -17,15 +17,22 @@ Extracted Layers:
     on-chain Ethereum/Hyperliquid wallet addresses (0x...), classified by whale tiers
     ($100K, $1M, $5M), distance from mid %, and direct Hyperdash explorer links.
 
-Outputs to worksheet '17_Orderbook' in Data/DataBase_Trading.xlsx (positioned at Index 25).
+Outputs to worksheet '17_Orderbook' in Data/feeds/<feed_name>.parquet (positioned at Index 25).
 """
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import datetime
@@ -39,12 +46,6 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 logging.basicConfig(
     level=logging.INFO,
@@ -55,7 +56,6 @@ log = logging.getLogger("17_Orderbook")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 HL_INFO_URL = "https://api.hyperliquid.xyz/info"
 HD_GRAPHQL_URL = "https://api.hyperdash.com/graphql"
 SHEET_NAME = "17_Orderbook"
@@ -408,197 +408,31 @@ def build_orderbook_dataset(
     return master_records
 
 
-def dump_to_excel(records: List[Dict[str, Any]], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps structured multi-asset L2 & L3 Orderbook into worksheet '17_Orderbook'."""
-    if openpyxl is None:
-        log.error("openpyxl library not installed.")
-        return False
-
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
+def dump_to_parquet(records: list[dict], feed_name: str = SHEET_NAME) -> bool:
     if not records:
-        log.error("0 records to dump. Aborting to protect workbook integrity.")
+        log.warning("No orderbook records to dump to Parquet.")
         return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Position at Index 25 (immediately after 16_Hyperdash_telegram_Intel at Index 24)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        if "16_Hyperdash_telegram_Intel" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("16_Hyperdash_telegram_Intel") + 1
-        elif "15_Hyperdash_Stops_Map" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("15_Hyperdash_Stops_Map") + 2
-        else:
-            target_idx = 25 if len(wb.sheetnames) >= 25 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-    final_idx = wb.sheetnames.index(SHEET_NAME)
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {final_idx}")
-
-    # Typography & Colors
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    mono_font = Font(name="Consolas", size=9, color="334155")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-    amber_font = Font(name="Segoe UI", size=9, bold=True, color="D97706")
-    purple_font = Font(name="Segoe UI", size=9, bold=True, color="7C3AED")
-
-    spread_fill = PatternFill(start_color="E2E8F0", end_color="E2E8F0", fill_type="solid")
-    whale_fill = PatternFill(start_color="FEF3C7", end_color="FEF3C7", fill_type="solid")
-    mega_fill = PatternFill(start_color="EDE9FE", end_color="EDE9FE", fill_type="solid")
-
-    # Category Badges Font & Fill
-    badge_colors = {
-        "CRYPTO": ("0284C7", "E0F2FE"),       # Sky Blue
-        "INDICES": ("1E293B", "F1F5F9"),      # Slate Navy
-        "METALS": ("B45309", "FEF3C7"),       # Amber/Gold
-        "COMMODITIES": ("3F6212", "ECFCCB"),  # Olive Green
-        "EQUITIES": ("6D28D9", "EDE9FE"),     # Purple
-    }
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    # 1. Header Row
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        cell = ws.cell(row=1, column=col_idx, value=header_title)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal=align, vertical="center")
-        cell.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 2. Data Rows
-    for row_idx, r in enumerate(records, start=2):
-        ws.row_dimensions[row_idx].height = 20
-        dlayer = r.get("data_layer", "")
-        side_val = r.get("side", "")
-        tier = r.get("orders_count_tier", "")
-        aclass = r.get("asset_class", "CRYPTO")
-
-        is_spread_row = dlayer == "L2_SPREAD"
-        is_mega_whale = "MEGA" in tier
-        is_whale = "WHALE" in tier and not is_mega_whale
-
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            val = r.get(col_key, "")
-            cell = ws.cell(row=row_idx, column=col_idx, value=val)
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-
-            # Background highlighting
-            if is_spread_row:
-                cell.fill = spread_fill
-            elif is_mega_whale and col_key in ("notional_usd", "orders_count_tier", "wallet_address"):
-                cell.fill = mega_fill
-            elif is_whale and col_key in ("notional_usd", "orders_count_tier", "wallet_address"):
-                cell.fill = whale_fill
-            elif col_key == "asset_class" and aclass in badge_colors:
-                _, bg_col = badge_colors[aclass]
-                cell.fill = PatternFill(start_color=bg_col, end_color=bg_col, fill_type="solid")
-
-            # Typography formatting
-            if is_spread_row:
-                cell.font = bold_font
-            elif col_key in ("sr_no", "asset"):
-                cell.font = bold_font
-            elif col_key == "asset_class" and aclass in badge_colors:
-                fg_col, _ = badge_colors[aclass]
-                cell.font = Font(name="Segoe UI", size=9, bold=True, color=fg_col)
-            elif col_key == "data_layer":
-                cell.font = bold_font if dlayer == "L2_AGGREGATED" else base_font
-            elif col_key == "side":
-                cell.font = green_font if side_val in ("BID", "BUY") else (red_font if side_val in ("ASK", "SELL") else bold_font)
-            elif col_key == "notional_usd":
-                cell.font = purple_font if is_mega_whale else (amber_font if is_whale else bold_font)
-            elif col_key == "orders_count_tier":
-                cell.font = purple_font if is_mega_whale else (amber_font if is_whale else base_font)
-            elif col_key == "distance_pct":
-                cell.font = green_font if str(val).startswith("+") else (red_font if str(val).startswith("-") else base_font)
-            elif col_key == "wallet_address":
-                cell.font = mono_font
-            else:
-                cell.font = base_font
-
-    ws.views.sheetView[0].showGridLines = True
-    ws.freeze_panes = "A2"
-
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="17_Orderbook",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Successfully saved {len(records)} rows to '{SHEET_NAME}' at {excel_path}")
+    meta = write_parquet_feed(feed_name, records)
+    log.info(f"Successfully dumped {len(records)} Orderbook rows into Parquet feed '{feed_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="17_Orderbook Multi-Asset Orderbook Harvester")
-    parser.add_argument("--categories", nargs="+", default=["CRYPTO", "INDICES", "METALS", "COMMODITIES", "EQUITIES"], help="Asset classes to harvest")
-    parser.add_argument("--max-l3", type=int, default=350, help="Max L3 orders per symbol")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to DataBase_Trading.xlsx")
+    parser = argparse.ArgumentParser(description="Multi-Asset L2 & L3 Orderbook Depth Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=SHEET_NAME, help="Target feed name")
     args = parser.parse_args()
 
-    selected_categories = {c.upper() for c in args.categories}
-    roster = [item for item in DEFAULT_ASSET_ROSTER if item[0] in selected_categories]
-
-    log.info(f"Starting Multi-Asset Orderbook harvest for {len(roster)} markets across {selected_categories}")
-    records = build_orderbook_dataset(roster, max_l3_per_symbol=args.max_l3)
-
+    t_start = time.time()
+    log.info("Starting Multi-Asset Orderbook L2/L3 harvest...")
+    records = build_orderbook_dataset()
     if not records:
-        log.error("Harvesting yielded 0 records. Excel dump aborted.")
+        log.error("No orderbook records generated.")
         sys.exit(1)
 
-    success = dump_to_excel(records, excel_path=args.excel_path)
-    if not success:
-        sys.exit(1)
-
-    log.info("17_Orderbook pipeline executed successfully.")
+    success = dump_to_parquet(records, feed_name=args.sheet_name)
+    elapsed = time.time() - t_start
+    log.info(f"17_Orderbook completed in {elapsed:.2f}s with status: {'SUCCESS' if success else 'FAILED'}")
+    sys.exit(0 if success else 1)
 
 
 if __name__ == "__main__":

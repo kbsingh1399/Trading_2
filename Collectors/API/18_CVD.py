@@ -32,16 +32,12 @@ Calculations:
       * NEUTRAL CHOP
 
 Outputs:
-  - Excel Worksheet: '18_CVD' positioned at Index 26 in Data/DataBase_Trading.xlsx
+  - Excel Worksheet: '18_CVD' positioned at Index 26 in Data/feeds/<feed_name>.parquet
   - High-Speed Parquet Datasets: Data/CVD/18_CVD_30D_ALL.parquet for instant ML/quant query
 """
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
 
 import argparse
 import asyncio
@@ -51,6 +47,7 @@ import logging
 import math
 import os
 import pathlib
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 import sys
 import time
 import urllib.request
@@ -61,12 +58,6 @@ import aiohttp
 import numpy as np
 import pandas as pd
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import MetaTrader5 as mt5
@@ -94,7 +85,6 @@ try:
 except Exception:
     write_parquet_feed = None
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 DEFAULT_PARQUET_DIR = ROOT_DIR / "Data" / "CVD"
 BINANCE_FAPI_URL = "https://fapi.binance.com/fapi/v1/klines"
 HL_INFO_URL = "https://api.hyperliquid.xyz/info"
@@ -567,425 +557,26 @@ async def harvest_all_assets_cvd(
 # =====================================================================
 # 6. EXCEL WORKSHEET GENERATOR & STYLER
 # =====================================================================
-def export_cvd_to_excel(
-    rows: List[Dict[str, Any]],
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-    sheet_name: str = SHEET_NAME,
-    max_excel_rows: int = 1500,
-) -> int:
-    """Writes CVD dataset into Data/DataBase_Trading.xlsx at Index 26 with institutional formatting."""
-    if openpyxl is None:
-        log.error("openpyxl is not installed. Skipping Excel export.")
-        return 0
-
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at {excel_path}")
-        return 0
-
-    # Multi-Horizon Ring Buffer for Excel display:
-    # Ensure all timeframes (5m, 15m, 1h, 4h) across all symbols are preserved
-    # so that high-timeframe diagnostics survive compression while keeping total rows <= max_excel_rows.
-    tf_order = {"5m": 1, "15m": 2, "1h": 3, "4h": 4}
-    if max_excel_rows > 0 and len(rows) > max_excel_rows:
-        grouped = {}
-        for r in rows:
-            key = (r["symbol"], r["timeframe"])
-            if key not in grouped:
-                grouped[key] = []
-            grouped[key].append(r)
-
-        for key in grouped:
-            grouped[key].sort(key=lambda x: -x["timestamp_ms"])
-
-        num_pairs = len(grouped)
-        quota = max(15, max_excel_rows // max(1, num_pairs))
-        balanced_rows = []
-        for key, items in grouped.items():
-            balanced_rows.extend(items[:quota])
-
-        balanced_rows.sort(
-            key=lambda x: (
-                -x["timestamp_ms"],
-                x["category"],
-                x["symbol"],
-                tf_order.get(x["timeframe"], 99),
-            )
-        )
-        display_rows = balanced_rows[:max_excel_rows]
-    else:
-        rows.sort(
-            key=lambda x: (
-                -x["timestamp_ms"],
-                x["category"],
-                x["symbol"],
-                tf_order.get(x["timeframe"], 99),
-            )
-        )
-        display_rows = rows
-
-    log.info(f"Opening workbook {excel_path.name} to write sheet '{sheet_name}'...")
-    try:
-        from filelock import FileLock
-        lock = FileLock(str(excel_path) + ".lock", timeout=120)
-    except ImportError:
-        lock = None
-
-    class _NoLock:
-        def __enter__(self): return self
-        def __exit__(self, *args): pass
-
-    with (lock if lock else _NoLock()):
-        wb = openpyxl.load_workbook(excel_path)
-
-    # Position at Index 26 (immediately after 17_Orderbook at Index 25)
-    if sheet_name in wb.sheetnames:
-        idx = wb.sheetnames.index(sheet_name)
-        wb.remove(wb[sheet_name])
-        ws = wb.create_sheet(title=sheet_name, index=idx)
-    else:
-        if "17_Orderbook" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("17_Orderbook") + 1
-        elif "16_Hyperdash_telegram_Intel" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("16_Hyperdash_telegram_Intel") + 2
-        else:
-            target_idx = 26 if len(wb.sheetnames) >= 26 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=sheet_name, index=target_idx)
-
-    final_idx = wb.sheetnames.index(sheet_name)
-    log.info(f"Target worksheet '{sheet_name}' positioned at index {final_idx}")
-
-    # Typography & Colors
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    mono_font = Font(name="Consolas", size=9, color="334155")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-    fill_pos_delta = PatternFill(start_color="DCFCE7", end_color="DCFCE7", fill_type="solid")
-    fill_neg_delta = PatternFill(start_color="FEE2E2", end_color="FEE2E2", fill_type="solid")
-    fill_bull_absorp = PatternFill(start_color="D1FAE5", end_color="D1FAE5", fill_type="solid")
-    fill_bear_absorp = PatternFill(start_color="FFE4E6", end_color="FFE4E6", fill_type="solid")
-    fill_agg_buy = PatternFill(start_color="E0F2FE", end_color="E0F2FE", fill_type="solid")
-    fill_agg_sell = PatternFill(start_color="FEF3C7", end_color="FEF3C7", fill_type="solid")
-
-    # Category Badges Font & Fill
-    badge_colors = {
-        "CRYPTO": ("0284C7", "E0F2FE"),
-        "INDICES": ("1E293B", "F1F5F9"),
-        "METALS": ("B45309", "FEF3C7"),
-        "COMMODITIES": ("3F6212", "ECFCCB"),
-        "FOREX": ("047857", "ECFDF5"),
-    }
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side,
-        right=thin_border_side,
-        top=thin_border_side,
-        bottom=thin_border_side,
-    )
-
-    headers = [
-        "Timestamp (IST)",
-        "Asset Class",
-        "Symbol",
-        "Market Pair",
-        "Data Source",
-        "Timeframe",
-        "Open Price",
-        "High Price",
-        "Low Price",
-        "Close Price",
-        "Total Volume",
-        "Quote Volume (USD)",
-        "Taker Buy Volume",
-        "Taker Sell Volume",
-        "Candle Delta (USD)",
-        "Candle Delta (Coins)",
-        "Delta % of Vol",
-        "Cumulative CVD (USD)",
-        "Cumulative CVD (Coins)",
-        "CVD Z-Score (20)",
-        "Price Return %",
-        "Orderflow Regime",
-        "Trades / Ticks",
-    ]
-
-    ws.row_dimensions[1].height = 26
-    ws.append(headers)
-
-    for col_idx in range(1, len(headers) + 1):
-        cell = ws.cell(row=1, column=col_idx)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=False)
-
-    # Direct Atomic Parquet Feed Export
-    if write_parquet_feed is not None and display_rows:
-        try:
-            feed_rows = []
-            for r in display_rows:
-                feed_rows.append({
-                    "Timestamp_IST": r.get("timestamp_ist", r.get("timestamp_utc", "")),
-                    "Asset_Class": r.get("category", ""),
-                    "Symbol": r.get("symbol", ""),
-                    "Market_Pair": r.get("market_pair", ""),
-                    "Data_Source": r.get("source", ""),
-                    "Timeframe": r.get("timeframe", ""),
-                    "Open_Price": r.get("open", 0.0),
-                    "High_Price": r.get("high", 0.0),
-                    "Low_Price": r.get("low", 0.0),
-                    "Close_Price": r.get("close", 0.0),
-                    "Total_Volume": r.get("total_volume", 0.0),
-                    "Quote_Volume_USD": r.get("quote_volume_usd", 0.0),
-                    "Taker_Buy_Volume": r.get("taker_buy_vol", 0.0),
-                    "Taker_Sell_Volume": r.get("taker_sell_vol", 0.0),
-                    "Candle_Delta_USD": r.get("candle_delta", 0.0),
-                    "Candle_Delta_Coins": r.get("candle_delta_base", 0.0),
-                    "Delta_%_of_Vol": r.get("delta_pct", 0.0) / 100.0,
-                    "Cumulative_CVD_USD": r.get("cumulative_cvd", 0.0),
-                    "Cumulative_CVD_Coins": r.get("cumulative_cvd_base", 0.0),
-                    "CVD_Z-Score_20": r.get("cvd_zscore", 0.0),
-                    "Price_Return_%": r.get("price_return_pct", 0.0) / 100.0,
-                    "Orderflow_Regime": r.get("regime", ""),
-                    "Trades___Ticks": r.get("trades_count", 0),
-                })
-            write_parquet_feed("18_CVD", feed_rows)
-            log.info(f"[PASS] Directly dumped {len(feed_rows)} rows to Data/feeds/18_CVD.parquet!")
-        except Exception as exc:
-            log.warning(f"Direct parquet write warning: {exc}")
-
-    log.info(f"Writing {len(display_rows):,} rows to worksheet '{sheet_name}'...")
-    t0 = time.time()
-
-    for r in display_rows:
-        ws.append([
-            r.get("timestamp_ist", r["timestamp_utc"]),
-            r["category"],
-            r["symbol"],
-            r["market_pair"],
-            r["source"],
-            r["timeframe"],
-            r["open"],
-            r["high"],
-            r["low"],
-            r["close"],
-            r["total_volume"],
-            r["quote_volume_usd"],
-            r["taker_buy_vol"],
-            r["taker_sell_vol"],
-            r["candle_delta"],
-            r["candle_delta_base"],
-            r["delta_pct"] / 100.0,
-            r["cumulative_cvd"],
-            r["cumulative_cvd_base"],
-            r["cvd_zscore"],
-            r["price_return_pct"] / 100.0,
-            r["regime"],
-            r["trades_count"],
-        ])
-
-    log.info(f"Data rows appended in {time.time() - t0:.2f}s. Formatting styling and semantic cells...")
-
-    # Format numeric cells and apply semantic highlights
-    for row_idx in range(2, len(display_rows) + 2):
-        ws.row_dimensions[row_idx].height = 19
-
-        # Alignment
-        ws.cell(row=row_idx, column=1).alignment = Alignment(horizontal="center", vertical="center")
-        ws.cell(row=row_idx, column=2).alignment = Alignment(horizontal="center", vertical="center")
-        ws.cell(row=row_idx, column=3).alignment = Alignment(horizontal="center", vertical="center")
-        ws.cell(row=row_idx, column=4).alignment = Alignment(horizontal="center", vertical="center")
-        ws.cell(row=row_idx, column=5).alignment = Alignment(horizontal="center", vertical="center")
-        ws.cell(row=row_idx, column=6).alignment = Alignment(horizontal="center", vertical="center")
-
-        cat_val = ws.cell(row=row_idx, column=2).value
-        if cat_val in badge_colors:
-            fg, bg = badge_colors[cat_val]
-            ws.cell(row=row_idx, column=2).font = Font(name="Segoe UI", size=8, bold=True, color=fg)
-            ws.cell(row=row_idx, column=2).fill = PatternFill(start_color=bg, end_color=bg, fill_type="solid")
-
-        # Symbol bold
-        ws.cell(row=row_idx, column=3).font = bold_font
-
-        # Numbers
-        # Price formatting (forex with 5 decimals, crypto/stocks with 2-4 decimals)
-        close_p = ws.cell(row=row_idx, column=10).value
-        price_fmt = "0.00000" if (cat_val == "FOREX" or (close_p and close_p < 1.0)) else "#,##0.00"
-        for c_idx in (7, 8, 9, 10):
-            c = ws.cell(row=row_idx, column=c_idx)
-            c.number_format = price_fmt
-            c.alignment = Alignment(horizontal="right", vertical="center")
-
-        # Volumes
-        ws.cell(row=row_idx, column=11).number_format = "#,##0.00"
-        ws.cell(row=row_idx, column=12).number_format = "$#,##0"
-        ws.cell(row=row_idx, column=13).number_format = "$#,##0"
-        ws.cell(row=row_idx, column=14).number_format = "$#,##0"
-
-        # Candle Delta (USD)
-        delta_cell = ws.cell(row=row_idx, column=15)
-        delta_cell.number_format = "+$#,##0;-$#,##0;$0"
-        delta_cell.alignment = Alignment(horizontal="right", vertical="center")
-        delta_val = delta_cell.value or 0.0
-
-        if delta_val > 0:
-            delta_cell.fill = fill_pos_delta
-            delta_cell.font = green_font
-        elif delta_val < 0:
-            delta_cell.fill = fill_neg_delta
-            delta_cell.font = red_font
-
-        # Candle Delta (Coins)
-        delta_coin_cell = ws.cell(row=row_idx, column=16)
-        delta_coin_cell.number_format = "+#,##0.00;-#,##0.00;0.00"
-        delta_coin_cell.alignment = Alignment(horizontal="right", vertical="center")
-        delta_coin_val = delta_coin_cell.value or 0.0
-        delta_coin_cell.font = green_font if delta_coin_val >= 0 else red_font
-
-        # Delta %
-        pct_cell = ws.cell(row=row_idx, column=17)
-        pct_cell.number_format = "+0.00%;-0.00%;0.00%"
-        pct_cell.alignment = Alignment(horizontal="right", vertical="center")
-
-        # CVD (USD)
-        cvd_cell = ws.cell(row=row_idx, column=18)
-        cvd_cell.number_format = "+$#,##0;-$#,##0;$0"
-        cvd_cell.alignment = Alignment(horizontal="right", vertical="center")
-        cvd_val = cvd_cell.value or 0.0
-        cvd_cell.font = green_font if cvd_val >= 0 else red_font
-
-        # CVD (Coins)
-        cvd_coin_cell = ws.cell(row=row_idx, column=19)
-        cvd_coin_cell.number_format = "+#,##0.00;-#,##0.00;0.00"
-        cvd_coin_cell.alignment = Alignment(horizontal="right", vertical="center")
-        cvd_coin_val = cvd_coin_cell.value or 0.0
-        cvd_coin_cell.font = green_font if cvd_coin_val >= 0 else red_font
-
-        # Z-Score
-        z_cell = ws.cell(row=row_idx, column=20)
-        z_cell.number_format = "+0.00;-0.00;0.00"
-        z_cell.alignment = Alignment(horizontal="right", vertical="center")
-
-        # Price Return %
-        ret_cell = ws.cell(row=row_idx, column=21)
-        ret_cell.number_format = "+0.00%;-0.00%;0.00%"
-        ret_cell.alignment = Alignment(horizontal="right", vertical="center")
-
-        # Regime highlight
-        regime_cell = ws.cell(row=row_idx, column=22)
-        regime_cell.alignment = Alignment(horizontal="center", vertical="center")
-        regime_val = str(regime_cell.value or "")
-
-        if "BULLISH ABSORPTION" in regime_val:
-            regime_cell.fill = fill_bull_absorp
-            regime_cell.font = Font(name="Segoe UI", size=8, bold=True, color="065F46")
-        elif "BEARISH ABSORPTION" in regime_val:
-            regime_cell.fill = fill_bear_absorp
-            regime_cell.font = Font(name="Segoe UI", size=8, bold=True, color="9F1239")
-        elif "AGGRESSIVE BUYING" in regime_val:
-            regime_cell.fill = fill_agg_buy
-            regime_cell.font = Font(name="Segoe UI", size=8, bold=True, color="075985")
-        elif "AGGRESSIVE SELLING" in regime_val:
-            regime_cell.fill = fill_agg_sell
-            regime_cell.font = Font(name="Segoe UI", size=8, bold=True, color="92400E")
-
-        # Trades Count
-        ws.cell(row=row_idx, column=23).number_format = "#,##0"
-        ws.cell(row=row_idx, column=23).alignment = Alignment(horizontal="right", vertical="center")
-
-    # Column Widths
-    col_widths = {
-        "A": 20, # Timestamp
-        "B": 14, # Asset Class
-        "C": 12, # Symbol
-        "D": 14, # Market Pair
-        "E": 16, # Data Source
-        "F": 12, # Timeframe
-        "G": 14, # Open
-        "H": 14, # High
-        "I": 14, # Low
-        "J": 14, # Close
-        "K": 16, # Total Volume
-        "L": 20, # Quote Volume
-        "M": 18, # Taker Buy
-        "N": 18, # Taker Sell
-        "O": 20, # Candle Delta USD
-        "P": 20, # Candle Delta Coins
-        "Q": 15, # Delta %
-        "R": 22, # Cumulative CVD USD
-        "S": 22, # Cumulative CVD Coins
-        "T": 16, # Z-Score
-        "U": 15, # Return %
-        "V": 24, # Regime
-        "W": 14, # Trades
-    }
-    for col_let, w in col_widths.items():
-        ws.column_dimensions[col_let].width = w
-
-    # UI Polish: Enable Gridlines, AutoFilter, Freeze Panes at A2
-    ws.views.sheetView[0].showGridLines = True
-    ws.auto_filter.ref = f"A1:W{len(display_rows) + 1}"
-    ws.freeze_panes = "A2"
-
-    t_save = time.time()
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="18_CVD",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Saved worksheet '{sheet_name}' in {time.time() - t_save:.2f}s with {len(display_rows):,} rows.")
-    return len(display_rows)
-
-
-# =====================================================================
-# 7. PARQUET EXPORTER FOR VECTORIZED STRATEGY BACKTESTING
-# =====================================================================
 def export_cvd_to_parquet(
     rows: List[Dict[str, Any]],
     parquet_dir: pathlib.Path = DEFAULT_PARQUET_DIR,
 ) -> pathlib.Path:
-    """Exports the complete 30-day continuous dataset to Parquet for sub-millisecond querying."""
+    """Exports dataset to Data/feeds/18_CVD.parquet and timeframe parquets."""
     parquet_dir.mkdir(parents=True, exist_ok=True)
     df = pd.DataFrame(rows)
+
+    # 1. Primary Canonical Parquet Feed (< 1500 rows for high-speed audit)
+    sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
+    sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
+    from parquet_feed_writer import write_parquet_feed
+    capped_rows = rows[-1500:] if len(rows) > 1500 else rows
+    meta = write_parquet_feed("18_CVD", capped_rows)
+    log.info(f"Exported canonical 18_CVD feed ({len(capped_rows):,} rows): {meta.get('byte_size')} bytes.")
 
     all_path = parquet_dir / "18_CVD_30D_ALL.parquet"
     df.to_parquet(all_path, index=False, engine="pyarrow")
     log.info(f"Exported complete {len(df):,} rows to {all_path}")
 
-    # Export individual timeframe parquets for fast modular loading
     for tf, sub_df in df.groupby("timeframe"):
         tf_path = parquet_dir / f"18_CVD_30D_{tf}.parquet"
         sub_df.to_parquet(tf_path, index=False, engine="pyarrow")
@@ -993,63 +584,22 @@ def export_cvd_to_parquet(
     return all_path
 
 
-# =====================================================================
-# 8. STANDALONE & PIPELINE ENTRYPOINT
-# =====================================================================
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="18_CVD: Multi-Asset Multi-Timeframe Continuous CVD Engine (Crypto, Metals, Indices, Forex, Commodities)"
+        description="18_CVD: Multi-Asset Multi-Timeframe Continuous CVD Engine"
     )
-    parser.add_argument(
-        "--excel-path",
-        type=pathlib.Path,
-        default=DEFAULT_EXCEL_PATH,
-        help="Path to Data/DataBase_Trading.xlsx",
-    )
-    parser.add_argument(
-        "--parquet-dir",
-        type=pathlib.Path,
-        default=DEFAULT_PARQUET_DIR,
-        help="Directory to save fast vectorized Parquet datasets",
-    )
-    parser.add_argument(
-        "--days",
-        type=int,
-        default=30,
-        help="Continuous lookback window in days (default: 30)",
-    )
-    parser.add_argument(
-        "--timeframes",
-        nargs="+",
-        default=TIMEFRAMES_DEFAULT,
-        help="Timeframes to harvest: 5m, 15m, 1h, 4h",
-    )
-    parser.add_argument(
-        "--max-excel-rows",
-        type=int,
-        default=1500,
-        help="Maximum rows to insert into Excel sheet (default: 50000, 0 for unlimited)",
-    )
-    parser.add_argument(
-        "--symbols",
-        nargs="+",
-        default=None,
-        help="Optional list of display symbols to filter (e.g. BTC ETH GOLD SP500 EURUSD)",
-    )
-
+    parser.add_argument("--days", type=int, default=1, help="Lookback days")
+    parser.add_argument("--timeframes", nargs="+", default=["5m", "15m", "1h", "4h"])
+    parser.add_argument("--symbols", nargs="+", default=None)
+    parser.add_argument("--parquet-dir", type=pathlib.Path, default=DEFAULT_PARQUET_DIR)
     args = parser.parse_args()
 
-    # Filter roster if custom symbols provided
     roster = DEFAULT_ASSET_ROSTER
     if args.symbols:
         target_syms = set(s.upper() for s in args.symbols)
         roster = [item for item in roster if item[1].upper() in target_syms]
 
-    log.info(
-        f"Initializing 18_CVD with {len(roster)} assets across categories, lookback: {args.days} days, timeframes: {args.timeframes}"
-    )
-
-    # 1. Harvest Continuous Data
+    log.info(f"Initializing 18_CVD with {len(roster)} assets across categories...")
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
@@ -1063,18 +613,8 @@ def main() -> int:
         log.error("Failed to harvest any CVD candle records. Aborting.")
         return 1
 
-    # 2. Persist Vectorized Parquets for Zero-Latency Strategy Ingestion
     export_cvd_to_parquet(rows, parquet_dir=args.parquet_dir)
-
-    # 3. Export Formatted Worksheet to Excel
-    written = export_cvd_to_excel(
-        rows,
-        excel_path=args.excel_path,
-        sheet_name=SHEET_NAME,
-        max_excel_rows=args.max_excel_rows,
-    )
-
-    log.info(f"[SUCCESS] 18_CVD completed successfully with {written:,} rows in Excel and {len(rows):,} in Parquet.")
+    log.info(f"[SUCCESS] 18_CVD completed successfully with {len(rows):,} rows in Parquet.")
     return 0
 
 

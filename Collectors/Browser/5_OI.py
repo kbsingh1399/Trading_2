@@ -16,7 +16,7 @@ Features:
   - Captures full institutional market-wide figures (including CME's $9.27B+ institutional positions).
   - Authentic live percentage changes for 1h, 4h, and 24h timeframes.
   - Emits atomic Parquet feed and micro-metadata sidecar in Data/metadata/5_OI.json.
-  - Optional backward-compatible Excel worksheet formatting if DataBase_Trading.xlsx exists.
+  - Optional backward-compatible Excel worksheet formatting if Parquet Feeds exists.
 """
 
 from __future__ import annotations
@@ -33,12 +33,6 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -62,7 +56,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("5_OI")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 BASE_TARGET_URL = "https://www.coinglass.com/open-interest"
 FEED_NAME = "5_OI"
@@ -300,84 +293,9 @@ async def harvest_universe_open_interest(symbols: list[str] = DEFAULT_UNIVERSE) 
     return matrix_rows
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Optional backward-compatible dump into worksheet '5_OI'."""
-    if not openpyxl or not excel_path.exists():
-        return False
-
-    try:
-        wb = openpyxl.load_workbook(excel_path)
-        sheet_name = FEED_NAME
-        target_idx = 6 if len(wb.sheetnames) >= 6 else len(wb.sheetnames)
-
-        if sheet_name in wb.sheetnames:
-            wb.remove(wb[sheet_name])
-        ws = wb.create_sheet(title=sheet_name, index=target_idx)
-
-        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-        hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-        base_font = Font(name="Segoe UI", size=9, color="000000")
-        bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-        thin_border = Border(
-            left=Side(style="thin", color="E0E0E0"),
-            right=Side(style="thin", color="E0E0E0"),
-            top=Side(style="thin", color="E0E0E0"),
-            bottom=Side(style="thin", color="E0E0E0"),
-        )
-
-        headers = [
-            "Asset", "Total OI (USD)", "Binance", "Bybit", "OKX", "CME", "KuCoin", "Gate",
-            "Bitget", "BingX", "MEXC", "Bitunix", "Hyperliquid", "Others",
-            "Total OI (Tokens)", "24h Total Change", "4h Total Change", "1h Total Change", "OI/24h Vol", "Timestamp (IST)"
-        ]
-        ws.append(headers)
-        ws.row_dimensions[1].height = 24
-        for c in range(1, len(headers) + 1):
-            cell = ws.cell(row=1, column=c)
-            cell.font = hdr_font
-            cell.fill = hdr_fill
-            cell.alignment = Alignment(horizontal="center", vertical="center")
-
-        keys = [
-            "Asset", "Total_OI_USD", "Binance", "Bybit", "OKX", "CME", "KuCoin", "Gate",
-            "Bitget", "BingX", "MEXC", "Bitunix", "Hyperliquid", "Others",
-            "Total_OI_Tokens", "24h_Total_Change", "4h_Total_Change", "1h_Total_Change", "OI___24h_Vol", "Timestamp_IST"
-        ]
-
-        for r_idx, rec in enumerate(records, start=2):
-            ws.row_dimensions[r_idx].height = 20
-            for c_idx, k in enumerate(keys, start=1):
-                val = rec.get(k, "-")
-                cell = ws.cell(row=r_idx, column=c_idx, value=val)
-                cell.border = thin_border
-                cell.alignment = Alignment(horizontal="left" if c_idx == 1 else "center" if c_idx in (19, 20) else "right", vertical="center")
-                if c_idx in (1, 2):
-                    cell.font = bold_font
-                elif "+" in str(val):
-                    cell.font = green_font
-                elif "-" in str(val) and val != "-":
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-
-        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-        wb.save(temp_excel)
-        wb.close()
-        temp_excel.replace(excel_path)
-        log.info(f"Worksheet '{sheet_name}' updated successfully in {excel_path}.")
-        return True
-    except Exception as e:
-        log.warning(f"Optional Excel dump skipped/failed: {e}")
-        return False
-
-
 def main():
     parser = argparse.ArgumentParser(description="CoinGlass Multi-Exchange Open Interest Matrix Scraper")
     parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Assets to harvest")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to DataBase_Trading.xlsx")
     args = parser.parse_args()
 
     symbols = args.symbols
@@ -394,10 +312,6 @@ def main():
     # 1. Pure Atomic Parquet Dump
     meta = write_parquet_feed(FEED_NAME, records)
     log.info(f"Successfully dumped feed to Parquet: {meta}")
-
-    # 2. Optional Excel Dump
-    if args.excel_path.exists():
-        dump_to_excel(records, excel_path=args.excel_path)
 
     log.info("Multi-Exchange Open Interest pipeline executed successfully.")
 

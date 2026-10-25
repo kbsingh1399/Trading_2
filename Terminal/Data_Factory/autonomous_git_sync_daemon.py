@@ -9,10 +9,8 @@ every 5 minutes (300 seconds) without token cost.
 
 Key Features:
 1. Pure decoupled git sync — zero reliance on external APIs or telemetry schemas.
-2. Excel Atomic Protection: Verifies Data/DataBase_Trading.xlsx is fully written
-   and uncorrupted before staging. If in-flight, it temporarily unstages the file.
-3. Fast-forward / Rebase resilience: Safely synchronizes with remote changes.
-4. Non-blocking logging to logs/autonomous_git_sync_daemon.log and stdout.
+2. Fast-forward / Rebase resilience: Safely synchronizes with remote changes.
+3. Non-blocking logging to logs/autonomous_git_sync_daemon.log and stdout.
 """
 
 from __future__ import annotations
@@ -24,7 +22,6 @@ import pathlib
 import subprocess
 import sys
 import time
-import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -96,23 +93,6 @@ def run_cmd(cmd: list[str], cwd: pathlib.Path = ROOT, timeout: int = 60) -> tupl
         return -1, "", str(exc)
 
 
-def is_excel_healthy(excel_path: pathlib.Path) -> bool:
-    """Verify DataBase_Trading.xlsx is complete and not mid-write."""
-    if not excel_path.exists():
-        return False
-    try:
-        if excel_path.stat().st_size < 10_000_000:
-            return False
-        with zipfile.ZipFile(excel_path, "r") as zf:
-            if zf.testzip() is not None:
-                return False
-            if "[Content_Types].xml" not in zf.namelist():
-                return False
-        return True
-    except Exception:
-        return False
-
-
 def clear_stale_git_locks() -> None:
     """Clear stale .git index and ref locks if no active git process is running."""
     dot_git = ROOT / ".git"
@@ -154,18 +134,6 @@ def sync_cycle() -> bool:
 
     # 3. Stage all local workspace files
     run_cmd(["git", "add", "-A"])
-
-    # 4. Protect Excel master file if currently in-flight
-    excel_path = ROOT / "Data" / "DataBase_Trading.xlsx"
-    if excel_path.exists():
-        if not is_excel_healthy(excel_path):
-            logger.warning(
-                "DataBase_Trading.xlsx is currently being written (%d bytes); un-staging from this commit",
-                excel_path.stat().st_size,
-            )
-            run_cmd(["git", "reset", "HEAD", "--", "Data/DataBase_Trading.xlsx"])
-        else:
-            run_cmd(["git", "add", "Data/DataBase_Trading.xlsx"])
 
     # 5. Check if there are changes to commit
     code_status, status_out, _ = run_cmd(["git", "status", "--porcelain"])

@@ -15,16 +15,23 @@ Computes and publishes institutional technical indicators across all 43 Universe
 Also includes Section 2: Detailed 15-Minute Historical Indicator Ribbon (Last 100 Bars)
 for Bitcoin (BTC) to provide full chronological transparency of indicator evolution.
 
-Target Sheet: '11_Technical' in Data/DataBase_Trading.xlsx
+Target Sheet: '11_Technical' in Data/feeds/<feed_name>.parquet
 Position: Index 18 (immediately following '10_Whale_Orders').
 """
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 try:
     from logger_config import stamp_sheet_completion_ist, get_current_timestamps
@@ -46,12 +53,6 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
@@ -68,7 +69,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("TechnicalModule")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 TARGET_SHEET_NAME = "11_Technical"
 TARGET_INDEX = 19
 
@@ -554,360 +554,35 @@ def harvest_all_technical_data() -> Tuple[List[Dict[str, Any]], List[Dict[str, A
     return screener_records, btc_hist
 
 
-def dump_technical_to_excel(
-    screener_records: List[Dict[str, Any]],
-    btc_hist: List[Dict[str, Any]],
-    sheet_name: str = TARGET_SHEET_NAME,
-    target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-) -> bool:
-    """Writes multi-asset screener and historical ribbon to Excel worksheet with institutional styling."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
-    if not screener_records:
-        log.error("0 screener records generated. Aborting Excel dump.")
-        return False
-
-    try:
-        from filelock import FileLock
-        lock = FileLock(str(excel_path) + ".lock", timeout=120)
-    except ImportError:
-        lock = None
-
-    class _NoLock:
-        def __enter__(self): return self
-        def __exit__(self, *args): pass
-
-    with (lock if lock else _NoLock()):
-        wb = openpyxl.load_workbook(excel_path)
-
-    # Recreate sheet at specified index
-    if sheet_name in wb.sheetnames:
-        wb.remove(wb[sheet_name])
-
-    ws = wb.create_sheet(title=sheet_name, index=target_index)
-
-    # Color Palette & Styling
-    font_banner = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    fill_banner = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    font_sub_banner = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    fill_sub_banner = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-
-    hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="0F172A")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-    fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist = datetime.datetime.now(ist_tz)
-    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-
-    # =========================================================================
-    # SECTION 1: Multi-Asset Indicator Matrix (All 43 Assets)
-    # =========================================================================
-    last_col_letter = get_column_letter(len(COLUMNS_DEF))
-
-    # Banner Row 1
-    ws.merge_cells(f"A1:{last_col_letter}1")
-    t1 = ws["A1"]
-    if get_current_timestamps:
-        _ist_ts, _utc_ts = get_current_timestamps()
-        t1.value = f"11_Technical | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(screener_records)} | STATUS: LIVE"
-        t1.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
-        t1.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
-    else:
-        t1.value = f"SECTION 1: QUANTITATIVE TECHNICAL INDICATORS & VWAP BANDS MATRIX ({len(screener_records)} ASSETS) [as_of {now_utc}]"
-        t1.font = font_banner
-        t1.fill = fill_banner
-    t1.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[1].height = 28
-
-    # Header Row 2
-    ws.row_dimensions[2].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        c = ws.cell(row=2, column=col_idx, value=header_title)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # Data Rows
-    current_row = 3
-    for r in screener_records:
-        ws.row_dimensions[current_row].height = 20
-        row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=current_row, column=col_idx)
-            val = r.get(col_key)
-
-            # Format cell values and number formats
-            if col_key in ("last_price", "session_vwap", "upper_1sd", "lower_1sd", "upper_1_28sd", "lower_1_28sd",
-                           "upper_2sd", "lower_2sd", "upper_2_01sd", "lower_2_01sd", "upper_2_51sd", "lower_2_51sd",
-                           "upper_3sd", "lower_3sd", "rolling_vwap_24h", "ema_5", "ema_13", "ema_34", "ema_89", "ema_144", "ema_233", "ema_9", "ema_20", "ema_50", "ema_100", "ema_200",
-                           "atr_14", "bb_upper", "bb_mid", "bb_lower", "high_24h", "low_24h", "daily_poc", "daily_vah", "daily_val", "week_high", "week_low"):
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    if abs(float(val)) >= 1000:
-                        cell.number_format = "$#,##0.00"
-                    elif abs(float(val)) >= 1:
-                        cell.number_format = "$#,##0.0000"
-                    else:
-                        cell.number_format = "$#,##0.000000"
-                else:
-                    cell.value = ""
-
-            elif col_key in ("change_24h_pct", "dist_to_vwap_pct", "ema_200_slope_pct", "atr_pct", "bb_bandwidth"):
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val) / 100.0
-                    cell.number_format = "+0.00%;-0.00%;0.00%"
-                else:
-                    cell.value = ""
-
-            elif col_key in ("vwap_z", "macd_line", "macd_signal", "macd_hist"):
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "+0.00;-0.00;0.00"
-                else:
-                    cell.value = ""
-
-            elif col_key == "rsi_14":
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "0.0"
-                else:
-                    cell.value = ""
-
-            elif col_key == "sr_no":
-                cell.value = int(val)
-                cell.number_format = "#,##0"
-
-            else:
-                cell.value = str(val) if val is not None else ""
-
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            cell.fill = row_fill
-
-            # Typography & Semantic Highlighting
-            if col_key in ("sr_no", "asset", "category"):
-                cell.font = bold_font
-            elif col_key in ("change_24h_pct", "dist_to_vwap_pct"):
-                num_val = r.get(col_key)
-                if num_val is not None and num_val > 0:
-                    cell.font = green_font
-                elif num_val is not None and num_val < 0:
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-            elif col_key == "trend_bias":
-                if "BULLISH" in str(val):
-                    cell.font = green_font
-                elif "BEARISH" in str(val):
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-            elif col_key == "rsi_state":
-                if val in ("BULLISH", "OVERBOUGHT"):
-                    cell.font = green_font
-                elif val in ("BEARISH", "OVERSOLD"):
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-            elif col_key == "mr_bias":
-                if "OVERBOUGHT" in str(val):
-                    cell.font = red_font
-                elif "OVERSOLD" in str(val):
-                    cell.font = green_font
-                else:
-                    cell.font = base_font
-            else:
-                cell.font = base_font
-
-        current_row += 1
-
-    # Blank buffer row
-    current_row += 1
-
-    # =========================================================================
-    # SECTION 2: Bitcoin (BTC) 15-Minute Historical Candle Indicator Ribbon
-    # =========================================================================
-    hist_col_count = len(HIST_COLUMNS_DEF)
-    hist_last_letter = get_column_letter(hist_col_count)
-
-    ws.merge_cells(f"A{current_row}:{hist_last_letter}{current_row}")
-    sec2_cell = ws[f"A{current_row}"]
-    sec2_cell.value = f"SECTION 2: BITCOIN (BTC) 15-MINUTE HISTORICAL CANDLE INDICATOR RIBBON (LAST {len(btc_hist)} BARS)"
-    sec2_cell.font = font_sub_banner
-    sec2_cell.fill = fill_sub_banner
-    sec2_cell.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[current_row].height = 26
-    current_row += 1
-
-    # Header Row for Section 2
-    sec2_hdr_row = current_row
-    ws.row_dimensions[sec2_hdr_row].height = 24
-    for col_idx, (col_key, header_title, width, align) in enumerate(HIST_COLUMNS_DEF, start=1):
-        c = ws.cell(row=sec2_hdr_row, column=col_idx, value=header_title)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-    current_row += 1
-
-    # Data Rows for Section 2
-    for r in btc_hist:
-        ws.row_dimensions[current_row].height = 19
-        row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-
-        for col_idx, (col_key, _, _, align) in enumerate(HIST_COLUMNS_DEF, start=1):
-            cell = ws.cell(row=current_row, column=col_idx)
-            val = r.get(col_key)
-
-            if col_key in ("open", "high", "low", "close", "session_vwap", "vwap_u1", "vwap_l1",
-                           "vwap_u1_28", "vwap_l1_28", "vwap_u2", "vwap_l2", "vwap_u2_01", "vwap_l2_01",
-                           "vwap_u2_51", "vwap_l2_51", "vwap_u3", "vwap_l3", "ema_9", "ema_20", "ema_50",
-                           "ema_100", "ema_200", "atr_14", "bb_upper", "bb_mid", "bb_lower"):
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "$#,##0.00"
-                else:
-                    cell.value = ""
-
-            elif col_key == "volume":
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "#,##0"
-                else:
-                    cell.value = ""
-
-            elif col_key in ("vwap_z", "macd_hist"):
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "+0.00;-0.00;0.00"
-                else:
-                    cell.value = ""
-
-            elif col_key == "rsi_14":
-                if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                    cell.value = float(val)
-                    cell.number_format = "0.0"
-                else:
-                    cell.value = ""
-
-            else:
-                cell.value = str(val) if val is not None else ""
-
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            cell.fill = row_fill
-
-            # Formatting
-            if col_key in ("bar_time_utc", "close"):
-                cell.font = bold_font
-            elif col_key == "macd_hist":
-                num_val = r.get(col_key)
-                if num_val is not None and num_val > 0:
-                    cell.font = green_font
-                elif num_val is not None and num_val < 0:
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-            else:
-                cell.font = base_font
-
-        current_row += 1
-
-    # Freeze panes at E3 so Sr. No., Asset, Category, Symbol remain sticky while scrolling horizontally/vertically
-    ws.freeze_panes = "E3"
-
-    import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    wb.close()
-    log.info(
-        f"Dumped {len(screener_records)} asset rows and {len(btc_hist)} BTC historical rows to sheet "
-        f"'{sheet_name}' in {excel_path.name} (positioned at Index {target_index}) successfully."
-    )
-    return True
-
-
 def run_technical_module(
     sheet_name: str = TARGET_SHEET_NAME,
-    target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
 ) -> bool:
-    """Executes the full technical indicators generation and Excel dumping workflow."""
+    """Executes full technical indicators generation and Parquet dumping workflow."""
     t_start = time.time()
-    log.info(f"Starting Quantitative Technical Indicators module for sheet '{sheet_name}' (Target Index: {target_index})...")
+    log.info(f"Starting Quantitative Technical Indicators module for feed '{sheet_name}'...")
 
     screener_records, btc_hist = harvest_all_technical_data()
     if not screener_records:
         log.error("Failed to generate technical indicators records. Aborting.")
         return False
 
-    success = dump_technical_to_excel(
-        screener_records=screener_records,
-        btc_hist=btc_hist,
-        sheet_name=sheet_name,
-        target_index=target_index,
-        excel_path=excel_path,
-    )
+    # Dump all screener records and BTC history
+    all_records = list(screener_records)
+    if btc_hist:
+        all_records.extend(btc_hist)
 
+    meta = write_parquet_feed(sheet_name, all_records)
     elapsed = time.time() - t_start
-    if success:
-        log.info(f"Technical module completed successfully in {elapsed:.2f}s.")
-        return True
-    else:
-        log.error(f"Technical module failed during Excel dump after {elapsed:.2f}s.")
-        return False
+    log.info(f"Technical module completed successfully in {elapsed:.2f}s with {len(all_records)} records ({meta.get('byte_size')} bytes).")
+    return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Quantitative Technical Indicators & VWAP Bands Excel Publisher")
-    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target worksheet name")
-    parser.add_argument("--target-index", type=int, default=TARGET_INDEX, help="Worksheet index in workbook")
-    parser.add_argument("--excel-path", default=str(DEFAULT_EXCEL_PATH), help="Path to DataBase_Trading.xlsx")
-
+    parser = argparse.ArgumentParser(description="Quantitative Technical Indicators & VWAP Bands Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target feed name")
     args = parser.parse_args()
 
-    ok = run_technical_module(
-        sheet_name=args.sheet_name,
-        target_index=args.target_index,
-        excel_path=pathlib.Path(args.excel_path),
-    )
+    ok = run_technical_module(sheet_name=args.sheet_name)
     sys.exit(0 if ok else 1)
 
 

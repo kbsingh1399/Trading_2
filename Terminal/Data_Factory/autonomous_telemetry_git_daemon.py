@@ -252,28 +252,6 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     # Operator Mandate: Full workspace replica sync (stage ALL changes)
     run_cmd(["git", "add", "-A"])
 
-    # Edge-Case Guard: Prevent staging/committing half-written or corrupt DataBase_Trading.xlsx
-    excel_file = ROOT / "Data" / "DataBase_Trading.xlsx"
-    if excel_file.exists():
-        import zipfile
-        is_valid_excel = False
-        try:
-            if zipfile.is_zipfile(excel_file) and excel_file.stat().st_size > 1000000:
-                with zipfile.ZipFile(excel_file, "r") as zf:
-                    if "[Content_Types].xml" in zf.namelist():
-                        is_valid_excel = True
-        except Exception:
-            is_valid_excel = False
-
-        if not is_valid_excel:
-            logger.warning(
-                "DataBase_Trading.xlsx is currently in-flight/being written (%d bytes); un-staging to wait for complete write",
-                excel_file.stat().st_size
-            )
-            run_cmd(["git", "reset", "HEAD", "--", "Data/DataBase_Trading.xlsx"])
-        else:
-            run_cmd(["git", "add", "Data/DataBase_Trading.xlsx"])
-
     code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
     if modified_output:
         now_str = generated_snapshot["as_of_utc"] if isinstance(generated_snapshot, dict) and "as_of_utc" in generated_snapshot else datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")

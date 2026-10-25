@@ -1,38 +1,6 @@
-#!/usr/bin/env python3
-"""
-Data/Excel_Modules/21_Tradfye_Orderflow.py
-=========================================
-Tradfye Multi-Timeframe Orderflow, Footprint POC, Delta & Options Gamma Module.
-Ingests continuous 2-day multi-timeframe candle orderflow data for ALL 18 assets 
-in our quantitative trading universe directly from Binance Futures & Deribit.
-
-Key Capabilities:
-1. Full 18-Asset Universe: BTC, ETH, SOL, BNB, XRP, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB.
-2. Multi-Timeframe Continuous 2-Day Coverage:
-   - 15m: 192 candles (exactly 48h / 2 days continuous master trading horizon)
-   - 1h:  48 candles  (exactly 48h / 2 days continuous macro structure)
-   - 5m:  144 candles (12h continuous high-precision execution & micro orderflow)
-   Total: 6,912 continuous orderflow candles.
-3. Orderflow Footprint Metrics per Candle:
-   - OHLC, Total Vol ($), Taker Buy Vol ($), Taker Sell Vol ($)
-   - Net Delta ($), Net Delta (%), Cumulative Volume Delta (CVD $)
-   - Candle VWAP ($), Trades Count, Avg Trade Size ($), Estimated POC ($)
-   - Orderflow Regime (AGGRESSIVE_BUYER_DOMINATION, AGGRESSIVE_SELLER_DOMINATION, TWO_SIDED_ABSORPTION)
-   - Delta Divergence (BEARISH_ABSORPTION, BULLISH_ABSORPTION, EXPANSION, CHOP)
-   - Deribit Options Gamma (Max Pain, Major Call Wall, Major Put Wall for BTC, ETH, SOL)
-4. Fast concurrent async fetching (ThreadPoolExecutor, < 3.0s network turnaround).
-5. Canonical Institutional Excel Formatting:
-   - Row 1 Top Banner: "21_Tradfye_Orderflow | LAST UPDATED: YYYY-MM-DD HH:MM:SS IST (UTC) | ROWS: [N] | STATUS: LIVE"
-   - Row 2 Column Headers with freeze_panes = "A3"
-   - Dual IST & UTC timestamps, openpyxl gridlines enabled, 0 formula errors.
-"""
-
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+# Pure Parquet Pipeline
 
 import concurrent.futures
 import datetime
@@ -48,8 +16,8 @@ import urllib.request
 from typing import Dict, Any, List, Tuple
 
 ROOT_DIR = pathlib.Path(__file__).resolve().parents[2]
+ROOT = ROOT_DIR
 DATA_DIR = ROOT_DIR / "Data"
-EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] [21_Tradfye] %(message)s")
 logger = logging.getLogger("21_Tradfye")
@@ -293,180 +261,16 @@ def process_all_universe_orderflow() -> List[Dict[str, Any]]:
     return all_rows
 
 
-def update_excel_workbook(rows: List[Dict[str, Any]], max_retries: int = 6, retry_delay: float = 3.0) -> bool:
-    """Writes all rows into DataBase_Trading.xlsx worksheet '21_Tradfye_Orderflow' with retry loop."""
-    if not EXCEL_PATH.exists():
-        logger.error(f"Workbook {EXCEL_PATH} not found!")
+def dump_tradfye_to_parquet(rows: list[dict], feed_name: str = "21_Tradfye_Orderflow") -> bool:
+    if not rows:
+        logger.warning("No Tradfye orderflow rows to dump.")
         return False
-        
-    for attempt in range(1, max_retries + 1):
-        try:
-            import openpyxl
-            from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-            
-            t0 = time.time()
-            wb = openpyxl.load_workbook(EXCEL_PATH)
-            sheet_name = "21_Tradfye_Orderflow"
-            
-            if sheet_name in wb.sheetnames:
-                ws = wb[sheet_name]
-                # Clear existing data rows completely
-                ws.delete_rows(1, ws.max_row + 1)
-            else:
-                ws = wb.create_sheet(title=sheet_name)
-                
-            now_utc = datetime.datetime.now(UTC_TIMEZONE)
-            now_ist = now_utc.astimezone(IST_TIMEZONE)
-            ist_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-            utc_str = now_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
-            
-            # Row 1 Banner
-            banner_text = f"21_Tradfye_Orderflow | LAST UPDATED: {ist_str} ({utc_str}) | ROWS: {len(rows)} | STATUS: LIVE"
-            ws.cell(row=1, column=1, value=banner_text)
-            ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=25)
-            
-            banner_fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
-            banner_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
-            ws.cell(row=1, column=1).fill = banner_fill
-            ws.cell(row=1, column=1).font = banner_font
-            ws.cell(row=1, column=1).alignment = Alignment(horizontal="center", vertical="center")
-            
-            # Row 2 Headers
-            headers = [
-                "Sr.No", "Timestamp (IST)", "Timestamp (UTC)", "Asset", "Market Pair",
-                "Timeframe", "Open ($)", "High ($)", "Low ($)", "Close ($)",
-                "Total Vol ($)", "Taker Buy Vol ($)", "Taker Sell Vol ($)", "Net Delta ($)", "Net Delta (%)",
-                "CVD ($)", "Candle VWAP ($)", "Trades Count", "Avg Trade ($)", "POC Estimate ($)",
-                "Orderflow Regime", "Delta Divergence", "Deribit Max Pain ($)", "Deribit Call Wall ($)", "Deribit Put Wall ($)"
-            ]
-            
-            header_fill = PatternFill(start_color="2F5597", end_color="2F5597", fill_type="solid")
-            header_font = Font(name="Calibri", size=10, bold=True, color="FFFFFF")
-            
-            for col_idx, h in enumerate(headers, 1):
-                c = ws.cell(row=2, column=col_idx, value=h)
-                c.fill = header_fill
-                c.font = header_font
-                c.alignment = Alignment(horizontal="center", vertical="center")
-                
-            # Rows 3 onwards: Append data
-            thin_side = Side(style="thin", color="D9D9D9")
-            thin_border = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
-            
-            zebra_fill = PatternFill(start_color="F9FAFB", end_color="F9FAFB", fill_type="solid")
-            white_fill = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-            
-            align_center = Alignment(horizontal="center", vertical="center")
-            align_right = Alignment(horizontal="right", vertical="center")
-            align_left = Alignment(horizontal="left", vertical="center")
-            
-            regime_buyer_fill = PatternFill(start_color="E2EFDA", end_color="E2EFDA", fill_type="solid")
-            regime_seller_fill = PatternFill(start_color="FCE4D6", end_color="FCE4D6", fill_type="solid")
-            
-            for r_idx, row in enumerate(rows, 3):
-                sr_no = r_idx - 2
-                is_zebra = (sr_no % 2 == 0)
-                base_fill = zebra_fill if is_zebra else white_fill
-                
-                price_fmt = "$#,##0.00" if row["close"] >= 1.0 else "$#,##0.0000"
-                
-                c_vals = [
-                    (1, sr_no, align_center, "0"),
-                    (2, row["timestamp_ist"], align_center, None),
-                    (3, row["timestamp_utc"], align_center, None),
-                    (4, row["asset"], align_center, None),
-                    (5, row["market_pair"], align_center, None),
-                    (6, row["timeframe"], align_center, None),
-                    (7, row["open"], align_right, price_fmt),
-                    (8, row["high"], align_right, price_fmt),
-                    (9, row["low"], align_right, price_fmt),
-                    (10, row["close"], align_right, price_fmt),
-                    (11, row["total_vol_usd"], align_right, "$#,##0.00"),
-                    (12, row["taker_buy_usd"], align_right, "$#,##0.00"),
-                    (13, row["taker_sell_usd"], align_right, "$#,##0.00"),
-                    (14, row["net_delta_usd"], align_right, "$#,##0.00"),
-                    (15, row["net_delta_pct"] / 100.0, align_right, "0.00%"),
-                    (16, row["cvd_usd"], align_right, "$#,##0.00"),
-                    (17, row["candle_vwap"], align_right, price_fmt),
-                    (18, row["trades_count"], align_right, "#,##0"),
-                    (19, row["avg_trade_usd"], align_right, "$#,##0.00"),
-                    (20, row["poc_estimate"], align_right, price_fmt),
-                    (21, row["regime"], align_center, None),
-                    (22, row["divergence"], align_center, None),
-                    (23, row["deribit_max_pain"] if row["deribit_max_pain"] > 0 else "-", align_right, price_fmt if row["deribit_max_pain"] > 0 else None),
-                    (24, row["deribit_call_wall"] if row["deribit_call_wall"] > 0 else "-", align_right, price_fmt if row["deribit_call_wall"] > 0 else None),
-                    (25, row["deribit_put_wall"] if row["deribit_put_wall"] > 0 else "-", align_right, price_fmt if row["deribit_put_wall"] > 0 else None),
-                ]
-                
-                for col_i, val, aln, num_fmt in c_vals:
-                    cell = ws.cell(row=r_idx, column=col_i, value=val)
-                    cell.alignment = aln
-                    cell.border = thin_border
-                    
-                    if col_i == 21:
-                        if val == "AGGRESSIVE_BUYER_DOMINATION":
-                            cell.fill = regime_buyer_fill
-                        elif val == "AGGRESSIVE_SELLER_DOMINATION":
-                            cell.fill = regime_seller_fill
-                        else:
-                            cell.fill = base_fill
-                    else:
-                        cell.fill = base_fill
-                        
-                    if num_fmt:
-                        cell.number_format = num_fmt
-                        
-            # Sheet view formatting
-            ws.views.sheetView[0].showGridLines = True
-            ws.freeze_panes = "A3"
-            
-            # Auto-fit column widths
-            col_widths = {
-                1: 8, 2: 24, 3: 24, 4: 10, 5: 14, 6: 12,
-                7: 14, 8: 14, 9: 14, 10: 14, 11: 18, 12: 18,
-                13: 18, 14: 18, 15: 14, 16: 20, 17: 16, 18: 14,
-                19: 16, 20: 16, 21: 30, 22: 24, 23: 18, 24: 18, 25: 18
-            }
-            for col_idx, width in col_widths.items():
-                col_letter = openpyxl.utils.get_column_letter(col_idx)
-                ws.column_dimensions[col_letter].width = width
-
-            # Atomic verified save pattern matching 11_Technical.py
-            temp_excel = EXCEL_PATH.with_name(f"{EXCEL_PATH.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-            wb.save(temp_excel)
-            wb.close()
-            
-            import zipfile
-            _is_valid = False
-            with zipfile.ZipFile(temp_excel, "r") as _z:
-                _is_valid = (_z.testzip() is None)
-                
-            if _is_valid:
-                replaced = False
-                for _att in range(30):
-                    try:
-                        temp_excel.replace(EXCEL_PATH)
-                        replaced = True
-                        break
-                    except Exception:
-                        time.sleep(0.5)
-                        
-                if replaced:
-                    logger.info(f"Successfully saved {len(rows)} orderflow rows into {EXCEL_PATH} in {time.time()-t0:.2f}s")
-                    return True
-                else:
-                    logger.warning("Could not atomically replace EXCEL_PATH after 30 attempts.")
-            else:
-                logger.error("Generated temp Excel file failed zip integrity test!")
-                if temp_excel.exists():
-                    temp_excel.unlink()
-            
-        except Exception as e:
-            logger.warning(f"Attempt {attempt}/{max_retries} failed with {type(e).__name__}: {e}. Retrying in {retry_delay}s...")
-            time.sleep(retry_delay)
-            
-    logger.error(f"All {max_retries} attempts to update Excel workbook failed!")
-    return False
+    sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
+    sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
+    from parquet_feed_writer import write_parquet_feed
+    meta = write_parquet_feed(feed_name, rows)
+    logger.info(f"Successfully dumped {len(rows)} Tradfye orderflow rows into Parquet feed '{feed_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
+    return True
 
 
 def main():
@@ -476,13 +280,13 @@ def main():
     if not rows:
         logger.error("No orderflow rows harvested!")
         sys.exit(1)
-        
-    success = update_excel_workbook(rows)
+
+    success = dump_tradfye_to_parquet(rows)
     if success:
         logger.info(f"Tradfye Orderflow completed successfully in {time.time()-start_time:.2f}s!")
         sys.exit(0)
     else:
-        logger.error("Failed to update Excel workbook!")
+        logger.error("Failed to dump Tradfye Orderflow to Parquet!")
         sys.exit(1)
 
 

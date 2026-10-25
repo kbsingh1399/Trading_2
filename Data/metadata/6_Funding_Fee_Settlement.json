@@ -1,23 +1,23 @@
 {
   "feed_name": "6_Funding_Fee_Settlement",
   "status": "PASS",
-  "row_count": 100,
+  "row_count": 937,
   "column_count": 10,
   "columns": [
-    "#",
-    "Symbol",
-    "Price",
-    "Price_24h%",
-    "Open_Interest",
-    "Current",
-    "Last_24h",
-    "Last_3_Days",
-    "Last_7_Days",
-    "Timestamp_IST"
+    "rank",
+    "symbol",
+    "price",
+    "price_24h_pct",
+    "open_interest",
+    "current",
+    "last_24h",
+    "last_3d",
+    "last_7d",
+    "timestamp_ist"
   ],
-  "byte_size": 9586,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.637748,
-  "write_duration_ms": 4.25
+  "byte_size": 52827,
+  "timestamp_ist": "2026-10-26 03:39:22 IST",
+  "timestamp_utc": "2026-10-25 22:09:22 UTC",
+  "epoch_utc": 1792966162.3185,
+  "write_duration_ms": 448.06
 }

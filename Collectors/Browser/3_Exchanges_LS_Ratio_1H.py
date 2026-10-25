@@ -1,3 +1,14 @@
+from __future__ import annotations
+
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
 #!/usr/bin/env python3
 """
 Collectors/Browser/3_Exchanges_LS_Ratio_1H.py

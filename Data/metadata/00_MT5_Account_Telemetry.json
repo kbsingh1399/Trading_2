@@ -1,23 +1,26 @@
 {
   "feed_name": "00_MT5_Account_Telemetry",
   "status": "PASS",
-  "row_count": 166,
-  "column_count": 10,
+  "row_count": 163,
+  "column_count": 13,
   "columns": [
-    "Realized_Balance_USD",
-    "$4,846.32",
-    "col_2",
-    "Real-Time_Floating_Equity_USD",
-    "col_5",
-    "col_6",
-    "col_7",
-    "col_8",
-    "col_9",
-    "col_10"
+    "Category",
+    "Broker_Symbol",
+    "Bid_Quote",
+    "Ask_Quote",
+    "Mid_Price",
+    "Spread_Points",
+    "Spread_BPS",
+    "Threshold_BPS",
+    "Gate_Status",
+    "Execution_Posture",
+    "Order_Type_Allowed",
+    "Pillar_1_Clearance",
+    "Timestamp_IST"
   ],
-  "byte_size": 13669,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.379312,
-  "write_duration_ms": 385.9
+  "byte_size": 11838,
+  "timestamp_ist": "2026-10-26 03:41:42 IST",
+  "timestamp_utc": "2026-10-25 22:11:42 UTC",
+  "epoch_utc": 1792966302.125184,
+  "write_duration_ms": 404.43
 }

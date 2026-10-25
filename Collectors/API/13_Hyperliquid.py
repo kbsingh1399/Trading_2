@@ -1,26 +1,16 @@
-#!/usr/bin/env python3
-"""
-Data/Excel_Modules/13_Hyperliquid.py
-====================================
-Dedicated Excel Module 21: Hyperliquid L1 Native Exchange & Microstructure Engine.
-Extracts comprehensive real-time market data directly from Hyperliquid's official
-L1 API (https://api.hyperliquid.xyz/info):
-  - Section 1: All-Asset Perpetual & HIP-3 Builder Screener (Global, XYZ, FLX DEXes - 290+ Markets)
-  - Section 2: Predicted Funding Rates Comparison (Hyperliquid vs Binance vs Bybit Arbitrage Matrix)
-  - Section 3: Multi-Asset Level 2 Orderbook Depth & Imbalance Matrix (Top 15 Perpetuals)
-  - Section 4: Real-Time Tick Trades Tape with Aggressor Side & Ethereum Wallet Attribution
-  - Section 5: Hyperliquid Spot Market Ecosystem Overview (Top Native Spot Tokens)
-
-Target Sheet: '13_Hyperliquid' in Data/DataBase_Trading.xlsx
-Position: Immediately following '12_Hyperdash'.
-"""
-
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import datetime
@@ -34,12 +24,6 @@ import urllib.request
 import urllib.error
 from typing import Any, Dict, List, Optional, Tuple
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
@@ -56,7 +40,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("13_Hyperliquid")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 TARGET_SHEET_NAME = "13_Hyperliquid"
 TARGET_INDEX = 21
 
@@ -313,306 +296,52 @@ def harvest_hyperliquid_data() -> Dict[str, Any]:
     }
 
 
-def dump_hyperliquid_to_excel(
-    data: Dict[str, Any],
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-    sheet_name: str = TARGET_SHEET_NAME,
-    target_index: int = TARGET_INDEX,
-) -> bool:
-    """Dumps all 5 sections of native Hyperliquid L1 data into Excel with institutional formatting."""
-    if not openpyxl:
-        log.error("openpyxl is not installed.")
-        return False
+def dump_hyperliquid_to_parquet(data: dict, sheet_name: str = TARGET_SHEET_NAME) -> bool:
+    rows = []
+    ts_ist = datetime.datetime.now(IST_TZ).strftime("%Y-%m-%d %H:%M:%S IST")
 
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
-    wb = openpyxl.load_workbook(excel_path)
-    if sheet_name in wb.sheetnames:
-        wb.remove(wb[sheet_name])
-
-    ws = wb.create_sheet(title=sheet_name, index=target_index)
-
-    # Styling Palette
-    font_banner = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    fill_banner = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    font_sub_banner = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    fill_sub_banner = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-
-    hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="0F172A")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-    fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist = datetime.datetime.now(ist_tz)
-    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-    current_row = 1
-
-    def render_table_section(
-        banner_title: str,
-        columns_def: List[Tuple[str, str, int, str]],
-        records: List[Dict[str, Any]],
-        start_row: int,
-        is_main_banner: bool = False,
-        max_rows: Optional[int] = None,
-    ) -> int:
-        last_letter = get_column_letter(len(columns_def))
-        ws.merge_cells(f"A{start_row}:{last_letter}{start_row}")
-        sb = ws[f"A{start_row}"]
-        sb.value = banner_title
-        sb.font = font_banner if is_main_banner else font_sub_banner
-        sb.fill = fill_banner if is_main_banner else fill_sub_banner
-        sb.alignment = Alignment(horizontal="center", vertical="center")
-        ws.row_dimensions[start_row].height = 28 if is_main_banner else 26
-        row_idx = start_row + 1
-
-        # Header Row
-        ws.row_dimensions[row_idx].height = 24
-        for col_i, (k, title, width, align) in enumerate(columns_def, start=1):
-            cell = ws.cell(row=row_idx, column=col_i, value=title)
-            cell.font = hdr_font
-            cell.fill = hdr_fill
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            col_letter = get_column_letter(col_i)
-            if ws.column_dimensions[col_letter].width is None or ws.column_dimensions[col_letter].width < width:
-                ws.column_dimensions[col_letter].width = width
-        row_idx += 1
-
-        # Data Rows
-        sliced_records = records[:max_rows] if max_rows else records
-        for i, rec in enumerate(sliced_records, start=1):
-            ws.row_dimensions[row_idx].height = 19
-            r_fill = fill_zebra if row_idx % 2 == 0 else fill_white
-
-            for col_i, (k, _, _, align) in enumerate(columns_def, start=1):
-                cell = ws.cell(row=row_idx, column=col_i)
-                val = rec.get(k)
-                if k == "sr_no":
-                    val = i
-
-                # Number formats
-                if k in ("volume_24h", "open_interest_usd", "notional_usd", "bid_vol_usd", "ask_vol_usd", "fdv_usd"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val)
-                        cell.number_format = "$#,##0.00"
-                    else:
-                        cell.value = ""
-                elif k in ("mark_px", "price", "best_bid", "best_ask", "spread"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val)
-                        cell.number_format = "$#,##0.00" if abs(float(val)) >= 1 else "$#,##0.0000"
-                    else:
-                        cell.value = ""
-                elif k in ("change_24h", "funding_annualized", "hl_apr", "bid_pct", "ask_pct"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val) / 100.0
-                        cell.number_format = "+0.00%;-0.00%;0.00%"
-                    else:
-                        cell.value = ""
-                elif k in ("funding_rate", "hl_funding", "bin_funding", "bybit_funding"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val)
-                        cell.number_format = "+0.0000%;-0.0000%;0.0000%"
-                    else:
-                        cell.value = ""
-                elif k in ("spread_bps", "arb_spread_bps"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val)
-                        cell.number_format = "+0.00;-0.00;0.00"
-                    else:
-                        cell.value = ""
-                elif k in ("open_interest", "size", "circulating_supply"):
-                    if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
-                        cell.value = float(val)
-                        cell.number_format = "#,##0.00"
-                    else:
-                        cell.value = ""
-                elif k in ("max_leverage", "sz_decimals", "sr_no"):
-                    if val is not None:
-                        cell.value = int(val)
-                        cell.number_format = "#,##0"
-                    else:
-                        cell.value = ""
-                else:
-                    cell.value = str(val) if val is not None else ""
-
-                cell.alignment = Alignment(horizontal=align, vertical="center")
-                cell.border = row_border
-                cell.fill = r_fill
-
-                # Conditional Color
-                sval = str(val).upper()
-                if "BUY" in sval or "ACCUMULATION" in sval:
-                    cell.font = green_font
-                elif "SELL" in sval or "PRESSURE" in sval:
-                    cell.font = red_font
-                elif k in ("change_24h", "funding_annualized", "hl_apr", "arb_spread_bps"):
-                    if isinstance(val, (int, float)):
-                        cell.font = green_font if val > 0 else (red_font if val < 0 else base_font)
-                    else:
-                        cell.font = base_font
-                else:
-                    cell.font = base_font
-
-            row_idx += 1
-
-        return row_idx + 1  # Add blank buffer row
-
-    # =========================================================================
-    # SECTION 1: All-Asset Perpetual & HIP-3 Builder Screener (Global, XYZ, FLX)
-    # =========================================================================
-    perps = data.get("perpetuals", [])
-    sec1_rows = []
-    for p in perps:
-        sig = p.get("signal_market", "")
-        origin = "Global L1"
-        if sig.startswith("xyz:"):
-            origin = "xyz HIP-3"
-        elif sig.startswith("flx:"):
-            origin = "flx HIP-3"
-
-        sec1_rows.append({
-            "coin": p.get("coin"),
-            "signal_market": sig,
-            "dex": origin,
-            "mark_px": p.get("mark_px"),
-            "change_24h": p.get("change_24h"),
-            "volume_24h": p.get("volume_24h"),
-            "open_interest": p.get("open_interest"),
-            "open_interest_usd": p.get("open_interest_usd"),
-            "funding_rate": p.get("funding_rate"),
-            "funding_annualized": p.get("funding_annualized"),
-            "max_leverage": p.get("max_leverage"),
-            "sz_decimals": p.get("sz_decimals"),
+    # 1. Perps markets
+    for p in data.get("perps", []):
+        rows.append({
+            "Section": "PERP_MARKETS",
+            "Asset": p.get("coin"),
+            "Price": float(p.get("mark_px", 0.0)),
+            "Change_24h": float(p.get("change_24h", 0.0)),
+            "Volume_24h_USD": float(p.get("volume_24h", 0.0)),
+            "Open_Interest_USD": float(p.get("open_interest_usd", 0.0)),
+            "Funding_Rate": float(p.get("funding_rate", 0.0)),
+            "Detail": f"Max Lev: {p.get('max_leverage', 0)}x",
+            "Timestamp_IST": ts_ist,
         })
 
-    current_row = render_table_section(
-        f"SECTION 1: HYPERLIQUID ALL-ASSET PERPETUAL & HIP-3 BUILDER SCREENER ({len(sec1_rows)} MARKETS) [as_of {now_utc}]",
-        SECTION_1_COLS,
-        sec1_rows,
-        current_row,
-        is_main_banner=True,
-    )
+    # 2. Funding comparison
+    for f in data.get("funding_cmp", []):
+        rows.append({
+            "Section": "FUNDING_ARBITRAGE",
+            "Asset": f.get("coin"),
+            "Price": None,
+            "Change_24h": f.get("arb_spread_bps"),
+            "Volume_24h_USD": None,
+            "Open_Interest_USD": None,
+            "Funding_Rate": f.get("hl_funding"),
+            "Detail": f"HL: {f.get('hl_apr', 0.0):.2f}% APR | Next: {f.get('next_time_utc')}",
+            "Timestamp_IST": ts_ist,
+        })
 
-    # =========================================================================
-    # SECTION 2: Predicted Funding Rates Comparison
-    # =========================================================================
-    funding_cmp = data.get("funding_cmp", [])
-    current_row = render_table_section(
-        f"SECTION 2: PREDICTED FUNDING RATES & MULTI-EXCHANGE ARBITRAGE MATRIX (HYPERLIQUID VS BINANCE VS BYBIT - TOP {min(len(funding_cmp), 60)} MARKETS)",
-        SECTION_2_COLS,
-        funding_cmp,
-        current_row,
-        max_rows=60,
-    )
-
-    # =========================================================================
-    # SECTION 3: Multi-Asset Level 2 Orderbook Depth & Imbalance Matrix
-    # =========================================================================
-    l2_depth = data.get("l2_depth", [])
-    current_row = render_table_section(
-        f"SECTION 3: LEVEL 2 ORDERBOOK DEPTH & MICROSTRUCTURE IMBALANCE MATRIX ({len(l2_depth)} TOP PERPETUALS)",
-        SECTION_3_COLS,
-        l2_depth,
-        current_row,
-    )
-
-    # =========================================================================
-    # SECTION 4: Real-Time Tick Trades Tape
-    # =========================================================================
-    trades_tape = data.get("trades_tape", [])
-    current_row = render_table_section(
-        f"SECTION 4: REAL-TIME TICK TRADES TAPE WITH ON-CHAIN WALLET ATTRIBUTION (LAST {min(len(trades_tape), 100)} TRADES)",
-        SECTION_4_COLS,
-        trades_tape,
-        current_row,
-        max_rows=100,
-    )
-
-    # =========================================================================
-    # SECTION 5: Hyperliquid Spot Market Ecosystem Overview
-    # =========================================================================
-    spot_markets = data.get("spot_markets", [])
-    current_row = render_table_section(
-        f"SECTION 5: HYPERLIQUID SPOT MARKET ECOSYSTEM OVERVIEW (TOP {min(len(spot_markets), 50)} ACTIVE SPOT PAIRS)",
-        SECTION_5_COLS,
-        spot_markets,
-        current_row,
-        max_rows=50,
-    )
-
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="13_Hyperliquid",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Successfully dumped Hyperliquid data to '{sheet_name}' in {excel_path} (Index: {target_index}).")
+    meta = write_parquet_feed(sheet_name, rows)
+    log.info(f"Successfully dumped {len(rows)} Hyperliquid rows into Parquet feed '{sheet_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Hyperliquid L1 Native Exchange Module 21")
-    parser.add_argument("--excel", default=str(DEFAULT_EXCEL_PATH), help="Path to DataBase_Trading.xlsx")
-    parser.add_argument("--sheet", default=TARGET_SHEET_NAME, help="Target sheet name")
-    parser.add_argument("--index", type=int, default=TARGET_INDEX, help="Worksheet index position")
+    parser = argparse.ArgumentParser(description="Hyperliquid L1 Native Market Data Pure-Parquet Dumper")
+    parser.add_argument("--sheet", default=TARGET_SHEET_NAME, help="Target feed name")
     args = parser.parse_args()
 
     t_start = time.time()
-    log.info(f"Starting Hyperliquid L1 Native Exchange module for sheet '{args.sheet}' (Index: {args.index})...")
-
+    log.info(f"Starting Hyperliquid L1 module for feed '{args.sheet}'...")
     harvest_data = harvest_hyperliquid_data()
-    success = dump_hyperliquid_to_excel(
-        harvest_data,
-        excel_path=pathlib.Path(args.excel),
-        sheet_name=args.sheet,
-        target_index=args.index,
-    )
+    success = dump_hyperliquid_to_parquet(harvest_data, sheet_name=args.sheet)
 
     if success:
         log.info(f"Hyperliquid module completed successfully in {time.time() - t_start:.2f}s.")

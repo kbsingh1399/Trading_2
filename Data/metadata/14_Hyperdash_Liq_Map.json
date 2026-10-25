@@ -1,25 +1,25 @@
 {
   "feed_name": "14_Hyperdash_Liq_Map",
   "status": "PASS",
-  "row_count": 5983,
+  "row_count": 5941,
   "column_count": 12,
   "columns": [
-    "Sr.No",
-    "Asset",
-    "Time",
-    "Timestamp_IST",
-    "Mark_Price",
-    "Price",
-    "Distance_%",
-    "Side",
-    "Cumulative_Liquidation",
-    "Short_Liquidation",
-    "Long_Liquidation",
-    "Size_Coins"
+    "sr_no",
+    "asset",
+    "time_window",
+    "timestamp_ist",
+    "mark_price",
+    "price",
+    "distance_pct",
+    "side",
+    "cumulative_liq",
+    "short_liq",
+    "long_liq",
+    "size_coins"
   ],
-  "byte_size": 224812,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.779009,
-  "write_duration_ms": 28.45
+  "byte_size": 223726,
+  "timestamp_ist": "2026-10-26 03:41:44 IST",
+  "timestamp_utc": "2026-10-25 22:11:44 UTC",
+  "epoch_utc": 1792966304.304282,
+  "write_duration_ms": 451.7
 }

@@ -1,20 +1,20 @@
 {
   "feed_name": "7_Liq_Heapmap",
   "status": "PASS",
-  "row_count": 79,
+  "row_count": 78,
   "column_count": 7,
   "columns": [
-    "Rank",
-    "Asset",
-    "1hour",
-    "4hour",
-    "12_hour",
-    "24hour",
-    "Timestamp_IST"
+    "rank",
+    "asset",
+    "tf_1h",
+    "tf_4h",
+    "tf_12h",
+    "tf_24h",
+    "timestamp_ist"
   ],
-  "byte_size": 4693,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.658668,
-  "write_duration_ms": 3.39
+  "byte_size": 4709,
+  "timestamp_ist": "2026-10-26 03:39:35 IST",
+  "timestamp_utc": "2026-10-25 22:09:35 UTC",
+  "epoch_utc": 1792966175.782909,
+  "write_duration_ms": 334.41
 }

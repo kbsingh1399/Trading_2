@@ -6,7 +6,7 @@ Dedicated Excel Module 18: CoinGlass Bitcoin Whale Orders & Large Trades.
 Extracts 100% of open resting whale orders (> $100.00K) across All Exchanges
 (Binance Spot, Binance Futures, OKX Spot, OKX Futures, Coinbase Spot)
 from https://www.coinglass.com/large-orderbook-statistics
-and writes to worksheet '10_Whale_Orders' in Data/DataBase_Trading.xlsx
+and writes to worksheet '10_Whale_Orders' in Data/feeds/<feed_name>.parquet
 (positioned at Index 17, immediately following '9_Liquidation_Max_Pain_7D').
 
 Captures ALL hover popup and orderbook attributes:
@@ -30,10 +30,17 @@ Captures ALL hover popup and orderbook attributes:
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 try:
     from logger_config import stamp_sheet_completion_ist, get_current_timestamps
@@ -53,12 +60,6 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -74,7 +75,6 @@ log = logging.getLogger("WhaleOrders")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/large-orderbook-statistics"
 TARGET_SHEET_NAME = "10_Whale_Orders"
@@ -396,176 +396,15 @@ async def harvest_whale_orders(
             close_tab(tab_id, cdp_base_url)
 
 
-def dump_whale_orders_to_excel(
-    records: List[Dict[str, Any]],
-    sheet_name: str = TARGET_SHEET_NAME,
-    target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-) -> bool:
-    """
-    Dumps all whale order records into target worksheet with institutional styling:
-      - Title banner in row 1
-      - Dark Navy header in row 2
-      - Alternating zebra rows (#F8FAFC / #FFFFFF)
-      - Segoe UI typography with green (Buy Orders) / red (Sell Orders) highlights
-      - Frozen panes at E3 (Sr. No., Exchange, Symbol, Type fixed)
-      - Numeric formatting for clean financial calculation
-      - Sheet positioned precisely at target_index (Index 17).
-    """
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
-    if not records:
-        log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
-        return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Recreate target sheet at specified index
-    if sheet_name in wb.sheetnames:
-        wb.remove(wb[sheet_name])
-
-    ws = wb.create_sheet(title=sheet_name, index=target_index)
-
-    # Styling Palette
-    font_title = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    fill_title = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="0F172A")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
-    buy_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")   # Green for Buy Orders
-    sell_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")  # Red for Sell Orders
-
-    fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist = datetime.datetime.now(ist_tz)
-    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-
-    # 1. Section Banner (Row 1)
-    last_col_letter = get_column_letter(len(COLUMNS_DEF))
-    ws.merge_cells(f"A1:{last_col_letter}1")
-    title_cell = ws["A1"]
-    if get_current_timestamps:
-        _ist_ts, _utc_ts = get_current_timestamps()
-        title_cell.value = f"10_Whale_Orders | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(records)} | STATUS: LIVE"
-        title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
-        title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
-    else:
-        title_cell.value = (
-            f"COINGLASS BITCOIN WHALE ORDERS & LARGE TRADES (> $100K) - "
-            f"ALL EXCHANGES ({len(records)} ORDERS) [as_of {now_utc}]"
-        )
-        title_cell.font = font_title
-        title_cell.fill = fill_title
-    title_cell.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[1].height = 28
-
-    # 2. Header Row (Row 2)
-    ws.row_dimensions[2].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        c = ws.cell(row=2, column=col_idx, value=header_title)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 3. Data Rows (Row 3+)
-    for row_idx, r in enumerate(records, start=3):
-        ws.row_dimensions[row_idx].height = 20
-        row_fill = fill_zebra if (row_idx % 2 == 0) else fill_white
-
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=row_idx, column=col_idx)
-            val = r.get(col_key)
-
-            # Format numbers properly for Excel formulas
-            if col_key in ("price", "notional_usd", "initial_value_usd", "traded_value_usd"):
-                cell.value = float(val) if val is not None else 0.0
-                cell.number_format = '$#,##0.00'
-            elif col_key in ("amount_btc", "initial_size_btc", "traded_size_btc"):
-                cell.value = float(val) if val is not None else 0.0
-                cell.number_format = '#,##0.0000'
-            elif col_key in ("traded_value_pct", "traded_size_pct"):
-                cell.value = (float(val) / 100.0) if val is not None else 0.0
-                cell.number_format = '0.00%'
-            elif col_key == "sr_no":
-                cell.value = int(val) if val is not None else row_idx - 2
-                cell.number_format = '#,##0'
-            else:
-                cell.value = str(val) if val is not None else ""
-
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            cell.fill = row_fill
-
-            # Semantic Typography
-            if col_key in ("sr_no", "exchange", "symbol"):
-                cell.font = bold_font
-            elif col_key == "side":
-                if val == "Buy Orders":
-                    cell.font = buy_font
-                elif val == "Sell Orders":
-                    cell.font = sell_font
-                else:
-                    cell.font = base_font
-            elif col_key == "type":
-                cell.font = bold_font
-            else:
-                cell.font = base_font
-
-    # Freeze panes at E3 so Sr. No., Exchange, Symbol, Type remain visible while scrolling
-    ws.freeze_panes = "E3"
-
-    import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    wb.close()
-    log.info(
-        f"Dumped {len(records)} rows to sheet '{sheet_name}' in {excel_path.name} "
-        f"(positioned at Index {target_index}) successfully."
-    )
-    return True
-
-
 def run_whale_orders_harvest(
     sheet_name: str = TARGET_SHEET_NAME,
     target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
     cdp_base_url: str = CDP_BASE_URL,
     target_url: str = TARGET_URL,
 ) -> bool:
     """Executes full harvest and dump workflow for 10_Whale_Orders."""
     t_start = time.time()
-    log.info(f"Starting CoinGlass Whale Orders harvest for sheet '{sheet_name}' (Target Index: {target_index})...")
+    log.info(f"Starting CoinGlass Whale Orders harvest for feed '{sheet_name}'...")
 
     records = asyncio.run(
         harvest_whale_orders(
@@ -578,27 +417,15 @@ def run_whale_orders_harvest(
         log.error("Harvest yielded 0 records. Execution failed.")
         return False
 
-    success = dump_whale_orders_to_excel(
-        records=records,
-        sheet_name=sheet_name,
-        target_index=target_index,
-        excel_path=excel_path,
-    )
-
+    meta = write_parquet_feed(sheet_name, records)
     elapsed = time.time() - t_start
-    if success:
-        log.info(f"Whale Orders module completed successfully in {elapsed:.2f}s with {len(records)} orders.")
-        return True
-    else:
-        log.error(f"Whale Orders module failed during Excel dump after {elapsed:.2f}s.")
-        return False
+    log.info(f"Whale Orders module completed successfully in {elapsed:.2f}s with {len(records)} orders ({meta.get('byte_size')} bytes).")
+    return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Bitcoin Whale Orders & Large Trades Excel Scraper")
-    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target worksheet name")
-    parser.add_argument("--target-index", type=int, default=TARGET_INDEX, help="Worksheet index in workbook")
-    parser.add_argument("--excel-path", default=str(DEFAULT_EXCEL_PATH), help="Path to DataBase_Trading.xlsx")
+    parser = argparse.ArgumentParser(description="CoinGlass Bitcoin Whale Orders & Large Trades Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target feed name")
     parser.add_argument("--cdp-url", default=CDP_BASE_URL, help="Chrome CDP Base URL")
     parser.add_argument("--target-url", default=TARGET_URL, help="CoinGlass URL")
 
@@ -606,8 +433,6 @@ def main():
 
     ok = run_whale_orders_harvest(
         sheet_name=args.sheet_name,
-        target_index=args.target_index,
-        excel_path=pathlib.Path(args.excel_path),
         cdp_base_url=args.cdp_url,
         target_url=args.target_url,
     )

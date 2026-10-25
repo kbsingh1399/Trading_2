@@ -6,7 +6,7 @@ Hyperdash Telegram Flow Intelligence & Whale Activity Harvester (100% API).
 Harvests real-time institutional orderflow alerts from Hyperdash Flows (@hyperdashflows)
 via Telegram Web HTTP API endpoints and native archive synchronization without browser overhead,
 parses alerts into structured quantitative events, and writes them into worksheet
-'16_Hyperdash_telegram_Intel' in Data/DataBase_Trading.xlsx (positioned immediately after '15_Hyperdash_Stops_Map').
+'16_Hyperdash_telegram_Intel' in Data/feeds/<feed_name>.parquet (positioned immediately after '15_Hyperdash_Stops_Map').
 
 Extracted Event Categories:
   1. CONFIRMED LIQUIDATIONS: Realized short/long liquidations with liquidation price and notional.
@@ -23,10 +23,17 @@ Extracted Event Categories:
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import datetime
@@ -47,12 +54,6 @@ try:
 except ImportError:
     BeautifulSoup = None
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 logging.basicConfig(
     level=logging.INFO,
@@ -63,7 +64,6 @@ log = logging.getLogger("16_Hyperdash_telegram_Intel")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 HIST_ARCHIVE_PATH = ROOT_DIR / "Data" / "Hyperdash_Flows" / "hyperdash_flows_history.json"
 SHEET_NAME = "16_Hyperdash_telegram_Intel"
 TELEGRAM_CHANNEL_URL = "https://t.me/s/hyperdashflows"
@@ -509,180 +509,34 @@ def load_and_merge_archive(live_records: List[Dict[str, Any]], max_limit: int = 
     return records
 
 
-def dump_to_excel(records: List[Dict[str, Any]], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps structured Telegram intel into worksheet '16_Hyperdash_telegram_Intel'."""
-    if openpyxl is None:
-        log.error("openpyxl library not installed.")
-        return False
-
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
+def dump_to_parquet(records: list[dict], feed_name: str = SHEET_NAME) -> bool:
     if not records:
-        log.error("0 records to dump. Aborting to protect workbook integrity.")
+        log.warning("No telegram intel records to dump to Parquet.")
         return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Position immediately after 15_Hyperdash_Stops_Map (or Index 24)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        if "15_Hyperdash_Stops_Map" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("15_Hyperdash_Stops_Map") + 1
-        else:
-            target_idx = 24 if len(wb.sheetnames) >= 24 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-    final_idx = wb.sheetnames.index(SHEET_NAME)
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {final_idx}")
-
-    # Typography & Styles
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    mono_font = Font(name="Consolas", size=9, color="475569")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-    amber_font = Font(name="Segoe UI", size=9, bold=True, color="D97706")
-    subdued_font = Font(name="Segoe UI", size=9, color="64748B")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    # 1. Header Row
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        cell = ws.cell(row=1, column=col_idx, value=header_title)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal=align, vertical="center")
-        cell.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 2. Data Rows
-    for row_idx, r in enumerate(records, start=2):
-        ws.row_dimensions[row_idx].height = 20
-        cat = str(r.get("category", "")).upper()
-        side_val = str(r.get("side", "")).upper()
-        impact = str(r.get("market_impact", "")).upper()
-
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            val = r.get(col_key, "")
-
-            # Format numbers
-            if col_key == "notional_usd":
-                cell_val = format_notional(val) if isinstance(val, (int, float)) else str(val or "-")
-            elif col_key == "price":
-                cell_val = format_price(val) if isinstance(val, (int, float)) else str(val or "-")
-            else:
-                cell_val = val if val is not None else "-"
-
-            cell = ws.cell(row=row_idx, column=col_idx, value=cell_val)
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-
-            # Semantic Typography
-            if col_key in ("sr_no", "asset"):
-                cell.font = bold_font
-            elif col_key == "category":
-                if cat in ("LIQUIDATION", "IMMINENT_LIQ"):
-                    cell.font = amber_font if cat == "IMMINENT_LIQ" else red_font
-                elif cat in ("WHALE_TRADE", "TWAP"):
-                    cell.font = green_font if "BUY" in side_val else red_font
-                elif cat == "COLLATERAL":
-                    cell.font = green_font if "INFLOW" in side_val else red_font
-                else:
-                    cell.font = bold_font
-            elif col_key in ("side", "market_impact"):
-                if any(k in cell_val.upper() for k in ("BUY", "INFLOW", "SHORT_LIQUIDATED", "SUPPLY_LOCK", "COVER")):
-                    cell.font = green_font
-                elif any(k in cell_val.upper() for k in ("SELL", "OUTFLOW", "LONG_LIQUIDATED", "SUPPLY_UNLOCK", "CASCADE")):
-                    cell.font = red_font
-                elif "RISK" in cell_val.upper() or "SURGE" in cell_val.upper():
-                    cell.font = amber_font
-                else:
-                    cell.font = base_font
-            elif col_key == "notional_usd":
-                cell.font = bold_font
-            elif col_key == "wallet_address":
-                cell.font = mono_font
-            elif col_key == "raw_text":
-                cell.font = subdued_font
-            else:
-                cell.font = base_font
-
-    ws.views.sheetView[0].showGridLines = True
-    ws.freeze_panes = "A2"
-
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="16_Hyperdash_telegram_Intel",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Successfully saved {len(records)} rows to '{SHEET_NAME}' at {excel_path}")
+    meta = write_parquet_feed(feed_name, records)
+    log.info(f"Successfully dumped {len(records)} Telegram Intel rows into Parquet feed '{feed_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="16_Hyperdash_telegram_Intel Harvester & Excel Dumper")
-    parser.add_argument("--pages", type=int, default=30, help="Number of Telegram channel pages to fetch via API")
-    parser.add_argument("--limit", type=int, default=1500, help="Max records to write to Excel worksheet")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to DataBase_Trading.xlsx")
+    parser = argparse.ArgumentParser(description="Hyperdash Telegram Flow Intelligence Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=SHEET_NAME, help="Target feed name")
+    parser.add_argument("--pages", type=int, default=10, help="Pages of messages to harvest")
+    parser.add_argument("--limit", type=int, default=1000, help="Max records")
     args = parser.parse_args()
 
-    log.info(f"Starting Telegram Intel harvest (Pages: {args.pages}, Limit: {args.limit})")
+    t_start = time.time()
+    log.info(f"Starting Hyperdash Telegram Intel harvest (pages={args.pages}, limit={args.limit})...")
     live_posts = fetch_telegram_channel_messages(max_pages=args.pages)
     records = load_and_merge_archive(live_posts, max_limit=args.limit)
-
     if not records:
-        log.error("Harvesting yielded 0 records. Excel dump aborted.")
+        log.error("No intelligence messages returned.")
         sys.exit(1)
 
-    success = dump_to_excel(records, excel_path=args.excel_path)
-    if not success:
-        sys.exit(1)
-
-    log.info("16_Hyperdash_telegram_Intel pipeline executed successfully.")
+    success = dump_to_parquet(records, feed_name=args.sheet_name)
+    elapsed = time.time() - t_start
+    log.info(f"16_Hyperdash_telegram_Intel completed in {elapsed:.2f}s with status: {'SUCCESS' if success else 'FAILED'}")
+    sys.exit(0 if success else 1)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ Data/Excel_Modules/7_Liq_Heapmap.py
 Live CoinGlass Liquidation Heatmap Multi-Timeframe Scraper & Excel Dumper.
 Captures the Liquidation Heatmap across all 4 timeframes (1h, 4h, 12h, 24h)
 from https://www.coinglass.com/liquidations and formats into worksheet '7_Liq_Heapmap'
-in Data/DataBase_Trading.xlsx (positioned at Index 9, immediately after '6_Funding_Fee_Settlement').
+in Data/feeds/<feed_name>.parquet (positioned at Index 9, immediately after '6_Funding_Fee_Settlement').
 
 Layout Matches Operator Sketch:
   Rank | Asset | 1hour | 4hour | 12 hour | 24hour | Timestamp (UTC)
@@ -18,10 +18,17 @@ Security & Cleanliness Invariants:
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import asyncio
@@ -34,12 +41,6 @@ import sys
 import time
 import urllib.request
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -55,7 +56,6 @@ log = logging.getLogger("7_Liq_Heapmap")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/liquidations"
 SHEET_NAME = "7_Liq_Heapmap"
@@ -266,161 +266,17 @@ async def harvest_liquidation_heatmap() -> list[dict]:
     return records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps liquidation heatmap data into worksheet '7_Liq_Heapmap'."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
+def dump_to_parquet(records: list[dict]) -> bool:
     if not records:
-        log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
+        log.error("No records to dump to Parquet.")
         return False
-
-    try:
-        from filelock import FileLock
-        lock = FileLock(str(excel_path) + ".lock", timeout=120)
-    except ImportError:
-        lock = None
-
-    class _NoLock:
-        def __enter__(self): return self
-        def __exit__(self, *args): pass
-
-    with (lock if lock else _NoLock()):
-        wb = openpyxl.load_workbook(excel_path)
-
-        # Place sheet 7_Liq_Heapmap at Index 9 (immediately after 6_Funding_Fee_Settlement)
-        if SHEET_NAME in wb.sheetnames:
-            idx = wb.sheetnames.index(SHEET_NAME)
-            wb.remove(wb[SHEET_NAME])
-            ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-        else:
-            target_idx = 9 if len(wb.sheetnames) >= 9 else len(wb.sheetnames)
-            ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-        log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
-
-        # Visual Styles
-        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-        hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-        base_font = Font(name="Segoe UI", size=9, color="000000")
-        bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-        amt_font = Font(name="Segoe UI", size=9, bold=True, color="1E293B")
-        subdued_font = Font(name="Segoe UI", size=9, color="888888")
-
-        thin_border_side = Side(border_style="thin", color="E2E8F0")
-        row_border = Border(
-            left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-        )
-
-        # 1. Header Row (Row 2, Row 1 reserved for Banner)
-        ws.row_dimensions[2].height = 26
-        for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=2, column=col_idx, value=header_title)
-            cell.font = hdr_font
-            cell.fill = hdr_fill
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            col_letter = get_column_letter(col_idx)
-            ws.column_dimensions[col_letter].width = width
-
-        # 2. Data Rows (Row 3+)
-        current_row = 3
-        for r in records:
-            ws.row_dimensions[current_row].height = 20
-
-            # Rank (Col 1)
-            c1 = ws.cell(row=current_row, column=1, value=r.get("rank", ""))
-            c1.font = subdued_font
-            c1.alignment = Alignment(horizontal="center", vertical="center")
-            c1.border = row_border
-
-            # Asset (Col 2)
-            c2 = ws.cell(row=current_row, column=2, value=r.get("asset", "-"))
-            c2.font = bold_font
-            c2.alignment = Alignment(horizontal="center", vertical="center")
-            c2.border = row_border
-
-            # 1hour (Col 3)
-            c3 = ws.cell(row=current_row, column=3, value=r.get("tf_1h", "-"))
-            c3.font = amt_font
-            c3.alignment = Alignment(horizontal="right", vertical="center")
-            c3.border = row_border
-
-            # 4hour (Col 4)
-            c4 = ws.cell(row=current_row, column=4, value=r.get("tf_4h", "-"))
-            c4.font = amt_font
-            c4.alignment = Alignment(horizontal="right", vertical="center")
-            c4.border = row_border
-
-            # 12 hour (Col 5)
-            c5 = ws.cell(row=current_row, column=5, value=r.get("tf_12h", "-"))
-            c5.font = amt_font
-            c5.alignment = Alignment(horizontal="right", vertical="center")
-            c5.border = row_border
-
-            # 24hour (Col 6)
-            c6 = ws.cell(row=current_row, column=6, value=r.get("tf_24h", "-"))
-            c6.font = amt_font
-            c6.alignment = Alignment(horizontal="right", vertical="center")
-            c6.border = row_border
-
-            # Timestamp (Col 7)
-            c7 = ws.cell(row=current_row, column=7, value=r.get("timestamp_ist", "-"))
-            c7.font = subdued_font
-            c7.alignment = Alignment(horizontal="center", vertical="center")
-            c7.border = row_border
-
-            current_row += 1
-
-        # Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title=SHEET_NAME,
-                row_count=len(records),
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=len(COLUMNS_DEF)
-            )
-        except Exception as _e:
-            log.warning(f"Error stamping banner: {_e}")
-
-        ws.freeze_panes = "A3"
-
-        import os, time
-        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-        wb.save(temp_excel)
-        wb.close()
-        import time, zipfile
-        _is_valid = False
-        with zipfile.ZipFile(temp_excel, "r") as _z:
-            _is_valid = (_z.testzip() is None)
-        if _is_valid:
-            for _att in range(30):
-                try:
-                    temp_excel.replace(excel_path)
-                    break
-                except PermissionError:
-                    if _att == 29: raise
-                    time.sleep(1.0)
-        else:
-            if temp_excel.exists(): temp_excel.unlink()
-            raise ValueError("Corrupt zip produced during export")
-        log.info(f"Successfully saved {len(records)} rows to {excel_path} [{SHEET_NAME}].")
-        return True
+    meta = write_parquet_feed(SHEET_NAME, records)
+    log.info(f"Successfully dumped {len(records)} Heatmap rows into Parquet feed '{SHEET_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
+    return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Liquidation Heatmap Multi-Timeframe Scraper")
-    parser.add_argument(
-        "--excel-path",
-        type=pathlib.Path,
-        default=DEFAULT_EXCEL_PATH,
-        help="Path to DataBase_Trading.xlsx",
-    )
+    parser = argparse.ArgumentParser(description="CoinGlass Liquidation Heatmap Multi-Timeframe Pure-Parquet Dumper")
     args = parser.parse_args()
 
     records = asyncio.run(harvest_liquidation_heatmap())
@@ -428,9 +284,9 @@ def main():
         log.error("No records harvested from Heatmap.")
         sys.exit(1)
 
-    success = dump_to_excel(records, args.excel_path)
+    success = dump_to_parquet(records)
     if not success:
-        log.error("Failed to dump data to Excel.")
+        log.error("Failed to dump data to Parquet.")
         sys.exit(1)
 
     log.info("7_Liq_Heapmap module completed successfully.")

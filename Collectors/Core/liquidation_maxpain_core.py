@@ -14,10 +14,7 @@ Extracts 100% of candidates (~745 assets) across all pagination pages with zero 
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+# Pure Parquet Pipeline
 
 try:
     from logger_config import stamp_sheet_completion_ist, get_current_timestamps
@@ -37,12 +34,11 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
+# Parquet Writer Imports
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
+sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
 
 try:
     import websockets
@@ -51,7 +47,6 @@ except ImportError:
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/liquidation-maxpain"
 
@@ -332,182 +327,6 @@ async def harvest_liquidation_maxpain(
         close_tab(tab_id, cdp_base_url, log)
 
 
-def dump_maxpain_to_excel(
-    records: List[Dict[str, Any]],
-    sheet_name: str,
-    timeframe_code: str,
-    target_index: int,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-    log: logging.Logger = None,
-) -> bool:
-    """
-    Dumps all candidate records into target worksheet with institutional styling:
-      - Title banner in row 1 (standardized IST)
-      - Dark Navy header in row 2
-      - Alternating zebra rows (#F8FAFC / #FFFFFF)
-      - Segoe UI typography with green/red distance highlights
-      - Frozen panes at C3 (Ranking & Symbol fixed)
-      - Sheet positioned precisely at target_index.
-    """
-    if log is None:
-        log = logging.getLogger("LiquidationMaxPainCore")
-
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
-    if not records:
-        log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
-        return False
-
-    try:
-        from filelock import FileLock
-        lock = FileLock(str(excel_path) + ".lock", timeout=120)
-    except ImportError:
-        lock = None
-
-    class _NoLock:
-        def __enter__(self): return self
-        def __exit__(self, *args): pass
-
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist_str = datetime.datetime.now(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
-    now_utc_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    with (lock if lock else _NoLock()):
-        wb = openpyxl.load_workbook(excel_path)
-
-        # Recreate target sheet at specified index
-        if sheet_name in wb.sheetnames:
-            wb.remove(wb[sheet_name])
-
-        clamped_index = min(max(0, target_index), len(wb.sheetnames))
-        ws = wb.create_sheet(title=sheet_name, index=clamped_index)
-        log.info(f"Target worksheet '{sheet_name}' positioned at index {wb.sheetnames.index(sheet_name)}")
-
-        # Visual Styles
-        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-        hdr_fill = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-
-        base_font = Font(name="Segoe UI", size=9, color="0F172A")
-        bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
-        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-        fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-        fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-
-        thin_border_side = Side(border_style="thin", color="E2E8F0")
-        row_border = Border(
-            left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-        )
-
-        # 1. Section Banner (Row 1)
-        if stamp_sheet_completion_ist:
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title=sheet_name,
-                row_count=len(records),
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=len(COLUMNS_DEF)
-            )
-        else:
-            ws.merge_cells(f"A1:{get_column_letter(len(COLUMNS_DEF))}1")
-            title_cell = ws["A1"]
-            title_cell.value = f"{sheet_name} | LAST UPDATED: {now_ist_str} ({now_utc_str}) | ROWS: {len(records)} | STATUS: LIVE"
-            title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
-            title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
-            title_cell.alignment = Alignment(horizontal="center", vertical="center")
-        ws.row_dimensions[1].height = 28
-
-        # 2. Header Row (Row 2)
-        ws.row_dimensions[2].height = 26
-        for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-            c = ws.cell(row=2, column=col_idx, value=header_title)
-            c.font = hdr_font
-            c.fill = hdr_fill
-            c.alignment = Alignment(horizontal=align, vertical="center")
-            c.border = row_border
-            col_letter = get_column_letter(col_idx)
-            ws.column_dimensions[col_letter].width = width
-
-        # 3. Data Rows (Row 3+)
-        for row_idx, r in enumerate(records, start=3):
-            ws.row_dimensions[row_idx].height = 20
-            row_fill = fill_zebra if (row_idx % 2 == 0) else fill_white
-
-            s_dist_usd = r.get("short_distance_usd")
-            s_dist_pct = r.get("short_distance_pct")
-            l_dist_usd = r.get("long_distance_usd")
-            l_dist_pct = r.get("long_distance_pct")
-
-            val_map = {
-                "ranking": r.get("ranking", row_idx - 2),
-                "symbol": r.get("symbol", ""),
-                "price": format_currency(r.get("price")),
-                "short_max_pain_price": format_currency(r.get("short_max_pain_price")),
-                "short_max_pain_vol": format_vol(r.get("short_max_pain_vol")),
-                "short_distance_usd": format_distance_usd(s_dist_usd),
-                "short_distance_pct": format_distance_pct(s_dist_pct),
-                "long_max_pain_price": format_currency(r.get("long_max_pain_price")),
-                "long_max_pain_vol": format_vol(r.get("long_max_pain_vol")),
-                "long_distance_usd": format_distance_usd(l_dist_usd),
-                "long_distance_pct": format_distance_pct(l_dist_pct),
-                "timestamp_ist": now_ist_str,
-            }
-
-            for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-                cell = ws.cell(row=row_idx, column=col_idx, value=val_map.get(col_key, ""))
-                cell.alignment = Alignment(horizontal=align, vertical="center")
-                cell.border = row_border
-                cell.fill = row_fill
-
-                if col_key in ("ranking", "symbol"):
-                    cell.font = bold_font
-                elif col_key in ("short_distance_usd", "short_distance_pct"):
-                    if s_dist_usd is not None and s_dist_usd > 0:
-                        cell.font = green_font
-                    elif s_dist_usd is not None and s_dist_usd < 0:
-                        cell.font = red_font
-                    else:
-                        cell.font = base_font
-                elif col_key in ("long_distance_usd", "long_distance_pct"):
-                    if l_dist_usd is not None and l_dist_usd < 0:
-                        cell.font = red_font
-                    elif l_dist_usd is not None and l_dist_usd > 0:
-                        cell.font = green_font
-                    else:
-                        cell.font = base_font
-                else:
-                    cell.font = base_font
-
-        # Freeze panes below headers and after symbol column (C3)
-        ws.freeze_panes = "C3"
-
-        import os, time
-        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-        wb.save(temp_excel)
-        wb.close()
-        import time, zipfile
-        _is_valid = False
-        with zipfile.ZipFile(temp_excel, "r") as _z:
-            _is_valid = (_z.testzip() is None)
-        if _is_valid:
-            for _att in range(30):
-                try:
-                    temp_excel.replace(excel_path)
-                    break
-                except PermissionError:
-                    if _att == 29: raise
-                    time.sleep(1.0)
-        else:
-            if temp_excel.exists(): temp_excel.unlink()
-            raise ValueError("Corrupt zip produced during export")
-        log.info(f"Successfully saved {len(records)} rows to '{sheet_name}' in {excel_path}")
-        return True
-
-
 def run_maxpain_harvest(
     timeframe_code: str,
     timeframe_label: str,
@@ -516,8 +335,7 @@ def run_maxpain_harvest(
     log_name: str,
 ):
     """CLI orchestrator entrypoint for a single timeframe Max Pain module."""
-    parser = argparse.ArgumentParser(description=f"CoinGlass Liquidation Max Pain {timeframe_code} Scraper")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH)
+    parser = argparse.ArgumentParser(description=f"CoinGlass Liquidation Max Pain {timeframe_code} Pure-Parquet Dumper")
     parser.add_argument("--cdp-url", type=str, default=CDP_BASE_URL)
     args = parser.parse_args()
 
@@ -528,7 +346,7 @@ def run_maxpain_harvest(
     )
     log = logging.getLogger(log_name)
 
-    log.info(f"Starting {log_name} [{timeframe_code} - '{timeframe_label}'] -> Sheet '{sheet_name}'...")
+    log.info(f"Starting {log_name} [{timeframe_code} - '{timeframe_label}'] -> Feed '{sheet_name}'...")
     try:
         records = asyncio.run(
             harvest_liquidation_maxpain(
@@ -542,19 +360,8 @@ def run_maxpain_harvest(
             log.error("Harvest returned 0 records. Failing execution.")
             sys.exit(1)
 
-        success = dump_maxpain_to_excel(
-            records=records,
-            sheet_name=sheet_name,
-            timeframe_code=timeframe_code,
-            target_index=target_index,
-            excel_path=args.excel_path,
-            log=log,
-        )
-        if not success:
-            log.error("Failed to dump data to Excel workbook.")
-            sys.exit(1)
-
-        log.info(f"Execution completed successfully: {len(records)} records dumped to '{sheet_name}'.")
+        meta = write_parquet_feed(sheet_name, records)
+        log.info(f"Execution completed successfully: {len(records)} records dumped to Parquet feed '{sheet_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
         sys.exit(0)
     except Exception as exc:
         log.exception(f"Unhandled error in {log_name}: {exc}")

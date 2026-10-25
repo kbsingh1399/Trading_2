@@ -5,7 +5,7 @@ Data/Excel_Modules/6_Funding_Fee_Settlement.py
 Live CoinGlass Perpetual Futures Funding Fee Settlement Data Scraper & Excel Dumper.
 Scrapes the complete 'Funding Fee Settlement Overview' table across all 19 pages (~950+ crypto pairs)
 from https://www.coinglass.com/funding-fees and dumps into worksheet '6_Funding_Fee_Settlement'
-in Data/DataBase_Trading.xlsx (positioned at Index 8, immediately after '5_Funding_Rate').
+in Data/feeds/<feed_name>.parquet (positioned at Index 8, immediately after '5_Funding_Rate').
 
 Security & Cleanliness Invariants:
   - Ephemeral CDP tab on port 9222 opened and strictly closed in finally: block.
@@ -15,10 +15,17 @@ Security & Cleanliness Invariants:
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import asyncio
@@ -30,12 +37,6 @@ import sys
 import time
 import urllib.request
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -51,7 +52,6 @@ log = logging.getLogger("6_Funding_Fee_Settlement")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/funding-fees"
 SHEET_NAME = "6_Funding_Fee_Settlement"
@@ -259,218 +259,28 @@ async def harvest_funding_fee_settlements(max_pages: int = 19) -> list[dict]:
     return all_records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps funding fee settlement data into worksheet '6_Funding_Fee_Settlement'."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
+def dump_to_parquet(records: list[dict]) -> bool:
+    if not records:
+        log.error("No records to dump to Parquet.")
         return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Place sheet 6_Funding_Fee_Settlement at Index 8 (immediately after 5_Funding_Rate)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        target_idx = 8 if len(wb.sheetnames) >= 8 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
-
-    # Visual Styles
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-    subdued_font = Font(name="Segoe UI", size=9, color="888888")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
-
-    # 1. Header Row
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        cell = ws.cell(row=1, column=col_idx, value=header_title)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal=align, vertical="center")
-        cell.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 2. Data Rows
-    current_row = 2
-    for r in records:
-        ws.row_dimensions[current_row].height = 20
-
-        # Rank (Col 1)
-        rank_val = r.get("rank", "")
-        try:
-            rank_num = int(rank_val)
-        except (ValueError, TypeError):
-            rank_num = rank_val
-        c1 = ws.cell(row=current_row, column=1, value=rank_num)
-        c1.font = subdued_font
-        c1.alignment = Alignment(horizontal="center", vertical="center")
-        c1.border = row_border
-
-        # Symbol (Col 2)
-        c2 = ws.cell(row=current_row, column=2, value=r.get("symbol", "-"))
-        c2.font = bold_font
-        c2.alignment = Alignment(horizontal="center", vertical="center")
-        c2.border = row_border
-
-        # Price (Col 3)
-        c3 = ws.cell(row=current_row, column=3, value=r.get("price", "-"))
-        c3.font = base_font
-        c3.alignment = Alignment(horizontal="right", vertical="center")
-        c3.border = row_border
-
-        # Price (24h%) (Col 4)
-        p24 = r.get("price_24h_pct", "-")
-        c4 = ws.cell(row=current_row, column=4, value=p24)
-        if p24.startswith("+"):
-            c4.font = green_font
-        elif p24.startswith("-"):
-            c4.font = red_font
-        else:
-            c4.font = base_font
-        c4.alignment = Alignment(horizontal="right", vertical="center")
-        c4.border = row_border
-
-        # Open Interest (Col 5)
-        c5 = ws.cell(row=current_row, column=5, value=r.get("open_interest", "-"))
-        c5.font = base_font
-        c5.alignment = Alignment(horizontal="right", vertical="center")
-        c5.border = row_border
-
-        # Current (Col 6)
-        curr = r.get("current", "-")
-        c6 = ws.cell(row=current_row, column=6, value=curr)
-        if curr.startswith("-") and curr != "-":
-            c6.font = red_font
-        elif curr.startswith("$") or (curr != "-" and not curr.startswith("-")):
-            c6.font = green_font
-        else:
-            c6.font = base_font
-        c6.alignment = Alignment(horizontal="right", vertical="center")
-        c6.border = row_border
-
-        # Last 24h (Col 7)
-        l24 = r.get("last_24h", "-")
-        c7 = ws.cell(row=current_row, column=7, value=l24)
-        if l24.startswith("-") and l24 != "-":
-            c7.font = red_font
-        elif l24.startswith("$") or (l24 != "-" and not l24.startswith("-")):
-            c7.font = green_font
-        else:
-            c7.font = base_font
-        c7.alignment = Alignment(horizontal="right", vertical="center")
-        c7.border = row_border
-
-        # Last 3 Days (Col 8)
-        l3d = r.get("last_3d", "-")
-        c8 = ws.cell(row=current_row, column=8, value=l3d)
-        if l3d.startswith("-") and l3d != "-":
-            c8.font = red_font
-        elif l3d.startswith("$") or (l3d != "-" and not l3d.startswith("-")):
-            c8.font = green_font
-        else:
-            c8.font = base_font
-        c8.alignment = Alignment(horizontal="right", vertical="center")
-        c8.border = row_border
-
-        # Last 7 Days (Col 9)
-        l7d = r.get("last_7d", "-")
-        c9 = ws.cell(row=current_row, column=9, value=l7d)
-        if l7d.startswith("-") and l7d != "-":
-            c9.font = red_font
-        elif l7d.startswith("$") or (l7d != "-" and not l7d.startswith("-")):
-            c9.font = green_font
-        else:
-            c9.font = base_font
-        c9.alignment = Alignment(horizontal="right", vertical="center")
-        c9.border = row_border
-
-        # Timestamp UTC (Col 10)
-        c10 = ws.cell(row=current_row, column=10, value=r.get("timestamp_ist", r.get("timestamp_utc", "")))
-        c10.font = subdued_font
-        c10.alignment = Alignment(horizontal="center", vertical="center")
-        c10.border = row_border
-
-        current_row += 1
-
-    # Freeze panes below header
-    ws.freeze_panes = "A2"
-
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="6_Funding_Fee_Settlement",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(60):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except (PermissionError, OSError):
-                if _att == 59: raise
-                time.sleep(1.5)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(
-        f"Successfully dumped {len(records)} Funding Fee Settlement records into '{SHEET_NAME}' at {excel_path}."
-    )
+    meta = write_parquet_feed(SHEET_NAME, records)
+    log.info(f"Successfully dumped {len(records)} Funding Fee Settlement records into Parquet feed '{SHEET_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Perpetual Futures Funding Fee Settlement Scraper & Excel Dumper")
+    parser = argparse.ArgumentParser(description="CoinGlass Perpetual Futures Funding Fee Settlement Pure-Parquet Dumper")
     parser.add_argument("--pages", type=int, default=19, help="Number of pages to harvest (default: 19)")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to target Excel workbook")
     args = parser.parse_args()
-
-    log.info("================================================================================")
-    log.info("           COINGLASS FUNDING FEE SETTLEMENT EXCEL DUMPER                        ")
-    log.info(f"Target URL:    {TARGET_URL}")
-    log.info(f"Pages:         {args.pages}")
-    log.info(f"Target Sheet:  {SHEET_NAME}")
-    log.info(f"Workbook:      {args.excel_path}")
-    log.info("================================================================================")
 
     start_time = time.perf_counter()
     records = asyncio.run(harvest_funding_fee_settlements(max_pages=args.pages))
 
     if not records:
-        log.error("No funding fee settlement records harvested. Aborting Excel dump.")
+        log.error("No funding fee settlement records harvested. Aborting Parquet dump.")
         sys.exit(1)
 
-    success = dump_to_excel(records, excel_path=args.excel_path)
+    success = dump_to_parquet(records)
     elapsed = time.perf_counter() - start_time
     log.info(f"Finished in {elapsed:.2f} seconds with status: {'SUCCESS' if success else 'FAILED'}")
     sys.exit(0 if success else 1)

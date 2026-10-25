@@ -2,16 +2,16 @@
 """
 Terminal/Data_Factory/forced_liquidation_daemon.py
 ===================================================
-Always-On Multi-Timeframe Forced Liquidation Aggregator & Excel Sync Daemon.
+Always-On Multi-Timeframe Forced Liquidation Aggregator & Parquet Sync Daemon.
 Aggregates live forced liquidation events across 5m, 15m, 1h, and 4h candles
 with explicit dual IST (UTC+5:30) and UTC timestamps.
 
 Features:
   1. Subscribes to Binance Futures '!forceOrder@arr' real-time WebSocket.
-  2. Ingests existing Sheet '7_Live_Liq' / CoinGlass rows for historical bootstrap.
+  2. Ingests existing Data/feeds/7_Live_Liq.parquet / CoinGlass rows for historical bootstrap.
   3. Maintains rolling time-bucketed candles (5m, 15m, 1h, 4h) per asset & market-wide.
   4. Computes Long Liq USD, Short Liq USD, Net Delta, Order Count, and Dominant Flow.
-  5. Periodically triggers Excel dump to Sheet '22_Forced_Liquidations_MTF' in Data/DataBase_Trading.xlsx.
+  5. Periodically triggers Parquet dump to Data/feeds/22_Forced_Liquidations_MTF.parquet.
 """
 
 from __future__ import annotations
@@ -34,9 +34,14 @@ except ImportError:
     websockets = None
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT / "Collectors" / "Core"))
+if str(ROOT / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed
+
 DATA_DIR = ROOT / "Data"
 BUFFER_FILE = DATA_DIR / "forced_liquidations_buffer.json"
-EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
 
 IST_TIMEZONE = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 UTC_TIMEZONE = datetime.timezone.utc
@@ -239,50 +244,36 @@ class ForcedLiquidationAggregator:
             logger.warning("Error loading forced liquidation buffer: %s", e)
             return 0
 
-    def bootstrap_from_excel_live_liq(self, excel_path: pathlib.Path) -> int:
-        """Bootstraps historical liquidations from Sheet 7_Live_Liq if available."""
-        if not excel_path.exists():
+    def bootstrap_from_parquet_live_liq(self) -> int:
+        """Bootstraps historical liquidations from Data/feeds/7_Live_Liq.parquet."""
+        p_path = DATA_DIR / "feeds" / "7_Live_Liq.parquet"
+        if not p_path.exists():
             return 0
         try:
-            import openpyxl
-            wb = openpyxl.load_workbook(excel_path, read_only=True, data_only=True)
-            if "7_Live_Liq" not in wb.sheetnames:
-                return 0
-            
-            ws = wb["7_Live_Liq"]
+            import pyarrow.parquet as pq
+            table = pq.read_table(p_path)
+            rows = table.to_pylist()
             count = 0
             now_dt = datetime.datetime.now(datetime.timezone.utc)
-            
-            for row in ws.iter_rows(min_row=3, values_only=True):
-                if not row or len(row) < 5 or row[0] is None:
-                    continue
-                # Columns: #, Coin / Pair, Side, Price, Amount, Time, Exchange, Timestamp (IST)
-                pair = str(row[1]).upper()
-                side_str = str(row[2]).upper()
-                price_str = str(row[3]).replace("$", "").replace(",", "").strip()
-                amt_str = str(row[4]).replace("$", "").replace(",", "").strip()
-                ts_str = str(row[7]) if len(row) > 7 else ""
-                
+            for r in rows:
+                pair = str(r.get("Coin___Pair", r.get("coin", ""))).upper()
+                side_str = str(r.get("Side", r.get("side", ""))).upper()
+                px_val = r.get("Price", r.get("price", 0.0))
+                amt_val = r.get("Amount", r.get("amount", 0.0))
+                ts_str = str(r.get("Timestamp_IST", r.get("timestamp_ist", "")))
+
                 try:
-                    price = float(price_str)
-                    multiplier = 1.0
-                    if amt_str.endswith("K"):
-                        multiplier = 1e3
-                        amt_clean = amt_str[:-1]
-                    elif amt_str.endswith("M"):
-                        multiplier = 1e6
-                        amt_clean = amt_str[:-1]
-                    elif amt_str.endswith("B"):
-                        multiplier = 1e9
-                        amt_clean = amt_str[:-1]
-                    else:
-                        amt_clean = amt_str
-                    usd_val = float(amt_clean) * multiplier
+                    price = float(str(px_val).replace("$", "").replace(",", "").strip())
+                    s_amt = str(amt_val).replace("$", "").replace(",", "").strip()
+                    mult = 1.0
+                    if s_amt.endswith("K"): mult = 1e3; s_amt = s_amt[:-1]
+                    elif s_amt.endswith("M"): mult = 1e6; s_amt = s_amt[:-1]
+                    elif s_amt.endswith("B"): mult = 1e9; s_amt = s_amt[:-1]
+                    usd_val = float(s_amt) * mult
                     qty = usd_val / price if price > 0 else 0.0
-                except (ValueError, TypeError):
+                except Exception:
                     continue
 
-                # Parse timestamp if available: "YYYY-MM-DD HH:MM:SS IST"
                 ev_time = now_dt
                 if "IST" in ts_str:
                     try:
@@ -291,12 +282,8 @@ class ForcedLiquidationAggregator:
                         ev_time = dt_ist.astimezone(UTC_TIMEZONE)
                     except Exception:
                         pass
-                
-                # Invert side naming if CoinGlass uses Long/Short
-                # Long position liquidation = SELL order
-                # Short position liquidation = BUY order
+
                 side = "SELL" if "LONG" in side_str else "BUY"
-                
                 ev = LiquidationEvent(
                     symbol=pair,
                     side=side,
@@ -304,25 +291,22 @@ class ForcedLiquidationAggregator:
                     quantity=qty,
                     usd_value=usd_val,
                     timestamp_utc=ev_time,
-                    exchange=str(row[6]) if len(row) > 6 else "CoinGlass"
+                    exchange=str(r.get("Exchange", "CoinGlass"))
                 )
                 self.ingest_event(ev)
                 count += 1
-                
-            logger.info("Successfully bootstrapped %d historical liquidation events from Sheet 7_Live_Liq", count)
+            logger.info("Successfully bootstrapped %d historical liquidation events from Parquet 7_Live_Liq", count)
             return count
         except Exception as e:
-            logger.warning("Error bootstrapping from 7_Live_Liq: %s", e)
+            logger.warning("Error bootstrapping from 7_Live_Liq.parquet: %s", e)
             return 0
 
-
 class ForcedLiquidationDaemon:
-    def __init__(self, excel_path: pathlib.Path = EXCEL_PATH):
-        self.excel_path = excel_path
+    def __init__(self):
         self.aggregator = ForcedLiquidationAggregator()
         self.is_running = False
         self.last_dump_time = 0.0
-        self.dump_interval_seconds = 120.0  # Update Excel and Buffer every 120s
+        self.dump_interval_seconds = 120.0  # Update Parquet and Buffer every 120s
 
     async def connect_binance_websocket(self):
         """Continuously streams from Binance Futures !forceOrder@arr."""
@@ -339,8 +323,6 @@ class ForcedLiquidationDaemon:
                     while self.is_running:
                         msg = await ws.recv()
                         data = json.loads(msg)
-                        # Payload schema:
-                        # {"e":"forceOrder","E":1568014460893,"o":{"s":"BTCUSDT","S":"SELL","q":"0.014","p":"9910","ap":"9910","T":1568014460890}}
                         o = data.get("o", {})
                         symbol = o.get("s")
                         side = o.get("S")
@@ -365,59 +347,52 @@ class ForcedLiquidationDaemon:
                         # Check periodic dump & buffer persistence
                         if time.time() - self.last_dump_time >= self.dump_interval_seconds:
                             self.aggregator.save_buffer(BUFFER_FILE)
-                            self.dump_to_excel()
+                            self.dump_to_parquet()
             except Exception as e:
                 logger.warning("Binance WebSocket disconnected: %s. Reconnecting in 5s...", e)
                 await asyncio.sleep(5)
 
-    def dump_to_excel(self) -> bool:
-        """Dumps aggregated multi-timeframe candles to Sheet 22_Forced_Liquidations_MTF."""
-        try:
-            import importlib
-            if str(ROOT) not in sys.path:
-                sys.path.insert(0, str(ROOT))
-            mod = importlib.import_module("Data.Excel_Modules.22_Forced_Liquidations_MTF")
-            dump_forced_liquidations_to_excel = mod.dump_forced_liquidations_to_excel
-        except Exception as e:
-            logger.error("Could not import Excel writer module: %s", e)
-            return False
-
+    def dump_to_parquet(self) -> bool:
+        """Dumps aggregated multi-timeframe candles to Data/feeds/22_Forced_Liquidations_MTF.parquet."""
         candles = self.aggregator.get_all_candles_sorted(limit=1000)
         if not candles:
             return False
 
-        success = dump_forced_liquidations_to_excel(candles, target_path=self.excel_path)
-        if success:
+        try:
+            write_parquet_feed("22_Forced_Liquidations_MTF", candles)
             self.last_dump_time = time.time()
-            logger.info("Successfully updated Sheet 22_Forced_Liquidations_MTF with %d candles", len(candles))
-        return success
+            logger.info("Successfully updated 22_Forced_Liquidations_MTF.parquet with %d candles", len(candles))
+            return True
+        except Exception as e:
+            logger.error("Could not write Parquet feed 22_Forced_Liquidations_MTF: %s", e)
+            return False
 
     def run(self):
         """Main daemon synchronous entrypoint."""
         self.is_running = True
-        logger.info("Starting Forced Liquidation Aggregator Daemon...")
+        logger.info("Starting Forced Liquidation Aggregator Daemon (Pure Parquet)...")
         # Step 1: Restore previously recorded candles from disk buffer (zero data loss)
         self.aggregator.load_buffer(BUFFER_FILE)
-        # Step 2: Bootstrap existing records from Sheet 7_Live_Liq
-        self.aggregator.bootstrap_from_excel_live_liq(self.excel_path)
+        # Step 2: Bootstrap existing records from 7_Live_Liq.parquet
+        self.aggregator.bootstrap_from_parquet_live_liq()
         # Step 3: Save merged buffer to disk immediately
         self.aggregator.save_buffer(BUFFER_FILE)
-        # Step 4: Initial Excel dump
-        self.dump_to_excel()
+        # Step 4: Initial Parquet dump
+        self.dump_to_parquet()
         # Step 5: Run continuous real-time WebSocket ingestion
         asyncio.run(self.connect_binance_websocket())
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Forced Liquidation Multi-Timeframe Daemon")
-    parser.add_argument("--test-run", action="store_true", help="Run once, bootstrap from 7_Live_Liq and dump to Excel")
+    parser.add_argument("--test-run", action="store_true", help="Run once, bootstrap from 7_Live_Liq.parquet and dump to Parquet")
     args = parser.parse_args()
 
     daemon = ForcedLiquidationDaemon()
     if args.test_run:
         logger.info("Running single-pass test run...")
-        daemon.aggregator.bootstrap_from_excel_live_liq(EXCEL_PATH)
-        ok = daemon.dump_to_excel()
+        daemon.aggregator.bootstrap_from_parquet_live_liq()
+        ok = daemon.dump_to_parquet()
         print(f"Test run completed: success={ok}")
         sys.exit(0 if ok else 1)
     else:

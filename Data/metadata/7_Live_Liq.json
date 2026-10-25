@@ -4,18 +4,18 @@
   "row_count": 27,
   "column_count": 8,
   "columns": [
-    "#",
-    "Coin___Pair",
-    "Side",
-    "Price",
-    "Amount",
-    "Time",
-    "Exchange",
-    "Timestamp_IST"
+    "idx",
+    "coin",
+    "side",
+    "price",
+    "amount",
+    "time",
+    "exchange",
+    "full_time"
   ],
-  "byte_size": 3279,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.648127,
-  "write_duration_ms": 3.21
+  "byte_size": 3376,
+  "timestamp_ist": "2026-10-26 03:39:43 IST",
+  "timestamp_utc": "2026-10-25 22:09:43 UTC",
+  "epoch_utc": 1792966183.156992,
+  "write_duration_ms": 386.81
 }

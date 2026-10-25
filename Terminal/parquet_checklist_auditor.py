@@ -11,7 +11,7 @@ Audits all 33 production feeds in Data/feeds/ and Data/metadata/:
   4. Row count & byte size verification
   5. Multi-tiered SLA (< 1.5m High Velocity, < 15.0m Tactical, < 45.0m Macro)
   6. Sub-second execution (< 50ms)
-  7. Outputs Data/metadata/parquet_all_feeds_checklist.json and mirrors Data/excel_all_sheets_checklist.json
+  7. Outputs Data/metadata/parquet_all_feeds_checklist.json and mirrors Data/parquet_all_feeds_checklist.json
 """
 
 from __future__ import annotations
@@ -241,9 +241,9 @@ def save_checklist_jsons(results: List[Dict], all_passed: bool):
     with open(parquet_checklist_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 
-    # 2. Backwards-Compatible Excel Checklist JSON in Data/
-    excel_checklist_path = DATA_DIR / "excel_all_sheets_checklist.json"
-    with open(excel_checklist_path, "w", encoding="utf-8") as f:
+    # 2. Root Parquet Checklist JSON in Data/
+    root_checklist_path = DATA_DIR / "parquet_all_feeds_checklist.json"
+    with open(root_checklist_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 
 

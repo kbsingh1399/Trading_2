@@ -17,15 +17,12 @@ Features:
   4. Tab Hygiene: Executes in a dedicated ephemeral tab via Edge/Chrome CDP (port 9222),
      always closing it in a finally block to ensure arena.ai remains untouched.
   5. Excel Placement: Dumps cleanly into worksheet '4_Hyperliquid_Analysis' positioned at
-     Index 5 in Data/DataBase_Trading.xlsx.
+     Index 5 in Data/feeds/<feed_name>.parquet.
 """
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+# Pure Parquet Pipeline
 
 import argparse
 import asyncio
@@ -38,12 +35,11 @@ import sys
 import time
 import urllib.request
 
-try:
-    import openpyxl
-    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    raise ImportError("openpyxl is required. Run 'pip install openpyxl'.")
+# Parquet Writer Imports
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
+sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
 
 try:
     import websockets
@@ -52,7 +48,6 @@ except ImportError:
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "Data"
-DEFAULT_EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
 SHEET_NAME = "4_Hyperliquid_Analysis"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/hyperliquid"
@@ -336,134 +331,18 @@ async def harvest_hyperliquid_whale_data(max_pages: int = 40) -> list[dict]:
     return all_records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps extracted records into '4_Hyperliquid_Analysis' worksheet with exact visual styling."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
+def dump_to_parquet(records: list[dict]) -> bool:
+    if not records:
+        log.error("No records to dump to Parquet.")
         return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Place sheet 4_Hyperliquid_Analysis at Index 5 (after 3_Exchanges_LS_Ratio_4H)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        target_idx = 5 if len(wb.sheetnames) >= 5 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
-
-    # Visual Styles
-    header_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    header_fill = PatternFill(start_color="161B22", end_color="161B22", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-    thin_border_side = Side(border_style="thin", color="E0E0E0")
-    row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
-
-    # 1. Write Header Row
-    headers = [col[1] for col in COLUMNS_SCHEMA]
-    ws.append(headers)
-
-    for col_idx in range(1, len(headers) + 1):
-        cell = ws.cell(row=1, column=col_idx)
-        cell.font = header_font
-        cell.fill = header_fill
-        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-
-    ws.row_dimensions[1].height = 28
-
-    # 2. Write Data Rows
-    for row_num, rec in enumerate(records, start=2):
-        row_vals = []
-        for key, _, _, _ in COLUMNS_SCHEMA:
-            val = rec.get(key, "-")
-            row_vals.append(val)
-        ws.append(row_vals)
-
-        side_val = str(rec.get("side", "")).upper()
-        pnl_val = str(rec.get("pnl_formatted", ""))
-        funding_val = str(rec.get("funding_fee", ""))
-
-        for col_idx, (key, _, _, align) in enumerate(COLUMNS_SCHEMA, start=1):
-            cell = ws.cell(row=row_num, column=col_idx)
-            cell.border = row_border
-
-            # Font color rules
-            if key == "side":
-                cell.font = green_font if "LONG" in side_val else red_font if "SHORT" in side_val else bold_font
-            elif key in ["pnl_formatted", "pnl_usd", "pnl_pct"]:
-                cell.font = red_font if "-" in pnl_val else green_font if "+" in pnl_val or "$" in pnl_val else base_font
-            elif key == "funding_fee":
-                cell.font = red_font if "-" in funding_val else green_font if "$" in funding_val else base_font
-            elif key in ["rank", "asset"]:
-                cell.font = bold_font
-            else:
-                cell.font = base_font
-
-            # Alignment rules with wrap_text for multi-line cells
-            cell.alignment = Alignment(horizontal=align, vertical="center", wrap_text=True)
-
-        ws.row_dimensions[row_num].height = 24
-
-    # 3. Apply Column Widths
-    for col_idx, (_, _, width, _) in enumerate(COLUMNS_SCHEMA, start=1):
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    ws.views.sheetView[0].showGridLines = True
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="4_Hyperliquid_Analysis",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(
-        f"Successfully dumped {len(records)} Hyperliquid Whale records into '{SHEET_NAME}' at {excel_path}."
-    )
+    meta = write_parquet_feed(SHEET_NAME, records)
+    log.info(f"Successfully dumped {len(records)} Hyperliquid Whale records into Parquet feed '{SHEET_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Hyperliquid Whale Monitoring to Excel")
-    parser.add_argument("--pages", type=int, default=40, help="Number of pages to scrape (default: 40, up to 2,000 whale positions)")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to DataBase_Trading.xlsx")
+    parser = argparse.ArgumentParser(description="CoinGlass Hyperliquid Whale Monitoring Pure-Parquet Dumper")
+    parser.add_argument("--pages", type=int, default=40, help="Number of pages to scrape (default: 40)")
     args = parser.parse_args()
 
     records = asyncio.run(harvest_hyperliquid_whale_data(max_pages=args.pages))
@@ -471,7 +350,7 @@ def main():
         log.error("No records harvested from CoinGlass Hyperliquid.")
         sys.exit(1)
 
-    ok = dump_to_excel(records, excel_path=args.excel_path)
+    ok = dump_to_parquet(records)
     sys.exit(0 if ok else 1)
 
 

@@ -1,7 +1,7 @@
 """
 Terminal/dispatch_comprehensive_wake_up_prompt.py
 Dispatches the operator-mandated 4-step collaborative council prompt to Arena.ai:
-  STEP 1 (Mandate 1): Screen 24 assets for new Model 1/2 limit order candidates directly from Data/DataBase_Trading.xlsx.
+  STEP 1 (Mandate 1): Screen 24 assets for new Model 1/2 limit order candidates directly from Data/feeds/*.parquet.
   STEP 2 (Mandate 2): Audit running trades (floating PnL, trailing SL ratchets, expanding TP into liquidation bands).
   STEP 3 (Mandate 3): Audit resting limit orders (prevail vs prune sentry: whale walls, ATR distance, regime validity).
   STEP 4 (Mandate 4): Position capacity & capital floor defense (multi-cluster concurrency defending 4,775.00 USD floor).
@@ -237,12 +237,12 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("ROUTING TARGET: ARENA.AI PRIMARY WORKSPACE (TAB 1)")
         lines.append("CAPABILITIES REQUIRED: DEEP REASONING AND AUTONOMOUS MULTI-AGENT QUANTITATIVE SQUAD")
         lines.append("ROLE: SENIOR QUANTITATIVE STRATEGIST & MARKET SCREENER (ADVISORY & RATIFICATION)")
-        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
+        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/feeds/*.parquet and provide your recommended limit orders directly in markdown in this response.")
     elif is_fable:
         lines.append("ROUTING TARGET: ARENA.AI SECONDARY WORKSPACE (TAB 2)")
         lines.append("CAPABILITIES REQUIRED: DEEP REASONING AND AUTONOMOUS MULTI-AGENT QUANTITATIVE SQUAD")
         lines.append("ROLE: LEAD QUANTITATIVE AUDITOR & MARKET SCREENER (ADVISORY & RATIFICATION)")
-        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
+        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/feeds/*.parquet and provide your recommended limit orders directly in markdown in this response.")
     elif is_copilot_opus:
         lines.append("ROUTING TARGET: CLAUDE OPUS 5.5 (MICROSOFT COPILOT STUDIO - TAB 1)")
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
@@ -253,16 +253,16 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
         lines.append("ACTIVE BRANCHES: main (https://github.com/kbsingh1399/Trading_2/tree/main) and arena/74cd2d1a-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F74cd2d1a-trading-2)")
         lines.append("ROLE: CAPITAL FLOOR SENTRY & MULTI-CLUSTER STRESSED RISK AUDITOR")
-    lines.append("MANDATE: THE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH AND DECISION-MAKING FOR BOTH ARENA.AI AND ANTIGRAVITY IS Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS). IT CONTAINS ALL MARKET, MACRO, SENTIMENT, MICROSTRUCTURE, AND ACCOUNT DATA.")
+    lines.append("MANDATE: THE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH AND DECISION-MAKING FOR BOTH ARENA.AI AND ANTIGRAVITY IS Data/feeds/*.parquet (33 CANONICAL PRODUCTION PARQUET FEEDS). IT CONTAINS ALL MARKET, MACRO, SENTIMENT, MICROSTRUCTURE, AND ACCOUNT DATA.")
     lines.append("NON-BYPASSABLE OPERATOR DIRECTIVE: You MUST STRICTLY follow docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (the 10-Step Standardized Trading Decision Chain SOP) on every analysis step.")
     lines.append("OPERATOR TRADING AUTHORIZATION: The portfolio manager/operator has explicitly granted full live trading authority: 'Final you have to take decision. If you think candidates are potential logical... then you can punch orders without hesitation. You have all rights and now you can run autonomously. We need trade...'")
-    lines.append("STATIC TAG CLARIFICATION: The static telemetry metadata tag 'trade_authorization: DENIED_UNVERIFIED_ORDERFLOW' in the JSON header is purely an internal scraper provenance tag confirming the automated telemetry collector itself does not punch orders. It is NOT a trading lock on the Council. You are explicitly authorized and requested to evaluate, qualify, and ratify logical passive limit orders based on the 43 sheets of DataBase_Trading.xlsx.")
+    lines.append("STATIC TAG CLARIFICATION: The static telemetry metadata tag 'trade_authorization: DENIED_UNVERIFIED_ORDERFLOW' in the JSON header is purely an internal scraper provenance tag confirming the automated telemetry collector itself does not punch orders. It is NOT a trading lock on the Council. You are explicitly authorized and requested to evaluate, qualify, and ratify logical passive limit orders based on the 33 feeds of Data/feeds/*.parquet.")
     lines.append("")
 
     # ── PART A: SOURCE FILES ────────────────────────────────────────────────
     lines.append("PART A: REQUIRED READING (CANONICAL EXCLUSIVE SOURCE OF TRUTH)")
-    lines.append("1. EXCLUSIVE MASTER DATA WAREHOUSE (SINGLE SOURCE OF TRUTH): Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS)")
-    lines.append("   The 225,000+-cell master workbook Data/DataBase_Trading.xlsx is our EXCLUSIVE, SINGLE DEFINITIVE SOURCE OF TRADING TRUTH. IT CONTAINS EVERYTHING. ALL market data points — including real-time quotes, level 2/3 depth, multi-horizon CVD, venue basis spreads, economic calendar, news headlines, and account ledger — are updated continuously directly in this workbook every 10 minutes:")
+    lines.append("1. EXCLUSIVE MASTER DATA WAREHOUSE (SINGLE SOURCE OF TRUTH): Data/feeds/*.parquet (33 CANONICAL PRODUCTION PARQUET FEEDS)")
+    lines.append("   The 33 canonical feeds in Data/feeds/*.parquet represent our EXCLUSIVE, SINGLE DEFINITIVE SOURCE OF TRADING TRUTH. IT CONTAINS EVERYTHING. ALL market data points — including real-time quotes, level 2/3 depth, multi-horizon CVD, venue basis spreads, economic calendar, news headlines, and account ledger — are updated continuously via atomic Parquet writes every 5 minutes:")
     lines.append("")
     lines.append("   • CLUSTER 1: Macro Trend & Institutional Inflow (Sheets 1–6, 40):")
     lines.append("     - Sheet 1 (Crypto_ETF_Flows): Daily & cumulative net ETF inflows/outflows across BTC/ETH spot ETFs. Confirms macro institutional flow direction.")
@@ -300,7 +300,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("     - Sheet 33 (FF_Live_Trades_Activity): 40 real-time executions with side, execution price, order type, and pips. Real-time tape reading for retail panic/FOMO exhaustion.")
     lines.append("     - Sheet 35 (Live_Orderbook_CVD_Depth): Level 2 20-level orderbook depth, book imbalance, multi-horizon taker CVD (1m, 15m, session, weekly), Lee-Ready TradFi tick CVD, trapped traders footprint. Primary entry staging sheet: identifies shelf anchors (POC, VAH/VAL, VWAP) and verifies CVD absorption.")
     lines.append("     - Sheet 36 (Exchange_Basis_Spreads): Cross-venue basis spreads (Binance perp mid minus MT5 CFD mid), funding basis, and spot-perpetual premium. Maps perpetual levels into MT5 broker CFD prices.")
-    lines.append("     - Sheet 21_Tradfye_Orderflow: Tradfye Footprint Point of Control (POC), candle taker delta, 99th-percentile whale bubbles, resting absorption shelves, and Deribit options max pain and gamma walls. Read directly from Data/DataBase_Trading.xlsx.")
+    lines.append("     - Sheet 21_Tradfye_Orderflow: Tradfye Footprint Point of Control (POC), candle taker delta, 99th-percentile whale bubbles, resting absorption shelves, and Deribit options max pain and gamma walls. Read directly from Data/feeds/21_Tradfye_Orderflow.parquet.")
     lines.append("")
     lines.append("   • CLUSTER 5: Liquidity Magnets & SL/TP Placement (Sheets 19–22, 37):")
     lines.append("     - Sheets 19 & 20 (liquidation_maxpain_1D / 2D): 24h and 48h maximum pain strike prices.")
@@ -315,10 +315,10 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("     - Sheet 42 (MT5_Live_Quotes_Account): Live MT5 account ledger: balance, equity, margin used, free margin, floor cushion, 24 live quotes & spreads in bps, plus live active filled positions and pending limit orders. Sovereign capital defense gate.")
     lines.append("     - Sheet 43 (Cognitive_Council_Telemetry): Real-time health of Google Gemini Web2API (port 8081, 11 models), Heretic Engine (port 8083, HEALTHY 200), Arena.ai consensus, and git sync daemons.")
     lines.append("")
-    lines.append("   MANDATORY DIRECTIVE: You DO NOT need to refer to any raw JSON files. Every market, macro, sentiment, technical, and account observation must be derived exclusively from Data/DataBase_Trading.xlsx.")
+    lines.append("   MANDATORY DIRECTIVE: Every market, macro, sentiment, technical, and account observation must be derived exclusively from Data/feeds/*.parquet.")
     lines.append("")
     lines.append("   MANDATORY SHEET-BY-SHEET ANALYSIS DIRECTIVE:")
-    lines.append("   You are strictly FORBIDDEN from formulating or ratifying any trade order based on a single worksheet or isolated parameter. Every proposed limit order MUST be verified through all 7 functional clusters of Data/DataBase_Trading.xlsx:")
+    lines.append("   You are strictly FORBIDDEN from formulating or ratifying any trade order based on a single feed or isolated parameter. Every proposed limit order MUST be verified through all 7 functional clusters of Data/feeds/*.parquet:")
     lines.append("   1. Macro Alignment: Check Sheet 1-6 & 40 (ETF flows & Treasuries) and Sheet 31 (Economic Calendar).")
     lines.append("   2. Crowding Check: Check Sheet 7-11 & 28-30 (Funding rates & Retail positions).")
     lines.append("   3. Technical Regime: Check Sheet 34 (System State) and Sheets 13-18 (Open Interest). If regime is UNDEFINED, STAND ASIDE.")
@@ -397,7 +397,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
     lines.append("• Active Branch: main (CANONICAL UPSTREAM SOURCE OF TRUTH — ALL MODELS ROUTE TO MAIN)")
     lines.append("• Direct Raw URLs (Strictly from main branch):")
-    lines.append("  - Master Trading Database (Single Source of Truth, all 43 sheets): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/DataBase_Trading.xlsx")
+    lines.append("  - Master Trading Feeds (Single Source of Truth, 33 Parquet Feeds): https://github.com/kbsingh1399/Trading_2/tree/main/Data/feeds")
     lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
     lines.append("  - Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
     lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
@@ -429,12 +429,12 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("  REGIME-GATED STAND-ASIDE: When trend_regime is RANGE_BOUND or UNDEFINED, neither engine applies. The mathematically correct action is STAND ASIDE. Never force trades in non-trending noise.")
     lines.append("")
     lines.append("TREND-FIRST HIERARCHY (SUPERSEDES ALL BAND-BASED ANALYSIS):")
-    lines.append("  DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in Data/DataBase_Trading.xlsx (Sheets 34-36, 41-42):")
+    lines.append("  DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in Data/feeds/*.parquet (Feeds 11_Technical, 17_Orderbook, 18_CVD):")
     lines.append("  1. Higher Timeframe Trend Hierarchy: Inspect 1H & 4H OHLCV candles, 20/50/200 EMAs. If Price < EMA20 < EMA50 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are STRICTLY FORBIDDEN. All priority shifts to Model 2 Trend Pullback SHORTS!")
     lines.append("  2. cvd_1m_buckets & CVD Momentum: Massive negative taker CVD (-1M to -3M USD) is proof of aggressive seller domination. Never buy into negative CVD. Use negative CVD to qualify SHORT entries on relief rallies.")
     lines.append("  3. Model 2 Pullback Short Protocol: In a downtrend, patiently wait for pullbacks up into the EMA20/EMA50/VAH shelves where heavy Ask Whale Walls are resting to defend the Stop Loss.")
     lines.append("")
-    lines.append("18-PARAMETER TELEMETRY FIELD REFERENCE (Data/DataBase_Trading.xlsx Sheets 34-36 & 41-42):")
+    lines.append("18-PARAMETER TELEMETRY FIELD REFERENCE (Data/feeds/*.parquet Feeds 00_MT5_Account_Telemetry, 11_Technical, 17_Orderbook, 18_CVD):")
     lines.append("  1. quotes: Live MT5 Bid/Ask spread in bps (spread_bps <= 35 bps Crypto, <= 5 bps TradFi).")
     lines.append("  2. causal_indicators: Session VWAP, vwap_z_score, RSI(14), ATR(14), EMA 20/50/200, POC/VAH/VAL, trend_regime.")
     lines.append("  3. multi_horizon_cvd: Session CVD (since 00:00 UTC), Weekly CVD (since Monday 00:00 UTC), trailing 24h CVD, Absorption/Exhaustion divergence.")
@@ -458,8 +458,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES ────
     lines.append("PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES (MACRO IDEA GENERATION)")
     lines.append("CRITICAL OPERATOR MANDATE: LINE-BY-LINE MACRO INGESTION & NARRATIVE CONTINUITY")
-    lines.append("You MUST read Data/DataBase_Trading.xlsx Sheets 26-33 (FF_Economic_Calendar, FF_News_Latest, FF_News_Fundamental, FF_News_Technical, FF_Trades_Sentiment, FF_Trades_Individual_Positions, FF_Live_Trades_Activity, FF_Top_Traders) line-by-line to build and maintain the macro narrative:")
-    lines.append("• Ingestion Source: Data/DataBase_Trading.xlsx Sheets 26-33 (Continuously dumped and validated by autonomous Excel pipeline)")
+    lines.append("You MUST read Data/feeds/*.parquet (19_Calendar, 19_News, etc.) line-by-line to build and maintain the macro narrative:")
+    lines.append("• Ingestion Source: Data/feeds/*.parquet (Continuously dumped and validated by autonomous Parquet pipeline)")
     lines.append("• Central Bank Benchmark Policy Rates (Live Rate Matrix):")
     rates = ff_summary.get("rates", {})
     if rates:
@@ -554,7 +554,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── THE 10-STEP STANDARDIZED DECISION CHAIN MANDATE ────────────────────
     lines.append("THE 10-STEP STANDARDIZED TRADING DECISION CHAIN MANDATE (docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md):")
     lines.append("You are bound by strict hedge fund operational governance. You MUST evaluate every setup, position modification, and limit order through this 10-step chain:")
-    lines.append("  Step 1: Data Contract, Ingestion & Sanity Gate (/data-engineer, /dataform-bigquery) — Mandatory Line-by-Line Master Database Ingestion (read Data/DataBase_Trading.xlsx Sheets 34-36, 41-42 line-by-line and section-by-section to maintain account/order narrative continuity), Mandatory Line-by-Line Forex Factory Ingestion (read Data/DataBase_Trading.xlsx Sheets 26-33 line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas), JIT Telemetry Refresh Gate, broker venue basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
+    lines.append("  Step 1: Data Contract, Ingestion & Sanity Gate (/data-engineer, /dataform-bigquery) — Mandatory Master Feeds Ingestion (read Data/feeds/*.parquet line-by-line and section-by-section to maintain account/order narrative continuity), Mandatory Forex Factory Ingestion (read 19_Calendar, 19_News to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas), JIT Telemetry Refresh Gate, broker venue basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
     lines.append("  Step 2: Tri-Layer Memory & Trajectory Audit (/remember) — review session history and active context to prevent amnesia; enforce the Anti-Trap Registry (never buy falling knives into negative CVD; never measure SL from mid_price).")
     lines.append("  Step 3: AST Knowledge Graph Traversal & Rule Check (/graphify) — verify broker symbol specs, contract sizing, and ensure single-strategy module integrity.")
     lines.append("  Step 4: HTF Auction & Regime Profiling (/data-analyst) — verify 1H/4H trend hierarchy (EMA 20/50/200), auction value areas (Prior Day/Week POC/VAH/VAL, Weekly VWAP). Stand aside unconditionally if regime is UNDEFINED.")
@@ -572,7 +572,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("MANDATE 1 — DUAL-ENGINE SEARCH & PASSIVE LIMIT ORDER CANDIDATE IDENTIFICATION ACROSS ALL 24 ASSETS:")
     lines.append("OPERATOR MANDATE ON WAKE UP: You are strictly mandated to actively search for, qualify, and formulate high-conviction PASSIVE LIMIT ORDER proposals (both Model 1 Extreme Mean Reversion and Model 2 Trend Pullbacks) across all orthogonal asset clusters (Indices, Commodities, Metals, Forex, Crypto).")
     lines.append("Whenever portfolio capacity permits (currently 1 of 4 slots allocated, 3 slots freely available), actively formulate complete limit order parameters: Symbol, Order Type (BUY_LIMIT / SELL_LIMIT), Entry (shelf-anchored), SL (outside sweep band behind whale bunker), TP (front-running magnet by 5-10 bps), Lots (calibrated to $7.50-$14.50 USD risk envelope), and Stressed Capital Floor Check.")
-    lines.append("MANDATORY EXCEL SHEET SCANNING REQUIREMENT: You MUST systematically cross-reference the sheets in Data/DataBase_Trading.xlsx while finding potential candidates:")
+    lines.append("MANDATORY PARQUET FEED SCANNING REQUIREMENT: You MUST systematically cross-reference the feeds in Data/feeds/*.parquet while finding potential candidates:")
     lines.append("  1. Sheets 1-6 & 40 (ETF Flows & Treasuries): Confirm institutional macro backing.")
     lines.append("  2. Sheets 7-11 & 28-30 (Funding & Retail Positions): Confirm contrarian edge and absence of crowded traps.")
     lines.append("  3. Sheet 34 & Sheets 13-18 (System State & Open Interest): Verify 1H/4H trend regime and expanding interest. Reject UNDEFINED regimes.")
@@ -580,7 +580,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("  5. Sheets 21-22 & 37 (Liquidation Maps 1D/7D & Flow Feed): Verify TP magnet clearance and ensure SL sits outside sweep bands.")
     lines.append("  6. Sheets 38-39 (Arkham On-Chain Forensics): Confirm smart money flow direction.")
     lines.append("  7. Sheet 42 (MT5 Quotes & Account Ledger): Verify spread friction <= 15% and capital floor cushion.")
-    lines.append("Analyze all 24 assets in Data/DataBase_Trading.xlsx Sheets 34-36 & 41-42 line-by-line (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
+    lines.append("Analyze all 24 assets in Data/feeds/*.parquet line-by-line (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
     lines.append("APPLY PLAYBOOK SECTION 7.4 CALIBRATED MULTI-ASSET STANDARDS & 15% DYNAMIC FRICTION RULE:")
     lines.append("  • DYNAMIC 15% FRICTION RULE: Spread Friction % = (Spread in USD on 1 lot * Trade Lots) / Total Trade Risk Budget <= 15.0%.")
     lines.append("  • EXPANDED ACTIVE UNIVERSE ADMITTED: SP500.p (0.8% friction), NAS100.p (1.0%), XAUUSD.pi (1.2%), BTCUSD.pi (1.7%), DJ30.p (1.5%), GER40.p (2.0%), USWTI.p (3.5%), Major FX (0.5%), ETHUSD.pi (8.1% - target >= 2.2R), SOLUSD.p (13.8% - target >= 2.5R).")
@@ -589,7 +589,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("For EACH asset, explicitly state: (a) Engine 1 verdict (Mean Reversion: Z-score, eligible or disqualified and why), (b) Engine 2 verdict (Trend Pullback: regime, shelf, eligible or disqualified and why), (c) Final classification: CANDIDATE / WATCHLIST / NO SETUP.")
     lines.append("")
     if not for_copilot:
-        lines.append("Key Liquid Assets Snapshot (Comprehensive Depth, CVD, Whales, and Spreads in Data/DataBase_Trading.xlsx):")
+        lines.append("Key Liquid Assets Snapshot (Comprehensive Depth, CVD, Whales, and Spreads in Data/feeds/*.parquet):")
         focus_keys = ["XAUUSD", "BTC", "ETH", "SOL", "SP500", "EURUSD"]
         for fk in focus_keys:
             a = assets.get(fk) or assets.get(fk + "USD.pi") or assets.get(fk + ".p") or {}
@@ -613,7 +613,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
                 f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
                 f"Whales (elig>=180s): {len(elig_w3)} | Stops: Below {s_b_str} / Above {s_a_str} | Liq: Below {l_b_str} / Above {l_a_str}"
             )
-        lines.append("• Full 24-Asset Microstructure, L2 Book Depth, Whales, and Basis Spreads: Read directly from Data/DataBase_Trading.xlsx (Sheets 21-23, 26, 35, 36, 41, 42).")
+        lines.append("• Full 24-Asset Microstructure, L2 Book Depth, Whales, and Basis Spreads: Read directly from Data/feeds/*.parquet (Feeds 14_Hyperdash_Liq_Map, 15_Hyperdash_Stops_Map, 17_Orderbook, 18_CVD, 21_Tradfye_Orderflow).")
     else:
         lines.append("Live 24-asset mutual universe matrix:")
         for sym_key, a in assets.items():
@@ -769,7 +769,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
                 f"Live Mid: {o['price_current']} USD (Distance: {dist_atr:.2f} ATR, ATR_14={atr}) | "
                 f"Current SL: {o['sl']} USD | Current TP: {o['tp']} USD | Trend: {ci.get('trend_regime')} | Z: {ci.get('vwap_z_score')} SD"
             )
-        lines.append("• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest Data/DataBase_Trading.xlsx (Sheets 21-25, 35, 36, 42) and explicitly classify it into one of three decisions:")
+        lines.append("• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest Data/feeds/*.parquet and explicitly classify it into one of three decisions:")
         lines.append("  (A) VIABLE — WAIT TO BE FILLED AS-IS: Confirm that distance to entry is <= 2.0 ATR, supporting L3 whale walls (persistence_s >= 180s) remain intact, 5m/15m/30m CVD and L2 imbalance support absorption, SL sits safely 0.35x-0.50x ATR outside min_price/max_price of the governing bunker, and TP front-runs the opposing buy-stop/sell-stop magnet by 5-10 bps.")
         lines.append("  (B) SLIGHT MODIFICATION REQUIRED (MODIFY ENTRY / SL / TP): If the thesis remains valid but live whale walls, stop clusters (nearest_*), or liquidation band boundaries (min_price/max_price) have shifted in the latest snapshot, specify the exact modified Entry, SL, and/or TP levels and why.")
         lines.append("  (C) DELETE / CANCEL IMMEDIATELY: If the structural thesis has degraded (e.g., supporting whale walls pulled/thinned >50%, price drifted >2.0 ATR away, regime invalidated, or unabsorbed aggressive selling/buying broke the shelf), recommend immediate deletion to free capacity.")
@@ -811,9 +811,9 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("   • If operating in an environment with bash/git access, install/confirm it via: `git clone https://github.com/Jakeschincariol/arena-skill.git ~/.claude/skills/arena` (or read `.agent/skills/arena/SKILL.md`).")
     lines.append("   • You MUST ALWAYS apply this arena tournament methodology to pit competing trade hypotheses against each other across the 5 personas and written rubric (`.agent/skills/arena/rubric.md`) before issuing any final trade verdict.")
     lines.append("8. INSTITUTIONAL QUANTITATIVE TELEMETRY AUDIT & PROFITABILITY ENHANCEMENT MANDATE:")
-    lines.append("   • The operator specifically mandates a comprehensive, institutional quantitative review of our master trading database (`Data/DataBase_Trading.xlsx`, all 43 sheets) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:")
+    lines.append("   • The operator specifically mandates a comprehensive, institutional quantitative review of our master trading database (33 canonical feeds in `Data/feeds/*.parquet`) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:")
     lines.append("     a) Telemetry Data Structure & Microstructure Schema Audit:")
-    lines.append("        - Critically review the schema in Data/DataBase_Trading.xlsx Sheets 34-36 (`Telemetry_System_State`, `Live_Orderbook_CVD_Depth`, `Exchange_Basis_Spreads`) and Sheets 21-25 (`Exchange_Liquidation_Map_1D/7D`, `Whales_Orders`, `Spot_Netflow`, `Hyperliquid_Whales`).")
+    lines.append("        - Critically review the schema in Data/feeds/*.parquet (`00_MT5_Account_Telemetry`, `17_Orderbook`, `18_CVD`) and feeds (`8_Exchange_Liquidation_Map_1D/7D`, `10_Whale_Orders`, `2_Spot_Netflow_S`, `4_Hyperliquid_Analysis`).")
     lines.append("        - What exact fields, features, or microstructural indicators are missing or suboptimal? Propose concrete mathematical additions: e.g. multi-level Order Flow Imbalance (OFI), Micro-price drift vs. Mid, Queue-position decay rate, Taker aggressor ratio over 1m/5m/15m/30m, and Footprint delta absorption scores.")
     lines.append("     b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:")
     lines.append("        - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?")

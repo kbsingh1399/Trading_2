@@ -16,7 +16,7 @@ Features:
   - High-speed in-memory React Fiber extraction across all 18 institutional assets (< 3.0s runtime).
   - 100% exact numerical match with live CoinGlass Funding Rate matrix (zero dummy '-' dashes for OKX/KuCoin).
   - Emits atomic Parquet feed and micro-metadata sidecar in Data/metadata/5_Funding_Rate.json.
-  - Optional backward-compatible Excel worksheet formatting if DataBase_Trading.xlsx exists.
+  - Optional backward-compatible Excel worksheet formatting if Parquet Feeds exists.
 """
 
 from __future__ import annotations
@@ -33,12 +33,6 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -62,7 +56,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("5_Funding_Rate")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/FundingRate"
 FEED_NAME = "5_Funding_Rate"
@@ -229,116 +222,9 @@ async def harvest_funding_rates(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
     return records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Optional backward-compatible dump into worksheet '5_Funding_Rate'."""
-    if not openpyxl or not excel_path.exists():
-        return False
-
-    try:
-        wb = openpyxl.load_workbook(excel_path)
-        sheet_name = FEED_NAME
-        target_idx = 7 if len(wb.sheetnames) >= 7 else len(wb.sheetnames)
-
-        if sheet_name in wb.sheetnames:
-            wb.remove(wb[sheet_name])
-        ws = wb.create_sheet(title=sheet_name, index=target_idx)
-
-        banner_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-        sub_hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-        usdt_fill = PatternFill(start_color="161B22", end_color="161B22", fill_type="solid")
-        coin_fill = PatternFill(start_color="21262D", end_color="21262D", fill_type="solid")
-        meta_fill = PatternFill(start_color="0D1117", end_color="0D1117", fill_type="solid")
-
-        base_font = Font(name="Segoe UI", size=9, color="000000")
-        bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-
-        thin_border = Border(
-            left=Side(style="thin", color="E0E0E0"),
-            right=Side(style="thin", color="E0E0E0"),
-            top=Side(style="thin", color="E0E0E0"),
-            bottom=Side(style="thin", color="E0E0E0"),
-        )
-
-        # Row 1: Dual Headers
-        ws.cell(row=1, column=1, value="Symbol").font = banner_font
-        ws.cell(row=1, column=1).fill = meta_fill
-        ws.cell(row=1, column=1).alignment = Alignment(horizontal="center", vertical="center")
-
-        ws.merge_cells("B1:L1")
-        b1 = ws.cell(row=1, column=2, value="USDT or USD Margined")
-        b1.font = banner_font
-        b1.fill = usdt_fill
-        b1.alignment = Alignment(horizontal="center", vertical="center")
-        for c in range(2, 13):
-            ws.cell(row=1, column=c).fill = usdt_fill
-
-        ws.merge_cells("M1:O1")
-        m1 = ws.cell(row=1, column=13, value="Token Margined (Coin-M)")
-        m1.font = banner_font
-        m1.fill = coin_fill
-        m1.alignment = Alignment(horizontal="center", vertical="center")
-        for c in range(13, 16):
-            ws.cell(row=1, column=c).fill = coin_fill
-
-        ws.cell(row=1, column=16, value="Metadata").font = banner_font
-        ws.cell(row=1, column=16).fill = meta_fill
-        ws.cell(row=1, column=16).alignment = Alignment(horizontal="center", vertical="center")
-        ws.row_dimensions[1].height = 26
-
-        # Row 2: Sub-headers
-        sub_headers = [
-            "Symbol", "Binance", "OKX", "Bybit", "KuCoin", "MEXC", "BingX",
-            "Gate", "Bitunix", "Bitget", "WhiteBIT", "LBank",
-            "Binance", "OKX", "Bybit", "Timestamp (IST)"
-        ]
-        ws.append(sub_headers)
-        ws.row_dimensions[2].height = 22
-        for c_idx in range(1, len(sub_headers) + 1):
-            cell = ws.cell(row=2, column=c_idx)
-            cell.font = sub_hdr_font
-            cell.alignment = Alignment(horizontal="center", vertical="center")
-            cell.fill = usdt_fill if c_idx <= 12 else coin_fill if c_idx <= 15 else meta_fill
-
-        # Data rows
-        keys = [
-            "Symbol", "USDT_Binance", "USDT_OKX", "USDT_Bybit", "USDT_KuCoin", "USDT_MEXC", "USDT_BingX",
-            "USDT_Gate", "USDT_Bitunix", "USDT_Bitget", "USDT_WhiteBIT", "USDT_LBank",
-            "CoinM_Binance", "CoinM_OKX", "CoinM_Bybit", "Timestamp_IST"
-        ]
-
-        for r_idx, rec in enumerate(records, start=3):
-            ws.row_dimensions[r_idx].height = 20
-            for c_idx, key in enumerate(keys, start=1):
-                val = rec.get(key, "-")
-                cell = ws.cell(row=r_idx, column=c_idx, value=val)
-                cell.border = thin_border
-                cell.alignment = Alignment(horizontal="center" if c_idx in (1, 16) else "right", vertical="center")
-                if c_idx == 1:
-                    cell.font = bold_font
-                elif "+" in str(val):
-                    cell.font = green_font
-                elif "-" in str(val) and val != "-":
-                    cell.font = red_font
-                else:
-                    cell.font = base_font
-
-        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-        wb.save(temp_excel)
-        wb.close()
-        temp_excel.replace(excel_path)
-        log.info(f"Worksheet '{sheet_name}' updated successfully in {excel_path}.")
-        return True
-    except Exception as e:
-        log.warning(f"Optional Excel dump skipped/failed: {e}")
-        return False
-
-
 def main():
     parser = argparse.ArgumentParser(description="CoinGlass Multi-Exchange Perpetual Funding Rates Scraper")
     parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Assets to harvest")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to DataBase_Trading.xlsx")
     args = parser.parse_args()
 
     symbols = args.symbols
@@ -355,10 +241,6 @@ def main():
     # 1. Pure Atomic Parquet Dump
     meta = write_parquet_feed(FEED_NAME, records)
     log.info(f"Successfully dumped feed to Parquet: {meta}")
-
-    # 2. Optional Excel Dump
-    if args.excel_path.exists():
-        dump_to_excel(records, excel_path=args.excel_path)
 
     log.info("Multi-Exchange Funding Rate pipeline executed successfully.")
 

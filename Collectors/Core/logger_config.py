@@ -16,51 +16,37 @@ import pathlib
 import sys
 import time
 
-try:
-    import excel_lock_hook  # noqa: F401
-except ImportError:
-    pass
-
-MODULES_DIR = pathlib.Path(__file__).resolve().parent
-ROOT_DIR = MODULES_DIR.parents[1]
-LOGS_DIR = ROOT_DIR / "logs"
-TELEMETRY_DIR = ROOT_DIR / "Data" / "telemetry"
-TELEMETRY_FILE = TELEMETRY_DIR / "pipeline_events.jsonl"
-DEFAULT_LOG_FILE = LOGS_DIR / "excel_pipeline.log"
-
-LOGS_DIR.mkdir(parents=True, exist_ok=True)
-TELEMETRY_DIR.mkdir(parents=True, exist_ok=True)
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+TELEMETRY_FILE = ROOT / "Data" / "telemetry" / "pipeline_events.jsonl"
+DEFAULT_LOG_FILE = ROOT / "logs" / "pipeline.log"
 
 
-class MEMORYSTATUSEX(ctypes.Structure):
-    _fields_ = [
-        ("dwLength", ctypes.c_ulong),
-        ("dwMemoryLoad", ctypes.c_ulong),
-        ("ullTotalPhys", ctypes.c_ulonglong),
-        ("ullAvailPhys", ctypes.c_ulonglong),
-        ("ullTotalPageFile", ctypes.c_ulonglong),
-        ("ullAvailPageFile", ctypes.c_ulonglong),
-        ("ullTotalVirtual", ctypes.c_ulonglong),
-        ("ullAvailVirtual", ctypes.c_ulonglong),
-        ("sullAvailExtendedVirtual", ctypes.c_ulonglong),
-    ]
-
-
-def get_system_ram_telemetry() -> dict[str, float]:
-    """Retrieves kernel-level physical RAM metrics on Windows via ctypes."""
+def get_system_ram_telemetry() -> dict:
+    """Queries Windows Kernel32 GlobalMemoryStatusEx for real-time physical RAM usage."""
     try:
+        class MEMORYSTATUSEX(ctypes.Structure):
+            _fields_ = [
+                ("dwLength", ctypes.c_ulong),
+                ("dwMemoryLoad", ctypes.c_ulong),
+                ("ullTotalPhys", ctypes.c_ulonglong),
+                ("ullAvailPhys", ctypes.c_ulonglong),
+                ("ullTotalPageFile", ctypes.c_ulonglong),
+                ("ullAvailPageFile", ctypes.c_ulonglong),
+                ("ullTotalVirtual", ctypes.c_ulonglong),
+                ("ullAvailVirtual", ctypes.c_ulonglong),
+                ("sullAvailExtendedVirtual", ctypes.c_ulonglong),
+            ]
         stat = MEMORYSTATUSEX()
         stat.dwLength = ctypes.sizeof(MEMORYSTATUSEX)
         if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat)):
-            total_mb = round(stat.ullTotalPhys / (1024 * 1024), 1)
-            avail_mb = round(stat.ullAvailPhys / (1024 * 1024), 1)
-            used_mb = round((stat.ullTotalPhys - stat.ullAvailPhys) / (1024 * 1024), 1)
-            load_pct = int(stat.dwMemoryLoad)
+            total_mb = stat.ullTotalPhys / (1024 * 1024)
+            avail_mb = stat.ullAvailPhys / (1024 * 1024)
+            used_mb = total_mb - avail_mb
             return {
-                "used_mb": used_mb,
-                "avail_mb": avail_mb,
-                "total_mb": total_mb,
-                "load_pct": load_pct,
+                "used_mb": round(used_mb, 1),
+                "avail_mb": round(avail_mb, 1),
+                "total_mb": round(total_mb, 1),
+                "load_pct": int(stat.dwMemoryLoad),
             }
     except Exception:
         pass
@@ -88,6 +74,7 @@ def emit_telemetry_event(
         "metadata": metadata or {},
     }
     try:
+        TELEMETRY_FILE.parent.mkdir(parents=True, exist_ok=True)
         with open(TELEMETRY_FILE, "a", encoding="utf-8") as f:
             f.write(json.dumps(payload) + "\n")
     except Exception as e:
@@ -95,15 +82,10 @@ def emit_telemetry_event(
 
 
 def setup_institutional_logger(name: str, log_file: pathlib.Path | str | None = None) -> logging.Logger:
-    """
-    Sets up a hardened logger with dual handlers:
-    1. Standard Output handler (formatted for console).
-    2. 50 MB Rotating File Handler (retained across runs in logs/excel_pipeline.log).
-    """
+    """Sets up a hardened logger with dual handlers."""
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
 
-    # Avoid duplicate handlers if already configured
     if logger.handlers:
         return logger
 
@@ -112,19 +94,17 @@ def setup_institutional_logger(name: str, log_file: pathlib.Path | str | None = 
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    # 1. Console handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    # 2. Rotating file handler
     target_log_file = pathlib.Path(log_file) if log_file else DEFAULT_LOG_FILE
     target_log_file.parent.mkdir(parents=True, exist_ok=True)
     try:
         file_handler = RotatingFileHandler(
             filename=str(target_log_file),
-            maxBytes=50 * 1024 * 1024,  # 50 MB
+            maxBytes=50 * 1024 * 1024,
             backupCount=5,
             encoding="utf-8",
         )
@@ -138,9 +118,6 @@ def setup_institutional_logger(name: str, log_file: pathlib.Path | str | None = 
     return logger
 
 
-# ---------------------------------------------------------------------
-# Institutional IST Timestamping Infrastructure (Tier-1 Banner Standard)
-# ---------------------------------------------------------------------
 IST_TIMEZONE = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 UTC_TIMEZONE = datetime.timezone.utc
 
@@ -155,54 +132,12 @@ def get_current_timestamps() -> tuple[str, str]:
 
 
 def stamp_sheet_completion_ist(
-    ws,
+    ws=None,
     sheet_title: str = "",
     row_count: int = 0,
     banner_cell: str = "A1",
     status: str = "LIVE",
     merge_max_col: int | None = None
 ) -> bool:
-    """Enforces Operator Invariant: Timestamp MUST be added or updated ONLY ONCE
-    row data is filled.
-    
-    Rejects any update if row_count <= 0.
-    Writes standardized Tier-1 banner to banner_cell:
-    "LAST UPDATED: YYYY-MM-DD HH:MM:SS IST (YYYY-MM-DD HH:MM:SS UTC) | ROWS: N | STATUS: LIVE"
-    Applies institutional xlsx-official styling:
-    - Font: Calibri / Segoe UI, size 10, bold, dark green text (#155724)
-    - Fill: Soft pastel green fill (#D4EDDA)
-    - Alignment: Centered horizontally and vertically
-    """
-    if row_count <= 0:
-        return False
-        
-    ist_str, utc_str = get_current_timestamps()
-    prefix = f"{sheet_title} | " if sheet_title else ""
-    banner_text = f"{prefix}LAST UPDATED: {ist_str} ({utc_str}) | ROWS: {row_count} | STATUS: {status}"
-    
-    cell = ws[banner_cell]
-    cell.value = banner_text
-    
-    try:
-        from openpyxl.styles import Font, PatternFill, Alignment
-        from openpyxl.utils import get_column_letter
-        
-        cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
-        cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
-        cell.alignment = Alignment(horizontal="center", vertical="center")
-        
-        # Determine row number from cell reference (e.g., 'A1' -> 1)
-        import re
-        m = re.search(r'\d+', banner_cell)
-        if m:
-            row_num = int(m.group(0))
-            ws.row_dimensions[row_num].height = 24
-            
-        if merge_max_col and merge_max_col > 1:
-            col_letter = get_column_letter(merge_max_col)
-            ws.merge_cells(f"{banner_cell}:{col_letter}{row_num}")
-    except Exception:
-        pass
-        
+    """Legacy compatibility stub for sheet banner stamping."""
     return True
-

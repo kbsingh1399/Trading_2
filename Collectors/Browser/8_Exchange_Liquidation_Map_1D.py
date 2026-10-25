@@ -35,12 +35,6 @@ import sys
 import time
 import urllib.request
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 try:
     import websockets
@@ -64,7 +58,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("8_Exchange_Liquidation_Map_1D")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/pro/futures/LiquidationMap"
 FEED_NAME = "8_Exchange_Liquidation_Map_1D"
@@ -410,80 +403,9 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
     return all_records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Optional backward-compatible dump into worksheet '8_Exchange_Liquidation_Map_1D'."""
-    if not openpyxl or not excel_path.exists():
-        return False
-
-    try:
-        wb = openpyxl.load_workbook(excel_path)
-        sheet_name = FEED_NAME
-        if "7_Live_Liq" in wb.sheetnames:
-            target_idx = wb.sheetnames.index("7_Live_Liq") + 1
-        else:
-            target_idx = 12 if len(wb.sheetnames) >= 12 else len(wb.sheetnames)
-
-        if sheet_name in wb.sheetnames:
-            wb.remove(wb[sheet_name])
-        ws = wb.create_sheet(title=sheet_name, index=target_idx)
-
-        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-        hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-        base_font = Font(name="Segoe UI", size=9, color="000000")
-        bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-        cum_font = Font(name="Segoe UI", size=9, bold=True, color="1E293B")
-        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-        subdued_font = Font(name="Segoe UI", size=9, color="888888")
-
-        thin_border_side = Side(border_style="thin", color="E2E8F0")
-        row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
-
-        ws.row_dimensions[1].height = 26
-        for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=1, column=col_idx, value=header_title)
-            cell.font = hdr_font
-            cell.fill = hdr_fill
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            col_letter = get_column_letter(col_idx)
-            ws.column_dimensions[col_letter].width = width
-
-        for row_idx, r in enumerate(records, start=2):
-            ws.row_dimensions[row_idx].height = 20
-            for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-                val = r.get(col_key, "")
-                cell = ws.cell(row=row_idx, column=col_idx, value=val)
-                cell.alignment = Alignment(horizontal=align, vertical="center")
-                cell.border = row_border
-                if col_key in ("Sr.No", "Asset", "Time"):
-                    cell.font = bold_font
-                elif col_key == "Cummulitve_Liquidation":
-                    cell.font = cum_font
-                elif col_key == "Short":
-                    cell.font = green_font if val != "$0" else subdued_font
-                elif col_key == "Long":
-                    cell.font = red_font if val != "$0" else subdued_font
-                elif col_key in ("Binanace", "OKX", "Bybit"):
-                    cell.font = base_font if val != "$0" else subdued_font
-                else:
-                    cell.font = base_font
-
-        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-        wb.save(temp_excel)
-        wb.close()
-        temp_excel.replace(excel_path)
-        log.info(f"Excel worksheet '{sheet_name}' updated successfully.")
-        return True
-    except Exception as e:
-        log.warning(f"Optional Excel dump skipped/failed: {e}")
-        return False
-
-
 def main():
     parser = argparse.ArgumentParser(description="CoinGlass 1D Multi-Asset Liquidation Map Scraper")
     parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Assets to harvest")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to Excel workbook")
     args = parser.parse_args()
 
     symbols = args.symbols
@@ -500,10 +422,6 @@ def main():
     # 1. Pure Parquet Dump
     meta = write_parquet_feed(FEED_NAME, records)
     log.info(f"Successfully dumped feed to Parquet: {meta}")
-
-    # 2. Optional Excel Dump
-    if args.excel_path.exists():
-        dump_to_excel(records, excel_path=args.excel_path)
 
     log.info("1D Liquidation Map pipeline executed successfully.")
 

@@ -19,9 +19,9 @@
     "Market_Cap",
     "Timestamp_IST"
   ],
-  "byte_size": 5934,
-  "timestamp_ist": "2026-10-25 23:40:50 IST",
-  "timestamp_utc": "2026-10-25 18:10:50 UTC",
-  "epoch_utc": 1792951850.406951,
-  "write_duration_ms": 254.4
+  "byte_size": 5976,
+  "timestamp_ist": "2026-10-26 03:37:24 IST",
+  "timestamp_utc": "2026-10-25 22:07:24 UTC",
+  "epoch_utc": 1792966044.066612,
+  "write_duration_ms": 360.18
 }

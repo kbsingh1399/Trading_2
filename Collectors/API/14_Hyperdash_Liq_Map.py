@@ -5,7 +5,7 @@ Data/Excel_Modules/14_Hyperdash_Liq_Map.py
 Hyperdash Multi-Asset On-Chain Liquidation Price Ladder & Cumulative Map (100% Native API).
 Captures point-by-point long/short liquidation levels and cumulative curves across all 18 institutional
 perpetual assets directly from Hyperdash GraphQL API (https://api.hyperdash.com/graphql) without browser or CDP overhead,
-and stacks them asset-over-asset into worksheet '14_Hyperdash_Liq_Map' in Data/DataBase_Trading.xlsx
+and stacks them asset-over-asset into worksheet '14_Hyperdash_Liq_Map' in Data/feeds/<feed_name>.parquet
 (positioned at Index 22, immediately after '13_Hyperliquid').
 
 Universe (18 Institutional Binance USDT-M Perpetuals):
@@ -17,10 +17,17 @@ Layout Matches Operator Specifications & 8_Exchange_Liquidation_Map_1D:
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
+import pathlib
+import sys
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+
+
+# Pure Parquet Pipeline
 
 import argparse
 import datetime
@@ -31,12 +38,6 @@ import sys
 import time
 import urllib.request
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 logging.basicConfig(
     level=logging.INFO,
@@ -47,7 +48,6 @@ log = logging.getLogger("14_Hyperdash_Liq_Map")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 GRAPHQL_URL = "https://api.hyperdash.com/graphql"
 SHEET_NAME = "14_Hyperdash_Liq_Map"
 
@@ -266,145 +266,31 @@ def harvest_all_liquidation_maps(symbols: list[str]) -> list[dict]:
     return all_records
 
 
-def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
-    """Dumps stacked liquidation map into worksheet '14_Hyperdash_Liq_Map' at Index 22."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
+def dump_to_parquet(records: list[dict], feed_name: str = SHEET_NAME) -> bool:
     if not records:
-        log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
+        log.warning("No liquidation records to dump to Parquet.")
         return False
-
-    wb = openpyxl.load_workbook(excel_path)
-
-    # Position at Index 22 (immediately after 13_Hyperliquid at Index 21)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        target_idx = 22 if len(wb.sheetnames) >= 22 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
-
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
-
-    # Visual Styles matching 8_Exchange_Liquidation_Map_1D
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    cum_font = Font(name="Segoe UI", size=9, bold=True, color="1E293B")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-    subdued_font = Font(name="Segoe UI", size=9, color="888888")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    # 1. Header Row
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        cell = ws.cell(row=1, column=col_idx, value=header_title)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal=align, vertical="center")
-        cell.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 2. Data Rows
-    for row_idx, r in enumerate(records, start=2):
-        ws.row_dimensions[row_idx].height = 20
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            val = r.get(col_key, "")
-            cell = ws.cell(row=row_idx, column=col_idx, value=val)
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-
-            # Typography and semantics
-            if col_key in ("sr_no", "asset", "time_window"):
-                cell.font = bold_font
-            elif col_key == "cumulative_liq":
-                cell.font = cum_font
-            elif col_key == "short_liq":
-                cell.font = green_font if val != "$0" else subdued_font
-            elif col_key == "long_liq":
-                cell.font = red_font if val != "$0" else subdued_font
-            elif col_key == "side":
-                cell.font = green_font if val == "Short" else red_font
-            elif col_key == "distance_pct":
-                cell.font = green_font if str(val).startswith("+") else (red_font if str(val).startswith("-") else base_font)
-            else:
-                cell.font = base_font
-
-    ws.freeze_panes = "A2"
-
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="14_Hyperdash_Liq_Map",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Successfully saved {len(records)} rows to '{SHEET_NAME}' at {excel_path}")
+    meta = write_parquet_feed(feed_name, records)
+    log.info(f"Successfully dumped {len(records)} Hyperdash Liq Map rows into Parquet feed '{feed_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Hyperdash 14_Hyperdash_Liq_Map Generator")
-    parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Assets to harvest")
-    parser.add_argument("--excel-path", type=pathlib.Path, default=DEFAULT_EXCEL_PATH, help="Path to Excel workbook")
+    parser = argparse.ArgumentParser(description="Hyperdash Liquidation Map Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=SHEET_NAME, help="Target feed name")
     args = parser.parse_args()
 
-    symbols = args.symbols
-    if len(symbols) == 1 and "," in symbols[0]:
-        symbols = [s.strip().upper() for s in symbols[0].split(",") if s.strip()]
-
-    log.info(f"Starting Hyperdash Liquidation Map harvest for {len(symbols)} assets: {symbols}")
-    records = harvest_all_liquidation_maps(symbols=symbols)
-
+    t_start = time.time()
+    log.info("Starting Hyperdash Liquidation Map harvest...")
+    records = harvest_all_liquidation_maps(DEFAULT_UNIVERSE)
     if not records:
-        log.error("Harvesting yielded 0 records. Excel dump aborted.")
+        log.error("No liquidation records returned from Hyperdash.")
         sys.exit(1)
 
-    success = dump_to_excel(records, excel_path=args.excel_path)
-    if not success:
-        sys.exit(1)
-
-    log.info("14_Hyperdash_Liq_Map pipeline executed successfully.")
+    success = dump_to_parquet(records, feed_name=args.sheet_name)
+    elapsed = time.time() - t_start
+    log.info(f"14_Hyperdash_Liq_Map completed in {elapsed:.2f}s with status: {'SUCCESS' if success else 'FAILED'}")
+    sys.exit(0 if success else 1)
 
 
 if __name__ == "__main__":

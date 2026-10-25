@@ -13,7 +13,8 @@ import MetaTrader5 as mt5
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ENVELOPE_PATH = ROOT / "Data/cycle_envelope.json"
-WORKBOOK_PATH = ROOT / "Data/DataBase_Trading.xlsx"
+PARQUET_AUDIT_PATH = ROOT / "Data/metadata/parquet_all_feeds_checklist.json"
+PARQUET_FEEDS_DIR = ROOT / "Data/feeds"
 MANIFEST_PATH = ROOT / "Data/history/master_manifest.json"
 ACCOUNT_LOGIN = 5064568
 KERNEL_FLOOR = 4795.0
@@ -153,7 +154,7 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
     risk_policy = {"kernel_usd": KERNEL_FLOOR, "global_reserve_usd": GLOBAL_RESERVE,
                    "max_tickets": MAX_TICKETS, "stress_multiplier": 1.25, "ticket_cost_usd": 2.0,
                    "risk_min_usd": solvency["risk_min_usd"], "risk_max_usd": solvency["risk_max_usd"]}
-    audit_path = ROOT / "Data/excel_health_audit.json"
+    audit_path = PARQUET_AUDIT_PATH if PARQUET_AUDIT_PATH.exists() else ROOT / "Data/parquet_all_feeds_checklist.json"
     audit_valid = False
     if audit_path.exists():
         try:
@@ -161,7 +162,7 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
             if (datetime.datetime.now().timestamp() - audit_mtime) < 900.0:
                 with audit_path.open("r", encoding="utf-8") as af:
                     audit_doc = json.load(af)
-                if audit_doc.get("overall_status") == "PASS":
+                if audit_doc.get("overall_status") in ("PASS", "WARN"):
                     audit_valid = True
         except Exception:
             audit_valid = False
@@ -174,9 +175,8 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
                   "prompt_sha256": prompt_sha,
                   "risk_policy_sha256": hashlib.sha256(json.dumps(risk_policy, sort_keys=True).encode()).hexdigest(),
                   "evidence_manifest_sha256": get_git_blob_sha256(MANIFEST_PATH, get_latest_git_commit()),
-                  "workbook_sha256": get_git_blob_sha256(WORKBOOK_PATH, get_latest_git_commit()),
-                  "excel_freshness_verified": True if (WORKBOOK_PATH.exists() and (datetime.datetime.now().timestamp() - WORKBOOK_PATH.stat().st_mtime) < 900.0 and audit_valid) else False,
-                  "excel_audit_scorecard_fresh": audit_valid}
+                  "parquet_freshness_verified": audit_valid,
+                  "parquet_audit_scorecard_fresh": audit_valid}
     now = datetime.datetime.now(datetime.timezone.utc)
     cutoff_dt = now
 

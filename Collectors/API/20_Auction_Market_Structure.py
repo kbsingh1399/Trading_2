@@ -29,17 +29,13 @@ Computes and publishes institutional auction market structure across 54 Universe
   - Section 2: Institutional Pivot Points & Key Magnet Shelves (P, R1, S1, R2, S2, Weekly Pivot)
 
 Outputs:
-  - Target Sheet: '20_Auction_Market_Structure' in Data/DataBase_Trading.xlsx
+  - Target Sheet: '20_Auction_Market_Structure' in Data/feeds/<feed_name>.parquet
   - Staging Parquet: Data/staging/20_Auction_Market_Structure.parquet
   - Live JSON Telemetry: Data/telemetry/auction_market_structure.json
 """
 
 from __future__ import annotations
 
-try:
-    import excel_lock_hook
-except Exception:
-    pass
 
 import argparse
 import datetime
@@ -60,15 +56,10 @@ try:
 except ImportError:
     mt5 = None
 
-try:
-    import openpyxl
-    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-    from openpyxl.utils import get_column_letter
-except ImportError:
-    openpyxl = None
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
+ROOT = ROOT_DIR
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
@@ -79,7 +70,6 @@ logging.basicConfig(
 )
 log = logging.getLogger("AuctionStructure")
 
-DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 STAGING_DIR = ROOT_DIR / "Data" / "staging"
 STAGING_DIR.mkdir(parents=True, exist_ok=True)
 TELEMETRY_DIR = ROOT_DIR / "Data" / "telemetry"
@@ -628,252 +618,36 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
     return structure_records, pivot_records
 
 
-def dump_auction_structure_to_excel(
-    structure_records: List[Dict[str, Any]],
-    pivot_records: List[Dict[str, Any]],
-    sheet_name: str = TARGET_SHEET_NAME,
-    target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
-) -> bool:
-    """Writes auction market structure and pivots to Excel with atomic locking."""
-    if not excel_path.exists():
-        log.error(f"Excel workbook not found at: {excel_path}")
-        return False
-
-    if not structure_records:
-        log.error("0 records generated. Aborting dump.")
-        return False
-
-    # Also save live telemetry JSON
-    try:
-        json_file = TELEMETRY_DIR / "auction_market_structure.json"
-        with open(json_file, "w", encoding="utf-8") as f:
-            json.dump({
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "assets_count": len(structure_records),
-                "records": structure_records,
-                "pivots": pivot_records,
-            }, f, indent=2)
-        log.info(f"Telemetry JSON exported to: {json_file}")
-    except Exception as e:
-        log.warning(f"Failed to export telemetry JSON: {e}")
-
-    import filelock
-    lock_path = excel_path.with_name("DataBase_Trading.xlsx.lock")
-    lock = filelock.FileLock(str(lock_path), timeout=120)
-    try:
-        with lock:
-            try:
-                wb = openpyxl.load_workbook(excel_path)
-                if sheet_name in wb.sheetnames:
-                    wb.remove(wb[sheet_name])
-            except Exception as e:
-                log.error(f'Could not load Excel: {e}')
-                return False
-        
-            ws = wb.create_sheet(title=sheet_name, index=target_index)
-        
-            font_banner = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-            fill_banner = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-            font_sub_banner = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-            fill_sub_banner = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-        
-            hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-            hdr_fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
-        
-            base_font = Font(name="Segoe UI", size=9, color="0F172A")
-            fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-            fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-            thin_border_side = Side(border_style="thin", color="E2E8F0")
-            row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
-        
-            now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-        
-            # Section 1: Auction Market Structure (Row 1 Canonical Column Names, Zero Merged Cells)
-            ws.row_dimensions[1].height = 26
-            for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-                c = ws.cell(row=1, column=col_idx, value=header_title if header_title else col_key)
-                c.font = hdr_font
-                c.fill = hdr_fill
-                c.alignment = Alignment(horizontal=align, vertical="center")
-                c.border = row_border
-                ws.column_dimensions[get_column_letter(col_idx)].width = width
-        
-            current_row = 2
-            for r in structure_records:
-                ws.row_dimensions[current_row].height = 20
-                row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-        
-                for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-                    cell = ws.cell(row=current_row, column=col_idx)
-                    val = r.get(col_key)
-                    cell.font = base_font
-                    cell.fill = row_fill
-                    cell.border = row_border
-                    cell.alignment = Alignment(horizontal=align, vertical="center")
-        
-                    if col_key in ("dist_poc_pct", "dist_vah_pct", "dist_val_pct"):
-                        if val is not None:
-                            cell.value = float(val) / 100.0
-                            cell.number_format = "+0.00%;-0.00%;0.00%"
-                        else:
-                            cell.value = ""
-                    elif col_key in ("price", "daily_poc", "daily_vah", "daily_val", "pd_poc", "pd_vah", "pd_val",
-                                     "pdh", "pdl", "pdc", "weekly_poc", "weekly_vah", "weekly_val", "cwh", "cwl",
-                                     "pwh", "pwl", "asian_high", "asian_low", "london_high", "london_low", "ny_high", "ny_low",
-                                     "ib_high", "ib_low"):
-                        if val is not None:
-                            cell.value = float(val)
-                            if abs(float(val)) >= 1000:
-                                cell.number_format = "$#,##0.00"
-                            elif abs(float(val)) >= 1:
-                                cell.number_format = "$#,##0.0000"
-                            else:
-                                cell.number_format = "$#,##0.00000"
-                        else:
-                            cell.value = ""
-                    elif col_key == "spread_bps":
-                        if val is not None:
-                            cell.value = float(val)
-                            cell.number_format = "0.00"
-                        else:
-                            cell.value = ""
-                    else:
-                        cell.value = str(val) if val is not None else ""
-        
-                current_row += 1
-        
-            # Section 2: Pivots & Key Shelves
-            current_row += 2
-            last_pivot_letter = get_column_letter(len(PIVOT_COLUMNS_DEF))
-            ws.merge_cells(f"A{current_row}:{last_pivot_letter}{current_row}")
-            t2 = ws[f"A{current_row}"]
-            t2.value = f"SECTION 2: INSTITUTIONAL FLOOR PIVOTS & KEY LIQUIDITY MAGNET SHELVES (DAILY & WEEKLY) [as_of {now_utc}]"
-            t2.font = font_sub_banner
-            t2.fill = fill_sub_banner
-            t2.alignment = Alignment(horizontal="center", vertical="center")
-            ws.row_dimensions[current_row].height = 26
-        
-            current_row += 1
-            ws.row_dimensions[current_row].height = 24
-            for col_idx, (col_key, header_title, width, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
-                c = ws.cell(row=current_row, column=col_idx, value=header_title)
-                c.font = hdr_font
-                c.fill = hdr_fill
-                c.alignment = Alignment(horizontal=align, vertical="center")
-                c.border = row_border
-        
-            current_row += 1
-            for r in pivot_records:
-                ws.row_dimensions[current_row].height = 20
-                row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-        
-                for col_idx, (col_key, _, _, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
-                    cell = ws.cell(row=current_row, column=col_idx)
-                    val = r.get(col_key)
-                    cell.font = base_font
-                    cell.fill = row_fill
-                    cell.border = row_border
-                    cell.alignment = Alignment(horizontal=align, vertical="center")
-        
-                    if col_key in ("price", "pivot", "r1", "s1", "r2", "s2", "weekly_pivot", "weekly_r1", "weekly_s1"):
-                        if val is not None:
-                            cell.value = float(val)
-                            if abs(float(val)) >= 1000:
-                                cell.number_format = "$#,##0.00"
-                            elif abs(float(val)) >= 1:
-                                cell.number_format = "$#,##0.0000"
-                            else:
-                                cell.number_format = "$#,##0.00000"
-                        else:
-                            cell.value = ""
-                    else:
-                        cell.value = str(val) if val is not None else ""
-        
-                current_row += 1
-        
-            # Atomic workbook save with 30-attempt retry loop
-                # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-            if ws.max_row > 1:
-                try:
-                    from logger_config import stamp_sheet_completion_ist
-                    ws.insert_rows(1)
-                    stamp_sheet_completion_ist(
-                        ws=ws,
-                        sheet_title="20_Auction_Market_Structure",
-                        row_count=ws.max_row - 2,
-                        banner_cell="A1",
-                        status="LIVE",
-                        merge_max_col=ws.max_column
-                    )
-                    ws.freeze_panes = "A3"
-                except Exception as _e:
-                    pass
-        
-            tmp_path = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-            wb.save(tmp_path)
-            wb.close()
-        
-            max_retries = 30
-            for attempt in range(max_retries):
-                try:
-                    os.replace(tmp_path, excel_path)
-                    log.info(f"Successfully committed sheet '{sheet_name}' to {excel_path.name}.")
-                    return True
-                except PermissionError:
-                    time.sleep(1.0)
-                except Exception as e:
-                    log.error(f"Unexpected error replacing file: {e}")
-                    time.sleep(1.0)
-        
-            log.error("Failed to replace Excel file after 30 attempts due to lock.")
-            return False
-    except filelock.Timeout:
-        log.error("Could not acquire Excel lock within 120s -- aborting write to prevent CRC collision.")
-        return False
-    except Exception as e:
-        log.error(f"Unexpected error during Excel write: {e}")
-        return False
-
-
 def run_auction_module(
     sheet_name: str = TARGET_SHEET_NAME,
     target_index: int = TARGET_INDEX,
-    excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
 ) -> bool:
-    """Executes full harvest and dump for Auction Market Structure."""
+    """Executes full harvest and Parquet dump for Auction Market Structure."""
     t0 = time.time()
     structure_records, pivot_records = harvest_auction_market_structure()
     if not structure_records:
         log.error("Zero auction records harvested.")
         return False
 
-    success = dump_auction_structure_to_excel(
-        structure_records=structure_records,
-        pivot_records=pivot_records,
-        sheet_name=sheet_name,
-        target_index=target_index,
-        excel_path=excel_path,
-    )
+    all_records = list(structure_records)
+    if pivot_records:
+        all_records.extend(pivot_records)
+
+    sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
+    sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
+    from parquet_feed_writer import write_parquet_feed
+    meta = write_parquet_feed(sheet_name, all_records)
     elapsed = time.time() - t0
-    if success:
-        log.info(f"Auction Market Structure completed in {elapsed:.2f}s.")
-        return True
-    return False
+    log.info(f"Auction Market Structure completed in {elapsed:.2f}s with {len(all_records)} records ({meta.get('byte_size')} bytes).")
+    return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Auction Market Structure & Volume Profile Publisher")
-    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target worksheet name")
-    parser.add_argument("--target-index", type=int, default=TARGET_INDEX, help="Worksheet index in workbook")
-    parser.add_argument("--excel-path", default=str(DEFAULT_EXCEL_PATH), help="Path to DataBase_Trading.xlsx")
+    parser = argparse.ArgumentParser(description="Auction Market Structure & Volume Profile Pure-Parquet Dumper")
+    parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target feed name")
     args = parser.parse_args()
 
-    ok = run_auction_module(
-        sheet_name=args.sheet_name,
-        target_index=args.target_index,
-        excel_path=pathlib.Path(args.excel_path),
-    )
+    ok = run_auction_module(sheet_name=args.sheet_name)
     sys.exit(0 if ok else 1)
 
 

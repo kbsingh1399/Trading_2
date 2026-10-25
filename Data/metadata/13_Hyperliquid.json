@@ -1,26 +1,22 @@
 {
   "feed_name": "13_Hyperliquid",
   "status": "PASS",
-  "row_count": 466,
-  "column_count": 13,
+  "row_count": 234,
+  "column_count": 9,
   "columns": [
-    "Sr._No.",
+    "Section",
     "Asset",
-    "Market_Identifier",
-    "Origin_DEX",
-    "Mark_Price_$",
-    "24h_Chg_%",
-    "24h_Volume_USD",
-    "Open_Interest_Tokens",
+    "Price",
+    "Change_24h",
+    "Volume_24h_USD",
     "Open_Interest_USD",
-    "1h_Funding_Rate",
-    "Funding_APR_%",
-    "Max_Lev",
-    "Decimals"
+    "Funding_Rate",
+    "Detail",
+    "Timestamp_IST"
   ],
-  "byte_size": 51597,
-  "timestamp_ist": "2026-10-25 23:38:42 IST",
-  "timestamp_utc": "2026-10-25 18:08:42 UTC",
-  "epoch_utc": 1792951722.802364,
-  "write_duration_ms": 11.77
+  "byte_size": 6757,
+  "timestamp_ist": "2026-10-26 03:41:49 IST",
+  "timestamp_utc": "2026-10-25 22:11:49 UTC",
+  "epoch_utc": 1792966309.101603,
+  "write_duration_ms": 395.59
 }

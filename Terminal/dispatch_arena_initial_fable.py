@@ -77,19 +77,19 @@ In every response, you must execute an affirmative and adversarial quantitative 
 
 ---
 
-## 🚨 3. MANDATORY DATA & WORKBOOK TIMESTAMP AUDIT DIRECTIVE
-Inspect the connected repository files (`kbsingh1399/Trading_2` branch `main`), particularly `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json`:
+## 🚨 3. MANDATORY DATA & PARQUET FEEDS TIMESTAMP AUDIT DIRECTIVE
+Inspect the connected repository files (`kbsingh1399/Trading_2` branch `main`), particularly `Data/feeds/*.parquet`, `Data/metadata/parquet_all_feeds_checklist.json`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json`:
 - Verify that file modification and git commit timestamps are fresh relative to current UTC clock ({utc_now}).
-- **MANDATORY EXPLICIT FEEDBACK**: If ANY data file or workbook appears stale, lagging, or un-synchronized:
+- **MANDATORY EXPLICIT FEEDBACK**: If ANY data feed or metadata file appears stale, lagging, or un-synchronized:
   * Output an immediate prominent alert at the top of your response:
-    `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current UTC: {utc_now})`
+    `[ALERT] TELEMETRY STALE WARNING: [Feed/File] is stale (Last updated: [Timestamp] vs Current UTC: {utc_now})`
   * Provide explicit feedback identifying the lagging metric.
 
 ---
 
 ## 🎯 4. INITIAL SESSION TASK & CANDIDATE DISCOVERY ASSIGNMENT
 1. **Acknowledge Deep Reasoning & Multi-Agent Squad Architecture**: Confirm adoption of the institutional multi-agent squad architecture with deep reasoning and step-by-step chain-of-thought verification.
-2. **Repository & Data Verification**: Verify your access to `kbsingh1399/Trading_2` branch `main` and inspect the fresh state of `Data/DataBase_Trading.xlsx` and `docs/telemetry/live_snapshot_latest.json`.
+2. **Repository & Data Verification**: Verify your access to `kbsingh1399/Trading_2` branch `main` and inspect the fresh state of `Data/feeds/*.parquet`, `Data/metadata/parquet_all_feeds_checklist.json`, and `docs/telemetry/live_snapshot_latest.json`.
 3. **Crypto Universe Scan (11 Spread-Qualified Assets)**:
    Conduct an empirical quantitative scan across the 11 trade-eligible crypto perpetuals:
    `BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, XRPUSD.p, ADAUSD.p, DOGEUSD.p, TRXUSD.p, LINKUSD.p, AVAXUSD.p, NEARUSD.p`
