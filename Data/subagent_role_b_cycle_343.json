@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 343",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "713f76c908f6776cc936d9beec768670a9d9e3e1a45bd9f8adc6f91c55019fff",
+  "prompt_sha256": "cb23805864db459ff74f8c08e83bdaf083a8cd3dd0d34bbb3a15cafd854092a3",
+  "dispatch_nonce": "50f58804-d0ae-4968-a6d8-34f6786f94a6",
+  "microstructure_audit": {
+    "broker_bid_price": 80728.0,
+    "broker_ask_price": 80744.0,
+    "broker_mid_price": 80736.0,
+    "broker_spread_usd": 16.0,
+    "broker_spread_bps": 1.982,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "candidate_symbol": "BTCUSD.pi",
+    "candidate_action": "SELL_LIMIT",
+    "candidate_volume": 0.04,
+    "candidate_price": 81300.0,
+    "candidate_sl": 81780.0,
+    "candidate_tp": 79850.0,
+    "distance_to_mid_pts": 564.0,
+    "distance_to_mid_atr_multiple": 5.86,
+    "queue_fill_probability_ttl_6h": 0.007,
+    "backing_whale_wall_price": null,
+    "backing_whale_wall_notional_usd": 0.0,
+    "backing_whale_wall_persisted_seconds": 0.0,
+    "whale_persistence_status": "FAIL_ZERO_OVERHEAD_WHALE_WALL_AT_OR_ABOVE_81300",
+    "nearest_whale_sell_wall_below": {
+      "order_id": "CG_LADDER_1",
+      "exchange": "Binance",
+      "price_usd": 81126.8,
+      "notional_usd": 2840000.0,
+      "duration": "56m 13s",
+      "distance_below_entry_pts": 173.2
+    },
+    "sl_anchor_status": "FAIL_UNANCHORED_IN_BUY_STOP_CASCADE_VOID",
+    "adverse_selection_projected_r0": -0.2604,
+    "tradfye_orderflow": {
+      "footprint_poc_usd": 80814.83,
+      "net_taker_delta_usd": 2063205.58,
+      "net_taker_delta_pct": 7.56,
+      "orderflow_regime": "TWO_SIDED_ABSORPTION",
+      "delta_divergence": "BULLISH_EXPANSION",
+      "deribit_max_pain_usd": 78000.0,
+      "deribit_call_wall_usd": 95000.0,
+      "deribit_put_wall_usd": 60000.0
+    },
+    "orderbook_imbalance": {
+      "bid_depth_usd": 1537669.43,
+      "ask_depth_usd": 11613543.27,
+      "depth_imbalance_ratio": 0.1169,
+      "orderbook_regime": "BEARISH_RESISTANCE_SUPPLY_DOMINANCE_AT_80800_BAND"
+    }
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 83087.5,
+    "monday_ib_l": 80743.0,
+    "monday_ib_mid": 81915.25,
+    "monday_sweep_reclaim_status": "INSIDE_MONDAY_IB_RANGE_TESTING_MON_LOW",
+    "asian_session_extreme_sweep": "TRADING_BETWEEN_ASIAN_LOW_80115_AND_ASIAN_HIGH_80837",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL_79634",
+    "developing_value_area_state": "INSIDE_VALUE_DAILY_BALANCE",
+    "daily_poc": 80695.17,
+    "daily_vah": 80825.16,
+    "daily_val": 80348.51,
+    "weekly_poc": 81635.46,
+    "weekly_vah": 82985.18,
+    "weekly_val": 81134.14
+  },
+  "fib_invalidation_shelf_check": {
+    "swing_high_usd": 80994.0,
+    "swing_low_usd": 79071.0,
+    "shelf_0786_price": 80582.48,
+    "candidate_entry_price": 81300.0,
+    "candidate_sl_price": 81780.0,
+    "sl_buffer_atr_multiple": 5.06,
+    "fib_golden_zone_status": "STRUCTURE_INVALIDATED",
+    "anchor_integrity": "FAIL_BEARISH_FIB_STRUCTURE_ALREADY_BROKEN_AT_80582"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01_SPREAD_GATE",
+      "statement": "Broker tick spread on BTCUSD.pi is 16.0 pts (1.982 bps), strictly satisfying the <= 25.0 bps gate.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json:broker_tick",
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure"
+      ],
+      "formula_or_test": "Spread_bps = (Ask - Bid) / Mid * 10000 <= 25.0",
+      "result": {
+        "spread_pts": 16.0,
+        "spread_bps": 1.982,
+        "gate": "PASS_LEQ_25_BPS"
+      },
+      "uncertainty": "0.00 bps broker telemetry error",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_02_WHALE_WALL_ABSENCE",
+      "statement": "There are zero resting sell whale orders at or above candidate entry price 81300.00 USD in 10_Whale_Orders. The entry is completely unbacked by institutional ask liquidity.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders"
+      ],
+      "formula_or_test": "Whale_Ask_Price >= 81300.00 USD and notional >= 100000 USD and persisted_seconds >= 180s",
+      "result": {
+        "matching_whale_orders_count": 0,
+        "highest_sell_wall_price": 81126.8,
+        "deficit_pts": 173.2
+      },
+      "uncertainty": "Zero; exhaustive audit of all 182 whale rows in worksheet 10_Whale_Orders",
+      "status": "FALSIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_03_STOP_CASCADE_EXPOSURE",
+      "statement": "The proposed Stop Loss at 81780.00 USD sits directly within a 20.10M USD buy-stop liquidity pool, guaranteeing catastrophic fill slippage if price sweeps above 81126.80 USD.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:15_Hyperdash_Stops_Map"
+      ],
+      "formula_or_test": "Buy_Stops_Cluster between 81250 and 81780 >= 10M USD",
+      "result": {
+        "cumulative_buy_stops_at_81750_usd": 20100000.0,
+        "buy_stops_in_flight_usd": 14520000.0
+      },
+      "uncertainty": "Zero; verified from Sheet 15 Hyperdash Stops Map",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_04_ADVERSE_SELECTION",
+      "statement": "Projected 5-minute post-fill adverse selection AS(t+5m) is -0.2604 R0, violating the AS >= -0.15 R0 toxic markout threshold.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:15_Hyperdash_Stops_Map",
+        "Data/execution_preflight_receipt.json"
+      ],
+      "formula_or_test": "AS(t+5m) = Side * (Mid_{t+5m} - Price_fill) / R0 < -0.15",
+      "result": {
+        "projected_mid_post_sweep": 81425.0,
+        "as_r0": -0.2604,
+        "toxic_flow": true
+      },
+      "uncertainty": "+/- 0.04 R0 estimation band based on stop sweep magnitude",
+      "status": "FALSIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_05_FIB_INVALIDATION",
+      "statement": "The 0.786 Fibonacci invalidation shelf at 80582.48 USD has already been broken by current price 80736.00 USD, rendering the short structure invalidated.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure"
+      ],
+      "formula_or_test": "Current_Mid > Fib_0786 (80582.48 USD)",
+      "result": {
+        "current_mid": 80736.0,
+        "fib_0786": 80582.48,
+        "structure_status": "STRUCTURE_INVALIDATED"
+      },
+      "uncertainty": "Zero; published in Sheet 20",
+      "status": "FALSIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_B_01: Arena.ai candidate proposes SELL_LIMIT at 81300.00 USD, 5.86 ATR away from mid with 0.7% fill probability and zero resting whale backing in 10_Whale_Orders.",
+    "CHALLENGE_B_02: Stop Loss at 81780.00 USD is placed inside a dense 20.10M USD buy stop cascade rather than being sheltered behind a persistent 180s+ whale wall.",
+    "CHALLENGE_B_03: Tradfye Orderflow shows +2.06M USD net buyer delta and bullish expansion on the latest 15m candle, directly contradicting short entries without absorption confirmation."
+  ],
+  "unknowns": [
+    "UNKNOWN_B_01: Exact liquidity replenishment latency on Binance L3 books during weekend low-volume sessions if a sudden 500-pt impulse occurs."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_UNBACKED_MICROSTRUCTURE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Integrated Tradfye Footprint POC (80814.83 USD), L2/L3 orderbook depth ratios, 182-row whale order persistence scanning, and Hyperdash stop cluster maps into a unified deterministic microstructure gate.",
+    "omitted_risk_dimensions": "Unanchored limit orders placed 5+ ATR away from market price create latent execution risk if high-frequency news-driven spikes bypass resting liquidity and execute orders at the worst possible adverse tick.",
+    "algorithmic_alternatives": "Enforce an automated pre-trade geometry constraint: if abs(Candidate_Price - Mid) > 1.50 ATR or if no resting whale wall >= 1M USD with persisted_seconds >= 180s exists within 0.40 ATR of entry, discard the candidate at the preflight stage without dispatching order routing."
+  },
+  "response_sha256": "ffa83b847b2dd8e10d11b342894c7a0af4ca149ef58ba836ba445ad4e709037a"
+}
