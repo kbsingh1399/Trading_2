@@ -16,6 +16,11 @@ import pathlib
 import sys
 import time
 
+try:
+    import excel_lock_hook  # noqa: F401
+except ImportError:
+    pass
+
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
 LOGS_DIR = ROOT_DIR / "logs"

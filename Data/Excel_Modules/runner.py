@@ -51,7 +51,7 @@ log = logging.getLogger("ExcelRunner")
 
 # 1. Tier 1A: Pure API Modules (Execute in parallel across 6 worker threads)
 API_MODULES = [
-    {"id": 0, "name": "MT5 Telemetry", "script": MODULES_DIR / "00_MT5_Account_Telemetry.py", "sheet": "00_MT5_Account_Telemetry", "timeout": 60, "args": []},
+    {"id": 0, "name": "MT5 Telemetry", "script": MODULES_DIR / "00_MT5_Account_Telemetry.py", "sheet": "00_MT5_Account_Telemetry", "timeout": 120, "args": []},
     {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "sheet": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "sheet": "5_OI", "timeout": 180, "args": []},
     {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "sheet": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},

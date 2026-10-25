@@ -22,6 +22,11 @@ import time
 from typing import Dict, List, Optional
 
 try:
+    from logger_config import stamp_sheet_completion_ist
+except ImportError:
+    pass
+
+try:
     import openpyxl
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
@@ -53,28 +58,26 @@ def dump_forced_liquidations_to_excel(
 
     excel_path = target_path or DEFAULT_EXCEL_PATH
     excel_path.parent.mkdir(parents=True, exist_ok=True)
-    lock_file = excel_path.with_suffix(".xlsx.lock")
 
-    def _write_workbook():
-        if not excel_path.exists():
-            wb = openpyxl.Workbook()
-            wb.active.title = SHEET_NAME
-            ws = wb.active
-        else:
-            try:
-                wb = openpyxl.load_workbook(excel_path)
-                if SHEET_NAME in wb.sheetnames:
-                    ws = wb[SHEET_NAME]
-                    ws.delete_rows(1, ws.max_row + 1)
-                    # Ensure Sheet 22 is positioned at the very end
-                    if ws in wb._sheets and wb._sheets[-1] != ws:
-                        wb._sheets.remove(ws)
-                        wb._sheets.append(ws)
-                else:
-                    ws = wb.create_sheet(title=SHEET_NAME)
-            except Exception as e:
-                print(f"[ERROR] Failed to load workbook: {e}")
-                return False
+    if not excel_path.exists():
+        wb = openpyxl.Workbook()
+        wb.active.title = SHEET_NAME
+        ws = wb.active
+    else:
+        try:
+            wb = openpyxl.load_workbook(excel_path)
+            if SHEET_NAME in wb.sheetnames:
+                ws = wb[SHEET_NAME]
+                ws.delete_rows(1, ws.max_row + 1)
+                # Ensure Sheet 22 is positioned at the very end
+                if ws in wb._sheets and wb._sheets[-1] != ws:
+                    wb._sheets.remove(ws)
+                    wb._sheets.append(ws)
+            else:
+                ws = wb.create_sheet(title=SHEET_NAME)
+        except Exception as e:
+            print(f"[ERROR] Failed to load workbook: {e}")
+            return False
 
     # Styling Palettes (xlsx-official)
     font_banner = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
