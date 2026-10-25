@@ -172,9 +172,11 @@ async def extract_spot_netflows(max_pages: int = 25) -> list[dict]:
 
             click_next_js = """
             (() => {
-                const nextBtn = document.querySelector('ul.rc-pagination li.rc-pagination-next:not(.rc-pagination-disabled) button') ||
+                const nextBtn = document.querySelector('li.ant-pagination-next:not(.ant-pagination-disabled) button') ||
+                                document.querySelector('li.ant-pagination-next:not(.ant-pagination-disabled)') ||
+                                document.querySelector('ul.rc-pagination li.rc-pagination-next:not(.rc-pagination-disabled) button') ||
                                 document.querySelector('ul.rc-pagination li.rc-pagination-next:not(.rc-pagination-disabled)') ||
-                                document.querySelector('.rc-pagination-next:not(.rc-pagination-disabled)');
+                                document.querySelector('.ant-pagination-next:not(.ant-pagination-disabled)');
                 if (nextBtn) {
                     nextBtn.click();
                     return true;

@@ -167,7 +167,7 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
         switch_7d_js = """
         async () => {
             const echartsDoms = Array.from(document.querySelectorAll('[_echarts_instance_]'));
-            const chartDom = echartsDoms[1];
+            const chartDom = echartsDoms.find(d => { let p = d; while (p) { if ((p.innerText || '').includes('Exchange Liquidation Map')) return true; p = p.parentElement; } return false; }) || echartsDoms[1] || echartsDoms[0];
             if (!chartDom) return { error: 'Exchange Liquidation Map chart not found' };
             
             let container = chartDom.parentElement;
@@ -223,7 +223,7 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
         open_popup_js = """
         () => {
             const echartsDoms = Array.from(document.querySelectorAll('[_echarts_instance_]'));
-            const chartDom = echartsDoms[1];
+            const chartDom = echartsDoms.find(d => { let p = d; while (p) { if ((p.innerText || '').includes('Exchange Liquidation Map')) return true; p = p.parentElement; } return false; }) || echartsDoms[1] || echartsDoms[0];
             if (!chartDom) return false;
             let container = chartDom.parentElement;
             while (container && !container.innerText.includes('Exchange Liquidation Map')) {
@@ -253,7 +253,7 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
         extract_opt_js = """
         (targetSymbol) => {
             const echartsDoms = Array.from(document.querySelectorAll('[_echarts_instance_]'));
-            const chartDom = echartsDoms[1];
+            const chartDom = echartsDoms.find(d => { let p = d; while (p) { if ((p.innerText || '').includes('Exchange Liquidation Map')) return true; p = p.parentElement; } return false; }) || echartsDoms[1] || echartsDoms[0];
             if (!chartDom) return { error: 'Chart DOM not found' };
             
             const fiberKey = Object.keys(chartDom).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));

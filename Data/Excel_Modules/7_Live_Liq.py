@@ -131,13 +131,13 @@ async def harvest_live_liquidations(max_orders: int = 1000) -> list[dict]:
         # Fast virtual scroll and harvest script
         scroll_script = """
         (async () => {
-            const scrollEl = document.querySelector('.lp-virtual-list');
+            const scrollEl = document.querySelector('.lp-virtual-list, .ant-table-body, div[class*="virtual-list"], div[class*="table-body"], div[role="table"]');
             if (!scrollEl) return { error: 'No .lp-virtual-list container found' };
             
             const collectedMap = new Map();
             
             function harvestVisible() {
-                const rows = document.querySelectorAll('.lp-order');
+                const rows = document.querySelectorAll('.lp-order, tr.ant-table-row, div[role="row"]:not([role="rowheader"]), div[class*="order-row"]');
                 rows.forEach(r => {
                     const idxStr = r.getAttribute('aria-rowindex');
                     if (!idxStr) return;

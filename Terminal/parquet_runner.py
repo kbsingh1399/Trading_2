@@ -88,40 +88,52 @@ BROWSER_MODULES = [
 ]
 
 
-def reap_scraping_tabs():
-    """Forces closure of lingering web scraping tabs on Edge port 9222 while preserving Arena and Z.ai."""
+def reap_scraping_tabs(except_tab_id: str | None = None) -> int:
+    """
+    Airtight CDP Tab Reaper:
+    Enforces that ONLY data currently being fetched can exist in Edge.
+    Strictly preserves Arena.ai and Z.ai tabs; closes ALL other scraping/orphan tabs immediately.
+    """
     try:
         req = urllib.request.urlopen(f"{CDP_BASE_URL}/json", timeout=3)
         tabs = json.loads(req.read().decode())
         reaped = 0
         for t in tabs:
             if t.get("type") == "page":
+                tab_id = t.get("id")
+                if except_tab_id and tab_id == except_tab_id:
+                    continue
                 url = t.get("url", "").lower()
                 title = t.get("title", "").lower()
-                # Protect Arena.ai and Z.ai tabs strictly
+                # Strictly protect user's Arena.ai and Z.ai tabs
                 if any(k in url or k in title for k in ["arena.ai", "chat.z.ai", "z.ai"]):
                     continue
-                tab_id = t.get("id")
                 try:
                     urllib.request.urlopen(f"{CDP_BASE_URL}/json/close/{tab_id}", timeout=3)
                     reaped += 1
                 except Exception:
                     pass
         if reaped > 0:
-            log.info(f"[TabReaper] Reaped {reaped} lingering scraping tab(s) in Edge.")
+            log.info(f"[TabReaper] Reaped {reaped} orphan/lingering scraping tab(s). Only authorized tabs remain.")
+        return reaped
     except Exception:
-        pass
+        return 0
 
 
 def run_single_module(mod: dict) -> Tuple[str, bool, float, str]:
-    """Executes a single harvester script subprocess."""
+    """Executes a single harvester script subprocess with guaranteed tab cleanup."""
     feed = mod.get("feed", mod.get("sheet", "Unknown"))
     script_path = mod["script"]
     timeout = mod.get("timeout", 120)
     args = mod.get("args", [])
+    tier = "Browser" if mod in BROWSER_MODULES else "API"
 
     if not script_path.exists():
         return feed, False, 0.0, "Script file not found"
+
+    # For browser modules: clean any lingering tabs BEFORE launch
+    if tier == "Browser":
+        reap_scraping_tabs()
 
     t0 = time.perf_counter()
     env = os.environ.copy()
@@ -146,6 +158,10 @@ def run_single_module(mod: dict) -> Tuple[str, bool, float, str]:
     except Exception as exc:
         duration = time.perf_counter() - t0
         return feed, False, duration, str(exc)
+    finally:
+        # Crucial invariant: ALWAYS reap lingering tabs immediately when browser module ends or times out
+        if tier == "Browser":
+            reap_scraping_tabs()
 
 
 def execute_full_cycle() -> dict:

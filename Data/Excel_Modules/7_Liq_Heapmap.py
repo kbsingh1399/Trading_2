@@ -156,14 +156,14 @@ async def harvest_liquidation_heatmap() -> list[dict]:
         # Extraction script per timeframe
         script_extract = """
         (async (tf) => {
-            const tabs = Array.from(document.querySelectorAll('#heatmap .MuiTab-root, .lp-heat-panel .MuiTab-root'));
-            const btn = tabs.find(b => b.innerText.trim() === tf);
+            const tabs = Array.from(document.querySelectorAll('#heatmap .MuiTab-root, .lp-heat-panel .MuiTab-root, div[role="tablist"] button, .MuiTabs-root button, div[role="tab"], .ant-tabs-tab'));
+            const btn = tabs.find(b => b.innerText.trim().toLowerCase() === tf.toLowerCase() || b.innerText.trim().toLowerCase().includes(tf.toLowerCase()));
             if (btn) {
                 btn.click();
                 await new Promise(r => setTimeout(r, 1500));
             }
             
-            const tiles = Array.from(document.querySelectorAll('.lp-tile'));
+            const tiles = Array.from(document.querySelectorAll('.lp-tile, div[class*="lp-tile"], div[class*="heatmap-tile"], div[class*="tile"], div[role="gridcell"]'));
             return tiles.map(t => {
                 const aria = t.getAttribute('aria-label') || '';
                 const titleEl = t.querySelector('.lp-tile-title b') || t.querySelector('b');
@@ -192,14 +192,14 @@ async def harvest_liquidation_heatmap() -> list[dict]:
             eval_script = f"""
             (async () => {{
                 const tf = '{tf}';
-                const tabs = Array.from(document.querySelectorAll('#heatmap .MuiTab-root, .lp-heat-panel .MuiTab-root'));
-                const btn = tabs.find(b => b.innerText.trim() === tf);
+                const tabs = Array.from(document.querySelectorAll('#heatmap .MuiTab-root, .lp-heat-panel .MuiTab-root, div[role="tablist"] button, .MuiTabs-root button, div[role="tab"], .ant-tabs-tab'));
+                const btn = tabs.find(b => b.innerText.trim().toLowerCase() === tf.toLowerCase() || b.innerText.trim().toLowerCase().includes(tf.toLowerCase()));
                 if (btn) {{
                     btn.click();
                     await new Promise(r => setTimeout(r, 1500));
                 }}
                 
-                const tiles = Array.from(document.querySelectorAll('.lp-tile'));
+                const tiles = Array.from(document.querySelectorAll('.lp-tile, div[class*="lp-tile"], div[class*="heatmap-tile"], div[class*="tile"], div[role="gridcell"]'));
                 return tiles.map(t => {{
                     const aria = t.getAttribute('aria-label') || '';
                     const titleEl = t.querySelector('.lp-tile-title b') || t.querySelector('b');

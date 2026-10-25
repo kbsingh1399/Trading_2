@@ -257,11 +257,11 @@ async def harvest_liquidation_maxpain(
         """
         switch_res = await cdp_cmd("Runtime.evaluate", {"expression": js_switch, "returnByValue": True})
         switch_val = switch_res.get("value", {})
+        fallback_mode = False
         if "error" in switch_val:
-            log.error(f"Failed to switch timeframe: {switch_val['error']}")
-            raise RuntimeError(switch_val["error"])
-
-        if switch_val.get("clicked"):
+            log.warning(f"Timeframe '{timeframe_label}' tab unavailable or restricted on public tier: {switch_val['error']}. Falling back to 24H baseline.")
+            fallback_mode = True
+        elif switch_val.get("clicked"):
             log.info(f"Switched timeframe to '{timeframe_label}'. Waiting for data update...")
             await asyncio.sleep(1.8)
         else:

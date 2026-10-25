@@ -143,6 +143,9 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(MODULES_DIR) + os.pathsep + env.get("PYTHONPATH", "")
 
+    tier = 'Browser' if mod in BROWSER_MODULES else 'API'
+    if tier == 'Browser':
+        reap_scraping_tabs()
     cmd = [sys.executable, str(script_path)] + args
     t0 = time.perf_counter()
     try:
@@ -166,6 +169,9 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     except Exception as e:
         elapsed = time.perf_counter() - t0
         return sheet, False, elapsed, str(e)
+    finally:
+        if tier == 'Browser':
+            reap_scraping_tabs()
 
 
 def execute_full_cycle() -> dict:
