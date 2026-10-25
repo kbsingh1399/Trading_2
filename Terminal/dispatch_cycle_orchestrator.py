@@ -53,36 +53,44 @@ def render_subagent_prompts(cycle_id: str) -> Dict[str, pathlib.Path]:
 
     raw_text = TEMPLATES_FILE.read_text(encoding="utf-8")
     
-    roles = {
-        "role_a": ("Statistical Regime Quant", "PROMPT TEMPLATE 1: ROLE A", "Role A: Statistical Regime, Diffusion, and Dual-Engine Dialectic Quant"),
-        "role_b": ("Microstructure Quant", "PROMPT TEMPLATE 2: ROLE B", "Role B: Fill, Microstructure, and Order Geometry Quant"),
-        "role_c": ("Solvency Sentry", "PROMPT TEMPLATE 3: ROLE C", "Role C: Solvency, Portfolio, and Broker Math Sentry"),
-        "role_d": ("Clock Provenance Auditor", "PROMPT TEMPLATE 4: ROLE D", "Role D: Market Clock, Auction, Events, and Provenance Auditor")
-    }
+    # Extract sections using section headers
+    header_list = [
+        ("role_a", "PROMPT TEMPLATE 1: ROLE A", "Role A: Statistical Regime, Diffusion, and Dual-Engine Dialectic Quant"),
+        ("role_b", "PROMPT TEMPLATE 2: ROLE B", "Role B: Fill, Microstructure, and Order Geometry Quant"),
+        ("role_c", "PROMPT TEMPLATE 3: ROLE C", "Role C: Solvency, Portfolio, and Broker Math Sentry"),
+        ("role_d", "PROMPT TEMPLATE 4: ROLE D", "Role D: Market Clock, Auction, Events, and Provenance Auditor")
+    ]
     
+    positions = []
     generated_files = {}
+    for r_key, sec_h, r_title in header_list:
+        pos = raw_text.find(sec_h)
+        positions.append((pos, r_key, sec_h, r_title))
     
-    for r_key, (r_name, section_header, role_title) in roles.items():
+    for idx, (pos, r_key, sec_h, r_title) in enumerate(positions):
         out_file = PROMPTS_DIR / f"cycle_{cycle_id}_{r_key}.txt"
-        
-        # Extract section
-        start_pos = raw_text.find(section_header)
-        if start_pos != -1:
-            code_block_start = raw_text.find("```markdown", start_pos)
-            if code_block_start != -1:
-                code_block_start += len("```markdown")
-                code_block_end = raw_text.find("```", code_block_start)
-                if code_block_end != -1:
-                    prompt_content = raw_text[code_block_start:code_block_end].strip()
-                    # Replace placeholders
+        if pos != -1:
+            end_pos = positions[idx + 1][0] if idx + 1 < len(positions) else raw_text.find("\n## ", pos + 50)
+            if end_pos == -1:
+                end_pos = len(raw_text)
+            section = raw_text[pos:end_pos]
+            cb_start = section.find("```markdown")
+            if cb_start != -1:
+                cb_start += len("```markdown")
+                cb_end = section.rfind("```")
+                if cb_end != -1 and cb_end > cb_start:
+                    prompt_content = section[cb_start:cb_end].strip()
+                    # Strip any trailing code fence artifacts
+                    while prompt_content.endswith("`"):
+                        prompt_content = prompt_content[:-1].rstrip()
                     prompt_content = prompt_content.replace("[CYCLE_ID]", str(cycle_id))
                     prompt_content = prompt_content.replace("[CUTOFF_UTC]", datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"))
                     out_file.write_text(prompt_content, encoding="utf-8")
                     generated_files[r_key] = out_file
                     continue
-                    
+
         # Fallback minimal prompt
-        fallback = f"You are {role_title} for {cycle_id} of the Blueberry Markets MT5 autonomous quant desk (Account #5064568).\nFollow Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md line by line. Output canonical JSON matching schema in Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md including Section 8 Kaizen."
+        fallback = f"You are {r_title} for {cycle_id} of the Blueberry Markets MT5 autonomous quant desk (Account #5064568).\nFollow Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md line by line. Output canonical JSON matching schema in Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md including Section 8 Kaizen."
         out_file.write_text(fallback, encoding="utf-8")
         generated_files[r_key] = out_file
 
@@ -158,4 +166,4 @@ if __name__ == "__main__":
     elif not cid.lower().startswith("cycle"):
         cid = f"Cycle {cid}"
 
-    asyncio.run(orchestrate_dispatch(cid))
+    asyncio.run(or
