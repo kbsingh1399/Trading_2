@@ -1,9 +1,9 @@
 {
   "current_cycle_id": "Cycle 347",
-  "cycle_status": "IN_PROGRESS",
+  "cycle_status": "COMPLETED",
   "cycle_started_utc": "2026-10-25 04:30:33 UTC",
-  "cycle_completed_utc": null,
-  "next_cycle_scheduled_utc": null,
+  "cycle_completed_utc": "2026-10-25 04:52:26 UTC",
+  "next_cycle_scheduled_utc": "2026-10-25 05:12:26 UTC",
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
@@ -14,8 +14,8 @@
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-25 04:52:14 UTC",
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "DENIED_FAIL_CLOSED",
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-25 04:52:26 UTC",
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE",
