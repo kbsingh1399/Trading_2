@@ -1,668 +1,1178 @@
 {
-  "harvest_timestamp_utc": "2026-10-25T04:08:53.928794+00:00",
-  "harvest_epoch": 1792901333.9741516,
+  "harvest_timestamp_utc": "2026-10-25T04:13:40.450768+00:00",
+  "harvest_epoch": 1792901620.4933603,
   "domains": {
     "hyperliquid_whales": {
       "name": "Hyperliquid Whale Tracker",
       "url": "https://www.coinglass.com/hyperliquid",
-      "count": 0,
-      "data": []
+      "count": 44,
+      "data": [
+        {
+          "user": "0x5b5d..60",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$251.50M 106.40K ETH",
+          "notional_usd": 251500000.0,
+          "unrealised_pnl_raw": "-$4.35M -1.73%",
+          "entry_price_raw": "$2322.74 5X Cross",
+          "entry_price_clean": 2322.74,
+          "leverage": 5,
+          "liquidation_price_raw": "$3,843",
+          "margin_raw": "$50.30M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "21:18 05-09",
+          "entry_time_iso": "2026-05-09T21:18:00+00:00",
+          "duration_hours": 4038.93,
+          "duration_days": 168.29,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x5b5d..60",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$213.25M 2.63K BTC",
+          "notional_usd": 213250000.0,
+          "unrealised_pnl_raw": "-$11.91M -5.58%",
+          "entry_price_raw": "$76327.4 5X Cross",
+          "entry_price_clean": 76327.4,
+          "leverage": 5,
+          "liquidation_price_raw": "$141,003",
+          "margin_raw": "$42.65M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "15:36 08-14",
+          "entry_time_iso": "2026-08-14T15:36:00+00:00",
+          "duration_hours": 1716.63,
+          "duration_days": 71.53,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb83d..36",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$203.39M 2.51K BTC",
+          "notional_usd": 203390000.0,
+          "unrealised_pnl_raw": "-$6.86M -3.37%",
+          "entry_price_raw": "$78114.4 5X Cross",
+          "entry_price_clean": 78114.4,
+          "leverage": 5,
+          "liquidation_price_raw": "$133,099",
+          "margin_raw": "$40.67M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "14:31 05-09",
+          "entry_time_iso": "2026-05-09T14:31:00+00:00",
+          "duration_hours": 4045.71,
+          "duration_days": 168.57,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb83d..36",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$156.30M 66.12K ETH",
+          "notional_usd": 156300000.0,
+          "unrealised_pnl_raw": "$775.63K +0.50%",
+          "entry_price_raw": "$2375.32 5X Cross",
+          "entry_price_clean": 2375.32,
+          "leverage": 5,
+          "liquidation_price_raw": "$4,336",
+          "margin_raw": "$31.26M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "14:34 05-09",
+          "entry_time_iso": "2026-05-09T14:34:00+00:00",
+          "duration_hours": 4045.66,
+          "duration_days": 168.57,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x77dd..e9",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$114.59M 48.49K ETH",
+          "notional_usd": 114590000.0,
+          "unrealised_pnl_raw": "-$12.00M -10.47%",
+          "entry_price_raw": "$2610.31 10X Cross",
+          "entry_price_clean": 2610.31,
+          "leverage": 10,
+          "liquidation_price_raw": "$2,182",
+          "margin_raw": "$11.45M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "16:33 09-20",
+          "entry_time_iso": "2026-09-20T16:33:00+00:00",
+          "duration_hours": 827.68,
+          "duration_days": 34.49,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x0392..d9",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$105.70M 44.73K ETH",
+          "notional_usd": 105700000.0,
+          "unrealised_pnl_raw": "-$6.97M -6.59%",
+          "entry_price_raw": "$2518.71 9X Cross",
+          "entry_price_clean": 2518.71,
+          "leverage": 9,
+          "liquidation_price_raw": "$2,178",
+          "margin_raw": "$11.74M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "15:34 08-26",
+          "entry_time_iso": "2026-08-26T15:34:00+00:00",
+          "duration_hours": 1428.66,
+          "duration_days": 59.53,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x082e..88",
+          "asset": "HYPE",
+          "side": "LONG",
+          "position_raw": "$105.60M 1.38M HYPE",
+          "notional_usd": 105600000.0,
+          "unrealised_pnl_raw": "$52.23M +49.46%",
+          "entry_price_raw": "$38.6755 5X Cross",
+          "entry_price_clean": 38.6755,
+          "leverage": 5,
+          "liquidation_price_raw": "$69.48",
+          "margin_raw": "$21.12M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "16:42 10-09",
+          "entry_time_iso": "2026-10-09T16:42:00+00:00",
+          "duration_hours": 371.53,
+          "duration_days": 15.48,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xfc27..9d",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$100.61M 1.24K BTC",
+          "notional_usd": 100610000.0,
+          "unrealised_pnl_raw": "$1.21M +1.21%",
+          "entry_price_raw": "$81780.9 25X Cross",
+          "entry_price_clean": 81780.9,
+          "leverage": 25,
+          "liquidation_price_raw": "$92,064",
+          "margin_raw": "$4.02M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "10:27 05-13",
+          "entry_time_iso": "2026-05-13T10:27:00+00:00",
+          "duration_hours": 3953.78,
+          "duration_days": 164.74,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x6046..1d",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$99.87M 1.23K BTC",
+          "notional_usd": 99870000.0,
+          "unrealised_pnl_raw": "-$1.44M -1.44%",
+          "entry_price_raw": "$81993.1 12X Cross",
+          "entry_price_clean": 81993.1,
+          "leverage": 12,
+          "liquidation_price_raw": "$70,317",
+          "margin_raw": "$8.32M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "11:40 08-25",
+          "entry_time_iso": "2026-08-25T11:40:00+00:00",
+          "duration_hours": 1456.56,
+          "duration_days": 60.69,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x3ff5..05",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$91.06M 1.12K BTC",
+          "notional_usd": 91060000.0,
+          "unrealised_pnl_raw": "$906.54K +1.00%",
+          "entry_price_raw": "$81611.4 13X Cross",
+          "entry_price_clean": 81611.4,
+          "leverage": 13,
+          "liquidation_price_raw": "$97,085",
+          "margin_raw": "$7.00M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "06:38 08-19",
+          "entry_time_iso": "2026-08-19T06:38:00+00:00",
+          "duration_hours": 1605.6,
+          "duration_days": 66.9,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x15a4..db",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$80.83M 1.00K BTC",
+          "notional_usd": 80830000.0,
+          "unrealised_pnl_raw": "$18.48M +22.86%",
+          "entry_price_raw": "$62353.6 40X Cross",
+          "entry_price_clean": 62353.6,
+          "leverage": 40,
+          "liquidation_price_raw": "$57,424",
+          "margin_raw": "$2.02M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "17:13 07-06",
+          "entry_time_iso": "2026-07-06T17:13:00+00:00",
+          "duration_hours": 2651.01,
+          "duration_days": 110.46,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x8ea8..bc",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$80.83M 1.00K BTC",
+          "notional_usd": 80830000.0,
+          "unrealised_pnl_raw": "$8.06M +9.97%",
+          "entry_price_raw": "$72771.2 3X Cross",
+          "entry_price_clean": 72771.2,
+          "leverage": 3,
+          "liquidation_price_raw": "$50,852",
+          "margin_raw": "$26.94M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "18:50 02-04",
+          "entry_time_iso": "2026-02-04T18:50:00+00:00",
+          "duration_hours": 6297.4,
+          "duration_days": 262.39,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x5b5d..60",
+          "asset": "SOL",
+          "side": "SHORT",
+          "position_raw": "$73.81M 720.06K SOL",
+          "notional_usd": 73810000.0,
+          "unrealised_pnl_raw": "-$5.90M -7.99%",
+          "entry_price_raw": "$94.3199 7X Cross",
+          "entry_price_clean": 94.3199,
+          "leverage": 7,
+          "liquidation_price_raw": "$317.66",
+          "margin_raw": "$10.54M",
+          "current_price_raw": "$102.5",
+          "entry_time_raw": "21:16 05-09",
+          "entry_time_iso": "2026-05-09T21:16:00+00:00",
+          "duration_hours": 4038.96,
+          "duration_days": 168.29,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xde8d..24",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$71.57M 30.28K ETH",
+          "notional_usd": 71570000.0,
+          "unrealised_pnl_raw": "$6.94M +9.69%",
+          "entry_price_raw": "$2134.45 20X Cross",
+          "entry_price_clean": 2134.45,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,785",
+          "margin_raw": "$3.57M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "20:44 08-19",
+          "entry_time_iso": "2026-08-19T20:44:00+00:00",
+          "duration_hours": 1591.5,
+          "duration_days": 66.31,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x218a..a2",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$65.38M 808.95 BTC",
+          "notional_usd": 65379999.99999999,
+          "unrealised_pnl_raw": "-$1.44M -2.20%",
+          "entry_price_raw": "$79051.3 8X Isolated",
+          "entry_price_clean": 79051.3,
+          "leverage": 8,
+          "liquidation_price_raw": "$90,385",
+          "margin_raw": "$8.64M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "17:19 04-11",
+          "entry_time_iso": "2026-04-11T17:19:00+00:00",
+          "duration_hours": 4714.91,
+          "duration_days": 196.45,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xe813..74",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$63.73M 26.97K ETH",
+          "notional_usd": 63730000.0,
+          "unrealised_pnl_raw": "$693.75K +1.09%",
+          "entry_price_raw": "$2337.18 25X Cross",
+          "entry_price_clean": 2337.18,
+          "leverage": 25,
+          "liquidation_price_raw": "$1,638",
+          "margin_raw": "$2.54M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "19:49 10-24",
+          "entry_time_iso": "2026-10-24T19:49:00+00:00",
+          "duration_hours": 8.41,
+          "duration_days": 0.35,
+          "status": "FRESH_POSITION"
+        },
+        {
+          "user": "0x7fda..d1",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$59.39M 25.13K ETH",
+          "notional_usd": 59390000.0,
+          "unrealised_pnl_raw": "$2.71M +4.57%",
+          "entry_price_raw": "$2470.84 25X Cross",
+          "entry_price_clean": 2470.84,
+          "leverage": 25,
+          "liquidation_price_raw": "$3,432",
+          "margin_raw": "$2.37M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "12:35 03-12",
+          "entry_time_iso": "2026-03-12T12:35:00+00:00",
+          "duration_hours": 5439.65,
+          "duration_days": 226.65,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x36cd..95",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$58.20M 720.35 BTC",
+          "notional_usd": 58200000.0,
+          "unrealised_pnl_raw": "-$426.81K -0.73%",
+          "entry_price_raw": "$81399.5 10X Isolated",
+          "entry_price_clean": 81399.5,
+          "leverage": 10,
+          "liquidation_price_raw": "$72,987",
+          "margin_raw": "$6.29M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "03:03 10-09",
+          "entry_time_iso": "2026-10-09T03:03:00+00:00",
+          "duration_hours": 385.18,
+          "duration_days": 16.05,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb695..2d",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$57.71M 714.22 BTC",
+          "notional_usd": 57710000.0,
+          "unrealised_pnl_raw": "-$1.44M -2.49%",
+          "entry_price_raw": "$78792.5 20X Cross",
+          "entry_price_clean": 78792.5,
+          "leverage": 20,
+          "liquidation_price_raw": "$130,412",
+          "margin_raw": "$2.88M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "01:30 09-02",
+          "entry_time_iso": "2026-09-02T01:30:00+00:00",
+          "duration_hours": 1274.73,
+          "duration_days": 53.11,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x9c6a..ed",
+          "asset": "SOL",
+          "side": "LONG",
+          "position_raw": "$56.37M 550.08K SOL",
+          "notional_usd": 56370000.0,
+          "unrealised_pnl_raw": "$11.90M +21.11%",
+          "entry_price_raw": "$80.8579 20X Cross",
+          "entry_price_clean": 80.8579,
+          "leverage": 20,
+          "liquidation_price_raw": "$68.04",
+          "margin_raw": "$2.81M",
+          "current_price_raw": "$102.5",
+          "entry_time_raw": "17:18 08-08",
+          "entry_time_iso": "2026-08-08T17:18:00+00:00",
+          "duration_hours": 1858.93,
+          "duration_days": 77.46,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xf02d..c6",
+          "asset": "HYPE",
+          "side": "SHORT",
+          "position_raw": "$49.42M 646.01K HYPE",
+          "notional_usd": 49420000.0,
+          "unrealised_pnl_raw": "$4.83M +9.77%",
+          "entry_price_raw": "$83.9902 5X Cross",
+          "entry_price_clean": 83.9902,
+          "leverage": 5,
+          "liquidation_price_raw": "$102.25",
+          "margin_raw": "$9.88M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "01:20 09-02",
+          "entry_time_iso": "2026-09-02T01:20:00+00:00",
+          "duration_hours": 1274.9,
+          "duration_days": 53.12,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb83d..36",
+          "asset": "HYPE",
+          "side": "SHORT",
+          "position_raw": "$49.35M 644.94K HYPE",
+          "notional_usd": 49350000.0,
+          "unrealised_pnl_raw": "-$4.32M -8.75%",
+          "entry_price_raw": "$69.8199 5X Cross",
+          "entry_price_clean": 69.8199,
+          "leverage": 5,
+          "liquidation_price_raw": "$266.47",
+          "margin_raw": "$9.87M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "23:59 05-22",
+          "entry_time_iso": "2026-05-22T23:59:00+00:00",
+          "duration_hours": 3724.25,
+          "duration_days": 155.18,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xefe4..4b",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$48.09M 595.21 BTC",
+          "notional_usd": 48090000.0,
+          "unrealised_pnl_raw": "-$2.92M -6.08%",
+          "entry_price_raw": "$85719.2 20X Cross",
+          "entry_price_clean": 85719.2,
+          "leverage": 20,
+          "liquidation_price_raw": "$52,305",
+          "margin_raw": "$2.40M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "14:15 10-02",
+          "entry_time_iso": "2026-10-02T14:15:00+00:00",
+          "duration_hours": 541.98,
+          "duration_days": 22.58,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xdf95..72",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$47.36M 20.04K ETH",
+          "notional_usd": 47360000.0,
+          "unrealised_pnl_raw": "$1.00M +2.12%",
+          "entry_price_raw": "$2412.98 25X Cross",
+          "entry_price_clean": 2412.98,
+          "leverage": 25,
+          "liquidation_price_raw": "$4,054",
+          "margin_raw": "$1.89M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "16:04 07-29",
+          "entry_time_iso": "2026-07-29T16:04:00+00:00",
+          "duration_hours": 2100.16,
+          "duration_days": 87.51,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xf081..9e",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$46.51M 575.47 BTC",
+          "notional_usd": 46510000.0,
+          "unrealised_pnl_raw": "-$452.65K -0.97%",
+          "entry_price_raw": "$81619.1 30X Isolated",
+          "entry_price_clean": 81619.1,
+          "leverage": 30,
+          "liquidation_price_raw": "$76,029",
+          "margin_raw": "$3.31M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "18:04 10-23",
+          "entry_time_iso": "2026-10-23T18:04:00+00:00",
+          "duration_hours": 34.16,
+          "duration_days": 1.42,
+          "status": "PERSISTENT_WHALE"
+        },
+        {
+          "user": "0x31b1..34",
+          "asset": "XRP",
+          "side": "LONG",
+          "position_raw": "$45.87M 35.03M XRP",
+          "notional_usd": 45870000.0,
+          "unrealised_pnl_raw": "$6.29M +13.72%",
+          "entry_price_raw": "$1.1298 10X Cross",
+          "entry_price_clean": 1.1298,
+          "leverage": 10,
+          "liquidation_price_raw": "$0.9593",
+          "margin_raw": "$4.58M",
+          "current_price_raw": "$1.31",
+          "entry_time_raw": "18:09 08-08",
+          "entry_time_iso": "2026-08-08T18:09:00+00:00",
+          "duration_hours": 1858.08,
+          "duration_days": 77.42,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xecb6..00",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$43.01M 18.20K ETH",
+          "notional_usd": 43010000.0,
+          "unrealised_pnl_raw": "-$274.09K -0.64%",
+          "entry_price_raw": "$2347.84 15X Cross",
+          "entry_price_clean": 2347.84,
+          "leverage": 15,
+          "liquidation_price_raw": "$4,016",
+          "margin_raw": "$2.86M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "14:54 03-12",
+          "entry_time_iso": "2026-03-12T14:54:00+00:00",
+          "duration_hours": 5437.33,
+          "duration_days": 226.56,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x5b5d..60",
+          "asset": "HYPE",
+          "side": "SHORT",
+          "position_raw": "$41.03M 536.06K HYPE",
+          "notional_usd": 41030000.0,
+          "unrealised_pnl_raw": "-$3.40M -8.28%",
+          "entry_price_raw": "$70.2055 5X Cross",
+          "entry_price_clean": 70.2055,
+          "leverage": 5,
+          "liquidation_price_raw": "$352.40",
+          "margin_raw": "$8.20M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "00:24 05-23",
+          "entry_time_iso": "2026-05-23T00:24:00+00:00",
+          "duration_hours": 3723.83,
+          "duration_days": 155.16,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb695..2d",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$39.47M 16.70K ETH",
+          "notional_usd": 39470000.0,
+          "unrealised_pnl_raw": "$3.25M +8.25%",
+          "entry_price_raw": "$2557.74 20X Cross",
+          "entry_price_clean": 2557.74,
+          "leverage": 20,
+          "liquidation_price_raw": "$4,468",
+          "margin_raw": "$1.97M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "17:33 09-08",
+          "entry_time_iso": "2026-09-08T17:33:00+00:00",
+          "duration_hours": 1114.68,
+          "duration_days": 46.44,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x6046..1d",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$37.63M 15.92K ETH",
+          "notional_usd": 37630000.0,
+          "unrealised_pnl_raw": "-$751.73K -2.00%",
+          "entry_price_raw": "$2410.19 6X Cross",
+          "entry_price_clean": 2410.19,
+          "leverage": 6,
+          "liquidation_price_raw": "$1,541",
+          "margin_raw": "$6.27M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "04:38 10-18",
+          "entry_time_iso": "2026-10-18T04:38:00+00:00",
+          "duration_hours": 167.6,
+          "duration_days": 6.98,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xdf95..72",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$37.18M 460.23 BTC",
+          "notional_usd": 37180000.0,
+          "unrealised_pnl_raw": "$1.00M +2.69%",
+          "entry_price_raw": "$82984.3 40X Cross",
+          "entry_price_clean": 82984.3,
+          "leverage": 40,
+          "liquidation_price_raw": "$155,019",
+          "margin_raw": "$929.74K",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "07:48 08-25",
+          "entry_time_iso": "2026-08-25T07:48:00+00:00",
+          "duration_hours": 1460.43,
+          "duration_days": 60.85,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x45d2..29",
+          "asset": "BTC",
+          "side": "SHORT",
+          "position_raw": "$35.23M 436.00 BTC",
+          "notional_usd": 35230000.0,
+          "unrealised_pnl_raw": "-$1.66M -4.71%",
+          "entry_price_raw": "$77001.5 20X Cross",
+          "entry_price_clean": 77001.5,
+          "leverage": 20,
+          "liquidation_price_raw": "$177,729",
+          "margin_raw": "$1.76M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "20:43 05-11",
+          "entry_time_iso": "2026-05-11T20:43:00+00:00",
+          "duration_hours": 3991.51,
+          "duration_days": 166.31,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x6666..f5",
+          "asset": "HYPE",
+          "side": "LONG",
+          "position_raw": "$34.43M 450.00K HYPE",
+          "notional_usd": 34430000.0,
+          "unrealised_pnl_raw": "$16.52M +47.97%",
+          "entry_price_raw": "$39.8114 10X Cross",
+          "entry_price_clean": 39.8114,
+          "leverage": 10,
+          "liquidation_price_raw": "$43.08",
+          "margin_raw": "$3.44M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "00:04 03-18",
+          "entry_time_iso": "2026-03-18T00:04:00+00:00",
+          "duration_hours": 5308.16,
+          "duration_days": 221.17,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x45d2..29",
+          "asset": "HYPE",
+          "side": "SHORT",
+          "position_raw": "$33.14M 433.08K HYPE",
+          "notional_usd": 33140000.0,
+          "unrealised_pnl_raw": "-$20.67M -62.37%",
+          "entry_price_raw": "$28.7925 10X Cross",
+          "entry_price_clean": 28.7925,
+          "leverage": 10,
+          "liquidation_price_raw": "$166.34",
+          "margin_raw": "$3.31M",
+          "current_price_raw": "$76.523",
+          "entry_time_raw": "22:11 03-13",
+          "entry_time_iso": "2026-03-13T22:11:00+00:00",
+          "duration_hours": 5406.05,
+          "duration_days": 225.25,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xeced..10",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$33.08M 13.99K ETH",
+          "notional_usd": 33080000.0,
+          "unrealised_pnl_raw": "$3.03M +9.17%",
+          "entry_price_raw": "$2579.65 20X Cross",
+          "entry_price_clean": 2579.65,
+          "leverage": 20,
+          "liquidation_price_raw": "$3,522",
+          "margin_raw": "$1.65M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "17:58 09-28",
+          "entry_time_iso": "2026-09-28T17:58:00+00:00",
+          "duration_hours": 634.26,
+          "duration_days": 26.43,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x45d2..29",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$32.96M 13.95K ETH",
+          "notional_usd": 32960000.0,
+          "unrealised_pnl_raw": "$1.13M +3.42%",
+          "entry_price_raw": "$2443.6 20X Cross",
+          "entry_price_clean": 2443.6,
+          "leverage": 20,
+          "liquidation_price_raw": "$5,370",
+          "margin_raw": "$1.64M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "22:11 03-13",
+          "entry_time_iso": "2026-03-13T22:11:00+00:00",
+          "duration_hours": 5406.05,
+          "duration_days": 225.25,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x93ab..f8",
+          "asset": "BTC",
+          "side": "LONG",
+          "position_raw": "$32.32M 400.00 BTC",
+          "notional_usd": 32320000.0,
+          "unrealised_pnl_raw": "-$1.26M -3.90%",
+          "entry_price_raw": "$83958.1 20X Cross",
+          "entry_price_clean": 83958.1,
+          "leverage": 20,
+          "liquidation_price_raw": "$49,466",
+          "margin_raw": "$1.61M",
+          "current_price_raw": "$80811",
+          "entry_time_raw": "13:20 09-28",
+          "entry_time_iso": "2026-09-28T13:20:00+00:00",
+          "duration_hours": 638.9,
+          "duration_days": 26.62,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x4487..2d",
+          "asset": "ETH",
+          "side": "SHORT",
+          "position_raw": "$32.24M 13.64K ETH",
+          "notional_usd": 32240000.000000004,
+          "unrealised_pnl_raw": "$731.81K +2.27%",
+          "entry_price_raw": "$2416.52 10X Cross",
+          "entry_price_clean": 2416.52,
+          "leverage": 10,
+          "liquidation_price_raw": "$2,862",
+          "margin_raw": "$3.22M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "06:02 07-12",
+          "entry_time_iso": "2026-07-12T06:02:00+00:00",
+          "duration_hours": 2518.2,
+          "duration_days": 104.92,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x2371..83",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$28.35M 12.00K ETH",
+          "notional_usd": 28350000.0,
+          "unrealised_pnl_raw": "-$705.29K -2.49%",
+          "entry_price_raw": "$2421.77 20X Cross",
+          "entry_price_clean": 2421.77,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,278",
+          "margin_raw": "$1.41M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "06:04 10-13",
+          "entry_time_iso": "2026-10-13T06:04:00+00:00",
+          "duration_hours": 286.16,
+          "duration_days": 11.92,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xbd1c..0e",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$28.35M 12.00K ETH",
+          "notional_usd": 28350000.0,
+          "unrealised_pnl_raw": "-$684.23K -2.41%",
+          "entry_price_raw": "$2419.91 20X Cross",
+          "entry_price_clean": 2419.91,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,519",
+          "margin_raw": "$1.41M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "06:03 10-13",
+          "entry_time_iso": "2026-10-13T06:03:00+00:00",
+          "duration_hours": 286.18,
+          "duration_days": 11.92,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xb83d..36",
+          "asset": "SOL",
+          "side": "SHORT",
+          "position_raw": "$26.59M 259.42K SOL",
+          "notional_usd": 26590000.0,
+          "unrealised_pnl_raw": "-$2.88M -10.81%",
+          "entry_price_raw": "$91.4175 5X Cross",
+          "entry_price_clean": 91.4175,
+          "leverage": 5,
+          "liquidation_price_raw": "$601.20",
+          "margin_raw": "$5.31M",
+          "current_price_raw": "$102.5",
+          "entry_time_raw": "04:16 03-18",
+          "entry_time_iso": "2026-03-18T04:16:00+00:00",
+          "duration_hours": 5303.96,
+          "duration_days": 221.0,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x09dc..94",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$25.99M 11.00K ETH",
+          "notional_usd": 25990000.0,
+          "unrealised_pnl_raw": "-$1.12M -4.32%",
+          "entry_price_raw": "$2465.31 20X Cross",
+          "entry_price_clean": 2465.31,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,636",
+          "margin_raw": "$1.29M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "08:35 08-31",
+          "entry_time_iso": "2026-08-31T08:35:00+00:00",
+          "duration_hours": 1315.65,
+          "duration_days": 54.82,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0xa9de..49",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$25.99M 11.00K ETH",
+          "notional_usd": 25990000.0,
+          "unrealised_pnl_raw": "-$1.31M -5.02%",
+          "entry_price_raw": "$2481.81 20X Cross",
+          "entry_price_clean": 2481.81,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,642",
+          "margin_raw": "$1.29M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "08:01 08-28",
+          "entry_time_iso": "2026-08-28T08:01:00+00:00",
+          "duration_hours": 1388.21,
+          "duration_days": 57.84,
+          "status": "VETERAN_WHALE"
+        },
+        {
+          "user": "0x0c5d..b3",
+          "asset": "ETH",
+          "side": "LONG",
+          "position_raw": "$25.99M 11.00K ETH",
+          "notional_usd": 25990000.0,
+          "unrealised_pnl_raw": "-$1.31M -5.04%",
+          "entry_price_raw": "$2482.2 20X Cross",
+          "entry_price_clean": 2482.2,
+          "leverage": 20,
+          "liquidation_price_raw": "$1,643",
+          "margin_raw": "$1.29M",
+          "current_price_raw": "$2362.9",
+          "entry_time_raw": "08:17 08-28",
+          "entry_time_iso": "2026-08-28T08:17:00+00:00",
+          "duration_hours": 1387.95,
+          "duration_days": 57.83,
+          "status": "VETERAN_WHALE"
+        }
+      ]
     },
     "hyperliquid_wallets": {
       "name": "Hyperliquid Wallet Position Distribution",
       "url": "https://www.coinglass.com/hl",
       "data": {
-        "wallet_size_groups": [],
-        "pnl_groups": []
+        "wallet_size_groups": [
+          {
+            "tier": "$0 To $250",
+            "group_name": "Shrimp",
+            "wallets_count": "916,555",
+            "in_position": "55,520 (6.06%)",
+            "long_short_notional": "$20.82M $11.61M",
+            "total_position": "$32.43M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$250 To $10K",
+            "group_name": "Fish",
+            "wallets_count": "48,215",
+            "in_position": "33,231 (68.93%)",
+            "long_short_notional": "$277.72M $89.67M",
+            "total_position": "$367.39M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$10K To $50K",
+            "group_name": "Dolphin",
+            "wallets_count": "7,808",
+            "in_position": "6,187 (79.24%)",
+            "long_short_notional": "$452.53M $175.12M",
+            "total_position": "$627.65M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$50K To $100K",
+            "group_name": "Apex Predator",
+            "wallets_count": "1,729",
+            "in_position": "1,389 (80.34%)",
+            "long_short_notional": "$297.66M $147.91M",
+            "total_position": "$445.57M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$100K To $500K",
+            "group_name": "Small Whale",
+            "wallets_count": "1,939",
+            "in_position": "1,581 (81.54%)",
+            "long_short_notional": "$818.44M $618.31M",
+            "total_position": "$1.44B",
+            "wallet_bias": "Bullish"
+          },
+          {
+            "tier": "$500K To $1M",
+            "group_name": "Whale",
+            "wallets_count": "373",
+            "in_position": "317 (84.99%)",
+            "long_short_notional": "$456.08M $424.60M",
+            "total_position": "$880.68M",
+            "wallet_bias": "Slightly Bullish"
+          },
+          {
+            "tier": "$1M To $50M",
+            "group_name": "Tidal Whale",
+            "wallets_count": "347",
+            "in_position": "302 (87.04%)",
+            "long_short_notional": "$1.78B $1.19B",
+            "total_position": "$2.97B",
+            "wallet_bias": "Bullish"
+          },
+          {
+            "tier": "$50M To \u221e",
+            "group_name": "Leviathan",
+            "wallets_count": "87",
+            "in_position": "74 (85.06%)",
+            "long_short_notional": "$1.47B $2.92B",
+            "total_position": "$4.39B",
+            "wallet_bias": "Very Bearish"
+          }
+        ],
+        "pnl_groups": [
+          {
+            "pnl_range": "$1M To \u221e",
+            "group_name": "Money Printer",
+            "wallets_count": "772",
+            "in_position": "322 (41.71%)",
+            "total_position": "$4.75B",
+            "wallet_bias": "Very Bearish"
+          },
+          {
+            "pnl_range": "$100K To $1M",
+            "group_name": "Smart Money",
+            "wallets_count": "3,587",
+            "in_position": "1,125 (31.37%)",
+            "total_position": "$1.14B",
+            "wallet_bias": "Indecisive"
+          },
+          {
+            "pnl_range": "$10K To $100K",
+            "group_name": "Arbitrage Pro",
+            "wallets_count": "11,393",
+            "in_position": "2,755 (24.19%)",
+            "total_position": "$525.41M",
+            "wallet_bias": "Bullish"
+          },
+          {
+            "pnl_range": "0 To $10K",
+            "group_name": "Retail Grinder",
+            "wallets_count": "215,767",
+            "in_position": "29,282 (13.58%)",
+            "total_position": "$270.41M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "0 To -$10K",
+            "group_name": "Mini Rekt",
+            "wallets_count": "705,988",
+            "in_position": "57,918 (8.21%)",
+            "total_position": "$329.54M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "-$10K To -$100K",
+            "group_name": "Stop-loss Hero",
+            "wallets_count": "31,278",
+            "in_position": "5,494 (17.57%)",
+            "total_position": "$600.78M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "-$100K To -$1M",
+            "group_name": "Leverage bagholders",
+            "wallets_count": "7,196",
+            "in_position": "1,430 (19.88%)",
+            "total_position": "$1.23B",
+            "wallet_bias": "Bullish"
+          },
+          {
+            "pnl_range": "-$1M To \u221e",
+            "group_name": "Rekt Master",
+            "wallets_count": "1,072",
+            "in_position": "275 (25.66%)",
+            "total_position": "$2.31B",
+            "wallet_bias": "Very Bullish"
+          }
+        ]
       }
     },
     "liquidation_maxpain": {
       "name": "Liquidation Max Pain",
       "url": "https://www.coinglass.com/liquidation-maxpain",
-      "count": 0,
-      "data": []
+      "count": 17,
+      "data": [
+        {
+          "rank": 1.0,
+          "symbol": "BTC",
+          "current_price": 80787.7,
+          "short_max_pain_raw": "$81370.27 56.44M $582.57 +0.72% \ud83d\udca5",
+          "long_max_pain_raw": "$79359.58 56.13M -$1428.12 -1.77% \ud83d\udca5"
+        },
+        {
+          "rank": 2.0,
+          "symbol": "ETH",
+          "current_price": 2361.24,
+          "short_max_pain_raw": "$2391.607 12.92M $30.367 +1.29% \ud83d\udca5",
+          "long_max_pain_raw": "$2265.463 18.12M -$95.777 -4.06% \ud83d\udca5"
+        },
+        {
+          "rank": 3.0,
+          "symbol": "SOL",
+          "current_price": 102.32,
+          "short_max_pain_raw": "$103.014 2.56M $0.694 +0.68% \ud83d\udca5",
+          "long_max_pain_raw": "$98.646 2.04M -$3.674 -3.59% \ud83d\udca5"
+        },
+        {
+          "rank": 4.0,
+          "symbol": "HYPE",
+          "current_price": 76.537,
+          "short_max_pain_raw": "$76.9528 677.02K $0.4158 +0.54% \ud83d\udca5",
+          "long_max_pain_raw": "$73.9432 677.02K -$2.5938 -3.39% \ud83d\udca5"
+        },
+        {
+          "rank": 5.0,
+          "symbol": "XRP",
+          "current_price": 1.3097,
+          "short_max_pain_raw": "$1.31731 1.19M $0.00761 +0.58% \ud83d\udca5",
+          "long_max_pain_raw": "$1.24646 1.40M -$0.06324 -4.83% \ud83d\udca5"
+        },
+        {
+          "rank": 8.0,
+          "symbol": "NEAR",
+          "current_price": 4.483,
+          "short_max_pain_raw": "$4.566 1.07M $0.083 +1.85% \ud83d\udca5",
+          "long_max_pain_raw": "$4.2279 1.07M -$0.2551 -5.69% \ud83d\udca5"
+        },
+        {
+          "rank": 9.0,
+          "symbol": "BNB",
+          "current_price": 745.9,
+          "short_max_pain_raw": "$749 363.41K $3.1 +0.42% \ud83d\udca5",
+          "long_max_pain_raw": "$707.792 577.14K -$38.108 -5.11% \ud83d\udca5"
+        },
+        {
+          "rank": 10.0,
+          "symbol": "DOGE",
+          "current_price": 0.07778,
+          "short_max_pain_raw": "$0.079196 479.71K $0.001416 +1.82% \ud83d\udca5",
+          "long_max_pain_raw": "$0.07464 386.95K -$0.00314 -4.04% \ud83d\udca5"
+        },
+        {
+          "rank": 18.0,
+          "symbol": "SUI",
+          "current_price": 0.9362,
+          "short_max_pain_raw": "$0.9484 360.15K $0.0122 +1.30% \ud83d\udca5",
+          "long_max_pain_raw": "$0.8991 388.98K -$0.0371 -3.96% \ud83d\udca5"
+        },
+        {
+          "rank": 20.0,
+          "symbol": "LINK",
+          "current_price": 11.574,
+          "short_max_pain_raw": "$11.7116 167.96K $0.1376 +1.19% \ud83d\udca5",
+          "long_max_pain_raw": "$11.073 182.24K -$0.501 -4.33% \ud83d\udca5"
+        },
+        {
+          "rank": 23.0,
+          "symbol": "LTC",
+          "current_price": 56.96,
+          "short_max_pain_raw": "$57.36 160.45K $0.4 +0.70% \ud83d\udca5",
+          "long_max_pain_raw": "$54.37 170.98K -$2.59 -4.55% \ud83d\udca5"
+        },
+        {
+          "rank": 25.0,
+          "symbol": "ADA",
+          "current_price": 0.2078,
+          "short_max_pain_raw": "$0.21272 163.08K $0.00492 +2.37% \ud83d\udca5",
+          "long_max_pain_raw": "$0.19695 221.22K -$0.01085 -5.22% \ud83d\udca5"
+        },
+        {
+          "rank": 28.0,
+          "symbol": "AVAX",
+          "current_price": 8.961,
+          "short_max_pain_raw": "$9.1035 230.38K $0.1425 +1.59% \ud83d\udca5",
+          "long_max_pain_raw": "$8.5335 279.09K -$0.4275 -4.77% \ud83d\udca5"
+        },
+        {
+          "rank": 35.0,
+          "symbol": "BCH",
+          "current_price": 276.89,
+          "short_max_pain_raw": "$282.61 106.03K $5.72 +2.07% \ud83d\udca5",
+          "long_max_pain_raw": "$263.75 187.55K -$13.14 -4.75% \ud83d\udca5"
+        },
+        {
+          "rank": 38.0,
+          "symbol": "TRX",
+          "current_price": 0.32888,
+          "short_max_pain_raw": "$0.335726 150.77K $0.006846 +2.08% \ud83d\udca5",
+          "long_max_pain_raw": "$0.322502 153.85K -$0.006378 -1.94% \ud83d\udca5"
+        },
+        {
+          "rank": 46.0,
+          "symbol": "ARB",
+          "current_price": 0.16787,
+          "short_max_pain_raw": "$0.17291 137.14K $0.00504 +3.00% \ud83d\udca5",
+          "long_max_pain_raw": "$0.16271 143.66K -$0.00516 -3.07% \ud83d\udca5"
+        },
+        {
+          "rank": 47.0,
+          "symbol": "DOT",
+          "current_price": 1.0399,
+          "short_max_pain_raw": "$1.06862 134.80K $0.02872 +2.76% \ud83d\udca5",
+          "long_max_pain_raw": "$1.00688 139.60K -$0.03302 -3.18% \ud83d\udca5"
+        }
+      ]
     },
     "liquidations_summary": {
       "name": "24h Liquidation Summary",
       "url": "https://www.coinglass.com/liquidations",
-      "table_count": 4,
-      "tables": [
-        {
-          "headers": [
-            "Exchange",
-            "Liquidations",
-            "Long",
-            "Short",
-            "Market share",
-            "Long / Short"
-          ],
-          "rowCount": 1,
-          "rows": [
-            [
-              "Unable to load data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "Rank",
-            "Time",
-            "Liquidations",
-            "Event"
-          ],
-          "rowCount": 1,
-          "rows": [
-            [
-              "Unable to load data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "Ranking",
-            "Assets",
-            "Price",
-            "Price (24h%)",
-            "1h Long",
-            "1h Short",
-            "4h Long",
-            "4h Short",
-            "12h Long",
-            "12h Short",
-            "24h Long",
-            "24h Short"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Unable to update. Please retry later. Retry",
-        "1h Rekt \u2014 Long \u2014 Short \u2014 4h Rekt \u2014 Long \u2014 Short \u2014 12h Rekt \u2014 Long \u2014 Short \u2014 24h Rekt \u2014 Long \u2014 Short \u2014",
-        "1h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "4h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "12h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "24h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Loading\u2026",
-        "Loading\u2026",
-        "Total Liquidations Liquidation Value Ranking Assets Price Price (24h%) 1h Long 1h Short 4h Long 4h Short 12h Long 12h Short 24h Long 24h Short No data 1"
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_levels": {
       "name": "Bitcoin Liquidation Levels Lines",
       "url": "https://www.coinglass.com/liquidation-levels",
-      "table_count": 1,
-      "tables": [
-        {
-          "headers": [
-            "Side",
-            "Price",
-            "Distance",
-            "Leverage",
-            "Strength",
-            ""
-          ],
-          "rowCount": 3,
-          "rows": [
-            [
-              "\u2014"
-            ],
-            [
-              "Last price \u2014"
-            ],
-            [
-              "\u2014"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Binance BTCUSDT Liquidation Levels LIVE \u00b7 3D \u00b7 1M By side By leverage Candles",
-        "Liquidations Liquidation Heatmap Estimated liquidation intensity at each price, showing where liquidity is stacked.",
-        "Liquidations Liquidation Map Cumulative long and short liquidations above and below price.",
-        "Liquidations Liquidation Max Pain The price with the most liquidations and its 24h hit probability.",
-        "Order flow Large Orders Bid and ask walls and big trades: are real orders resting near the levels?",
-        "Order flow Aggregated Order Book Depth merged across exchanges: how much size sits near price.",
-        "Order flow CVD Cumulative Volume Delta Cumulative taker buys minus sells: who is pushing price."
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_map": {
       "name": "Crypto Liquidation Map",
       "url": "https://www.coinglass.com/pro/futures/LiquidationMap",
-      "table_count": 0,
-      "tables": [],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "All Categories",
-        "Options",
-        "Options Net Premium Strike Heatmap",
-        "Options/Futures OI Ratio",
-        "Options Open Interest",
-        "Options OI By Expiry",
-        "Options OI By Strike",
-        "Volume By Expiration",
-        "Volume By Strike Price",
-        "Option Greeks Tables",
-        "Max Pain",
-        "Liquidations",
-        "Liquidation History",
-        "Top Liquidation Events",
-        "Liquidation History Heatmap",
-        "Liquidation Map",
-        "Hyperliquid Liquidation Map",
-        "Liquidation Heatmap",
-        "Liquidation Heatmap(Model 2)",
-        "Liquidation Heatmap(Model 3)",
-        "Futures",
-        "Hyperliquid Long/Short Trader Ratio",
-        "Open Interest & Volume",
-        "Altcoin Open Interest & Volume",
-        "Orderbook Liquidity Delta",
-        "Insurance Fund History"
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_heatmap": {
       "name": "Liquidation Heatmap",
       "url": "https://www.coinglass.com/pro/futures/LiquidationHeatMap",
-      "table_count": 0,
-      "tables": [],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "All Categories",
-        "Options",
-        "Options Net Premium Strike Heatmap",
-        "Options/Futures OI Ratio",
-        "Options Open Interest",
-        "Options OI By Expiry",
-        "Options OI By Strike",
-        "Volume By Expiration",
-        "Volume By Strike Price",
-        "Option Greeks Tables",
-        "Max Pain",
-        "Liquidations",
-        "Liquidation History",
-        "Top Liquidation Events",
-        "Liquidation History Heatmap",
-        "Liquidation Map",
-        "Hyperliquid Liquidation Map",
-        "Liquidation Heatmap",
-        "Liquidation Heatmap(Model 2)",
-        "Liquidation Heatmap(Model 3)",
-        "Futures",
-        "Hyperliquid Long/Short Trader Ratio",
-        "Open Interest & Volume",
-        "Altcoin Open Interest & Volume",
-        "Orderbook Liquidity Delta",
-        "Insurance Fund History"
-      ]
+      "error": "no close frame received or sent"
     },
     "bitcoin_etfs": {
       "name": "Spot Bitcoin ETF Flows & Holdings",
       "url": "https://www.coinglass.com/etf/bitcoin",
-      "table_count": 4,
-      "tables": [
-        {
-          "headers": [
-            "Time(UTC)",
-            "GBTC",
-            "IBIT",
-            "FBTC",
-            "ARKB",
-            "BITB",
-            "BTCO",
-            "HODL",
-            "BRRR",
-            "EZBC",
-            "BTCW",
-            "BTC",
-            "MSBT",
-            "Total"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "#",
-            "Ticker",
-            "ETF Name",
-            "Price",
-            "Price Change",
-            "Volume",
-            "Volume",
-            "Turnover Rate",
-            "Shares Outstanding",
-            "AUM",
-            "Market Cap",
-            "Expense Ratio"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Total Net Inflow Last update : -",
-        "Daily Total Net Inflow Last update : -",
-        "Daily Trading Volume Last update : -",
-        "Total Net Assets Last update : -",
-        "Total Volume $0",
-        "Total Cap $0",
-        "Total AUM $0",
-        "Closed",
-        "Closed",
-        "2. What is the difference between a Bitcoin spot ETF and a futures ETF?",
-        "3. How can I use the Bitcoin ETF list to compare different funds?",
-        "4. What do inflows and outflows of a Bitcoin ETF indicate?",
-        "5. What do an ETF\u2019s assets under management (AUM) and net asset value (NAV) represent?",
-        "6. What is the difference between investing in a Bitcoin ETF and directly holding Bitcoin?",
-        "7. How do institutional investors view Bitcoin ETFs?",
-        "8. What risks are involved in ETF investing, especially for Bitcoin ETFs?",
-        "9. How can Bitcoin ETF data be analyzed together with crypto derivatives indicators?",
-        "10. Does CoinGlass provide ETF data APIs?",
-        "11. What ETF APIs are available for Bitcoin ETFs?",
-        "12. Does CoinGlass support accessing Ethereum ETF data via API?"
-      ]
+      "error": "no close frame received or sent"
     },
     "ethereum_etfs": {
       "name": "Spot Ethereum ETF Flows",
       "url": "https://www.coinglass.com/etf/ethereum",
-      "table_count": 4,
-      "tables": [
-        {
-          "headers": [
-            "Time(UTC)",
-            "ETHE Grayscale",
-            "ETH Grayscale",
-            "ETHA Blackrock",
-            "ETHB Blackrock",
-            "ETHW Bitwise",
-            "FETH Fidelity",
-            "ETHV VanEck",
-            "EZET Franklin",
-            "TETH 21 Shares",
-            "QETH Invesco",
-            "Total"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "#",
-            "Ticker",
-            "ETF Name",
-            "Price",
-            "Price Change",
-            "Volume",
-            "Volume",
-            "Turnover Rate",
-            "Shares Outstanding",
-            "AUM",
-            "Market Cap",
-            "Expense Ratio",
-            "Status"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Total Volume",
-        "Total Cap",
-        "Total AUM",
-        "2. What is the difference between a Ethereum spot ETF and a futures ETF?",
-        "3. How can I use the Ethereum ETF list to compare different funds?",
-        "4. What do inflows and outflows of a Ethereum ETF indicate?",
-        "5. What do an ETF\u2019s assets under management (AUM) and net asset value (NAV) represent?",
-        "6. What is the difference between investing in a Ethereum ETF and directly holding Ethereum?",
-        "7. How do institutional investors view Ethereum ETFs?",
-        "8. What risks are involved in ETF investing, especially for Ethereum ETFs?",
-        "9. How can Ethereum ETF data be analyzed together with crypto derivatives indicators?",
-        "10. Does CoinGlass provide ETF data APIs?",
-        "11. What ETF APIs are available for Bitcoin ETFs?",
-        "12. Does CoinGlass support accessing Ethereum ETF data via API?"
-      ]
+      "error": "no close frame received or sent"
     },
     "long_short_ratio": {
       "name": "Global Long/Short Ratio",
       "url": "https://www.coinglass.com/LongShortRatio",
-      "table_count": 8,
-      "tables": [
-        {
-          "headers": [
-            "Type",
-            "Long/Short",
-            "Sentiment"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [
-            "Type",
-            "Long/Short",
-            "Sentiment"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [
-            "Type",
-            "Long/Short",
-            "Sentiment"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [
-            "Ranking",
-            "Assets",
-            "Price",
-            "Price (24h%)",
-            "Long/Short (5m)",
-            "Binance Whale bias",
-            "Binance Retail",
-            "OKX Whale bias",
-            "OKX Retail",
-            "Bybit Whale bias"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Cryptocurrency Longs vs Shorts Taker Buy/Sell Volume 1 hour 4 hour 12 hour 24 hour % 4H Long Volume $-- % 4H Short Volume $--",
-        "% 4H Long Volume $--",
-        "% 4H Short Volume $--",
-        "What Is Your Current BTC Sentiment? Very Bullish % Bullish % Neutral % Bearish % Very Bearish %",
-        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
-        "BTC Long/Short Ratio Chart Taker Buy/Sell Volume 30 minute",
-        "BTC Long/Short (Accounts) 4 hour",
-        "Exchanges BTC Long/Short Ratio Taker Buy/Sell Volume 4 hour 1.00% NaN% Long Short",
-        "Large Trades (Real-Time) All Pair Price Value Time",
-        "2. What Is the Taker Buy / Sell Long\u2013Short Ratio?",
-        "3. What Is the Exchange Account Long / Short Ratio?",
-        "4. What Is the Exchange Top Trader Account Long / Short Ratio?",
-        "5. What Is the Exchange Top Trader Position Long / Short Ratio?",
-        "6. How Should Crypto Derivatives Long / Short Ratios Be Interpreted and Used?",
-        "7. What Long / Short Ratio API Endpoints Does CoinGlass Provide?"
-      ]
+      "error": "no close frame received or sent"
     },
     "funding_rates": {
       "name": "Perpetual Funding Rates",
       "url": "https://www.coinglass.com/FundingRate",
-      "table_count": 2,
-      "tables": [
-        {
-          "headers": [
-            "",
-            "Symbol",
-            ""
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 0,
-          "rows": []
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "- BTC OI-Weighted Funding Rate",
-        "- ETH OI-Weighted Funding Rate",
-        "- BTC Volume-Weighted Funding Rate",
-        "- ETH Volume-Weighted Funding Rate",
-        "Highest Funding Rate",
-        "Lowest Funding Rate"
-      ]
+      "error": "no close frame received or sent"
     },
     "exchange_balance": {
       "name": "Bitcoin Exchange Balance",
       "url": "https://www.coinglass.com/Balance",
-      "table_count": 2,
-      "tables": [
-        {
-          "headers": [
-            "Ranking",
-            "Exchanges",
-            "Balance",
-            "24h Change",
-            "7d Change",
-            "30d Change"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More"
-      ]
+      "error": "no close frame received or sent"
     },
     "utxo_age_bands": {
       "name": "Bitcoin Realized Price UTXO Age Bands",
       "url": "https://www.coinglass.com/pro/i/utxo",
-      "table_count": 0,
-      "tables": [],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "All Categories",
-        "Bitcoin",
-        "Bitcoin ASOL (Average Spent Output Lifespan)",
-        "Bitcoin MSOL (Median Spent Output Lifespan)",
-        "Bitcoin SOPR (Spent Output Profit Ratio)",
-        "Bitcoin CDD (Coin Days Destroyed)",
-        "Bitcoin HODL Waves (Supply)",
-        "Bitcoin VDD Multiple",
-        "Bitcoin HODL Wave (1+ Year)",
-        "Bitcoin HODL Wave (5+ Year)",
-        "Bitcoin HODL Wave (10+ Year)",
-        "Bitcoin HODL Waves (Realized Cap Weighted)",
-        "Bitcoin Supply in Loss (Total)",
-        "Bitcoin Supply in Profit (Total)",
-        "Bitcoin Realized Price",
-        "Bitcoin NVT Ratio (Network Value to Transactions)",
-        "Bitcoin UTXOs in Loss (Count)",
-        "Bitcoin UTXOs in Profit (Count)",
-        "Bitcoin UTXOs in Profit (Percent)",
-        "Bitcoin Realized Loss",
-        "Bitcoin Realized Profit",
-        "Bitcoin Block Reward per Block",
-        "BTC Daily Block Rewards",
-        "Bitcoin Blockchain Height",
-        "Bitcoin Blockchain Weight",
-        "Bitcoin Average Block Time"
-      ]
+      "error": "no close frame received or sent"
     }
   },
-  "harvest_duration_seconds": 48.65,
+  "harvest_duration_seconds": 15.5,
   "_temporal_meta": {
     "stream": "coinglass",
-    "recorded_at_utc": "2026-10-25T04:08:53.928794+00:00",
-    "recorded_at_epoch": 1792901333.9741516,
+    "recorded_at_utc": "2026-10-25T04:13:40.450768+00:00",
+    "recorded_at_epoch": 1792901620.4933603,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
