@@ -14,6 +14,7 @@ Guarantees that in EVERY cycle:
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import datetime
 import json
 import logging
@@ -136,7 +137,7 @@ def preflight_hygiene():
 
 
 def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
-    """Executes a single harvester script subprocess safely."""
+    """Executes a single harvester script subprocess safely with excel_lock_hook."""
     sheet = mod["sheet"]
     script_path = mod["script"]
     timeout = mod.get("timeout", 120)
@@ -145,7 +146,11 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     if not script_path.exists():
         return sheet, False, 0.0, "Script file not found"
 
-    cmd = [sys.executable, str(script_path)] + args
+    cmd = [
+        sys.executable,
+        "-c",
+        f"import sys; sys.path.insert(0, r'{MODULES_DIR}'); import excel_lock_hook; import runpy; sys.argv=[r'{script_path}'] + {args}; runpy.run_path(r'{script_path}', run_name='__main__')"
+    ]
     t0 = time.perf_counter()
     try:
         proc = subprocess.run(
@@ -167,8 +172,6 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     except Exception as e:
         elapsed = time.perf_counter() - t0
         return sheet, False, elapsed, str(e)
-    finally:
-        reap_scraping_tabs()
 
 
 def execute_unified_30_sheets_cycle() -> dict:
@@ -187,23 +190,37 @@ def execute_unified_30_sheets_cycle() -> dict:
 
     results = []
 
-    # 1. Phase 1: Pure API Modules (Run sequentially or in small pool to avoid openpyxl lock contention)
-    log.info(f"\n--- Phase 1: Executing {len(API_MODULES)} Pure API Modules ---")
-    for mod in API_MODULES:
-        sheet, success, duration, err = run_single_module(mod)
-        status_str = "PASS" if success else "FAIL"
-        err_msg = f" | Error: {err}" if not success else ""
-        log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
-        results.append({"sheet": sheet, "tier": "API", "success": success, "duration": duration, "error": err})
+    # 1. Phase 1: Pure API Modules (Run across 6 parallel worker threads)
+    log.info(f"\n--- Phase 1: Executing {len(API_MODULES)} Pure API Modules in Parallel (6 workers) ---")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        future_to_mod = {executor.submit(run_single_module, mod): mod for mod in API_MODULES}
+        for future in concurrent.futures.as_completed(future_to_mod):
+            mod = future_to_mod[future]
+            try:
+                sheet, success, duration, err = future.result()
+            except Exception as exc:
+                sheet, success, duration, err = mod["sheet"], False, 0.0, str(exc)
+            status_str = "PASS" if success else "FAIL"
+            err_msg = f" | Error: {err}" if not success else ""
+            log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
+            results.append({"sheet": sheet, "tier": "API", "success": success, "duration": duration, "error": err})
 
-    # 2. Phase 2: Browser CDP Modules (Run sequentially through Edge tab queue)
-    log.info(f"\n--- Phase 2: Executing {len(BROWSER_MODULES)} Browser CDP Modules ---")
-    for mod in BROWSER_MODULES:
-        sheet, success, duration, err = run_single_module(mod)
-        status_str = "PASS" if success else "FAIL"
-        err_msg = f" | Error: {err}" if not success else ""
-        log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
-        results.append({"sheet": sheet, "tier": "Browser", "success": success, "duration": duration, "error": err})
+    # 2. Phase 2: Browser CDP Modules (Run across 3 parallel Edge tabs)
+    log.info(f"\n--- Phase 2: Executing {len(BROWSER_MODULES)} Browser CDP Modules in Parallel (3 Edge tabs) ---")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        future_to_mod = {executor.submit(run_single_module, mod): mod for mod in BROWSER_MODULES}
+        for future in concurrent.futures.as_completed(future_to_mod):
+            mod = future_to_mod[future]
+            try:
+                sheet, success, duration, err = future.result()
+            except Exception as exc:
+                sheet, success, duration, err = mod["sheet"], False, 0.0, str(exc)
+            status_str = "PASS" if success else "FAIL"
+            err_msg = f" | Error: {err}" if not success else ""
+            log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
+            results.append({"sheet": sheet, "tier": "Browser", "success": success, "duration": duration, "error": err})
+
+    reap_scraping_tabs()
 
     total_time = time.perf_counter() - t_start
     passed_count = sum(1 for r in results if r["success"])
@@ -244,11 +261,11 @@ def execute_unified_30_sheets_cycle() -> dict:
 
 
 def execute_refresh_stale() -> dict:
-    """Audits Data/DataBase_Trading.xlsx, identifies stale or failed sheets, and refreshes ONLY those modules."""
-    log.info("Checking for stale sheets via checklist auditor...")
+    """Audits Data/DataBase_Trading.xlsx, identifies stale (<5m) or failed sheets, and refreshes ONLY those modules in parallel."""
+    log.info("Checking for stale sheets via checklist auditor (threshold: < 5.0m)...")
     checklist_json_path = DATA_DIR / "excel_all_sheets_checklist.json"
     
-    proc = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    proc = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT), "--max-age", "5.0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     stale_sheets = []
     if checklist_json_path.exists():
         try:
@@ -259,22 +276,48 @@ def execute_refresh_stale() -> dict:
             pass
 
     if not stale_sheets:
-        log.info("All sheets are currently fresh (<30m IST). No refresh required!")
+        log.info("All 32 sheets are currently 100% fresh (<5m IST). No refresh required!")
         return {"passed": 0, "total": 0, "checklist_passed": True}
 
-    log.info("Targeting %d stale sheets: %s", len(stale_sheets), stale_sheets)
+    log.info("Targeting %d stale sheets (< 5m): %s", len(stale_sheets), stale_sheets)
     target_mods = [m for m in (API_MODULES + BROWSER_MODULES) if m["sheet"] in stale_sheets]
+    api_targets = [m for m in target_mods if m in API_MODULES]
+    browser_targets = [m for m in target_mods if m in BROWSER_MODULES]
     
     results = []
-    for mod in target_mods:
-        sheet, success, duration, err = run_single_module(mod)
-        status_str = "PASS" if success else "FAIL"
-        err_msg = f" | Error: {err}" if not success else ""
-        log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
-        results.append({"sheet": sheet, "success": success, "duration": duration, "error": err})
+    if api_targets:
+        log.info(f"Executing {len(api_targets)} stale API modules in parallel (up to 6 workers)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(6, len(api_targets))) as executor:
+            future_to_mod = {executor.submit(run_single_module, mod): mod for mod in api_targets}
+            for future in concurrent.futures.as_completed(future_to_mod):
+                mod = future_to_mod[future]
+                try:
+                    sheet, success, duration, err = future.result()
+                except Exception as exc:
+                    sheet, success, duration, err = mod["sheet"], False, 0.0, str(exc)
+                status_str = "PASS" if success else "FAIL"
+                err_msg = f" | Error: {err}" if not success else ""
+                log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
+                results.append({"sheet": sheet, "success": success, "duration": duration, "error": err})
 
-    # Re-run auditor
-    proc_check = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    if browser_targets:
+        log.info(f"Executing {len(browser_targets)} stale Browser modules across parallel Edge tabs (3 workers)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(3, len(browser_targets))) as executor:
+            future_to_mod = {executor.submit(run_single_module, mod): mod for mod in browser_targets}
+            for future in concurrent.futures.as_completed(future_to_mod):
+                mod = future_to_mod[future]
+                try:
+                    sheet, success, duration, err = future.result()
+                except Exception as exc:
+                    sheet, success, duration, err = mod["sheet"], False, 0.0, str(exc)
+                status_str = "PASS" if success else "FAIL"
+                err_msg = f" | Error: {err}" if not success else ""
+                log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
+                results.append({"sheet": sheet, "success": success, "duration": duration, "error": err})
+        reap_scraping_tabs()
+
+    # Re-run auditor with --max-age 5.0
+    proc_check = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT), "--max-age", "5.0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     print(proc_check.stdout)
     checklist_passed = (proc_check.returncode == 0)
     return {"passed": sum(1 for r in results if r["success"]), "total": len(results), "checklist_passed": checklist_passed, "results": results}
@@ -283,12 +326,12 @@ def execute_refresh_stale() -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Unified 30-Sheet Excel Refresh Cycle")
     parser.add_argument("--continuous", action="store_true", help="Run continuously in background")
-    parser.add_argument("--interval", type=int, default=300, help="Interval between cycles in seconds (default: 300s = 5m)")
+    parser.add_argument("--interval", type=int, default=180, help="Interval between cycles in seconds (default: 180s = 3m)")
     parser.add_argument("--refresh-stale", action="store_true", help="Refresh only stale sheets (>30m)")
     args = parser.parse_args()
 
     if args.continuous:
-        mode_desc = "stale-only (<30m)" if args.refresh_stale else "full 32-sheet"
+        mode_desc = "stale-only (<5m)" if args.refresh_stale else "full 32-sheet"
         log.info(f"Starting continuous {mode_desc} refresh daemon (cycle interval: {args.interval}s)...")
         while True:
             try:

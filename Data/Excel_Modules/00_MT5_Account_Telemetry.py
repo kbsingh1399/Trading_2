@@ -162,6 +162,8 @@ def get_live_mt5_data() -> dict:
             # Universe quotes
             quotes = {}
             for sym in mt5.symbols_get():
+                if not sym.visible:
+                    continue
                 name = sym.name
                 tick = mt5.symbol_info_tick(name)
                 if tick and tick.bid > 0 and tick.ask > 0:

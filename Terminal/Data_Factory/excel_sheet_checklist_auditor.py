@@ -26,13 +26,22 @@ import re
 import sys
 import time
 
+ROOT_DIR = pathlib.Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "Data"
+MODULES_DIR = DATA_DIR / "Excel_Modules"
+if str(MODULES_DIR) not in sys.path:
+    sys.path.insert(0, str(MODULES_DIR))
+
+try:
+    import excel_lock_hook
+except ImportError:
+    pass
+
 try:
     import openpyxl
 except ImportError:
     raise ImportError("openpyxl is required. Run 'pip install openpyxl'.")
 
-ROOT_DIR = pathlib.Path(__file__).resolve().parents[2]
-DATA_DIR = ROOT_DIR / "Data"
 EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
 OUTPUT_JSON = DATA_DIR / "excel_all_sheets_checklist.json"
 
