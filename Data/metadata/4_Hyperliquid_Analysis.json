@@ -1,0 +1,33 @@
+{
+  "feed_name": "4_Hyperliquid_Analysis",
+  "status": "PASS",
+  "row_count": 500,
+  "column_count": 20,
+  "columns": [
+    "#",
+    "User",
+    "Wallet_Full_Address",
+    "Assets",
+    "Side",
+    "Position",
+    "Unrealised_PNL_%",
+    "Entry_Price",
+    "Liq.Price",
+    "Margin",
+    "Funding_Fee",
+    "Price",
+    "Entry_Time",
+    "Position_USD",
+    "Position_Tokens",
+    "Unrealised_PNL_USD",
+    "Unrealised_PNL_%_Val",
+    "Entry_Price_USD",
+    "Leverage",
+    "Timestamp_IST"
+  ],
+  "byte_size": 78980,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.416348,
+  "write_duration_ms": 7.83
+}

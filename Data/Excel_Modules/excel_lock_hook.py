@@ -92,8 +92,64 @@ def locked_load_workbook(filename, *args, **kwargs):
             time.sleep(0.1 * (attempt + 1))
 
 
+def _dump_workbook_sheets_to_parquet(wb):
+    """Automatically extracts sheets from in-memory openpyxl workbook and dumps to Parquet."""
+    try:
+        import sys, datetime
+        df_dir = ROOT / "Terminal" / "Data_Factory"
+        if str(df_dir) not in sys.path:
+            sys.path.insert(0, str(df_dir))
+        from parquet_feed_writer import write_parquet_feed
+
+        for sheet_name in wb.sheetnames:
+            if sheet_name in {"Crypto_ETF_Flows", "Top_Institutions", "ETF_Market_Overview"}:
+                continue
+            ws = wb[sheet_name]
+            rows = list(ws.iter_rows(values_only=True))
+            if not rows or len(rows) < 2:
+                continue
+
+            header_idx = 0
+            for i in range(min(5, len(rows))):
+                non_empty = [c for c in rows[i] if c is not None]
+                if len(non_empty) >= 2 and all(isinstance(c, str) for c in non_empty[:3]):
+                    header_idx = i
+                    break
+
+            raw_headers = rows[header_idx]
+            headers = []
+            for col_idx, h in enumerate(raw_headers):
+                if h is not None and str(h).strip():
+                    h_clean = str(h).strip().replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
+                    headers.append((col_idx, h_clean))
+                elif col_idx < 15:
+                    headers.append((col_idx, f"col_{col_idx}"))
+
+            data_rows = []
+            for r in rows[header_idx + 1:]:
+                if not any(c is not None for c in r):
+                    continue
+                row_dict = {}
+                for col_idx, col_name in headers:
+                    val = r[col_idx] if col_idx < len(r) else None
+                    if isinstance(val, (datetime.datetime, datetime.date)):
+                        val = str(val)
+                    elif val is not None and not isinstance(val, (int, float, bool, str)):
+                        val = str(val)
+                    row_dict[col_name] = val
+                data_rows.append(row_dict)
+
+            if data_rows:
+                write_parquet_feed(sheet_name, data_rows)
+    except Exception:
+        pass
+
+
 def locked_workbook_save(self, filename, *args, **kwargs):
     """Acquires lock ONLY when saving directly to master DataBase_Trading.xlsx (not unique tmp files)."""
+    # 1. Dual-write to individual high-speed Parquet feed
+    _dump_workbook_sheets_to_parquet(self)
+
     fn_str = str(filename)
     is_exact_master = ("DataBase_Trading.xlsx" in fn_str) and (".tmp." not in fn_str)
     if is_exact_master and FileLock is not None:

@@ -1,0 +1,20 @@
+{
+  "feed_name": "7_Liq_Heapmap",
+  "status": "PASS",
+  "row_count": 89,
+  "column_count": 7,
+  "columns": [
+    "Rank",
+    "Asset",
+    "1hour",
+    "4hour",
+    "12_hour",
+    "24hour",
+    "Timestamp_IST"
+  ],
+  "byte_size": 4825,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.548197,
+  "write_duration_ms": 3.07
+}

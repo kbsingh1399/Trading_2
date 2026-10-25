@@ -1,0 +1,33 @@
+{
+  "feed_name": "5_OI",
+  "status": "PASS",
+  "row_count": 370,
+  "column_count": 20,
+  "columns": [
+    "Asset",
+    "Total_OI_USD",
+    "Binance",
+    "Bybit",
+    "OKX",
+    "CME",
+    "KuCoin",
+    "Gate",
+    "Bitget",
+    "BingX",
+    "MEXC",
+    "Bitunix",
+    "Hyperliquid",
+    "Others",
+    "Total_OI_Tokens",
+    "24h_Total_Change",
+    "4h_Total_Change",
+    "1h_Total_Change",
+    "OI___24h_Vol",
+    "Timestamp_IST"
+  ],
+  "byte_size": 23994,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.436947,
+  "write_duration_ms": 5.89
+}

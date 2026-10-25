@@ -1,0 +1,17 @@
+{
+  "feed_name": "23_Master_Pipeline_Telemetry",
+  "status": "PASS",
+  "row_count": 33,
+  "column_count": 4,
+  "columns": [
+    "feed_id",
+    "feed_name",
+    "status",
+    "tier"
+  ],
+  "byte_size": 1597,
+  "timestamp_ist": "2026-10-25 22:01:03 IST",
+  "timestamp_utc": "2026-10-25 16:31:03 UTC",
+  "epoch_utc": 1792945863.427917,
+  "write_duration_ms": 296.06
+}

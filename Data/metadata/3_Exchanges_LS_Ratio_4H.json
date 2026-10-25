@@ -1,0 +1,24 @@
+{
+  "feed_name": "3_Exchanges_LS_Ratio_4H",
+  "status": "PASS",
+  "row_count": 370,
+  "column_count": 11,
+  "columns": [
+    "Asset",
+    "#",
+    "Exchange",
+    "Long_%",
+    "Short_%",
+    "L_S_Ratio",
+    "Long_Volume",
+    "Short_Volume",
+    "Total_Volume",
+    "Timeframe",
+    "Timestamp_IST"
+  ],
+  "byte_size": 15274,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.39714,
+  "write_duration_ms": 4.77
+}

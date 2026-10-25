@@ -1,0 +1,29 @@
+{
+  "feed_name": "1_Crypto_ETF_Flows",
+  "status": "PASS",
+  "row_count": 39,
+  "column_count": 16,
+  "columns": [
+    "#",
+    "Ticker",
+    "ETF_Name",
+    "Price",
+    "Price_Change",
+    "Volume_USD",
+    "Volume_Shares",
+    "Turnover_Rate",
+    "Shares_Outstanding",
+    "AUM",
+    "Market_Cap",
+    "Expense_Ratio",
+    "Asset_Category",
+    "Issuer___Sponsor",
+    "Daily_Net_Inflow",
+    "Timestamp_IST"
+  ],
+  "byte_size": 8727,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.3567,
+  "write_duration_ms": 4.29
+}

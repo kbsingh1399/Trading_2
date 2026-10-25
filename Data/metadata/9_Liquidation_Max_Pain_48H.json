@@ -1,0 +1,25 @@
+{
+  "feed_name": "9_Liquidation_Max_Pain_48H",
+  "status": "PASS",
+  "row_count": 746,
+  "column_count": 12,
+  "columns": [
+    "Ranking",
+    "Symbol",
+    "Price",
+    "Short_Max_Pain_Price",
+    "Short_Max_Pain_Vol",
+    "Short_Distance_$",
+    "Short_Distance_%",
+    "Long_Max_Pain_Price",
+    "Long_Max_Pain_Vol",
+    "Long_Distance_$",
+    "Long_Distance_%",
+    "Timestamp_IST"
+  ],
+  "byte_size": 56666,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.467519,
+  "write_duration_ms": 7.37
+}

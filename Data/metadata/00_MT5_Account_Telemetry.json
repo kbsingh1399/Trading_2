@@ -1,0 +1,23 @@
+{
+  "feed_name": "00_MT5_Account_Telemetry",
+  "status": "PASS",
+  "row_count": 166,
+  "column_count": 10,
+  "columns": [
+    "Realized_Balance_USD",
+    "$4,846.32",
+    "col_2",
+    "Real-Time_Floating_Equity_USD",
+    "col_5",
+    "col_6",
+    "col_7",
+    "col_8",
+    "col_9",
+    "col_10"
+  ],
+  "byte_size": 13797,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.350354,
+  "write_duration_ms": 282.63
+}

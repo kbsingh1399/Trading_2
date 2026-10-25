@@ -1,0 +1,27 @@
+{
+  "feed_name": "2_Spot_Netflow_S",
+  "status": "PASS",
+  "row_count": 200,
+  "column_count": 14,
+  "columns": [
+    "#",
+    "Symbol",
+    "Price",
+    "5_minute",
+    "15_minute",
+    "30_minute",
+    "1_hour",
+    "4_hour",
+    "12_hour",
+    "24_hour",
+    "7_day",
+    "30_day",
+    "Market_Cap",
+    "Timestamp_IST"
+  ],
+  "byte_size": 22532,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.36586,
+  "write_duration_ms": 4.96
+}

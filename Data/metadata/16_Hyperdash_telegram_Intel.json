@@ -1,0 +1,27 @@
+{
+  "feed_name": "16_Hyperdash_telegram_Intel",
+  "status": "PASS",
+  "row_count": 1000,
+  "column_count": 14,
+  "columns": [
+    "Sr.No",
+    "Timestamp_IST",
+    "Post_ID",
+    "Category",
+    "Event_Type",
+    "Asset",
+    "Side",
+    "Notional_USD",
+    "Price_$",
+    "Distance___Metric",
+    "Market_Impact",
+    "Duration___Rate",
+    "Wallet_Address",
+    "Telegram_Alert_Text"
+  ],
+  "byte_size": 58249,
+  "timestamp_ist": "2026-10-25 22:02:19 IST",
+  "timestamp_utc": "2026-10-25 16:32:19 UTC",
+  "epoch_utc": 1792945939.941769,
+  "write_duration_ms": 7.47
+}
