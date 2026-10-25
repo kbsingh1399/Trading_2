@@ -1,0 +1,2 @@
+# Alias module for 22_Forced_Liquidations_MTF
+from Data.Excel_Modules.22_Forced_Liquidations_MTF import dump_forced_liquidations_to_excel, SHEET_NAME
