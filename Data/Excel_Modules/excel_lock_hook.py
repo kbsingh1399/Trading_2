@@ -10,6 +10,7 @@ Architectural Design:
   4. load_workbook allows concurrent readers with fast retry on transient replace collisions.
 """
 
+import io
 import os
 import pathlib
 import time
@@ -32,25 +33,27 @@ _orig_path_replace = pathlib.Path.replace
 
 
 def locked_load_workbook(filename, *args, **kwargs):
-    """Loads workbook safely with retry on transient write collisions."""
-    is_target = "DataBase_Trading.xlsx" in str(filename)
-    if not is_target or FileLock is None:
+    """Loads workbook from in-memory BytesIO so Windows file handle is never kept open."""
+    fn_str = str(filename)
+    is_target = "DataBase_Trading.xlsx" in fn_str and (".tmp." not in fn_str)
+    if not is_target:
         return _orig_load_workbook(filename, *args, **kwargs)
 
-    for attempt in range(10):
+    # Read binary bytes into BytesIO under FileLock (held for ~5ms), releasing handle immediately
+    for attempt in range(15):
         try:
-            return _orig_load_workbook(filename, *args, **kwargs)
-        except (EOFError, PermissionError, OSError, Exception) as e:
-            if "not a zip file" in str(e).lower() or isinstance(e, (EOFError, PermissionError)):
-                if attempt == 9:
-                    try:
-                        with FileLock(str(LOCK_PATH), timeout=30):
-                            return _orig_load_workbook(filename, *args, **kwargs)
-                    except Exception:
-                        raise e
-                time.sleep(0.2 * (attempt + 1))
+            if FileLock is not None:
+                with FileLock(str(LOCK_PATH), timeout=30):
+                    with open(filename, "rb") as f:
+                        data = io.BytesIO(f.read())
             else:
+                with open(filename, "rb") as f:
+                    data = io.BytesIO(f.read())
+            return _orig_load_workbook(data, *args, **kwargs)
+        except (PermissionError, OSError, EOFError, Exception) as e:
+            if attempt == 14:
                 raise
+            time.sleep(0.1 * (attempt + 1))
 
 
 def locked_workbook_save(self, filename, *args, **kwargs):
@@ -58,23 +61,23 @@ def locked_workbook_save(self, filename, *args, **kwargs):
     fn_str = str(filename)
     is_exact_master = ("DataBase_Trading.xlsx" in fn_str) and (".tmp." not in fn_str)
     if is_exact_master and FileLock is not None:
-        with FileLock(str(LOCK_PATH), timeout=120):
+        with FileLock(str(LOCK_PATH), timeout=60):
             return _orig_workbook_save(self, filename, *args, **kwargs)
     return _orig_workbook_save(self, filename, *args, **kwargs)
 
 
 def locked_os_replace(src, dst, *args, **kwargs):
-    """Acquires lock before replacing DataBase_Trading.xlsx (held for ~50ms atomic rename)."""
+    """Acquires lock before replacing DataBase_Trading.xlsx (held for ~5ms atomic rename)."""
     is_target = "DataBase_Trading.xlsx" in str(dst)
     if is_target and FileLock is not None:
-        with FileLock(str(LOCK_PATH), timeout=120):
-            for attempt in range(40):
+        with FileLock(str(LOCK_PATH), timeout=60):
+            for attempt in range(25):
                 try:
                     return _orig_os_replace(src, dst, *args, **kwargs)
                 except (PermissionError, OSError):
-                    if attempt == 39:
+                    if attempt == 24:
                         raise
-                    time.sleep(0.1 * (attempt + 1))
+                    time.sleep(0.05 * (attempt + 1))
     return _orig_os_replace(src, dst, *args, **kwargs)
 
 
@@ -82,14 +85,14 @@ def locked_path_replace(self, target, *args, **kwargs):
     """Acquires lock before pathlib.Path.replace into DataBase_Trading.xlsx."""
     is_target = "DataBase_Trading.xlsx" in str(target)
     if is_target and FileLock is not None:
-        with FileLock(str(LOCK_PATH), timeout=120):
-            for attempt in range(40):
+        with FileLock(str(LOCK_PATH), timeout=60):
+            for attempt in range(25):
                 try:
                     return _orig_path_replace(self, target, *args, **kwargs)
                 except (PermissionError, OSError):
-                    if attempt == 39:
+                    if attempt == 24:
                         raise
-                    time.sleep(0.1 * (attempt + 1))
+                    time.sleep(0.05 * (attempt + 1))
     return _orig_path_replace(self, target, *args, **kwargs)
 
 
