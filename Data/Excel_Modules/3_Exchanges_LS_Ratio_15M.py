@@ -149,13 +149,21 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
     """Navigates to asset page, verifies/switches timeframe, and extracts all exchange rows."""
     target_url = f"https://www.coinglass.com/LongShortRatio/{asset}"
     
-    # 1. Navigate to asset page
-    await ws.send(json.dumps({
-        "id": 10,
-        "method": "Page.navigate",
-        "params": {"url": target_url}
-    }))
-    await ws.recv()
+    # 1. Check current URL before navigating to prevent redundant reloads on asset 0
+    await ws.send(json.dumps({"id": 9, "method": "Runtime.evaluate", "params": {"expression": "window.location.href"}}))
+    try:
+        curr_url_res = json.loads(await ws.recv())
+        curr_url = curr_url_res.get("result", {}).get("result", {}).get("value", "")
+    except Exception:
+        curr_url = ""
+
+    if curr_url != target_url:
+        await ws.send(json.dumps({
+            "id": 10,
+            "method": "Page.navigate",
+            "params": {"url": target_url}
+        }))
+        await ws.recv()
 
     # 2. Wait for page DOM container to stabilize
     container_ready_js = """
@@ -165,7 +173,7 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
         });
         if (headings.length === 0) return false;
         let container = headings[0].parentElement;
-        while (container && (!container.innerText.includes('Binance') || !container.querySelector('button.MuiSelect-button'))) {
+        while (container && (!container.innerText.includes('Binance') || !container.querySelector('button.MuiSelect-button, button[role="combobox"]'))) {
             container = container.parentElement;
         }
         if (!container) return false;
@@ -175,7 +183,7 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
     })()
     """
     is_ready = False
-    for _ in range(30):  # up to 3 seconds
+    for _ in range(40):  # up to 4 seconds
         await asyncio.sleep(0.1)
         await ws.send(json.dumps({"id": 11, "method": "Runtime.evaluate", "params": {"expression": container_ready_js, "returnByValue": True}}))
         res = json.loads(await ws.recv())
@@ -184,7 +192,19 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
             break
 
     if not is_ready:
-        await asyncio.sleep(1.0)
+        # If not ready, reload once to clear any Next.js hydration hang
+        try:
+            await ws.send(json.dumps({"id": 12, "method": "Page.reload", "params": {"ignoreCache": False}}))
+            await ws.recv()
+            for _ in range(30):
+                await asyncio.sleep(0.2)
+                await ws.send(json.dumps({"id": 13, "method": "Runtime.evaluate", "params": {"expression": container_ready_js, "returnByValue": True}}))
+                res = json.loads(await ws.recv())
+                if res.get("result", {}).get("result", {}).get("value", False):
+                    is_ready = True
+                    break
+        except Exception:
+            pass
 
     # 3. Timeframe Verification & Toggle
     check_and_toggle_tf_js = f"""
@@ -194,12 +214,12 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
         }});
         if (headings.length === 0) return {{status: 'no_heading'}};
         let container = headings[0].parentElement;
-        while (container && (!container.innerText.includes('Binance') || !container.querySelector('button.MuiSelect-button'))) {{
+        while (container && (!container.innerText.includes('Binance') || !container.querySelector('button.MuiSelect-button, button[role="combobox"]'))) {{
             container = container.parentElement;
         }}
         if (!container) return {{status: 'no_container'}};
 
-        const tfBtn = container.querySelector('button.MuiSelect-button');
+        const tfBtn = container.querySelector('button.MuiSelect-button, button[role="combobox"]');
         if (!tfBtn) return {{status: 'no_button'}};
 
         const currentTf = tfBtn.innerText.trim().toLowerCase();
@@ -357,6 +377,7 @@ async def harvest_universe_ls_ratio(universe: list[str] = DEFAULT_UNIVERSE, targ
                     log.info(f"[{idx:>2}/{len(universe)}] {asset:<5}: Extracted {len(records)} exchange rows in {elapsed_asset:.2f}s")
                 else:
                     log.warning(f"[{idx:>2}/{len(universe)}] {asset:<5}: No records extracted (took {elapsed_asset:.2f}s)")
+                await asyncio.sleep(0.5)
 
         total_elapsed = time.perf_counter() - start_t
         log.info(f"Harvest complete: {len(all_harvested)} total records across {len(universe)} assets in {total_elapsed:.2f}s.")
