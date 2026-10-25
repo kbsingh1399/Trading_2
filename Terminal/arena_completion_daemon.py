@@ -395,7 +395,8 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
 
     stable_ready_ticks = 0
     last_seen_hash = initial_hash
-    arena_done = False
+    arena_active = initial.get("connected", False)
+    arena_done = not arena_active
     arena_done_ts = 0.0
 
     stable_fable_ticks = 0
