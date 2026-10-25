@@ -28,6 +28,11 @@ try:
 except ImportError:
     openpyxl = None
 
+try:
+    from filelock import FileLock
+except ImportError:
+    FileLock = None
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "Data"
 DEFAULT_EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
@@ -48,24 +53,28 @@ def dump_forced_liquidations_to_excel(
 
     excel_path = target_path or DEFAULT_EXCEL_PATH
     excel_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_file = excel_path.with_suffix(".xlsx.lock")
 
-    if not excel_path.exists():
-        wb = openpyxl.Workbook()
-        wb.active.title = SHEET_NAME
-        ws = wb.active
-    else:
-        try:
-            wb = openpyxl.load_workbook(excel_path)
-            if SHEET_NAME in wb.sheetnames:
-                ws = wb[SHEET_NAME]
-                ws.delete_rows(1, ws.max_row + 1)
-            else:
-                # Insert at index 11 (right next to 7_Live_Liq or 21_Tradfye_Orderflow)
-                idx = 11 if len(wb.sheetnames) >= 11 else len(wb.sheetnames)
-                ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-        except Exception as e:
-            print(f"[ERROR] Failed to load workbook: {e}")
-            return False
+    def _write_workbook():
+        if not excel_path.exists():
+            wb = openpyxl.Workbook()
+            wb.active.title = SHEET_NAME
+            ws = wb.active
+        else:
+            try:
+                wb = openpyxl.load_workbook(excel_path)
+                if SHEET_NAME in wb.sheetnames:
+                    ws = wb[SHEET_NAME]
+                    ws.delete_rows(1, ws.max_row + 1)
+                    # Ensure Sheet 22 is positioned at the very end
+                    if ws in wb._sheets and wb._sheets[-1] != ws:
+                        wb._sheets.remove(ws)
+                        wb._sheets.append(ws)
+                else:
+                    ws = wb.create_sheet(title=SHEET_NAME)
+            except Exception as e:
+                print(f"[ERROR] Failed to load workbook: {e}")
+                return False
 
     # Styling Palettes (xlsx-official)
     font_banner = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
