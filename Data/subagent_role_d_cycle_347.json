@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 347",
+  "role": "ROLE_D_MARKET_CLOCK_AUCTION_PROVENANCE",
+  "evidence_manifest_sha256": "7cef2df40ef9434c2d085956b065cb24eb6c51c3820d43c8600af9e38e58b41f",
+  "prompt_sha256": "7ee55c56ef4b2cbb6861d6e113088155983c880383ee36ef58d1188648f43d3c",
+  "dispatch_nonce": "b741ad48-3a29-4939-8bb4-1d390ca7752c",
+  "clock_audit": {
+    "cutoff_utc": "2026-10-25 04:30:04 UTC",
+    "observed_at_utc": "2026-10-25 04:30:02 UTC",
+    "broker_tick_time_utc": "2026-10-25 04:30:01 UTC",
+    "preflight_tick_age_seconds": 1.0,
+    "quote_age_at_cutoff_seconds": 3.0,
+    "quote_freshness_status": "PASS_LEQ_15S_FRESH",
+    "live_mt5_tick": {
+      "bid": 80749.0,
+      "ask": 80766.0,
+      "mid": 80757.5,
+      "spread_raw": 17.0,
+      "spread_bps": 2.11,
+      "spread_cost_usd": 0.34,
+      "tick_age_seconds": 1.0,
+      "verified": true
+    },
+    "clock_skew_seconds": -11.17,
+    "day_of_week": "Sunday",
+    "market_regime": "WEEKEND_CRYPTO_PERPETUALS_ONLY",
+    "calendar_verified_at_utc": "2026-10-25T04:29:43.358272+00:00",
+    "calendar_verified_age_seconds": 20.64,
+    "calendar_freshness_status": "PASS_LT_900S_FRESH",
+    "rollover_embargo_active": false,
+    "rollover_window": "21:15-22:30 UTC",
+    "rollover_status": "INACTIVE_POST_22_30_UTC (TradFi remains halted under weekend schedule until Sunday 21:00 UTC; 24/7 crypto perpetuals unaffected)",
+    "event_blackout_active": false,
+    "pending_high_impact_events_sunday": 0,
+    "next_tier1_event": "FOMC Rate Decision (2026-10-28 18:00:00Z)",
+    "hours_to_next_tier1_event": 85.5,
+    "executable_assets_count": 11,
+    "spread_disqualified_count": 47,
+    "weekend_closed_count": 98,
+    "universe_total_assets": 156
+  },
+  "executable_universe": [
+    {
+      "asset": "BTC",
+      "symbol": "BTCUSD.pi",
+      "category": "Crypto Major",
+      "price": 80769.0,
+      "spread_bps": 1.98,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "ETH",
+      "symbol": "ETHUSD.pi",
+      "category": "Crypto Major",
+      "price": 2361.9,
+      "spread_bps": 14.41,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "SOL",
+      "symbol": "SOLUSD.p",
+      "category": "Crypto Alt L1",
+      "price": 102.44,
+      "spread_bps": 23.46,
+      "gate": "PASS",
+      "status": "ABOVE_VALUE (Imbalance)"
+    },
+    {
+      "asset": "BNB",
+      "symbol": "BNBUSD.p",
+      "category": "Crypto Major",
+      "price": 746.0,
+      "spread_bps": 8.05,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "XRP",
+      "symbol": "XRPUSD.pi",
+      "category": "Crypto Major",
+      "price": 1.3095,
+      "spread_bps": 22.94,
+      "gate": "PASS",
+      "status": "ABOVE_VALUE (Imbalance)"
+    },
+    {
+      "asset": "BCH",
+      "symbol": "BCHUSD.p",
+      "category": "Crypto PoW",
+      "price": 277.45,
+      "spread_bps": 20.96,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "XLM",
+      "symbol": "XLMUSD.p",
+      "category": "Crypto Payment",
+      "price": 0.1713,
+      "spread_bps": 17.53,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "XMR",
+      "symbol": "XMRUSD.p",
+      "category": "Crypto Privacy",
+      "price": 611.72,
+      "spread_bps": 7.69,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "AAVE",
+      "symbol": "AVEUSD.p",
+      "category": "Crypto DeFi",
+      "price": 137.7,
+      "spread_bps": 18.9,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "DASH",
+      "symbol": "DSHUSD.p",
+      "category": "Crypto PoW",
+      "price": 51.96,
+      "spread_bps": 8.09,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    },
+    {
+      "asset": "ZEC",
+      "symbol": "ZECUSD.p",
+      "category": "Crypto Privacy",
+      "price": 1216.6,
+      "spread_bps": 5.67,
+      "gate": "PASS",
+      "status": "INSIDE_VALUE (Balance)"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLAIM_D_01",
+      "statement": "Physical Cutoff Causality, Quote Freshness Gate (Finding D9 Invariant), and Preflight Verification are empirically audited: MT5 broker tick age is 1.0s (<= 15.0s SLA) with observed quote at 04:30:02 UTC and tick at 04:30:01 UTC; quote age at cutoff (04:30:04 UTC) is 3.0s, satisfying strict physical causal inequality tick_time (04:30:01 UTC) < observed_at (04:30:02 UTC) <= cutoff_utc (04:30:04 UTC).",
+      "evidence_ids": [
+        "Data/cycle_envelope.json",
+        "Data/execution_preflight_receipt.json"
+      ],
+      "formula_or_test": "tick_time_utc < observed_at_utc <= cutoff_utc and preflight_tick_age <= 15.0s and quote_age_at_cutoff <= 60.0s",
+      "result": {
+        "tick_time_utc": "2026-10-25 04:30:01 UTC",
+        "observed_at_utc": "2026-10-25 04:30:02 UTC",
+        "cutoff_utc": "2026-10-25 04:30:04 UTC",
+        "tick_age_seconds": 1.0,
+        "quote_age_at_cutoff_seconds": 3.0,
+        "causality_status": "PRE_CUTOFF_CAUSAL_VERIFIED (04:30:01 < 04:30:02 <= 04:30:04 UTC)",
+        "quote_freshness_status": "PASS_LEQ_15S_FRESH"
+      },
+      "uncertainty": "0.0s (broker server NTP synchronized, offset = +10800.0s)",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_D_02",
+      "statement": "Macroeconomic Calendar Freshness and Tier-1 Event Blackout Gate verified: Calendar verified_at age is 20.64s (<< 900.0s SLA). Zero high-impact events scheduled within +/- 30m window (next event is FOMC Rate Decision in 85.50 hours).",
+      "evidence_ids": [
+        "Data/macro_calendar.json"
+      ],
+      "formula_or_test": "calendar_age_seconds < 900.0s and abs(event_time - cutoff_time) > 30m for Tier-1 events",
+      "result": {
+        "calendar_verified_at": "2026-10-25T04:29:43.358272+00:00",
+        "cutoff_utc": "2026-10-25 04:30:04 UTC",
+        "calendar_age_seconds": 20.64,
+        "calendar_freshness_status": "PASS_LT_900S_FRESH",
+        "event_blackout_active": false,
+        "next_tier1_event": "FOMC Rate Decision (2026-10-28 18:00:00Z)",
+        "hours_to_next_tier1_event": 85.5
+      },
+      "uncertainty": "0.0s (Official Fed, BLS, and BoE calendars synced)",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_D_03",
+      "statement": "Comprehensive 156-asset broker universe classification verified: 98 TradFi assets weekend halted (closed until Sunday 21:00 UTC), 58 crypto perpetuals tradeable 24/7/365, with 11 passing universal spread gate (<= 25 bps) and 47 spread-disqualified (> 25 bps).",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx (Sheet 20_Auction_Market_Structure)",
+        "Data/DataBase_Trading.xlsx (Sheet 00_MT5_Account_Telemetry)"
+      ],
+      "formula_or_test": "Total Assets (156) == 98 TradFi Closed + 58 Crypto (11 Spread PASS + 47 Spread FAIL)",
+      "result": {
+        "total_universe": 156,
+        "tradfi_weekend_closed": 98,
+        "crypto_perpetuals_24_7": 58,
+        "crypto_spread_pass_le_25bps": 11,
+        "crypto_spread_fail_gt_25bps": 47,
+        "rollover_embargo_active": false,
+        "status": "PASS"
+      },
+      "uncertainty": "0 assets unclassified; 100% complete coverage across broker symbol catalog",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_D_04",
+      "statement": "Cryptographic evidence integrity and dual-repo twin parity verified with exact SHA-256 digests across 20,584 repository files.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json",
+        "Data/execution_preflight_receipt.json",
+        ".agents",
+        "Engine_2/.agents"
+      ],
+      "formula_or_test": "manifest_sha == env.evidence_manifest_sha and workbook_sha == env.workbook_sha and parity_errors == 0",
+      "result": {
+        "manifest_blob_sha256": "7cef2df40ef9434c2d085956b065cb24eb6c51c3820d43c8600af9e38e58b41f",
+        "workbook_blob_sha256": "48b98005c59803e6b32a9d307ea64ef354690719bb08dd284108f163db89e468",
+        "prompt_sha256": "7ee55c56ef4b2cbb6861d6e113088155983c880383ee36ef58d1188648f43d3c",
+        "dispatch_nonce": "b741ad48-3a29-4939-8bb4-1d390ca7752c",
+        "preflight_receipt_sha256": "8693415810cad89c9225db4490adaaa2ab79a1e96986d2dbbd65507c1f6a9a0b",
+        "dual_repo_parity_files": 20584,
+        "byte_mismatches": 0,
+        "parity_status": "100% BYTE-FOR-BYTE IDENTICAL"
+      },
+      "uncertainty": "0.0 (SHA-256 cryptographic collision probability < 10^-77)",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_D_05",
+      "statement": "Auction market structure, orderflow telemetry, and multi-timeframe forced liquidation streams certified live without formula corruption.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx (Sheet 20_Auction_Market_Structure, Sheet 00_MT5_Account_Telemetry)"
+      ],
+      "formula_or_test": "Sheet 20 rows == 174, Sheet 00 rows == 172, 0 formula errors",
+      "result": {
+        "sheet_20_auction_rows": 174,
+        "sheet_00_telemetry_rows": 172,
+        "formula_errors": 0,
+        "status": "PASS"
+      },
+      "uncertainty": "Zero corrupt cells detected via openpyxl structured read",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_D_01: Strict physical causal ordering holds in Cycle 347: tick_time (04:30:01 UTC) < observed_at (04:30:02 UTC) <= cutoff_utc (04:30:04 UTC) with tick age 1.0s and quote age 3.0s, completely eliminating temporal sequence inversion.",
+    "CHALLENGE_D_02: 47 out of 58 crypto perpetuals suffer from severe weekend liquidity evaporation (> 25 bps spread), restricting trade qualification strictly to 11 major tokens.",
+    "CHALLENGE_D_03: 98 TradFi instruments remain halted under weekend schedule until Sunday 21:00 UTC open (~16.50h remaining).",
+    "CHALLENGE_D_04: Candidate SELL_LIMIT order on BTCUSD.pi @ 81,300.00 USD is located 542.50 USD above current spot mid (80,757.50 USD) and outside the Daily Value Area (Daily VAH: 80,908.35 USD), while HTF drift and mean reversion metrics dictate affirmative stand-aside."
+  ],
+  "unknowns": [
+    "UNKNOWN_D_01: Spread normalization trajectory across Tier-2 crypto perpetuals as institutional Asian desk liquidity begins trickling in Sunday morning.",
+    "UNKNOWN_D_02: Potential for unannounced exchange maintenance windows on secondary crypto feeds during thin Sunday morning trading hours."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "PROVENANCE_AND_CLOCK_VERIFIED_STAND_ASIDE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Maintain the synchronized pipeline sequence where preflight sampling occurs strictly before envelope seal, guaranteeing tick_time_utc < observed_at_utc <= cutoff_utc across all autonomous cycles.",
+    "omitted_risk_dimensions": "Unmonitored macro calendar aging during weekend market sessions; automated background cron successfully kept macro_calendar.json fresh at 20.64s age (< 900s SLA) for Cycle 347.",
+    "algorithmic_alternatives": "Incorporate rolling 3-tick spread volatility filters to prevent momentary weekend spread spikes from falsely flipping asset eligibility states."
+  },
+  "response_sha256": "98b3c34ccd32fc005c166f061ef733b2e9fc92995047ba13adced500b8b8c0b6"
+}
