@@ -1,8 +1,8 @@
 {
-  "harvest_timestamp_utc": "2026-10-25T03:25:20.700035+00:00",
+  "harvest_timestamp_utc": "2026-10-25T03:54:22.644811+00:00",
   "overview_records": [
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset_Category": "Bitcoin",
       "Netflow_24h_USD": "-$137,900,000",
@@ -19,7 +19,7 @@
       "Yearly_Weakest_Month": "-$4,982,737,716 (2026-6)"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset_Category": "Ethereum",
       "Netflow_24h_USD": "+$4,400,000",
@@ -36,7 +36,7 @@
       "Yearly_Weakest_Month": "-$4,982,737,716 (2026-6)"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset_Category": "Solana",
       "Netflow_24h_USD": "+$0",
@@ -53,7 +53,7 @@
       "Yearly_Weakest_Month": "-$4,982,737,716 (2026-6)"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset_Category": "XRP",
       "Netflow_24h_USD": "+$0",
@@ -70,7 +70,7 @@
       "Yearly_Weakest_Month": "-$4,982,737,716 (2026-6)"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset_Category": "Hyperliquid",
       "Netflow_24h_USD": "+$0",
@@ -89,7 +89,7 @@
   ],
   "institution_records": [
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "1",
       "Institution_Name": "Blackrock",
@@ -97,7 +97,7 @@
       "Total_ETF_Count": "2"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "2",
       "Institution_Name": "Grayscale",
@@ -105,7 +105,7 @@
       "Total_ETF_Count": "7"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "3",
       "Institution_Name": "Fidelity",
@@ -113,7 +113,7 @@
       "Total_ETF_Count": "4"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "4",
       "Institution_Name": "Bitwise",
@@ -121,7 +121,7 @@
       "Total_ETF_Count": "5"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "5",
       "Institution_Name": "21 Shares",
@@ -129,7 +129,7 @@
       "Total_ETF_Count": "4"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Rank": "6",
       "Institution_Name": "VanEck",
@@ -139,7 +139,7 @@
   ],
   "all_etfs": [
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "1",
@@ -159,7 +159,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "2",
@@ -179,7 +179,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "3",
@@ -199,7 +199,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "4",
@@ -219,7 +219,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "5",
@@ -239,7 +239,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "6",
@@ -259,7 +259,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "7",
@@ -279,7 +279,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "8",
@@ -299,7 +299,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "9",
@@ -319,7 +319,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "10",
@@ -339,7 +339,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "11",
@@ -359,7 +359,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "12",
@@ -379,7 +379,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "13",
@@ -399,7 +399,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "14",
@@ -419,7 +419,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Multi-Asset",
       "Rank": "15",
@@ -439,7 +439,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Multi-Asset",
       "Rank": "16",
@@ -459,7 +459,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Multi-Asset",
       "Rank": "17",
@@ -479,7 +479,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "18",
@@ -499,7 +499,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Bitcoin",
       "Rank": "19",
@@ -519,7 +519,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "20",
@@ -539,7 +539,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "21",
@@ -559,7 +559,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "22",
@@ -579,7 +579,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "23",
@@ -599,7 +599,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "24",
@@ -619,7 +619,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "25",
@@ -639,7 +639,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "26",
@@ -659,7 +659,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "27",
@@ -679,7 +679,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "28",
@@ -699,7 +699,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "29",
@@ -719,7 +719,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Ethereum",
       "Rank": "30",
@@ -739,7 +739,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Solana",
       "Rank": "31",
@@ -759,7 +759,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Solana",
       "Rank": "32",
@@ -779,7 +779,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Solana",
       "Rank": "33",
@@ -799,7 +799,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Solana",
       "Rank": "34",
@@ -819,7 +819,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Solana",
       "Rank": "35",
@@ -839,7 +839,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "XRP",
       "Rank": "36",
@@ -859,7 +859,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "XRP",
       "Rank": "37",
@@ -879,7 +879,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "XRP",
       "Rank": "38",
@@ -899,7 +899,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "XRP",
       "Rank": "39",
@@ -919,7 +919,7 @@
       "Status": "Trading"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Hyperliquid",
       "Rank": "40",
@@ -939,7 +939,7 @@
       "Status": "Closed"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Hyperliquid",
       "Rank": "41",
@@ -959,7 +959,7 @@
       "Status": "Closed"
     },
     {
-      "Timestamp_UTC": "2026-10-25 03:25:20 UTC",
+      "Timestamp_UTC": "2026-10-25 03:54:22 UTC",
       "Date": "2026-10-25",
       "Asset": "Hyperliquid",
       "Rank": "42",
