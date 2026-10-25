@@ -4,10 +4,10 @@
   "status": "RUNNING",
   "engine_probed": true,
   "engine_version": "2.0.0.dev0",
-  "heartbeat": 1020,
+  "heartbeat": 1029,
   "pid": 632,
-  "uptime_seconds": 30572.1,
-  "last_heartbeat_utc": "2026-10-25 02:22:48 UTC",
+  "uptime_seconds": 30842.1,
+  "last_heartbeat_utc": "2026-10-25 02:27:18 UTC",
   "listening_port": 8083,
   "capabilities": [
     "directional_ablation",
