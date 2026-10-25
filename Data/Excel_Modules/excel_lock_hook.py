@@ -18,9 +18,10 @@ import time
 import openpyxl
 
 try:
-    from filelock import FileLock
+    import filelock
+    _OrigFileLock = filelock.FileLock
 except ImportError:
-    FileLock = None
+    _OrigFileLock = None
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "Data"
@@ -40,7 +41,7 @@ class ReentrantFileLock:
     def __init__(self, lock_path: str, timeout: float = 60.0):
         self.lock_path = lock_path
         self.timeout = timeout
-        self.fl = FileLock(lock_path, timeout=timeout) if FileLock else None
+        self.fl = _OrigFileLock(lock_path, timeout=timeout) if _OrigFileLock else None
 
     def __enter__(self):
         depth = getattr(_tls, "depth", 0)
@@ -61,6 +62,14 @@ class ReentrantFileLock:
 
 def get_lock(timeout=60.0):
     return ReentrantFileLock(str(LOCK_PATH), timeout=timeout)
+
+
+# Globally patch filelock.FileLock so every module gets re-entrant locking automatically
+if _OrigFileLock is not None:
+    filelock.FileLock = ReentrantFileLock
+    FileLock = ReentrantFileLock
+else:
+    FileLock = None
 
 
 def locked_load_workbook(filename, *args, **kwargs):
