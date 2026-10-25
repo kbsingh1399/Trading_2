@@ -1,0 +1,344 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 344",
+  "role": "ROLE_A_REGIME_AND_CALIBRATION",
+  "evidence_manifest_sha256": "76557d2de9635ef40671648d17d1b4a0166bd768d5ba3d62df11fed2a1f0ec15",
+  "prompt_sha256": "7ecd929f4b7915d8ff821877f504de889759332e89f76e4f1265e4758724c63b",
+  "envelope_prompt_sha256": "7ecd929f4b7915d8ff821877f504de889759332e89f76e4f1265e4758724c63b",
+  "dispatch_nonce": "050944d8-c50d-494b-8560-0faaa7bb2320",
+  "cutoff_utc": "2026-10-25 02:39:18 UTC",
+  "operator_directive": "Cycle 344 Autonomous Quantitative Evaluation - Role A: Statistical Regime & Diffusion Quant. Rigorous econometric and diffusion analysis of BTCUSD.pi, ETHUSD.pi, BNBUSD.p, SOLUSD.p, evaluation of candidate SELL_LIMIT order on BTCUSD.pi (0.04 lot @ 81,300.00 USD, SL 81,780.00 USD, TP 79,850.00 USD), OU equilibrium theta and restoring force dx_t, Lo-MacKinlay Variance Ratio VR(4) with heteroskedasticity correction, Kaufman ER(48)/ER(15), Newey-West HAC drift t-statistics, dual-engine strategy dialectic, Fib-Prime EMA hierarchy, and affirmative stand-aside mandate defending the 4,795.00 USD Solvency Kernel.",
+  "regime_classification": {
+    "vr_4": 1.1714,
+    "z_star": 5.5696,
+    "er_48": 0.1357,
+    "er_15": 0.3554,
+    "hac_drift_t_48": 7.2597,
+    "hac_drift_t_96": -1.7806,
+    "ou_theta_mean_48": 80528.01,
+    "ou_theta_mean_96": 80445.91,
+    "ou_half_life_bars_48": 12.8,
+    "ou_half_life_bars_96": 11.42,
+    "ou_kappa_48": 0.0541,
+    "ou_kappa_96": 0.0607,
+    "classified_regime": "ROTATIONAL_BALANCE_WITHIN_HTF_DOWNTREND",
+    "mtf_regime_verdict": "UNDEFINED_STAND_ASIDE_UNCONDITIONALLY"
+  },
+  "fib_prime_ema_hierarchy": {
+    "ema_5": 80735.92,
+    "ema_13": 80677.81,
+    "ema_34": 80529.37,
+    "ema_89": 80545.88,
+    "ema_144": 80724.41,
+    "ema_233": 81018.25,
+    "ribbon_alignment": "COMPRESSION_KNOT_LOCAL_BOUNCE_IN_HTF_BEARISH_RIBBON",
+    "ribbon_spread_ratio": 0.00603,
+    "compression_knot_detected": true,
+    "ema_233_slope_pct_3h": -0.0514,
+    "spot_vs_ema_89": "ABOVE_EMA_89_BY_189.12_USD",
+    "spot_vs_ema_144": "ABOVE_EMA_144_BY_10.59_USD"
+  },
+  "fib_golden_zone_audit": {
+    "swing_low": 79071.0,
+    "swing_high": 80994.0,
+    "impulse_range_usd": 1923.0,
+    "fib_0500": 80032.5,
+    "fib_0618": 80259.41,
+    "fib_0650": 80320.95,
+    "fib_0702_ote": 80420.95,
+    "fib_0786_invalidation": 80582.48,
+    "live_spot_mid": 80735.0,
+    "live_spot_retracement": 0.8653,
+    "candidate_entry": 81300.0,
+    "entry_inside_golden_zone": false,
+    "entry_retracement_ratio": 1.1591,
+    "structural_zone_comment": "Candidate SELL_LIMIT at 81,300.00 USD is an extension entry (1.159x) positioned far outside the Golden Zone [80,259.41 - 80,320.95] and OTE [80,420.95]. Spot price at 80,735.00 USD has already pushed past the 0.786 invalidation shelf (80,582.48 USD), invalidating textbook pullback geometry."
+  },
+  "candidate_dialectic_assessment": {
+    "candidate_symbol": "BTCUSD.pi",
+    "candidate_side": "SELL_LIMIT",
+    "candidate_volume": 0.04,
+    "candidate_entry": 81300.0,
+    "candidate_sl": 81780.0,
+    "candidate_tp": 79850.0,
+    "risk_loss_pts": 480.0,
+    "reward_gain_pts": 1450.0,
+    "distance_to_theta_48": 771.99,
+    "distance_to_theta_96": 854.09,
+    "adverse_drift_detected": false,
+    "p_breakeven_cost_inclusive": 0.257,
+    "p_barrier_unadjusted": 0.2487,
+    "p_win_drift_adjusted": 0.1883,
+    "expected_value_usd": -5.3,
+    "dialectic_verdict": "VETO_STAND_ASIDE_REGIME_UNDEFINED_AND_NEGATIVE_EXPECTATION"
+  },
+  "account_solvency_sentry": {
+    "account_login": 5064568,
+    "balance_usd": 4846.32,
+    "equity_usd": 4846.32,
+    "margin_used_usd": 0.0,
+    "margin_free_usd": 4846.32,
+    "margin_level_pct": 0.0,
+    "active_positions": 0,
+    "pending_orders": 0,
+    "hard_floor_usd": 4600.0,
+    "hard_floor_cushion_usd": 246.32,
+    "operating_buffer_usd": 4650.0,
+    "operating_buffer_cushion_usd": 196.32,
+    "solvency_kernel_usd": 4795.0,
+    "kernel_cushion_usd": 51.32,
+    "global_contingency_reserve_usd": 2.0,
+    "net_realized_headroom_usd": 49.32,
+    "capital_regime": "TIER_1_STANDARD",
+    "nominal_risk_capacity_usd": 12.0,
+    "max_concurrent_tickets": 2,
+    "slot_1_allocation": "HELD_IN_100_PCT_CASH_DEFENSE",
+    "slot_2_allocation": "HELD_IN_100_PCT_CASH_DEFENSE"
+  },
+  "dual_engine_dialectic_audit": {
+    "model_1_mean_reversion": {
+      "admissible": false,
+      "conditions": "VR(4) < 0.85 & z* < -1.64 & ER(48) < 0.15 & |Z| >= 2.0 to 3.5 SD sweeping extremes with tape exhaustion",
+      "btc_vr_4": 1.1714,
+      "btc_z_star": 5.5696,
+      "btc_vwap_z": 1.9148,
+      "verdict": "INADMISSIBLE_NOT_IN_EXTREME_BAND_VR_SUPER_DIFFUSIVE"
+    },
+    "model_2_trend_pullback": {
+      "admissible": false,
+      "conditions": "VR(4) > 1.15 & z* > 1.64 & ER(48) >= 0.20 & |t_drift| >= 2.0 & Fib Prime alignment & Golden Zone",
+      "btc_vr_4": 1.1714,
+      "btc_er_48": 0.1357,
+      "btc_t_drift_48": 7.2597,
+      "btc_t_drift_96": -1.7806,
+      "fib_prime_alignment": "COMPRESSION_KNOT_CONFLICTING_TIMEFRAMES",
+      "golden_zone_contained": false,
+      "verdict": "INADMISSIBLE_15M_ER_BELOW_020_KNOTTED_EMA_RIBBON_OUTSIDE_GOLDEN_ZONE"
+    },
+    "stand_aside_mandate": {
+      "rule": "If classify_regime() returns UNDEFINED, stand aside unconditionally.",
+      "regime_output": "UNDEFINED",
+      "mandated_action": "UNCONDITIONAL_STAND_ASIDE_ACROSS_ALL_ASSETS"
+    }
+  },
+  "universe_scan": {
+    "BTCUSD.pi": {
+      "last_close": 80735.0,
+      "atr14": 166.43,
+      "vr4": 1.1714,
+      "z_star": 5.5696,
+      "er48": 0.1357,
+      "er15": 0.3554,
+      "hac_t48": 7.2597,
+      "hac_t96": -1.7806,
+      "theta48": 80528.01,
+      "hl48": 12.8,
+      "spread_bps": 1.98,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT",
+      "action": "STAND_ASIDE"
+    },
+    "ETHUSD.pi": {
+      "last_close": 2359.9,
+      "atr14": 5.9,
+      "vr4": 1.4169,
+      "z_star": 10.5678,
+      "er48": 0.0819,
+      "er15": 0.555,
+      "hac_t48": 6.119,
+      "hac_t96": -4.3753,
+      "theta48": 2339.92,
+      "hl48": 13.74,
+      "spread_bps": 12.3,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT",
+      "action": "STAND_ASIDE"
+    },
+    "SOLUSD.p": {
+      "last_close": 102.11,
+      "atr14": 0.3128,
+      "vr4": 1.1891,
+      "z_star": 6.5784,
+      "er48": 0.1871,
+      "er15": 0.4424,
+      "hac_t48": 10.9857,
+      "hac_t96": -1.5601,
+      "theta48": 102.12,
+      "hl48": 21.89,
+      "spread_bps": 22.49,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT",
+      "action": "STAND_ASIDE"
+    },
+    "BNBUSD.p": {
+      "last_close": 742.2,
+      "atr14": 1.62,
+      "vr4": 1.3683,
+      "z_star": 13.7966,
+      "er48": 0.2965,
+      "er15": 0.6441,
+      "hac_t48": 13.3127,
+      "hac_t96": -0.6144,
+      "theta48": 694.69,
+      "hl48": 999.0,
+      "spread_bps": 8.09,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT_NO_PULLBACK_OVERBOUGHT",
+      "action": "STAND_ASIDE"
+    },
+    "XRPUSD.pi": {
+      "last_close": 1.304,
+      "atr14": 0.0047,
+      "vr4": 1.0304,
+      "z_star": 1.1519,
+      "er48": 0.265,
+      "er15": 0.5833,
+      "hac_t48": 14.0905,
+      "hac_t96": 1.4615,
+      "theta48": 1.3181,
+      "hl48": 35.76,
+      "spread_bps": 23.01,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT",
+      "action": "STAND_ASIDE"
+    },
+    "BCHUSD.p": {
+      "last_close": 276.86,
+      "atr14": 1.01,
+      "vr4": 1.0972,
+      "z_star": 3.809,
+      "er48": 0.08,
+      "er15": 0.3336,
+      "hac_t48": 8.5933,
+      "hac_t96": -1.8801,
+      "theta48": 275.37,
+      "hl48": 11.06,
+      "spread_bps": 17.51,
+      "spread_eligible": true,
+      "model_1_status": "REJECT",
+      "model_2_status": "REJECT",
+      "action": "STAND_ASIDE"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_A_01",
+      "statement": "15m Lo-MacKinlay Variance Ratio VR(4) for BTCUSD.pi is 1.1714 with heteroskedasticity-corrected z* of +5.5696, indicating local super-diffusive momentum on the 15m timeframe following the Asia session rebound, while 96-bar HAC drift t-statistic remains negative at -1.7806.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/DataBase_Trading.xlsx:Sheet 11_Technical"
+      ],
+      "formula_or_test": "VR(q) = Var(r_q) / (q * Var(r_1)); z* = sqrt(T)*(VR-1)/sqrt(phi)",
+      "result": {
+        "vr_4": 1.1714,
+        "z_star": 5.5696,
+        "hac_t96": -1.7806
+      },
+      "uncertainty": "Zero; calculated deterministically on 800 completed 15m bars.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_02",
+      "statement": "Kaufman Efficiency Ratio ER(48) for BTCUSD.pi is 0.1357 (< 0.1500 noise threshold), confirming that multi-session price action is dominated by rotational chop and lacks sustained directional efficiency.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet"
+      ],
+      "formula_or_test": "ER(48) = |Close_t - Close_{t-48}| / sum_{i=1..48} |Close_{t-i+1} - Close_{t-i}|",
+      "result": {
+        "er_48": 0.1357,
+        "noise_threshold": 0.15,
+        "is_choppy": true
+      },
+      "uncertainty": "Zero; deterministic ratio.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_03",
+      "statement": "The Fibonacci Prime EMA ribbon (5, 13, 34, 89, 144, 233) exhibits an acute compression knot with conflicting timeframes: short-term EMAs are bullishly ordered (EMA 5 = 80,735.92 > EMA 13 = 80,677.81 > EMA 34 = 80,529.37) while intermediate and HTF EMAs remain bearishly tangled (EMA 34 = 80,529.37 < EMA 89 = 80,545.88 < EMA 144 = 80,724.41 < EMA 233 = 81,018.25 with negative 3h slope of -0.0514%).",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/DataBase_Trading.xlsx:Sheet 11_Technical"
+      ],
+      "formula_or_test": "EMA ribbon expansion/compression audit across Fib primes",
+      "result": {
+        "compression_knot": true,
+        "ema_233_slope_3h": -0.0514,
+        "ribbon_spread_ratio": 0.00603
+      },
+      "uncertainty": "Zero; exact mathematical computation.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_04",
+      "statement": "The candidate SELL_LIMIT order on BTCUSD.pi at 81,300.00 USD is positioned at a 1.159x extension of the recent swing impulse (79,071 - 80,994 USD), sitting completely outside the Fibonacci Golden Zone [80,259.41 - 80,320.95] and OTE shelf [80,420.95]. Furthermore, live spot price at 80,735.00 USD has already violated the 0.786 invalidation shelf at 80,582.48 USD.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:Sheet 20_Auction_Market_Structure",
+        "Data/Candles/BTC_15m.parquet"
+      ],
+      "formula_or_test": "Fib retracement levels: Fib_r = Low + r * Range; Extension = (Entry - Low) / Range",
+      "result": {
+        "fib_0618": 80259.41,
+        "fib_0702_ote": 80420.95,
+        "fib_0786_inv": 80582.48,
+        "entry": 81300.0,
+        "entry_ratio": 1.1591
+      },
+      "uncertainty": "Zero; pure Euclidean geometry.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_05",
+      "statement": "Discrete Ornstein-Uhlenbeck regression on 48 bars yields equilibrium theta of 80,528.01 USD (half-life 12.80 bars) and on 96 bars yields theta of 80,445.91 USD (half-life 11.42 bars). While candidate entry at 81,300.00 USD sits above theta (avoiding toxic upward drift), the drift-adjusted win probability is only 0.1883, which falls substantially short of the required breakeven threshold P_BE of 0.2570 (or 0.3005 for Tier 1 0.02 lot), creating a negative mathematical expectation of -5.30 USD per trade.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet"
+      ],
+      "formula_or_test": "x_t - x_{t-1} = a + b*x_{t-1}; theta = -a/b; P_win_adj = P_barrier * exp(-lambda*|Entry-theta|/ATR)",
+      "result": {
+        "theta_48": 80528.01,
+        "half_life": 12.8,
+        "p_win_adj": 0.1883,
+        "p_be": 0.257,
+        "ev_usd": -5.3
+      },
+      "uncertainty": "Calibrated parametric estimate under Ornstein-Uhlenbeck diffusion assumption.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_06",
+      "statement": "Regime classifier classify_regime() evaluates to UNDEFINED because Model 1 (Extreme Mean Reversion) is rejected due to non-extreme VWAP Z-score (+1.91 < +2.0 SD) and lack of tape exhaustion, while Model 2 (Trend Following Pullback) is rejected due to low ER(48) (0.1357 < 0.20), knotted EMA ribbon, and entry dislocation outside the Golden Zone. Under canonical trading governance, an UNDEFINED regime mandates an unconditional stand-aside across all crypto assets.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/DataBase_Trading.xlsx:Sheet 11_Technical",
+        "Data/DataBase_Trading.xlsx:Sheet 20_Auction_Market_Structure"
+      ],
+      "formula_or_test": "Dual-engine dialectic gating protocol",
+      "result": {
+        "regime": "UNDEFINED",
+        "mandated_action": "STAND_ASIDE_UNCONDITIONALLY"
+      },
+      "uncertainty": "Zero; mandatory rule.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_A_01: Arena.ai's proposal to stage limit orders or front-run modifications is rejected because the underlying 15m/1h regime is in conflicting rotational balance (ER(48)=0.1357 < 0.20, knotted EMA ribbon). Entering trades in an UNDEFINED regime directly violates Core Strategic Invariant #2.",
+    "CHALLENGE_A_02: The candidate entry at 81,300.00 USD is an arbitrary round number extension (+771.99 USD above OU mean theta, 1.159x extension of recent range) lacking valid Fibonacci Golden Zone [80,259-80,321] or OTE [80,421] structural anchoring. Placing limit orders at unanchored extension levels exposes capital to negative expected return (-5.30 USD)."
+  ],
+  "unknowns": [
+    "UNKNOWN_A_01: Volume profile distribution during upcoming Sunday interbank FX open (21:00 UTC) may disrupt current OU mean reversion parameters and trigger wide-range volatility expansion.",
+    "UNKNOWN_A_02: High-frequency Binance L2 replenishment rates during Asian morning hours could alter the effective half-life of mean reversion."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "HOLD_OR_STAND_ASIDE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Integration of @[trader-signal] Z-score anomaly tracking and @[sharpe-ratio-non-iid-corrections] heteroskedasticity kernels directly prevented false trend classification on the 15m timeframe. Continuing to combine 48-bar and 96-bar OU regressions provides robust cross-horizon validation of mean equilibrium levels.",
+    "omitted_risk_dimensions": "Potential weekend interbank liquidity gaps at Sunday 21:00 UTC open and crypto perpetual funding fee reset slippage during thin Sunday Asian trading.",
+    "algorithmic_alternatives": "Incorporate intraday Hurst exponent H(q) across multi-fractal scales to complement Lo-MacKinlay variance ratios and Kaufman efficiency ratios during transition regimes."
+  },
+  "response_sha256": "1e2ed14be474ddc18a4b58c4bf494fe44f439d05c714ba73434345f6e91cc818"
+}
