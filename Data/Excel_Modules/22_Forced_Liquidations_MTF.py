@@ -13,6 +13,11 @@ Conforms strictly to xlsx-official formatting guidelines:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import datetime
 import os
 import pathlib

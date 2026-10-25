@@ -36,6 +36,11 @@ Outputs:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import argparse
 import datetime
 import json
@@ -805,7 +810,7 @@ def dump_auction_structure_to_excel(
                 except Exception as _e:
                     pass
         
-            tmp_path = excel_path.with_name(f"{excel_path.stem}.tmp{excel_path.suffix}")
+            tmp_path = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
             wb.save(tmp_path)
             wb.close()
         

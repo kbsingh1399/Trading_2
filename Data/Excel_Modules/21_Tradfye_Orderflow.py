@@ -29,6 +29,11 @@ Key Capabilities:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import concurrent.futures
 import datetime
 import json

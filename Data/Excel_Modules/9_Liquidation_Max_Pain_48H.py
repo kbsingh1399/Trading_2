@@ -9,6 +9,11 @@ and writes to worksheet '9_Liquidation_Max_Pain_48H' in Data/DataBase_Trading.xl
 """
 
 from __future__ import annotations
+
+try:
+    import excel_lock_hook
+except Exception:
+    pass
 import sys
 import pathlib
 

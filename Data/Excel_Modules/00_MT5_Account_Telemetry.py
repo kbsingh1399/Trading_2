@@ -19,6 +19,11 @@ proof of:
 from __future__ import annotations
 
 try:
+    import excel_lock_hook
+except Exception:
+    pass
+
+try:
     from logger_config import stamp_sheet_completion_ist, get_current_timestamps
 except ImportError:
     stamp_sheet_completion_ist = None

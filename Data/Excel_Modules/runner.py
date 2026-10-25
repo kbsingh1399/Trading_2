@@ -52,10 +52,6 @@ log = logging.getLogger("ExcelRunner")
 # 1. Tier 1A: Pure API Modules (Execute in parallel across 6 worker threads)
 API_MODULES = [
     {"id": 0, "name": "MT5 Telemetry", "script": MODULES_DIR / "00_MT5_Account_Telemetry.py", "sheet": "00_MT5_Account_Telemetry", "timeout": 120, "args": []},
-    {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "sheet": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "sheet": "5_OI", "timeout": 180, "args": []},
-    {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "sheet": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 9, "name": "Funding Fee Settlement", "script": MODULES_DIR / "6_Funding_Fee_Settlement.py", "sheet": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 19, "name": "Technical Indicators", "script": MODULES_DIR / "11_Technical.py", "sheet": "11_Technical", "timeout": 120, "args": []},
     {"id": 20, "name": "Hyperdash Flow", "script": MODULES_DIR / "12_Hyperdash.py", "sheet": "12_Hyperdash", "timeout": 120, "args": []},
     {"id": 21, "name": "Hyperliquid L1", "script": MODULES_DIR / "13_Hyperliquid.py", "sheet": "13_Hyperliquid", "timeout": 120, "args": []},
@@ -64,7 +60,7 @@ API_MODULES = [
     {"id": 24, "name": "Hyperdash Telegram Intel", "script": MODULES_DIR / "16_Hyperdash_telegram_Intel.py", "sheet": "16_Hyperdash_telegram_Intel", "timeout": 120, "args": ["--pages", "10", "--limit", "1000"]},
     {"id": 25, "name": "Orderbook & Whale Attribution", "script": MODULES_DIR / "17_Orderbook.py", "sheet": "17_Orderbook", "timeout": 180, "args": []},
     {"id": 26, "name": "CVD Engine", "script": MODULES_DIR / "18_CVD.py", "sheet": "18_CVD", "timeout": 240, "args": ["--max-excel-rows", "1500"]},
-    {"id": 27, "name": "Auction Market Structure", "script": MODULES_DIR / "20_Auction_Market_Structure.py", "sheet": "20_Auction_Market_Structure", "timeout": 120, "args": []},
+    {"id": 27, "name": "Auction Market Structure", "script": MODULES_DIR / "20_Auction_Market_Structure.py", "sheet": "20_Auction_Market_Structure", "timeout": 180, "args": []},
     {"id": 28, "name": "Tradfye Orderflow", "script": MODULES_DIR / "21_Tradfye_Orderflow.py", "sheet": "21_Tradfye_Orderflow", "timeout": 120, "args": []},
     {"id": 31, "name": "Forced Liquidations MTF", "script": MODULES_DIR / "22_Forced_Liquidations_MTF.py", "sheet": "22_Forced_Liquidations_MTF", "timeout": 120, "args": []},
 ]
@@ -74,8 +70,12 @@ BROWSER_MODULES = [
     {"id": 1, "name": "Crypto ETF Flows", "script": MODULES_DIR / "1_Crypto_ETF_Flows.py", "sheet": "1_Crypto_ETF_Flows", "timeout": 120, "args": []},
     {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "10"]},
     {"id": 3, "name": "LS Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 180, "args": []},
-    {"id": 4, "name": "LS Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 120, "args": []},
-    {"id": 5, "name": "LS Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 120, "args": []},
+    {"id": 4, "name": "LS Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 180, "args": []},
+    {"id": 5, "name": "LS Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 180, "args": []},
+    {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "sheet": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "sheet": "5_OI", "timeout": 180, "args": []},
+    {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "sheet": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 9, "name": "Funding Fee Settlement", "script": MODULES_DIR / "6_Funding_Fee_Settlement.py", "sheet": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "sheet": "7_Liq_Heapmap", "timeout": 120, "args": []},
     {"id": 11, "name": "Live Liquidations", "script": MODULES_DIR / "7_Live_Liq.py", "sheet": "7_Live_Liq", "timeout": 120, "args": []},
     {"id": 12, "name": "Liq Map 1D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_1D.py", "sheet": "8_Exchange_Liquidation_Map_1D", "timeout": 120, "args": []},
@@ -278,7 +278,7 @@ def execute_refresh_stale(max_age_min: float = 5.0) -> dict:
     results = []
     if api_targets:
         log.info("Executing %d stale API modules in parallel (6 workers)...", len(api_targets))
-        with concurrent.futures.ThreadPoolExecutor(max_workers=min(6, len(api_targets))) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(2, len(api_targets))) as executor:
             future_to_mod = {executor.submit(run_single_module, mod): mod for mod in api_targets}
             for future in concurrent.futures.as_completed(future_to_mod):
                 mod = future_to_mod[future]
@@ -293,7 +293,7 @@ def execute_refresh_stale(max_age_min: float = 5.0) -> dict:
 
     if browser_targets:
         log.info("Executing %d stale Browser modules across parallel Edge tabs (3 workers)...", len(browser_targets))
-        with concurrent.futures.ThreadPoolExecutor(max_workers=min(3, len(browser_targets))) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(2, len(browser_targets))) as executor:
             future_to_mod = {executor.submit(run_single_module, mod): mod for mod in browser_targets}
             for future in concurrent.futures.as_completed(future_to_mod):
                 mod = future_to_mod[future]

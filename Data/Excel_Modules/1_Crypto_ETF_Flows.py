@@ -30,6 +30,11 @@ Institutional Quantitative Context Columns:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import asyncio
 import datetime
 import json

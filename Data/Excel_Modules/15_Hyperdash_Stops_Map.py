@@ -17,6 +17,11 @@ Layout Matches Operator Specifications & 8_Exchange_Liquidation_Map_1D:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import argparse
 import datetime
 import json

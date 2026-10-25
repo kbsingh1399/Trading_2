@@ -22,6 +22,11 @@ Outputs to worksheet '17_Orderbook' in Data/DataBase_Trading.xlsx (positioned at
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import argparse
 import datetime
 import json

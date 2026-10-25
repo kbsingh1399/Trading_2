@@ -20,6 +20,11 @@ Browser Hygiene:
 
 from __future__ import annotations
 
+try:
+    import excel_lock_hook
+except Exception:
+    pass
+
 import argparse
 import asyncio
 import datetime
