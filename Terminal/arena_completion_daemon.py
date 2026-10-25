@@ -238,7 +238,7 @@ async def probe_zai_state() -> dict:
         }
 
         const combined = workspaceFileText
-            ? (chatText + "\n\n================================================================================\nZ.AI ATTACHED OUTPUT FILE: " + workspaceFileName + " (" + workspaceFileText.length + " chars)\n================================================================================\n\n" + workspaceFileText)
+            ? (chatText + "\\n\\n================================================================================\\nZ.AI ATTACHED OUTPUT FILE: " + workspaceFileName + " (" + workspaceFileText.length + " chars)\\n================================================================================\\n\\n" + workspaceFileText)
             : chatText;
         return {
             connected: true,

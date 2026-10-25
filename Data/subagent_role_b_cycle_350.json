@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle-20261025T065624Z",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "289b7a1198e9f1e564562d72e0baf57947bda139c3773f515dd4da6b56e4bc5f",
+  "prompt_sha256": "2da50af0894606c433e04651b419b476253501a742c1cdfcec57134b5bba45ec",
+  "dispatch_nonce": "413d3cb9-e286-4b79-a16f-9419c4fcae07",
+  "microstructure_audit": {
+    "broker_spread_bps": 2.12,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "backing_whale_wall_price": null,
+    "backing_whale_wall_notional_usd": 0.0,
+    "backing_whale_wall_persisted_seconds": 0.0,
+    "whale_persistence_status": "FAIL_ZERO_WALL_AT_ENTRY_AUCTION_VOID",
+    "sl_anchor_status": "FAIL_UNANCHORED_IN_23M_SHORT_LIQ_MAGNET",
+    "adverse_selection_projected_r0": -0.417
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 83087.5,
+    "monday_ib_l": 80743.0,
+    "monday_ib_mid": 81915.25,
+    "monday_sweep_reclaim_status": "TESTING_MONDAY_LOW_SWEEP_RECLAIM",
+    "asian_session_extreme_sweep": "INSIDE_ASIAN_RANGE_80115_80911",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL_79634",
+    "developing_value_area_state": "VALUE_MIGRATING_UPWARD"
+  },
+  "fib_invalidation_shelf_check": {
+    "shelf_0786_price": 79464.76,
+    "sl_price": 81900.0,
+    "sl_buffer_atr_multiple": null,
+    "anchor_integrity": "FAIL_ENTRY_AND_SL_DISCONNECTED_FROM_FIB_SHELF"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01",
+      "statement": "Proposed limit entry at 81,300.0 sits in an auction void with 0 resting whale wall within 0.40 ATR (nearest ask wall in Sheet 10 is at 80,996.70, a distance of 303.30 USD = 2.185 ATR), violating the mandatory resting wall backing invariant.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:10_Whale_Orders:166_rows",
+        "DataBase_Trading.xlsx:17_Orderbook:L2_AGGREGATED"
+      ],
+      "formula_or_test": "min_distance_to_wall <= 0.40 * ATR (138.83 USD) = 55.53 USD. Actual distance = 303.30 USD = 2.185 ATR.",
+      "result": {
+        "actual_distance_usd": 303.3,
+        "max_allowed_distance_usd": 55.53,
+        "whale_wall_at_entry_notional": 0.0
+      },
+      "uncertainty": "Deterministic orderbook scan confirms 0 whale orders >= 81,000 USD in 166 aggregated records.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_02",
+      "statement": "Queue fill probability within 15m TTL for an entry placed 6.69 ATR away from live mid-market (80,371.50) is virtually zero (P(fill) approx 0.00004).",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:17_Orderbook",
+        "DataBase_Trading.xlsx:11_Technical",
+        "execution_preflight_receipt.json:broker_tick"
+      ],
+      "formula_or_test": "P(fill | d, Q, t) = exp(-lambda * d / ATR) * (1 - Toxicity). d = 928.50 USD, ATR = 138.83 USD, d/ATR = 6.688.",
+      "result": {
+        "p_fill_conditioned": 4.4e-05,
+        "distance_atr": 6.688
+      },
+      "uncertainty": "Standard Poisson order arrival model parameter lambda in [1.5, 2.0] yields P(fill) in [0.0000016, 0.000044].",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_03",
+      "statement": "Protective stop loss at 81,900.0 is fatally positioned inside a massive 23.86M USD short liquidation pool at 81,850.0 and adjacent to 4.00M USD buy stops at 81,950.0.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:14_Hyperdash_Liq_Map",
+        "DataBase_Trading.xlsx:15_Hyperdash_Stops_Map"
+      ],
+      "formula_or_test": "Check density of opposing stop clusters and liquidation magnets within +/- 100 USD of proposed SL.",
+      "result": {
+        "short_liquidation_at_81850_usd": 23860000.0,
+        "buy_stops_at_81950_usd": 4000000.0,
+        "cumulative_short_liq_pool_usd": 34420000.0
+      },
+      "uncertainty": "Hyperdash stop and liquidation density maps refreshed at 05:58:14 and 05:59:06 UTC confirm concentrated short squeeze cascades.",
+      "status": "CONFIRMED_FALSIFIES_SL_GEOMETRY"
+    },
+    {
+      "claim_id": "CLAIM_B_04",
+      "statement": "Entry at 81,300.0 sits exactly 35.21 USD below the unswept 24H Short Max Pain liquidation magnet at 81,335.21 (58.24M USD notional), guaranteeing toxic short-squeeze overrun.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:9_Liquidation_Max_Pain_24H",
+        "execution_preflight_receipt.json:candidate"
+      ],
+      "formula_or_test": "Entry must not sit beneath unswept major Short Max Pain liquidation magnet: 81,300 < 81,335.21 (+4.3 bps magnet overrun).",
+      "result": {
+        "entry_price": 81300.0,
+        "short_max_pain_price": 81335.21,
+        "short_max_pain_notional_usd": 58240000.0,
+        "distance_to_max_pain_usd": 35.21
+      },
+      "uncertainty": "Deterministic Sheet 9 record confirms 58.24M USD liquidation pool.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_05",
+      "statement": "Projected 5-minute post-fill adverse selection is -0.417 R0, severely violating the -0.15 R0 tolerance limit and guaranteeing winner's curse.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:14_Hyperdash_Liq_Map",
+        "DataBase_Trading.xlsx:21_Tradfye_Orderflow"
+      ],
+      "formula_or_test": "AS(t + 5m) = Side * (Mid_{t+5m} - Price_fill) / R0. Mid_{t+5m} = 81,550 USD post-short squeeze through 81,150-81,250 liq bands. R0 = 600 USD.",
+      "result": {
+        "as_projected_r0": -0.417,
+        "as_threshold_r0": -0.15
+      },
+      "uncertainty": "Adverse selection is heavily negative due to directional buy stops triggering on fill path.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_B_01: Arena candidate CAND_BTC_PREFLIGHT_81300 proposes SELL_LIMIT at 81,300 with SL at 81,900; however, independent microstructure audit reveals 0 resting whale asks above 81,000 in Sheet 10, meaning the order sits completely unbacked in an auction void.",
+    "CHALLENGE_B_02: SL at 81,900 is set 50 points above the 23.86M USD short liquidation magnet at 81,850, ensuring that any momentum reaching entry will experience violent cascade slippage straight through the protective stop.",
+    "CHALLENGE_B_03: Sheet 21 Tradfye Footprint POC shows aggressive buyer domination and net delta expansion (+64.50M USD at 80,504, POC 80,502; +6.07M USD at 80,380, POC 80,375.80), while developing Value Area is migrating upward relative to prior day. Selling short into upward value area migration at Monday Low violates core auction market principles.",
+    "CHALLENGE_B_04: Take Profit at 79,850 sits below the major institutional resting buy walls at 79,999 (15.03M USD) and 79,900 (3.00M USD) rather than front-running them by 5 to 10 bps (~80,040-80,080), violating Take Profit front-running geometry."
+  ],
+  "unknowns": [
+    "UNKNOWN_B_01: Duration and refill rates of resting buy support walls at 79,900-80,000 across the upcoming London/NY overlap session."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_UNBACKED_MICROSTRUCTURE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Applied @[market-ingest] and @[market-pattern] to ingest aggregated L2 orderbook depth and trace liquidation density magnets. Integrated @[trader-portfolio] liquidity impact principles to prove that fill at 81,300 requires toxic liquidity sweeps through the 58.24M USD Short Max Pain cluster.",
+    "omitted_risk_dimensions": "Arena's preflight candidate omitted evaluating the 23.86M USD short liquidation pool at 81,850 and the 58.24M USD Short Max Pain magnet at 81,335.21, both of which act as fatal slippage and stop-run accelerators.",
+    "algorithmic_alternatives": "If a short fade is sought, entry must be anchored strictly beneath verified persistent whale asks (e.g. 80,920 with >180s persistence) with SL placed beyond 81,250 (behind the first liq band) rather than in the center of the 81,300-81,900 void, or raised above 81,480 after 81,335.21 Max Pain is swept."
+  },
+  "response_sha256": "137d0c87f4330110a8808c9e6f9c9d7329325fbd56838c8325437e29f7d09174"
+}
