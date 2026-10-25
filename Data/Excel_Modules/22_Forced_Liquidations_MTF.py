@@ -97,7 +97,7 @@ def dump_forced_liquidations_to_excel(
     utc_str = now_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
 
     # 1. Row 1 Banner
-    banner_text = f"{SHEET_NAME} | LAST UPDATED: {ist_str} ({utc_str}) | CANDLES: {len(candles)} | STATUS: LIVE AGGREGATED"
+    banner_text = f"{SHEET_NAME} | LAST UPDATED: {ist_str} ({utc_str}) | ROWS: {len(candles)} | STATUS: LIVE"
     ws.merge_cells("A1:M1")
     banner_cell = ws["A1"]
     banner_cell.value = banner_text

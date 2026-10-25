@@ -75,7 +75,7 @@ CANONICAL_SHEETS = [
 ]
 
 DATE_PATTERN = re.compile(r'(\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2})')
-BANNER_PATTERN = re.compile(r'LAST UPDATED:\s*([^\(\)]+?)(?:\s*\(([^\(\)]+?)\))?\s*\|\s*ROWS:\s*(\d+)')
+BANNER_PATTERN = re.compile(r'LAST UPDATED:\s*([^\(\)]+?)(?:\s*\(([^\(\)]+?)\))?\s*\|\s*(?:ROWS|CANDLES):\s*(\d+)')
 ERROR_STRINGS = {"#ref!", "#div/0!", "#n/a", "#value!", "#name?", "#num!", "#null!"}
 
 
