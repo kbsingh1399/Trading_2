@@ -191,6 +191,54 @@ class ForcedLiquidationAggregator:
         all_candles.sort(key=lambda x: (x["candle_start_epoch"], x["total_liq_usd"]), reverse=True)
         return all_candles[:limit]
 
+    def save_buffer(self, buffer_path: pathlib.Path = BUFFER_FILE) -> bool:
+        """Persists current buckets and recorded history to disk buffer."""
+        try:
+            buffer_path.parent.mkdir(parents=True, exist_ok=True)
+            data = {
+                "saved_at_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+                "buckets": self.buckets,
+                "raw_events_count": len(self.raw_events)
+            }
+            tmp_path = buffer_path.with_suffix(".tmp")
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+            tmp_path.replace(buffer_path)
+            return True
+        except Exception as e:
+            logger.warning("Error saving forced liquidation buffer: %s", e)
+            return False
+
+    def load_buffer(self, buffer_path: pathlib.Path = BUFFER_FILE) -> int:
+        """Restores previously recorded multi-timeframe buckets from disk buffer."""
+        if not buffer_path.exists():
+            return 0
+        try:
+            with open(buffer_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            loaded_buckets = data.get("buckets", {})
+            restored_count = 0
+            for tf in TIMEFRAMES:
+                if tf not in loaded_buckets:
+                    continue
+                for sym, epoch_dict in loaded_buckets[tf].items():
+                    if sym not in self.buckets[tf]:
+                        self.buckets[tf][sym] = {}
+                    for epoch_str, candle in epoch_dict.items():
+                        epoch_int = int(epoch_str)
+                        if epoch_int not in self.buckets[tf][sym]:
+                            self.buckets[tf][sym][epoch_int] = candle
+                            restored_count += 1
+                        else:
+                            existing = self.buckets[tf][sym][epoch_int]
+                            if candle.get("total_liq_usd", 0) > existing.get("total_liq_usd", 0):
+                                self.buckets[tf][sym][epoch_int] = candle
+            logger.info("Successfully loaded %d historical candles from disk buffer %s", restored_count, buffer_path.name)
+            return restored_count
+        except Exception as e:
+            logger.warning("Error loading forced liquidation buffer: %s", e)
+            return 0
+
     def bootstrap_from_excel_live_liq(self, excel_path: pathlib.Path) -> int:
         """Bootstraps historical liquidations from Sheet 7_Live_Liq if available."""
         if not excel_path.exists():
@@ -274,7 +322,7 @@ class ForcedLiquidationDaemon:
         self.aggregator = ForcedLiquidationAggregator()
         self.is_running = False
         self.last_dump_time = 0.0
-        self.dump_interval_seconds = 30.0  # Update Excel every 30s
+        self.dump_interval_seconds = 120.0  # Update Excel and Buffer every 120s
 
     async def connect_binance_websocket(self):
         """Continuously streams from Binance Futures !forceOrder@arr."""
@@ -314,8 +362,9 @@ class ForcedLiquidationDaemon:
                             )
                             self.aggregator.ingest_event(ev)
                             
-                        # Check periodic dump
+                        # Check periodic dump & buffer persistence
                         if time.time() - self.last_dump_time >= self.dump_interval_seconds:
+                            self.aggregator.save_buffer(BUFFER_FILE)
                             self.dump_to_excel()
             except Exception as e:
                 logger.warning("Binance WebSocket disconnected: %s. Reconnecting in 5s...", e)
@@ -349,11 +398,15 @@ class ForcedLiquidationDaemon:
         """Main daemon synchronous entrypoint."""
         self.is_running = True
         logger.info("Starting Forced Liquidation Aggregator Daemon...")
-        # Step 1: Bootstrap existing records from Sheet 7_Live_Liq
+        # Step 1: Restore previously recorded candles from disk buffer (zero data loss)
+        self.aggregator.load_buffer(BUFFER_FILE)
+        # Step 2: Bootstrap existing records from Sheet 7_Live_Liq
         self.aggregator.bootstrap_from_excel_live_liq(self.excel_path)
-        # Step 2: Initial Excel dump
+        # Step 3: Save merged buffer to disk immediately
+        self.aggregator.save_buffer(BUFFER_FILE)
+        # Step 4: Initial Excel dump
         self.dump_to_excel()
-        # Step 3: Run event loop for real-time WebSocket
+        # Step 5: Run continuous real-time WebSocket ingestion
         asyncio.run(self.connect_binance_websocket())
 
 
