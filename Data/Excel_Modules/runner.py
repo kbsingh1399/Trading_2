@@ -185,7 +185,7 @@ def execute_full_cycle() -> dict:
 
     # 1. Phase 1: Pure API Modules in parallel (6 worker threads)
     log.info(f"\n--- Phase 1: Executing {len(API_MODULES)} Pure API Modules in Parallel (6 workers) ---")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         future_to_mod = {executor.submit(run_single_module, mod): mod for mod in API_MODULES}
         for future in concurrent.futures.as_completed(future_to_mod):
             mod = future_to_mod[future]

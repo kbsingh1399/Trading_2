@@ -110,10 +110,9 @@ Audit all persistent operational daemons and core external services across both 
 
 | Daemon ID | Script Command / Entrypoint | Runtime Environment | Port / Interval | Purpose |
 |---|---|---|---|---|
-| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Every 300s (5m) | Pushes git commits & telemetry snapshots to GitHub `main` |
+| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Every 300s / Port 8081 | Unified Telemetry Git Sync & Web2API Council Daemon (manages `gemini_web2api.py` on Port 8081) |
 | **Daemon 2** | `python Terminal/Data_Factory/forced_liquidation_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Binance WS (`!forceOrder@arr`) | Live WebSocket forced liquidation recorder streaming to Sheet 22 |
 | **Daemon 3** | `python Data/Excel_Modules/runner.py --continuous --stale --interval 120` | Antigravity Task Runner (`isDaemon=true`) | Every 120s | Master 32-sheet unified Excel runner enforcing < 5.0m freshness |
-| **Daemon 4** | `python gemini_web2api.py --port 8081` | Antigravity Task Runner (`isDaemon=true`) | Port 8081 (HTTP) | Web2API Council Daemon (Endogen reverse-proxy, Auth: `Bearer sk-gemini`) |
 | **Daemon 5** | `python Terminal/arena_completion_daemon.py --daemon` | Antigravity Task Runner / OS | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output |
 | **Daemon 6** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Antigravity Task Runner / OS | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
 | **Daemon 7** | `python Terminal/run_graphify_watcher.py` | OS Process / Antigravity Task | Continuous File Watcher | Monitors file mutations and hot-updates `graphify-out/graph.json` |

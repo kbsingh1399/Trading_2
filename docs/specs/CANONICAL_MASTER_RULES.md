@@ -13,7 +13,7 @@ trigger: always_on
 > `graphify-out/graph.json` contains 7.4k parsed code nodes and semantic relationships. A targeted graphify query returns the exact scoped subgraph in under 500 tokens, eliminating 95% of codebase context bloat. Never read 500+ line Python files when a graphify query answers structural, caller, or dependency questions immediately.
 
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
-Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line before any other content:
+Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line, followed immediately by the mandatory 32-sheet Excel freshness scorecard before any other content:
 ```markdown
 ### 🔍 Mandatory Meta-Audit: Can I improve the response further using existing skills or agents I have?
 ```
@@ -22,6 +22,18 @@ followed by:
 ✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
 ```
 *(Note: `✅ agent.md fully loaded — All 12 Core Domains & Execution Protocols Activated.` is also accepted).*
+followed immediately by:
+```markdown
+### 📊 Mandatory 32-Sheet Excel Freshness Scorecard (< 5.0m Target)
+```
+and then a code block containing the live age and IST timestamp of each sheet from `Data/excel_all_sheets_checklist.json` / `Data/DataBase_Trading.xlsx`:
+```
+Idx  | Sheet Name                     | Rows   | Banner (IST)             | Age (min)  | Status
+-------------------------------------------------------------------------------------------------------------------
+00   | 00_MT5_Account_Telemetry       | ...    | YYYY-MM-DD HH:MM:SS IST  | ...m       | PASS/STALE
+...
+```
+*(Every sheet must be strictly < 5.0m fresh in IST on each response).*
 
 ---
 
