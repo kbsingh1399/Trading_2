@@ -283,7 +283,7 @@ async def probe_zai_state() -> dict:
                 "method": "Runtime.evaluate",
                 "params": {"expression": js, "returnByValue": True, "awaitPromise": True}
             }))
-            resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=10))
+            resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=35))
             val = resp.get("result", {}).get("result", {}).get("value")
             if isinstance(val, dict):
                 text = val.get("lastText") or ""
