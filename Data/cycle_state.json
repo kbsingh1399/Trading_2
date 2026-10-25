@@ -34,4 +34,6 @@
   "watchdog": {
     "last_check_utc": "2026-10-25 04:41:00 UTC",
     "health": "HEALTHY",
-    "message": "Cycle 347 Antigravity 4-Quant Swarm completed with unanimous Stand-Aside across Roles 
+    "message": "Cycle 347 Antigravity 4-Quant Swarm completed with unanimous Stand-Aside across Roles A, B, C, D. Awaiting Arena.ai and Z.ai completion."
+  }
+}
