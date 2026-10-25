@@ -27,7 +27,11 @@ from __future__ import annotations
 import dataclasses
 import datetime
 import logging
+import sys
 from typing import Dict, List, Optional, Tuple
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 logger = logging.getLogger("PitfallGate")
 
