@@ -55,3 +55,60 @@ You are the fiduciary guardian and chief risk officer. Your sole responsibility 
    Profit_TP = mt5.order_calc_profit(order_type, symbol, volume, entry, tp).
 
 ### 📋 REQUIRED JSON OUTPUT FORMAT
+```json
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 342",
+  "role": "ROLE_C_SOLVENCY_PORTFOLIO_BROKER_MATH",
+  "evidence_manifest_sha256": "[MANIFEST_SHA256]",
+  "prompt_sha256": "[PROMPT_SHA256]",
+  "dispatch_nonce": "[NONCE]",
+  "reconciliation": {
+    "balance": 4865.07,
+    "equity": 4865.07,
+    "margin_used": 0.0,
+    "margin_free": 4865.07,
+    "margin_level_pct": 0.0,
+    "reconciliation_status": "EXACT_ZERO_DISCREPANCY"
+  },
+  "margin_collateralization_audit": {
+    "proposed_volume": 0.10,
+    "margin_required_usd": 4047.50,
+    "margin_utilization_pct": 83.2,
+    "margin_level_post_pct": 120.20,
+    "margin_safety_status": "FAIL_MARGIN_UTILIZATION_GT_50_PCT",
+    "recommended_max_volume": 0.05
+  },
+  "solvency_kernel_audit": {
+    "realized_headroom_usd": 68.07,
+    "ticket_stress_usd": 24.63,
+    "post_stress_equity_usd": 4838.44,
+    "kernel_surplus_usd": 43.44,
+    "solvency_status": "PASS_SURPLUS_43_44"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_C_01",
+      "statement": "...",
+      "evidence_ids": ["..."],
+      "formula_or_test": "...",
+      "result": {},
+      "uncertainty": "...",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_C_01: ..."
+  ],
+  "unknowns": [
+    "UNKNOWN_C_01: ..."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "HOLD_REVISE_VOLUME_DOWNWARD",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "...",
+    "omitted_risk_dimensions": "...",
+    "algorithmic_alternatives": "..."
+  },
+  "response_sha256": "[RESPONSE_SHA256]"
+}

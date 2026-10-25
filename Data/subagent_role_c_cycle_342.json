@@ -1,0 +1,220 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 342",
+  "role": "ROLE_C_SOLVENCY_PORTFOLIO_BROKER_MATH",
+  "evidence_manifest_sha256": "296f771492c8a0faad120657b8ab8383fcf28fdcce634e92b47b944ef25a5590",
+  "prompt_sha256": "3ef90686ab6977c90658fdc0e51b1b8b8dd04418f53a0f8b9008f5d8292c346b",
+  "dispatch_nonce": "30a0dd5a-d66e-49c0-9be0-ce01311cc966",
+  "observed_at_utc": "2026-10-25 01:21:00 UTC",
+  "reconciliation": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "currency": "USD",
+    "balance": 4846.32,
+    "equity": 4846.32,
+    "gross_floating_pnl": 0.0,
+    "swap": 0.0,
+    "commission": 0.0,
+    "margin_used": 0.0,
+    "margin_free": 4846.32,
+    "margin_level_pct": 0.0,
+    "active_positions_count": 0,
+    "pending_orders_count": 0,
+    "reconciliation_status": "EXACT_ZERO_DISCREPANCY",
+    "residual_error_usd": 0.0
+  },
+  "floor_governance": {
+    "hard_capital_floor_usd": 4600.0,
+    "hard_floor_cushion_realized_usd": 246.32,
+    "hard_floor_cushion_floating_usd": 246.32,
+    "operating_buffer_usd": 4650.0,
+    "operating_buffer_cushion_realized_usd": 196.32,
+    "operating_buffer_cushion_floating_usd": 196.32,
+    "solvency_kernel_usd": 4795.0,
+    "kernel_cushion_realized_usd": 51.32,
+    "kernel_cushion_floating_usd": 51.32,
+    "global_contingency_reserve_usd": 2.0,
+    "net_realized_headroom_usd": 49.32,
+    "net_floating_headroom_usd": 49.32,
+    "capital_mode": "TIER_1_STANDARD",
+    "tier_nominal_risk_min_usd": 10.0,
+    "tier_nominal_risk_max_usd": 12.0,
+    "tier_stepped_risk_cap_usd": 15.0,
+    "max_concurrent_tickets": 2
+  },
+  "margin_collateralization_audit": {
+    "finding_d3_invariant_enforced": true,
+    "broker_crypto_margin_rate": 0.5,
+    "broker_crypto_leverage": "2:1",
+    "max_allowable_margin_utilization_pct": 50.0,
+    "min_allowable_post_order_margin_level_pct": 200.0,
+    "prompt_stress_benchmark_0_10_lot": {
+      "proposed_symbol": "BTCUSD.pi",
+      "proposed_volume": 0.1,
+      "entry_price": 80950.0,
+      "margin_required_usd": 4047.5,
+      "margin_utilization_pct": 83.52,
+      "margin_level_post_pct": 119.74,
+      "margin_safety_status": "FAIL_MARGIN_UTILIZATION_GT_50_PCT_AND_LEVEL_LT_200_PCT",
+      "recommended_max_volume": 0.05
+    },
+    "preflight_candidate_0_04_lot": {
+      "proposed_symbol": "BTCUSD.pi",
+      "proposed_action": "SELL_LIMIT",
+      "proposed_volume": 0.04,
+      "entry_price": 81300.0,
+      "sl": 81780.0,
+      "tp": 79850.0,
+      "margin_required_usd": 1626.0,
+      "margin_utilization_pct": 33.55,
+      "margin_level_post_pct": 298.05,
+      "margin_collateral_status": "PASS_MARGIN_GATES",
+      "tier_risk_status": "FAIL_EXCEEDS_TIER_1_RISK_BUDGET",
+      "base_nominal_risk_usd": 19.2,
+      "tier_1_risk_cap_usd": 12.0,
+      "post_sl_cooldown_status": "FAIL_COOLDOWN_ACTIVE_ON_BTC"
+    },
+    "current_margin_used_usd": 0.0,
+    "current_margin_free_usd": 4846.32,
+    "max_margin_capacity_50pct_usd": 2423.16
+  },
+  "solvency_kernel_audit": {
+    "realized_balance_usd": 4846.32,
+    "solvency_kernel_usd": 4795.0,
+    "global_contingency_reserve_usd": 2.0,
+    "realized_headroom_usd": 49.32,
+    "candidate_ticket_stress_usd": 27.25,
+    "post_stress_equity_usd": 4817.07,
+    "kernel_surplus_usd": 22.07,
+    "solvency_status": "PASS_SURPLUS_22_07_USD"
+  },
+  "closed_position_forensic_audit": {
+    "ticket": 19274977,
+    "symbol": "BTCUSD.pi",
+    "action": "SELL",
+    "volume": 0.05,
+    "entry_price": 80245.0,
+    "exit_price": 80620.0,
+    "exit_deal_ticket": 17461803,
+    "exit_reason": "REASON_SL (Stop Loss hit on MT5)",
+    "exit_comment": "[sl 80620.00]",
+    "realized_loss_usd": -18.75,
+    "execution_slippage_points": 0.0,
+    "margin_collateral_liberated_usd": 2006.13,
+    "post_exit_solvency_verdict": "STOP_LOSS_PERFECTLY_BOUNDED_KERNEL_SURPLUS_PRESERVED"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_C_01_ACCOUNT_TELEMETRY_ZERO_DISCREPANCY",
+      "statement": "Blueberry Markets MT5 Account #5064568 balance sheet reconciles to exact 0.00 USD discrepancy: Balance = 4846.32 USD, Equity = 4846.32 USD, Gross Floating PnL = 0.00 USD, Swap = 0.00 USD, Commission = 0.00 USD, Margin Used = 0.00 USD, Free Margin = 4846.32 USD, Active Positions = 0, Pending Orders = 0.",
+      "formula_or_test": "Balance + Gross_Floating_PnL + Swap + Commission == Equity and Margin_Used + Margin_Free == Equity and abs(Equity - Balance) == 0.00 and len(positions) == 0 and len(orders) == 0",
+      "result": {
+        "balance_usd": 4846.32,
+        "equity_usd": 4846.32,
+        "gross_floating_pnl": 0.0,
+        "swap": 0.0,
+        "commission": 0.0,
+        "margin_used": 0.0,
+        "margin_free": 4846.32,
+        "margin_level_pct": 0.0,
+        "residual_error_usd": 0.0,
+        "status": "EXACT_ZERO_DISCREPANCY"
+      },
+      "uncertainty": "0.0000 - Deterministic MT5 broker API query verified to 0.01 USD precision.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_02_TRIPLE_FLOOR_DEFENSE_AND_NET_HEADROOM",
+      "statement": "Triple Floor Governance is strictly maintained: Hard Capital Floor (4,600.00 USD) cushion = +246.32 USD (+5.08%); Operating Defense Buffer (4,650.00 USD) cushion = +196.32 USD (+4.05%); Solvency Kernel (4,795.00 USD) cushion = +51.32 USD (+1.06%). After deducting 2.00 USD global contingency reserve, Net Realized Headroom H_net = +49.32 USD.",
+      "formula_or_test": "H_hard = Balance - 4600.00; H_buffer = Balance - 4650.00; H_kernel = Balance - 4795.00; H_net = H_kernel - 2.00",
+      "result": {
+        "hard_floor_usd": 4600.0,
+        "hard_cushion_usd": 246.32,
+        "operating_buffer_usd": 4650.0,
+        "operating_cushion_usd": 196.32,
+        "solvency_kernel_usd": 4795.0,
+        "kernel_cushion_usd": 51.32,
+        "global_contingency_reserve_usd": 2.0,
+        "net_realized_headroom_usd": 49.32
+      },
+      "uncertainty": "0.0000 - Exact mathematical identity derived from realized broker cash.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_03_CAPITAL_TIER_ONE_STANDARD_REGIME",
+      "statement": "Realized cash balance of 4846.32 USD falls in the [4820.00, 4850.00] USD band, certifying TIER 1 STANDARD CAPITAL REGIME with nominal risk budget of 10.00 to 12.00 USD (stepped cap 15.00 USD) and maximum 2 concurrent non-correlated tickets.",
+      "formula_or_test": "4820.00 <= Realized_Balance < 4850.00 -> Tier 1 Standard (Nominal Risk: [10.00, 12.00] USD, max 15.00 USD)",
+      "result": {
+        "capital_mode": "TIER_1_STANDARD",
+        "nominal_risk_base_usd": 10.0,
+        "nominal_risk_stepped_usd": 12.0,
+        "nominal_risk_ceiling_usd": 15.0,
+        "max_concurrent_tickets": 2,
+        "tier_status": "ACTIVATED"
+      },
+      "uncertainty": "0.0000 - Governed by institutional house money staircase invariants.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_04_MARGIN_COLLATERALIZATION_FINDING_D3_GATE",
+      "statement": "Blueberry Markets enforces 50% margin (2:1 leverage) on crypto perpetuals. A hypothetical 0.10 lot BTC position at 80,950 USD requires 4,047.50 USD margin (83.52% equity utilization, margin level 119.74%), severely violating Invariant 1 (<= 50% equity) and Invariant 2 (>= 200% margin level). Volume must be rescoped to 0.04-0.06 lot. For the 0.04 lot preflight candidate, margin required is 1,626.00 USD (33.55% utilization, margin level 298.05%), which satisfies margin gates but fails Tier 1 risk budgeting.",
+      "formula_or_test": "Margin_Req = Vol * Price * 0.50; Util_Pct = Margin_Req / Equity; Margin_Level = Equity / Margin_Req * 100%",
+      "result": {
+        "lot_0_10_margin_req_usd": 4047.5,
+        "lot_0_10_utilization_pct": 83.52,
+        "lot_0_10_margin_level_pct": 119.74,
+        "lot_0_10_gate": "FAIL_EXCEEDS_50_PCT_UTILIZATION_AND_SUB_200_PCT_LEVEL",
+        "lot_0_04_margin_req_usd": 1626.0,
+        "lot_0_04_utilization_pct": 33.55,
+        "lot_0_04_margin_level_pct": 298.05,
+        "lot_0_04_gate": "PASS_MARGIN_UTILIZATION_AND_LEVEL"
+      },
+      "uncertainty": "0.0000 - Deterministic broker margin specification.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_05_CANDIDATE_ORDER_DISQUALIFICATION",
+      "statement": "Candidate order (BTCUSD.pi 0.04 lot SELL_LIMIT @ 81,300.00 USD, SL 81,780.00 USD, TP 79,850.00 USD) requires 19.20 USD base nominal risk, which breaches the Tier 1 nominal risk limit of 12.00 USD (and the 15.00 USD ceiling). In addition, post-SL cooldown prohibits immediate re-entry on BTCUSD.pi. Candidate is formally DISQUALIFIED.",
+      "formula_or_test": "Cand_Risk(19.20 USD) > Tier_1_Max_Risk(12.00 USD) and Post_SL_Cooldown(BTCUSD.pi) == True -> DISQUALIFY",
+      "result": {
+        "candidate_base_risk_usd": 19.2,
+        "tier_1_risk_cap_usd": 12.0,
+        "risk_budget_breach_usd": 7.2,
+        "post_sl_cooldown_active": true,
+        "verdict": "DISQUALIFIED"
+      },
+      "uncertainty": "0.0000 - Exact broker order_calc_profit verification.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_06_TACTICAL_RESERVE_CAPITAL_PRESERVATION",
+      "statement": "Maintaining 100% liquid cash defense (Balance: 4,846.32 USD, Headroom: +49.32 USD, Margin Free: 4,846.32 USD) in Tactical Reserve until Sunday TradFi opening (2026-10-25 21:00:00 UTC) is the mathematically dominant capital allocation. TradFi instruments (Forex, Metals, Indices) feature 30:1 to 100:1 leverage (1% to 3.33% margin), providing 15x to 50x greater capital efficiency without crypto weekend spread drag.",
+      "formula_or_test": "TradFi_Leverage >= 30:1 -> Margin_Rate <= 3.33% vs Crypto_Margin_Rate == 50.0%",
+      "result": {
+        "tradfi_leverage_multiplier": "30:1 to 100:1",
+        "crypto_leverage_multiplier": "2:1",
+        "capital_efficiency_advantage": "15x to 50x",
+        "tactical_reserve_recommendation": "AFFIRMED_STAND_ASIDE_FOR_SUNDAY_TRADFI"
+      },
+      "uncertainty": "0.0000 - Broker contract specification and leverage mechanics.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_C_01: Role A must confirm complete stand-aside across crypto perpetuals due to chop regime (ER(48)=0.0716, VR(4)=0.9528) and post-SL cooldown on BTC.",
+    "CHALLENGE_C_02: Role B must verify orderbook liquidity depth on TradFi assets prior to Sunday 21:00 UTC opening, confirming whale wall support and spread normalization < 5.0 bps.",
+    "CHALLENGE_C_03: Role D must verify that all 98 TradFi assets remain under weekend halt and confirm clock synchronization ahead of Sunday 21:00 UTC market reopening."
+  ],
+  "unknowns": [
+    "UNKNOWN_C_01: Sunday TradFi opening spread expansion window (21:00-22:30 UTC); mitigated by spread filter enforcing spread <= 5.0 bps and zero market orders at open.",
+    "UNKNOWN_C_02: Potential weekend crypto liquidation cascade during Asian session; mitigated by 100% liquid cash stance with zero open positions."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "HOLD_REVISE_VOLUME_DOWNWARD_AND_PRESERVE_TACTICAL_RESERVE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Applied @trader-risk (multi-ticket VaR, collateral rationing, stress models), @database-optimizer (sub-cent balance sheet reconciliation, tabular validation), and @clean-code (deterministic logic, zero assumption drift) to achieve exact 0.00 USD reconciliation residual, verify the liberation of 2,006.13 USD margin collateral, confirm the disciplined execution of the Stop Loss at 80,620.00 USD with zero slippage, prove +51.32 USD Solvency Kernel preservation, and validate full Tactical Reserve readiness (2423.16 USD margin headroom).",
+    "omitted_risk_dimensions": "Omitted risk dimensions identified and mitigated: (1) Margin lockup trap on 2:1 crypto perpetuals where oversized lots (>=0.10 BTC) devour >83% of equity, completely paralyzing concurrent ticket capacity; (2) Revenge re-entry risk post-SL, mitigated by strict symbol cooldown; (3) Weekend illiquidity and spread widening on crypto assets.",
+    "algorithmic_alternatives": "Algorithmic alternatives established: (1) Sizing Rescoping Engine: automatically scales down crypto orders to 0.04-0.06 lot to guarantee Margin Utilization <= 50% and Margin Level >= 200%; (2) Dynamic Capital Regime Auto-Switcher: gates risk budgets between Tier 0 (10 USD), Tier 1 (12 USD), and Tier 2 (15-25 USD) based on realized cash balance; (3) TradFi Multiplier Switch: transitions capital to high-leverage (30:1-100:1) TradFi assets upon Sunday 21:00 UTC opening."
+  },
+  "response_sha256": "9452689246d8e754bb311ac08437421f9cda7ba811ad69c48c847d7e2c674aa8"
+}

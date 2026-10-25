@@ -63,3 +63,62 @@ You are the orderbook and microstructure engineer. Your sole responsibility is t
    AS(t + 5m) = Side * (Mid_{t+5m} - Price_fill). Must be >= -0.15 R0.
 
 ### 📋 REQUIRED JSON OUTPUT FORMAT
+```json
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 342",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "[MANIFEST_SHA256]",
+  "prompt_sha256": "[PROMPT_SHA256]",
+  "dispatch_nonce": "[NONCE]",
+  "microstructure_audit": {
+    "broker_spread_bps": 1.984,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "backing_whale_wall_price": 80950.0,
+    "backing_whale_wall_notional_usd": 1070000.0,
+    "backing_whale_wall_persisted_seconds": 10.0,
+    "whale_persistence_status": "FAIL_LT_180S_FLICKERING_ORDER",
+    "sl_anchor_status": "FAIL_UNANCHORED_IN_AUCTION_VOID",
+    "adverse_selection_projected_r0": -0.25
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 81450.0,
+    "monday_ib_l": 79200.0,
+    "monday_ib_mid": 80325.0,
+    "monday_sweep_reclaim_status": "SWEEP_MON_LOW_RECLAIM_CONFIRMED",
+    "asian_session_extreme_sweep": "SWEEP_ASIAN_LOW_IN_LONDON",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL",
+    "developing_value_area_state": "VALUE_MIGRATING_UPWARD"
+  },
+  "fib_invalidation_shelf_check": {
+    "shelf_0786_price": 79681.5,
+    "sl_price": 79450.0,
+    "sl_buffer_atr_multiple": 0.52,
+    "anchor_integrity": "PASS_SHELTERED_BEHIND_0786_AND_WHALE_WALL"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01",
+      "statement": "...",
+      "evidence_ids": ["..."],
+      "formula_or_test": "...",
+      "result": {},
+      "uncertainty": "...",
+      "status": "FALSIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_B_01: ..."
+  ],
+  "unknowns": [
+    "UNKNOWN_B_01: ..."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_UNBACKED_MICROSTRUCTURE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "...",
+    "omitted_risk_dimensions": "...",
+    "algorithmic_alternatives": "..."
+  },
+  "response_sha256": "[RESPONSE_SHA256]"
+}

@@ -48,3 +48,50 @@ You are the chronometer, auction auditor, and evidence provenance sentry. Your s
    Calendar_Age = cutoff_utc - calendar_verified_at_utc. Must be < 900.0s.
 
 ### 📋 REQUIRED JSON OUTPUT FORMAT
+```json
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 342",
+  "role": "ROLE_D_MARKET_CLOCK_AUCTION_PROVENANCE",
+  "evidence_manifest_sha256": "[MANIFEST_SHA256]",
+  "prompt_sha256": "[PROMPT_SHA256]",
+  "dispatch_nonce": "[NONCE]",
+  "clock_audit": {
+    "cutoff_utc": "2026-10-24 06:55:20 UTC",
+    "preflight_tick_age_seconds": 1.0,
+    "quote_age_at_cutoff_seconds": 522.0,
+    "quote_freshness_status": "FLAG_D9_STALE_AT_CUTOFF",
+    "calendar_verified_age_seconds": 380.0,
+    "calendar_freshness_status": "PASS_LT_900S",
+    "rollover_embargo_active": false,
+    "event_blackout_active": false,
+    "executable_assets_count": 11,
+    "spread_disqualified_count": 47,
+    "weekend_closed_count": 98
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_D_01",
+      "statement": "...",
+      "evidence_ids": ["..."],
+      "formula_or_test": "...",
+      "result": {},
+      "uncertainty": "...",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_D_01: ..."
+  ],
+  "unknowns": [
+    "UNKNOWN_D_01: ..."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "PROVENANCE_AND_CLOCK_VERIFIED_STAND_ASIDE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "...",
+    "omitted_risk_dimensions": "...",
+    "algorithmic_alternatives": "..."
+  },
+  "response_sha256": "[RESPONSE_SHA256]"
+}
