@@ -57,9 +57,9 @@
     "Auction_Market_Regime",
     "Timestamp_IST"
   ],
-  "byte_size": 72263,
-  "timestamp_ist": "2026-10-25 22:14:37 IST",
-  "timestamp_utc": "2026-10-25 16:44:37 UTC",
-  "epoch_utc": 1792946677.803841,
-  "write_duration_ms": 20.2
+  "byte_size": 72154,
+  "timestamp_ist": "2026-10-25 23:38:43 IST",
+  "timestamp_utc": "2026-10-25 18:08:43 UTC",
+  "epoch_utc": 1792951723.029938,
+  "write_duration_ms": 16.66
 }

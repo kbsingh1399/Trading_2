@@ -1,7 +1,7 @@
 {
   "feed_name": "7_Liq_Heapmap",
   "status": "PASS",
-  "row_count": 89,
+  "row_count": 79,
   "column_count": 7,
   "columns": [
     "Rank",
@@ -12,9 +12,9 @@
     "24hour",
     "Timestamp_IST"
   ],
-  "byte_size": 4825,
-  "timestamp_ist": "2026-10-25 22:14:37 IST",
-  "timestamp_utc": "2026-10-25 16:44:37 UTC",
-  "epoch_utc": 1792946677.147377,
-  "write_duration_ms": 3.79
+  "byte_size": 4693,
+  "timestamp_ist": "2026-10-25 23:38:42 IST",
+  "timestamp_utc": "2026-10-25 18:08:42 UTC",
+  "epoch_utc": 1792951722.658668,
+  "write_duration_ms": 3.39
 }

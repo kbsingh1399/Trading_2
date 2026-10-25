@@ -28,9 +28,9 @@
     "Orderflow_Regime",
     "Trades___Ticks"
   ],
-  "byte_size": 202616,
-  "timestamp_ist": "2026-10-25 22:14:37 IST",
-  "timestamp_utc": "2026-10-25 16:44:37 UTC",
-  "epoch_utc": 1792946677.758969,
-  "write_duration_ms": 18.03
+  "byte_size": 203421,
+  "timestamp_ist": "2026-10-25 23:38:42 IST",
+  "timestamp_utc": "2026-10-25 18:08:42 UTC",
+  "epoch_utc": 1792951722.630055,
+  "write_duration_ms": 13.61
 }

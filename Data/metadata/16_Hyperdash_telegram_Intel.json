@@ -1,7 +1,7 @@
 {
   "feed_name": "16_Hyperdash_telegram_Intel",
   "status": "PASS",
-  "row_count": 1000,
+  "row_count": 42,
   "column_count": 14,
   "columns": [
     "Sr.No",
@@ -19,9 +19,9 @@
     "Wallet_Address",
     "Telegram_Alert_Text"
   ],
-  "byte_size": 58249,
-  "timestamp_ist": "2026-10-25 22:14:37 IST",
-  "timestamp_utc": "2026-10-25 16:44:37 UTC",
-  "epoch_utc": 1792946677.564698,
-  "write_duration_ms": 8.78
+  "byte_size": 10226,
+  "timestamp_ist": "2026-10-25 23:38:43 IST",
+  "timestamp_utc": "2026-10-25 18:08:43 UTC",
+  "epoch_utc": 1792951723.002746,
+  "write_duration_ms": 4.7
 }

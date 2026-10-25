@@ -1,7 +1,7 @@
 {
   "feed_name": "19_News",
   "status": "PASS",
-  "row_count": 36,
+  "row_count": 35,
   "column_count": 11,
   "columns": [
     "Sr.No",
@@ -16,9 +16,9 @@
     "Story_Summary___Key_Preview",
     "Forex_Factory_URL"
   ],
-  "byte_size": 12396,
-  "timestamp_ist": "2026-10-25 22:14:37 IST",
-  "timestamp_utc": "2026-10-25 16:44:37 UTC",
-  "epoch_utc": 1792946677.766518,
-  "write_duration_ms": 4.56
+  "byte_size": 12115,
+  "timestamp_ist": "2026-10-25 23:38:42 IST",
+  "timestamp_utc": "2026-10-25 18:08:42 UTC",
+  "epoch_utc": 1792951722.643157,
+  "write_duration_ms": 3.6
 }
