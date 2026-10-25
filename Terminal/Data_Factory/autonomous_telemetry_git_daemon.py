@@ -71,6 +71,41 @@ PID_FILE = ROOT / "logs" / "autonomous_telemetry_git_daemon.pid"
 _singleton_handle = None
 
 
+
+WEB2API_DIR = pathlib.Path(r"C:\Users\SIGMA\Documents\Trading\gemini-web2api")
+WEB2API_SCRIPT = WEB2API_DIR / "gemini_web2api.py"
+WEB2API_PORT = 8081
+_web2api_proc = None
+
+
+def ensure_web2api_service() -> bool:
+    """Guarantees gemini_web2api.py reverse proxy is running on port 8081 (Endogen architecture)."""
+    global _web2api_proc
+    import urllib.request
+    try:
+        req = urllib.request.urlopen(f"http://127.0.0.1:{WEB2API_PORT}/v1/models", timeout=2)
+        if req.status == 200:
+            return True
+    except Exception:
+        pass
+
+    if WEB2API_SCRIPT.exists():
+        logger.info("Spawning unified gemini_web2api service on port %d...", WEB2API_PORT)
+        try:
+            _web2api_proc = subprocess.Popen(
+                [sys.executable, str(WEB2API_SCRIPT), "--port", str(WEB2API_PORT)],
+                cwd=str(WEB2API_DIR),
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+            time.sleep(2.0)
+            logger.info("Spawned unified gemini_web2api PID %d on port %d", _web2api_proc.pid, WEB2API_PORT)
+            return True
+        except Exception as exc:
+            logger.error("Failed to spawn gemini_web2api: %s", exc)
+            return False
+    return False
+
 def enforce_single_instance() -> None:
     """Hold an OS lock; a stale PID must never terminate an unrelated process."""
     global _singleton_handle
@@ -288,6 +323,7 @@ def main():
     logger.info("Starting Zero-Token Autonomous Telemetry & Git Synchronization Daemon")
     logger.info(f"Target Branch: {BRANCH_NAME} | Cadence: Every {INTERVAL_SECONDS}s | PID: {os.getpid()}")
     logger.info("=====================================================================")
+    ensure_web2api_service()
 
     import importlib
     from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
@@ -301,6 +337,7 @@ def main():
             t_start = time.time()
             now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
             logger.info(f"--- Iteration #{iteration} [{now_str}] ---")
+            ensure_web2api_service()
 
             # Step 1: Reload generator module and generate fresh MT5/broker observations FIRST.
             snapshot = None

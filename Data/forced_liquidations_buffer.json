@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-25 11:46:45 UTC",
+  "saved_at_utc": "2026-10-25 13:43:11 UTC",
   "buckets": {
     "5m": {
       "BTCUSDT": {
@@ -23210,5 +23210,5 @@
       }
     }
   },
-  "raw_events_count": 1000
+  "raw_events_count": 0
 }

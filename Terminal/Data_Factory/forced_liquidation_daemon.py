@@ -373,16 +373,14 @@ class ForcedLiquidationDaemon:
     def dump_to_excel(self) -> bool:
         """Dumps aggregated multi-timeframe candles to Sheet 22_Forced_Liquidations_MTF."""
         try:
-            from Data.Excel_Modules._22_Forced_Liquidations_MTF import dump_forced_liquidations_to_excel
-        except ImportError:
-            try:
-                # Add root to sys.path
-                if str(ROOT) not in sys.path:
-                    sys.path.insert(0, str(ROOT))
-                from Data.Excel_Modules._22_Forced_Liquidations_MTF import dump_forced_liquidations_to_excel
-            except Exception as e:
-                logger.error("Could not import Excel writer module: %s", e)
-                return False
+            import importlib
+            if str(ROOT) not in sys.path:
+                sys.path.insert(0, str(ROOT))
+            mod = importlib.import_module("Data.Excel_Modules.22_Forced_Liquidations_MTF")
+            dump_forced_liquidations_to_excel = mod.dump_forced_liquidations_to_excel
+        except Exception as e:
+            logger.error("Could not import Excel writer module: %s", e)
+            return False
 
         candles = self.aggregator.get_all_candles_sorted(limit=1000)
         if not candles:
