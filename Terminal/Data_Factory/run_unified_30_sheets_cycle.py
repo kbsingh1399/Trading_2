@@ -287,17 +287,21 @@ if __name__ == "__main__":
     parser.add_argument("--refresh-stale", action="store_true", help="Refresh only stale sheets (>30m)")
     args = parser.parse_args()
 
-    if args.refresh_stale:
-        summary = execute_refresh_stale()
-        sys.exit(0 if summary.get("checklist_passed") else 1)
-    elif args.continuous:
-        log.info(f"Starting continuous 30-sheet refresh daemon (cycle interval: {args.interval}s)...")
+    if args.continuous:
+        mode_desc = "stale-only (<30m)" if args.refresh_stale else "full 32-sheet"
+        log.info(f"Starting continuous {mode_desc} refresh daemon (cycle interval: {args.interval}s)...")
         while True:
             try:
-                execute_unified_30_sheets_cycle()
+                if args.refresh_stale:
+                    execute_refresh_stale()
+                else:
+                    execute_unified_30_sheets_cycle()
             except Exception as e:
                 log.error(f"Error in continuous cycle: {e}")
             time.sleep(args.interval)
+    elif args.refresh_stale:
+        summary = execute_refresh_stale()
+        sys.exit(0 if summary.get("checklist_passed") else 1)
     else:
         summary = execute_unified_30_sheets_cycle()
         sys.exit(0 if summary.get("checklist_passed") else 1)
