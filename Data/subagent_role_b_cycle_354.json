@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 354",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "4d7d8122dbd5ee9e0c0fc554418eed72762928767bf0a3d3f82e247f5f8a97fe",
+  "prompt_sha256": "02839208243ed0956663532653d21ab5cfb39da601f84d9a7d6b7d5bc522e543",
+  "dispatch_nonce": "c354-b-microstructure-geometry-7718",
+  "microstructure_audit": {
+    "broker_spread_bps": 2.62,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "backing_whale_wall_price": null,
+    "backing_whale_wall_notional_usd": 0.0,
+    "backing_whale_wall_persisted_seconds": 0.0,
+    "whale_persistence_status": "FAIL_ZERO_WALL_AT_ENTRY_AUCTION_VOID",
+    "sl_anchor_status": "FAIL_UNANCHORED_IN_20M_SHORT_LIQ_MAGNET",
+    "adverse_selection_projected_r0": -0.417
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 83087.5,
+    "monday_ib_l": 80743.0,
+    "monday_ib_mid": 81915.25,
+    "monday_sweep_reclaim_status": "TRADING_BELOW_MONDAY_LOW_80743",
+    "asian_session_extreme_sweep": "INSIDE_ASIAN_RANGE_80115_80911",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL_79634",
+    "developing_value_area_state": "BELOW_VALUE_IMBALANCE_DVAL_80369_DVAH_80881"
+  },
+  "tradfye_orderflow_audit": {
+    "footprint_poc_estimate": 80388.73,
+    "candle_start_utc": "2026-10-25 09:00:00 UTC",
+    "net_taker_delta_usd": -2783327.63,
+    "net_taker_delta_pct": -14.32,
+    "orderflow_regime": "AGGRESSIVE_SELLER_DOMINATION",
+    "delta_divergence": "BEARISH_ABSORPTION",
+    "deribit_max_pain_usd": 78000.0,
+    "deribit_call_wall_usd": 95000.0,
+    "deribit_put_wall_usd": 60000.0,
+    "tp_front_running_footprint_poc_pts": -538.73,
+    "tp_front_running_status": "FAIL_TP_79850_DISCONNECTED_FROM_POC_80389"
+  },
+  "fib_invalidation_shelf_check": {
+    "shelf_0786_price": 79464.76,
+    "sl_price": 81900.0,
+    "sl_buffer_atr_multiple": null,
+    "anchor_integrity": "FAIL_ENTRY_AND_SL_DISCONNECTED_FROM_FIB_SHELF"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01",
+      "statement": "Proposed limit entry at 81,300.0 sits in an auction void with exactly 0.00 USD resting whale sell wall within 0.40 ATR (nearest ask wall in Sheet 10 is at 80,471.60, a distance of 828.40 USD = 4.875 ATR), violating the mandatory resting wall backing invariant and 180s persistence filter.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:10_Whale_Orders:166_rows",
+        "DataBase_Trading.xlsx:17_Orderbook:L2_AGGREGATED"
+      ],
+      "formula_or_test": "min_distance_to_wall <= 0.40 * ATR (169.93 USD) = 67.97 USD. Actual distance = 828.40 USD = 4.875 ATR.",
+      "result": {
+        "actual_distance_usd": 828.4,
+        "max_allowed_distance_usd": 67.97,
+        "whale_wall_at_entry_notional": 0.0,
+        "wall_persistence_seconds": 0.0
+      },
+      "uncertainty": "Deterministic orderbook scan of Sheet 10 confirms exactly 0 whale orders between 80,472.00 and 82,000.00 USD across 166 aggregated records.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_02",
+      "statement": "Queue fill probability within 180m TTL for a SELL_LIMIT entry placed 7.094 ATR (1,205.50 USD) away from live mid-market (80,094.50) under rotational Gaussian equilibrium is virtually zero: P(fill) approx 4.06e-06.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:17_Orderbook",
+        "DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "DataBase_Trading.xlsx:00_MT5_Account_Telemetry:broker_tick"
+      ],
+      "formula_or_test": "P(fill | d, Q, t) = exp(-lambda * d / ATR) * (1 - Toxicity). d = 1,205.50 USD, ATR = 169.93 USD, d/ATR = 7.094, lambda = 1.75.",
+      "result": {
+        "p_fill_conditioned": 4.06e-06,
+        "distance_atr": 7.094
+      },
+      "uncertainty": "Poisson arrival model with parameter lambda in [1.5, 2.0] yields P(fill) in [7.1e-07, 1.3e-05].",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_03",
+      "statement": "Protective stop loss at 81,900.0 is fatally positioned inside a massive short liquidation pool (3.11M USD at 81,850 and 1.22M USD at 81,950, cum liq 20.14M USD) and flanked by 7.61M USD of buy stops (3.58M at 81,850 and 4.03M at 81,950, cum stops 32.71M USD), guaranteeing violent slippage if reached.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:14_Hyperdash_Liq_Map",
+        "DataBase_Trading.xlsx:15_Hyperdash_Stops_Map"
+      ],
+      "formula_or_test": "Check density of opposing stop clusters and liquidation magnets within +/- 100 USD of proposed SL.",
+      "result": {
+        "short_liquidation_at_81850_usd": 3110000.0,
+        "short_liquidation_at_81950_usd": 1220000.0,
+        "buy_stops_at_81850_81950_usd": 7610000.0,
+        "cumulative_short_liq_pool_usd": 20140000.0,
+        "cumulative_stops_pool_usd": 32710000.0
+      },
+      "uncertainty": "Hyperdash stop and liquidation density maps confirm concentrated short squeeze cascade zones.",
+      "status": "CONFIRMED_FALSIFIES_SL_GEOMETRY"
+    },
+    {
+      "claim_id": "CLAIM_B_04",
+      "statement": "Entry at 81,300.0 sits exactly 35.21 USD (+4.3 bps) below the unswept 24H Short Max Pain liquidation magnet at 81,335.21 (58.24M USD notional) and 105 USD below pdH 81,405.00, guaranteeing toxic short-squeeze overrun.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:9_Liquidation_Max_Pain_24H",
+        "DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "DataBase_Trading.xlsx:00_MT5_Account_Telemetry"
+      ],
+      "formula_or_test": "Entry must not sit beneath unswept major Short Max Pain liquidation magnet: 81,300 < 81,335.21 (+4.3 bps magnet overrun).",
+      "result": {
+        "entry_price": 81300.0,
+        "short_max_pain_price": 81335.21,
+        "short_max_pain_notional_usd": 58240000.0,
+        "distance_to_max_pain_usd": 35.21,
+        "distance_to_pdh_usd": 105.0
+      },
+      "uncertainty": "Deterministic Sheet 9 record confirms 58.24M USD liquidation pool.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_05",
+      "statement": "Projected 5-minute post-fill adverse selection is -0.417 R0, severely breaching the -0.15 R0 tolerance limit and guaranteeing winner's curse on fill.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:14_Hyperdash_Liq_Map",
+        "DataBase_Trading.xlsx:21_Tradfye_Orderflow"
+      ],
+      "formula_or_test": "AS(t + 5m) = Side * (Mid_{t+5m} - Price_fill) / R0. Mid_{t+5m} = 81,550 USD post-short squeeze through 81,335-81,450 liq bands. R0 = 600 USD.",
+      "result": {
+        "as_projected_r0": -0.417,
+        "as_threshold_r0": -0.15
+      },
+      "uncertainty": "Adverse selection is heavily negative due to directional buy stops triggering on fill path.",
+      "status": "CONFIRMED_FALSIFIES_ENTRY"
+    },
+    {
+      "claim_id": "CLAIM_B_06",
+      "statement": "Take Profit at 79,850.0 violates the 5-10 bps front-running geometry by sitting 206-277 points behind resting buy walls at 80,056.30 (3.12M) and 80,127.40 (1.20M), and behind 13.61M USD of sell stops (80,050 to 80,350), while also disconnected by 538.73 points from Footprint POC 80,388.73.",
+      "evidence_ids": [
+        "DataBase_Trading.xlsx:10_Whale_Orders",
+        "DataBase_Trading.xlsx:15_Hyperdash_Stops_Map",
+        "DataBase_Trading.xlsx:17_Orderbook",
+        "DataBase_Trading.xlsx:21_Tradfye_Orderflow"
+      ],
+      "formula_or_test": "TP must front-run opposing buy walls by 5-10 bps (~40-80 USD): required TP in [80167, 80207]. Actual TP = 79,850 (behind walls).",
+      "result": {
+        "proposed_tp": 79850.0,
+        "opposing_buy_wall_price_1": 80127.4,
+        "opposing_buy_wall_notional_1": 1200000.0,
+        "opposing_buy_wall_price_2": 80090.6,
+        "opposing_buy_wall_notional_2": 1420000.0,
+        "opposing_buy_wall_price_3": 80056.3,
+        "opposing_buy_wall_notional_3": 3120000.0,
+        "sell_stops_80050_80350_usd": 13610000.0,
+        "footprint_poc": 80388.73,
+        "front_running_deficit_pts": 277.4
+      },
+      "uncertainty": "Deterministic orderbook and stops map audit.",
+      "status": "CONFIRMED_FALSIFIES_TP_GEOMETRY"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_B_01: Arena candidate proposals for SELL_LIMIT at 81,300 with SL at 81,900 sit completely unbacked in an auction void with exactly 0.00 USD resting whale wall in Sheet 10 and 0.0s persistence.",
+    "CHALLENGE_B_02: Entry at 81,300 sits 35.21 USD below the 58.24M USD Short Max Pain magnet (81,335.21) and 105 USD below pdH 81,405.00, creating toxic adverse selection AS(t+5m) = -0.417 R0.",
+    "CHALLENGE_B_03: SL at 81,900 is positioned inside a 20.14M USD cumulative short liquidation cascade zone with 7.61M USD buy stops (81,850-81,950), guaranteeing explosive execution slippage.",
+    "CHALLENGE_B_04: Sheet 21 Tradfye Footprint POC shows current POC at 80,388.73 with Net Delta = -2.78M USD (-14.32%), Taker Sell dominance, and L2 Depth Imbalance of 80.4% bid-heavy (Sheet 17). Fading with unbacked limit orders violates microstructure discipline.",
+    "CHALLENGE_B_05: Take Profit at 79,850 sits far behind resting buy walls at 80,056-80,127 and behind 13.61M USD of sell stops, violating the mandatory 5-10 bps front-running geometry."
+  ],
+  "unknowns": [
+    "UNKNOWN_B_01: Refill intensity of resting buy walls at 80,000-80,250 during the Sunday London/NY session transition."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_UNBACKED_MICROSTRUCTURE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Applied @[market-ingest] and @[market-pattern] to ingest aggregated L2 orderbook depth, CVD taker flow, and liquidation density maps. Applied @[trader-portfolio] liquidity impact principles to prove that fill at 81,300 requires toxic sweeps through the 58.24M USD Short Max Pain magnet.",
+    "omitted_risk_dimensions": "Preflight candidate omitted evaluating the 20.14M USD short liquidation pool at 81,850-81,950 and the 58.24M USD Short Max Pain magnet at 81,335.21, both of which act as fatal stop-run accelerators.",
+    "algorithmic_alternatives": "If a short limit order is staged, entry must sit strictly behind verified persistent whale asks (e.g. 80,470 with >180s persistence) with SL placed beyond structural resistance rather than in the center of the 81,300-81,900 void, and TP must front-run the 80,127 buy wall at 80,167-80,207 (+5-10 bps)."
+  },
+  "response_sha256": "8e863e9742ea9fd628368906cebb3166a433d3ddc60af203c1a558cd8af26277"
+}
