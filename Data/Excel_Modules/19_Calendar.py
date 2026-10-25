@@ -584,7 +584,7 @@ def main() -> int:
         log.error("Failed to harvest any calendar events from all sources. Aborting.")
         return 1
 
-    save_calendar_to_disk(events)
+    # save_calendar_to_disk(events) - Direct to Excel only
     written = export_calendar_to_excel(events, excel_path=args.excel_path, sheet_name=args.sheet_name)
     log.info(f"[SUCCESS] 19_Calendar completed successfully with {written} events.")
     return 0

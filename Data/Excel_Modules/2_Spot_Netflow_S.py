@@ -477,17 +477,6 @@ def dump_spot_netflow_to_excel(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH, ma
                     raise
                 time.sleep(1.0)
 
-    # 5. Save staged parquet for batch committer
-    try:
-        import pandas as pd
-        stage_dir = DATA_DIR / "staging"
-        stage_dir.mkdir(parents=True, exist_ok=True)
-        col_rename = {k: disp for k, disp, _, _ in COLUMNS}
-        df_stage = pd.DataFrame(records).rename(columns=col_rename)
-        df_stage.to_parquet(stage_dir / f"{SHEET_NAME}.parquet", index=False)
-    except Exception as e:
-        log.warning(f"Could not save staged parquet: {e}")
-
     log.info(f"Successfully dumped {len(records)} Cryptocurrency Spot Netflow assets into sheet '{SHEET_NAME}' at {excel_path}.")
     return True
 

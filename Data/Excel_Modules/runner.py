@@ -90,6 +90,20 @@ BROWSER_MODULES = [
 ]
 
 
+def cleanup_temp_artifacts():
+    """Purges any stranded .tmp.xlsx files in Data/ to ensure zero disk litter."""
+    try:
+        now = time.time()
+        for f in DATA_DIR.glob('*.tmp.xlsx'):
+            try:
+                if (now - f.stat().st_mtime) > 10:
+                    f.unlink()
+            except Exception:
+                pass
+    except Exception:
+        pass
+
+
 def reap_scraping_tabs():
     """Forces closure of lingering web scraping tabs on Edge port 9222 while preserving Arena and Z.ai."""
     try:
@@ -165,6 +179,7 @@ def execute_full_cycle() -> dict:
     log.info(f"       Start Time: {now_ist.strftime('%Y-%m-%d %H:%M:%S IST')} ({now_utc.strftime('%Y-%m-%d %H:%M:%S UTC')})")
     log.info("================================================================================")
 
+    cleanup_temp_artifacts()
     reap_scraping_tabs()
     results = []
 
@@ -198,6 +213,7 @@ def execute_full_cycle() -> dict:
             log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
             results.append({"sheet": sheet, "tier": "Browser", "success": success, "duration": duration, "error": err})
 
+    cleanup_temp_artifacts()
     reap_scraping_tabs()
 
     total_time = time.perf_counter() - t_start
@@ -289,7 +305,8 @@ def execute_refresh_stale(max_age_min: float = 5.0) -> dict:
                 err_msg = f" | Error: {err}" if not success else ""
                 log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
                 results.append({"sheet": sheet, "success": success, "duration": duration, "error": err})
-        reap_scraping_tabs()
+        cleanup_temp_artifacts()
+    reap_scraping_tabs()
 
     # Re-run auditor with strict 5m threshold
     proc_check = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT), "--max-age", str(max_age_min)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

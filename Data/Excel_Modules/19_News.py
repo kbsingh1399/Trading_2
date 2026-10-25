@@ -599,7 +599,7 @@ def main() -> int:
         log.error("Failed to harvest any stories from Forex Factory News.")
         return 1
 
-    save_news_to_disk(stories)
+    # save_news_to_disk(stories) - Direct to Excel only
     written = export_news_to_excel(stories, excel_path=args.excel_path, sheet_name=args.sheet_name)
     log.info(f"[SUCCESS] 19_News completed successfully with {written} stories.")
     return 0

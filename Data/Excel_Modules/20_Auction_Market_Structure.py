@@ -639,15 +639,6 @@ def dump_auction_structure_to_excel(
         log.error("0 records generated. Aborting dump.")
         return False
 
-    # Also save staged parquet for Fast_Excel_Batch_Committer
-    try:
-        df_stage = pd.DataFrame(structure_records)
-        stage_file = STAGING_DIR / f"{sheet_name}.parquet"
-        df_stage.to_parquet(stage_file, index=False)
-        log.info(f"Staged dataset saved to: {stage_file}")
-    except Exception as e:
-        log.warning(f"Failed to save staged parquet: {e}")
-
     # Also save live telemetry JSON
     try:
         json_file = TELEMETRY_DIR / "auction_market_structure.json"
