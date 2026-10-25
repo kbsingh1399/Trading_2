@@ -63,6 +63,7 @@ API_MODULES = [
     {"id": 26, "name": "CVD Engine", "script": MODULES_DIR / "18_CVD.py", "sheet": "18_CVD", "timeout": 240, "args": ["--max-excel-rows", "1500"]},
     {"id": 27, "name": "Auction Market Structure", "script": MODULES_DIR / "20_Auction_Market_Structure.py", "sheet": "20_Auction_Market_Structure", "timeout": 120, "args": []},
     {"id": 28, "name": "Tradfye Orderflow", "script": MODULES_DIR / "21_Tradfye_Orderflow.py", "sheet": "21_Tradfye_Orderflow", "timeout": 120, "args": []},
+    {"id": 31, "name": "Forced Liquidations MTF", "script": MODULES_DIR / "22_Forced_Liquidations_MTF.py", "sheet": "22_Forced_Liquidations_MTF", "timeout": 120, "args": []},
 ]
 
 # 2. Tier 1B: Browser CDP Modules (Run sequentially through Edge queue worker, preserving Arena tab)

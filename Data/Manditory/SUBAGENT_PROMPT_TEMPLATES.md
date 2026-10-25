@@ -603,3 +603,32 @@ The programmatic dispatcher [`Terminal/dispatch_fable_subagent.py`](file:///c:/U
 3. Computes `prompt_sha256 = hashlib.sha256(full_prompt_text.encode('utf-8')).hexdigest()`.
 4. Spawns subagents with `Model='flash'` and harvests their structured JSON outputs.
 5. Sockets are cleanly terminated via `manage_subagents(Action='kill_all')` after validated harvest.
+
+
+---
+
+# PART 5: MANDATORY 35-SHEET SOCRATIC VERIFICATION & 12-POINT ZERO-REPEAT PITFALL CERTIFICATION
+
+## Inviolable Cycle Mandate
+On EVERY autonomous cycle, before ratifying any order or position modification, the Antigravity 4-Quant Swarm must review `Data/socratic_audit_table.md` and certify that all 12 points below pass with zero exceptions:
+
+### 12-Point Zero-Repeat Pitfall Checklist
+1. **PITFALL_01 (Polarity Inversion)**: Defending whale wall must match order side (Bid for Long, Ask for Short).
+2. **PITFALL_02 (Unswept Stop Cascades)**: Zero un-swept retail stop clusters between market price and proposed limit entry.
+3. **PITFALL_03 (Intra-Bar Buying/Selling Avalanche — Ticket #19274977 Prevention)**:
+   - For Shorts: 15m Taker Buy Delta <= +10.0M USD and intra-bar buying acceleration <= +25.0M USD.
+   - For Longs: 15m Taker Sell Delta <= +10.0M USD and intra-bar selling acceleration <= +25.0M USD.
+4. **PITFALL_04 (Sub-ATR Stop Loss)**: Stop distance >= 0.40 * 14-period ATR and anchored strictly outside Value Area balance.
+5. **PITFALL_05 (No-Man's-Land Chop)**: Stand aside if `Trend_Regime == 'UNDEFINED'` or `|VWAP_Z| < 2.0 SD` without confirmed HTF trend structure.
+6. **PITFALL_06 (Spread Friction Gate)**: Live spread <= 25.0 bps (Crypto) / <= 5.0 bps (TradFi).
+7. **PITFALL_07 (HTF Trend & ETF Alignment)**: Order aligns with 3-day ETF institutional flows and macro structure.
+8. **PITFALL_08 (Macro Calendar Blackout)**: Outside +-15m (Crypto) / +-35m (TradFi) of Red-Folder economic releases.
+9. **PITFALL_09 (Overhead Liquidity Blockade)**: Realizable R:R >= 1.50R before opposing structural whale walls.
+10. **PITFALL_10 (Triple Floor Defense)**: Stressed post-loss equity >= 4,795.00 USD Solvency Kernel.
+11. **PITFALL_11 (Rollover Spread Window)**: Not entering between 21:45 and 22:15 UTC (interbank FX rollover).
+12. **PITFALL_12 (Portfolio Margin Ceiling)**: Combined margin utilization strictly <= 50.00% (Finding D3).
+
+### Continuous Alpha Socratic Requirement
+For every sheet reviewed from `Data/socratic_audit_table.md`, subagents must ask:
+*"Can I improve trading process more with data from this excel sheet?"*
+Extracting sub-minute flow, liquidation density gradients, and iceberg order replenishment to continually refine trade selection.

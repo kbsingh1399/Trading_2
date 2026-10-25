@@ -19,6 +19,12 @@ import sys
 from typing import Dict, List, Tuple
 
 try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+try:
     import openpyxl
 except ImportError:
     openpyxl = None
@@ -37,6 +43,21 @@ def get_sheet_socratic_insights() -> Dict[str, Dict[str, str]]:
             "focus": "Capital solvency, live margin utilization, and real broker spreads",
             "question": "Can I improve trading process more with data from this excel sheet?",
             "answer": "YES: By tracking millisecond broker execution slippage and tick jitter across historical fills in Column 8, we can compute actual broker toxicity and dynamically widen limit order buffers during toxic volatility windows."
+        },
+        "Crypto_ETF_Flows": {
+            "focus": "Institutional Spot ETF daily inflow/outflow timeline across all 11 US spot Bitcoin and Ethereum ETFs",
+            "question": "Can I improve trading process more with data from this excel sheet?",
+            "answer": "YES: By tracking whether inflows are expanding or contracting over a rolling 5-day exponential moving window, we can identify when institutional TradFi allocation regimes shift between risk-on accumulation and risk-off distribution."
+        },
+        "Top_Institutions": {
+            "focus": "Institutional ETF holdings breakdown by fund manager (BlackRock IBIT, Fidelity FBTC, Grayscale GBTC)",
+            "question": "Can I improve trading process more with data from this excel sheet?",
+            "answer": "YES: By comparing institutional creation/redemption dispersion between BlackRock (pure institutional wealth) and retail-heavy ETF vehicles, we isolate authentic sovereign institutional liquidity."
+        },
+        "ETF_Market_Overview": {
+            "focus": "Macro ETF AUM, trading volume, and market share distribution across spot ETF issuers",
+            "question": "Can I improve trading process more with data from this excel sheet?",
+            "answer": "YES: By calculating the ETF-to-Futures volume turnover ratio, we detect whether spot institutional liquidity is dominating price discovery over levered offshore perpetual exchanges."
         },
         "1_Crypto_ETF_Flows": {
             "focus": "Institutional TradFi spot Bitcoin and Ethereum ETF daily net creations/redemptions",
