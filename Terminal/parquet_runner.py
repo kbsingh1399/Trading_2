@@ -32,13 +32,24 @@ from typing import Dict, List, Tuple
 ROOT_DIR = pathlib.Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "Data"
 MODULES_DIR = DATA_DIR / "Excel_Modules"
+COLLECTORS_DIR = ROOT_DIR / "Collectors"
+API_DIR = COLLECTORS_DIR / "API"
+BROWSER_DIR = COLLECTORS_DIR / "Browser"
+CORE_DIR = COLLECTORS_DIR / "Core"
 FEEDS_DIR = DATA_DIR / "feeds"
 METADATA_DIR = DATA_DIR / "metadata"
-AUDITOR_SCRIPT = ROOT_DIR / "Terminal" / "Data_Factory" / "parquet_feed_checklist_auditor.py"
+AUDITOR_SCRIPT = ROOT_DIR / "Terminal" / "parquet_checklist_auditor.py"
 
 CDP_BASE_URL = "http://127.0.0.1:9222"
 IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 UTC_TZ = datetime.timezone.utc
+
+def _resolve_script(base_folder: pathlib.Path, fallback_folder: pathlib.Path, filename: str) -> pathlib.Path:
+    p = base_folder / filename
+    if p.exists():
+        return p
+    fb = fallback_folder / filename
+    return fb if fb.exists() else p
 
 logging.basicConfig(
     level=logging.INFO,
@@ -49,42 +60,42 @@ log = logging.getLogger("ParquetRunner")
 
 # 1. Tier 1: Pure API Modules (High Throughput, 6 workers)
 API_MODULES = [
-    {"id": 0, "name": "MT5 Telemetry", "script": MODULES_DIR / "00_MT5_Account_Telemetry.py", "feed": "00_MT5_Account_Telemetry", "timeout": 120, "args": []},
-    {"id": 19, "name": "Technical Indicators", "script": MODULES_DIR / "11_Technical.py", "feed": "11_Technical", "timeout": 120, "args": []},
-    {"id": 20, "name": "Hyperdash Flow", "script": MODULES_DIR / "12_Hyperdash.py", "feed": "12_Hyperdash", "timeout": 120, "args": []},
-    {"id": 21, "name": "Hyperliquid L1", "script": MODULES_DIR / "13_Hyperliquid.py", "feed": "13_Hyperliquid", "timeout": 120, "args": []},
-    {"id": 22, "name": "Hyperdash Liq Map", "script": MODULES_DIR / "14_Hyperdash_Liq_Map.py", "feed": "14_Hyperdash_Liq_Map", "timeout": 120, "args": []},
-    {"id": 23, "name": "Hyperdash Stops Map", "script": MODULES_DIR / "15_Hyperdash_Stops_Map.py", "feed": "15_Hyperdash_Stops_Map", "timeout": 120, "args": []},
-    {"id": 24, "name": "Hyperdash Telegram Intel", "script": MODULES_DIR / "16_Hyperdash_telegram_Intel.py", "feed": "16_Hyperdash_telegram_Intel", "timeout": 120, "args": ["--pages", "10", "--limit", "1000"]},
-    {"id": 25, "name": "Orderbook & Whale Attribution", "script": MODULES_DIR / "17_Orderbook.py", "feed": "17_Orderbook", "timeout": 180, "args": []},
-    {"id": 26, "name": "CVD Engine", "script": MODULES_DIR / "18_CVD.py", "feed": "18_CVD", "timeout": 240, "args": ["--max-excel-rows", "1500"]},
-    {"id": 27, "name": "Auction Market Structure", "script": MODULES_DIR / "20_Auction_Market_Structure.py", "feed": "20_Auction_Market_Structure", "timeout": 180, "args": []},
-    {"id": 28, "name": "Tradfye Orderflow", "script": MODULES_DIR / "21_Tradfye_Orderflow.py", "feed": "21_Tradfye_Orderflow", "timeout": 120, "args": []},
-    {"id": 31, "name": "Forced Liquidations MTF", "script": MODULES_DIR / "22_Forced_Liquidations_MTF.py", "feed": "22_Forced_Liquidations_MTF", "timeout": 120, "args": []},
+    {"id": 0, "name": "MT5 Telemetry", "script": _resolve_script(API_DIR, MODULES_DIR, "00_MT5_Account_Telemetry.py"), "feed": "00_MT5_Account_Telemetry", "timeout": 120, "args": []},
+    {"id": 19, "name": "Technical Indicators", "script": _resolve_script(API_DIR, MODULES_DIR, "11_Technical.py"), "feed": "11_Technical", "timeout": 120, "args": []},
+    {"id": 20, "name": "Hyperdash Flow", "script": _resolve_script(API_DIR, MODULES_DIR, "12_Hyperdash.py"), "feed": "12_Hyperdash", "timeout": 120, "args": []},
+    {"id": 21, "name": "Hyperliquid L1", "script": _resolve_script(API_DIR, MODULES_DIR, "13_Hyperliquid.py"), "feed": "13_Hyperliquid", "timeout": 120, "args": []},
+    {"id": 22, "name": "Hyperdash Liq Map", "script": _resolve_script(API_DIR, MODULES_DIR, "14_Hyperdash_Liq_Map.py"), "feed": "14_Hyperdash_Liq_Map", "timeout": 120, "args": []},
+    {"id": 23, "name": "Hyperdash Stops Map", "script": _resolve_script(API_DIR, MODULES_DIR, "15_Hyperdash_Stops_Map.py"), "feed": "15_Hyperdash_Stops_Map", "timeout": 120, "args": []},
+    {"id": 24, "name": "Hyperdash Telegram Intel", "script": _resolve_script(API_DIR, MODULES_DIR, "16_Hyperdash_telegram_Intel.py"), "feed": "16_Hyperdash_telegram_Intel", "timeout": 120, "args": ["--pages", "10", "--limit", "1000"]},
+    {"id": 25, "name": "Orderbook & Whale Attribution", "script": _resolve_script(API_DIR, MODULES_DIR, "17_Orderbook.py"), "feed": "17_Orderbook", "timeout": 180, "args": []},
+    {"id": 26, "name": "CVD Engine", "script": _resolve_script(API_DIR, MODULES_DIR, "18_CVD.py"), "feed": "18_CVD", "timeout": 240, "args": ["--max-excel-rows", "1500"]},
+    {"id": 27, "name": "Auction Market Structure", "script": _resolve_script(API_DIR, MODULES_DIR, "20_Auction_Market_Structure.py"), "feed": "20_Auction_Market_Structure", "timeout": 180, "args": []},
+    {"id": 28, "name": "Tradfye Orderflow", "script": _resolve_script(API_DIR, MODULES_DIR, "21_Tradfye_Orderflow.py"), "feed": "21_Tradfye_Orderflow", "timeout": 120, "args": []},
+    {"id": 31, "name": "Forced Liquidations MTF", "script": _resolve_script(API_DIR, MODULES_DIR, "22_Forced_Liquidations_MTF.py"), "feed": "22_Forced_Liquidations_MTF", "timeout": 120, "args": []},
 ]
 
 # 2. Tier 2: Browser CDP Modules (Paced to 2 workers to protect browser renderer)
 BROWSER_MODULES = [
-    {"id": 1, "name": "Crypto ETF Flows", "script": MODULES_DIR / "1_Crypto_ETF_Flows.py", "feed": "1_Crypto_ETF_Flows", "timeout": 120, "args": []},
-    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "feed": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "10"]},
-    {"id": 3, "name": "LS Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "feed": "3_Exchanges_LS_Ratio_15M", "timeout": 180, "args": []},
-    {"id": 4, "name": "LS Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "feed": "3_Exchanges_LS_Ratio_1H", "timeout": 180, "args": []},
-    {"id": 5, "name": "LS Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "feed": "3_Exchanges_LS_Ratio_4H", "timeout": 180, "args": []},
-    {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "feed": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "feed": "5_OI", "timeout": 180, "args": []},
-    {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "feed": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 9, "name": "Funding Fee Settlement", "script": MODULES_DIR / "6_Funding_Fee_Settlement.py", "feed": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "feed": "7_Liq_Heapmap", "timeout": 120, "args": []},
-    {"id": 11, "name": "Live Liquidations", "script": MODULES_DIR / "7_Live_Liq.py", "feed": "7_Live_Liq", "timeout": 120, "args": []},
-    {"id": 12, "name": "Liq Map 1D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_1D.py", "feed": "8_Exchange_Liquidation_Map_1D", "timeout": 120, "args": []},
-    {"id": 13, "name": "Liq Map 7D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_7D.py", "feed": "8_Exchange_Liquidation_Map_7D", "timeout": 120, "args": []},
-    {"id": 14, "name": "Max Pain 24H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_24H.py", "feed": "9_Liquidation_Max_Pain_24H", "timeout": 120, "args": []},
-    {"id": 15, "name": "Max Pain 48H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_48H.py", "feed": "9_Liquidation_Max_Pain_48H", "timeout": 120, "args": []},
-    {"id": 16, "name": "Max Pain 3D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_3D.py", "feed": "9_Liquidation_Max_Pain_3D", "timeout": 120, "args": []},
-    {"id": 17, "name": "Max Pain 7D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_7D.py", "feed": "9_Liquidation_Max_Pain_7D", "timeout": 120, "args": []},
-    {"id": 18, "name": "Whale Orders", "script": MODULES_DIR / "10_Whale_Orders.py", "feed": "10_Whale_Orders", "timeout": 120, "args": []},
-    {"id": 28, "name": "Forex News", "script": MODULES_DIR / "19_News.py", "feed": "19_News", "timeout": 120, "args": []},
-    {"id": 29, "name": "Macro Calendar", "script": MODULES_DIR / "19_Calendar.py", "feed": "19_Calendar", "timeout": 120, "args": []},
+    {"id": 1, "name": "Crypto ETF Flows", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "1_Crypto_ETF_Flows.py"), "feed": "1_Crypto_ETF_Flows", "timeout": 120, "args": []},
+    {"id": 2, "name": "Spot Netflow", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "2_Spot_Netflow_S.py"), "feed": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "10"]},
+    {"id": 3, "name": "LS Ratio 15M", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_15M.py"), "feed": "3_Exchanges_LS_Ratio_15M", "timeout": 180, "args": []},
+    {"id": 4, "name": "LS Ratio 1H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_1H.py"), "feed": "3_Exchanges_LS_Ratio_1H", "timeout": 180, "args": []},
+    {"id": 5, "name": "LS Ratio 4H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_4H.py"), "feed": "3_Exchanges_LS_Ratio_4H", "timeout": 180, "args": []},
+    {"id": 6, "name": "Hyperliquid Whale", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "4_Hyperliquid_Analysis.py"), "feed": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 7, "name": "Futures Open Interest", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "5_OI.py"), "feed": "5_OI", "timeout": 180, "args": []},
+    {"id": 8, "name": "Funding Rates", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "5_Funding_Rate.py"), "feed": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 9, "name": "Funding Fee Settlement", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "6_Funding_Fee_Settlement.py"), "feed": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 10, "name": "Liquidation Heatmap", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "7_Liq_Heapmap.py"), "feed": "7_Liq_Heapmap", "timeout": 120, "args": []},
+    {"id": 11, "name": "Live Liquidations", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "7_Live_Liq.py"), "feed": "7_Live_Liq", "timeout": 120, "args": []},
+    {"id": 12, "name": "Liq Map 1D", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "8_Exchange_Liquidation_Map_1D.py"), "feed": "8_Exchange_Liquidation_Map_1D", "timeout": 120, "args": []},
+    {"id": 13, "name": "Liq Map 7D", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "8_Exchange_Liquidation_Map_7D.py"), "feed": "8_Exchange_Liquidation_Map_7D", "timeout": 120, "args": []},
+    {"id": 14, "name": "Max Pain 24H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "9_Liquidation_Max_Pain_24H.py"), "feed": "9_Liquidation_Max_Pain_24H", "timeout": 120, "args": []},
+    {"id": 15, "name": "Max Pain 48H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "9_Liquidation_Max_Pain_48H.py"), "feed": "9_Liquidation_Max_Pain_48H", "timeout": 120, "args": []},
+    {"id": 16, "name": "Max Pain 3D", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "9_Liquidation_Max_Pain_3D.py"), "feed": "9_Liquidation_Max_Pain_3D", "timeout": 120, "args": []},
+    {"id": 17, "name": "Max Pain 7D", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "9_Liquidation_Max_Pain_7D.py"), "feed": "9_Liquidation_Max_Pain_7D", "timeout": 120, "args": []},
+    {"id": 18, "name": "Whale Orders", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "10_Whale_Orders.py"), "feed": "10_Whale_Orders", "timeout": 120, "args": []},
+    {"id": 28, "name": "Forex News", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "19_News.py"), "feed": "19_News", "timeout": 120, "args": []},
+    {"id": 29, "name": "Macro Calendar", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "19_Calendar.py"), "feed": "19_Calendar", "timeout": 120, "args": []},
 ]
 
 
@@ -137,7 +148,16 @@ def run_single_module(mod: dict) -> Tuple[str, bool, float, str]:
 
     t0 = time.perf_counter()
     env = os.environ.copy()
-    env["PYTHONPATH"] = f"{ROOT_DIR / 'Terminal' / 'Data_Factory'};{MODULES_DIR};{env.get('PYTHONPATH', '')}"
+    py_paths = [
+        str(CORE_DIR),
+        str(API_DIR),
+        str(BROWSER_DIR),
+        str(ROOT_DIR / "Terminal" / "Data_Factory"),
+        str(MODULES_DIR),
+        str(ROOT_DIR),
+        env.get("PYTHONPATH", "")
+    ]
+    env["PYTHONPATH"] = ";".join(p for p in py_paths if p)
 
     try:
         proc = subprocess.run(
@@ -184,9 +204,9 @@ def execute_full_cycle() -> dict:
             log.info(f"  [{status_str}] {feed:<30} ({duration:>5.1f}s){err_msg}")
             results.append({"feed": feed, "tier": "API", "success": success, "duration": duration, "error": err})
 
-    # Phase 2: Browser CDP Modules (2 parallel workers with pacing)
-    log.info("--- Phase 2: Executing 20 Browser CDP Modules (2 Parallel Workers) ---")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+    # Phase 2: Browser CDP Modules (Strictly serialized 1 worker to protect browser renderer & prevent 429)
+    log.info("--- Phase 2: Executing Browser CDP Modules (Serialized 1 Worker, Paced) ---")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         futures = {executor.submit(run_single_module, mod): mod for mod in BROWSER_MODULES}
         for future in concurrent.futures.as_completed(futures):
             feed, success, duration, err = future.result()
@@ -267,8 +287,8 @@ def execute_refresh_stale(max_age_min: float = 15.0) -> dict:
                 results.append({"feed": feed, "tier": "API", "success": success, "duration": duration, "error": err})
 
     if browser_targets:
-        log.info(f"Refreshing {len(browser_targets)} stale Browser feeds (2 workers)...")
-        with concurrent.futures.ThreadPoolExecutor(max_workers=min(2, len(browser_targets))) as executor:
+        log.info(f"Refreshing {len(browser_targets)} stale Browser feeds (Serialized 1 worker)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
             futures = {executor.submit(run_single_module, mod): mod for mod in browser_targets}
             for future in concurrent.futures.as_completed(futures):
                 feed, success, duration, err = future.result()
