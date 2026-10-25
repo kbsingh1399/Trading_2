@@ -299,8 +299,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("     - Sheet 25 (Hyperliquid_Whales): Live resting whale walls and L2/L3 orderbook depth on Hyperliquid DEX.")
     lines.append("     - Sheet 33 (FF_Live_Trades_Activity): 40 real-time executions with side, execution price, order type, and pips. Real-time tape reading for retail panic/FOMO exhaustion.")
     lines.append("     - Sheet 35 (Live_Orderbook_CVD_Depth): Level 2 20-level orderbook depth, book imbalance, multi-horizon taker CVD (1m, 15m, session, weekly), Lee-Ready TradFi tick CVD, trapped traders footprint. Primary entry staging sheet: identifies shelf anchors (POC, VAH/VAL, VWAP) and verifies CVD absorption.")
-    lines.append("     - Sheet 36 (Exchange_Basis_Spreads): Cross-venue basis spreads (Binance perp mid minus MT5 CFD mid), funding basis, and spot-perpetual premium. Maps perpetual levels into MT5 broker CFD prices.
-    lines.append("     - Sheet 21_Tradfye_Orderflow: Tradfye Footprint Point of Control (POC), candle taker delta, 99th-percentile whale bubbles, resting absorption shelves, and Deribit options max pain and gamma walls. Read directly from Data/DataBase_Trading.xlsx.")")
+    lines.append("     - Sheet 36 (Exchange_Basis_Spreads): Cross-venue basis spreads (Binance perp mid minus MT5 CFD mid), funding basis, and spot-perpetual premium. Maps perpetual levels into MT5 broker CFD prices.")
+    lines.append("     - Sheet 21_Tradfye_Orderflow: Tradfye Footprint Point of Control (POC), candle taker delta, 99th-percentile whale bubbles, resting absorption shelves, and Deribit options max pain and gamma walls. Read directly from Data/DataBase_Trading.xlsx.")
     lines.append("")
     lines.append("   • CLUSTER 5: Liquidity Magnets & SL/TP Placement (Sheets 19–22, 37):")
     lines.append("     - Sheets 19 & 20 (liquidation_maxpain_1D / 2D): 24h and 48h maximum pain strike prices.")
