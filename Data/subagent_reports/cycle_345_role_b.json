@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 345",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "f51e992b7a806ed7b9a236951cdce21c22169e54e5f802598b48c79ea88095cb",
+  "prompt_sha256": "84ad71bb7cb6b066d7a6a7ab839264c8da73ba83b965356248c08e9d79e21607",
+  "dispatch_nonce": "16f68f2a-b71a-4bd8-9312-dc83084fc103",
+  "microstructure_audit": {
+    "broker_spread_bps": 1.98,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "backing_whale_wall_price": 81314.0,
+    "backing_whale_wall_notional_usd": 4881152.57,
+    "backing_whale_wall_persisted_seconds": 0.0,
+    "whale_persistence_status": "FAIL_LT_180S_FLICKERING_ORDER",
+    "sl_anchor_status": "FAIL_UNANCHORED_IN_AUCTION_VOID",
+    "adverse_selection_projected_r0": -0.228
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 83087.5,
+    "monday_ib_l": 80743.0,
+    "monday_ib_mid": 81915.25,
+    "monday_sweep_reclaim_status": "RETESTING_MON_LOW_FROM_ABOVE",
+    "asian_session_extreme_sweep": "SWEEP_ASIAN_HIGH_02_30Z_REJECTED",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL",
+    "developing_value_area_state": "INSIDE_VALUE_ROTATIONAL_BALANCE"
+  },
+  "fib_invalidation_shelf_check": {
+    "shelf_0786_price": 80582.48,
+    "sl_price": 81780.0,
+    "sl_buffer_atr_multiple": 2.68,
+    "anchor_integrity": "FAIL_LOCAL_0786_SHELF_ALREADY_BREACHED_BEFORE_ENTRY"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01",
+      "statement": "Candidate BTCUSD.pi SELL_LIMIT @ 81,300.00 is placed directly below the un-swept Prior Day High liquidity pool (pdH = 81,405.00) where .01M cumulative short liquidations reside, violating anti-front-running un-swept pool invariants and generating severe toxic adverse selection.",
+      "evidence_ids": [
+        "Sheet 20_Auction_Market_Structure Row 1 (pdH: 81,405.00)",
+        "Sheet 14_Hyperdash_Liq_Map Row (CumLiq .01M @ 81,450.00)",
+        "Sheet 15_Hyperdash_Stops_Map (Buy Stops expanding to 81,405.00)"
+      ],
+      "formula_or_test": "Entry < pdH (81,300.00 < 81,405.00) AND Cum_Short_Liq(pdH) >= .0M -> toxic post-fill sweep drift directly into Stop Loss",
+      "result": {
+        "entry_price": 81300.0,
+        "pd_high": 81405.0,
+        "distance_pts": -105.0,
+        "cum_liq_at_pdh_usd": 8010000.0
+      },
+      "uncertainty": "Zero; pdH and hyperdash liquidation clusters are deterministically verified in DataBase_Trading.xlsx",
+      "status": "VERIFIED_DEFECT"
+    },
+    {
+      "claim_id": "CLAIM_B_02",
+      "statement": "Backing whale orders in the 81,019.00 - 81,314.00 USD zone fail the Mandatory 180-Second Persistence Invariant in Sheet 10_Whale_Orders, exhibiting spoofed/flickering durations between 0.0s and 16.0s.",
+      "evidence_ids": [
+        "Sheet 10_Whale_Orders Rows 1-3 (OKX 81,038.10 duration 0s, Bybit 81,028.50 duration 16s, Binance 81,019.40 duration 0s)",
+        "Sheet 17_Orderbook Row 55"
+      ],
+      "formula_or_test": "persisted_seconds >= 180s for backing wall within 0.40 ATR of entry",
+      "result": {
+        "entry": 81300.0,
+        "l3_wall": 81314.0,
+        "recorded_duration_s": 0.0,
+        "pass_gate": false
+      },
+      "uncertainty": "Zero; Sheet 10_Whale_Orders explicitly logs 0s to 16s duration for all newly appeared orders above 81,000",
+      "status": "VERIFIED_DEFECT"
+    },
+    {
+      "claim_id": "CLAIM_B_03",
+      "statement": "Candidate Take Profit @ 79,850.00 fails the mandatory 5 to 10 bps front-running rule against major institutional resting buy shelves at 80,000.00 USD (.54M multi-exchange cluster) and 80,050.00 USD (.65M sell stops).",
+      "evidence_ids": [
+        "Sheet 17_Orderbook (Top Bids / 20-level depth)",
+        "Sheet 10_Whale_Orders Rows 5-10 (.54M resting blocks)",
+        "Sheet 15_Hyperdash_Stops_Map (.65M sell stops @ 80,050.00)",
+        "Sheet 21_Tradfye_Orderflow (Deribit Put Wall 60k, Max Pain 78k)"
+      ],
+      "formula_or_test": "TP_short >= Nearest_Whale_Bid_Price + (5 to 10 bps * Price)",
+      "result": {
+        "tp_proposed": 79850.0,
+        "major_resting_support": 80000.0,
+        "front_run_deficit_pts": -150.0,
+        "rule_required_tp_minimum": 80040.0
+      },
+      "uncertainty": "Low; .65M in resting sell stops and multi-million dollar resting buy walls sit directly between entry and proposed TP",
+      "status": "VERIFIED_DEFECT"
+    },
+    {
+      "claim_id": "CLAIM_B_04",
+      "statement": "Local 0.786 Fibonacci Invalidation Shelf for BTC (80,582.48 USD) has been breached by current spot price (80,830.00 USD), invalidating the local bearish impulse wave structure and leaving the stop loss unanchored in an auction void.",
+      "evidence_ids": [
+        "Sheet 20_Auction_Market_Structure Row 1 (Fib Golden Zone Status: STRUCTURE_INVALIDATED, Fib Inval 0.786: 80,582.48)",
+        "Sheet 21_Tradfye_Orderflow Row 1 (Close: 80,884.40)"
+      ],
+      "formula_or_test": "Current_Mid > Fib_0786 (80,830.00 > 80,582.48) -> STRUCTURE_INVALIDATED",
+      "result": {
+        "current_mid": 80830.0,
+        "fib_0786": 80582.48,
+        "breach_pts": 247.52
+      },
+      "uncertainty": "Zero; confirmed by deterministic Sheet 20 Fibonacci status",
+      "status": "VERIFIED_DEFECT"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_B_01: The proposed SELL_LIMIT @ 81,300.00 is placed in an auction transition zone 105 pts below un-swept pdH (81,405.00), exposing the trade to immediate toxic momentum into SL (81,780.00) as .01M in short stops are triggered.",
+    "CHALLENGE_B_02: The candidate TP @ 79,850.00 is blocked by a .65M resting sell-stop cluster at 80,050.00 USD and the 80,000.00 round-number psychological shelf, violating the 5-10 bps front-running requirement.",
+    "CHALLENGE_B_03: The local 0.786 Fibonacci retracement level (80,582.48 USD) has been invalidated by the Asian session expansion, leaving no valid Fibonacci Prime anchor for a short entry at 81,300.00."
+  ],
+  "unknowns": [
+    "UNKNOWN_B_01: Whether the .54M multi-exchange resting sell cluster at 81,000.00 (persisted >8h) will act as real institutional absorption or be pulled if aggressive buyers attack the Asian High.",
+    "UNKNOWN_B_02: Real-time limit queue arrival rate and fill probability under low weekend liquidity where 15m candle volume drops from .89M (02:30 UTC) to .37M (02:45 UTC)."
+  ],
+  "severity_1_or_2_disputes": [
+    "DISPUTE_B_01: Entry 81,300.00 USD is placed 105 pts below un-swept pdH (81,405.00 USD), directly violating the anti-front-running un-swept liquidity pool invariant.",
+    "DISPUTE_B_02: TP 79,850.00 USD is placed behind rather than in front of the 80,000.00 - 80,050.00 USD resting institutional buy shelf and sell-stop cluster."
+  ],
+  "role_verdict": "STAND_ASIDE_UNBACKED_MICROSTRUCTURE",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Mobilizing @[market-ingest] and @[market-pattern] enabled microstructural cross-validation between Sheet 17 L3 depth, Sheet 10 whale durations, and Sheet 20 auction shelves. Incorporating real-time queue position tracking and L3 order cancel/replace ratios would eliminate false whale wall reliance.",
+    "omitted_risk_dimensions": "Underestimated the risk of placing limits inside un-swept buy-stop clusters (pdH 81,405.00), where resting buy stops trigger aggressive market buying cascades directly through limit sell orders.",
+    "algorithmic_alternatives": "Deploy Hawkes process intensity modeling to estimate the conditional arrival rate of aggressive market buy orders upon breaking Asian High (80,895.00), and calibrate queue survival probability using Cox proportional hazards."
+  },
+  "response_sha256": "dcf01dc1353afb31960d0c3a12bf2d25ef64e4a6c5463e99c82b3a851e64d701"
+}
