@@ -1,0 +1,160 @@
+{
+  "cycle": 2,
+  "timestamp_ist": "2026-10-26 04:07:14 IST",
+  "total_targets": 11,
+  "passed_targets": 11,
+  "overall_parity_pct": 100.0,
+  "details": [
+    {
+      "feed": "1_Crypto_ETF_Flows",
+      "parquet_rows": 39,
+      "parquet_cols": 16,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\1_Crypto_ETF_Flows_cycle2.png",
+      "format_details": [
+        "USD/Price check: ['$1.08B', 'Price:$45.96']"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "2_Spot_Netflow_S",
+      "parquet_rows": 18,
+      "parquet_cols": 14,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\2_Spot_Netflow_S_cycle2.png",
+      "format_details": [
+        "USD/Price check: ['Price:$80,546.00']"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_15M",
+      "parquet_rows": 142,
+      "parquet_cols": 11,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\3_Exchanges_LS_Ratio_15M_cycle2.png",
+      "format_details": [
+        "Percentage check: ['51.80%']",
+        "L/S Ratio sample: 1.07"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_1H",
+      "parquet_rows": 142,
+      "parquet_cols": 11,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\3_Exchanges_LS_Ratio_1H_cycle2.png",
+      "format_details": [
+        "Percentage check: ['47.04%']",
+        "L/S Ratio sample: 0.89"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_4H",
+      "parquet_rows": 142,
+      "parquet_cols": 11,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\3_Exchanges_LS_Ratio_4H_cycle2.png",
+      "format_details": [
+        "Percentage check: ['45.69%']",
+        "L/S Ratio sample: 0.84"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "5_OI",
+      "parquet_rows": 18,
+      "parquet_cols": 20,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\5_OI_cycle2.png",
+      "format_details": [
+        "USD/Price check: ['$53.49B']"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "5_Funding_Rate",
+      "parquet_rows": 18,
+      "parquet_cols": 16,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\5_Funding_Rate_cycle2.png",
+      "format_details": [
+        "Percentage check: ['+0.2968%']"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "7_Live_Liq",
+      "parquet_rows": 27,
+      "parquet_cols": 8,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\7_Live_Liq_cycle2.png",
+      "format_details": [],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "8_Exchange_Liquidation_Map_1D",
+      "parquet_rows": 2069,
+      "parquet_cols": 11,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\8_Exchange_Liquidation_Map_1D_cycle2.png",
+      "format_details": [
+        "USD/Price check: ['$838.34M', 'Price:72170.0']"
+      ],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "9_Liquidation_Max_Pain_24H",
+      "parquet_rows": 747,
+      "parquet_cols": 11,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\9_Liquidation_Max_Pain_24H_cycle2.png",
+      "format_details": [],
+      "parity_score": 100.0,
+      "status": "PASS"
+    },
+    {
+      "feed": "10_Whale_Orders",
+      "parquet_rows": 166,
+      "parquet_cols": 17,
+      "schema_ok": true,
+      "format_ok": true,
+      "screenshot_captured": true,
+      "screenshot_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\screenshots\\10_Whale_Orders_cycle2.png",
+      "format_details": [],
+      "parity_score": 100.0,
+      "status": "PASS"
+    }
+  ]
+}

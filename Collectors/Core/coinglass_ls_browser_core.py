@@ -63,20 +63,37 @@ def fmt_vol(val: float) -> str:
         return f"${abs_v:.2f}"
 
 
-def get_coinglass_ws_url() -> str:
-    """Finds the open CoinGlass tab on Edge CDP port 9222."""
-    res = urllib.request.urlopen("http://localhost:9222/json", timeout=5).read()
-    tabs = json.loads(res)
-    for t in tabs:
-        url = t.get("url", "")
-        if "coinglass.com/LongShortRatio" in url or "coinglass.com" in url:
-            return t["webSocketDebuggerUrl"]
-    raise RuntimeError("No CoinGlass tab found on Edge CDP port 9222.")
+def get_coinglass_tab() -> tuple[str, str, bool]:
+    """Finds or opens a CoinGlass LongShortRatio tab on Edge CDP."""
+    target = "https://www.coinglass.com/LongShortRatio"
+    try:
+        res = urllib.request.urlopen("http://localhost:9222/json", timeout=5).read()
+        tabs = json.loads(res.decode("utf-8"))
+        for t in tabs:
+            url = t.get("url", "").lower()
+            if "longshortratio" in url:
+                log.info(f"Reusing active LongShortRatio tab (ID: {t['id']})")
+                return t["id"], t["webSocketDebuggerUrl"], False
+    except Exception as e:
+        log.warning(f"Failed to query CDP tabs: {e}")
+
+    req = urllib.request.Request(f"http://localhost:9222/json/new?{target}", method="PUT")
+    new_tab = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8"))
+    log.info(f"Opened dedicated ephemeral LongShortRatio tab (ID: {new_tab['id']})")
+    return new_tab["id"], new_tab["webSocketDebuggerUrl"], True
+
+
+def close_tab(tab_id: str):
+    try:
+        urllib.request.urlopen(f"http://localhost:9222/json/close/{tab_id}", timeout=4)
+        log.info(f"Closed ephemeral tab {tab_id}")
+    except Exception:
+        pass
 
 
 async def extract_coinglass_ls_data(tf_str: str) -> dict:
     """Extracts raw React Fiber state and active DOM table from CoinGlass."""
-    ws_url = get_coinglass_ws_url()
+    tab_id, ws_url, is_ephemeral = get_coinglass_tab()
     tf_clean = tf_str.lower()
 
     js_code = f"""(() => {{
@@ -157,15 +174,22 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
         }};
     }})()"""
 
-    async with websockets.connect(ws_url, max_size=25 * 1024 * 1024) as ws:
-        msg = {
-            "id": 1,
-            "method": "Runtime.evaluate",
-            "params": {"expression": js_code, "returnByValue": True},
-        }
-        await ws.send(json.dumps(msg))
-        res = json.loads(await ws.recv())
-        return res.get("result", {}).get("result", {}).get("value", {})
+    try:
+        async with websockets.connect(ws_url, max_size=25 * 1024 * 1024) as ws:
+            if is_ephemeral:
+                log.info("Awaiting LongShortRatio page hydration (3.5s)...")
+                await asyncio.sleep(3.5)
+            msg = {
+                "id": 1,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_code, "returnByValue": True},
+            }
+            await ws.send(json.dumps(msg))
+            res = json.loads(await ws.recv())
+            return res.get("result", {}).get("result", {}).get("value", {})
+    finally:
+        if is_ephemeral:
+            close_tab(tab_id)
 
 
 async def run_coinglass_ls_harvest(tf: str) -> bool:
