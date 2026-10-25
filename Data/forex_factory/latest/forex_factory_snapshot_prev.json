@@ -314,12 +314,12 @@
   "session_status": "WEEKEND_TRADFI_CLOSED_CRYPTO_ACTIVE",
   "_temporal_meta": {
     "stream": "forex_factory",
-    "recorded_at_utc": "2026-10-25T11:38:10Z",
-    "recorded_at_epoch": 1792928290.943754,
-    "gap_detected": true,
-    "gap_duration_minutes": 67.61,
-    "last_active_utc": "2026-10-25T10:30:34Z",
-    "status": "RESUMED_AFTER_SHUTDOWN",
+    "recorded_at_utc": "2026-10-25T11:43:00Z",
+    "recorded_at_epoch": 1792928580.929047,
+    "gap_detected": false,
+    "gap_duration_minutes": 0.0,
+    "last_active_utc": null,
+    "status": "CONTINUOUS_SERIES",
     "compressed": true
   }
 }
