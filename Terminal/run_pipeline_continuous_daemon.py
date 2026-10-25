@@ -22,7 +22,6 @@ import sys
 import time
 
 ROOT_DIR = pathlib.Path(__file__).resolve().parents[1]
-EXCEL_MODULES_DIR = ROOT_DIR / "Data" / "Excel_Modules"
 LOG_DIR = ROOT_DIR / "logs"
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -55,24 +54,24 @@ def run_single_full_update(cycle_count: int) -> bool:
             log.info("[Phase 1] Harvesting live MT5 broker telemetry...")
             subprocess.run([sys.executable, str(telemetry_script)], check=False, cwd=str(ROOT_DIR), timeout=30)
         
-        sheet_script = EXCEL_MODULES_DIR / "00_MT5_Account_Telemetry.py"
+        sheet_script = ROOT_DIR / "Collectors" / "API" / "00_MT5_Account_Telemetry.py"
         if sheet_script.exists():
-            log.info("[Phase 1b] Updating Sheet '00_MT5_Account_Telemetry' in DataBase_Trading.xlsx...")
+            log.info("[Phase 1b] Updating Sheet '00_MT5_Account_Telemetry'...")
             subprocess.run([sys.executable, str(sheet_script)], check=False, cwd=str(ROOT_DIR), timeout=60)
     except Exception as e:
         log.warning(f"[Phase 1] Telemetry harvest notice: {e}")
 
-    # 2. Execute Master Excel Pipeline
-    pipeline_script = EXCEL_MODULES_DIR / "Run_Pipeline.py"
-    if not pipeline_script.exists():
-        log.error(f"Pipeline script not found: {pipeline_script}")
+    # 2. Execute Master Unified Pipeline (Pure-API + Browser + Scorecard Audit)
+    master_script = ROOT_DIR / "Terminal" / "run_master_pipeline.py"
+    if not master_script.exists():
+        log.error(f"Master pipeline script not found: {master_script}")
         return False
 
     try:
-        log.info("[Phase 2] Executing 28-module Excel Pipeline...")
+        log.info("[Phase 2] Executing Master Unified Pipeline...")
         proc = subprocess.run(
-            [sys.executable, str(pipeline_script)],
-            cwd=str(EXCEL_MODULES_DIR),
+            [sys.executable, str(master_script)],
+            cwd=str(ROOT_DIR),
             check=False,
             timeout=3600,
         )
