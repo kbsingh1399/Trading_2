@@ -1,7 +1,7 @@
 {
   "stream": "forex_factory",
-  "curr_timestamp_utc": "2026-10-25T02:55:08Z",
-  "prev_timestamp_utc": "2026-10-25T02:49:42Z",
+  "curr_timestamp_utc": "2026-10-25T02:59:23Z",
+  "prev_timestamp_utc": "2026-10-25T02:55:08Z",
   "time_gap_minutes": 0.0,
   "changes": {}
 }

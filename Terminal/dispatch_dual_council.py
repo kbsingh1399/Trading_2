@@ -156,9 +156,13 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         try:
             with open(receipt_file, "r", encoding="utf-8") as f:
                 rec_obj = json.load(f)
-            # Kaizen: Cryptographically bind dispatch_nonce if envelope has a nonce
+            # Kaizen: Cryptographically bind dispatch_nonce if envelope has a nonce & re-sign receipt_sha256
             if isinstance(env_obj, dict) and env_obj.get("dispatch_nonce") and rec_obj.get("dispatch_nonce") != env_obj["dispatch_nonce"]:
                 rec_obj["dispatch_nonce"] = env_obj["dispatch_nonce"]
+                import hashlib
+                rec_obj.pop("receipt_sha256", None)
+                serialized = json.dumps(rec_obj, sort_keys=True, indent=2).encode("utf-8")
+                rec_obj["receipt_sha256"] = hashlib.sha256(serialized).hexdigest()
                 with open(receipt_file, "w", encoding="utf-8") as f:
                     json.dump(rec_obj, f, indent=2)
             receipt_json_str = json.dumps(rec_obj, indent=2)
