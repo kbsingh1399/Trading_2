@@ -13,7 +13,11 @@ trigger: always_on
 > `graphify-out/graph.json` contains 7.4k parsed code nodes and semantic relationships. A targeted graphify query returns the exact scoped subgraph in under 500 tokens, eliminating 95% of codebase context bloat. Never read 500+ line Python files when a graphify query answers structural, caller, or dependency questions immediately.
 
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
-At the start of your first response after loading this file, you MUST include this acknowledgment line before any other content:
+Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line before any other content:
+```markdown
+### 🔍 Mandatory Meta-Audit: Can I improve the response further using existing skills or agents I have?
+```
+followed by:
 ```
 ✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
 ```
@@ -23,7 +27,7 @@ At the start of your first response after loading this file, you MUST include th
 
 # PART 0: 8-STEP MASTER ACTIVATION CHAIN (BOOT SEQUENCE)
 When `AGENTS.md` is loaded, execute sequentially without asking:
-1. **AST Graphify First (Token Preservation)**: Always query AST semantic nodes before touching or reading code: `/graphify` or `python -m graphify query "<symbol>"` (`graphify-out/graph.json`: 7.4k nodes). Save tokens by retrieving scoped subgraphs instead of reading raw code files.
+1. **AST Graphify**: Sync AST semantic nodes before touching code: `python -m graphify query "<symbol>"` (`graphify-out/graph.json`: 7.4k nodes).
 2. **Tri-Layer Context, Step-Level Previous Conversation & Cross-Account Re-Engagement Mandate (Strict Non-Negotiable)**:
    - *Mandatory Step Context & Cross-Account Review*: On EVERY step, agent and subagents MUST refer to previous conversation history (`.agents/memory/session_chat_history.md`, past turns, transcript). When switching Gemini accounts or returning to session chat, agent MUST review all session logs to establish complete continuity of what we are trying to achieve, all feedback, and past setbacks. No step may ever be executed in a vacuum without full context of past actions, decisions, and trajectory.
    - *Layer 1 (Graph)*: `@[.agents/memory/graph/mcp_graph_memory.json]`
@@ -99,17 +103,6 @@ When `AGENTS.md` is loaded, execute sequentially without asking:
    - **Use Human-Readable Plain Text & Unicode**: Always write equations, variables, and formulas using clean plain text, unicode operators, and clear typography (e.g. write `S(t)` or `Spot Price`, `F(t)` or `Futures Price`, `Delta P = ...`, `E[R]`, `alpha_f`, `sqrt(var)`). Reserve formal LaTeX strictly for standalone documentation files (`.md` / `.txt` files in `docs/` or downloads) when specifically requested.
 
 ---
-
-8. **Mandatory Continuous Kaizen & Methodology Improvement Inquest (Permanent Invariant)**:
-   - On EVERY coordinator response, and in EVERY prompt generated for subagents, Arena.ai, and Z.ai, the agent MUST include and address this exact Kaizen block:
-   ```markdown
-   ### 8. Continuous Kaizen & Methodology Improvement Inquest
-
-   In every evaluation cycle, the council MUST provide an explicit meta-evaluation answering:
-   - **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
-   - **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
-   - **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones) should be integrated into our next cycle?
-   ```
 
 # PART 4: COMMIT, SCRATCH & WEB2API EXECUTION GATES
 1. **Execution Over Inspection**: Prove code works by live execution, not diff inspection.
@@ -264,12 +257,31 @@ Windows: W1–W4 (2021), W5–W8 (2022), W9–W12 (2023), W13–W16 (2024), W17�
    `> 📚 **Active Skills Loaded & Applied:** @[skill-1], @[skill-2], @[skill-3], @[skill-4], @[skill-5], ...`
 3. **AST Synchronization**: After creating or modifying any feature, model, or strategy code, synchronize AST nodes via `python -m graphify update .` to maintain live knowledge graph parity.
 
+---
 
+# PART 10: MANDATORY EXCEL SHEET FRESHNESS (< 5 MINUTES) & PARALLEL EDGE TABS PROTOCOL
 
+> 🛑 **STRICT OPERATOR MANDATE: 100% OF EXCEL SHEETS MUST BE FRESH (< 5 MINUTES / 300 SECONDS)**:
+> Operating on stale market data, delayed liquidations, or lagging orderbook depth causes fatal adverse selection and account drawdown. 
+> To guarantee maximum edge and mathematical rigor across all 32 institutional sheets in `Data/DataBase_Trading.xlsx`, the system enforces:
+
+### 10.1 The 5-Minute Maximum Data Age Threshold (Strict Non-Negotiable)
+1. **Freshness Invariant**: The age of data in every single sheet in `Data/DataBase_Trading.xlsx` MUST be strictly less than 5.0 minutes (`age_minutes < 5.0m`).
+2. **Autonomous Multi-Tab Parallel Execution**:
+   - Sequential harvester execution is strictly FORBIDDEN because 32 modules * 30s = 16 minutes, which mathematically violates the 5-minute rule.
+   - Harvester modules must execute in parallel:
+     * **Pure API Modules (Tier 1A - 16 modules)**: Concurrently executed across 4 to 6 worker threads (`ThreadPoolExecutor(max_workers=6)`). All 16 complete in under 40 seconds.
+     * **Browser CDP Modules (Tier 1B - 16 modules)**: Executed across 3 concurrent parallel Edge browser tabs (via CDP `PUT /json/new` and dedicated WebSocket debugger endpoints). All 16 complete in under 130 seconds without interfering with Arena.ai or Z.ai.
+     * **Streaming WebSocket Modules (Tier 1C)**: Always-on continuous listener (`forced_liquidation_daemon.py`) updating memory buffers in real-time.
+3. **Cross-Process File Lock Protection**:
+   - All Excel workbook loads and saves across all threads and processes MUST acquire `FileLock("Data/DataBase_Trading.xlsx.lock", timeout=120)`. This permanently eliminates `zipfile EOFError` or Windows file contention.
+4. **Mandatory Sheet Age Audit Table**:
+   - On EVERY cycle and before staging orders, the agent and automated checklist auditor (`python Terminal/Data_Factory/excel_sheet_checklist_auditor.py`) MUST print the full 32-sheet table with exact Row Counts, IST Timestamps, and Ages.
+   - Any sheet with `Age >= 5.0m` triggers immediate priority re-harvesting before any trade execution.
 
 ---
 
-# PART 10: MANDATORY META-COGNITIVE SELF-INQUEST (CAN I DO THIS BETTER WITH INSTALLED SKILLS OR AGENTS?)
+# PART 11: MANDATORY META-COGNITIVE SELF-INQUEST (CAN I DO THIS BETTER WITH INSTALLED SKILLS OR AGENTS?)
 
 > 🛑 **MANDATORY IN-TURN SELF-INQUEST (STRICT OPERATOR MANDATE)**:
 > At EVERY single step, decision point, tool execution, code write, prompt generation, and autonomous candle turn, the coordinator and all subagents MUST explicitly pause and ask themselves before acting:

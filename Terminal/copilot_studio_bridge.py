@@ -150,7 +150,7 @@ def build_copilot_studio_prompt() -> str:
     lines.append("5. Thinking Chain Protocol V2.0 Hardened: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md")
     lines.append("   - Strictly adhere to the 7-stage verification gates, EV over probability score, broker CFD spread mechanics, and 0-100 evidence arbitration rubric.")
     lines.append("6. Round 2 Thinking Chain Audit Report: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md")
-    lines.append("7. Master Agent Enforcement Rules: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/AGENTS.md")
+    lines.append("7. Master Agent Enforcement Rules: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/CANONICAL_MASTER_RULES.md")
     lines.append("8. Live Telemetry Snapshot JSON (Pushed to GitHub every 60s): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json (Blob: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json)")
     lines.append("9. Live Collaborative Order Desk Blackboard (Pushed to GitHub): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")

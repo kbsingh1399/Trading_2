@@ -323,7 +323,7 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("- Session chat history - full narrative, past rulings, operator feedback, avoided traps, position trajectory:")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md")
     lines.append("  Cite the newest `### Turn [...]` timestamp to prove ingestion.")
-    lines.append("- Master execution protocols & invariants: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/AGENTS.md")
+    lines.append("- Master execution protocols & invariants: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/CANONICAL_MASTER_RULES.md")
     lines.append("- Live order desk ledger, prior rulings, performance ledger:")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("- Active risk context, floor defense, capacity rules:")

@@ -79,7 +79,7 @@ BANNER_PATTERN = re.compile(r'LAST UPDATED:\s*([^\(\)]+?)(?:\s*\(([^\(\)]+?)\))?
 ERROR_STRINGS = {"#ref!", "#div/0!", "#n/a", "#value!", "#name?", "#num!", "#null!"}
 
 
-def run_checklist_audit(max_freshness_min: float = 30.0) -> tuple[bool, dict]:
+def run_checklist_audit(max_freshness_min: float = 5.0) -> tuple[bool, dict]:
     now_utc = datetime.datetime.now(UTC_TIMEZONE)
     now_ist = datetime.datetime.now(IST_TIMEZONE)
     
@@ -276,5 +276,10 @@ def run_checklist_audit(max_freshness_min: float = 30.0) -> tuple[bool, dict]:
 
 
 if __name__ == "__main__":
-    passed, data = run_checklist_audit(max_freshness_min=30.0)
+    import argparse
+    parser = argparse.ArgumentParser(description="Master Excel Sheet Refresh & IST Timestamp Auditor")
+    parser.add_argument("--max-age", type=float, default=5.0, help="Maximum allowed data age in minutes (default: 5.0m)")
+    args = parser.parse_args()
+
+    passed, data = run_checklist_audit(max_freshness_min=args.max_age)
     sys.exit(0 if passed else 1)
