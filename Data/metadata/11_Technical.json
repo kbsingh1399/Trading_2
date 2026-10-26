@@ -60,9 +60,9 @@
     "week_low",
     "sr_no"
   ],
-  "byte_size": 70489,
-  "timestamp_ist": "2026-10-26 22:31:20 IST",
-  "timestamp_utc": "2026-10-26 17:01:20 UTC",
-  "epoch_utc": 1793034080.481371,
-  "write_duration_ms": 9.02
+  "byte_size": 70486,
+  "timestamp_ist": "2026-10-26 22:32:54 IST",
+  "timestamp_utc": "2026-10-26 17:02:54 UTC",
+  "epoch_utc": 1793034174.05402,
+  "write_duration_ms": 7.79
 }

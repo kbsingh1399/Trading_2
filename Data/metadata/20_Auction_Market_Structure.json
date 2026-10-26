@@ -1,7 +1,7 @@
 {
   "feed_name": "20_Auction_Market_Structure",
   "status": "PASS",
-  "row_count": 27,
+  "row_count": 84,
   "column_count": 61,
   "columns": [
     "timestamp",
@@ -66,9 +66,9 @@
     "weekly_s1",
     "session_bias"
   ],
-  "byte_size": 29911,
-  "timestamp_ist": "2026-10-26 22:31:37 IST",
-  "timestamp_utc": "2026-10-26 17:01:37 UTC",
-  "epoch_utc": 1793034097.584231,
-  "write_duration_ms": 14.52
+  "byte_size": 54794,
+  "timestamp_ist": "2026-10-26 22:33:04 IST",
+  "timestamp_utc": "2026-10-26 17:03:04 UTC",
+  "epoch_utc": 1793034184.38393,
+  "write_duration_ms": 7.26
 }
