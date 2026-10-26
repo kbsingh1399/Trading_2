@@ -224,6 +224,52 @@ Z.ai MUST stress-test the 3 active resting limit orders and issue an explicit ra
 
 ---
 
+# PART 3.5: MANDATORY 36-FEED PARQUET AUDIT & CHECKLIST VERIFICATION (OPERATOR MANDATE)
+
+Z.ai (GLM-5.3-Flash / Claude 3.7 Sonnet) MUST confirm that each of the 36 canonical Parquet feeds in `Data/feeds/*.parquet` was physically read, inspected, and cross-examined before formulating any adversarial challenge or outputting the final JSON ruling.
+
+You MUST include this exact checked checklist in your response, explicitly verifying that each feed was inspected:
+- [x] Feed 00: `00_MT5_Account_Telemetry.parquet` (Balance 4,846.32 USD, Equity 4,846.32 USD, 4,775 / 4,795 USD floors, spreads in bps)
+- [x] Feed 01: `1_Crypto_ETF_Flows.parquet` (IBIT, FBTC, ETHA spot flows and institutional net accumulation)
+- [x] Feed 02: `2_Spot_Netflow_S.parquet` (CEX spot netflows across 500 assets; accumulation vs distribution)
+- [x] Feed 03: `3_Exchanges_LS_Ratio_15M.parquet` (15m Long/Short positioning across Binance, OKX, Bybit)
+- [x] Feed 04: `3_Exchanges_LS_Ratio_1H.parquet` (1h Long/Short account ratios)
+- [x] Feed 05: `3_Exchanges_LS_Ratio_4H.parquet` (4h macro sentiment trends)
+- [x] Feed 06: `4_Hyperliquid_Analysis.parquet` (1,979+ whale positions, leverage tiers, liquidation prices)
+- [x] Feed 07: `5_OI.parquet` (Open interest notional deltas across top 20 perpetuals)
+- [x] Feed 08: `5_Funding_Rate.parquet` (8h funding rates and annualized APR across 589 assets)
+- [x] Feed 09: `6_Funding_Fee_Settlement.parquet` (Historical funding transfer history and carry costs)
+- [x] Feed 10: `7_Liq_Heapmap.parquet` (Exchange liquidation heatmap clusters)
+- [x] Feed 11: `7_Live_Liq.parquet` (Sub-second live forced liquidation tape)
+- [x] Feed 12: `8_Exchange_Liquidation_Map_1D.parquet` (24h depth liquidation profile across BTC, ETH, SOL, BNB)
+- [x] Feed 13: `8_Exchange_Liquidation_Map_7D.parquet` (7d macro liquidation bands and short/long asymmetry)
+- [x] Feed 14: `9_Liquidation_Max_Pain_24H.parquet` (24h liquidation max pain magnetic equilibrium prices)
+- [x] Feed 15: `9_Liquidation_Max_Pain_48H.parquet` (48h max pain anchors)
+- [x] Feed 16: `9_Liquidation_Max_Pain_3D.parquet` (3d max pain anchors)
+- [x] Feed 17: `9_Liquidation_Max_Pain_7D.parquet` (7d macro max pain anchors)
+- [x] Feed 18: `10_Whale_Orders.parquet` (Resting whale limit orders >= 100K USD, price, side, tau >= 180s)
+- [x] Feed 19: `11_Technical.parquet` (Session VWAP, SD bands +/-1,2,3, VWAP Z, Fib-Prime EMAs 5-233, RSI, ATR)
+- [x] Feed 20: `11_Technical_BTC_Ribbon.parquet` (Fibonacci Prime EMA ribbon structure for BTC)
+- [x] Feed 21: `12_Hyperdash.parquet` (Cross-market orderflow aggregations and volatility skew)
+- [x] Feed 22: `13_Hyperliquid.parquet` (Hyperliquid L1/L2 metrics, basis spreads, vault positioning)
+- [x] Feed 23: `14_Hyperdash_Liq_Map.parquet` (Hyperdash multi-exchange liquidation density clusters)
+- [x] Feed 24: `15_Hyperdash_Stops_Map.parquet` (Retail stop hunt levels, sweep thresholds, liquidity voids)
+- [x] Feed 25: `16_Hyperdash_telegram_Intel.parquet` (Automated institutional alerts and whale block trade flags)
+- [x] Feed 26: `17_Orderbook.parquet` (20-level aggregated L2 bid/ask depth, imbalance ratio, spread bps)
+- [x] Feed 27: `18_CVD.parquet` (1m/5m/15m/30m taker cumulative volume delta and zc_div divergence)
+- [x] Feed 28: `18_CVD_30D_ALL.parquet` (Multi-timeframe 30-day cumulative delta trends)
+- [x] Feed 29: `19_News.parquet` (Real-time financial wire headlines and sentiment classification)
+- [x] Feed 30: `19_Calendar.parquet` (Forex Factory macro calendar Tier-1 scheduled releases and forecasts)
+- [x] Feed 31: `20_Auction_Market_Structure.parquet` (Daily/Weekly POC, VAH, VAL, Mon_H/L/Mid IB_W, Asian extremes)
+- [x] Feed 32: `21_Tradfye_Orderflow.parquet` (Institutional multi-timeframe orderflow delta across 156 assets)
+- [x] Feed 33: `22_Forced_Liquidations_MTF.parquet` (Aggregated multi-timeframe liquidation spikes)
+- [x] Feed 34: `23_Master_Pipeline_Telemetry.parquet` (Pipeline write latency and feed health verification)
+- [x] Feed 35: `25_CoinGlass_Footprint_Signals.parquet` (Aggressive buying/selling absorption, exhaustion nodes)
+- [x] Feed 36: `26_Aggregated_Footprint_Bar_Metrics.parquet` (Bar-level delta, min/max delta, footprint VPOC)
+- [x] Feed 37: `14_Liquidation_Matrix.parquet` (Multi-asset cross-exchange composite liquidation matrix)
+
+---
+
 # PART 4: REQUIRED OUTPUT FORMAT
 
 Z.ai must conclude its response with a standardized Adversarial Audit JSON block:
@@ -233,6 +279,11 @@ Z.ai must conclude its response with a standardized Adversarial Audit JSON block
   "model": "GLM_5_3_FLASH_OR_SONNET",
   "cycle_id": "[CYCLE_ID]",
   "timestamp_utc": "[TIMESTAMP_UTC]",
+  "parquet_lake_audit_checklist": {
+    "all_36_feeds_read": true,
+    "verified_feeds_count": 36,
+    "checklist_status": "100_PERCENT_VERIFIED"
+  },
   "adversarial_orders_audit": {
     "ticket_19329907_bnb": {
       "verdict": "RATIFY_PREVAIL",
