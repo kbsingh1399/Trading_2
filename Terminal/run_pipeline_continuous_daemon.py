@@ -119,6 +119,18 @@ def push_cycle_to_github(cycle_num: int):
         log.warning(f"[Cycle #{cycle_num}] Git auto-push notice: {e}")
 
 
+def trigger_ip_rotation(stage: str = "before"):
+    """Triggers automated IP rotation via Cloudflare WARP with robust error handling."""
+    log.info(f"Triggering automated IP rotation via Cloudflare WARP [{stage}]...")
+    try:
+        if str(ROOT_DIR / "Terminal") not in sys.path:
+            sys.path.insert(0, str(ROOT_DIR / "Terminal"))
+        from rotate_ip import rotate_ip
+        rotate_ip()
+    except Exception as rot_exc:
+        log.warning(f"Automated IP rotation notice [{stage}]: {rot_exc}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Persistent Background 100% Pure-Parquet Pipeline Daemon")
     parser.add_argument("--api-only", action="store_true", help="Execute only the 18 Pure-API collectors (< 15s)")
@@ -131,23 +143,18 @@ def main():
     cycle_count = 1
     while True:
         try:
+            # 1. Rotate public egress IP BEFORE starting cycle
+            trigger_ip_rotation(stage=f"BEFORE Cycle #{cycle_count} start")
+
             run_single_cycle(cycle_count, api_only=args.api_only, gap_seconds=args.gap)
             
             # MANDATORY: Immediately push all updated parquet feeds and telemetry to GitHub
             push_cycle_to_github(cycle_count)
             
+            # 2. Rotate public egress IP AFTER cycle completion
+            trigger_ip_rotation(stage=f"AFTER Cycle #{cycle_count} completion")
+
             cycle_count += 1
-
-            # Rotate public egress IP after each cycle to prevent CoinGlass 429 rate limiting
-            log.info("Triggering automated IP rotation via Cloudflare WARP before next cycle...")
-            try:
-                if str(ROOT_DIR / "Terminal") not in sys.path:
-                    sys.path.insert(0, str(ROOT_DIR / "Terminal"))
-                from rotate_ip import rotate_ip
-                rotate_ip()
-            except Exception as rot_exc:
-                log.warning(f"Automated IP rotation notice: {rot_exc}")
-
             log.info(f"Sleeping for {args.gap}s ({args.gap/60:.1f} minutes) before next cycle...")
             time.sleep(args.gap)
         except KeyboardInterrupt:
