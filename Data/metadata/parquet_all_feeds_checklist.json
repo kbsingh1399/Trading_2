@@ -1,16 +1,25 @@
 {
-  "timestamp_ist": "2026-10-27 03:15:29 IST",
-  "timestamp_utc": "2026-10-26 21:45:29 UTC",
+  "timestamp_ist": "2026-10-27 03:30:40 IST",
+  "timestamp_utc": "2026-10-26 22:00:40 UTC",
   "total_canonical_feeds": 36,
-  "passed_feeds": 30,
-  "failed_or_stale_count": 6,
+  "passed_feeds": 21,
+  "failed_or_stale_count": 15,
   "failed_or_stale_feeds": [
+    "5_OI",
+    "5_Funding_Rate",
+    "6_Funding_Fee_Settlement",
+    "7_Liq_Heapmap",
+    "7_Live_Liq",
+    "8_Exchange_Liquidation_Map_1D",
     "8_Exchange_Liquidation_Map_7D",
     "9_Liquidation_Max_Pain_24H",
     "9_Liquidation_Max_Pain_48H",
     "9_Liquidation_Max_Pain_3D",
     "9_Liquidation_Max_Pain_7D",
-    "26_Aggregated_Footprint_Bar_Metrics"
+    "10_Whale_Orders",
+    "25_CoinGlass_Footprint_Signals",
+    "26_Aggregated_Footprint_Bar_Metrics",
+    "14_Liquidation_Matrix"
   ],
   "all_passed": false,
   "checklist": [
@@ -21,10 +30,10 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 163,
-      "age_minutes": 7.1,
-      "age_str": "7.1m",
+      "age_minutes": 2.5,
+      "age_str": "2.5m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:25 IST",
+      "banner_ist": "2026-10-27 03:28:07 IST",
       "is_fresh": true
     },
     {
@@ -34,10 +43,10 @@
       "tier": "Macro",
       "exists": true,
       "rows": 41,
-      "age_minutes": 11.8,
-      "age_str": "11.8m",
+      "age_minutes": 1.8,
+      "age_str": "1.8m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:03:38 IST",
+      "banner_ist": "2026-10-27 03:28:51 IST",
       "is_fresh": true
     },
     {
@@ -46,11 +55,11 @@
       "feed_name": "2_Spot_Netflow_S",
       "tier": "Macro",
       "exists": true,
-      "rows": 20,
-      "age_minutes": 5.5,
-      "age_str": "5.5m",
+      "rows": 221,
+      "age_minutes": 1.6,
+      "age_str": "1.6m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:10:00 IST",
+      "banner_ist": "2026-10-27 03:29:06 IST",
       "is_fresh": true
     },
     {
@@ -60,10 +69,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 500,
-      "age_minutes": 4.9,
-      "age_str": "4.9m",
+      "age_minutes": 1.2,
+      "age_str": "1.2m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:10:36 IST",
+      "banner_ist": "2026-10-27 03:29:26 IST",
       "is_fresh": true
     },
     {
@@ -72,11 +81,11 @@
       "feed_name": "3_Exchanges_LS_Ratio_1H",
       "tier": "Tactical",
       "exists": true,
-      "rows": 20,
-      "age_minutes": 10.7,
-      "age_str": "10.7m",
+      "rows": 500,
+      "age_minutes": 0.9,
+      "age_str": "0.9m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:04:48 IST",
+      "banner_ist": "2026-10-27 03:29:46 IST",
       "is_fresh": true
     },
     {
@@ -85,11 +94,11 @@
       "feed_name": "3_Exchanges_LS_Ratio_4H",
       "tier": "Tactical",
       "exists": true,
-      "rows": 20,
-      "age_minutes": 4.5,
-      "age_str": "4.5m",
+      "rows": 500,
+      "age_minutes": 0.6,
+      "age_str": "0.6m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:11:00 IST",
+      "banner_ist": "2026-10-27 03:30:04 IST",
       "is_fresh": true
     },
     {
@@ -98,11 +107,11 @@
       "feed_name": "4_Hyperliquid_Analysis",
       "tier": "Tactical",
       "exists": true,
-      "rows": 1971,
-      "age_minutes": 14.4,
-      "age_str": "14.4m",
+      "rows": 1970,
+      "age_minutes": 0.5,
+      "age_str": "0.5m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:01:05 IST",
+      "banner_ist": "2026-10-27 03:30:12 IST",
       "is_fresh": true
     },
     {
@@ -112,11 +121,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 15,
-      "age_minutes": 8.9,
-      "age_str": "8.9m",
-      "status": "PASS",
+      "age_minutes": 24.1,
+      "age_str": "24.1m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:06:36 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 8,
@@ -125,11 +134,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 588,
-      "age_minutes": 8.8,
-      "age_str": "8.8m",
-      "status": "PASS",
+      "age_minutes": 23.9,
+      "age_str": "23.9m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:06:43 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 9,
@@ -138,11 +147,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 940,
-      "age_minutes": 8.6,
-      "age_str": "8.6m",
-      "status": "PASS",
+      "age_minutes": 23.8,
+      "age_str": "23.8m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:06:50 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 10,
@@ -151,11 +160,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 90,
-      "age_minutes": 8.4,
-      "age_str": "8.4m",
-      "status": "PASS",
+      "age_minutes": 23.6,
+      "age_str": "23.6m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:07:04 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 11,
@@ -164,24 +173,24 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 27,
-      "age_minutes": 8.3,
-      "age_str": "8.3m",
-      "status": "PASS",
+      "age_minutes": 23.5,
+      "age_str": "23.5m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:07:11 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 12,
       "sheet_name": "8_Exchange_Liquidation_Map_1D",
       "feed_name": "8_Exchange_Liquidation_Map_1D",
       "tier": "Tactical",
-      "exists": true,
-      "rows": 2300,
-      "age_minutes": 7.8,
-      "age_str": "7.8m",
-      "status": "PASS",
-      "banner_ist": "2026-10-27 03:07:43 IST",
-      "is_fresh": true
+      "exists": false,
+      "rows": 0,
+      "age_minutes": 999.0,
+      "age_str": "MISSING",
+      "status": "FAIL",
+      "banner_ist": "N/A",
+      "is_fresh": false
     },
     {
       "idx": 13,
@@ -190,8 +199,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 2537,
-      "age_minutes": 23.5,
-      "age_str": "23.5m",
+      "age_minutes": 38.6,
+      "age_str": "38.6m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:52:01 IST",
       "is_fresh": false
@@ -203,8 +212,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 23.3,
-      "age_str": "23.3m",
+      "age_minutes": 38.5,
+      "age_str": "38.5m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:52:08 IST",
       "is_fresh": false
@@ -216,8 +225,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 23.3,
-      "age_str": "23.3m",
+      "age_minutes": 38.5,
+      "age_str": "38.5m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:52:12 IST",
       "is_fresh": false
@@ -229,8 +238,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 23.2,
-      "age_str": "23.2m",
+      "age_minutes": 38.3,
+      "age_str": "38.3m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:52:19 IST",
       "is_fresh": false
@@ -242,8 +251,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 22.9,
-      "age_str": "22.9m",
+      "age_minutes": 38.0,
+      "age_str": "38.0m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:52:37 IST",
       "is_fresh": false
@@ -253,13 +262,13 @@
       "sheet_name": "10_Whale_Orders",
       "feed_name": "10_Whale_Orders",
       "tier": "Tactical",
-      "exists": true,
-      "rows": 2716,
-      "age_minutes": 5.6,
-      "age_str": "5.6m",
-      "status": "PASS",
-      "banner_ist": "2026-10-27 03:09:53 IST",
-      "is_fresh": true
+      "exists": false,
+      "rows": 0,
+      "age_minutes": 999.0,
+      "age_str": "MISSING",
+      "status": "FAIL",
+      "banner_ist": "N/A",
+      "is_fresh": false
     },
     {
       "idx": 19,
@@ -268,10 +277,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 120,
-      "age_minutes": 6.9,
-      "age_str": "6.9m",
+      "age_minutes": 2.4,
+      "age_str": "2.4m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:33 IST",
+      "banner_ist": "2026-10-27 03:28:18 IST",
       "is_fresh": true
     },
     {
@@ -280,11 +289,11 @@
       "feed_name": "12_Hyperdash",
       "tier": "Tactical",
       "exists": true,
-      "rows": 146,
-      "age_minutes": 6.4,
-      "age_str": "6.4m",
+      "rows": 220,
+      "age_minutes": 2.0,
+      "age_str": "2.0m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:09:05 IST",
+      "banner_ist": "2026-10-27 03:28:39 IST",
       "is_fresh": true
     },
     {
@@ -294,10 +303,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 234,
-      "age_minutes": 6.9,
-      "age_str": "6.9m",
+      "age_minutes": 2.4,
+      "age_str": "2.4m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:36 IST",
+      "banner_ist": "2026-10-27 03:28:16 IST",
       "is_fresh": true
     },
     {
@@ -306,11 +315,11 @@
       "feed_name": "14_Hyperdash_Liq_Map",
       "tier": "Tactical",
       "exists": true,
-      "rows": 6500,
-      "age_minutes": 6.9,
-      "age_str": "6.9m",
+      "rows": 6406,
+      "age_minutes": 2.4,
+      "age_str": "2.4m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:33 IST",
+      "banner_ist": "2026-10-27 03:28:16 IST",
       "is_fresh": true
     },
     {
@@ -320,10 +329,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 4211,
-      "age_minutes": 7.0,
-      "age_str": "7.0m",
+      "age_minutes": 2.5,
+      "age_str": "2.5m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:29 IST",
+      "banner_ist": "2026-10-27 03:28:12 IST",
       "is_fresh": true
     },
     {
@@ -333,10 +342,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 1000,
-      "age_minutes": 6.6,
-      "age_str": "6.6m",
+      "age_minutes": 2.3,
+      "age_str": "2.3m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:55 IST",
+      "banner_ist": "2026-10-27 03:28:23 IST",
       "is_fresh": true
     },
     {
@@ -345,11 +354,11 @@
       "feed_name": "17_Orderbook",
       "tier": "High Velocity",
       "exists": true,
-      "rows": 328,
-      "age_minutes": 6.6,
-      "age_str": "6.6m",
+      "rows": 615,
+      "age_minutes": 2.1,
+      "age_str": "2.1m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:50 IST",
+      "banner_ist": "2026-10-27 03:28:36 IST",
       "is_fresh": true
     },
     {
@@ -359,10 +368,10 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 1500,
-      "age_minutes": 6.8,
-      "age_str": "6.8m",
+      "age_minutes": 2.3,
+      "age_str": "2.3m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:08:39 IST",
+      "banner_ist": "2026-10-27 03:28:24 IST",
       "is_fresh": true
     },
     {
@@ -372,10 +381,10 @@
       "tier": "Macro",
       "exists": true,
       "rows": 34,
-      "age_minutes": 5.5,
-      "age_str": "5.5m",
+      "age_minutes": 10.5,
+      "age_str": "10.5m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:09:59 IST",
+      "banner_ist": "2026-10-27 03:20:11 IST",
       "is_fresh": true
     },
     {
@@ -385,10 +394,10 @@
       "tier": "Macro",
       "exists": true,
       "rows": 21,
-      "age_minutes": 5.4,
-      "age_str": "5.4m",
+      "age_minutes": 10.4,
+      "age_str": "10.4m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:10:05 IST",
+      "banner_ist": "2026-10-27 03:20:17 IST",
       "is_fresh": true
     },
     {
@@ -398,10 +407,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 84,
-      "age_minutes": 0.3,
-      "age_str": "0.3m",
+      "age_minutes": 2.2,
+      "age_str": "2.2m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:15:09 IST",
+      "banner_ist": "2026-10-27 03:28:30 IST",
       "is_fresh": true
     },
     {
@@ -411,10 +420,10 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 6912,
-      "age_minutes": 0.2,
-      "age_str": "0.2m",
+      "age_minutes": 2.3,
+      "age_str": "2.3m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:15:17 IST",
+      "banner_ist": "2026-10-27 03:28:24 IST",
       "is_fresh": true
     },
     {
@@ -424,10 +433,10 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 48,
-      "age_minutes": 0.2,
-      "age_str": "0.2m",
+      "age_minutes": 2.2,
+      "age_str": "2.2m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:15:19 IST",
+      "banner_ist": "2026-10-27 03:28:26 IST",
       "is_fresh": true
     },
     {
@@ -440,7 +449,7 @@
       "age_minutes": 0.0,
       "age_str": "0.0m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 03:15:29 IST",
+      "banner_ist": "2026-10-27 03:30:40 IST",
       "is_fresh": true
     },
     {
@@ -450,11 +459,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 1222,
-      "age_minutes": 4.1,
-      "age_str": "4.1m",
-      "status": "PASS",
+      "age_minutes": 19.3,
+      "age_str": "19.3m",
+      "status": "WARN",
       "banner_ist": "2026-10-27 03:11:20 IST",
-      "is_fresh": true
+      "is_fresh": false
     },
     {
       "idx": 34,
@@ -463,8 +472,8 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 320,
-      "age_minutes": 19.6,
-      "age_str": "19.6m",
+      "age_minutes": 34.7,
+      "age_str": "34.7m",
       "status": "WARN",
       "banner_ist": "2026-10-27 02:55:55 IST",
       "is_fresh": false
@@ -474,13 +483,13 @@
       "sheet_name": "14_Liquidation_Matrix",
       "feed_name": "14_Liquidation_Matrix",
       "tier": "Tactical",
-      "exists": true,
-      "rows": 11311,
-      "age_minutes": 0.1,
-      "age_str": "0.1m",
-      "status": "PASS",
-      "banner_ist": "2026-10-27 03:15:24 IST",
-      "is_fresh": true
+      "exists": false,
+      "rows": 0,
+      "age_minutes": 999.0,
+      "age_str": "MISSING",
+      "status": "FAIL",
+      "banner_ist": "N/A",
+      "is_fresh": false
     }
   ]
 }
