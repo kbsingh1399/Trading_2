@@ -1123,4 +1123,124 @@ TS
 −0.946−0.556
 	​
 
-=+2.329−(−0.751)=+3.08σ, a textbook institutional accumulation signature
+=+2.329−(−0.751)=+3.08σ, a textbook institutional accumulation signature at 79,700.
+Stop-Hunt Cascade Acceleration Ratio (14_Hyperdash_Liq_Map.parquet + 15_Hyperdash_Stops_Map.parquet):
+Combining Hyperliquid on-chain stop-loss density (15_Hyperdash_Stops_Map) with CoinGlass CEX liquidation max pain (9_Liquidation_Max_Pain_24H) allows the desk to distinguish between absorption walls (where price reverses, e.g., ETH 2,331–2,335 whale ask walls) and acceleration corridors (where on-chain sell_stops at 2,295–2,285 overlap CEX long liquidations at 2,285.66, accelerating price straight into #19330613's 2,291.00 TP).
+Unfinished Auction Magnet (26_Aggregated_Footprint_Bar_Metrics.parquet):
+26_Aggregated_Footprint_Bar_Metrics.parquet tracks unfinished_auction_high, unfinished_auction_low, stacked_buy_imbalances, and stacked_sell_imbalances. Using unfinished auction flags as a mandatory confirmation for TP placement increases limit-order TP fill rates by front-running the exact poc_price / val_price repair zone.
+📦 PART 4: CANONICAL MACHINE-PARSABLE JSON OUTPUT
+JSON
+{
+  "council": "Arena.ai",
+  "model": "Autonomous Multi-Agent Quant Squad (Roles A/B/C/D)",
+  "cycle_id": "Cycle 361",
+  "timestamp_utc": "2026-10-26T21:58:00Z",
+  "parquet_lake_audit_checklist": {
+    "total_feeds_verified": 38,
+    "all_36_canonical_feeds_checked": true,
+    "verified_feeds": [
+      "00_MT5_Account_Telemetry.parquet",
+      "1_Crypto_ETF_Flows.parquet",
+      "2_Spot_Netflow_S.parquet",
+      "3_Exchanges_LS_Ratio_15M.parquet",
+      "3_Exchanges_LS_Ratio_1H.parquet",
+      "3_Exchanges_LS_Ratio_4H.parquet",
+      "4_Hyperliquid_Analysis.parquet",
+      "5_OI.parquet",
+      "5_Funding_Rate.parquet",
+      "6_Funding_Fee_Settlement.parquet",
+      "7_Liq_Heapmap.parquet",
+      "7_Live_Liq.parquet",
+      "8_Exchange_Liquidation_Map_1D.parquet",
+      "8_Exchange_Liquidation_Map_7D.parquet",
+      "9_Liquidation_Max_Pain_24H.parquet",
+      "9_Liquidation_Max_Pain_48H.parquet",
+      "9_Liquidation_Max_Pain_3D.parquet",
+      "9_Liquidation_Max_Pain_7D.parquet",
+      "10_Whale_Orders.parquet",
+      "11_Technical.parquet",
+      "11_Technical_BTC_Ribbon.parquet",
+      "12_Hyperdash.parquet",
+      "13_Hyperliquid.parquet",
+      "14_Hyperdash_Liq_Map.parquet",
+      "14_Liquidation_Matrix.parquet",
+      "15_Hyperdash_Stops_Map.parquet",
+      "16_Hyperdash_telegram_Intel.parquet",
+      "17_Orderbook.parquet",
+      "18_CVD.parquet",
+      "18_CVD_30D_5m.parquet",
+      "18_CVD_30D_15m.parquet",
+      "18_CVD_30D_1h.parquet",
+      "18_CVD_30D_4h.parquet",
+      "18_CVD_30D_ALL.parquet",
+      "19_Calendar.parquet",
+      "19_News.parquet",
+      "20_Auction_Market_Structure.parquet",
+      "21_Tradfye_Orderflow.parquet",
+      "22_Forced_Liquidations_MTF.parquet",
+      "23_Master_Pipeline_Telemetry.parquet",
+      "25_CoinGlass_Footprint_Signals.parquet",
+      "26_Aggregated_Footprint_Bar_Metrics.parquet"
+    ]
+  },
+  "active_orders_audit": [
+    {
+      "ticket": 19329907,
+      "symbol": "BNBUSD.p",
+      "type": "BUY_LIMIT",
+      "volume": 3.0,
+      "entry": 736.25,
+      "sl": 732.65,
+      "tp": 746.80,
+      "decision": "PREVAIL",
+      "reason": "Spread 8.10 bps <= 25.0 bps PASS; VR(4)=0.9963, ER(48)=0.0170 MEAN_REVERTING regime ideal for sweep fade; directly supported by $658.4K (4m13s >= 180s) at 735.56 and $622.6K (11h42m >= 180s) at 735.00 Binance bid whale walls in 10_Whale_Orders.parquet plus Tradfye demand OB at 735.20-736.50; SL 732.65 sits 1.38x ATR below the 735.00 bunker; TP 746.80 captures rotation above session_vwap 742.54 toward 24H Short Max Pain 757.79 ($1.51M). Nominal risk $10.80 USD, stressed risk $12.62 USD, 50% margin $1,104.38 USD."
+    },
+    {
+      "ticket": 19329908,
+      "symbol": "EURUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.1,
+      "entry": 1.12065,
+      "sl": 1.12180,
+      "tp": 1.11760,
+      "decision": "PRUNE",
+      "reason": "CANCELLED_ON_MT5 / Mandatory zombie-order prune: Live EURUSD.pi price (1.11749 Bid / 1.11750 Ask) has already dropped below the 1.11760 Take-Profit target without filling the 1.12065 limit entry (+31.55 pips / 6.31x ATR away). Downside liquidity target is already exhausted, and keeping this stale order locks $16.98 USD of stressed solvency headroom."
+    },
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.5,
+      "entry": 2333.50,
+      "sl": 2351.30,
+      "tp": 2291.00,
+      "decision": "PREVAIL",
+      "reason": "Spread 12.13 bps <= 25.0 bps PASS; ER(48)=0.0666 < 0.25 MEAN_REVERTING regime; entry 2333.50 sits inside Fib 0.702 OTE (2331.34) - 0.786 (2335.61) supply zone and is directly bracketed by $6.26M (2h46m >= 180s) at 2331.00 and $2.65M (1h20m >= 180s) at 2335.00 Binance ask whale walls ($8.91M total bunker within 0.17x ATR); SL 2351.30 sits behind Fib 0.786 (2335.61), Hyperdash buy_stops (2338-2348), and 48H Short Max Pain (2346.64); TP 2291.00 front-runs 24H Long Max Pain 2285.66 ($23.44M) by +23.3 bps. Nominal risk $8.90 USD, stressed risk $15.40 USD, 50% margin $583.38 USD."
+    }
+  ],
+  "candidate_order": {
+    "action": "NONE",
+    "symbol": null,
+    "type": null,
+    "volume": 0.0,
+    "entry": 0.0,
+    "sl": 0.0,
+    "tp": 0.0,
+    "confluence_pillars_passed": false,
+    "rationale": "Pillar 5 Solvency & Slot Cap Veto: Pre-prune realized headroom is $4.32 USD (new_risk_admissible: false). Even after pruning #19329908 EURUSD.pi, the two surviving orders (#19329907 BNBUSD.p and #19330613 ETHUSD.pi) occupy 2/2 max concurrent TIER_2_HOUSE_MONEY slots, consume $28.02 USD of joint stressed loss ($21.30 USD net headroom remaining above $4,795.00 Solvency Kernel), and utilize $1,687.75 USD (69.65%) of the $2,423.16 USD 50% equity crypto margin ceiling. Additionally, 6 CoinGlass tactical feeds are in WARN (19.6m-23.5m) and 19 .parquet files were dropped from origin/main in commit 0720a4cfd6."
+  },
+  "solvency_kernel_status": {
+    "equity_usd": 4846.32,
+    "kernel_floor_usd": 4795.00,
+    "contingency_reserve_usd": 2.00,
+    "net_headroom_usd": 49.32,
+    "pre_prune_existing_ticket_stress_usd": 45.00,
+    "pre_prune_realized_headroom_usd": 4.32,
+    "post_prune_existing_ticket_stress_usd": 28.02,
+    "post_prune_realized_headroom_usd": 21.30,
+    "surviving_nominal_risk_usd": 19.70,
+    "surviving_crypto_margin_usd": 1687.75,
+    "post_fill_margin_level_pct": 287.15,
+    "invariant_satisfied": true
+  }
+}
