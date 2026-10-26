@@ -20,4 +20,13 @@ Wrote 1 files，Ran 1 commands
 Freshness decode: Timestamp_IST holds IST wall-clock (UTC+5:30) — tmax 2026-10-27 01:59:43 naive = 2026-10-26 20:29:43 UTC true, i.e. ~1 min before HEAD → lake FRESH. Fixing the extractor:
 
 Wrote 2 files，Ran 2 commands
-Re-run extract round 2
+
+Major finding already: the prompt's embedded snapshot (as_of 12:56 UTC) is ~7.5h stale vs the fresh lake (20:30 UTC) — BTC 80219→79794, SOL regime flipped RANGE_BOUND→STRONG BEARISH, BNB BULLISH→CHOP. Fresh lake governs. Now deep-diving account state + microstructure:
+
+Wrote 2 files，Ran 2 commands
+Dump MT5 account telemetry latest row
+
+Capital state confirmed: flat, zero margin, +$51.32 above operating buffer. Live spread gate gives tradable universe. Now the microstructure stack — orderbook walls, CVD, liquidation bands, funding, OI:
+
+Wrote 1 files，Ran 1 commands
+Check orderbook schema

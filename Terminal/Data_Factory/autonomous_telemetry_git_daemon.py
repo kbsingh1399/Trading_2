@@ -64,7 +64,7 @@ DATA_SYNC_FILES = [
     "docs/telemetry/coinglass_data_dictionary.md",
     "Data/history/master_manifest.json"
 ]
-INTERVAL_SECONDS = 300  # 5-minute production cadence: reduces Git traffic by 80% while JIT gate ensures 0s freshness at decision gates
+INTERVAL_SECONDS = 60  # 60-second high-velocity cadence: guarantees zero lag on GitHub after every cycle
 
 
 PID_FILE = ROOT / "logs" / "autonomous_telemetry_git_daemon.pid"
