@@ -131,14 +131,45 @@ def trigger_ip_rotation(stage: str = "before"):
         log.warning(f"Automated IP rotation notice [{stage}]: {rot_exc}")
 
 
+def acquire_singleton_lock() -> bool:
+    """Ensures only ONE instance of run_pipeline_continuous_daemon is running at any time."""
+    pid_file = ROOT_DIR / "Data" / "pipeline_daemon.pid"
+    pid_file.parent.mkdir(parents=True, exist_ok=True)
+    my_pid = os.getpid()
+
+    if pid_file.exists():
+        try:
+            old_pid = int(pid_file.read_text().strip())
+            if old_pid != my_pid:
+                log.info(f"Terminating pre-existing pipeline daemon instance (PID {old_pid})...")
+                subprocess.run(["taskkill", "/F", "/PID", str(old_pid)], capture_output=True)
+                time.sleep(1.0)
+        except Exception:
+            pass
+
+    pid_file.write_text(str(my_pid))
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description="Persistent Background 100% Pure-Parquet Pipeline Daemon")
     parser.add_argument("--api-only", action="store_true", help="Execute only the 18 Pure-API collectors (< 15s)")
     parser.add_argument("--gap", type=int, default=120, help="Gap in seconds between cycles (default: 120s / 2m)")
     args = parser.parse_args()
 
+    acquire_singleton_lock()
     log.info("100% Pure-Parquet Data Updation Daemon initialized.")
     log.info(f"Configured gap between cycles: {args.gap} seconds ({args.gap/60:.1f} minutes).")
+
+    # 0. Enforce Cloudflare WARP connection on startup
+    try:
+        if str(ROOT_DIR / "Terminal") not in sys.path:
+            sys.path.insert(0, str(ROOT_DIR / "Terminal"))
+        from rotate_ip import ensure_warp_connected
+        log.info("Ensuring Cloudflare WARP is connected and healthy on daemon startup...")
+        ensure_warp_connected(max_wait_s=15.0)
+    except Exception as exc:
+        log.warning(f"Startup Cloudflare WARP check notice: {exc}")
 
     cycle_count = 1
     while True:

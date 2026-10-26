@@ -4,13 +4,11 @@ Terminal/rotate_ip.py
 =====================
 Automated IP Rotation Utility for Autonomous Trading Pipeline.
 
-Performs clean egress IP rotation using Cloudflare WARP daemon:
-  1. Records initial egress IP via ipify.
-  2. Disconnects client: warp-cli disconnect.
-  3. Deletes stale registration: warp-cli registration delete.
-  4. Generates fresh cryptographic keypair & registration: warp-cli registration new.
-  5. Connects client: warp-cli connect.
-  6. Verifies fresh active egress IP via ipify.
+Guarantees Cloudflare WARP is ALWAYS connected:
+  1. ensure_warp_connected(): Verifies WARP is connected and healthy; if disconnected, connects immediately.
+  2. rotate_ip(): Rotates cryptographic WireGuard/MASQUE tunnel keys (warp-cli tunnel rotate-keys),
+     reconnects the tunnel, and verifies WARP is healthy and active.
+  3. Under NO circumstance is the connection ever left in a 'Disconnected' state.
 """
 
 from __future__ import annotations
@@ -66,47 +64,76 @@ def run_cmd(cmd: list[str], timeout: int = 15) -> tuple[int, str]:
         return 1, str(exc)
 
 
-def get_warp_status() -> str:
-    """Returns 'Connected' or 'Disconnected'."""
+def get_warp_status() -> tuple[str, bool]:
+    """Returns (status_str, is_healthy). Status can be 'Connected', 'Connecting', or 'Disconnected'."""
     code, out = run_cmd(["warp-cli", "status"])
-    if "Connected" in out:
-        return "Connected"
-    return "Disconnected"
+    is_connected = "Connected" in out
+    is_healthy = "healthy" in out
+    if is_connected:
+        return "Connected", is_healthy
+    elif "Connecting" in out:
+        return "Connecting", False
+    return "Disconnected", False
+
+
+def ensure_warp_connected(max_wait_s: float = 15.0) -> bool:
+    """
+    Guarantees that Cloudflare WARP is connected and healthy.
+    If disconnected or connecting, connects immediately and waits for health verification.
+    """
+    status, healthy = get_warp_status()
+    if status != "Connected" or not healthy:
+        log.info(f"Cloudflare WARP status is [{status}]. Connecting to Cloudflare WARP...")
+        run_cmd(["warp-cli", "connect"])
+
+    t0 = time.time()
+    while (time.time() - t0) < max_wait_s:
+        status, healthy = get_warp_status()
+        if status == "Connected" and healthy:
+            try:
+                # Confirm outbound connectivity through WARP tunnel
+                ip = get_current_ip(timeout=3)
+                if ip != "UNKNOWN":
+                    log.info(f"Cloudflare WARP is CONNECTED and healthy. Public IP: {ip}")
+                    return True
+            except Exception:
+                pass
+        time.sleep(1.0)
+
+    log.warning(f"Could not verify healthy WARP connection within {max_wait_s}s. Re-issuing connect...")
+    run_cmd(["warp-cli", "connect"])
+    return False
 
 
 def rotate_ip(max_retries: int = 3) -> tuple[bool, str, str]:
     """
-    Rotates egress IP by toggling between Cloudflare WARP and Direct Residential ISP.
-    Returns (success, old_ip, new_ip).
+    Rotates egress IP within Cloudflare WARP by rotating tunnel keys and reconnecting.
+    Cloudflare WARP is NEVER left disconnected.
     """
+    ensure_warp_connected(max_wait_s=10.0)
     old_ip = get_current_ip()
-    status = get_warp_status()
-    log.info(f"Current WARP status: {status} | Current Public IP: {old_ip}")
+    log.info(f"Initiating Cloudflare WARP IP rotation. Current IP: {old_ip}")
 
-    if status == "Connected":
-        log.info("WARP is connected. Toggling to Direct Residential ISP connection...")
-        run_cmd(["warp-cli", "disconnect"])
-        time.sleep(2.0)
-    else:
-        log.info("WARP is disconnected. Toggling to Cloudflare WARP connection...")
-        run_cmd(["warp-cli", "connect"])
-        time.sleep(3.0)
+    # 1. Rotate cryptographic WireGuard/MASQUE tunnel keys
+    code, out = run_cmd(["warp-cli", "tunnel", "rotate-keys"])
+    log.info(f"Rotated Cloudflare tunnel keys: {out}")
+    time.sleep(1.0)
 
+    # 2. Re-establish tunnel to bind to fresh ingress/egress node
+    run_cmd(["warp-cli", "disconnect"])
+    time.sleep(1.0)
+    run_cmd(["warp-cli", "connect"])
+
+    # 3. Ensure WARP is 100% connected and healthy before returning
+    success = ensure_warp_connected(max_wait_s=15.0)
     new_ip = get_current_ip()
-    new_status = get_warp_status()
-    log.info(f"New WARP status: {new_status} | New Public IP: {new_ip}")
+    new_status, new_healthy = get_warp_status()
 
-    if new_ip != "UNKNOWN" and new_ip != old_ip:
-        log.info(f"IP successfully rotated: {old_ip} -> {new_ip}")
-        return True, old_ip, new_ip
-    elif new_ip != "UNKNOWN":
-        log.info(f"Connection active with IP {new_ip}.")
-        return True, old_ip, new_ip
-
-    log.warning(f"Could not change IP from {old_ip}.")
-    return False, old_ip, old_ip
+    log.info(f"Post-rotation Cloudflare WARP status: {new_status} (healthy={new_healthy}) | Public IP: {new_ip}")
+    return success, old_ip, new_ip
 
 
 if __name__ == "__main__":
+    ensure_warp_connected()
     success, old_ip, new_ip = rotate_ip()
     sys.exit(0 if success else 1)

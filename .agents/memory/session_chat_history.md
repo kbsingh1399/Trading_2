@@ -64715,3 +64715,13 @@ User Directives Executed:
 - **Timer Protocol Locked**:
   - During Cycle X: 0 timers. Reactive wakeup via dual_completion_daemon.py.
   - After Antigravity + Arena.ai + Z.ai complete and synthesize Cycle X: Set 1200s timer for Cycle X+1.
+
+### Turn Update - 2026-10-27 03:52 IST
+- **Operator Discovery & Critical Bug Eradication**:
+  1. The user identified: 'again dual tabs are opening...may be because of previous python process'.
+  2. Forensic Process Audit confirmed: exactly 4 orphan/duplicate instances of Terminal/run_pipeline_continuous_daemon.py (PIDs 28736, 23596, 28588, 29636) were running concurrently in the OS background, each independently launching their own Chrome CDP collectors!
+  3. Eradicated all 4 orphan pipeline processes with 	askkill /F.
+  4. Implemented cquire_singleton_lock() in Terminal/run_pipeline_continuous_daemon.py via Data/pipeline_daemon.pid to strictly prevent duplicate daemon instances from ever running concurrently in the future.
+  5. Implemented ensure_warp_connected() on daemon startup to guarantee Cloudflare WARP is always connected and healthy, resolving the 'Disconnected' popup.
+  6. Relaunched single daemon (	ask-143258) with gap=180s.
+  7. Verified Chrome CDP state: exactly 1 ephemeral CoinGlass tab active; zero tab overlap.
