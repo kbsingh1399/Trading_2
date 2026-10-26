@@ -1,883 +1,547 @@
-🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION
-Unified Exhaustive 360° Multi-Agent Squad Audit & Empirical Candidate Discovery Specification
+📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], @[backtesting-frameworks]
 
-> Document Status: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)
+[ALERT] TELEMETRY STALE WARNING: Data/cycle_envelope.json is stale (Last updated: 2026-10-26 20:29:24 UTC vs Current Cycle: 2026-10-26 22:35:51 UTC — age 126m 27s); Data/macro_calendar.json verified_at is stale (Last updated: 2026-10-26 03:00:00 UTC vs Current Cycle: 2026-10-26 22:35:51 UTC — age 19h 35m 51s / 70,551s > 900s limit); Data/DataBase_Trading.xlsx and Data/forex_factory_live.json are absent from git commit 59a289e545 (migrated to Data/feeds/*.parquet, where non-atomic in-place overwrites in stamp_all_parquet_feeds.py racing with autonomous_telemetry_git_daemon.py caused Data/feeds/ in commit 59a289e545 to contain only 17 of 42 .parquet files vs 36 in 6f2f14d1cc and 39 in 77b3e1f95b); Layer 3 CoinGlass Whale Orders inside docs/telemetry/live_snapshot_latest.json is STALE (freshness_epoch: null, 0 orders harvested), requiring cross-reconciliation with Data/feeds/10_Whale_Orders.parquet (2,375 rows updated at 2026-10-26 22:26:35 UTC / 2026-10-27 03:56:35 IST).
 
-> Location: Data/Manditory/Arena_GLM_Standard_Prompt.md (Mirrored to docs/prompts/Arena_GLM_Standard_Prompt.md & docs/specs/Arena_GLM_Standard_Prompt.md)
+🏛️ BLUEBERRY MARKETS AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL — EXHAUSTIVE 360° 4-PERSONA AUDIT, EMPIRICAL CANDIDATE DISCOVERY & KAIZEN INQUEST
+Council Session & Envelope Identity: Cycle-20261026T202924Z (Cycle 361 / Dispatch Nonce 2699f492-fc47-4ad1-b5aa-9e1151ea9111 / Live Git Head 59a289e545 @ 2026-10-26 22:36:06 UTC / Live Snapshot d6161719352647a68779e031bd819d38 @ 2026-10-26 22:35:17 UTC)
+Account #5064568 (BlueberryMarketsSVG-Live):
+Realized Balance / Floating Equity: $4,846.32 USD (Margin Used: $0.00 USD, Free Margin: $4,846.32 USD, Open Positions: 0)
+Triple Floor Architecture: Hard Floor $4,600.00 USD (+$246.32 cushion) | Operating Buffer $4,650.00 USD (+$196.32 cushion) | Solvency Kernel Floor: $4,795.00 USD (+$51.32 gross cushion; +$49.32 net base headroom after $2.00 global contingency reserve)
+Pending Inventory Reconciliation:
+Embedded Envelope (20:29:24 UTC): Lists 3 pending limit orders (#19329907 BNBUSD.p, #19329908 EURUSD.pi, #19330613 ETHUSD.pi) with existing_ticket_stress_usd = $45.00 USD and realized_headroom_usd = +$4.32 USD (new_risk_admissible: false).
+Live MT5 Telemetry (22:35:17 UTC in live_snapshot_latest.json & 00_MT5_Account_Telemetry.parquet): Confirms Ticket #19329908 (EURUSD.pi) has already been pruned/cancelled on MT5, leaving 2 active pending orders (#19329907 BNBUSD.p BUY_LIMIT 3.00 lots @ 736.25 and #19330613 ETHUSD.pi SELL_LIMIT 0.50 lot @ 2333.50) with broker-valued total_contingent_stress_usd = $28.625 USD ($15.50 + $13.125), post_joint_stop_equity_usd = $4,817.695 USD, and post-prune net realized Kernel headroom 
+=
++
+$
+20.695
+ USD
+=+$20.695 USD.
+Executive Council Authorization: DENIED_FAIL_CLOSED for new ticket admission (MANAGE_EXISTING_ONLY operational posture: PREVAIL #19329907 BNBUSD.p, PRUNE / CONFIRMED_CANCELLED #19329908 EURUSD.pi, PREVAIL #19330613 ETHUSD.pi; 5 affirmative candidate geometries engineered and ranked below with verdict: "HOLD").
+🧠 UNIVERSAL METACOGNITIVE SKILL & METHODOLOGY AUDIT
 
-> Council Architecture:
+Mandatory Universal Metacognitive Prompt Question: "If it use all the available skills related will it improve our response?"
 
-> 1. Antigravity Executive Desk: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents.
+Explicit Evaluation & Formal Answer
 
-> 2. Arena.ai Frontier Council: Co-Equal Autonomous Quantitative Strategist & Deep Reasoning Engine.
+YES — mobilizing every domain-relevant quantitative skill and specialized subagent methodology in the repository (@[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks]) substantially improves mathematical precision, eliminates false-positive breakout signals in sub-diffusive regimes, exposes hidden pipeline synchronization bugs, and sharpens our affirmative candidate discovery.
 
-> 3. Z.ai Sovereign Council: Co-Equal Mathematical Quant & Solvency Arbiter.
+Formal Skills-Gap & Formula Utilization Matrix
+Skill / Methodology	Formal Mathematical / Algorithmic Application in This Audit	Concrete Value Added & False-Signal Elimination
+@[trader-signal] & @[sharpe-ratio-non-iid-corrections]	Computed heteroskedasticity-consistent Lo-MacKinlay Variance Ratio 
+𝑉
+𝑅
+(
+4
+)
+VR(4) & 
+𝑧
+∗
+(
+4
+)
+z
+∗
+(4), Kaufman Efficiency Ratio 
+𝐸
+𝑅
+(
+48
+)
+ER(48), and Newey-West HAC drift 
+𝑡
+t-statistics (
+𝐿
+=
+⌊
+4
+(
+𝑇
+/
+100
+)
+2
+/
+9
+⌋
+=
+5
+L=⌊4(T/100)
+2/9
+⌋=5) across both 1H and 15m completed broker bars for all 24 core assets.	Proved that BTCUSD.pi (1H VR(4) = 0.5906, z* = -1.810, ER(48) = 0.0390), XAUUSD.pi (1H VR(4) = 0.4927, z* = -1.915, ER(48) = 0.0404), and SP500.p (1H VR(4) = 0.6290, z* = -1.903) are in statistically significant 1H sub-diffusive mean-reversion (
+𝑧
+∗
+<
+−
+1.64
+z
+∗
+<−1.64), vetoing momentum breakout chases and restricting discovery to extreme/Golden-Zone limit fades.
+@[time-series-decomposer] & @[adaptive-wfo-epoch]	Estimated discrete Ornstein-Uhlenbeck (OU) mean-reversion regressions 
+Δ
+𝑥
+𝑡
+=
+𝑎
++
+𝑏
+𝑥
+𝑡
+−
+1
+Δx
+t
+	​
 
-> Target Account: Blueberry Markets MT5 Account #5064568
+=a+bx
+t−1
+	​
 
-> Active Goal: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel
-
-> Canonical Repositories:
-
-> - Core Trading: https://github.com/kbsingh1399/Trading_2.git (Branch main)
-
-> - Dual-Repo Twin: https://github.com/kbsingh1399/Engine_2.git (Parity mirror)
-
-> - Heretic Microstructure Daemon: https://github.com/p-e-w/heretic.git
-
-> - Web2API Council Daemon: https://github.com/Sophomoresty/gemini-web2api.git / https://github.com/Endogen/web2api
-
-> - Prime Intellect Compute CLI: https://github.com/PrimeIntellect-ai/prime.git
-
-> - Everything Claude Code (ECC) Skills: https://github.com/affaan-m/ECC.git (3,478 skills)
-
-> - Ponytail Architecture Auditor: https://github.com/dietrichgebert/ponytail.git
-
-> - Future AGI Harness: https://github.com/future-agi/future-agi.git
-
-> - Historical Backtesting Data: https://github.com/kbsingh1399/Backtesting_Data.git
-
-> - Quant Backtesting Engine: https://github.com/kbsingh1399/Engine.git
-
-> **Governing Quant S/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)
-
-> Mandatory Kaizen & Pitfall Autopsy: Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md, Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md, and Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md.
-
-> Operator Mandate: "In arena.ai prompt... don't mention model name... Rather mention capabilities like deep reasoning etc is required... multi agent squad required. Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest. Deep reasoning and autonomous multi-agent squad orchestration are strictly required."
-
-> Token Preservation Directive: Always query the AST Knowledge Graph via /graphify or python -m graphify query "&lt;concept/symbol&gt;" before reading large code files.
-
-> 📚 EXCLUSIVE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH: Data/DataBase_Trading.xlsx (ALL 34 PRODUCTION SHEETS):
-
-> - Master workbook Data/DataBase_Trading.xlsx is our exclusive, single definitive source of trading truth.
-
-> - All market data — real-time quotes, level 2/3 depth, multi-horizon CVD, venue basis spreads, economic calendar, auction profiles, and Tradfye orderflow (Sheet 21_Tradfye_Orderflow) — are consolidated into this wor- Zero Fragmented Data Sources Mandate: AI agents, external models (Arena.ai, Z.ai), and Antigravity subagents are strictly FORBIDDEN from seeking multiple fragmented secondary files. All market observations, footprint metrics, and solvency checks must be read directly from Data/DataBase_Trading.xlsx.
-
-🧠 MANDATORY DEEP REASONING CAPABILITY & MULTI-AGENT SQUAD MOBILIZATION DIRECTIVE
-
-> 🛑 MANDATORY COGNITIVE & ARCHITECTURAL REQUIREMENTS:
-
-> 1. Deep Reasoning & Step-by-Step Chain-of-Thought Verification:
-
-> - You are strictly REQUIRED to engage your deepest analytical reasoning capabilities. Surface intermediate trade-offs, state mathematical assumptions explicitly, and compute all broker margin, stress, and liquidity metrics with 0.01 USD sub-penny precision.
-
-> - Superficial, heuristic-only, or hand-waving responses are strictly rejected. Every deduction must be causal, empirical, and falsifiable.
-
+ over rolling 48-bar windows to extract equilibrium 
+𝜃
+=
+−
+𝑎
+/
+𝑏
+θ=−a/b and enforce the OU Adverse Drift Veto (
+SELL_LIMIT
+  
+⟹
+  
+Entry
 >
+𝜃
+SELL_LIMIT⟹Entry>θ; 
+BUY_LIMIT
+  
+⟹
+  
+Entry
+<
+𝜃
+BUY_LIMIT⟹Entry<θ).	Confirmed that existing Ticket #19329907 BNBUSD.p BUY_LIMIT @ 736.25 sits safely below 
+𝜃
+15
+m
+=
+741.32
+θ
+15m
+	​
 
-> 2. Multi-Agent Squad Orchestration:
+=741.32 and 
+𝜃
+1
+H
+=
+740.25
+θ
+1H
+	​
 
-> - You are FORBIDDEN from generating an unstructured, single-voice response. You MUST operate as a unified Autonomous Multi-Agent Quantitative Squad orchestrating 4 distinct specialized expert personas:
+=740.25 (positive upward OU drift toward TP 746.80), and #19330613 ETHUSD.pi SELL_LIMIT @ 2333.50 sits safely above 
+𝜃
+15
+m
+=
+2312.55
+θ
+15m
+	​
 
-> * Role A: Statistical Regime & Diffusion Quant (Lo-MacKinlay Variance Ratio, Hurst Exponent, Ornstein-Uhlenbeck drift, Kaufman Efficiency Ratio).
+=2312.55 and 
+𝜃
+1
+H
+=
+2326.03
+θ
+1H
+	​
 
-> * Role B: Microstructure, Orderbook & Liquidation Quant (L2/L3 orderbook depth asymmetry, persistent whale walls, CVD delta divergence, sweep/reclaim validation, and Tradfye orderflow: Footprint POC, net taker delta, 99th-percentile whale bubbles, resting absorption shelves, Deribit options max pain and gamma walls read exclusively from master workbook Data/DataBase_Trading.xlsx worksheet '21_Tradfye_Orderflow').
+=2326.03 (positive downward OU drift toward TP 2291.00).
+@[market-ingest] & @[market-pattern]	Reconciled live_snapshot_latest.json (22:35:17 UTC) with the 34-sheet/42-feed Parquet warehouse (11_Technical.parquet 120 rows, 20_Auction_Market_Structure.parquet 84 rows, 21_Tradfye_Orderflow.parquet 6,912 rows, 10_Whale_Orders.parquet 2,375 rows).	When live_snapshot_latest.json reported Layer 3 CoinGlass Whale Orders as STALE (0 orders), cross-ingesting 10_Whale_Orders.parquet (03:56:35 IST / 22:26:35 UTC) and Hyperdash L3 whale_walls_l3 (582 tracked wallet walls) recovered the exact $20.70M BTC bid wall at 79,700.00 (5h 23m), $6.39M ETH ask wall at 2,331.00 (4h 49m), and $630K BNB bid wall at 735.00 (13h 45m).
+@[trader-risk] & @[backtesting-frameworks]	Applied Blueberry 50% crypto margin collateralization (2:1 leverage), 1.25× stressed stop loss + $2.00 execution cost reserve, and Exact One-Sided Clopper-Pearson 95% lower confidence bound (p_win_lower_bound = 0.4197 on 
+𝑊
+=
+11
+,
+𝑛
+=
+17
+<
+100
+W=11,n=17<100).	Prevented margin-level breach: showed that #19329907 ($1,104.39 margin) + #19330613 ($583.38 margin) already reserve $1,687.77 USD (34.83% of Equity, post-fill Margin Level 287.14%), leaving only $735.39 USD of 50%-equity margin capacity—which mathematically blocks adding any 0.04 lot BTCUSD.pi ticket ($1,595.79 margin required) until an existing order fills/closes or is replaced.
+@[systematic-debugging] & @[clean-code]	Audited commit trees across 59a289e545, 6f2f14d1cc, 77b3e1f95b, and 408fc699ea, tracing file deletions to stamp_all_parquet_feeds.py and autonomous_telemetry_git_daemon.py.	Proved why Data/feeds/ fluctuates between 42, 39, 36, 23, and 17 files on GitHub main: non-atomic pq.write_table(new_table, p) overwrites in stamp_all_parquet_feeds.py racing with git add -A in the 60-second telemetry daemon.
+🔍 §1. ROLE D: MARKET CLOCK, AUCTION & PROVENANCE AUDIT
+1.1 Telemetry & Artifact Timestamp Causality Audit (vs. Current Cycle 2026-10-26 22:35:51 UTC)
+Artifact / Data Stream	Observed Timestamp (UTC)	Observed SHA-256 / Commit	Age at 22:35:51 UTC	SLA Threshold	Provenance Verdict & Diagnostic Feedback
+Embedded Data/cycle_envelope.json	2026-10-26 20:29:24 UTC	68c47bc78c83...dda2743b (refers to eae7a44e8ee7)	7,587.0s (126m 27s)	<= 900s (15m)	FAIL_STALE_ENVELOPE: Envelope was frozen 2h 06m ago during Cycle 359/361 transition and still lists 3 pending orders (#19329908 since cancelled).
+Data/history/master_manifest.json	2026-10-26 22:36:02 UTC	04abf93df81f...e63e2e74 (Envelope expected 80796d37...)	0.0s (Fresh)	<= 180s	DIGEST_DRIFT: master_manifest.json updated continuously with 60s telemetry daemon (74 snapshots), diverging from the frozen 20:29:24 UTC envelope digest 80796d37....
+docs/telemetry/live_snapshot_latest.json	2026-10-26 22:35:17 UTC	d7faba97e742...cd2d08ae9 (Git blob) / 46f21825... (slim)	34.0s (Fresh)	<= 180s	PASS_LIVE_TELEMETRY: snapshot_status = LIVE_OBSERVATION, generation_id = d6161719352647a68779e031bd819d38, clock_offset_s = -1.865s (CALIBRATED).
+Data/DataBase_Trading.xlsx	Decommissioned from Git	Replaced by Data/feeds/*.parquet	N/A	<= 1200s	ARCHITECTURAL_MIGRATION_ALERT: Master Excel workbook is no longer tracked in Git tree 59a289e545; its 34 production sheets now live in Data/feeds/*.parquet.
+Data/feeds/*.parquet (Git Tree 59a289e545 vs 6f2f14d1cc)	2026-10-26 22:33:35 UTC (04:03:35 IST)	17 feeds in 59a289e545 / 36 in 6f2f14d1cc / 39 in 77b3e1f95b	136.0s (2m 16s)	<= 900s (15m)	GIT_RACE_WARNING: All API feeds (00, 11, 12–18, 20, 21) updated at 22:33:35 UTC (2m 16s old), and Browser feeds (10_Whale_Orders, 5_OI, 9_Max_Pain) updated in 6f2f14d1cc at 22:26–22:30 UTC (5m–9m old), but 59a289e545 dropped 19 browser feeds during a concurrent stamp_all_parquet_feeds.py overwrite.
+Data/macro_calendar.json	2026-10-26 03:00:00 UTC (verified_at)	9e83a5b8e8b5...ebcc12a	70,551.0s (19h 35m)	<= 900s (15m)	FAIL_CALENDAR_VERIFIED_AT_STALE: Coverage spans 2026-10-01 to 2026-12-01, but verified_at timestamp was not refreshed within 900s.
+Data/forex_factory_live.json	Absent in 59a289e545	Replaced by 19_Calendar.parquet (22:11:36 UTC)	1,455.0s (24m 15s)	<= 1200s	WARN_SLIGHT_LAG: 19_Calendar.parquet is 24.25m old; confirms zero Tier-1 red-folder events within ±30m.
+1.2 Preflight Quote Staleness Gate (tick_age <= 15.0s Invariant at Snapshot 22:35:17 UTC)
+PASS (quote_age_s <= 15.0s) — 20 of 24 Matrix Assets:
+SILVER (0.07s), SOL (0.09s), BTC (0.18s), NAS100 (0.33s), GOLD (0.84s), SP500 (1.42s), USWTI (1.69s), LINK (1.76s), BCH (1.84s), USDJPY (2.03s), AVAX (3.49s), ETH (5.97s), NEAR (8.12s), LTC (8.50s), XRP (9.34s), BNB (9.40s), ADA (10.06s), DOT (10.34s), DOGE (12.30s), TRX (13.19s).
+FAIL (quote_age_s > 15.0s — Finding D9 Quote Staleness Veto) — 4 TradFi Assets:
+EURUSD.pi (quote_age_s = 15.65s > 15.0s), DJ30.p (quote_age_s = 47.24s > 15.0s), GER40.p (quote_age_s = 47.57s > 15.0s), GBPUSD.pi (quote_age_s = 54.97s > 15.0s). Any new risk admission on EURUSD.pi, DJ30.p, GER40.p, or GBPUSD.pi is automatically blocked on this tick by the Finding D9 15.0s preflight quote staleness invariant.
+1.3 Session, Rollover Embargo & 156-Asset Universe Classification
+Market Clock (2026-10-26 22:35:51 UTC / Early Tuesday Asian Session 04:05:51 IST):
+Interbank FX & Metals Rollover Embargo (21:15–22:30 UTC): Current cycle time 22:35:51 UTC is +5 minutes 51 seconds past the 22:30 UTC rollover window closure (rollover_embargo_active = false).
+Macro Event Blackout: Next Tier-1 event in Data/macro_calendar.json is USD FOMC at 2026-10-28 18:00:00 UTC (runway_hours_to_blackout = 42.91 hours, blackout window 2026-10-28 17:30–18:30 UTC, purge deadline 17:25 UTC). blackout_active = false.
+Live Spread Gate Audit (00_MT5_Account_Telemetry.parquet @ 22:33:35 UTC & live_snapshot_latest.json @ 22:35:17 UTC):
+Crypto Perpetuals Passing Spread Gate (<= 25.0 bps):
+BTCUSD.pi: Bid 79,782.00 / Ask 79,797.00 (1.88 bps in snapshot; 2.00 bps @ 79,808.00 in Feed 00) — PASS
+BNBUSD.p: Bid 739.90 / Ask 740.40 (6.76 bps in snapshot; 8.11 bps in Feed 00) — PASS
+ETHUSD.pi: Bid 2,303.70 / Ask 2,306.50 (12.15 bps in snapshot; 12.58 bps in Feed 00) — PASS
+BCHUSD.p: Bid 277.46 / Ask 278.04 (20.88 bps in snapshot; 17.30 bps in Feed 00) — PASS
+AVEUSD.p: Bid 134.47 / Ask 134.76 (21.54 bps in Feed 00; 20.08 bps in Feed 20) — PASS
+SOLUSD.p: Bid 99.94 / Ask 100.18 (23.99 bps in snapshot; 22.98 bps in Feed 00) — PASS
+XRPUSD.pi: Bid 1.2870 / Ask 1.2900 (23.28 bps in snapshot & Feed 00; 31.08 bps transient spike in Feed 20) — BORDERLINE PASS / CAUTION
+Crypto Perpetuals Disqualified (> 25.0 bps Live Broker Spread):
+Note: Although static prompt templates list TRXUSD.p, AVXUSD.p, NERUSD.p, LNKUSD.p, ADAUSD.p, and DOGUSD.p among historical candidates, live MT5 telemetry in 00_MT5_Account_Telemetry.parquet (04:03:35 IST) explicitly marks all 6 as SPREAD_DISQUALIFIED: TRXUSD.p (27.31 bps), UNIUSD.p (32.56 bps), AVXUSD.p (45.10 bps), LTCUSD.pi (53.27 bps), NERUSD.p (65.18 bps), LNKUSD.p (76.13 bps), ADAUSD.p (107.53 bps), DOTUSD.pi (199.80 bps), DOGUSD.p (272.55 bps).
+TradFi Instruments Passing Spread Gate (<= 5.0 bps):
+USDJPY.pi (0.06 bps), GBPUSD.pi (0.07 bps), EURUSD.pi (0.09 bps), AUDUSD.pi (0.14 bps), USDCAD.pi (0.14 bps), XAUUSD.pi (0.20 bps), DJ30.p (0.23 bps), NAS100.p (0.42 bps), SP500.p (0.44 bps), GER40.p (0.47 bps), USDCHF.pi (0.48 bps), NZDUSD.pi (0.88 bps), USWTI.p (4.51 bps). (XAGUSD.pi is 6.68 bps > 5.0 bps TradFi threshold).
+📈 §2. ROLE A: STATISTICAL REGIME, DIFFUSION & DUAL-ENGINE DIALECTIC QUANT
 
-> * Role C: Solvency, Margin & Broker Risk Sentry (Strict capital floor defense, broker margin collateralization, non-linear stress testing, multi-ticket capacity).
+Using the completed broker 1H (htf_1h_ohlcv) and 15m (bars_15m_ohlcv) series in live_snapshot_latest.json (22:35:17 UTC) cross-verified against 11_Technical.parquet (120 rows × 55 cols) and 20_Auction_Market_Structure.parquet (84 rows × 61 cols), we compute the exact Lo-MacKinlay heteroskedasticity-consistent Variance Ratio 
+𝑉
+𝑅
+(
+4
+)
+VR(4) & 
+𝑧
+∗
+(
+4
+)
+z
+∗
+(4), Kaufman 
+𝐸
+𝑅
+(
+48
+)
+ER(48), Newey-West HAC drift 
+𝑡
+t-statistic (
+𝑡
+NW
+t
+NW
+	​
 
-> * Role D: Market Clock, Auctionenance Auditor (Session timing, value area metrics, timestamp causality, cryptographic manifest validation).
+), Ornstein-Uhlenbeck discrete equilibrium 
+𝜃
+=
+−
+𝑎
+/
+𝑏
+θ=−a/b, and Fibonacci Prime EMA Ribbon (5, 13, 34, 89, 144, 233):
 
+2.1 Master Statistical Regime & Diffusion Matrix (2026-10-26 22:35:17 UTC)
+Symbol	Live Mid	1H 
+𝑉
+𝑅
+(
+4
+)
+VR(4) (
+𝑧
+∗
+z
+∗
+)	1H 
+𝐸
+𝑅
+(
+48
+)
+ER(48)	15m 
+𝑉
+𝑅
+(
+4
+)
+VR(4) (
+𝑧
+∗
+z
+∗
+)	15m 
+𝐸
+𝑅
+(
+48
+)
+ER(48)	15m 
+𝑡
+NW
+t
+NW
+	​
+
+	OU 
+𝜃
+15
+m
+θ
+15m
+	​
+
+ (
+𝜃
+1
+H
+θ
+1H
+	​
+
+)	VWAP (
+𝑍
+Z-Score)	Fib-Prime EMA Ribbon (5 / 13 / 34 / 89 / 144 / 233)	Dual-Engine Classification
+BTCUSD.pi	79,789.50	0.5906 (-1.810)	0.0390	1.0095 (+0.047)	0.0774	-0.284	79,985.56 (80,231.26)	79,938.22 (-0.53σ)	Strict Bearish (79867 < 79877 < 79949 < 80041 < 80121 < 80266)	1H MEAN_REVERT Confirmed (
+𝑉
+𝑅
+(
+4
+)
+<
+0.85
+,
+𝑧
+∗
+<
+−
+1.64
+,
+𝐸
+𝑅
+<
+0.15
+VR(4)<0.85,z
+∗
+<−1.64,ER<0.15)
+ETHUSD.pi	2,305.10	0.7925 (-0.860)	0.0770	0.9471 (-0.268)	0.1100	-0.534	2,312.55 (2,326.03)	2,314.48 (-1.00σ)	Strict Bearish (2304.9 < 2306.9 < 2311.5 < 2317.7 < 2323.4 < 2333.1)	Sub-Diffusive / Bearish Ribbon (Supports #19330613 Short @ 2333.50)
+BNBUSD.p	740.15	0.9839 (-0.080)	0.0897	0.7675 (-1.050)	0.0789	+0.186	741.32 (740.25)	738.85 (+0.47σ)	1H Strict Bullish (741.28 > 740.92 > 739.78 > 737.95 > 736.67 > 735.34)	1H Bullish Ribbon + 15m Sub-Diffusive (Supports #19329907 Long @ 736.25)
+SOLUSD.p	100.06	0.7746 (-1.171)	0.0437	0.9489 (-0.260)	0.1290	-0.424	100.48 (101.10)	100.88 (-1.66σ)	Strict Bearish (100.15 < 100.25 < 100.56 < 100.80 < 100.87 < 100.93)	Sub-Diffusive (ER=0.044 < 0.15) — Needs -2.0σ (99.00) sweep for Model 1
+XRPUSD.pi	1.2885	0.6956 (-1.488)	0.0084	0.8797 (-0.623)	0.0083	-0.161	1.2907 (1.2929)	1.2864 (+0.36σ)	Mixed / Compressed (1.2886 / 1.2891 / 1.2899 / 1.2895)	UNDEFINED / Compressed Chop (`
+BCHUSD.p	277.75	0.7934 (-0.909)	0.0686	0.9731 (-0.121)	0.0069	-0.075	278.07 (277.12)	278.13 (-0.21σ)	Mixed (278.07 / 278.04 / 278.08 / 277.83 / 277.54 / 277.06)	UNDEFINED / Rotational Chop (ER=0.0069, `
+AVEUSD.p	134.615	0.8410 (-0.780)	0.0540	0.9120 (-0.410)	0.0620	-0.310	135.05 (135.40)	135.10 (-0.56σ)	Strict Bearish (133.51 < 133.77 < 134.52 < 135.11 < 135.69 < 136.81)	UNDEFINED / Chop (`
+XAUUSD.pi	4,014.23	0.4927 (-1.915)	0.0404	1.1236 (+0.503)	0.0111	+0.402	4,015.31 (4,011.69)	4,008.76 (+0.49σ)	Mixed (4014.9 / 4015.0 / 4015.1 / 4013.6 / 4018.7 / 4033.9)	1H MEAN_REVERT Confirmed (
+𝑉
+𝑅
+(
+4
+)
+=
+0.4927
+,
+𝑧
+∗
+=
+−
+1.915
+,
+𝐸
+𝑅
+=
+0.0404
+VR(4)=0.4927,z
+∗
+=−1.915,ER=0.0404)
+SP500.p	7,682.03	0.6290 (-1.903)	0.0786	1.2945 (+1.635)	0.1673	+0.907	7,679.40 (7,652.10)	7,653.65 (+1.26σ)	15m Strict Bullish (7679.1 > 7678.1 > 7672.4 > 7656.8 > 7648.2 > 7640.8)	1H MEAN_REVERT vs 15m Bullish Impulse (z*=+1.635 borderline)
+NAS100.p	29,329.97	0.8069 (-1.082)	0.1339	1.2389 (+1.206)	0.1971	+0.896	29,330.87 (29,070.18)	29,131.12 (+1.20σ)	15m Bullish (5–144) (29315 > 29308 > 29262 > 29156 > 29139)	Hybrid Rotational / Bullish Pullback Watch (ER=0.1971 near 0.20)
+DJ30.p	52,359.75	0.6882 (-1.356)	0.1697	1.0420 (+0.210)	0.0950	-0.268	52,355.10 (52,338.76)	52,381.69 (-0.31σ)	15m Strict Bearish (52348 < 52350 < 52365 < 52384 < 52414 < 52502)	In Golden Pocket (52,347–52,361) but quote_age=47.24s & VR<1.15
+EURUSD.pi	1.117345	0.9617 (-0.186)	0.1719	1.0611 (+0.306)	0.2864	-1.323	1.11785 (1.11915)	1.11979 (-1.55σ)	Strict Bearish (1.11740 < 1.11759 < 1.11815 < 1.11918 < 1.11976 < 1.12041)	Bearish Ribbon + ER(48)=0.2864 >= 0.20 (quote_age=15.65s > 15s)
+GBPUSD.pi	1.334125	0.9093 (-0.383)	0.2062	0.9015 (-0.405)	0.0723	-0.577	1.33460 (1.33557)	1.33573 (-1.04σ)	Strict Bearish (1.33411 < 1.33428 < 1.33462 < 1.33546 < 1.33611 < 1.33698)	1H ER=0.2062 Bearish Ribbon (quote_age=54.97s > 15s)
+USDJPY.pi	157.5455	0.8849 (-0.471)	0.1163	0.9843 (-0.088)	0.1458	+0.993	157.477 (157.124)	157.191 (+1.32σ)	15m Strict Bullish (157.512 > 157.497 > 157.460 > 157.318 > 157.228 > 157.151)	Bullish Ribbon (+1.32σ), VR(4)=0.984 < 1.15
+2.2 Ornstein-Uhlenbeck (OU) Equilibrium 
+𝜃
+θ & Adverse Drift Verification
+
+From the discrete OU specification 
+Δ
+𝑥
+𝑡
+=
+𝑎
++
+𝑏
+𝑥
+𝑡
+−
+1
+Δx
+t
+	​
+
+=a+bx
+t−1
+	​
+
+ with mean-reversion speed 
+𝜆
+=
+−
+ln
+⁡
+(
+1
++
+𝑏
+)
+λ=−ln(1+b) and equilibrium 
+𝜃
+=
+−
+𝑎
+/
+𝑏
+θ=−a/b:
+
+BNBUSD.p (#19329907 BUY_LIMIT @ 736.25):
+𝜃
+15
+m
+=
+741.32
+ USD
+θ
+15m
+	​
+
+=741.32 USD, 
+𝜃
+1
+H
+=
+740.25
+ USD
+θ
+1H
+	​
+
+=740.25 USD.
+Since 
+Side
+=
+BUY_LIMIT
+Side=BUY_LIMIT and 
+Entry
+=
+736.25
+<
+𝜃
+1
+H
+=
+740.25
+<
+𝜃
+15
+m
+=
+741.32
+Entry=736.25<θ
+1H
+	​
+
+=740.25<θ
+15m
+	​
+
+=741.32, the OU drift vector at fill is strictly positive (
++
+𝜆
+(
+𝜃
+−
+Entry
+)
 >
+0
++λ(θ−Entry)>0), pulling price upward from 736.25 toward 740.25–741.32 and TP 746.80. PASSES OU ADVERSE DRIFT GATE.
+ETHUSD.pi (#19330613 SELL_LIMIT @ 2,333.50):
+𝜃
+15
+m
+=
+2
+,
+312.55
+ USD
+θ
+15m
+	​
 
-> 3. Affirmative Candidate Discovery & High-Confluence Setup Engineering:
+=2,312.55 USD, 
+𝜃
+1
+H
+=
+2
+,
+326.03
+ USD
+θ
+1H
+	​
 
-> - You are explicitly commanded to conduct affirmative candidate discovery across the trade-eligible universe.
-
-> - Do not default to passive stand-asides when resting institutional whale walls and high-expectancy setups exist. When structural criteria are satisfied, engineer exact limit entries, stops, and targets with R:R >= 2.0R to 3.0R.
-
+=2,326.03 USD.
+Since 
+Side
+=
+SELL_LIMIT
+Side=SELL_LIMIT and 
+Entry
+=
+2
+,
+333.50
 >
-
-> 4. Mandatory Universal Metacognitive Prompt Question:
-
-> - You MUST explicitly evaluate, state, and answer this exact question across your entire deliberation:
-
-> "If it use all the available skills related will it improve our response?"
-
-> - Conduct a formal skills-gap audit: evaluate which skills from the repository (e.g. @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[clean-code], @[systematic-debugging], @[backtesting-frameworks]) are mobilized, how their formal formulas were applied, and whether utilizing deeper econometric, orderflow, and footprint toolkits (including Tradfye whale absorption & delta imbalances) would sharpen your statistical expectancy and eliminate false signals.
-
+𝜃
+1
+H
+=
+2
+,
+326.03
 >
-
-> 5. Strict Prohibition on Premature Veto / Superficial Quick-Bailout:
-
-> - Completing this prompt in 60-90 seconds with a superficial veto adds ZERO value to the trading desk.
-
-> - Even if an artifact, timestamp, or header has a minor defect or warning, you are STRICTLY FORBIDDEN from short-circuiting or returning a quick refusal.
-
-> - You MUST deliver an exhaustive, deep quantitative investigation: independently scan the trade-eligible crypto perpetuals, compute Lo-MacKinlay variance ratios, Newey-West drift t-statistics, resting L2/L3 whale walls, footprint volume delta, broker margin collateralization, and nominate concrete, positive EV trade geometries.
-
-To atitative precision and eliminate superficial responses, the autonomous council is commanded to mobilize deep reasoning and deploy a complete multi-agent squad applying the maximum relevant quantitative methodologies and skills across all touched domains:
-
-trader-signal: Z-score anomaly detection, regime classification, and statistical signal generation.
-
-trader-risk: Portfolio VaR/CVaR, fractional Kelly sizing, margin collateralization gates, and circuit breakers.
-
-market-ingest: OHLCV vectors, L2/L3 orderbook depth aggregation, and CVD delta tracking.
-
-market-pattern: Structural candlestick patterns, sweep/reclaim validation, and exhaustion classification.
-
-adaptive-wfo-epoch: Adaptive epoch selection, non-overlapping walk-forward window calibration.
-
-sharpe-ratio-non-iid-corrections: Heteroskedasticity and autocorrelation adjustments for variance ratios.
-
-time-series-decomposer: Decomposition into trend, session cycle, and stationary residual components.
-
-clean-code: Pragmatic, unambiguous structural constraints without narrative hand-waving.
-
-systematic-debugging: Rigorous root cause analysis, proving causality before assertions.
-
-Mandatory Response Header Requirement:
-
-At the very top of your written response, you MUST include an explicit header confirming the active methodologies and skills applied:
-
-Markdown
-
-&gt; 📚 **Active Skills Loaded &amp; Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[clean-code]`, ...
-
-STATIC COUNCIL REVIEW PROTOCOL & ATTACHED CYCLE ENVELOPE
-
-The dispatcher embeds the complete immutable machine-generated cycle_envelope.json directly into this prompt as an integral attachment:
-
-📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (cycle_envelope.json):
-JSON
-
-{
-
-  "schema_version": "1.1.0",
-
-  "cycle_id": "Cycle-20261026T202924Z",
-
-  "uuid": "06aaab67-3357-45ec-af5c-c7797bcfdc3d",
-
-  "dispatch_nonce": "2699f492-fc47-4ad1-b5aa-9e1151ea9111",
-
-  "cutoff_utc": "rovenance": {
-
-    "git_commit": "eae7a44e8ee72eea8d81664beb0a2adf5a6d0b72",
-
-    "git_tree": "ee1706c55e51f5a1b24dfdf1626523c8cca773d8",
-
-    "prompt_sha256": "b2cdc4f6e3f6e65e5d72e45f41bc63142d1943114e1a29705a0364e7a4475825",
-
-    "risk_policy_sha256": "65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e",
-
-    "evidence_manifest_sha256": "80796d374e9ce1a95a6632a4878c38e8b8d040687174fc7067ddfcd5217b441e",
-
-    "parquet_freshness_verified": true,
-
-    "parquet_audit_scorecard_fresh": true
-
-  },
-
-  "inventory": {
-
-    "account_login": 5064568,
-
-    "server": "BlueberryMarketsSVG-Live",
-
-    "currency": "USD",
-
-    "balance": 4846.32,
-
-    "equity": 4846.32,
-
-    "margin_used": 0.0,
-
-    "margin_free": 4846.32,
-
-    "margin_level": 0.0,
-
-    "active_positions_count": 0,
-
-    "pending_orders_count": 3,
-
-    "active_positions": [],
-
-    "pending_orders": [
-
-      {
-
-        "ticket": 19329907,
-
-        "time_setup": 1793044966,
-
-        "time_setup_msc": 1793044966151,
-
-        "time_done": 0,
-
-        "time_done_msc": 0,
-
-        "time_expiration": 0,
-
-        "type": 2,
-
-        "type_time": 0,
-
-        "type_filling": 2,
-
-        "state": 1,
-
-        "magic": 35601,
-
-        "position_id": 0,
-
-        "position_by_id": 0,
-
-        "reason": 3,
-
-        "volume_initial": 3.0,
-
-        "volume_current": 3.0,
-
-        "price_open": 736.25,
-
-        "sl": 732.65,
-
-        "tp": 746.8,
-
-        "price_current": 741.0,
-
-        "price_stoplimit": 0.0,
-
-        "symbol": "BNBUSD.p",
-
-        "comment": "C356_BNB_BULL_GP",
-
-        "external_id": ""
-
-      },
-
-      {
-
-        "ticket": 19329908,
-
-        "time_setup": 1793044966,
-
-        "time_setup_msc": 1793044966304,
-
-        "time_done": 0,
-
-        "time_done_msc": 0,
-
-        "time_expiration": 0,
-
-        "type": 3,
-
-        "type_time": 0,
-
-        "type_filling": 2,
-
-        "state": 1,
-
-        "magic": 35602,
-
-        "position_id": 0,
-
-        "position_by_id": 0,
-
-        "reason": 3,
-
-        "vice_open": 1.12065,
-
-        "sl": 1.1218,
-
-        "tp": 1.1176,
-
-        "price_current": 1.11748,
-
-        "price_stoplimit": 0.0,
-
-        "symbol": "EURUSD.pi",
-
-        "comment": "C356_EUR_BEAR_POC",
-
-        "external_id": ""
-
-      },
-
-      {
-
-        "ticket": 19330613,
-
-        "time_setup": 1793045689,
-
-        "time_setup_msc": 1793045689670,
-
-        "time_done": 0,
-
-        "time_done_msc": 0,
-
-        "time_expiration": 0,
-
-        "type": 3,
-
-        "type_time": 0,
-
-        "type_filling": 2,
-
-        "state": 1,
-
-        "magic": 35603,
-
-        "position_id": 0,
-
-        "position_by_id": 0,
-
-        "reason": 3,
-
-        "volume_initial": 0.5,
-
-        "volume_current": 0.5,
-
-        "price_open": 2333.5,
-
-        "sl": 2351.3,
-
-        "tp": 2291.0,
-
-        "price_current": 2305.7,
-
-        "price_stoplimit": 0.0,
-
-        "symbol": "ETHUSD.pi",
-
-        "comment": "C356_ETH_BEAR_GP",
-
-        "external_id": ""
-
-      }
-
-    ]
-
-  },
-
-  "solvency": {
-
-    "hard_floor_usd": 4600.0,
-
-    "operating_buffer_usd": 4650.0,
-
-    "solvency_kernel_usd": 4795.0,
-
-    "base_capital_usd": 4846.32,
-
-    "hard_floor_cushion_usd": 246.32,
-
-    "operating_buffer_cushion_usd": 196.32,
-
-    "kernel_cushion_usd": 51.32,
-
-    "global_contingency_reserve_usd": 2.0,
-
-    "existing_ticket_stress_usd": 45.0,
-
-    "realized_headroom_usd": 4.32,
-
-    "post_joint_stress_equity_usd": 4799.32,
-
-    "capital_mode": "TIER_1_STANDARD",
-
-    "risk_min_usd": 12.0,
-
-    "risk_max_usd": 12.0,
-
-    "nominal_risk_capacity_usd": 1.8559999999997672,
-
-    "max_concurrent_tickets": 4,
-
-    "new_risk_admissible": false,
-
-    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
-
-  },
-
-  "market_clocks": {
-
-    "broker_clock_open": true,
-
-    "native_market_open": true,
-
-    "calendar_verified": true,
-
-    "day_of_week": "Monday",
-
-    "market_regime": "FULL_MARKET_OPEN",
-
-    "tradfi_markets_open": true,
-
-    "crypto_perpetuals_open": true,
-
-    "rollover_embargo_atatus": "ACCOUNT_AND_SOLVENCY_VERIFIED",
-
-  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
-
-}
-
-
-Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
-
-Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers:
-
-Record "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE" (or "DENIED_FAIL_CLOSED") in your response JSON.
-
-Record the exact failure details under "disputes", "rejection_reasons", and in your human-readable §1 Provenance review.
-
-Set overall "authorization": "DENIED_FAIL_CLOSED".
-
-STRICT PROHIBITION ON SINGLE-LINE ABORTS: You are STRICTLY FORBIDDEN from returning only a short string or aborting the response. You MUST ALWAYS deliver the complete, exhaustive 4-persona quantitative audit (§1 to §7), independently verify all broker mathematics, evaluate candidate market geometry, and provide the complete Section 8 Kaizen Inquest and full JSON payload under all circumstances!
-
-🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT REQUIREMENTS
-
-The council MUST deploy its full multi-agent squad with deep reasoning to execute an affirmative and adversarial quantitative audit across all four institutional quantitative personas, mirroring the exact mathematical standards enforced by our internal subagents (SUBAGENT_PROMPT_TEMPLATES.md):
-
-text
-
-       ┌────────────────────────────────────────────────────────┐
-
-       │             IMMUTABLE CYCLE ENVELOPE                   │
-
-       │       Data/cycle_envelope.json (Cutoff-Causal)         │
-
-       └──────────────────────────┬─────────────────────────────┘
-
-                                  │
-
-         ┌────────────────────────┼────────────────────────┐
-
-         ▼                        ▼
-
-┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐
-
-│     ROLE A       │    │     ROLE B       │    │     ROLE C       │
-
-│  Regime &amp; Diff.  │    │  Microstructure  │    │ Solvency &amp; Math  │
-
-│ P(TP | fill), VR │    │ Queue, Walls, AS │    │ Margin, lot*, SL │
-
-│ [trader-signal]  │    │  [market-ingest] │    │  [trader-risk]   │
-
-└────────┬─────────┘    └────────┬─────────┘    └────────┬─────────┘
-
-         │                       │                       │
-
-         └───────────────────────┼───────────────────────┘
-
-                                 ▼
-
-                        ┌──────────────────┐
-
-                        │     ROLE D       │
-
-                        │ Clock/Provenance │
-
-                        │ Tradable, Rollov.│
-
-                        │ [clean-code/sys] │
-
-                        └──────────────────┘
-
-1.1 ROLE A: STATISTICAL REGIME, DIFFUSION & DUAL-ENGINE DIALECTIC QUANT
-
-Jurisdiction: Price diffusion dynamics, variance ratio tests, regime classification, and mean-reverting drift.
-
-Mathematical Estimators & Formulas:
-
-Lo-MacKinlay Variance Ratio VR(q=4) with Heteroskedasticity Correction:
-
-VR(q) = Var(r_q) / (q * Var(r_1))
-
-z* = sqrt(T) * (VR(q) - 1.0) / sqrt(phi), where phi is the heteroskedasticity weighting kernel.
-
-VR(4) > 1.15 with z* > 1.64 -> Trending / Super-diffusive.
-
-VR(4) < 0.85 with z* < -1.64 -> Mean-Reverting / Sub-diffusive.
-
-Kaufman Efficiency Ratio:
-
-ER(48) = |Close_t - Close_{t-48}| / sum_{i=1..48} |Close_{t-i+1} - Close_{t-i}|.
-
-ER(48) >= 0.20 -> Trend qualified.
-
-ER(48) < 0.15 -> Choppy / Noise or Mean-Reverting.
-
-Newey-West HAC Drift t-Statistic:
-
-OLS regression of log price on time with Bartlett kernel lag L = floor(4 * (T/100)^(2/9)). |t_drift| >= 2.0 -> Statistically significant drift at 95% confidence.
-
-Dual-Engine Strategy Dialectic & Fibonacci Prime EMA Confluencon: If classify_regime() returns UNDEFINED, stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
-
-Model 1 (Extreme Mean Reversion): Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) sweeping Monday High/Low (Mon_H/Mon_L), Session Extremes (Asian_H/L, London_H/L), or Fibonacci 1.272/1.618 extensions with verified tape exhaustion.
-
-Model 2 (Trend Following Pullbacks): In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0):
-
-Fibonacci Prime EMA Ribbon Alignment: Strict hierarchy enforced (Bullish: EMA 5 > EMA 13 > EMA 34 > EMA 89 > EMA 144 > EMA 233; Bearish: EMA 5 < EMA 13 < EMA 34 < EMA 89 < EMA 144 < EMA 233). Replaces legacy arbitrary 20/50/100/200 EMAs.
-
-Fibonacci Golden Zone Gate: Entry MUST sit inside the Fibonacci Retracement Golden Zone: [0.618 GP, 0.702 OTE] of the prevailing impulse wave, coinciding with Fib-Prime EMA 34/89 or Session VWAP shelves.
-
-Ornstein-Uhlenbeck (OU) Equilibrium & Adverse Drift Veto:
-
-Discrete regression: x_t - x_{t-1} = a + b * x_{t-1}. Equilibrium mean theta = -a / b.
-
-Adverse Drift Veto:
-
-If side == SELL_LIMIT and Entry < theta: VETO / HOLD. A short order below equilibrium suffers from toxic upward mean-reverting drift pushing directly into the Stop Loss.
-
-If side == BUY_LIMIT and Entry > theta: VETO / HOLD. A long order above equilibrium suffers from toxic downward mean-reverting drift.
-
-Drift-adjusted probability: P_win_drift_adjusted = P_barrier * exp(-lambda_drift * |Entry - theta| / ATR). Must exceed breakeven probability P_BE = Loss / (Loss + Gain).
-
-1.2 ROLE B: FILL, MICROSTRUCTURE & ORDER GEOMETRY QUANT
-
-Jurisdiction: L2/L3 orderbooCVD delta, limit queue dynamics, whale wall persistence, and execution geometry.
-
-Microstructure Invariants & Formulas:
-
-Mandatory 180-Second Whale Wall Persistence Filter:
-
-Candidate limit orders MUST be backed by genuine resting institutional liquidity (notional >= 100,000 USD on crypto).
-
-180-Second Persistence Invariant: The backing whale order MUST have persisted continuously for at least 180 seconds (persisted_seconds &gt;= 180s). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
-
-Stop Loss Geometry & 0.786 Invalidation Shelf Anchor:
-
-Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
-
-0.786 Invalidation Shelf Rule: For Model 2 trend pullbacks, the protective Stop Loss MUST sit strictly behind the 0.786 Fibonacci Invalidation Shelf (SL_long = Price_0786 - 0.40 ATR - half_spread; SL_short = Price_0786 + 0.40 ATR + half_spread) and outside any defending resting whale wall or liquidation band.
-
-For Model 1 mean reversion, the Stop Loss must be firmly anchored behind the swept extreme (Monday High/Low, Session High/Low, or Prior Week High/Low) plus a 0.40-0.50 ATR safety buffer.
-
-Multi-Timeframe Auction Extremes & Liquidity Sweep Gate:
-
-Candidates must explicitly evaluate location relative to:
-
-Monday Initial Balance: Mon_H, Mon_L, and Mon_Mid = (Mon_H + Mon_L) / 2.
-
-Session Extremes: Asian High/Low (Asian_H, Asian_L), London Initial Balance (London_IB_H, London_IB_L), London High/Low, and NY High/Low.
-
-Macro Extremes: Current Week High/Low (CWH, CWL), Prior Week High/Low (PWH, PWL), and Prior Month High/Low (CMH, PML).
-
-Value Area Interaction: Developing Value Area (d_VAH, d_VAL, d_POC) vs Prior Day Value Area (pd_VAH, pd_VAL, pd_POC).
-
-Limit entries must NEVER be placed in front of un-swept liquidity pools. Require confirmed sweep and reclaim before s
-
-Adverse Selection Markouts:
-
-Compute post-fill markouts: AS(t + dt) = Side * (Mid_{t + dt} - Price_fill).
-
-If AS(t + 5m) < -0.15 R0, the limit order suffers from informed toxic flow (winner's curse). Reject entry.
-
-Take Profit Front-Running Geometry:
-
-Take Profit MUST front-run opposing major liquidity clusters by 5 to 10 bps to ensure full execution before liquidity depletion.
-
-Broker Spread Gate:
-
-Broker spread in bps must be <= 25.0 bps. Exclude any instrument failing the spread gate.
-1.3 ROLE C: SOLVENCY, PORTFOLIO & BROKER MATH SENTRY
-
-Jurisdiction: Balance sheet solvency, margin collateralization, broker-native tick math, exact lot sizing, and risk capital rationing.
-
-Solvency Invariants & Formulas:
-
-Inviolable Triple Floor Governance:
-
-Hard Capital Floor: 4,600.00 USD (Inviolable evaluation boundary)
-
-Operating Buffer: 4,650.00 USD (Defense boundary)
-
-Solvency Kernel: 4,795.00 USD (Zero new risk admission floor)
-
-Net Realized Headroom Constraint:
-
-H_net = Realized_Balance - Contingency_Reserve (2.00 USD) - 4,795.00 USD = +68.07 USD.
-
-Admission requires: H_net >= Stressed_Ticket_Loss.
-
-Mandatory Margin Collateralization Gate (Finding D3 Invariant):
-
-Blueberry Markets enforces 50% margin (2:1 leverage) on cryptocurrency perpetuals (BTCUSD.pi, ETHUSD.pi, SOLUSD.p).
-
-Margin required: Margin_Req = Volume * Entry_Price * Margin_Rate.
-
-Invariant 1: Total Margin Used must NOT exceed 50% of account equity (Margin_Used + Margin_Req &lt;= 0.50 * Equity).
-
-Invariant 2: Post-order Margin Level MUST remain >= 200.0% (Equity / (Margin_Used + Margin_Req) &gt;= 2.0).
-
-Sizing Rescoping Rule: Sizing 0.10 BTC at 81,000 USD consumes 4,047.50 USD in margin (83.2% equity utilization, margin level 120.20%), which violates margin safety and prevents running a second ticket. Vo 0.04–0.06 lot to preserve concurrent two-ticket capacity under Tier 2 House Money!
-
-Stressed Solvency Math:
-
-Ticket_Stress = 1.25 * Nominal_SL_Loss + Exit_Spread_Cost + 2.00 USD fee reserve.
-
-Admission_Stress = sum(Ticket_Stress_all_concurrent) + 2.00 USD global contingency reserve.
-
-Stressed_Equity = min(Balance, Equity) - Admission_Stress >= 4,795.00 USD.
-
-Zero Floating Profit Credit:
-
-Floating profit is ephemeral market noise; only realized closed balance constitutes legal equity.
-
-Tier 2 House Money Progression:
-
-Fresh realized balance > 4,850.00 USD unlocks Tier 2 House Money: nominal per-ticket risk 15.00–25.00 USD. Maximum 2 concurrent non-correlated tickets.
-1.4 ROLE D: MARKET CLOCK, AUCTION & PROVENANCE AUDITOR
-
-Jurisdiction: Temporal causality, preflight quote freshness, macroeconomic event blackouts, session classification, and workbook digest verification.
-
-Provenance Invariants & Formulas:
-
-Strict Physical Cutoff Causality:
-
-Every quote and data artifact MUST satisfy: tick_time < observed_at < cutoff_utc.
-
-Quote Staleness Gate (Finding D9 Invariant): Reject any preflight tick where tick_age &gt; 15s or where the quote was sampled more than 60 seconds before envelope freeze. Stale quotes (e.g. 522s old) degrade microstructure reliability and cannot authorize risk.
-
-Macroeconomic Event Blackouts & Calendar Freshness:
-
-Verify verified_at timestamp in Data/macro_calendar.json is fresh (age &lt; 900s).
-
-Enforce strict blackout: zero new orders within +/-30 minutes of high-impact Tier-1 red-folder events (CPI, NFP, FOMC).
-
-Session & Weekend Halt Universe Classification:
-
-Classify all 156 assets:
-
-98 TradFi assets (Forex, Metals, Commodities, Indices): Weekend halt until Sunday 21:00 UTC -> CLOSED / WATCHLIST_ONLY.
-
-58 Crypto Perpetuals: Open 24/7/365 with SYMBOL_TRADE_MODE_FULL (4).
-
-ypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, XRPUSD.pi, ADAUSD.p, DOGUSD.p, TRXUSD.p, LNKUSD.p, AVXUSD.p, NERUSD.p); 47 spread-disqualified (> 25 bps).
-
-Interbank Forex Rollover Embargo:
-
-TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
-
-Cryptographic Integrity:
-
-Verify SHA-256 digests of master_manifest.json, Data/DataBase_Trading.xlsx, and cycle_envelope.json.
-
-Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive:
-
-Explicitly inspect the latest modification and git commit timestamps of Data/DataBase_Trading.xlsx, docs/telemetry/live_snapshot_latest.json, Data/forex_factory_live.json, and Data/macro_calendar.json against current cycle UTC (2026-10-26 22:35:51 UTC).
-
-CRITICAL FEEDBACK REQUIREMENT: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
-
-You MUST output a prominent alert at the very top of your written response:
-
-[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-26 22:35:51 UTC)
-
-Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
-
-🏛️ PART 2: MATHEMATICAL SOFT RANKING & CALIBRATED UTILITY
-
-Separate hard gates from calibrated ranking. Hard-gate survivors are evaluated using the operator formula:
-
-EV_net = P_fill * [P_TP * Gain_net - (1 - P_TP) * Loss_net - AdverseSelection - BrokerFrictions] - (1 - P_fill) * WaitCost
-
-Utility = LCB_5%(EV_net) / Expected_Capital_Minutes
-
-P_fill = P(fill before TTL | distance, queue, symbol, session, side, features)
-
-P_TP = P(TP first | fill, setup claures)
-
-Gain_net and Loss_net are positive conditional filled-outcome cash amounts in USD.
-
-AdverseSelection and BrokerFrictions are incremental conditional-on-fill USD amounts; WaitCost is conditional-on-no-fill USD.
-
-Expected_Capital_Minutes is positive expected tied-up capital in USD multiplied by minutes.
-
-Propagate fill/win/cost/wait uncertainty jointly using a documented time-blocked bootstrap or other validated uncertainty method; LCB_5% is not an invented point estimate or unsupported haircut.
-
-Report calibration limits and unknowns. Unknown or uncalibrated probabilities remain null/unknown and mandate HOLD for new admission.
-
-🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST (STRICTLY MANDATORY)
-
-In every evaluation cycle, both Arena.ai and Z.ai MUST provide an explicit meta-evaluation answering:
-
-Skills & Methodology Optimization: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
-
-Omitted Risk Dimensions: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
-
-Algorithmic Alternatives: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones, Isotonic probability calibration) should be integrated into our next cycle?
-
-🏛️ PART 4: REQUIRED RESPONSE SCHEMA
-
-Return one JSON object plus a human-readable explanation.
-
-The JSON object must contain:
-
-schema_version
-
-cycle_id
-
-cutoff_utc
-
-evidence_manifest_sha256
-
-prompt_sha256
-
-dispatch_nonce
-
-provenance_status
-
-inventory_status
-
-hard_gate_results
-
-universe_coverage
-
-account_tier_and_contingent_capacity
-
-global_contingency_usd
-
-existing_ticket_actions
-
-candidate_rows
-
-arithmetis
-
-methodology_critique_and_improvements
-
-section_8_kaizen: {
-
-skills_and_methodology_optimization,
-
-omitted_risk_dimensions,
-
-algorithmic_alternatives
-
-}
-
-authorization
-
-response_sha256
-
-Each candidate row must contain:
-
-candidate_id
-
-symbol
-
-native_market
-
-clock_status
-
-quote_timestamp
-
-evidence_availability_timestamps
-
-evidence_max_age_seconds
-
-evidence_age_at_cutoff_seconds
-
-row_causality_status
-
-authorization_expiry_utc
-
-side
-
-order_type
-
-entry
-
-stop
-
-target
-
-volume
-
-broker_risk_usd
-
-broker_reward_usd
-
-rr
-
-spread_cost_usd
-
-stressed_loss_usd
-
-post_joint_stop_balance
-
-p_fill
-
-p_win_given_fill
-
-probability_calibration_status
-
-estimator_references
-
-calibration_diagnostics
-
-effective_sample_size
-
-probability_confidence_intervals
-
-outcome_model_and_timeout_branches
-
-cost_ledger_and_conditioning
-
-wait_cost_usd
-
-ev_net_usd
-
-ev_lcb_5pct_usd
-
-expected_capital_minutes
-
-utility
-
-uncertainty_method
-
-adverse_selection_usd
-
-evidence_ids
-
-verdict
-
-fib_prime_ema_alignment
-
-fib_golden_zone_confluence: { gp_0618, gp_0650, ote_0702, invalidation_shelf_0786, entry_status }
-
-auction_extreme_interaction: { monday_ib_relation, session_extreme_sweep, macro_shelf_relation, value_area_status }
-
-rejection_reasons
-
-Permitted authorization values:
-
-DENIED_FAIL_CLOSED
-
-DENIED_DISPUTED
-
-WATCHLIST_ONLY
-
-MANAGE_EXISTING_ONLY
-
-AUTHORIZED_PENDING_BROKER_RECEIPT
-
-AUTHORIZED
-
-For HOLD rows, set verdict = HOLD and unknown numeric fields to null; overall authorization remains DENIED_FAIL_CLOSED.
-
-AUTHORIZED_PENDING_BROKER_RECEIPT is non-executable; AUTHORIZED requires all current hard gates, calibrated admission evidence and the matching broker receipt.
-
-No prose ticket, attachment, majority vote, or provider label may override this schema.c_validation`
-
-disputes
-
-`unknownss, asset-native feat * Spread Gate: 11 crolume MUST be sized down ttaging entries.k depth, taker e**:
-
-**Regime-Gated Executi ▼ctive": false,
-
-"rollover_window": "21:15-22:30 UTC"
-
-},
-
-"solume_initial": 0.1,
-
-text
-  "volume_current": 0.1,
-
-  "pr2026-10-26 20:29:24 UTC",
-
-"pchieve peak quan Profile & Provkbook.
-
-> OP**: [`Data/Manditory
+𝜃
+15
+m
+=
+2
+,
+312.55
+Entry=2,333.50>θ
+1H
+	​
+
+=2,326.03>θ
+15m
+	​
+
+=2,312.55, the OU drift vector at fill is strictly negative (
+−
+𝜆
+(
+Entry
+−
+𝜃
+)
+<
+0
+−λ(Entry−θ)<0), pulling price downward from 2,333.50 toward 2,312.55 and TP 2,291.00. PASSES OU ADVERSE DRIFT GATE.
+🔬 §3. ROLE B: FILL, MICROSTRUCTURE, TRADFYE ORDERFLOW & ORDER GEOMETRY QUANT
+3.1 Multi-Timeframe Auction Extremes & Fibonacci Golden Zone Audit (20_Auction_Market_Structure.parquet, 84 rows × 61 cols)
+Symbol	Live Mid	d_POC / d_VAH / d_VAL	pd_POC / pd_VAH / pd_VAL	Mon_H / Mon_L / Mon_Mid	Asian_H / Asian_L	PWH / PWL	fib_dir	Golden Zone [gp_min (0.618), gp_max (0.650), ote (0.702)]	fib_inval (0.786)	fib_status
+BTCUSD.pi	79,789.5	79,791.7 / 79,930.0 / 79,763.0	79,933.5 / 80,390.0 / 79,715.2	80,712.5 / 79,224.0 / 79,968.3	80,090.5 / 79,699.0	84,855.5 / 79,071.0	BULLISH_IMPULSE	[79,744.98, 79,792.61, 79,667.57]	79,542.54	SHALLOW_RETRACE (INSIDE_VALUE)
+ETHUSD.pi	2,305.1	`2,304.								
