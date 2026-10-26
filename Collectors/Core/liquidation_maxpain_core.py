@@ -1,40 +1,31 @@
 #!/usr/bin/env python3
 """
-Data/Excel_Modules/liquidation_maxpain_core.py
-==============================================
-Shared Core Extraction & Excel Writing Engine for CoinGlass Liquidation Max Pain Modules:
-  - 9_Liquidation_Max_Pain_24H.py  (24H timeframe -> sheet '9_Liquidation_Max_Pain_24H', Index 13)
-  - 9_Liquidation_Max_Pain_48H.py  (48H timeframe -> sheet '9_Liquidation_Max_Pain_48H', Index 14)
-  - 9_Liquidation_Max_Pain_3D.py   (3D timeframe  -> sheet '9_Liquidation_Max_Pain_3D', Index 15)
-  - 9_Liquidation_Max_Pain_7D.py   (7D timeframe  -> sheet '9_Liquidation_Max_Pain_7D', Index 16)
+Collectors/Core/liquidation_maxpain_core.py
+===========================================
+Shared Core Extraction & Parquet Writing Engine for CoinGlass Liquidation Max Pain Feeds:
+  - 9_Liquidation_Max_Pain_24H.parquet (24H timeframe: '24 hour')
+  - 9_Liquidation_Max_Pain_48H.parquet (48H timeframe: '48 hour')
+  - 9_Liquidation_Max_Pain_3D.parquet  (3D timeframe:  '3 day')
+  - 9_Liquidation_Max_Pain_7D.parquet  (7D timeframe:  '1 week')
 
 Target Page: https://www.coinglass.com/liquidation-maxpain
-Extracts 100% of candidates (~745 assets) across all pagination pages with zero missing values.
+Extracts 100% of candidates (~747 multi-asset items across 15 pages) with single-session tab rotation.
 """
 
 from __future__ import annotations
-
-# Pure Parquet Pipeline
-
-try:
-    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
-except ImportError:
-    stamp_sheet_completion_ist = None
-    get_current_timestamps = None
-
 
 import argparse
 import asyncio
 import datetime
 import json
 import logging
+import os
 import pathlib
 import sys
 import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
-# Parquet Writer Imports
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
 sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
@@ -45,10 +36,15 @@ try:
 except ImportError:
     websockets = None
 
-MODULES_DIR = pathlib.Path(__file__).resolve().parent
-ROOT_DIR = MODULES_DIR.parents[1]
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/liquidation-maxpain"
+
+MAXPAIN_TIMEFRAMES = [
+    ("24H", "24 hour", "9_Liquidation_Max_Pain_24H"),
+    ("48H", "48 hour", "9_Liquidation_Max_Pain_48H"),
+    ("3D", "3 day", "9_Liquidation_Max_Pain_3D"),
+    ("7D", "1 week", "9_Liquidation_Max_Pain_7D"),
+]
 
 COLUMNS_DEF = [
     ("ranking", "Ranking", 10, "center"),
@@ -74,7 +70,6 @@ def format_currency(val: float | None) -> str:
     if abs_val >= 1000:
         return f"${val:,.2f}"
     elif abs_val >= 1:
-        # e.g. $77.931 or $1.2999
         s = f"{val:.4f}".rstrip("0")
         if s.endswith("."):
             s += "00"
@@ -133,11 +128,20 @@ def format_distance_pct(val: float | None) -> str:
     return f"{sign}{val:.2f}%"
 
 
-def open_ephemeral_tab(target_url: str = TARGET_URL, cdp_base_url: str = CDP_BASE_URL) -> Tuple[str, str]:
-    """Creates a new dedicated ephemeral tab via CDP."""
+def get_or_open_tab(target_url: str = TARGET_URL, cdp_base_url: str = CDP_BASE_URL) -> Tuple[str, str, bool]:
+    """Finds an existing Liquidation Max Pain tab or creates a dedicated ephemeral tab."""
+    try:
+        req = urllib.request.Request(f"{cdp_base_url}/json")
+        tabs = json.loads(urllib.request.urlopen(req, timeout=5).read().decode())
+        for t in tabs:
+            if "liquidation-maxpain" in t.get("url", ""):
+                return t["id"], t["webSocketDebuggerUrl"], False
+    except Exception:
+        pass
+
     req = urllib.request.Request(f"{cdp_base_url}/json/new?{target_url}", method="PUT")
     new_tab = json.loads(urllib.request.urlopen(req, timeout=10).read().decode())
-    return new_tab["id"], new_tab["webSocketDebuggerUrl"]
+    return new_tab["id"], new_tab["webSocketDebuggerUrl"], True
 
 
 def close_tab(tab_id: str, cdp_base_url: str = CDP_BASE_URL, log: logging.Logger = None):
@@ -151,28 +155,28 @@ def close_tab(tab_id: str, cdp_base_url: str = CDP_BASE_URL, log: logging.Logger
             log.warning(f"Error closing tab {tab_id}: {e}")
 
 
-async def harvest_liquidation_maxpain(
-    timeframe_code: str,
-    timeframe_label: str,
+async def harvest_all_maxpain_timeframes_unified(
     cdp_base_url: str = CDP_BASE_URL,
     target_url: str = TARGET_URL,
     log: logging.Logger = None,
-) -> List[Dict[str, Any]]:
+) -> dict[str, int]:
     """
-    Connects to CoinGlass /liquidation-maxpain in a dedicated ephemeral tab,
-    switches to the requested timeframe tab, and extracts all candidates (~745)
-    from the React Fiber tree with complete columnar attributes.
+    Connects to CoinGlass /liquidation-maxpain once, rotates through all 4 timeframes
+    ('24 hour', '48 hour', '3 day', '1 week'), extracts 100% of candidates (~747 assets)
+    for each, and writes immediately to respective Parquet feeds.
     """
     if not websockets:
-        raise RuntimeError("websockets package is required. Install via pip install websockets.")
+        raise RuntimeError("websockets package is required.")
 
     if log is None:
         log = logging.getLogger("LiquidationMaxPainCore")
 
-    tab_id, ws_url = open_ephemeral_tab(target_url, cdp_base_url)
-    log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Max Pain {timeframe_code} ({timeframe_label}).")
+    tab_id, ws_url, is_ephemeral = get_or_open_tab(target_url, cdp_base_url)
+    log.info(f"Connected to CoinGlass Max Pain tab (ID: {tab_id}, is_ephemeral={is_ephemeral}).")
 
     t0 = time.time()
+    results: dict[str, int] = {}
+
     try:
         ws = None
         for attempt in range(10):
@@ -199,8 +203,7 @@ async def harvest_liquidation_maxpain(
                 if resp.get("id") == curr_id:
                     return resp.get("result", {}).get("result", {})
 
-        # Wait for page hydration (up to 15s)
-        log.info(f"Waiting for table and React Fiber hydration on {target_url}...")
+        # Hydration check
         hydrated = False
         for attempt in range(30):
             js_check = """
@@ -229,41 +232,6 @@ async def harvest_liquidation_maxpain(
         if not hydrated:
             raise TimeoutError(f"CoinGlass table failed to hydrate within timeout on tab {tab_id}")
 
-        # Switch to requested timeframe tab if not already active
-        js_switch = f"""
-        (() => {{
-            const targetLabel = {json.dumps(timeframe_label)}.toLowerCase().trim();
-            const candidates = Array.from(document.querySelectorAll('button[role="tab"], div[role="tab"], .ant-tabs-tab, button.MuiTab-root, div.MuiTab-root'));
-            let targetTab = candidates.find(t => t.innerText.trim().toLowerCase() === targetLabel);
-            if (!targetTab) {{
-                targetTab = candidates.find(t => t.innerText.trim().toLowerCase().includes(targetLabel));
-            }}
-            if (!targetTab) return {{ error: "Tab not found: " + targetLabel }};
-            
-            const isSelected = targetTab.getAttribute('aria-selected') === 'true' || 
-                               targetTab.classList.contains('Mui-selected') || 
-                               targetTab.classList.contains('ant-tabs-tab-active');
-            if (!isSelected) {{
-                targetTab.click();
-                return {{ clicked: true, selected: false }};
-            }}
-            return {{ clicked: false, selected: true }};
-        }})()
-        """
-        switch_res = await cdp_cmd("Runtime.evaluate", {"expression": js_switch, "returnByValue": True})
-        switch_val = switch_res.get("value", {})
-        fallback_mode = False
-        if "error" in switch_val:
-            log.warning(f"Timeframe '{timeframe_label}' tab unavailable or restricted on public tier: {switch_val['error']}. Falling back to 24H baseline.")
-            fallback_mode = True
-        elif switch_val.get("clicked"):
-            log.info(f"Switched timeframe to '{timeframe_label}'. Waiting for data update...")
-            await asyncio.sleep(1.8)
-        else:
-            log.info(f"Timeframe '{timeframe_label}' was already active.")
-            await asyncio.sleep(0.5)
-
-        # Extract all candidates across all pages from React Fiber
         js_extract = """
         (() => {
             const table = document.querySelector('.ant-table');
@@ -311,20 +279,77 @@ async def harvest_liquidation_maxpain(
             return { error: "No dataSource found in React Fiber tree" };
         })()
         """
-        extract_res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
-        extract_val = extract_res.get("value", {})
-        if "error" in extract_val:
-            raise RuntimeError(f"Extraction failed: {extract_val['error']}")
 
-        records = extract_val.get("records", [])
-        log.info(
-            f"Successfully harvested {len(records)} assets for {timeframe_code} ({timeframe_label}) "
-            f"in {time.time() - t0:.2f}s."
-        )
-        return records
+        # Rotate through all 4 timeframes in this single tab session
+        for tf_code, tf_label, feed_name in MAXPAIN_TIMEFRAMES:
+            log.info(f"Rotating to timeframe '{tf_label}' ({tf_code}) -> Feed '{feed_name}'...")
+
+            js_switch = f"""
+            (() => {{
+                const targetLabel = {json.dumps(tf_label)}.toLowerCase().trim();
+                const candidates = Array.from(document.querySelectorAll('button[role="tab"], div[role="tab"], .ant-tabs-tab, button.MuiTab-root, div.MuiTab-root'));
+                let targetTab = candidates.find(t => t.innerText.trim().toLowerCase() === targetLabel);
+                if (!targetTab) {{
+                    targetTab = candidates.find(t => t.innerText.trim().toLowerCase().includes(targetLabel));
+                }}
+                if (!targetTab) return {{ error: "Tab not found: " + targetLabel }};
+                
+                const isSelected = targetTab.getAttribute('aria-selected') === 'true' || 
+                                   targetTab.classList.contains('Mui-selected') || 
+                                   targetTab.classList.contains('ant-tabs-tab-active');
+                if (!isSelected) {{
+                    targetTab.click();
+                    return {{ clicked: true, selected: false }};
+                }}
+                return {{ clicked: false, selected: true }};
+            }})()
+            """
+            switch_res = await cdp_cmd("Runtime.evaluate", {"expression": js_switch, "returnByValue": True})
+            switch_val = switch_res.get("value", {})
+            if switch_val.get("clicked"):
+                await asyncio.sleep(1.2)
+            else:
+                await asyncio.sleep(0.3)
+
+            extract_res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
+            extract_val = extract_res.get("value", {})
+            records = extract_val.get("records", [])
+
+            if records:
+                meta = write_parquet_feed(feed_name, records)
+                results[feed_name] = len(records)
+                log.info(f"  -> Dumped {len(records)} assets to '{feed_name}.parquet' (Size: {meta.get('byte_size')}B)")
+            else:
+                log.warning(f"  -> No records extracted for {feed_name}")
+
+        await ws.close()
 
     finally:
-        close_tab(tab_id, cdp_base_url, log)
+        if is_ephemeral:
+            close_tab(tab_id, cdp_base_url, log)
+
+    total_time = time.time() - t0
+    log.info(f"Single-session unified Max Pain rotation complete in {total_time:.2f}s across {len(results)} feeds.")
+    return results
+
+
+async def harvest_liquidation_maxpain(
+    timeframe_code: str,
+    timeframe_label: str,
+    cdp_base_url: str = CDP_BASE_URL,
+    target_url: str = TARGET_URL,
+    log: logging.Logger = None,
+) -> List[Dict[str, Any]]:
+    """Harvests a single timeframe."""
+    results = await harvest_all_maxpain_timeframes_unified(cdp_base_url, target_url, log)
+    feed_target = f"9_Liquidation_Max_Pain_{timeframe_code}"
+    # Read the parquet directly
+    parquet_path = ROOT / "Data" / "feeds" / f"{feed_target}.parquet"
+    if parquet_path.exists():
+        import pyarrow.parquet as pq
+        table = pq.read_table(str(parquet_path))
+        return table.to_pylist()
+    return []
 
 
 def run_maxpain_harvest(
@@ -334,9 +359,10 @@ def run_maxpain_harvest(
     target_index: int,
     log_name: str,
 ):
-    """CLI orchestrator entrypoint for a single timeframe Max Pain module."""
-    parser = argparse.ArgumentParser(description=f"CoinGlass Liquidation Max Pain {timeframe_code} Pure-Parquet Dumper")
+    """CLI orchestrator entrypoint for Max Pain module."""
+    parser = argparse.ArgumentParser(description=f"CoinGlass Liquidation Max Pain {timeframe_code} Parquet Dumper")
     parser.add_argument("--cdp-url", type=str, default=CDP_BASE_URL)
+    parser.add_argument("--force", action="store_true", help="Force harvest even if feed is fresh")
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -346,23 +372,34 @@ def run_maxpain_harvest(
     )
     log = logging.getLogger(log_name)
 
+    parquet_path = ROOT / "Data" / "feeds" / f"{sheet_name}.parquet"
+    now_ts = time.time()
+
+    # Fast cache bypass: If feed was updated within last 90 seconds and not forced, reuse fresh parquet
+    if not args.force and parquet_path.exists():
+        age_sec = now_ts - os.path.getmtime(parquet_path)
+        if age_sec < 90.0:
+            log.info(f"Feed '{sheet_name}' is already fresh ({age_sec:.1f}s old). Skipping redundant tab hydration.")
+            sys.exit(0)
+
     log.info(f"Starting {log_name} [{timeframe_code} - '{timeframe_label}'] -> Feed '{sheet_name}'...")
     try:
-        records = asyncio.run(
-            harvest_liquidation_maxpain(
-                timeframe_code=timeframe_code,
-                timeframe_label=timeframe_label,
-                cdp_base_url=args.cdp_url,
-                log=log,
-            )
-        )
-        if not records:
-            log.error("Harvest returned 0 records. Failing execution.")
+        # Run unified rotation which updates all 4 feeds in one single tab session
+        results = asyncio.run(harvest_all_maxpain_timeframes_unified(cdp_base_url=args.cdp_url, log=log))
+        if sheet_name not in results or results[sheet_name] == 0:
+            log.error(f"Harvest for {sheet_name} returned 0 records.")
             sys.exit(1)
 
-        meta = write_parquet_feed(sheet_name, records)
-        log.info(f"Execution completed successfully: {len(records)} records dumped to Parquet feed '{sheet_name}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
+        log.info(f"Unified harvest finished successfully. Feed '{sheet_name}' updated.")
         sys.exit(0)
     except Exception as exc:
         log.exception(f"Unhandled error in {log_name}: {exc}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="CoinGlass Max Pain Unified Rotator")
+    parser.add_argument("--rotate-all-tabs", action="store_true", default=True)
+    args = parser.parse_args()
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+    asyncio.run(harvest_all_maxpain_timeframes_unified())

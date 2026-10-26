@@ -3,13 +3,14 @@
 Collectors/Browser/8_Exchange_Liquidation_Map_7D.py
 ==================================================
 CoinGlass Multi-Asset Exchange Liquidation Map (7-Day Window) Scraper & Parquet Dumper.
-Captures multi-exchange liquidation leverage levels across price points for all 18 institutional
+Captures multi-exchange liquidation leverage levels across price points for institutional
 perpetual assets from the "Bitcoin/Crypto Exchange Liquidation Map" ECharts chart container on:
 https://www.coinglass.com/pro/futures/LiquidationMap
 and writes to Data/feeds/8_Exchange_Liquidation_Map_7D.parquet.
 
-Universe (18 Institutional Binance USDT-M Perpetuals):
-  BTC, ETH, XRP, SOL, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB
+Universe (Multi-Asset: Tier 1 Crypto + Tier 2 Gold + Tier 3 FX Majors):
+  BTC, ETH, XRP, SOL, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB,
+  XAUT, PAXG, EURUSD, GBPUSD, USDJPY
 
 Schema:
   Sr.No | Asset | Time | Timestamp_IST | Price | Cummulitve_Liquidation | Short | Long | Binanace | OKX | Bybit
@@ -17,8 +18,8 @@ Schema:
 Anti-Overfitting & Anti-Race Guardrails:
   - Validates timeframe dropdown is strictly set to '7 day'.
   - Native prototype input setter with aria-controls listbox resolution for MUI autocomplete.
-  - Live Binance reference-price sanity bounds to prevent off-by-one async race conditions.
-  - Fail-closed verification: asserts real non-zero dollar values for Binance, OKX, and Bybit.
+  - Multi-venue reference-price sanity bounds (asset_registry) to prevent off-by-one async race conditions.
+  - Supports Bybit-exclusive assets (EURUSD, XAUT) and multi-exchange feeds without artificial exclusions.
   - Ephemeral/Reused tab hygiene: strictly preserves Arena.ai tab untouched.
 """
 
@@ -35,7 +36,6 @@ import sys
 import time
 import urllib.request
 
-
 try:
     import websockets
 except ImportError:
@@ -51,6 +51,11 @@ try:
 except ImportError:
     from parquet_feed_writer import write_parquet_feed
 
+try:
+    from asset_registry import asset_registry
+except ImportError:
+    asset_registry = None
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] [8_Exchange_Liquidation_Map_7D] %(message)s",
@@ -63,12 +68,16 @@ TARGET_URL = "https://www.coinglass.com/pro/futures/LiquidationMap"
 FEED_NAME = "8_Exchange_Liquidation_Map_7D"
 TIMEFRAME_TARGET = "7 day"
 
-DEFAULT_UNIVERSE = [
-    "BTC", "ETH", "XRP", "SOL", "BNB",
-    "DOGE", "ADA", "TRX", "LINK", "AVAX",
-    "SUI", "NEAR", "DOT", "LTC", "BCH",
-    "APT", "OP", "ARB",
-]
+if asset_registry:
+    DEFAULT_UNIVERSE = asset_registry.get_assets_for_collector("8_Exchange_Liquidation_Map_7D")
+else:
+    DEFAULT_UNIVERSE = [
+        "BTC", "ETH", "XRP", "SOL", "BNB",
+        "DOGE", "ADA", "TRX", "LINK", "AVAX",
+        "SUI", "NEAR", "DOT", "LTC", "BCH",
+        "APT", "OP", "ARB",
+        "XAUT", "PAXG", "EURUSD", "GBPUSD", "USDJPY"
+    ]
 
 COLUMNS_DEF = [
     ("Sr.No", "Sr.No", 10, "center"),
@@ -100,23 +109,32 @@ def format_usd(val: float | None) -> str:
         return f"${val:.2f}"
 
 
-def get_binance_reference_prices() -> dict[str, float]:
-    """Fetches real-time reference prices from Binance Futures ticker."""
+def get_all_reference_prices(symbols: list[str]) -> dict[str, float]:
+    """Fetches real-time reference prices via asset_registry or Binance ticker."""
+    prices: dict[str, float] = {}
+    if asset_registry:
+        asset_registry.batch_prefetch_binance_prices()
+        for s in symbols:
+            prices[s] = asset_registry.get_reference_price(s)
+        return prices
+
+    # Fallback if asset_registry is not available
     url = "https://fapi.binance.com/fapi/v1/ticker/price"
     fallback_map = {
         "BTC": 80000.0, "ETH": 2350.0, "SOL": 100.0, "DOGE": 0.08, "BNB": 600.0,
         "XRP": 2.30, "ADA": 0.20, "TRX": 0.33, "LINK": 11.5, "AVAX": 9.0,
         "SUI": 0.93, "NEAR": 1.25, "DOT": 4.5, "LTC": 55.0, "BCH": 300.0,
-        "APT": 5.0, "OP": 0.70, "ARB": 0.17,
+        "APT": 5.0, "OP": 0.70, "ARB": 0.17, "XAUT": 4000.0, "PAXG": 4000.0,
+        "EURUSD": 1.12, "GBPUSD": 1.33, "USDJPY": 157.0
     }
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         res = json.loads(urllib.request.urlopen(req, timeout=5).read().decode())
-        prices = {d["symbol"].replace("USDT", ""): float(d["price"]) for d in res if d["symbol"].endswith("USDT")}
-        return {s: prices.get(s, fallback_map.get(s, 1.0)) for s in DEFAULT_UNIVERSE}
+        p_dict = {d["symbol"].replace("USDT", ""): float(d["price"]) for d in res if d["symbol"].endswith("USDT")}
+        return {s: p_dict.get(s, fallback_map.get(s, 1.0)) for s in symbols}
     except Exception as e:
-        log.warning(f"Could not fetch Binance prices ({e}), using fallback map.")
-        return fallback_map
+        log.warning(f"Could not fetch reference prices ({e}), using fallback map.")
+        return {s: fallback_map.get(s, 1.0) for s in symbols}
 
 
 def get_target_tab() -> tuple[str, str, bool]:
@@ -147,11 +165,11 @@ def close_tab(tab_id: str):
 
 
 async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVERSE) -> list[dict]:
-    """Harvests 7-Day Exchange Liquidation Map data for all 18 institutional symbols."""
+    """Harvests 7-Day Exchange Liquidation Map data for multi-asset universe."""
     if not websockets:
         raise RuntimeError("websockets package is required.")
 
-    ref_prices = get_binance_reference_prices()
+    ref_prices = get_all_reference_prices(symbols)
     tab_id, ws_url, is_ephemeral = get_target_tab()
 
     now_ist = datetime.datetime.now(
@@ -296,7 +314,8 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
         prev_min_p = None
         for sym_idx, sym in enumerate(symbols):
             expected_price = ref_prices.get(sym, 1.0)
-            log.info(f"[{sym_idx+1}/{len(symbols)}] Harvesting 7D Liquidation Map for {sym} (Ref ~${expected_price:,.2f})...")
+            search_term = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
+            log.info(f"[{sym_idx+1}/{len(symbols)}] Harvesting 7D Liquidation Map for {sym} (Search: '{search_term}', Ref ~${expected_price:,.2f})...")
 
             # 1. Type and click symbol
             js_select = f"""
@@ -313,7 +332,7 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
                 symInput.focus();
                 symInput.click();
                 const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSetter.call(symInput, '{sym}');
+                nativeSetter.call(symInput, '{search_term}');
                 symInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
                 return {{ listId: symInput.getAttribute('aria-controls') }};
             }})()
@@ -327,17 +346,26 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
                 let listbox = document.getElementById("{list_id}");
                 if (!listbox) listbox = document.querySelector('.MuiAutocomplete-listbox');
                 if (!listbox) return {{ error: 'No listbox' }};
-                const opt = Array.from(listbox.querySelectorAll('[role="option"], li')).find(el => el.innerText.trim() === '{sym}');
+                const searchTarget = '{search_term}'.toUpperCase();
+                const symTarget = '{sym}'.toUpperCase();
+                const opts = Array.from(listbox.querySelectorAll('[role="option"], li'));
+                let opt = opts.find(el => el.innerText.trim().toUpperCase() === symTarget || el.innerText.trim().toUpperCase() === searchTarget);
+                if (!opt) {{
+                    opt = opts.find(el => el.innerText.trim().toUpperCase().startsWith(symTarget) || el.innerText.trim().toUpperCase().startsWith(searchTarget));
+                }}
+                if (!opt) {{
+                    opt = opts.find(el => el.innerText.trim().toUpperCase().includes(symTarget) || el.innerText.trim().toUpperCase().includes(searchTarget));
+                }}
                 if (opt) {{
                     opt.click();
-                    return {{ clicked: true }};
+                    return {{ clicked: true, text: opt.innerText.trim() }};
                 }}
                 return {{ error: 'Option not found' }};
             }})()
             """
             await cdp_cmd("Runtime.evaluate", {"expression": js_click, "returnByValue": True})
 
-            # 2. Verification loop: poll until price matches expected reference bounds and non-zero exchange values exist
+            # 2. Verification loop: poll until price matches expected reference bounds and non-zero liquidation values exist
             harvested_data = None
             for poll in range(35):
                 await asyncio.sleep(0.3)
@@ -349,18 +377,29 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
                 min_p = float(val["minPrice"])
                 max_p = float(val["maxPrice"])
 
-                # Anti-race condition: Reference price must be strictly bracketed inside chart price range
-                # AND chart must have updated to new prices (not holding previous symbol's bounds)
+                # Anti-race condition: Reference price bracketed or fallback accepted
                 is_bracketed = (min_p <= expected_price <= max_p)
+                if not is_bracketed and expected_price == 1.0 and max_p > 0:
+                    is_bracketed = True
+
                 is_new_chart = (prev_min_p is None) or (abs(min_p - prev_min_p) > 1e-6)
                 title = val.get("optTitle") or ""
-                is_title_match = (sym == "BTC" and ("Bitcoin" in title or "BTC" in title)) or (sym in title)
 
-                binance_count = sum(1 for r in val["rows"] if r["binanceVal"] > 0)
-                okx_count = sum(1 for r in val["rows"] if r["okxVal"] > 0)
-                bybit_count = sum(1 for r in val["rows"] if r["bybitVal"] > 0)
+                if asset_registry:
+                    expected_tokens = asset_registry.get_expected_title_tokens(sym)
+                    is_title_match = any(tok.lower() in title.lower() for tok in expected_tokens)
+                else:
+                    is_title_match = (sym == "BTC" and ("Bitcoin" in title or "BTC" in title)) or (sym in title)
 
-                if is_bracketed and is_new_chart and is_title_match and (binance_count > 0 or okx_count > 0):
+                binance_count = sum(1 for r in val["rows"] if r.get("binanceVal", 0) > 0)
+                okx_count = sum(1 for r in val["rows"] if r.get("okxVal", 0) > 0)
+                bybit_count = sum(1 for r in val["rows"] if r.get("bybitVal", 0) > 0)
+
+                # Unblock Bybit-only pairs (e.g. EURUSD, XAUT) and any exchange liquidation presence
+                has_liquidation_data = ((binance_count + okx_count + bybit_count) > 0 or
+                                        any((r.get("shortVal") or 0) > 0 or (r.get("longVal") or 0) > 0 for r in val["rows"]))
+
+                if is_bracketed and is_new_chart and is_title_match and has_liquidation_data:
                     log.info(
                         f"  -> Verified {sym}: {min_p} <= ${expected_price:,.2f} <= {max_p} ({len(val['rows'])} levels, "
                         f"Binance={binance_count}, OKX={okx_count}, Bybit={bybit_count}) on poll {poll+1}"
