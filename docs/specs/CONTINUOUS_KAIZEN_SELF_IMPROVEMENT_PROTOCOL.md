@@ -39,7 +39,7 @@ flowchart TD
   * *Why did Excel corrupt?* -> Subprocess was killed mid-save.
   * *Why was it killed?* -> Subprocess hit an aggressive 60s timeout while saving a 13.7MB workbook.
   * *Why did saving take 40s?* -> openpyxl serializes 32 worksheets sequentially.
-  * *Why did it destroy the master file?* -> It overwrote `DataBase_Trading.xlsx` directly instead of atomic `.tmp.xlsx` staging.
+  * *Why did it destroy the master file?* -> It overwrote `Data/feeds/*.parquet` directly instead of atomic `.tmp.xlsx` staging.
   * *Root Cause*: Lack of atomic temp file staging and uncalibrated timeout boundaries.
 
 ### STAGE 4: INVARIANT CODIFICATION (INSTITUTIONAL MEMORY)
@@ -150,7 +150,7 @@ Every claimed fix requires:
 - Enforces the fixed desk-policy 21:15–22:30 UTC interbank FX rollover blackout, independently of daylight-saving shifts; verifies official native exchange calendars and broker sessions for cash-session eligibility.
 - Monitors ETF inflows and CEX netflows to confirm institutional trend sponsorship.
 
-### 5. Excel Data Quality Auditor
+### 5. Parquet Data Lake Quality Auditor
 - Guards the 32-sheet Excel data warehouse against corruption, formula errors, and stale timestamps.
 - Verifies that the continuous pipeline daemon is cycling properly with its 5-minute rest cooldown.
 

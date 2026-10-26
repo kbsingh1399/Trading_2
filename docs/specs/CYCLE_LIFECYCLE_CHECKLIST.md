@@ -25,7 +25,7 @@ A cycle is officially **FINISHED** only when ALL 3 entities have completed their
 
 ```mermaid
 flowchart TD
-    S1["1. Wakeup & System Health<br/>(Check RAM <= 70%, 33-Sheet Excel Freshness <= 15m)"] --> S2["2. Parallel Dispatch Trigger<br/>(Run dispatch_cycle_orchestrator.py)"]
+    S1["1. Wakeup & System Health<br/>(Check RAM <= 70%, 35-Feed Parquet Freshness <= 5m)"] --> S2["2. Parallel Dispatch Trigger<br/>(Run dispatch_cycle_orchestrator.py)"]
     S2 --> S3["3. ATOMIC SINGLE-TURN DISPATCH BLOCK<br/>(Invoke 4 Subagents + Launch Arena Wait Watcher)"]
     S3 --> S4["4. Reactive Wakeup & Dialectic Consensus<br/>(Harvest 4 Subagent JSONs + Arena/Z.ai Markdown -> Step 9 Decision)"]
     S4 --> S5["5. Validated Completion & 20-Minute Rest<br/>(Mark joint_cycle_controller complete -> Arm --wait-rest)"]
@@ -37,7 +37,7 @@ flowchart TD
 ### STEP 1: WAKEUP, SYSTEM HEALTH & INVENTORY AUDIT
 1. **RAM Optimization**: Execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1` if RAM > 70%.
 2. **Account Telemetry**: Run `python Terminal/generate_mt5_telemetry.py` to get fresh MT5 balance, equity, and positions.
-3. **Excel Warehouse Freshness**: Verify that `Data/DataBase_Trading.xlsx` has 33/33 sheets with 0 formula errors and timestamps <= 15m old (`python Terminal/Data_Factory/excel_data_quality_checker.py`).
+3. **Parquet Data Lake Freshness**: Verify that `Data/feeds/*.parquet` has 35/35 feeds with zero nulls and timestamps <= 5.0m fresh in IST (`python Terminal/parquet_checklist_auditor.py`).
 
 ---
 

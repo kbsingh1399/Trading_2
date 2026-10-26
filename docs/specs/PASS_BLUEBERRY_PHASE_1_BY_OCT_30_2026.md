@@ -6,7 +6,7 @@
 > **Status**: **ACTIVE & AUTONOMOUSLY EXECUTING (TIER 2 HOUSE MONEY & 24/7 WEEKEND CRYPTO ACTIVE)**  
 > **Canonical SOP**: `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Including Section 1.7 156-Asset Universe)  
 > **Execution Checklist**: `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md`  
-> **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (33 Canonical Production Sheets) & `Data/Manditory/`
+> **Master Data Warehouse**: `Data/feeds/*.parquet` (35 Canonical Production Parquet Feeds) & `Data/Manditory/`
 
 ---
 

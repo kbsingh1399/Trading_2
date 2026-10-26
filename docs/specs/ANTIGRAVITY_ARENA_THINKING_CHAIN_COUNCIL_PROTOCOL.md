@@ -7,7 +7,7 @@
 > - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
 > **Operational Status**: ACTIVE PRODUCTION STANDARD (100% Causal, Empirical & Anti-Lookahead)  
 > **Target Audience**: Antigravity Coordinators, Subagent Swarms, Arena.ai Council, GPT Astra, Human Operators across all sessions & accounts.  
-> **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (All 33 Canonical Production Worksheets)  
+> **Master Data Warehouse**: `Data/feeds/*.parquet` (All 35 Canonical Production Parquet Feeds)  
 > **Autonomous Cadence**: Joint 3-Entity Completion Lifecycle with Clean 20-Minute Relative Separation (`T_finish + 20 min`) + 30-Minute Watchdog Sentry Cron (`0,30 * * * *` at :00, :30 UTC).
 
 ---
@@ -22,12 +22,12 @@ This document defines the **Canonical Thinking Chain, Mathematical Guardrails, D
 
 ## 2. THE DIALECTIC PHILOSOPHY & COLLABORATIVE CADENCE
 
-We reject both single-agent hallucination and blind sycophancy. Our architecture pairs an external frontier LLM council (**Arena.ai Big Brain**) with a local, multi-agent execution desk (**Antigravity 4-Subagent Swarm**), grounded in the **33-sheet canonical master Excel data warehouse (`Data/DataBase_Trading.xlsx`)** across the full **156-asset universe**:
+We reject both single-agent hallucination and blind sycophancy. Our architecture pairs an external frontier LLM council (**Arena.ai Big Brain**) with a local, multi-agent execution desk (**Antigravity 4-Subagent Swarm**), grounded in the **33-sheet canonical master Excel data warehouse (`Data/feeds/*.parquet`)** across the full **156-asset universe**:
 
 ```
 +----------------------------------------------------------------------------------------------------+
 |                                  ARENA.AI BIG BRAIN (CDP Bridge)                                   |
-| - Ingests 33-Sheet Master Excel Data Warehouse (DataBase_Trading.xlsx) across all 156 Assets       |
+| - Ingests 35-Feed Master Parquet Data Lake (Data/feeds/*.parquet) across all 156 Assets       |
 | - Dual Mandate: Affirmative Candidate Discovery across all 156 Instruments AND Adversarial Red-Team|
 | - Injected via Chrome CDP port 9222 on joint autonomous cycle trigger (T_finish + 20 min)          |
 | - Deliberates with deep Linux terminal reasoning; auto-harvested by arena_completion_daemon.py     |
@@ -42,7 +42,7 @@ We reject both single-agent hallucination and blind sycophancy. Our architecture
 |    frozen R0 ratchets (Early-BE +0.75R), stressed solvency preserving $4,775 floor & $4,795 buffer.|
 | 3. Macro Risk Analyst: Audits 19_Calendar (Sheet 28) & macro_calendar.json, ETF netflows           |
 |    (Sheets 00-01), CEX netflow (Sheet 02), 19_News (Sheet 27), 21:30-22:30 UTC FX rollover gate.   |
-| 4. Excel Data Quality Auditor: Audits all 33 sheets of DataBase_Trading.xlsx, verifies 0 formula   |
+| 4. Parquet Data Lake Quality Auditor: Audits all 35 feeds of Data/feeds/*.parquet, verifies 0 formula   |
 |    errors, <= 15m freshness, unmerged Row 1 headers in Sheet 33 (20_Auction_Market_Structure).     |
 +-------------------------------------------------+--------------------------------------------------+
                                                   |
@@ -138,7 +138,7 @@ Every scan evaluates structural auction location using ground-truth levels from 
   * **Stand-Aside Invariant**: If `Trend Regime == UNDEFINED`, the desk stands aside unconditionally in 100% Cash Defense.
 
 ### Gate 4: The 5-Pillar Confluence Stack & Liquidation/Stop Sweep Dynamics
-Every admitted candidate must satisfy all 5 pillars simultaneously, grounded in the **33-sheet master Excel data warehouse (`Data/DataBase_Trading.xlsx`)**:
+Every admitted candidate must satisfy all 5 pillars simultaneously, grounded in the **35-feed canonical master Parquet data lake (`Data/feeds/*.parquet`)**:
 1. **Dynamic Spread Friction Efficiency**: Spread points / TP distance points <= 15%; baseline within ceiling.
 2. **Cumulative Volume Delta (CVD) Absorption & Divergence (`zc_div > 0.8`)**: Sheet 27 (`18_CVD`) confirms aggressive market orders absorbed by passive limit books (`Delta Spot > 0` and `Delta Futures < 0` with `zc_div > 0.8`).
 3. **Resting Whale Bunkers & Anti-Spoof Persistence**:
@@ -184,7 +184,7 @@ To eliminate subjective debate between Arena.ai and Antigravity, every candidate
 
 | Dimension | Weight | Scoring Criteria |
 |---|---|---|
-| **1. 33-Sheet Data Provenance & Freshness** | 20 pts | All 33 sheets loaded (10 pts), Orderbook/CVD/Auction age <= 15m (5 pts), 0 formula errors (#REF! = 0) (5 pts). Deduct 20 pts if stale or schema broken. |
+| **1. 33-Sheet Data Provenance & Freshness** | 20 pts | All 35 feeds loaded (10 pts), Orderbook/CVD/Auction age <= 15m (5 pts), 0 formula errors (#REF! = 0) (5 pts). Deduct 20 pts if stale or schema broken. |
 | **2. Structural Thesis & Invalidation** | 20 pts | Clear VPOC/VAH/VAL or EMA shelf anchor (10 pts), unambiguous structural SL outside liquidation/stop sweep band (10 pts). |
 | **2. Structural Thesis & Invalidation** | 20 pts | Clear VPOC/VAH/VAL, Monday IB_W, Session/Macro Extremes, or Fib-Prime EMA shelf anchor (10 pts), unambiguous structural SL outside 0.786 Invalidation Shelf / liquidation / stop sweep band (10 pts). |
 | **4. Capital Floor Defense & Capacity** | 20 pts | Stressed cushion >= +20 USD above 4,775 USD (10 pts), Stressed cushion >= +0 USD above 4,795 USD buffer (5 pts), Capacity slot available (5 pts). |
@@ -205,11 +205,11 @@ To eliminate subjective debate between Arena.ai and Antigravity, every candidate
 
 ## 5. COMPLETE DATA SOURCE PROVENANCE & VERIFICATION MATRIX (33 EXCEL SHEETS)
 
-Every signal, metric, and decision MUST trace back to the **33-sheet canonical master Excel data warehouse (`Data/DataBase_Trading.xlsx`)** as the single definitive source of truth:
+Every signal, metric, and decision MUST trace back to the **33-sheet canonical master Excel data warehouse (`Data/feeds/*.parquet`)** as the single definitive source of truth:
 
 | # | Data Source Name | Provider / Worksheet Name | Update Cadence | Latency / Freshness | Verification Method | Tactical Trading Scope & Parameters |
 |---|---|---|---|---|---|---|
-| **1** | **Master Excel Data Warehouse** | `Data/DataBase_Trading.xlsx` (All 33 Canonical Production Worksheets) | Continuous pipeline daemon (`Run_Parallel_Pipeline.py`) | Every 300s rest cooldown (mtime < 10m) | Atomic zip CRC check, openpyxl load, 0 formula errors | Exclusive single source of truth for both Antigravity and Arena.ai across all 156 assets. |
+| **1** | **Master Excel Data Warehouse** | `Data/feeds/*.parquet` (All 35 Canonical Production Parquet Feeds) | Continuous pipeline daemon (`Run_Parallel_Pipeline.py`) | Every 300s rest cooldown (mtime < 10m) | Atomic zip CRC check, openpyxl load, 0 formula errors | Exclusive single source of truth for both Antigravity and Arena.ai across all 156 assets. |
 | **2** | **Live MT5 Broker Telemetry & Spreads** | Sheet 00: `00_MT5_Account_Telemetry` + `Terminal/multi_asset_opportunity_scanner.py` | Tick-by-tick / updated continuously | < 100 ms | `mt5.initialize()`, `account_info()`, `order_calc_profit()` | Live equity, balance, hard floor cushion (+59.83 USD), buffer cushion (+39.83 USD), real spreads in bps across 156 assets. |
 | **3** | **Institutional ETF Netflows** | Sheets 01 & 02: `Crypto_ETF_Flows` & `1_Crypto_ETF_Flows` | Daily post-market settlement | Daily / updated 4h | Sheet audit: IBIT, FBTC, ETHA net inflow USD | TradFi institutional accumulation barometer; positive inflows confirm macro tailwind. |
 | **4** | **CEX Spot Netflow (500 Assets)** | Sheet 03: `2_Spot_Netflow_S` | 1h, 4h, 12h, 24h, 7d netflows | < 15 min | Column audit: physical spot inflow/outflow USD | Real spot accumulation vs distribution; exchange withdrawals confirm institutional accumulation. |

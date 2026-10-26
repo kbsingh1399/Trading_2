@@ -268,7 +268,7 @@ flowchart TD
 ### 🔴 PITFALL 17: WORKBOOK SCHEMA RACE & MISSING FIELD FABRICATION
 - **Anatomy**: Strategies making decisions based on fabricated or non-existent columns in Excel sheets (e.g. attempting to calculate `zc_div` when spot and futures CVD are not split, or looking for VAH/VAL in sheets that don't output them).
 - **Microstructure Gate**:
-  * Strict Data-Contract Gate: Every referenced column MUST physically exist in `DataBase_Trading.xlsx`.
+  * Strict Data-Contract Gate: Every referenced column MUST physically exist in `Data/feeds/*.parquet`.
   * If a sheet lacks price, side, or distance metrics (e.g. `7_Liq_Heapmap` or unsplit `18_CVD`), that sheet CANNOT be used to position SL/TP or gate entries until the schema is extended.
   * Workbook atomic commit: Data must be written to `.tmp.xlsx`, fsynced, CRC-verified, and atomically replaced to prevent zip corruption.
 

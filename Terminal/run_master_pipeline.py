@@ -81,6 +81,8 @@ BROWSER_COLLECTORS = [
     "10_Whale_Orders.py",
     "19_News.py",
     "19_Calendar.py",
+    "25_CoinGlass_Footprint_Signals.py",
+    "26_Aggregated_Footprint_Bar_Metrics.py",
 ]
 
 
@@ -167,6 +169,19 @@ def run_browser_phase() -> int:
     return failures
 
 
+def run_post_processing_phase() -> bool:
+    """Executes post-processing engines: Unified Liquidation Matrix across all venues."""
+    log.info("=" * 80)
+    log.info("   PHASE 2.5: UNIFIED MULTI-VENUE LIQUIDATION MATRIX SYNTHESIS")
+    log.info("=" * 80)
+    matrix_script = ROOT_DIR / "Terminal" / "Data_Factory" / "unified_liquidation_matrix.py"
+    if not matrix_script.exists():
+        log.warning("unified_liquidation_matrix.py not found.")
+        return False
+    proc = subprocess.run([sys.executable, str(matrix_script)], cwd=str(ROOT_DIR))
+    return proc.returncode == 0
+
+
 def run_audit_phase() -> bool:
     """Executes the 33-feed freshness & health scorecard auditor."""
     log.info("=" * 80)
@@ -199,6 +214,9 @@ def main():
 
     if not args.api_only:
         run_browser_phase()
+
+    # Always synthesize Unified Liquidation Matrix
+    run_post_processing_phase()
 
     all_passed = run_audit_phase()
     total_time = time.perf_counter() - t_start

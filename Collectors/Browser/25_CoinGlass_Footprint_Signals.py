@@ -37,6 +37,12 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
     sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
@@ -58,7 +64,12 @@ log = logging.getLogger("FootprintSignals")
 
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_SHEET_NAME = "25_CoinGlass_Footprint_Signals"
-DEFAULT_COINS = ["BTC", "ETH", "SOL", "XRP"]
+DEFAULT_COINS = [
+    "BTC", "ETH", "SOL", "XRP", "BNB", "DOGE",
+    "ADA", "TRX", "LINK", "AVAX", "SUI", "NEAR",
+    "DOT", "LTC", "BCH", "APT", "OP", "ARB",
+    "CL", "XAU", "SPX", "AAVE", "UNI", "ZEC", "TAO", "WLD", "ENA"
+]
 
 
 def open_ephemeral_tab(target_url: str, cdp_base_url: str = CDP_BASE_URL) -> Tuple[str, str]:
@@ -172,12 +183,18 @@ async def extract_footprint_for_coin(cdp_cmd, coin: str) -> List[Dict[str, Any]]
             if len(lines) > 3:
                 kpi_dict["latest_signal_desc"] = lines[3]
 
-    # 2. Click Signals tab and wait for signal rows to hydrate
+    # 2. Click Signals tab and ensure 'All' sub-tab is active to harvest 100% of signals
     await cdp_cmd("Runtime.evaluate", {
         "expression": """
         (() => {
             const tabs = Array.from(document.querySelectorAll('.tab-inner-label, div, span')).filter(el => el.innerText && el.innerText.trim() === 'Signals');
             if (tabs.length > 0) { tabs[0].click(); }
+            
+            // Also click 'All' sub-tab under Signals (e.g. 'All 65', 'All 114')
+            setTimeout(() => {
+                const allTab = Array.from(document.querySelectorAll('div, span, button')).find(el => el.innerText && el.innerText.trim().startsWith('All') && /\\d+/.test(el.innerText));
+                if (allTab) { allTab.click(); }
+            }, 100);
         })()
         """
     })
@@ -290,6 +307,99 @@ async def extract_footprint_for_coin(cdp_cmd, coin: str) -> List[Dict[str, Any]]
     return records
 
 
+def load_macro_footprint_signals() -> List[Dict[str, Any]]:
+    """Extracts footprint delta and auction regimes from 18_CVD.parquet and 20_Auction_Market_Structure.parquet for macro CFDs and metals."""
+    records: List[Dict[str, Any]] = []
+    now_ist = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S IST")
+
+    # 1. Macro Index & Energy CVD flows
+    cvd_path = ROOT_DIR_FOR_PQ / "Data" / "feeds" / "18_CVD.parquet"
+    if cvd_path.exists():
+        try:
+            import pandas as pd
+            df = pd.read_parquet(cvd_path)
+            for sym, group in df.groupby("symbol"):
+                latest = group.iloc[-1]
+                regime = str(latest.get("regime", "NEUTRAL")).upper()
+                bias = "BULLISH" if ("BUYING" in regime or "BULLISH" in regime) else ("BEARISH" if ("SELLING" in regime or "BEARISH" in regime) else "NEUTRAL")
+                candle_delta = float(latest.get("candle_delta", 0.0))
+                quote_vol = float(latest.get("quote_volume_usd", 0.0))
+                cum_cvd = float(latest.get("cumulative_cvd", 0.0))
+                price = float(latest.get("close", 0.0))
+                m_pair = str(latest.get("market_pair", f"{sym}.p"))
+                tf = str(latest.get("timeframe", "15m"))
+                cvd_z = float(latest.get("cvd_zscore", 0.0))
+
+                records.append({
+                    "timestamp_ist": now_ist,
+                    "signal_time": str(latest.get("timestamp_ist", "LIVE")),
+                    "symbol": m_pair,
+                    "base_asset": sym,
+                    "timeframe": tf,
+                    "signal_type": regime,
+                    "bias": bias,
+                    "headline": f"{sym} Macro Delta Flow: {regime}",
+                    "detail": f"Bar Delta: {candle_delta:,.2f} USD | Cumulative CVD: {cum_cvd:,.2f} | CVD Z-Score: {cvd_z:.2f} | Vol: {quote_vol:,.2f} USD",
+                    "price_level": price,
+                    "absorbed_vol_usd": abs(candle_delta),
+                    "last_price": price,
+                    "current_bar_delta_usd": candle_delta,
+                    "current_bar_volume_usd": quote_vol,
+                    "delta_in_view_usd": cum_cvd,
+                    "latest_signal_kpi": regime,
+                    "latest_signal_bias": bias,
+                })
+        except Exception as e:
+            log.warning(f"Error loading macro footprint signals from 18_CVD.parquet: {e}")
+
+    # 2. Precious & Industrial Metals Auction Structure (XAG, XAU, COPPER, PLATINUM, PALLADIUM, ALUMINIUM, ZINC, LEAD)
+    auction_path = ROOT_DIR_FOR_PQ / "Data" / "feeds" / "20_Auction_Market_Structure.parquet"
+    if auction_path.exists():
+        try:
+            import pandas as pd
+            df_auc = pd.read_parquet(auction_path)
+            metal_keywords = ['XAG', 'SILVER', 'XAU', 'GOLD', 'COPPER', 'PLATINUM', 'PALLADIUM', 'ALUMINIUM', 'LEAD', 'ZINC', 'XPT', 'XPD']
+            sub_metals = df_auc[df_auc['symbol'].astype(str).str.contains('|'.join(metal_keywords), case=False, na=False)]
+            for _, row in sub_metals.iterrows():
+                asset = str(row.get("asset", ""))
+                sym = str(row.get("symbol", ""))
+                base_coin = "XAG" if "XAG" in sym or "SILVER" in asset else ("XAU" if "XAU" in sym or "GOLD" in asset else asset)
+                regime = str(row.get("auction_regime", "ROTATIONAL")).upper()
+                bias = str(row.get("session_bias", "NEUTRAL")).upper()
+                price = float(row.get("price", 0.0))
+                poc = float(row.get("daily_poc", price))
+                vah = float(row.get("daily_vah", price))
+                val = float(row.get("daily_val", price))
+                ib_h = float(row.get("ib_high", price))
+                ib_l = float(row.get("ib_low", price))
+                spread = float(row.get("spread_bps", 0.0))
+
+                records.append({
+                    "timestamp_ist": now_ist,
+                    "signal_time": str(row.get("timestamp", "LIVE")),
+                    "symbol": sym,
+                    "base_asset": base_coin,
+                    "timeframe": "Auction",
+                    "signal_type": f"AUCTION_{regime}",
+                    "bias": bias,
+                    "headline": f"{asset} ({sym}) Metal Auction: {regime}",
+                    "detail": f"Daily POC: {poc:.3f} | VAH: {vah:.3f} | VAL: {val:.3f} | IB: [{ib_l:.3f} - {ib_h:.3f}] | Spread: {spread:.1f} bps",
+                    "price_level": price,
+                    "absorbed_vol_usd": 0.0,
+                    "last_price": price,
+                    "current_bar_delta_usd": 0.0,
+                    "current_bar_volume_usd": 0.0,
+                    "delta_in_view_usd": 0.0,
+                    "latest_signal_kpi": f"AUCTION_{regime}",
+                    "latest_signal_bias": bias,
+                })
+        except Exception as e:
+            log.warning(f"Error loading metals auction signals from 20_Auction_Market_Structure.parquet: {e}")
+
+    log.info(f"Loaded {len(records)} Macro & Metals Footprint Signals.")
+    return records
+
+
 async def run_footprint_collector(
     coins: List[str] | None = None,
     cdp_base_url: str = CDP_BASE_URL,
@@ -327,12 +437,18 @@ async def run_footprint_collector(
             except Exception as e:
                 log.warning(f"Error harvesting footprint for {coin}: {e}")
 
-        if not all_records:
+        macro_records = load_macro_footprint_signals()
+        all_combined = list(all_records) + list(macro_records)
+
+        if not all_combined:
             log.error("Footprint collector yielded 0 records.")
             return False
 
-        meta = write_parquet_feed(sheet_name, all_records)
-        log.info(f"Successfully saved {len(all_records)} Footprint Signal rows to {sheet_name}.parquet ({meta.get('byte_size')} bytes).")
+        meta = write_parquet_feed(sheet_name, all_combined)
+        log.info(
+            f"Successfully saved {len(all_combined)} Footprint Signal rows "
+            f"({len(all_records)} Crypto + {len(macro_records)} Macro) to {sheet_name}.parquet ({meta.get('byte_size')} bytes)."
+        )
         return True
 
     finally:

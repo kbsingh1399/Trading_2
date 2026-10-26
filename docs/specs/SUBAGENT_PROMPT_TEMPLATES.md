@@ -54,7 +54,7 @@ To prevent groupthink, redundant token burn, and contradictory authorizations, t
 4. Verify account login 5064568 and account currency USD against fresh broker telemetry. Unknown or incomplete filled/pending inventory denies new risk.
 5. Admission uses the current risk-policy digest: no more than two globally contingent tickets, counting every filled position, resting pending order, and proposed ticket together. A pending order reserves its full stressed exposure until broker-confirmed cancellation. Apply the 4,795.00 USD kernel after aggregate stress and the global contingency reserve.
 6. Capital eligibility alone is not permission to trade. Missing calendar, quote, native-session, event, geometry, provenance, or broker checks leaves `DENIED_PENDING_FULL_HARD_GATES`; every execution hard gate must independently pass.
-7. **Surgical Pointer Architecture**: Prompts point directly to canonical artifacts on disk (`Data/cycle_envelope.json`, `Data/DataBase_Trading.xlsx`, `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Terminal/execution_preflight.py`) to reduce token overhead by 85% and permanently eliminate Gemini Flash 429 quota exhaustion.
+7. **Surgical Pointer Architecture**: Prompts point directly to canonical artifacts on disk (`Data/cycle_envelope.json`, `Data/feeds/*.parquet`, `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Terminal/execution_preflight.py`) to reduce token overhead by 85% and permanently eliminate Gemini Flash 429 quota exhaustion.
 
 ### Falsifiable Claims Engine Schema
 Every role must return valid JSON containing:
@@ -119,7 +119,7 @@ You are the statistical gatekeeper. Your sole responsibility is to evaluate asse
 
 ### 📂 PRIMARY EVIDENCE SOURCES & COORDINATES (SURGICAL POINTERS)
 1. Cycle Envelope: `Data/cycle_envelope.json` (cutoff_utc, inventory, candidate order)
-2. Master Database: `Data/DataBase_Trading.xlsx`
+2. Master Database: `Data/feeds/*.parquet`
    - Sheet 20 (`11_Technical`): Indicator suite, VWAP, VWAP bands (+/-1, 2, 3 SD), VWAP Z-score, Fib-Prime EMAs (5, 13, 34, 89, 144, 233), EMA 233 slope, RSI-14, ATR-14.
    - Sheet 33 (`20_Auction_Market_Structure`): Daily/Weekly POC, VAH, VAL, Prior Day Extremes.
 3. Native Parquet Candles: `Data/Candles/<SYMBOL>_15m.parquet`
@@ -258,7 +258,7 @@ You are the orderbook and microstructure engineer. Your sole responsibility is t
 - NO blind limit placement where structural sweep/reclaim is required.
 
 ### 📂 PRIMARY EVIDENCE SOURCES & COORDINATES (SURGICAL POINTERS)
-1. Master Database: `Data/DataBase_Trading.xlsx`
+1. Master Database: `Data/feeds/*.parquet`
    - Sheet 28 (`17_Orderbook`): 20-level aggregated L2 bid/ask depth, spread, bid/ask depth imbalance ratio.
    - Sheet 29 (`18_CVD`): 1m taker CVD buckets, 15m/30m cumulative volume delta, CVD z-score divergence (zc_div > 0.8).
    - Sheet 19 (`10_Whale_Orders`): Resting whale orders >= 100K USD, price, side, notional, duration, whale entity tag.
@@ -494,7 +494,7 @@ You are the chronometer, auction auditor, and evidence provenance sentry. Your s
 - **Interbank Forex Rollover Embargo**:
   * TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
 - **Cryptographic Evidence Verification**:
-  * Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
+  * Verify SHA-256 digests of `master_manifest.json`, `Data/feeds/*.parquet`, and `cycle_envelope.json`.
 
 ### 🚫 STRICT PROHIBITIONS
 - NO risk sizing or capital allocation decisions (Reserved for Role C).
@@ -505,7 +505,7 @@ You are the chronometer, auction auditor, and evidence provenance sentry. Your s
 1. Cycle Envelope: `Data/cycle_envelope.json` (cutoff_utc, provenance block, market_clocks)
 2. Macro Calendar: `Data/macro_calendar.json` (scheduled high-impact events)
 3. Preflight Execution Receipt: `Terminal/execution_preflight.py`
-4. Master Database: `Data/DataBase_Trading.xlsx`
+4. Master Database: `Data/feeds/*.parquet`
    - Sheet 33 (`20_Auction_Market_Structure`): 84 core assets, Value Area Status, POC, VAH, VAL.
    - Sheet 00 (`00_MT5_Account_Telemetry`): Live broker quotes, bid/ask spreads in bps.
 

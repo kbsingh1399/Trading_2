@@ -26,7 +26,7 @@ followed immediately by:
 ```markdown
 ### 📊 Mandatory 32-Sheet Excel Freshness Scorecard (< 5.0m Target)
 ```
-and then a code block containing the live age and IST timestamp of each sheet from `Data/excel_all_sheets_checklist.json` / `Data/DataBase_Trading.xlsx`:
+and then a code block containing the live age and IST timestamp of each sheet from `Data/excel_all_sheets_checklist.json` / `Data/feeds/*.parquet`:
 ```
 Idx  | Sheet Name                     | Rows   | Banner (IST)             | Age (min)  | Status
 -------------------------------------------------------------------------------------------------------------------
@@ -275,10 +275,10 @@ Windows: W1–W4 (2021), W5–W8 (2022), W9–W12 (2023), W13–W16 (2024), W17�
 
 > 🛑 **STRICT OPERATOR MANDATE: 100% OF EXCEL SHEETS MUST BE FRESH (< 5 MINUTES / 300 SECONDS)**:
 > Operating on stale market data, delayed liquidations, or lagging orderbook depth causes fatal adverse selection and account drawdown. 
-> To guarantee maximum edge and mathematical rigor across all 32 institutional sheets in `Data/DataBase_Trading.xlsx`, the system enforces:
+> To guarantee maximum edge and mathematical rigor across all 32 institutional sheets in `Data/feeds/*.parquet`, the system enforces:
 
 ### 10.1 The 5-Minute Maximum Data Age Threshold (Strict Non-Negotiable)
-1. **Freshness Invariant**: The age of data in every single sheet in `Data/DataBase_Trading.xlsx` MUST be strictly less than 5.0 minutes (`age_minutes < 5.0m`).
+1. **Freshness Invariant**: The age of data in every single sheet in `Data/feeds/*.parquet` MUST be strictly less than 5.0 minutes (`age_minutes < 5.0m`).
 2. **Autonomous Multi-Tab Parallel Execution**:
    - Sequential harvester execution is strictly FORBIDDEN because 32 modules * 30s = 16 minutes, which mathematically violates the 5-minute rule.
    - Harvester modules must execute in parallel:
@@ -286,7 +286,7 @@ Windows: W1–W4 (2021), W5–W8 (2022), W9–W12 (2023), W13–W16 (2024), W17�
      * **Browser CDP Modules (Tier 1B - 16 modules)**: Executed across 3 concurrent parallel Edge browser tabs (via CDP `PUT /json/new` and dedicated WebSocket debugger endpoints). All 16 complete in under 130 seconds without interfering with Arena.ai or Z.ai.
      * **Streaming WebSocket Modules (Tier 1C)**: Always-on continuous listener (`forced_liquidation_daemon.py`) updating memory buffers in real-time.
 3. **Cross-Process File Lock Protection**:
-   - All Excel workbook loads and saves across all threads and processes MUST acquire `FileLock("Data/DataBase_Trading.xlsx.lock", timeout=120)`. This permanently eliminates `zipfile EOFError` or Windows file contention.
+   - All Excel workbook loads and saves across all threads and processes MUST acquire `FileLock("Data/feeds/*.parquet.lock", timeout=120)`. This permanently eliminates `zipfile EOFError` or Windows file contention.
 4. **Mandatory Sheet Age Audit Table**:
    - On EVERY cycle and before staging orders, the agent and automated checklist auditor (`python Terminal/Data_Factory/excel_sheet_checklist_auditor.py`) MUST print the full 32-sheet table with exact Row Counts, IST Timestamps, and Ages.
    - Any sheet with `Age >= 5.0m` triggers immediate priority re-harvesting before any trade execution.

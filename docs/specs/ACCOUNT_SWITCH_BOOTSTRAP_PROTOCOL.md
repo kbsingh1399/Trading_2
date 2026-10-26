@@ -114,7 +114,7 @@ Audit all persistent operational daemons and core external services across both 
 | **Daemon 2** | `python Terminal/Data_Factory/heretic_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Port 8083 (HTTP) | Quantitative heretic microstructure service |
 | **Daemon 3** | `python Terminal/arena_completion_daemon.py --daemon` | Antigravity Task Runner (`isDaemon=true`) | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output |
 | **Daemon 4** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Antigravity Task Runner (`isDaemon=true`) | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
-| **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Antigravity Task Runner (`isDaemon=true`) | Every 300s | Continuous 33-sheet master Excel data warehouse pipeline |
+| **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Antigravity Task Runner (`isDaemon=true`) | Every 300s | Continuous 35-feed canonical master Parquet data lake pipeline |
 | **Daemon 6** | `python Terminal/run_graphify_watcher.py` | OS Process / Antigravity Task | Continuous File Watcher | Monitors file mutations and hot-updates `graphify-out/graph.json` |
 | **Daemon 7** | `python gemini_web2api.py --config config.json` | OS Process / Antigravity Task | Port 8081 (HTTP) | Web2API Council Daemon (Endogen reverse-proxy, Auth: `Bearer sk-gemini`) |
 
@@ -196,7 +196,7 @@ Under NO circumstances may an incoming cycle be launched immediately after curre
   schedule(DurationSeconds=1200, Prompt="Dynamic 20-minute market stabilization interval elapsed. Tri-entity completion verified. Initialize, audit, and launch Cycle N+1.")
   ```
 - **Quiet Window Desk State**: During this 20-minute interval:
-  * Persistent daemons (Heptad) continue updating the 33-sheet master Excel warehouse (`DataBase_Trading.xlsx`).
+  * Persistent daemons (Heptad) continue updating the 35-feed canonical master Parquet data lake (`Data/feeds/*.parquet`).
   * System RAM is maintained (<80%) via `scripts/free_ram.ps1`.
   * The desk maintains an unbreached 100% Cash Defense posture.
 - **Automated Cycle N+1 Launch Chain**: Upon reactive wakeup from the 1,200s schedule notification, the desk immediately executes:

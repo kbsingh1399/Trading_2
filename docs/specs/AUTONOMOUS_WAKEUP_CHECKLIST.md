@@ -6,7 +6,7 @@
 > **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026 (23:59 UTC).  
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists [ ].  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Master 33-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
+> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 35-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).  
 > **Standard Dual-Council Prompt Template**: [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (All-in-One 4-Persona Quantitative Audit for Arena.ai [GPT Astra] & Z.ai [GLM-5.3-Flash])  
 > **Operator Concerns & Perpetual Resolutions**: [`OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md)  
 > **Cadence & Separation**: Clean 20-Minute Relative Post-Completion Separation (`T_finish + 20 min`) between completed Cycle X and Cycle X+1 trigger, supervised by autonomous 30-Minute Watchdog Sentry Cron (`0,30 * * * *` at :00 and :30 of every hour).  
@@ -24,7 +24,7 @@
 >    - **Statistical Regime & Diffusion Quant** (`Role='Statistical Regime Quant'` — Fable 5): Calculates Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent `H`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, and Newey-West drift `t`-stat. Strict stand-aside on `UNDEFINED` regime.
 >    - **Microstructure & Liquidation Quant** (`Role='Microstructure Quant'` — Fable 5): Evaluates L2/L3 orderbook depth, Binance Futures LIR, resting whale persistence (`tau >= 180s`, refill `rho >= 0.60`), Sheet 23 retail stop sweeps (< 90s reclaim vs > 240s broken), and CVD absorption divergence (`z_CVD >= 1.5`).
 >    - **Convex Portfolio & Solvency Sentry** (`Role='Solvency Sentry'` — Fable 5): Evaluates live MT5 account telemetry, exact broker `mt5.order_calc_profit` lot snapping, option-adjusted EV, Quarter-Kelly sizing, joint stressed loss `= sum(1.25 * NominalLoss_i + 2.00 USD) + 2.00 USD global reserve`, Tier 2 realized-balance eligibility and the two contingent slots.
->    - **Auction Profile & Friction Arbitrageur** (`Role='Auction Profile Quant'` — Fable 5): Studies Sheet 33 Value Area (VAH, VAL, POC, Initial Balance), enforces Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), audits 33-sheet data warehouse (33/33 sheets, 0 formula errors, <= 15m fresh), and enforces the strict Event Risk Clock (PMIs 07:15–08:00 UTC, 07:10 cancel, 07:14:59 emergency flatten).
+>    - **Auction Profile & Friction Arbitrageur** (`Role='Auction Profile Quant'` — Fable 5): Studies Feed 29 Value Area (VAH, VAL, POC, Initial Balance), enforces Relative Spread Gate (`Spread Price / TP Distance <= 15.0%`), audits 35-feed data lake (35/35 feeds, zero nulls, <= 5.0m fresh), and enforces the strict Event Risk Clock (PMIs 07:15–08:00 UTC, 07:10 cancel, 07:14:59 emergency flatten).
 > 2. **Mandatory Canonical Governance & Line-by-Line Execution**: Every subagent prompt and council prompt MUST cite and STRICTLY FOLLOW line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md` (read fully from start to finish) and require physical line-by-line inspection of all referenced governance documents in `Data/Manditory/`.
 > 3. **Mandatory Dual Frontier Council Parallel Dispatch (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**: On EVERY wake-up cycle, surgical 360-degree quantitative prompts citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` MUST be injected SIMULTANEOUSLY into:
 >    - **Arena.ai (GPT Astra)** via Chrome CDP port 9222 using `Terminal/dispatch_arena_prompt.py`.
@@ -39,11 +39,11 @@
 
 Before evaluating data, touching code, or dispatching orders, the coordinator and all subagents MUST systematically self-interrogate through these 9 non-bypassable gateways:
 
-### Gateway 0: Automated 33-Sheet Excel Data Quality & Per-Sheet Freshness (<= 15 Min) Audit
-> *"Are all 33 sheets in Data/DataBase_Trading.xlsx present, error-free, and actively updating on a per-sheet level?"*
+### Gateway 0: Automated 35-Feed Parquet Data Lake Quality & Per-Feed Freshness (< 5.0 Min) Audit
+> *"Are all 35 feeds in Data/feeds/*.parquet present, error-free, and actively updating on a per-sheet level?"*
 - **Automated Auditor Execution**: Run `python Terminal/Data_Factory/excel_data_quality_checker.py` at the start of every wake-up cycle.
 - **Verification Criteria**:
-  * Total Sheets: 33/33 sheets present and indexed.
+  * Total Feeds: 35/35 production Parquet files present and readable in Data/feeds/.
   * Formula Errors: Exactly 0 errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`).
   * Header Integrity: 100% valid, unmerged headers in Row 1 across all sheets.
   * Per-Sheet Freshness Invariant: Inspect internal cell timestamps for EVERY dynamic trading sheet (`00_MT5_Account_Telemetry`, `11_Technical`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `17_Orderbook`, `18_CVD`, `20_Auction_Market_Structure`). Each must be `<= 15.0 minutes` (`900s`) old. Never rely solely on overall file modification time (`os.path.getmtime`).
@@ -113,8 +113,8 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
 - **Authorization mandate**: An empty contingent slot and setup confluence are necessary screens. Require every SOP 2.1 hard gate, calibrated positive lower-bound utility under SOP 2.2, asset-native evidence under 2.3 and broker-grid sizing under SOP Step 8 before any new-risk ticket.
 
 ### Gateway 7: 33-Sheet Excel Freshness & Integrity Audit (OPERATOR DIRECTIVE)
-> *"Has Data/DataBase_Trading.xlsx loaded all 33 sheets cleanly with zero formula errors, and are all values actively updating and fresh?"*
-- **File Health**: `Data/DataBase_Trading.xlsx` (Size ~13.1 to 13.9 MB) loads cleanly via openpyxl/pandas.
+> *"Has Data/feeds/*.parquet loaded all 35 feeds cleanly with zero formula errors, and are all values actively updating and fresh?"*
+- **File Health**: `Data/feeds/*.parquet` (Size ~13.1 to 13.9 MB) loads cleanly via openpyxl/pandas.
 - **Sheet 33 Unmerged Header Verification**: Verify Row 1 of Sheet 33 (`20_Auction_Market_Structure`) has all 36 canonical column names written directly without unmerged/blank header gaps.
 - **Mandatory Freshness Check**:
   * Verify timestamps on `17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, and `20_Auction_Market_Structure` are <= 15 minutes old.
@@ -193,8 +193,8 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
 
 ### Step 1: System Health, Master Excel Data Warehouse & Pipeline Verification
 - [ ] **MANDATORY 33-SHEET MASTER EXCEL INSPECTION CONFIRMATION**:
-  - Physically load and confirm reading across ALL **33 canonical worksheets** of `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 33 `20_Auction_Market_Structure`).
-  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 33 sheets. Nothing may ever be skipped or missed.
+  - Physically load and confirm reading across ALL **35 canonical parquet feeds** of `Data/feeds/*.parquet` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 33 `20_Auction_Market_Structure`).
+  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 35 feeds. Nothing may ever be skipped or missed.
   - Require the exact same 33-sheet verification attestation from Arena.ai on every council cycle.
 - [ ] **MANDATORY LINE-BY-LINE EXCEL STUDY & NARRATIVE SYNTHESIS (OPERATOR INVARIANT)**:
   - Systematically study *each and every line* across all worksheets:
@@ -306,7 +306,7 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
     1. `Role='Statistical Regime Quant', Model='flash'` (Fable 5): Full 360° quant prompt calculating Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, Newey-West drift `t`-stat, and First-Exit diffusion probability & TTL.
     2. `Role='Microstructure Quant', Model='flash'` (Fable 5): Full 360° quant prompt evaluating L2/L3 orderbook depth, Binance Futures LIR, resting whale persistence (`tau >= 180s`, refill `rho >= 0.60`), Sheet 23 retail stop sweeps (< 90s reclaim vs > 240s broken), and CVD absorption divergence (`z_CVD >= 1.5`).
     3. `Role='Solvency Sentry', Model='flash'` (Fable 5): Full 360° quant prompt evaluating live MT5 account telemetry, exact broker `mt5.order_calc_profit` lot snapping, option-adjusted EV, Quarter-Kelly sizing, joint stressed loss `= sum(1.25 * NominalLoss_i + 2.00 USD) + 2.00 USD global reserve`, Tier 2 realized-balance eligibility and the two contingent slots.
-    4. `Role='Auction Profile Quant', Model='flash'` (Fable 5): Full 360° quant prompt studying Sheet 33 Value Area (VAH, VAL, POC, Initial Balance), enforcing Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), auditing 33-sheet data warehouse (33/33 sheets, 0 formula errors, <= 15m fresh), and enforcing the strict Event Risk Clock (PMIs 07:15–08:00 UTC, 07:10 cancel, 07:14:59 emergency flatten).
+    4. `Role='Auction Profile Quant', Model='flash'` (Fable 5): Full 360° quant prompt studying Sheet 33 Value Area (VAH, VAL, POC, Initial Balance), enforcing Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), auditing 33-sheet data warehouse (33/35 feeds, 0 formula errors, <= 15m fresh), and enforcing the strict Event Risk Clock (PMIs 07:15–08:00 UTC, 07:10 cancel, 07:14:59 emergency flatten).
   - **MANDATORY READING & LINE-BY-LINE EXECUTION REQUIREMENT IN EVERY PROMPT**:
     * `0. Token Preservation: Query AST Knowledge Graph via /graphify or python -m graphify query before reading large source files.`
     * `1. @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md] (MANDATORY CANONICAL QUANT SOP - FOLLOW LINE BY LINE)`
@@ -316,7 +316,7 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
     * `5. All auxiliary files referenced in SOP: TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md, 32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md, OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`
 
 - [ ] **Track B: Arena.ai Candidate Discovery & Multi-Persona Council Dispatch (GPT ASTRA)**:
-  - Ensure the latest `Data/DataBase_Trading.xlsx` and live telemetry are pushed to GitHub `origin/main`.
+  - Ensure the latest `Data/feeds/*.parquet` and live telemetry are pushed to GitHub `origin/main`.
   - Prepare the prompt using the canonical unified template [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
   - Explicitly task Arena.ai (GPT Astra) with evaluating candidates across ALL 4 quantitative personas (Statistical Regime, Microstructure, Solvency, Auction Structure), finding potential candidates across all 156 assets, evaluating confluence, and proposing affirmative limit tickets.
   - Connect to Chrome CDP port `9222` and inject the prompt into Arena's TipTap editor via `Terminal/dispatch_arena_redteam.py` or `Terminal/dispatch_dual_council.py`.

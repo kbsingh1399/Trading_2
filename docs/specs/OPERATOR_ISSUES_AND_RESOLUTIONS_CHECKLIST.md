@@ -17,16 +17,16 @@
 | **02** | **Perpetual `/goal` Invariant** (Never Kill or Cancel Goal) | Risk of early termination or emission of `<!-- GOAL_COMPLETE -->` | Explicit invariant added forbidding completion/cancellation until MT5 equity >= 5,500.00 USD is proven | ✅ **ENFORCED PERPETUALLY** |
 | **03** | **Always Maintain Potential Candidates Radar** (No Bare Stand Aside) | Premature "Stand Aside" verdicts without actionable setups | Candidate Radar Matrix tracks BTC, Gold, SOL, EURUSD with exact entries, stops, targets, and checkable `[ ]` pre-conditions | ✅ **ACTIVE ON RADAR** |
 | **04** | **Arena.ai Autonomous Re-Prompting & Harvester** | Arena critique not harvested or re-prompted automatically | `arena_completion_daemon.py --daemon` active; `dispatch_arena_redteam.py` prompts Arena on port 9222 every cycle | ✅ **OPERATIONAL (CDP 9222)** |
-| **05** | **Excel Synchronization to GitHub** | `DataBase_Trading.xlsx` missing updates or lagging on `origin/main` | `autonomous_telemetry_git_daemon.py` pushes every 300s; patched `git checkout --` bug that was rolling back fresh writes | ✅ **PUSHING CLEANLY** |
+| **05** | **Excel Synchronization to GitHub** | `Data/feeds/*.parquet` missing updates or lagging on `origin/main` | `autonomous_telemetry_git_daemon.py` pushes every 300s; patched `git checkout --` bug that was rolling back fresh writes | ✅ **PUSHING CLEANLY** |
 | **06** | **Excel Corruption & Sheet Overwrite / Deletion Discipline** | Excel popup: *"We found a problem with some content..."* due to partial-write zip truncation & ghost rows | Upgraded all dumpers to `wb.remove(wb[sheet])` / `create_sheet()` + atomic `.tmp.xlsx` file save; zero formula errors | ✅ **VERIFIED (0 ERRORS)** |
 | **07** | **Subagent Socket Permission Error** (`connectex`) | Windows socket exhaustion under Cloudflare WARP from lingering SSE threads | Automatic `manage_subagents(kill_all)` executed immediately after harvesting all subagent reports | ✅ **PERMANENTLY MITIGATED** |
 | **08** | **Mandatory 4-Subagent Fleet on EVERY Wakeup** | Previous cycles launched only 3 subagents, missing Excel quality audit | Upgraded fleet to exactly 4 mandatory subagents: Orderflow, Position Manager, Macro Risk, and Excel Auditor | ✅ **ENFORCED (4 FLEET)** |
-| **09** | **Deep Line-by-Line & Column-by-Column Study of Master Excel** | Subagents summarizing high-level stats instead of examining raw rows | Subagents mandated to parse exact rows across all 32 sheets; verified $109M sell stop cascade on BTC ($83,850 to $82,450) | ✅ **DEEPLY AUDITED** |
+| **09** | **Deep Line-by-Line & Column-by-Column Study of Master Excel** | Subagents summarizing high-level stats instead of examining raw rows | Subagents mandated to parse exact rows across all 35 feeds; verified $109M sell stop cascade on BTC ($83,850 to $82,450) | ✅ **DEEPLY AUDITED** |
 | **10** | **Adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`** | Subagent and Arena prompts lacked explicit citation of the 10-step SOP | Embedded mandatory citation and 10-step execution requirements into all subagent prompts and Arena template | ✅ **GOVERNING PROTOCOL** |
 | **11** | **HyperDash Microstructure Integration & Anti-Spoof Persistence** | Reliance on ephemeral liquidity or unverified depth | Sheets 12-16 (`12_Hyperdash` to `17_Orderbook`) actively enforce 180s persistence filter, L2/L3 whale attribution | ✅ **100% INTEGRATED** |
 | **12** | **Zero-Token Polling & Event-Driven Subagent Auto Wake-Up** | 10s sleep timers burn 264k tokens per turn (1.58M tokens/min) while idling | 10s timers permanently banned; Antigravity relies strictly on native event-driven reactive wakeups from subagent `send_message` and the 20m cron sentry | ✅ **PERMANENTLY ENFORCED** |
 | **13** | **Hexad-Daemon Management in Antigravity Task Runner** | Daemons running as unmanaged external OS processes without reactive wakeups | All 5 persistent daemons must be launched via `run_command(IsDaemon=true)` or `schedule` so Antigravity tracks TaskIds | ✅ **ENFORCED IN TASK RUNNER** |
-| **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 33 sheets | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
+| **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 35 feeds | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
 | **15** | **Sheet 00 (`00_MT5_Account_Telemetry`) Pipeline Integration** | Module 0 missing from `api_parallel_harvester.py`, leading to stale broker telemetry | Appended Module 0 into `API_MODULES` in `api_parallel_harvester.py`; runs every parallel cycle | ✅ **RESOLVED & FRESH** |
 | **16** | **Fibonacci Prime EMAs, Auction Extremes & Golden Zone OTE** | Arbitrary moving averages (20/50/200) and missing weekly/monthly auction extremes | Replaced with Fib-Prime EMAs (5, 13, 34, 89, 144, 233), Monday IB_W, Session & Week/Month High/Low, and Symmetrical Fib Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Inval) across Excel Sheets 20 & 32 and all governance specs | ✅ **CODIFIED & VERIFIED** |
 | **17** | **Parallel Subagent Dispatch & 20m Dynamic Cadence** | Coordinator yielding to wait for Arena before invoking subagents | `dispatch_cycle_orchestrator.py` + atomic single-turn 5-tool dispatch block + `CYCLE_LIFECYCLE_CHECKLIST.md` | ✅ **CODIFIED & VERIFIED** |
@@ -92,10 +92,10 @@
 - **Operator Directives**:
   * *"and check excel didn't updated at github...check that on wakeup also...but ensure that deamon is working to push latest excel to githb always"*
 - **Forensic Diagnosis**:
-  1. `autonomous_telemetry_git_daemon.py` was executing `git checkout -- Data/DataBase_Trading.xlsx` when an in-progress file was detected. This rolled back fresh local writes with whatever was in HEAD!
+  1. `autonomous_telemetry_git_daemon.py` was executing `git checkout -- Data/feeds/*.parquet` when an in-progress file was detected. This rolled back fresh local writes with whatever was in HEAD!
   2. The git daemon runs on a 300s (5-minute) cadence to prevent GitHub rate limits.
 - **Resolution**:
-  1. Removed `git checkout -- Data/DataBase_Trading.xlsx` from `autonomous_telemetry_git_daemon.py`. In-flight writes are cleanly un-staged with `git reset HEAD` so the writer can finish, and then staged in the next 5-minute cycle once the file is complete.
+  1. Removed `git checkout -- Data/feeds/*.parquet` from `autonomous_telemetry_git_daemon.py`. In-flight writes are cleanly un-staged with `git reset HEAD` so the writer can finish, and then staged in the next 5-minute cycle once the file is complete.
   2. Added atomic zip validation: checks `zipfile.is_zipfile`, verifies `[Content_Types].xml`, and ensures file size > 10,000,000 bytes before staging.
   3. Git daemon successfully synced commits `5809710a6` and `af2834c66` to `origin/main`.
 
@@ -111,7 +111,7 @@
   1. Verified that master pipeline dumpers (`Data/Excel_Modules/`) strictly use `wb.remove(wb[SHEET_NAME])` followed by `wb.create_sheet(title=SHEET_NAME, index=idx)` to completely delete previous data and rebuild clean sheets from scratch.
   2. Pruned ghost rows with `ws.delete_rows()` where applicable.
   3. Patched git daemon to un-stage partial files.
-  4. Verified `Data/DataBase_Trading.xlsx` with Microsoft Excel COM automation (`CorruptLoad=0`, 0 repair tolerance): **Opened with 0 errors across all 32 sheets!**
+  4. Verified `Data/feeds/*.parquet` with Microsoft Excel COM automation (`CorruptLoad=0`, 0 repair tolerance): **Opened with 0 errors across all 35 feeds!**
 
 ---
 
@@ -136,17 +136,17 @@
      * Subagent 1: **`Orderflow Analyst`** (L2/L3 orderbook depth, CVD delta, stop sweeps, spread gates).
      * Subagent 2: **`Position Manager`** (Live MT5 telemetry, stressed capacity math, floor defense cushions).
      * Subagent 3: **`Macro Risk Analyst`** (Macro calendar blackouts, session clock, 21:15–22:30 FX rollover embargo).
-     * Subagent 4: **`Excel Data Quality Auditor`** (32-sheet master warehouse audit, row counts, formula errors = 0, git sync).
+     * Subagent 4: **`Parquet Data Lake Quality Auditor`** (32-sheet master warehouse audit, row counts, formula errors = 0, git sync).
   2. Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md` and cron trigger `task-102061` to enforce launching all 4 subagents on EVERY cycle.
 
 ---
 
 ### ISSUE 09: Deep Line-by-Line & Column-by-Column Study of Master Excel
 - **Operator Directives**:
-  * *"did your subagents deeply studied the @[Data/DataBase_Trading.xlsx] row by row...column by column and identified the potential candidates?"*
-- **Forensic Diagnosis**: Previous subagent prompts summarized metrics instead of mandating explicit row-by-row and column-by-column extraction from `Data/DataBase_Trading.xlsx`.
+  * *"did your subagents deeply studied the @[Data/feeds/*.parquet] row by row...column by column and identified the potential candidates?"*
+- **Forensic Diagnosis**: Previous subagent prompts summarized metrics instead of mandating explicit row-by-row and column-by-column extraction from `Data/feeds/*.parquet`.
 - **Resolution**:
-  1. Subagents are strictly mandated to parse exact rows and columns of `Data/DataBase_Trading.xlsx`.
+  1. Subagents are strictly mandated to parse exact rows and columns of `Data/feeds/*.parquet`.
   2. Executed deep extraction across `11_Technical`, `15_Hyperdash_Stops_Map`, `17_Orderbook`, `2_Spot_Netflow_S`, and `3_Exchanges_LS_Ratio_15M`.
   3. **Critical Empirical Discovery**: Uncovered a massive **$109.10M retail sell stop cascade** on BTC sitting between $83,850 and $82,450. Disqualified dangerous premature buy limit at 83,550 and relocated the safe demand shelf below the cascade to $82,850 / $82,400 with verified whale support.
 
@@ -168,7 +168,7 @@
   * *"this chat HyperDash...create a checklist if all such are resolved and add them in wakeup checklist which are relevenet to what we are doing right now."*
 - **Forensic Diagnosis**: HyperDash provides vital L1 whale wallet intelligence, continuous liquidation price ladders, resting stop order maps, and Telegram whale alerts.
 - **Resolution**:
-  1. Ingested all 6 HyperDash sheets in `DataBase_Trading.xlsx`:
+  1. Ingested all 6 HyperDash sheets in `Data/feeds/*.parquet`:
      * `12_Hyperdash` (Flow sentiment & aggregate metrics)
      * `13_Hyperliquid` (L1 DEX funding, basis premium/discount, open interest)
      * `14_Hyperdash_Liq_Map` (5,826 rows of continuous liquidation ladders)
@@ -201,7 +201,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - [ ] **Gate 01 (Silent Background Heartbeat)**: Verify background tasks run silently; zero polling loops.
 - [ ] **Gate 02 (Perpetual Goal Contract)**: Verify Phase 1 goal is active; do NOT cancel or complete until equity >= 5,500.00 USD.
 - [ ] **Gate 03 (Mandatory 4-Subagent Fleet)**: Launch all 4 subagents (`Orderflow`, `Position Manager`, `Macro Risk`, `Excel Auditor`).
-- [ ] **Gate 04 (Line-by-Line Study of 32 Excel Sheets)**: Verify all 32 sheets of `Data/DataBase_Trading.xlsx` parsed line-by-line; zero formula errors.
+- [ ] **Gate 04 (Line-by-Line Study of 32 Excel Sheets)**: Verify all 35 feeds of `Data/feeds/*.parquet` parsed line-by-line; zero formula errors.
 - [ ] **Gate 05 (Sheet Overwrite & Atomic Save Verification)**: Confirm clean sheet deletion (`wb.remove`) and atomic saving to prevent corrupt 2.8 MB zip files.
 - [ ] **Gate 06 (GitHub Sync Daemon Sentry)**: Confirm `autonomous_telemetry_git_daemon.py` is actively pushing 13.4 MB Excel replicas.
 - [ ] **Gate 07 (Arena.ai Co-Equal Council Dispatch)**: Inject surgical red-team prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` into Arena on port 9222.
@@ -211,7 +211,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - [ ] **Gate 11 (Clean Subagent Pruning)**: Call `manage_subagents(kill_all)` immediately after harvesting to prevent `connectex` socket errors.
 - [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +59.83 USD hard floor cushion and +39.83 USD operating buffer cushion.
 - [ ] **Gate 13 (Zero-Token Event-Driven Wakeup)**: Rely strictly on native reactive wakeups from subagent `send_message`; zero short timers.
-- [ ] **Gate 14 (Mandatory 33-Sheet Freshness & Non-Zero Delta Gate)**: Verify each sheet in `Data/DataBase_Trading.xlsx` updates with fresh values (timestamps <= 15m, non-zero deltas across consecutive dumps, zero frozen/stale feeds). Reject stale data fail-closed.
+- [ ] **Gate 14 (Mandatory 33-Sheet Freshness & Non-Zero Delta Gate)**: Verify each sheet in `Data/feeds/*.parquet` updates with fresh values (timestamps <= 15m, non-zero deltas across consecutive dumps, zero frozen/stale feeds). Reject stale data fail-closed.
 - [ ] **Gate 15 (Antigravity Task Runner Daemons Sentry)**: Confirm all 5 daemons are active in `manage_task(Action='list')`.
 - [ ] **Gate 16 (Mandatory Tier 2 Big Prompts)**: Verify all 4 subagents are launched using full unabridged ~350–500 token prompts from `SUBAGENT_PROMPT_TEMPLATES.md` citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
 - [ ] **Gate 17 (Sheet 00 MT5 Telemetry Freshness)**: Verify Sheet 00 timestamp <= 15m; confirms active sync between MT5 account and Excel warehouse.
@@ -224,7 +224,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   * An automated desk can load a 13 MB Excel file cleanly with 0 formula errors, but the data inside could be static or frozen if an upstream scraper or API hangs.
   * Trading on stale orderbook or stale CVD delta causes catastrophic mis-alignments with live pricing.
 - **Enforced Protocol**:
-  1. **Embedded Timestamp Audit**: Every subagent prompt mandatorily instructs the Excel Data Quality Auditor and Orderflow Analyst to inspect latest embedded row timestamps. Live market sheets (`17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, `20_Auction_Market_Structure`) must be <= 15 minutes old relative to current UTC time.
+  1. **Embedded Timestamp Audit**: Every subagent prompt mandatorily instructs the Parquet Data Lake Quality Auditor and Orderflow Analyst to inspect latest embedded row timestamps. Live market sheets (`17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, `20_Auction_Market_Structure`) must be <= 15 minutes old relative to current UTC time.
   2. **Non-Zero Delta Verification**: The Auditor must verify that value deltas between successive pipeline commits are non-zero.
   3. **Fail-Closed Staleness Halt**: If any key orderflow sheet is older than 25 minutes or fails to cycle, all trading is CONDITIONAL or PAUSED until the pipeline completes a fresh atomic dump. Zero orders may be placed on unverified data.
 
@@ -249,7 +249,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 ## 🏛️ RESOLUTION 14: MANDATORY FULL UNABRIDGED TIER 2 BIG PROMPTS (OPERATOR DIRECTIVE)
 - **Operator Directive**: "and what are you doiing...refer all 3 hours chats...we mentioned earlier to prmpt big prompt to subagents...we should continue with all of them and update in ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md if required...in prmpt to sub agent...you must mention STANDARDIZED_TRADING_DECISION_CHAIN.md"
 - **Root Cause & Vulnerability**:
-  * Dispatching summarized or truncated prompts to subagents leads to superficial audits where subagents skim data and fail to audit all 33 sheets row-by-row, missing critical orderbook walls, stop cascades, and macro embargos.
+  * Dispatching summarized or truncated prompts to subagents leads to superficial audits where subagents skim data and fail to audit all 35 feeds row-by-row, missing critical orderbook walls, stop cascades, and macro embargos.
 - **Enforced Protocol**:
   1. Lightweight/short prompts to subagents are permanently banned.
   2. The coordinator MUST inject the FULL UNABRIDGED Tier 2 Big Prompts (~350–500 tokens) from `SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
@@ -258,7 +258,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 ---
 
 ## 🏛️ RESOLUTION 15: SHEET 00 (`00_MT5_Account_Telemetry`) PIPELINE INTEGRATION
-- **Operator Directive**: Excel Data Quality Auditor flagged Sheet 00 as stale (> 25 min old) because it was omitted from the automated harvester roster.
+- **Operator Directive**: Parquet Data Lake Quality Auditor flagged Sheet 00 as stale (> 25 min old) because it was omitted from the automated harvester roster.
 - **Root Cause & Vulnerability**:
   * `00_MT5_Account_Telemetry.py` was created as a standalone script but had not been registered in `API_MODULES` inside `Data/Excel_Modules/api_parallel_harvester.py`.
 - **Enforced Protocol**:
@@ -378,7 +378,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
      - Automatically verifies:
        * All 33 physical sheets present in canonical order.
        * Exact count of formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`, `#NULL!`) across all cells.
-       * Row 1 header integrity across all 33 sheets (specifically validating Sheet 33 `20_Auction_Market_Structure` unmerged distinct columns).
+       * Row 1 header integrity across all 35 feeds (specifically validating Sheet 33 `20_Auction_Market_Structure` unmerged distinct columns).
        * Warehouse file modification freshness (`<= 15.0 minutes` / `900s`).
        * Active background pipeline verification (`Run_Parallel_Pipeline.py`).
        * Saves machine-readable scorecard to `Data/excel_health_audit.json`.
@@ -408,7 +408,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   1. **Fibonacci Prime EMAs**: Upgraded `Terminal/Candle_Indicator_Engine.py` and `Data/Excel_Modules/11_Technical.py` (Sheet 20) with Numba SIMD-vectorized ribbons: `5, 13, 34, 89, 144, 233` (where 5, 13, 89, 233 are Fibonacci primes). Added `ema_233_slope_3h_pct` for macro trend bias.
   2. **Multi-Timeframe Auction Extremes**: Upgraded `Data/Excel_Modules/20_Auction_Market_Structure.py` (Sheet 32) to compute and display Monday High/Low/Mid (`IB_W`), Asian/London/NY session extremes, Current/Prior Week High/Low (`CWH/CWL/PWH/PWL`), and Current/Prior Month High/Low (`CMH/CML/PMH/PML`) via dual-timeframe M15 + D1 data.
   3. **Symmetrical Fibonacci Golden Zone**: Implemented direction-aware impulse retracement: Bullish impulse retracing down to Golden Pocket [0.618-0.650] and OTE 0.702 with SL beyond 0.786 Invalidation Shelf; Bearish impulse retracing up symmetrically.
-  4. **Universal Governance Synchronization**: Updated all governance files (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Arena_GLM_Standard_Prompt.md`, `SUBAGENT_PROMPT_TEMPLATES.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, `TRADE_DECISION_PLAYBOOK.md`, `institutional_orderflow_live_checklist.md`, `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md`, `ACTIVE_CONTEXT.md`) and verified 0 formula errors across all 33 sheets of `Data/DataBase_Trading.xlsx`.
+  4. **Universal Governance Synchronization**: Updated all governance files (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Arena_GLM_Standard_Prompt.md`, `SUBAGENT_PROMPT_TEMPLATES.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, `TRADE_DECISION_PLAYBOOK.md`, `institutional_orderflow_live_checklist.md`, `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md`, `ACTIVE_CONTEXT.md`) and verified 0 formula errors across all 35 feeds of `Data/feeds/*.parquet`.
 
 ---
 

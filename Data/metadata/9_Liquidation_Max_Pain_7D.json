@@ -1,7 +1,7 @@
 {
   "feed_name": "9_Liquidation_Max_Pain_7D",
   "status": "PASS",
-  "row_count": 747,
+  "row_count": 749,
   "column_count": 11,
   "columns": [
     "ranking",
@@ -16,9 +16,9 @@
     "long_distance_usd",
     "long_distance_pct"
   ],
-  "byte_size": 71009,
-  "timestamp_ist": "2026-10-26 17:38:09 IST",
-  "timestamp_utc": "2026-10-26 12:08:09 UTC",
-  "epoch_utc": 1793016489.193913,
-  "write_duration_ms": 6.27
+  "byte_size": 71091,
+  "timestamp_ist": "2026-10-26 19:54:35 IST",
+  "timestamp_utc": "2026-10-26 14:24:35 UTC",
+  "epoch_utc": 1793024675.038817,
+  "write_duration_ms": 4.42
 }

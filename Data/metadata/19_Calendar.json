@@ -15,9 +15,9 @@
     "outcome",
     "url"
   ],
-  "byte_size": 3602,
-  "timestamp_ist": "2026-10-26 17:38:27 IST",
-  "timestamp_utc": "2026-10-26 12:08:27 UTC",
-  "epoch_utc": 1793016507.186785,
-  "write_duration_ms": 379.91
+  "byte_size": 3609,
+  "timestamp_ist": "2026-10-26 19:55:53 IST",
+  "timestamp_utc": "2026-10-26 14:25:53 UTC",
+  "epoch_utc": 1793024753.413958,
+  "write_duration_ms": 480.65
 }

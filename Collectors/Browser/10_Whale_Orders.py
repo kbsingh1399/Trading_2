@@ -36,10 +36,17 @@ import datetime
 import json
 import logging
 import pathlib
+import re
 import sys
 import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
+
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
@@ -69,7 +76,9 @@ TARGET_INDEX = 18
 
 TARGET_UNIVERSE_COINS = [
     "BTC", "ETH", "SOL", "XRP", "BNB", "DOGE",
-    "ADA", "LINK", "AVAX", "SUI", "NEAR", "LTC"
+    "ADA", "TRX", "LINK", "AVAX", "SUI", "NEAR",
+    "DOT", "LTC", "BCH", "APT", "OP", "ARB",
+    "AAVE", "UNI", "TAO", "WLD"
 ]
 
 COLUMNS_DEF = [
@@ -387,6 +396,65 @@ async def harvest_whale_orders(
             close_tab(tab_id, cdp_base_url)
 
 
+def load_macro_whale_orders() -> List[Dict[str, Any]]:
+    """Extracts resting institutional whale orders (>= $100K) from 17_Orderbook.parquet for macro assets."""
+    orderbook_path = ROOT_DIR_FOR_PQ / "Data" / "feeds" / "17_Orderbook.parquet"
+    if not orderbook_path.exists():
+        return []
+    try:
+        import pandas as pd
+        df = pd.read_parquet(orderbook_path)
+        macro_whales = []
+        now_dt = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)
+        now_ist = now_dt.strftime("%Y-%m-%d %H:%M:%S IST")
+
+        for idx, row in df.iterrows():
+            usd_str = str(row.get("notional_usd", ""))
+            usd_clean = re.sub(r"[^\d.]", "", usd_str)
+            notional = float(usd_clean) if usd_clean else 0.0
+            if notional < 100000.0:
+                continue
+
+            asset = str(row.get("asset", "")).upper()
+            asset_class = str(row.get("asset_class", "")).upper()
+            side_str = str(row.get("side", "")).upper()
+            side_label = "Buy Orders" if "BID" in side_str else "Sell Orders"
+
+            price_str = str(row.get("price", ""))
+            price_clean = re.sub(r"[^\d.]", "", price_str)
+            price = float(price_clean) if price_clean else 0.0
+
+            size_str = str(row.get("size_coins", ""))
+            size_clean = re.sub(r"[^\d.]", "", size_str)
+            size = float(size_clean) if size_clean else (notional / price if price > 0 else 0.0)
+
+            sym = f"{asset}USD" if not asset.endswith("USD") else asset
+
+            macro_whales.append({
+                "exchange": f"MT5-{asset_class.capitalize()}",
+                "symbol": sym,
+                "type": "Futures",
+                "side": side_label,
+                "price": price,
+                "amount_btc": size,
+                "notional_usd": notional,
+                "initial_value_usd": notional,
+                "traded_value_usd": 0.0,
+                "traded_value_pct": 0.0,
+                "initial_size_btc": size,
+                "traded_size_btc": 0.0,
+                "traded_size_pct": 0.0,
+                "order_time_ist": now_ist,
+                "order_duration": "Resting Book",
+                "order_id": f"MT5_{asset}_{side_str}_{int(price)}",
+            })
+        log.info(f"Loaded {len(macro_whales)} resting Macro Whale Orders (>= $100K) from 17_Orderbook.parquet.")
+        return macro_whales
+    except Exception as e:
+        log.warning(f"Error extracting macro whale orders from 17_Orderbook.parquet: {e}")
+        return []
+
+
 def run_whale_orders_harvest(
     sheet_name: str = TARGET_SHEET_NAME,
     target_index: int = TARGET_INDEX,
@@ -398,7 +466,7 @@ def run_whale_orders_harvest(
     t_start = time.time()
     log.info(f"Starting Multi-Asset Whale Orders harvest for feed '{sheet_name}'...")
 
-    records = asyncio.run(
+    crypto_records = asyncio.run(
         harvest_whale_orders(
             cdp_base_url=cdp_base_url,
             target_url=target_url,
@@ -406,13 +474,23 @@ def run_whale_orders_harvest(
         )
     )
 
-    if not records:
+    macro_records = load_macro_whale_orders()
+    all_records = list(crypto_records) + list(macro_records)
+
+    if not all_records:
         log.error("Harvest yielded 0 records. Execution failed.")
         return False
 
-    meta = write_parquet_feed(sheet_name, records)
+    # Renumber sr_no sequentially across all combined records
+    for i, r in enumerate(all_records, start=1):
+        r["sr_no"] = i
+
+    meta = write_parquet_feed(sheet_name, all_records)
     elapsed = time.time() - t_start
-    log.info(f"Whale Orders module completed successfully in {elapsed:.2f}s with {len(records)} orders ({meta.get('byte_size')} bytes).")
+    log.info(
+        f"Whale Orders module completed successfully in {elapsed:.2f}s with {len(all_records)} orders "
+        f"({len(crypto_records)} Crypto + {len(macro_records)} Macro, {meta.get('byte_size')} bytes)."
+    )
     return True
 
 

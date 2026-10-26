@@ -1,10 +1,10 @@
-# Institutional Architecture & Implementation Plan: Monolithic-Excel to 33-Feed Parquet Pivot
+# Institutional Architecture: Production 35-Feed Parquet Data Lake & Execution Engine
 
 > **Target Spec Location:** `docs/specs/PARQUET_PIPELINE_ARCHITECTURE_PLAN.md`  
-> **Status:** APPROVED FOR IMPLEMENTATION  
-> **Target Production System:** 33 Dedicated High-Speed Parquet Feeds (`Data/feeds/*.parquet`)  
+> **Status:** PRODUCTION CERTIFIED & FULLY DEPLOYED  
+> **Target Production System:** 35 Dedicated High-Speed Parquet Feeds (`Data/feeds/*.parquet`) + Unified Liquidation Matrix  
 > **Architecture Pattern:** Decoupled Single-Feed Append/Overwrite via PyArrow/Polars with Sub-Millisecond JSON Metadata  
-> **SLA Realignment:** 15-Minute Candle Synchronization (Tier 1: <1m, Tier 2: <15m, Tier 3: <30m)
+> **SLA Realignment:** High-Velocity (<1m), Tactical (<5m), Macro (<15m)
 
 ---
 
@@ -46,16 +46,16 @@ We completely decouple the storage engine from presentation:
 ```text
 c:\Users\SIGMA\Documents\Trading_2\
 ├── Data\
-│   ├── feeds\                         # 33 Canonical Production Parquet Tables (Live Snapshots)
+│   ├── feeds\                         # 35 Canonical Production Parquet Tables (Live Snapshots)
 │   │   ├── 00_MT5_Account_Telemetry.parquet
 │   │   ├── 01_Crypto_ETF_Flows.parquet
 │   │   ├── 02_Spot_Netflow_S.parquet
-│   │   ├── 03_Exchanges_LS_Ratio_15M.parquet
-│   │   ├── 03_Exchanges_LS_Ratio_1H.parquet
-│   │   ├── 03_Exchanges_LS_Ratio_4H.parquet
 │   │   ├── ...
 │   │   ├── 22_Forced_Liquidations_MTF.parquet
-│   │   └── 23_Master_Pipeline_Telemetry.parquet
+│   │   ├── 23_Master_Pipeline_Telemetry.parquet
+│   │   ├── 25_CoinGlass_Footprint_Signals.parquet
+│   │   ├── 26_Aggregated_Footprint_Bar_Metrics.parquet
+│   │   └── 14_Liquidation_Matrix.parquet (Unified Multi-Venue Matrix)
 │   │
 │   ├── metadata\                      # Micro-Metadata JSON Sidecars (< 1KB each)
 │   │   ├── 00_MT5_Account_Telemetry.json
@@ -299,8 +299,8 @@ We replace the crude batch-sequential runner with an Earliest-Deadline-First (ED
 
 | Tier | Update Period | Max Allowed Age | Concurrency Pool | Modules / Feeds Included |
 |---|---|---|---|---|
-| **Tier 1: High Velocity** | **60 seconds** | **90 seconds** | `api_pool` (Semaphore=6) | `00_MT5_Account_Telemetry`, `18_CVD`, `22_Forced_Liquidations_MTF`, `17_Orderbook` |
-| **Tier 2: Tactical** | **300–600s (5–10m)** | **15 minutes** | `cdp_pool` (Semaphore=2) + `api_pool` | LS 15M/1H/4H, `05_OI`, `05_Funding_Rate`, `06_Funding_Fee_Settlement`, `07_Liq_Heapmap`, `07_Live_Liq`, `08_Liq_Map_1D/7D`, `09_Max_Pain`, `10_Whale_Orders`, `20_Auction`, `21_Tradfye`, Hyperdash Suite (`12–16`) |
+| **Tier 1: High Velocity** | **60 seconds** | **90 seconds** | `api_pool` (Semaphore=6) | `00_MT5_Account_Telemetry`, `18_CVD`, `22_Forced_Liquidations_MTF`, `17_Orderbook`, `23_Master_Pipeline_Telemetry` |
+| **Tier 2: Tactical** | **300–600s (5–10m)** | **15 minutes** | `cdp_pool` (Semaphore=2) + `api_pool` | LS 15M/1H/4H, `05_OI`, `05_Funding_Rate`, `06_Funding_Fee_Settlement`, `07_Liq_Heapmap`, `07_Live_Liq`, `08_Liq_Map_1D/7D`, `09_Max_Pain`, `10_Whale_Orders`, `20_Auction`, `21_Tradfye`, Hyperdash Suite (`12–16`), `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`, `14_Liquidation_Matrix` |
 | **Tier 3: Macro & Low Velocity**| **1800s (30m)** | **45 minutes** | `cdp_pool` (Semaphore=1) | `01_Crypto_ETF_Flows`, `02_Spot_Netflow_S`, `19_News`, `19_Calendar` |
 
 ### 5.2 Strict Browser Lane Pacing & Anti-Detection
