@@ -173,13 +173,15 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
         }}
         
         // 2. Find Autocomplete Fiber for Asset Switching
-        const input = card.querySelector('.MuiAutocomplete-input');
+        const boxAfter = document.querySelector('[class*="LSTableV2"]');
+        const cardAfter = boxAfter ? (boxAfter.closest('.MuiCard-root') || boxAfter.parentElement) : card;
+        const input = cardAfter.querySelector('.MuiAutocomplete-input');
         if (!input) return {{ error: "No Autocomplete input found" }};
         const inKey = Object.keys(input).find(k => k.startsWith('__reactFiber'));
         let cur = input[inKey];
         let acComp = null;
         while (cur) {{
-            if (cur.memoizedProps && cur.memoizedProps.options && cur.memoizedProps.options.length > 100) {{
+            if (cur.memoizedProps && ('options' in cur.memoizedProps) && cur.memoizedProps.onChange) {{
                 acComp = cur;
                 break;
             }}
@@ -194,7 +196,9 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
             acComp.memoizedProps.onChange({{ type: 'change' }}, sym, 'selectOption');
             await new Promise(r => setTimeout(r, 220));
             
-            const lines = card.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
+            const currentBox = document.querySelector('[class*="LSTableV2"]');
+            const currentCard = currentBox ? (currentBox.closest('.MuiCard-root') || currentBox.parentElement) : cardAfter;
+            const lines = currentCard.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
             
             // Parse Total row
             const total = {{
