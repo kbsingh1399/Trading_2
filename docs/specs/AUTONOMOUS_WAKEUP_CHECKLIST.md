@@ -6,7 +6,10 @@
 > **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD).  
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists `[ ]`.  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 36-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).  
+> **Mandatory Foundation & Compendiums (MUST READ Before Any Trade Staging)**:
+> - [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 36-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).
+> - [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (**MUST READ** — Fatal Sub-ATR Noise Stops, Value Area Misplacements, Lot-Size Inflation & Post-Mortem Autopsy).
+> - [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) (**MUST READ** — Row-by-Row 35-Feed Deep Questioning Engine & Real-World Pitfall Avoidance Directive).
 > **Standard Council Prompt Templates**:
 > - [`ARENA_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_AI_STANDARD_PROMPT_TEMPLATE.md) (GPT-5.4 Astra Frontier Model via Chrome CDP Port 9222)
 > - [`Z_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Z_AI_STANDARD_PROMPT_TEMPLATE.md) (GLM-5.3-Flash / Claude 3.7 Sonnet Sovereign Adversarial Arbiter via Chrome CDP Port 9222)

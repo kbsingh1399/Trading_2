@@ -6,7 +6,10 @@
 > **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD).  
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists `[ ]`.  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 36-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).  
+> **Mandatory Foundation & Compendiums (MUST READ Before Any Trade Staging)**:
+> - [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 36-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).
+> - [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (**MUST READ** — Fatal Sub-ATR Noise Stops, Value Area Misplacements, Lot-Size Inflation & Post-Mortem Autopsy).
+> - [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) (**MUST READ** — Row-by-Row 35-Feed Deep Questioning Engine & Real-World Pitfall Avoidance Directive).
 > **Standard Council Prompt Templates**:
 > - [`ARENA_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_AI_STANDARD_PROMPT_TEMPLATE.md) (GPT-5.4 Astra Frontier Model via Chrome CDP Port 9222)
 > - [`Z_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Z_AI_STANDARD_PROMPT_TEMPLATE.md) (GLM-5.3-Flash / Claude 3.7 Sonnet Sovereign Adversarial Arbiter via Chrome CDP Port 9222)
@@ -84,6 +87,9 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   3. **Ticket #19330613 (`ETHUSD.pi` SELL_LIMIT 0.50 lot @ 2,333.50)**: Backed by footprint absorption at 2,329.20, cumulative delta -10.89M USD, Long Max Pain magnet at 2,285.66 USD. Aligned with +2SD VWAP boundary (2,333.52). Consensus: **PREVAIL / HOLD RESTING**.
 
 ### Gateway 6: Candidate Formulation & 5-Pillar Confluence Pipeline
+- **Mandatory Pre-Candidate Failure Check (MUST READ Before Order Staging)**:
+  * Cross-examine every prospective setup against the 10 fatal traps in [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (strictly forbid sub-ATR noise stops, value area balance misplacements, lot-size inflation, and unaligned limits lacking resting whale backing).
+  * Systematically interrogate all 35 feeds using the concrete reasoning questions in [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md). If any feed triggers an invalidation answer, fail-closed into 100% Cash Defense.
 - **Dynamic Spread Friction Budgeting**: `Spread Points / TP Distance Points <= 15.0%`.
 - **5-Pillar Confluence Stack**:
   1. Dynamic spread friction gate passed (Efficiency Ratio <= 15%).
