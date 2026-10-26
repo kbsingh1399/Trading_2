@@ -544,4 +544,484 @@ Entry
 3.1 Multi-Timeframe Auction Extremes & Fibonacci Golden Zone Audit (20_Auction_Market_Structure.parquet, 84 rows × 61 cols)
 Symbol	Live Mid	d_POC / d_VAH / d_VAL	pd_POC / pd_VAH / pd_VAL	Mon_H / Mon_L / Mon_Mid	Asian_H / Asian_L	PWH / PWL	fib_dir	Golden Zone [gp_min (0.618), gp_max (0.650), ote (0.702)]	fib_inval (0.786)	fib_status
 BTCUSD.pi	79,789.5	79,791.7 / 79,930.0 / 79,763.0	79,933.5 / 80,390.0 / 79,715.2	80,712.5 / 79,224.0 / 79,968.3	80,090.5 / 79,699.0	84,855.5 / 79,071.0	BULLISH_IMPULSE	[79,744.98, 79,792.61, 79,667.57]	79,542.54	SHALLOW_RETRACE (INSIDE_VALUE)
-ETHUSD.pi	2,305.1	`2,304.								
+ETHUSD.pi	2,305.1	2,304.6 / 2,307.7 / 2,300.9	2,314.0 / 2,329.1 / 2,305.6	2,348.0 / 2,288.3 / 2,318.15	2,311.8 / 2,296.8	2,522.0 / 2,275.3	BEARISH_IMPULSE	[2,323.40, 2,325.22, 2,328.17]	2,332.94	SHALLOW_RETRACE (INSIDE_VALUE)
+BNBUSD.p	740.15	740.49 / 742.13 / 740.38	738.50 / 741.52 / 735.38	746.00 / 730.90 / 738.45	742.65 / 739.30	750.90 / 707.00	BULLISH_IMPULSE	[736.18, 736.67, 735.40]	734.13	SHALLOW_RETRACE (BELOW_VALUE)
+SOLUSD.p	100.06	100.03 / 100.43 / 100.02	101.04 / 101.43 / 100.40	102.46 / 99.56 / 101.01	100.58 / 99.80	109.03 / 98.34	BULLISH_IMPULSE	[100.58, 100.67, 100.42]	100.18	STRUCTURE_INVALIDATED
+BCHUSD.p	277.75	278.40 / 279.49 / 277.63	277.50 / 279.93 / 276.29	283.95 / 273.26 / 278.61	279.50 / 276.30	290.06 / 264.76	BEARISH_IMPULSE	[279.87, 280.21, 280.77]	281.67	SHALLOW_RETRACE
+XAUUSD.pi	4,014.23	4,015.17 / 4,017.37 / 4,014.60	4,016.36 / 4,025.01 / 4,001.50	4,030.02 / 3,978.16 / 4,004.09	4,018.85 / 4,014.07	4,190.47 / 3,975.67	BULLISH_IMPULSE	[3,996.31, 3,997.97, 3,993.61]	3,989.26	SHALLOW_RETRACE (BELOW_VALUE)
+DJ30.p	52,359.75	52,350.7 / 52,361.6 / 52,342.5	52,353.1 / 52,458.9 / 52,312.0	52,633.7 / 52,193.0 / 52,413.3	52,361.7 / 52,328.4	52,948.1 / 51,836.4	BULLISH_IMPULSE	[52,347.21, 52,361.31, 52,324.29]	52,287.27	IN_GOLDEN_POCKET (0.618-0.650)
+SP500.p	7,682.03	7,681.11 / 7,682.24 / 7,678.67	7,630.01 / 7,672.55 / 7,617.19	7,701.39 / 7,613.99 / 7,657.69	7,684.18 / 7,678.17	7,769.56 / 7,607.81	BULLISH_IMPULSE	[7,644.58, 7,647.38, 7,640.04]	7,632.69	SHALLOW_RETRACE
+NAS100.p	29,329.97	29,326.9 / 29,336.1 / 29,311.4	29,318.1 / 29,402.1 / 29,000.2	29,403.9 / 28,855.9 / 29,129.9	29,352.3 / 29,307.6	29,925.0 / 28,805.3	BULLISH_IMPULSE	[29,047.68, 29,065.22, 29,019.18]	28,973.14	SHALLOW_RETRACE
+EURUSD.pi	1.117345	1.11734 / 1.11749 / 1.11732	1.11819 / 1.12112 / 1.11736	1.12267 / 1.11731 / 1.11999	1.11762 / 1.11724	1.12608 / 1.11808	BEARISH_IMPULSE	[1.12060, 1.12077, 1.12105]	1.12151	SHALLOW_RETRACE (Swept PWL 1.11808)
+3.2 Tradfye Orderflow, Footprint POC, Taker Delta & Deribit Options Gamma Walls (21_Tradfye_Orderflow.parquet, 6,912 rows × 24 cols)
+Asset (Pair)	Bar UTC (15m)	total_vol_usd	taker_buy_usd	taker_sell_usd	net_delta_usd (%)	Cumulative cvd_usd	poc_estimate	Orderflow regime & divergence	Deribit max_pain / call_wall / put_wall
+BTC (BTCUSDT)	22:30:00 UTC (22:15 UTC)	$8.45M ($23.07M)	$3.49M ($11.79M)	$4.96M ($11.28M)	-$1.48M (-17.50%) / +$510.4K (+2.21%)	+$92,231,740.54 (+$167.01M session in snapshot)	79,908.13 (79,961.95)	TWO_SIDED_ABSORPTION (22:15) 
+→
+→ BEARISH_EXPANSION (22:30)	Max Pain 78,000 / Call Wall 95,000 / Put Wall 60,000
+ETH (ETHUSDT)	22:30:00 UTC (22:15 UTC)	$6.41M ($14.85M)	$2.83M ($8.05M)	$3.59M ($6.81M)	-$759.8K (-11.85%) / +$1.24M (+8.36%)	+$179,536,101.72	2,307.94 (2,309.78)	TWO_SIDED_ABSORPTION (BEARISH_EXPANSION at 2,308.52)	Max Pain 2,300 / Call Wall 3,200 / Put Wall 2,300
+BNB (BNBUSDT)	22:30:00 UTC (22:15 UTC)	$910.4K ($1.64M)	$244.5K ($892.4K)	$665.9K ($744.0K)	-$421.4K (-46.29%) / +$148.4K (+9.07%)	+$17,985,840.70	741.91 (742.68)	Pullback from 742.68 POC toward 736.25 GP limit bid	N/A (0.0 — non-Deribit)
+SOL (SOLUSDT)	22:30:00 UTC (22:15 UTC)	$4.79M ($4.72M)	$1.83M ($2.83M)	$2.96M ($1.89M)	-$1.13M (-23.65%) / +$940.2K (+19.91%)	-$8,991,565.38	100.17 (100.32)	BULLISH_ABSORPTION (22:15) vs BEARISH_EXPANSION (22:30)	N/A (0.0)
+XRP (XRPUSDT)	22:30:00 UTC (22:15 UTC)	$696.7K ($2.01M)	$288.1K ($574.4K)	$408.6K ($1.44M)	-$120.4K (-17.28%) / -$863.7K (-42.92%)	+$27,085,963.43	1.2901 (1.2919)	AGGRESSIVE_SELLER_DOMINATION (BEARISH_EXPANSION)	N/A (0.0)
+BCH (BCHUSDT)	22:30:00 UTC (22:15 UTC)	$98.7K ($210.9K)	$29.7K ($102.9K)	$69.0K ($108.0K)	-$39.3K (-39.77%) / -$5.1K (-2.42%)	+$1,269,670.99	278.15 (278.66)	AGGRESSIVE_SELLER_DOMINATION (BEARISH_EXPANSION)	N/A (0.0)
+3.3 Mandatory 180-Second Whale Wall Persistence Audit (10_Whale_Orders.parquet @ 03:56:35 IST & whale_walls_l3 @ 22:34:21 UTC)
+BTC Institutional Whale Bunkers (persisted_seconds >= 180s):
+CEX Bid Bunkers (10_Whale_Orders.parquet):
+$20,700,000 at 79,700.00 on Binance & OKX (order_duration = 5h 23m = 19,380s >= 180s! Coincides with Asian_L = 79,699.00 and ote_0702 = 79,667.57!).
+$3,980,000 at 79,669.00 on Binance & Bybit (order_duration = 5h 44m = 20,640s >= 180s — exact 0.702 OTE level!).
+$9,560,000 at 79,501.00 (2h 41m = 9,660s) + $3,790,000 at 79,500.00 (7h 54m = 28,440s) on Binance (protecting the 0.786 invalidation shelf 79,542.54).
+$12,700,000 at 79,307.20 (3h 57m = 14,220s, protecting Mon_L = 79,224.00).
+CEX Ask Bunkers (10_Whale_Orders.parquet):
+$2,380,000 at 80,500.00 on Binance (3h 20m = 12,000s >= 180s), $3,890,000 at 80,800.00 (6h 39m = 23,940s), $4,950,000 at 80,881.70 (3h 43m = 13,380s).
+DEX L3 Wallet-Attributed Whale Walls (live_snapshot_latest.json whale_walls_l3):
+Wallet 0xf5a5...1286: $24,754,210.57 SELL at 80,979.00 (persist_s = 2,997.9s >= 180s, gate_g7_eligible = true) and $24,089,341.80 BUY at 78,804.00 (persist_s = 2,997.9s >= 180s, gate_g7_eligible = true).
+Binance L2 Top-20 Book Imbalance (orderbook_live_depth): top20_bid_depth_usd = $1,401,499.55 vs top20_ask_depth_usd = $197,793.95 (book_imbalance = +0.7526, skew_ratio = 7.09x bid-heavy!).
+ETH Institutional Whale Bunkers (persisted_seconds >= 180s):
+Ask Bunker Backing Ticket #19330613 (SELL_LIMIT @ 2,333.50):
+$6,390,000 Sell Orders at 2,331.00 on Binance (order_duration = 4h 49m = 17,340s >= 180s! Coincides with 20_Auction_Market_Structure fib_inval = 2,332.94 and 11_Technical upper_2sd = 2,333.29 & ema_233 = 2,333.13).
+Bid Bunkers (2,290.00–2,300.00 — Why #19330613 TP at 2,291.00 Front-Runs the Bid Wall!):
+$8,140,000 (2d 4h) + $5,960,000 (2d 6h) + $4,260,000 (2d 4h) + $3,240,000 (8h 33m) = $21,600,000 combined Buy Orders at 2,290.00 on Binance (coinciding with pw_VAL = 2,290.10 and Mon_L = 2,288.30)!
+Ticket #19330613's Take-Profit at 2,291.00 front-runs that massive $21.60M institutional bid wall at 2,290.00 by +1.00 USD (+4.36 bps) and front-runs the 24H Long Liquidation Max Pain (2,285.66, $23.44M) by +23.3 bps!
+BNB Institutional Whale Bunkers (persisted_seconds >= 180s):
+Bid Bunkers Backing Ticket #19329907 (BUY_LIMIT @ 736.25):
+$630,000 Buy Orders at 735.00 on Binance (order_duration = 13h 45m = 49,500s >= 180s — coinciding with pd_VAL = 735.38 and 20_Auction_Market_Structure fib_ote = 735.40!), $175,000 at 733.70 (1h 44m = 6,240s), $389,000 at 731.00 (20h 30m = 73,800s), and $188,000 at 730.71 (20h 37m).
+Ask Bunkers (748.00–750.00 — Why #19329907 TP at 746.80 Front-Runs the Ask Wall!):
+$224,000 Sell Orders at 748.00 (5h 53m = 21,180s) and $451,000 + $372,000 + $207,000 = $1,030,000 Sell Orders at 750.00 (2d 7h–3d 5h). Ticket #19329907's Take-Profit at 746.80 front-runs the 748.00 ask wall by -1.20 USD (-16.0 bps)!
+🛡️ §4. ROLE C: SOLVENCY, PORTFOLIO & BROKER MATH SENTRY
+4.1 Triple Floor & Solvency Kernel Reconciliation (Sub-Penny 0.01 USD Precision)
+\text{Realized Balance} &= \text{Floating Equity} = \$4,846.32\text{ USD} \\ \text{Hard Capital Floor} &= \$4,600.00\text{ USD} \implies \text{Hard Floor Cushion} = +\$246.32\text{ USD} \\ \text{Operating Buffer} &= \$4,650.00\text{ USD} \implies \text{Operating Buffer Cushion} = +\$196.32\text{ USD} \\ \text{Solvency Kernel Floor} &= \$4,795.00\text{ USD} \implies \text{Gross Kernel Cushion} = +\$51.32\text{ USD} \\ \text{Global Contingency Reserve} &= \$2.00\text{ USD} \implies \text{Net Base Headroom } (H_{\text{base}}) = \$51.32 - \$2.00 = \mathbf{+\$49.32\text{ USD}} \end{aligned}$$
+
+(Note: Operator baseline narrative mentions $4,865.07 USD / +$68.07 USD from 2026-10-24; per the Static Council Review Protocol, fresh reconciled MT5 telemetry $4,846.32 USD / +$49.32 USD net base headroom governs all calculations).
+
+4.2 Exact Stressed Loss & 50% Crypto Margin Collateralization Audit
+
+Using the canonical Role C Stressed Solvency formula from live_snapshot_latest.json (stop_stress_multiplier = 1.25, execution_cost_per_ticket_usd = $2.00 + exit spread cost):
+
+Ticket_Stress
+𝑖
+=
+1.25
+×
+Nominal_SL_Loss
+𝑖
++
+Spread_Exit_Cost
+𝑖
++
+$
+2.00
+Ticket_Stress
+i
+	​
+
+=1.25×Nominal_SL_Loss
+i
+	​
+
++Spread_Exit_Cost
+i
+	​
+
++$2.00
+
+Ticket	Symbol & Side	Volume	Entry / SL / TP	Nominal SL Loss (
+USD
+USD)	Broker Stressed Loss (
+USD
+USD)	Nominal TP Gain (
+USD
+USD)	50% Crypto / FX Margin Required (
+USD
+USD)	Status in Envelope (20:29Z) vs. Live MT5 (22:35Z)
+#19329907	BNBUSD.p BUY_LIMIT	3.00 lots (3 BNB)	736.25 / 732.65 / 746.80	
+3.0
+×
+3.60
+=
+$
+10.80
+3.0×3.60=$10.80	
+1.25
+(
+10.80
+)
++
+2.00
+=
+$
+15.50
+1.25(10.80)+2.00=$15.50	
+3.0
+×
+10.55
+=
+$
+31.65
+3.0×10.55=$31.65	
+0.50
+×
+3.0
+×
+736.25
+=
+$
+1
+,
+104.39
+0.50×3.0×736.25=$1,104.39	Active in Both (PREVAIL)
+#19329908	EURUSD.pi SELL_LIMIT	0.10 lot (10k EUR)	1.12065 / 1.12180 / 1.11760	
+0.1
+×
+10
+5
+×
+0.00115
+=
+$
+11.50
+0.1×10
+5
+×0.00115=$11.50	
+1.25
+(
+11.50
+)
++
+2.00
+=
+$
+16.375
+1.25(11.50)+2.00=$16.375	
+0.1
+×
+10
+5
+×
+0.00305
+=
+$
+30.50
+0.1×10
+5
+×0.00305=$30.50	
+10
+,
+000
+×
+1.12065
+/
+300
+=
+$
+37.36
+10,000×1.12065/300=$37.36	In Envelope 
+→
+→ Already Cancelled on Live MT5 (PRUNE)
+#19330613	ETHUSD.pi SELL_LIMIT	0.50 lot (0.5 ETH)	2,333.50 / 2,351.30 / 2,291.00	
+0.5
+×
+17.80
+=
+$
+8.90
+0.5×17.80=$8.90	
+1.25
+(
+8.90
+)
++
+2.00
+=
+$
+13.125
+1.25(8.90)+2.00=$13.125	
+0.5
+×
+42.50
+=
+$
+21.25
+0.5×42.50=$21.25	
+0.50
+×
+0.5
+×
+2333.50
+=
+$
+583.38
+0.50×0.5×2333.50=$583.38	Active in Both (PREVAIL)
+Pre-Prune Total (3 Tickets)	—	—	—	$31.20 USD	$45.00 USD	$83.40 USD	$1,725.12 USD	post_joint_stress_equity = $4,799.32 (+$4.32 headroom)
+Post-Prune Live Total (2 Tickets)	#19329907 + #19330613	—	—	$19.70 USD	$28.625 USD	$52.90 USD	$1,687.765 USD	post_joint_stop_equity = $4,817.695 (+$20.695 net Kernel headroom)
+4.3 Finding D3 Margin Collateralization Gate Verification
+50% Equity Margin Cap: 
+0.50
+×
+$
+4
+,
+846.32
+=
+$
+2
+,
+423.16
+ USD
+0.50×$4,846.32=$2,423.16 USD.
+Surviving 2-Ticket Margin Utilization: 
+$
+1
+,
+104.39
++
+$
+583.375
+=
+$
+1
+,
+687.765
+ USD
+$1,104.39+$583.375=$1,687.765 USD (34.83% of Equity 
+≤
+50.0
+%
+≤50.0%; free_margin_after_pending_fills_usd = $3,158.555 USD).
+Post-Fill Margin Level:
+
+Margin Level
+post-fill
+=
+$
+4
+,
+846.32
+$
+1
+,
+687.765
+×
+100
+%
+=
+287.14
+%
+≥
+200.0
+%
+(
+PASS
+)
+Margin Level
+post-fill
+	​
+
+=
+$1,687.765
+$4,846.32
+	​
+
+×100%=287.14%≥200.0%(PASS)
+Remaining Crypto Margin Capacity Before 200% Margin Level Floor:
+
+Margin
+remaining
+=
+$
+2
+,
+423.16
+−
+$
+1
+,
+687.765
+=
+$
+735.395
+ USD
+Margin
+remaining
+	​
+
+=$2,423.16−$1,687.765=$735.395 USD
+At 50% crypto margin (2:1 leverage), $735.395 USD of remaining margin supports at most $1,470.79 USD of notional crypto exposure (which is only 0.0184 lot of BTCUSD.pi at 79,789.50!). Even a 0.04 lot BTCUSD.pi order at 79,710.00 requires 
+0.04
+×
+79
+,
+710.00
+×
+0.50
+=
+$
+1
+,
+594.20
+ USD
+0.04×79,710.00×0.50=$1,594.20 USD of margin, which would push total margin to 
+$
+1
+,
+687.765
++
+$
+1
+,
+594.20
+=
+$
+3
+,
+281.965
+ USD
+$1,687.765+$1,594.20=$3,281.965 USD (67.72% > 50% equity cap, Margin Level 147.67% < 200.0%), violating Finding D3 unless one of the two existing crypto limit orders is replaced or closed!
+🎯 §5. AUDIT OF EXISTING PENDING TICKETS (#19329907, #19329908, #19330613)
+
+Ticket #19329907 (BNBUSD.p BUY_LIMIT 3.00 lots @ 736.25, SL 732.65, TP 746.80) — Verdict: PREVAIL
+
+Golden Zone & Invalidation Shelf Alignment (20_Auction_Market_Structure.parquet): BNBUSD.p is in a BULLISH_IMPULSE structure with fib_gp_min (0.618) = 736.18, fib_gp_max (0.650) = 736.67, fib_ote (0.702) = 735.40, and fib_inval (0.786) = 734.13. Limit entry 736.25 sits directly inside the [736.18, 736.67] Golden Pocket!
+0.786 Stop-Loss Rule Check: SL = 732.65 sits 1.48 pts (0.83 × ATR_14 where ATR_14 = 1.7779) below fib_inval (0.786) = 734.13, satisfying 
+SL
+long
+≤
+Price
+0.786
+−
+0.40
+×
+ATR
+14
+−
+half_spread
+=
+734.13
+−
+0.71
+−
+0.25
+=
+733.17
+SL
+long
+	​
+
+≤Price
+0.786
+	​
+
+−0.40×ATR
+14
+	​
+
+−half_spread=734.13−0.71−0.25=733.17.
+180s Whale Wall Backing: Backed by the $630,000 Binance Buy Orders wall at 735.00 persisted continuously for 13h 45m (49,500s >= 180s) and $175,000 at 733.70 (1h 44m = 6,240s), while TP = 746.80 front-runs the $224,000 ask wall at 748.00 (5h 53m) and $1.03M ask wall at 750.00 (3d 5h).
+R:R & Solvency: Nominal Risk $10.80 USD, Stressed Loss $15.50 USD, Nominal Reward $31.65 USD (R:R = 2.93R). Retain (PREVAIL).
+
+Ticket #19329908 (EURUSD.pi SELL_LIMIT 0.10 lot @ 1.12065, SL 1.12180, TP 1.11760) — Verdict: PRUNE (CONFIRMED_CANCELLED_ON_MT5)
+
+Structural Exhaustion: Live EURUSD.pi quote (1.11734 Bid / 1.11735 Ask) has already swept Prior Week Low (pwl = 1.11808) and traded 2.6 pips below the order's Take-Profit (1.11760) without filling the 1.12065 limit entry (+33.1 pips = 10.25 × ATR_14 away).
+Live MT5 Verification: live_snapshot_latest.json (22:35:17 UTC) confirms #19329908 has already been removed from MT5 (pending: 2), releasing $16.375 USD of stressed loss.
+
+Ticket #19330613 (ETHUSD.pi SELL_LIMIT 0.50 lot @ 2,333.50, SL 2,351.30, TP 2,291.00) — Verdict: PREVAIL
+
+Ribbon, VWAP & Invalidation Shelf Alignment: ETHUSD.pi exhibits a strict Bearish Fib-Prime EMA Ribbon (EMA5 2304.87 < EMA13 2306.93 < EMA34 2311.53 < EMA89 2317.71 < EMA144 2323.38 < EMA233 2333.13). Entry 2,333.50 sits right at EMA 233 (2,333.13), upper_2sd (2,333.29), and just above 20_Auction_Market_Structure fib_inval (2,332.94).
+180s Whale Wall Backing & Stop Protection: Directly backed by the $6,390,000 Binance Sell Orders wall at 2,331.00 (4h 49m = 17,340s >= 180s). Protective SL = 2,351.30 sits +3.30 pts (0.40 × ATR_14 where ATR_14 = 8.2521) above Monday High (Mon_H = 2,348.00) and Prior Day VAH (pd_VAH = 2,347.90), and +4.66 pts above 48H Short Max Pain (2,346.64).
+Take-Profit Front-Running: TP = 2,291.00 front-runs the $21,600,000 Binance Buy Orders wall at 2,290.00 (persisted 2d 6h) by +1.00 pt (+4.36 bps) and front-runs 24H Long Max Pain (2,285.66, $23.44M) by +23.3 bps.
+R:R & Solvency: Nominal Risk $8.90 USD, Stressed Loss $13.125 USD, Nominal Reward $21.25 USD (R:R = 2.39R). Retain (PREVAIL).
+🚀 §6. AFFIRMATIVE CANDIDATE DISCOVERY & CALIBRATED SOFT RANKING ACROSS THE TRADE-ELIGIBLE UNIVERSE
+
+In strict compliance with Requirement #3 (Affirmative Candidate Discovery & High-Confluence Setup Engineering) and Part 2 (Mathematical Soft Ranking & Calibrated Utility), our 4-persona squad scanned all spread-qualified instruments (<= 25.0 bps Crypto, <= 5.0 bps TradFi) and engineered 5 concrete, institutional-grade limit setups (R:R >= 2.28R to 3.12R).
+
+6.1 Why All 5 Engineered Candidates Receive Formal verdict: "HOLD" Under Fail-Closed Governance
+
+While the structural geometries below are fully engineered for watchlist staging or conditional replacement:
+
+Uncalibrated Win-Rate Gate (live_snapshot_latest.json): The closed-trade ledger currently has 
+𝑛
+=
+17
+n=17 closed trades with 
+𝑊
+=
+11
+W=11 wins (
+64.71
+%
+64.71% empirical win rate, Exact One-Sided Clopper-Pearson 95% lower bound p_win_lower_bound = 0.4197), which is below p_win_calibration_minimum_sample = 100 (p_win_lower_bound_calibrated = false). Under Part 2 rules, "Unknown or uncalibrated probabilities remain null/unknown and mandate HOLD for new admission."
+Solvency & Margin Collateralization Cap: In the embedded envelope (20:29:24 UTC), realized_headroom_usd = $4.32 < $12.00 (new_risk_admissible = false). Even on live MT5 (22:35:17 UTC, post-prune of #19329908), the two active orders (#19329907 + #19330613) consume $28.625 USD of stressed risk (leaving $20.695 USD net Kernel headroom—less than the $22.50–$23.50 USD stressed risk of a new standard ticket) and reserve $1,687.765 USD of crypto margin (leaving only $735.395 USD below the 50% equity margin ceiling).
+6.2 Affirmative Candidate Discovery Matrix (Point Estimates vs. Fail-Closed Calibration)
+
+For analytical transparency, we report both:
+
+Strict Schema Calibration Values: p_fill = null, p_win_given_fill = null (with Clopper-Pearson 95% LCB 0.4197 documented in diagnostics), ev_net_usd = null, ev_lcb_5pct_usd = null, utility = null, verdict = "HOLD".
+Shadow Structural Point-Estimate Diagnostics (computed inside calibration_diagnostics using OU barrier hitting probabilities + Clopper-Pearson LCB 0.4197 across 1,000 time-blocked bootstrap draws) to rank the standby watchlist queue:
+Rank & ID	Symbol & Model	Side & Type	Volume (Margin Req)	Entry / SL / TP	R:R	Nominal Risk / Reward (Stressed Loss)	Backing Whale Bunker (>= 180s) & Golden Zone / Auction Confluence	Shadow 
+EV
+^
+net
+EV
+net
+	​
+
+ (Clopper-Pearson LCB 
+EV
+5
+%
+EV
+5%
+	​
+
+)	Verdict & Primary Hold Gate
+#1 CAND-01	BTCUSD.pi (Model 1 1H Mean-Reversion / Golden Zone Sweep)	BUY_LIMIT	0.04 lot ($1,594.20 margin)	79,710.00 / 79,310.00 / 80,680.00	2.43R	$16.00 / $38.80 ($22.60 stressed)	Front-runs $20.70M Binance/OKX Bid Wall @ 79,700.00 (5h 23m) + $3.98M Bid Wall @ 79,669.00 (5h 44m) at Asian_L 79,699.0 & pd_VAL 79,715.2 inside [0.618 GP 79,744.98, 0.702 OTE 79,667.57]. SL 79,310 sits -0.40 ATR - 145 pts below 0.786 shelf (79,542.54) and behind $9.56M (79,501) & $12.70M (79,307.2) bid walls. Entry < OU_theta (79,985.56). TP 80,680 front-runs Mon_H 80,712.5 & $3.89M ask wall (80,800).	+$8.42 USD (+$1.89 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $1,594.20 margin exceeds $735.40 remaining 50% equity margin cap while #19329907 + #19330613 are active)
+#2 CAND-02	BTCUSD.pi (Model 2 15m Bearish Ribbon Pullback)	SELL_LIMIT	0.04 lot ($1,605.40 margin)	80,270.00 / 80,670.00 / 79,310.00	2.40R	$16.00 / $38.40 ($22.60 stressed)	Strict 15m & 1H Bearish Fib-Prime EMA Ribbon (EMA5 < 13 < 34 < 89 < 144 < 233 = 80,265.72); Entry 80,270 sits inside 15m Short Golden Zone [0.650 GP 80,209.03, 0.702 OTE 80,283.83] at EMA 233 (80,265.72) & d_POC (80,280.84), backed by $2.38M Binance Ask Wall (80,500, 3h 20m). SL 80,670 sits +0.40 ATR + 178 pts above 15m 0.786 shelf (80,404.66). Entry > OU_theta (79,985.56). TP 79,310 front-runs $12.70M bid wall (79,307.20) by +0.35 bps.	+$7.95 USD (+$1.64 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $22.60 stressed loss exceeds $20.695 post-prune headroom & $1,605.40 margin exceeds $735.40 cap)
+#3 CAND-03	XAUUSD.pi (Model 1 1H Sub-Diffusive Mean-Reversion)	BUY_LIMIT	0.02 lot ($80.28 margin)	3,995.00 / 3,987.00 / 4,018.50	2.94R	$16.00 / $47.00 ($22.16 stressed)	1H MEAN_REVERT confirmed (VR(4) = 0.4927, z* = -1.915 < -1.64, ER(48) = 0.0404 < 0.15). Entry 3,995.00 sits inside 20_Auction_Market_Structure Golden Zone [0.618 GP 3,996.31, 0.702 OTE 3,993.61] below OU_theta (4,011.69). SL 3,987.00 sits -2.26 pts (-0.52 ATR) below 0.786 shelf (3,989.26) & near l2sd (3,986.67). TP 4,018.50 front-runs Asian_H (4,018.85) by -0.87 bps.	+$10.12 USD (+$3.18 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $22.16 stressed loss exceeds $20.695 post-prune Kernel headroom by $1.465 USD)
+#4 CAND-04	DJ30.p (Model 2 Golden Pocket Pullback)	BUY_LIMIT	0.20 lot ($104.70 margin)	52,330.00 / 52,250.00 / 52,550.00	2.75R	$16.00 / $44.00 ($22.24 stressed)	20_Auction_Market_Structure explicitly flags DJ30.p as IN_GOLDEN_POCKET (0.618-0.650) (gp_min 52,347.21, ote 52,324.29, inval 52,287.27). Entry 52,330.00 sits at Asian_L (52,328.35) & 0.702 OTE (52,324.29) below OU_theta (52,338.76). SL 52,250.00 sits -37.27 pts (-0.77 ATR) below 0.786 shelf (52,287.27).	+$9.15 USD (+$2.65 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (Finding D9 quote_age_s = 47.24s > 15.0s staleness veto + n=17 < 100 calibration + $22.24 > $20.695 headroom)
+#5 CAND-05	SOLUSD.p (Model 1 Extreme -2.5σ Whale Wall Sweep)	BUY_LIMIT	10.00 lots ($495.50 margin)	99.10 / 97.90 / 101.85	2.29R	$12.00 / $27.50 ($19.40 stressed)	Front-runs $2,590,000 Binance/Bybit Bid Wall @ 99.00 (persisted 14h 04m = 50,640s >= 180s) by +10.1 bps after sweeping Mon_L (99.56) and Asian_L (99.80). SL 97.90 sits -0.44 pts (-1.13 ATR) below PWL (98.34) and behind $1.11M Bid Wall at 98.00 (12d 14h). Entry 99.10 < OU_theta (100.48).	+$5.40 USD (+$0.82 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (20_Auction_Market_Structure flags SOLUSD.p fib_status = STRUCTURE_INVALIDATED; n=17 < 100 calibration; 2 crypto slots already full)
+⚖️ §7. ARITHMETIC VALIDATION & DISPUTE LEDGER
+Dispute DISP-01 (Stale Embedded cycle_envelope.json vs. Live MT5 & Git State):
+Embedded cycle_envelope.json has cutoff_utc = "2026-10-2
