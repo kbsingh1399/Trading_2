@@ -21,8 +21,8 @@
     "sr_no"
   ],
   "byte_size": 59564,
-  "timestamp_ist": "2026-10-26 22:03:23 IST",
-  "timestamp_utc": "2026-10-26 16:33:23 UTC",
-  "epoch_utc": 1793032403.024974,
-  "write_duration_ms": 318.17
+  "timestamp_ist": "2026-10-26 22:06:28 IST",
+  "timestamp_utc": "2026-10-26 16:36:28 UTC",
+  "epoch_utc": 1793032588.351219,
+  "write_duration_ms": 271.52
 }
