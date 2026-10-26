@@ -176,17 +176,35 @@ async def harvest_hyperliquid_whale_data() -> list[dict]:
             log.info("Awaiting Hyperliquid page hydration (4s)...")
             await asyncio.sleep(4.0)
 
-        # Tab / Select Rotation on Hyperliquid
-        js_tab_rotation = """
-        (() => {
-            const btns = Array.from(document.querySelectorAll('button[role="combobox"], [role="tab"], button'));
-            const timeSelect = btns.find(b => b.innerText && (b.innerText.includes('day') || b.innerText.includes('All')));
-            return { foundTimeSelect: !!timeSelect, text: timeSelect ? timeSelect.innerText.trim() : null };
-        })()
-        """
-        tab_info = await cdp_cmd("Runtime.evaluate", {"expression": js_tab_rotation, "returnByValue": True})
-        log.info(f"Hyperliquid Tab/Filter inspection: {tab_info.get('result', {}).get('value')}")
-        await asyncio.sleep(0.3)
+        # Tab / Select Rotation on Hyperliquid across Timeframes
+        async def rotate_timeframe(tf_name: str) -> bool:
+            js = f"""
+            (() => {{
+                const btns = Array.from(document.querySelectorAll('button[role="combobox"]'));
+                const btn = btns.find(b => b.innerText && (b.innerText.includes('day') || b.innerText.includes('hour') || b.innerText.includes('minute')));
+                if (!btn) return false;
+                btn.click();
+                const listboxId = btn.getAttribute('aria-controls');
+                const listbox = listboxId ? document.getElementById(listboxId) : document.querySelector('[role="listbox"]');
+                if (!listbox) return false;
+                const opt = Array.from(listbox.querySelectorAll('[role="option"], li')).find(o => o.innerText.trim() === '{tf_name}');
+                if (!opt) return false;
+                opt.click();
+                return true;
+            }})()
+            """
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js, "returnByValue": True})
+            return bool(res.get("result", {}).get("value"))
+
+        timeframe_tabs = ["1 minute", "1 hour", "1 day"]
+        for tf in timeframe_tabs:
+            clicked = await rotate_timeframe(tf)
+            log.info(f"Tab rotation -> '{tf}' (clicked: {clicked})")
+            await asyncio.sleep(0.4)
+
+        # Restore to '1 day' to capture full ~2,000 whale position universe
+        await rotate_timeframe("1 day")
+        await asyncio.sleep(0.5)
 
         # Extract React Fiber dataSource
         js_extract = """

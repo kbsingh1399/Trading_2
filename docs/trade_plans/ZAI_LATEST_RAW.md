@@ -32,4 +32,4 @@ Wrote 1 files，Ran 1 commands
 Auction structure is decisive: BTC & ETH both broke below prior-day VAL (bearish continuation profile), SP500/BNB/USWTI above value (breakout profile). ETF flow column is NaN (defect — zero-laundering recurrence). Fixing the map queries and pulling CVD momentum + governance docs.
 
 Wrote 2 files，Ran 4 commands
-cd /home/z/my-project/external/Trading_2_c358 && head -60 .agents/rules/ACTIVE_CONTEXT.md 2>/dev/null; echo
+Read active context and decision chain SOP
