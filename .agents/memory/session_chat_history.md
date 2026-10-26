@@ -64488,3 +64488,15 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
   * If an open position triggers dynamic profit ratchets on MT5 (+0.8R early BE, +1.25R Phase 0, +1.65R Phase 1), or closes at TP/SL, the desk wakes up immediately.
 - Cycle 356 completed at 17:03:25 UTC. Armed dynamic one-shot timer for remaining 895 seconds (task-140204) targeting exact wake-up at 17:23:25 UTC (22:53:25 IST) for Cycle 357.
 - Two live limit orders active on MT5: #19329907 (BNBUSD.p Buy Limit @ 736.25) and #19329908 (EURUSD.pi Sell Limit @ 1.12065).
+
+---
+### Turn Entry [2026-10-26 22:47:44 IST]
+**User**: I hope you know you can have 4 open positions and n number of limit orders...I have switched to bid x Ask than avd trade...and also...i hope we are reading signals as well for more information and infored decsisions
+**Agent Actions & Findings**:
+- Codified Expanded Capacity: Desk authorized for up to 4 concurrent open positions and N resting limit orders staged at structural shelves.
+- Staged 3rd High-Confluence Limit Order on MT5:
+  * Ticket #19330613: ETHUSD.pi SELL_LIMIT 0.50 lot @ 2,333.50 (SL: 2,351.30, TP: 2,291.00, retcode=10009).
+- Acknowledged CoinGlass Footprint switch to Bid x Ask (Coin mode):
+  * Provides true diagonal orderflow ladders (Taker Buy Ask vs Taker Sell Bid).
+  * Direct ingestion of 25_CoinGlass_Footprint_Signals (984 rows) capturing Absorption, Trapped Shorts/Longs, Exhaustion, and Delta Divergences to anchor trade locations.
+- Dynamic timer active (task-140204) with ~5.9 minutes remaining until Cycle 357 wake-up at 17:23:25 UTC (22:53:25 IST).
