@@ -12,4 +12,12 @@ Ran 1 commands
 PROVENANCE RESOLVED: The live envelope is Cycle-358 with cutoff_utc 2026-10-26 19:20:12 UTC (10m40s before HEAD — excellent freshness), NOT the 12:56:12 timestamp in the prompt header. That discrepancy gets flagged. Reading the full envelope risk section + governance docs.
 
 Ran 2 commands
-Read envelope solvency and status blocks
+
+CRITICAL PROVENANCE DISPUTE FOUND: The prompt's Part B/G risk parameters contradict the canonical envelope. Envelope says: hard floor 4,600 / buffer 4,650 / kernel 4,795 / existing stress 45.00 / headroom 4.32 / new_risk_admissible: FALSE / risk fixed at 12.00. The prompt claims 4,775 floor, 0.00 stress, 1 new ticket, [7.50–14.50] envelope. The envelope JSON is the binding document. Now ingesting all 42 feeds.
+
+Wrote 1 files，Ran 1 commands
+
+Freshness decoded: Timestamp_IST columns are UTC+5:30 — the "−327 min" feeds are actually ~3 minutes fresh (5-min cadence fully restored). Only 16_Hyperdash_telegram_Intel (12h) and 5_OI (~1h) lag. Now inspecting the schema of the decision-critical feeds.
+
+Wrote 1 files，Ran 3 commands
+Extract calendar and 24-asset technical snapshot
