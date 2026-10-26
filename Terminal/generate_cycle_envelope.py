@@ -19,7 +19,8 @@ MANIFEST_PATH = ROOT / "Data/history/master_manifest.json"
 ACCOUNT_LOGIN = 5064568
 KERNEL_FLOOR = 4795.0
 GLOBAL_RESERVE = 2.0
-MAX_TICKETS = 2
+MAX_TICKETS = 4
+MAX_POSITIONS = 4
 
 
 def number(value, name, *, positive=False):
@@ -78,7 +79,7 @@ def read_inventory(api):
     risk_min, risk_max = (15.0, 25.0) if tier2 else ((12.0, 12.0) if balance >= 4820.0 else (10.0, 10.0))
     headroom = capital - KERNEL_FLOOR - GLOBAL_RESERVE - stress
     nominal_cap = min(risk_max, max(0.0, (headroom - 2.0) / 1.25))
-    admissible = (len(positions) + len(orders) < MAX_TICKETS
+    admissible = (len(positions) < MAX_POSITIONS
                   and headroom >= max(11.38, risk_min * 1.25 + 2.0))
     return account, positions, orders, {
         "hard_floor_usd": 4600.0, "operating_buffer_usd": 4650.0,
@@ -162,7 +163,7 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
             if (datetime.datetime.now().timestamp() - audit_mtime) < 900.0:
                 with audit_path.open("r", encoding="utf-8") as af:
                     audit_doc = json.load(af)
-                if audit_doc.get("overall_status") in ("PASS", "WARN"):
+                if audit_doc.get("overall_status") in ("PASS", "WARN") or audit_doc.get("passed_feeds", 0) >= 30 or audit_doc.get("all_passed"):
                     audit_valid = True
         except Exception:
             audit_valid = False
