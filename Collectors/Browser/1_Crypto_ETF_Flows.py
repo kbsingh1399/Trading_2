@@ -226,19 +226,21 @@ async def extract_coinglass_overview_table() -> list[dict]:
         await click_tab("All Crypto ETFs")
         await asyncio.sleep(0.3)
 
-        # 2. Click 'Show All' to expand all rows in the overview table
-        show_all_js = """
-        (() => {
+        # 2. Scroll down so Table 2 enters the viewport and hydrates, then click 'Show All'
+        scroll_js = """
+        (async () => {
+            window.scrollTo(0, 1000);
+            await new Promise(r => setTimeout(r, 1200));
             const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'Show All');
             if (btn) {
                 btn.click();
-                return true;
+                await new Promise(r => setTimeout(r, 1000));
             }
-            return false;
+            return true;
         })()
         """
-        await cdp_cmd("Runtime.evaluate", {"expression": show_all_js, "returnByValue": True})
-        await asyncio.sleep(0.4)
+        await cdp_cmd("Runtime.evaluate", {"expression": scroll_js, "awaitPromise": True, "returnByValue": True})
+        await asyncio.sleep(0.5)
 
         # 3. Extract Table 0 (Daily Net Inflows) & Table 2 (Crypto ETF Overview)
         extract_js = """
@@ -259,10 +261,10 @@ async def extract_coinglass_overview_table() -> list[dict]:
             }
 
             // Table 2 (Crypto ETF Overview)
-            const overviewTable = tables.find(t => {
+            const overviewTable = tables.length > 2 ? tables[2] : (tables.find(t => {
                 const ths = Array.from(t.querySelectorAll('th')).map(th => th.innerText.trim());
                 return ths.includes('#') && ths.includes('Ticker');
-            }) || (tables.length > 2 ? tables[tables.length - 1] : null);
+            }) || (tables.length > 1 ? tables[tables.length - 1] : null));
 
             if (!overviewTable) return { inflows, rows: [] };
 
@@ -271,7 +273,7 @@ async def extract_coinglass_overview_table() -> list[dict]:
                 const cells = Array.from(tr.querySelectorAll('td'));
                 if (cells.length === 0) return null;
                 return cells.map(td => td.innerText.replace(/\\n/g, ' ').trim());
-            }).filter(r => r && r.length >= 4 && r[0] !== '');
+            }).filter(r => r && r.length >= 4 && r.some(c => c !== ''));
 
             return { inflows, rows };
         })()
