@@ -13,6 +13,7 @@ import pathlib
 import sys
 import time
 import urllib.request
+import re
 import concurrent.futures
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -23,11 +24,17 @@ OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 WEB2API_URL = "http://localhost:8081/v1/chat/completions"
 MODEL = "gemini-3.7-flash"
 
+def sanitize_prompt(text: str) -> str:
+    """Removes @ mentions to avoid triggering Gemini Web Google Workspace extension errors."""
+    text = re.sub(r'@\[(.*?)\]', r'[Skill: \1]', text)
+    text = text.replace('@', '')
+    return text
+
 def dispatch_single_role(role_key: str, prompt_file: pathlib.Path, cycle_id: str):
     if not prompt_file.exists():
         return role_key, {"error": f"Prompt file {prompt_file} not found"}
     
-    prompt_text = prompt_file.read_text(encoding="utf-8")
+    prompt_text = sanitize_prompt(prompt_file.read_text(encoding="utf-8"))
     payload = {
         "model": MODEL,
         "messages": [
