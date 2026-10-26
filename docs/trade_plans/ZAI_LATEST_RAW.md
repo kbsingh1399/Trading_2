@@ -111,6 +111,29 @@ Omitted risk dimensions: order-count governance unenforced at dispatch; EUR GTC 
 Algorithmic alternatives: UTC-normalized ingestion layer (foundational); Hawkes excitation on 7_Live_Liq/22_MTF for cascade timing near the BNB/ETH magnet bands; Kalman spread estimation on 00_MT5 ticks for real-time spread-gate enforcement; isotonic calibration of score→P(win) with Brier monitoring; SPRT as the formal L4 aggregation rule once calibrated; Bayesian online changepoint on 18_CVD; Gaussian-t copula correlated-stress netting replacing independent per-ticket sums for multi-ticket drawdown.
 📄 Sealed JSON Payload
 json
+        "CONCURRENT_CAP_SATURATED_3_PENDING_VS_MAX_2",
+        "PARQUET_FRESHNESS_FALSE_ENVELOPE_SELF_DECLARED",
+        "PROVENANCE_TIME_ENCODING_DISPUTED",
+        "PROBABILITY_UNCALIBRATED"
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "envelope_reconciliation": {
+      "kernel_cushion": "51.32 VERIFIED (4846.32 - 4795.00)",
+      "hard_floor_cushion": "246.32 VERIFIED (4846.32 - 4600.00)",
+      "operating_buffer_cushion": "196.32 VERIFIED (4846.32 - 4650.00)",
+      "realized_headroom": "4.32 ARITHMETICALLY_CONSISTENT_GIVEN_STRESS_45.00 (51.32 - 45.00 - 2.00)",
+      "post_joint_stress_equity": "4799.32 VERIFIED (4846.32 - 45.00 - 2.00) >= 4795 PASS",
+      "nominal_capacity_reverse_engineered": "1.856 = (4.32 - 2.00) / 1.25 -> envelope uses T = 1.25X + 2.00 spread-free convention"
+    },
+    "existing_stress_decomposition": {
+      "BNB_19329907": "1.25 x 10.80 + 2.00 = 15.500",
+      "EUR_19329908": "1.25 x 11.50 + 2.00 = 16.375",
+      "ETH_19330613": "1.25 x 8.90 + 2.00 = 13.125",
+      "sum": "45.000 EXACT MATCH -> envelope books ZERO exit-spread cost"
+    },
+    "council_corrections": {
       "spread_assumptions": {"BNB_bps": 4.0, "EUR_pips": 0.15, "ETH_bps": 3.0},
       "stress_spread_corrected": {"BNB": 16.6, "EUR": 16.56, "ETH": 13.56, "sum": 46.73},
       "stress_envelope_convention_plus_spread": 46.38,
