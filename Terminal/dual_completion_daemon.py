@@ -89,28 +89,28 @@ async def probe_zai_tab(tab_ws_url: str):
         async with websockets.connect(tab_ws_url, max_size=20_000_000) as ws:
             js = """
             (() => {
-                const stopBtn = document.querySelector('button[aria-label*="Stop" i], .stop-generating');
-                const isGenerating = !!stopBtn;
+                // Precise Z.ai generation detection via footer action button
+                const actionBtn = document.querySelector('button.rounded-full.bg-interactive-bg-primary-default, button[class*="bg-interactive-bg-primary"]');
+                const hasStopSquare = actionBtn ? !!actionBtn.querySelector('span.rounded-xs, span[class*="rounded-xs"]') : false;
+                const stopAria = !!document.querySelector('button[aria-label*="Stop" i], .stop-generating');
+                const isGenerating = hasStopSquare || stopAria;
                 
-                // Detection of Send button & ready input area
-                const sendBtn = Array.from(document.querySelectorAll('button')).find(b => {
+                // Detection of Send button (action button displaying SVG icon when not generating)
+                const hasSendSvg = actionBtn ? (!!actionBtn.querySelector('svg') && !hasStopSquare) : false;
+                const sendAria = Array.from(document.querySelectorAll('button')).some(b => {
                     const label = (b.getAttribute('aria-label') || '').toLowerCase();
-                    return label.includes('send') || (b.querySelector('svg') && b.closest('form, div[class*="input"], div[class*="footer"]'));
+                    return label.includes('send') && !isGenerating;
                 });
-                const inputArea = document.querySelector('textarea, .cm-content, [contenteditable], [placeholder*="Send a Message" i]');
-                const hasSendReady = !isGenerating && (!!sendBtn || !!inputArea);
+                const hasSendReady = !isGenerating && (hasSendSvg || sendAria);
 
-                // Robust extraction: find largest markdown/council container in Z.ai
-                const containers = Array.from(document.querySelectorAll('div, section, article')).filter(el => {
-                    const text = el.innerText || '';
-                    return (text.includes('COUNCIL AUTHORIZATION') || text.includes('KAIZEN ARCHETYPE COMPLIANCE') || text.includes('Derived exclusively from Data/feeds') || text.includes('MANDATE')) && !text.includes('TRADING DESK COUNCIL: CYCLE 359');
-                });
+                // Precise extraction: target Z.ai's .chat-assistant and .markdown-prose containers
+                const assistants = Array.from(document.querySelectorAll('.chat-assistant, .markdown-prose, div[class*="message-"]'));
                 let longestText = '';
-                if (containers.length > 0) {
-                    containers.sort((a, b) => (b.innerText || '').length - (a.innerText || '').length);
-                    longestText = containers[0].innerText || '';
+                if (assistants.length > 0) {
+                    const lastAssistant = assistants[assistants.length - 1];
+                    longestText = lastAssistant.innerText || '';
                 } else {
-                    const allMarkdown = Array.from(document.querySelectorAll('.markdown-body, div[class*="markdown"], div[class*="content"]'));
+                    const allMarkdown = Array.from(document.querySelectorAll('.markdown-prose, .markdown-body, div[class*="markdown"]'));
                     allMarkdown.sort((a, b) => (b.innerText || '').length - (a.innerText || '').length);
                     longestText = allMarkdown.length > 0 ? (allMarkdown[0].innerText || '') : '';
                 }
@@ -157,6 +157,13 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
     saw_arena_generating = False
     saw_zai_generating = False
 
+    # Check if Arena is already in finished state
+    if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
+        astate = await probe_arena_tab(arena_tab.get("webSocketDebuggerUrl"))
+        if not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and astate.get("textLen", 0) > 300:
+            arena_done = True
+            print(f"[DualWatcher] Arena.ai already in completed state ({astate.get('textLen', 0):,} chars).", flush=True)
+
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
         tabs = get_chrome_tabs()
@@ -171,7 +178,7 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
                 if astate.get("isGenerating"):
                     saw_arena_generating = True
                 t_len = astate.get("textLen", 0)
-                if astate.get("connected") and not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and (t_len != initial_arena_len or saw_arena_generating) and t_len > 300:
+                if astate.get("connected") and not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and t_len > 300:
                     ARENA_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                     arena_done = True
@@ -185,7 +192,7 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
                 if zstate.get("isGenerating"):
                     saw_zai_generating = True
                 t_len = zstate.get("textLen", 0)
-                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("hasSendReady") and (t_len != initial_zai_len or saw_zai_generating) and t_len > 300:
+                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("hasSendReady") and t_len > 300:
                     ZAI_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                     zai_done = True
