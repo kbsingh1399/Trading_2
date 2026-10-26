@@ -360,16 +360,10 @@ def main():
             # Step 3: Auxiliary Harvesters (Non-blocking, run AFTER telemetry is pushed)
             # (Arkham is decommissioned - Hyperdash decentralized intelligence provides whale flow)
 
-            # Step 3b: Refresh CoinGlass 5-Minute Telemetry & Temporal Persistence
-            try:
-                import asyncio
-                from Terminal.Data_Factory import coinglass_harvester as cg_mod
-                importlib.reload(cg_mod)
-                harvester = cg_mod.CoinglassCDPHarvester()
-                asyncio.run(asyncio.wait_for(harvester.harvest_all(), timeout=60.0))
-                logger.info("CoinGlass 5-minute telemetry & persistence ledger updated successfully.")
-            except Exception as cg_err:
-                logger.warning(f"Background CoinGlass harvest skipped/error: {cg_err}")
+            # Step 3b: Auxiliary CoinGlass browser scraper DECOMMISSIONED in favor of 100% Pure-Parquet Pipeline
+            # All CoinGlass data is now harvested sequentially via Collectors/Browser/ in run_master_pipeline.py
+            # to guarantee strictly 1 single tab and prevent dual-tab CDP conflicts.
+            # (Legacy coinglass_harvester.harvest_all() disabled)
 
             # Step 3c: Ingest Forex Factory & Arkham into TimeSeriesDB
             try:

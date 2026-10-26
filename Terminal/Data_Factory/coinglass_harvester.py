@@ -608,6 +608,16 @@ class CoinglassCDPHarvester:
         return delta
 
     async def harvest_all(self) -> Dict[str, Any]:
+        """Decommissioned in favor of 100% Pure-Parquet pipeline. Zero CDP browser tabs."""
+        latest_file = COINGLASS_DATA_DIR / "latest" / "coinglass_snapshot.json"
+        if latest_file.exists():
+            try:
+                return json.loads(latest_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return {"harvest_timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(), "domains": {}}
+
+    async def _legacy_harvest_all(self) -> Dict[str, Any]:
         """Main driver: visits target tabs sequentially and creates 5-minute snapshot."""
         start_time = time.time()
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()

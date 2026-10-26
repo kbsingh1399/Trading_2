@@ -124,6 +124,15 @@ class CoinglassExtendedHarvester:
             pass
 
     async def harvest_all_tabs(self) -> Dict[str, Any]:
+        """Decommissioned in favor of 100% Pure-Parquet pipeline. Zero CDP browser tabs."""
+        if LATEST_SNAPSHOT_PATH.exists():
+            try:
+                return json.loads(LATEST_SNAPSHOT_PATH.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return {"harvest_timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(), "domains": {}}
+
+    async def _legacy_harvest_all_tabs(self) -> Dict[str, Any]:
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
         start_ts = time.time()
         print(f"[{now_utc}] Starting Ultra-Fast CoinGlass Harvest ({len(EXTENDED_PAGES)} tabs)...")
