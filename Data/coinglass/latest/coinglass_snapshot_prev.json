@@ -1,6 +1,6 @@
 {
-  "harvest_timestamp_utc": "2026-10-26T21:46:02.771406+00:00",
-  "harvest_epoch": 1793051162.817475,
+  "harvest_timestamp_utc": "2026-10-26T21:49:03.279039+00:00",
+  "harvest_epoch": 1793051343.3413491,
   "domains": {
     "hyperliquid_whales": {
       "name": "Hyperliquid Whale Tracker",
@@ -658,11 +658,11 @@
       ]
     }
   },
-  "harvest_duration_seconds": 49.26,
+  "harvest_duration_seconds": 49.13,
   "_temporal_meta": {
     "stream": "coinglass",
-    "recorded_at_utc": "2026-10-26T21:46:02.771406+00:00",
-    "recorded_at_epoch": 1793051162.817475,
+    "recorded_at_utc": "2026-10-26T21:49:03.279039+00:00",
+    "recorded_at_epoch": 1793051343.3413491,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
