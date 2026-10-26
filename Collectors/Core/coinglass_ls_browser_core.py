@@ -151,22 +151,24 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
         if (!box) return {{ error: "No LSTableV2 found" }};
         const card = box.closest('.MuiCard-root') || box.parentElement;
         
-        // 1. Switch Timeframe via React Fiber Select component
-        const selectBtn = card.querySelector('button[role="combobox"]');
-        if (selectBtn) {{
-            const fKey = Object.keys(selectBtn).find(k => k.startsWith('__reactFiber'));
-            let cur = selectBtn[fKey];
-            let tfSelectComp = null;
-            while (cur) {{
-                if (cur.memoizedProps && cur.memoizedProps.onChange && cur.memoizedProps.children) {{
-                    tfSelectComp = cur;
-                    break;
-                }}
-                cur = cur.return;
+        // 1. Switch Timeframe via Table's native MUI Select Listbox
+        const selectBtn = card.querySelector('button.MuiSelect-button, button[role="combobox"]');
+        if (selectBtn && !selectBtn.innerText.toLowerCase().includes("{target_tf_label.lower()}")) {{
+            const listboxId = selectBtn.getAttribute('aria-controls');
+            selectBtn.click();
+            await new Promise(r => setTimeout(r, 400));
+            
+            let listbox = listboxId ? document.getElementById(listboxId) : null;
+            if (!listbox) {{
+                listbox = document.querySelector('.MuiSelect-listbox, [role="listbox"]');
             }}
-            if (tfSelectComp) {{
-                tfSelectComp.memoizedProps.onChange(null, targetVal);
-                await new Promise(r => setTimeout(r, 600));
+            if (listbox) {{
+                const options = Array.from(listbox.querySelectorAll('[role="option"], li'));
+                const targetOpt = options.find(o => o.innerText.trim().toLowerCase() === '{target_tf_label.lower()}');
+                if (targetOpt) {{
+                    targetOpt.click();
+                    await new Promise(r => setTimeout(r, 1200));
+                }}
             }}
         }}
         
