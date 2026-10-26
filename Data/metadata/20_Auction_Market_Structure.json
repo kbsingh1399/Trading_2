@@ -66,9 +66,9 @@
     "weekly_s1",
     "session_bias"
   ],
-  "byte_size": 54953,
-  "timestamp_ist": "2026-10-26 22:36:30 IST",
-  "timestamp_utc": "2026-10-26 17:06:30 UTC",
-  "epoch_utc": 1793034390.182435,
-  "write_duration_ms": 10.69
+  "byte_size": 54864,
+  "timestamp_ist": "2026-10-26 22:37:28 IST",
+  "timestamp_utc": "2026-10-26 17:07:28 UTC",
+  "epoch_utc": 1793034448.215479,
+  "write_duration_ms": 10.61
 }
