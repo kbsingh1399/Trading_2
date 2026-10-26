@@ -15,9 +15,9 @@
     "last_7d",
     "timestamp_ist"
   ],
-  "byte_size": 54330,
-  "timestamp_ist": "2026-10-26 22:38:59 IST",
-  "timestamp_utc": "2026-10-26 17:08:59 UTC",
-  "epoch_utc": 1793034539.946827,
-  "write_duration_ms": 483.17
+  "byte_size": 54444,
+  "timestamp_ist": "2026-10-26 22:50:25 IST",
+  "timestamp_utc": "2026-10-26 17:20:25 UTC",
+  "epoch_utc": 1793035225.649134,
+  "write_duration_ms": 441.92
 }
