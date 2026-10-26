@@ -202,8 +202,8 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
             const lines = currentCard.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
             
             // Robust parsing of Total row using regex
-            const pcts = lines.filter(l => /^\d+\.?\d*%$/.test(l));
-            const vols = lines.filter(l => /^\$[\d\.]+[KMB]?$/i.test(l));
+            const pcts = lines.filter(l => /^\\d+\\.?\\d*%$/.test(l));
+            const vols = lines.filter(l => /^\\$[\\d\\.]+[KMB]?$/i.test(l));
             
             const total = {{
                 longPct: pcts[0] || '50.00%',
@@ -219,7 +219,7 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
                 let c = rank1Idx;
                 while (c < lines.length) {{
                     const rank = lines[c];
-                    if (!/^\d+$/.test(rank)) break;
+                    if (!/^\\d+$/.test(rank)) break;
                     exchanges.push({{
                         rank: rank,
                         exchange: lines[c + 1] || '-',
