@@ -19,9 +19,9 @@
     "bybit_vol_usd",
     "is_synthetic"
   ],
-  "byte_size": 248822,
-  "timestamp_ist": "2026-10-27 00:22:27 IST",
-  "timestamp_utc": "2026-10-26 18:52:27 UTC",
-  "epoch_utc": 1793040747.235966,
-  "write_duration_ms": 354.72
+  "byte_size": 248818,
+  "timestamp_ist": "2026-10-27 00:39:36 IST",
+  "timestamp_utc": "2026-10-26 19:09:36 UTC",
+  "epoch_utc": 1793041776.641953,
+  "write_duration_ms": 460.43
 }
