@@ -311,6 +311,44 @@ async def harvest_all_maxpain_timeframes_unified(
             else:
                 await asyncio.sleep(0.3)
 
+            # Actively rotate through all pagination pages for this timeframe
+            js_paginate = """
+            (async () => {
+                const pagination = document.querySelector('ul.ant-pagination');
+                if (!pagination) return { totalPages: 1, rotated: 1 };
+                
+                const items = Array.from(pagination.querySelectorAll('.ant-pagination-item'));
+                const pageNumbers = items.map(it => parseInt(it.innerText.trim())).filter(n => !isNaN(n));
+                const maxPage = Math.max(...pageNumbers, 1);
+                
+                let count = 0;
+                for (let p = 1; p <= maxPage; p++) {
+                    const btn = Array.from(pagination.querySelectorAll('.ant-pagination-item')).find(it => it.innerText.trim() === String(p));
+                    if (btn) {
+                        btn.click();
+                        count++;
+                    } else {
+                        const nextBtn = pagination.querySelector('.ant-pagination-next button, .ant-pagination-next');
+                        if (nextBtn) {
+                            nextBtn.click();
+                            count++;
+                        }
+                    }
+                    await new Promise(r => setTimeout(r, 180));
+                }
+                
+                // Reset to page 1
+                const p1 = Array.from(pagination.querySelectorAll('.ant-pagination-item')).find(it => it.innerText.trim() === '1');
+                if (p1) p1.click();
+                await new Promise(r => setTimeout(r, 200));
+                
+                return { totalPages: maxPage, rotated: count };
+            })()
+            """
+            pag_res = await cdp_cmd("Runtime.evaluate", {"expression": js_paginate, "awaitPromise": True, "returnByValue": True})
+            pag_val = pag_res.get("value", {})
+            log.info(f"  -> [{tf_code}] Paginated through all {pag_val.get('rotated', 1)}/{pag_val.get('totalPages', 1)} pages.")
+
             extract_res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
             extract_val = extract_res.get("value", {})
             records = extract_val.get("records", [])

@@ -101,6 +101,17 @@ def main():
         try:
             run_single_cycle(cycle_count, api_only=args.api_only, gap_seconds=args.gap)
             cycle_count += 1
+
+            # Rotate public egress IP after each cycle to prevent CoinGlass 429 rate limiting
+            log.info("Triggering automated IP rotation via Cloudflare WARP before next cycle...")
+            try:
+                if str(ROOT_DIR / "Terminal") not in sys.path:
+                    sys.path.insert(0, str(ROOT_DIR / "Terminal"))
+                from rotate_ip import rotate_ip
+                rotate_ip()
+            except Exception as rot_exc:
+                log.warning(f"Automated IP rotation notice: {rot_exc}")
+
             log.info(f"Sleeping for {args.gap}s ({args.gap/60:.1f} minutes) before next cycle...")
             time.sleep(args.gap)
         except KeyboardInterrupt:
