@@ -64575,3 +64575,8 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
 - **Liquidation Max Pain Page Rotation**: Fully upgraded Collectors/Core/liquidation_maxpain_core.py to actively rotate through all 16 pages (Page 1 through 16) at 24H, dump 751 records, then rotate through all 16 pages at 48H and dump, then 3D, then 7D. All 4 feeds updated in 32.37s with 751 rows each.
 - **Automated IP Rotation**: Implemented Terminal/rotate_ip.py with automated Cloudflare WARP key recycling. Integrated into Terminal/run_pipeline_continuous_daemon.py after every single cycle to eliminate CoinGlass 429 rate limiting permanently.
 - **Argon Web2API Council**: Dispatched full institutional prompt to gemini-4-argon with canonical GitHub link; received 10,806 characters of quantitative reasoning in 19.5s, archived to docs/trade_plans/ARGON_CYCLE_358_RULING.md.
+
+### Turn Audit (2026-10-27 01:45:30 IST / 2026-10-26 20:15:30 UTC)
+- **Prompt**: "kill pipeline runner deamon"
+- **Action**: Executed `scripts/kill_orphan_python.py`. Killed PID 14268 (`run_pipeline_continuous_daemon.py`), PID 7760, PID 23468, and PID 20920 at the OS kernel level via `os.kill(pid, 9)`.
+- **Verification**: Verified zero pipeline processes remaining via `Get-CimInstance`. `manage_task` confirms only the 4 required system daemons (Git sync, Web2API 8081, Graphify watcher, Dual AI completion) are active.
