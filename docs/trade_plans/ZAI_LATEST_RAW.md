@@ -24,9 +24,12 @@ Wrote 2 files，Ran 2 commands
 Major finding already: the prompt's embedded snapshot (as_of 12:56 UTC) is ~7.5h stale vs the fresh lake (20:30 UTC) — BTC 80219→79794, SOL regime flipped RANGE_BOUND→STRONG BEARISH, BNB BULLISH→CHOP. Fresh lake governs. Now deep-diving account state + microstructure:
 
 Wrote 2 files，Ran 2 commands
-Dump MT5 account telemetry latest row
 
 Capital state confirmed: flat, zero margin, +$51.32 above operating buffer. Live spread gate gives tradable universe. Now the microstructure stack — orderbook walls, CVD, liquidation bands, funding, OI:
 
+Wrote 3 files，Ran 3 commands
+
+USWTI tape read: +1.69M CVD surge into 16:00 UTC drove oil to 103.88, then -5.4M sell-off retraced it — the C358 thesis played out without a fill. Now a compact per-symbol CVD + cluster digest:
+
 Wrote 1 files，Ran 1 commands
-Check orderbook schema
+CVD sums, funding, OI, netflow
