@@ -1,1071 +1,1994 @@
 {
   "00_MT5_Account_Telemetry": {
-    "num_columns": 10,
     "columns": [
-      {
-        "name": "Realized_Balance_USD",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "$4,846.32",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_2",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Real-Time_Floating_Equity_USD",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_5",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_6",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_7",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_8",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_9",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_10",
-        "type": "large_string",
-        "nullable": true
-      }
-    ]
-  },
-  "10_Whale_Orders": {
-    "num_columns": 17,
-    "columns": [
-      {
-        "name": "Sr._No.",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Exchange",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Symbol",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Type",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Side",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Price_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Amount_BTC",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Notional_Value_$",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Initial_Value_$",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Traded_Value_$",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Traded_Value_%",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Initial_Size_BTC",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Traded_Size_BTC",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Traded_Size_%",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Order_Duration",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Order_ID",
-        "type": "string",
-        "nullable": true
-      }
-    ]
-  },
-  "11_Technical": {
-    "num_columns": 55,
-    "columns": [
-      {
-        "name": "Sr._No.",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Asset",
-        "type": "large_string",
-        "nullable": true
-      },
       {
         "name": "Category",
-        "type": "large_string",
+        "type": "string",
         "nullable": true
       },
       {
         "name": "Broker_Symbol",
-        "type": "large_string",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Price_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "24h_Chg_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Daily_VWAP_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_Z-Score_\u03c3",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+1\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-1\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+1.28\u03c3_80%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-1.28\u03c3_80%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+2\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-2\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+2.01\u03c3_95%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-2.01\u03c3_95%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+2.51\u03c3_99%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-2.51\u03c3_99%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_+3\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "VWAP_-3\u03c3_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Dist_VWAP_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "24h_VWAP_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_5_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_13_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_34_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_89_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_144_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_233_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_233_Slope_%_3h",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_9_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_20_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "EMA_50_$",
+        "name": "Bid_Quote",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "EMA_100_$",
+        "name": "Ask_Quote",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "EMA_200_$",
+        "name": "Mid_Price",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "EMA_200_Slope_%_3h",
+        "name": "Spread_Points",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "Spread_BPS",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Trend_Bias",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "RSI_14",
+        "name": "Threshold_BPS",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "RSI_State",
-        "type": "large_string",
+        "name": "Gate_Status",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "ATR_14_$",
+        "name": "Execution_Posture",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Order_Type_Allowed",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Pillar_1_Clearance",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Timestamp_IST",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "column_count": 13,
+    "row_count": 163
+  },
+  "10_Whale_Orders": {
+    "columns": [
+      {
+        "name": "sr_no",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "exchange",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "side",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "price",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "ATR_%",
+        "name": "amount_btc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "BB_Upper_$",
+        "name": "notional_usd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "BB_Mid_20_$",
+        "name": "initial_value_usd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "BB_Lower_$",
+        "name": "traded_value_usd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "BB_Bandwidth_%",
+        "name": "traded_value_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "MACD_Line",
+        "name": "initial_size_btc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "MACD_Signal",
+        "name": "traded_size_btc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "MACD_Hist",
+        "name": "traded_size_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Mean_Reversion_Bias",
-        "type": "large_string",
+        "name": "order_time_ist",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "24h_High_$",
+        "name": "order_duration",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "order_id",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "column_count": 17,
+    "row_count": 3805
+  },
+  "11_Technical": {
+    "columns": [
+      {
+        "name": "asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "last_price",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "24h_Low_$",
+        "name": "change_24h_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Daily_POC_$",
+        "name": "session_vwap",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Daily_VAH_$",
+        "name": "vwap_z",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Daily_VAL_$",
+        "name": "upper_1sd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Week_High_$",
+        "name": "lower_1sd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Week_Low_$",
+        "name": "upper_1_28sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "lower_1_28sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "upper_2sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "lower_2sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "upper_2_01sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "lower_2_01sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "upper_2_51sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "lower_2_51sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "upper_3sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "lower_3sd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "dist_to_vwap_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "rolling_vwap_24h",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_5",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_13",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_34",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_89",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_144",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_233",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_233_slope_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_9",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_20",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_50",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_100",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_200",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_200_slope_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "trend_bias",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "rsi_14",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "rsi_state",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "atr_14",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "atr_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_upper",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_mid",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_lower",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_bandwidth",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "macd_line",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "macd_signal",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "macd_hist",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "mr_bias",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "high_24h",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low_24h",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "daily_poc",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "daily_vah",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "daily_val",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "week_high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "week_low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "sr_no",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 55,
+    "row_count": 120
+  },
+  "11_Technical_BTC_Ribbon": {
+    "columns": [
+      {
+        "name": "bar_time_utc",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "session_vwap",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u1_28",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l1_28",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u2",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l2",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u2_01",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l2_01",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u2_51",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l2_51",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_u3",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_l3",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap_z",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_9",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_20",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_50",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_100",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "ema_200",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "rsi_14",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "atr_14",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_upper",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_mid",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bb_lower",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "macd_hist",
         "type": "double",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 31,
+    "row_count": 100
   },
   "12_Hyperdash": {
-    "num_columns": 8,
     "columns": [
       {
-        "name": "Metric_Identifier",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Metric_Value",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Description___Classification",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_3",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_4",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_5",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_6",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "col_7",
-        "type": "large_string",
-        "nullable": true
-      }
-    ]
-  },
-  "13_Hyperliquid": {
-    "num_columns": 13,
-    "columns": [
-      {
-        "name": "Sr._No.",
-        "type": "large_string",
+        "name": "Section",
+        "type": "string",
         "nullable": true
       },
       {
         "name": "Asset",
-        "type": "large_string",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Market_Identifier",
-        "type": "large_string",
+        "name": "Type_or_Side",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Origin_DEX",
-        "type": "large_string",
+        "name": "Price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Mark_Price_$",
-        "type": "large_string",
+        "name": "Size",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "24h_Chg_%",
-        "type": "large_string",
+        "name": "Notional_USD",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "24h_Volume_USD",
-        "type": "large_string",
+        "name": "Detail",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Open_Interest_Tokens",
-        "type": "large_string",
+        "name": "Wallet_or_Address",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Timestamp_IST",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "column_count": 9,
+    "row_count": 174
+  },
+  "13_Hyperliquid": {
+    "columns": [
+      {
+        "name": "Section",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Price",
+        "type": "null",
+        "nullable": true
+      },
+      {
+        "name": "Change_24h",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "Volume_24h_USD",
+        "type": "null",
         "nullable": true
       },
       {
         "name": "Open_Interest_USD",
-        "type": "large_string",
+        "type": "null",
         "nullable": true
       },
       {
-        "name": "1h_Funding_Rate",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Funding_APR_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Max_Lev",
+        "name": "Funding_Rate",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Decimals",
-        "type": "double",
+        "name": "Detail",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Timestamp_IST",
+        "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 9,
+    "row_count": 234
   },
   "14_Hyperdash_Liq_Map": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Sr.No",
+        "name": "sr_no",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Asset",
+        "name": "asset",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Time",
+        "name": "time_window",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Mark_Price",
+        "name": "mark_price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
+        "name": "price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Distance_%",
+        "name": "distance_pct",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Side",
+        "name": "side",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Cumulative_Liquidation",
+        "name": "cumulative_liq",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Short_Liquidation",
+        "name": "short_liq",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Long_Liquidation",
+        "name": "long_liq",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Size_Coins",
+        "name": "size_coins",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 12,
+    "row_count": 6514
+  },
+  "14_Liquidation_Matrix": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "asset_class",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "venue_tier",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "venue_name",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "side",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "price_level",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "liquidation_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_liq_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "binance_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "okx_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "bybit_vol_usd",
+        "type": "double",
+        "nullable": true
+      }
+    ],
+    "column_count": 12,
+    "row_count": 8607
   },
   "15_Hyperdash_Stops_Map": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Sr.No",
+        "name": "sr_no",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Asset",
+        "name": "asset",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Time",
+        "name": "time_window",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Mark_Price",
+        "name": "mark_price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
+        "name": "price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Distance_%",
+        "name": "distance_pct",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Side",
+        "name": "side",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Cumulative_Stops",
+        "name": "cumulative_stops",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Buy_Stops",
+        "name": "buy_stops",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Sell_Stops",
+        "name": "sell_stops",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Size_Coins",
+        "name": "size_coins",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 12,
+    "row_count": 4194
   },
   "16_Hyperdash_telegram_Intel": {
-    "num_columns": 14,
     "columns": [
       {
-        "name": "Sr.No",
+        "name": "category",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "event_type",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "side",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "notional_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "distance_or_metric",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "market_impact",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "duration_rate",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "wallet_address",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "raw_text",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "post_id",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ist",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "sr_no",
         "type": "int64",
         "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Post_ID",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Category",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Event_Type",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Asset",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Side",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Notional_USD",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Price_$",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Distance___Metric",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Market_Impact",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Duration___Rate",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Wallet_Address",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Telegram_Alert_Text",
-        "type": "string",
-        "nullable": true
       }
-    ]
+    ],
+    "column_count": 15,
+    "row_count": 1000
   },
   "17_Orderbook": {
-    "num_columns": 14,
     "columns": [
       {
-        "name": "Sr.No",
+        "name": "sr_no",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Data_Layer",
+        "name": "data_layer",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Asset_Class",
+        "name": "asset_class",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Asset",
+        "name": "asset",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Side",
+        "name": "side",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price_$",
+        "name": "price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Size_Units",
+        "name": "size_coins",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Notional_USD",
+        "name": "notional_usd",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Cumulative_Depth_$",
+        "name": "cumulative_depth",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Orders_n___Whale_Tier",
+        "name": "orders_count_tier",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Distance_%",
+        "name": "distance_pct",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Spread___Orderflow_Bias",
+        "name": "spread_or_bias",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Wallet_Address",
+        "name": "wallet_address",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Hyperdash_Explorer_URL",
+        "name": "explorer_url",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 14,
+    "row_count": 615
   },
   "18_CVD": {
-    "num_columns": 23,
     "columns": [
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Asset_Class",
+        "name": "timestamp_utc",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Market_Pair",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Data_Source",
+        "name": "market_pair",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timeframe",
+        "name": "source",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Open_Price",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "High_Price",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Low_Price",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Close_Price",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Total_Volume",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Quote_Volume_USD",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Taker_Buy_Volume",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Taker_Sell_Volume",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Candle_Delta_USD",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Candle_Delta_Coins",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Delta_%_of_Vol",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Cumulative_CVD_USD",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Cumulative_CVD_Coins",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "CVD_Z-Score_20",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Price_Return_%",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Orderflow_Regime",
+        "name": "timeframe",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Trades___Ticks",
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
         "type": "int64",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 25,
+    "row_count": 1500
+  },
+  "18_CVD_30D_15m": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "__index_level_0__",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 26,
+    "row_count": 2344
+  },
+  "18_CVD_30D_1h": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "__index_level_0__",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 26,
+    "row_count": 586
+  },
+  "18_CVD_30D_4h": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "__index_level_0__",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 26,
+    "row_count": 150
+  },
+  "18_CVD_30D_5m": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "__index_level_0__",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 26,
+    "row_count": 7011
+  },
+  "18_CVD_30D_ALL": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "source",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_volume",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "quote_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_vol",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_cvd_base",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_zscore",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "price_return_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "regime",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      }
+    ],
+    "column_count": 25,
+    "row_count": 10091
   },
   "19_Calendar": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Sr.No",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Date",
+        "name": "date",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Time",
+        "name": "time",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Currency",
+        "name": "currency",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Impact_Tier",
+        "name": "impact",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Economic_Event_Title",
+        "name": "event",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Actual",
-        "type": "null",
-        "nullable": true
-      },
-      {
-        "name": "Forecast",
+        "name": "actual",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Previous",
+        "name": "forecast",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Surprise___Outcome",
+        "name": "previous",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Directional_Bias",
+        "name": "outcome",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Event_URL",
-        "type": "null",
+        "name": "url",
+        "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 10,
+    "row_count": 21
   },
   "19_News": {
-    "num_columns": 11,
     "columns": [
       {
-        "name": "Sr.No",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Published_Time",
+        "name": "title",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "url",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Impact_Level",
+        "name": "source",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Currency___Asset",
+        "name": "time_ago",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Macro_Category",
+        "name": "timestamp_utc",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "News_Story_Title",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Source_Domain",
+        "name": "exact_title_time",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Comments_Count",
+        "name": "impact",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Story_Summary___Key_Preview",
+        "name": "comments",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Forex_Factory_URL",
+        "name": "currency",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "preview",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 12,
+    "row_count": 33
   },
   "1_Crypto_ETF_Flows": {
-    "num_columns": 16,
     "columns": [
       {
         "name": "#",
@@ -1133,7 +2056,7 @@
         "nullable": true
       },
       {
-        "name": "Issuer___Sponsor",
+        "name": "Issuer",
         "type": "string",
         "nullable": true
       },
@@ -1147,475 +2070,519 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 16,
+    "row_count": 41
   },
   "20_Auction_Market_Structure": {
-    "num_columns": 52,
     "columns": [
       {
-        "name": "Sr._No.",
-        "type": "large_string",
+        "name": "timestamp",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Asset",
-        "type": "large_string",
+        "name": "sr_no",
+        "type": "int64",
         "nullable": true
       },
       {
-        "name": "Broker_Symbol",
-        "type": "large_string",
+        "name": "asset",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Category",
-        "type": "large_string",
+        "name": "symbol",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Current_Price",
-        "type": "large_string",
+        "name": "category",
+        "type": "string",
         "nullable": true
       },
       {
-        "name": "Spread_bps",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Spread_Gate",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Value_Area_Status",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Daily_POC_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Daily_VAH_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Daily_VAL_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Dist_POC_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Dist_VAH_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Dist_VAL_%",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Prior_Day_POC_$",
+        "name": "price",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Day_VAH_$",
+        "name": "spread_bps",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Day_VAL_$",
+        "name": "spread_gate",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "va_position",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "daily_poc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Day_High_$",
+        "name": "daily_vah",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Day_Low_$",
+        "name": "daily_val",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Day_Close_$",
+        "name": "dist_poc_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Weekly_POC_$",
+        "name": "dist_vah_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Weekly_VAH_$",
+        "name": "dist_val_pct",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Weekly_VAL_$",
+        "name": "pd_poc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Current_Week_High",
+        "name": "pd_vah",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Current_Week_Low",
+        "name": "pd_val",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Week_High",
+        "name": "pdh",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Week_Low",
+        "name": "pdl",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Asian_High_00-08z",
+        "name": "pdc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Asian_Low_00-08z",
+        "name": "monday_high",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "London_High_08-16z",
+        "name": "monday_low",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "London_Low_08-16z",
+        "name": "monday_mid",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "NY_High_13-20z",
+        "name": "weekly_poc",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "NY_Low_13-20z",
+        "name": "weekly_vah",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "IB_High_08-09z",
+        "name": "weekly_val",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "IB_Low_08-09z",
+        "name": "cwh",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Monday_High_$",
-        "type": "large_string",
+        "name": "cwl",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Monday_Low_$",
-        "type": "large_string",
+        "name": "pwh",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Monday_Mid___WIB_$",
-        "type": "large_string",
+        "name": "pwl",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Current_Month_High_$",
-        "type": "large_string",
+        "name": "cmh",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Current_Month_Low_$",
-        "type": "large_string",
+        "name": "cml",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Month_High_$",
-        "type": "large_string",
+        "name": "pmh",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Prior_Month_Low_$",
-        "type": "large_string",
+        "name": "pml",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_Swing_High_$",
-        "type": "large_string",
+        "name": "asian_high",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_Swing_Low_$",
-        "type": "large_string",
+        "name": "asian_low",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_Impulse_Dir",
-        "type": "large_string",
+        "name": "london_high",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_GP_Lower_$",
-        "type": "large_string",
+        "name": "london_low",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_GP_Upper_$",
-        "type": "large_string",
+        "name": "ny_high",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_OTE_0.702_$",
-        "type": "large_string",
+        "name": "ny_low",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_Inval_0.786_$",
-        "type": "large_string",
+        "name": "ib_high",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Fib_Golden_Zone_Status",
-        "type": "large_string",
+        "name": "ib_low",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Auction_Market_Regime",
-        "type": "large_string",
+        "name": "fib_swing_h",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
-        "type": "large_string",
+        "name": "fib_swing_l",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "fib_dir",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "fib_gp_min",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "fib_gp_max",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "fib_ote",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "fib_inval",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "fib_status",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "auction_regime",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "pivot",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "r1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "s1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "r2",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "s2",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "weekly_pivot",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "weekly_r1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "weekly_s1",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "session_bias",
+        "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 61,
+    "row_count": 84
   },
   "21_Tradfye_Orderflow": {
-    "num_columns": 25,
     "columns": [
       {
-        "name": "Sr.No",
+        "name": "timestamp_ist",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "market_pair",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "open",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "high",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "low",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "close",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "total_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_buy_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "taker_sell_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "net_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "net_delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cvd_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_vwap",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_UTC",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Asset",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Market_Pair",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Timeframe",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Open_$",
+        "name": "avg_trade_usd",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "High_$",
+        "name": "poc_estimate",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Low_$",
+        "name": "regime",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "divergence",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "deribit_max_pain",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Close_$",
+        "name": "deribit_call_wall",
         "type": "double",
         "nullable": true
       },
       {
-        "name": "Total_Vol_$",
+        "name": "deribit_put_wall",
         "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Taker_Buy_Vol_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Taker_Sell_Vol_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Net_Delta_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Net_Delta_%",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "CVD_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Candle_VWAP_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Trades_Count",
-        "type": "int64",
-        "nullable": true
-      },
-      {
-        "name": "Avg_Trade_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "POC_Estimate_$",
-        "type": "double",
-        "nullable": true
-      },
-      {
-        "name": "Orderflow_Regime",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Delta_Divergence",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Deribit_Max_Pain_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Deribit_Call_Wall_$",
-        "type": "large_string",
-        "nullable": true
-      },
-      {
-        "name": "Deribit_Put_Wall_$",
-        "type": "large_string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 24,
+    "row_count": 6912
   },
   "22_Forced_Liquidations_MTF": {
-    "num_columns": 13,
     "columns": [
       {
-        "name": "#",
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "candle_start_epoch",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Asset___Pair",
+        "name": "candle_start_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "TF",
+        "name": "candle_end_ist",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Candle_Start_IST",
+        "name": "candle_start_utc",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Candle_End_IST",
+        "name": "candle_end_utc",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Candle_Start_UTC",
-        "type": "string",
+        "name": "long_liq_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Liq_$",
-        "type": "string",
+        "name": "short_liq_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Liq_$",
-        "type": "string",
+        "name": "total_liq_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Total_Liq_$",
-        "type": "string",
+        "name": "net_liq_delta_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Net_Liq_Delta_$",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Orders",
+        "name": "orders_count",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Dominant_Flow",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Climax_Status",
+        "name": "dominant_side",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 13,
+    "row_count": 76
   },
   "23_Master_Pipeline_Telemetry": {
-    "num_columns": 4,
     "columns": [
       {
         "name": "feed_id",
@@ -1637,23 +2604,246 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 4,
+    "row_count": 33
   },
-  "2_Spot_Netflow_S": {
-    "num_columns": 14,
+  "25_CoinGlass_Footprint_Signals": {
     "columns": [
       {
-        "name": "#",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       },
+      {
+        "name": "signal_time",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "base_asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "signal_type",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "bias",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "headline",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "detail",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "price_level",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "absorbed_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "last_price",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "current_bar_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "current_bar_volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_in_view_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "latest_signal_kpi",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "latest_signal_bias",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "column_count": 17,
+    "row_count": 1010
+  },
+  "26_Aggregated_Footprint_Bar_Metrics": {
+    "columns": [
+      {
+        "name": "timestamp_ist",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_utc",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timestamp_ms",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "base_asset",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "timeframe",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "last_price",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vwap",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "poc",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "vah",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "val",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "volume_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "buy_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "sell_vol_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "candle_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "delta_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "max_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "min_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "cumulative_delta_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "trades_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "avg_trade_size_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "open_interest_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "oi_change_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "imbalance_ratio_pct",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "buy_imbalances_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "sell_imbalances_count",
+        "type": "int64",
+        "nullable": true
+      },
+      {
+        "name": "venue_source",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "column_count": 27,
+    "row_count": 643
+  },
+  "2_Spot_Netflow_S": {
+    "columns": [
       {
         "name": "Symbol",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Price",
         "type": "string",
         "nullable": true
       },
@@ -1678,7 +2868,22 @@
         "nullable": true
       },
       {
+        "name": "2_hour",
+        "type": "string",
+        "nullable": true
+      },
+      {
         "name": "4_hour",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "6_hour",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "8_hour",
         "type": "string",
         "nullable": true
       },
@@ -1693,7 +2898,12 @@
         "nullable": true
       },
       {
-        "name": "7_day",
+        "name": "1_week",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "15_day",
         "type": "string",
         "nullable": true
       },
@@ -1712,295 +2922,300 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 16,
+    "row_count": 181
   },
   "3_Exchanges_LS_Ratio_15M": {
-    "num_columns": 11,
     "columns": [
       {
         "name": "Asset",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "#",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Exchange",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "L_S_Ratio",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Total_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timeframe",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timestamp_IST",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 500
   },
   "3_Exchanges_LS_Ratio_1H": {
-    "num_columns": 11,
     "columns": [
       {
         "name": "Asset",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "#",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Exchange",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "L_S_Ratio",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Total_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timeframe",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timestamp_IST",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 500
   },
   "3_Exchanges_LS_Ratio_4H": {
-    "num_columns": 11,
     "columns": [
       {
         "name": "Asset",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "#",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Exchange",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_%",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "L_S_Ratio",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Long_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Short_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Total_Volume",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timeframe",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       },
       {
         "name": "Timestamp_IST",
-        "type": "string",
+        "type": "large_string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 500
   },
   "4_Hyperliquid_Analysis": {
-    "num_columns": 20,
     "columns": [
       {
-        "name": "#",
+        "name": "rank",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "User",
+        "name": "user_display",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Wallet_Full_Address",
+        "name": "wallet_address",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Assets",
+        "name": "asset",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Side",
+        "name": "side",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Position",
+        "name": "position_formatted",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Unrealised_PNL_%",
+        "name": "pnl_formatted",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Entry_Price",
+        "name": "entry_formatted",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Liq.Price",
+        "name": "liq_price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Margin",
+        "name": "margin",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Funding_Fee",
+        "name": "funding_fee",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
+        "name": "current_price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Entry_Time",
+        "name": "entry_time_formatted",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Position_USD",
+        "name": "position_usd",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Position_Tokens",
+        "name": "position_tokens",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Unrealised_PNL_USD",
+        "name": "pnl_usd",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Unrealised_PNL_%_Val",
+        "name": "pnl_pct",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Entry_Price_USD",
+        "name": "entry_price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Leverage",
+        "name": "leverage",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 20,
+    "row_count": 1983
   },
   "5_Funding_Rate": {
-    "num_columns": 16,
     "columns": [
       {
         "name": "Symbol",
@@ -2008,84 +3223,90 @@
         "nullable": true
       },
       {
-        "name": "USDT_or_USD_Margined",
+        "name": "USDT_Binance",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_2",
+        "name": "USDT_OKX",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_3",
+        "name": "USDT_Bybit",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_4",
+        "name": "USDT_KuCoin",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_5",
+        "name": "USDT_MEXC",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_6",
+        "name": "USDT_BingX",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_7",
+        "name": "USDT_Gate",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_8",
+        "name": "USDT_Bitunix",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_9",
+        "name": "USDT_Bitget",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_10",
+        "name": "USDT_WhiteBIT",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_11",
+        "name": "USDT_LBank",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_12",
+        "name": "USDT_tradeXYZ",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Token_Margined_Coin-M",
+        "name": "CoinM_Binance",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "col_14",
+        "name": "CoinM_OKX",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Metadata",
+        "name": "CoinM_Bybit",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "Timestamp_IST",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 17,
+    "row_count": 592
   },
   "5_OI": {
-    "num_columns": 20,
     "columns": [
       {
         "name": "Asset",
@@ -2187,150 +3408,154 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 20,
+    "row_count": 20
   },
   "6_Funding_Fee_Settlement": {
-    "num_columns": 10,
     "columns": [
       {
-        "name": "#",
+        "name": "rank",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
+        "name": "price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price_24h%",
+        "name": "price_24h_pct",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Open_Interest",
+        "name": "open_interest",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Current",
+        "name": "current",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Last_24h",
+        "name": "last_24h",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Last_3_Days",
+        "name": "last_3d",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Last_7_Days",
+        "name": "last_7d",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 10,
+    "row_count": 940
   },
   "7_Liq_Heapmap": {
-    "num_columns": 7,
     "columns": [
       {
-        "name": "Rank",
+        "name": "rank",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Asset",
+        "name": "asset",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "1hour",
+        "name": "tf_1h",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "4hour",
+        "name": "tf_4h",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "12_hour",
+        "name": "tf_12h",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "24hour",
+        "name": "tf_24h",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "timestamp_ist",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 7,
+    "row_count": 78
   },
   "7_Live_Liq": {
-    "num_columns": 8,
     "columns": [
       {
-        "name": "#",
+        "name": "idx",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Coin___Pair",
+        "name": "coin",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Side",
+        "name": "side",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
+        "name": "price",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Amount",
+        "name": "amount",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Time",
+        "name": "time",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Exchange",
+        "name": "exchange",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Timestamp_IST",
+        "name": "full_time",
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 8,
+    "row_count": 27
   },
   "8_Exchange_Liquidation_Map_1D": {
-    "num_columns": 11,
     "columns": [
       {
         "name": "Sr.No",
@@ -2387,10 +3612,11 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 2100
   },
   "8_Exchange_Liquidation_Map_7D": {
-    "num_columns": 11,
     "columns": [
       {
         "name": "Sr.No",
@@ -2447,266 +3673,252 @@
         "type": "string",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 2585
   },
   "9_Liquidation_Max_Pain_24H": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Ranking",
+        "name": "ranking",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
-        "type": "string",
+        "name": "price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Price",
-        "type": "string",
+        "name": "short_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Vol",
-        "type": "string",
+        "name": "short_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_$",
-        "type": "string",
+        "name": "short_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_%",
-        "type": "string",
+        "name": "short_distance_pct",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Price",
-        "type": "string",
+        "name": "long_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Vol",
-        "type": "string",
+        "name": "long_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_$",
-        "type": "string",
+        "name": "long_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_%",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
+        "name": "long_distance_pct",
+        "type": "double",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 747
   },
   "9_Liquidation_Max_Pain_3D": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Ranking",
+        "name": "ranking",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
-        "type": "string",
+        "name": "price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Price",
-        "type": "string",
+        "name": "short_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Vol",
-        "type": "string",
+        "name": "short_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_$",
-        "type": "string",
+        "name": "short_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_%",
-        "type": "string",
+        "name": "short_distance_pct",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Price",
-        "type": "string",
+        "name": "long_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Vol",
-        "type": "string",
+        "name": "long_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_$",
-        "type": "string",
+        "name": "long_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_%",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
+        "name": "long_distance_pct",
+        "type": "double",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 748
   },
   "9_Liquidation_Max_Pain_48H": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Ranking",
+        "name": "ranking",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
-        "type": "string",
+        "name": "price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Price",
-        "type": "string",
+        "name": "short_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Vol",
-        "type": "string",
+        "name": "short_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_$",
-        "type": "string",
+        "name": "short_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_%",
-        "type": "string",
+        "name": "short_distance_pct",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Price",
-        "type": "string",
+        "name": "long_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Vol",
-        "type": "string",
+        "name": "long_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_$",
-        "type": "string",
+        "name": "long_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_%",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
+        "name": "long_distance_pct",
+        "type": "double",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 747
   },
   "9_Liquidation_Max_Pain_7D": {
-    "num_columns": 12,
     "columns": [
       {
-        "name": "Ranking",
+        "name": "ranking",
         "type": "int64",
         "nullable": true
       },
       {
-        "name": "Symbol",
+        "name": "symbol",
         "type": "string",
         "nullable": true
       },
       {
-        "name": "Price",
-        "type": "string",
+        "name": "price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Price",
-        "type": "string",
+        "name": "short_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Max_Pain_Vol",
-        "type": "string",
+        "name": "short_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_$",
-        "type": "string",
+        "name": "short_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Short_Distance_%",
-        "type": "string",
+        "name": "short_distance_pct",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Price",
-        "type": "string",
+        "name": "long_max_pain_price",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Max_Pain_Vol",
-        "type": "string",
+        "name": "long_max_pain_vol",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_$",
-        "type": "string",
+        "name": "long_distance_usd",
+        "type": "double",
         "nullable": true
       },
       {
-        "name": "Long_Distance_%",
-        "type": "string",
-        "nullable": true
-      },
-      {
-        "name": "Timestamp_IST",
-        "type": "string",
+        "name": "long_distance_pct",
+        "type": "double",
         "nullable": true
       }
-    ]
+    ],
+    "column_count": 11,
+    "row_count": 749
   }
 }

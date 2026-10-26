@@ -72,6 +72,7 @@ CANONICAL_FEEDS = [
     {"idx": 32, "name": "23_Master_Pipeline_Telemetry", "tier": "High Velocity", "max_age_min": 15.0},
     {"idx": 33, "name": "25_CoinGlass_Footprint_Signals", "tier": "Tactical", "max_age_min": 15.0},
     {"idx": 34, "name": "26_Aggregated_Footprint_Bar_Metrics", "tier": "Tactical", "max_age_min": 15.0},
+    {"idx": 35, "name": "14_Liquidation_Matrix", "tier": "Tactical", "max_age_min": 15.0},
 ]
 
 

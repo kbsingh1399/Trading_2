@@ -125,15 +125,16 @@ def write_parquet_feed(
             fh.flush()
             os.fsync(fh.fileno())
 
-        # 3. Microsecond Atomic Replace (Windows MoveFileEx)
-        for attempt in range(10):
+        # 3. Microsecond Atomic Replace (Windows MoveFileEx with exponential backoff & jitter)
+        import random
+        for attempt in range(25):
             try:
                 os.replace(tmp_file, target_file)
                 break
             except PermissionError:
-                if attempt == 9:
+                if attempt == 24:
                     raise
-                time.sleep(0.02 * (attempt + 1))
+                time.sleep(0.04 * (attempt + 1) + random.uniform(0.01, 0.04))
 
         duration_ms = (time.perf_counter() - t0) * 1000.0
 
@@ -175,11 +176,13 @@ def write_parquet_feed(
 
 
 def read_parquet_feed(feed_name: str) -> pa.Table:
-    """Reads a canonical parquet feed table by name."""
+    """Reads a canonical parquet feed table by name without holding Windows file locks."""
+    import io
     target_file = FEEDS_DIR / f"{feed_name}.parquet"
     if not target_file.exists():
         raise FileNotFoundError(f"Feed '{feed_name}' not found at {target_file}")
-    return pq.read_table(target_file)
+    data = target_file.read_bytes()
+    return pq.read_table(io.BytesIO(data))
 
 
 def get_parquet_feed_metadata(feed_name: str) -> Optional[Dict[str, Any]]:

@@ -233,6 +233,8 @@ async def fetch_aggregated_footprint_bars_for_coin(
         max_level_vol = 0.0
         buy_imbalances = 0
         sell_imbalances = 0
+        mid_p = 0.0
+        weighted_px_sum = 0.0
 
         for b in price_buckets:
             if isinstance(b, list) and len(b) >= 6:
@@ -246,6 +248,7 @@ async def fetch_aggregated_footprint_bars_for_coin(
                 ask_usd = float(b[4]) if b[4] is not None else 0.0
                 bid_usd = float(b[5]) if b[5] is not None else 0.0
                 level_vol = ask_usd + bid_usd
+                weighted_px_sum += (level_vol * mid_p)
 
                 if level_vol > max_level_vol:
                     max_level_vol = level_vol
@@ -283,7 +286,7 @@ async def fetch_aggregated_footprint_bars_for_coin(
         # Estimated Value Area (70% profile)
         vah_price = max_price if max_price > 0 else poc_price
         val_price = min_price if min_price < float("inf") else poc_price
-        vwap_price = poc_price if poc_price > 0 else mid_p
+        vwap_price = (weighted_px_sum / bar_vol_usd) if bar_vol_usd > 0 else (poc_price if poc_price > 0 else mid_p)
 
         records.append({
             "timestamp_ist": timestamp_ist,
@@ -404,6 +407,41 @@ def load_macro_cfd_footprint_bars() -> List[Dict[str, Any]]:
                 val = float(row.get("daily_val", price))
                 spread = float(row.get("spread_bps", 0.0))
 
+                # Derive authentic bar volume and delta from live MT5 15m candle parquet
+                metal_vol_usd = 0.0
+                metal_buy_vol = 0.0
+                metal_sell_vol = 0.0
+                metal_delta = 0.0
+                metal_delta_pct = 0.0
+                metal_trades = 0
+                candle_file = Path(f"Data/Candles/{asset}_15m.parquet")
+                if not candle_file.exists():
+                    # Check base coin or common name
+                    alias = "GOLD" if "XAU" in base_coin or "GOLD" in asset else ("SILVER" if "XAG" in base_coin or "SILVER" in asset else base_coin)
+                    candle_file = Path(f"Data/Candles/{alias}_15m.parquet")
+                
+                if candle_file.exists():
+                    try:
+                        import pyarrow.parquet as pq_m
+                        c_tab = pq_m.read_table(candle_file)
+                        if c_tab.num_rows > 0:
+                            last_idx = c_tab.num_rows - 1
+                            c_open = float(c_tab["open"][last_idx].as_py())
+                            c_high = float(c_tab["high"][last_idx].as_py())
+                            c_low = float(c_tab["low"][last_idx].as_py())
+                            c_close = float(c_tab["close"][last_idx].as_py())
+                            c_ticks = float(c_tab["tick_volume"][last_idx].as_py()) if "tick_volume" in c_tab.column_names else 100.0
+                            metal_vol_usd = c_ticks * c_close
+                            rng = max(c_high - c_low, 1e-5)
+                            buy_pct = max(0.0, min(1.0, 0.5 + (c_close - c_open) / (2.0 * rng)))
+                            metal_buy_vol = metal_vol_usd * buy_pct
+                            metal_sell_vol = metal_vol_usd - metal_buy_vol
+                            metal_delta = metal_buy_vol - metal_sell_vol
+                            metal_delta_pct = (metal_delta / metal_vol_usd * 100.0) if metal_vol_usd > 0 else 0.0
+                            metal_trades = int(c_ticks)
+                    except Exception:
+                        pass
+
                 records.append({
                     "timestamp_ist": now_ist,
                     "timestamp_utc": now_utc,
@@ -416,16 +454,16 @@ def load_macro_cfd_footprint_bars() -> List[Dict[str, Any]]:
                     "poc": poc,
                     "vah": vah,
                     "val": val,
-                    "volume_usd": 250000.0,
-                    "buy_vol_usd": 125000.0,
-                    "sell_vol_usd": 125000.0,
-                    "candle_delta_usd": 0.0,
-                    "delta_pct": 0.0,
-                    "max_delta_usd": 0.0,
-                    "min_delta_usd": 0.0,
-                    "cumulative_delta_usd": 0.0,
-                    "trades_count": 80,
-                    "avg_trade_size_usd": 3125.0,
+                    "volume_usd": round(metal_vol_usd, 2),
+                    "buy_vol_usd": round(metal_buy_vol, 2),
+                    "sell_vol_usd": round(metal_sell_vol, 2),
+                    "candle_delta_usd": round(metal_delta, 2),
+                    "delta_pct": round(metal_delta_pct, 2),
+                    "max_delta_usd": round(max(0.0, metal_delta), 2),
+                    "min_delta_usd": round(min(0.0, metal_delta), 2),
+                    "cumulative_delta_usd": round(metal_delta, 2),
+                    "trades_count": metal_trades,
+                    "avg_trade_size_usd": round(metal_vol_usd / metal_trades, 2) if metal_trades > 0 else 0.0,
                     "open_interest_usd": 0.0,
                     "oi_change_usd": 0.0,
                     "imbalance_ratio_pct": 300.0,
@@ -639,7 +677,8 @@ async def run_bar_metrics_collector(
             payload = {"id": curr_id, "method": method, "params": params or {}}
             await ws.send(json.dumps(payload))
             while True:
-                resp = json.loads(await ws.recv())
+                raw_resp = await asyncio.wait_for(ws.recv(), timeout=15.0)
+                resp = json.loads(raw_resp)
                 if resp.get("id") == curr_id:
                     return resp.get("result", {}).get("result", {})
 
@@ -671,6 +710,11 @@ async def run_bar_metrics_collector(
         return True
 
     finally:
+        if 'ws' in locals() and ws:
+            try:
+                await ws.close()
+            except Exception:
+                pass
         if tab_id:
             close_tab(tab_id, cdp_base_url)
 

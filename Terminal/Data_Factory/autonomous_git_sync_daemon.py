@@ -165,10 +165,16 @@ def sync_cycle() -> bool:
 
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser(description="Autonomous Git Sync Daemon")
+    parser.add_argument("--interval", type=int, default=60, help="Sync interval in seconds (default: 60s)")
+    args = parser.parse_args()
+    sync_interval = max(10, args.interval)
+
     enforce_single_instance()
     logger.info("=" * 70)
-    logger.info("STARTING AUTONOMOUS 5-MINUTE GIT SYNC DAEMON")
-    logger.info("Branch: %s | Cadence: Every %ds (5 min) | PID: %d", BRANCH_NAME, SYNC_INTERVAL_SECONDS, os.getpid())
+    logger.info("STARTING AUTONOMOUS GIT SYNC DAEMON")
+    logger.info("Branch: %s | Cadence: Every %ds | PID: %d", BRANCH_NAME, sync_interval, os.getpid())
     logger.info("=" * 70)
 
     cycle_count = 0
@@ -180,7 +186,7 @@ def main() -> None:
             logger.info("--- Cycle #%d [%s] ---", cycle_count, now_utc)
             sync_cycle()
             elapsed = time.time() - t0
-            sleep_sec = max(5.0, SYNC_INTERVAL_SECONDS - elapsed)
+            sleep_sec = max(5.0, sync_interval - elapsed)
             logger.info("Cycle #%d finished in %.2fs. Next sync in %.0fs...", cycle_count, elapsed, sleep_sec)
             time.sleep(sleep_sec)
         except Exception as loop_exc:

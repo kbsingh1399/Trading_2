@@ -249,14 +249,14 @@ async def extract_footprint_for_coin(cdp_cmd, coin: str) -> List[Dict[str, Any]]
         price_level = 0.0
         volume_usd = 0.0
         for token in full_detail.split():
-            clean_tok = token.replace(",", "").replace("·", "").strip()
+            clean_tok = token.replace(",", "").replace("·", "").replace("$", "").strip()
             if ("M" in clean_tok or "K" in clean_tok) and not any(c in clean_tok for c in ["ETH", "BTC", "SOL"]):
                 v = parse_usd(clean_tok)
                 if v > 0 and volume_usd == 0:
                     volume_usd = v
             try:
                 p = float(clean_tok)
-                if p > 1.0:
+                if p > 0.0:
                     price_level = p
             except ValueError:
                 pass
