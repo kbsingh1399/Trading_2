@@ -1,7 +1,7 @@
 {
   "feed_name": "18_CVD_30D_1h",
   "status": "PASS",
-  "row_count": 613,
+  "row_count": 603,
   "column_count": 26,
   "columns": [
     "timestamp_ist",
@@ -31,9 +31,9 @@
     "trades_count",
     "__index_level_0__"
   ],
-  "byte_size": 103795,
-  "timestamp_ist": "2026-10-26 23:00:29 IST",
-  "timestamp_utc": "2026-10-26 17:30:29 UTC",
-  "epoch_utc": 1793035829.799493,
-  "write_duration_ms": 7.98
+  "byte_size": 102820,
+  "timestamp_ist": "2026-10-26 23:30:08 IST",
+  "timestamp_utc": "2026-10-26 18:00:08 UTC",
+  "epoch_utc": 1793037608.314392,
+  "write_duration_ms": 74.21
 }
