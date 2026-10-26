@@ -24,9 +24,13 @@ Wrote 1 files，Ran 3 commands
 120-asset universe (expanded beyond 24) with rich telemetry. BTC has collapsed to 79,952 (prompt snapshot said 80,219) with STRONG BEARISH bias; ETH STRONG BEARISH; EURUSD STRONG BEARISH at Z −1.29; BNB now NEUTRAL/CHOP. Extracting the remaining key assets + microstructure layers.
 
 Wrote 1 files，Ran 1 commands
-Extract focus assets, MT5 gates, whale walls
 
 Goldmine: BTC has a $40.8M bid bunker at 79,700–79,743 (persistence up to 2h19m) and ETH a $30M+ bid floor at 2,295–2,300 (persistence up to 14h59m). SP500 flipped STRONG BULLISH; USWTI/UKBRENT confirm the Black Sea energy thesis. Extracting BNB whales, liquidation/stops bands, CVD, and macro flows.
 
-Wrote 1 files
-Create File
+Wrote 1 files，Ran 1 commands
+Create File c358_extract3.py
+
+Auction structure is decisive: BTC & ETH both broke below prior-day VAL (bearish continuation profile), SP500/BNB/USWTI above value (breakout profile). ETF flow column is NaN (defect — zero-laundering recurrence). Fixing the map queries and pulling CVD momentum + governance docs.
+
+Wrote 1 files，Ran 2 commands
+Read cycle state and macro calendar
