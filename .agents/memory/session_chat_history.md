@@ -64725,3 +64725,15 @@ User Directives Executed:
   5. Implemented ensure_warp_connected() on daemon startup to guarantee Cloudflare WARP is always connected and healthy, resolving the 'Disconnected' popup.
   6. Relaunched single daemon (	ask-143258) with gap=180s.
   7. Verified Chrome CDP state: exactly 1 ephemeral CoinGlass tab active; zero tab overlap.
+
+### Turn Update - 2026-10-27 04:06 IST
+- **Operator Guidance & Implementation**:
+  1. User confirmed the precise completion conditions:
+     - Arena.ai: Finished when 'Was this task successful? Yes / No / Keep working' banner appears (or Copy button appears).
+     - Z.ai: Finished when the input box has the active 'Send' button and NO 'Stop generating' button.
+     - When BOTH conditions are met, both models have completed and are ready for the next message.
+  2. Updated Terminal/dual_completion_daemon.py to embed these exact DOM conditions (hasYesNo, hasCopy, hasSendReady).
+  3. Identified root cause of https://www.coinglass.com/pro/i/utxo appearing in the browser bar: legacy coinglass_harvester.py called from utonomous_telemetry_git_daemon.py was opening UTXO age bands tabs. Decommissioned this block and patched coinglass_harvester.py and coinglass_extended_harvester.py to never touch CDP.
+  4. Formally concluded Cycle 361 (Council consensus: PREVAIL on #19329907 and #19330613; STAND ASIDE on new risk).
+  5. Dispatched Cycle 362 prompts (31,938 chars) simultaneously to Arena.ai and Z.ai.
+  6. Launched reactive one-shot waiter (	ask-143448, IsDaemon=false) to wake Antigravity up the moment both models finish generation. No 1200s timer set during generation.

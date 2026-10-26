@@ -131,11 +131,31 @@ async def probe_zai_tab(tab_ws_url: str):
         return {"connected": False}
 
 
-async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5):
+async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5):
     print(f"[DualWatcher] Started unified watcher for Arena.ai AND Z.ai (timeout={timeout_s}s)...", flush=True)
     start_ts = time.time()
+    
+    # Capture initial baselines so we only trigger on NEW responses
+    tabs = get_chrome_tabs()
+    arena_tab = next((t for t in tabs if "arena.ai" in t.get("url", "")), None)
+    zai_tab = next((t for t in tabs if "chat.z.ai" in t.get("url", "")), None)
+    
+    initial_arena_len = 0
+    if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
+        astate = await probe_arena_tab(arena_tab.get("webSocketDebuggerUrl"))
+        initial_arena_len = astate.get("textLen", 0)
+
+    initial_zai_len = 0
+    if zai_tab and zai_tab.get("webSocketDebuggerUrl"):
+        zstate = await probe_zai_tab(zai_tab.get("webSocketDebuggerUrl"))
+        initial_zai_len = zstate.get("textLen", 0)
+
+    print(f"[DualWatcher] Baselines recorded: Arena={initial_arena_len} chars, Z.ai={initial_zai_len} chars.", flush=True)
+
     arena_done = False
     zai_done = False
+    saw_arena_generating = False
+    saw_zai_generating = False
 
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
@@ -148,22 +168,28 @@ async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5)
             ws_url = arena_tab.get("webSocketDebuggerUrl")
             if ws_url:
                 astate = await probe_arena_tab(ws_url)
-                if astate.get("connected") and not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and astate.get("textLen", 0) > 300:
+                if astate.get("isGenerating"):
+                    saw_arena_generating = True
+                t_len = astate.get("textLen", 0)
+                if astate.get("connected") and not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and (t_len != initial_arena_len or saw_arena_generating) and t_len > 300:
                     ARENA_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                     arena_done = True
-                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Arena.ai response complete ({astate.get('textLen'):,} chars) -> saved ARENA_LATEST_RAW.md", flush=True)
+                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Arena.ai response complete ({t_len:,} chars) -> saved ARENA_LATEST_RAW.md", flush=True)
 
         # Check Z.ai
         if zai_tab and not zai_done:
             ws_url = zai_tab.get("webSocketDebuggerUrl")
             if ws_url:
                 zstate = await probe_zai_tab(ws_url)
-                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("hasSendReady") and zstate.get("textLen", 0) > 300:
+                if zstate.get("isGenerating"):
+                    saw_zai_generating = True
+                t_len = zstate.get("textLen", 0)
+                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("hasSendReady") and (t_len != initial_zai_len or saw_zai_generating) and t_len > 300:
                     ZAI_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                     zai_done = True
-                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Z.ai response complete ({zstate.get('textLen'):,} chars) -> saved ZAI_LATEST_RAW.md", flush=True)
+                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Z.ai response complete ({t_len:,} chars) -> saved ZAI_LATEST_RAW.md", flush=True)
 
         if arena_done and zai_done:
             print("\n🎉 BOTH ARENA.AI AND Z.AI RESPONSES COMPLETE! Triggering unified wakeup.", flush=True)
