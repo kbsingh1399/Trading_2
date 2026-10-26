@@ -70,9 +70,9 @@ async def probe_zai_tab(tab_ws_url: str):
         async with websockets.connect(tab_ws_url, max_size=20_000_000) as ws:
             js = """
             (() => {
-                const stopBtn = document.querySelector('button[aria-label*="Stop" i], button:has(svg.lucide-square)');
+                const stopBtn = document.querySelector('button[aria-label*="Stop" i], button:has(svg.lucide-square), .stop-generating');
                 const isGenerating = !!stopBtn;
-                const msgs = Array.from(document.querySelectorAll('div[class*="message-"]'));
+                const msgs = Array.from(document.querySelectorAll('.prose, div[class*="markdown"], div[class*="message-content"]'));
                 const lastMsg = msgs.length > 0 ? msgs[msgs.length - 1].innerText : '';
                 return {
                     connected: true,
