@@ -64215,3 +64215,8 @@ I think forced liquidation daemon is not working..right? Why you missed it. And 
 ## Turn 2026-10-26 12:37 IST
 **User Prompt**: can you read terminal running logs?
 **Action**: Audited live running logs (logs/master_pipeline.log, logs/parquet_pipeline_daemon.log, system task logs), relaunched Hexad-daemons following system notice, and verified ongoing Phase 2 collection.
+
+
+## Turn 2026-10-26 12:44 IST
+**User Prompt**: can you fix 1 failure
+**Action**: Isolated root cause in 15_Hyperdash_Stops_Map.py (Hyperdash GraphQL stopOrderLevelsV2 required epoch seconds instead of milliseconds). Fixed timestamp scalar, verified 4193 rows generated in 2.68s across all 18 symbols, pushed commit 1cc1bec52, and confirmed 33/33 Feeds Fresh in parquet freshness auditor.
