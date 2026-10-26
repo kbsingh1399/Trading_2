@@ -250,6 +250,12 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
                 logger.warning("Safe fast-forward merge failed: %s", err)
 
     # Operator Mandate: Full workspace replica sync (stage ALL changes)
+    try:
+        from Terminal.Data_Factory.stamp_all_parquet_feeds import stamp_all_parquet_feeds
+        stamp_all_parquet_feeds()
+    except Exception as stamp_exc:
+        logger.debug("Parquet stamp notice in git daemon: %s", stamp_exc)
+
     run_cmd(["git", "add", "-A"])
 
     code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
