@@ -36,7 +36,9 @@ from Terminal.joint_cycle_controller import start_cycle, load_cycle_state
 import Terminal.dispatch_dual_council as dual_council
 
 PROMPTS_DIR = ROOT / "Data" / "subagent_prompts"
-TEMPLATES_FILE = ROOT / "Data" / "Manditory" / "SUBAGENT_PROMPT_TEMPLATES.md"
+TEMPLATES_FILE = ROOT / "docs" / "specs" / "SUBAGENT_PROMPT_TEMPLATES.md"
+if not TEMPLATES_FILE.exists():
+    TEMPLATES_FILE = ROOT / "Data" / "Manditory" / "SUBAGENT_PROMPT_TEMPLATES.md"
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s][CycleOrchestrator] %(message)s")
 logger = logging.getLogger("CycleOrchestrator")
