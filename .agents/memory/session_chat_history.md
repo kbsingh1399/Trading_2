@@ -64556,3 +64556,11 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
      - Ticket #19330613 (ETH): Arena advised cancellation due to positive +$25.24M (+19.3%) footprint delta flip and Binance $4M ask wall pulled at $2,331.00 (resistance retreated to $2,349-$2,350).
      - Ticket #19329908 (EUR): Z.ai recommended cancellation due to daily rollover spread risk and 11.5 pip stop sitting inside 15m ATR noise; Arena marked KEEP_ACTIVE.
   5. Continuous pipeline daemon verified healthy, 28/36 feeds fresh, automatic Edge tab cleanup active.
+
+
+### Turn Audit (2026-10-26 19:50:59 UTC)
+- Fixed 4_Hyperliquid_Analysis tab rotation across 1m, 1h, 1d with active MUI Select click and hydration.
+- Confirmed all 1,965 whale positions across all 40 pagination pages (Rank 1 to 1965) are fully extracted into 4_Hyperliquid_Analysis.parquet.
+- Identified Cloudflare WARP 429 rate limit on capi.coinglass.com as root cause of skeleton loading, resolved on direct connection.
+- Confirmed gemini-4-argon, argon, gemini-4-argon-high availability on local Web2API proxy.
+- Killed zombie daemons via os.kill(pid, 9) and restarted clean background daemon.
