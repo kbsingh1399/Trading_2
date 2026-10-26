@@ -19,7 +19,7 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 > 1. **Mandatory 4-Subagent Quant Fleet (Fable 5)**: On EVERY autonomous cycle, Antigravity MUST physically invoke four specialized quantitative subagents via `invoke_subagent` (`Model='flash'` / Fable 5 runtime):
 >    - **Agent 1: Statistical Regime & Diffusion Quant**: Calculates Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent `H`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, and Newey-West drift `t`-stat. Strict stand-aside on `UNDEFINED` regime.
 >    - **Agent 2: Microstructure & Liquidation Quant**: L2/L3 orderbook depth asymmetry, continuous CVD delta divergence (`zc_div > 0.8`), liquidation ladders (Feeds 10-17, 22), retail resting stop clusters (Feed 23), resting whale walls (Feeds 18 & 25, persistence `tau >= 180s`, refill `rho >= 0.60`), and live footprint signals & bar orderflow metrics (Feeds 33 & 34).
->    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,600.00 USD hard floor**, **4,650.00 USD operating buffer**, and **4,795.00 USD kernel admission floor**.
+>    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,775.00 USD hard floor**, **4,795.00 USD operating buffer**, and **4,795.00 USD kernel admission floor**.
 >    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 15.0%`), 35-feed Parquet data lake verification (all 35 feeds loaded, zero nulls, byte-typed, <= 5.0m fresh in IST/UTC), and Event Risk Clock embargoes.
 >
 > 2. **Mandatory Parallel Tri-Council Trade Hunting Engine (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash as Co-Equal Hunting Councils)**:
@@ -109,9 +109,9 @@ flowchart TD
 7. **`/brainstorm` (Multi-Perspective Dialectic & Persona Stress-Testing)**:
    - Simulates adversarial multi-agent debate (Orderflow Specialist vs Macro Risk Officer vs Forensic Position Auditor). Tests edge cases: *What if the whale pulls? What if the market blows through the cascade?*
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
-   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, the 4,795.00 USD kernel admission floor after joint stress and reserves, the 4,650.00 USD buffer and 4,600.00 USD hard floor, passive limit posture, and SL/TP placement.
+   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, the 4,795.00 USD kernel admission floor after joint stress and reserves, the 4,795.00 USD buffer and 4,775.00 USD hard floor, passive limit posture, and SL/TP placement.
 9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
-   - Computes worst-case joint stress for all open and independently fillable pending tickets: `min(balance,equity) - max_joint_sum(1.25 * NominalLoss_i + 2.00 USD) - 2.00 USD global reserve >= 4,795.00 USD`. The kernel admission floor is stricter than the 4,650.00 USD operating buffer and 4,600.00 USD hard floor.
+   - Computes worst-case joint stress for all open and independently fillable pending tickets: `min(balance,equity) - max_joint_sum(1.25 * NominalLoss_i + 2.00 USD) - 2.00 USD global reserve >= 4,795.00 USD`. The kernel admission floor is stricter than the 4,795.00 USD operating buffer and 4,775.00 USD hard floor.
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
     - Models half-spread offset (\(\text{Entry} = \text{Shelf} - \text{half\_spread}\) for longs, \(\text{Shelf} + \text{half\_spread}\) for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
 11. **`/onchain-forensics` (Hyperliquid L1 & Hyperdash Institutional Whale Intelligence)**:
@@ -134,7 +134,7 @@ flowchart TD
 
 | Feed # | Parquet File Name | Velocity Tier | Primary Metrics & Exact Ingestion Fields | Tactical Decision Purpose (Antigravity & Arena.ai) |
 |---|---|---|---|---|
-| **00** | `00_MT5_Account_Telemetry.parquet` | High Velocity (< 1m) | `balance`, `equity`, `free_margin`, `margin_level`, `hard_floor_cushion`, `buffer_cushion`, `solvency_kernel_cushion`, `open_positions_count`, `pending_orders_count`, `spread_points`, `spread_bps`, `spread_status`, `timestamp_ist`, `timestamp_utc`. | Live MT5 broker grounding (163 symbols). Audits live equity cushion above 4,600 USD floor, 4,650 USD buffer, and 4,795 USD kernel floor; evaluates real-time raw spreads in bps; tracks active ticket excursions. |
+| **00** | `00_MT5_Account_Telemetry.parquet` | High Velocity (< 1m) | `balance`, `equity`, `free_margin`, `margin_level`, `hard_floor_cushion`, `buffer_cushion`, `solvency_kernel_cushion`, `open_positions_count`, `pending_orders_count`, `spread_points`, `spread_bps`, `spread_status`, `timestamp_ist`, `timestamp_utc`. | Live MT5 broker grounding (163 symbols). Audits live equity cushion above 4,775 USD floor, 4,795 USD buffer, and 4,795 USD kernel floor; evaluates real-time raw spreads in bps; tracks active ticket excursions. |
 | **01** | `1_Crypto_ETF_Flows.parquet` | Macro (< 15m) | `rank`, `ticker` (IBIT, FBTC, ETHA), `price`, `change_pct`, `volume_usd`, `volume_shares`, `turnover_rate`, `shares_outstanding`, `aum_usd`, `market_cap_usd`, `daily_net_inflow_usd`, `timestamp_ist`. | High-level TradFi spot demand barometer; sustained multi-day net inflow confirms macro tailwind for pro-trend long pullbacks. |
 | **02** | `2_Spot_Netflow_S.parquet` | Macro (< 15m) | `rank`, `symbol`, `price`, `netflow_1h_usd`, `netflow_4h_usd`, `netflow_12h_usd`, `netflow_24h_usd`, `netflow_7d_usd`, `netflow_30d_usd`, `volume_24h_usd`, `change_24h_pct`, `exchange`, `timestamp_ist`. | Measures real CEX spot accumulation vs distribution across 500 assets. Positive spot netflow while futures dip proves institutional absorption of retail panic sells. |
 | **03** | `3_Exchanges_LS_Ratio_15M.parquet` | Tactical (< 5m) | `asset`, `timeframe`, `binance_ls_ratio`, `binance_long_pct`, `binance_short_pct`, `okx_ls_ratio`, `okx_long_pct`, `okx_short_pct`, `bybit_ls_ratio`, `aggregate_ls_ratio`, `timestamp_ist`. | Immediate retail crowding filter. If retail long accounts exceed 70%, long dip-buying is halted to prevent catching stop sweeps. |
@@ -187,8 +187,8 @@ The desk operates with realized balance and equity **4,846.32 USD**, **0 active 
 
 | Capital Layer | Inviolate Level (USD) | Live Capital Cushion (USD) | Cushion % |
 |---|---:|---:|---:|
-| Hard Floor | 4,600.00 | +246.32 | +5.08% |
-| Operating Defense Buffer | 4,650.00 | +196.32 | +4.05% |
+| Hard Floor | 4,775.00 | +71.32 | +1.47% |
+| Operating Defense Buffer | 4,795.00 | +51.32 | +1.06% |
 | Stricter Kernel Admission Floor | 4,795.00 | +51.32 | +1.06% |
 | Global Contingency Reserve | 2.00 | -- | Deducted Ex-Ante |
 | **Net Realized Admission Headroom** | **4,797.00** | **+49.32** | **Deployable Headroom** |
@@ -199,8 +199,8 @@ The desk operates with realized balance and equity **4,846.32 USD**, **0 active 
 |---|---|---|---|---|
 | **Tier 1 Standard (ACTIVE)** | **4,795.00 – 4,850.00 USD** | **10.00 – 12.00 USD** | **2 Slots** | **ACTIVE DESK STATE** |
 | Tier 2 Expansion | > 4,850.00 USD | 15.00 – 25.00 USD | 2 Slots | Unlocked strictly at balance > 4,850.00 USD |
-| Capital Preservation Mode | 4,650.00 – 4,795.00 USD | 5.00 – 8.00 USD | 1 Slot | Mandatory defensive de-risking |
-| 100% Cash Lockdown | <= 4,650.00 USD | 0.00 USD | 0 Slots | Immediate trading halt |
+| Capital Preservation Mode | 4,775.00 – 4,795.00 USD | 5.00 – 8.00 USD | 1 Slot | Mandatory defensive de-risking |
+| 100% Cash Lockdown | <= 4,775.00 USD | 0.00 USD | 0 Slots | Immediate trading halt |
 
 ### The 156-Asset Multi-Asset MT5 Universe Breakdown
 
