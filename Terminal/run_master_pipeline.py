@@ -19,12 +19,14 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import datetime
+import json
 import logging
 import os
 import pathlib
 import subprocess
 import sys
 import time
+import urllib.request
 
 ROOT_DIR = pathlib.Path(__file__).resolve().parents[1]
 COLLECTORS_API_DIR = ROOT_DIR / "Collectors" / "API"
@@ -146,17 +148,51 @@ def run_api_phase(parallel: bool = True) -> int:
     return failures
 
 
+def cleanup_browser_tabs() -> int:
+    """Closes all collector ephemeral tabs via CDP while protecting Arena and Z.ai."""
+    closed_count = 0
+    try:
+        req = urllib.request.Request("http://127.0.0.1:9222/json", timeout=3)
+        with urllib.request.urlopen(req) as resp:
+            tabs = json.loads(resp.read().decode("utf-8"))
+        for t in tabs:
+            if t.get("type") != "page":
+                continue
+            url = t.get("url", "").lower()
+            title = t.get("title", "").lower()
+            # NEVER close Arena, Z.ai, or default empty tab
+            if "arena.ai" in url or "chat.z.ai" in url or "z.ai" in url:
+                continue
+            if url.startswith("edge://newtab") or url.startswith("chrome://"):
+                continue
+            # Close collector tabs
+            if any(k in url for k in ["coinglass.com", "forexfactory.com", "hyperliquid", "about:blank"]) or \
+               any(k in title for k in ["coinglass", "forex factory"]):
+                tab_id = t.get("id")
+                try:
+                    urllib.request.urlopen(f"http://127.0.0.1:9222/json/close/{tab_id}", timeout=3)
+                    closed_count += 1
+                except Exception:
+                    pass
+    except Exception as e:
+        log.debug(f"cleanup_browser_tabs notice: {e}")
+    return closed_count
+
+
 def run_browser_phase() -> int:
-    """Executes the 14 Browser CDP collectors sequentially with tab hygiene."""
+    """Executes the Browser CDP collectors sequentially with strict tab hygiene."""
     log.info("=" * 80)
     log.info(f"   PHASE 2: EXECUTING {len(BROWSER_COLLECTORS)} BROWSER CDP COLLECTORS")
     log.info("=" * 80)
     t0 = time.perf_counter()
     failures = 0
 
+    cleanup_browser_tabs()
+
     scripts = [COLLECTORS_BROWSER_DIR / s for s in BROWSER_COLLECTORS if (COLLECTORS_BROWSER_DIR / s).exists()]
     for s in scripts:
-        name, success, dt, err = run_script(s, 90)
+        timeout = 180 if s.name in ["5_OI.py", "25_CoinGlass_Footprint_Signals.py", "8_Exchange_Liquidation_Map_7D.py", "10_Whale_Orders.py"] else 120
+        name, success, dt, err = run_script(s, timeout)
         status = "PASS" if success else "FAIL"
         if not success:
             failures += 1
@@ -164,6 +200,10 @@ def run_browser_phase() -> int:
         else:
             log.info(f"  [Browser] {name:<35} [{status}] ({dt:.2f}s)")
 
+        # Enforce instant tab hygiene after every collector
+        cleanup_browser_tabs()
+
+    cleanup_browser_tabs()
     total_dt = time.perf_counter() - t0
     log.info(f"Phase 2 Complete in {total_dt:.2f}s. Failures: {failures}/{len(scripts)}")
     return failures
