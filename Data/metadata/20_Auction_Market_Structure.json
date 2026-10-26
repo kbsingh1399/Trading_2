@@ -57,9 +57,9 @@
     "fib_status",
     "auction_regime"
   ],
-  "byte_size": 43097,
-  "timestamp_ist": "2026-10-26 03:41:51 IST",
-  "timestamp_utc": "2026-10-25 22:11:51 UTC",
-  "epoch_utc": 1792966311.923749,
-  "write_duration_ms": 9.94
+  "byte_size": 45822,
+  "timestamp_ist": "2026-10-26 12:34:10 IST",
+  "timestamp_utc": "2026-10-26 07:04:10 UTC",
+  "epoch_utc": 1792998250.001237,
+  "write_duration_ms": 9.05
 }

@@ -55395,7 +55395,8 @@ also..shall we modify sl tp of running btc trade as per arena.ai?
 
 1. **Prompt Dispatcher Hardened & Aligned with Opus 5.5 + Astra Forensic Reviews**:
    - **Frozen Initial R0 Ledger**: \Data/initial_position_risk.json\ now freezes initial entry-to-stop distances (\R0 = 32.0 pts\ on SP500, \R0 = 36.5 pts\ on ETH), permanently eliminating dynamic R-multiple inflation when SL is ratcheted into BE lock.
-   - **Unavailable CFD CVD Disclosure**: Non-crypto assets without 1m CVD buckets now honestly report m CVD UNAVAILABLE (CFD L1)\ rather than misleading \+0 USD\ neutral flow.
+   - **Unavailable CFD CVD Disclosure**: Non-crypto assets without 1m CVD buckets now honestly report 
+m CVD UNAVAILABLE (CFD L1)\ rather than misleading \+0 USD\ neutral flow.
    - **Adversarial Pre-Mortem Red Team (Persona 5)**: Embedded default stand-aside falsification checks into every cycle.
    - **Strict Portfolio Stress & Capacity Constraints**: Enforced Astra's stressed loss formula (.25 * nominal + 2.00 USD/ticket\) with explicit rules restricting capacity to max 2 tickets at 14.50 USD risk or max 3 tickets at <= 10.50 USD risk, guaranteeing post-stop equity strictly defends the 4,795.00 USD operating buffer and 4,775.00 USD hard floor.
 
@@ -64209,3 +64210,8 @@ I think forced liquidation daemon is not working..right? Why you missed it. And 
   2. Upgraded Collectors/Browser/3_Exchanges_LS_Ratio_15M.py, 1H.py, 4H.py (142 rows per feed, 18 assets, authentic multi-exchange aggregated taker volume + 22 ranked exchanges for BTC + Binance/OKX/Bybit/Gate positioning).
   3. Removed obsolete API scripts and pruned all scratch artifacts.
   4. Pipeline & Auditor: 33/33 Feeds Fresh (< 1.5m), All Passed: True. Committed and pushed to origin/main.
+
+
+## Turn 2026-10-26 12:37 IST
+**User Prompt**: can you read terminal running logs?
+**Action**: Audited live running logs (logs/master_pipeline.log, logs/parquet_pipeline_daemon.log, system task logs), relaunched Hexad-daemons following system notice, and verified ongoing Phase 2 collection.

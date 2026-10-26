@@ -1,8 +1,0 @@
-{
-  "completed_at_utc": "2026-10-25 10:52:33 UTC",
-  "completed_at_epoch": 1792925553.519452,
-  "model": "gemini-3.8-flash",
-  "prompt_chars": 31739,
-  "response_chars": 11038,
-  "output_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\GEMINI_WEB2API_LATEST_RAW.md"
-}
