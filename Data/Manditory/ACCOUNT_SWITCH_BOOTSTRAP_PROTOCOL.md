@@ -114,8 +114,12 @@ Audit all persistent operational daemons across the Antigravity task runner (`ma
 | **Daemon 4** | `python Terminal/run_pipeline_continuous_daemon.py --gap 180` | Antigravity Task Runner (`isDaemon=true`) | Every 180s | Continuous 36-feed canonical master Parquet data lake pipeline + Metadata Stamping |
 | **Daemon 5** | `python Terminal/dual_completion_daemon.py --daemon` | Antigravity Task Runner (`isDaemon=true`) | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output, 5m tab auto-refresh |
 | **Daemon 6** | `schedule` Dynamic Timer | Antigravity Schedule Tool | DurationSeconds=1200 | Enforces strict 20-minute post-cycle quiet gap before next cycle launch |
+| **Daemon 7** | `schedule` Watchdog Cron | Antigravity Schedule Tool | `0,30 * * * *` (`isDaemon=true`) | Autonomous Watchdog Sentry: Wakes desk at :00 and :30 of every hour to guarantee non-stop execution in case agent sleeps |
 
-**Lifecycle preservation**: Persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, or create duplicate writers.
+**Lifecycle preservation & Autonomous Execution Invariants**:
+1. Persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, or create duplicate writers.
+2. **Perpetual Autonomous Timer Chaining Invariant**: The desk must NEVER halt or wait passively for operator prompts. There must ALWAYS be an active timer scheduled for the next cycle. As soon as Cycle N finishes synthesis, the coordinator immediately schedules the countdown timer for Cycle N+1.
+3. **Standing 0th & 30th Minute Watchdog Cron (`0,30 * * * *`)**: In addition to relative cycle timers, a standing recurring cron job on `0,30 * * * *` runs continuously in the background to ensure that if the agent sleeps or is interrupted, it will be automatically awakened to audit health, verify daemons, and resume cycle execution.
 
 ---
 

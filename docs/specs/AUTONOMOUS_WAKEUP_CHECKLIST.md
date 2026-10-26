@@ -105,7 +105,8 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   3. Daemon 3: Graphify AST Watcher Daemon (`run_graphify_watcher.py`, `isDaemon=true`)
   4. Daemon 4: Pipeline Continuous Daemon (`run_pipeline_continuous_daemon.py --gap 180`, `isDaemon=true`)
   5. Daemon 5: Dual AI Completion & Tab Refresh Daemon (`dual_completion_daemon.py --daemon`, `isDaemon=true`)
-  6. Daemon 6: 20-Minute Post-Cycle Timer (`schedule` DurationSeconds=1200)
+  6. Daemon 6: Dynamic Post-Cycle Stabilization Timer (`schedule` relative seconds, chaining next cycle)
+  7. Daemon 7: Standing Watchdog Cron (`schedule` cron `0,30 * * * *`, `isDaemon=true`, waker at :00 and :30)
 - **Zero Scratch Litter**: Prune all temporary scripts in `scratch/` immediately after verification.
 - **Turn Ledger Append**: Append turn record to `.agents/memory/session_chat_history.md`.
 
