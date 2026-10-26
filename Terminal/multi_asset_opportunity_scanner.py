@@ -46,8 +46,9 @@ from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 
 HARD_FLOOR = 4600.00
 BUFFER_FLOOR = 4650.00
+ADMISSION_FLOOR = 4795.00
 
-def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
+def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
     if not mt5.initialize():
         return {"error": "MT5 initialization failed"}
 
@@ -325,7 +326,7 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         stressed_equity = equity - stressed_loss
 
         # Inviolable operating buffer defense gate (stressed equity >= 4,795.00 USD)
-        if stressed_equity < BUFFER_FLOOR:
+        if stressed_equity < ADMISSION_FLOOR:
             continue
 
         potential_reward = actual_risk * rr_ratio
