@@ -37,6 +37,7 @@ import pathlib
 import sys
 import time
 import urllib.request
+import urllib.error
 
 
 logging.basicConfig(
@@ -150,7 +151,6 @@ def fetch_stops_ladder(coin: str, now_sec: float, start_sec: float) -> tuple[flo
         }
     )
     
-    import urllib.error
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=12) as resp:
