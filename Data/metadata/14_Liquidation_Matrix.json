@@ -1,25 +1,27 @@
 {
   "feed_name": "14_Liquidation_Matrix",
   "status": "PASS",
-  "row_count": 8585,
-  "column_count": 12,
+  "row_count": 11152,
+  "column_count": 14,
   "columns": [
     "timestamp_ist",
     "symbol",
     "asset_class",
     "venue_tier",
     "venue_name",
+    "timeframe",
     "side",
     "price_level",
     "liquidation_vol_usd",
     "cumulative_liq_usd",
     "binance_vol_usd",
     "okx_vol_usd",
-    "bybit_vol_usd"
+    "bybit_vol_usd",
+    "is_synthetic"
   ],
-  "byte_size": 165019,
-  "timestamp_ist": "2026-10-26 21:01:48 IST",
-  "timestamp_utc": "2026-10-26 15:31:48 UTC",
-  "epoch_utc": 1793028708.128891,
-  "write_duration_ms": 322.75
+  "byte_size": 243522,
+  "timestamp_ist": "2026-10-26 21:13:20 IST",
+  "timestamp_utc": "2026-10-26 15:43:20 UTC",
+  "epoch_utc": 1793029400.752886,
+  "write_duration_ms": 319.26
 }

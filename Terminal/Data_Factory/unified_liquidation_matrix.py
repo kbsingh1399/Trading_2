@@ -88,56 +88,65 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
     now_ist = datetime.datetime.now(IST_TZ).strftime("%Y-%m-%d %H:%M:%S IST")
     unified_records: List[Dict[str, Any]] = []
 
-    # 1. Tier 1: CEX Liquidation Map (Binance, OKX, Bybit)
-    cex_pq = FEEDS_DIR / "8_Exchange_Liquidation_Map_1D.parquet"
-    if cex_pq.exists():
-        try:
-            df_cex = pl.read_parquet(cex_pq)
-            log.info(f"Loaded Tier 1 CEX Liquidation Map: {df_cex.shape[0]} rows.")
-            for row in df_cex.iter_rows(named=True):
-                asset = str(row.get("Asset") or row.get("symbol") or "BTC")
-                sym = f"{asset}USDT" if not asset.endswith("USDT") else asset
-                price = parse_clean_price(row.get("Price"))
-                short_liq = parse_usd(row.get("Short"))
-                long_liq = parse_usd(row.get("Long"))
-                cum_liq = parse_usd(row.get("Cummulitve_Liquidation")) or (short_liq + long_liq)
+    # 1. Tier 1: CEX Liquidation Map (Binance, OKX, Bybit) - 1D & 7D
+    for tf_label, pq_name in [("1D", "8_Exchange_Liquidation_Map_1D.parquet"), ("7D", "8_Exchange_Liquidation_Map_7D.parquet")]:
+        cex_pq = FEEDS_DIR / pq_name
+        if cex_pq.exists():
+            try:
+                df_cex = pl.read_parquet(cex_pq)
+                log.info(f"Loaded Tier 1 CEX Liquidation Map ({tf_label}): {df_cex.shape[0]} rows.")
+                for row in df_cex.iter_rows(named=True):
+                    asset = str(row.get("Asset") or row.get("symbol") or "BTC")
+                    sym = f"{asset}USDT" if not asset.endswith("USDT") else asset
+                    price = parse_clean_price(row.get("Price"))
+                    short_liq = parse_usd(row.get("Short"))
+                    long_liq = parse_usd(row.get("Long"))
+                    cum_liq = (
+                        parse_usd(row.get("Cumulative_Liquidation"))
+                        or parse_usd(row.get("Cummulitve_Liquidation"))
+                        or (short_liq + long_liq)
+                    )
 
-                binance_usd = parse_usd(row.get("Binanace"))
-                okx_usd = parse_usd(row.get("OKX"))
-                bybit_usd = parse_usd(row.get("Bybit"))
+                    binance_usd = parse_usd(row.get("Binance")) or parse_usd(row.get("Binanace"))
+                    okx_usd = parse_usd(row.get("OKX"))
+                    bybit_usd = parse_usd(row.get("Bybit"))
 
-                if short_liq > 0:
-                    unified_records.append({
-                        "timestamp_ist": now_ist,
-                        "symbol": sym,
-                        "asset_class": "Crypto Perp",
-                        "venue_tier": "Tier 1 CEX",
-                        "venue_name": "Binance/OKX/Bybit",
-                        "side": "Short Liquidation",
-                        "price_level": price,
-                        "liquidation_vol_usd": short_liq,
-                        "cumulative_liq_usd": cum_liq,
-                        "binance_vol_usd": binance_usd,
-                        "okx_vol_usd": okx_usd,
-                        "bybit_vol_usd": bybit_usd,
-                    })
-                if long_liq > 0:
-                    unified_records.append({
-                        "timestamp_ist": now_ist,
-                        "symbol": sym,
-                        "asset_class": "Crypto Perp",
-                        "venue_tier": "Tier 1 CEX",
-                        "venue_name": "Binance/OKX/Bybit",
-                        "side": "Long Liquidation",
-                        "price_level": price,
-                        "liquidation_vol_usd": long_liq,
-                        "cumulative_liq_usd": cum_liq,
-                        "binance_vol_usd": binance_usd,
-                        "okx_vol_usd": okx_usd,
-                        "bybit_vol_usd": bybit_usd,
-                    })
-        except Exception as e:
-            log.warning(f"Error reading CEX liquidations: {e}")
+                    if short_liq > 0:
+                        unified_records.append({
+                            "timestamp_ist": now_ist,
+                            "symbol": sym,
+                            "asset_class": "Crypto Perp",
+                            "venue_tier": "Tier 1 CEX",
+                            "venue_name": "Binance/OKX/Bybit",
+                            "timeframe": tf_label,
+                            "side": "Short Liquidation",
+                            "price_level": price,
+                            "liquidation_vol_usd": short_liq,
+                            "cumulative_liq_usd": cum_liq,
+                            "binance_vol_usd": binance_usd,
+                            "okx_vol_usd": okx_usd,
+                            "bybit_vol_usd": bybit_usd,
+                            "is_synthetic": False,
+                        })
+                    if long_liq > 0:
+                        unified_records.append({
+                            "timestamp_ist": now_ist,
+                            "symbol": sym,
+                            "asset_class": "Crypto Perp",
+                            "venue_tier": "Tier 1 CEX",
+                            "venue_name": "Binance/OKX/Bybit",
+                            "timeframe": tf_label,
+                            "side": "Long Liquidation",
+                            "price_level": price,
+                            "liquidation_vol_usd": long_liq,
+                            "cumulative_liq_usd": cum_liq,
+                            "binance_vol_usd": binance_usd,
+                            "okx_vol_usd": okx_usd,
+                            "bybit_vol_usd": bybit_usd,
+                            "is_synthetic": False,
+                        })
+            except Exception as e:
+                log.warning(f"Error reading CEX liquidations ({tf_label}): {e}")
 
     # 2. Tier 2: On-Chain Hyperliquid Clearinghouse (14_Hyperdash_Liq_Map)
     dex_pq = FEEDS_DIR / "14_Hyperdash_Liq_Map.parquet"
@@ -167,6 +176,7 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                         "asset_class": "Crypto Perp (On-Chain)",
                         "venue_tier": "Tier 2 DEX",
                         "venue_name": "Hyperliquid L1",
+                        "timeframe": "Live",
                         "side": liq_side,
                         "price_level": price,
                         "liquidation_vol_usd": vol_usd,
@@ -174,6 +184,7 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                         "binance_vol_usd": 0.0,
                         "okx_vol_usd": 0.0,
                         "bybit_vol_usd": 0.0,
+                        "is_synthetic": False,
                     })
         except Exception as e:
             log.warning(f"Error reading DEX liquidations: {e}")
@@ -201,6 +212,7 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                             "asset_class": "Macro CFD / Index",
                             "venue_tier": "Tier 4 Macro Envelope",
                             "venue_name": "MT5 / Synthetic",
+                            "timeframe": "Envelope",
                             "side": "Short Liquidation",
                             "price_level": short_liq_p,
                             "liquidation_vol_usd": 25000000.0,
@@ -208,6 +220,7 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                             "binance_vol_usd": 0.0,
                             "okx_vol_usd": 0.0,
                             "bybit_vol_usd": 0.0,
+                            "is_synthetic": True,
                         })
                         unified_records.append({
                             "timestamp_ist": now_ist,
@@ -215,6 +228,7 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                             "asset_class": "Macro CFD / Index",
                             "venue_tier": "Tier 4 Macro Envelope",
                             "venue_name": "MT5 / Synthetic",
+                            "timeframe": "Envelope",
                             "side": "Long Liquidation",
                             "price_level": long_liq_p,
                             "liquidation_vol_usd": 25000000.0,
@@ -222,7 +236,10 @@ def build_unified_matrix() -> List[Dict[str, Any]]:
                             "binance_vol_usd": 0.0,
                             "okx_vol_usd": 0.0,
                             "bybit_vol_usd": 0.0,
+                            "is_synthetic": True,
                         })
+        except Exception as e:
+            log.warning(f"Error synthesizing Macro envelopes: {e}")
         except Exception as e:
             log.warning(f"Error synthesizing Macro envelopes: {e}")
 
