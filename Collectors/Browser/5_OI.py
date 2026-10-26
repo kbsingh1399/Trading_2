@@ -49,6 +49,11 @@ try:
 except ImportError:
     from parquet_feed_writer import write_parquet_feed
 
+try:
+    from asset_registry import asset_registry
+except ImportError:
+    asset_registry = None
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] [5_OI] %(message)s",
@@ -60,10 +65,14 @@ CDP_BASE_URL = "http://127.0.0.1:9222"
 BASE_TARGET_URL = "https://www.coinglass.com/open-interest"
 FEED_NAME = "5_OI"
 
-DEFAULT_UNIVERSE = [
-    "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
-    "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB"
-]
+if asset_registry:
+    DEFAULT_UNIVERSE = asset_registry.get_assets_for_collector("5_OI")
+else:
+    DEFAULT_UNIVERSE = [
+        "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
+        "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
+        "XAUT", "PAXG"
+    ]
 
 MAJOR_EXCHANGES = [
     "Binance", "Bybit", "OKX", "CME", "KuCoin", "Gate",

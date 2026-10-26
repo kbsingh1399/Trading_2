@@ -42,10 +42,15 @@ log = logging.getLogger("CoinGlass_LS_Core")
 
 IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 
-UNIVERSE = [
-    "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
-    "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB"
-]
+try:
+    from asset_registry import asset_registry
+    UNIVERSE = asset_registry.get_assets_for_collector("3_Exchanges_LS_Ratio")
+except Exception:
+    UNIVERSE = [
+        "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
+        "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
+        "XAUT", "PAXG"
+    ]
 
 
 def fmt_vol(val: float) -> str:

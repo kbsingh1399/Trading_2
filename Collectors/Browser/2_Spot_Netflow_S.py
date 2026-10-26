@@ -51,6 +51,11 @@ try:
 except ImportError:
     from parquet_feed_writer import write_parquet_feed
 
+try:
+    from asset_registry import asset_registry
+except ImportError:
+    asset_registry = None
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] [2_Spot_Netflow_S] %(message)s",
@@ -62,12 +67,15 @@ CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/spot-inflow-outflow"
 FEED_NAME = "2_Spot_Netflow_S"
 
-DEFAULT_UNIVERSE = [
-    "BTC", "ETH", "XRP", "SOL", "BNB",
-    "DOGE", "ADA", "TRX", "LINK", "AVAX",
-    "SUI", "NEAR", "DOT", "LTC", "BCH",
-    "APT", "OP", "ARB",
-]
+if asset_registry:
+    DEFAULT_UNIVERSE = asset_registry.get_assets_for_collector("2_Spot_Netflow_S")
+else:
+    DEFAULT_UNIVERSE = [
+        "BTC", "ETH", "XRP", "SOL", "BNB",
+        "DOGE", "ADA", "TRX", "LINK", "AVAX",
+        "SUI", "NEAR", "DOT", "LTC", "BCH",
+        "APT", "OP", "ARB", "XAUT", "PAXG"
+    ]
 
 COLUMNS = [
     ("#", "#", 8, "center"),
@@ -221,6 +229,7 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
             log.info(f"[{idx:2d}/{len(symbols)}] Harvesting CoinGlass Spot Netflow for {sym}...")
 
             # Type symbol into search box and dispatch Enter
+            search_term = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
             js_search = f"""
             (() => {{
                 const input = document.querySelector('input.cg-style-za5rna') || Array.from(document.querySelectorAll('input[type="text"]')).find(i => i.closest('.MuiInput-root'));
@@ -228,7 +237,7 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
                 input.focus();
                 input.click();
                 const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSetter.call(input, '{sym}');
+                nativeSetter.call(input, '{search_term}');
                 input.dispatchEvent(new Event('input', {{ bubbles: true }}));
                 input.dispatchEvent(new Event('change', {{ bubbles: true }}));
                 input.dispatchEvent(new KeyboardEvent('keydown', {{ key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }}));
@@ -248,7 +257,7 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
                 let f = dt[fiberKey];
                 while (f) {{
                     if (f.memoizedProps && f.memoizedProps.dataSource) {{
-                        const item = f.memoizedProps.dataSource.find(d => d.symbol === '{sym}');
+                        const item = f.memoizedProps.dataSource.find(d => d.symbol === '{sym}' || d.baseSymbol === '{sym}' || d.symbol === '{search_term}');
                         if (item) return item;
                     }}
                     f = f.return;

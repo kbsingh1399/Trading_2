@@ -20618,5 +20618,25 @@
     "date_heading": "October 26",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "XYZ:NBIS",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 995.95,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 151.13,
+    "wallet_address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+    "asset_slug": "XYZ:NBIS",
+    "raw_text": "#XYZ:NBIS Liquidated Short: 1.00K USD at 151.1300 USD [API]",
+    "msg_id": "HL_LIQ_0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00_XYZ:NBIS_897999594929473",
+    "timestamp_epoch": 1793000944,
+    "time_label": "07:49",
+    "date_heading": "October 26",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]

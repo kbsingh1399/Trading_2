@@ -49,6 +49,11 @@ try:
 except ImportError:
     from parquet_feed_writer import write_parquet_feed
 
+try:
+    from asset_registry import asset_registry
+except ImportError:
+    asset_registry = None
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] [5_Funding_Rate] %(message)s",
@@ -60,10 +65,14 @@ CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/FundingRate"
 FEED_NAME = "5_Funding_Rate"
 
-DEFAULT_UNIVERSE = [
-    "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
-    "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB"
-]
+if asset_registry:
+    DEFAULT_UNIVERSE = asset_registry.get_assets_for_collector("5_Funding_Rate")
+else:
+    DEFAULT_UNIVERSE = [
+        "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
+        "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
+        "XAUT", "PAXG"
+    ]
 
 IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 
@@ -142,25 +151,22 @@ async def harvest_funding_rates(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
             log.info("Awaiting FundingRate page hydration (3.5s)...")
             await asyncio.sleep(3.5)
 
-        # In-memory React Fiber extraction with in-browser filtering
-        symbols_json = json.dumps(symbols)
-        js_extract = f"""
-        (() => {{
-            const universe = {symbols_json};
+        # In-memory React Fiber extraction for all available assets
+        js_extract = """
+        (() => {
             const tables = Array.from(document.querySelectorAll('table'));
             const table = tables.find(t => t.querySelectorAll('tbody tr').length > 5) || tables[0];
             if (!table) return null;
             const fiberKey = Object.keys(table).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));
             let cur = table[fiberKey];
-            while (cur) {{
-                if (cur.memoizedProps && cur.memoizedProps.dataSource) {{
-                    const filtered = cur.memoizedProps.dataSource.filter(d => universe.includes(d.symbol));
-                    return JSON.stringify(filtered);
-                }}
+            while (cur) {
+                if (cur.memoizedProps && cur.memoizedProps.dataSource) {
+                    return JSON.stringify(cur.memoizedProps.dataSource);
+                }
                 cur = cur.return;
-            }}
+            }
             return null;
-        }})()
+        })()
         """
 
         raw_data = None
@@ -169,7 +175,7 @@ async def harvest_funding_rates(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
             val = res.get("result", {}).get("value")
             if val:
                 raw_data = json.loads(val)
-                if len(raw_data) >= len(symbols) - 2:
+                if len(raw_data) >= 15:
                     break
             await asyncio.sleep(0.2)
 
@@ -178,10 +184,11 @@ async def harvest_funding_rates(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
 
         by_symbol = {item.get("symbol"): item for item in raw_data if item.get("symbol")}
 
-        for idx, sym in enumerate(symbols, start=1):
+        # Determine target list: if specific symbols requested, extract those; otherwise extract all available
+        target_list = symbols if symbols else list(by_symbol.keys())
+        for idx, sym in enumerate(target_list, start=1):
             item = by_symbol.get(sym)
             if not item:
-                log.warning(f"Symbol {sym} missing from CoinGlass FundingRate table.")
                 continue
 
             u_map = {e.get("exchangeName"): e.get("rate") for e in item.get("uMarginList", [])}
