@@ -93,6 +93,13 @@ def push_cycle_to_github(cycle_num: int):
         now_ist = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5, minutes=30))).strftime("%Y-%m-%d %H:%M:%S IST")
         log.info(f"[Cycle #{cycle_num}] Staging and pushing all parquet feeds and telemetry to GitHub...")
         
+        # 0. Stamp all parquet feeds with fresh cycle metadata so git commits all files simultaneously
+        try:
+            from Terminal.Data_Factory.stamp_all_parquet_feeds import stamp_all_parquet_feeds
+            stamp_all_parquet_feeds(f"Cycle #{cycle_num}")
+        except Exception as stamp_exc:
+            log.warning(f"[Cycle #{cycle_num}] Parquet metadata stamp notice: {stamp_exc}")
+        
         # 1. Stage all data, metadata, and trade plans
         subprocess.run(["git", "add", "Data/feeds", "Data/metadata", "Data/cycle_envelope.json", "docs/trade_plans", "docs/telemetry", "Data/*.json"], cwd=str(ROOT_DIR), check=False)
         
