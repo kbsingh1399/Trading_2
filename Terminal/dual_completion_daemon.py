@@ -24,8 +24,8 @@ except Exception:
     pass
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-ARENA_RAW_FILE = ROOT / "docs" / "trade_plans" / "ARENA_LATEST_RAW.md"
-ZAI_RAW_FILE = ROOT / "docs" / "trade_plans" / "ZAI_LATEST_RAW.md"
+ARENA_STATUS_FILE = ROOT / "Data" / "arena_completion_status.json"
+ZAI_STATUS_FILE = ROOT / "Data" / "zai_completion_status.json"
 
 
 def get_chrome_tabs():
