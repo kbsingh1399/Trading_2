@@ -259,8 +259,10 @@ def main():
     run_post_processing_phase()
 
     all_passed = run_audit_phase()
+    cleanup_browser_tabs()
     total_time = time.perf_counter() - t_start
     log.info(f"Master Pipeline Execution Finished in {total_time:.2f}s. All Feeds Healthy: {all_passed}")
+    cleanup_browser_tabs()
     sys.exit(0 if all_passed else 1)
 
 
