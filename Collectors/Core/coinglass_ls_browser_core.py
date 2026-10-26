@@ -21,6 +21,7 @@ import datetime
 import json
 import logging
 import pathlib
+import re
 import sys
 import urllib.request
 import pandas as pd
@@ -296,8 +297,16 @@ async def run_coinglass_ls_harvest(tf: str) -> bool:
 
             l_pct_str = tot.get("longPct", "50.00%")
             s_pct_str = tot.get("shortPct", "50.00%")
-            lp_tot = float(l_pct_str.replace("%", "").strip() or 50.0)
-            sp_tot = float(s_pct_str.replace("%", "").strip() or 50.0)
+            try:
+                clean_lp = re.sub(r"[^\d.]", "", l_pct_str)
+                lp_tot = float(clean_lp) if clean_lp else 50.0
+            except Exception:
+                lp_tot = 50.0
+            try:
+                clean_sp = re.sub(r"[^\d.]", "", s_pct_str)
+                sp_tot = float(clean_sp) if clean_sp else 50.0
+            except Exception:
+                sp_tot = 50.0
             tot_ratio = (lp_tot / sp_tot) if sp_tot > 0 else 1.0
 
             l_vol_str = tot.get("longVol", "-")
@@ -323,10 +332,18 @@ async def run_coinglass_ls_harvest(tf: str) -> bool:
 
             # 2. Append all individual exchange rows for this asset
             for ex in exchanges:
-                lp_str = ex["longPct"].replace("%", "").strip()
-                sp_str = ex["shortPct"].replace("%", "").strip()
-                lp = float(lp_str) if lp_str else 50.0
-                sp = float(sp_str) if sp_str else 50.0
+                lp_str = ex.get("longPct", "50.00%")
+                sp_str = ex.get("shortPct", "50.00%")
+                try:
+                    clean_lp = re.sub(r"[^\d.]", "", lp_str)
+                    lp = float(clean_lp) if clean_lp else 50.0
+                except Exception:
+                    lp = 50.0
+                try:
+                    clean_sp = re.sub(r"[^\d.]", "", sp_str)
+                    sp = float(clean_sp) if clean_sp else 50.0
+                except Exception:
+                    sp = 50.0
                 r = (lp / sp) if sp > 0 else 1.0
 
                 l_val = parse_vol(ex["longVol"])
