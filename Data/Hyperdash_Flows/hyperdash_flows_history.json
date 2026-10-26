@@ -39318,5 +39318,25 @@
     "date_heading": "October 26",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "XRP",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 7357.74,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 1.2931,
+    "wallet_address": "0x5e9a849dd006f569228b24da0f11d66bf92a6425",
+    "asset_slug": "XRP",
+    "raw_text": "#XRP Whale BUY: 7.36K USD at 1.2931 USD [API]",
+    "msg_id": "HL_TRADE_XRP_539050331536839",
+    "timestamp_epoch": 1793051777,
+    "time_label": "21:56",
+    "date_heading": "October 26",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
