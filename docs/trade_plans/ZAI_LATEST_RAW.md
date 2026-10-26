@@ -32,9 +32,20 @@ Wrote 3 files，Ran 3 commands
 USWTI tape read: +1.69M CVD surge into 16:00 UTC drove oil to 103.88, then -5.4M sell-off retraced it — the C358 thesis played out without a fill. Now a compact per-symbol CVD + cluster digest:
 
 Wrote 1 files，Ran 1 commands
-CVD sums, funding, OI, netflow
 
 Majors' CVD lives in Tradfye/footprint feeds. Pulling those plus whale persistence, liquidation bands, max-pain, ETF flows, calendar:
 
 Wrote 2 files，Ran 2 commands
-Majors CVD and whale walls
+
+BTC whale tape: ~$40M+ of sell walls stacked 79,936–80,127 (perp) = MT5-equivalent ~79,818–80,009 after -118 basis. ETH max-pain magnet at 2,300. Now bid walls + liquidation bands + macro:
+
+Wrote 1 files，Ran 1 commands
+
+SOL stands out: $3.55M of bid walls AT 100.2 with persistence up to 7h26m — a genuine verified bunker. Fixing the liq-map column case and finishing the sweep:
+
+Wrote 1 files，Ran 1 commands
+
+ETF feed still degraded (all NaN — known dispute B1), calendar clean until FOMC Oct 28. Re-pulling liq volumes with the typo'd column and the stops map:
+
+Wrote 1 files，Ran 1 commands
+Liq volumes, stops map, news, forced liq
