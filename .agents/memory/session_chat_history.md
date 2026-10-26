@@ -64636,3 +64636,16 @@ User Directives Executed:
 4. Scheduled 1,200s countdown timer for Cycle 361 (task-142562).
 5. All updates committed (cc6b58582) and pushed to GitHub main.
 ========================================================================================
+
+---
+### Session Turn: 2026-10-27 03:11 IST
+- **User Prompt**: "I hope IP rotation is embedded in python Terminal/run_pipeline_continuous_daemon.py --gap 180. Before starting and after cycle completion" & "and ensure to kill any orphan processes"
+- **Actions Taken**:
+  1. Updated `Terminal/run_pipeline_continuous_daemon.py` with `trigger_ip_rotation(stage)` called BOTH:
+     - `stage="BEFORE Cycle #X start"` (runs right before `run_single_cycle()`)
+     - `stage="AFTER Cycle #X completion"` (runs right after `push_cycle_to_github()` before sleep)
+  2. Tested and verified `Terminal/rotate_ip.py`: cleanly rotated egress IP from 104.28.200.92 to 103.173.25.235 via Cloudflare WARP.
+  3. Identified 9 orphan processes from prior cancellations and duplicate daemons (PID 28596, 18140, 10488, 28872, 7224, 28176, 19468, 27696, 28664) and force-terminated all via taskkill.
+  4. Executed `scripts/free_ram.ps1`: reclaimed physical RAM to 5.58 GB free (63.6% used).
+  5. Relaunched `python Terminal/run_pipeline_continuous_daemon.py --gap 180` as persistent daemon `task-142701`. Verified it rotated IP before starting Cycle #1 and is actively harvesting.
+  6. Verified MT5 account state: Balance 4,846.32 USD, Equity 4,846.32 USD, 0 floating positions, exactly 2 resting limit orders (#19329907 BNB and #19330613 ETH).
