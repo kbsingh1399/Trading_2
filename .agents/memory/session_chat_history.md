@@ -64695,3 +64695,12 @@ User Directives Executed:
   2. Pipeline daemon `task-142964` is actively executing Cycle #1; Phase 1 (12 API feeds) completed with 0 failures in 35.28s; Phase 2 (Browser CDP feeds) is progressing through feeds.
   3. MT5 Account Telemetry: Balance 4,846.32 USD, Equity 4,846.32 USD, 0 floating positions, exactly 2 resting limit orders (#19329907 BNB and #19330613 ETH). Stressed risk: 28.63 USD; Post-stress equity: 4,817.69 USD > 4,795.00 USD Operating Buffer.
   4. Dynamic post-cycle timer `task-142812` has ~5.5 minutes remaining until Cycle 362 trigger (~03:35:37 IST / 22:05:37 UTC).
+
+---
+### Session Turn: 2026-10-27 03:33 IST
+- **User Prompt**: "utxo coinglass page opened...any issue?"
+- **Audit Findings**:
+  1. No issue or error. The open CoinGlass tab was actively being queried by `Collectors/Browser/9_Liquidation_Max_Pain_48H.py` under the running pipeline daemon (`task-142964`).
+  2. CoinGlass's navigation bar contains its On-Chain / Bitcoin analytics section ("UTXO Realized Price / Age Distribution"), which renders when CoinGlass pages load.
+  3. `8_Exchange_Liquidation_Map_7D.py` completed at 03:33:17 IST (PASS, 50.08s); `9_Liquidation_Max_Pain_48H.py` was active on `https://www.coinglass.com/liquidation-maxpain`.
+  4. Tab lifecycle is managed automatically by `cleanup_browser_tabs()` after each browser collector completes.

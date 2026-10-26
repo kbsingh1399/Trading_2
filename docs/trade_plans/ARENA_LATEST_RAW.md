@@ -403,4 +403,340 @@ CoinGlass Footprint & Aggregated Bar Metrics (25_CoinGlass_Footprint_Signals.par
 26_Aggregated_Footprint_Bar_Metrics.parquet (120 rows × 26 cols, WARN 19.6m): BTC latest 15m candle shows poc_price = 79,775.0, vah_price = 79,860.0, val_price = 79,710.0, stacked_buy_imbalances = 2, stacked_sell_imbalances = 3, unfinished_auction_high = False, unfinished_auction_low = True — confirming an unfinished downside auction magnet toward 79,553–79,700.
 Tradfye Orderflow & Auction Market Structure (20_Auction_Market_Structure.parquet & 21_Tradfye_Orderflow.parquet):
 20_Auction_Market_Structure.parquet (28 rows × 25 cols): BTCUSD.pi session_poc = 80,451.70, session_vah = 80,692.20, session_val = 80,010.80 (BELOW_VALUE_AREA, discount_premium_zone = DISCOUNT); ETHUSD.pi session_poc = 2,340.50, session_vah = 2,354.10, session_val = 2,316.80 (BELOW_VALUE_AREA, DISCOUNT — making a mean-reversion rally back to session_val 2,316.80 / session_poc 2,340.50 into #19330613 at 2,333.50 structurally textbook); BNBUSD.p session_poc = 744.10, session_val = 740.20 (AT_VALUE_AREA_LOW).
-21_Tradfye_Orderflow.parquet 
+21_Tradfye_Orderflow.parquet (22 rows × 27 cols): BTCUSDT super_orderflow_bias = NEUTRAL_BEARISH, fvg_nearest_bullish = 79,420.0, fvg_nearest_bearish = 80,310.0, ob_nearest_demand = 79,550.0, ob_nearest_supply = 80,450.0; ETHUSDT ob_nearest_supply = 2,332.0–2,336.0 (exact confluence with #19330613 @ 2,333.50); BNBUSDT ob_nearest_demand = 735.20–736.50 (exact confluence with #19329907 @ 736.25).
+Role B — Derivatives, Liquidation & Whale Forensics (Feeds 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 22)
+Exchange Long/Short Ratios (3_Exchanges_LS_Ratio_15M/1H/4H.parquet):
+3_Exchanges_LS_Ratio_15M.parquet (500 rows × 11 cols, 03:10:02 IST): BTC Total 50.77% Long / 49.23% Short (L/S = 1.03, $1.88B Long / $1.83B Short, Binance 51.25% Long, OKX 52.91% Long, Bybit 44.13% Long).
+3_Exchanges_LS_Ratio_1H.parquet (500 rows × 11 cols, 03:10:21 IST): BTC Total 48.27% Long / 51.73% Short (L/S = 0.93, $4.31B Long / $4.62B Short); ETH Total 48.43% Long / 51.57% Short (L/S = 0.94, $2.46B Long / $2.62B Short); SOL Total 48.03% Long / 51.97% Short (L/S = 0.92); BNB Total 46.51% Long / 53.49% Short (L/S = 0.87, crowded short positioning supporting a short-squeeze bounce off 736.25).
+Data Quality Alert (3_Exchanges_LS_Ratio_4H.parquet): All 20 rows contain corrupted scraper placeholders (Long_% = 1.00%, Short_Volume = "-", Total_Volume = "-"). Flagged in Part 5 Bug Hunt.
+Open Interest, Funding Rates & Settlement (5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet):
+5_OI.parquet (220 rows × 13 cols): BTC All Exchanges OI = $50.89B (1h -0.05%, 4h -0.25%, 24h -3.57%, CME $10.31B 20.26%, Binance $9.85B 19.35%); ETH All Exchanges OI = $26.15B (1h +0.34%, 4h -0.24%, 24h +2.38% — fresh leverage entering ETH on the drop, fueling both the 2,331–2,335 supply trap and 2,285.66 liquidation flush); SOL OI = $6.08B (24h -1.82%); BNB OI = $1.14B (24h -0.94%).
+5_Funding_Rate.parquet (46 rows × 29 cols): BTC (USDT_Binance = +0.0029%, USDT_OKX = +0.0005%, USDT_Bybit = -0.0014%); ETH (USDT_Binance = +0.0028%, USDT_OKX = +0.0044%, USDT_Bybit = +0.0028% — positive funding despite -1.40% price drop, confirming retail dip-buyers are still paying carry to stay long ETH!); SOL (USDT_Binance = -0.0017%, USDT_OKX = -0.0056%, USDT_Bybit = +0.0057%); BNB (USDT_Binance = 0.0000%, USDT_Bybit = -0.0063% — negative funding on Bybit favors long #19329907).
+6_Funding_Fee_Settlement.parquet (940 rows × 10 cols): BTC 24h settled funding fee $3.55M (3d $8.88M, 7d $20.78M); ETH 24h settled funding fee $1.77M (3d $4.27M, 7d $11.46M).
+Live Liquidations, Heatmaps & Exchange Liquidation Maps (7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 22_Forced_Liquidations_MTF.parquet):
+7_Liq_Heapmap.parquet (90 rows × 7 cols): 24h total liquidations led by BTC (1h $1.84M, 4h $8.12M, 12h $28.45M, 24h $64.18M), ETH (1h $1.12M, 4h $4.95M, 12h $19.80M, 24h $42.10M), SOL (24h $11.45M), and Other (24h $24.13M).
+7_Live_Liq.parquet (27 rows × 8 cols, 03:06:42 IST): Recent tape prints include a $252.05K BTCUSDT Short liquidation on Binance at $80,118.12, followed by smaller long/short flushes on Bybit and OKX.
+8_Exchange_Liquidation_Map_1D.parquet (2,329 rows × 13 cols) & 8_Exchange_Liquidation_Map_7D.parquet (2,537 rows × 13 cols, WARN 23.5m): BTC cumulative short liquidation leverage reaches $1.68B (1D) and $2.72B (7D) above 81,150–82,565, while cumulative long liquidation pools stack below 79,550.
+22_Forced_Liquidations_MTF.parquet (24 rows × 24 cols): BTC dominance_side = LONG_LIQ_DOMINANT (cascade_z_score = 0.90, exhaustion_signal = NORMAL); ETH LONG_LIQ_DOMINANT (cascade_z_score = 0.86); SOL LONG_LIQ_DOMINANT (cascade_z_score = 0.81).
+Hyperliquid & Hyperdash Decentralized Whale Intelligence (4_Hyperliquid_Analysis.parquet, 12_Hyperdash.parquet, 13_Hyperliquid.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 16_Hyperdash_telegram_Intel.parquet):
+4_Hyperliquid_Analysis.parquet (1,971 rows × 20 cols) & 12_Hyperdash.parquet (65 rows × 27 cols): Top tracked whale 0x5b5d...c060 holds an active ETH 5x Cross Short from $2,322.74 (+0.58% in profit) and BTC 5x Cross Short from $76,331.00; whale 0xb83d...6e36 holds an ETH 5x Cross Short from $2,375.32 (+2.85% in profit). Cohort bias across 12_Hyperdash.parquet shows net bearish positioning on ETH (short_notional > long_notional in top cohort) and defensive hedging on BTC.
+13_Hyperliquid.parquet (229 rows × 19 cols): On-chain perp mark/oracle prices (BTC = 79,731.0, ETH = 2,308.4, SOL = 100.15, BNB = 740.75, HYPE = 77.48) with positive 1h annualized funding (BTC +10.95%, ETH +10.95%).
+14_Hyperdash_Liq_Map.parquet (249 rows × 14 cols): On-chain Hyperliquid liquidation clusters show dense BTC long liquidations at 78,850–79,450 and short liquidations at 80,850–81,400; ETH long liquidations cluster at 2,265–2,288 (aligning with #19330613 TP at 2,291.00) and short liquidations at 2,355–2,380 (above #19330613 SL at 2,351.30).
+15_Hyperdash_Stops_Map.parquet (186 rows × 12 cols): BTC on-chain sell_stops cluster at 79,650, 79,480, and 79,200 while buy_stops cluster at 80,250 and 80,600; ETH buy_stops cluster at 2,338–2,348 and sell_stops cluster at 2,295–2,285 (confirming stop-run acceleration through 2,295 into our 2,291.00 TP!).
+16_Hyperdash_telegram_Intel.parquet (146 rows × 20 cols): Latest whale alert stream logs large Hyperliquid TWAP sell executions on ETH above 2,320 and passive limit bid layering on BTC at 79,700.
+Role C — Macro, ETF Flows & Cross-Asset Strategist (Feeds 1, 2, 19_Calendar, 19_News)
+Institutional Spot ETF Flows (1_Crypto_ETF_Flows.parquet, 520 rows × 9 cols):
+Latest settled session (24 Oct 2026) recorded -$110.30M net outflow from IBIT (BlackRock), while secondary issuers (FBTC, BITB, ARKB, GBTC) reported 0.00 / pending settlement updates. Prior settled sessions (22 Oct: +$91.50M, 21 Oct: +$142.80M) were net positive, indicating tactical pre-weekend institutional de-risking rather than structural capitulation.
+On-Chain Spot Exchange Netflows (2_Spot_Netflow_S.parquet, 500 rows × 15 cols):
+BTC Spot Netflow: 5m +$395.92K, 15m +$675.23K, 30m +$671.89K (mild short-term exchange inflow explaining the dip to 79,727), but 1h -$1.68M, 2h -$12.99M, 4h -$8.42M, 24h -$45.10M, and 30D -$1.17B (structural cold-storage accumulation).
+ETH Spot Netflow: 1h +$1.12M (tactical exchange deposit for selling), 24h -$58.14M, 30D -$3.73B.
+BNB Spot Netflow: 24h -$3.18M net outflow from exchanges (reducing spot supply overhead and supporting #19329907 BUY_LIMIT).
+Macro Economic Calendar & News Shock Gate (19_Calendar.parquet & 19_News.parquet):
+19_Calendar.parquet (385 rows × 14 cols): Current UTC time is 2026-10-26 21:57 UTC (2026-10-27 03:27 IST). There are ZERO High-Impact (Red) USD, EUR, GBP, or JPY macro releases within ±60 minutes of the current cycle window (next scheduled releases are Asian/European session tier-2 prints).
+19_News.parquet (46 rows × 12 cols): Headline sentiment is neutral-to-cautious across crypto and macro equities, with zero systemic black-swan or exchange-insolvency headlines.
+Role D — Chief Risk Officer & Pipeline Integrity Auditor (Feeds 00, 23, Data/parquet_all_feeds_checklist.json)
+Pipeline Telemetry & Scorecard Audit (23_Master_Pipeline_Telemetry.parquet & Data/parquet_all_feeds_checklist.json):
+Data/parquet_all_feeds_checklist.json (2026-10-26 21:45:29 UTC): Reports 36 canonical feeds (30 PASS, 6 WARN at 19.6m–23.5m: 8_Exchange_Liquidation_Map_7D 23.5m, 9_Liquidation_Max_Pain_24H 21.1m, 9_Liquidation_Max_Pain_48H 20.6m, 9_Liquidation_Max_Pain_3D 20.2m, 9_Liquidation_Max_Pain_7D 19.6m, 26_Aggregated_Footprint_Bar_Metrics 19.6m).
+Critical CRO Finding: As documented in the Metacognitive Audit and Part 5 below, autonomous_telemetry_git_daemon.py committed a git tree truncation in 0720a4cfd6 (21:45:40 UTC) that left only 23 of 42 .parquet files on origin/main in 408fc699ea/0abb8f5e70. All 42 feeds were recovered and verified via commit 21011ffa45 + 408fc699ea.
+🎯 PART 3: MANDATORY AUDIT OF THE 3 ACTIVE RESTING LIMIT ORDERS (PREVAIL / MODIFY / PRUNE)
+1. Ticket #19329907 — BNBUSD.p BUY_LIMIT 3.00 Lots @ 736.25 (SL: 732.65, TP: 746.80)
+Live Telemetry (00_MT5_Account_Telemetry.parquet & 11_Technical.parquet):
+Current Bid: 740.50 | Ask: 741.10 | Mid: 740.80 | Spread: 0.60 pts (8.10 bps <= 25.0 bps PASS).
+Distance to Entry: 740.80 - 736.25 = +4.55 pts (+0.614% above limit bid, 2.68 × ATR_14).
+Regime Metrics: ATR_14 = 1.70, ADX_14 = 17.07, RSI_14 = 43.65, Hurst_H = 0.5621, VR_4 = 0.9963, ER_48 = 0.0170 (MEAN_REVERTING, ultra-compressed ER_48 = 0.017 < 0.25, ideal for a liquidity-sweep mean-reversion bid).
+Whale Bunker & Liquidation Confluence (10_Whale_Orders.parquet, 9_Liquidation_Max_Pain_24H.parquet, 21_Tradfye_Orderflow.parquet):
+Whale Bid Bunkers: Directly supported by two multi-minute/multi-hour Binance institutional bid walls below entry: $658,410 at 735.56 (duration: 4m 13s = 253s >= 180s) and $622,620 at 735.00 (duration: 11h 42m = 42,120s >= 180s) — combined $1,281,030 bid bunker at 735.00–735.56, plus an active $1,150,000 bid wall at 739.78 (6m 30s). Entry 736.25 front-runs the 735.56 whale wall by +0.69 pts (+9.38 bps / 0.405 × ATR_14).
+Stop-Loss Protection: SL = 732.65 (3.60 pts = 2.12 × ATR_14 below entry) sits 2.35 pts (1.38 × ATR_14) below the 11-hour $622.6K whale bunker at 735.00, while remaining safely above the 24H Long Max Pain cluster at 727.82 ($991.4K).
+Take-Profit Alignment: TP = 746.80 (+10.55 pts = +6.21 × ATR_14 above entry, above session_vwap = 742.54 and session_poc = 744.10, along the path toward 24H Short Max Pain at 757.79 $1.51M).
+Exact Risk, Reward & Solvency Math (3.00 Lots, Contract Size 1 BNB/lot):
+Nominal SL Risk
+=
+3.00
+×
+1.0
+×
+(
+736.25
+−
+732.65
+)
+=
+3.00
+×
+3.60
+=
+$
+10.80
+ USD
+Nominal SL Risk=3.00×1.0×(736.25−732.65)=3.00×3.60=$10.80 USD
+Spread + Slippage Stress
+=
+3.00
+×
+0.6067
+=
+$
+1.82
+ USD
+  
+⟹
+  
+Stressed Loss
+=
+$
+12.62
+ USD
+Spread + Slippage Stress=3.00×0.6067=$1.82 USD⟹Stressed Loss=$12.62 USD
+Nominal TP Reward
+=
+3.00
+×
+1.0
+×
+(
+746.80
+−
+736.25
+)
+=
+3.00
+×
+10.55
+=
+$
+31.65
+ USD
+Nominal TP Reward=3.00×1.0×(746.80−736.25)=3.00×10.55=$31.65 USD
+Nominal R:R
+=
+10.55
+/
+3.60
+=
+2.93
+:
+1
+Nominal R:R=10.55/3.60=2.93:1 | 
+Reward-to-Spread Ratio
+=
+10.55
+/
+0.60
+=
+17.58
+×
+≥
+15.0
+×
+Reward-to-Spread Ratio=10.55/0.60=17.58×≥15.0×
+50% Crypto Margin Required
+=
+0.50
+×
+(
+3.00
+×
+736.25
+)
+=
+$
+1
+,
+104.38
+ USD
+50% Crypto Margin Required=0.50×(3.00×736.25)=$1,104.38 USD (22.79% of Equity).
+Verdict: PREVAIL (Retain unchanged).
+2. Ticket #19329908 — EURUSD.pi SELL_LIMIT 0.10 Lot @ 1.12065 (SL: 1.12180, TP: 1.11760)
+Live Telemetry (00_MT5_Account_Telemetry.parquet & 11_Technical.parquet):
+Current Bid: 1.11749 | Ask: 1.11750 | Mid: 1.117495 | Spread: 0.00001 (0.09 bps <= 5.0 bps).
+Fatal Structural Invalidation (Target Already Reached Without Fill):
+Resting SELL_LIMIT entry is at 1.12065 (+31.55 pips = +6.31 × ATR_14 above current spot 1.117495), and its Take-Profit is at 1.11760.
+Live EURUSD.pi price (1.11749 Bid / 1.11750 Ask) has already dropped 1.1 pips below the order's Take-Profit (1.11760)!
+In institutional execution rules (Pitfall #6 in TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md: Stale Zombie Limit Orders After Target Completion), once price completes the entire projected impulse to TP without tapping the SELL_LIMIT entry, the downside liquidity magnet (1.11760) has already been swept and exhausted. Any subsequent 31.6-pip rally back to 1.12065 (> 6.3 × ATR_14, well above Fib_786 = 1.11880 and session_vwap = 1.11900) would represent a bullish structural reversal that runs straight through 1.12065 into SL 1.12180.
+Worse still, keeping #19329908 on the book locks $16.38–$16.98 USD of stressed risk ($11.50 nominal SL + $5.48 stress buffer) and occupies a pending order slot, compressing pre-prune realized headroom to $4.32 USD.
+Verdict: PRUNE (CANCELLED_ON_MT5) — Immediately cancel/prune #19329908 to release $16.98 USD of stressed solvency headroom.
+3. Ticket #19330613 — ETHUSD.pi SELL_LIMIT 0.50 Lot @ 2333.50 (SL: 2351.30, TP: 2291.00)
+Live Telemetry (00_MT5_Account_Telemetry.parquet & 11_Technical.parquet):
+Current Bid: 2307.10 | Ask: 2309.90 | Mid: 2308.50 | Spread: 2.80 pts (12.13 bps <= 25.0 bps PASS).
+Distance to Entry: 2333.50 - 2308.50 = +25.00 pts (+1.083% above spot, 2.84 × ATR_14).
+Regime Metrics: ATR_14 = 8.79, ADX_14 = 26.59, RSI_14 = 38.58, Hurst_H = 0.6033, VR_4 = 1.0442, ER_48 = 0.0666 (MEAN_REVERTING, ER_48 = 0.067 < 0.25).
+Fibonacci Golden Zone (11_Technical.parquet): Fib_618_GP = 2,327.08, Fib_702_OTE = 2,331.34, Fib_786 = 2,335.61, session_vwap = 2,329.37, VWAP_U1 = 2,342.10, session_poc = 2,340.50. Entry 2,333.50 sits inside the upper OTE / 0.786 Fibonacci supply zone ([2,331.34, 2,335.61]).
+Whale Bunker & Multi-Venue Liquidation Confluence (10_Whale_Orders.parquet, 9_Liquidation_Max_Pain_24H/48H.parquet, 15_Hyperdash_Stops_Map.parquet):
+Whale Ask Bunkers: Directly nested inside two massive Binance institutional ask walls: $6,260,000 at 2,331.00 (duration: 2h 46m = 9,960s >= 180s) and $2,650,000 at 2,335.00 (duration: 1h 20m = 4,800s >= 180s) — a combined $8,910,000 institutional supply bunker bracketing 2,333.50 (0.17 × ATR_14 below 2,335.00! Strictly < 0.40 × ATR_14).
+Stop-Loss Protection: SL = 2,351.30 (+17.80 pts = 2.03 × ATR_14 above entry) sits +15.69 pts (1.78 × ATR_14) above Fib_786 = 2,335.61, above 15_Hyperdash_Stops_Map buy_stops (2,338–2,348), and +4.66 pts above the 48H Short Max Pain cluster (2,346.64), while staying safely below the 24H Short Max Pain cluster (2,362.55 $25.42M).
+Take-Profit Magnet Alignment: TP = 2,291.00 (-42.50 pts = 4.84 × ATR_14 below entry) front-runs the 24H Long Max Pain magnet at 2,285.66 ($23.44M) by +5.34 pts (+23.3 bps) and captures the 15_Hyperdash_Stops_Map sell_stops cascade at 2,295–2,285.
+Exact Risk, Reward & Solvency Math (0.50 Lot, Contract Size 1 ETH/lot):
+Nominal SL Risk
+=
+0.50
+×
+1.0
+×
+(
+2351.30
+−
+2333.50
+)
+=
+0.50
+×
+17.80
+=
+$
+8.90
+ USD
+Nominal SL Risk=0.50×1.0×(2351.30−2333.50)=0.50×17.80=$8.90 USD
+Spread + Slippage Stress
+=
+$
+6.50
+ USD
+  
+⟹
+  
+Stressed Loss
+=
+$
+15.40
+ USD
+Spread + Slippage Stress=$6.50 USD⟹Stressed Loss=$15.40 USD
+Nominal TP Reward
+=
+0.50
+×
+1.0
+×
+(
+2333.50
+−
+2291.00
+)
+=
+0.50
+×
+42.50
+=
+$
+21.25
+ USD
+Nominal TP Reward=0.50×1.0×(2333.50−2291.00)=0.50×42.50=$21.25 USD
+Nominal R:R
+=
+42.50
+/
+17.80
+=
+2.39
+:
+1
+Nominal R:R=42.50/17.80=2.39:1 | 
+Reward-to-Spread Ratio
+=
+42.50
+/
+2.80
+=
+15.18
+×
+≥
+15.0
+×
+Reward-to-Spread Ratio=42.50/2.80=15.18×≥15.0×
+50% Crypto Margin Required
+=
+0.50
+×
+(
+0.50
+×
+2333.50
+)
+=
+$
+583.38
+ USD
+50% Crypto Margin Required=0.50×(0.50×2333.50)=$583.38 USD (12.04% of Equity).
+Verdict: PREVAIL (Retain unchanged).
+4. New Candidate Order Evaluation Across the 28-Asset Universe (STAND_ASIDE / NONE)
+
+Even though we evaluate the top candidate market geometries across the universe for completeness:
+
+BTCUSD.pi Candidate Short Fade: SELL_LIMIT 0.04 lot @ 80,115.00 (front-running the $2.38M 1h31m @ 80,126.90 and $2.82M 21m32s @ 80,183.80 Binance ask walls, SL 80,645.00 behind Fib_786 80,560.12, TP 79,595.00 front-running 24H Long Max Pain 79,553.10 $64.70M by +5.2 bps; nominal risk $21.20 USD, 50% margin $1,602.30 USD).
+Why It Is Strictly Vetoed (action: "NONE"):
+Solvency & Slot Cap Veto (Pillar 5): With #19329907 BNBUSD.p (PREVAIL) and #19330613 ETHUSD.pi (PREVAIL) active, the desk is already at 2 / 2 max concurrent TIER_2_HOUSE_MONEY tickets. Adding 0.04 lot BTCUSD.pi ($21.20 nominal / $23.50 stressed risk, $1,602.30 margin) would breach the $21.30 USD post-prune solvency headroom ($21.30 - $23.50 = -$2.20 USD deficit below $4,795.00 Kernel!) and push total crypto margin to $1,687.75 + $1,602.30 = $3,290.05 USD (67.89% > 50.0% equity cap, Margin Level 147.30% < 200.0%).
+Freshness & Git Sync Gate Veto: 6 CoinGlass tactical feeds (8_Exchange_Liquidation_Map_7D, 9_Liquidation_Max_Pain_24H/48H/3D/7D, 26_Aggregated_Footprint_Bar_Metrics) are in WARN (19.6m–23.5m > 15.0m SLA), and 19 .parquet feeds were dropped from origin/main in commit 0720a4cfd6.
+✅ PART 3.5: MANDATORY 36-FEED PARQUET AUDIT & CHECKLIST VERIFICATION
+
+Every single canonical feed (Feed 00 through Feed 37, totaling 38 checklist items / 42 physical .parquet files) has been physically read, schema-verified, and mathematically interrogated:
+
+ Feed 00: Data/feeds/00_MT5_Account_Telemetry.parquet — MT5 Account Balance, Equity, Margin, Positions, Pending Orders & 31-Asset Spreads (34 rows × 28 cols; Balance/Equity $4,846.32, Free Margin $4,846.32, 0 open positions, 3 pending limit orders #19329907, #19329908, #19330613; 21/31 symbols pass spread gate).
+ Feed 01: Data/feeds/1_Crypto_ETF_Flows.parquet — Institutional Spot BTC/ETH ETF Flows (520 rows × 9 cols; 24 Oct 2026 net flow -$110.30M driven by BlackRock IBIT -$110.30M; macro headwind limiting aggressive long breakout chases).
+ Feed 02: Data/feeds/2_Spot_Netflow_S.parquet — Multi-Asset On-Chain & Exchange Spot Netflows (500 rows × 15 cols; BTC 1h -$1.68M, 2h -$12.99M, 30d -$1.17B outflow; ETH 1h +$1.12M inflow, 24h -$58.14M; BNB 24h -$3.18M outflow).
+ Feed 03: Data/feeds/3_Exchanges_LS_Ratio_15M.parquet — 15-Minute Exchange Long/Short Taker Ratio (500 rows × 11 cols, 03:10:02 IST; BTC Total 50.77% Long / 49.23% Short, L/S = 1.03, $3.71B vol; Binance 51.25% Long, Bybit 44.13% Long).
+ Feed 04: Data/feeds/3_Exchanges_LS_Ratio_1H.parquet — 1-Hour Exchange Long/Short Ratio (500 rows × 11 cols, 03:10:21 IST; BTC Total 48.27% Long / 51.73% Short, L/S = 0.93; ETH 48.43% Long / 51.57% Short, L/S = 0.94; BNB 46.51% Long / 53.49% Short, L/S = 0.87).
+ Feed 05: Data/feeds/3_Exchanges_LS_Ratio_4H.parquet — 4-Hour Exchange Long/Short Ratio (20 rows × 11 cols, 03:10:43 IST; FORENSIC DEFECT DETECTED: all 20 rows contain corrupted scraper strings Long_% = "1.00%", Short_Volume = "-", Total_Volume = "-"; excluded from directional weighting).
+ Feed 06: Data/feeds/4_Hyperliquid_Analysis.parquet — Hyperliquid Perp Market & Top Trader Analysis (1,971 rows × 20 cols, 03:00:59 IST; top whales 0x5b5d...c060 and 0xb83d...6e36 holding profitable 5x Cross Shorts on ETH from $2,322.74 and $2,375.32).
+ Feed 07: Data/feeds/5_OI.parquet — Aggregated & Exchange-Level Open Interest (220 rows × 13 cols, 03:08:52 IST; BTC OI = $50.89B, 24h -3.57%; ETH OI = $26.15B, 1h +0.34%, 24h +2.38% fresh leverage build; BNB OI = $1.14B).
+ Feed 08: Data/feeds/5_Funding_Rate.parquet — Multi-Venue Perpetual Funding Rates (46 rows × 29 cols, 03:13:09 IST; BTC Binance +0.0029%, Bybit -0.0014%; ETH Binance +0.0028%, OKX +0.0044%, Bybit +0.0028%; BNB Binance 0.0000%, Bybit -0.0063%).
+ Feed 09: Data/feeds/6_Funding_Fee_Settlement.parquet — Funding Fee Settlement Schedule & Imminent Carry (940 rows × 10 cols, 03:06:44 IST; 24h settled fees: BTC $3.55M, ETH $1.77M, confirming positive carry paid to short ETH #19330613).
+ Feed 10: Data/feeds/7_Liq_Heapmap.parquet — Aggregated Liquidation Heatmap Clusters (90 rows × 7 cols, 03:06:51 IST; 24h liquidations: BTC $64.18M, ETH $42.10M, SOL $11.45M, Other $24.13M).
+ Feed 11: Data/feeds/7_Live_Liq.parquet — Real-Time Forced Liquidation Stream (27 rows × 8 cols, 03:06:42 IST; largest recent print: BTCUSDT Short liquidation $252.05K at $80,118.12 on Binance).
+ Feed 12: Data/feeds/8_Exchange_Liquidation_Map_1D.parquet — 1-Day Exchange Liquidation Leverage Map (2,329 rows × 13 cols, 01:52:36 IST; BTC cumulative short liquidation leverage $1.68B, typos in schema Cummulitve_Liquidation & Binanace noted).
+ Feed 13: Data/feeds/8_Exchange_Liquidation_Map_7D.parquet — 7-Day Exchange Liquidation Leverage Map (2,537 rows × 13 cols, 02:51:09 IST, WARN 23.5m; BTC 7D cumulative liquidation leverage $2.72B).
+ Feed 14: Data/feeds/9_Liquidation_Max_Pain_24H.parquet — 24-Hour Liquidation Max Pain Magnets (751 rows × 11 cols, WARN 21.1m; BTC Short 81,156.36 ($97.85M) / Long 79,553.10 ($64.70M); ETH Short 2,362.55 ($25.42M) / Long 2,285.66 ($23.44M); BNB Short 757.79 ($1.51M) / Long 727.82 ($991.4K)).
+ Feed 15: Data/feeds/9_Liquidation_Max_Pain_48H.parquet — 48-Hour Liquidation Max Pain Magnets (751 rows × 11 cols, WARN 20.6m; BTC Short 81,149.85 / Long 79,525.26; ETH Short 2,346.64 / Long 2,279.32; SOL Short 102.97 / Long 99.494).
+ Feed 16: Data/feeds/9_Liquidation_Max_Pain_3D.parquet — 3-Day Liquidation Max Pain Magnets (751 rows × 11 cols, WARN 20.2m; BTC Short 81,383.70 / Long 79,501.50; ETH Short 2,392.225 / Long 2,279.20).
+ Feed 17: Data/feeds/9_Liquidation_Max_Pain_7D.parquet — 7-Day Liquidation Max Pain Magnets (751 rows × 11 cols, WARN 19.6m; BTC Short 82,565.43 / Long 79,538.64; ETH Short 2,428.15 / Long 2,269.855).
+ Feed 18: Data/feeds/10_Whale_Orders.parquet — Large Limit Whale Orders (>= $100k, >= 180s Persistence) (100 rows × 13 cols, 03:11:02 IST; BTC $20.7M + $10.8M bid walls @ 79,700 3h20m–4h56m & $2.71M–$2.82M ask walls @ 80,096–80,183; ETH $6.26M @ 2,331 2h46m & $2.65M @ 2,335 1h20m ask walls; BNB $658K @ 735.56 4m13s & $622K @ 735.00 11h42m bid walls).
+ Feed 19: Data/feeds/11_Technical.parquet — Multi-Asset Technical Indicators (VR(4), ER(48), ATR, VWAP, Fibs) (28 rows × 55 cols, 02:58:18 IST; full 28-asset regime matrix extracted in Pillar 2 table above).
+ Feed 20: Data/feeds/11_Technical_BTC_Ribbon.parquet — BTC Prime EMA Ribbon & Structural Trend Telemetry (100 rows × 31 cols, 15m series through 2026-10-26 20:00 UTC; close = 79,727.0, session_vwap = 80,261.26, vwap_l2 = 79,650.94, bb_lower = 79,611.62, macd_hist = -32.50).
+ Feed 21: Data/feeds/12_Hyperdash.parquet — Hyperdash Cohort & Smart-Money Positioning (65 rows × 27 cols, 02:58:23 IST; top smart-money cohorts net short ETH and tactically hedged on BTC).
+ Feed 22: Data/feeds/13_Hyperliquid.parquet — Hyperliquid L1 On-Chain Perpetual State (229 rows × 19 cols, 02:58:16 IST; BTC 79,731.0, ETH 2,308.4, BNB 740.75, SOL 100.15).
+ Feed 23: Data/feeds/14_Hyperdash_Liq_Map.parquet — Hyperdash Decentralized Liquidation Clusters (249 rows × 14 cols, 02:58:31 IST; ETH long liquidations stacked at 2,265–2,288 below #19330613 TP 2,291.00).
+ Feed 24: Data/feeds/14_Liquidation_Matrix.parquet — Unified Cross-Venue Liquidation Matrix (24 rows × 20 cols, 03:15:29 IST; BTC LONG_SQUEEZE_UP to 81,156.36; BNB LONG_SQUEEZE_UP to 757.79; ETH NEUTRAL between 2,362.55 and 2,285.66; SOL SHORT_FLUSH_DOWN to 99.89).
+ Feed 25: Data/feeds/15_Hyperdash_Stops_Map.parquet — Hyperdash On-Chain Stop-Loss & Take-Profit Clusters (186 rows × 12 cols, 02:58:31 IST; ETH buy_stops 2,338–2,348 below #19330613 SL 2,351.30, sell_stops 2,295–2,285 feeding TP 2,291.00).
+ Feed 26: Data/feeds/16_Hyperdash_telegram_Intel.parquet — Hyperdash Real-Time Whale Alert Intelligence (146 rows × 20 cols, 02:58:15 IST; confirms institutional TWAP distribution on ETH rallies and passive bid defense on BTC at 79,700).
+ Feed 27: Data/feeds/17_Orderbook.parquet — L2 Orderbook Depth & Bid/Ask Imbalance (OBI) (22 rows × 32 cols, 02:58:17 IST; BTCUSDT OBI = +0.3435, ETHUSDT OBI = +0.5142, BNBUSDT OBI = -0.3403, SOLUSDT OBI = +0.1820).
+ Feed 28: Data/feeds/18_CVD.parquet — Real-Time Cumulative Volume Delta & Z-Score (CVD_Z) (22 rows × 21 cols, 02:58:21 IST; 5m tactical CVD_Z: BTC -0.590, ETH -0.785, BNB -0.840, SOL -0.612 — all NEUTRAL without runaway breakdown).
+ Feed 29: Data/feeds/18_CVD_30D_5m.parquet — 30-Day Historical CVD (5-Minute Granularity) (500 rows × 22 cols; BTC 5m cvd_z_score = -0.946, confirming short-term sell pressure is within 1σ norm).
+ Feed 30: Data/feeds/18_CVD_30D_15m.parquet — 30-Day Historical CVD (15-Minute Granularity) (500 rows × 22 cols; BTC 15m cvd_z_score = -0.556, stabilizing at 79,700 demand).
+ Feed 31: Data/feeds/18_CVD_30D_1h.parquet — 30-Day Historical CVD (1-Hour Granularity) (500 rows × 22 cols; BTC 1h cvd_z_score = +2.382, strong institutional 1H cumulative absorption).
+ Feed 32: Data/feeds/18_CVD_30D_4h.parquet — 30-Day Historical CVD (4-Hour Granularity) (180 rows × 22 cols; BTC 4h cvd_z_score = +2.275, confirming macro accumulation underneath spot pullbacks).
+ Feed 33: Data/feeds/18_CVD_30D_ALL.parquet — 30-Day Multi-Timeframe Consolidated CVD Matrix (1,000 rows × 22 cols; consolidates 5m/15m/1h/4h CVD trajectories across all 22 crypto perps).
+ Feed 34: Data/feeds/19_Calendar.parquet — Forex Factory High-Impact Macro Economic Calendar (385 rows × 14 cols, 03:11:36 IST; zero high-impact Red macro events within ±60m of current cycle).
+ Feed 35: Data/feeds/19_News.parquet — Real-Time Financial & Crypto News Headlines (46 rows × 12 cols, 03:11:13 IST; zero systemic shock or regulatory black-swan catalysts).
+ Feed 36: Data/feeds/20_Auction_Market_Structure.parquet — Volume Profile (POC, VAH, VAL) & Auction Structure (28 rows × 25 cols, 02:58:18 IST; BTC, ETH, BNB trading in DISCOUNT below session_poc, favoring mean-reversion rotations).
+ Feed 37: Data/feeds/21_Tradfye_Orderflow.parquet — Tradfye Institutional Orderflow & Delta Imbalance (22 rows × 27 cols, 02:58:17 IST; confirms ETH supply OB at 2,332–2,336 and BNB demand OB at 735.20–736.50, plus 22_Forced_Liquidations_MTF, 23_Master_Pipeline_Telemetry, 25_CoinGlass_Footprint_Signals, and 26_Aggregated_Footprint_Bar_Metrics).
+🔧 PART 5: MANDATORY ARCHITECTURAL CRITIQUE, BUG HUNT & QUANT OPTIMIZATION INQUEST
+1. System Architecture, Pipeline & Daemon Optimization
+A. Root-Cause Autopsy of the Commit 0720a4cfd6 / 408fc699ea Git Tree Truncation (42 Feeds 
+→
+→ 21 Feeds 
+→
+→ 23 Feeds)
+
+By inspecting the Git commit history on main alongside Terminal/Data_Factory/autonomous_telemetry_git_daemon.py, Terminal/Data_Factory/stamp_all_parquet_feeds.py, and Terminal/run_pipeline_continuous_daemon.py, we isolated a critical multi-daemon concurrency & non-atomic file-write hazard:
+
+Non-Atomic In-Place Overwrites in stamp_all_parquet_feeds.py (Lines 35–40):
+Whereas Terminal/Data_Factory/parquet_feed_writer.py properly writes to .tmp_<feed>_<pid>_<ts>.parquet, calls os.fsync(), and executes a 25-retry os.replace(tmp_file, target_file) swap, stamp_all_parquet_feeds.py executes:
+Python
+table = pq.read_table(p)
+...
+pq.write_table(new_table, p, compression="snappy")
+pq.write_table(new_table, p) opens the live production file Data/feeds/<feed>.parquet directly with O_WRONLY | O_TRUNC!
+Even worse, both autonomous_telemetry_git_daemon.py (sync_git_cycle, running every 60 seconds) AND run_pipeline_continuous_daemon.py (push_cycle_to_github, running at the end of every pipeline cycle) invoke stamp_all_parquet_feeds() and then run git add -A (or git add Data/feeds ...) concurrently without any shared inter-process lock!
+Exact Timeline of the 19-File Deletion on origin/main:
+At 2026-10-26 21:34:58 UTC (commit 8405736c3a), Data/feeds/ contained all 42 .parquet files.
+At 21:37:25 UTC (commit d66fd3c6a5), git add -A in autonomous_telemetry_git_daemon.py ran while 3_Exchanges_LS_Ratio_4H.parquet was unlinked/truncated mid-write, committing its removal (41 files left).
+At 21:39:42 UTC (commit 0a8bb9584f), 7 more feeds (18_CVD_30D_1h/4h/5m/ALL, 20_Auction_Market_Structure, 21_Tradfye_Orderflow, 22_Forced_Liquidations_MTF) were staged as removed (34 files left).
+At 21:45:29 UTC, parquet_checklist_auditor.py ran locally and wrote Data/parquet_all_feeds_checklist.json reporting exists: true for all 36 feeds.
+Just 11 seconds later, at 21:45:40 UTC (commit 0720a4cfd6), autonomous_telemetry_git_daemon.py committed removed for 17 canonical .parquet files (00_MT5_Account_Telemetry, 1_Crypto_ETF_Flows, 8_Exchange_Liquidation_Map_1D, 10_Whale_Orders, 11_Technical, 11_Technical_BTC_Ribbon, 12_Hyperdash, 13_Hyperliquid, 14_Hyperdash_Liq_Map, 14_Liquidation_Matrix, 15_Hyperdash_Stops_Map, 16_Hyperdash_telegram_Intel, 17_Orderbook, 18_CVD, 18_CVD_30D_15m, 19_Calendar, 19_News), dropping Data/feeds/ on GitHub main to 21 files (and 23 files in 408fc699ea / 0abb8f5e70)!
+Concrete Architectural Fix:
+Fix 1 (Atomic Stamper + Sidecar Sync): Rewrite stamp_all_parquet_feeds.py so it writes to p.with_suffix(f".tmp.{os.getpid()}.parquet"), flushes with os.fsync(), atomically swaps via os.replace(), and updates Data/metadata/<feed>.json (timestamp_utc, timestamp_ist, epoch_utc) so metadata sidecars and Parquet footers never drift apart.
+Fix 2 (Shared Inter-Process Git & Pipeline Mutex): Create a single OS-level file lock (logs/git_workspace_sync.lock via msvcrt.locking / fcntl.flock) acquired by autonomous_telemetry_git_daemon.py, run_pipeline_continuous_daemon.py, and stamp_all_parquet_feeds.py before any stamp_all_parquet_feeds() or git add / commit / push / pull --rebase operation.
+Fix 3 (Pre-Commit Feed Count Guardrail): In sync_git_cycle(), before running git commit, verify len(list((ROOT / "Data" / "feeds").glob("*.parquet"))) >= 36 and reject any commit where git status --porcelain Data/feeds/ contains a D (deleted) entry for a canonical .parquet feed!
+B. Eliminating the 20-Minute (1,200s) Pacing Gap vs. 2-Minute Pipeline Cadence
+Diagnosis: Data/cycle_state.json configures rest_interval_seconds: 1200 (20 minutes) between council cycles, while run_pipeline_continuous_daemon.py runs run_master_pipeline.py with a 120s (2m) gap, and parquet_checklist_auditor.py enforces a 15.0m Tactical SLA. However, in run_master_pipeline.py (run_browser_phase, lines 183–204), all 22 Browser CDP collectors are executed strictly sequentially (for s in scripts: run_script(s, timeout) with timeouts of 120s–180s each), plus trigger_ip_rotation() runs Cloudflare WARP before and after every cycle! When 3–4 CoinGlass browser tabs hit Cloudflare challenges or 60–120s timeouts, a single run_master_pipeline.py cycle takes 18 to 24 minutes, which explains why 8_Exchange_Liquidation_Map_7D (23.5m) and 9_Liquidation_Max_Pain_* (19.6m–21.1m) are already > 15.0m WARN by the time the cycle finishes!
+Concrete Fix:
+Decouple run_master_pipeline.py into two independent asynchronous cadences:
+Cadence A (Every 60s–90s): Run run_api_phase(parallel=True) (12 Pure-API collectors in < 8s
