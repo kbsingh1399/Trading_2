@@ -128,7 +128,7 @@ def format_price(val: float | None) -> str:
         return f"${val:,.6f}"
 
 
-def fetch_stops_ladder(coin: str, now_ms: float, start_ms: float) -> tuple[float, list[dict]]:
+def fetch_stops_ladder(coin: str, now_sec: float, start_sec: float) -> tuple[float, list[dict]]:
     """Fetches full stop order band ladder for coin via Hyperdash native GraphQL API."""
     payload = json.dumps({
         "query": QUERY_STOPS,
@@ -136,8 +136,8 @@ def fetch_stops_ladder(coin: str, now_ms: float, start_ms: float) -> tuple[float
             "coin": coin,
             "minPrice": 0.0,
             "maxPrice": 10000000.0,
-            "startTime": start_ms,
-            "endTime": now_ms
+            "startTime": start_sec,
+            "endTime": now_sec
         }
     }).encode("utf-8")
     
@@ -191,13 +191,13 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
     ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
     now_ist = datetime.datetime.now(ist_tz)
     ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-    now_ms = now.timestamp() * 1000
-    start_ms = now_ms - 24 * 3600 * 1000
+    now_sec = now.timestamp()
+    start_sec = now_sec - 24 * 3600
 
     from concurrent.futures import ThreadPoolExecutor
 
     def _fetch_worker(sym: str):
-        return sym, fetch_stops_ladder(sym, now_ms, start_ms)
+        return sym, fetch_stops_ladder(sym, now_sec, start_sec)
 
     log.info(f"Concurrently harvesting Hyperdash Stops Map for {len(symbols)} symbols...")
     with ThreadPoolExecutor(max_workers=9) as executor:
