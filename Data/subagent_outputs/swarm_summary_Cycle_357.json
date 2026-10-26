@@ -1,26 +1,26 @@
 {
-  "role_a": {
-    "status": "SUCCESS",
-    "elapsed": 16.08,
-    "chars": 98,
-    "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_a.json"
-  },
-  "role_d": {
-    "status": "SUCCESS",
-    "elapsed": 20.67,
-    "chars": 3501,
-    "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_d.json"
-  },
   "role_c": {
     "status": "SUCCESS",
-    "elapsed": 21.67,
-    "chars": 98,
+    "elapsed": 12.19,
+    "chars": 69,
     "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_c.json"
   },
   "role_b": {
     "status": "SUCCESS",
-    "elapsed": 33.07,
-    "chars": 98,
+    "elapsed": 14.61,
+    "chars": 59,
     "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_b.json"
+  },
+  "role_d": {
+    "status": "SUCCESS",
+    "elapsed": 28.18,
+    "chars": 98,
+    "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_d.json"
+  },
+  "role_a": {
+    "status": "SUCCESS",
+    "elapsed": 42.42,
+    "chars": 4376,
+    "path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\subagent_outputs\\cycle_Cycle 357_role_a.json"
   }
 }
