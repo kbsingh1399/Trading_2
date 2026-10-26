@@ -20,9 +20,13 @@ Wrote 1 files，Ran 1 commands
 Freshness decoded: Timestamp_IST columns are UTC+5:30 — the "−327 min" feeds are actually ~3 minutes fresh (5-min cadence fully restored). Only 16_Hyperdash_telegram_Intel (12h) and 5_OI (~1h) lag. Now inspecting the schema of the decision-critical feeds.
 
 Wrote 1 files，Ran 3 commands
-Extract calendar and 24-asset technical snapshot
 
 120-asset universe (expanded beyond 24) with rich telemetry. BTC has collapsed to 79,952 (prompt snapshot said 80,219) with STRONG BEARISH bias; ETH STRONG BEARISH; EURUSD STRONG BEARISH at Z −1.29; BNB now NEUTRAL/CHOP. Extracting the remaining key assets + microstructure layers.
 
 Wrote 1 files，Ran 1 commands
 Extract focus assets, MT5 gates, whale walls
+
+Goldmine: BTC has a $40.8M bid bunker at 79,700–79,743 (persistence up to 2h19m) and ETH a $30M+ bid floor at 2,295–2,300 (persistence up to 14h59m). SP500 flipped STRONG BULLISH; USWTI/UKBRENT confirm the Black Sea energy thesis. Extracting BNB whales, liquidation/stops bands, CVD, and macro flows.
+
+Wrote 1 files
+Create File
