@@ -22,11 +22,18 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,600.00 USD hard floor**, **4,650.00 USD operating buffer**, and **4,795.00 USD kernel admission floor**.
 >    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 15.0%`), 35-feed Parquet data lake verification (all 35 feeds loaded, zero nulls, byte-typed, <= 5.0m fresh in IST/UTC), and Event Risk Clock embargoes.
 >
-> 2. **Mandatory Parallel Dual Frontier Council Dispatch (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
->    - On EVERY cycle, the canonical unified prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters) MUST be injected SIMULTANEOUSLY into:
->      * **Arena.ai (GPT Astra)** via Chrome CDP port 9222 using `Terminal/dispatch_arena_redteam.py`.
->      * **Z.ai (GLM-5.3-Flash)** via Chrome CDP port 9222 using `Terminal/dispatch_zai_prompt.py`.
->    - **Affirmative Candidate Discovery & Red-Team Mandate**: Both frontier councils are explicitly mandated to perform **affirmative candidate discovery** across the 156-asset universe using all 4 quantitative personas alongside rigorous adversarial stress-testing.
+> 2. **Mandatory Parallel Tri-Council Trade Hunting Engine (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash as Co-Equal Hunting Councils)**:
+>    - **Zero Mere "Red Team" Bias**: Arena.ai and Z.ai are NOT passive adversarial red-teams or destructive critics meant solely to veto ideas. They are **Full Co-Equal Quantitative Trading Councils**.
+>    - **Active Trade Hunting Across 156 Assets**: On EVERY single cycle, all three councils:
+>      1. **Council 1**: Antigravity Internal Desk (Fable 5 4-Quant Swarm)
+>      2. **Council 2**: Arena.ai Frontier Council (GPT Astra)
+>      3. **Council 3**: Z.ai Sovereign Council (GLM-5.3-Flash)
+>      are explicitly commanded to **ACTIVELY HUNT FOR AFFIRMATIVE TRADING CANDIDATES** across all 156 assets in our universe using the 35 Parquet feeds, auction structures, and the 10 Price Magnet feeds.
+>    - **3-Persona Candidate Proposal Requirement**: Both external councils must evaluate candidates across:
+>      * *Orderflow & Microstructure Persona*: CVD delta, resting whale walls, footprint bar absorption, liquidation ladders.
+>      * *Position Manager & Solvency Sentry Persona*: Broker sizing, capital floor preservation (4,795.00 USD), 10.00–25.00 USD risk budget.
+>      * *Macro & Auction Analyst Persona*: Volume Profile VPOC/VAH/VAL, session sweeps, regime classification.
+>    - **Dialectic Synthesis**: All three councils compare their affirmative candidates. When consensus emerges on an entry with validated structural backing and safe bunker protection, the trade is staged passively on MT5.
 >
 > 3. **Joint 3-Entity Completion Gate & Cycle Finish Rule (Operator Mandate)**:
 >    - A cycle is marked officially **FINISHED** only when **ALL THREE entities complete processing**:
@@ -526,7 +533,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 2. **Asset-Class Specific Structural Anchors (Zero False-Disqualification Directive)**:
    - **TradFi Forex Majors & Crosses (EURUSD, USDJPY, USDCAD, GBPUSD, etc.)**:
-     * *Data Reality*: Interbank FX is a decentralized OTC ECN feed traded via MetaTrader 5. It does NOT have Binance orderbooks (`Sheet 17/18`) or Hyperdash retail stop maps (`Sheet 23/24`).
+     * *Data Reality*: Interbank FX is a decentralized OTC ECN feed traded via MetaTrader 5. It does NOT have Binance orderbooks (Feed 25 `17_Orderbook.parquet` / Feed 26 `18_CVD.parquet`) or Hyperdash retail stop maps (Feed 23 `15_Hyperdash_Stops_Map.parquet`).
      * *Canonical Anchor*: **Feed 29 (`20_Auction_Market_Structure.parquet`)**: Daily/Weekly Volume Profile VPOC, Value Area High/Low (VAH/VAL), Monday Opening Range, Previous Day High/Low, and 20/50 EMA hierarchy.
      * *Strict Prohibition*: Subagents and Arena.ai are **strictly forbidden from disqualifying Forex candidates for missing `zc_div` or missing Hyperdash maps**.
      * *Execution Anchor*: Raw interbank tick spread efficiency (`Spread / TP <= 15%`) + Auction Market Structure.
@@ -547,7 +554,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
        4. Reward-to-Risk >= 2.0R to structural target.
      * **Tier 2 (Adaptive Confluence Stack - Requires 3 of 4 Points Pass)**:
        - **Point 1 (Regime & Macro Narrative Alignment - The WHY)**: Verified directional trend (Model 2: `TREND_UP`/`TREND_DOWN` with EMA ribbon alignment) OR statistical range extreme (Model 1: `MEAN_REVERT` with |Z| >= 2.0 SD).
-       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Sheet 33 VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
+       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Feed 29 `20_Auction_Market_Structure.parquet` VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
        - **Point 3 (Microstructure Timing & Exhaustion - The WHEN)**: Tape exhaustion (declining volume on pullback, CVD deceleration/divergence, or rejection wick confirming buyer/seller absorption).
        - **Point 4 (Safe Stop Loss Bunker Behind Structure)**: SL placed safely behind the structural shelf (>= 0.40–0.50 ATR beyond boundary), avoiding un-swept opposing stop cascades.
    - **Scoring Rule**: A 3-of-4 confluence count is a descriptive setup screen only. Execution still requires every Step 2.1 hard gate, Step 2.2 calibrated positive lower-bound utility, asset-native evidence and Step 8 broker-grid sizing; votes do not authorize risk.
@@ -562,18 +569,55 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 ---
 
-### STEP 7: Liquidation Ladders & Resting Stop Cluster Sweeps
-*Active Skills: `@[brainstorm]`, `@[data-analyst]`, `@[market-microstructure]`*
+### STEP 7: The 10 Canonical Price Magnet Feeds & Liquidation Microstructure Architecture
+*Active Skills: `@[brainstorm]`, `@[data-analyst]`, `@[market-microstructure]`, `@[trader-signal]`*
 
-Liquidation bands and stop clusters serve dual tactical functions:
-1. **Defensive Bunker (Stop Loss Placement)**:
-   - SL must sit strictly beyond the outer boundary of the nearest liquidation band and resting stop cluster with \(\ge 0.40–0.50\text{ ATR}\) safety margin:
-     \[\text{SL}_{\text{short}} = \max(\text{max\_price}_{\text{nearest\_buy\_stops}}, \text{max\_price}_{\text{short\_squeeze\_band}}, \text{price}_{\text{defending\_ask\_wall}}) + 0.50 \times \text{ATR} + \text{half\_spread}\]
-     \[\text{SL}_{\text{long}} = \min(\text{min\_price}_{\text{nearest\_sell\_stops}}, \text{min\_price}_{\text{long\_cascade\_band}}, \text{price}_{\text{defending\_bid\_wall}}) - 0.50 \times \text{ATR} - \text{half\_spread}\]
-2. **Offensive Magnet (Take Profit Target)**:
-   - TP front-runs opposing major liquidation clusters (Feeds 10, 12, 17, 22) by 5–10 bps to capture exit liquidity before pool depletion.
-3. **Stop Sweep Trap Invariant**:
-   - Limit entries must NEVER be staged directly inside un-swept opposing retail stop clusters (Feed 23 `15_Hyperdash_Stops_Map.parquet`). Wait for the sweep and tape absorption first!
+In institutional derivatives and perpetual swap auctions, price does not move randomly through continuous space. Price is an auction discovery mechanism relentlessly pulled toward **resting leverage clusters, forced liquidation pools, and retail stop-loss concentrations** where market makers and institutional execution algorithms find the necessary depth to fill large inventory without excessive market impact.
+
+#### 7.1 The 10 Canonical Price Magnet Feeds Taxonomy
+
+The desk maps dynamic liquidity gravity across 10 specialized Parquet datasets:
+
+| # | Parquet Feed Path | Feed Name & Horizon | Primary Function & Tactical Microstructure Role |
+|---|---|---|---|
+| 1 | `Data/feeds/14_Hyperdash_Liq_Map.parquet` | Feed 22: Hyperdash Real-Time Liq Map | Dynamic real-time liquidation clusters across Binance perpetuals; identifies active liquidation heat corridors. |
+| 2 | `Data/feeds/14_Liquidation_Matrix.parquet` | Unified Cross-Exchange Liq Matrix | Cross-venue aggregated liquidation levels (Binance, Bybit, OKX); measures total market leverage debt density. |
+| 3 | `Data/feeds/15_Hyperdash_Stops_Map.parquet` | Feed 23: Hyperdash Retail Stops Map | Distribution of retail stop-loss clusters; identifies prime manipulation sweep zones (Judas swings). |
+| 4 | `Data/feeds/16_Hyperdash_telegram_Intel.parquet` | Feed 24: Hyperdash Telegram Intel | High-priority institutional liquidation alerts, large whale prints, and sudden liquidation cascade warnings. |
+| 5 | `Data/feeds/8_Exchange_Liquidation_Map_1D.parquet` | Feed 12: 1-Day Multi-Exchange Liq Map | 24-hour cumulative liquidation distribution; sets primary intraday rotational targets and magnetic pulls. |
+| 6 | `Data/feeds/8_Exchange_Liquidation_Map_7D.parquet` | Feed 13: 7-Day Multi-Exchange Liq Map | 7-day macro cumulative liquidation distribution; maps multi-day structural debt pools and trend targets. |
+| 7 | `Data/feeds/9_Liquidation_Max_Pain_24H.parquet` | Feed 14: 24-Hour Liq Max Pain | Intraday 24h strike price where maximum leveraged long and short liquidations converge across 747 assets. |
+| 8 | `Data/feeds/9_Liquidation_Max_Pain_48H.parquet` | Feed 15: 48-Hour Liq Max Pain | 48h rolling strike price representing short-horizon institutional rebalancing gravity. |
+| 9 | `Data/feeds/9_Liquidation_Max_Pain_3D.parquet` | Feed 16: 3-Day Liq Max Pain | 3-day swing strike price; acts as intermediate gravitational pivot for multi-session expansion moves. |
+| 10 | `Data/feeds/9_Liquidation_Max_Pain_7D.parquet` | Feed 17: 7-Day Liq Max Pain | 7-day macro liquidation max pain strike price; defines weekly structural equilibrium where open interest settles. |
+
+#### 7.2 The Dual Tactical Mechanism: Offensive Magnets vs. Defensive Bunkers
+
+Every liquidation and resting stop cluster serves two diametrically opposed quantitative functions:
+
+1. **Offensive Magnet (Take Profit Targeting & Liquidation Vacuum Drive)**:
+   - **The Gravity Well Principle**: When a directional trend impulse (Model 2) or a sharp mean reversion bounce (Model 1) gains momentum, price accelerates toward dense liquidation pools. Market makers aggressively drive the book into these pools to trigger cascading stops and harvest exit liquidity.
+   - **Front-Running Execution Gate**: Never set Take Profit beyond or exactly at the absolute center of a liquidation pool. Institutional liquidity cascades exhaust immediately upon wiping the core cluster. Take Profit orders MUST front-run the peak liquidation band by 5 to 10 basis points (or 0.10 to 0.15 ATR) to ensure 100% passive fill priority before the pool collapses and sharp mean-reversion counter-rotation occurs.
+   - **Multi-Horizon Max Pain Magnetism**:
+     * *24H and 48H Max Pain* (`9_Liquidation_Max_Pain_24H.parquet`, `9_Liquidation_Max_Pain_48H.parquet`): Act as the primary rotational pull for intraday 15m to 1H swings. When price deviates significantly (|Z_VWAP| >= 1.5 SD) from 24H Max Pain, the probability of mean-reverting back toward the 24H strike exceeds 68%.
+     * *3D and 7D Max Pain* (`9_Liquidation_Max_Pain_3D.parquet`, `9_Liquidation_Max_Pain_7D.parquet`): Define macro gravity. In sustained trending regimes, price tends to orbit or trend toward the 7D Max Pain level as market makers neutralize aggregate gamma and debt imbalances.
+
+2. **Defensive Bunker (Protective Stop Loss Placement)**:
+   - **The Liquidation Shelter Invariant**: Placing a protective Stop Loss inside or just before an active liquidation pool or retail stop cluster is mathematical suicide; it places capital directly in the crosshairs of predatory market maker sweeps.
+   - **Insulated Bunker Placement**: Stop Loss must sit strictly *beyond* the outer boundary of the nearest liquidation band and resting retail stop cluster, sheltered behind confirmed structural barriers (Fib-Prime EMA 89/233, Volume Profile VPOC, or resting institutional whale walls) with a mandatory safety margin:
+     ```
+     SL_short = max(max_price_nearest_buy_stops, max_price_short_squeeze_band, price_defending_ask_wall) + 0.50 * ATR + half_spread
+     SL_long = min(min_price_nearest_sell_stops, min_price_long_cascade_band, price_defending_bid_wall) - 0.50 * ATR - half_spread
+     ```
+   - **The Stop Sweep Trap Invariant (Judas Swing Gate)**:
+     Limit entries must NEVER be staged directly inside un-swept opposing retail stop clusters (from Feed 23 `15_Hyperdash_Stops_Map.parquet`). When retail stops remain un-swept ahead of an entry, the market will almost certainly probe through them first. The desk must wait for the sweep to complete, observe aggressive delta absorption on the tape (`zc_div > 0.8`), and stage limit entries on the post-sweep reclaim.
+
+#### 7.3 Narrative Synthesis Around Price Magnet Zones
+
+Instead of treating the 10 Price Magnet feeds as a rigid boolean checklist where a single missing or stale field kills the setup, the desk synthesizes a coherent market narrative:
+- **Trend vs. Magnet Alignment**: Does the directional trend (Model 2) point toward an un-swept 7D/3D Liquidation Max Pain level or dense 1D Liquidation Map cluster? If yes, the setup has a high-velocity **Liquidation Vacuum Drive** ahead.
+- **Trap Mechanics**: Are retail breakout traders trapped on the wrong side of Monday Opening Range or Asian High/Low, with their stop losses clustered in `15_Hyperdash_Stops_Map.parquet`? A sweep of those stops followed by tape absorption confirms a prime Model 1 reversal.
+- **Confluence Scoring**: A trade setup gains quantitative conviction when the Take Profit target coincides with an Offensive Price Magnet (Feeds 12–17, 22) while the Stop Loss is fortified behind an unbreached Defensive Bunker (Feeds 18, 23, 29).
 
 ---
 
@@ -616,7 +660,7 @@ Prior to order transmission, the coordinator and subagents MUST physically outpu
 
 | # | Pitfall & Verification Check | Required Status | Verified? |
 |---|---|---|---|
-| 1 | **Asset-Native Structural Backing** | Crypto: genuine resting BID for longs / ASK for shorts, `persist >= 180s`, `notional >= 100K USD`; FX/metals/indices: Sheet 33 auction shelf, Monday IB_W Mid/Extremes, or Fib-Prime EMA 34/89 | [ ] |
+| 1 | **Asset-Native Structural Backing** | Crypto: genuine resting BID for longs / ASK for shorts, `persist >= 180s`, `notional >= 100K USD`; FX/metals/indices: Feed 29 `20_Auction_Market_Structure.parquet` auction shelf, Monday IB_W Mid/Extremes, or Fib-Prime EMA 34/89 | [ ] |
 | 2 | **Stop Cascade & Sweep Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
 | 3 | **Asset-Native Timing / Absorption** | Crypto: L2/L3 plus CVD divergence `zc_div > 0.8` and 180s wall persistence; FX/metals: Feed 29 VAH/VAL/POC, Monday/Session sweeps; indices: native cash session and auction evidence | [ ] |
 | 4 | **Bunker SL Behind 0.786 Invalidation Shelf** | SL placed >= 0.40–0.50 ATR beyond 0.786 Fibonacci shelf & outer liquidation/whale bunker | [ ] |
@@ -700,7 +744,7 @@ On EVERY cycle, deliberation turn, and prompt response, the council models (Aren
    - What concrete, specific adjustments to candidate discovery rules, scanner algorithms, or trigger criteria will directly increase high-expectancy trade opportunities that grow account equity toward 5,500.00 USD while maintaining rigorous floor defense?
 
 6. **Mandatory Prompt Architecture & Dual-Council Self-Improvement Inquest (Operator Invariant)**:
-   - *How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Auditor) or external frontier councils (Arena.ai, Z.ai)?*
+   - *How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Parquet Pipeline Auditor) or external frontier councils (Arena.ai, Z.ai)?*
    - *What specific prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?*
    - *Mandatory 3-Persona Coverage*: Every council dispatch to Arena.ai and Z.ai MUST explicitly command deliberation across all 3 quantitative personas simultaneously: (1) Orderflow Analyst, (2) Position Manager, and (3) Macro Risk Analyst.
 

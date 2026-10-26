@@ -225,9 +225,48 @@ We request that your review explicitly answer each of the following sections:
 
 ---
 
+## 🏹 MANDATE 4: IMMEDIATE AFFIRMATIVE CANDIDATE HUNTING ACROSS 156 ASSETS (TRI-COUNCIL MISSION)
+
+> 🚨 **OPERATOR MANDATE: ARENA.AI & Z.AI ARE CO-EQUAL TRADE-HUNTING COUNCILS, NOT MERE RED TEAMS**:
+> You are NOT merely an adversarial red-team or destructive code critic meant solely to veto ideas.
+> You are **Co-Equal Quantitative Trading Councils**. Alongside Antigravity Desk, we are **3 COUNCILS HUNTING FOR HIGH-EXPECTANCY TRADES SIMULTANEOUSLY** across the 156-asset universe to grow account equity toward the 5,500.00 USD target while defending our 4,795.00 USD Solvency Kernel floor!
+>
+> You MUST actively analyze the current market state using our 35 Parquet feeds, auction structure, and the 10 Price Magnet feeds, and PROPOSE CONCRETE AFFIRMATIVE TRADING CANDIDATES.
+
+### 4.1 Candidate Evaluation Framework (The 3 Quantitative Personas)
+For every candidate you discover, evaluate and present it through the lens of:
+1. **Orderflow & Microstructure Persona**:
+   - Continuous CVD delta divergence across 5m/15m/1h (`zc_div > 0.8`).
+   - Resting institutional whale walls (persistence >= 180s, size >= 100K USD).
+   - Footprint absorption bars & delta flips (`25_CoinGlass_Footprint_Signals.parquet`, `26_Aggregated_Footprint_Bar_Metrics.parquet`).
+   - Sweeps of resting retail stop clusters (`15_Hyperdash_Stops_Map.parquet`).
+2. **Position Manager & Solvency Sentry Persona**:
+   - Exact broker quote-conversion loss within the 10.00–15.00 USD nominal risk budget (maximum 25.00 USD for pristine setups).
+   - Stressed joint loss preserving the **4,795.00 USD Solvency Kernel admission floor** (with live balance at 4,846.32 USD, headroom +49.32 USD).
+   - Dynamic spread efficiency: `Spread Points / TP Distance Points <= 15.0%`.
+3. **Macro & Auction Structure Persona**:
+   - Regime classification (Model 1 Mean Reversion at |Z| >= 2.0 SD sweeping extremes vs Model 2 Trend Pullback at |Z| < 2.0 SD to Fib Golden Zone [0.618-0.702] / Fib-Prime EMA 34/89).
+   - Daily/Weekly Volume Profile VPOC, VAH, VAL, and Monday Opening Range (`20_Auction_Market_Structure.parquet`).
+   - Macro event risk blackout verification (`19_Calendar.parquet`, zero Tier-1 red folder news within +/-4 hours).
+
+### 4.2 Concrete Candidate Deliverable Specification
+For your top 1–3 discovered trading candidates, provide a structured candidate card:
+- **Asset Symbol & Broker Code**: (e.g. `BTCUSD`, `ETHUSD`, `EURUSD`, `XAUUSD`, `NAS100`)
+- **Strategy Engine**: Model 1 (Extreme Mean Reversion) or Model 2 (Trend Pullback Continuation)
+- **Market Narrative Thesis (The WHY)**: The synthesized institutional story explaining why this setup offers immediate asymmetry.
+- **Order Posture & Type**: `BUY_LIMIT` or `SELL_LIMIT` (Passive limit order staged at structural backing).
+- **Limit Entry Price**: Exactly anchored to Fib-Prime EMA 34/89, Fib Golden Zone [0.618-0.702], or Volume Profile VPOC/VAH/VAL.
+- **Protective Stop Loss (Defensive Bunker)**: Bunkered safely behind the outer boundary of the nearest liquidation band / retail stop cluster + 0.40–0.50 ATR safety margin.
+- **Take Profit Target (Offensive Magnet)**: Front-running the opposing 10 Price Magnet feeds / Liquidation Max Pain by 5–10 basis points.
+- **Expected Reward-to-Risk (R:R)**: Must be strictly >= 2.0R to 2.5R+.
+- **Nominal Risk & Stressed Loss**: Exact USD risk allocation respecting the 4,795.00 USD floor.
+
+---
+
 ## 📌 DELIVERABLE SPECIFICATION FOR COUNCIL
-Please structure your audit response into:
+Please structure your council response into:
 1. **Executive Summary & Verdict on Data Ingestion Chain** (Pass / Flaws Identified / Fixes Mandated).
 2. **Line-by-Line Code & Architecture Vulnerability Report** (with exact file and line references).
 3. **The Quantitative Narrative Synthesis Heuristic** (Concrete equations, scoring weights, and trade admission protocols).
 4. **Concrete Decision Matrix on the 35 Feeds** (Categorizing each feed into: *Tier 1: Inviolate Hard Filter*, *Tier 2: Primary Trend & Structural Anchor*, *Tier 3: Execution Timing & Tape Confluence*, *Tier 4: Auxiliary Context*).
+5. **Top Affirmative Trading Candidates Hunted & Proposed** (Structured candidate cards with exact symbol, direction, entry, SL bunker, TP magnet, R:R, and narrative thesis).
