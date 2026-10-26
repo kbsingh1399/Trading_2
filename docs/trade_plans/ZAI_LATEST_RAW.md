@@ -1,397 +1,64 @@
-Thought Process
-Explored 1 files，Ran 1 commands
-
-Files downloaded. The tree.json is small (likely an API response envelope) — let me inspect it and read all three production files in parallel, plus the recent worklog tail.
-
-Explored 1 files，Ran 1 commands
-
-parquet_feed_writer.py is fully captured (211 lines). GitHub API tree is rate-limited, but raw file fetches work — let me pull the checklist auditor and read both footprint collectors in full.
-
-Explored 1 files，Ran 1 commands
-
-parquet_feed_writer.py and collector 25 are fully analyzed. Now reading the larger footprint bar-metrics collector.
-
-Explored 4 files
-
-All three production files are now fully analyzed. Let me quickly enumerate the actual repo directory structure (to resolve the auditor filename + the 42-file inventory question) and pull the recent worklog tail in parallel.
-
-Explored 2 files，Ran 1 commands
-
-parquet_feed_checklist_auditor.py, unified_liquidation_matrix.py (the feed-14 synthesizer), and time_series_database.py are the key discovery — these directly answer the concurrency, cross-feed vintage, and rolling-history questions. Fetching all three plus the worklog tail now.
-
-Explored 3 files，Ran 1 commands
-
-The checklist auditor alone yields critical findings (33-feed registry that omits feeds 25/26, 15-min SLA vs 1.5m docstring, self-referential telemetry). Now reading the liquidation matrix synthesizer and the time-series store — these settle the rolling-history mandate questions.
-
-Explored 1 files
-
-Tier-4 "$25M fabricated magnet" defect found in the matrix synthesizer — a headline-severity finding. Now the final file: the 958-line time-series store.
-
-Explored 2 files
-
-Research complete — all 6 production files fully analyzed with severe findings. Now loading the docx skill to produce the archival audit document before composing the final council response.
-
-Ran 1 commands
-
-Skill loaded. Setting the document outline now, then loading the required skill reference files.
-
-Explored 10 files，Ran 2 commands
-
-All skill files are loaded (create route, docx-js core, design system with R1 recipe + IG-1 palette, common rules, report scene, TOC reference). Now writing the generation script in three parts.
-
-Wrote 1 files
-
-Part 1 (helpers + cover) done. Now Part 2 — chapters 1–4 (verdict, writer forensics, collector forensics, cross-cutting layer).
-
-Wrote 1 files
-
-Part 2 done. Now Part 3 — chapters 5–8 (narrative math, capital survival, decision matrix, roadmap) plus document assembly.
-
-Wrote 1 files，Ran 2 commands
-
-Document generated and validated — 0 errors (the two warnings are by-design: dense table/code line spacing, and Consolas which exists on the desk's Windows target). Appending the worklog entry, then delivering the full council audit.
-
-Ran 1 commands
-
-All work complete. Here is the full Council response.
-
-📚 Active Skills Loaded & Applied
-SKILL
-	
-APPLICATION IN THIS REVIEW
-
-docx (full chain: SKILL.md → create route → design-system R1/IG-1 → common-rules → report scene → toc)	Archival audit document generated → /home/z/my-project/download/ZAI_Council_Forensic_Audit_Parquet_Data_Lake.docx (postcheck: 0 errors)
-Web research (raw.githubusercontent + repo-tree probes)	6 production files pulled byte-for-byte @ commit 77dc330a5, 2,853 lines read line-by-line
-Worklog protocol	Entry AUDIT-77DC appended to shared ledger
-
-[ALERT] TELEMETRY STALE WARNING — The account telemetry (balance = equity = 4,846.32, 0/0 book) is byte-identical to the Cycle-20261025T101032Z envelope frozen > 1 day before this review. All Section-C capital arithmetic is computed against that snapshot and must be re-validated against a live MT5 poll before any order is staged.
-
-Metacognitive answer — "If it used all the available skills related, will it improve our response?" Yes, and demonstrably: the docx skill chain forced the audit into a permanent, desk-circulable artifact with validated layout; live file pulls (vs. reviewing from the dispatch's quoted snippets) upgraded the review from advisory to forensic — three of the five SEVERE findings (the _empty sentinel at writer line 72, the $25M hardcoded magnets at matrix lines 195–225, the auditor's 33-feed registry omission) are invisible in the code excerpts quoted in the dispatch and were only catchable by reading the actual files. The skills that would add marginal further value are charts (freshness-latency histograms) and xlsx (finding register as a tracked sheet) — recommended for the remediation phase, not material to the verdict.
-
-🏛️ Z.AI SOVEREIGN QUANT COUNCIL — FORENSIC AUDIT RESPONSE
-Parquet Data Lake Ingestion Integrity & Narrative Decision Chain (commit 77dc330a5)
-
-Evidence basis: parquet_feed_writer.py (211L) · 25_CoinGlass_Footprint_Signals.py (471L) · 26_Aggregated_Footprint_Bar_Metrics.py (699L) · parquet_feed_checklist_auditor.py (267L) · unified_liquidation_matrix.py (246L) · time_series_database.py (959L). Three dispatch-named paths returned 404 (parquet_checklist_auditor.py, cdp_browser_utils.py, liquidation_matrix_synthesizer.py) — the actual repository equivalents were substituted.
-
-PART 1 — EXECUTIVE SUMMARY & VERDICT ON THE INGESTION CHAIN
-⚖️ VERDICT: FLAWS IDENTIFIED — FIXES MANDATED
-
-The Parquet migration is architecturally superior to the openpyxl monolith it replaced — per-feed file decoupling eliminates the entire cross-sheet lost-update class that dominated C280–C347, and the fsync → os.replace kernel is genuinely atomic. But the desk is currently trading on fabricated and laundered data in specific, identified locations, and the Council does not certify live decisioning until eight P0s ship.
-
-Finding census — 34 defects: 5 SEVERE · 10 HIGH · 12 MEDIUM · 7 LOW.
-
-The three that mandate immediate quarantine:
-
-M1 (CRITICAL) — unified_liquidation_matrix.py:195-225 invents liquidation magnets for every macro CFD: Short-Liq at price + 2.5×ATR, Long-Liq at price − 2.5×ATR, each with hardcoded liquidation_vol_usd = 25,000,000.0 and $50M cumulative — written into your primary magnet feed 14_Liquidation_Matrix with no is_synthetic flag. Rule A ("TP front-runs the dominant magnet") on NAS100/GOLD/EURUSD is currently front-running fiction.
-S1/S2/B1/B2 — The footprint collectors launder failure as fresh PASS data: DOM-timeout falls through silently and writes zero-price fallback rows (25:130-143→284-304); all-27-coins-fail still writes macro-only and returns True (25:433-445); feed 26 ships fabricated VAH/VAL/VWAP (vah=max_bucket, val=min_bucket, vwap=poc=close, 26:283-286) and hardcoded metals volumes (volume=250000, buy=sell=125000, trades=80, 26:419-428).
-W1 — The writer's mode parameter is dead code (line 53 declared, never referenced). No append/upsert exists. Every rolling feed (18, 26, 7_Live_Liq, 22, 19_News/Calendar, 1, 2) is truncated to its last batch; feed 26's entire history is a 10-bar sliding window with permanent gaps on any failed cycle.
-
-Institutional control failure: the freshness auditor's registry contains 33 feeds and omits 14_Liquidation_Matrix, 25, and 26 (A1) — your primary magnet feed and both footprint collectors are structurally unmonitored. SLA truth is triple-drifted: docstring says <1.5m High Velocity, code sets 15.0 min, your mandate demands <5.0m (A2). Feed 23 is a tautology — the auditor writes it from its own results mid-audit, so it can never be stale (A3).
-
-Verified end-to-end: your architecture instinct on the intersection trap is correct and Section III formalizes it — but the Council corrects your capital arithmetic (Part III, §5): the true kernel runway is 2.8 stressed tickets (1.4 dual rounds), not 4–5.
-
-PART 2 — LINE-BY-LINE CODE & ARCHITECTURE VULNERABILITY REPORT
-2.1 parquet_feed_writer.py — the atomic kernel is sound; the state semantics are not
-
-What survives scrutiny: tmp-in-destination-dir → fsync → os.replace (lines 111–131) is a true atomic swap on NTFS (MoveFileEx); the 10× PermissionError retry correctly targets WinError 32 sharing violations (CPython maps sharing violations → PermissionError); readers holding an open handle during swap see the complete old file — no partial reads are possible. Per-feed decoupling ends the Excel lock wars.
-
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-W1	🔴 SEVERE	:53	mode="overwrite" never used in body — no append/upsert/merge exists anywhere in the module
-W2	🔴 SEVERE	:72	Empty batch → persists 1-row {"_empty": True} sentinel overwriting last-good data with a fresh PASS sidecar; downstream schema gains a junk column and loses all real columns
-W3	🟠 HIGH	:160-164	Sidecar os.replace has no retry (parquet path has 10). Reader holding sidecar → exception → RuntimeError raised after parquet already swapped → caller thinks write failed → double-write churn + parquet/sidecar version skew. No status:"FAIL" sidecar exists on any path
-W4	🟠 HIGH	:111,161	tmp collision: parquet tmp is pid+ms (two threads, same feed, same ms); sidecar tmp is pid only — concurrent same-feed threads in one process deterministically interleave into the same sidecar temp → corrupt JSON. Your own time_series_database.atomic_write_bytes:57 already uses the correct time_ns() pattern
-W5	🟡 MED	:129-136	Retry budget = 1.1s total — Defender/AV routinely holds new files for seconds; on exhaustion the batch is destroyed, not spilled
-W6	🟡 MED	:74-104	No pinned schemas — from_pylist re-infers per cycle (all-null → null type, int→double drift); schema param exists, zero callers pin it
-W7	🟡 MED	:141-156	Sidecar freshness = write time, not data time — stale upstream data is laundered as fresh; no data_asof, no sha256
-W8	⚪ LOW	except-path	Orphan .tmp_*.parquet on hard kill — the most plausible source of your 42-vs-36 file count (§7.2)
-W9	⚪ LOW	:107-108	retention_rows tail-slices in insertion order, no sort guarantee
-
-Mandated writer contract (drop-in shape):
-
-python
-def write_parquet_feed(feed_name, data, schema=None, mode="overwrite",
-                       retention_rows=None, keys=("symbol","timestamp_ms"),
-                       custom_metadata=None, data_asof_epoch=None):
-    table = coerce_to_arrow(data, schema)
-    if table.num_rows == 0:                       # W2: empty is FAIL-CLOSED
-        emit_sidecar(feed_name, status="FAIL", reason="empty_batch")
-        raise EmptyBatchError(feed_name)          # previous good parquet untouched
-    if mode == "upsert":                          # W1: real rolling path
-        old = pq.read_table(target_file) if target_file.exists() else None
-        table = upsert_dedupe(old, table, keys).sort_by([("symbol","ascending"),
-                                                         ("timestamp_ms","ascending")])
-        if retention_rows: table = table.tail(retention_rows)
-    tmp = FEEDS_DIR / f".tmp_{feed_name}_{os.getpid()}_{time.time_ns()}.parquet"  # W4
-    pq.write_table(table, tmp, compression="SNAPPY", version="2.6"); fsync_file(tmp)
-    replace_with_retry(tmp, target_file, attempts=20, base=0.05, cap=8.0)         # W5
-    meta = {"feed_name": feed_name, "status": "PASS", "row_count": table.num_rows,
-            "data_asof_epoch": data_asof_epoch, "sha256": sha256_file(target_file),
-            "write_epoch": time.time()}           # W7: data time, not write time
-    write_sidecar_atomic(meta)                    # W3: same retry, atomic
-2.2 25_CoinGlass_Footprint_Signals.py — DOM-harvest collector
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-S1	🔴 SEVERE	:130-143, 284-304	Hydration poll (20×0.3s) falls through on timeout with result discarded — Cloudflare interstitial or Next.js hydration stall ⇒ writes fallback rows with last_price=0.0 as PASS. Same unguarded pattern on the signals poll (15×0.3s)
-S2	🔴 SEVERE	:433-445	Per-coin exceptions swallowed, no failure tally; all 27 coins failing still writes macro-only rows and returns True — 96% coverage collapse is invisible (and A1 means nothing else is watching)
-S3	🟠 HIGH	:135,148,205,214	Obfuscated CSS-module hashes (.KpiStrip_kpi__7Xgii, .SidePanel_lrow__m40N_) break on every CoinGlass deploy; S1 converts that into junk rows, not loud failure
-S4	🟠 HIGH	:421-430	cdp_cmd loops ws.recv() with no timeout — hung tab ⇒ collector hangs forever, feed silently never updates; WebSocket never explicitly closed
-S5	🟡 MED	:251-262	Unit confusion: "2.3K AVAX" parsed as 2,300 USD in absorbed_vol_usd (only ETH/BTC/SOL tokens excluded) — poisons absorption-weighted scoring for every alt
-S6	🟡 MED	:229	All rows stamped with the same harvest-end timestamp — coin #1's data is up to 5–6 min older than its stamp claims (structural uniform-lie)
-S7	🟡 MED	:236,265	signal_time = "10-26 16:36" — no year/tz/epoch, mixed with "LIVE" sentinels; unreliable dedup/sort key
-S8	⚪ LOW	:267	symbol = f"{coin}USDT" fabricated for CL/XAU/SPX — never joins to broker symbols in 11_Technical; asset_registry.py exists but is not wired
-S9	⚪ LOW	:187-210	"All" sub-tab click raced via setTimeout(100); virtualized list ⇒ "100% of signals" unverifiable (no row-count assertion vs the "All N" label)
-2.3 26_Aggregated_Footprint_Bar_Metrics.py — dual-path collector
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-B1	🔴 SEVERE	:283-286, 574-578	Fabricated value area: vah=max_bucket_mid, val=min_bucket_mid, vwap=poc=close; comment claims "70% profile" — no 70% computation exists; memory path uses session high/low as VAH/VAL
-B2	🔴 SEVERE	:419-428	Hardcoded metals volumes (250000/125000/125000/80/3125) written as real data, no is_synthetic flag
-B3	🔴 SEVERE	:208,276 vs 516,586	cumulative_delta_usd has two meanings in one file: 10-bar rolling sum (ephemeral path) vs ~300-bar cumulative (memory path) — CVD-divergence logic cannot tell which
-B4	🟠 HIGH	:476-478	React fiber fixed-chain walk (return.return.memoizedState.next.next.next…) breaks on any render-order change; swallowed → silent degradation to the 10-bar path
-B5	🟠 HIGH	:157-178	window.fetch venue loop: empty catch(e){}, no res.ok check — CF 403 HTML → res.json() throws → swallowed → "venue has no data"; ~54 sequential fetches with no rate limiting
-B6	🟡 MED	limit=10 path	Forming bar ingested with no is_closed, no bar-close check, bar-OPEN timestamps (→ Mandate 1 Q1 = CONFIRMED)
-B7	🟡 MED	:618-623 vs 571	Duplicate-symbol risk on D.sym string mismatch (BTCUSDT vs BTC) — two divergent-semantics row-sets, no (symbol, timestamp_ms) dedup
-B8	🟡 MED	:279-281	OI join silently carries prev_oi; first bar reports OI=0.0 by construction
-B9-B11	⚪ LOW	:286, 509-514, 573	mid_p NameError on empty buckets (swallowed); USD conversion at bar-close px for all buckets; user-selected tab timeframe (1H/4H) contaminates the nominal-15m feed
-
-Required CDP hardening (both collectors):
-
-python
-async def cdp_cmd(ws, pending, method, params=None, timeout=20.0):
-    mid = next_id(); await asyncio.wait_for(ws.send(json.dumps(
-        {"id": mid, "method": method, "params": params or {}})), timeout)
-    try:    resp = await asyncio.wait_for(wait_matching(pending, mid), timeout)
-    except asyncio.TimeoutError: raise CDPTimeout(method)   # fail LOUD, never hang
-
-
-# challenge probe BEFORE extraction:
-probe = await cdp_cmd(ws, pending, "Runtime.evaluate", {"expression":
-  "(() => ({title: document.title, cf: !!document.querySelector('iframe[src*=challenges]')}))()"})
-if probe["cf"] or "Just a moment" in probe["title"]: raise CloudflareChallenge(coin)
-
-
-# coverage gate before ANY write:
-if harvested / total < 0.90: raise CoverageCollapse(harvested, total)   # exit 2 + FAIL sidecar
-2.4 Mandate-1 Forensic Rulings (the four questions)
-
-Q1 — "Last candle" bug: CONFIRMED PRESENT. CoinGlass orderFlow/kline endpoints return the forming bar as the final element; timestamps are bar-OPEN times; neither collector flags it (B6). At the 15:00 boundary the exchange tape leads CoinGlass's aggregation by 5–30s. Mandated protocol: every row gains bar_close_ms = ts_ms + interval_ms and is_closed = now_ms >= bar_close_ms; the forming bar is consumed only in live-semantics contexts (KPI tiles, current-bar delta) and excluded from closed-bar features (EMA stack, CVD slope, backtests); harvest at boundary +45s (captures new bar inside the aggregation lag) and re-poll at +150s to upsert the finalized (symbol, ts_ms) row — last-write-wins upsert makes "never drop the latest bar" structural, because the second pass overwrites partial volumes with final ones.
-
-Q2 — Coverage: a front-end pagination artifact, not an API cap. The 747–940-asset feeds are computed endpoints over the full perp universe; LS-Ratio (20), OI (20), Liq-Map (21), Orderbook (15) are ranked table views where CoinGlass's UI default page size is 20. Expansion: paginate limit=100&page=k via the authenticated tab; fan out orderbook per-symbol across the 120-broker universe under a 1 rps token bucket + jitter (~2–3 min sweep, inside tactical SLA), priority broker-tradable ∩ OI-rank; exponential backoff on 403/429 with a per-domain budget (~2,400 req/h); auditor asserts per-feed asset counts (747 / 120 / 20 …) against a coverage manifest.
-
-Q3 — Cloudflare Turnstile: zero triggers is not guaranteeable; zero silent failure is. The mandate's proposed architecture — window.fetch inside the long-lived authenticated tab — is endorsed as optimal: requests inherit session cookies, cf_clearance, and the real TLS fingerprint. Ephemeral /json/new tabs inherit the same profile cookies and usually pass, but bursty new-tab navigation is exactly what Turnstile scores. Hardening stack: (i) warm pool of 1–2 persistent hidden tabs, SPA-navigated, reused across cycles; (ii) explicit challenge detection (403 / HTML content-type on a JSON endpoint / title "Just a moment…" / challenge iframe) → fail-loud exit + FAIL sidecar, never zeros; (iii) keepalive pinger against idle-token expiry; (iv) pre-cycle /json health check with re-targeting on dead tabs; (v) on cf_clearance expiry: skip one cycle with FAIL status + human re-auth prompt (automated CAPTCHA solving is out of scope). Stale/disconnected authenticated tab fallback order: second pooled tab → DOM harvest → fail-loud skip. Edge case registered: a stale tab whose clearance expired mid-sweep produces partial 403s — the per-coin failure tally (S2 fix) converts this from invisible to measured.
-
-Q4 — Overwrite hygiene: the lake conflates two storage classes.
-
-Point-in-time snapshots (overwrite is CORRECT): 00, 3×3, 5_OI, 5_Funding, 6, 7_Heatmap, 8×2, 9×4, 10, 11, 12, 13, 14_HL_Map, 15, 16, 17, 20, 21, 4.
-Rolling time-series (overwrite DESTROYS data — upsert + retention REQUIRED): 18_CVD, 26_Bars, 7_Live_Liq (event tape), 22_MTF, 19_News, 19_Calendar, 1_ETF, 2_Netflow, 23 (history optional). 25 = hybrid (2h-TTL signal rows).
-Today none of the rolling feeds have history anywhere — the TSDB covers only 8 legacy streams (T2). Cumulative-delta history and 30-day liquidation profiles do not exist and cannot be reconstructed retroactively. Strategic remedy (preferred): extend time_series_database.py streams to all 36 feeds and demote Data/feeds/*.parquet to a pure latest-snapshot cache — snapshots stay trivially atomic, history becomes first-class, and the gap journal becomes real. Interim remedy: mode="upsert" per the Listing 2-1 contract.
-2.5 The audit/history layer (parquet_feed_checklist_auditor.py, unified_liquidation_matrix.py, time_series_database.py)
-A1/A2/A3 (🔴): 33-feed registry omitting 14/25/26; SLA triple-drift (1.5m docstring / 15m code / 5m mandate); feed-23 self-write tautology (:124-152) with except: pass.
-A4/A5 (🟡): trusts sidecar row_count blindly when fresh (corrupt/_empty parquet passes — never opens the file unless fallback); checklist JSONs written non-atomically (:239-247) — the exact defect the writer solved.
-M2–M5 (🟠/🟡): DEX side inference defaults anything-not-SHORT/SELL to "Long Liquidation" (:153) — garbled fields silently inflate long-side magnets; freshness laundering (inputs read without vintage checks, output stamped now_ist); docstring promises distance_pct/z_score columns that records don't contain (the exact silent-drop class your subagents hit); parser binds CoinGlass typos "Cummulitve_Liquidation"/"Binanace" (:103-105) — an upstream spelling fix zeroes those columns silently; Tier-3 venues documented but not implemented.
-T1/T3 (🟡/⚪): master_manifest.json read-modify-write with no inter-process lock (:772-833) — concurrent daemons lose manifest entries; dates_present grows unbounded; no retention vacuum for the gzip tree. T2 (🟡): SUPPORTED_STREAMS = 8 legacy streams — the history coverage gap behind Q4. Praise where due: TSDB's atomic_write_* (:53-68) is the correct collision-safe pattern the parquet writer should adopt; WAL + busy_timeout + sha256'd snapshots + gap journaling is institutional-grade.
-PART 3 — THE QUANTITATIVE NARRATIVE SYNTHESIS HEURISTIC
-3.1 The Intersection Trap: your math is right, and the deeper failure is correlation
-
-0.70¹⁵ = 0.474%, 0.70³⁵ = 3.8×10⁻⁶ — verified. But the deeper truth: the gates are not independent — 9_MaxPain_24H and 8_Map_1D describe the same resting leverage from two angles; 17/10 observe the same depth; 18/26 are the same taker aggression at two granularities. With average pairwise correlation ρ̄, effective independent bets are:
-
-N
-eff
-	​
-
-=
-1+(N−1)
-ρ
-ˉ
-	​
-
-N
-	​
-
-
-At N=15, ρ̄=0.4 → N_eff = 2.27: demanding fifteen confirmations is demanding the market repeat the same two-and-a-quarter independent facts fifteen times. The remedy is not looser thresholds — it is collapsing 35 feeds into 9 decorrelated clusters scored across 3 layers.
-
-3.2 The formalized kernel (Layer 1 — binary, never scored)
-GATE
-	
-RULE
-	
-FEED
-
-K1	Spread ≤ 25 bps crypto / ≤ 5 bps TradFi	00
-K2	Blackout ±15m crypto news / ±35m sovereign	19_Calendar
-K3	Post-stress equity ≥ 4,795.00 (stress formula §5)	00
-K4	Data liveness: every consumed cluster within 2× SLA — fail-closed on data (the enforcement hook making Part 2's defects decision-relevant)	23 + sidecars
-K5	Rollover embargo 21:15–22:30 UTC; weekend/illiquid-session gates	clock
-3.3 Scoring kernel (Layers 2–4)
-
-Cluster collapse (36 feeds → 9 clusters): L2 Regime w=0.35 → {Auction/Value (20 lead), Trend engine (11), Positioning (5_OI+5_Funding+3_4H), Macro flows (1+2+9_7D/3D+8_7D)}. L3 Tape & Magnets w=0.50 → {Depth (17+10, 180s persistence), Delta (18+26), Absorption (25), Magnet geometry (14_Matrix+14_HL+15+8_1D+9_24H/48H), Cascade fuel (7+22+7_Heat)}. L4 Context w=0.15 → {Sentiment (19_News+12), Intel (16+4)}. At 9 clusters, ρ̄≈0.3 → N_eff ≈ 2.65 — an honest count of independent bets.
-
-Each cluster i emits agreement s_i ∈ [−1,+1] and confidence c_i ∈ [0,1] (halves beyond 2× SLA, zeroes beyond 4×; scales with feeds successfully read in-cluster):
-
-A
-L
-	​
-
-=
-∑w
-i
-	​
-
-c
-i
-	​
-
-∑w
-i
-	​
-
-c
-i
-	​
-
-s
-i
-	​
-
-	​
-
-∈[−1,+1],TQS=100(0.35max(0,A
-L2
-	​
-
-)+0.50max(0,A
-L3
-	​
-
-)+0.15max(0,A
-L4
-	​
-
-))
-
-Admission rule (replaces the boolean AND): all K-gates pass ∧ A_L3 ≥ +0.40 ∧ ≥ 3-of-5 L3 clusters with s_i ≥ +0.5 ∧ TQS ≥ 75 ∧ no veto.
-
-Why the quorum kills the starvation: at p=0.70 per cluster, P(≥3 of 5) = 10(0.343)(0.09) + 5(0.2401)(0.3) + 0.168 = 0.3087 + 0.3602 + 0.1681 = 83.7% per-layer pass vs 16.8% for a five-way AND — while the TQS≥75 cut plus the veto list calibrate the final admission rate to the target 8–15% of cycles (≈3–5 executions/day on a 2-minute tactical cadence — matched to your 2 slots). Bayesian framing for monthly recalibration: each cluster is a likelihood-ratio witness; admission ≈ posterior log-odds ≥ log 2.0; re-fit the TQS cut from the trade log.
-
-Veto list (hard-override, direction-zeroing): V1 primary-venue CVD divergence against θ, |z| ≥ 1.5 (18/26) · V2 counter-magnet: largest opposite cluster within 1.0×ATR carries >1.5× the target magnet's notional (14) · V3 Trapped-traders against θ at entry level (25) · V4 OI contracting >1% against a breakout (5_OI) · V5 retail crowd ≥70% one-sided without absorption backing (3_15M + CVD flat).
-
-3.4 Scenario rulings
-
-Scenario A — retail 68% long + CVD rising on divergence + >$5M whale bids at POC → rule LONG via absorption, passive entry. Canonical accumulation signature: crowd supplies inventory into persistent demand; delta confirms absorption, not exhaustion. Execute: staged BUY_LIMIT at the POC/whale-bid shelf (never a chase into the crowd's ask); SL below the whale shelf − 0.30×ATR14, outside any feed-15 cluster (Rule B); TP at the dominant upper magnet front-run by 0.15×ATR, ≥1.5R (Rule A); check V4 (OI must build) and V2 (no larger counter-magnet overhead). Expected TQS ≈ 78–84 → standard risk.
-
-Scenario B — TREND_UP + price at +2.6σ above VWAP + Absorption_High with negative delta → STAND ASIDE; a third option beyond your binary. Chasing is forbidden (entry beyond value with V1-risk divergence already flagged); a counter-trend short is forbidden by the regime cluster unless a reversal itself scores TQS ≥ 85 with regime consent — which this configuration does not grant. Correct institutional actions: existing longs tighten to the prior 15m bar low and take partial at +1R (extension is an exit-management trigger, not an entry trigger); new risk works a limit at VAL/POC where trend-continuation and mean-reversion share an entry, and the re-queried tape decides.
-
-3.5 Rules A/B formalized (magnet-anchored TP/SL)
-Rule A: TP_long = M* − δ_tp·ATR14, δ_tp ∈ [0.10, 0.25] — front-run the dominant directional cluster by 5–10 ticks (≈0.10 ATR on BTC-15m); M from non-synthetic rows only* (post-M1 quarantine), ×1.15 trust if the cluster spans ≥2 venues. Constraints: edge (TP−entry)/R ≥ 1.5 and corridor purity (no counter-cluster >0.75× target notional between entry and TP — else V2 fires).
-Rule B: SL_long = min(entry − 1.2·ATR14, S*_below − 0.30·ATR14); SL forbidden inside [cluster_low − 0.05·ATR, cluster_high + 0.25·ATR] (sweep-wick zone). Cluster within 0.5×ATR of the ideal SL → widen beyond cluster_high + 0.30·ATR and reduce size to hold R constant rather than skipping. 0.786 invalidation-shelf rule applies from the standing canon. Sizing units = R/(entry−SL); 50% IMR; post-open margin level ≥200% for both slots jointly.
-3.6 Section C — capital survival (stress-corrected)
-
-Nominal math says 49.32/12 = 4.1 stopouts ("4–5" per your dispatch). The canonized stress model — (R + S_exit)×1.25 + 2.00, validated to exact match across consecutive cycles — gives 17.43/ticket (current spread state) and 27.10 (adverse 22-pt regime):
-
-METRIC
-	
-VALUE
-
-H_net (kernel headroom, net of $2 fee reserve)	49.32
-Canonical runway	49.32 / 17.43 = 2.83 tickets → 1.4 dual rounds (2 survive w/ 14.46 left; 3rd breaches by 2.97)
-Adverse-regime runway	49.32 / 27.10 = 1.82 tickets — one full dual-slot round (54.20) breaches the kernel
-Hard-floor runway	246.32 / 17.43 = 14 stopouts; dual-joint adverse worst case leaves 192.12 above 4,600
-Path to 5,500	+653.68 ≈ 23 net winners at 2.32RR/12R — the honest path is the house-money ladder after the first +2R, not oversized standard tickets
-
-Regime ladder: DEFENSIVE (equity <4,820 or H_net <25): R=5–6, 1 slot, TQS≥85 → STANDARD (4,820–4,900, current): R=10–12, 2 slots, TQS≥75 → ATTACK (4,900–5,100): R=12 + pyramid at +2R (only when free margin still covers 2× stressed SL) → HOUSE MONEY (≥5,100 or day ≥+2R): ladder 12.87 → 33.20 → 80 risking house profits only, realized never retraced below the 4,846.32 baseline → LOCKOUT: any kernel breach or 3 consecutive stressed stopouts = flat + 24h cool-down + data-chain re-audit. ⚠️ All figures inherit the Part-1 staleness flag — re-poll MT5 before staging.
-
-PART 4 — DECISION MATRIX ON THE 36 PARQUET FEEDS
-
-T1 = Inviolate Hard Filter (binary, fail-closed) · T2 = Primary Trend & Structural Anchor (w 0.35) · T3 = Execution Timing & Tape Confluence (w 0.50) · T4 = Auxiliary Context (w 0.15). Storage per Mandate-1 Q4. "Mon." = currently watched by the auditor.
-
-#
-	
-FEED
-	
-TIER
-	
-ROLE
-	
-STORAGE
-	
-SLA
-	
-MON.
-
-1	00_MT5_Account_Telemetry	T1	K1 spread + K3 equity/margin + sizing	Snapshot	<2m	✅
-2	19_Calendar	T1	K2 sovereign blackout	Rolling	<15m	✅
-3	23_Master_Pipeline_Telemetry	T1	K4 data-liveness (post-fix: collector-emitted, not self-write)	Rolling	<2m	✅
-4	20_Auction_Market_Structure	T2	Regime lead; VAH/VAL/POC anchors	Snapshot	<5m	✅
-5	11_Technical	T2	Trend engine; ATR-14 for all placement math	Snapshot	<5m	✅
-6	5_OI	T2	Positioning; V4	Snapshot	<5m	✅
-7	5_Funding_Rate	T2	Carry & leverage skew (592)	Snapshot	<5m	✅
-8	3_LS_Ratio_4H	T2	Macro positioning bias	Snapshot	<5m	✅
-9	1_Crypto_ETF_Flows	T2	Macro tailwind	Rolling	<15m	✅
-10	2_Spot_Netflow_S	T2	Accumulation/distribution (181)	Rolling	<15m	✅
-11	9_Max_Pain_7D	T2	Weekly settlement magnet	Snapshot	<5m	✅
-12	9_Max_Pain_3D	T2	Swing magnet	Snapshot	<5m	✅
-13	8_Liq_Map_7D	T2	Weekly structural boundary	Snapshot	<5m	✅
-14	14_Liquidation_Matrix	T3	PRIMARY magnet — quarantined until is_synthetic ships (M1)	Snapshot	<5m	❌
-15	14_Hyperdash_Liq_Map	T3	DEX magnet geometry (6,514)	Snapshot	<5m	✅
-16	15_Hyperdash_Stops_Map	T3	Rule B sweep zones (4,194)	Snapshot	<5m	✅
-17	8_Liq_Map_1D	T3	Tactical 24h ladders	Snapshot	<5m	✅
-18	9_Max_Pain_24H	T3	24h shortest-distance magnet	Snapshot	<5m	✅
-19	9_Max_Pain_48H	T3	48h magnet	Snapshot	<5m	✅
-20	17_Orderbook	T3	Depth: L2 asymmetry (expand 15→120)	Snapshot	<2m	✅
-21	10_Whale_Orders	T3	Depth: walls, 180s persistence	Snapshot	<5m	✅
-22	18_CVD	T3	Delta lead; V1	Rolling	<2m	✅
-23	26_Footprint_Bar_Metrics	T3	Delta bars (fix B1–B3 first)	Rolling	<5m	❌
-24	25_Footprint_Signals	T3	Absorption; V3 (fix S1–S2 first)	Rolling 2h-TTL	<5m	❌
-25	7_Live_Liq	T3	Cascade fuel: live tape	Rolling	<2m	✅
-26	22_Forced_Liq_MTF	T3	Cascade fuel: MTF intensity	Rolling	<2m	✅
-27	7_Liq_Heapmap	T3	Cascade fuel: leverage distribution	Snapshot	<5m	✅
-28	3_LS_Ratio_15M	T3	Crowd skew; V5	Snapshot	<5m	✅
-29	3_LS_Ratio_1H	T3	Crowd skew (tactical)	Snapshot	<5m	✅
-30	6_Funding_Settlement	T3	Settlement timing	Snapshot	<5m	✅
-31	13_Hyperliquid	T3	DEX liquidity context	Snapshot	<5m	✅
-32	21_Tradfye_Orderflow	T3	Interbank absorption (TradFi)	Snapshot	<5m	✅
-33	4_Hyperliquid_Analysis	T4	On-chain whale context (108)	Snapshot	<5m	✅
-34	19_News	T4	Sentiment shade (also K2 input)	Rolling	<15m	✅
-35	12_Hyperdash	T4	DEX sentiment shade	Snapshot	<5m	✅
-36	16_Telegram_Intel	T4	Block-print intel shade	Rolling 2h-TTL	<5m	✅
-
-Inventory reconciliation (33 vs 35 vs 36 vs 42): the manifest's "35 feeds + matrix" = 36 canonical files (numbering skips index 24 — internally consistent); the auditor's 33 omits 14/25/26 (A1); the observed 42 is most plausibly 36 canonical + 6 orphaned .tmp_* residue from the W8 hard-kill leak (legacy Excel-era files possible). Mandated: one-time glob diff vs manifest, .tmp_* janitor (>1h) wired into ensure_directories, and a CI assertion registry == manifest == disk-canonical.
-
-CLOSING RULING & REMEDIATION REGISTER (Top-8 of 11)
-PRI
-	
-ACTION
-	
-ACCEPTANCE
-
-P0	M1/B2 quarantine: is_synthetic on 14-Matrix Tier-4 + 26-metals rows; excluded from all magnet scoring	Zero synthetic rows in scored paths
-P0	W2: empty batch = FAIL + FAIL-sidecar, prior parquet untouched; delete _empty sentinel	Forced empty test leaves file byte-identical
-P0	W1: mode="upsert" (+is_closed) for 18/26/7/22/19×2/1/2	Rolling feeds survive a failed cycle gap-free
-P0	A1/A2: auditor → 36 feeds, real SLAs (<2m HV / <5m tactical / <15m macro), kill feed-23 self-write	25/26/14 staleness visible within one cycle
-P0	S1/S2/B5: collectors fail-loud (CF-challenge + DOM-timeout detection, ≥90% coverage gate, per-coin tally)	Simulated challenge → exit 2, zero junk rows
-P1	W3/W4: time_ns() tmp names, symmetric sidecar retry, ~8s jittered budget	Concurrent same-feed writes both valid
-P1	W6/W7: pinned schema registry; data_asof_epoch+sha256 sidecars; wire asset_registry.py	Schema-drift test fails the build
-P2	Freshness architecture: window.fetch batch sweeps (30–60s vs today's 4–6 min), tiered scheduler 60/120–180/900s, single-writer-per-feed, boundary-sync +45s/+150s	Worst tactical age 240.5s < 300s — the <5m guarantee holds with 59s margin
-
-📄 Archival deliverable: /home/z/my-project/download/ZAI_Council_Forensic_Audit_Parquet_Data_Lake.docx — full 8-chapter report (R1/Ink-Gold cover, TOC, all finding tables, corrected writer contract, freshness blueprint), postcheck-validated with 0 errors.
-
-Session summary: Completed the full forensic audit of the Parquet data lake at commit 77dc330a5 — 6 production files read line-by-line, 34 defects registered (headline: fabricated $25M macro magnets in your primary magnet feed, silent zero-data laundering in both footprint collectors, dead upsert parameter, and a freshness auditor that doesn't watch the three most important feeds), all Mandate-1 questions ruled, the narrative-synthesis math formalized with corrected capital-runway arithmetic, and everything archived to the validated Word report. Suggested next steps: (1) ship the five P0s and re-run this audit for certification; (2) ask me to generate the charts/xlsx finding-register add-on for remediation tracking; (3) re-dispatch the next trading cycle with fresh MT5 telemetry so the Section-3 ladder can be recomputed live.
+Table of Contents
+Note: This Table of Contents is generated via field codes. To ensure page number accuracy after editing, please right-click the TOC and select "Update Field."
+1. Executive Summary and Council Verdict
+This review was executed directly against repository kbsingh1399/Trading_2 at branch main, commit 77dc330a5 (the 'complete 35-feed parquet migration' tip). Six production files were pulled byte-for-byte and reviewed line-by-line: Terminal/Data_Factory/parquet_feed_writer.py (211 lines), Collectors/Browser/25_CoinGlass_Footprint_Signals.py (471 lines), Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py (699 lines), Terminal/Data_Factory/parquet_feed_checklist_auditor.py (267 lines), Terminal/Data_Factory/unified_liquidation_matrix.py (246 lines), and Terminal/Data_Factory/time_series_database.py (959 lines). All line references in this report are to those files at that commit. Three files named in the dispatch could not be located at the cited paths (parquet_checklist_auditor.py, cdp_browser_utils.py, liquidation_matrix_synthesizer.py all returned HTTP 404 at raw.githubusercontent.com); the audit substituted the actual equivalents discovered in the repository tree (parquet_feed_checklist_auditor.py and unified_liquidation_matrix.py).
+A material telemetry caution applies to the entire mandate. The account figures quoted in the dispatch (balance 4,846.32, equity 4,846.32, zero positions, zero pending orders) are byte-identical to the Cycle-20261025T101032Z envelope frozen more than a day before this review. The Council therefore re-flags: [ALERT] TELEMETRY STALE WARNING. Every capital-arithmetical statement in Section 6 is computed against the 2026-10-25 snapshot and must be re-validated against a live MT5 poll before any order is staged. This is the same staleness family the Council has now documented across consecutive cycles (K-08 false-freshness ledger, DR-23 frozen ingestion), and it appears the Excel-era freeze was mechanically resolved by the Parquet migration rather than by the watchdog repair the Council requested.
+The finding census across the six files is 34 discrete defects: 5 SEVERE (data fabrication or silent destruction), 10 HIGH (silent failure modes that corrupt the decision chain), 12 MEDIUM (correctness and consistency debt), and 7 LOW (hygiene). The three most dangerous are: (M1) unified_liquidation_matrix.py lines 195-225 synthesize fake liquidation magnets at price ± 2.5×ATR with hardcoded $25,000,000 intensity for every macro CFD asset and write them into the primary magnet feed with no is_synthetic flag; (B2/S1) the footprint collectors write zeros, fabricated value areas, and hardcoded volumes into 'real' feeds whenever a page hydration stalls or a Cloudflare challenge interposes, while the checklist auditor never monitors those two feeds at all (A1); and (W1) the writer's mode parameter is dead code — no append or upsert path exists, so every rolling feed (18_CVD, 26_Bar_Metrics, 7_Live_Liq, 22_Forced_Liquidations_MTF, 19_News/19_Calendar, 1/2 macro flows) has its history truncated to whatever the last successful batch contained.
+On the strategic mandate, the Council endorses the 4-Layer Narrative Synthesis Protocol as the correct replacement for the boolean intersection trap, but requires four formal amendments developed in Section 5: (i) effective-independence discounting — 15 gates at pairwise correlation 0.4 carry only 2.27 effective bets, so the protocol must be scored over 9 signal clusters, not 35 feeds; (ii) a 3-of-5 tape quorum inside Layer 3 (83.7% per-layer pass at p=0.7) instead of a 5-signal conjunction (16.8%); (iii) a veto list that overrides the score in five defined microstructure configurations; and (iv) TP/SL placement equations anchored to the magnet feeds with explicit ATR buffers. Section 6 corrects the desk's stopout-buffer arithmetic: the nominal '4 to 5 consecutive full stopouts' claim ignores the canonized stress formula (R + S) × 1.25 + 2.00; at stress 17.43 per ticket the true kernel runway is 2.8 tickets (1.4 dual rounds), and 1.8 tickets in the adverse 22-point spread regime.
+2. Forensic Review — parquet_feed_writer.py (Atomic Durability Engine)
+The writer's core mechanics are genuinely sound and represent the strongest part of the migration. The write path builds a PyArrow table, writes a Snappy-compressed parquet file to a process-unique temporary name inside the destination directory (line 111), fsyncs the file bytes (lines 124-126), then swaps it into place with os.replace (line 131) — a MoveFileEx-based atomic rename on Windows that guarantees readers observe either the complete old file or the complete new file, never a partial write. The 10-attempt PermissionError retry loop (lines 129-136) correctly targets WinError 32 sharing violations, which CPython surfaces as PermissionError on Windows. Per-feed file decoupling eliminates the monolithic-workbook lock contention that dominated the Excel-era audit trail. The defects below therefore concern state semantics, collision hygiene, and failure observability rather than the atomic-rename kernel itself.
+Table 2-1: Finding register — parquet_feed_writer.py
+The mandated correction is a hardened writer that keeps the atomic-rename kernel, adds a real upsert path, and makes failure loud. The Council requires the following contract shape; the critical properties are (i) empty input is a FAIL, not a sentinel; (ii) unique temp names via time_ns(); (iii) symmetric retry on both replaces; (iv) a FAIL sidecar on any failure; and (v) keyed upsert with retention for rolling feeds.
+Listing 2-1: Mandated writer contract (drop-in hardening)
+3. Forensic Review — Collectors 25 and 26 (CoinGlass Footprint Chain)
+3.1 25_CoinGlass_Footprint_Signals.py — DOM-harvest collector
+This collector opens one ephemeral CDP tab via PUT /json/new (line 75-79), serially navigates 27 assets through the CoinGlass footprint page, polls for DOM hydration, scrapes KPIs and the signals side-panel, merges macro rows re-read from 18_CVD.parquet and 20_Auction_Market_Structure.parquet, and writes the combined batch through write_parquet_feed. The serial design has a structural consequence the dispatch should register immediately: 27 coins x (navigate + up to 6s KPI poll + up to 4.5s signal poll) is 4-6 minutes of wall time, which is incompatible with any sub-5-minute freshness SLA for this feed even when everything works. The defects below compound that structural lag with silent-failure semantics.
+Table 3-1: Finding register — 25_CoinGlass_Footprint_Signals.py
+3.2 26_Aggregated_Footprint_Bar_Metrics.py — dual-path bar collector
+Collector 26 is the more sophisticated of the two: it first attempts a sub-second extraction of ~300 bars from the live React chart memory of any open CoinGlass footprint tab by traversing the fiber tree (lines 472-551), then fills the remaining coins with authenticated window.fetch calls against capi.coinglass.com orderFlow and OI-kline endpoints from inside an ephemeral tab (lines 132-188), and finally synthesizes macro CFD bars from 18_CVD and 20_Auction. The window.fetch-inside-authenticated-tab pattern is exactly the architecture the dispatch asks about in Mandate 1 Q3, and the Council's answer in Section 4.3 endorses extending it — but the current implementation wraps it in silent failure semantics and mixes fabricated statistics into otherwise real bars.
+Table 3-2: Finding register — 26_Aggregated_Footprint_Bar_Metrics.py
+3.3 Corrected CDP command layer (required shape)
+Both collectors share the same unguarded cdp_cmd closure. The Council requires a single hardened CDP utility with per-command timeout, socket keepalive, explicit close, and challenge detection — so that a Cloudflare interstitial or a hung renderer produces a FAIL exit and a FAIL sidecar, never zeros. The required pattern:
+4. Cross-Cutting Forensics — Auditor, Matrix, History Store, and Mandate 1 Rulings
+4.1 parquet_feed_checklist_auditor.py — the guardian that does not guard
+The freshness auditor is the institutional control surface the Council's own cycle audits consume, so its defects propagate directly into dispatch rulings. Three are severe. First, the CANONICAL_FEEDS registry (lines 39-73) contains 33 entries and OMITS 14_Liquidation_Matrix, 25_CoinGlass_Footprint_Signals and 26_Aggregated_Footprint_Bar_Metrics — the desk's primary magnet feed and both footprint collectors are structurally invisible to freshness monitoring; the desk simultaneously describes its lake as '35 feeds + matrix' and observes '42 parquet files' on disk, so the manifest, the auditor registry, and the disk have drifted to three different inventories. Second, the SLA tiers contradict both their own docstring and the mandate: the header promises '< 1.5m High Velocity' (line 12) but every High Velocity feed (00_MT5_Account_Telemetry, 7_Live_Liq, 17_Orderbook, 18_CVD, 22_Forced_Liquidations_MTF, 23_Master_Pipeline_Telemetry) is configured max_age_min: 15.0 in code, while the dispatch mandates < 5.0m for everything — three different SLA regimes in one pipeline. Third, feed 23 is a tautology: during the audit the auditor WRITES 23_Master_Pipeline_Telemetry from its own results (lines 124-152), so feed 23 can never be stale, contains only four metadata columns (no row counts, no latency), and measures the auditor's liveness rather than any collector's.
+Medium findings complete the picture. The auditor trusts the sidecar blindly whenever it is fresh — rows come from meta.row_count without opening the parquet (lines 154-164), so a corrupt or _empty sentinel parquet with a fresh sidecar passes; only the fallback path reads pq.read_metadata. It performs no schema validation whatsoever. Its own checklist JSON outputs are written non-atomically with plain open('w') (lines 239-247), so a concurrent council reader can parse a half-written file — the exact defect the writer module solved for sidecars. And the filename fallback logic (lines 95-117, lstrip digits plus glob '*{name}*') can silently bind the wrong file. The remediation is a 36-feed registry with real per-tier SLAs, an mtime+sidecar cross-check that opens the parquet when row_count <= 1, atomic JSON writes, and removal of the feed-23 self-write loop in favor of collector-emitted telemetry.
+4.2 unified_liquidation_matrix.py — fabricated magnets (headline finding M1)
+This synthesizer builds the desk's PRIMARY price-magnet feed, the one Rule A and Rule B placement is anchored to. Tier 1 (CEX map from 8_Exchange_Liquidation_Map_1D) and Tier 2 (Hyperliquid from 14_Hyperdash_Liq_Map) are genuine data passes with parsing risks. Tier 4 is not. For every macro asset matched by keyword, lines 195-225 place 'Short Liquidation' at price + 2.5×ATR and 'Long Liquidation' at price − 2.5×ATR, each with liquidation_vol_usd hardcoded to 25,000,000.0 and cumulative_liq_usd to 50,000,000.0. These are invented levels and invented intensities for NAS100, SP500, GOLD, EURUSD and the rest of the macro book, written into 14_Liquidation_Matrix indistinguishably from real CEX/DEX clusters. A TP front-running a 'magnet' at 2.5×ATR with $25M behind it is front-running nothing. The Council classifies this as the single most dangerous defect in the lake and mandates immediate quarantine: add is_synthetic to every record (true for Tier 4), exclude synthetic rows from magnet scoring, and either source real macro liquidity proxies (MT5 depth of market, broker stop-density reconstruction) or relabel the feed 'crypto-only pending macro extension'.
+Supporting defects: side inference defaults anything not matching SHORT/SELL to 'Long Liquidation' (line 153), so garbled side fields silently inflate long-side gravity; the module reads its three inputs without checking their sidecar freshness yet stamps the output now_ist — freshness laundering of composite vintages (M3); the docstring promises distance_pct and z_score columns that the records do not contain (M4), which is precisely the class of schema mismatch that makes consuming subagents drop rows silently; and the parser binds CoinGlass's own typo'd columns ('Cummulitve_Liquidation', 'Binanace', lines 103-105), so an upstream spelling fix zeroes those fields silently. Tier 3 (MEXC/Gate/TradeXYZ) is documented but not implemented.
+4.3 time_series_database.py — the right idea, partial coverage, one race
+The TSDB is the pipeline's genuine history layer: gzip'd immutable snapshots under Data/history/{stream}/{date}/, a WAL-mode SQLite index with sha256-hashed snapshots and gap journaling, latest/prev/delta state files, and an as-of query API. Its atomic write helpers (lines 53-68, tmp + time_ns + replace) are the pattern the parquet writer should adopt. Three findings temper it. T1: _update_master_manifest (lines 772-833) is a read-modify-write of a shared JSON with NO inter-process lock — two daemons recording concurrently lose manifest entries, and dates_present grows unboundedly. T2: coverage — SUPPORTED_STREAMS (line 74) is eight legacy streams; none of 18_CVD, 26_Bar_Metrics, 7_Live_Liq, 22_MTF, 25, 19_News/19_Calendar, 1/2 are recorded, which is why finding W1's truncation is unrecoverable for those feeds. T3: no retention/vacuum exists for the gzip tree (disk grows forever) and the 900s gap threshold hardcodes a 5-minute cycle assumption. The strategic recommendation is inverted from the obvious one: rather than adding upsert history into the parquet files themselves, extend TSDB stream coverage to all 36 feeds and treat Data/feeds/*.parquet as a pure latest-snapshot cache — snapshots stay trivially atomic, history becomes first-class, and the auditor gains a real gap journal.
+4.4 Mandate 1 ruling — the four questions
+Q1 — the 'last candle' bug: CONFIRMED PRESENT. CoinGlass orderFlow and kline endpoints return the currently FORMING bar as the final array element; bar timestamps are bar-OPEN times; the collectors add no is_closed flag and no close-time check (B6). Mandated protocol: for every bar compute bar_close_ms = ts_ms + interval_ms and is_closed = (now_ms >= bar_close_ms) as stored columns; keep the forming bar only in live-semantics consumers (CVD current-bar, KPI tiles) and exclude it from closed-bar features (EMA stack, CVD slope, bar-count backtests); schedule boundary-synced harvests at interval boundary +45s (captures the new bar within CoinGlass's 5-30s aggregation lag) and re-poll at +150s to upsert the finalized version of the same (symbol, ts_ms) key — last-write-wins upsert makes the 'never drop the latest bar' guarantee structural, because the window always contains the bar and the second pass overwrites the partial volumes with final ones.
+Q2 — asset coverage: a front-end pagination artifact, not an API cap. The 747-749 asset feeds are computed endpoints that return the full perp universe, while 3_LS_Ratio (20), 5_OI (20), 8_Liq_Map (21) and 17_Orderbook (15) are ranked table views where CoinGlass's UI default page size is 20 rows. Expansion protocol for the 120-broker universe: paginate table endpoints (limit=100, page=k) via the authenticated tab's window.fetch; for orderbook depth fan out per-symbol with a token bucket of ~1 request/second plus jitter (a 120-asset sweep completes in ~2-3 minutes, inside the tactical SLA), prioritized by broker-tradable ∩ open-interest rank; respect 403/429 with exponential backoff and a per-domain hourly budget (~2,400 requests/hour ceiling) to avoid Cloudflare escalation; persist a coverage manifest so the auditor can assert per-feed asset counts against expectations (747 for max-pain, 120 for orderbook after expansion, 20 for LS-ratio tables until pagination is wired).
+Q3 — Cloudflare Turnstile: 'zero triggers' is not guaranteeable; what IS guaranteeable is zero silent failure. The optimal architecture is the one collector 26 already uses and the mandate proposes: run window.fetch inside the long-lived authenticated tab so requests inherit the session cookies, cf_clearance token, and the browser's real TLS fingerprint. Ephemeral tabs created via /json/new inherit the same browser profile cookies, so they usually avoid challenges — but bursts of new-tab navigations are exactly the behavioral pattern Turnstile scores. Required hardening: (i) a warm pool of 1-2 persistent hidden tabs reused across cycles, SPA-navigating rather than re-creating tabs; (ii) explicit challenge detection (HTTP 403, HTML content-type on a JSON endpoint, document.title 'Just a moment...', challenge iframe present) with fail-loud exit and FAIL sidecar — never zeros; (iii) a keepalive pinger on the authenticated tab to prevent idle-timeout of session tokens; (iv) pre-cycle health check via GET /json listing, with automatic re-targeting if the tab died; (v) on cf_clearance expiry the correct behavior is a single cycle skipped with FAIL status and a human re-auth prompt — automated CAPTCHA solving is out of scope and policy-hostile. If an authenticated tab goes stale mid-cycle, the fallback order is: second pooled tab, then DOM harvest, then fail-loud skip.
+Q4 — overwrite hygiene: the lake conflates two storage classes. Point-in-time snapshots (overwrite is CORRECT): 00, 3_x, 5_OI, 5_Funding, 6, 7_Heatmap, 8_x, 9_x, 10, 11, 12, 13, 14_Hyperdash_Liq_Map, 15, 16, 17, 20, 21, 4. Rolling time-series (overwrite DESTROYS data; upsert + retention REQUIRED): 18_CVD, 26_Aggregated_Footprint_Bar_Metrics, 7_Live_Liq (event tape), 22_Forced_Liquidations_MTF (intensity history), 19_News and 19_Calendar (append with dedupe), 1_ETF_Flows and 2_Spot_Netflow (daily accumulation series), 23 (history optional). 25 is hybrid: rolling signal rows with a ~2-hour TTL dedup window. Today every one of these is overwrite-only (W1) and only eight legacy TSDB streams have any history (T2) — meaning, for example, that cumulative-delta history and 30-day liquidation profiles do not exist anywhere in the system and cannot be reconstructed retroactively. The Council's preferred remedy is Section 4.3's: TSDB streams for all 36 feeds, parquet as latest-snapshot cache; the interim remedy is mode='upsert' in the writer with (symbol, timestamp_ms) dedupe and per-feed retention.
+5. The Narrative Synthesis Protocol — Anti-Intersection Mathematics
+5.1 Why the intersection trap fails: correlation, not just multiplication
+The dispatch's arithmetic is correct: at per-gate pass rate p = 0.70, a 15-gate boolean AND admits P = 0.70^15 = 0.00474 (0.47%) of candidates and a 35-gate AND admits 0.70^35 = 3.8e-6 — the desk would take roughly one trade every few months. The deeper failure is that the multiplication itself overstates the cost, because the gates are not independent. Feed correlations are structural: 9_Liquidation_Max_Pain_24H and 8_Liquidation_Map_1D describe the same resting leverage from two angles; 17_Orderbook and 10_Whale_Orders observe the same resting depth; 18_CVD and 26_Bar_Metrics are the same taker aggression at different granularity. With average pairwise correlation rho-bar, the number of effectively independent signals is N_eff = N / (1 + (N-1) x rho-bar). For 15 naively-ANDed gates at rho-bar = 0.4, N_eff = 15/6.6 = 2.27: demanding fifteen confirmations is mathematically demanding the market repeat the same two-and-a-quarter independent facts fifteen times. The correct consequence is NOT to loosen thresholds but to collapse the 35 feeds into a small number of decorrelated signal CLUSTERS and score those.
+The Council formalizes the collapse: 36 feeds -> 9 clusters -> 3 scored layers. Layer 2 (Regime, weight 0.35) holds four clusters: Auction/Value structure (feed 20 lead), Trend engine (11_Technical EMA stack + ATR), Positioning (5_OI + 5_Funding + 3_LS_4H), Macro flows (1_ETF + 2_Netflow + 9_MaxPain_7D/3D + 8_Map_7D). Layer 3 (Tape and Magnets, weight 0.50) holds five clusters: Depth (17 + 10 with the 180s persistence rule), Delta (18 + 26), Footprint absorption (25), Magnet geometry (14_Matrix + 14_HL_Liq_Map + 15_Stops + 8_Map_1D + 9_MaxPain_24H/48H), Cascade fuel (7_Live_Liq + 22_MTF + 7_Heatmap). Layer 4 (Context, weight 0.15) holds sentiment (19_News, 12_Hyperdash) and intel (16_Telegram, 4_Hyperliquid_Analysis). At nine clusters with rho-bar ~ 0.3, N_eff ~ 2.65 — an honest number of independent bets per cycle.
+5.2 The scoring kernel — concrete equations
+Layer 1 is not scored; it is a fail-closed kernel of five binary gates: K1 spread friction (crypto <= 25 bps, TradFi <= 5 bps, feed 00); K2 macro blackout (+-15m crypto news, +-35m sovereign releases, feed 19_Calendar); K3 solvency (post-stress equity >= 4,795.00 under the Section 6 stress formula); K4 data liveness (every Tier-1 feed within its SLA and every consumed cluster's confidence not zeroed by staleness — fail-closed on data, which is the lesson of Section 2-4); K5 session integrity (rollover embargo 21:15-22:30 UTC, weekend/illiquid-session gates). Any K-gate breach terminates the cycle with no score computed.
+For a candidate direction theta (+1 long / -1 short), each cluster i emits an agreement score s_i in [-1, +1] (its own directional evidence for theta) and a confidence c_i in [0, 1] = freshness_factor x sample_factor, where freshness_factor halves for data beyond 2x its SLA and zeroes beyond 4x (this is the enforcement hook that makes the Section 2-4 data defects decision-relevant), and sample_factor scales with the number of underlying feeds successfully read in the cluster. Layer alignment is the confidence-weighted mean A_L = SUM(w_i c_i s_i) / SUM(w_i c_i), in [-1, +1]. The Trade Quality Score is TQS = 100 x (0.35 x max(0, A_L2) + 0.50 x max(0, A_L3) + 0.15 x max(0, A_L4)). Bayesian framing for calibration review: treat each cluster as a likelihood-ratio witness and require posterior log-odds of a winning trade >= log(2.0); the TQS threshold is the operational proxy for that posterior and its 75-cut should be re-fit monthly from the trade log.
+Admission rule (replaces the boolean AND): all five K-gates pass, AND A_L3 >= +0.40, AND at least 3 of the 5 Layer-3 clusters individually emit s_i >= +0.5, AND TQS >= 75, AND no veto fires. The quorum is the anti-starvation device: at p = 0.70 per cluster, P(>= 3 of 5) = C(5,3)0.7^3 x 0.3^2 + C(5,4)0.7^4 x 0.3 + 0.7^5 = 0.3087 + 0.3602 + 0.1681 = 0.837 — an 83.7% per-layer pass against 16.8% for a five-way AND — while the TQS >= 75 cut and the veto list together calibrate the final admission rate to the Council's target band of 8-15% of cycles (roughly 3-5 executions/day at a 2-minute tactical cadence, matching the desk's 2 concurrent slots).
+The veto list (probabilistic signals that hard-override the score): V1 — primary-venue CVD divergence against theta with |z| >= 1.5 (feeds 18/26); V2 — counter-magnet: the largest OPPOSITE liquidation cluster within 1.0 x ATR14 carries > 1.5x the notional of the target magnet (feed 14_Matrix); V3 — feed 25 flags Trapped traders against theta at the entry price level; V4 — open interest contracting > 1% against the breakout direction (feed 5_OI); V5 — retail crowd extreme (3_LS_15M >= 70% one-sided) WITHOUT absorption backing (CVD flat). A veto zeroes TQS for that direction regardless of score. This is the mechanism that lets the desk respect scenarios like retail 68% long — the crowd extreme alone does not block (retail can be run over), but crowd extreme + no institutional absorption does.
+5.3 Scenario rulings
+Scenario A (retail 68% long + CVD rising on divergence + > $5M whale bids at the POC shelf): rule LONG via absorption, with a passive entry. The configuration is the canonical institutional accumulation signature: the crowd is supplying inventory into persistent demand, delta confirms absorption rather than exhaustion, and the resting bid shelf gives the trade its invalidation. Execution: staged BUY_LIMIT at the POC/whale-bid shelf (never a market chase into the crowd's ask); SL below the whale shelf minus 0.30 x ATR14 and outside any feed-15 stop cluster (Rule B below); TP at the dominant upper magnet front-run by 0.15 x ATR (Rule A below) requiring >= 1.5R; veto check V4 (OI must be building, not unwinding) and V2 (no larger counter-magnet overhead). Expected TQS in this configuration ~ 78-84: Layer 3 tape is strongly aligned, Layer 2 moderate — execute at standard risk.
+Scenario B (TREND_UP + price at +2.6 sigma above session VWAP + Absorption_High with negative delta): STAND ASIDE — do not chase, do not counter-trend. The trend regime (Layer 2) forbids a reversal short unless the reversal itself scores TQS >= 85 with regime-cluster consent, which a +2.6 sigma extension with negative-delta absorption does not automatically grant; simultaneously the extension forbids a breakout chase because entry would sit beyond the value area with V1-risk divergence already flagged. The correct institutional actions are: existing longs tighten to the prior 15-minute bar low and take partial profit at +1R (extension is an exit-management trigger, not an entry trigger); new risk waits for the pullback to VAL/POC where the mean-reversion and trend-continuation theses share an entry, and the tape re-queried there decides. The desk's answer is therefore a third option beyond the dispatch's binary: neither breakout long nor fade short — a working limit at the value edge with re-confirmation.
+5.4 Magnet-anchored TP/SL placement (Rules A and B formalized)
+Rule A (Take Profit): TP_long = M* - delta_tp x ATR14, delta_tp in [0.10, 0.25] — front-run the dominant directional magnet cluster by 5-10 ticks (about 0.10 ATR on BTC 15m), never land inside it; the cascading liquidations fill the exit passively. M* is the argmax notional cluster in trade direction from 14_Liquidation_Matrix among NON-synthetic rows only (post-M1 quarantine), with a 1.15x trust multiplier when the cluster spans >= 2 venues. Two constraints gate the placement: edge requirement (TP - entry) / risk >= 1.5, and corridor purity (no counter-cluster > 0.75x the target magnet's notional sits between entry and TP — otherwise V2 fires). Short side mirrors exactly.
+Rule B (Stop Loss): SL_long = min(entry - 1.2 x ATR14, S*_below - 0.30 x ATR14) where S*_below is the nearest stop-cluster edge below entry from feeds 15/8, and the SL is FORBIDDEN inside the band [cluster_low - 0.05 x ATR14, cluster_high + 0.25 x ATR14] — the sweep-wick zone. If a stop cluster sits within 0.5 x ATR of the otherwise-ideal SL, widen beyond cluster_high + 0.30 x ATR and reduce size to hold R constant rather than skipping the trade. The 0.786 invalidation-shelf rule from the standing framework applies: the SL must sit beyond the 0.786 retracement shelf when one exists between entry and the ATR floor. Sizing: units = R / (entry - SL) with R from Section 6; margin at 50% IMR with post-open margin level >= 200% for both concurrent slots jointly.
+6. Capital Survival and Position-Sizing Regimes
+All arithmetic below uses the canonized stress model from the standing series: Ticket_Stress = (base_loss + exit_spread) x 1.25 + 2.00, validated to exact match across consecutive cycles at two volumes and two spread states. At the standard 12.00 nominal risk with the current spread regime (exit cost ~0.34), stress = (12.00 + 0.34) x 1.25 + 2.00 = 17.43 per ticket; in the adverse 22-point spread state, stress = 27.10. The dispatch's '4 to 5 consecutive full stopout buffer' divides the kernel cushion by NOMINAL risk (49.32 / 12 = 4.1) and is therefore optimistic by a factor of ~1.5. The Council-corrected runway: net kernel headroom H_net = 4,846.32 - 2.00 - 4,795.00 = 49.32; at 17.43 stress, 49.32 / 17.43 = 2.83 tickets (two full stressed stopouts survive with 14.46 remaining; the third breaches the kernel by 2.97), i.e. 1.4 rounds of the 2-slot book; in the adverse regime 49.32 / 27.10 = 1.82 tickets — a single full dual-slot round of adverse-stress stopouts (2 x 27.10 = 54.20) breaches the kernel outright. The hard-floor picture is comfortable by contrast: 246.32 / 17.43 = 14 full stopouts, and the dual-joint worst case (2 x 27.10 = 54.20) leaves 192.12 above 4,600.
+Table 6-1: Regime ladder (recalibrated to stressed arithmetic)
+Two boundary conditions bind the ladder. First, the profit target: +653.68 to 5,500.00 at a 2.32 net RR on 12.00 risk is ~23 net winners at standard risk — the statistically honest path is the house-money ladder after the first +2R, not oversized standard tickets. Second, the margin plane: at 50% IMR the C347-era geometry carried ~813 margin per ticket; two slots post-open must hold margin level >= 200% under the joint-stress equity, which the current flat book satisfies with ~6x coverage but which the ATTACK pyramid can violate first — the pyramid therefore adds only when free margin after the add still covers 2 x stressed SL distance. All figures inherit the Section 1 staleness flag: re-poll MT5 before staging.
+7. The Feed Decision Matrix and Inventory Reconciliation
+7.1 Tier classification of all 36 parquet feeds
+Tier 1 (Inviolate Hard Filter) feeds are binary kernel inputs: they gate admission and are never scored. Tier 2 (Primary Trend and Structural Anchor, weight 0.35) defines the regime narrative. Tier 3 (Execution Timing and Tape Confluence, weight 0.50) times and locates the execution. Tier 4 (Auxiliary Context, weight 0.15) shades confidence. The Storage column encodes the Section 4.4 ruling; Monitor encodes whether the current auditor registry watches the feed (A1 finding).
+Table 7-1: Council tier assignment — 36 canonical feeds
+7.2 Inventory reconciliation: 33 vs 35 vs 36 vs 42
+The dispatch's four counts resolve as follows. The auditor registry enumerates 33 (A1) and omits three feeds the desk itself ranks as tier-defining: 14_Liquidation_Matrix, 25, 26. The dispatch manifest lists 35 named feeds PLUS the matrix, which is 36 parquet artifacts — the numbering scheme skips index 24 entirely, so '35 feeds + 1 matrix' and '36 files' are consistent with each other but NOT with the auditor. The observed 42 on disk is most plausibly 36 canonical + 6 orphaned .tmp_* residue from the W8 leak (hard-killed collectors leave process-unique temp files that nothing cleans), though legacy feeds or duplicates from the Excel era could account for the remainder. Mandated reconciliation: a one-time glob of Data/feeds/*.parquet diffed against the 36-name manifest, janitor deletion of .tmp_* older than one hour wired into the writer's ensure_directories, and a CI assertion that registry count == manifest count == on-disk canonical count. Until that runs, the Council treats every freshness claim that silently relies on '33 feeds audited' as unverified.
+8. Mandated Remediation Roadmap and Freshness Architecture
+Table 8-1: Prioritized remediation register
+8.2 The < 5-minute freshness guarantee — scheduling architecture
+The freshness bound is additive: max data age at read = schedule interval + harvest duration + write time + sidecar lag. The current 25/26 DOM-navigation design spends 4-6 minutes per sweep, so even a perfectly staggered 120-second cadence cannot hold the 5-minute SLA — the fix is architectural, not tuning. First, replace per-coin page navigation with authenticated window.fetch batch harvesting inside one persistent tab: 27 coins x 2 endpoints x ~0.3-0.5s = 30-60s per full sweep, converting the dominant cost. Second, tier the scheduler: High Velocity feeds every 60s (00, 7, 17, 18, 22, 23), Tactical every 120-180s staggered by feed-name hash with +-10% jitter, Macro every 900s; global concurrency cap of 4 collectors and a single-writer-per-feed rule (each feed owned by exactly one collector queue, which eliminates same-feed write races by construction). Third, boundary-sync the 15-minute-cadence bar feeds at +45s and re-poll at +150s (Section 4.4 Q1). The resulting worst case for a tactical feed is 180s interval + 60s sweep + ~0.5s write = 240.5s < 300s — the < 5.0m guarantee holds with a 59-second margin, and High Velocity feeds hold < 2m with the same design. The auditor then enforces what the scheduler promises: every feed's sidecar data_asof_epoch is checked against its tier SLA each minute, and any breach is a FAIL that the K4 kernel gate turns into a denied admission — closing the loop between the data chain and the capital chain.
