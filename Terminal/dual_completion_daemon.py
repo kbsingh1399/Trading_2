@@ -93,7 +93,8 @@ async def probe_zai_tab(tab_ws_url: str):
                 const actionBtn = document.querySelector('button.rounded-full.bg-interactive-bg-primary-default, button[class*="bg-interactive-bg-primary"]');
                 const hasStopSquare = actionBtn ? !!actionBtn.querySelector('span.rounded-xs, span[class*="rounded-xs"]') : false;
                 const stopAria = !!document.querySelector('button[aria-label*="Stop" i], .stop-generating');
-                const isGenerating = hasStopSquare || stopAria;
+                const isThinking = Array.from(document.querySelectorAll('*')).some(el => (el.innerText || '').trim() === 'Thinking...' || (el.className || '').toString().includes('shimmer'));
+                const isGenerating = hasStopSquare || stopAria || isThinking;
                 
                 // Detection of Send button (action button displaying SVG icon when not generating)
                 const hasSendSvg = actionBtn ? (!!actionBtn.querySelector('svg') && !hasStopSquare) : false;
