@@ -62,5 +62,17 @@ All canonical governance specifications are verified, active, and synchronized i
 ---
 
 ## 4. OPERATOR DIRECTIVE & AUTONOMOUS WAKEUP INSTRUCTION
-- **Wakeup Protocol**: When the 20-minute post-cycle timer expires ("Timer: 1200s, Prompt: 20-minute post-cycle timer expired: Antigravity, Arena.ai, and Z.ai Cycle 359 synthesis complete. Begin Cycle 360."), the agent MUST immediately read and follow `docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md`.
+- **Wakeup Protocol**: On every wakeup (from dynamic post-cycle timers or the standing 0th/30th minute cron), the agent MUST immediately read and follow `docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md`.
 - **Token Preservation Pivot**: Process `SUBAGENT_PROMPT_TEMPLATES.md` directly in-context across all 4 quantitative roles (Role A, Role B, Role C, Role D) rather than launching multiple external subagent processes, eliminating 429 quota exhaustion while guaranteeing 100% mathematical fidelity.
+- **Continuous Timer Chaining**: The desk NEVER stops running autonomously. There must ALWAYS be an active timer scheduled for the next cycle upon completing current cycle synthesis.
+
+---
+
+## 5. ACTIVE HEPTAD DAEMONS & PERSISTENT TASKS
+1. **Task 1**: `autonomous_telemetry_git_daemon.py --interval 60` (`isDaemon=true`, pushes to GitHub every 60s)
+2. **Task 2**: `gemini_web2api.py` on port 8081 (`isDaemon=true`, Endogen architecture)
+3. **Task 3**: `run_graphify_watcher.py` (`isDaemon=true`, AST graph updater)
+4. **Task 4**: `run_pipeline_continuous_daemon.py --gap 180` (`isDaemon=true`, collects 36 feeds & stamps metadata)
+5. **Task 5**: `dual_completion_daemon.py --daemon` (`isDaemon=true`, monitors CDP 9222, auto-harvests & refreshes tabs every 5m)
+6. **Task 6**: Dynamic Post-Cycle Countdown Timer (`schedule` tool, relative seconds chaining to next cycle)
+7. **Task 7**: Standing Watchdog Sentry Cron (`schedule` cron `0,30 * * * *`, `isDaemon=true`, wakes desk at :00 and :30)
