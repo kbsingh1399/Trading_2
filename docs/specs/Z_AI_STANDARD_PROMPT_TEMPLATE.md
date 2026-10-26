@@ -258,3 +258,26 @@ Z.ai must conclude its response with a standardized Adversarial Audit JSON block
   }
 }
 ```
+
+---
+
+# PART 5: MANDATORY ARCHITECTURAL CRITIQUE, BUG HUNT & QUANT OPTIMIZATION INQUEST (OPERATOR MANDATE)
+
+As Sovereign Adversarial Arbiter and Co-Equal Quantitative Council, Z.ai (GLM-5.3-Flash / Claude 3.7 Sonnet) is explicitly commanded by the operator to aggressively stress-test our entire system and address the following 4 core inquiries in detail:
+
+1. **System Architecture, Pipeline & Daemon Optimization**:
+   - Critically evaluate our end-to-end architecture: the 36-feed pure Parquet lake (`Data/feeds/*.parquet`), continuous background collection daemon (`run_pipeline_continuous_daemon.py`), metadata schema stamping (`stamp_all_parquet_feeds.py`), autonomous git telemetry sync daemon (`autonomous_telemetry_git_daemon.py`), Chrome CDP dual completion monitoring daemon (`dual_completion_daemon.py`), and the 20-minute post-cycle stabilization pacing gap.
+   - What architectural bottlenecks, race conditions, or latency points exist in our operational pipeline, and how can we fundamentally enhance our execution throughput and system reliability?
+
+2. **Forensic Bug Hunt, Logic Anomalies & Mathematical Inconsistencies**:
+   - Did you discover ANY bugs, logical inconsistencies, mathematical discrepancies, stale calculations, timezone misalignments (UTC vs IST), or schema errors across our 36 Parquet feeds, scripts, or rules?
+   - Point out exact file paths, column names, formulas, or logic traps that require immediate remediation.
+
+3. **Quantitative Edge & Trading Decision Enhancements**:
+   - Given that our desk continuously monitors 156 assets across 6 asset classes with granular orderbook depth (L2/L3), multi-timeframe taker CVD deltas, exchange liquidation heatmaps, footprint bar imbalances, and on-chain whale intelligence:
+     * *Why has equity remained in a preservation holding pattern, and what exact institutional quantitative methodologies should we incorporate to convert high-probability setups into booked gains while fiercely preserving the 4,775.00 USD hard floor?*
+     * How should we refine our entry geometry, limit distance calculations, and Take Profit front-running margins to maximize fill rates without suffering toxic adverse selection?
+
+4. **Algorithmic Alternatives & Unused Alpha**:
+   - What mathematical models, statistical arbitrage techniques, cross-asset momentum filters, or microstructure metrics (e.g. Order Flow Imbalance, micro-price drift, queue depletion velocity, institutional volume profiling) are we currently under-utilizing or omitting that could provide a decisive edge?
+
