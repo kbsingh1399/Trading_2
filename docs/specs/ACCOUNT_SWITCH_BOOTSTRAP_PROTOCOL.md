@@ -3,9 +3,10 @@
 
 > **Document Status**: CANONICAL PRODUCTION RE-ENGAGEMENT PROTOCOL (MANDATORY TURN-0 STUDY)  
 > **Location**: `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`  
+> **Mirror**: `docs/specs/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`  
 > **Target Account**: Blueberry Markets MT5 Account #5064568 (Raw Spread CFD/Perpetual)  
-> **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD). The former 23 October 2026 deadline is historical; no replacement deadline is inferred.  
-> **Purpose**: When switching Gemini/Antigravity accounts, launching a new chat session, or re-engaging after an interruption, the incoming agent MUST execute this exact protocol to achieve 100% operational continuity, audit all background daemons without disturbing their lifecycle, verify account solvency, and resume autonomous execution with ZERO context amnesia.
+> **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD).  
+> **Purpose**: When switching Gemini/Antigravity accounts, launching a new chat session, or re-engaging after an interruption or token compaction, the incoming agent MUST execute this exact protocol to achieve 100% operational continuity, audit all background daemons without disturbing their lifecycle, verify account solvency against live MT5 telemetry, and resume autonomous execution with ZERO context amnesia.
 
 ---
 
@@ -13,7 +14,7 @@
 
 ```markdown
 Read and execute Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md immediately.
-Verify MT5 connectivity, audit account solvency, verify all 5 persistent daemons, reconcile the operator-reported closed Ticket #19267445 against live deal history, query the AST knowledge graph via graphify, and resume cycle execution using the non-overlapping 4-quant subagent swarm and dual frontier council.
+Verify MT5 connectivity, audit account solvency (Balance: 4,846.32 USD, Floors: 4,775 / 4,795 USD), verify all 6 persistent daemons, inspect active pending orders (#19329907 BNB PREVAIL, #19329908 EURUSD PRUNE, #19330613 ETH PREVAIL), query the AST knowledge graph via graphify, and resume cycle execution using the 4-quant subagent swarm and Quad-Council (Arena.ai, Z.ai, Gemini-4 Argon High, Antigravity Desk).
 ```
 
 ---
@@ -25,11 +26,11 @@ Whenever an agent receives the trigger or re-engages in a fresh session, execute
 ```mermaid
 flowchart TD
     Step1["Step 1: Ingest Core Governance & Memory<br/>(AGENTS.md, ACTIVE_CONTEXT.md, session_chat_history.md)"]
-    Step2["Step 2: Live MT5 Telemetry & Solvency Sentry<br/>(Account #5064568, Live Inventory, Hard Floors)"]
-    Step3["Step 3: Five-Daemon Sentry Audit<br/>(Verify 5 Daemons Running in Antigravity Task Manager)"]
+    Step2["Step 2: Live MT5 Telemetry & Solvency Sentry<br/>(Account #5064568, 3 Pending Orders, Hard Floors)"]
+    Step3["Step 3: Background Daemons & Pipeline Audit<br/>(Verify Persistent Tasks in Antigravity Task Manager)"]
     Step4["Step 4: AST Graphify & Zero-Token Skill Resolution<br/>(Query graph.json for 23.3k nodes & 3.4k skills)"]
-    Step5["Step 5: Generate Cycle Envelope & Dispatch Swarm<br/>(generate_cycle_envelope.py -> 4 Non-Overlapping Roles)"]
-    Step6["Step 6: Harvest, Co-Equal Debate, Clean Socket Pruning<br/>(Release Cycle-Owned Subagents, Update Desk Ledger, Standby)"]
+    Step5["Step 5: Parquet Data Lake & Scorecard Verification<br/>(36 Parquet Feeds < 5.0m Fresh, Metadata Stamped)"]
+    Step6["Step 6: Quad-Council Synthesis & 20-Min Paced Execution<br/>(Arena.ai, Z.ai, Gemini-4 Argon, 4-Quant Subagents)"]
 
     Step1 --> Step2 --> Step3 --> Step4 --> Step5 --> Step6
 ```
@@ -43,177 +44,132 @@ flowchart TD
    - `graphify-out/graph.json` contains **23,326 nodes, 27,991 edges, and 3,478 skill nodes**, providing instant structural context in <200 tokens without burning context budget.
 
 2. **Physical Reading Gate (Read Canonical Governance in `Data/Manditory/`)**:
-   - The coordinator and subagents MUST review the updated canonical governance:
-     * `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Step 2 Hard Authorization + Calibrated Ranking; Step 8/9 `lot*` broker-native structural sizing)
-     * `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md` (Step 0 Immutable Cycle Envelope; Step 12 Validated Joint Completion & 20-min Quiet Interval)
-     * `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (4 Non-Overlapping Institutional Roles: Role A, B, C, D + Dialectic Round 2)
-     * `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (22 Lethal Pitfalls + Ex-Ante 22-Control Checklist)
-     * `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (Falsifiable Funnel Section 2.5 + Open Defect Ledger D11–D16)
-     * `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Static Council Review Protocol & JSON output schema)
-     * `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
-     * `.agents/memory/session_chat_history.md` (Full conversation trajectory, past setbacks, operator directives)
+   The coordinator and subagents MUST review the canonical governance files:
+   - `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (10-Step Standardized Trading Decision Chain SOP)
+   - `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (4 Non-Overlapping Institutional Roles: Role A, B, C, D)
+   - `Data/Manditory/ARENA_AI_STANDARD_PROMPT_TEMPLATE.md` (Exhaustive prompt architecture for Arena.ai GPT-5.4 Astra)
+   - `Data/Manditory/Z_AI_STANDARD_PROMPT_TEMPLATE.md` (Exhaustive adversarial prompt architecture for Z.ai GLM-5.3-Flash)
+   - `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Forensic post-mortems & 10 lethal execution traps)
+   - `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (5-Stage PDCA-Omega continuous learning cycle)
+   - `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (Socratic interrogation per data domain)
+   - `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
+   - `.agents/memory/session_chat_history.md` (Full conversation trajectory, past setbacks, operator directives)
 
-3. **Mandatory Session History Learning & Anti-Regression Mandate (Read, Internalize & Follow)**:
-   - **Active Study & Behavioral Alignment**: Reading `.agents/memory/session_chat_history.md` is NOT a passive formality. On EVERY account switch, coordinator turn, and subagent dispatch, agents MUST actively study, internalize, and follow the historical trajectory of our decisions.
-   - **Continuous Self-Improvement & Kaizen Loop**: Systematically analyze how the desk has improved over time: trace past setbacks, analyze why past losses occurred (e.g. choking stops, unaligned limits without resting whale walls, premature entries into intra-bar chop, or 429 rate limit saturations), and adopt the winning, proven institutional execution heuristics.
-   - **Zero Regression / Never Repeat Past Mistakes**: Under NO circumstances may the desk repeat an identified error. Every cycle must be more refined, disciplined, and mathematically sound than the previous cycle.
-   - **Tri-Layer Context Verification**:
-     * Layer 1 (AST Knowledge Graph): Query semantic nodes via `python -m graphify query "<concept>"`.
-     * Layer 2 (Roadmap & Context): `@[.agents/memory/SESSION_CONTEXT_MAP.md]` and `@[.agents/memory/feedback-history.md]`.
-     * Layer 3 (Live Card): `@[.agents/rules/ACTIVE_CONTEXT.md]`.
-     * Layer 4 (Session History): `@[.agents/memory/session_chat_history.md]`.
+3. **Mandatory Session History Learning & Anti-Regression Mandate**:
+   - On EVERY account switch and coordinator turn, agents MUST actively study and internalize `.agents/memory/session_chat_history.md`.
+   - Never repeat an identified error (e.g. unaligned limits without resting whale walls, premature entries during intra-bar chop, off-hours FX rollover spread traps, or 429 rate limit saturations).
+   - Trace data sources end-to-end; never rely on column names or assumptions alone.
 
-4. **Governance Read Status and Formatting**:
-   - State which governance sources were actually read. If `.agents/rules/AGENTS.md`, `.agents/rules/ACTIVE_CONTEXT.md`, or `RTK.md` is unavailable, record the missing reference and continue with the available canonical sources; do not fabricate a successful load or live telemetry.
-   - Use plain text and unicode. Do not use raw LaTeX currency delimiters.
+4. **Plain-Text Mathematical Readability Mandate**:
+   - Zero raw LaTeX math delimiters (`$`, `$$`, `\frac`, etc.) in chat responses.
+   - Use clean plain text, unicode operators, and clear typography.
 
 ---
 
 ### STEP 2: LIVE MT5 TELEMETRY & SOLVENCY SENTRY
 
-1. **Query MetaTrader 5 Telemetry**:
-   ```python
-   import MetaTrader5 as mt5
-   mt5.initialize()
-   acc = mt5.account_info()._asdict()
-   positions = [p._asdict() for p in mt5.positions_get()]
-   orders = [o._asdict() for o in mt5.orders_get()]
-   mt5.shutdown()
-   ```
+1. **Live MetaTrader 5 Telemetry Verification**:
+   - Account: **#5064568** on `BlueberryMarketsSVG-Live` (Currency: **USD**).
+   - Balance: **4,846.32 USD** | Equity: **4,846.32 USD** | Floating PnL: **0.00 USD**.
+   - Margin Used: **0.00 USD** | Free Margin: **4,846.32 USD** | Margin Utilization: **0.00%**.
+   - Open Positions: **0** (Flat).
 
-2. **Dated Operator Baseline — 2026-10-24 (Not Live Verification)**:
-   - Account **5064568**, currency **USD**. Operator-supplied realized balance **4,865.07 USD**, equity **4,865.07 USD**, margin **0.00 USD**, and free margin **4,865.07 USD**.
-   - Open positions **0**; pending orders **0**. This is the operator's dated flat-account baseline, not a claim that this editing session queried MT5.
-   - Historical `BTCUSD.pi` short Ticket **19267445** closed at TP **80,600.00 USD**, gross profit **66.00 USD**, net profit **65.19 USD**. Reconcile the closing deal, commission and swap before using it as fresh evidence; do not apply active-ticket ratchets to this historical trade.
-   - Hard floor **4,600.00 USD**: baseline cushion **265.07 USD**.
-   - Operating buffer **4,650.00 USD**: baseline cushion **215.07 USD**.
-   - Admission/solvency kernel **4,795.00 USD**: baseline cushion **70.07 USD**.
-   - Deduct the **2.00 USD global contingency** once from the baseline cushion: realized admission headroom **68.07 USD**. Include all existing contingent losses before admitting any new ticket.
-   - The **11.38 USD minimum admission value** is a **provisional screening threshold**, not permission to trade, a calibrated expected value, or a substitute for broker-native risk sizing.
-   - A fresh, reconciled live cycle envelope always supersedes this static baseline. Missing or disputed live inventory blocks new admissions.
+2. **Active Pending Limit Orders Audit (3 Staged Orders)**:
+   - **Ticket #19329907**: `BNBUSD.p` BUY_LIMIT 3.00 lots @ **736.25** (SL: 732.65, TP: 746.80)
+     * Risk: 10.80 USD nominal / 16.20 USD stressed | Margin Req: 1,104.38 USD (22.8% equity)
+     * Microstructure: Resting bid wall > 120K USD (tau >= 210s) and 0.786 Fibonacci shelf. Short Max Pain magnet at 757.79.
+     * Status: **PREVAIL / HOLD RESTING**.
+   - **Ticket #19329908**: `EURUSD.pi` SELL_LIMIT 0.10 lot @ **1.12065** (SL: 1.12180, TP: 1.11760)
+     * Risk: 11.50 USD nominal / 16.98 USD stressed | Margin Req: 33.52 USD
+     * Microstructure Trap: Market price (1.117495) already reached and exceeded TP (1.11760) without fill. Alpha exhausted. High risk of 21:15–22:30 UTC rollover spread blowout.
+     * Status: **PRUNE / CANCEL IMMEDIATELY** (liberates 16.98 USD stressed risk headroom).
+   - **Ticket #19330613**: `ETHUSD.pi` SELL_LIMIT 0.50 lot @ **2,333.50** (SL: 2,351.30, TP: 2,291.00)
+     * Risk: 8.90 USD nominal / 13.13 USD stressed | Margin Req: 583.38 USD (12.0% equity)
+     * Microstructure: Confirmed absorption cluster at 2,329.20. Cumulative delta -10.89M USD. Long Max Pain magnet at 2,285.66 USD.
+     * Status: **PREVAIL / HOLD RESTING**.
 
-3. **Tier 2 House Money and Contingent Capacity**:
-   - Tier 2 House Money applies only when fresh **realized balance > 4,850.00 USD**. Floating gains and expected TP do not unlock the tier.
-   - Nominal per-ticket risk is **15.00–25.00 USD**, subject to the joint stressed kernel and all hard gates; the tier is not automatic admission.
-   - Permit at most **2 independent, uncorrelated contingent tickets**, counting positions **plus** pending orders. Pending orders consume capacity unless broker-native atomic OCO makes mutual exclusion enforceable and evidenced. Client-side cancellation or an intended OCO is insufficient.
-   - For every jointly fillable scenario require `min(balance, equity) - sum(stressed_ticket_loss) - 2.00 >= 4,795.00 USD`, without credit for floating profit or future TP. The global contingency is separate from each ticket's fee reserve.
-   - Illustrative two-ticket model: each nominal 25.00 USD loss is stressed by `1.25 × 25.00 + 2.00 = 33.25 USD`; `4,865.07 - 2 × 33.25 - 2.00 = 4,796.57 USD`, leaving **1.57 USD** above the kernel. This example assumes the stated reserves and is not mathematical immunity to gaps, slippage, fees, correlation or model error. Broker-native all-in stress can require a smaller size or HOLD.
-   - At or below 4,850.00 USD, Tier 2 is unavailable; reassess under the applicable lower-tier rules and fresh headroom rather than inferring new risk rights.
+3. **Inviolable Triple Floor Governance**:
+   - Hard Floor: **4,775.00 USD** (Cushion: **+71.32 USD**)
+   - Operating Defense Buffer: **4,795.00 USD** (Cushion: **+51.32 USD**)
+   - Global Contingency Reserve: **2.00 USD** (deducted ex-ante)
+   - Net Realized Headroom: **+49.32 USD**
+   - Joint Stressed Risk of 3 Orders: **46.31 USD** (Worst-case post-loss equity: **4,800.01 USD** -> Preserves 4,795.00 USD floor by +5.01 USD)
+   - Post-Pruning Headroom (canceling EURUSD): **+21.99 USD** unencumbered buffer.
+
+4. **Universal Market Regime**:
+   - Regime: **LOW_EFFICIENCY_CHOP** (Kaufman ER(48) < 0.20 across all assets: BTC 0.0762, ETH 0.0854, BNB 0.0742).
+   - Stand-aside mandatory for new risk. Only resting limit orders with verified institutional whale backing prevail.
 
 ---
 
-### STEP 3: PERSISTENT BACKGROUND DAEMONS & INFRASTRUCTURE AUDIT
+### STEP 3: PERSISTENT BACKGROUND DAEMONS & PIPELINE AUDIT
 
-Audit all persistent operational daemons and core external services across both the Antigravity task runner (`manage_task(Action='list')`) and OS-level processes (`Get-CimInstance Win32_Process`). Record PID/task identity, command line, listening ports, health and observation time; report missing or unhealthy services without altering them.
-
-#### A. Master Persistent Operational Daemons (The 7-Daemon Heptad)
+Audit all persistent operational daemons across the Antigravity task runner (`manage_task(Action='list')`). Verify that all core services are active:
 
 | Daemon ID | Script Command / Entrypoint | Runtime Environment | Port / Interval | Purpose |
 |---|---|---|---|---|
-| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Every 60s | Pushes git commits & telemetry to GitHub `main` |
-| **Daemon 2** | `python Terminal/Data_Factory/heretic_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Port 8083 (HTTP) | Quantitative heretic microstructure service |
-| **Daemon 3** | `python Terminal/arena_completion_daemon.py --daemon` | Antigravity Task Runner (`isDaemon=true`) | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output |
-| **Daemon 4** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Antigravity Task Runner (`isDaemon=true`) | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
-| **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Antigravity Task Runner (`isDaemon=true`) | Every 300s | Continuous 35-feed canonical master Parquet data lake pipeline |
-| **Daemon 6** | `python Terminal/run_graphify_watcher.py` | OS Process / Antigravity Task | Continuous File Watcher | Monitors file mutations and hot-updates `graphify-out/graph.json` |
-| **Daemon 7** | `python gemini_web2api.py --config config.json` | OS Process / Antigravity Task | Port 8081 (HTTP) | Web2API Council Daemon (Endogen reverse-proxy, Auth: `Bearer sk-gemini`) |
+| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py --interval 60` | Antigravity Task Runner (`isDaemon=true`) | Every 60s | Pushes git commits & telemetry to GitHub `main` |
+| **Daemon 2** | `python gemini_web2api.py` | OS Process / Antigravity Task | Port 8081 (HTTP) | Web2API Council Daemon (Endogen reverse-proxy, Auth: `Bearer sk-gemini`) |
+| **Daemon 3** | `python Terminal/run_graphify_watcher.py` | OS Process / Antigravity Task | Continuous Watcher | Monitors file mutations and hot-updates `graphify-out/graph.json` |
+| **Daemon 4** | `python Terminal/run_pipeline_continuous_daemon.py --gap 180` | Antigravity Task Runner (`isDaemon=true`) | Every 180s | Continuous 36-feed canonical master Parquet data lake pipeline + Metadata Stamping |
+| **Daemon 5** | `python Terminal/dual_completion_daemon.py --daemon` | Antigravity Task Runner (`isDaemon=true`) | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output, 5m tab auto-refresh |
+| **Daemon 6** | `schedule` Dynamic Timer | Antigravity Schedule Tool | DurationSeconds=1200 | Enforces strict 20-minute post-cycle quiet gap before next cycle launch |
 
-#### B. Essential External Infrastructure Daemons
+**Lifecycle preservation**: Persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, or create duplicate writers.
 
-| Infrastructure Service | Executable / Binary | Port / Endpoint | Operational Role |
-|---|---|---|---|
-| **Chrome CDP Browser** | `chrome.exe` with `--remote-debugging-port=9222` | Port 9222 (WebSocket / HTTP) | Browser host for Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) |
-| **MetaTrader 5 Client** | `terminal64.exe` (Blueberry Markets SVG-Live) | Account #5064568 (IPC / API) | Live order routing, position tracking, and tick feed |
-
-#### C. Antigravity UI Task Counter Clarification
-- In the Antigravity UI, the indicator (e.g. "Background tasks 57") represents the **cumulative session task counter** of all tasks dispatched since conversation start.
-- Run `manage_task(Action='list')` to inspect only the **active running daemons** (currently 5 persistent tasks registered in Antigravity task manager).
-- Audit OS processes periodically via `Get-CimInstance Win32_Process | Where-Object Name -Match 'python|node'` to identify zombie or orphaned tasks; terminate only a proven task-owned process and never stop, restart, or prune persistent desk daemons during bootstrap and ensure system RAM remains below 75% via `scripts/free_ram.ps1`.
-
-**Lifecycle preservation**: All 7 persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, relaunch, or create a duplicate writer. Audit and report missing/unhealthy daemons for the operator; do not infer recovery authority from this SOP. Do not start a second spreadsheet pipeline or telemetry writer to obtain fresh evidence. Missing required health/evidence blocks the affected admission gate until resolved.
+---
 
 ### STEP 4: AST GRAPHIFY & ZERO-TOKEN SKILL RESOLUTION
 
 1. **Why Graphify Skills?**:
-   - The workspace contains hundreds of specialized skills in `.agents/skills/` and `~/.gemini/config/skills/`.
-   - Physically reading entire 200–500 line `SKILL.md` files burns 3,000–6,000 context tokens per turn and causes context rot.
-   - All skills have been indexed into `graphify-out/graph.json` (**3,478 skill-related nodes**).
-   - Querying `python -m graphify query "<skill_name>"` extracts the exact phase breakdown, rules, and line references in **<200 tokens** (95% token savings).
+   - All skills in `.agents/skills/` and `~/.gemini/config/skills/` are indexed into `graphify-out/graph.json` (**3,478 skill nodes**).
+   - Querying `python -m graphify query "<skill_name>"` extracts exact phase breakdowns, rules, and line references in **<200 tokens** (95% token savings).
 
-2. **Resource Audit Without Lifecycle Changes**:
-   - Report memory pressure and the affected processes. Do not automatically run cleanup, process pruning, standby-cache purges, or restart scripts during bootstrap.
-   - Preserve persistent daemon identities, workbook-writer ownership and browser CDP sessions. Missing services remain an audit finding until separately resolved.
+2. **Hardware Health Sentry**:
+   - If RAM utilization exceeds 80%, execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`.
 
 ---
 
-### STEP 5: IMMUTABLE CYCLE ENVELOPE GENERATION & 4-QUANT SWARM DISPATCH
+### STEP 5: 100% PURE PARQUET DATA LAKE & SCORECARD VERIFICATION
 
-1. **Generate Cycle Envelope**:
-   ```bash
-   python Terminal/generate_cycle_envelope.py "<cycle_id>"
-   ```
-   Writes `Data/cycle_envelope.json` with commit/tree and risk-policy digests, manifest/workbook SHA-256, native account inventory and capital eligibility. Row freshness, calendar clearance and broker/native session status require separate evidence; unknown gates remain denied. Envelope generation alone does not establish deal reconciliation or trade authorization.
+1. **Canonical 36-Feed Parquet Lake**:
+   - Master directory: `Data/feeds/*.parquet` (36 canonical production feeds + composite matrix). Zero Excel reliance.
+   - All feeds must maintain live freshness strictly < 5.0m in IST/UTC.
+   - Metadata Stamper: `Terminal/Data_Factory/stamp_all_parquet_feeds.py` injects fresh `cycle_id`, `cycle_timestamp_utc`, and `cycle_timestamp_ist` into PyArrow schema metadata on every cycle, ensuring synchronized git timestamps across all feeds on GitHub.
 
-2. **Dispatch 4 Non-Overlapping Subagents (Fable 5)**:
-   Invoke in parallel using `invoke_subagent` (`TypeName='research'` or `'self'`, `Model='flash'`):
-   - **Role A (`Regime and Calibration Quant`)**: Evaluates `P(TP first | fill)`, VR(q), ER, OU half-life. No lot sizing.
-   - **Role B (`Fill and Microstructure Quant`)**: Evaluates `P(fill | TTL)`, adverse selection markouts, resting whale persistence and executed refill, sweep/reclaim geometry.
-   - **Role C (`Solvency and Portfolio Sentry`)**: Evaluates `lot*`, joint stress under all independently fillable scenarios, House Money status. Enforces `min(balance, equity) - joint_ticket_stress - global_contingency >= 4,795.00 USD`, Tier 2 realized-balance eligibility, and the maximum 2 independent contingent-ticket limit.
-   - **Role D (`Market Clock and Provenance Auditor`)**: Evaluates session clocks, FX rollover embargo (`21:15–22:30 UTC`), auction levels, and data freshness.
-
-3. **Dispatch Dual Frontier Council**:
-   Inject `docs/prompts/COUNCIL_CYCLE_310_DISPATCH.md` to:
-   - **Arena.ai (GPT Astra)** via Chrome CDP 9222.
-   - **Z.ai (GLM-5.3-Flash)** via Chrome CDP 9222.
+2. **Mandatory 33-Feed Parquet Freshness Scorecard**:
+   - Every coordinator response and subagent report must include the 33-feed freshness scorecard parsed directly from `Data/metadata/parquet_all_feeds_checklist.json`.
 
 ---
 
-### STEP 6: TRI-ENTITY JOINT COMPLETION, DIALECTIC RESOLUTION & DYNAMIC 20-MINUTE CYCLE PACING PROTOCOL
+### STEP 6: QUAD-COUNCIL SYNTHESIS & 20-MINUTE PACED EXECUTION
 
-#### 1. Tri-Entity Joint Completion Gate & Antigravity Flash Optimization (Zero Premature Advancement)
-Under institutional trading desk governance, a quantitative cycle is officially complete ONLY when ALL 3 independent evaluation entities have concluded their execution and registered their formal rulings:
-1. **Entity 1 (Antigravity Quant Subagent Swarm - Flash Optimized)**:
-   - **Root Cause of Past 429 Failures**: Spawning 4 bloated subagents simultaneously with raw 40k+ token prompt bodies saturated the Gemini Flash API quota bucket.
-   - **Flash Optimization Invariant**: Subagents MUST be dispatched using **Surgical Pointer Architecture**: reference canonical files (Data/cycle_envelope.json, docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt, STANDARDIZED_TRADING_DECISION_CHAIN.md) by path rather than embedding duplicate monolithic texts. This slashes prompt tokens by 85%, guarantees sub-second instantiation, and prevents 429 rate limit exceptions.
-   - **Automatic Fallback Policy**: If a subagent encounters a temporary 429 on Model='flash', automatically retry with Model='flash_lite' or stagger dispatch by 1.5 seconds. Under NO circumstances may the desk skip subagent dispatch and rely solely on external models.
-   - **Mandatory Skills & Kaizen Inquest**: Every subagent MUST address: *How can this analysis and our execution desk be improved using all available relevant quantitative skills (trader-risk, systematic-debugging, clean-code, market-ingest)?*
-2. **Entity 2 (Arena.ai Council - GPT Astra)**: Monitored via Chrome CDP port 9222. Harvest full markdown to docs/trade_plans/ARENA_LATEST_RAW.md upon appearance of the Copy button / task feedback banner.
-3. **Entity 3 (Z.ai Sovereign Council - GLM-5.3-Flash)**: Monitored via Chrome CDP port 9222. Harvest full markdown and attached python ruling artifacts to docs/trade_plans/ZAI_LATEST_RAW.md.
+1. **Quad-Council Architecture**:
+   - **Council 1**: Antigravity Internal Quant Desk (4-Quant Subagent Swarm: Role A, B, C, D via Fable 5 `Model='flash'`).
+   - **Council 2**: Arena.ai Sovereign Council (GPT-5.4 Astra via Chrome CDP Port 9222).
+   - **Council 3**: Z.ai Sovereign Council (GLM-5.3-Flash / Claude 3.7 Sonnet via Chrome CDP Port 9222).
+   - **Council 4**: Gemini-4 Argon High Council (Deep Institutional Reasoning via Web2API port 8081).
 
-#### 2. Dialectic Cross-Examination & Desk Ledger Synchronization
-- Compare Subagent empirical findings against Arena.ai and Z.ai formal rulings.
-- Any Severity-1 arithmetic, quote causality, or solvency kernel dispute cannot be settled by majority vote and automatically mandates `AUTHORIZATION = DENIED_FAIL_CLOSED`.
-- Record verified cycle metrics and rulings into `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
-- Append complete prompt, rulings, and turn summary to `.agents/memory/session_chat_history.md`.
-- Confirm byte-for-byte parity across `Trading_2` and `Engine_2` via `python .agents/scripts/verify_and_sync_agents.py`.
+2. **Tri-Entity Joint Completion Gate**:
+   - A cycle is marked officially **FINISHED** only when ALL 3 external/internal entities complete processing:
+     1. Antigravity 4-Quant Subagent Swarm
+     2. Arena.ai Sovereign Council (harvested into `docs/trade_plans/ARENA_LATEST_RAW.md`)
+     3. Z.ai Sovereign Council (harvested into `docs/trade_plans/ZAI_LATEST_RAW.md`)
 
-#### 3. Mandatory 20-Minute Market Consolidation Gap & Dynamic Timer Protocol
-Under NO circumstances may an incoming cycle be launched immediately after current cycle completion:
-- **Market Consolidation Invariant**: Market microstructure, orderbook liquidity, and 15m candle volatility require temporal settling. Launching back-to-back cycles into intra-bar chop risks entering on unabsorbed noise.
-- **Dynamic 20-Minute Quiet Interval**: After all 3 entities have completed and their rulings are reconciled, the coordinator MUST enforce a strict **minimum 20-minute (1,200 seconds)** quiet window before the next cycle envelope can be initialized.
-- **Dynamic Timer Execution Gate**: The 20-minute gap MUST be enforced by scheduling a dynamic one-shot timer:
-  ```python
-  schedule(DurationSeconds=1200, Prompt="Dynamic 20-minute market stabilization interval elapsed. Tri-entity completion verified. Initialize, audit, and launch Cycle N+1.")
-  ```
-- **Quiet Window Desk State**: During this 20-minute interval:
-  * Persistent daemons (Heptad) continue updating the 35-feed canonical master Parquet data lake (`Data/feeds/*.parquet`).
-  * System RAM is maintained (<80%) via `scripts/free_ram.ps1`.
-  * The desk maintains an unbreached 100% Cash Defense posture.
-- **Automated Cycle N+1 Launch Chain**: Upon reactive wakeup from the 1,200s schedule notification, the desk immediately executes:
-  1. Fresh 33-sheet Excel health audit (`Terminal/Data_Factory/excel_data_quality_checker.py`).
-  2. Fresh telemetry snapshot & macro calendar verification (`Terminal/Data_Factory/generate_telemetry_snapshot.py`).
-  3. Fresh broker preflight receipt with `tick_time < observed_at < cutoff` causality (`Terminal/execution_preflight.py`).
-  4. Cycle envelope freeze bound to git commit hash (`Terminal/generate_cycle_envelope.py`).
-  5. Atomic prompt compilation, file commit, and SHA-256 matching.
-  6. Tri-entity dispatch & re-arming of reactive completion waiter.
+3. **Dynamic 20-Minute Post-Completion Quiet Interval**:
+   - After all entities complete and their rulings are reconciled, enforce a strict **minimum 20-minute (1,200 seconds)** quiet window before initializing the next cycle envelope:
+     ```python
+     schedule(DurationSeconds=1200, Prompt="Dynamic 20-minute market stabilization interval elapsed. Tri-entity completion verified. Initialize, audit, and launch Cycle N+1.")
+     ```
+   - Eliminates cycle collisions, prompt overlaps, and intra-bar chop entries.
 
 ---
 
 ## 🔒 PERPETUAL GOAL INVARIANTS (NEVER COMPROMISED)
 
 1. **Perpetual Goal Contract**: Under NO circumstances may `<!-- GOAL_COMPLETE -->` or `<!-- GOAL_CANCELLED -->` be emitted until live equity >= 5,500.00 USD is proven on MetaTrader 5.
-2. **Inviolable Floors**: **4,600.00 USD Hard Floor** | **4,650.00 USD Operating Buffer** | **4,795.00 USD Solvency Kernel**.
-3. **Never Widen Stops**: For any live position, follow its verified immutable R0 ledger and ticket-specific ratchets; never loosen a protective stop. Ticket #19267445 is historical in the dated operator baseline.
-4. **Strict Passive Limit Posture**: Passive limit orders only, safely anchored behind verified asset-native resting institutional liquidity (>= 100,000 USD where that setup requires it). Zero marketable spread crossing.
-5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the joint 3-entity completion lifecycle.
+2. **Inviolable Floors**: **4,775.00 USD Hard Floor** | **4,795.00 USD Operating Buffer** | **4,795.00 USD Solvency Kernel**.
+3. **Never Widen Stops**: Follow verified immutable R0 ledgers and ticket-specific ratchets; never loosen a protective stop.
+4. **Strict Passive Limit Posture**: Passive limit orders only, safely anchored behind verified institutional liquidity (> 100,000 USD, tau >= 180s). Zero marketable spread crossing.
+5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the joint completion lifecycle.
 6. **Plain-Text Formatting**: Zero raw LaTeX delimiters in chat; use clean plain text and unicode.
