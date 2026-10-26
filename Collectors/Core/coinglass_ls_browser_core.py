@@ -48,6 +48,16 @@ TF_MAP = {
     "4h": "4 hour",
 }
 
+TF_VAL_MAP = {
+    "5m": 3,
+    "15m": 10,
+    "30m": 11,
+    "1h": 2,
+    "4h": 1,
+    "12h": 4,
+    "24h": 5,
+}
+
 try:
     from asset_registry import asset_registry
     UNIVERSE = asset_registry.get_assets_for_collector("3_Exchanges_LS_Ratio")
