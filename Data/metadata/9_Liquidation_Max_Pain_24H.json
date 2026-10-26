@@ -1,7 +1,7 @@
 {
   "feed_name": "9_Liquidation_Max_Pain_24H",
   "status": "PASS",
-  "row_count": 747,
+  "row_count": 751,
   "column_count": 11,
   "columns": [
     "ranking",
@@ -16,9 +16,9 @@
     "long_distance_usd",
     "long_distance_pct"
   ],
-  "byte_size": 70990,
-  "timestamp_ist": "2026-10-26 19:54:31 IST",
-  "timestamp_utc": "2026-10-26 14:24:31 UTC",
-  "epoch_utc": 1793024671.26439,
-  "write_duration_ms": 235.12
+  "byte_size": 70805,
+  "timestamp_ist": "2026-10-26 22:10:37 IST",
+  "timestamp_utc": "2026-10-26 16:40:37 UTC",
+  "epoch_utc": 1793032837.972704,
+  "write_duration_ms": 276.4
 }

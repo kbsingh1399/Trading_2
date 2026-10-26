@@ -1,24 +1,26 @@
 {
   "feed_name": "8_Exchange_Liquidation_Map_7D",
   "status": "PASS",
-  "row_count": 2585,
-  "column_count": 11,
+  "row_count": 2578,
+  "column_count": 13,
   "columns": [
     "Sr.No",
     "Asset",
     "Time",
     "Timestamp_IST",
     "Price",
-    "Cummulitve_Liquidation",
+    "Cumulative_Liquidation",
     "Short",
     "Long",
+    "Binance",
+    "Cummulitve_Liquidation",
     "Binanace",
     "OKX",
     "Bybit"
   ],
-  "byte_size": 110486,
-  "timestamp_ist": "2026-10-26 19:54:28 IST",
-  "timestamp_utc": "2026-10-26 14:24:28 UTC",
-  "epoch_utc": 1793024668.119544,
-  "write_duration_ms": 307.2
+  "byte_size": 138093,
+  "timestamp_ist": "2026-10-26 22:10:33 IST",
+  "timestamp_utc": "2026-10-26 16:40:33 UTC",
+  "epoch_utc": 1793032833.684231,
+  "write_duration_ms": 433.99
 }
