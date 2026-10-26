@@ -1,9 +1,10 @@
 """
 Terminal/dual_completion_daemon.py
-Unified dual-tab completion watcher for Arena.ai AND Z.ai.
-Monitors both Chrome tabs concurrently via CDP, archives responses to
+Unified dual-tab completion watcher and automated 5-minute page refresher for Arena.ai AND Z.ai.
+Monitors both Chrome tabs concurrently via CDP, archives completed responses to
 docs/trade_plans/ARENA_LATEST_RAW.md and docs/trade_plans/ZAI_LATEST_RAW.md,
-and exits with code 0 to wake up Antigravity the exact second both responses complete.
+automatically refreshes tabs every 5 minutes when idle to prevent DOM bloat,
+and triggers instant unified wakeups.
 """
 import argparse
 import asyncio
@@ -39,16 +40,31 @@ def get_chrome_tabs():
         return []
 
 
+async def reload_tab(tab_ws_url: str):
+    """Executes Page.reload on a CDP tab WebSocket."""
+    try:
+        async with websockets.connect(tab_ws_url, max_size=5_000_000) as ws:
+            await ws.send(json.dumps({"id": 88888, "method": "Page.reload"}))
+            print(f"[{time.strftime('%H:%M:%S')}] 🔄 [CDP] Successfully refreshed tab: {tab_ws_url[:45]}...", flush=True)
+            return True
+    except Exception as e:
+        print(f"[{time.strftime('%H:%M:%S')}] ⚠️ [CDP] Reload failed: {e}", flush=True)
+        return False
+
+
 async def probe_arena_tab(tab_ws_url: str):
     try:
         async with websockets.connect(tab_ws_url, max_size=20_000_000) as ws:
             js = """
             (() => {
-                const stopBtn = document.querySelector('button[aria-label="Stop generating"], button:has(svg.lucide-square)');
-                const isGenerating = !!stopBtn;
-                const copyBtn = document.querySelector('button[aria-label="Copy"], button:has(svg.lucide-copy)');
-                const hasCopy = !!copyBtn;
+                const stopBtn = document.querySelector('button[aria-label="Stop generating"], button[aria-label="Stop"]');
+                const copyBtns = Array.from(document.querySelectorAll('button[aria-label="Copy"], button:has(svg.lucide-copy)'));
+                const hasCopy = copyBtns.length > 0;
                 const yesNo = Array.from(document.querySelectorAll('button')).some(b => b.innerText.includes('Keep working') || b.innerText.includes('Yes'));
+                
+                // If Copy button exists or Yes/No exists, and there is no explicit Stop Generating button, generation is complete!
+                const isGenerating = !!stopBtn && !hasCopy;
+                
                 const proses = Array.from(document.querySelectorAll('.prose')).filter(p => !p.classList.contains('tiptap'));
                 const lastText = proses.length > 0 ? proses[proses.length - 1].innerText : '';
                 return {
@@ -73,15 +89,29 @@ async def probe_zai_tab(tab_ws_url: str):
         async with websockets.connect(tab_ws_url, max_size=20_000_000) as ws:
             js = """
             (() => {
-                const stopBtn = document.querySelector('button[aria-label*="Stop" i], button:has(svg.lucide-square), .stop-generating');
+                const stopBtn = document.querySelector('button[aria-label*="Stop" i], .stop-generating');
                 const isGenerating = !!stopBtn;
-                const msgs = Array.from(document.querySelectorAll('.prose, div[class*="markdown"], div[class*="message-content"]'));
-                const lastMsg = msgs.length > 0 ? msgs[msgs.length - 1].innerText : '';
+                
+                // Robust extraction: find largest markdown/council container in Z.ai
+                const containers = Array.from(document.querySelectorAll('div, section, article')).filter(el => {
+                    const text = el.innerText || '';
+                    return (text.includes('COUNCIL AUTHORIZATION') || text.includes('KAIZEN ARCHETYPE COMPLIANCE') || text.includes('Derived exclusively from Data/feeds') || text.includes('MANDATE')) && !text.includes('TRADING DESK COUNCIL: CYCLE 359');
+                });
+                let longestText = '';
+                if (containers.length > 0) {
+                    containers.sort((a, b) => (b.innerText || '').length - (a.innerText || '').length);
+                    longestText = containers[0].innerText || '';
+                } else {
+                    const allMarkdown = Array.from(document.querySelectorAll('.markdown-body, div[class*="markdown"], div[class*="content"]'));
+                    allMarkdown.sort((a, b) => (b.innerText || '').length - (a.innerText || '').length);
+                    longestText = allMarkdown.length > 0 ? (allMarkdown[0].innerText || '') : '';
+                }
+                
                 return {
                     connected: true,
                     isGenerating: isGenerating,
-                    textLen: lastMsg.length,
-                    text: lastMsg
+                    textLen: longestText.length,
+                    text: longestText
                 };
             })()
             """
@@ -113,7 +143,7 @@ async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5)
                     ARENA_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                     arena_done = True
-                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Arena.ai response complete ({astate.get('textLen')} chars) -> saved ARENA_LATEST_RAW.md", flush=True)
+                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Arena.ai response complete ({astate.get('textLen'):,} chars) -> saved ARENA_LATEST_RAW.md", flush=True)
 
         # Check Z.ai
         if zai_tab and not zai_done:
@@ -124,7 +154,7 @@ async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5)
                     ZAI_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                     zai_done = True
-                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Z.ai response complete ({zstate.get('textLen')} chars) -> saved ZAI_LATEST_RAW.md", flush=True)
+                    print(f"[{time.strftime('%H:%M:%S')}] 🔔 Z.ai response complete ({zstate.get('textLen'):,} chars) -> saved ZAI_LATEST_RAW.md", flush=True)
 
         if arena_done and zai_done:
             print("\n🎉 BOTH ARENA.AI AND Z.AI RESPONSES COMPLETE! Triggering unified wakeup.", flush=True)
@@ -134,10 +164,11 @@ async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5)
     return 0 if (arena_done or zai_done) else 1
 
 
-async def run_dual_daemon(poll_interval: float = 3.0):
-    print(f"[DualCompletionDaemon] Running persistent daemon for Arena.ai & Z.ai...", flush=True)
+async def run_dual_daemon(poll_interval: float = 3.0, refresh_interval_s: float = 300.0):
+    print(f"[DualCompletionDaemon] Running persistent daemon for Arena.ai & Z.ai (refresh interval={refresh_interval_s/60:.1f}m)...", flush=True)
     last_arena_len = 0
     last_zai_len = 0
+    last_refresh_ts = time.time()
     ARENA_STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
 
     while True:
@@ -147,20 +178,23 @@ async def run_dual_daemon(poll_interval: float = 3.0):
             arena_tab = next((t for t in tabs if "arena.ai" in t.get("url", "")), None)
             zai_tab = next((t for t in tabs if "chat.z.ai" in t.get("url", "")), None)
 
+            arena_is_gen = False
+            zai_is_gen = False
+
             # 1. Arena.ai Check
             if arena_tab:
                 ws_url = arena_tab.get("webSocketDebuggerUrl")
                 if ws_url:
                     astate = await probe_arena_tab(ws_url)
                     t_len = astate.get("textLen", 0)
-                    is_gen = astate.get("isGenerating", False)
+                    arena_is_gen = astate.get("isGenerating", False)
                     status_payload = {
-                        "is_generating": is_gen,
+                        "is_generating": arena_is_gen,
                         "text_length": t_len,
                         "has_copy_button": astate.get("hasCopy", False),
                         "checked_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     }
-                    if not is_gen and t_len > 300 and t_len != last_arena_len and (astate.get("hasCopy") or astate.get("hasYesNo")):
+                    if not arena_is_gen and t_len > 300 and t_len != last_arena_len and (astate.get("hasCopy") or astate.get("hasYesNo")):
                         ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                         last_arena_len = t_len
                         status_payload["completed_at_utc"] = status_payload["checked_at_utc"]
@@ -173,18 +207,31 @@ async def run_dual_daemon(poll_interval: float = 3.0):
                 if ws_url:
                     zstate = await probe_zai_tab(ws_url)
                     t_len = zstate.get("textLen", 0)
-                    is_gen = zstate.get("isGenerating", False)
+                    zai_is_gen = zstate.get("isGenerating", False)
                     status_payload = {
-                        "is_generating": is_gen,
+                        "is_generating": zai_is_gen,
                         "text_length": t_len,
                         "checked_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     }
-                    if not is_gen and t_len > 300 and t_len != last_zai_len:
+                    if not zai_is_gen and t_len > 300 and t_len != last_zai_len:
                         ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                         last_zai_len = t_len
                         status_payload["completed_at_utc"] = status_payload["checked_at_utc"]
                         print(f"[{time.strftime('%H:%M:%S')}] 🔔 [Daemon] Harvested new Z.ai turn ({t_len:,} chars)", flush=True)
                     ZAI_STATUS_FILE.write_text(json.dumps(status_payload, indent=2), encoding="utf-8")
+
+            # 3. Automated 5-Minute Page Refresh (Only when neither model is generating)
+            if (time.time() - last_refresh_ts) >= refresh_interval_s:
+                if not arena_is_gen and not zai_is_gen:
+                    print(f"[{time.strftime('%H:%M:%S')}] 🔄 [Daemon] 5-minute idle threshold reached. Refreshing Arena.ai and Z.ai tabs...", flush=True)
+                    if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
+                        await reload_tab(arena_tab.get("webSocketDebuggerUrl"))
+                    if zai_tab and zai_tab.get("webSocketDebuggerUrl"):
+                        await reload_tab(zai_tab.get("webSocketDebuggerUrl"))
+                    last_refresh_ts = time.time()
+                else:
+                    # Delay refresh if models are actively writing
+                    last_refresh_ts = time.time() - refresh_interval_s + 60.0
 
         except Exception as e:
             await asyncio.sleep(poll_interval)
@@ -194,11 +241,11 @@ def main():
     parser = argparse.ArgumentParser(description="Dual AI Completion Watcher")
     parser.add_argument("--timeout", type=float, default=600.0, help="Timeout in seconds for single wait mode")
     parser.add_argument("--daemon", action="store_true", help="Run continuously as background daemon")
-    parser.add_argument("--wait", action="store_true", help="Wait for current in-flight generation then exit 0")
+    parser.add_argument("--refresh-interval", type=float, default=300.0, help="Periodic refresh interval in seconds (default: 300s / 5m)")
     args = parser.parse_args()
 
     if args.daemon:
-        asyncio.run(run_dual_daemon())
+        asyncio.run(run_dual_daemon(refresh_interval_s=args.refresh_interval))
         sys.exit(0)
     else:
         rc = asyncio.run(run_dual_watcher(timeout_s=args.timeout))
