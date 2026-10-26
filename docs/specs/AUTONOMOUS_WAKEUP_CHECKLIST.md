@@ -87,6 +87,9 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   3. **Ticket #19330613 (`ETHUSD.pi` SELL_LIMIT 0.50 lot @ 2,333.50)**: Backed by footprint absorption at 2,329.20, cumulative delta -10.89M USD, Long Max Pain magnet at 2,285.66 USD. Aligned with +2SD VWAP boundary (2,333.52). Consensus: **PREVAIL / HOLD RESTING**.
 
 ### Gateway 6: Candidate Formulation & 5-Pillar Confluence Pipeline
+- **Mandatory Pre-Candidate Failure Check (MUST READ Before Order Staging)**:
+  * Cross-examine every prospective setup against the 10 fatal traps in [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (strictly forbid sub-ATR noise stops, value area balance misplacements, lot-size inflation, and unaligned limits lacking resting whale backing).
+  * Systematically interrogate all 35 feeds using the concrete reasoning questions in [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md). If any feed triggers an invalidation answer, fail-closed into 100% Cash Defense.
 - **Dynamic Spread Friction Budgeting**: `Spread Points / TP Distance Points <= 15.0%`.
 - **5-Pillar Confluence Stack**:
   1. Dynamic spread friction gate passed (Efficiency Ratio <= 15%).
