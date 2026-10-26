@@ -81,4 +81,59 @@ The template asserts H_net = +68.07. H_net = B − 2.00 − 4,795.00 ⇒ B_templ
 
 4.2 Stress ledger — formula version drift (D4)
 
-Two canonical formulas coexist
+Two canonical formulas coexist: α (dispatch): T = 1.25·SL + spread + 2.00; β (prior SOP, worklog-canonized): T = (SL + spread)·1.25 + 2.00. Admission: H_net (49.32 at last-known balance) ≥ ΣT over concurrent tickets. Two × 12.00 USD tickets, spread at the 25 bps gate:
+
+STOP DISTANCE
+	
+NOTIONAL
+	
+SPREAD COST
+	
+T_Α
+	
+T_Β
+	
+ΣT_Α
+	
+ΣT_Β
+	
+VERDICT Α
+	
+VERDICT Β
+
+0.80%	1,500.00	3.75	20.75	21.69	41.50	43.38	PASS (cushion 7.82)	PASS (5.94)
+0.50%	2,400.00	6.00	23.00	24.50	46.00	49.00	PASS (3.32)	PASS (0.32)
+0.30%	4,000.00	10.00	27.00	29.50	54.00	59.00	FAIL (−4.68)	FAIL (−9.68)
+
+Minimum viable stop distance for two concurrent 12 USD tickets: 0.3917% (α) vs 0.4896% (β). The formula choice is not cosmetic — it redefines the tradeable geometry envelope. One version must be canonized; until then the council applies β (the stricter) as the binding bound.
+
+4.3 Margin collateralization — the balance-sensitive flip
+
+Invariant 1 (total margin ≤ 0.50·Equity) and Invariant 2 (margin level ≥ 200%) are mathematically the same constraint here: max total margin = 0.50·B. At B = 4,846.32 → 2,423.16; at 4,865.07 → 2,432.54. Consequences at P_BTC ≈ 80,950–81,000:
+
+BTC+BTC concurrent pair cap: 0.0299 BTC per ticket (total BTC-equivalent ≤ 0.0598). The template's "0.04–0.06 to preserve two-ticket capacity" fails Invariant 1 for a BTC+BTC pair (2×0.04 → 3,238.00 > 2,423.16).
+A single 0.06 BTC ticket = 2,430.00 margin = 50.17% of 4,846.32 → Invariant-1 FAIL at last-known balance, but 49.95% at 4,865.07 → PASS. The template's own sizing guidance flips on/off depending on which balance is real — the strongest practical demonstration of why D3 must be resolved.
+Tier-2 House Money interaction: 20 USD risk at 0.5% stop ⇒ 0.0494 BTC ⇒ 2,000.70 margin (41.3%) — a second ticket then has only ~422 USD of margin headroom (≤0.0102 BTC-equiv). Tier 2 at tight stops is effectively single-ticket for BTC; pair capacity requires stop ≥ 1.0% (0.0247 BTC, margin 1,000.40, pair 2,000.80 ✓).
+Survivable-buffer arithmetic (last-known): 10–12 USD × 2 slots ⇒ 4–5 full-stop events before 4,795 kernel; ~20+ before 4,600 floor — consistent with prior cycle findings.
+4.4 Dynamic position scaling regime (the C-mandate answer)
+REGIME
+	
+EQUITY BAND
+	
+RISK/TICKET
+	
+SLOTS
+	
+SCORE GATE
+	
+RATIONALE
+
+Survival	4,795–4,810	min(10, 0.25·(E−4,795))	1	≥ 85	Linear glide to zero risk at the kernel
+Base	4,810–4,850	10–12	2	≥ 75	Standard operations
+House Money	4,850–5,200	min(25, 0.25·(E−4,795))	2	≥ 75	Expansion funded by realized gains only; full 25 USD only at E ≥ 4,895
+Target Lock	5,200–5,500	10–15 (halved), A+ only	1 preferred	≥ 85	Variance drag minimized approaching Phase-1 pass
+Mission Complete	≥ 5,500	0	0	—	Halt, notify operator
+§5 — Role D: Clock, Auction & Provenance Auditor
+Cutoff causality: violated at the source (P1/P2). Every quote must satisfy tick_time < observed_at < cutoff_utc; with no envelope, no quote can be admitted. Quote staleness gate (≤15s) unverifiable (U1).
+Stale-artifact register (mandated feedback): ① git plane (all 42 feeds' mirrors + sidecars) — last sync 2026-10-26 16:40:52 UTC, >15h stale vs 2026-10-27 evaluation; ② cycle envelope — absent; ③ macro_calendar.json / forex_factory_live.json / live_snapshot_latest.json — freshness unverifiable (U4). Diagnostic for the operator: the sync daemon's 60s cadence (16:38–16:40 UTC) followed by total silence points to daemon death, credential expiry, or git push rejection (auth/quota) at ~16:41 UTC — inspect the daemon's stderr and git log locally before the next cycle.
+Universe classification (last-known): 98 TradFi → weekend halt / WATCHLIST_ONLY; 58 crypto perps open; 11 pass the 25 bps spread gate (BTC, ETH, SOL, BNB, XRP, DOGE, ADA, TRX, LINK, AVAX, NEAR perps); 47 disqualified. Rollover embargo 21:15–22:30 UTC for FX/metals
