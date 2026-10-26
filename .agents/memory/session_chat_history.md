@@ -64476,3 +64476,15 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
 - All background pipeline daemons killed as requested; operator to run data pipeline manually in terminal.
 - Reconciled Cycle 356 to COMPLETED status at 17:03:25 UTC across all 3 entities. Next cycle trigger armed for 17:23:25 UTC (20-minute quiet separation).
 - Verified autonomous subagent execution via Gemini Web2API (port 8081) under AUTONOMOUS_WAKEUP_CHECKLIST.md with zero context token depletion.
+
+---
+### Turn Entry [2026-10-26 22:38:30 IST]
+**User**: but how do you wake up...I mean you should put dynamic timer between cycle of 20 minutes...study entire Hyperdash opned session chats and output and understand the context
+**Agent Actions & Findings**:
+- Studied full Hyperdash session chat history and verified the canonical dynamic wake-up protocol:
+  * Static wall-clock crons (e.g. 15m/30m fixed) are eliminated because council deliberation takes variable time (15–25m), which previously caused prompt collisions, duplicate submissions, and context amnesia.
+  * A cycle is marked COMPLETED only when all 3 entities finish: Antigravity local subagents, Arena.ai (GPT Astra), and Z.ai (GLM-5.3-Flash).
+  * Post-completion, an exact 20-minute (1,200s) quiet market stabilization interval is armed via the system schedule tool.
+  * If an open position triggers dynamic profit ratchets on MT5 (+0.8R early BE, +1.25R Phase 0, +1.65R Phase 1), or closes at TP/SL, the desk wakes up immediately.
+- Cycle 356 completed at 17:03:25 UTC. Armed dynamic one-shot timer for remaining 895 seconds (task-140204) targeting exact wake-up at 17:23:25 UTC (22:53:25 IST) for Cycle 357.
+- Two live limit orders active on MT5: #19329907 (BNBUSD.p Buy Limit @ 736.25) and #19329908 (EURUSD.pi Sell Limit @ 1.12065).
