@@ -33,3 +33,8 @@ USWTI tape read: +1.69M CVD surge into 16:00 UTC drove oil to 103.88, then -5.4M
 
 Wrote 1 files，Ran 1 commands
 CVD sums, funding, OI, netflow
+
+Majors' CVD lives in Tradfye/footprint feeds. Pulling those plus whale persistence, liquidation bands, max-pain, ETF flows, calendar:
+
+Wrote 2 files，Ran 2 commands
+Majors CVD and whale walls
