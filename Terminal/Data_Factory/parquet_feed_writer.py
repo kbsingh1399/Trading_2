@@ -103,11 +103,40 @@ def write_parquet_feed(
         except Exception:
             table = pa.Table.from_pylist(list(data), schema=schema)
 
+    target_file = FEEDS_DIR / f"{feed_name}.parquet"
+    is_empty_payload = (table.num_rows == 0) or (table.num_rows == 1 and "_empty" in table.column_names)
+
+    # Protection: Never clobber existing healthy parquet files with empty payloads
+    if is_empty_payload and target_file.exists():
+        import logging
+        logging.getLogger("ParquetWriter").warning(
+            f"Write rejected for '{feed_name}': empty data payload would clobber existing {target_file.name} ({target_file.stat().st_size} bytes). Preserving existing file."
+        )
+        meta_target = METADATA_DIR / f"{feed_name}.json"
+        if meta_target.exists():
+            try:
+                with open(meta_target, "r", encoding="utf-8") as f:
+                    meta = json.load(f)
+                meta["warning"] = "Empty payload rejected; preserved existing parquet."
+                return meta
+            except Exception:
+                pass
+
+    # Mode: Append to existing dataset if requested
+    if mode.lower() == "append" and target_file.exists() and not is_empty_payload:
+        try:
+            existing_table = read_parquet_feed(feed_name)
+            table = pa.concat_tables([existing_table, table], promote_options="default")
+        except Exception as e:
+            import logging
+            logging.getLogger("ParquetWriter").warning(
+                f"Could not append to existing parquet for '{feed_name}': {e}. Writing new table."
+            )
+
     # Apply retention slicing if requested
     if retention_rows and table.num_rows > retention_rows:
         table = table.slice(table.num_rows - retention_rows, retention_rows)
 
-    target_file = FEEDS_DIR / f"{feed_name}.parquet"
     tmp_file = FEEDS_DIR / f".tmp_{feed_name}_{os.getpid()}_{int(time.time()*1000)}.parquet"
 
     try:
