@@ -141,108 +141,97 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
     tab_id, ws_url, is_ephemeral = get_coinglass_tab()
     tf_clean = tf_str.lower()
     target_tf_label = TF_MAP.get(tf_clean, "1 hour")
+    target_tf_val = TF_VAL_MAP.get(tf_clean, 2)
 
     js_code = f"""(async () => {{
         const universeList = {json.dumps(UNIVERSE)};
-        const targetTf = '{target_tf_label}';
+        const targetVal = {target_tf_val};
         
         const box = document.querySelector('[class*="LSTableV2"]');
         if (!box) return {{ error: "No LSTableV2 found" }};
         const card = box.closest('.MuiCard-root') || box.parentElement;
         
-        // 1. Switch Timeframe Dropdown if needed
-        const selectBtn = card.querySelector('.MuiSelect-button');
-        if (selectBtn && selectBtn.innerText.trim() !== targetTf) {{
-            selectBtn.click();
-            await new Promise(r => setTimeout(r, 150));
-            const menuId = selectBtn.getAttribute('aria-controls');
-            const menu = menuId ? document.getElementById(menuId) : document.querySelector('[role="listbox"]');
-            if (menu) {{
-                const opt = Array.from(menu.querySelectorAll('[role="option"]')).find(o => o.innerText.trim() === targetTf);
-                if (opt) opt.click();
+        // 1. Switch Timeframe via React Fiber Select component
+        const selectBtn = card.querySelector('button[role="combobox"]');
+        if (selectBtn) {{
+            const fKey = Object.keys(selectBtn).find(k => k.startsWith('__reactFiber'));
+            let cur = selectBtn[fKey];
+            let tfSelectComp = null;
+            while (cur) {{
+                if (cur.memoizedProps && cur.memoizedProps.onChange && cur.memoizedProps.children) {{
+                    tfSelectComp = cur;
+                    break;
+                }}
+                cur = cur.return;
             }}
-            await new Promise(r => setTimeout(r, 600));
+            if (tfSelectComp) {{
+                tfSelectComp.memoizedProps.onChange(null, targetVal);
+                await new Promise(r => setTimeout(r, 600));
+            }}
         }}
         
         // 2. Find Autocomplete Fiber for Asset Switching
         const input = card.querySelector('.MuiAutocomplete-input');
-        let fiber = null;
-        for (let k in input) {{
-            if (k.startsWith('__reactFiber')) {{
-                fiber = input[k];
-                break;
-            }}
-        }}
-        let cur = fiber;
+        if (!input) return {{ error: "No Autocomplete input found" }};
+        const inKey = Object.keys(input).find(k => k.startsWith('__reactFiber'));
+        let cur = input[inKey];
         let acComp = null;
         while (cur) {{
-            if (cur.memoizedProps && cur.memoizedProps.options && cur.memoizedProps.onChange) {{
+            if (cur.memoizedProps && cur.memoizedProps.options && cur.memoizedProps.options.length > 100) {{
                 acComp = cur;
                 break;
             }}
             cur = cur.return;
         }}
         
-        const validOptions = new Set(acComp ? (acComp.memoizedProps.options || []) : []);
+        if (!acComp) return {{ error: "acComp not found" }};
         const assetData = {{}};
         
         // 3. Rotate across assets and harvest each asset's Total and 22-exchange breakdown
-        if (acComp) {{
-            for (const sym of universeList) {{
-                if (!validOptions.has(sym)) continue;
-                
-                acComp.memoizedProps.onChange({{ type: 'change' }}, sym, 'selectOption');
-                
-                // Wait for header to update to sym
-                for (let i = 0; i < 12; i++) {{
-                    await new Promise(r => setTimeout(r, 60));
-                    const firstLine = (card.innerText || '').split('\\n')[0] || '';
-                    if (firstLine.includes(sym)) break;
-                }}
-                // Settle time for exchange rows
-                await new Promise(r => setTimeout(r, 250));
-                
-                const lines = card.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
-                
-                // Parse Total row
-                const total = {{
-                    longPct: lines[4] || '50.00%',
-                    shortPct: lines[5] || '50.00%',
-                    longVol: lines[7] || '-',
-                    shortVol: lines[9] || '-'
-                }};
-                
-                // Parse ranked exchanges
-                const exchanges = [];
-                let c = 10;
-                while (c < lines.length) {{
-                    const rank = lines[c];
-                    if (!/^\\d+$/.test(rank)) break;
-                    exchanges.push({{
-                        rank: rank,
-                        exchange: lines[c + 1],
-                        longPct: lines[c + 2],
-                        shortPct: lines[c + 3],
-                        longVol: lines[c + 5],
-                        shortVol: lines[c + 7]
-                    }});
-                    c += 8;
-                }}
-                
-                assetData[sym] = {{
-                    header: lines[0],
-                    total: total,
-                    exchanges: exchanges
-                }};
+        for (const sym of universeList) {{
+            acComp.memoizedProps.onChange({{ type: 'change' }}, sym, 'selectOption');
+            await new Promise(r => setTimeout(r, 220));
+            
+            const lines = card.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
+            
+            // Parse Total row
+            const total = {{
+                longPct: lines[4] || '50.00%',
+                shortPct: lines[5] || '50.00%',
+                longVol: lines[7] || '-',
+                shortVol: lines[9] || '-'
+            }};
+            
+            // Parse ranked exchanges
+            const exchanges = [];
+            let c = 10;
+            while (c < lines.length) {{
+                const rank = lines[c];
+                if (!/^\\d+$/.test(rank)) break;
+                exchanges.push({{
+                    rank: rank,
+                    exchange: lines[c + 1] || '-',
+                    longPct: lines[c + 2] || '50.00%',
+                    shortPct: lines[c + 3] || '50.00%',
+                    longVol: lines[c + 5] || '-',
+                    shortVol: lines[c + 7] || '-'
+                }});
+                c += 8;
             }}
             
-            // Reset back to BTC
-            acComp.memoizedProps.onChange({{ type: 'change' }}, 'BTC', 'selectOption');
+            assetData[sym] = {{
+                header: lines[0] || sym,
+                total: total,
+                exchanges: exchanges
+            }};
         }}
+        
+        // Reset back to BTC
+        acComp.memoizedProps.onChange({{ type: 'change' }}, 'BTC', 'selectOption');
         
         return {{
             assetData: assetData,
-            activeTf: selectBtn ? selectBtn.innerText.trim() : targetTf
+            activeTf: '{target_tf_label}'
         }};
     }})()"""
 
