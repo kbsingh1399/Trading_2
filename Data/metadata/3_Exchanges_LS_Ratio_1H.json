@@ -16,9 +16,9 @@
     "Timeframe",
     "Timestamp_IST"
   ],
-  "byte_size": 16365,
-  "timestamp_ist": "2026-10-26 22:48:39 IST",
-  "timestamp_utc": "2026-10-26 17:18:39 UTC",
-  "epoch_utc": 1793035119.051419,
-  "write_duration_ms": 8.07
+  "byte_size": 16795,
+  "timestamp_ist": "2026-10-26 23:33:34 IST",
+  "timestamp_utc": "2026-10-26 18:03:34 UTC",
+  "epoch_utc": 1793037814.148504,
+  "write_duration_ms": 66.33
 }
