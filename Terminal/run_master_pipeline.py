@@ -191,6 +191,8 @@ def run_browser_phase() -> int:
 
     scripts = [COLLECTORS_BROWSER_DIR / s for s in BROWSER_COLLECTORS if (COLLECTORS_BROWSER_DIR / s).exists()]
     for s in scripts:
+        # Enforce clean slate: close any lingering collector tabs before launching next collector
+        cleanup_browser_tabs()
         timeout = 180 if s.name in ["5_OI.py", "25_CoinGlass_Footprint_Signals.py", "8_Exchange_Liquidation_Map_7D.py", "10_Whale_Orders.py"] else 120
         name, success, dt, err = run_script(s, timeout)
         status = "PASS" if success else "FAIL"

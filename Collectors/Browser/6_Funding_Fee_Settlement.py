@@ -259,8 +259,7 @@ async def harvest_funding_fee_settlements() -> list[dict]:
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total Funding Fee Settlement records harvested: {len(records)} assets.")
     return records

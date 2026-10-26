@@ -439,8 +439,7 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total 1D records harvested across all assets: {len(all_records)} rows.")
     return all_records

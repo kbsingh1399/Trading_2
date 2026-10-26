@@ -409,8 +409,7 @@ async def harvest_spot_netflows(
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total Spot Netflow records harvested: {len(records)} assets.")
     return records

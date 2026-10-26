@@ -296,8 +296,7 @@ async def harvest_universe_open_interest(symbols: list[str] = DEFAULT_UNIVERSE) 
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total Open Interest records harvested: {len(matrix_rows)} / {len(symbols)} assets.")
     return matrix_rows

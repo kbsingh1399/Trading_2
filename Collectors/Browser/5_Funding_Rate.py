@@ -251,8 +251,7 @@ async def harvest_funding_rates(dump_all: bool = True, requested_symbols: list[s
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total Funding Rate records harvested: {len(records)} assets.")
     return records

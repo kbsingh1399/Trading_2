@@ -64704,3 +64704,14 @@ User Directives Executed:
   2. CoinGlass's navigation bar contains its On-Chain / Bitcoin analytics section ("UTXO Realized Price / Age Distribution"), which renders when CoinGlass pages load.
   3. `8_Exchange_Liquidation_Map_7D.py` completed at 03:33:17 IST (PASS, 50.08s); `9_Liquidation_Max_Pain_48H.py` was active on `https://www.coinglass.com/liquidation-maxpain`.
   4. Tab lifecycle is managed automatically by `cleanup_browser_tabs()` after each browser collector completes.
+
+### Turn Update - 2026-10-27 03:41 IST
+- **User Instruction**: Confirmed that browser collectors must run strictly sequentially with zero tab overlap, and locked in the canonical cycle lifecycle: do NOT set a 1200s timer during Cycle X. Instead, rely strictly on the dual AI completion daemon for reactive wakeup. Set the 1200s timer ONLY after Antigravity completes the full 3-model synthesis and Cycle X is officially concluded.
+- **Root Cause & Fix for Duplicate CoinGlass Tabs**:
+  1. Identified that 8 collectors (1_Crypto_ETF_Flows, 2_Spot_Netflow_S, 4_Hyperliquid_Analysis, 5_Funding_Rate, 5_OI, 6_Funding_Fee_Settlement, 8_Exchange_Liquidation_Map_1D, 8_Exchange_Liquidation_Map_7D) had if is_ephemeral: close_tab(tab_id), leaving reused tabs hanging indefinitely.
+  2. Fixed all 8 collectors to unconditionally close 	ab_id in inally:.
+  3. Updated Terminal/run_master_pipeline.py to call cleanup_browser_tabs() before AND after every browser script in the loop.
+  4. Verified Chrome CDP state: exactly 1 collector tab exists during active harvesting; zero tab leakage.
+- **Timer Protocol Locked**:
+  - During Cycle X: 0 timers. Reactive wakeup via dual_completion_daemon.py.
+  - After Antigravity + Arena.ai + Z.ai complete and synthesize Cycle X: Set 1200s timer for Cycle X+1.

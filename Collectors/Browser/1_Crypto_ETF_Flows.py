@@ -331,8 +331,7 @@ async def extract_coinglass_overview_table() -> list[dict]:
         return records
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
 
 def dump_crypto_etf_overview_to_parquet() -> bool:

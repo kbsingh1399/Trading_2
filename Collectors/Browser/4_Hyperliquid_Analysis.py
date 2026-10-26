@@ -310,8 +310,7 @@ async def harvest_hyperliquid_whale_data() -> list[dict]:
         await ws.close()
 
     finally:
-        if is_ephemeral:
-            close_tab(tab_id)
+        close_tab(tab_id)
 
     log.info(f"Total Hyperliquid whale records harvested: {len(all_records)} positions.")
     return all_records
