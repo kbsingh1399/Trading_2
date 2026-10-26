@@ -29,9 +29,9 @@
     "deribit_call_wall",
     "deribit_put_wall"
   ],
-  "byte_size": 749066,
-  "timestamp_ist": "2026-10-26 22:05:59 IST",
-  "timestamp_utc": "2026-10-26 16:35:59 UTC",
-  "epoch_utc": 1793032559.247219,
-  "write_duration_ms": 605.81
+  "byte_size": 749098,
+  "timestamp_ist": "2026-10-26 22:08:44 IST",
+  "timestamp_utc": "2026-10-26 16:38:44 UTC",
+  "epoch_utc": 1793032724.904056,
+  "write_duration_ms": 339.32
 }
