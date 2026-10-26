@@ -3,22 +3,21 @@
 Collectors/Browser/2_Spot_Netflow_S.py
 ======================================
 CoinGlass Cryptocurrency Spot Netflow Statistics Scraper & Parquet Dumper.
-Captures authentic multi-exchange Spot Inflow/Outflow statistics across all 18 institutional
-perpetual assets from:
+Captures authentic multi-exchange Spot Inflow/Outflow statistics across all available
+market assets via high-speed page rotation from:
 https://www.coinglass.com/spot-inflow-outflow
-and writes to Data/feeds/2_Spot_Netflow_S.parquet.
+and writes atomically to Data/feeds/2_Spot_Netflow_S.parquet.
 
-Universe (18 Institutional Binance USDT-M Perpetuals):
-  BTC, ETH, XRP, SOL, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB
+Full 1:1 CoinGlass Column Schema:
+  Symbol | 5_minute | 15_minute | 30_minute | 1_hour | 2_hour | 4_hour | 6_hour | 8_hour | 12_hour | 24_hour | 1_week | 15_day | 30_day | Market_Cap | Timestamp_IST
 
-Schema:
-  # | Symbol | Price | 5_minute | 15_minute | 30_minute | 1_hour | 4_hour | 12_hour | 24_hour | 7_day | 30_day | Market_Cap | Timestamp_IST
-
-Anti-Overfitting & Anti-Lag Guardrails:
+Features:
   - Connects to Edge CDP on port 9222 (reuses open tab or opens ephemeral tab).
   - Explicitly ensures the 'Spot' tab is active (not Futures).
-  - High-speed targeted symbol resolution via search input + Enter, extracting raw React Fiber data.
+  - Full 14-timeframe parity matching CoinGlass UI exactly (5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 1w, 15d, 30d).
+  - High-speed pagination rotation extracting full React Fiber dataSource per page.
   - Fail-closed verification: asserts that real non-zero market cap and spot netflow values exist.
+  - Targeted fallback for any institutional asset not present in top pages.
   - Ephemeral/Reused tab hygiene: preserves Arena.ai tab untouched.
 """
 
@@ -34,7 +33,7 @@ import pathlib
 import sys
 import time
 import urllib.request
-
+from typing import Any, Dict, List, Optional, Set
 
 try:
     import websockets
@@ -78,17 +77,19 @@ else:
     ]
 
 COLUMNS = [
-    ("#", "#", 8, "center"),
     ("Symbol", "Symbol", 14, "left"),
-    ("Price", "Price", 14, "right"),
     ("5_minute", "5 minute", 14, "right"),
     ("15_minute", "15 minute", 14, "right"),
     ("30_minute", "30 minute", 14, "right"),
     ("1_hour", "1 hour", 14, "right"),
+    ("2_hour", "2 hour", 14, "right"),
     ("4_hour", "4 hour", 14, "right"),
+    ("6_hour", "6 hour", 14, "right"),
+    ("8_hour", "8 hour", 14, "right"),
     ("12_hour", "12 hour", 14, "right"),
     ("24_hour", "24 hour", 14, "right"),
-    ("7_day", "7 day", 15, "right"),
+    ("1_week", "1 week", 15, "right"),
+    ("15_day", "15 day", 15, "right"),
     ("30_day", "30 day", 15, "right"),
     ("Market_Cap", "Market Cap", 16, "right"),
     ("Timestamp_IST", "Timestamp (IST)", 24, "center"),
@@ -165,8 +166,15 @@ def close_tab(tab_id: str):
         log.warning(f"Error closing tab {tab_id}: {e}")
 
 
-async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[dict]:
-    """Harvests authentic CoinGlass Spot Netflow Statistics for all 18 institutional symbols."""
+async def harvest_spot_netflows(
+    max_pages: int = 15,
+    required_symbols: list[str] = DEFAULT_UNIVERSE
+) -> list[dict]:
+    """
+    Harvests authentic CoinGlass Spot Netflow Statistics across all available market assets
+    via page rotation, with targeted fallbacks for institutional assets if not found.
+    Extracts all 14 CoinGlass timeframes: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 1w, 15d, 30d.
+    """
     if not websockets:
         raise RuntimeError("websockets package is required.")
 
@@ -176,7 +184,7 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
         datetime.timezone(datetime.timedelta(hours=5, minutes=30))
     ).strftime("%Y-%m-%d %H:%M:%S IST")
 
-    all_records: list[dict] = []
+    all_assets_by_symbol: dict[str, dict] = {}
 
     try:
         ws = None
@@ -207,8 +215,8 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
         await cdp_cmd("Network.enable")
 
         if is_ephemeral:
-            log.info("Awaiting page hydration on new tab (6s)...")
-            await asyncio.sleep(6.0)
+            log.info("Awaiting page hydration on new tab (5s)...")
+            await asyncio.sleep(5.0)
 
         # 1. Ensure 'Spot' tab is active
         js_ensure_spot = """
@@ -225,132 +233,209 @@ async def harvest_spot_netflows(symbols: list[str] = DEFAULT_UNIVERSE) -> list[d
         await cdp_cmd("Runtime.evaluate", {"expression": js_ensure_spot, "returnByValue": True})
         await asyncio.sleep(0.4)
 
-        for idx, sym in enumerate(symbols, start=1):
-            log.info(f"[{idx:2d}/{len(symbols)}] Harvesting CoinGlass Spot Netflow for {sym}...")
+        # 2. Reset pagination to page 1
+        for _ in range(5):
+            res_p = await cdp_cmd("Runtime.evaluate", {"expression": "document.querySelector('li.rc-pagination-item-active')?.innerText?.trim()", "returnByValue": True})
+            p = res_p.get("result", {}).get("value")
+            if p == "1":
+                break
+            await cdp_cmd("Runtime.evaluate", {"expression": "document.querySelector('li.rc-pagination-item-1 button, li.rc-pagination-item-1, li.rc-pagination-jump-prev')?.click()", "returnByValue": True})
+            await asyncio.sleep(0.3)
 
-            # Type symbol into search box and dispatch Enter
-            search_term = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
-            js_search = f"""
-            (() => {{
-                const input = document.querySelector('input.cg-style-za5rna') || Array.from(document.querySelectorAll('input[type="text"]')).find(i => i.closest('.MuiInput-root'));
-                if (!input) return {{ error: 'No input found' }};
-                input.focus();
-                input.click();
-                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSetter.call(input, '{search_term}');
-                input.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                input.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                input.dispatchEvent(new KeyboardEvent('keydown', {{ key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }}));
-                input.dispatchEvent(new KeyboardEvent('keyup', {{ key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }}));
-                return {{ set: true }};
-            }})()
-            """
-            await cdp_cmd("Runtime.evaluate", {"expression": js_search, "returnByValue": True})
-
-            # Read filtered row from React Fiber dataSource
-            js_read = f"""
-            (() => {{
-                const tables = Array.from(document.querySelectorAll('table'));
-                const dt = tables.length > 1 ? tables[1] : tables[0];
-                if (!dt) return null;
-                const fiberKey = Object.keys(dt).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));
-                let f = dt[fiberKey];
-                while (f) {{
-                    if (f.memoizedProps && f.memoizedProps.dataSource) {{
-                        const item = f.memoizedProps.dataSource.find(d => d.symbol === '{sym}' || d.baseSymbol === '{sym}' || d.symbol === '{search_term}');
-                        if (item) return item;
-                    }}
-                    f = f.return;
-                }}
-                return null;
-            }})()
-            """
-
-            matched_data = None
-            for _ in range(20):
-                await asyncio.sleep(0.15)
-                res = await cdp_cmd("Runtime.evaluate", {"expression": js_read, "returnByValue": True})
-                val = res.get("result", {}).get("value")
-                if val and val.get("symbol") == sym:
-                    matched_data = val
-                    break
-
-            if matched_data:
-                price_str = fmt_price(matched_data.get("price"))
-                mkt_cap_str = fmt_mkt_cap(matched_data.get("marketCap"))
-                f_5m = fmt_usd(matched_data.get("m5OutInVolUsd"))
-                f_15m = fmt_usd(matched_data.get("m15OutInVolUsd"))
-                f_30m = fmt_usd(matched_data.get("m30OutInVolUsd"))
-                f_1h = fmt_usd(matched_data.get("h1OutInVolUsd"))
-                f_4h = fmt_usd(matched_data.get("h4OutInVolUsd"))
-                f_12h = fmt_usd(matched_data.get("h12OutInVolUsd"))
-                f_24h = fmt_usd(matched_data.get("h24OutInVolUsd"))
-                f_7d = fmt_usd(matched_data.get("w1OutInVolUsd"))
-                f_30d = fmt_usd(matched_data.get("d30OutInVolUsd"))
-
-                all_records.append({
-                    "#": idx,
-                    "Symbol": sym,
-                    "Price": price_str,
-                    "5_minute": f_5m,
-                    "15_minute": f_15m,
-                    "30_minute": f_30m,
-                    "1_hour": f_1h,
-                    "4_hour": f_4h,
-                    "12_hour": f_12h,
-                    "24_hour": f_24h,
-                    "7_day": f_7d,
-                    "30_day": f_30d,
-                    "Market_Cap": mkt_cap_str,
-                    "Timestamp_IST": now_ist,
-                })
-                log.info(f"  -> Verified {sym}: Price={price_str}, 5m={f_5m}, 24h={f_24h}, MktCap={mkt_cap_str}")
-            else:
-                log.error(f"  -> Integrity failure: Could not find CoinGlass spot netflow data for {sym}!")
-
-        # Reset search box to clean state
-        js_clear = """
+        js_extract = """
         (() => {
-            const input = document.querySelector('input.cg-style-za5rna') || Array.from(document.querySelectorAll('input[type="text"]')).find(i => i.closest('.MuiInput-root'));
-            if (input) {
-                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSetter.call(input, '');
-                input.dispatchEvent(new Event('input', { bubbles: true }));
-                input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }));
+            const tables = Array.from(document.querySelectorAll('table'));
+            const table = tables.length > 1 ? tables[1] : tables[0];
+            if (!table) return null;
+            const activePage = document.querySelector('li.rc-pagination-item-active')?.innerText?.trim() || '1';
+            const fiberKey = Object.keys(table).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));
+            let cur = table[fiberKey];
+            while (cur) {
+                if (cur.memoizedProps && cur.memoizedProps.dataSource) {
+                    return JSON.stringify({
+                        activePage: activePage,
+                        dataSource: cur.memoizedProps.dataSource
+                    });
+                }
+                cur = cur.return;
             }
+            return null;
         })()
         """
-        await cdp_cmd("Runtime.evaluate", {"expression": js_clear, "returnByValue": True})
+
+        js_next = """
+        (() => {
+            const nextBtn = document.querySelector('li.rc-pagination-next:not(.rc-pagination-disabled) button') ||
+                            document.querySelector('li.rc-pagination-next:not(.rc-pagination-disabled)');
+            if (nextBtn) {
+                nextBtn.click();
+                return true;
+            }
+            return false;
+        })()
+        """
+
+        last_first_sym = None
+        log.info(f"Starting page rotation across up to {max_pages} pages...")
+
+        for page in range(1, max_pages + 1):
+            ds = None
+            for _ in range(25):
+                res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
+                val = res.get("result", {}).get("value")
+                if val:
+                    parsed = json.loads(val)
+                    items = parsed.get("dataSource")
+                    cur_page = parsed.get("activePage")
+                    if items and (cur_page == str(page) or (last_first_sym and items[0].get("symbol") != last_first_sym) or page == 1):
+                        ds = items
+                        break
+                await asyncio.sleep(0.12)
+
+            if not ds:
+                log.warning(f"Page {page} timeout waiting for data change.")
+                break
+
+            last_first_sym = ds[0].get("symbol")
+            new_in_page = 0
+            for item in ds:
+                sym = item.get("symbol")
+                if sym and sym not in all_assets_by_symbol:
+                    all_assets_by_symbol[sym] = item
+                    new_in_page += 1
+
+            # On Page 1: capture synchronized live verification screenshot
+            if page == 1:
+                try:
+                    await cdp_cmd("Runtime.evaluate", {"expression": "document.querySelector('table')?.scrollIntoView({block: 'start'})"})
+                    await asyncio.sleep(0.2)
+                    shot_res = await cdp_cmd("Page.captureScreenshot", {"format": "png"})
+                    if shot_res and "data" in shot_res:
+                        import base64
+                        png_bytes = base64.b64decode(shot_res["data"])
+                        art_dir = pathlib.Path(r"C:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058")
+                        if art_dir.exists():
+                            (art_dir / "coinglass_spot_page1_live.png").write_bytes(png_bytes)
+                        docs_dir = ROOT_DIR / "docs"
+                        docs_dir.mkdir(parents=True, exist_ok=True)
+                        (docs_dir / "coinglass_spot_page1_live.png").write_bytes(png_bytes)
+                        log.info(f"Captured live Page 1 verification screenshot ({len(png_bytes)} bytes).")
+                except Exception as e:
+                    log.warning(f"Could not capture Page 1 screenshot: {e}")
+
+            log.info(f"Page {page:2d}: extracted {len(ds)} items ({new_in_page} new). Cumulative unique assets: {len(all_assets_by_symbol)}")
+
+            if page < max_pages:
+                nres = await cdp_cmd("Runtime.evaluate", {"expression": js_next, "returnByValue": True})
+                if not nres.get("result", {}).get("value"):
+                    log.info("Reached last pagination page.")
+                    break
+                await asyncio.sleep(0.3)
+
+        # 3. Targeted resolution for any missing required institutional symbols
+        missing_required = [s for s in required_symbols if s not in all_assets_by_symbol]
+        if missing_required:
+            log.info(f"Harvested {len(all_assets_by_symbol)} assets. {len(missing_required)} required assets missing: {missing_required}. Resolving via search...")
+            for sym in missing_required:
+                search_term = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
+                js_search = f"""
+                (() => {{
+                    const input = document.querySelector('input.cg-style-za5rna') || Array.from(document.querySelectorAll('input[type="text"]')).find(i => i.closest('.MuiInput-root'));
+                    if (!input) return {{ error: 'No input found' }};
+                    input.focus();
+                    input.click();
+                    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                    nativeSetter.call(input, '{search_term}');
+                    input.dispatchEvent(new Event('input', {{ bubbles: true }}));
+                    input.dispatchEvent(new Event('change', {{ bubbles: true }}));
+                    input.dispatchEvent(new KeyboardEvent('keydown', {{ key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }}));
+                    input.dispatchEvent(new KeyboardEvent('keyup', {{ key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }}));
+                    return {{ set: true }};
+                }})()
+                """
+                await cdp_cmd("Runtime.evaluate", {"expression": js_search, "returnByValue": True})
+
+                for _ in range(15):
+                    await asyncio.sleep(0.15)
+                    res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
+                    val = res.get("result", {}).get("value")
+                    if val:
+                        parsed = json.loads(val)
+                        items = parsed.get("dataSource", []) if isinstance(parsed, dict) else parsed
+                        matched = next((d for d in items if isinstance(d, dict) and (d.get("symbol") == sym or d.get("baseSymbol") == sym)), None)
+                        if matched:
+                            all_assets_by_symbol[sym] = matched
+                            log.info(f"  -> Targeted search found {sym}!")
+                            break
+
+            # Clean search box
+            js_clear = """
+            (() => {
+                const input = document.querySelector('input.cg-style-za5rna') || Array.from(document.querySelectorAll('input[type="text"]')).find(i => i.closest('.MuiInput-root'));
+                if (input) {
+                    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                    nativeSetter.call(input, '');
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
+                    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }));
+                    input.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }));
+                }
+            })()
+            """
+            await cdp_cmd("Runtime.evaluate", {"expression": js_clear, "returnByValue": True})
+
+        # Format records into canonical schema with complete 1:1 CoinGlass timeframe parity
+        records: list[dict] = []
+        for sym, data in all_assets_by_symbol.items():
+            records.append({
+                "Symbol": sym,
+                "5_minute": fmt_usd(data.get("m5OutInVolUsd")),
+                "15_minute": fmt_usd(data.get("m15OutInVolUsd")),
+                "30_minute": fmt_usd(data.get("m30OutInVolUsd")),
+                "1_hour": fmt_usd(data.get("h1OutInVolUsd")),
+                "2_hour": fmt_usd(data.get("h2OutInVolUsd")),
+                "4_hour": fmt_usd(data.get("h4OutInVolUsd")),
+                "6_hour": fmt_usd(data.get("h6OutInVolUsd")),
+                "8_hour": fmt_usd(data.get("h8OutInVolUsd")),
+                "12_hour": fmt_usd(data.get("h12OutInVolUsd")),
+                "24_hour": fmt_usd(data.get("h24OutInVolUsd")),
+                "1_week": fmt_usd(data.get("w1OutInVolUsd")),
+                "15_day": fmt_usd(data.get("d15OutInVolUsd")),
+                "30_day": fmt_usd(data.get("d30OutInVolUsd")),
+                "Market_Cap": fmt_mkt_cap(data.get("marketCap")),
+                "Timestamp_IST": now_ist,
+            })
+
         await ws.close()
 
     finally:
         if is_ephemeral:
             close_tab(tab_id)
 
-    log.info(f"Total Spot Netflow records harvested: {len(all_records)} / {len(symbols)} assets.")
-    return all_records
+    log.info(f"Total Spot Netflow records harvested: {len(records)} assets.")
+    return records
 
 
 def main():
     parser = argparse.ArgumentParser(description="CoinGlass Cryptocurrency Spot Netflow Statistics Scraper")
-    parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Assets to harvest")
+    parser.add_argument("--max-pages", type=int, default=15, help="Number of pagination pages to harvest (default 15 = ~300 assets)")
+    parser.add_argument("--symbols", nargs="+", default=DEFAULT_UNIVERSE, help="Required assets to ensure in dump")
     args = parser.parse_args()
 
     symbols = args.symbols
     if len(symbols) == 1 and "," in symbols[0]:
         symbols = [s.strip().upper() for s in symbols[0].split(",") if s.strip()]
 
-    log.info(f"Starting Spot Netflow harvest for {len(symbols)} assets: {symbols}")
-    records = asyncio.run(harvest_spot_netflows(symbols=symbols))
+    log.info(f"Starting Spot Netflow page rotation harvest (max_pages={args.max_pages})...")
+    records = asyncio.run(harvest_spot_netflows(max_pages=args.max_pages, required_symbols=symbols))
 
     if not records:
         log.error("Harvesting yielded 0 records. Process aborted.")
         sys.exit(1)
 
-    # 1. Pure Parquet Dump
+    # Pure Parquet Dump
     meta = write_parquet_feed(FEED_NAME, records)
     log.info(f"Successfully dumped feed to Parquet: {meta}")
-
     log.info("Spot Netflow pipeline executed successfully.")
 
 

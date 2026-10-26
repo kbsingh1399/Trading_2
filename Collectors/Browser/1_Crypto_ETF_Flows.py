@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Data/Excel_Modules/1_Crypto_ETF_Flows.py
+Collectors/Browser/1_Crypto_ETF_Flows.py
 ========================================
-Dedicated Excel Module 1: Crypto ETF Flows.
+Dedicated Module 1: Crypto ETF Flows.
 Extracts the live 'Crypto ETF Overview' table from CoinGlass (https://www.coinglass.com/etf)
-via Chrome/Edge CDP port 9222, automatically clicks 'Show All', and dumps the table
-into the 'Crypto_ETF_Flows' worksheet in Data/feeds/<feed_name>.parquet in the EXACT same format.
+via Chrome/Edge CDP port 9222, executes tab rotation across ETF asset categories,
+clicks 'Show All', and dumps all 39+ institutional ETF vehicles atomically into
+Data/feeds/1_Crypto_ETF_Flows.parquet in the exact same format.
 
 CoinGlass 'Crypto ETF Overview' Table Columns (12 Core Columns):
   1. #                     (Rank: 1, 2, 3...)
@@ -25,12 +26,10 @@ Institutional Quantitative Context Columns:
  13. Asset Category        (Bitcoin, Ethereum, Solana, XRP, Hyperliquid, Multi-Asset)
  14. Issuer / Sponsor      (BlackRock / iShares, Fidelity, Grayscale, Bitwise, etc.)
  15. Daily Net Inflow      (from Table 0 Netflow feed)
- 16. Timestamp (UTC)       (Harvest Timestamp)
+ 16. Timestamp (IST)       (Harvest Timestamp)
 """
 
 from __future__ import annotations
-
-# Pure Parquet Pipeline
 
 import asyncio
 import datetime
@@ -41,31 +40,34 @@ import pathlib
 import sys
 import time
 import urllib.request
+from typing import Any, Dict, List, Optional, Tuple
 
-# Parquet Writer Imports
-ROOT = pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
-sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))
-from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
+MODULES_DIR = pathlib.Path(__file__).resolve().parent
+ROOT_DIR = MODULES_DIR.parents[1]
+sys.path.insert(0, str(ROOT_DIR / "Collectors" / "Core"))
+sys.path.insert(0, str(ROOT_DIR / "Terminal" / "Data_Factory"))
+
+try:
+    from parquet_writer import write_parquet_feed
+except ImportError:
+    from parquet_feed_writer import write_parquet_feed
 
 try:
     import websockets
 except ImportError:
     websockets = None
 
-ROOT = pathlib.Path(__file__).resolve().parents[2]
-DATA_DIR = ROOT / "Data"
 CDP_BASE_URL = "http://127.0.0.1:9222"
-SHEET_NAME = "1_Crypto_ETF_Flows"
+TARGET_URL = "https://www.coinglass.com/etf"
+FEED_NAME = "1_Crypto_ETF_Flows"
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] [1_Crypto_ETF_Flows] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 log = logging.getLogger("1_Crypto_ETF_Flows")
 
-# Exact CoinGlass Crypto ETF Overview Schema
 EXACT_COINGLASS_COLUMNS = [
     ("#", "#", 8, "center"),
     ("Ticker", "Ticker", 14, "left"),
@@ -82,7 +84,7 @@ EXACT_COINGLASS_COLUMNS = [
     ("Asset_Category", "Asset Category", 16, "center"),
     ("Issuer", "Issuer / Sponsor", 26, "left"),
     ("Daily_Net_Inflow", "Daily Net Inflow", 20, "right"),
-    ("Timestamp_IST", "Timestamp (IST)", 24, "center")
+    ("Timestamp_IST", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -133,11 +135,22 @@ def deduce_asset(ticker: str, name: str, explicit_tag: str = "") -> str:
     return "Other Crypto"
 
 
-def open_etf_tab() -> tuple[str, str]:
-    """Creates a new dedicated ephemeral CoinGlass ETF tab via CDP."""
-    req = urllib.request.Request(f"{CDP_BASE_URL}/json/new?https://www.coinglass.com/etf", method="PUT")
-    new_tab = json.loads(urllib.request.urlopen(req, timeout=5).read().decode())
-    return new_tab["id"], new_tab["webSocketDebuggerUrl"]
+def get_target_tab() -> tuple[str, str, bool]:
+    """Finds existing CoinGlass ETF tab or opens an ephemeral dedicated tab."""
+    try:
+        req = urllib.request.Request(f"{CDP_BASE_URL}/json")
+        tabs = json.loads(urllib.request.urlopen(req, timeout=5).read().decode())
+        for t in tabs:
+            if "/etf" in t.get("url", ""):
+                log.info(f"Reusing active CoinGlass ETF tab (ID: {t['id']}).")
+                return t["id"], t["webSocketDebuggerUrl"], False
+    except Exception as e:
+        log.warning(f"Failed to query existing tabs: {e}")
+
+    req = urllib.request.Request(f"{CDP_BASE_URL}/json/new?{TARGET_URL}", method="PUT")
+    new_tab = json.loads(urllib.request.urlopen(req, timeout=8).read().decode())
+    log.info(f"Opened dedicated ephemeral tab (ID: {new_tab['id']}).")
+    return new_tab["id"], new_tab["webSocketDebuggerUrl"], True
 
 
 def close_tab(tab_id: str):
@@ -150,183 +163,184 @@ def close_tab(tab_id: str):
 
 
 async def extract_coinglass_overview_table() -> list[dict]:
-    """Connects to CDP, opens tab, clicks 'Show All', extracts Crypto ETF Overview table, and closes tab."""
-    tab_id, ws_url = open_etf_tab()
-    log.info(f"Opened dedicated CoinGlass ETF tab (ID: {tab_id})")
+    """Connects to CDP, executes tab rotation across ETF categories, extracts all 39+ ETFs, and writes to parquet."""
+    tab_id, ws_url, is_ephemeral = get_target_tab()
 
-    now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist = datetime.datetime.now(ist_tz)
-    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
+    now_ist = datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    ).strftime("%Y-%m-%d %H:%M:%S IST")
 
     try:
-        # Connect to websocket with connection retry
         ws = None
         for attempt in range(10):
             try:
                 ws = await websockets.connect(ws_url, max_size=25 * 1024 * 1024, open_timeout=8)
                 break
-            except Exception as e:
+            except Exception:
                 await asyncio.sleep(0.5)
 
         if not ws:
             raise RuntimeError(f"Could not connect to WebSocket at {ws_url}")
 
-        async with ws:
-            # 1. Dynamic readiness check: wait for tables to render
-            table_check_js = """
-            (() => {
-                const tables = Array.from(document.querySelectorAll('table'));
-                const overview = tables.find(t => {
-                    const ths = Array.from(t.querySelectorAll('th')).map(th => th.innerText.trim());
-                    return ths.includes('#') && ths.includes('Ticker');
-                }) || (tables.length > 2 ? tables[tables.length - 1] : null);
-                if (!overview) return 0;
-                return overview.querySelectorAll('tbody tr').length;
-            })()
-            """
-            table_ready = False
-            for _ in range(30):  # up to 15 seconds
-                await ws.send(json.dumps({"id": 10, "method": "Runtime.evaluate", "params": {"expression": table_check_js, "returnByValue": True}}))
-                res = json.loads(await ws.recv())
-                row_count = res.get("result", {}).get("result", {}).get("value", 0)
-                if row_count >= 10:
-                    table_ready = True
-                    log.info(f"Overview table ready with initial {row_count} rows.")
-                    break
-                await asyncio.sleep(0.5)
+        mid = 1
 
-            if not table_ready:
-                log.warning("Table readiness timed out after 15s; proceeding with best effort.")
+        async def cdp_cmd(method: str, params: dict | None = None) -> dict:
+            nonlocal mid
+            m = mid
+            mid += 1
+            await ws.send(json.dumps({"id": m, "method": method, "params": params or {}}))
+            while True:
+                msg = await ws.recv()
+                d = json.loads(msg)
+                if d.get("id") == m:
+                    return d.get("result", {})
 
-            # 2. Click 'Show All' and verify expansion
-            show_all_js = """
-            (() => {
-                const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'Show All');
-                if (btn) {
-                    btn.click();
+        if is_ephemeral:
+            log.info("Awaiting page hydration on new ETF tab (4s)...")
+            await asyncio.sleep(4.0)
+
+        # 1. Tab rotation function across ETF categories
+        async def click_tab(tab_name: str) -> bool:
+            js_tab = f"""
+            (() => {{
+                const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+                const target = tabs.find(t => t.innerText && t.innerText.trim() === '{tab_name}');
+                if (target) {{
+                    target.click();
                     return true;
-                }
+                }}
                 return false;
-            })()
+            }})()
             """
-            for click_attempt in range(5):
-                await ws.send(json.dumps({"id": 20 + click_attempt, "method": "Runtime.evaluate", "params": {"expression": show_all_js, "returnByValue": True}}))
-                res1 = json.loads(await ws.recv())
-                clicked = res1.get("result", {}).get("result", {}).get("value")
-                if clicked:
-                    log.info("Clicked 'Show All' button successfully.")
-                    break
-                await asyncio.sleep(0.5)
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_tab, "returnByValue": True})
+            return bool(res.get("result", {}).get("value"))
 
-            # Wait for table expansion to >= 35 rows
-            for _ in range(12):  # up to 6 seconds
-                await asyncio.sleep(0.5)
-                await ws.send(json.dumps({"id": 30, "method": "Runtime.evaluate", "params": {"expression": table_check_js, "returnByValue": True}}))
-                res_exp = json.loads(await ws.recv())
-                exp_count = res_exp.get("result", {}).get("result", {}).get("value", 0)
-                if exp_count >= 35:
-                    log.info(f"Table expanded to {exp_count} rows.")
-                    break
+        # Perform tab rotation through asset categories
+        etf_category_tabs = ["Bitcoin ETFs", "Ethereum ETFs", "Solana ETFs", "XRP ETFs", "All Crypto ETFs"]
+        for cat_tab in etf_category_tabs:
+            clicked = await click_tab(cat_tab)
+            log.info(f"Tab rotation -> '{cat_tab}' (clicked: {clicked})")
+            await asyncio.sleep(0.25)
 
-            # 3. Extract Table 0 (Daily Net Inflows) & Table 2 (Crypto ETF Overview)
-            extract_js = """
-            (() => {
-                const tables = Array.from(document.querySelectorAll('table'));
-                
-                // Table 0 Daily Inflows
-                const inflows = {};
-                if (tables.length > 0) {
-                    Array.from(tables[0].querySelectorAll('tbody tr')).forEach(tr => {
-                        const tds = Array.from(tr.querySelectorAll('td')).map(td => td.innerText.trim());
-                        if (tds.length >= 2) {
-                            const parts = tds[0].split(/[ \\n]+/);
-                            const ticker = parts[parts.length - 1].toUpperCase();
-                            inflows[ticker] = tds[1];
-                        }
-                    });
-                }
+        # Ensure return to 'All Crypto ETFs' to capture full universe
+        await click_tab("All Crypto ETFs")
+        await asyncio.sleep(0.3)
 
-                // Table 2 (Crypto ETF Overview)
-                const overviewTable = tables.find(t => {
-                    const ths = Array.from(t.querySelectorAll('th')).map(th => th.innerText.trim());
-                    return ths.includes('#') && ths.includes('Ticker');
-                }) || (tables.length > 2 ? tables[tables.length - 1] : null);
+        # 2. Click 'Show All' to expand all rows in the overview table
+        show_all_js = """
+        (() => {
+            const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'Show All');
+            if (btn) {
+                btn.click();
+                return true;
+            }
+            return false;
+        })()
+        """
+        await cdp_cmd("Runtime.evaluate", {"expression": show_all_js, "returnByValue": True})
+        await asyncio.sleep(0.4)
 
-                if (!overviewTable) return { inflows, rows: [] };
+        # 3. Extract Table 0 (Daily Net Inflows) & Table 2 (Crypto ETF Overview)
+        extract_js = """
+        (() => {
+            const tables = Array.from(document.querySelectorAll('table'));
+            
+            // Table 0 Daily Inflows
+            const inflows = {};
+            if (tables.length > 0) {
+                Array.from(tables[0].querySelectorAll('tbody tr')).forEach(tr => {
+                    const tds = Array.from(tr.querySelectorAll('td')).map(td => td.innerText.trim());
+                    if (tds.length >= 2) {
+                        const parts = tds[0].split(/[ \\n]+/);
+                        const ticker = parts[parts.length - 1].toUpperCase();
+                        inflows[ticker] = tds[1];
+                    }
+                });
+            }
 
-                const trElements = Array.from(overviewTable.querySelectorAll('tbody tr'));
-                const rows = trElements.map(tr => {
-                    const cells = Array.from(tr.querySelectorAll('td'));
-                    if (cells.length === 0) return null;
-                    return cells.map(td => td.innerText.replace(/\\n/g, ' ').trim());
-                }).filter(r => r && r.length >= 4 && r[0] !== '');
+            // Table 2 (Crypto ETF Overview)
+            const overviewTable = tables.find(t => {
+                const ths = Array.from(t.querySelectorAll('th')).map(th => th.innerText.trim());
+                return ths.includes('#') && ths.includes('Ticker');
+            }) || (tables.length > 2 ? tables[tables.length - 1] : null);
 
-                return { inflows, rows };
-            })()
-            """
-            await ws.send(json.dumps({"id": 40, "method": "Runtime.evaluate", "params": {"expression": extract_js, "returnByValue": True}}))
-            res2 = json.loads(await ws.recv())
-            val = res2.get("result", {}).get("result", {}).get("value", {})
-            inflows = val.get("inflows", {})
-            raw_rows = val.get("rows", [])
+            if (!overviewTable) return { inflows, rows: [] };
 
-            log.info(f"Extracted {len(raw_rows)} rows from 'Crypto ETF Overview' table.")
+            const trElements = Array.from(overviewTable.querySelectorAll('tbody tr'));
+            const rows = trElements.map(tr => {
+                const cells = Array.from(tr.querySelectorAll('td'));
+                if (cells.length === 0) return null;
+                return cells.map(td => td.innerText.replace(/\\n/g, ' ').trim());
+            }).filter(r => r && r.length >= 4 && r[0] !== '');
 
-            records = []
-            for r in raw_rows:
-                rank = r[0] if len(r) > 0 else str(len(records) + 1)
-                ticker_raw = r[1] if len(r) > 1 else ""
-                parts = ticker_raw.split()
-                ticker = parts[0].upper() if parts else ""
-                explicit_tag = parts[1] if len(parts) > 1 else ""
+            return { inflows, rows };
+        })()
+        """
+        res_data = await cdp_cmd("Runtime.evaluate", {"expression": extract_js, "returnByValue": True})
+        val = res_data.get("result", {}).get("value", {})
+        inflows = val.get("inflows", {})
+        raw_rows = val.get("rows", [])
 
-                name = r[2] if len(r) > 2 else ""
-                price = r[3] if len(r) > 3 else ""
-                price_chg = r[4] if len(r) > 4 else ""
-                vol_usd = r[5] if len(r) > 5 else ""
-                vol_shares = r[6] if len(r) > 6 else ""
-                turnover = r[7] if len(r) > 7 else ""
-                shares_out = r[8] if len(r) > 8 else ""
-                aum = r[9] if len(r) > 9 and r[9] else "-"
-                mkt_cap = r[10] if len(r) > 10 and r[10] else "-"
-                fee = r[11] if len(r) > 11 and r[11] else "-"
+        log.info(f"Extracted {len(raw_rows)} rows from 'Crypto ETF Overview' table.")
 
-                asset = deduce_asset(ticker, name, explicit_tag)
-                issuer = deduce_issuer(name, ticker)
-                inflow = inflows.get(ticker, "-")
+        records = []
+        for r in raw_rows:
+            rank = r[0] if len(r) > 0 else str(len(records) + 1)
+            ticker_raw = r[1] if len(r) > 1 else ""
+            parts = ticker_raw.split()
+            ticker = parts[0].upper() if parts else ""
+            explicit_tag = parts[1] if len(parts) > 1 else ""
 
-                records.append({
-                    "#": rank,
-                    "Ticker": ticker_raw,
-                    "ETF_Name": name,
-                    "Price": price,
-                    "Price_Change": price_chg,
-                    "Volume_USD": vol_usd,
-                    "Volume_Shares": vol_shares,
-                    "Turnover_Rate": turnover,
-                    "Shares_Outstanding": shares_out,
-                    "AUM": aum,
-                    "Market_Cap": mkt_cap,
-                    "Expense_Ratio": fee,
-                    "Asset_Category": asset,
-                    "Issuer": issuer,
-                    "Daily_Net_Inflow": inflow,
-                    "Timestamp_IST": ts_str
-                })
+            name = r[2] if len(r) > 2 else ""
+            price = r[3] if len(r) > 3 else ""
+            price_chg = r[4] if len(r) > 4 else ""
+            vol_usd = r[5] if len(r) > 5 else ""
+            vol_shares = r[6] if len(r) > 6 else ""
+            turnover = r[7] if len(r) > 7 else ""
+            shares_out = r[8] if len(r) > 8 else ""
+            aum = r[9] if len(r) > 9 and r[9] else "-"
+            mkt_cap = r[10] if len(r) > 10 and r[10] else "-"
+            fee = r[11] if len(r) > 11 and r[11] else "-"
 
-            return records
+            asset = deduce_asset(ticker, name, explicit_tag)
+            issuer = deduce_issuer(name, ticker)
+            inflow = inflows.get(ticker, "-")
+
+            records.append({
+                "#": rank,
+                "Ticker": ticker_raw,
+                "ETF_Name": name,
+                "Price": price,
+                "Price_Change": price_chg,
+                "Volume_USD": vol_usd,
+                "Volume_Shares": vol_shares,
+                "Turnover_Rate": turnover,
+                "Shares_Outstanding": shares_out,
+                "AUM": aum,
+                "Market_Cap": mkt_cap,
+                "Expense_Ratio": fee,
+                "Asset_Category": asset,
+                "Issuer": issuer,
+                "Daily_Net_Inflow": inflow,
+                "Timestamp_IST": now_ist,
+            })
+
+        await ws.close()
+        return records
+
     finally:
-        close_tab(tab_id)
+        if is_ephemeral:
+            close_tab(tab_id)
 
 
 def dump_crypto_etf_overview_to_parquet() -> bool:
+    log.info("Harvesting Crypto ETF Flows with tab rotation...")
     records = asyncio.run(extract_coinglass_overview_table())
     if not records:
         log.error("No records extracted from CoinGlass.")
         return False
-    meta = write_parquet_feed(SHEET_NAME, records)
-    log.info(f"Successfully dumped {len(records)} Crypto ETF Overview assets into Parquet feed '{SHEET_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
+    meta = write_parquet_feed(FEED_NAME, records)
+    log.info(f"Successfully dumped {len(records)} Crypto ETF Overview assets into Parquet feed '{FEED_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
     return True
 
 

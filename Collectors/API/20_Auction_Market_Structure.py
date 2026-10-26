@@ -521,7 +521,28 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
         else:
             sw_h, sw_l, fib_dir, fib_gp_min, fib_gp_max, fib_ote, fib_inval, fib_status = None, None, "N/A", None, None, None, None, "N/A"
 
+        # Section 2: Pivots
+        if pdh and pdl and pdc:
+            pp = (pdh + pdl + pdc) / 3.0
+            r1 = 2.0 * pp - pdl
+            s1 = 2.0 * pp - pdh
+            r2 = pp + (pdh - pdl)
+            s2 = pp - (pdh - pdl)
+            bias = "BULLISH (Above Pivot)" if cur_px > pp else "BEARISH (Below Pivot)"
+        else:
+            pp = r1 = s1 = r2 = s2 = None
+            bias = "N/A"
+
+        if pwh and pwl and pwc:
+            w_pp = (pwh + pwl + pwc) / 3.0
+            w_r1 = 2.0 * w_pp - pwl
+            w_s1 = 2.0 * w_pp - pwh
+        else:
+            w_pp = w_r1 = w_s1 = None
+
         now_ist = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S IST")
+        
+        # Unified complete row per asset (combines Auction Market Structure & Pivot Points)
         structure_records.append({
             "timestamp": now_ist,
             "sr_no": idx,
@@ -575,33 +596,6 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
             "fib_inval": fib_inval,
             "fib_status": fib_status,
             "auction_regime": regime,
-        })
-
-        # Section 2: Pivots
-        if pdh and pdl and pdc:
-            pp = (pdh + pdl + pdc) / 3.0
-            r1 = 2.0 * pp - pdl
-            s1 = 2.0 * pp - pdh
-            r2 = pp + (pdh - pdl)
-            s2 = pp - (pdh - pdl)
-            bias = "BULLISH (Above Pivot)" if cur_px > pp else "BEARISH (Below Pivot)"
-        else:
-            pp = r1 = s1 = r2 = s2 = None
-            bias = "N/A"
-
-        if pwh and pwl and pwc:
-            w_pp = (pwh + pwl + pwc) / 3.0
-            w_r1 = 2.0 * w_pp - pwl
-            w_s1 = 2.0 * w_pp - pwh
-        else:
-            w_pp = w_r1 = w_s1 = None
-
-        pivot_records.append({
-            "timestamp": now_ist,
-            "sr_no": idx,
-            "asset": asset,
-            "symbol": sym,
-            "price": round(cur_px, digits),
             "pivot": round(pp, digits) if pp else None,
             "r1": round(r1, digits) if r1 else None,
             "s1": round(s1, digits) if s1 else None,
@@ -629,9 +623,8 @@ def run_auction_module(
         log.error("Zero auction records harvested.")
         return False
 
+    # Unified single record per asset (eliminates half-empty duplicate rows)
     all_records = list(structure_records)
-    if pivot_records:
-        all_records.extend(pivot_records)
 
     sys.path.insert(0, str(ROOT / 'Collectors' / 'Core'))
     sys.path.insert(0, str(ROOT / 'Terminal' / 'Data_Factory'))

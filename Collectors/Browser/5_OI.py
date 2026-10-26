@@ -223,7 +223,8 @@ async def harvest_universe_open_interest(symbols: list[str] = DEFAULT_UNIVERSE) 
 
         for idx, sym in enumerate(symbols, start=1):
             sym_t0 = time.perf_counter()
-            target_url = f"{BASE_TARGET_URL}/{sym}"
+            slug = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
+            target_url = f"{BASE_TARGET_URL}/{slug}"
 
             # Navigate tab to asset
             await cdp_cmd("Page.navigate", {"url": target_url})

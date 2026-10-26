@@ -223,16 +223,37 @@ class CandleIndicatorEngine:
         self.universe = list(universe)
         self.cache: Dict[str, List[Dict[str, Any]]] = {}
 
-    def sync_candles(self, asset: str, count: int = 800) -> Dict[str, Any]:
-        """Fetch completed 15m bars from MT5, audit gaps, persist to disk."""
+    def sync_candles(self, asset: str, count: int = 800, timeframe: str = "15m") -> Dict[str, Any]:
+        """Fetch completed multi-timeframe bars from MT5 (5m, 15m, 1h, 4h, 1d), audit gaps, persist to disk."""
+        import MetaTrader5 as mt5_mod
         asset = canonical_asset(asset)
         symbol = self.bridge.resolve_symbol(asset)
         if not symbol:
             return {"asset": asset, "success": False, "error": f"Symbol unresolved for {asset}"}
 
-        bars = self.bridge.get_recent_bars(symbol, count=count)
+        tf_lower = str(timeframe).lower().strip()
+        tf_seconds = 900.0
+        tf_const = getattr(mt5_mod, "TIMEFRAME_M15", 15)
+
+        if tf_lower == "5m":
+            tf_const = getattr(mt5_mod, "TIMEFRAME_M5", 5)
+            tf_seconds = 300.0
+        elif tf_lower in ("15m", "15"):
+            tf_const = getattr(mt5_mod, "TIMEFRAME_M15", 15)
+            tf_seconds = 900.0
+        elif tf_lower in ("1h", "60m", "h1"):
+            tf_const = getattr(mt5_mod, "TIMEFRAME_H1", 16385)
+            tf_seconds = 3600.0
+        elif tf_lower in ("4h", "240m", "h4"):
+            tf_const = getattr(mt5_mod, "TIMEFRAME_H4", 16388)
+            tf_seconds = 14400.0
+        elif tf_lower in ("1d", "d1", "daily"):
+            tf_const = getattr(mt5_mod, "TIMEFRAME_D1", 16408)
+            tf_seconds = 86400.0
+
+        bars = self.bridge.get_recent_bars(symbol, count=count, timeframe=tf_const)
         if not bars:
-            return {"asset": asset, "success": False, "error": "No bars returned by broker"}
+            return {"asset": asset, "success": False, "error": f"No bars returned by broker for {symbol} {tf_lower}"}
 
         # Sort chronologically by open time
         ordered = sorted(bars, key=lambda b: float(b.get("time", 0.0)))
@@ -242,8 +263,8 @@ class CandleIndicatorEngine:
         gaps: List[Dict[str, Any]] = []
         for i in range(1, len(times)):
             delta = times[i] - times[i - 1]
-            if delta > 900.0:
-                missing_bars = int(round((delta - 900.0) / 900.0))
+            if delta > tf_seconds:
+                missing_bars = int(round((delta - tf_seconds) / tf_seconds))
                 gaps.append({
                     "start_utc": datetime.fromtimestamp(times[i - 1], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
                     "end_utc": datetime.fromtimestamp(times[i], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
@@ -261,10 +282,13 @@ class CandleIndicatorEngine:
                 offset_sec = int(round(diff / 3600.0) * 3600)
         df["utc_time"] = df["time"] - offset_sec
         df["datetime_utc"] = pd.to_datetime(df["utc_time"], unit="s", utc=True)
-        parquet_file = self.storage_dir / f"{asset}_15m.parquet"
+        parquet_file = self.storage_dir / f"{asset}_{tf_lower}.parquet"
         df.to_parquet(parquet_file, index=False)
 
-        self.cache[asset] = ordered
+        cache_key = f"{asset}_{tf_lower}"
+        self.cache[cache_key] = ordered
+        if tf_lower == "15m":
+            self.cache[asset] = ordered
         indicators = self.compute_indicators(ordered)
 
         return {

@@ -575,11 +575,14 @@ def export_cvd_to_parquet(
 
     all_path = parquet_dir / "18_CVD_30D_ALL.parquet"
     df.to_parquet(all_path, index=False, engine="pyarrow")
-    log.info(f"Exported complete {len(df):,} rows to {all_path}")
+    write_parquet_feed("18_CVD_30D_ALL", df)
+    log.info(f"Exported complete {len(df):,} rows to {all_path} and Data/feeds/18_CVD_30D_ALL.parquet")
 
     for tf, sub_df in df.groupby("timeframe"):
         tf_path = parquet_dir / f"18_CVD_30D_{tf}.parquet"
         sub_df.to_parquet(tf_path, index=False, engine="pyarrow")
+        write_parquet_feed(f"18_CVD_30D_{tf}", sub_df)
+        log.info(f"Mirrored timeframe CVD feed to Data/feeds/18_CVD_30D_{tf}.parquet ({len(sub_df):,} rows)")
 
     return all_path
 

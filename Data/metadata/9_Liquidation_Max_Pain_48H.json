@@ -16,9 +16,9 @@
     "long_distance_usd",
     "long_distance_pct"
   ],
-  "byte_size": 70412,
-  "timestamp_ist": "2026-10-26 13:17:44 IST",
-  "timestamp_utc": "2026-10-26 07:47:44 UTC",
-  "epoch_utc": 1793000864.439134,
-  "write_duration_ms": 6.32
+  "byte_size": 70969,
+  "timestamp_ist": "2026-10-26 16:20:13 IST",
+  "timestamp_utc": "2026-10-26 10:50:13 UTC",
+  "epoch_utc": 1793011813.189387,
+  "write_duration_ms": 4.53
 }

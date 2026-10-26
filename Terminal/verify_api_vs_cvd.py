@@ -138,7 +138,7 @@ def audit_stage2_netflow_feed(netflow_df: pd.DataFrame) -> Tuple[bool, int, int]
 
     for _, row in netflow_df.iterrows():
         sym = str(row["Symbol"])
-        price = str(row["Price"])
+        price = str(row.get("Price", "N/A"))
         nf_5m = str(row.get("5_minute", "-"))
         nf_15m = str(row.get("15_minute", "-"))
         nf_1h = str(row.get("1_hour", "-"))
@@ -146,8 +146,7 @@ def audit_stage2_netflow_feed(netflow_df: pd.DataFrame) -> Tuple[bool, int, int]
 
         # Verify that values are populated and formatted
         is_valid = (
-            price != "-" and price != ""
-            and nf_15m != "-"
+            nf_15m != "-"
             and nf_1h != "-"
             and nf_24h != "-"
         )

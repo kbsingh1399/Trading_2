@@ -1,60 +1,59 @@
 #!/usr/bin/env python3
 """
-Data/Excel_Modules/6_Funding_Fee_Settlement.py
+Collectors/Browser/6_Funding_Fee_Settlement.py
 =============================================
-Live CoinGlass Perpetual Futures Funding Fee Settlement Data Scraper & Excel Dumper.
-Scrapes the complete 'Funding Fee Settlement Overview' table across all 19 pages (~950+ crypto pairs)
-from https://www.coinglass.com/funding-fees and dumps into worksheet '6_Funding_Fee_Settlement'
-in Data/feeds/<feed_name>.parquet (positioned at Index 8, immediately after '5_Funding_Rate').
+Live CoinGlass Perpetual Futures Funding Fee Settlement Data Scraper & Parquet Dumper.
+Scrapes the complete Funding Fee Settlement Overview across all market pairs (~937+ crypto pairs)
+from https://www.coinglass.com/funding-fees with tab rotation across timeframes:
+Current, 24 hour, 3 day, 7 day.
+Writes atomically to Data/feeds/6_Funding_Fee_Settlement.parquet.
 
 Security & Cleanliness Invariants:
-  - Ephemeral CDP tab on port 9222 opened and strictly closed in finally: block.
+  - Ephemeral/Reused CDP tab on port 9222.
+  - Tab rotation through timeframe tabs: Current, 24 hour, 3 day, 7 day.
+  - Direct React Fiber extraction dumping 100% of available market assets in seconds.
   - Preserves arena.ai tab untouched.
-  - Zero external browser window pollution.
 """
 
 from __future__ import annotations
-
-import pathlib
-import sys
-ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
-if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
-if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
-from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
-
-
-# Pure Parquet Pipeline
 
 import argparse
 import asyncio
 import datetime
 import json
 import logging
+import os
 import pathlib
 import sys
 import time
 import urllib.request
-
+from typing import Any, Dict, List, Optional
 
 try:
     import websockets
 except ImportError:
     websockets = None
 
+MODULES_DIR = pathlib.Path(__file__).resolve().parent
+ROOT_DIR = MODULES_DIR.parents[1]
+sys.path.insert(0, str(ROOT_DIR / "Collectors" / "Core"))
+sys.path.insert(0, str(ROOT_DIR / "Terminal" / "Data_Factory"))
+
+try:
+    from parquet_writer import write_parquet_feed
+except ImportError:
+    from parquet_feed_writer import write_parquet_feed
+
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
+    format="%(asctime)s [%(levelname)s] [6_Funding_Fee_Settlement] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 log = logging.getLogger("6_Funding_Fee_Settlement")
 
-MODULES_DIR = pathlib.Path(__file__).resolve().parent
-ROOT_DIR = MODULES_DIR.parents[1]
 CDP_BASE_URL = "http://127.0.0.1:9222"
 TARGET_URL = "https://www.coinglass.com/funding-fees"
-SHEET_NAME = "6_Funding_Fee_Settlement"
+FEED_NAME = "6_Funding_Fee_Settlement"
 
 COLUMNS_DEF = [
     ("rank", "#", 10, "center"),
@@ -69,12 +68,62 @@ COLUMNS_DEF = [
     ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
+IST_TZ = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 
-def open_ephemeral_tab() -> tuple[str, str]:
-    """Creates a new dedicated ephemeral tab via CDP."""
+
+def fmt_usd(val: float | None) -> str:
+    """Formats numeric USD value into shorthand currency (e.g. '$1.16M' or '-$379.23K')."""
+    if val is None or val != val:
+        return "-"
+    if val == 0:
+        return "$0.00"
+    sign = "-" if val < 0 else ""
+    abs_v = abs(val)
+    if abs_v >= 1e9:
+        return f"{sign}${abs_v / 1e9:.2f}B"
+    elif abs_v >= 1e6:
+        return f"{sign}${abs_v / 1e6:.2f}M"
+    elif abs_v >= 1e3:
+        return f"{sign}${abs_v / 1e3:.2f}K"
+    else:
+        return f"{sign}${abs_v:.2f}"
+
+
+def fmt_price(val: float | None) -> str:
+    """Formats price with appropriate precision."""
+    if val is None or val != val:
+        return "-"
+    if val >= 1000:
+        return f"${val:,.2f}"
+    elif val >= 1:
+        return f"${val:.4f}"
+    else:
+        return f"${val:.6f}"
+
+
+def fmt_pct(val: float | None) -> str:
+    """Formats percentage change."""
+    if val is None or val != val:
+        return "-"
+    return f"{val:+.2f}%"
+
+
+def get_target_tab() -> tuple[str, str, bool]:
+    """Finds existing Funding Fees tab or opens dedicated ephemeral tab."""
+    try:
+        req = urllib.request.Request(f"{CDP_BASE_URL}/json")
+        tabs = json.loads(urllib.request.urlopen(req, timeout=5).read().decode())
+        for t in tabs:
+            if "funding-fees" in t.get("url", ""):
+                log.info(f"Reusing active CoinGlass Funding Fees tab (ID: {t['id']}).")
+                return t["id"], t["webSocketDebuggerUrl"], False
+    except Exception as e:
+        log.warning(f"Failed to query existing tabs: {e}")
+
     req = urllib.request.Request(f"{CDP_BASE_URL}/json/new?{TARGET_URL}", method="PUT")
-    new_tab = json.loads(urllib.request.urlopen(req, timeout=8).read().decode())
-    return new_tab["id"], new_tab["webSocketDebuggerUrl"]
+    new_tab = json.loads(urllib.request.urlopen(req, timeout=10).read().decode())
+    log.info(f"Opened dedicated ephemeral tab (ID: {new_tab['id']}).")
+    return new_tab["id"], new_tab["webSocketDebuggerUrl"], True
 
 
 def close_tab(tab_id: str):
@@ -86,204 +135,152 @@ def close_tab(tab_id: str):
         log.warning(f"Error closing tab {tab_id}: {e}")
 
 
-async def harvest_funding_fee_settlements(max_pages: int = 19) -> list[dict]:
-    """Navigates to CoinGlass Funding Fees, extracts all rows across all pagination pages."""
+async def harvest_funding_fee_settlements() -> list[dict]:
+    """Harvests CoinGlass Funding Fee Settlement Data with tab rotation across all 4 timeframes."""
     if not websockets:
         raise RuntimeError("websockets package is required.")
 
-    tab_id, ws_url = open_ephemeral_tab()
-    log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Funding Fee Settlement harvest.")
+    tab_id, ws_url, is_ephemeral = get_target_tab()
+    now_ist = datetime.datetime.now(IST_TZ).strftime("%Y-%m-%d %H:%M:%S IST")
 
-    now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-    now_ist = datetime.datetime.now(ist_tz)
-    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
-
-    all_records: list[dict] = []
-    seen_ranks: set[str] = set()
+    records: list[dict] = []
 
     try:
         ws = None
         for attempt in range(10):
             try:
-                ws = await websockets.connect(ws_url, max_size=25 * 1024 * 1024, open_timeout=10)
+                ws = await websockets.connect(ws_url, max_size=25 * 1024 * 1024, open_timeout=15)
                 break
-            except Exception:
-                await asyncio.sleep(0.5)
+            except Exception as e:
+                log.warning(f"Connect attempt {attempt+1} failed: {e}. Retrying in 1s...")
+                await asyncio.sleep(1)
 
         if not ws:
-            raise RuntimeError(f"Could not connect to WebSocket at {ws_url}")
+            raise RuntimeError(f"Could not connect to CDP WebSocket at {ws_url}")
 
-        async with ws:
-            await asyncio.sleep(2.0)
+        mid = 1
 
-            # 1. Wait for table DOM readiness
-            readiness_js = """
-            (() => {
-                const table = document.querySelector('.ant-table-tbody') || document.querySelector('tbody');
-                if (!table) return 0;
-                return table.querySelectorAll('tr:not(.ant-table-measure-row)').length;
-            })()
-            """
-            table_ready = False
-            for _ in range(30):  # up to 15s
-                await ws.send(json.dumps({"id": 10, "method": "Runtime.evaluate", "params": {"expression": readiness_js, "returnByValue": True}}))
-                res = json.loads(await ws.recv())
-                cnt = res.get("result", {}).get("result", {}).get("value", 0)
-                if cnt >= 10:
-                    table_ready = True
-                    log.info(f"Funding fee settlement table detected and ready with {cnt} rows.")
-                    break
-                await asyncio.sleep(0.5)
+        async def cdp_cmd(method: str, params: dict | None = None) -> dict:
+            nonlocal mid
+            m = mid
+            mid += 1
+            await ws.send(json.dumps({"id": m, "method": method, "params": params or {}}))
+            while True:
+                msg = await ws.recv()
+                d = json.loads(msg)
+                if d.get("id") == m:
+                    return d.get("result", {})
 
-            if not table_ready:
-                log.warning("Table readiness timed out after 15s; proceeding with best effort.")
+        if is_ephemeral:
+            log.info("Awaiting Funding Fees page hydration (3.5s)...")
+            await asyncio.sleep(3.5)
 
-            # 2. Page extraction JS
-            extract_page_rows_js = """
-            (() => {
-                const tbody = document.querySelector('.ant-table-tbody') || document.querySelector('tbody');
-                if (!tbody) return [];
-                const trs = Array.from(tbody.querySelectorAll('tr:not(.ant-table-measure-row)'));
-                return trs.map(tr => {
-                    const tds = Array.from(tr.querySelectorAll('td'));
-                    if (tds.length < 9) return null;
-
-                    const rank = tds[0].innerText.trim();
-                    const symText = tds[1].innerText.trim();
-                    if (!symText) return null;
-                    const symbol = symText.split(/[ \\n]+/)[0].toUpperCase();
-
-                    return {
-                        rank: rank,
-                        symbol: symbol,
-                        price: tds[2] ? tds[2].innerText.trim() : "-",
-                        price_24h_pct: tds[3] ? tds[3].innerText.trim() : "-",
-                        open_interest: tds[4] ? tds[4].innerText.trim() : "-",
-                        current: tds[5] ? tds[5].innerText.trim() : "-",
-                        last_24h: tds[6] ? tds[6].innerText.trim() : "-",
-                        last_3d: tds[7] ? tds[7].innerText.trim() : "-",
-                        last_7d: tds[8] ? tds[8].innerText.trim() : "-"
-                    };
-                }).filter(r => r !== null);
-            })()
-            """
-
-            click_next_page_js = """
-            (() => {
-                const nextBtn = document.querySelector('li.ant-pagination-next:not(.ant-pagination-disabled) button') || 
-                                document.querySelector('li.ant-pagination-next:not(.ant-pagination-disabled)');
-                if (nextBtn) {
-                    nextBtn.click();
+        # Tab Rotation Function
+        async def click_tab(tab_label: str) -> bool:
+            js_tab = f"""
+            (() => {{
+                const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+                const target = tabs.find(t => t.innerText && t.innerText.trim() === '{tab_label}');
+                if (target) {{
+                    target.click();
                     return true;
-                }
+                }}
                 return false;
-            })()
+            }})()
             """
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_tab, "returnByValue": True})
+            return bool(res.get("result", {}).get("value"))
 
-            for page_idx in range(1, max_pages + 1):
-                page_start_t = time.perf_counter()
+        # Perform tab rotation through all 4 timeframes: Current, 24 hour, 3 day, 7 day
+        timeframe_tabs = ["Current", "24 hour", "3 day", "7 day"]
+        for tname in timeframe_tabs:
+            clicked = await click_tab(tname)
+            log.info(f"Tab rotation -> '{tname}' (clicked: {clicked})")
+            await asyncio.sleep(0.3)
 
-                # Extract rows from current page
-                msg_id = 100 + page_idx
-                await ws.send(json.dumps({
-                    "id": msg_id,
-                    "method": "Runtime.evaluate",
-                    "params": {"expression": extract_page_rows_js, "returnByValue": True}
-                }))
-                res = json.loads(await ws.recv())
-                rows = res.get("result", {}).get("result", {}).get("value", [])
+        # Ensure return to 'Current'
+        await click_tab("Current")
+        await asyncio.sleep(0.3)
 
-                page_new_count = 0
-                first_row_rank = None
-                for r in rows:
-                    rank_key = r.get("rank")
-                    if rank_key and rank_key not in seen_ranks:
-                        seen_ranks.add(rank_key)
-                        r["timestamp_ist"] = ts_str
-                        all_records.append(r)
-                        page_new_count += 1
-                        if first_row_rank is None:
-                            first_row_rank = rank_key
+        # In-memory React Fiber extraction for all available assets
+        js_extract = """
+        (() => {
+            const table = document.querySelector('table');
+            if (!table) return null;
+            const fiberKey = Object.keys(table).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));
+            let cur = table[fiberKey];
+            while (cur) {
+                if (cur.memoizedProps && cur.memoizedProps.dataSource) {
+                    return JSON.stringify(cur.memoizedProps.dataSource);
+                }
+                cur = cur.return;
+            }
+            return null;
+        })()
+        """
 
-                page_dur = time.perf_counter() - page_start_t
-                log.info(
-                    f"Page {page_idx:>2}/{max_pages}: Extracted {len(rows)} rows ({page_new_count} new, Total: {len(all_records)}) in {page_dur:.2f}s"
-                )
-
-                if page_idx >= max_pages:
+        raw_data = None
+        for _ in range(30):
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
+            val = res.get("result", {}).get("value")
+            if val:
+                raw_data = json.loads(val)
+                if len(raw_data) >= 10:
                     break
+            await asyncio.sleep(0.2)
 
-                # Click next page
-                click_id = 200 + page_idx
-                await ws.send(json.dumps({
-                    "id": click_id,
-                    "method": "Runtime.evaluate",
-                    "params": {"expression": click_next_page_js, "returnByValue": True}
-                }))
-                res_click = json.loads(await ws.recv())
-                clicked = res_click.get("result", {}).get("result", {}).get("value", False)
+        if not raw_data:
+            raise RuntimeError("Failed to extract Funding Fees dataSource from React Fiber.")
 
-                if not clicked:
-                    log.info(f"Next page button not found or disabled at page {page_idx}. Reached end of pagination.")
-                    break
+        log.info(f"Successfully extracted {len(raw_data)} assets from Funding Fees React Fiber.")
 
-                # Wait for next page DOM transition (first row rank changes)
-                check_transition_js = f"""
-                (() => {{
-                    const firstTd = document.querySelector('.ant-table-tbody tr:not(.ant-table-measure-row) td');
-                    if (!firstTd) return false;
-                    return firstTd.innerText.trim() !== '{first_row_rank}';
-                }})()
-                """
-                transitioned = False
-                for _ in range(25):  # up to 2.5s
-                    await ws.send(json.dumps({
-                        "id": 300 + page_idx,
-                        "method": "Runtime.evaluate",
-                        "params": {"expression": check_transition_js, "returnByValue": True}
-                    }))
-                    res_t = json.loads(await ws.recv())
-                    if res_t.get("result", {}).get("result", {}).get("value", False):
-                        transitioned = True
-                        break
-                    await asyncio.sleep(0.08)
+        for idx, item in enumerate(raw_data, start=1):
+            sym = item.get("symbol")
+            if not sym:
+                continue
 
-                if not transitioned:
-                    await asyncio.sleep(0.2)
+            last_24h_val = (item.get("longFlowUsd1d") or 0.0) + (item.get("shortFlowUsd1d") or 0.0)
+            last_3d_val = (item.get("longFlowUsd3d") or 0.0) + (item.get("shortFlowUsd3d") or 0.0)
+            last_7d_val = (item.get("longFlowUsd7d") or 0.0) + (item.get("shortFlowUsd7d") or 0.0)
+
+            records.append({
+                "rank": idx,
+                "symbol": sym,
+                "price": fmt_price(item.get("price")),
+                "price_24h_pct": fmt_pct(item.get("priceChangePercent24h")),
+                "open_interest": fmt_usd(item.get("openInterest")),
+                "current": fmt_usd(item.get("flowUsd")),
+                "last_24h": fmt_usd(last_24h_val),
+                "last_3d": fmt_usd(last_3d_val),
+                "last_7d": fmt_usd(last_7d_val),
+                "timestamp_ist": now_ist,
+            })
+
+        await ws.close()
 
     finally:
-        close_tab(tab_id)
+        if is_ephemeral:
+            close_tab(tab_id)
 
-    log.info(f"Harvest complete: {len(all_records)} total funding fee settlement records collected across {max_pages} pages.")
-    return all_records
-
-
-def dump_to_parquet(records: list[dict]) -> bool:
-    if not records:
-        log.error("No records to dump to Parquet.")
-        return False
-    meta = write_parquet_feed(SHEET_NAME, records)
-    log.info(f"Successfully dumped {len(records)} Funding Fee Settlement records into Parquet feed '{SHEET_NAME}': {meta.get('byte_size')} bytes in {meta.get('write_latency_ms', 0):.2f}ms.")
-    return True
+    log.info(f"Total Funding Fee Settlement records harvested: {len(records)} assets.")
+    return records
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Perpetual Futures Funding Fee Settlement Pure-Parquet Dumper")
-    parser.add_argument("--pages", type=int, default=19, help="Number of pages to harvest (default: 19)")
+    parser = argparse.ArgumentParser(description="CoinGlass Funding Fee Settlement Scraper")
     args = parser.parse_args()
 
-    start_time = time.perf_counter()
-    records = asyncio.run(harvest_funding_fee_settlements(max_pages=args.pages))
+    log.info("Starting Funding Fee Settlement harvest with tab rotation...")
+    records = asyncio.run(harvest_funding_fee_settlements())
 
     if not records:
-        log.error("No funding fee settlement records harvested. Aborting Parquet dump.")
+        log.error("Harvesting yielded 0 records. Process aborted.")
         sys.exit(1)
 
-    success = dump_to_parquet(records)
-    elapsed = time.perf_counter() - start_time
-    log.info(f"Finished in {elapsed:.2f} seconds with status: {'SUCCESS' if success else 'FAILED'}")
-    sys.exit(0 if success else 1)
+    # Pure Atomic Parquet Dump
+    meta = write_parquet_feed(FEED_NAME, records)
+    log.info(f"Successfully dumped feed to Parquet: {meta}")
+    log.info("Funding Fee Settlement pipeline executed successfully.")
 
 
 if __name__ == "__main__":

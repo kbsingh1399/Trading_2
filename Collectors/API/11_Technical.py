@@ -566,14 +566,15 @@ def run_technical_module(
         log.error("Failed to generate technical indicators records. Aborting.")
         return False
 
-    # Dump all screener records and BTC history
-    all_records = list(screener_records)
-    if btc_hist:
-        all_records.extend(btc_hist)
+    # Dump clean multi-asset screener to primary feed (1NF relational integrity, 0 empty rows)
+    meta = write_parquet_feed(sheet_name, screener_records)
 
-    meta = write_parquet_feed(sheet_name, all_records)
+    # Dump BTC chronological ribbon to dedicated sidecar feed
+    if btc_hist:
+        write_parquet_feed(f"{sheet_name}_BTC_Ribbon", btc_hist)
+
     elapsed = time.time() - t_start
-    log.info(f"Technical module completed successfully in {elapsed:.2f}s with {len(all_records)} records ({meta.get('byte_size')} bytes).")
+    log.info(f"Technical module completed successfully in {elapsed:.2f}s with {len(screener_records)} screener records ({meta.get('byte_size')} bytes).")
     return True
 
 
