@@ -52,10 +52,16 @@ GRAPHQL_URL = "https://api.hyperdash.com/graphql"
 SHEET_NAME = "14_Hyperdash_Liq_Map"
 
 DEFAULT_UNIVERSE = [
+    # Core Quantitative Strategy Universe (18 Binance USDT-M)
     "BTC", "ETH", "XRP", "SOL", "BNB",
     "DOGE", "ADA", "TRX", "LINK", "AVAX",
     "SUI", "NEAR", "DOT", "LTC", "BCH",
     "APT", "OP", "ARB",
+    # Dual-Venue & Extended Universe Hyperliquid Perps (20 Altcoins)
+    "AAVE", "ALGO", "AR", "ATOM", "AXS",
+    "COMP", "CRV", "DASH", "FIL", "GAS",
+    "HBAR", "IOTA", "NEO", "SAND", "SNX",
+    "SUSHI", "UNI", "XLM", "XMR", "ZEC",
 ]
 
 COLUMNS_DEF = [
@@ -129,7 +135,7 @@ def format_price(val: float | None) -> str:
 
 
 def fetch_liquidation_ladder(coin: str, now_ms: float, start_ms: float) -> tuple[float, list[dict]]:
-    """Fetches full liquidation band ladder for coin via Hyperdash native GraphQL API."""
+    """Fetches full liquidation band ladder for coin via Hyperdash native GraphQL API with retry and defensive parsing."""
     payload = json.dumps({
         "query": QUERY_LIQS,
         "variables": {
@@ -150,37 +156,43 @@ def fetch_liquidation_ladder(coin: str, now_ms: float, start_ms: float) -> tuple
         }
     )
     
-    try:
-        with urllib.request.urlopen(req, timeout=12) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            analytics = data.get("data", {}).get("analytics", {})
-            liq_data = analytics.get("liquidationLevels")
-            if not liq_data:
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                data_obj = data.get("data") or {}
+                analytics = data_obj.get("analytics") or {}
+                liq_data = analytics.get("liquidationLevels")
+                if not liq_data:
+                    return 0.0, []
+                
+                mark_price = float(liq_data.get("currentPrice") or 0.0)
+                bands = liq_data.get("bands", [])
+                
+                active_bands = []
+                for b in bands:
+                    hist = b.get("historicalData")
+                    if hist and len(hist) > 0:
+                        last_pt = hist[-1]
+                        amt = float(last_pt.get("totalAmount") or 0.0)
+                        if abs(amt) > 0:
+                            mid_px = (float(b["minPrice"]) + float(b["maxPrice"])) / 2.0
+                            notional = abs(amt) * mid_px
+                            is_short = (amt < 0) or (mid_px > mark_price)
+                            active_bands.append({
+                                "mid_px": mid_px,
+                                "amt": abs(amt),
+                                "notional": notional,
+                                "side": "Short" if is_short else "Long",
+                            })
+                return mark_price, active_bands
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(0.5 * (attempt + 1))
+            else:
+                log.warning(f"Error fetching liquidation ladder for {coin} after 3 attempts: {e}")
                 return 0.0, []
-            
-            mark_price = float(liq_data.get("currentPrice") or 0.0)
-            bands = liq_data.get("bands", [])
-            
-            active_bands = []
-            for b in bands:
-                hist = b.get("historicalData")
-                if hist and len(hist) > 0:
-                    last_pt = hist[-1]
-                    amt = float(last_pt.get("totalAmount") or 0.0)
-                    if abs(amt) > 0:
-                        mid_px = (float(b["minPrice"]) + float(b["maxPrice"])) / 2.0
-                        notional = abs(amt) * mid_px
-                        is_short = (amt < 0) or (mid_px > mark_price)
-                        active_bands.append({
-                            "mid_px": mid_px,
-                            "amt": abs(amt),
-                            "notional": notional,
-                            "side": "Short" if is_short else "Long",
-                        })
-            return mark_price, active_bands
-    except Exception as e:
-        log.warning(f"Error fetching liquidation ladder for {coin}: {e}")
-        return 0.0, []
+    return 0.0, []
 
 
 def harvest_all_liquidation_maps(symbols: list[str]) -> list[dict]:

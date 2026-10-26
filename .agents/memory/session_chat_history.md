@@ -64364,3 +64364,14 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
 - Timestamp: 2026-10-26 17:39:35 IST
 - Scorecard: 33/33 Feeds Fresh (All Passed: True).
 ---
+
+---
+## Turn Audit: Background Python Termination & Liquidation Map Architecture Evaluation
+- Timestamp: 2026-10-26 17:50:00 IST
+- User Prompt: 'Is there any other process in bg which loading coinglass which load pages then kill it...kill all bg python processes. In attached screenshot, we have nas100 in in first table and not in Exchange Liquidation Map...'
+- Actions Executed:
+  1. Identified and terminated PID 17204 running Collectors/Browser/8_Exchange_Liquidation_Map and all background python pipeline runners.
+  2. Audited CoinGlass top visual (tradeXYZ/MEXC/Gate) vs bottom visual (Exchange Liquidation Map for Binance/OKX/Bybit).
+  3. Formulated Cascading Fallback Architecture for macro assets (NAS100, SP500, Commodities, FX).
+  4. Scorecard: 33/33 Feeds Fresh (All Passed: True).
+---

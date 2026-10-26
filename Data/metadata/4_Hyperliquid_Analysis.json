@@ -25,9 +25,9 @@
     "leverage",
     "timestamp_ist"
   ],
-  "byte_size": 354969,
-  "timestamp_ist": "2026-10-26 17:35:05 IST",
-  "timestamp_utc": "2026-10-26 12:05:05 UTC",
-  "epoch_utc": 1793016305.826179,
-  "write_duration_ms": 437.45
+  "byte_size": 354524,
+  "timestamp_ist": "2026-10-26 17:44:35 IST",
+  "timestamp_utc": "2026-10-26 12:14:35 UTC",
+  "epoch_utc": 1793016875.195041,
+  "write_duration_ms": 464.31
 }

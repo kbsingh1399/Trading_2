@@ -108,3 +108,8 @@
 | T-13 | Build 35-sheet Socratic Verification Table (sheet_socratic_extractor.py) | COMPLETED | All 35 sheets audited with [x] tick marks and alpha inquiries in Data/socratic_audit_table.md |
 | T-14 | Zero-Repeat Pitfall & Intra-Bar Avalanche Gate (pitfall_certification_gate.py) | COMPLETED | 12-point deterministic gate verified with 100% pytest pass (Ticket #19274977 trap breaker active) |
 | T-15 | Dual-repo twin parity verification across 20,397 files | COMPLETED | verify_and_sync_agents.py verified 0 byte mismatches, 0 errors |
+| T-101 | Install and operationalize obra/superpowers v7.0.1 | COMPLETED | Upgraded C:\Users\SIGMA\.gemini\config\plugins\superpowers to v7.0.1; synced 17 skills to .agent/skills and .agents/skills; verified using-superpowers and verification-before-completion |
+| T-102 | Multi-Asset Upgrade for 10_Whale_Orders.py | IN PROGRESS | Refactoring Collectors/Browser/10_Whale_Orders.py to iterate across 18 perpetual universe assets with clean CDP switching, eliminating single-asset BTC lock |
+| T-103 | Deploy CoinGlass Footprint & Signals Collector | PENDING | Build Collectors/Browser/25_CoinGlass_Footprint_Signals.py for delta, volume, imbalance, and Signals tab (Absorption, Trapped longs/shorts, Divergences) |
+| T-104 | Deploy Unified Multi-Venue Liquidation Matrix | PENDING | Implement Terminal/Data_Factory/unified_liquidation_matrix.py unifying Binance, OKX, Bybit, Hyperdash on-chain, and MEXC/Gate synthetic perps |
+| T-105 | Superpowers Verification Before Completion Audit | PENDING | Execute full verification pipeline, verify 33/33 feeds fresh (<5.0m), zero nulls, and dual-repo byte parity |

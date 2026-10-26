@@ -1,53 +1,34 @@
 #!/usr/bin/env python3
 """
-Data/Excel_Modules/10_Whale_Orders.py
+Collectors/Browser/10_Whale_Orders.py
 ====================================
-Dedicated Excel Module 18: CoinGlass Bitcoin Whale Orders & Large Trades.
+Dedicated Parquet Feed 18: CoinGlass Whale Orders & Large Trades across All Universe Assets.
 Extracts 100% of open resting whale orders (> $100.00K) across All Exchanges
-(Binance Spot, Binance Futures, OKX Spot, OKX Futures, Coinbase Spot)
+(Binance Spot/Futures, OKX Spot/Futures, Coinbase Spot, Bybit Perp)
+for the institutional universe (BTC, ETH, SOL, XRP, BNB, DOGE, ADA, LINK, AVAX, SUI, NEAR, LTC)
 from https://www.coinglass.com/large-orderbook-statistics
-and writes to worksheet '10_Whale_Orders' in Data/feeds/<feed_name>.parquet
-(positioned at Index 17, immediately following '9_Liquidation_Max_Pain_7D').
+and writes to Data/feeds/10_Whale_Orders.parquet.
 
 Captures ALL hover popup and orderbook attributes:
-  - Exchange (Binance, Coinbase, OKX)
-  - Symbol / Contract Pair (BTCUSDT, BTC-USD, BTC-USDT-SWAP)
+  - Exchange (Binance, Coinbase, OKX, Bybit)
+  - Symbol / Contract Pair (BTCUSDT, ETHUSDT, SOLUSDT, etc.)
   - Instrument Type (Spot, Perpetual, Futures)
   - Side (Sell Orders / Buy Orders)
   - Price ($)
-  - Amount (BTC)
+  - Amount (Base Coin)
   - Notional Value ($)
   - Initial Order Value ($)
   - Traded Value ($)
   - Traded Value (%)
-  - Initial Order Size (BTC)
-  - Traded Size (BTC)
+  - Initial Order Size (Base Coin)
+  - Traded Size (Base Coin)
   - Traded Size (%)
-  - Order Time (UTC)
+  - Order Time (IST)
   - Order Duration (e.g. 1m 0s, 4H 35m, 1D 19H)
   - Order ID
 """
 
 from __future__ import annotations
-
-import pathlib
-import sys
-ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
-if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
-if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
-from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
-
-
-# Pure Parquet Pipeline
-
-try:
-    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
-except ImportError:
-    stamp_sheet_completion_ist = None
-    get_current_timestamps = None
-
 
 import argparse
 import asyncio
@@ -60,6 +41,12 @@ import time
 import urllib.request
 from typing import Any, Dict, List, Optional, Tuple
 
+ROOT_DIR_FOR_PQ = pathlib.Path(__file__).resolve().parents[2]
+if str(ROOT_DIR_FOR_PQ / "Collectors" / "Core") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Collectors" / "Core"))
+if str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory") not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR_FOR_PQ / "Terminal" / "Data_Factory"))
+from parquet_feed_writer import write_parquet_feed, IST_TZ, UTC_TZ
 
 try:
     import websockets
@@ -80,6 +67,11 @@ TARGET_URL = "https://www.coinglass.com/large-orderbook-statistics"
 TARGET_SHEET_NAME = "10_Whale_Orders"
 TARGET_INDEX = 18
 
+TARGET_UNIVERSE_COINS = [
+    "BTC", "ETH", "SOL", "XRP", "BNB", "DOGE",
+    "ADA", "LINK", "AVAX", "SUI", "NEAR", "LTC"
+]
+
 COLUMNS_DEF = [
     ("sr_no", "Sr. No.", 10, "center"),
     ("exchange", "Exchange", 14, "center"),
@@ -87,13 +79,13 @@ COLUMNS_DEF = [
     ("type", "Type", 14, "center"),
     ("side", "Side", 14, "center"),
     ("price", "Price ($)", 16, "right"),
-    ("amount_btc", "Amount (BTC)", 16, "right"),
+    ("amount_btc", "Amount (Coin)", 16, "right"),
     ("notional_usd", "Notional Value ($)", 20, "right"),
     ("initial_value_usd", "Initial Value ($)", 20, "right"),
     ("traded_value_usd", "Traded Value ($)", 18, "right"),
     ("traded_value_pct", "Traded Value (%)", 16, "right"),
-    ("initial_size_btc", "Initial Size (BTC)", 18, "right"),
-    ("traded_size_btc", "Traded Size (BTC)", 18, "right"),
+    ("initial_size_btc", "Initial Size (Coin)", 18, "right"),
+    ("traded_size_btc", "Traded Size (Coin)", 18, "right"),
     ("traded_size_pct", "Traded Size (%)", 16, "right"),
     ("order_time_ist", "Timestamp (IST)", 20, "center"),
     ("order_duration", "Order Duration", 16, "center"),
@@ -137,22 +129,160 @@ def close_tab(tab_id: str, cdp_base_url: str = CDP_BASE_URL):
         log.warning(f"Error closing tab {tab_id}: {e}")
 
 
+async def harvest_whale_orders_for_coin(
+    cdp_cmd,
+    coin: str,
+    t0: float,
+) -> List[Dict[str, Any]]:
+    """Navigates to a specific coin's large orderbook statistics and extracts resting whale orders."""
+    coin_url = f"https://www.coinglass.com/large-orderbook-statistics?symbol={coin}"
+    await cdp_cmd("Page.navigate", {"url": coin_url})
+
+    # Wait for genuine DOM hydration (valid rows with >= 7 columns or .lo-row >= 5)
+    hydrated = False
+    for attempt in range(16):
+        await asyncio.sleep(0.3)
+        js_check = """
+        (() => {
+            const t = document.querySelector('table.lo-bt');
+            const trs = t ? Array.from(t.querySelectorAll('tbody tr')) : [];
+            const validRows = trs.filter(tr => tr.querySelectorAll('td').length >= 7).length;
+            const loRows = document.querySelectorAll('.lo-row').length;
+            return { validRows, loRows };
+        })()
+        """
+        res = await cdp_cmd("Runtime.evaluate", {"expression": js_check, "returnByValue": True})
+        val = res.get("value", {})
+        if val.get("validRows", 0) >= 3 or val.get("loRows", 0) >= 5:
+            hydrated = True
+            break
+
+    # Extract orders with coin attribution
+    js_extract = f"""
+    (() => {{
+        const orders = [];
+        const now = Date.now();
+        const coin = '{coin}';
+        
+        function parseUsd(str) {{
+            if (!str) return 0.0;
+            let s = str.replace(/[$,]/g, '').trim();
+            let mult = 1.0;
+            if (s.endsWith('M')) {{ mult = 1e6; s = s.slice(0, -1); }}
+            else if (s.endsWith('K')) {{ mult = 1e3; s = s.slice(0, -1); }}
+            else if (s.endsWith('B')) {{ mult = 1e9; s = s.slice(0, -1); }}
+            return (parseFloat(s) || 0.0) * mult;
+        }}
+
+        // 1. Extract from table.lo-bt (Detailed Whale Orders)
+        const table = document.querySelector('table.lo-bt');
+        if (table) {{
+            const trs = Array.from(table.querySelectorAll('tbody tr'));
+            trs.forEach((tr, i) => {{
+                const tds = Array.from(tr.querySelectorAll('td')).map(td => td.innerText ? td.innerText.trim() : td.textContent.trim());
+                if (tds.length >= 7) {{
+                    const venueStr = tds[0].replace(/[★\\n]/g, ' ').trim();
+                    const venueParts = venueStr.split(/\\s+/);
+                    const exchange = venueParts[0] || 'Binance';
+                    const isPerp = venueStr.toLowerCase().includes('perp') || venueStr.toLowerCase().includes('swap');
+                    const isAsk = venueStr.toLowerCase().includes('ask') || venueStr.toLowerCase().includes('sell');
+                    
+                    const priceClean = parseFloat(tds[1].replace(/,/g, '')) || 0.0;
+                    const initUsd = parseUsd(tds[3]);
+                    const remUsd = parseUsd(tds[4]);
+                    const fillUsd = parseUsd(tds[5]);
+                    const notionalUsd = remUsd > 0 ? remUsd : initUsd;
+                    const amountCoin = priceClean > 0 ? notionalUsd / priceClean : 0.0;
+                    const initCoin = priceClean > 0 ? initUsd / priceClean : 0.0;
+                    const fillCoin = priceClean > 0 ? fillUsd / priceClean : 0.0;
+                    const duration = tds[7] || '';
+
+                    orders.push({{
+                        id: `CG_WHALE_${{coin}}_T_${{i+1}}`,
+                        price: priceClean,
+                        side: isAsk ? 1 : 2,
+                        currentAmount: amountCoin,
+                        currentUsd: notionalUsd,
+                        startAmount: initCoin,
+                        startUsd: initUsd,
+                        vol: fillCoin,
+                        volUsd: fillUsd,
+                        startTime: now - 3600000,
+                        currentTime: now,
+                        exName: exchange,
+                        instrumentId: `${{coin}}USDT`,
+                        baseAsset: coin,
+                        quoteAsset: 'USDT',
+                        type: isPerp ? 1 : 10,
+                        contractType: isPerp ? 'PERPETUAL' : 'SPOT',
+                        durationStr: duration
+                    }});
+                }}
+            }});
+        }}
+
+        // 2. Extract from .lo-row (Live Orderbook Ladder)
+        const loRows = Array.from(document.querySelectorAll('.lo-row'));
+        loRows.forEach((el, j) => {{
+            const text = el.innerText ? el.innerText.trim() : '';
+            const parts = text.split('\\n').map(p => p.trim()).filter(Boolean);
+            if (parts.length >= 4) {{
+                const isAsk = el.classList.contains('ask');
+                const isPerp = parts[0].toLowerCase().includes('perp');
+                const price = parseFloat(parts[1].replace(/,/g, '')) || 0.0;
+                const notional = parseUsd(parts[2]);
+                const duration = parts.length > 4 ? parts[4] : '';
+                const amountCoin = price > 0 ? notional / price : 0.0;
+
+                orders.push({{
+                    id: `CG_LADDER_${{coin}}_${{j+1}}`,
+                    price: price,
+                    side: isAsk ? 1 : 2,
+                    currentAmount: amountCoin,
+                    currentUsd: notional,
+                    startAmount: amountCoin,
+                    startUsd: notional,
+                    vol: 0.0,
+                    volUsd: 0.0,
+                    startTime: now - 60000,
+                    currentTime: now,
+                    exName: 'Binance',
+                    instrumentId: `${{coin}}USDT`,
+                    baseAsset: coin,
+                    quoteAsset: 'USDT',
+                    type: isPerp ? 1 : 10,
+                    contractType: isPerp ? 'PERPETUAL' : 'SPOT',
+                    durationStr: duration
+                }});
+            }}
+        }});
+
+        return {{ orders: orders }};
+    }})()
+    """
+    extract_res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
+    orders = extract_res.get("value", {}).get("orders", [])
+    log.info(f"  [{coin}] Harvested {len(orders)} resting whale orders.")
+    return orders
+
+
 async def harvest_whale_orders(
     cdp_base_url: str = CDP_BASE_URL,
     target_url: str = TARGET_URL,
+    coins: List[str] | None = None,
 ) -> List[Dict[str, Any]]:
     """
-    Connects to CoinGlass /large-orderbook-statistics via CDP,
-    verifies filters (All Exchanges: Binance Spot/Futures, OKX Spot/Futures, Coinbase Spot; >$100.00K; Depth: 100%),
-    and extracts 100% of open resting whale orders with full hover popup fields.
+    Connects to CoinGlass /large-orderbook-statistics via CDP across the entire universe,
+    iterating through TARGET_UNIVERSE_COINS to extract 100% of open resting whale orders (> $100.00K).
     """
     if not websockets:
         raise RuntimeError("websockets package is required. Run 'pip install websockets'.")
 
+    active_coins = coins or TARGET_UNIVERSE_COINS
+
     # Always open a clean dedicated ephemeral tab
     tab_id, ws_url = open_ephemeral_tab(target_url, cdp_base_url)
-    is_ephemeral = True
-    log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Whale Orders.")
+    log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Multi-Asset Whale Orders ({len(active_coins)} assets).")
 
     t0 = time.time()
     try:
@@ -181,154 +311,19 @@ async def harvest_whale_orders(
                 if resp.get("id") == curr_id:
                     return resp.get("result", {}).get("result", {})
 
-        # Wait for Whale Orders DOM hydration (table.lo-bt or .lo-row)
-        log.info("Waiting for Whale Orders DOM hydration (table.lo-bt / .lo-row)...")
-        hydrated = False
-        data_count = 0
+        all_raw_orders: List[Dict[str, Any]] = []
 
-        for attempt in range(40):
-            js_check = """
-            (() => {
-                const t = document.querySelector('table.lo-bt') || document.querySelector('table');
-                const r = document.querySelectorAll('.lo-row');
-                const tRows = t ? t.querySelectorAll('tbody tr').length : 0;
-                const rCount = r.length;
-                if (tRows > 2 || rCount > 0) {
-                    return { hydrated: true, count: tRows + rCount };
-                }
-                return { hydrated: false };
-            })()
-            """
-            res = await cdp_cmd("Runtime.evaluate", {"expression": js_check, "returnByValue": True})
-            val = res.get("value", {})
-            if val.get("hydrated"):
-                hydrated = True
-                data_count = val.get("count", 0)
-                log.info(f"Whale orders DOM hydrated in {time.time() - t0:.2f}s with {data_count} candidate elements.")
-                break
-            await asyncio.sleep(0.5)
+        for coin in active_coins:
+            try:
+                coin_orders = await harvest_whale_orders_for_coin(cdp_cmd, coin, t0)
+                all_raw_orders.extend(coin_orders)
+            except Exception as e:
+                log.warning(f"Error harvesting coin {coin}: {e}")
 
-        if not hydrated:
-            log.warning("DOM wait reached limit, attempting direct extraction...")
-
-        # Extract whale orders from both table.lo-bt and .lo-row
-        js_extract = """
-        (() => {
-            const orders = [];
-            const now = Date.now();
-            
-            function parseUsd(str) {
-                if (!str) return 0.0;
-                let s = str.replace(/[$,]/g, '').trim();
-                let mult = 1.0;
-                if (s.endsWith('M')) { mult = 1e6; s = s.slice(0, -1); }
-                else if (s.endsWith('K')) { mult = 1e3; s = s.slice(0, -1); }
-                else if (s.endsWith('B')) { mult = 1e9; s = s.slice(0, -1); }
-                return (parseFloat(s) || 0.0) * mult;
-            }
-
-            // 1. Extract from table.lo-bt (Detailed Whale Orders)
-            const table = document.querySelector('table.lo-bt') || document.querySelector('table');
-            if (table) {
-                const trs = Array.from(table.querySelectorAll('tbody tr'));
-                trs.forEach((tr, i) => {
-                    const tds = Array.from(tr.querySelectorAll('td')).map(td => td.innerText ? td.innerText.trim() : td.textContent.trim());
-                    if (tds.length >= 7) {
-                        const venueStr = tds[0].replace(/[★\\n]/g, ' ').trim();
-                        const venueParts = venueStr.split(/\\s+/);
-                        const exchange = venueParts[0] || 'Binance';
-                        const isPerp = venueStr.toLowerCase().includes('perp') || venueStr.toLowerCase().includes('swap');
-                        const isAsk = venueStr.toLowerCase().includes('ask') || venueStr.toLowerCase().includes('sell');
-                        
-                        const priceClean = parseFloat(tds[1].replace(/,/g, '')) || 0.0;
-                        const initUsd = parseUsd(tds[3]);
-                        const remUsd = parseUsd(tds[4]);
-                        const fillUsd = parseUsd(tds[5]);
-                        const notionalUsd = remUsd > 0 ? remUsd : initUsd;
-                        const amountBtc = priceClean > 0 ? notionalUsd / priceClean : 0.0;
-                        const initBtc = priceClean > 0 ? initUsd / priceClean : 0.0;
-                        const fillBtc = priceClean > 0 ? fillUsd / priceClean : 0.0;
-                        const duration = tds[7] || '';
-
-                        orders.push({
-                            id: `CG_WHALE_T_${i+1}`,
-                            price: priceClean,
-                            side: isAsk ? 1 : 2,
-                            currentAmount: amountBtc,
-                            currentUsd: notionalUsd,
-                            startAmount: initBtc,
-                            startUsd: initUsd,
-                            vol: fillBtc,
-                            volUsd: fillUsd,
-                            startTime: now - 3600000,
-                            currentTime: now,
-                            exName: exchange,
-                            instrumentId: 'BTCUSDT',
-                            baseAsset: 'BTC',
-                            quoteAsset: 'USDT',
-                            type: isPerp ? 1 : 10,
-                            contractType: isPerp ? 'PERPETUAL' : 'SPOT',
-                            durationStr: duration
-                        });
-                    }
-                });
-            }
-
-            // 2. Extract from .lo-row (Live Orderbook Ladder)
-            const loRows = Array.from(document.querySelectorAll('.lo-row'));
-            loRows.forEach((el, j) => {
-                const text = el.innerText ? el.innerText.trim() : '';
-                const parts = text.split('\\n').map(p => p.trim()).filter(Boolean);
-                if (parts.length >= 4) {
-                    const isAsk = el.classList.contains('ask');
-                    const isPerp = parts[0].toLowerCase().includes('perp');
-                    const price = parseFloat(parts[1].replace(/,/g, '')) || 0.0;
-                    const notional = parseUsd(parts[2]);
-                    const duration = parts.length > 4 ? parts[4] : '';
-                    const amountBtc = price > 0 ? notional / price : 0.0;
-
-                    orders.push({
-                        id: `CG_LADDER_${j+1}`,
-                        price: price,
-                        side: isAsk ? 1 : 2,
-                        currentAmount: amountBtc,
-                        currentUsd: notional,
-                        startAmount: amountBtc,
-                        startUsd: notional,
-                        vol: 0.0,
-                        volUsd: 0.0,
-                        startTime: now - 60000,
-                        currentTime: now,
-                        exName: 'Binance',
-                        instrumentId: 'BTCUSDT',
-                        baseAsset: 'BTC',
-                        quoteAsset: 'USDT',
-                        type: isPerp ? 1 : 10,
-                        contractType: isPerp ? 'PERPETUAL' : 'SPOT',
-                        durationStr: duration
-                    });
-                }
-            });
-
-            return {
-                success: true,
-                count: orders.length,
-                nowTime: now,
-                orders: orders
-            };
-        })()
-        """
-        extract_res = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
-        extract_val = extract_res.get("value", {})
-        if "error" in extract_val:
-            raise RuntimeError(f"Extraction failed: {extract_val['error']}")
-
-        raw_orders = extract_val.get("orders", [])
-        now_time = extract_val.get("nowTime", time.time() * 1000)
+        now_time = time.time() * 1000
 
         records: List[Dict[str, Any]] = []
-        for idx, o in enumerate(raw_orders, start=1):
-            # Instrument type determination
+        for idx, o in enumerate(all_raw_orders, start=1):
             inst_type_code = o.get("type", 0)
             contract_type = o.get("contractType", "").upper()
             inst_id = o.get("instrumentId", "").upper()
@@ -340,11 +335,9 @@ async def harvest_whale_orders(
             else:
                 inst_type = "Futures"
 
-            # Side determination (1 = Sell / Ask, 2 = Buy / Bid)
             side_code = o.get("side", 0)
             side_label = "Sell Orders" if side_code == 1 else "Buy Orders"
 
-            # Calculation of percentages
             start_usd = o.get("startUsd", 0.0)
             vol_usd = o.get("volUsd", 0.0)
             traded_usd_pct = (vol_usd / start_usd * 100.0) if start_usd > 0 else 0.0
@@ -353,7 +346,6 @@ async def harvest_whale_orders(
             vol_amt = o.get("vol", 0.0)
             traded_amt_pct = (vol_amt / start_amt * 100.0) if start_amt > 0 else 0.0
 
-            # Order Time in UTC
             start_time_ms = o.get("startTime", 0)
             if start_time_ms > 0:
                 dt_utc = datetime.datetime.fromtimestamp(start_time_ms / 1000.0, tz=datetime.timezone.utc)
@@ -363,7 +355,6 @@ async def harvest_whale_orders(
                 dt_ist = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)
                 order_time_ist = dt_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
-            # Order Duration
             duration_str = o.get("durationStr") or format_duration(start_time_ms, o.get("currentTime") or now_time)
 
             records.append({
@@ -387,7 +378,7 @@ async def harvest_whale_orders(
             })
 
         log.info(
-            f"Successfully harvested {len(records)} Whale Orders (> $100K) across All Exchanges in {time.time() - t0:.2f}s."
+            f"Successfully harvested {len(records)} Whale Orders across {len(active_coins)} universe assets in {time.time() - t0:.2f}s."
         )
         return records
 
@@ -401,15 +392,17 @@ def run_whale_orders_harvest(
     target_index: int = TARGET_INDEX,
     cdp_base_url: str = CDP_BASE_URL,
     target_url: str = TARGET_URL,
+    coins: List[str] | None = None,
 ) -> bool:
     """Executes full harvest and dump workflow for 10_Whale_Orders."""
     t_start = time.time()
-    log.info(f"Starting CoinGlass Whale Orders harvest for feed '{sheet_name}'...")
+    log.info(f"Starting Multi-Asset Whale Orders harvest for feed '{sheet_name}'...")
 
     records = asyncio.run(
         harvest_whale_orders(
             cdp_base_url=cdp_base_url,
             target_url=target_url,
+            coins=coins,
         )
     )
 
@@ -424,10 +417,11 @@ def run_whale_orders_harvest(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CoinGlass Bitcoin Whale Orders & Large Trades Pure-Parquet Dumper")
+    parser = argparse.ArgumentParser(description="CoinGlass Multi-Asset Whale Orders & Large Trades Pure-Parquet Dumper")
     parser.add_argument("--sheet-name", default=TARGET_SHEET_NAME, help="Target feed name")
     parser.add_argument("--cdp-url", default=CDP_BASE_URL, help="Chrome CDP Base URL")
     parser.add_argument("--target-url", default=TARGET_URL, help="CoinGlass URL")
+    parser.add_argument("--coins", nargs="+", default=None, help="Specific coins to harvest")
 
     args = parser.parse_args()
 
@@ -435,6 +429,7 @@ def main():
         sheet_name=args.sheet_name,
         cdp_base_url=args.cdp_url,
         target_url=args.target_url,
+        coins=args.coins,
     )
     sys.exit(0 if ok else 1)
 
