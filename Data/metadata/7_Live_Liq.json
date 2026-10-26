@@ -13,9 +13,9 @@
     "exchange",
     "full_time"
   ],
-  "byte_size": 3265,
-  "timestamp_ist": "2026-10-27 03:56:06 IST",
-  "timestamp_utc": "2026-10-26 22:26:06 UTC",
-  "epoch_utc": 1793053566.309843,
-  "write_duration_ms": 465.01
+  "byte_size": 3168,
+  "timestamp_ist": "2026-10-27 04:09:53 IST",
+  "timestamp_utc": "2026-10-26 22:39:53 UTC",
+  "epoch_utc": 1793054393.910785,
+  "write_duration_ms": 804.83
 }
