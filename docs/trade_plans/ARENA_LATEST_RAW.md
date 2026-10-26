@@ -764,3 +764,710 @@ $
 0.50×0.5×2333.50=$583.38	Active in Both (PREVAIL)
 Pre-Prune Total (3 Tickets)	—	—	—	$31.20 USD	$45.00 USD	$83.40 USD	$1,725.12 USD	post_joint_stress_equity = $4,799.32 (+$4.32 headroom)
 Post-Prune Live Total (2 Tickets)	#19329907 + #19330613	—	—	$19.70 USD	$28.625 USD	$52.90 USD	$1,687.765 USD	post_joint_stop_equity = $4,817.695 (+$20.695 net Kernel headroom)
+4.3 Finding D3 Margin Collateralization Gate Verification
+50% Equity Margin Cap: 
+0.50
+×
+$
+4
+,
+846.32
+=
+$
+2
+,
+423.16
+ USD
+0.50×$4,846.32=$2,423.16 USD.
+Surviving 2-Ticket Margin Utilization: 
+$
+1
+,
+104.39
++
+$
+583.375
+=
+$
+1
+,
+687.765
+ USD
+$1,104.39+$583.375=$1,687.765 USD (34.83% of Equity 
+≤
+50.0
+%
+≤50.0%; free_margin_after_pending_fills_usd = $3,158.555 USD).
+Post-Fill Margin Level:
+
+Margin Level
+post-fill
+=
+$
+4
+,
+846.32
+$
+1
+,
+687.765
+×
+100
+%
+=
+287.14
+%
+≥
+200.0
+%
+(
+PASS
+)
+Margin Level
+post-fill
+	​
+
+=
+$1,687.765
+$4,846.32
+	​
+
+×100%=287.14%≥200.0%(PASS)
+Remaining Crypto Margin Capacity Before 200% Margin Level Floor:
+
+Margin
+remaining
+=
+$
+2
+,
+423.16
+−
+$
+1
+,
+687.765
+=
+$
+735.395
+ USD
+Margin
+remaining
+	​
+
+=$2,423.16−$1,687.765=$735.395 USD
+At 50% crypto margin (2:1 leverage), $735.395 USD of remaining margin supports at most $1,470.79 USD of notional crypto exposure (0.0184 lot of BTCUSD.pi). Adding a 0.04 lot BTCUSD.pi ticket ($1,594.20 margin required) alongside #19329907 and #19330613 would push total margin to $3,281.965 USD (67.72% > 50% equity cap, Margin Level 147.67% < 200.0%), violating Finding D3.
+🎯 §5. AUDIT OF EXISTING PENDING TICKETS (#19329907, #19329908, #19330613)
+
+Ticket #19329907 (BNBUSD.p BUY_LIMIT 3.00 lots @ 736.25, SL 732.65, TP 746.80) — Verdict: PREVAIL
+
+Live Proximity (23:22:54 UTC): BNBUSD.p Bid 739.30 / Ask 739.90 / Mid 739.60 (8.11 bps spread) is now only +3.35 pts (+0.453% / 1.94 × ATR_14) above our 736.25 limit bid!
+Golden Zone & Invalidation Shelf Alignment (20_Auction_Market_Structure.parquet): BNBUSD.p is in a BULLISH_IMPULSE structure with fib_gp_min (0.618) = 736.18, fib_gp_max (0.650) = 736.67, fib_ote (0.702) = 735.40, and fib_inval (0.786) = 734.13. Limit entry 736.25 sits directly inside the [736.18, 736.67] Golden Pocket, and SL = 732.65 sits 1.48 pts (0.86 × ATR_14) below fib_inval (0.786) = 734.13.
+180s Whale Wall Backing: Backed by the $630,000 Binance Buy Orders wall at 735.00 (persisted 13h 45m = 49,500s >= 180s) and $175,000 at 733.70 (1h 44m = 6,240s), while TP = 746.80 front-runs the $224,000 ask wall at 748.00 (5h 53m) and $1.03M ask wall at 750.00 (3d 5h).
+R:R & Solvency: Nominal Risk $10.80 USD, Stressed Loss $15.50 USD, Nominal Reward $31.65 USD (R:R = 2.93R). Retain (PREVAIL).
+
+Ticket #19329908 (EURUSD.pi SELL_LIMIT 0.10 lot @ 1.12065, SL 1.12180, TP 1.11760) — Verdict: PRUNE (CONFIRMED_CANCELLED_ON_MT5)
+
+Structural Exhaustion: Live EURUSD.pi quote (1.11740 Mid, 0.36 bps spread) has already swept Prior Week Low (pwl = 1.11808) and traded 2.0 pips below the order's Take-Profit (1.11760) without filling the 1.12065 limit entry (+32.5 pips = 10.83 × ATR_14 away).
+Live MT5 Verification: live_snapshot_latest.json (23:22:54 UTC) confirms #19329908 has already been removed from MT5 (pending: 2), releasing $16.375 USD of stressed loss.
+
+Ticket #19330613 (ETHUSD.pi SELL_LIMIT 0.50 lot @ 2,333.50, SL 2,351.30, TP 2,291.00) — Verdict: PREVAIL
+
+Ribbon, VWAP & Invalidation Shelf Alignment: ETHUSD.pi exhibits a strict Bearish Fib-Prime EMA Ribbon (EMA5 2304.96 < EMA13 2307.30 < EMA34 2311.94 < EMA89 2318.00 < EMA144 2323.65 < EMA233 2333.42). Entry 2,333.50 sits right at EMA 233 (2,333.42) and just above 20_Auction_Market_Structure fib_inval (2,332.94).
+180s Whale Wall Backing & Stop Protection: Directly backed by the $6,390,000 Binance Sell Orders wall at 2,331.00 (persisted 4h 49m = 17,340s >= 180s). Protective SL = 2,351.30 sits +3.30 pts (0.40 × ATR_14 where ATR_14 = 8.1682) above Monday High (Mon_H = 2,348.00) and Prior Day VAH (pd_VAH = 2,329.10), and +4.66 pts above 48H Short Max Pain (2,346.64).
+Take-Profit Front-Running: TP = 2,291.00 front-runs the $21,600,000 Binance Buy Orders wall at 2,290.00 (persisted 2d 6h) by +1.00 pt (+4.36 bps) and front-runs 24H Long Max Pain (2,285.66, $23.44M) by +23.3 bps.
+R:R & Solvency: Nominal Risk $8.90 USD, Stressed Loss $13.125 USD, Nominal Reward $21.25 USD (R:R = 2.39R). Retain (PREVAIL).
+🚀 §6. AFFIRMATIVE CANDIDATE DISCOVERY & CALIBRATED SOFT RANKING ACROSS THE TRADE-ELIGIBLE UNIVERSE
+
+Per Requirement #3 (Affirmative Candidate Discovery & High-Confluence Setup Engineering) and Part 2 (Mathematical Soft Ranking & Calibrated Utility), our 4-persona squad scanned all spread-qualified instruments at 23:22:54 UTC (<= 25.0 bps Crypto, <= 5.0 bps TradFi, quote_age_s <= 15.0s) and engineered 5 concrete, institutional-grade limit setups (R:R >= 2.29R to 2.94R).
+
+6.1 Why All 5 Engineered Candidates Receive Formal verdict: "HOLD" Under Fail-Closed Governance
+Uncalibrated Win-Rate Gate (live_snapshot_latest.json): Closed-trade sample size is 
+𝑛
+=
+17
+<
+100
+n=17<100 (W = 11 wins, Exact One-Sided Clopper-Pearson 95% lower bound p_win_lower_bound = 0.4197, p_win_lower_bound_calibrated = false). Per Part 2, uncalibrated probabilities remain null in the schema and mandate HOLD for new admission.
+Solvency & Margin Collateralization Cap: In the attached envelope (20:29:24 UTC), realized_headroom_usd = $4.32 < $12.00 (new_risk_admissible = false). Even on live MT5 (23:22:54 UTC, post-prune of #19329908), the two active orders (#19329907 + #19330613) consume $28.625 USD of stressed risk (leaving +$20.695 USD net Kernel headroom) and reserve $1,687.765 USD of crypto margin (leaving only $735.395 USD below the 50% equity margin ceiling).
+6.2 Affirmative Candidate Discovery Matrix (2026-10-26 23:22:54 UTC)
+Rank & ID	Symbol & Model	Side & Type	Volume (Margin Req)	Entry / SL / TP	R:R	Nominal Risk / Reward (Stressed Loss)	Backing Whale Bunker (>= 180s) & Golden Zone / Auction Confluence	Shadow 
+EV
+^
+net
+EV
+net
+	​
+
+ (Clopper-Pearson LCB 
+EV
+5
+%
+EV
+5%
+	​
+
+)	Verdict & Primary Hold Gate
+#1 CAND-01	BTCUSD.pi (Model 1 1H Mean-Reversion / Golden Zone Sweep)	BUY_LIMIT	0.04 lot ($1,594.20 margin)	79,710.00 / 79,310.00 / 80,680.00	2.43R	$16.00 / $38.80 ($22.64 stressed)	Live BTCUSD.pi (79,772.00, age=0.74s) is now only +62.0 pts above 79,710.00! Front-runs $20.70M Binance/OKX Bid Wall @ 79,700.00 (5h 23m) + $3.98M Bid Wall @ 79,669.00 (5h 44m) at Asian_L 79,699.0 & pd_VAL 79,715.2 inside [0.618 GP 79,744.98, 0.702 OTE 79,667.57]. SL 79,310 sits -0.40 ATR - 148 pts below 0.786 shelf (79,542.54) and behind $9.56M (79,501) & $12.70M (79,307.2) bid walls. Entry < OU_theta (79,961.99).	+$8.65 USD (+$1.94 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $1,594.20 margin exceeds $735.40 remaining 50% equity margin cap while #19329907 + #19330613 are active)
+#2 CAND-02	XAUUSD.pi (Model 1 1H Sub-Diffusive Mean-Reversion)	BUY_LIMIT	0.02 lot ($79.90 margin)	3,995.00 / 3,987.00 / 4,018.50	2.94R	$16.00 / $47.00 ($22.16 stressed)	1H MEAN_REVERT confirmed (VR(4) = 0.4924, z* = -1.918 < -1.64, ER(48) = 0.0446 < 0.15, quote_age = 1.26s). Entry 3,995.00 sits inside 20_Auction_Market_Structure Golden Zone [0.618 GP 3,996.31, 0.702 OTE 3,993.61] below OU_theta (4,011.37). SL 3,987.00 sits -2.26 pts (-0.55 ATR) below 0.786 shelf (3,989.26). TP 4,018.50 front-runs Asian_H (4,018.85) by -0.87 bps.	+$10.12 USD (+$3.18 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $22.16 stressed loss exceeds $20.695 post-prune Kernel headroom by $1.465 USD)
+#3 CAND-03	DJ30.p (Model 1/2 0.786 Shelf & Asian Low Sweep Reclaim)	BUY_LIMIT	0.20 lot ($104.58 margin)	52,290.00 / 52,210.00 / 52,510.00	2.75R	$16.00 / $44.00 ($22.32 stressed)	Live DJ30.p (52,300.25, quote_age = 0.58s FRESH, 0.30 bps spread) has swept Asian_L (52,328.35) and pd_VAL (52,311.95) right into the 0.786 invalidation shelf (52,287.27) with 15m VR(4) = 0.6514 (z* = -1.506) and Entry 52,290.00 < OU_theta (52,339.19). SL 52,210.00 sits -77.27 pts (-1.65 ATR) below 0.786 shelf and above Mon_L (52,192.96).	+$9.30 USD (+$2.71 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $22.32 stressed loss exceeds $20.695 post-prune Kernel headroom by $1.625 USD)
+#4 CAND-04	BTCUSD.pi (Model 2 15m Bearish Ribbon Pullback)	SELL_LIMIT	0.04 lot ($1,605.40 margin)	80,270.00 / 80,670.00 / 79,310.00	2.40R	$16.00 / $38.40 ($22.64 stressed)	Strict 15m & 1H Bearish Fib-Prime EMA Ribbon (EMA5 < 13 < 34 < 89 < 144 < 233 = 80,265.72); Entry 80,270 sits at EMA 233 & d_POC (80,280.84), backed by $2.38M Binance Ask Wall (80,500, 3h 20m). SL 80,670 sits behind 15m 0.786 shelf (80,404.66). Entry > OU_theta (79,961.99). TP 79,310 front-runs $12.70M bid wall (79,307.20) by +0.35 bps.	+$7.95 USD (+$1.64 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; $1,605.40 margin exceeds $735.40 remaining 50% equity margin cap)
+#5 CAND-05	SOLUSD.p (Model 1 Extreme -2.5σ Whale Wall Sweep)	BUY_LIMIT	10.00 lots ($495.50 margin)	99.10 / 97.90 / 101.85	2.29R	$12.00 / $27.50 ($19.20 stressed)	Front-runs $2,590,000 Binance/Bybit Bid Wall @ 99.00 (persisted 14h 04m = 50,640s >= 180s) by +10.1 bps after sweeping Mon_L (99.56) and Asian_L (99.87). SL 97.90 sits -0.44 pts (-1.15 ATR) below PWL (98.34) and behind $1.11M Bid Wall at 98.00 (12d 14h). Entry 99.10 < OU_theta (100.45).	+$5.40 USD (+$0.82 USD @ 
+𝑝
+LCB
+=
+0.4197
+p
+LCB
+	​
+
+=0.4197)	HOLD (n=17 < 100 calibration; 2 crypto slots already occupied by #19329907 & #19330613; 10_Whale_Orders unlinked in 2ea3bd4ff9)
+⚖️ §7. ARITHMETIC VALIDATION & DISPUTE LEDGER
+Dispute DISP-01 (Stale Embedded cycle_envelope.json vs. Live MT5 State at 23:22:54 UTC):
+Embedded cycle_envelope.json has cutoff_utc = "2026-10-26 20:29:24 UTC", lagging current cycle UTC (2026-10-26 23:22:25 UTC) by 173 minutes 01 second (10,381s), and still lists Ticket #19329908 (EURUSD.pi SELL_LIMIT), whereas docs/telemetry/live_snapshot_latest.json (23:22:54 UTC) proves #19329908 is already cancelled (pending: 2, total_contingent_stress_usd: $28.625, post_joint_stop_equity_usd: $4,817.695).
+Dispute DISP-02 (Data/parquet_all_feeds_checklist.json Reporting 6 MISSING Feeds at 23:23:15 UTC):
+In commit 2ea3bd4ff9 (2026-10-26 23:23:16 UTC), Data/parquet_all_feeds_checklist.json reports passed_feeds: 26, failed_or_stale_count: 10, with 6 canonical feeds marked exists: False, status: FAIL (00_MT5_Account_Telemetry, 4_Hyperliquid_Analysis, 10_Whale_Orders, 12_Hyperdash, 22_Forced_Liquidations_MTF, 23_Master_Pipeline_Telemetry) and 4 feeds marked WARN (9_Liquidation_Max_Pain_24H/48H/3D/7D at 16.9m–17.1m).
+Dispute DISP-03 (Layer 3 CoinGlass Whale Orders STALE & Layer 4 Liquidations DEGRADED in live_snapshot_latest.json):
+live_snapshot_latest.json (23:22:54 UTC) reports layer_3_coinglass_whale_orders as STALE (0 orders) and layer_4_coinglass_liquidations as DEGRADED (age_s = 3279.1s = 54.65m), whereas the Parquet pipeline updated 14_Liquidation_Matrix.parquet (11,651 rows) at 23:23:14 UTC (0.0m age) and 8_Exchange_Liquidation_Map_1D/7D.parquet at 4.2m–5.1m age. This proves generate_telemetry_snapshot.py is reading from stale legacy JSON paths (Data/coinglass/latest/) instead of the fresh Data/feeds/*.parquet lake!
+Dispute DISP-04 (Data/macro_calendar.json verified_at Staleness):
+Data/macro_calendar.json verified_at (2026-10-26T03:00:00Z) is 73,345s (20h 22m) old (> 900s limit), even though 19_Calendar.parquet was refreshed 2.3m ago (04:50:54 IST).
+🔄 §8. SECTION 8: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST
+8.1 Skills & Methodology Optimization
+Bridging the live_snapshot_latest.json vs. Data/feeds/*.parquet Split-Brain (@[market-ingest] + @[clean-code]):
+Our forensic audit at 23:22:54 UTC exposed a critical architectural disconnect: generate_telemetry_snapshot.py (which produces docs/telemetry/live_snapshot_latest.json) still reads Layer 3 Whale Orders and Layer 4 Liquidations from legacy JSON files (Data/coinglass/latest/coinglass_whale_orders_snapshot.json), which have been STALE (0 orders) and DEGRADED (3,279s old)—causing live_snapshot_latest.json to set trade_authorization = "DENIED_UNVERIFIED_ORDERFLOW" even when Data/feeds/14_Liquidation_Matrix.parquet (11,651 rows, 0.0m age) and 8_Exchange_Liquidation_Map_1D/7D.parquet (4.2m–5.1m age) are completely fresh!
+Actionable Fix: Wire generate_telemetry_snapshot.py to ingest Layer 3 and Layer 4 directly from Data/feeds/10_Whale_Orders.parquet and Data/feeds/14_Liquidation_Matrix.parquet via read_parquet_feed().
+Eliminating the stamp_all_parquet_feeds.py File-Unlink Race (@[systematic-debugging]):
+At 23:23:15 UTC (commit 2ea3bd4ff9), parquet_checklist_auditor.py caught 6 feeds (00_MT5_Account_Telemetry, 4_Hyperliquid_Analysis, 10_Whale_Orders, 12_Hyperdash, 22_Forced_Liquidations_MTF, 23_Master_Pipeline_Telemetry) as MISSING (exists: False) on disk during a pipeline cycle!
+Actionable Fix: Replace pq.write_table(new_table, p) in stamp_all_parquet_feeds.py with atomic temp-file replacement (os.replace(tmp_p, p)) and guard run_master_pipeline.py + autonomous_telemetry_git_daemon.py with a single inter-process lock (logs/git_workspace_sync.lock).
+8.2 Omitted Risk Dimensions
+Cross-Venue Basis Translation Risk (BTCUSD.pi -$139.00 USD / ETHUSD.pi -$4.37 USD / BNBUSD.p -$1.26 USD):
+At 23:22:54 UTC, live_snapshot_latest.json reports basis_median = -$138.995 USD on BTC, -$4.365 USD on ETH, and -$1.255 USD on BNB between Blueberry Markets MT5 and Binance USDT-M Perpetuals. If a trader places an MT5 limit order at the raw Binance price without subtracting 1.26 USD on BNB or 139.00 USD on BTC, the order either fills prematurely in front of the true CEX whale wall or misses the turn by 17.4 bps.
+Simultaneous Fill Margin Compression (BNBUSD.p 3.35 pts from Fill):
+With BNBUSD.p now at 739.60 (+3.35 pts above #19329907 entry 736.25), an imminent fill on #19329907 will immediately transition $1,104.39 USD from contingent pending margin to active used margin (Margin Level = 438.82%), leaving $583.38 USD contingent on #19330613.
+Deribit Options Pin vs. CEX Liquidation Sweep (ETH 2,300.00 Put Wall):
+21_Tradfye_Orderflow.parquet shows ETH Deribit Max Pain and Put Wall both pinned at 2,300.00, explaining why ETH bounced from 2,303.70 to 2,307.45 with +22.98% taker buy delta (+$2.39M) on the 22:15 UTC bar.
+8.3 Algorithmic Alternatives
+Self-Exciting Bivariate Hawkes Process on 7_Live_Liq.parquet & 26_Aggregated_Footprint_Bar_Metrics.parquet:
+Fit a continuous-time Hawkes intensity model 
+𝜆
+𝑡
+buy/sell
+λ
+t
+buy/sell
+	​
+
+ to the stacked_buy_imbalances (16–20 levels at 300% ratio in 26_Aggregated_Footprint_Bar_Metrics.parquet) and forced liquidation prints (7_Live_Liq.parquet) to dynamically trigger passive limit entries only after sell-cascade branching ratios subside below 
+𝛼
+/
+𝛽
+<
+0.60
+α/β<0.60.
+State-Space Kalman Filter for Dynamic CEX-to-MT5 Basis & Spread Nowcasting:
+Track 
+𝛽
+𝑡
+=
+𝑃
+MT5
+,
+𝑡
+−
+𝑃
+Binance
+,
+𝑡
+β
+t
+	​
+
+=P
+MT5,t
+	​
+
+−P
+Binance,t
+	​
+
+ via a 2-state Kalman filter (level + velocity) so every CEX whale wall in 10_Whale_Orders.parquet and 14_Liquidation_Matrix.parquet is automatically mapped into exact MT5 *.pi / *.p coordinates.
+Empirical Bayes Beta-Binomial Shrinkage + Isotonic Regression Calibration:
+Bridge the 
+𝑛
+=
+17
+<
+100
+n=17<100 Clopper-Pearson sample gap by combining walk-forward out-of-sample backtest epochs (@[adaptive-wfo-epoch]) as a discounted Beta prior with live MT5 deal outcomes, followed by monotone Isotonic Regression mapping 
+(
+𝑉
+𝑅
+(
+4
+)
+,
+OBI
+,
+𝑑
+wall
+)
+↦
+𝑃
+^
+(
+TP
+∣
+fill
+)
+(VR(4),OBI,d
+wall
+	​
+
+)↦
+P
+^
+(TP∣fill).
+📦 PART 4: REQUIRED CANONICAL JSON RESPONSE SCHEMA
+JSON
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle-20261026T202924Z",
+  "cutoff_utc": "2026-10-26 20:29:24 UTC",
+  "evidence_manifest_sha256": "80796d374e9ce1a95a6632a4878c38e8b8d040687174fc7067ddfcd5217b441e",
+  "prompt_sha256": "b2cdc4f6e3f6e65e5d72e45f41bc63142d1943114e1a29705a0364e7a4475825",
+  "dispatch_nonce": "2699f492-fc47-4ad1-b5aa-9e1151ea9111",
+  "provenance_status": "DENIED_FAIL_CLOSED",
+  "inventory_status": "VERIFIED_DRIFT_RECONCILED_2_LIVE_VS_3_ENVELOPE",
+  "hard_gate_results": {
+    "envelope_cutoff_causality_gate": "FAIL_STALE_ENVELOPE_173M_01S_BEHIND_232225Z",
+    "evidence_manifest_digest_gate": "FAIL_DIGEST_MISMATCH_84bfe81b_VS_80796d37",
+    "parquet_checklist_scorecard_gate": "FAIL_26_PASS_6_MISSING_4_WARN_AT_232315Z",
+    "macro_calendar_freshness_gate": "FAIL_VERIFIED_AT_AGE_73345S_EXCEEDS_900S",
+    "coinglass_layer3_and_4_snapshot_gate": "FAIL_LAYER3_STALE_0_ORDERS_LAYER4_DEGRADED_3279S",
+    "probability_calibration_gate": "FAIL_CLOPPER_PEARSON_N17_LT_100_MIN_SAMPLE",
+    "solvency_kernel_gate": "PASS_FOR_EXISTING_2_TICKETS_FAIL_FOR_NEW_ADMISSION",
+    "margin_collateralization_gate": "PASS_EXISTING_1687_77_USD_34_83PCT_EQ_287_14PCT_ML",
+    "fx_rollover_embargo_gate": "PASS_232225Z_PAST_2115_2230Z_EMBARGO"
+  },
+  "universe_coverage": {
+    "total_catalog_assets": 156,
+    "tradfi_assets_total": 98,
+    "crypto_perpetuals_total": 58,
+    "deep_telemetry_matrix_assets": 24,
+    "parquet_technical_assets": 120,
+    "parquet_auction_structure_assets": 84,
+    "crypto_spread_qualified_lte_25bps": [
+      "BTCUSD.pi (2.01 bps)",
+      "BNBUSD.p (8.11 bps)",
+      "ETHUSD.pi (12.57 bps)",
+      "BCHUSD.p (20.84 bps)",
+      "AVEUSD.p (21.51 bps)",
+      "SOLUSD.p (21.95 bps)",
+      "XRPUSD.pi (23.28 bps)"
+    ],
+    "crypto_spread_disqualified_gt_25bps": [
+      "TRXUSD.p (27.33 bps)",
+      "UNIUSD.p (32.56 bps)",
+      "AVXUSD.p (44.99 bps)",
+      "LTCUSD.pi (53.30 bps)",
+      "NERUSD.p (64.96 bps)",
+      "LNKUSD.p (75.28 bps)",
+      "ADAUSD.p (102.61 bps)",
+      "DOTUSD.pi (209.06 bps)",
+      "DOGUSD.p (272.20 bps)"
+    ],
+    "tradfi_spread_qualified_lte_5bps": [
+      "XAUUSD.pi (0.20 bps)",
+      "DJ30.p (0.30 bps)",
+      "EURUSD.pi (0.36 bps)",
+      "USDJPY.pi (0.38 bps)",
+      "NAS100.p (0.42 bps)",
+      "SP500.p (0.44 bps)",
+      "GBPUSD.pi (0.52 bps)",
+      "GER40.p (1.22 bps)",
+      "USWTI.p (4.50 bps - tick_age 22.97s > 15s)"
+    ]
+  },
+  "account_tier_and_contingent_capacity": {
+    "account_login": 5064568,
+    "balance_usd": 4846.32,
+    "equity_usd": 4846.32,
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "solvency_kernel_usd": 4795.0,
+    "capital_mode_envelope": "TIER_1_STANDARD",
+    "capital_mode_operator_mandate": "TIER_2_HOUSE_MONEY",
+    "gross_kernel_cushion_usd": 51.32,
+    "global_contingency_reserve_usd": 2.0,
+    "net_base_headroom_usd": 49.32,
+    "envelope_pre_prune_stress_usd": 45.0,
+    "envelope_pre_prune_headroom_usd": 4.32,
+    "live_mt5_post_prune_stress_usd": 28.625,
+    "live_mt5_post_prune_headroom_usd": 20.695,
+    "live_mt5_post_joint_stop_equity_usd": 4817.695,
+    "pending_margin_on_fill_usd": 1687.765,
+    "free_margin_after_pending_fills_usd": 3158.555,
+    "post_fill_margin_level_pct": 287.14,
+    "max_crypto_margin_cap_50pct_equity_usd": 2423.16,
+    "remaining_crypto_margin_headroom_usd": 735.395,
+    "active_positions_count": 0,
+    "envelope_pending_orders_count": 3,
+    "live_mt5_pending_orders_count": 2,
+    "new_risk_admissible": false
+  },
+  "global_contingency_usd": 2.0,
+  "existing_ticket_actions": [
+    {
+      "ticket": 19329907,
+      "symbol": "BNBUSD.p",
+      "side": "BUY_LIMIT",
+      "volume": 3.0,
+      "entry": 736.25,
+      "sl": 732.65,
+      "tp": 746.8,
+      "action": "PREVAIL",
+      "nominal_risk_usd": 10.8,
+      "stressed_loss_usd": 15.5,
+      "margin_on_fill_usd": 1104.39,
+      "rationale": "Live BNBUSD.p (739.60, spread 8.11 bps) is +3.35 pts above entry 736.25; entry sits inside 20_Auction_Market_Structure BULLISH_IMPULSE Golden Pocket [736.18, 736.67] above OTE 735.40 and 0.786 shelf 734.13; Entry < OU_theta (741.35 on 15m, 740.26 on 1H) passes OU Adverse Drift Gate; backed by Binance $630,000 Buy Whale Wall at 735.00 persisted 13h 45m (49,500s >= 180s); SL 732.65 sits -1.48 pts (-0.86 ATR) below 0.786 shelf 734.13."
+    },
+    {
+      "ticket": 19329908,
+      "symbol": "EURUSD.pi",
+      "side": "SELL_LIMIT",
+      "volume": 0.1,
+      "entry": 1.12065,
+      "sl": 1.1218,
+      "tp": 1.1176,
+      "action": "PRUNE",
+      "nominal_risk_usd": 11.5,
+      "stressed_loss_usd": 16.375,
+      "margin_on_fill_usd": 37.36,
+      "rationale": "ALREADY_CANCELLED_ON_LIVE_MT5_AT_232254Z: Live EURUSD.pi price (1.11740 Mid) already traded 2.0 pips below Take-Profit 1.11760 without filling entry 1.12065 (+32.5 pips / 10.83x ATR away). Exhausted target zombie order properly pruned."
+    },
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "side": "SELL_LIMIT",
+      "volume": 0.5,
+      "entry": 2333.5,
+      "sl": 2351.3,
+      "tp": 2291.0,
+      "action": "PREVAIL",
+      "nominal_risk_usd": 8.9,
+      "stressed_loss_usd": 13.125,
+      "margin_on_fill_usd": 583.38,
+      "rationale": "Entry 2333.50 > OU_theta (2312.12 on 15m, 2324.91 on 1H) passes OU Adverse Drift Gate; strict Bearish Fib-Prime EMA Ribbon (EMA5 2304.96 < EMA13 2307.30 < EMA34 2311.94 < EMA89 2318.00 < EMA144 2323.65 < EMA233 2333.42); directly backed by Binance $6,390,000 Sell Whale Wall at 2331.00 persisted 4h 49m (17,340s >= 180s); SL 2351.30 sits behind pd_VAH 2329.10, Mon_H 2348.00, and 48H Short Max Pain 2346.64; TP 2291.00 front-runs Binance $21.60M Buy Whale Walls at 2290.00 (persisted 2d 6h) by +4.36 bps and 24H Long Max Pain 2285.66 ($23.44M) by +23.3 bps."
+    }
+  ],
+  "candidate_rows": [
+    {
+      "candidate_id": "CAND-01-BTCUSD-LONG-GP-WHALE",
+      "symbol": "BTCUSD.pi",
+      "native_market": "CRYPTO_PERPETUAL_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-26T23:22:53.892Z",
+      "evidence_availability_timestamps": {
+        "mt5_l1_tick_utc": "2026-10-26T23:22:53.892Z",
+        "live_snapshot_utc": "2026-10-26T23:22:54Z",
+        "parquet_20_auction_utc": "2026-10-26T23:13:13Z",
+        "parquet_14_liq_matrix_utc": "2026-10-26T23:23:14Z"
+      },
+      "evidence_max_age_seconds": 581.0,
+      "evidence_age_at_cutoff_seconds": -10409.9,
+      "row_causality_status": "ENVELOPE_STALE_LIVE_SNAPSHOT_FRESH_0_74S",
+      "authorization_expiry_utc": "2026-10-26T23:42:25Z",
+      "side": "BUY",
+      "order_type": "BUY_LIMIT",
+      "entry": 79710.0,
+      "stop": 79310.0,
+      "target": 80680.0,
+      "volume": 0.04,
+      "broker_risk_usd": 16.0,
+      "broker_reward_usd": 38.8,
+      "rr": 2.425,
+      "spread_cost_usd": 0.64,
+      "stressed_loss_usd": 22.64,
+      "post_joint_stop_balance": 4795.055,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_CLOPPER_PEARSON_N17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay Heteroskedastic 1H VR(4)=0.5690 (z*=-1.906 < -1.64 Confirmed Mean Reversion)",
+        "Ornstein-Uhlenbeck 15m theta=79961.99 / 1H theta=80194.73",
+        "Exact One-Sided Clopper-Pearson 95% LCB=0.4197 (W=11, n=17)"
+      ],
+      "calibration_diagnostics": {
+        "empirical_wins": 11,
+        "empirical_sample_n": 17,
+        "minimum_required_sample_n": 100,
+        "clopper_pearson_95pct_lcb": 0.4197,
+        "shadow_point_p_fill": 0.76,
+        "shadow_point_p_win_given_fill": 0.58,
+        "shadow_point_ev_net_usd": 8.65,
+        "shadow_lcb_5pct_ev_net_usd": 1.94
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_clopper_pearson_95pct_lower": 0.4197,
+        "p_win_clopper_pearson_95pct_upper": 0.8364
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_branch_net_usd": 38.16,
+        "sl_hit_branch_stressed_usd": -22.64,
+        "timeout_unfilled_branch_usd": -0.25,
+        "ttl_minutes": 240
+      },
+      "cost_ledger_and_conditioning": {
+        "nominal_sl_usd": 16.0,
+        "stress_multiplier": 1.25,
+        "spread_exit_cost_usd": 0.64,
+        "fee_reserve_usd": 2.0,
+        "margin_required_50pct_usd": 1594.2
+      },
+      "wait_cost_usd": 0.25,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 382608.0,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_95PCT_AND_TIME_BLOCKED_BOOTSTRAP",
+      "adverse_selection_usd": 1.2,
+      "evidence_ids": [
+        "live_snapshot_latest.json:assets_matrix_24.BTC",
+        "20_Auction_Market_Structure.parquet:BTCUSD.pi",
+        "10_Whale_Orders.parquet:BTCUSDT_79700_20.7M_5h23m",
+        "26_Aggregated_Footprint_Bar_Metrics.parquet:BTCUSDT_300pct_buy_imbalance"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BEARISH_RIBBON_1H_SUBDIFFUSIVE_MEAN_REVERT_VR4_0.5690_Z_MINUS_1.906",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 79744.98,
+        "gp_0650": 79792.61,
+        "ote_0702": 79667.57,
+        "invalidation_shelf_0786": 79542.54,
+        "entry_status": "INSIDE_GOLDEN_ZONE_0618_TO_0702_OTE"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_LOW_79224.0_BELOW_MON_MID_79968.25",
+        "session_extreme_sweep": "AT_ASIAN_LOW_79699.0_BACKED_BY_20.7M_WHALE_BID",
+        "macro_shelf_relation": "ABOVE_PWL_79071.0_AND_PW_VAL_79418.07",
+        "value_area_status": "AT_PRIOR_DAY_VAL_79715.21_AND_DAILY_VAL_79791.65"
+      },
+      "rejection_reasons": [
+        "PROBABILITY_UNCALIBRATED_N17_LT_100",
+        "MARGIN_COLLATERALIZATION_CAP_EXCEEDED_WITH_2_EXISTING_CRYPTO_ORDERS_1687.77_PLUS_1594.20_GT_2423.16",
+        "STRESSED_LOSS_22.64_EXCEEDS_POST_PRUNE_KERNEL_HEADROOM_20.695",
+        "ENVELOPE_CUTOFF_STALE_173M"
+      ]
+    },
+    {
+      "candidate_id": "CAND-02-XAUUSD-LONG-GP-MEANREVERT",
+      "symbol": "XAUUSD.pi",
+      "native_market": "COMMODITY_SPOT_METAL",
+      "clock_status": "OPEN_POST_ROLLOVER",
+      "quote_timestamp": "2026-10-26T23:22:53.372Z",
+      "evidence_availability_timestamps": {
+        "mt5_l1_tick_utc": "2026-10-26T23:22:53.372Z",
+        "live_snapshot_utc": "2026-10-26T23:22:54Z",
+        "parquet_20_auction_utc": "2026-10-26T23:13:13Z"
+      },
+      "evidence_max_age_seconds": 581.0,
+      "evidence_age_at_cutoff_seconds": -10409.4,
+      "row_causality_status": "ENVELOPE_STALE_LIVE_SNAPSHOT_FRESH_1_26S",
+      "authorization_expiry_utc": "2026-10-26T23:42:25Z",
+      "side": "BUY",
+      "order_type": "BUY_LIMIT",
+      "entry": 3995.0,
+      "stop": 3987.0,
+      "target": 4018.5,
+      "volume": 0.02,
+      "broker_risk_usd": 16.0,
+      "broker_reward_usd": 47.0,
+      "rr": 2.9375,
+      "spread_cost_usd": 0.16,
+      "stressed_loss_usd": 22.16,
+      "post_joint_stop_balance": 4795.535,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_CLOPPER_PEARSON_N17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay 1H VR(4)=0.4924 (z*=-1.918 < -1.64 Confirmed Mean Reversion)",
+        "Kaufman 1H ER(48)=0.0446 < 0.15",
+        "Ornstein-Uhlenbeck 1H theta=4011.37 > Entry 3995.00"
+      ],
+      "calibration_diagnostics": {
+        "empirical_wins": 11,
+        "empirical_sample_n": 17,
+        "minimum_required_sample_n": 100,
+        "clopper_pearson_95pct_lcb": 0.4197,
+        "shadow_point_p_fill": 0.65,
+        "shadow_point_p_win_given_fill": 0.59,
+        "shadow_point_ev_net_usd": 10.12,
+        "shadow_lcb_5pct_ev_net_usd": 3.18
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_clopper_pearson_95pct_lower": 0.4197,
+        "p_win_clopper_pearson_95pct_upper": 0.8364
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_branch_net_usd": 46.84,
+        "sl_hit_branch_stressed_usd": -22.16,
+        "timeout_unfilled_branch_usd": -0.1,
+        "ttl_minutes": 240
+      },
+      "cost_ledger_and_conditioning": {
+        "nominal_sl_usd": 16.0,
+        "stress_multiplier": 1.25,
+        "spread_exit_cost_usd": 0.16,
+        "fee_reserve_usd": 2.0,
+        "margin_required_usd": 79.9
+      },
+      "wait_cost_usd": 0.1,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 19176.0,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_95PCT_AND_TIME_BLOCKED_BOOTSTRAP",
+      "adverse_selection_usd": 0.8,
+      "evidence_ids": [
+        "live_snapshot_latest.json:assets_matrix_24.GOLD",
+        "20_Auction_Market_Structure.parquet:XAUUSD.pi",
+        "11_Technical.parquet:XAUUSD.pi"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "CONFIRMED_1H_MEAN_REVERT_VR4_0.4924_Z_MINUS_1.918",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 3996.31,
+        "gp_0650": 3997.97,
+        "ote_0702": 3993.61,
+        "invalidation_shelf_0786": 3989.26,
+        "entry_status": "INSIDE_GOLDEN_ZONE_3993.61_TO_3996.31"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_LOW_3978.16_BELOW_MON_MID_4004.09",
+        "session_extreme_sweep": "SWEEPING_BELOW_ASIAN_LOW_4014.38_AND_PD_VAL_4001.50",
+        "macro_shelf_relation": "ABOVE_PWL_3975.67",
+        "value_area_status": "BELOW_VALUE_AREA_VAL_3999.94_EXTREME_DISCOUNT"
+      },
+      "rejection_reasons": [
+        "PROBABILITY_UNCALIBRATED_N17_LT_100",
+        "STRESSED_LOSS_22.16_EXCEEDS_POST_PRUNE_KERNEL_HEADROOM_20.695_BY_1.465_USD",
+        "TIER2_MAX_2_CONCURRENT_TICKETS_OCCUPIED_BY_19329907_AND_19330613"
+      ]
+    },
+    {
+      "candidate_id": "CAND-03-DJ30-LONG-0786-SHELF",
+      "symbol": "DJ30.p",
+      "native_market": "US_EQUITY_INDEX_CFD",
+      "clock_status": "OPEN_ASIAN_FUTURES_SESSION",
+      "quote_timestamp": "2026-10-26T23:22:54.052Z",
+      "evidence_availability_timestamps": {
+        "mt5_l1_tick_utc": "2026-10-26T23:22:54.052Z",
+        "live_snapshot_utc": "2026-10-26T23:22:54Z",
+        "parquet_20_auction_utc": "2026-10-26T23:13:13Z"
+      },
+      "evidence_max_age_seconds": 581.0,
+      "evidence_age_at_cutoff_seconds": -10410.1,
+      "row_causality_status": "ENVELOPE_STALE_LIVE_SNAPSHOT_FRESH_0_58S",
+      "authorization_expiry_utc": "2026-10-26T23:42:25Z",
+      "side": "BUY",
+      "order_type": "BUY_LIMIT",
+      "entry": 52290.0,
+      "stop": 52210.0,
+      "target": 52510.0,
+      "volume": 0.2,
+      "broker_risk_usd": 16.0,
+      "broker_reward_usd": 44.0,
+      "rr": 2.75,
+      "spread_cost_usd": 0.32,
+      "stressed_loss_usd": 22.32,
+      "post_joint_stop_balance": 4795.375,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_CLOPPER_PEARSON_N17_LT_100",
+      "estimator_references": [
+        "15m VR(4)=0.6514 (z*=-1.506) / 1H ER(48)=0.2316 >= 0.20",
+        "Ornstein-Uhlenbeck 1H theta=52339.19 > Entry 52290.00"
+      ],
+      "calibration_diagnostics": {
+        "empirical_wins": 11,
+        "empirical_sample_n": 17,
+        "minimum_required_sample_n": 100,
+        "clopper_pearson_95pct_lcb": 0.4197,
+        "shadow_point_p_fill": 0.78,
+        "shadow_point_p_win_given_fill": 0.56,
+        "shadow_point_ev_net_usd": 9.3,
+        "shadow_lcb_5pct_ev_net_usd": 2.71
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_clopper_pearson_95pct_lower": 0.4197,
+        "p_win_clopper_pearson_95pct_upper": 0.8364
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_branch_net_usd": 43.68,
+        "sl_hit_branch_stressed_usd": -22.32,
+        "timeout_unfilled_branch_usd": -0.1,
+        "ttl_minutes": 240
+      },
+      "cost_ledger_and_conditioning": {
+        "nominal_sl_usd": 16.0,
+        "stress_multiplier": 1.25,
+        "spread_exit_cost_usd": 0.32,
+        "fee_reserve_usd": 2.0,
+        "margin_required_usd": 104.58
+      },
+      "wait_cost_usd": 0.1,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 25099.2,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_95PCT_AND_TIME_BLOCKED_BOOTSTRAP",
+      "adverse_selection_usd": 0.9,
+      "evidence_ids": [
+        "live_snapshot_latest.json:assets_matrix_24.DJ30",
+        "20_Auction_Market_Structure.parquet:DJ30.p"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "DEEP_0786_SHELF_TEST_AFTER_ASIAN_LOW_SWEEP",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 52347.21,
+        "gp_0650": 52361.31,
+        "ote_0702": 
