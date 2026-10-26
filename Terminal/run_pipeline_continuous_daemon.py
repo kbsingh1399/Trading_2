@@ -87,6 +87,31 @@ def run_single_cycle(cycle_count: int, api_only: bool = False, gap_seconds: int 
         return False
 
 
+def push_cycle_to_github(cycle_num: int):
+    """Atomically commits and pushes all fresh parquet feeds and telemetry to GitHub immediately after cycle."""
+    try:
+        now_ist = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5, minutes=30))).strftime("%Y-%m-%d %H:%M:%S IST")
+        log.info(f"[Cycle #{cycle_num}] Staging and pushing all parquet feeds and telemetry to GitHub...")
+        
+        # 1. Stage all data, metadata, and trade plans
+        subprocess.run(["git", "add", "Data/feeds", "Data/metadata", "Data/cycle_envelope.json", "docs/trade_plans", "docs/telemetry", "Data/*.json"], cwd=str(ROOT_DIR), check=False)
+        
+        # 2. Check if there are staged changes
+        status_proc = subprocess.run(["git", "diff", "--staged", "--quiet"], cwd=str(ROOT_DIR), check=False)
+        if status_proc.returncode != 0:
+            commit_msg = f"feat(sync): post-cycle #{cycle_num} immediate sync all feeds [as_of {now_ist}]"
+            subprocess.run(["git", "commit", "-m", commit_msg], cwd=str(ROOT_DIR), check=False)
+            push_proc = subprocess.run(["git", "push", "origin", "main"], cwd=str(ROOT_DIR), capture_output=True, text=True, check=False)
+            if push_proc.returncode == 0:
+                log.info(f"[Cycle #{cycle_num}] SUCCESS: Pushed all feeds to GitHub origin/main!")
+            else:
+                log.warning(f"[Cycle #{cycle_num}] Git push warning: {push_proc.stderr.strip()}")
+        else:
+            log.info(f"[Cycle #{cycle_num}] All feeds already in sync on git.")
+    except Exception as e:
+        log.warning(f"[Cycle #{cycle_num}] Git auto-push notice: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Persistent Background 100% Pure-Parquet Pipeline Daemon")
     parser.add_argument("--api-only", action="store_true", help="Execute only the 18 Pure-API collectors (< 15s)")
@@ -100,6 +125,10 @@ def main():
     while True:
         try:
             run_single_cycle(cycle_count, api_only=args.api_only, gap_seconds=args.gap)
+            
+            # MANDATORY: Immediately push all updated parquet feeds and telemetry to GitHub
+            push_cycle_to_github(cycle_count)
+            
             cycle_count += 1
 
             # Rotate public egress IP after each cycle to prevent CoinGlass 429 rate limiting
