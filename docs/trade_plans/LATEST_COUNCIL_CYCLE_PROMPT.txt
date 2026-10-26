@@ -88,18 +88,18 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle-20261026T172436Z",
-  "uuid": "9c93ab4e-4e00-4ca8-96d2-f59822b28e6e",
-  "dispatch_nonce": "4e781615-ff7a-4064-bd51-ed21566752cc",
-  "cutoff_utc": "2026-10-26 17:24:36 UTC",
+  "cycle_id": "Cycle-20261026T202924Z",
+  "uuid": "06aaab67-3357-45ec-af5c-c7797bcfdc3d",
+  "dispatch_nonce": "2699f492-fc47-4ad1-b5aa-9e1151ea9111",
+  "cutoff_utc": "2026-10-26 20:29:24 UTC",
   "provenance": {
-    "git_commit": "15589c9b8a51fbc468539e45b70d4d6250a02313",
-    "git_tree": "e2114a5109ab5e9bdf6b3c1338652889eb8831e4",
-    "prompt_sha256": "59d384c9b3b043003b997688e6f50675b1727659505105fd8f0d8c0c800dedc3",
-    "risk_policy_sha256": "f4805622f9a19e213361bbbffeb7fc2228bc9ffba86bcb49f22aa9ad86ae9529",
+    "git_commit": "eae7a44e8ee72eea8d81664beb0a2adf5a6d0b72",
+    "git_tree": "ee1706c55e51f5a1b24dfdf1626523c8cca773d8",
+    "prompt_sha256": "b2cdc4f6e3f6e65e5d72e45f41bc63142d1943114e1a29705a0364e7a4475825",
+    "risk_policy_sha256": "65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e",
     "evidence_manifest_sha256": "80796d374e9ce1a95a6632a4878c38e8b8d040687174fc7067ddfcd5217b441e",
-    "parquet_freshness_verified": false,
-    "parquet_audit_scorecard_fresh": false
+    "parquet_freshness_verified": true,
+    "parquet_audit_scorecard_fresh": true
   },
   "inventory": {
     "account_login": 5064568,
@@ -134,7 +134,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
         "price_open": 736.25,
         "sl": 732.65,
         "tp": 746.8,
-        "price_current": 744.9,
+        "price_current": 741.0,
         "price_stoplimit": 0.0,
         "symbol": "BNBUSD.p",
         "comment": "C356_BNB_BULL_GP",
@@ -160,7 +160,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
         "price_open": 1.12065,
         "sl": 1.1218,
         "tp": 1.1176,
-        "price_current": 1.11941,
+        "price_current": 1.11748,
         "price_stoplimit": 0.0,
         "symbol": "EURUSD.pi",
         "comment": "C356_EUR_BEAR_POC",
@@ -186,7 +186,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
         "price_open": 2333.5,
         "sl": 2351.3,
         "tp": 2291.0,
-        "price_current": 2327.1,
+        "price_current": 2305.7,
         "price_stoplimit": 0.0,
         "symbol": "ETHUSD.pi",
         "comment": "C356_ETH_BEAR_GP",
@@ -210,7 +210,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "risk_min_usd": 12.0,
     "risk_max_usd": 12.0,
     "nominal_risk_capacity_usd": 1.8559999999997672,
-    "max_concurrent_tickets": 2,
+    "max_concurrent_tickets": 4,
     "new_risk_admissible": false,
     "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
   },
@@ -372,10 +372,10 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
   6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
-     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-26 17:26:09 UTC).
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-26 21:43:07 UTC).
      - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
        * You MUST output a prominent alert at the very top of your written response:
-         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-26 17:26:09 UTC)`
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-26 21:43:07 UTC)`
        * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
