@@ -32,4 +32,8 @@ Wrote 1 files，Ran 1 commands
 Auction structure is decisive: BTC & ETH both broke below prior-day VAL (bearish continuation profile), SP500/BNB/USWTI above value (breakout profile). ETF flow column is NaN (defect — zero-laundering recurrence). Fixing the map queries and pulling CVD momentum + governance docs.
 
 Wrote 2 files，Ran 4 commands
-Read active context and decision chain SOP
+
+Liq-map mystery solved: price/cumulative columns are "$"-prefixed strings — my numeric filter dropped every row (plus the ladder pads to +99% distance). Max Pain gives clean magnets: BTC long-liq 79,553 / short-squeeze 81,156; ETH long-liq 2,285.13 / short-squeeze 2,346.33. Re-extracting bands correctly + final context.
+
+Wrote 1 files，Ran 1 commands
+Extract money-stripped bands and remaining feeds
