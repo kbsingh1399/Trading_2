@@ -31,8 +31,8 @@
     "trades_count"
   ],
   "byte_size": 195056,
-  "timestamp_ist": "2026-10-26 22:55:16 IST",
-  "timestamp_utc": "2026-10-26 17:25:16 UTC",
-  "epoch_utc": 1793035516.226576,
-  "write_duration_ms": 16.49
+  "timestamp_ist": "2026-10-26 22:56:37 IST",
+  "timestamp_utc": "2026-10-26 17:26:37 UTC",
+  "epoch_utc": 1793035597.514695,
+  "write_duration_ms": 17.97
 }
