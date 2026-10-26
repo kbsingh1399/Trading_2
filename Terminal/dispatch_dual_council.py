@@ -276,8 +276,12 @@ async def dispatch_all(cycle_id: str = "AUTO", prompt_file: str = None):
                 await ws.send(json.dumps({"id": 106, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}}))
                 await asyncio.sleep(0.2)
                 
-                # Insert prompt text via Input.insertText
-                await ws.send(json.dumps({"id": 107, "method": "Input.insertText", "params": {"text": prompt}}))
+                # Insert prompt text via Input.insertText in robust 2000-char chunks
+                chunk_size = 2000
+                for idx in range(0, len(prompt), chunk_size):
+                    chunk = prompt[idx:idx + chunk_size]
+                    await ws.send(json.dumps({"id": 107, "method": "Input.insertText", "params": {"text": chunk}}))
+                    await asyncio.sleep(0.04)
                 await asyncio.sleep(0.5)
                 
                 # Click send button

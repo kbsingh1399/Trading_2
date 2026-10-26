@@ -92,6 +92,14 @@ async def probe_zai_tab(tab_ws_url: str):
                 const stopBtn = document.querySelector('button[aria-label*="Stop" i], .stop-generating');
                 const isGenerating = !!stopBtn;
                 
+                // Detection of Send button & ready input area
+                const sendBtn = Array.from(document.querySelectorAll('button')).find(b => {
+                    const label = (b.getAttribute('aria-label') || '').toLowerCase();
+                    return label.includes('send') || (b.querySelector('svg') && b.closest('form, div[class*="input"], div[class*="footer"]'));
+                });
+                const inputArea = document.querySelector('textarea, .cm-content, [contenteditable], [placeholder*="Send a Message" i]');
+                const hasSendReady = !isGenerating && (!!sendBtn || !!inputArea);
+
                 // Robust extraction: find largest markdown/council container in Z.ai
                 const containers = Array.from(document.querySelectorAll('div, section, article')).filter(el => {
                     const text = el.innerText || '';
@@ -110,6 +118,7 @@ async def probe_zai_tab(tab_ws_url: str):
                 return {
                     connected: true,
                     isGenerating: isGenerating,
+                    hasSendReady: hasSendReady,
                     textLen: longestText.length,
                     text: longestText
                 };
@@ -150,7 +159,7 @@ async def run_dual_watcher(timeout_s: float = 600.0, poll_interval: float = 2.5)
             ws_url = zai_tab.get("webSocketDebuggerUrl")
             if ws_url:
                 zstate = await probe_zai_tab(ws_url)
-                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("textLen", 0) > 300:
+                if zstate.get("connected") and not zstate.get("isGenerating") and zstate.get("hasSendReady") and zstate.get("textLen", 0) > 300:
                     ZAI_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                     zai_done = True
@@ -213,7 +222,7 @@ async def run_dual_daemon(poll_interval: float = 3.0, refresh_interval_s: float 
                         "text_length": t_len,
                         "checked_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     }
-                    if not zai_is_gen and t_len > 300 and t_len != last_zai_len:
+                    if not zai_is_gen and zstate.get("hasSendReady") and t_len > 300 and t_len != last_zai_len:
                         ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                         last_zai_len = t_len
                         status_payload["completed_at_utc"] = status_payload["checked_at_utc"]
