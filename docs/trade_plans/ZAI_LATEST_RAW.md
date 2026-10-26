@@ -48,4 +48,8 @@ Wrote 1 files，Ran 1 commands
 ETF feed still degraded (all NaN — known dispute B1), calendar clean until FOMC Oct 28. Re-pulling liq volumes with the typo'd column and the stops map:
 
 Wrote 1 files，Ran 1 commands
-Liq volumes, stops map, news, forced liq
+
+Liq map volumes are dollar-strings ("$1.68B") — parsing them properly, plus stops-map clusters. Final data pull:
+
+Wrote 1 files，Ran 1 commands
+Parsed liq clusters, stops, funding, HL
