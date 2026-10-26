@@ -21,3 +21,8 @@ Freshness decoded: Timestamp_IST columns are UTC+5:30 — the "−327 min" feeds
 
 Wrote 1 files，Ran 3 commands
 Extract calendar and 24-asset technical snapshot
+
+120-asset universe (expanded beyond 24) with rich telemetry. BTC has collapsed to 79,952 (prompt snapshot said 80,219) with STRONG BEARISH bias; ETH STRONG BEARISH; EURUSD STRONG BEARISH at Z −1.29; BNB now NEUTRAL/CHOP. Extracting the remaining key assets + microstructure layers.
+
+Wrote 1 files，Ran 1 commands
+Extract focus assets, MT5 gates, whale walls
