@@ -135,6 +135,27 @@ Across 35 gates, $P(\text{Trade}) \approx 0.0000038$. The system becomes **hyper
 
 Furthermore, markets are dynamic: retail sentiment can be 60% long while smart-money institutions are absorbing panic sellers; funding rates can be neutral while orderbook depth is violently asymmetric. If a strategy demands that ALL 35 feeds agree simultaneously, it ignores the reality of institutional microstructure.
 
+
+### 2.3 The 10 Canonical Price Magnet Feeds (Liquidity Attraction & Sweep Architecture)
+A primary structural insight of our quantitative desk is that **price is an auction mechanism attracted to resting liquidity pools (magnets)**.
+The following 10 feeds specifically act as **Price Magnet Zones** based on the dominant trend, structural regime, and resting liquidation gravity:
+
+1. 14_Liquidation_Matrix.parquet — **Primary Multi-Venue Magnet**: 8,607 synthesized rows combining Tier 1 CEX, Tier 2 DEX, and Macro CFD liquidation intensity. Used to identify the dominant gravitational liquidity cluster where price is mechanically pulled to trigger cascading liquidations.
+2. 14_Hyperdash_Liq_Map.parquet — **DEX Structural Liquidation Magnet**: 6,514 Hyperliquid on-chain liquidation price bands with exact liquidation notional in USD.
+3. 15_Hyperdash_Stops_Map.parquet — **Retail Stop Sweep Magnet**: 4,194 retail stop cluster levels identifying where stop-loss orders are densely accumulated. Acts as a high-probability wick sweep zone before institutional reversal.
+4. 16_Hyperdash_telegram_Intel.parquet — **Institutional Whale Callout & Flow Magnet**: Real-time institutional block alerts, massive resting wall callouts, and large-trader flow prints.
+5. 8_Exchange_Liquidation_Map_1D.parquet — **Tactical Intraday Magnet (24H)**: 2,100 price levels showing where intraday leverage is overextended and vulnerable to cascading liquidation runs.
+6. 8_Exchange_Liquidation_Map_7D.parquet — **Macro Structural Magnet (7D)**: 2,585 high-timeframe liquidation levels defining the major weekly liquidity boundaries and macro stop clusters.
+7. 9_Liquidation_Max_Pain_24H.parquet — **24H Shortest-Distance Magnet**: 747 assets, calculates the exact price point that causes maximum aggregate financial pain to overleveraged positions in the next 24 hours.
+8. 9_Liquidation_Max_Pain_48H.parquet — **48H Intermediate Magnet**: 747 assets, identifies the 2-day liquidation gravitational center.
+9. 9_Liquidation_Max_Pain_3D.parquet — **3-Day Swing Magnet**: 748 assets, identifies the 3-day swing liquidation magnet.
+10. 9_Liquidation_Max_Pain_7D.parquet — **7-Day Macro Magnet**: 749 assets, defines the weekly institutional settlement target.
+
+**Core Invariant for Council Review**:
+- How should the trading engine construct Take Profit (TP) and Stop Loss (SL) relative to these 10 magnet feeds?
+- *Rule A (Take Profit)*: TP must be placed to front-run the dominant resting liquidation magnet (e.g. 5–10 ticks inside the high-intensity cluster), allowing cascading liquidations to fill our exit passively.
+- *Rule B (Stop Loss)*: SL must NEVER be placed inside retail stop sweep clusters (15_Hyperdash_Stops_Map) or high-intensity liquidation ladders (8_Exchange_Liquidation_Map), but safely insulated outside them to prevent predatory sweep wicks from stopping us out prematurely.
+
 ### 2.2 The Narrative Synthesis Protocol: Layered Architecture
 We propose replacing the brittle boolean intersection with a **4-Layer Institutional Narrative Synthesis Protocol**:
 
