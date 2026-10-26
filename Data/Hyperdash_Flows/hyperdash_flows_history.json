@@ -38458,5 +38458,25 @@
     "date_heading": "October 26",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "XYZ:MSFT",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 1013.69,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 532.68,
+    "wallet_address": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179",
+    "asset_slug": "XYZ:MSFT",
+    "raw_text": "#XYZ:MSFT Liquidated Long: 1.01K USD at 532.6800 USD [API]",
+    "msg_id": "HL_LIQ_0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179_XYZ:MSFT_220130789348341",
+    "timestamp_epoch": 1793040510,
+    "time_label": "18:48",
+    "date_heading": "October 26",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
