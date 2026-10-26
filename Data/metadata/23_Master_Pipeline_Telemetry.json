@@ -9,9 +9,9 @@
     "status",
     "tier"
   ],
-  "byte_size": 2090,
-  "timestamp_ist": "2026-10-26 12:37:32 IST",
-  "timestamp_utc": "2026-10-26 07:07:32 UTC",
-  "epoch_utc": 1792998452.555127,
-  "write_duration_ms": 282.77
+  "byte_size": 2089,
+  "timestamp_ist": "2026-10-26 12:39:25 IST",
+  "timestamp_utc": "2026-10-26 07:09:25 UTC",
+  "epoch_utc": 1792998565.142841,
+  "write_duration_ms": 321.5
 }
