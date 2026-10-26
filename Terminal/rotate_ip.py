@@ -66,45 +66,44 @@ def run_cmd(cmd: list[str], timeout: int = 15) -> tuple[int, str]:
         return 1, str(exc)
 
 
+def get_warp_status() -> str:
+    """Returns 'Connected' or 'Disconnected'."""
+    code, out = run_cmd(["warp-cli", "status"])
+    if "Connected" in out:
+        return "Connected"
+    return "Disconnected"
+
+
 def rotate_ip(max_retries: int = 3) -> tuple[bool, str, str]:
     """
-    Rotates egress IP by cycling WARP registration and connection.
+    Rotates egress IP by toggling between Cloudflare WARP and Direct Residential ISP.
     Returns (success, old_ip, new_ip).
     """
     old_ip = get_current_ip()
-    log.info(f"Initial public egress IP: {old_ip}")
+    status = get_warp_status()
+    log.info(f"Current WARP status: {status} | Current Public IP: {old_ip}")
 
-    for attempt in range(1, max_retries + 1):
-        log.info(f"[Attempt {attempt}/{max_retries}] Rotating WARP connection...")
-        
-        # 1. Disconnect
+    if status == "Connected":
+        log.info("WARP is connected. Toggling to Direct Residential ISP connection...")
         run_cmd(["warp-cli", "disconnect"])
-        time.sleep(1.5)
-
-        # 2. Delete registration
-        run_cmd(["warp-cli", "registration", "delete"])
-        time.sleep(0.5)
-
-        # 3. Fresh registration
-        code_reg, out_reg = run_cmd(["warp-cli", "registration", "new"])
-        time.sleep(1.0)
-
-        # 4. Connect
-        code_conn, out_conn = run_cmd(["warp-cli", "connect"])
+        time.sleep(2.0)
+    else:
+        log.info("WARP is disconnected. Toggling to Cloudflare WARP connection...")
+        run_cmd(["warp-cli", "connect"])
         time.sleep(3.0)
 
-        # 5. Check new IP
-        new_ip = get_current_ip()
-        log.info(f"Verification public egress IP after rotation: {new_ip}")
+    new_ip = get_current_ip()
+    new_status = get_warp_status()
+    log.info(f"New WARP status: {new_status} | New Public IP: {new_ip}")
 
-        if new_ip != "UNKNOWN" and new_ip != old_ip:
-            log.info(f"IP successfully rotated: {old_ip} -> {new_ip}")
-            return True, old_ip, new_ip
-        elif new_ip != "UNKNOWN":
-            log.info(f"WARP active with IP {new_ip}. (Attempt {attempt} completed)")
-            return True, old_ip, new_ip
+    if new_ip != "UNKNOWN" and new_ip != old_ip:
+        log.info(f"IP successfully rotated: {old_ip} -> {new_ip}")
+        return True, old_ip, new_ip
+    elif new_ip != "UNKNOWN":
+        log.info(f"Connection active with IP {new_ip}.")
+        return True, old_ip, new_ip
 
-    log.warning(f"Could not change IP from {old_ip} after {max_retries} attempts.")
+    log.warning(f"Could not change IP from {old_ip}.")
     return False, old_ip, old_ip
 
 
