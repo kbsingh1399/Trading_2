@@ -739,4 +739,388 @@ B. Eliminating the 20-Minute (1,200s) Pacing Gap vs. 2-Minute Pipeline Cadence
 Diagnosis: Data/cycle_state.json configures rest_interval_seconds: 1200 (20 minutes) between council cycles, while run_pipeline_continuous_daemon.py runs run_master_pipeline.py with a 120s (2m) gap, and parquet_checklist_auditor.py enforces a 15.0m Tactical SLA. However, in run_master_pipeline.py (run_browser_phase, lines 183–204), all 22 Browser CDP collectors are executed strictly sequentially (for s in scripts: run_script(s, timeout) with timeouts of 120s–180s each), plus trigger_ip_rotation() runs Cloudflare WARP before and after every cycle! When 3–4 CoinGlass browser tabs hit Cloudflare challenges or 60–120s timeouts, a single run_master_pipeline.py cycle takes 18 to 24 minutes, which explains why 8_Exchange_Liquidation_Map_7D (23.5m) and 9_Liquidation_Max_Pain_* (19.6m–21.1m) are already > 15.0m WARN by the time the cycle finishes!
 Concrete Fix:
 Decouple run_master_pipeline.py into two independent asynchronous cadences:
-Cadence A (Every 60s–90s): Run run_api_phase(parallel=True) (12 Pure-API collectors in < 8s
+Cadence A (Every 60s–90s): Run run_api_phase(parallel=True) (12 Pure-API collectors in < 8s) + unified_liquidation_matrix.py + parquet_checklist_auditor.py.
+Cadence B (Every 5m, 3-Worker Tab Pool): Instead of spawning and tearing down 22 sequential Chrome subprocesses and rotating Cloudflare WARP on every loop (which invalidates TLS/CF clearance cookies and triggers more captchas!), maintain a persistent 3-tab async Playwright/CDP worker pool (max_workers=3 across non-overlapping domains: Tab 1 = CoinGlass Liquidation/MaxPain, Tab 2 = CoinGlass OI/Funding/Footprint, Tab 3 = ForexFactory/ETF) and only invoke trigger_ip_rotation() on HTTP 403/429 or Cloudflare challenge detection. This cuts Phase 2 browser collection from ~20 minutes to < 75 seconds.
+C. Hardening dual_completion_daemon.py
+Defect 1 (Fragile Character-Length Change Detection): In run_dual_daemon() (lines 167 & 183), completion is triggered when not arena_is_gen and t_len > 300 and t_len != last_arena_len. When reload_tab() refreshes the page every 5 minutes (refresh_interval_s = 300.0), last_arena_len is held in memory, OR if the DOM re-renders with 1 extra whitespace character after a reload, it re-harvests an old response; conversely, if a new response happens to have the exact same character length or if the daemon restarts (last_arena_len = 0), it overwrites ARENA_LATEST_RAW.md with stale text.
+Fix: Hash the normalized text with hashlib.sha256(text.strip().encode()).hexdigest(), persist last_content_sha256 and cycle_id inside Data/arena_completion_status.json, and verify that the response contains the active cycle_id before marking completion.
+Defect 2 (Hardcoded "TRADING DESK COUNCIL: CYCLE 359" Filter in probe_zai_tab): Line 93 of dual_completion_daemon.py hardcodes !text.includes('TRADING DESK COUNCIL: CYCLE 359') to avoid matching the prompt container in Z.ai. Now that the desk is on Cycle 361+, any prompt header containing TRADING DESK COUNCIL: CYCLE 361 is not excluded by that filter, risking extracting the user's prompt instead of the model's response!
+Fix: Replace the hardcoded string with a regex or DOM role selector (!text.includes('CANONICAL ARENA.AI STANDARD PROMPT') && !el.closest('[data-role="user"]')).
+2. Forensic Bug Hunt, Logic Anomalies & Mathematical Inconsistencies
+#	Location (File / Feed / Line)	Exact Defect / Mathematical Anomaly Discovered	Concrete Code / Schema Fix
+1	Data/feeds/3_Exchanges_LS_Ratio_4H.parquet (Collectors/Browser/3_Exchanges_LS_Ratio_4H.py)	Corrupted 4H L/S Ratio Payload Passing Auditor: All 20 rows have Exchange = Asset, Long_% = "1.00%", Short_% = "0.00%", L_S_Ratio = "1.00", Long_Volume = "-", Short_Volume = "-", Total_Volume = "-". Because row_count = 20 and byte_size = 3,522, parquet_checklist_auditor.py marks Feed 05 as PASS!	In parquet_feed_writer.py and parquet_checklist_auditor.py, add a semantic payload validator: reject or mark FAIL_CORRUPT_PAYLOAD if 3_Exchanges_LS_Ratio_* has all(df["Total_Volume"] == "-") or all(df["Long_%"] == "1.00%"). Fix the CoinGlass 4H timeframe dropdown click selector in 3_Exchanges_LS_Ratio_4H.py.
+2	Collectors/API/00_MT5_Account_Telemetry.py (Lines 68–69) vs. Data/cycle_envelope.json	Solvency Anchor Split-Brain: 00_MT5_Account_Telemetry.py hardcodes floor = 4775.00 and buf = 4795.00, outputting hard_floor_cushion_usd = +71.32 and operating_buffer_cushion_usd = +51.32, whereas Data/cycle_envelope.json defines hard_floor_usd = 4600.0, operating_buffer_usd = 4650.0, and solvency_kernel_usd = 4795.0.	Centralize all solvency constants in a single canonical config module (Terminal/risk/solvency_constants.py: HARD_FLOOR_USD = 4600.00, OPERATING_BUFFER_USD = 4650.00, SOLVENCY_KERNEL_USD = 4795.00, CONTINGENCY_RESERVE_USD = 2.00) imported by both 00_MT5_Account_Telemetry.py and cycle_envelope generator.
+3	Data/parquet_all_feeds_checklist.json (Terminal/parquet_checklist_auditor.py)	generated_at_ist: null & Stale Sidecar Illusion: In 0abb8f5e70, Data/parquet_all_feeds_checklist.json has generated_at_ist: None and reports exists: true for 19 .parquet files that were deleted from Data/feeds/ 11 seconds later. Moreover, stamp_all_parquet_feeds.py updates Parquet schema metadata (cycle_timestamp_utc) without updating Data/metadata/<feed>.json, while parquet_checklist_auditor.py reads Data/metadata/<feed>.json!	Have parquet_checklist_auditor.py verify both the physical .parquet file (p.exists() and p.stat().st_size > 256) and read the Parquet footer metadata (pq.read_metadata(p)), and run parquet_checklist_auditor.py inside sync_git_cycle() right before git add.
+4	Data/feeds/8_Exchange_Liquidation_Map_1D.parquet & 7D.parquet	Schema Column Typos & Unparsed String Numerics: Columns are named Cummulitve_Liquidation (misspelled) and Binanace (misspelled), and numeric values ("$1.68B", "$2.30M") are stored as Utf8 strings; similarly, 15_Hyperdash_Stops_Map.parquet stores buy_stops and sell_stops as Utf8 strings ("0").	Standardize column names to Cumulative_Liquidation and Binance (keeping alias columns for backward compatibility during transition) and cast all USD volume/notional columns to Float64 at write time in parquet_feed_writer.py.
+5	Terminal/run_master_pipeline.py (Lines 12, 47, 63, 128)	Docstring vs. Code Count Mismatch: run_master_pipeline.py logs "EXECUTING 18 PURE-API COLLECTORS" in docstring/comments while API_COLLECTORS has 12 scripts and BROWSER_COLLECTORS has 22 scripts (34 total collectors producing 36–42 Parquet files), while parquet_checklist_auditor.py docstring says "33-Feed" but CANONICAL_FEEDS has 36 entries (idx 0..35).	Synchronize the canonical registry in Terminal/Data_Factory/canonical_feeds_registry.py (38 feeds including 14_Liquidation_Matrix, 18_CVD_30D_5m/15m/1h/4h/ALL, 25_CoinGlass_Footprint_Signals, 26_Aggregated_Footprint_Bar_Metrics).
+3. Quantitative Edge & Trading Decision Enhancements
+
+Dynamic Volatility-Scaled Whale Bunker Proximity (Pillar 3 Refinement):
+
+Currently, Pillar 3 requires a static 0.40 × ATR_14 distance from a >= $100K, >= 180s whale wall. However, during compressed Asian-session volatility (ER_48 < 0.05, e.g., BNBUSD.p ATR_14 = 1.70 pts = 22.9 bps), 0.40 × ATR_14 is only 0.68 pts (9.2 bps), which is barely wider than the 8.10 bps broker spread!
+Enhancement: Define the effective whale bunker proximity radius as:
+
+𝑑
+max
+⁡
+=
+max
+⁡
+(
+0.40
+×
+ATR
+14
+,
+  
+1.50
+×
+Spread
+pts
+)
+d
+max
+	​
+
+=max(0.40×ATR
+14
+	​
+
+,1.50×Spread
+pts
+	​
+
+)
+and weight each whale wall by a Persistence-Notional Gravity Score:
+
+𝐺
+wall
+=
+Notional
+USD
+$
+100
+,
+000
+×
+ln
+⁡
+(
+1
++
+Duration
+sec
+180
+)
+×
+exp
+⁡
+(
+−
+∣
+Price
+entry
+−
+Price
+wall
+∣
+ATR
+14
+)
+G
+wall
+	​
+
+=
+$100,000
+Notional
+USD
+	​
+
+	​
+
+×ln(1+
+180
+Duration
+sec
+	​
+
+	​
+
+)×exp(−
+ATR
+14
+	​
+
+∣Price
+entry
+	​
+
+−Price
+wall
+	​
+
+∣
+	​
+
+)
+Requiring 
+𝐺
+wall
+≥
+5.0
+G
+wall
+	​
+
+≥5.0 prevents thin, freshly spoofed 181-second walls from qualifying while rewarding multi-hour institutional bunkers (like ETH's $6.26M 2h 46m wall at 2,331.00 which scores 
+𝐺
+wall
+=
+62.6
+×
+ln
+⁡
+(
+1
++
+55.33
+)
+×
+𝑒
+−
+0.284
+=
+190.1
+G
+wall
+	​
+
+=62.6×ln(1+55.33)×e
+−0.284
+=190.1!).
+
+Automated Zombie-Order Auto-Prune Gate (Pillar 4 Refinement):
+
+Ticket #19329908 (EURUSD.pi SELL_LIMIT @ 1.12065, TP @ 1.11760) remained on MT5 even after spot reached 1.11749 (below TP).
+Enhancement: Codify an automated pre-cycle rule in MT5_Execution_Bridge.py:
+For any resting BUY_LIMIT, if 
+Mid_Price
+high since placement
+≥
+TP
+−
+0.15
+×
+ATR
+14
+Mid_Price
+high since placement
+	​
+
+≥TP−0.15×ATR
+14
+	​
+
+ without filling the order, or if 
+∣
+Mid_Price
+−
+Entry
+∣
+>
+4.5
+×
+ATR
+14
+∣Mid_Price−Entry∣>4.5×ATR
+14
+	​
+
+, automatically issue ORDER_ACTION_REMOVE (PRUNE_TARGET_EXHAUSTED) so stale orders never lock up existing_ticket_stress_usd!
+
+Spread-Adjusted Effective R:R & Funding-Carry Filter:
+
+Require every limit order to pass Net Realized R:R after 2× Spread + Slippage:
+
+RR
+eff
+=
+∣
+TP
+−
+Entry
+∣
+−
+Spread
+∣
+Entry
+−
+SL
+∣
++
+Spread
+≥
+1.80
+RR
+eff
+	​
+
+=
+∣Entry−SL∣+Spread
+∣TP−Entry∣−Spread
+	​
+
+≥1.80
+For #19329907 BNBUSD.p: 
+RR
+eff
+=
+(
+10.55
+−
+0.60
+)
+/
+(
+3.60
++
+0.60
+)
+=
+9.95
+/
+4.20
+=
+2.37
+≥
+1.80
+RR
+eff
+	​
+
+=(10.55−0.60)/(3.60+0.60)=9.95/4.20=2.37≥1.80 (PASS).
+For #19330613 ETHUSD.pi: 
+RR
+eff
+=
+(
+42.50
+−
+2.80
+)
+/
+(
+17.80
++
+2.80
+)
+=
+39.70
+/
+20.60
+=
+1.93
+≥
+1.80
+RR
+eff
+	​
+
+=(42.50−2.80)/(17.80+2.80)=39.70/20.60=1.93≥1.80 (PASS).
+4. Algorithmic Alternatives & Unused Alpha in the 38-Feed Lake
+Multi-Horizon CVD Term-Structure Divergence (18_CVD_30D_ALL.parquet + 18_CVD.parquet):
+Currently, the desk primarily checks 5m CVD_Z (18_CVD.parquet). However, 18_CVD_30D_ALL.parquet provides the full term structure (5m, 15m, 1h, 4h). By computing the CVD Term-Structure Slope:
+
+Δ
+CVD
+TS
+=
+CVD_Z
+1
+h
++
+CVD_Z
+4
+h
+2
+−
+CVD_Z
+5
+m
++
+CVD_Z
+15
+m
+2
+ΔCVD
+TS
+	​
+
+=
+2
+CVD_Z
+1h
+	​
+
++CVD_Z
+4h
+	​
+
+	​
+
+−
+2
+CVD_Z
+5m
+	​
+
++CVD_Z
+15m
+	​
+
+	​
+
+
+we capture institutional absorption during retail flushes! Right now on BTC, 
+Δ
+CVD
+TS
+=
+2.382
++
+2.275
+2
+−
+−
+0.946
+−
+0.556
+2
+=
++
+2.329
+−
+(
+−
+0.751
+)
+=
++
+3.08
+𝜎
+ΔCVD
+TS
+	​
+
+=
+2
+2.382+2.275
+	​
+
+−
+2
+−0.946−0.556
+	​
+
+=+2.329−(−0.751)=+3.08σ, a textbook institutional accumulation signature
