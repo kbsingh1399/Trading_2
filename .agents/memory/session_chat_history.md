@@ -64442,3 +64442,12 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
 - Verified and certified all 8 P0 and secondary bug remediations across parquet writer, liquidation matrix, footprint collectors, decision chain, and opportunity scanner.
 - Verified prompt ledger and safe dispatch protocol.
 - MT5 live account confirmed at 4,846.32 USD (+51.32 USD headroom).
+
+
+## [2026-10-26 22:10:52 IST] Hyperdash 429 Root Cause Resolution & Hexad Daemons Re-Engagement
+- **Defects Fixed**:
+  1. Collectors/API/15_Hyperdash_Stops_Map.py & 14_Hyperdash_Liq_Map.py: Concurrency reduced from max_workers=9 to 3, exponential backoff retry on HTTP 429 implemented, graceful fallback to retain existing healthy Parquet dataset on transient rate limits.
+  2. Terminal/dispatch_cycle_orchestrator.py: Path fixed to docs/specs/SUBAGENT_PROMPT_TEMPLATES.md; Cycle 356 prompts rendered (roles A, B, C, D).
+- **Pipeline Re-Verified**: Phase 1 completed in 68.95s with 0/12 Failures. 26/36 feeds fresh (< 5.0m).
+- **Persistent Daemons Active (5/5)**: Git Sync (task-139607), Web2API (task-139889), Graphify Watcher (task-139891), Dual Completion Watcher (task-139893), Pipeline Continuous Daemon (task-139986).
+- **Dynamic Cycle 356**: Armed with mandatory 20-minute post-completion separation.

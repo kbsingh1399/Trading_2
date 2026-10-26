@@ -1,397 +1,359 @@
-Thought Process
-Explored 1 files，Ran 1 commands
+Thinking...
 
-Files downloaded. The tree.json is small (likely an API response envelope) — let me inspect it and read all three production files in parallel, plus the recent worklog tail.
+Let me carefully parse this situation.
 
-Explored 1 files，Ran 1 commands
+The user has sent a new message that is a comprehensive "AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION" — this appears to be a NEW cycle dispatch of the council prompt, but with key differences from the previous Parquet audit task:
 
-parquet_feed_writer.py is fully captured (211 lines). GitHub API tree is rate-limited, but raw file fetches work — let me pull the checklist auditor and read both footprint collectors in full.
+The attached cycle envelope is {} — EMPTY JSON. Per the prompt's own rules: "If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers: Record provenance_status: DENIED_BAD_CYCLE_ENVELOPE... Set overall authorization: DENIED_FAIL_CLOSED."
 
-Explored 1 files，Ran 1 commands
+The prompt references the OLD Excel architecture (Data/DataBase_Trading.xlsx ALL 34 PRODUCTION SHEETS) — but from the conversation summary, the architecture has MIGRATED to the 35-Feed Parquet Data Lake. So there's an inconsistency: this prompt is the OLD Excel-era prompt (or a template that wasn't updated). Actually wait — looking at the prompt, it says "EXCLUSIVE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH: Data/DataBase_Trading.xlsx (ALL 34 PRODUCTION SHEETS)". But the previous message (from the summary) described the migration to Parquet. Hmm, but this new message seems to be the standard council dispatch prompt — perhaps it hasn't been updated for Parquet yet. Actually, the summary says the user's latest substantive request was the Parquet audit. Now this new message is a full council cycle dispatch with an EMPTY cycle envelope.
 
-parquet_feed_writer.py and collector 25 are fully analyzed. Now reading the larger footprint bar-metrics collector.
+The prompt demands: 4-persona audit (§1 to §7), JSON payload, Section 8 Kaizen, complete response under all circumstances, NO single-line aborts, even with defects.
 
-Explored 4 files
+Current cycle UTC mentioned: 2026-10-26 16:34:05 UTC. But current date per system: 2026-10-27 (Asia/Calcutta timezone, utc+8? Actually "Current date: 2026-10-27 utc+8" — hmm, that says utc+8. The user timezone setting says Asia/Calcutta which is UTC+5:30. Whatever — current time is around 2026-10-27).
 
-All three production files are now fully analyzed. Let me quickly enumerate the actual repo directory structure (to resolve the auditor filename + the 42-file inventory question) and pull the recent worklog tail in parallel.
+So the cycle envelope is empty {} → per the prompt's own rules, provenance_status = "DENIED_BAD_CYCLE_ENVELOPE", authorization = "DENIED_FAIL_CLOSED".
 
-Explored 2 files，Ran 1 commands
+Also, the prompt references files I cannot access — local file paths (file:///c:/Users/SIGMA/Documents/Trading_2/...), the GitHub repos. I could attempt to fetch the GitHub repo to verify data freshness. But the previous context established that GitHub fetching may or may not work. Let me think about whether to attempt fetching.
 
-parquet_feed_checklist_auditor.py, unified_liquidation_matrix.py (the feed-14 synthesizer), and time_series_database.py are the key discovery — these directly answer the concurrency, cross-feed vintage, and rolling-history questions. Fetching all three plus the worklog tail now.
+The prior conversation summary says: "如需检查 GitHub 而数据不可得则输出 [ALERT] TELEMETRY STALE WARNING 并以 fail-loud 方式交付全量审计（禁止单行中止）" — i.e., if GitHub data is unavailable, output TELEMETRY STALE WARNING and deliver the full audit fail-loud.
 
-Explored 3 files，Ran 1 commands
+Also there's a pending task from the summary: deliver the Parquet data lake forensic audit (4 deliverables). But now the user has sent a NEW dispatch — the standard council prompt. The instruction says "Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on."
 
-The checklist auditor alone yields critical findings (33-feed registry that omits feeds 25/26, 15-min SLA vs 1.5m docstring, self-referential telemetry). Now reading the liquidation matrix synthesizer and the time-series store — these settle the rolling-history mandate questions.
+Hmm, but the user message itself IS the new task. The system continuation instruction says to continue with the last task. The user message is the council dispatch. So I should respond to THIS dispatch.
 
-Explored 1 files
+Key question: should I merge the pending Parquet audit with this council response? The dispatch is a NEW cycle request with specific response schema requirements. The empty cycle envelope triggers DENIED_FAIL_CLOSED. But the prompt FORBIDS single-line aborts — I must deliver the complete exhaustive audit (§1-§7), JSON payload, Section 8 Kaizen.
 
-Tier-4 "$25M fabricated magnet" defect found in the matrix synthesizer — a headline-severity finding. Now the final file: the 958-line time-series store.
+Also note: this dispatch prompt references the Excel architecture, but the actual current architecture is Parquet (per previous message). This is a discrepancy worth noting — the dispatch template appears to be the Excel-era template (34 sheets), while the repo has migrated to 35-feed Parquet. I should flag this as a dispute: the prompt template itself is STALE relative to the architecture migration. Actually wait — maybe the user reverted? The summary says the migration happened between requests. The previous request (Parquet audit) is the latest architecture state. This new dispatch embeds the OLD Excel mandate. I should flag: "Zero Fragmented Data Sources Mandate" references DataBase_Trading.xlsx which no longer exists / is no longer canonical — architecture drift between dispatch template and repo state.
 
-Explored 2 files
+Let me also consider: Should I attempt to fetch GitHub to get live telemetry? The prompt gives cycle UTC 2026-10-26 16:34:05 UTC and expects me to check file timestamps. Given the IM gateway context and that this is a web chat, I can attempt WebFetch on the GitHub repo. Let me consider doing that to ground the audit. The previous session apparently never fetched GitHub. Attempts might fail or succeed. Let me try fetching:
 
-Research complete — all 6 production files fully analyzed with severe findings. Now loading the docx skill to produce the archival audit document before composing the final council response.
+https://github.com/kbsingh1399/Trading_2 (main branch, commit 77dc330a5 per summary)
+Maybe the tree listing to see Data/feeds, Terminal/Data_Factory files.
 
-Ran 1 commands
+Given time constraints, a few WebFetch calls could ground: commit hash, file list, timestamps. GitHub HTML pages can be fetched. Let me try.
 
-Skill loaded. Setting the document outline now, then loading the required skill reference files.
+Actually, let me think about what the response should contain:
 
-Explored 10 files，Ran 2 commands
+📚 Active Skills Loaded & Applied header (mandatory).
+[ALERT] TELEMETRY STALE WARNING — the cycle envelope is EMPTY {}, which is malformed/absent → provenance DENIED_BAD_CYCLE_ENVELOPE. Also, the embedded envelope is the primary telemetry; it's absent. Additionally, I have no live workbook/snapshot digests; if I can't verify freshness, output the stale warning. The current cycle UTC in the prompt is 2026-10-26 16:34:05 UTC, but actual current time is 2026-10-27 (~+? hours) — so the envelope/dataset references are post-cutoff? Actually "post-cutoff" refers to envelope being newer than cutoff. The cutoff per prompt is 2026-10-26 16:34:05 UTC. Today is 2026-10-27. So the dispatch is dated yesterday — stale by more than 20 minutes. That mandates the TELEMETRY STALE WARNING header.
+Metacognitive question answered explicitly: "If it use all the available skills related will it improve our response?" — Yes, with specifics.
+Full 4-persona audit §1-§7 with deep quantitative content, but under FAIL-CLOSED: all numeric admission fields null where unknown; authorization DENIED_FAIL_CLOSED. Yet still deliver exhaustive analysis: pipeline forensics (merging the pending Parquet audit — since that's the "last task"), narrative synthesis heuristic, 35-feed decision matrix, Scenario A/B rulings, position sizing regimes, candidate discovery methodology (no live quotes → no AUTHORIZED candidates; candidate_rows empty or HOLD rows with nulls).
+Section 8 Kaizen Inquest (Part 3).
+Full JSON payload with all required fields.
+response_sha256 — I can compute a SHA-256 of the response? I can't hash the exact text I output (can't run it through a hash function after writing). I could compute a hash of a canonical payload via a script... Actually I can run a Bash command to compute sha256 of a JSON payload file I write. But the response_sha256 is supposed to be the hash of the response itself. Practically, I can compute the hash of the JSON payload (the canonical JSON object) via a script and include it. It's a chicken-and-egg: including the hash inside the JSON changes the hash. Typically the hash covers the payload minus the field, or I compute hash of the human-readable section. Simplest honest approach: compute sha256 over the JSON payload serialized with response_sha256 field set to empty string, then... no wait, that's not standard either.
 
-All skill files are loaded (create route, docx-js core, design system with R1 recipe + IG-1 palette, common rules, report scene, TOC reference). Now writing the generation script in three parts.
+Hmm. Previous cycles (per summary) used a specific format. The summary mentions the council framework has been used in prior cycles with json payloads. I don't have the exact prior response format. I'll do a reasonable thing: compute the SHA-256 of the canonical JSON (with response_sha256 = "") using a Python script, then insert that hex into the final JSON. I must be careful the human-readable text in my reply matches. Actually simpler: I'll compute the hash over the JSON payload string that I will paste (with response_sha256 placeholder ""). Then paste the JSON with the computed hash. That's self-consistent and verifiable by the operator using the same rule. I'll document the hashing rule.
 
-Wrote 1 files
+Let me now think about the actual technical content. This is the meat. I need to deliver:
 
-Part 1 (helpers + cover) done. Now Part 2 — chapters 1–4 (verdict, writer forensics, collector forensics, cross-cutting layer).
+§1 Provenance Review (Role D partial):
 
-Wrote 1 files
+cycle_envelope.json embedded = {} → DENIED_BAD_CYCLE_ENVELOPE.
+Dispatch template drift: Excel 34-sheet mandate vs repo's 35-feed Parquet lake (commit 77dc330a5). Template staleness dispute.
+Cutoff causality: current wall clock 2026-10-27 (Asia/Calcutta) vs embedded cutoff 2026-10-26 16:34:05 UTC → dispatch envelope >20 min old at evaluation → stale.
+No SHA-256 digests available (empty envelope) → manifest unverifiable.
 
-Part 2 done. Now Part 3 — chapters 5–8 (narrative math, capital survival, decision matrix, roadmap) plus document assembly.
+§2 Role A: Statistical regime. No live OHLCV → cannot compute VR(4), ER(48), Newey-West t, OU theta. Per Part 2: unknown probabilities remain null → HOLD. But I can deliver the methodology: exact estimator pipeline, decision thresholds, and how the Parquet feeds (11_Technical EMA20/50/200 → note the Fib-Prime EMA ribbon 5/13/34/89/144/233 is NOT among the feeds — gap! 11_Technical has ATR/EMA20/50/200 per summary; the new Fib-Prime EMA hierarchy requires EMAs 5,13,34,89,144,233 which are absent → data gap dispute). Also 20_Auction_Market_Structure provides VAH/VAL/POC/VWAP for Z-score context. Good catch — flag missing EMA set as a hard gap for Model 2 gating.
 
-Wrote 1 files，Ran 2 commands
+§3 Role B: Microstructure. 10 Price Magnet feeds, Rule A/B (TP front-run magnets by 5-10 ticks; SL outside stop-sweep clusters), 180s whale persistence (10_Whale_Orders has persisted walls), orderbook asymmetry (17_Orderbook 15 assets), CVD (18_CVD). Scenario A and B rulings from the previous mandate. Adverse selection markouts.
 
-Document generated and validated — 0 errors (the two warnings are by-design: dense table/code line spacing, and Consolas which exists on the desk's Windows target). Appending the worklog entry, then delivering the full council audit.
+§4 Role C: Solvency. Balance 4,846.32 (from prior cycle envelope, carried as last-known inventory). H_net: the prompt says +68.07 USD — wait, prompt says "H_net = Realized_Balance - Contingency_Reserve (2.00 USD) - 4,795.00 USD = +68.07 USD". But 4,846.32 - 2.00 - 4,795.00 = 49.32, not 68.07. Let me compute: 4846.32 - 4795 = 51.32; minus 2.00 = 49.32. The prompt claims +68.07. That's inconsistent with balance 4,846.32. 4,795 + 68.07 + 2.00 = 4,865.07 ≠ 4,846.32. So the prompt's H_net=+68.07 implies Realized_Balance = 4,865.07. Which is right? The prior cycle envelope (summarized) says balance=equity=margin_free=4846.32, realized_headroom 49.32, kernel_cushion 51.32. So the dispatch's inline H_net=+68.07 is ARITHMETICALLY INCONSISTENT with the last-known balance — flag as dispute (template baseline drift; operator may have updated balance to 4,865.07 in template without updating other fields, or it's a stale hardcoded value). Fail-closed: I must not admit risk on either number without a fresh envelope. I'll present both: if balance = 4,846.32 → H_net = +49.32; the template's +68.07 implies 4,865.07. Discrepancy 18.75 USD. DENIED.
 
-Ran 1 commands
+Ticket_Stress formula: (base_loss + exit_spread) × 1.25 + 2.00 per summary; this dispatch says Ticket_Stress = 1.25 × Nominal_SL_Loss + Exit_Spread_Cost + 2.00. Slight formula drift between the two docs (multiplicative 1.25 applied to sum vs only to SL loss). Flag as formula-version dispute; use the dispatch's (newer) definition but note inconsistency.
+Margin collateralization: 50% margin rate on crypto perps; 0.04–0.06 lot BTC sizing.
+House Money Tier 2: >4,850 unlocks 15–25 USD risk, max 2 concurrent. Balance 4,846.32 < 4,850 → currently Tier 1 (10–12 USD risk). But if H_net were +68.07 → balance 4,865.07 > 4,850 → Tier 2. Another reason the discrepancy matters! Flag precisely: Tier gate flips at 4,850; the 18.75 USD dispute straddles the Tier boundary. Nice detail — deep reasoning.
+Defensive vs House Money regime scaling formula (from previous mandate): e.g., riskUSD(E) = clamp function. Provide formula.
 
-All work complete. Here is the full Council response.
+§5 Role D: Clock/provenance — covered in §1 plus rollover embargo, blackouts, 156-asset universe classification (98 TradFi + 58 crypto; 11 pass spread gate). No live quotes → quote staleness gate unverifiable.
 
-📚 Active Skills Loaded & Applied
-SKILL
-	
-APPLICATION IN THIS REVIEW
+§6 Candidate Discovery: No live telemetry → zero AUTHORIZED candidates. But per "Affirmative Candidate Discovery" and "no superficial veto", I must still deliver substantive engineering: provide the full admission pipeline with a worked example geometry template (e.g., BTCUSD.pi Model 2 pullback with Fib Golden Zone math using hypothetical illustrative numbers clearly marked as ILLUSTRATIVE, verdict WATCHLIST_ONLY/HOLD with nulls). Actually the schema says HOLD rows set verdict=HOLD and unknown numeric fields null. I can include candidate rows as HOLD with null numerics and rich qualitative fields. Maybe 2 example HOLD rows (BTCUSD.pi, ETHUSD.pi) demonstrating the schema fields. And keep candidate_rows mostly empty? The schema requires candidate_rows array; I can include 2 HOLD exemplars. That demonstrates value without fabricating live data. Mark clearly: no live quotes → numerics null.
 
-docx (full chain: SKILL.md → create route → design-system R1/IG-1 → common-rules → report scene → toc)	Archival audit document generated → /home/z/my-project/download/ZAI_Council_Forensic_Audit_Parquet_Data_Lake.docx (postcheck: 0 errors)
-Web research (raw.githubusercontent + repo-tree probes)	6 production files pulled byte-for-byte @ commit 77dc330a5, 2,853 lines read line-by-line
-Worklog protocol	Entry AUDIT-77DC appended to shared ledger
+§7 The pending Parquet audit merge: The previous task (data dumping integrity & narrative decision chain) — I should fold its key findings into this response since it's the last task:
 
-[ALERT] TELEMETRY STALE WARNING — The account telemetry (balance = equity = 4,846.32, 0/0 book) is byte-identical to the Cycle-20261025T101032Z envelope frozen > 1 day before this review. All Section-C capital arithmetic is computed against that snapshot and must be re-validated against a live MT5 poll before any order is staged.
+Mandate 1: limit=10 semantics (9 closed + 1 forming vs 10 closed; is_closed flag; WebSocket 5-30s latency at boundary → must verify; recommend last-to-last candle as the closed reference until is_closed confirmed).
+Asset coverage: CoinGlass default 20-asset cap vs 747/592/120 — root cause (default page size / popular list), expansion via pagination + explicit symbol lists + token-bucket rate limiting.
+Cloudflare Turnstile: authenticated tab reuse + window.fetch; staleness detection (challenge page marker, HTTP 403, response latency); recovery via /json/new.
+Overwrite hygiene: Snapshot vs Rolling Buffer table; retention_rows semantics; (symbol, timestamp_ms) dedupe.
+parquet_feed_writer: os.replace PermissionError retry loop needed on Windows (readers holding handles); fsync ordering (fsync tmp before replace — good; but metadata sidecar written after replace non-atomically → sidecar/feed skew; recommend writing sidecar tmp + replace too).
+Schema consistency: symbol vs Symbol, timestamp string vs epoch → normalizer at reader boundary.
+Intersection Trap: 0.70^15 ≈ 0.47%, 0.70^35 ≈ 3.8e-6 math.
+4-Layer protocol: L1 hard kernel (binary AND) + L2-L4 weighted synthesis; Coherent Thesis Score ≥75.
+Framework choice: Multi-Factor Weighted Scoring with isotonic calibration beats full BBN given data volume; Evidential reasoning as second choice. Provide concrete weights.
+Scenario A: retail 68% long + CVD bullish divergence + POC whale bid >5M → contrarian long bias contingent on sweep confirmation... Actually let me reason: retail 68% long (crowd wrong side), CVD divergence upward (price down but CVD up = accumulation), whale bid at POC >5M resting >180s. Correct action: stage BUY_LIMIT at/above the whale bid shelf (front-run), SL below sweep low outside stop cluster, TP at liquidation magnet cluster内侧. That's the trade.
+Scenario B: TREND_UP but Z=+2.6 SD above VWAP and Feed 25 Absorption_High negative delta divergence → do NOT chase breakout, do NOT counter-trend short (fighting trend), WAIT for VAL-POC pullback re-entry. Ruling: WAIT (Model 2 pullback entry at golden zone).
+Position sizing regimes: riskUSD(E) piecewise: E<4,850 → 10–12; 4,850≤E<5,200 → 15–25 House Money; E≥5,200 (approaching 5,500) → taper defensive? Actually "approaching 5,500 target dynamic scaling": House Money expansion then lock-in as approaching target; approaching 4,795 kernel → defensive contraction: risk = min(base, 0.25×(E−4,795))... Provide explicit piecewise formula.
 
-Metacognitive answer — "If it used all the available skills related, will it improve our response?" Yes, and demonstrably: the docx skill chain forced the audit into a permanent, desk-circulable artifact with validated layout; live file pulls (vs. reviewing from the dispatch's quoted snippets) upgraded the review from advisory to forensic — three of the five SEVERE findings (the _empty sentinel at writer line 72, the $25M hardcoded magnets at matrix lines 195–225, the auditor's 33-feed registry omission) are invisible in the code excerpts quoted in the dispatch and were only catchable by reading the actual files. The skills that would add marginal further value are charts (freshness-latency histograms) and xlsx (finding register as a tracked sheet) — recommended for the remediation phase, not material to the verdict.
+§8 Section 8 Kaizen: skills optimization, omitted risks (correlation between concurrent tickets, funding settlement timing 6_Funding_Fee_Settlement, weekend CFD gaps, spread expansion at rollover, Cloudflare ban risk halting telemetry = blind trading), algorithmic alternatives (Hawkes, Kalman, GARCH cones, isotonic calibration, Bayesian online changepoint for regime, sequential probability ratio test for signal aggregation).
 
-🏛️ Z.AI SOVEREIGN QUANT COUNCIL — FORENSIC AUDIT RESPONSE
-Parquet Data Lake Ingestion Integrity & Narrative Decision Chain (commit 77dc330a5)
+JSON payload: All required fields, authorization DENIED_FAIL_CLOSED, provenance_status DENIED_BAD_CYCLE_ENVELOPE, hard_gate_results showing failures, disputes listing: empty envelope; template drift Excel vs Parquet; H_net arithmetic inconsistency 68.07 vs 49.32; Ticket_Stress formula version drift; Fib-Prime EMA set missing from 11_Technical feed; 35 vs 42 file count discrepancy; cutoff staleness. unknowns: live quotes, fresh OHLCV, current equity, calendar freshness, spread snapshots.
 
-Evidence basis: parquet_feed_writer.py (211L) · 25_CoinGlass_Footprint_Signals.py (471L) · 26_Aggregated_Footprint_Bar_Metrics.py (699L) · parquet_feed_checklist_auditor.py (267L) · unified_liquidation_matrix.py (246L) · time_series_database.py (959L). Three dispatch-named paths returned 404 (parquet_checklist_auditor.py, cdp_browser_utils.py, liquidation_matrix_synthesizer.py) — the actual repository equivalents were substituted.
+Now — should I attempt to fetch GitHub for grounding? The prompt demands empirical verification. Let me attempt a couple of WebFetch calls to GitHub (repo root, maybe Terminal/Data_Factory listing) to at least verify the commit and file existence. If they fail, I note it. Given the response is huge anyway, and network may be unavailable, I'll try 2-3 fetches quickly.
 
-PART 1 — EXECUTIVE SUMMARY & VERDICT ON THE INGESTION CHAIN
-⚖️ VERDICT: FLAWS IDENTIFIED — FIXES MANDATED
+Actually — wait. Let me reconsider. The current date is 2026-10-27. The repo commit in the last known state was 77dc330a5. Fetching GitHub main might show a newer commit — that itself is useful telemetry (or shows fetch failure). Let me try:
 
-The Parquet migration is architecturally superior to the openpyxl monolith it replaced — per-feed file decoupling eliminates the entire cross-sheet lost-update class that dominated C280–C347, and the fsync → os.replace kernel is genuinely atomic. But the desk is currently trading on fabricated and laundered data in specific, identified locations, and the Council does not certify live decisioning until eight P0s ship.
+https://github.com/kbsingh1399/Trading_2/commits/main — get latest commit hash + timestamp.
+Maybe https://github.com/kbsingh1399/Trading_2/tree/main/Data/feeds — file listing.
 
-Finding census — 34 defects: 5 SEVERE · 10 HIGH · 12 MEDIUM · 7 LOW.
+Let me do these fetches. If they fail (no internet), I proceed with TELEMETRY STALE WARNING (which I'd output anyway due to empty envelope).
 
-The three that mandate immediate quarantine:
+Let me also compute the numbers precisely with a script:
 
-M1 (CRITICAL) — unified_liquidation_matrix.py:195-225 invents liquidation magnets for every macro CFD: Short-Liq at price + 2.5×ATR, Long-Liq at price − 2.5×ATR, each with hardcoded liquidation_vol_usd = 25,000,000.0 and $50M cumulative — written into your primary magnet feed 14_Liquidation_Matrix with no is_synthetic flag. Rule A ("TP front-runs the dominant magnet") on NAS100/GOLD/EURUSD is currently front-running fiction.
-S1/S2/B1/B2 — The footprint collectors launder failure as fresh PASS data: DOM-timeout falls through silently and writes zero-price fallback rows (25:130-143→284-304); all-27-coins-fail still writes macro-only and returns True (25:433-445); feed 26 ships fabricated VAH/VAL/VWAP (vah=max_bucket, val=min_bucket, vwap=poc=close, 26:283-286) and hardcoded metals volumes (volume=250000, buy=sell=125000, trades=80, 26:419-428).
-W1 — The writer's mode parameter is dead code (line 53 declared, never referenced). No append/upsert exists. Every rolling feed (18, 26, 7_Live_Liq, 22, 19_News/Calendar, 1, 2) is truncated to its last batch; feed 26's entire history is a 10-bar sliding window with permanent gaps on any failed cycle.
+0.70^15, 0.70^35.
 
-Institutional control failure: the freshness auditor's registry contains 33 feeds and omits 14_Liquidation_Matrix, 25, and 26 (A1) — your primary magnet feed and both footprint collectors are structurally unmonitored. SLA truth is triple-drifted: docstring says <1.5m High Velocity, code sets 15.0 min, your mandate demands <5.0m (A2). Feed 23 is a tautology — the auditor writes it from its own results mid-audit, so it can never be stale (A3).
+H_net variants.
 
-Verified end-to-end: your architecture instinct on the intersection trap is correct and Section III formalizes it — but the Council corrects your capital arithmetic (Part III, §5): the true kernel runway is 2.8 stressed tickets (1.4 dual rounds), not 4–5.
+Margin math examples: 0.04 BTC @ 81,000 → margin = 0.04×81,000×0.5 = 1,620.00 → 33.3% of 4,846.32 equity; margin level = 4,846.32/1,620 = 299.2%. Two tickets: 3,240 → 66.85% equity, margin level 149.6% < 200% → violates Invariant 2! Hmm interesting: prompt says "Volume MUST be sized down to 0.04–0.06 lot to preserve concurrent two-ticket capacity". Let me check 0.04: two concurrent 0.04 tickets → total margin 1,620×2 = 3,240; 0.5×Equity = 2,423.16. 3,240 > 2,423.16 → violates Invariant 1 (margin used ≤ 50% equity). So even 0.04+0.04 concurrent fails at 81k BTC price with 50% margin rate! Unless only one BTC ticket at a time, or smaller. 0.03: margin 1,215 each; ×2 = 2,430 > 2,423.16 (barely violates). 0.025: 1,012.5 ×2 = 2,025 ≤ 2,423.16 ✓; margin level = 4,846.32/2,025 = 239.3% ≥ 200% ✓. So max concurrent-pair BTC volume ≈ 0.0249 at 81k. With equity 4,846.32: max total margin = 2,423.16 (Invariant 1) AND margin level ≥200% → total margin ≤ 2,423.16 (same constraint since 200% means margin ≤ equity/2 — identical). So per-ticket BTC ≤ 0.0249 @ 81,000. The template's "0.04–0.06 lot" guidance is inconsistent with its own Invariant 1 at BTC 81k! Actually wait — maybe 0.04–0.06 refers to a single ticket while the other slot is unused or a low-margin asset (SOL ~ low price). E.g., 0.06 BTC = 2,430 margin (50.2% equity — just over). 0.04 BTC = 1,620 (33.4%) leaving room for a SOL ticket: SOL at, say, 200 USD? 0.04–0.06 lot BTC... For SOL: SOLUSD.p volume in SOL? If 20 SOL @ 200 = 4,000 notional ×0.5 = 2,000 margin. Hmm. The claim "Sizing 0.10 BTC at 81,000 consumes 4,047.50 USD (83.2% equity)" — check: 0.10×81,000×0.5 = 4,050.00, they say 4,047.50 → implies price 80,950 or margin rate 49.97%. 4,047.50/(0.10×0.5) = 80,950. OK price 80,950. 4,047.50/4,865.07? 83.2% → equity = 4,047.50/0.832 = 4,864.78 ≈ 4,865.07. So that example was computed with balance 4,865.07 — consistent with H_net +68.07! So the template's inline math uses 4,865.07, i.e., the template snapshot was taken when balance was 4,865.07, while the prior cycle envelope said 4,846.32. So the +68.07 is from a (presumably later) template authoring time. Balance moved −18.75 between template authoring and last envelope? Or envelope older. Either way: unverifiable → dispute, fail-closed. Great forensics: I can reverse-engineer that 4,047.50/0.832 = 4,864.78 ≈ 4,865.07 and 80,950 price. Let me verify: 0.10 × 80,950 × 0.5 = 4,047.50 ✓. And margin level 120.20%: equity/4,047.50 = 1.202 → equity = 4,865.08 ✓. Beautiful — the template's own arithmetic pins its balance to 4,865.07/4,865.08. That's a genuinely deep forensic catch to include: two different balance snapshots coexist in the template (4,846.32 envelope vs 4,865.07 inline math), a 18.75 USD discrepancy that also straddles the 4,850 Tier-2 gate (4,846.32 < 4,850 < 4,865.07). Excellent.
 
-PART 2 — LINE-BY-LINE CODE & ARCHITECTURE VULNERABILITY REPORT
-2.1 parquet_feed_writer.py — the atomic kernel is sound; the state semantics are not
+Margin level check at 0.04 BTC @80,950: margin = 1,619.00; equity 4,865.07 → 33.28%; margin level 300.5%. Two tickets: 3,238 → 66.57% > 50% → violates Invariant 1. So "0.04–0.06 to preserve two-ticket capacity" is wrong for BTC+BTC; it's right only if second ticket is small-margin or if "two-ticket capacity" means margin level of one ticket leaves capacity. I'll flag: BTC-BTC concurrent pair caps at ~0.0249 lots each at 80,950 (or 0.0246 at 81,000 with 4,846.32 equity). Compute precisely: equity 4,846.32 → max total margin 2,423.16 → per ticket 1,211.58 → volume = 1,211.58/(80,950×0.5) = 0.02993? Wait: volume × price × 0.5 = margin → volume = margin/(price×0.5) = 1,211.58/40,475 = 0.02993. Hmm that's 0.03. Let me redo: 1,211.58/40,475 = 0.029934. So ~0.0299 each. Earlier I said 0.025 — let me recompute. 0.04 BTC margin = 0.04×80,950×0.5 = 1,619.00. Two = 3,238.00. Max allowed = 2,423.16. 3,238 > 2,423 → violate. Per-ticket cap = 2,423.16/2/40,475 = 0.02993. Yes ~0.0299. OK so BTC+BTC at 0.04 each violates; at 0.0299 each passes both invariants (margin level: 4,846.32/2,423.16 = 200.0% ✓ boundary). At 0.025 each: total margin 2,023.75 (equity 4,846.32) → level 239.4% ✓.
 
-What survives scrutiny: tmp-in-destination-dir → fsync → os.replace (lines 111–131) is a true atomic swap on NTFS (MoveFileEx); the 10× PermissionError retry correctly targets WinError 32 sharing violations (CPython maps sharing violations → PermissionError); readers holding an open handle during swap see the complete old file — no partial reads are possible. Per-feed decoupling ends the Excel lock wars.
+Wait, but is equity the right denominator? Invariant 1: Margin_Used + Margin_Req ≤ 0.50 × Equity. With equity 4,846.32 → 2,423.16. Yes.
 
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-W1	🔴 SEVERE	:53	mode="overwrite" never used in body — no append/upsert/merge exists anywhere in the module
-W2	🔴 SEVERE	:72	Empty batch → persists 1-row {"_empty": True} sentinel overwriting last-good data with a fresh PASS sidecar; downstream schema gains a junk column and loses all real columns
-W3	🟠 HIGH	:160-164	Sidecar os.replace has no retry (parquet path has 10). Reader holding sidecar → exception → RuntimeError raised after parquet already swapped → caller thinks write failed → double-write churn + parquet/sidecar version skew. No status:"FAIL" sidecar exists on any path
-W4	🟠 HIGH	:111,161	tmp collision: parquet tmp is pid+ms (two threads, same feed, same ms); sidecar tmp is pid only — concurrent same-feed threads in one process deterministically interleave into the same sidecar temp → corrupt JSON. Your own time_series_database.atomic_write_bytes:57 already uses the correct time_ns() pattern
-W5	🟡 MED	:129-136	Retry budget = 1.1s total — Defender/AV routinely holds new files for seconds; on exhaustion the batch is destroyed, not spilled
-W6	🟡 MED	:74-104	No pinned schemas — from_pylist re-infers per cycle (all-null → null type, int→double drift); schema param exists, zero callers pin it
-W7	🟡 MED	:141-156	Sidecar freshness = write time, not data time — stale upstream data is laundered as fresh; no data_asof, no sha256
-W8	⚪ LOW	except-path	Orphan .tmp_*.parquet on hard kill — the most plausible source of your 42-vs-36 file count (§7.2)
-W9	⚪ LOW	:107-108	retention_rows tail-slices in insertion order, no sort guarantee
-
-Mandated writer contract (drop-in shape):
-
-python
-def write_parquet_feed(feed_name, data, schema=None, mode="overwrite",
-                       retention_rows=None, keys=("symbol","timestamp_ms"),
-                       custom_metadata=None, data_asof_epoch=None):
-    table = coerce_to_arrow(data, schema)
-    if table.num_rows == 0:                       # W2: empty is FAIL-CLOSED
-        emit_sidecar(feed_name, status="FAIL", reason="empty_batch")
-        raise EmptyBatchError(feed_name)          # previous good parquet untouched
-    if mode == "upsert":                          # W1: real rolling path
-        old = pq.read_table(target_file) if target_file.exists() else None
-        table = upsert_dedupe(old, table, keys).sort_by([("symbol","ascending"),
-                                                         ("timestamp_ms","ascending")])
-        if retention_rows: table = table.tail(retention_rows)
-    tmp = FEEDS_DIR / f".tmp_{feed_name}_{os.getpid()}_{time.time_ns()}.parquet"  # W4
-    pq.write_table(table, tmp, compression="SNAPPY", version="2.6"); fsync_file(tmp)
-    replace_with_retry(tmp, target_file, attempts=20, base=0.05, cap=8.0)         # W5
-    meta = {"feed_name": feed_name, "status": "PASS", "row_count": table.num_rows,
-            "data_asof_epoch": data_asof_epoch, "sha256": sha256_file(target_file),
-            "write_epoch": time.time()}           # W7: data time, not write time
-    write_sidecar_atomic(meta)                    # W3: same retry, atomic
-2.2 25_CoinGlass_Footprint_Signals.py — DOM-harvest collector
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-S1	🔴 SEVERE	:130-143, 284-304	Hydration poll (20×0.3s) falls through on timeout with result discarded — Cloudflare interstitial or Next.js hydration stall ⇒ writes fallback rows with last_price=0.0 as PASS. Same unguarded pattern on the signals poll (15×0.3s)
-S2	🔴 SEVERE	:433-445	Per-coin exceptions swallowed, no failure tally; all 27 coins failing still writes macro-only rows and returns True — 96% coverage collapse is invisible (and A1 means nothing else is watching)
-S3	🟠 HIGH	:135,148,205,214	Obfuscated CSS-module hashes (.KpiStrip_kpi__7Xgii, .SidePanel_lrow__m40N_) break on every CoinGlass deploy; S1 converts that into junk rows, not loud failure
-S4	🟠 HIGH	:421-430	cdp_cmd loops ws.recv() with no timeout — hung tab ⇒ collector hangs forever, feed silently never updates; WebSocket never explicitly closed
-S5	🟡 MED	:251-262	Unit confusion: "2.3K AVAX" parsed as 2,300 USD in absorbed_vol_usd (only ETH/BTC/SOL tokens excluded) — poisons absorption-weighted scoring for every alt
-S6	🟡 MED	:229	All rows stamped with the same harvest-end timestamp — coin #1's data is up to 5–6 min older than its stamp claims (structural uniform-lie)
-S7	🟡 MED	:236,265	signal_time = "10-26 16:36" — no year/tz/epoch, mixed with "LIVE" sentinels; unreliable dedup/sort key
-S8	⚪ LOW	:267	symbol = f"{coin}USDT" fabricated for CL/XAU/SPX — never joins to broker symbols in 11_Technical; asset_registry.py exists but is not wired
-S9	⚪ LOW	:187-210	"All" sub-tab click raced via setTimeout(100); virtualized list ⇒ "100% of signals" unverifiable (no row-count assertion vs the "All N" label)
-2.3 26_Aggregated_Footprint_Bar_Metrics.py — dual-path collector
-ID
-	
-SEV
-	
-LOCATION
-	
-DEFECT
-
-B1	🔴 SEVERE	:283-286, 574-578	Fabricated value area: vah=max_bucket_mid, val=min_bucket_mid, vwap=poc=close; comment claims "70% profile" — no 70% computation exists; memory path uses session high/low as VAH/VAL
-B2	🔴 SEVERE	:419-428	Hardcoded metals volumes (250000/125000/125000/80/3125) written as real data, no is_synthetic flag
-B3	🔴 SEVERE	:208,276 vs 516,586	cumulative_delta_usd has two meanings in one file: 10-bar rolling sum (ephemeral path) vs ~300-bar cumulative (memory path) — CVD-divergence logic cannot tell which
-B4	🟠 HIGH	:476-478	React fiber fixed-chain walk (return.return.memoizedState.next.next.next…) breaks on any render-order change; swallowed → silent degradation to the 10-bar path
-B5	🟠 HIGH	:157-178	window.fetch venue loop: empty catch(e){}, no res.ok check — CF 403 HTML → res.json() throws → swallowed → "venue has no data"; ~54 sequential fetches with no rate limiting
-B6	🟡 MED	limit=10 path	Forming bar ingested with no is_closed, no bar-close check, bar-OPEN timestamps (→ Mandate 1 Q1 = CONFIRMED)
-B7	🟡 MED	:618-623 vs 571	Duplicate-symbol risk on D.sym string mismatch (BTCUSDT vs BTC) — two divergent-semantics row-sets, no (symbol, timestamp_ms) dedup
-B8	🟡 MED	:279-281	OI join silently carries prev_oi; first bar reports OI=0.0 by construction
-B9-B11	⚪ LOW	:286, 509-514, 573	mid_p NameError on empty buckets (swallowed); USD conversion at bar-close px for all buckets; user-selected tab timeframe (1H/4H) contaminates the nominal-15m feed
-
-Required CDP hardening (both collectors):
-
-python
-async def cdp_cmd(ws, pending, method, params=None, timeout=20.0):
-    mid = next_id(); await asyncio.wait_for(ws.send(json.dumps(
-        {"id": mid, "method": method, "params": params or {}})), timeout)
-    try:    resp = await asyncio.wait_for(wait_matching(pending, mid), timeout)
-    except asyncio.TimeoutError: raise CDPTimeout(method)   # fail LOUD, never hang
-
-
-# challenge probe BEFORE extraction:
-probe = await cdp_cmd(ws, pending, "Runtime.evaluate", {"expression":
-  "(() => ({title: document.title, cf: !!document.querySelector('iframe[src*=challenges]')}))()"})
-if probe["cf"] or "Just a moment" in probe["title"]: raise CloudflareChallenge(coin)
-
-
-# coverage gate before ANY write:
-if harvested / total < 0.90: raise CoverageCollapse(harvested, total)   # exit 2 + FAIL sidecar
-2.4 Mandate-1 Forensic Rulings (the four questions)
-
-Q1 — "Last candle" bug: CONFIRMED PRESENT. CoinGlass orderFlow/kline endpoints return the forming bar as the final element; timestamps are bar-OPEN times; neither collector flags it (B6). At the 15:00 boundary the exchange tape leads CoinGlass's aggregation by 5–30s. Mandated protocol: every row gains bar_close_ms = ts_ms + interval_ms and is_closed = now_ms >= bar_close_ms; the forming bar is consumed only in live-semantics contexts (KPI tiles, current-bar delta) and excluded from closed-bar features (EMA stack, CVD slope, backtests); harvest at boundary +45s (captures new bar inside the aggregation lag) and re-poll at +150s to upsert the finalized (symbol, ts_ms) row — last-write-wins upsert makes "never drop the latest bar" structural, because the second pass overwrites partial volumes with final ones.
-
-Q2 — Coverage: a front-end pagination artifact, not an API cap. The 747–940-asset feeds are computed endpoints over the full perp universe; LS-Ratio (20), OI (20), Liq-Map (21), Orderbook (15) are ranked table views where CoinGlass's UI default page size is 20. Expansion: paginate limit=100&page=k via the authenticated tab; fan out orderbook per-symbol across the 120-broker universe under a 1 rps token bucket + jitter (~2–3 min sweep, inside tactical SLA), priority broker-tradable ∩ OI-rank; exponential backoff on 403/429 with a per-domain budget (~2,400 req/h); auditor asserts per-feed asset counts (747 / 120 / 20 …) against a coverage manifest.
-
-Q3 — Cloudflare Turnstile: zero triggers is not guaranteeable; zero silent failure is. The mandate's proposed architecture — window.fetch inside the long-lived authenticated tab — is endorsed as optimal: requests inherit session cookies, cf_clearance, and the real TLS fingerprint. Ephemeral /json/new tabs inherit the same profile cookies and usually pass, but bursty new-tab navigation is exactly what Turnstile scores. Hardening stack: (i) warm pool of 1–2 persistent hidden tabs, SPA-navigated, reused across cycles; (ii) explicit challenge detection (403 / HTML content-type on a JSON endpoint / title "Just a moment…" / challenge iframe) → fail-loud exit + FAIL sidecar, never zeros; (iii) keepalive pinger against idle-token expiry; (iv) pre-cycle /json health check with re-targeting on dead tabs; (v) on cf_clearance expiry: skip one cycle with FAIL status + human re-auth prompt (automated CAPTCHA solving is out of scope). Stale/disconnected authenticated tab fallback order: second pooled tab → DOM harvest → fail-loud skip. Edge case registered: a stale tab whose clearance expired mid-sweep produces partial 403s — the per-coin failure tally (S2 fix) converts this from invisible to measured.
-
-Q4 — Overwrite hygiene: the lake conflates two storage classes.
-
-Point-in-time snapshots (overwrite is CORRECT): 00, 3×3, 5_OI, 5_Funding, 6, 7_Heatmap, 8×2, 9×4, 10, 11, 12, 13, 14_HL_Map, 15, 16, 17, 20, 21, 4.
-Rolling time-series (overwrite DESTROYS data — upsert + retention REQUIRED): 18_CVD, 26_Bars, 7_Live_Liq (event tape), 22_MTF, 19_News, 19_Calendar, 1_ETF, 2_Netflow, 23 (history optional). 25 = hybrid (2h-TTL signal rows).
-Today none of the rolling feeds have history anywhere — the TSDB covers only 8 legacy streams (T2). Cumulative-delta history and 30-day liquidation profiles do not exist and cannot be reconstructed retroactively. Strategic remedy (preferred): extend time_series_database.py streams to all 36 feeds and demote Data/feeds/*.parquet to a pure latest-snapshot cache — snapshots stay trivially atomic, history becomes first-class, and the gap journal becomes real. Interim remedy: mode="upsert" per the Listing 2-1 contract.
-2.5 The audit/history layer (parquet_feed_checklist_auditor.py, unified_liquidation_matrix.py, time_series_database.py)
-A1/A2/A3 (🔴): 33-feed registry omitting 14/25/26; SLA triple-drift (1.5m docstring / 15m code / 5m mandate); feed-23 self-write tautology (:124-152) with except: pass.
-A4/A5 (🟡): trusts sidecar row_count blindly when fresh (corrupt/_empty parquet passes — never opens the file unless fallback); checklist JSONs written non-atomically (:239-247) — the exact defect the writer solved.
-M2–M5 (🟠/🟡): DEX side inference defaults anything-not-SHORT/SELL to "Long Liquidation" (:153) — garbled fields silently inflate long-side magnets; freshness laundering (inputs read without vintage checks, output stamped now_ist); docstring promises distance_pct/z_score columns that records don't contain (the exact silent-drop class your subagents hit); parser binds CoinGlass typos "Cummulitve_Liquidation"/"Binanace" (:103-105) — an upstream spelling fix zeroes those columns silently; Tier-3 venues documented but not implemented.
-T1/T3 (🟡/⚪): master_manifest.json read-modify-write with no inter-process lock (:772-833) — concurrent daemons lose manifest entries; dates_present grows unbounded; no retention vacuum for the gzip tree. T2 (🟡): SUPPORTED_STREAMS = 8 legacy streams — the history coverage gap behind Q4. Praise where due: TSDB's atomic_write_* (:53-68) is the correct collision-safe pattern the parquet writer should adopt; WAL + busy_timeout + sha256'd snapshots + gap journaling is institutional-grade.
-PART 3 — THE QUANTITATIVE NARRATIVE SYNTHESIS HEURISTIC
-3.1 The Intersection Trap: your math is right, and the deeper failure is correlation
-
-0.70¹⁵ = 0.474%, 0.70³⁵ = 3.8×10⁻⁶ — verified. But the deeper truth: the gates are not independent — 9_MaxPain_24H and 8_Map_1D describe the same resting leverage from two angles; 17/10 observe the same depth; 18/26 are the same taker aggression at two granularities. With average pairwise correlation ρ̄, effective independent bets are:
-
-N
-eff
-	​
-
-=
-1+(N−1)
-ρ
-ˉ
-	​
-
-N
-	​
-
-
-At N=15, ρ̄=0.4 → N_eff = 2.27: demanding fifteen confirmations is demanding the market repeat the same two-and-a-quarter independent facts fifteen times. The remedy is not looser thresholds — it is collapsing 35 feeds into 9 decorrelated clusters scored across 3 layers.
-
-3.2 The formalized kernel (Layer 1 — binary, never scored)
-GATE
-	
-RULE
-	
-FEED
-
-K1	Spread ≤ 25 bps crypto / ≤ 5 bps TradFi	00
-K2	Blackout ±15m crypto news / ±35m sovereign	19_Calendar
-K3	Post-stress equity ≥ 4,795.00 (stress formula §5)	00
-K4	Data liveness: every consumed cluster within 2× SLA — fail-closed on data (the enforcement hook making Part 2's defects decision-relevant)	23 + sidecars
-K5	Rollover embargo 21:15–22:30 UTC; weekend/illiquid-session gates	clock
-3.3 Scoring kernel (Layers 2–4)
-
-Cluster collapse (36 feeds → 9 clusters): L2 Regime w=0.35 → {Auction/Value (20 lead), Trend engine (11), Positioning (5_OI+5_Funding+3_4H), Macro flows (1+2+9_7D/3D+8_7D)}. L3 Tape & Magnets w=0.50 → {Depth (17+10, 180s persistence), Delta (18+26), Absorption (25), Magnet geometry (14_Matrix+14_HL+15+8_1D+9_24H/48H), Cascade fuel (7+22+7_Heat)}. L4 Context w=0.15 → {Sentiment (19_News+12), Intel (16+4)}. At 9 clusters, ρ̄≈0.3 → N_eff ≈ 2.65 — an honest count of independent bets.
-
-Each cluster i emits agreement s_i ∈ [−1,+1] and confidence c_i ∈ [0,1] (halves beyond 2× SLA, zeroes beyond 4×; scales with feeds successfully read in-cluster):
-
-A
-L
-	​
-
-=
-∑w
-i
-	​
-
-c
-i
-	​
-
-∑w
-i
-	​
-
-c
-i
-	​
-
-s
-i
-	​
-
-	​
-
-∈[−1,+1],TQS=100(0.35max(0,A
-L2
-	​
-
-)+0.50max(0,A
-L3
-	​
-
-)+0.15max(0,A
-L4
-	​
-
-))
-
-Admission rule (replaces the boolean AND): all K-gates pass ∧ A_L3 ≥ +0.40 ∧ ≥ 3-of-5 L3 clusters with s_i ≥ +0.5 ∧ TQS ≥ 75 ∧ no veto.
-
-Why the quorum kills the starvation: at p=0.70 per cluster, P(≥3 of 5) = 10(0.343)(0.09) + 5(0.2401)(0.3) + 0.168 = 0.3087 + 0.3602 + 0.1681 = 83.7% per-layer pass vs 16.8% for a five-way AND — while the TQS≥75 cut plus the veto list calibrate the final admission rate to the target 8–15% of cycles (≈3–5 executions/day on a 2-minute tactical cadence — matched to your 2 slots). Bayesian framing for monthly recalibration: each cluster is a likelihood-ratio witness; admission ≈ posterior log-odds ≥ log 2.0; re-fit the TQS cut from the trade log.
-
-Veto list (hard-override, direction-zeroing): V1 primary-venue CVD divergence against θ, |z| ≥ 1.5 (18/26) · V2 counter-magnet: largest opposite cluster within 1.0×ATR carries >1.5× the target magnet's notional (14) · V3 Trapped-traders against θ at entry level (25) · V4 OI contracting >1% against a breakout (5_OI) · V5 retail crowd ≥70% one-sided without absorption backing (3_15M + CVD flat).
-
-3.4 Scenario rulings
-
-Scenario A — retail 68% long + CVD rising on divergence + >$5M whale bids at POC → rule LONG via absorption, passive entry. Canonical accumulation signature: crowd supplies inventory into persistent demand; delta confirms absorption, not exhaustion. Execute: staged BUY_LIMIT at the POC/whale-bid shelf (never a chase into the crowd's ask); SL below the whale shelf − 0.30×ATR14, outside any feed-15 cluster (Rule B); TP at the dominant upper magnet front-run by 0.15×ATR, ≥1.5R (Rule A); check V4 (OI must build) and V2 (no larger counter-magnet overhead). Expected TQS ≈ 78–84 → standard risk.
-
-Scenario B — TREND_UP + price at +2.6σ above VWAP + Absorption_High with negative delta → STAND ASIDE; a third option beyond your binary. Chasing is forbidden (entry beyond value with V1-risk divergence already flagged); a counter-trend short is forbidden by the regime cluster unless a reversal itself scores TQS ≥ 85 with regime consent — which this configuration does not grant. Correct institutional actions: existing longs tighten to the prior 15m bar low and take partial at +1R (extension is an exit-management trigger, not an entry trigger); new risk works a limit at VAL/POC where trend-continuation and mean-reversion share an entry, and the re-queried tape decides.
-
-3.5 Rules A/B formalized (magnet-anchored TP/SL)
-Rule A: TP_long = M* − δ_tp·ATR14, δ_tp ∈ [0.10, 0.25] — front-run the dominant directional cluster by 5–10 ticks (≈0.10 ATR on BTC-15m); M from non-synthetic rows only* (post-M1 quarantine), ×1.15 trust if the cluster spans ≥2 venues. Constraints: edge (TP−entry)/R ≥ 1.5 and corridor purity (no counter-cluster >0.75× target notional between entry and TP — else V2 fires).
-Rule B: SL_long = min(entry − 1.2·ATR14, S*_below − 0.30·ATR14); SL forbidden inside [cluster_low − 0.05·ATR, cluster_high + 0.25·ATR] (sweep-wick zone). Cluster within 0.5×ATR of the ideal SL → widen beyond cluster_high + 0.30·ATR and reduce size to hold R constant rather than skipping. 0.786 invalidation-shelf rule applies from the standing canon. Sizing units = R/(entry−SL); 50% IMR; post-open margin level ≥200% for both slots jointly.
-3.6 Section C — capital survival (stress-corrected)
-
-Nominal math says 49.32/12 = 4.1 stopouts ("4–5" per your dispatch). The canonized stress model — (R + S_exit)×1.25 + 2.00, validated to exact match across consecutive cycles — gives 17.43/ticket (current spread state) and 27.10 (adverse 22-pt regime):
-
-METRIC
-	
-VALUE
-
-H_net (kernel headroom, net of $2 fee reserve)	49.32
-Canonical runway	49.32 / 17.43 = 2.83 tickets → 1.4 dual rounds (2 survive w/ 14.46 left; 3rd breaches by 2.97)
-Adverse-regime runway	49.32 / 27.10 = 1.82 tickets — one full dual-slot round (54.20) breaches the kernel
-Hard-floor runway	246.32 / 17.43 = 14 stopouts; dual-joint adverse worst case leaves 192.12 above 4,600
-Path to 5,500	+653.68 ≈ 23 net winners at 2.32RR/12R — the honest path is the house-money ladder after the first +2R, not oversized standard tickets
-
-Regime ladder: DEFENSIVE (equity <4,820 or H_net <25): R=5–6, 1 slot, TQS≥85 → STANDARD (4,820–4,900, current): R=10–12, 2 slots, TQS≥75 → ATTACK (4,900–5,100): R=12 + pyramid at +2R (only when free margin still covers 2× stressed SL) → HOUSE MONEY (≥5,100 or day ≥+2R): ladder 12.87 → 33.20 → 80 risking house profits only, realized never retraced below the 4,846.32 baseline → LOCKOUT: any kernel breach or 3 consecutive stressed stopouts = flat + 24h cool-down + data-chain re-audit. ⚠️ All figures inherit the Part-1 staleness flag — re-poll MT5 before staging.
-
-PART 4 — DECISION MATRIX ON THE 36 PARQUET FEEDS
-
-T1 = Inviolate Hard Filter (binary, fail-closed) · T2 = Primary Trend & Structural Anchor (w 0.35) · T3 = Execution Timing & Tape Confluence (w 0.50) · T4 = Auxiliary Context (w 0.15). Storage per Mandate-1 Q4. "Mon." = currently watched by the auditor.
-
-#
-	
-FEED
-	
-TIER
-	
-ROLE
-	
-STORAGE
-	
-SLA
-	
-MON.
-
-1	00_MT5_Account_Telemetry	T1	K1 spread + K3 equity/margin + sizing	Snapshot	<2m	✅
-2	19_Calendar	T1	K2 sovereign blackout	Rolling	<15m	✅
-3	23_Master_Pipeline_Telemetry	T1	K4 data-liveness (post-fix: collector-emitted, not self-write)	Rolling	<2m	✅
-4	20_Auction_Market_Structure	T2	Regime lead; VAH/VAL/POC anchors	Snapshot	<5m	✅
-5	11_Technical	T2	Trend engine; ATR-14 for all placement math	Snapshot	<5m	✅
-6	5_OI	T2	Positioning; V4	Snapshot	<5m	✅
-7	5_Funding_Rate	T2	Carry & leverage skew (592)	Snapshot	<5m	✅
-8	3_LS_Ratio_4H	T2	Macro positioning bias	Snapshot	<5m	✅
-9	1_Crypto_ETF_Flows	T2	Macro tailwind	Rolling	<15m	✅
-10	2_Spot_Netflow_S	T2	Accumulation/distribution (181)	Rolling	<15m	✅
-11	9_Max_Pain_7D	T2	Weekly settlement magnet	Snapshot	<5m	✅
-12	9_Max_Pain_3D	T2	Swing magnet	Snapshot	<5m	✅
-13	8_Liq_Map_7D	T2	Weekly structural boundary	Snapshot	<5m	✅
-14	14_Liquidation_Matrix	T3	PRIMARY magnet — quarantined until is_synthetic ships (M1)	Snapshot	<5m	❌
-15	14_Hyperdash_Liq_Map	T3	DEX magnet geometry (6,514)	Snapshot	<5m	✅
-16	15_Hyperdash_Stops_Map	T3	Rule B sweep zones (4,194)	Snapshot	<5m	✅
-17	8_Liq_Map_1D	T3	Tactical 24h ladders	Snapshot	<5m	✅
-18	9_Max_Pain_24H	T3	24h shortest-distance magnet	Snapshot	<5m	✅
-19	9_Max_Pain_48H	T3	48h magnet	Snapshot	<5m	✅
-20	17_Orderbook	T3	Depth: L2 asymmetry (expand 15→120)	Snapshot	<2m	✅
-21	10_Whale_Orders	T3	Depth: walls, 180s persistence	Snapshot	<5m	✅
-22	18_CVD	T3	Delta lead; V1	Rolling	<2m	✅
-23	26_Footprint_Bar_Metrics	T3	Delta bars (fix B1–B3 first)	Rolling	<5m	❌
-24	25_Footprint_Signals	T3	Absorption; V3 (fix S1–S2 first)	Rolling 2h-TTL	<5m	❌
-25	7_Live_Liq	T3	Cascade fuel: live tape	Rolling	<2m	✅
-26	22_Forced_Liq_MTF	T3	Cascade fuel: MTF intensity	Rolling	<2m	✅
-27	7_Liq_Heapmap	T3	Cascade fuel: leverage distribution	Snapshot	<5m	✅
-28	3_LS_Ratio_15M	T3	Crowd skew; V5	Snapshot	<5m	✅
-29	3_LS_Ratio_1H	T3	Crowd skew (tactical)	Snapshot	<5m	✅
-30	6_Funding_Settlement	T3	Settlement timing	Snapshot	<5m	✅
-31	13_Hyperliquid	T3	DEX liquidity context	Snapshot	<5m	✅
-32	21_Tradfye_Orderflow	T3	Interbank absorption (TradFi)	Snapshot	<5m	✅
-33	4_Hyperliquid_Analysis	T4	On-chain whale context (108)	Snapshot	<5m	✅
-34	19_News	T4	Sentiment shade (also K2 input)	Rolling	<15m	✅
-35	12_Hyperdash	T4	DEX sentiment shade	Snapshot	<5m	✅
-36	16_Telegram_Intel	T4	Block-print intel shade	Rolling 2h-TTL	<5m	✅
-
-Inventory reconciliation (33 vs 35 vs 36 vs 42): the manifest's "35 feeds + matrix" = 36 canonical files (numbering skips index 24 — internally consistent); the auditor's 33 omits 14/25/26 (A1); the observed 42 is most plausibly 36 canonical + 6 orphaned .tmp_* residue from the W8 hard-kill leak (legacy Excel-era files possible). Mandated: one-time glob diff vs manifest, .tmp_* janitor (>1h) wired into ensure_directories, and a CI assertion registry == manifest == disk-canonical.
-
-CLOSING RULING & REMEDIATION REGISTER (Top-8 of 11)
-PRI
-	
-ACTION
-	
-ACCEPTANCE
-
-P0	M1/B2 quarantine: is_synthetic on 14-Matrix Tier-4 + 26-metals rows; excluded from all magnet scoring	Zero synthetic rows in scored paths
-P0	W2: empty batch = FAIL + FAIL-sidecar, prior parquet untouched; delete _empty sentinel	Forced empty test leaves file byte-identical
-P0	W1: mode="upsert" (+is_closed) for 18/26/7/22/19×2/1/2	Rolling feeds survive a failed cycle gap-free
-P0	A1/A2: auditor → 36 feeds, real SLAs (<2m HV / <5m tactical / <15m macro), kill feed-23 self-write	25/26/14 staleness visible within one cycle
-P0	S1/S2/B5: collectors fail-loud (CF-challenge + DOM-timeout detection, ≥90% coverage gate, per-coin tally)	Simulated challenge → exit 2, zero junk rows
-P1	W3/W4: time_ns() tmp names, symmetric sidecar retry, ~8s jittered budget	Concurrent same-feed writes both valid
-P1	W6/W7: pinned schema registry; data_asof_epoch+sha256 sidecars; wire asset_registry.py	Schema-drift test fails the build
-P2	Freshness architecture: window.fetch batch sweeps (30–60s vs today's 4–6 min), tiered scheduler 60/120–180/900s, single-writer-per-feed, boundary-sync +45s/+150s	Worst tactical age 240.5s < 300s — the <5m guarantee holds with 59s margin
-
-📄 Archival deliverable: /home/z/my-project/download/ZAI_Council_Forensic_Audit_Parquet_Data_Lake.docx — full 8-chapter report (R1/Ink-Gold cover, TOC, all finding tables, corrected writer contract, freshness blueprint), postcheck-validated with 0 errors.
-
-Session summary: Completed the full forensic audit of the Parquet data lake at commit 77dc330a5 — 6 production files read line-by-line, 34 defects registered (headline: fabricated $25M macro magnets in your primary magnet feed, silent zero-data laundering in both footprint collectors, dead upsert parameter, and a freshness auditor that doesn't watch the three most important feeds), all Mandate-1 questions ruled, the narrative-synthesis math formalized with corrected capital-runway arithmetic, and everything archived to the validated Word report. Suggested next steps: (1) ship the five P0s and re-run this audit for certification; (2) ask me to generate the charts/xlsx finding-register add-on for remediation tracking; (3) re-dispatch the next trading cycle with fresh MT5 telemetry so the Section-3 ladder can be recomputed live.
+So the finding: template's 0.04–0.06 lot guidance fails its own Invariant 1 for two concurrent BTC tickets; correct BTC per-ticket cap ≈ 0.0299 (at 80,950/4,865.07) or 0.0299 (4,846.32 @ 81,000: 1,211.58/40,500 = 0.029916). Both ≈ 0.0299. Funny, robust ≈ 0.0299. Actually with 4,865.07: max margin 2,432.54, per ticket 1,216.27, /40,475 = 0.030047 ≈ 0.0300. OK.
+
+Risk math: 10–12 USD risk. Ticket_Stress = 1.25×12 + exit_spread + 2.00. Spread cost for 0.03 BTC: spread bps 25 → 12 USD notional? 0.03×80,950 = 2,428.50 notional; 25 bps = 6.07 USD. Ticket_Stress = 15 + 6.07 + 2 = 23.07. H_net (4,846.32) = 49.32 ≥ 23.07 → single ticket admissible under kernel rule IF fresh envelope confirmed. Two tickets: 46.14 ≤ 49.32 → admissible (barely, 3.18 cushion). Nice worked example.
+
+Wait — but stressed equity: min(B,E) − Admission_Stress ≥ 4,795. 4,846.32 − 46.14 − 2.00(global contingency already in formula? Admission_Stress = sum(Ticket_Stress) + 2.00 global) — the dispatch formula: Admission_Stress = sum(Ticket_Stress_all_concurrent) + 2.00 global. But Ticket_Stress already includes +2.00 fee reserve each. Double contingency? Dispatch defines Ticket_Stress = 1.25×Nominal + Exit_Spread + 2.00. Then Admission_Stress = sum(Ticket_Stress) + 2.00 global. So two tickets: 2×(15+6.07+2.00) + 2.00 = 48.14. Stressed_Equity = 4,846.32 − 48.14 = 4,798.18 ≥ 4,795 ✓ (cushion 3.18). Earlier summary formula: (base+exit)×1.25 + 2.00 = (15+6.07)×1.25+2 = 28.34 each → ×2 +2 = 58.68 → stressed 4,787.64 < 4,795 ✗. Formula version flips admissibility! That's a material dispute: the two Ticket_Stress definitions disagree and the flip is material at current equity. Excellent deep finding. I'll present both computations.
+
+Let me recompute precisely:
+
+Version α (dispatch Part 1.3): T = 1.25×12 + 6.07 + 2.00 = 15+6.07+2 = 23.07. Two tickets: 46.14 + 2.00 = 48.14. Stressed: 4,846.32−48.14 = 4,798.18 ✓.
+
+Version β (prior SOP per summary): T = (12+6.07)×1.25 + 2.00 = 18.07×1.25 = 22.5875 + 2 = 24.5875. Two: 49.175 + 2 = 51.175. Stressed: 4,846.32−51.175 = 4,795.145 ✓ barely (0.145). Hmm actually still passes! Let me recheck. (12+6.07)=18.07; ×1.25 = 22.5875; +2 = 24.5875; ×2 = 49.175; +2 global = 51.175; 4,846.32−51.175 = 4,795.145 ≥ 4,795 ✓ by 0.145 USD. So both pass but cushion differs 3.18 vs 0.15. Interesting — not a flip but a cushion collapse. With 12 USD max nominal and 25 bps spread on ~2,428 notional (6.07), both squeak by. If nominal risk 12 and spread cost higher (e.g., 8 bps on larger notional? no, 25 bps cap → 6.07 max on 2,428.50 notional). Actually notional depends on stop distance: 12 USD risk with 0.5% stop → notional = 12/0.005 = 2,400. With 0.3% stop → 4,000 notional → 25 bps = 10 USD spread cost. T_β = (12+10)×1.25+2 = 29.5; two = 61; stressed 4,783.17 < 4,795 ✗ DENIED. So under β, tighter stops (bigger notional per risk dollar) can flip to denial. Under α: (15+10+2)×2+2 = 56 → 4,790.32 ✗ also denied. OK so both flip for tight stops; fine — I'll present the ledger with a concrete stop-distance table. Actually simpler: present per-0.1%-stop-distance table for 12 USD risk: notional = 12/(0.001×d) where d = stop distance in %. Let me just do a small table in text for stop distances 0.4%, 0.5%, 0.8%:
+
+d=0.8% → notional 1,500 → spread 25bps = 3.75 → T_α = 15+3.75+2 = 20.75; ×2+2 = 43.5 → stressed 4,802.82 ✓✓
+d=0.5% → notional 2,400 → 6.00 → T_α = 23.00; ×2+2 = 48 → 4,798.32 ✓
+d=0.3% → notional 4,000 → 10.00 → T_α = 27 → ×2+2 = 56 → 4,790.32 ✗
+Under β: d=0.5% → (12+6)×1.25+2 = 24.5 → ×2+2 = 51 → 4,795.32 ✓ (0.32 cushion); d=0.3% → (22)×1.25+2=29.5 → 61 → 4,785.32 ✗.
+
+Good, concrete.
+
+Position scaling regime formula (from previous mandate):
+
+Defensive: if E < 4,865: risk = 10–12 nominal cap, and additionally risk ≤ 0.25×(E − 4,795) → at E=4,846.32: 0.25×51.32 = 12.83 → 12 cap binds. At E=4,810: 3.75 → risk must shrink. Linear glide to zero at kernel.
+House Money: 4,850 ≤ E: risk 15–25; cap 25 ≤ 0.25×(E−4,795)? At 4,865: 17.5 → so full 25 only at E ≥ 4,895. Piecewise: risk = min(tier_cap, 0.25×(E−4,795)).
+Approaching 5,500 target: lock-in taper — as E → 5,500, switch to preserving gains: risk = min(cap, 0.5×(5,500−E)×?) hmm. Better: Phase-lock rule: once E ≥ 5,200 (94.5% of target), reduce risk 50% and tighten to only A+ setups (Score ≥ 85) since passing Phase 1 is the terminal goal — avoid late-stage variance. Provide: risk_target_zone = 12 + 13×sigmoid((E−4,850)/50) capped 25, then ×(1 − 0.5×1{E≥5,200}). Keep it as an explicit piecewise table — cleaner:
+E < 4,810: Survival — risk = min(10, 0.25×(E−4,795)), only Score ≥ 85.
+4,810 ≤ E < 4,850: Base — risk = 10–12, Score ≥ 75.
+4,850 ≤ E < 5,200: House Money — risk = min(25, 0.25×(E−4,795)), Score ≥ 75, 2 tickets.
+5,200 ≤ E < 5,500: Target Lock — risk = 10–15 (halve), Score ≥ 85 only, 1 ticket preferred; goal is crossing 5,500 with minimal variance drag.
+E ≥ 5,500: Phase 1 passed — halt new risk, notify operator.
+That's concrete and matches "House Money expansion vs Defensive capital preservation".
+
+Narrative synthesis weights (4-Layer, Coherent Thesis Score):
+L1 hard gates (binary, fail-closed, no score contribution — gates not factors).
+L2 Market Structure & Macro Regime: 30 points max — Auction structure alignment (10), VA/POC location value (8), Macro tailwind ETF flows + spot netflow (7), Funding/OI regime confirmation (5).
+L3 Microstructure & Magnet Narrative: 45 points max — Magnet alignment: TP within magnet cluster interior (10) via 14_Liquidation_Matrix/9_Max_Pain; SL insulation verified (10) — SL not inside 15_Hyperdash_Stops_Map sweep zones or 8_Liquidation_Map ladders (binary 0/10 within L3? make it graded: insulation margin in ATR multiples); Whale/absorption confluence: ≥180s persistence ≥100k notional (8); Footprint confirmation: trapped traders/delta divergence from Feed 25 (8); Orderbook asymmetry + CVD (6); Telegram intel block print corroboration (3).
+L4 Synthesis & Risk Geometry: 25 points max — R:R ≥ 2.0 with magnet-anchored TP (10); EV_net positive after LCB haircut (8); Tier/ regime sizing valid & margin invariants pass (7).
+Thresholds: <50 no-trade; 50–74 watchlist (paper/log only); ≥75 executable (with L1 all-pass); ≥85 A+ (unlocks during Survival/Target-Lock regimes).
+Also conflict resolution: if L3 contradicts L2 (e.g., TREND_UP but Z=+2.6 SD extended with absorption divergence), score cap 74 → forced wait — matches Scenario B ruling.
+
+Scenario A ruling with the score: retail 68% long = contrarian short-squeeze fuel... wait: retail 68% LONG means retail is long; if price sweeps below (stops of retail longs = sell liquidity magnet)... Let me think. CVD divergence up + whale bid >5M at POC → accumulation narrative → buy. But retail 68% long is normally contrarian bearish. Resolution: LS ratio retail long% is a fade indicator for extremes; but combined with whale accumulation at POC and CVD divergence, the correct reading: retail longs are the fuel for a stop-hunt DOWN first (sweep retail long stops below = sell cascade magnet), then reversal up. So action: do NOT market buy; stage BUY_LIMIT below at the whale bid shelf / post-sweep reclaim level, SL below the sweep low with insulation, TP at upper liquidation magnet. That's the sophisticated microstructure read: use retail 68% long as location info (expect downside sweep first), whale bid as the anchor. Entry: BUY_LIMIT at/just above whale bid (POC), filled BY the sweep cascade.
+
+Scenario B ruling: WAIT — no chase, no counter-short; stage pullback limit at Fib golden zone/VAL-POC with SL behind 0.786 shelf; negative-delta absorption at highs warns of bull trap near VAH.
+
+Intersection Trap math: P = ∏p_i. 0.70^15 = ? ln0.7 = −0.356675; ×15 = −5.3501; e^−5.3501 = 0.004747 → 0.47%. 0.70^35: ×35 = −12.4836; e^−12.4836 = 3.78e−6. ✓ matches. Also show hierarchical fix: effective gate count drops from 35 to ~4 (L1 gates binary AND of 5 gates at ~0.9 each → 0.59; then score-based). Provide expected trade frequency restoration: with per-gate pass 0.7, boolean AND(15) → 0.0047 → at 100 evaluations/week → 0.47 trades/week; weighted 75/100 threshold with correlated factors → ~0.25–0.4 admission rate → 25–40/week. Rough but illustrative — mark as illustrative.
+
+35 vs 42 files: reconcile hypothesis — 35 canonical feeds + derived/synthetic artifacts (14_Liquidation_Matrix synthesis) + telemetry sidecars + possibly 11_Technical split + archive → enumerate categories; mandate inventory manifest (feed_manifest.json with sha256 per feed) to close the count gap.
+
+limit=10 semantics: recommend explicit contract: collector must (a) request limit=10, (b) drop the last row unless exchange flags closed (CoinGlass kline endpoints return only closed bars typically; browser-scraped tables may include forming bar), (c) stamp is_closed boolean + bar_close_time into parquet, (d) consumer uses last-to-last as "latest closed" until is_closed verified. WebSocket 5–30s latency at boundary: schedule collection at boundary+35s, use REST confirm pass, and never treat forming bar for signal math; boundary jitter table.
+
+CoinGlass 20-asset cap: default limit=20/popular page param; expansion: per-symbol explicit queries with token bucket (e.g., 1 req/1.2s), jittered, cached session reuse, rotate UA minimal, respect 403 backoff exponential; 120 assets × 8 tables → rate budget math: 960 requests × 1.2s ≈ 19.2 min per cycle < 15-min boundary? 960×1.2 = 1,152s = 19.2 min > 15 min — so stagger across cycles or parallelize 2 sessions → ~9.6 min ✓. Provide that math.
+
+Cloudflare: reuse authenticated tab via CDP /json list, detect staleness: response contains "Just a moment" / cf-mitigated header / HTTP 403 / latency spike → heal: re-focus tab, solve Turnstile via temporary tab only when needed, re-verify with canary fetch; keep warm-up heartbeat every 4 min to prevent session expiry; document failure modes.
+
+Overwrite hygiene: classification table — Snapshot feeds (overwrite OK): all CoinGlass table pulls (LS ratio, OI, funding, liquidation maps, max pain, orderbook snapshot, whale orders current walls, technical, auction structure, ETF flows, news/calendar current), MT5 telemetry. Rolling Buffer feeds (append+dedupe+retention): 18_CVD cumulative must NEVER be recomputed-from-scratch overwrite — accumulate deltas; 26_Aggregated_Footprint_Bar_Metrics should append bars with (symbol, timestamp) dedupe, retention e.g. 3,000 bars; 7_Live_Liq tick tape rolling buffer 50k rows; 16_Telegram intel append-only with retention. CVD feed is the critical one: overwriting with current-window delta destroys cumulative series → silent signal corruption. Flag as CRITICAL finding.
+
+parquet_feed_writer:
+
+os.replace PermissionError: add retry loop (e.g., 25 attempts × 20ms backoff + jitter, total ~500ms+) because Windows readers holding file handles (parquet_checklist_auditor, MT5 subagent, Excel-era leftovers) block MoveFileEx; alternatively readers should open with FILE_SHARE_DELETE semantics — in Python, os.open with O_TEMPORARY only for temp; practical: readers open→read→close fast; writers retry. Recommend: rename-in not needed since replace handles; also write metadata sidecar atomically (tmp+replace) — currently plain open('w') → torn sidecar risk; skew between feed and sidecar if crash between replace and sidecar write → auditor sees stale metadata; fix order: write sidecar tmp before replace? No — sidecar must reflect final file; write sidecar after replace but atomically, and embed feed content hash; auditor treats sidecar age > 2× period as suspect.
+retention_rows semantics undefined in dispatch; recommend: apply only to buffer feeds, post-write truncation to newest N rows.
+Crash windows: tmp orphan cleanup on startup (delete .tmp_* older than 1h).
+fsync cost per write is fine at these sizes.
+pyarrow table construction: type sanitization silent coercion risk — mandate schema equality check (table.schema.equals(schema)) else fail-loud.
+
+Schema consistency: canonical normalizer: lowercase symbol, strip suffix (.pi/.p preserved for MT5 mapping but separate column symbol_native), timestamp_ms int64 canonical + ts_utc string duplicate; single shared schema module imported by all collectors + reader-side strict validation with rejection counters (23_Master_Pipeline_Telemetry tracks schema_rejects).
+
+OK. Also the metacognitive answer: "If it use all the available skills related will it improve our response?" — Answer: Yes — enumerate which skills map to which sections and note that even maximal skills cannot substitute for the missing fresh cycle envelope; skills improve methodology, not provenance. That's the honest answer.
+
+Also mandatory: skills header. Which skills? The repo-internal ones they list (trader-signal etc.) are ECC/repo skills, not my environment skills. My environment has skills like xlsx/docx/pdf/charts — irrelevant here (no deliverable file requested; this is an analytical response). I should include the header listing the methodologies applied, and honestly state that the referenced @[skill] tokens are repo-side ECC skills whose formal content I applied conceptually (VR, ER, OU, VaR/Kelly, etc.). The header requirement says to include that exact header with skills. I'll include it listing both the requested ones and note environment skills (not applicable for file outputs here). Keep honest.
+
+Now: fetch GitHub? Let me try a few quick fetches to ground: latest commit on main; existence of Terminal/Data_Factory/parquet_feed_writer.py; Data/feeds listing. If network fails, fine — note it. Actually the summary says previous session never fetched; maybe network is unavailable in this environment. I'll attempt 3 fetches in parallel. If they fail, proceed.
+
+Hmm, wait — the response must be huge regardless. Let me manage: do 2-4 tool calls (fetches + maybe a small hash computation), then write the final mega-response. The response_sha256: I'll compute over a canonical JSON file. Plan: after drafting JSON payload, write it to a file with response_sha256 "" placeholder, run sha256, then substitute. The JSON I paste in chat must match exactly. Simpler robust approach: compute sha256 of the payload minus the response_sha256 line? Let me define: response_sha256 = SHA-256 of the UTF-8 JSON serialization of the payload object with field response_sha256 set to the empty string, key order preserved as listed. I'll do that with a script to avoid arithmetic errors, then paste.
+
+Actually to keep things manageable: I'll write the full JSON payload to a file via Write tool, run a tiny python script that computes sha256 with response_sha256="" and rewrites the file with the hash filled in, then Read the file and paste it. That also satisfies Script Persistence Rule (save scripts to /home/z/my-project/scripts/).
+
+Hmm, but the response is expected to be one big message with human-readable sections + JSON. The IM Delivery Rule: "if user requires a file, send the file via send_message" — no file requested; and send_message tool isn't in my available tools here (it's mentioned in rules but not in the function list). So just output text.
+
+Also: "Use maximum skills/agents" — should I delegate to subagents? The rules say PPT work can go to ppt-expert; this is a text analysis task. Subagents lack context; the important rules warn against delegating context-dependent work. I'll do it myself. No skills needed (no file deliverable). I might use WebSearch/WebFetch for grounding — allowed.
+
+Let me now also decide on length/structure. This will be a long response. Structure:
+
+Header: skills loaded; [ALERT] TELEMETRY STALE WARNING (multiple).
+Metacognitive answer (brief but formal).
+§1 Provenance & Envelope Review (Role D lead) — DENIED_BAD_CYCLE_ENVELOPE forensics + template drift (Excel vs Parquet) + balance forensics (4,865.07 vs 4,846.32).
+§2 Role A — Regime: what's blocked, methodology spec, feed gaps (Fib-Prime EMA missing), OU veto integration with magnet map.
+§3 Role B — Microstructure: magnets, Rule A/B formalization, 180s filter, Scenario A/B rulings, markouts.
+§4 Role C — Solvency: full ledger with the α/β stress formula dispute, margin invariant math (0.0299 BTC cap), tier boundary forensics, scaling regime table.
+§5 Role D — Clock: cutoff staleness, blackout, rollover, universe classification; staleness alerts list.
+§6 Data Pipeline Forensic Audit (merged pending Parquet audit) — writer vulnerabilities line-by-line-ish, overwrite hygiene matrix, coverage expansion math, Cloudflare protocol, limit=10 contract, schema normalization, 35v42 reconciliation.
+§7 Narrative Synthesis Heuristic — 4-layer protocol, score weights, calibration plan, Intersection Trap math, framework selection (weighted scoring + isotonic, BBN later).
+§8 Candidate rows (HOLD exemplars ×2, numerics null) + ranking framework under Part 2 with unknowns.
+§9 Section 8 Kaizen Inquest.
+JSON payload (full schema) — fail-closed.
+Closing summary (short, interactive, next steps).
+
+That's comprehensive. Also must keep "no artificial end markers".
+
+Given the extreme length, I should be efficient in tool usage:
+
+Try 3 WebFetches in parallel (repo root, commits, tree of Terminal/Data_Factory).
+Write the JSON payload file + hash script; run; read back.
+Compose final answer.
+
+Let me think about what the fetches should be:
+
+https://github.com/kbsingh1399/Trading_2/commits/main (latest commit hash + date)
+https://github.com/kbsingh1399/Trading_2/tree/main/Data/feeds (feed listing → 42 files?)
+https://github.com/kbsingh1399/Trading_2/tree/main/Terminal/Data_Factory (writer + auditor presence)
+
+Use prompt param to extract specifics. If they fail (network blocked), note failure and proceed with STALE warning.
+
+Now the JSON payload. Required fields:
+
+schema_version: "1.3.0-parquet-era" or similar.
+cycle_id: null (no envelope) — or "UNKNOWN_EMPTY_ENVELOPE". Use null? Better: "UNPROVIDED_EMPTY_ENVELOPE_20261027". Keep string.
+cutoff_utc: null (envelope empty; dispatch text references 2026-10-26 16:34:05 UTC but envelope governs → null + dispute). Hmm — the dispatch says "current cycle UTC (2026-10-26 16:34:05 UTC)". I'll set cutoff_utc: "2026-10-26T16:34:05Z" as the dispatch-declared cutoff but provenance denied. Actually cleaner: cutoff_utc = "2026-10-26T16:34:05.000Z" (as declared), provenance_status DENIED_BAD_CYCLE_ENVELOPE.
+evidence_manifest_sha256: null
+prompt_sha256: compute? I could hash the user message? It's long; I don't have the raw text easily for hashing (I do — I could paste it into a file, but that's heavy). Set null with note. Hmm, prompt_sha256 is meant to be the hash of the dispatch prompt; since envelope empty, template unverified → null. Fine.
+dispatch_nonce: null
+provenance_status: "DENIED_BAD_CYCLE_ENVELOPE"
+inventory_status: "UNVERIFIED_LAST_KNOWN_4846.32USD_20261025T101032Z" — as status string.
+hard_gate_results: object with each gate: envelope_digest → FAIL; freshness → FAIL; calendar → UNKNOWN; spread → UNKNOWN (no live quotes); kernel_stress → CONDITIONAL_PASS_AT_LAST_KNOWN (formulas evaluated at last-known); margin → PASS_AT_LAST_KNOWN (sized); provenance → FAIL. Provide dict.
+universe_coverage: {declared: 156, tradfi: 98, crypto: 58, spread_gate_pass: 11, live_quote_verified: 0}.
+account_tier_and_contingent_capacity: string explaining Tier indeterminate: straddles Tier boundary (4,846.32 vs 4,865.07), Tier 1 if 4,846.32.
+global_contingency_usd: 2.00 (per SOP).
+existing_ticket_actions: [] (last-known zero positions; cannot verify).
+candidate_rows: 2 HOLD exemplars.
+arithmetic_validation: object listing computed checks (H_net variants, margin caps, stress table) with values.
+disputes: array of 8 items (as above).
+unknowns: array.
+methodology_critique_and_improvements: string.
+section_8_kaizen: object with 3 keys.
+authorization: "DENIED_FAIL_CLOSED"
+response_sha256: filled.
+
+Candidate exemplar rows: fill qualitative fields, null numerics: candidate_id "CAND-001-BTCUSDPI-M2-PULLBACK-HOLD", symbol "BTCUSD.pi", side "BUY_LIMIT", order_type "LIMIT", clock_status "UNVERIFIED_NO_LIVE_QUOTE", quote_timestamp null, evidence ids referencing feeds (14_Liquidation_Matrix, 15_Hyperdash_Stops_Map, 9_Liquidation_Max_Pain_24H, 20_Auction_Market_Structure, 10_Whale_Orders, 18_CVD, 25_CoinGlass_Footprint_Signals), verdict "HOLD", rejection_reasons ["EMPTY_CYCLE_ENVELOPE", "NO_LIVE_QUOTE_TELEMETRY", "NO_FRESH_OHLCV_FOR_VR_ER_OU", ...]. fib fields null. Include geometry template qualitatively in human-readable §, keep row numerics null per HOLD rule.
+
+Time to execute. Plan tool calls:
+
+Round 1 (parallel): 3 WebFetches (commits/main, tree Data/feeds, tree Terminal/Data_Factory). Also maybe WebSearch? Not needed.
+
+Round 2: mkdir scripts; Write payload JSON builder script (python that constructs dict, dumps with ensure_ascii=False indent 2, computes sha256 with response_sha256="", writes final file). Run it. Read file.
+
+Then compose the final mega message.
+
+For the fetch prompts, be specific: "Return the latest commit hash and its commit date/message, and the current branch HEAD" etc.
+
+Let me draft the numbers table for §4 (Role C) precisely:
+
+Constants: E_last = 4,846.32 (envelope 2026-10-25T10:10:32Z, last known); E_template = 4,865.07 (reverse-engineered from template inline math: 0.10×80,950×0.5 = 4,047.50 margin; 4,047.50/0.832 = 4,864.78; margin level 120.20% → 4,047.50×1.202 = 4,865.08 — so E_template ≈ 4,865.07±0.15). Also H_net template +68.07 → E = 4,795+2+68.07 = 4,865.07 exactly consistent.
+
+So: two independent template fragments pin E_template = 4,865.07 (both 83.2% margin utilization and +68.07 headroom agree: 4,846.32? no — 4,865.07). Check consistency: 4,047.50/4,865.07 = 0.83183 → 83.2% ✓. Margin level 4,865.07/4,047.50 = 1.20187 → 120.19% ≈ 120.20% ✓. And H_net: 4,865.07 − 2 − 4,795 = 68.07 ✓. Perfect triangulation. The template snapshot E = 4,865.07. Delta vs last envelope: +18.75.
+
+Tier boundary: Tier 2 unlocks > 4,850.00 → template E (4,865.07) is Tier 2; last envelope E (4,846.32) is Tier 1. Materially changes risk cap (10–12 vs 15–25). Unresolvable without fresh envelope → both computed.
+
+BTC concurrent cap: at E, max total margin = 0.5E; per-ticket (2 tickets, equal) margin = 0.25E; volume = 0.25E/(0.5×P) = 0.5E/P... wait: margin per ticket = 0.25E; volume = margin/(P×0.5) = 0.25E/(0.5P) = 0.5E/P. At E=4,846.32, P=81,000: 0.5×4,846.32/81,000 = 0.029916. At E=4,865.07, P=80,950: 0.5×4,865.07/80,950 = 0.030048. So ≈0.0299–0.0300 BTC per ticket max for BTC+BTC pair. Template guidance 0.04–0.06 only valid for a single BTC ticket alongside a low-margin second ticket (e.g., SOL: to keep total margin ≤ 0.5E, second ticket margin ≤ 0.5E − 1,619 = 804 (E=4,846.32) → SOL volume ≤ 804/(0.5×P_SOL)). If SOL = 100: 16.08 SOL. Provide as conditional.
+
+Also check template's 0.06: margin = 0.06×80,950×0.5 = 2,428.50 = 49.92% of 4,865.07 → margin level 200.3% — single ticket just passes; but leaves NO room for second ticket. 0.04–0.06 "preserves two-ticket capacity" is only true vs Invariant 2 for the single ticket (level ≥200%), not Invariant 1 with a second BTC ticket. Precisely state.
+
+Stress ledger (12 USD nominal, spread 25 bps cap):
+notional(d) = 12/d (d as decimal).
+
+d=0.8%: N=1,500; spread=3.75; T_α=20.75; T_β=22.1875? compute: (12+3.75)×1.25+2 = 19.6875+2 = 21.6875. Let me recompute: 15.75×1.25 = 19.6875; +2 = 21.6875. T_α = 1.25×12+3.75+2 = 15+3.75+2 = 20.75.
+Two tickets +2 global: α: 43.50 → stressed 4,802.82 (E=4,846.32) ✓; β: 45.375 → 4,800.945 ✓.
+d=0.5%: N=2,400; spread=6.00; T_α=23.00; T_β=(18)×1.25+2=24.50. Pairs: α 48 → 4,798.32 ✓; β 51 → 4,795.32 ✓ (0.32).
+d=0.3%: N=4,000; spread=10.00; T_α=27; T_β=(22)×1.25+2=29.50. Pairs: α 56 → 4,790.32 ✗; β 61 → 4,785.32 ✗.
+So max stop-distance envelope for 2 concurrent 12-USD tickets: d ≥ ~0.32%? Let's solve α: stressed ≥ 4,795 → Admission ≤ 51.32 → per-ticket T ≤ 24.66 → 1.25×12 + s + 2 ≤ 24.66 → s ≤ 6.66 → N ≤ 2,664 → d ≥ 12/2,664 = 0.4505%? wait s = spread cost = N×0.0025. T = 15 + 0.0025N + 2. ≤ 24.66 → 0.0025N ≤ 7.66 → N ≤ 3,064 → d = 12/3,064 = 0.3917%. Hmm let me redo: T = 17 + 0.0025N ≤ 24.66 → 0.0025N ≤ 7.66 → N ≤ 3,064 → d ≥ 12/N = 0.3917%? d = 12/3,064 = 0.003917 = 0.3917%. Hmm wait I wrote 6.66 earlier by mistake. Correct: s ≤ 24.66 − 17 = 7.66 → N ≤ 3,064 → d ≥ 0.392%.
+β: T = (12+s)×1.25+2 = 17 + 1.25s ≤ 24.66 → s ≤ 6.128 → N ≤ 2,451.2 → d ≥ 12/2,451.2 = 0.4896%.
+So: under α, two concurrent tickets need stop distance ≥ 0.392%; under β ≥ 0.490%. Concrete admission envelope. (Using E=4,846.32, 25 bps spread, 12 USD risk, 2 tickets.) Also single ticket: α T ≤ 49.32−2 = 47.32 → s ≤ 30.32 → N ≤ 12,128 → d ≥ 0.099% — trivially fine; so single ticket always OK at 12 USD.
+
+Good, these are genuinely useful desk numbers.
+
+House-money sizing with margin: Tier 2 risk 15–25 USD doesn't change margin invariant cap (~0.030 BTC @81k) unless stop tight → volume = risk/(d×P). For risk 20, d 0.5%: volume = 20/(0.005×81,000) = 0.0494 BTC → margin = 0.0494×81,000×0.5 = 2,000.7 = 41.3% E → two such tickets = 82.6% ✗. So Tier 2 with 20 USD risk at 0.5% stop: only ONE BTC ticket possible (second must be small or skip). At d=1.0%: volume 0.0247, margin 1,000 → two OK. So Tier 2 concurrent capacity depends on stop distance — provide table: risk 15–25, margin per pair ≤ 0.5E. Pair volume sum constraint: Σ margin ≤ 2,423.16 → Σ vol×40,500 ≤ 2,423.16 → Σ vol ≤ 0.0598 BTC-equivalent @81k. Nice clean invariant: total BTC-equivalent concurrent volume ≤ 0.0598 @ 81,000 (E=4,846.32); template's 0.04–0.06 each implies up to 0.12 total → violation. State crisply.
+
+Kelly/VaR: not needed deeply; mention CVaR under correlation.
+
+Scenario A precise ruling:
+Signals: LS retail 68% long; CVD bullish divergence (price makes lower low, cumulative delta rises); whale bid >5M USD resting at POC ≥180s.
+Interpretation: retail long crowding supplies fuel for downside sweep (their stops below = sell-side liquidity pool = magnet); whale accumulation at POC marks defended shelf.
+Action: staged BUY_LIMIT at/above whale bid shelf (POC), NOT at market; entry only valid after sweep-of-local-low + reclaim confirmation (tape exhaustion) OR entry placed at shelf expecting sweep fill; SL strictly below sweep low − 0.40 ATR − half_spread, verified outside 15_Hyperdash_Stops_Map cluster and 8 ladder bands (SL insulation rule); TP at first opposing liquidation magnet cluster minus 5–10 ticks (14_Liquidation_Matrix / 9_Max_Pain nearest band). R:R must clear 2.0 else stand down. Score must ≥75.
+
+Scenario B ruling: TREND_UP regime + price Z=+2.6 SD above VWAP + Feed 25 Absorption_High negative delta.
+Forbidden: chase breakout long (buying into absorption/divergence at extension), counter-trend short (fighting confirmed trend with VR>1.15).
+Mandated: WAIT for rotation to Fib golden zone [0.618–0.702 of impulse] / VAL-POC confluence; re-validate delta normalization there; enter Model 2 pullback; SL behind 0.786 shelf −0.40 ATR; TP front-run next magnet. If price never rotates → opportunity cost accepted (capital preservation > FOMO).
+
+Score weights table (as planned above, L2 30 / L3 45 / L4 25; L1 binary).
+
+Calibration: isotonic regression on rolling 200-trade window; Brier score monitoring; if <30 closed trades in regime bucket → probability_status UNCALIBRATED → HOLD (ties to Part 2 rule).
+
+Pipeline audit citations: file paths + function/step numbers (the writer snippet steps 1–5). For the two collector files, I haven't read them (GitHub fetch may show). I'll audit based on specified architecture + the writer code + generic forensics, marking which findings are verified-from-code vs inferred-pending-file-read. Honesty: label evidence class [VERIFIED-CODE], [INFERRED-ARCH], [REQUIRES-FILE-READ].
+
+35 vs 42 reconciliation: categories: 35 canonical feeds; +synthetic derivatives (14_Liquidation_Matrix aggregates 8/9-family); +metadata sidecars counted as files in some listings; +telemetry/db files; mandate: generate feed_manifest.json.
+
+Funding rate coverage: 5_Funding_Rate 592 vs 6_Settlement 940 vs LS 20 — coverage tiers; expansion budget math: CoinGlass 120-asset program: 8 table families × 120 symbols = 960 req; at 1.25s spacing = 20 min; dual-session = 10 min ✓ within 15-min cadence; token bucket 0.8 rps/session, jitter ±20%, exponential backoff on 403 (×4), circuit breaker after 3 consecutive 403 → cool-down 30 min; cache popular-20 via single wide queries, explicit per-symbol only for the 11 spread-gate-passed + 29 watchlist = prioritized 40, then weekly full 120 sweep. Realistic: prioritize 40 core.
+
+limit=10 contract: proposal with is_closed, bar_close_ts, consumer rule "signal on last CLOSED bar = index −1 if forming dropped else −2", collector drops forming row when detectable (close_time > now), boundary+35s schedule, REST reconciliation pass, mismatch → quarantine + telemetry event.
+
+Cloudflare protocol: canary fetch every cycle; staleness signatures (title "Just a moment...", cf_chl headers, 403/503, response <500 bytes, latency >3σ); heal sequence: focus authenticated tab → re-run window.fetch canary → if fail → open /json/new temp tab → Turnstile solve → re-canary → resume; never navigate authenticated tab to challenge (session downgrade risk); keepalive every 240s to hold cookie; session TTL empirically ~2–4h → proactive rotate at 90 min.
+
+Overwrite hygiene matrix:
+
+Snapshot (overwrite per cycle): 3_LS (15M/1H/4H), 5_OI, 5_Funding_Rate, 6_Settlement, 7_Heatmap, 7_Live_Liq (snapshot of active tape window), 8_Maps, 9_Max_Pain (all TFs), 10_Whale_Orders (current walls snapshot), 11_Technical, 12/13, 17_Orderbook, 20_Auction, 21_Tradfye, 22_MTF, 25_Footprint_Signals, 26_Bar_Metrics (if recomputed per window — but better buffer), 1_ETF, 2_Netflow, 19_News/Calendar, 00_MT5_Telemetry, 23_Telemetry.
+Rolling buffer (append/dedupe/retention): 18_CVD (CRITICAL — cumulative), 26_Bar_Metrics (append bars), 7_Live_Liq (tick tape append w/ 100k retention), 16_Telegram (append w/ dedupe by msg id), 14_Hyperdash_Liq_Map (if events stream) — note ambiguity: 14_Liquidation_Matrix synthesized → snapshot.
+Actually to be safe: mark 18_CVD, 26, 16, 7_Live_Liq, 22 as buffer-class candidates; others snapshot. Include dedupe keys and retention numbers.
+
+Writer findings list (numbered F-W1..W8) and collector findings F-C1..C6, schema F-S1..S3, with severity CRITICAL/HIGH/MED/LOW and fix prescriptions.
+
+Now, time to run tools. Fetches first.
+
+Actually also note: The prompt says respond with "one JSON object plus a human-readable explanation" — I'll do human-readable first, JSON last (typical of prior cycles per summary conventions).
+
+One more mandated item: "Answer the Section 8 Continuous Kaizen Inquest" — Part 3 fields. Include.
+
+Also the response header must confirm active skills. I'll write:
+
+📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], @[backtesting-frameworks] — plus environment-native: WebFetch provenance probe, SHA-256 manifest hashing, systematic-debugging RCA on the writer path.
+
+Note honestly: repo-side ECC skill tokens are applied as methodology contracts (formulas embedded in sections §2–§7); no file-output skills invoked because this cycle's deliverable is an inline audit payload, not a document file.
+
+Now execute. First tool round: 3 parallel WebFetches.
+
+Then the JSON+hash. For the hash, I'll write the JSON to /home/z/my-project/scripts/cycle_payload.json via a Python script that builds it (so I can compute hash programmatically and write final JSON to download? No — deliverable is inline text; but saving a copy to /home/z/my-project/download/cycle_response.json is a nice bonus per file conventions? The rules say deliverables go to download/. This is an IM-style analytical response; a JSON file copy could help the operator's dispatcher. I'll save payload JSON to /home/z/my-project/download/cycle_response_payload.json and mention path briefly. Low cost, useful. Actually — careful: mentioning file paths in final summary is discouraged ("do not mention the deliverables path you produces")... That rule is about summarizing deliverables; for this workflow the JSON is inline. I'll still save a copy (harmless) and mention minimally. Hmm, the instruction says don't mention deliverable paths in the closing summary. I'll keep the mention inside the audit body (§ payload notes) rather than the closing. Or skip saving entirely? The dispatcher expects the JSON inline. I'll save it for reproducibility and note it in Kaizen as artifact persistence. Fine.
+
+Write script: build dict in Python (key order as required), dump with indent=2, ensure_ascii=False, compute sha256 of that text with response_sha256="", then set field and rewrite, print final hash. Then Read the file to paste.
+
+The JSON is long; building it in Python as a literal dict duplicates effort vs writing JSON directly. Better: Write the JSON file directly (with response_sha256 = ""), then a tiny script reads it, computes sha256 over the exact file bytes, patches the field, rewrites. But patching changes byte length → the hash-with-empty-field rule: hash computed over file content where response_sha256 value is "" — I'll implement: load JSON, set response_sha256="", dump to canonical string (that exact string will be the final file content minus hash), hash it, set hash, dump final. To ensure the pasted JSON matches the final file, I'll dump with indent=2 + newline at end, and paste exactly that. Good.
+
+Let me pre-compute key numbers by hand (script only for hash; numbers verified manually above):
+
+0.70^15 = 0.0047475615... ≈ 0.4748%. e^(-5.35013) = 0.0047476 ✓.
+0.70^35 = 3.7877e-6. (e^-12.4836 = 3.788e-6) ✓.
+H_net envelope: 4,846.32 − 2.00 − 4,795.00 = 49.32.
+H_net template: 68.07 → E = 4,865.07.
+Margin template check: 0.10×80,950×0.5 = 4,047.50; /4,865.07 = 83.18%; level 120.19%.
+BTC pair cap: E=4,846.32 → 0.0299 BTC/ticket @81,000 (0.029916); E=4,865.07 → 0.0300 @80,950.
+Total BTC-equiv pair cap @81,000: 0.05983 BTC (E=4,846.32): 0.5×4,846.32/40,500 = 2,423.16/40,500 = 0.059831.
+Stress table as computed.
+Rate budget: 120 symbols × 8 families = 960 req; 1.25 s spacing → 20.0 min; two sessions → 10.0 min; core-40 priority: 320 req → 6.67 min single session.
+Session heartbeat 240 s; rotation 90 min.
+Retention: CVD append-only (never overwrite); bars 3,000; tick tape 100k; telegram 20k.
+
+Scenario A/B, score table, regimes — as drafted.
+
+Now the fetches. If network blocked, WebFetch will error — handle gracefully.
+
+Let me also double-check ER thresholds, VR — no computation needed.
+
+Let me also prepare the "42 parquet files" hypothesis with the feeds list from summary: count listed feeds: 00_MT5, 1_ETF, 2_Spot, 3_LS ×3 (15M/1H/4H), 4_HL_Analysis, 5_OI,
