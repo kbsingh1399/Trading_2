@@ -200,29 +200,35 @@ async def extract_coinglass_ls_data(tf_str: str) -> dict:
             const currentCard = currentBox ? (currentBox.closest('.MuiCard-root') || currentBox.parentElement) : cardAfter;
             const lines = currentCard.innerText.split('\\n').map(l => l.trim()).filter(Boolean);
             
-            // Parse Total row
+            // Robust parsing of Total row using regex
+            const pcts = lines.filter(l => /^\d+\.?\d*%$/.test(l));
+            const vols = lines.filter(l => /^\$[\d\.]+[KMB]?$/i.test(l));
+            
             const total = {{
-                longPct: lines[4] || '50.00%',
-                shortPct: lines[5] || '50.00%',
-                longVol: lines[7] || '-',
-                shortVol: lines[9] || '-'
+                longPct: pcts[0] || '50.00%',
+                shortPct: pcts[1] || '50.00%',
+                longVol: vols[0] || '-',
+                shortVol: vols[1] || '-'
             }};
             
-            // Parse ranked exchanges
+            // Parse ranked exchanges starting from rank 1
             const exchanges = [];
-            let c = 10;
-            while (c < lines.length) {{
-                const rank = lines[c];
-                if (!/^\\d+$/.test(rank)) break;
-                exchanges.push({{
-                    rank: rank,
-                    exchange: lines[c + 1] || '-',
-                    longPct: lines[c + 2] || '50.00%',
-                    shortPct: lines[c + 3] || '50.00%',
-                    longVol: lines[c + 5] || '-',
-                    shortVol: lines[c + 7] || '-'
-                }});
-                c += 8;
+            const rank1Idx = lines.findIndex((l, idx) => l === '1' && idx >= 3);
+            if (rank1Idx !== -1) {{
+                let c = rank1Idx;
+                while (c < lines.length) {{
+                    const rank = lines[c];
+                    if (!/^\d+$/.test(rank)) break;
+                    exchanges.push({{
+                        rank: rank,
+                        exchange: lines[c + 1] || '-',
+                        longPct: lines[c + 2] || '50.00%',
+                        shortPct: lines[c + 3] || '50.00%',
+                        longVol: lines[c + 5] || '-',
+                        shortVol: lines[c + 7] || '-'
+                    }});
+                    c += 8;
+                }}
             }}
             
             assetData[sym] = {{
