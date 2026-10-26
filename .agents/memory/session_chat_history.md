@@ -64564,3 +64564,8 @@ Fix `3_Exchanges_LS_Ratio_4H.parquet`, `3_Exchanges_LS_Ratio_15M.parquet`, `3_Ex
 - Identified Cloudflare WARP 429 rate limit on capi.coinglass.com as root cause of skeleton loading, resolved on direct connection.
 - Confirmed gemini-4-argon, argon, gemini-4-argon-high availability on local Web2API proxy.
 - Killed zombie daemons via os.kill(pid, 9) and restarted clean background daemon.
+
+
+### Turn Audit (2026-10-26 19:53:11 UTC)
+- Successfully tested gemini-4-argon via local Web2API proxy (http://localhost:8081). Model operational with institutional microstructure knowledge.
+- Verified continuous pipeline daemon execution without WARP throttling: ETF, Spot Netflow, LS 15M/1H/4H, Hyperliquid, OI, Funding Rate all PASSing with < 2.5m freshness.
