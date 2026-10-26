@@ -1,7 +1,7 @@
 {
   "feed_name": "11_Technical",
   "status": "PASS",
-  "row_count": 120,
+  "row_count": 116,
   "column_count": 55,
   "columns": [
     "asset",
@@ -60,9 +60,9 @@
     "week_low",
     "sr_no"
   ],
-  "byte_size": 70472,
-  "timestamp_ist": "2026-10-27 03:40:22 IST",
-  "timestamp_utc": "2026-10-26 22:10:22 UTC",
-  "epoch_utc": 1793052622.894956,
-  "write_duration_ms": 10.75
+  "byte_size": 68866,
+  "timestamp_ist": "2026-10-27 03:50:02 IST",
+  "timestamp_utc": "2026-10-26 22:20:02 UTC",
+  "epoch_utc": 1793053202.57094,
+  "write_duration_ms": 12.11
 }
