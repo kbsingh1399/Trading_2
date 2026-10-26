@@ -1,1769 +1,1240 @@
-Universal Metacognitive Skills & Multi-Persona Orchestration Evaluation
+INSTITUTIONAL QUANTITATIVE COUNCIL REVIEW & FORENSIC ARCHITECTURE AUDIT
 
-"If it use all the available skills related will it improve our response?"
-Answer: YES — Decisively and Quantifiably. Activating the full institutional quantitative skill stack (@[market-ingest], @[systematic-debugging], @[clean-code], @[trader-signal], @[market-pattern], @[trader-risk], @[backtesting-frameworks], @[adaptive-wfo-epoch], and @[sharpe-ratio-non-iid-corrections]) alongside simultaneous deliberation across all three mandatory quantitative personas — (1) Orderflow Analyst, (2) Position Manager, and (3) Macro Risk Analyst — materially transforms the audit quality:
+Target Repository: https://github.com/kbsingh1399/Trading_2 | Branch: main | Target Commit: 77dc330a533f4c4d8bbfebb21004e62e19a67b63 (2026-10-26 20:23:25 IST / 14:53:25 UTC)
+Audit Timestamp: 2026-10-26 20:30:00 IST | Account: #5064568 (BlueberryMarketsSVG-Live)
+Live Account Telemetry (00_MT5_Account_Telemetry.parquet): Balance $4,846.32 | Equity $4,846.32 | Open Positions: 0 | Hard Floor: $4,600.00 | Buffer Floor: $4,650.00 | Solvency Kernel Floor: $4,795.00 | Net Kernel Headroom: +$49.32 USD (4.11 to 4.93 consecutive Tier-1B stops)
 
-@[market-ingest] + @[systematic-debugging]: Directly cross-examining commit 77dc330a533f4c4d8bbfebb21004e62e19a67b63 (2026-10-26T14:53:25Z) against all 42 Data/feeds/*.parquet files and 46 Data/metadata/*.json sidecars uncovered 11 concrete code-level and data-level defects — including unclosed WebSocket handles, an UnboundLocalError: mid_p crash vector on newly opened 15m candles, hardcoded fake volume/delta ($250,000 / 0.0 delta) injected for precious/industrial metals in Feed 26, synthetic $25M/$50M liquidation levels fabricated in 14_Liquidation_Matrix.parquet, and 9 incompatible asset/symbol column naming conventions across the 42 Parquet files.
-@[trader-signal] + @[market-pattern] + @[sharpe-ratio-non-iid-corrections]: Replaces naive boolean AND conjunctions (where 35 correlated feeds collapse execution probability to 
-0.70
-35
-≈
-3.8
-×
-10
-−
-6
-0.70
-35
-≈3.8×10
-−6
- while inflating non-IID false rejections) with a Hierarchical Log-Odds Bayesian Evidence Accumulator grouped by independent microstructure factor clusters (Structure, Liquidity Gravity, Tape Aggression, Macro Carry).
-@[trader-risk] + @[adaptive-wfo-epoch]: Grounds position sizing and stop/target geometry in the exact live telemetry of Blueberry Markets Account #5064568 (Balance = Equity = 4,846.32 USD, 0 open positions, +49.32 USD net stressed headroom above the 4,795.00 USD Kernel Admission Floor, +653.68 USD distance to the 5,500.00 USD Phase 1 Target).
-1. Executive Summary & Verdict on Data Ingestion Chain
-1.1 Overall Pipeline Verdict: CONDITIONAL PASS (ARCHITECTURE UPGRADE VALIDATED; 11 CODE/SCHEMA FIXES MANDATED)
+METACOGNITIVE SKILL & GRAPHIFY EVALUATION
+Mandatory Question: "If it use all the available skills related will it improve our response?"
+Explicit Evaluation & Answer: YES. Orchestrating our full multi-agent quantitative council across Role A (Lead Systems Architect & Forensic Code Auditor), Role B (Orderflow & Microstructure Specialist), Role C (Macro & Auction Structure Strategist), and Role D (Position Manager & Solvency Sentry)—combined with direct binary inspection of all 42 .parquet files (Data/feeds/*.parquet), all 42 JSON metadata sidecars (Data/metadata/*.json), and line-by-line static analysis of the collector/writer Python codebase at commit 77dc330a533f4c4d8bbfebb21004e62e19a67b63 using polars 2.1.0—dramatically improves accuracy, uncovers silent data corruption that surface-level inspection misses, and grounds every trade candidate in live broker telemetry. (Note on Token Preservation: python -m graphify query was checked first; the graphify module is not installed in the container environment, so targeted blob extraction and polars schema/value introspection were executed directly against commit 77dc330a5.)
+1. EXECUTIVE SUMMARY & VERDICT
+1.1 Overall Health Score of the 35-Feed Parquet Data Lake (Commit 77dc330a5)
+** Structural & Pipeline Health Score:** 64 / 100 (CONDITIONAL PASS — CRITICAL MICROSTRUCTURE & MAGNET PARSER DEFECTS IDENTIFIED)
+Storage & I/O Layer (Parquet + ZSTD): 88 / 100. Migrating from the monolithic 34-sheet DataBase_Trading.xlsx workbook to Data/feeds/*.parquet eliminated openpyxl XML zip-archive corruption and reduced per-feed read latency to < 3 ms. All 42 Parquet files currently present in Data/feeds/ are binary-valid ZSTD-compressed Parquet tables with valid JSON sidecars in Data/metadata/.
+Orchestration & SLA Freshness (Terminal/run_master_pipeline.py): 52 / 100. At the commit snapshot (2026-10-26 20:17:53 IST), Data/metadata/parquet_all_feeds_checklist.json reports 17 / 35 Feeds PASS (0 rows = 0) and 18 / 35 Feeds WARN (stale_feeds = 18, ages 20.4 min to 27.5 min vs 15.0 min SLA). Why? Because Phase 1 (API_COLLECTORS, 12 scripts) executed at 20:17:15–20:17:53 IST (38s total), whereas Phase 2 (BROWSER_COLLECTORS, 22 scripts run sequentially inside a single for script in BROWSER_COLLECTORS: loop in Terminal/run_master_pipeline.py L100–115) last ran at 19:50:22–19:57:27 IST (7m 05s wall-clock runtime) and was skipped or not re-run before the 20:17:53 IST checklist audit.
+Data Integrity & Quantitative Fidelity: 54 / 100. Direct binary querying of the 42 .parquet files uncovered five severe silent data-corruption bugs that actively distort automated narrative synthesis if not compensated for.
+1.2 Top 3 Existential Bottlenecks & Silent Data Corruptions Discovered in 77dc330a5
+Existential Bottleneck #1 — 25_CoinGlass_Footprint_Signals.parquet (1,010 rows) Has 100% Zeroed KPIs (992 / 992 Crypto Rows Have last_price == 0.0) & Broken Sub-$1 Price Regex (DOGE/ARB/OP = 0.0, ADA = 3.0) + 162s Pipeline Stall:
+In Collectors/Browser/25_CoinGlass_Footprint_Signals.py (L135, L148), the collector polls for a hardcoded React CSS module hash .KpiStrip_kpi__7Xgii for up to 6.0s per coin (12 x 0.5s) across 27 coins (162 seconds of dead waiting). CoinGlass rotated this CSS hash on its live build, so every single crypto row (992 / 992) in 25_CoinGlass_Footprint_Signals.parquet has last_price = 0.0, current_bar_delta_usd = 0.0, current_bar_volume_usd = 0.0, and delta_in_view_usd = 0.0.
+Worse, L256–261 (for p in detail_str.split(): ... if val > 1.0: price_level = val) refuses to parse any price <= $1.00, fails to strip "$", and overwrites the true price with trailing numbers in the text. Empirical proof from live 25_CoinGlass_Footprint_Signals.parquet: DOGE ($0.07711), TRX, ARB ($0.16873), OP ($0.11032), and ENA ($0.20880) all have price_level == 0.0, while ADA ($0.20430) has price_level == 3.0 (parsed from "30%+" / "5-bar high").
+Existential Bottleneck #2 — 14_Liquidation_Matrix.parquet (8,607 rows) Stores the Cumulative Curve Instead of Discrete Cluster Volume for Tier 1 CEX ($1.52B Outer-Edge Mirage) & Completely Drops ETH and XRP CEX Liquidations:
+In Terminal/Data_Factory/unified_liquidation_matrix.py (L101–125), short_liq = parse_usd(row.get("Short")) and long_liq = parse_usd(row.get("Long")) read the cumulative liquidation curve from 8_Exchange_Liquidation_Map_1D.parquet instead of the discrete per-bucket sum (Binanace + OKX + Bybit). Because cumulative liquidation volume grows monotonically toward the edges of the chart, sorting 14_Liquidation_Matrix.parquet by liquidation_vol_usd claims the top BTC short magnet is at $88,688.00 ($1.52B) and long magnet is at $71,462.00 ($1.35B). When we compute binance_vol_usd + okx_vol_usd + bybit_vol_usd, the true #1 discrete Tier 1 CEX liquidation spikes for BTC are at $81,380.00 ($107.95M single bucket) and $78,944.00 ($121.29M single bucket)!
+Furthermore, 8_Exchange_Liquidation_Map_1D.parquet only captured 21 of 23 target coins—ETH and XRP were dropped, leaving ETH with zero Tier 1 CEX rows in 14_Liquidation_Matrix.parquet—and unified_liquidation_matrix.py L92 (read_feed("8_Exchange_Liquidation_Map_1D")) completely ignores 8_Exchange_Liquidation_Map_7D.parquet.
+Existential Bottleneck #3 — 26_Aggregated_Footprint_Bar_Metrics.py (698 lines, 643 rows) Has Asymmetric 302-Row CL Contamination, Hardcoded Fake Metal Volumes ($250,000), and Inverted Spatial/Temporal Delta & VWAP Math:
+In live 26_Aggregated_Footprint_Bar_Metrics.parquet, CL (CLUSDT) has 302 rows (because the active CoinGlass tab happened to be sitting on CL during Stage 1 extract_active_footprint_tab), while all 26 crypto assets (BTC, ETH, SOL, etc.) have only 10 rows (9 closed + 1 forming bar from Stage 2 api/orderFlow?...&limit=10), 7 FX/Index assets have 10 rows, and 10 metals (XAU, XAG, etc.) have 1–2 hardcoded dummy rows (volume_usd = 250000.0, buy_vol_usd = 125000.0, sell_vol_usd = 125000.0, candle_delta_usd = 0.0 at L419–433).
+In Stage 2 (parse_rest_footprint_payload, L268–299), running_bar_delta is accumulated across price buckets inside a single bar (for b in price_buckets:) instead of across time, last_price and vwap are overwritten with poc_price (L286, L295), and an empty price_buckets array raises UnboundLocalError: cannot access local variable 'mid_p' at L286.
+2. LINE-BY-LINE CODE & ARCHITECTURE VULNERABILITY REPORT (MANDATES 1 & 3A)
+2.1 Mandate 1, Question 1 — The "Last Candle" vs. "Last-to-Last Candle" Bug (26_Aggregated_Footprint_Bar_Metrics.py)
+A. Exact Mechanics of limit=10 on CoinGlass api/orderFlow and api/v2/kline
 
-The migration from the monolithic Data/DataBase_Trading.xlsx workbook (openpyxl global lock contention) to the decentralized Master Parquet Data Lake (Data/feeds/*.parquet + Data/metadata/*.json via Terminal/Data_Factory/parquet_feed_writer.py) is a major architectural breakthrough:
+In Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py (L204–215):
 
-Write Latency Reduction: Per-feed serialization dropped from 2,000–4,500 ms (monolithic 35-sheet XML re-zipping) to 2.5–18.0 ms via PyArrow Snappy + os.fsync + os.replace.
-Cross-Feed Isolation: Concurrent API collectors (ThreadPoolExecutor(max_workers=6) in Terminal/run_master_pipeline.py L124) write to independent .parquet files without clobbering unrelated feeds.
-
-However, our forensic audit of commit 77dc330a5 revealed critical ingestion flaws that currently cause 18 of 35 canonical feeds to sit in WARN state (17/35 PASS at 2026-10-26 20:17:53 IST) and silently inject corrupted/synthetic rows into downstream quant models:
-
-Audit Area	Status	Summary of Forensic Finding in Commit 77dc330a5
-Parquet Atomic Writer (parquet_feed_writer.py)	FLAWS IDENTIFIED	Uses tmp_file -> fsync -> os.replace, which is fast, but (1) read_parquet_feed (L182) and Polars/Pandas readers open target_file on Windows NTFS without FILE_SHARE_DELETE, risking [WinError 32] after the 0.90s total retry window (L129–136); (2) empty harvests (data = [] with schema = None) write a 1-row dummy table [{"_empty": True}] (L72) and stamp "status": "PASS" in metadata, overwriting valid historical data with a 1-row poison pill!
-Pipeline Orchestration & Freshness (run_master_pipeline.py)	FLAWS IDENTIFIED	17 / 35 feeds PASS (18 / 35 WARN at 20.4m–27.5m age). run_browser_phase() (L149–169) runs all 22 Browser CDP collectors strictly sequentially (taking 6–10 minutes), starving high-velocity feeds; --api-only refreshes API feeds + 14_Liquidation_Matrix while leaving all 22 Browser feeds stale.
-Footprint Bar Metrics (26_Aggregated_Footprint_Bar_Metrics.py)	FIXES MANDATED	(1) Unclosed WebSocket leak (L630); (2) UnboundLocalError: mid_p crash on empty/new bar buckets (L286); (3) equates last_price and vwap to poc_price (L286, L295); (4) computes max_delta/min_delta across spatial price buckets instead of intra-bar time (L268–272); (5) injects hardcoded fake metrics (volume_usd=250000.0, candle_delta_usd=0.0, trades_count=80) for all Metals (XAU, XAG, etc.) at L419–433!
-Footprint Signals (25_CoinGlass_Footprint_Signals.py)	FIXES MANDATED	(1) Unclosed WebSocket leak (L418); (2) non-awaited setTimeout(..., 100) on 'All' tab click (L194–197) races the .SidePanel_lrow__m40N_ poll loop (L202–210), scraping stale DOM signals from the previous coin; (3) naive token parser (L251–262) fails to strip "$", rejects prices <= $1.00 (DOGE, ADA, XRP, TRX, ARB), and misidentifies integer counts in text as price_level!
-Cross-Feed Schema Consistency (Data/feeds/*.parquet)	FIXES MANDATED	Across the 42 Parquet files, the asset identifier uses 9 different column names (symbol, Symbol, asset, Asset, Broker_Symbol, coin, Ticker, currency, base_asset) and 4 incompatible symbol formats (BTC, BTCUSDT, BTCUSD.p, BTCUSD.pi), plus column typos ("Cummulitve_Liquidation", "Binanace" in Feed 8).
-1.2 Forensic Answers to Mandate 1 Audit Questions (1–4)
-Question 1: The "Last Candle" vs "Last-to-Last Candle" Bug (capi.coinglass.com/api/orderFlow & api/v2/kline)
-What limit=10 Returns:
-In CoinGlass's api/orderFlow?symbol=Binance_BTCUSDT%23order_flow&interval=m15&minLimit=false&limit=10 and api/v2/kline, the array is ordered chronologically [bar_{t-9}, bar_{t-8}, ..., bar_{t-1}, bar_{t}], where bar_{t-9} .. bar_{t-1} are 9 closed candles and bar_{t} (the final element of_bars[-1]) is the currently forming (live, unclosed) 15-minute candle whose open timestamp is 
+Python
+urls = [
+    f"https://capi.coinglass.com/api/orderFlow/v2/footprint?symbol={sym}&interval={interval}&limit=10",
+    f"https://capi.coinglass.com/api/orderFlow/footprint?symbol={sym}&interval={interval}&limit=10",
+    f"https://fapi.coinglass.com/api/orderFlow/footprint?symbol={sym}&interval={interval}&limit=10",
+    f"https://capi.coinglass.com/api/v2/kline?symbol={sym}&interval={interval}&limit=10",
+]
+What limit=10 Actually Returns: CoinGlass REST endpoints (api/orderFlow/footprint and api/v2/kline) slice the latest 10 bars in chronological order bars[0 ... 9] where bars[0:9] (9 bars) are historically closed candles and bars[9] (bars[-1], the 10th bar) is the currently forming (unclosed) candle whose open_time_ms equals the current 15-minute floor 
 ⌊
-𝑇
+𝑡
 now
 /
-900
+900000
 ⌋
 ×
-900
-⌊T
+900000
+⌊t
 now
 	​
 
-/900⌋×900.
-How the Live Forming Bar Must Be Handled:
-Currently, 26_Aggregated_Footprint_Bar_Metrics.py (Lines 211–316) treats all 10 bars identically without a bar-state flag! Because a forming bar at 20:01:10 IST (1 minute into a 15-minute bar) has only ~7% of a full bar's volume and trades, comparing its raw volume_usd or candle_delta_usd against closed 15m bars creates false "low-volume / exhaustion" readings, while discarding it altogether blinds the desk to real-time intra-bar absorption during the active 15m window.
-Mandated Fix: Ingest both, but add three explicit columns to every row:
-is_closed: bool (True if now_epoch_sec >= ts_sec + interval_sec, else False)
-bar_elapsed_ratio: float (
-min
-⁡
-(
-1.0
-,
-max
-⁡
-(
-0.01
-,
-(
-𝑇
-now
-−
-𝑇
-open
-)
-/
-900.0
-)
-)
-min(1.0,max(0.01,(T
-now
-	​
+/900000⌋×900000.
+Empirical Proof in Live 26_Aggregated_Footprint_Bar_Metrics.parquet:
+The collector ran at 2026-10-26 19:57:20 IST.
+For all 26 crypto assets (BTC, ETH, SOL, etc.), the 10 rows span 17:30:00 IST through 19:45:00 IST. The 19:45:00 IST candle covers [19:45:00, 20:00:00 IST)—meaning at 19:57:20 IST, the 19:45:00 IST row (bars[-1]) was 12 minutes and 20 seconds into forming (is_closed = False), while the 19:30:00 IST row (bars[-2], "last-to-last candle") was the most recently completed 15m candle (is_closed = True).
+Why Treating bars[-1] as Either "Closed" or "Discarded" Corrupts Quant Signals:
+Failure Mode 1 (Current Code in 26_Aggregated_Footprint_Bar_Metrics.py L237–317): The parser emits no is_closed or bar_completion_pct column. At seconds 01–45 of a new 15m bar (e.g., 20:00:15 IST), bars[-1] has only 15 seconds of volume (~$2M vs $230M on bars[-2]). Any downstream script that reads .tail(1) for volume_usd or candle_delta_usd misinterprets a 15-second infant bar as a 99% volume collapse or exhaustion candle.
+Failure Mode 2 (Naive Drop of bars[-1]): Conversely, if a collector blindly drops bars[-1] and only writes bars[-2], then at minute 14:30 of the current 15m bar (19:59:30 IST), the system is completely blind to the last 14.5 minutes of live intrabar delta, absorption, and breakout flow!
+Failure Mode 3 (The 15m Rollover Race Window at T + 0s to T + 30s): When a 15m boundary crosses (say at 20:00:00 IST), CoinGlass's backend aggregation pipeline takes 5s–25s to finalize all exchange trade prints for the 19:45:00 IST candle. If the scraper polls at 20:00:04 IST and drops bars[-1] (20:00:00 IST), it captures bars[-2] (19:45:00 IST), but if mode="overwrite" is used on the next cycle (20:15:04 IST) with limit=1, the finalized 19:45:00 IST bar is permanently lost if a cycle slipped.
+B. Institutional Zero-Drop Dual-State Bar Architecture (Exact Code Fix)
 
-−T
-open
-	​
+Every footprint/kline bar in Feed 26 must carry explicit lifecycle state fields (bar_state, is_closed, bar_elapsed_sec, bar_completion_pct) and use limit=12 with keyed rolling upsert on (symbol, timeframe, timestamp_ms):
 
-)/900.0)))
-projected_bar_volume_usd: float (
-volume_usd
-/
-bar_elapsed_ratio
-volume_usd/bar_elapsed_ratio) and projected_bar_delta_usd: float
-Structural indicators (EMA ribbons, ATR-14, CVD divergence Z-scores) must compute strictly on is_closed == True (bar[-2], the last closed candle), while Layer-3 execution timing (intra-bar delta reversal, live absorption at a limit level) reads is_closed == False (bar[-1], the forming candle).
-Boundary Race at the Exact 15-Minute Rollover (e.g., 20:00:00 IST):
-Between 20:00:00 and 20:00:12 IST, CoinGlass's upstream exchange aggregators experience a 3-second to 18-second indexing lag before the new 20:00:00 bucket is initialized, AND the final trades of the 19:45:00 candle are still settling across Binance/OKX/Bybit WebSocket shards for 2–5 seconds after :00.
-Zero-Drop Guarantee Protocol:
-Always request limit=15 (not limit=10) and merge into a rolling local Parquet window keyed by (symbol, timeframe, timestamp_ms).
-If a collector executes within [0s, 8s] after a 15m boundary (
-𝑇
-now
- 
-m
-o
-d
- 
-900
-<
-8
-T
-now
-	​
-
-mod900<8), await a 5.0s settlement barrier (or re-poll if of_bars[-1][0] < current_boundary_sec) so the closing bar (19:45:00) captures 100% of its final settlement ticks and the new bar (20:00:00) is registered.
-Always overwrite bar_{t-1} (the just-closed candle) on the next cycle so any late-arriving settlement ticks between :00 and :05 are finalized in the historical series.
-Question 2: Asset Coverage Discrepancies (Why 15–21 Assets vs 120–940 Assets)
-Why CoinGlass & Collectors Cap Certain Feeds at 15–21 Assets:
-Our code audit proved this is caused by two distinct mechanisms:
-Cause A — Explicit Hardcoded Lists in Repository Code:
-Terminal/Data_Factory/asset_registry.py (Lines 119–141) explicitly returns a hardcoded 20-asset list for 3_Exchanges_LS_Ratio, 5_OI, and 2_Spot_Netflow_S, and a 23-asset list for 8_Exchange_Liquidation_Map.
-Collectors/API/17_Orderbook.py (Lines 64–81) hardcodes DEFAULT_ASSET_ROSTER to 15 assets (8 Crypto + 7 Hyperliquid HIP-3 xyz: synthetics).
-Cause B — Global Screener Payload vs Per-Asset UI Route Architecture:
-Feeds 6_Funding_Fee_Settlement (940 rows), 9_Liquidation_Max_Pain_* (747–749 rows), and 5_Funding_Rate (592 rows) extract from CoinGlass global screener endpoints where a single HTTP/React state array contains all 592–940 coins at once.
-Conversely, CoinGlass's /open-interest/{coin}, /LongShortRatio/{coin}, and /LiquidationMap pages are single-coin views (or default AntDesign .ant-table views with pageSize: 20). Rotating through 120 coins via UI dropdown clicks (250ms–900ms per coin) would take 
-120
-×
-0.8
-s
-=
-96
-s
-120×0.8s=96s per script and trigger Cloudflare rate limits.
-How to Expand Coverage to All 120 Broker Assets Without Rate Limits or Cloudflare Bans:
-For 17_Orderbook.parquet (L2/L3 Depth): Do not restrict L2 depth to 15 assets! Query:
-Binance USDT-M Batch Depth / REST + WebSocket (fapi.binance.com/fapi/v1/depth?symbol=...&limit=20) for all 38 crypto pairs in the 120-asset MT5 universe (~1.2s total using asyncio.gather with 8 concurrent connections, weight = 
-38
-×
-2
-=
-76
-≪
-2400
-/
-min
-38×2=76≪2400/min limit).
-Hyperliquid l2Book (api.hyperliquid.xyz/info) for all matching L1 and xyz: perps.
-MT5 Native mt5.market_book_get(symbol) + Tick Bid/Ask Imbalance for the remaining 82 Forex, Metal, Energy, and Index CFDs.
-For 5_OI.parquet & 3_Exchanges_LS_Ratio_*.parquet: Instead of clicking the React UI combobox 20 times in coinglass_ls_browser_core.py (L184), execute batched window.fetch calls inside the authenticated CoinGlass tab with a token-bucket concurrency limiter (concurrency = 4, jitter 120–220ms) across the 38 crypto perpetuals in master_asset_catalog.json (since Forex/Indices do not exist on CoinGlass crypto LS/OI endpoints).
-For 8_Exchange_Liquidation_Map_1D/7D.parquet: Restrict CoinGlass liquidation map queries to the top 25–30 crypto assets by 24h volume + active candidate shortlist, and derive TradFi (FX/Metals/Indices) stop-sweep bands in 14_Liquidation_Matrix.parquet from authentic 20_Auction_Market_Structure.parquet levels (PDH, PDL, Monday_High, Monday_Low, Asian_High/Low, London_High/Low, IB_High/Low, 0.786 Fib) rather than fake $25M ATR envelopes!
-Question 3: Cloudflare Turnstile & CDP Bot Detection Prevention
-Why open_ephemeral_tab Triggers Cloudflare Turnstile:
-In 25_CoinGlass_Footprint_Signals.py (L77) and 26_Aggregated_Footprint_Bar_Metrics.py (L75), calling PUT http://127.0.0.1:9222/json/new?https://www.coinglass.com/footprint?symbol=BTC spawns a brand-new renderer target with document.referrer === "" (cold navigation), no prior mouse/scroll entropy, and simultaneous CDP Page.enable / Runtime.enable attachment during TLS/Cloudflare clearance. Furthermore, running 22 Browser collectors sequentially spawns and destroys 22+ cold tabs per cycle, matching Cloudflare's automated scraper fingerprint.
-Optimal Zero-Turnstile Architecture (Persistent Warm Domain-Tab Pool + In-Context window.fetch):
-Never call /json/new with a deep CoinGlass URL on every cycle. Maintain 2 or 3 long-lived, warm, pre-authenticated CoinGlass tabs in Collectors/Core/cdp_pool.py (e.g., Tab 1 parked on coinglass.com/footprint, Tab 2 parked on coinglass.com/LongShortRatio, Tab 3 parked on coinglass.com/LiquidationData).
-Execute data collection primarily via in-tab window.fetch(..., { credentials: 'include' }) or React state/router transitions (history.pushState / combobox prop calls) inside the warm tab, which automatically attaches the browser's live cf_clearance cookie, TLS JA3/JA4 fingerprint, and sec-ch-ua headers.
-Avoid Runtime.enable Unless Strictly Necessary: Cloudflare Turnstile scripts inspect Runtime.enable stack-trace hooks; Runtime.evaluate works in Chromium CDP without calling Runtime.enable first!
-Edge Cases & Self-Healing Recovery When an Authenticated Tab Becomes Stale or Disconnected:
-Edge Case 1 — Renderer Memory Bloating / Detached DOM Nodes: After ~200 SPA navigations, CoinGlass's React/ECharts canvas leaks ~1.2 GB of renderer RAM and freezes (WebSocket.recv() timeout). Mitigation: Track nav_count per warm tab; every 40 navigations (or if performance.memory.usedJSHeapSize > 800MB), execute a single soft location.reload() (preserving cf_clearance and same-origin referrer).
-Edge Case 2 — cf_clearance Expiry / HTTP 403 / Turnstile Challenge Page: Detect challenge state via JS (document.title.includes('Just a moment') || !!document.querySelector('#challenge-running, iframe[src*="challenges.cloudflare.com"]')). If detected, pause scraping on that tab for 15s, bring tab to foreground (Page.bringToFront) so Turnstile's IntersectionObserver / requestAnimationFrame focus check completes automatically, and fall back to cached Parquet data rather than overwriting the feed with empty rows.
-Edge Case 3 — Orphaned WebSocket Debugger Lock: Chromium CDP allows only one active WebSocket debugger client per tab target (webSocketDebuggerUrl) unless multiplexing is used. Every collector must wrap websockets.connect(ws_url) in async with + asyncio.wait_for and release the WebSocket in finally: before the next collector attaches to that warm tab.
-Question 4: Data Cleaning & Overwrite Hygiene (mode="overwrite" vs Rolling Time-Series Buffer)
-Where mode="overwrite" Causes Silent Data Destruction Today:
-Hazard A — Partial/Empty Harvest Clobber: In parquet_feed_writer.py (L70–72), if a collector passes data = [] (or if 25 of 27 coins fail in 26_Aggregated_Footprint_Bar_Metrics.py and only 2 coins succeed), mode="overwrite" destroys the existing 643-row Parquet file and replaces it with the partial or 1-row [{"_empty": True}] table!
-Hazard B — Time-Series Truncation: In 26_Aggregated_Footprint_Bar_Metrics.py, if an active footprint tab is open for BTC (yielding 300 bars via extract_active_footprint_tab at L618), the file has 300 BTC bars. If that tab is closed on the next cycle, fetch_aggregated_footprint_bars_for_coin fetches bars_limit = 10 for BTC and overwrites the file, deleting 290 historical bars of BTC footprint delta and OI history!
-Similarly, 7_Live_Liq.parquet (currently only 27 rows in commit 77dc330a5, down from 1,000 rows in the Excel era!) and 22_Forced_Liquidations_MTF.parquet (76 rows) lose intra-day liquidation cascade continuity when overwritten by a tiny point-in-time batch.
-Mandatory Classification of All 35 Feeds: Point-in-Time Snapshot vs Rolling Time-Series Buffer:
-Strictly Point-in-Time Cross-Sectional Snapshots (mode="overwrite_verified", guarded by min_row_ratio >= 0.70 of prior row count):
-00_MT5_Account_Telemetry, 2_Spot_Netflow_S, 3_Exchanges_LS_Ratio_15M/1H/4H, 4_Hyperliquid_Analysis, 5_OI, 5_Funding_Rate, 6_Funding_Fee_Settlement, 7_Liq_Heapmap, 8_Exchange_Liquidation_Map_1D/7D, 9_Liquidation_Max_Pain_24H/48H/3D/7D, 10_Whale_Orders (with persistence ledger merge), 11_Technical, 12_Hyperdash, 13_Hyperliquid, 14_Hyperdash_Liq_Map, 14_Liquidation_Matrix, 15_Hyperdash_Stops_Map, 17_Orderbook, 20_Auction_Market_Structure, 23_Master_Pipeline_Telemetry.
-Strictly Rolling Time-Series Buffers (mode="upsert_rolling", deduplicated by primary key + bounded retention):
-7_Live_Liq.parquet: Key (exchange, coin, side, price, amount, full_time), rolling retention_rows = 2,500 (last 24h of forced liquidations).
-16_Hyperdash_telegram_Intel.parquet: Key (post_id), rolling retention_rows = 2,000.
-18_CVD.parquet & 18_CVD_30D_*.parquet: Key (symbol, timeframe, timestamp_ms), rolling retention_rows = 300 bars per (symbol, timeframe).
-19_News.parquet & 19_Calendar.parquet: Key (url, title) / (date, time, currency, event), rolling 7-day window.
-21_Tradfye_Orderflow.parquet: Key (market_pair, timeframe, timestamp_utc), rolling 300 bars per pair.
-22_Forced_Liquidations_MTF.parquet: Key (symbol, timeframe, candle_start_epoch), rolling 1,500 bars.
-25_CoinGlass_Footprint_Signals.parquet: Key (symbol, timeframe, signal_time, signal_type, price_level), rolling 2,000 signals (48h window).
-26_Aggregated_Footprint_Bar_Metrics.parquet: Key (symbol, timeframe, timestamp_ms), rolling 300 bars per symbol (is_closed=True updated on close, is_closed=False updated live).
-2. Line-by-Line Code & Architecture Vulnerability Report (Mandate 3 — Section A)
-2.1 Forensic Audit of Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py
-Severity	Exact Lines	Vulnerability / Defect	Concrete Impact & Mandatory Fix
-CRITICAL	L237–286	Latent UnboundLocalError: local variable 'mid_p' referenced before assignment: mid_p is only assigned inside for b in price_buckets: if isinstance(b, list) and len(b) >= 6: (L241). At L286 (vwap_price = poc_price if poc_price > 0 else mid_p), if price_buckets is empty (e.g., first second of a new 15m bar) or poc_price == 0, Python raises UnboundLocalError and aborts the entire coin harvest.	Initialize mid_p = 0.0 before the loop at L236, and compute true volume-weighted average price: vwap_price = (weighted_px_sum / bar_vol_usd) if bar_vol_usd > 0 else poc_price.
-CRITICAL	L419–433	Hardcoded Fake Orderflow Data for All Precious & Industrial Metals: In load_macro_cfd_footprint_bars(), for every metal row (XAU, XAG, COPPER, PLATINUM, PALLADIUM, ALUMINIUM, LEAD, ZINC) read from 20_Auction_Market_Structure.parquet, Lines 419–433 hardcode "volume_usd": 250000.0, "buy_vol_usd": 125000.0, "sell_vol_usd": 125000.0, "candle_delta_usd": 0.0, "delta_pct": 0.0, "trades_count": 80, "avg_trade_size_usd": 3125.0!	Immediately remove hardcoded constants. Derive real 15m bar volume, taker buy/sell volume, and delta for XAU, XAG, etc. from Data/Candles/{METAL}_15m.parquet and 21_Tradfye_Orderflow.parquet / 18_CVD.parquet.
-HIGH	L268–272	Spatial Price-Bucket Cumulative Sum Miscomputed as Temporal max_delta_usd / min_delta_usd: price_buckets in api/orderFlow are sorted by price level (p_low to p_high), not by trade arrival time. Accumulating running_bar_delta += step_delta from the bottom price of the bar to the top price of the bar measures cumulative profile delta across price levels, not intra-bar temporal excursion (max_delta / min_delta).	Rename to profile_cum_delta_max_usd / min_usd or set max_delta_usd = max(0.0, candle_delta) unless tick-sequenced sub-bars are queried.
-HIGH	L295 & L575–578	Conflating last_price, vwap, and poc: Line 295 sets "last_price": poc_price and "vwap": vwap_price (which L286 set to poc_price). In extract_active_footprint_tab (L574–578), it sets "last_price": rec["close"], "vwap": rec["close"], "poc": rec["close"], "vah": rec["high"], "val": rec["low"]!	In extract_active_footprint_tab (L496–507), f (D.F[i]) contains the exact price-level volume arrays (f.p, f.b, f.s) — compute actual poc, vwap, vah (70% volume area high), and val (70% volume area low) directly from f!
-HIGH	L630–675	Unclosed WebSocket Handle & Infinite ws.recv() Hang: Line 630 opens ws = await websockets.connect(...) without async with and never calls await ws.close() in finally: (L673–675). Inside cdp_cmd (L641–644), await ws.recv() has no timeout and ignores CDP "error" payloads.	Wrap in async with websockets.connect(...) as ws: and wrap await ws.recv() in await asyncio.wait_for(ws.recv(), timeout=15.0), raising on if "error" in resp:.
-MEDIUM	L474–479	Null-Dereference & Brittle React Fiber Chain in extract_active_footprint_tab: document.querySelector('canvas').parentElement throws TypeError if no <canvas> exists; curr.return.return.memoizedState.next.next.next.memoizedState.current breaks if React hooks shift by 1 node.	Guard `(document.querySelector('canvas')
-2.2 Forensic Audit of Collectors/Browser/25_CoinGlass_Footprint_Signals.py
-Severity	Exact Lines	Vulnerability / Defect	Concrete Impact & Mandatory Fix
-CRITICAL	L127 & L187–210	Cross-Coin Stale DOM Bleed & Un-awaited setTimeout Race: At L127, Page.navigate navigates to https://www.coinglass.com/footprint?symbol={coin}. Before the old coin's .KpiStrip_kpi__7Xgii (L135) and .SidePanel_lrow__m40N_ (L205) unmount, L130 (kpiCount >= 4) and L202 (sig_count > 0) immediately evaluate to True on the previous coin's DOM! Worse, L194 uses setTimeout(..., 100) inside a synchronous IIFE (awaitPromise not set), so L212 scrapes .SidePanel_lrow__m40N_ before the 'All' sub-tab click even executes!	Before Page.navigate, mark existing .KpiStrip_kpi__7Xgii and .SidePanel_lrow__m40N_ elements with data-stale="1" (or verify the page header displays coin). Convert the L188 click script to an async () => { ... await new Promise(r => setTimeout(r, 350)); } with "awaitPromise": True, and select leaf elements (el.children.length === 0) when clicking 'All'.
-CRITICAL	L251–262	Broken price_level & absorbed_vol_usd Token Parser: (1) clean_tok = token.replace(",", "").replace("·", "").strip() (L252) forgets .replace("$", ""), so "$67,420.50" fails float(clean_tok). (2) if p > 1.0: price_level = p (L259–260) rejects all sub-$1.00 assets (DOGE, ADA, XRP, TRX, ARB, OP, ENA) and overwrites price_level with the last number > 1.0 in full_detail (such as "3" from "3 stacked imbalances" or "15" from "15m")!	Extract price_level via anchored regex (`r"(?:at
-HIGH	L68–72 & L267 vs L336 vs L380	Three Incompatible symbol Formats Within the Same Parquet File: L71 includes "CL", "XAU", "SPX" in DEFAULT_COINS and writes them at L267 as "CLUSDT", "XAUUSDT", "SPXUSDT". Then L336 writes 18_CVD symbols as "NAS100.p" / "BTCUSDT", and L380 writes 20_Auction metals as "XAUUSD.p" / "XAGUSD.p" with current_bar_delta_usd = 0.0 (L390).	Normalize every row through asset_registry.canonical(coin) and include both base_asset (canonical, e.g. "XAU", "BTC") and broker_symbol (e.g. "XAUUSD.p", "BTCUSD.p").
-HIGH	L418–456	Unclosed WebSocket & Unbounded ws.recv() Wait: Identical to Feed 26 — ws is never closed before close_tab(tab_id) in finally:.	Use async with websockets.connect(...) as ws: and asyncio.wait_for(ws.recv(), timeout=15.0).
-2.3 Forensic Audit of Terminal/Data_Factory/parquet_feed_writer.py
-Empty-Data Poison Pill (parquet_feed_writer.py Lines 70–72 & 146–156):
 Python
-if not data:
-  # Handle empty data
-  table = (
-      pa.Table.from_pylist([{"_empty": True}])
-      if not schema
-      else pa.Table.from_batches([], schema=schema)
-  )
-text
-   - **What Happens:** If a collector experiences a transient API/CDP failure and passes `data = []` without an explicit `pa.Schema`, Line 72 constructs a 1-row table with a single boolean column `_empty = True`, **atomically overwrites the production `.parquet` file**, and writes `"status": "PASS", "row_count": 1` into `Data/metadata/<feed_name>.json`!
-   - **Impact:** Downstream readers (`pd.read_parquet` / `pl.read_parquet`) crash with `KeyError` because all expected columns vanished, while `parquet_checklist_auditor.py` (which only checks `age_minutes <= max_age_allowed` at L182 and **never checks `rows > 1` or `_empty not in columns`!**) reports the destroyed feed as **`PASS`**!
-   - **Mandatory Fix:** Reject empty writes (`if not data and mode == "overwrite": raise ValueError(...)`) so the previous valid `.parquet` file remains intact on disk, and record `"status": "EMPTY_REJECTED"` in the log without updating `epoch_utc`.
-
-2. **Windows NTFS `os.replace` Retry Window (`parquet_feed_writer.py` Lines 129–136):**
-   ```python
-   for attempt in range(10):
-     try:
-       os.replace(tmp_file, target_file)
-       break
-     except PermissionError:
-       if attempt == 9:
-         raise
-       time.sleep(0.02 * (attempt + 1))
-Evaluation: Because each feed is now an isolated 3 KB – 750 KB Parquet file (rather than a single 6 MB .xlsx file shared by 32 writers), writer-vs-writer contention is 100% eliminated (provided two instances of the same collector do not run simultaneously).
-Remaining Edge Case (Writer-vs-Reader on Windows NTFS): The total retry window of sum(0.02 * k for k in 1..9) = 0.90 seconds is sufficient for normal pq.read_table() / pl.read_parquet() calls (which take 1–15 ms), EXCEPT when:
-Windows Defender / Antivirus real-time scanner or Git (autonomous_git_sync_daemon.py / git add Data/feeds/*.parquet) holds an open handle without FILE_SHARE_DELETE during a bulk commit, OR
-PyArrow memory-mapping (memory_map=True) is used by any reader on Windows, which holds a kernel CreateFileMappingW section handle that blocks MoveFileExW (os.replace) with [WinError 32] / [WinError 5] for the lifetime of the Python pa.Table object!
-Mandatory Fix:
-In read_parquet_feed(feed_name) (Line 182), read the file into io.BytesIO(target_file.read_bytes()) (or enforce memory_map=False, which is default, and immediately release the file descriptor in < 2 ms).
-Increase the os.replace retry loop in write_parquet_feed from 10 attempts (0.90s) to 25 attempts with exponential backoff + random jitter (max ~3.5s).
-2.4 Cross-Feed Schema & Auditor Inconsistencies Across All 42 Files in Data/feeds/
-
-Our automated inspection of all 42 Data/metadata/*.json files and Data/metadata/feed_schemas.json identified five systemic schema hazards that cause subagents to silently drop rows:
-
-42 Files on Disk vs 35 Canonical Feeds in Auditor:
-Data/feeds/ contains 42 .parquet files, whereas Terminal/parquet_checklist_auditor.py tracks 35 feeds:
-6 Multi-Timeframe Auxiliary Parquet Feeds (11_Technical_BTC_Ribbon.parquet, 18_CVD_30D_5m.parquet, 18_CVD_30D_15m.parquet, 18_CVD_30D_1h.parquet, 18_CVD_30D_4h.parquet, 18_CVD_30D_ALL.parquet) exist in Data/feeds/ (and 18_CVD_30D_*.parquet contain a leaked Pandas index column '__index_level_0__'!).
-14_Liquidation_Matrix.parquet (8,607 rows) is MISSING from CANONICAL_FEEDS in Terminal/parquet_checklist_auditor.py (L39–75) and Terminal/Data_Factory/parquet_feed_checklist_auditor.py (which only lists 33 feeds, missing 25, 26, and 14_Liquidation_Matrix)!
-Stale Legacy Schema Dictionary (Data/metadata/feed_schemas.json):
-Data/metadata/feed_schemas.json still lists only 33 feeds and contains corrupted Excel-era column names (e.g., 00_MT5_Account_Telemetry has cols=['Realized_Balance_USD', '$4,846.32', 'col_2', ...], and 5_Funding_Rate has cols=['Symbol', 'USDT_or_USD_Margined', 'col_2', 'col_3', ...]), whereas the actual Parquet files have completely different schemas! Any subagent consulting feed_schemas.json will query non-existent columns.
-9 Incompatible Asset/Symbol Column Names & Column Typos:
-Join keys vary unpredictably across feeds:
-Broker_Symbol (00_MT5_Account_Telemetry, where rows are polymorphic across CAPITAL_STATE, OPEN_POSITIONS, and SPREAD_GATE!)
-Asset (3_Exchanges_LS_Ratio_*, 5_OI, 8_Exchange_Liquidation_Map_*, 12_Hyperdash, 13_Hyperliquid)
-asset (4_Hyperliquid_Analysis, 7_Liq_Heapmap, 11_Technical, 14_Hyperdash_Liq_Map, 15_Hyperdash_Stops_Map, 16_Hyperdash_telegram_Intel, 17_Orderbook, 20_Auction_Market_Structure, 21_Tradfye_Orderflow)
-Symbol (2_Spot_Netflow_S, 5_Funding_Rate)
-symbol (6_Funding_Fee_Settlement, 9_Liquidation_Max_Pain_*, 10_Whale_Orders, 11_Technical, 14_Liquidation_Matrix, 18_CVD, 20_Auction_Market_Structure, 22_Forced_Liquidations_MTF, 25_CoinGlass_Footprint_Signals, 26_Aggregated_Footprint_Bar_Metrics)
-coin (7_Live_Liq), Ticker (1_Crypto_ETF_Flows), currency (19_Calendar, 19_News).
-Typos in 8_Exchange_Liquidation_Map_1D/7D.parquet: Column 6 is spelled "Cummulitve_Liquidation" and Column 9 is spelled "Binanace".
-String-Formatted Numbers vs Native Float64 Types:
-While 11_Technical, 14_Liquidation_Matrix, 18_CVD, 20_Auction_Market_Structure, 21_Tradfye_Orderflow, 25, and 26 store prices and volumes as native float64, feeds 1_Crypto_ETF_Flows, 2_Spot_Netflow_S, 3_Exchanges_LS_Ratio_*, 5_OI, 5_Funding_Rate, 6_Funding_Fee_Settlement, 7_Liq_Heapmap, 7_Live_Liq, and 8_Exchange_Liquidation_Map_* store numbers as formatted strings ("$53.71B", "51.82%", "+0.0082%")!
-Fix: Enforce a global pre-write normalizer in parquet_feed_writer.py that injects canonical base_asset (e.g. "BTC") and mt5_symbol (e.g. "BTCUSD.pi") into every asset-level feed and converts all "$X.XXM" / "XX.X%" string columns into native float64 columns alongside any display strings.
-3. The Quantitative Narrative Synthesis Heuristic & Live Capital Survival (Mandate 2 & Mandate 3 — Sections B & C)
-3.1 Mathematical Resolution of the "Intersection Trap" (Mandate 3 — Section B.1 & B.3)
-Why Pure Conjunction Fails and Pure Linear Averaging Is Unsafe
-The Intersection Trap (Strict AND across 35 feeds): Even if each feed has marginal pass probability 
-𝑝
+now_ms = int(time.time() * 1000)
+interval_ms = 15 * 60 * 1000  # 900,000 ms for 15m
+bar_close_ms = ts_ms + interval_ms
+# Require 15,000 ms (15s) post-boundary grace window for CoinGlass WS settlement
+is_closed = (now_ms >= bar_close_ms + 15_000)
+elapsed_sec = max(0.0, min(900.0, (now_ms - ts_ms) / 1000.0))
+bar_state = (
+    "CLOSED_FINAL" if is_closed
+    else ("SETTLING_BOUNDARY" if now_ms >= bar_close_ms else "FORMING_LIVE")
+)
+Downstream Consumer Routing Rule:
+Structural Confirmation & Divergence Signals (e.g., closed candle delta divergence, 15mPOC shift, 10-bar exhaustion) MUST query pl.col("is_closed") == True and take .tail(1) (bars[-2], the last finalized candle).
+Live Tape / Intrabar Absorption Triggers (e.g., live delta surge at a passive limit level) query pl.col("bar_state") == "FORMING_LIVE" (bars[-1]) normalized by bar_completion_pct = elapsed_sec / 900.0.
+Because limit=12 fetches the last 3 hours of 15m candles every cycle and upserts by (symbol, timeframe, timestamp_ms), even if a candle is in SETTLING_BOUNDARY during cycle 
+𝑘
+k, cycle 
+𝑘
++
+1
+k+1 overwrites (symbol, "15m", ts_ms) with the 100% settled CLOSED_FINAL volume and delta—guaranteeing zero dropped candles across 15m boundaries.
+2.2 Line-by-Line Bugs in 26_Aggregated_Footprint_Bar_Metrics.py and 25_CoinGlass_Footprint_Signals.py
+A. Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py (698 lines)
+Line(s)	Vulnerability / Defect	Concrete Impact on 26_Aggregated_Footprint_Bar_Metrics.parquet	Exact Remediation
+L107–200 vs L203–318	Stage 1 vs Stage 2 Row-Count Asymmetry (302 rows for CL vs 10 rows for all other coins)	Stage 1 (extract_active_footprint_tab) dumps the entire 302-bar ChartingLibrary _bars array in memory for whichever symbol happens to be open on the active tab (CL / CLUSDT in commit 77dc330a5), while Stage 2 (fetch_rest_footprint_for_symbol) requests limit=10 for the other 26 coins. CL accounts for 302 / 643 (47%) of the entire file!	Standardize window depth (limit=48 for 12 hours of 15m bars across all 27 coins) and filter out non-broker symbols (CLUSDT is not in the active MT5 crypto universe) or map CL properly.
+L252–286	UnboundLocalError: mid_p when price_buckets is empty	mid_p is only defined inside for b in price_buckets: (L259). If an API bar has price_buckets = [] (an ordinary OHLCV kline fallback from api/v2/kline), L286 poc_price if poc_price > 0 else mid_p crashes the coin's parser and gets swallowed by except Exception: pass at L297.	Initialize mid_p = float(b_obj.get("close") or b_obj.get("c") or 0.0) before the for b in price_buckets: loop at L250.
+L268–272	Spatial vs. Temporal Cumulative Delta Bug	running_bar_delta += d_vol is accumulated inside for b in price_buckets: and stored as "cumulative_delta_usd": round(running_bar_delta, 2) at L291. At the end of the bucket loop, running_bar_delta is simply the single bar's bar_delta (buy_vol - sell_vol), except it isn't reset before the next bar in for b_obj in bars[-15:]: (L238 lives outside the bar loop!), mixing bucket iteration with bar iteration.	Compute bar_delta = bar_buy - bar_sell per bar, then compute session cumulative_delta_usd strictly across chronological bars after sorting by timestamp_ms.
+L286 & L295	last_price and vwap Overwritten with poc_price	L286 sets "last_price": round(poc_price if poc_price > 0 else mid_p, 6) and L295 sets "vwap": round(poc_price, 6). In auction theory, last_price (bar close), vwap (
+∑
+𝑃
 𝑖
-=
-0.70
-p
+𝑉
+𝑖
+/
+∑
+𝑉
+𝑖
+∑P
 i
 	​
 
-=0.70, requiring all 35 feeds to align yields 
-𝑃
-(
-Execute
-)
-=
-0.70
-35
-=
-3.79
-×
-10
-−
-6
-P(Execute)=0.70
-35
-=3.79×10
-−6
- (or even with 
-𝑘
-eff
-=
-10
-k
-eff
-	​
-
-=10 orthogonal clusters, 
-0.70
-10
-=
-2.82
-%
-0.70
-10
-=2.82%), causing Conjunctive Sclerosis (zero trades for weeks).
-The Linear Averaging Trap: Conversely, if Hard Solvency gates (Spread, News Blackout, Floor Cushion) are averaged into a linear score with soft microstructure signals, an extreme orderflow reading could override a 38 bps spread or a $4,795 floor breach, causing an evaluation-ending solvency violation.
-The Solution: Two-Stage Lexicographic Kernel + Grouped Bayesian Log-Odds Accumulator
-
-The optimal mathematical framework is a Two-Stage Lexicographic Operator 
-𝐷
-(
-𝑥
-)
-=
-𝐾
-(
-𝑥
-)
-×
-𝐼
-(
-𝑆
-narrative
-(
-𝑥
-)
-≥
-𝜏
-regime
-)
-D(x)=K(x)×I(S
-narrative
-	​
-
-(x)≥τ
-regime
-	​
-
-):
-
-Stage 1 — Binary Fail-Closed Solvency Kernel 
-𝐾
-(
-𝑥
-)
-∈
-{
-0
-,
-1
-}
-K(x)∈{0,1} (Strict Boolean AND Over 4 Non-Negotiable Survival Gates):
-
-𝐾
-(
-𝑥
-)
-=
-𝐼
-(
-Spread
-𝑥
-≤
-Spread
-max
-⁡
-)
-×
-𝐼
-(
-NewsBlackout
-𝑥
-=
-0
-)
-×
-𝐼
-(
-𝐸
-stressed
-post
-≥
-4
-,
-795.00
-)
-×
-𝐼
-(
-MarginLevel
-post
-≥
-200
-%
-)
-×
-𝐼
-(
-RR
-net
-≥
-2.0
-)
-K(x)=I(Spread
-x
-	​
-
-≤Spread
-max
-	​
-
-)×I(NewsBlackout
-x
-	​
-
-=0)×I(E
-stressed
-post
-	​
-
-≥4,795.00)×I(MarginLevel
-post
-≥200%)×I(RR
-net
-	​
-
-≥2.0)
-If 
-𝐾
-(
-𝑥
-)
-=
-0
-K(x)=0, the trade is unconditionally vetoed (STAND_ASIDE) regardless of orderflow confluence.
-
-Stage 2 — De-Correlated Factor-Cluster Bayesian Log-Odds Score 
-𝑆
-narrative
-(
-𝑥
-)
-∈
-[
-0
-,
-100
-]
-S
-narrative
-	​
-
-(x)∈[0,100]:
-Because the 35 feeds contain highly collinear subsets (e.g., 10 liquidation magnet feeds, 4 CVD/footprint feeds, 3 LS ratio timeframes), summing raw feed scores double-counts correlated signals (violating the IID assumption in @[sharpe-ratio-non-iid-corrections]). Instead, we group all non-kernel feeds into 4 Orthogonal Institutional Pillars 
-𝑐
-∈
-{
-1
-,
-2
-,
-3
-,
-4
-}
-c∈{1,2,3,4}, compute a within-cluster normalized evidence score 
-𝐸
-𝑐
-∈
-[
-−
-1
-,
-+
-1
-]
-E
-c
-	​
-
-∈[−1,+1] (using effective sample size shrinkage 
-𝑤
-𝑗
-∈
-𝑐
-w
-j∈c
-	​
-
- so collinear feeds within a cluster sum to at most 1.0), and map total log-odds to 
-[
-0
-,
-100
-]
-[0,100]:
-
-𝑆
-narrative
-(
-𝑥
-)
-=
-50
-+
-50
-⋅
-tanh
-⁡
- ⁣
-(
-∑
-𝑐
-=
-1
-4
-𝑊
-𝑐
-⋅
-𝐸
-𝑐
-(
-𝑥
-)
-−
-Λ
-conflict
-(
-𝑥
-)
-)
-S
-narrative
-	​
-
-(x)=50+50⋅tanh(∑
-c=1
-4
-	​
-
-W
-c
-	​
-
-⋅E
-c
-	​
-
-(x)−Λ
-conflict
-	​
-
-(x))
-
-where the 4 Orthogonal Cluster Weights 
-𝑊
-𝑐
-W
-c
-	​
-
- are:
-
-𝑊
-1
-=
-0.30
-W
-1
-	​
-
-=0.30 — Structural Regime & Value Area Location (Feeds 11, 20): Fibonacci-Prime EMA Ribbon (5, 13, 34, 89, 144, 233), VAH/VAL/POC/VWAP Z-score location, and Golden Zone [0.618 GP, 0.702 OTE] or |Z| >= 2.0 SD sweep geometry.
-𝑊
-2
-=
-0.30
-W
-2
-	​
-
-=0.30 — Liquidity Gravity & Magnet Asymmetry (10 Price Magnet Feeds: 8, 9, 14, 15, 16): Ratio of Upside vs Downside Liquidation Magnet pull (
-MagnetPullRatio
-=
-LiqVol
-target
-/
-Δ
-𝑃
-target
-LiqVol
-adverse
-/
-Δ
-𝑃
-adverse
-MagnetPullRatio=
-LiqVol
-adverse
-	​
-
-/ΔP
-adverse
-	​
-
-LiqVol
-target
-	​
-
-/ΔP
-target
-	​
-
-	​
-
-) and clearance of retail stop clusters (Feed 15).
-𝑊
-3
-=
-0.25
-W
-3
-	​
-
-=0.25 — Real-Time Microstructure Orderflow & Absorption (Feeds 7, 10, 17, 18, 21, 22, 25, 26): Resting Whale Wall persistence 
-≥
-180
-s
-≥180s (Feeds 10, 17), Footprint Trapped Traders / Absorption (Feed 25), Aggregated Footprint Bar Delta + OI expansion (Feed 26), and Interbank/CVD Z-score (Feeds 18, 21).
-𝑊
-4
-=
-0.15
-W
-4
-	​
-
-=0.15 — Macro Carry, Crowd Skew & On-Chain Positioning (Feeds 1, 2, 3, 4, 5, 6, 12, 13): Contrarian retail LS skew (Feed 3), Funding Rate carry/crowding (Feeds 5, 6), Hyperliquid smart-money whale PnL bias (Feeds 4, 12, 13), and ETF/Spot netflows (Feeds 1, 2).
-Λ
-conflict
-(
-𝑥
-)
-≥
-0
-Λ
-conflict
-	​
-
-(x)≥0 — Direct Structural Conflict Penalty: Penalizes only causal contradictions (e.g., buying into an active overhead Whale Ask Wall 
-≥
-$
-1
-M
-≥$1M or placing an SL inside an unswept retail stop cluster), while rewarding classic smart-money vs retail divergences!
-
-Admission Thresholds:
-
-𝑆
-narrative
-(
-𝑥
-)
-≥
-75.0
-S
-narrative
-	​
-
-(x)≥75.0: Full Tier-1 Allocation (12.00 USD nominal risk).
-65.0
-≤
-𝑆
-narrative
-(
-𝑥
-)
-<
-75.0
-65.0≤S
-narrative
-	​
-
-(x)<75.0: Tactical Probe Allocation (10.00 USD nominal risk, passive limit at deep [0.618, 0.702] OTE shelf only).
-𝑆
-narrative
-(
-𝑥
-)
-<
-65.0
-S
-narrative
-	​
-
-(x)<65.0: STAND_ASIDE (100% Cash Flat).
-3.2 Concrete Decision Heuristics for Conflicting Signals (Mandate 3 — Section B.2)
-Scenario A: Retail Crowd 68% Long vs Institutional CVD Divergence Upwards + $5M Whale Bid at POC
-
-Situation: 3_Exchanges_LS_Ratio_15M/1H shows 68% of retail accounts are Long (ordinarily a contrarian bearish signal), but 18_CVD / 26_Aggregated_Footprint_Bar_Metrics shows Cumulative Volume Delta violently diverging upwards with institutional absorption, and 10_Whale_Orders / 17_Orderbook shows resting Whale Bids 
->
-$
-5
-M USD
->$5M USD persisting 
-≥
-180
-s
-≥180s at the 20_Auction_Market_Structure POC shelf.
-
-Multi-Persona Resolution (Orderflow Analyst + Position Manager):
-Why Retail Account % and Institutional CVD Diverge: Account Long/Short Ratio (Feed 3) counts the number of accounts (
-𝑁
-long
-/
-𝑁
-total
-N
-long
-	​
-
-/N
-total
-	​
-
-), where thousands of $100 retail accounts are buying small lots, OR retail traders are re-entering after a stop flush. Meanwhile, CVD (Feeds 18, 26) and Whale Orders (Feed 10) measure dollar-weighted institutional capital (
-∑
-USD
-∑USD). When a $5\text{M}+ passive bid wall sits at the POC shelf and taker buy delta is expanding alongside Open Interest (oi_change_usd > 0 in Feed 26), smart money is physically absorbing supply and defending the POC floor.
-The Trap to Avoid: However, because 68% of retail accounts are Long, there is likely a shallow cluster of retail sell_stops (15_Hyperdash_Stops_Map.parquet) sitting just $15–$40 below the immediate micro-swing low.
-Concrete Trading Action — STAGE PASSIVE BUY_LIMIT AT THE WHALE POC SHELF (DO NOT CHASE MARKET):
-Action: LONG (Bullish Institutional Absorption Thesis) — Dollar-weighted institutional orderflow (W_3 = 0.25) + POC structural shelf (W_1 = 0.30) strictly overrides unweighted retail account count (W_4).
-Entry Placement: Stage a passive BUY_LIMIT order 1–2 ticks above the $5M Whale Bid Wall at the POC (or behind the shallow retail stop-sweep wick if Feed 15 shows a dense sell_stops pocket immediately below POC).
-Stop Loss (Rule B): Place SL strictly below both the $5M Whale Bid Wall and the outer boundary of the 15_Hyperdash_Stops_Map / 8_Exchange_Liquidation_Map_1D long-liquidation cluster (-0.40 ATR buffer).
-Take Profit (Rule A): Front-run the nearest overhead Short_Liquidation cluster in 14_Liquidation_Matrix.parquet / 9_Liquidation_Max_Pain_24H.parquet by 5–10 bps.
-Scenario B: TREND_UP Regime, Price Extended to 
-𝑍
-=
-+
-2.6
-𝜎
-Z=+2.6σ Above Session VWAP, Feed 25 Flags Absorption_High + Negative Delta Divergence
-
-Situation: 20_Auction_Market_Structure / 11_Technical classifies the macro regime as TREND_UP (Fib-Prime EMAs stacked bullishly 5 > 13 > 34 > 89 > 144 > 233), but price is stretched to vwap_z = +2.60 SD above Session VWAP, and 25_CoinGlass_Footprint_Signals prints Absorption at the high (Trapped Longs) with negative delta divergence.
-
-Multi-Persona Resolution (Orderflow Analyst + Position Manager + Macro Risk Analyst):
-Why Buying the Breakout Fails (VETO LONG AT +2.6 SD): Buying at 
-𝑍
-=
-+
-2.6
-𝜎
-Z=+2.6σ above VWAP directly into overhead passive sell absorption (Trapped Longs) violates Auction Market Theory — even in a strong TREND_UP, a 
-+
-2.6
-𝜎
-+2.6σ extension has a 
->
-85
-%
->85% probability of mean-reverting at least to the 
-+
-1.0
-𝜎
-+1.0σ band or EMA-13/34 before continuation, which would force an unacceptably wide SL or immediate drawdown against our $49.32 kernel headroom.
-Why Blindly Shorting a TREND_UP Extreme Is High-Risk (VETO COUNTER-TREND SHORT UNLESS HTF LIQUIDATION MAGNET BACKS IT): In a genuine TREND_UP (where EMA-89 and EMA-233 slopes are strongly positive and 14_Liquidation_Matrix has a massive un-swept Short_Liquidation magnet slightly higher at 
-+
-3.0
-𝜎
-+3.0σ), overhead absorption at 
-+
-2.6
-𝜎
-+2.6σ is often just temporary profit-taking before a final squeeze sweeps the 
-+
-3.0
-𝜎
-+3.0σ short liquidation pool! Counter-trend shorting against a stacked Fib-Prime EMA ribbon (5 > 13 > 34 > 89 > 144 > 233) has negative expectancy under our STANDARDIZED_TRADING_DECISION_CHAIN.md Step 9 Check #7 ("no counter-trend entries against EMA 89/233 slope").
-Concrete Trading Action — STAND ASIDE AT +2.6 SD & STAGE PASSIVE BUY_LIMIT PULLBACK IN GOLDEN ZONE [0.618, 0.702] CONFLUENT WITH VAH / POC:
-Immediate Action at 
-+
-2.6
-𝜎
-+2.6σ: STAND ASIDE (neither chase the exhausted breakout nor step in front of the bullish HTF EMA train).
-Staged Execution Plan (Model 2 Pullback): Compute the impulse leg from the session/swing low to the 
-+
-2.6
-𝜎
-+2.6σ absorption high, locate the [0.618 GP, 0.702 OTE] Fibonacci Golden Zone where it aligns with Daily VAH or POC + EMA-34 / EMA-89, and stage a passive BUY_LIMIT there once the pullback flushes the late 
-+
-2.6
-𝜎
-+2.6σ trapped longs!
-3.3 The 10 Canonical Price Magnet Feeds: Exact Mathematical TP & SL Construction Rules (Mandate 2.3)
-
-Given candidate entry price 
-𝑃
-entry
-P
-entry
-	​
-
- and direction 
-𝑑
-∈
-{
-+
-1
- (Long)
-,
-−
-1
- (Short)
-}
-d∈{+1 (Long),−1 (Short)}, let 
-𝑀
-target
-M
-target
-	​
-
- be the set of opposing liquidation clusters in the direction of the trade (Short Liquidation / Short_Max_Pain_Price for Longs; Long Liquidation / Long_Max_Pain_Price for Shorts) across the 10 Price Magnet Feeds (8_1D, 8_7D, 9_24H, 9_48H, 9_3D, 9_7D, 14_Liq_Map, 14_Liquidation_Matrix, 15_Stops_Map, 16_Telegram_Intel), and let 
-𝑀
-adverse
-M
-adverse
-	​
-
- be the set of same-side liquidation and retail stop clusters behind 
-𝑃
-entry
-P
-entry
-	​
-
-:
-
-Gravitational Score of Each Price Magnet Cluster 
-𝑘
-k at Price 
-𝑃
-𝑘
-P
-k
-	​
-
-:
-
-𝐺
-(
-𝑃
-𝑘
-)
-=
-𝑉
-CEX
-,
-𝑘
-+
-1.25
-⋅
-𝑉
-DEX
-,
-𝑘
-+
-0.80
-⋅
-𝑉
-MaxPain
-,
-𝑘
-(
-∣
-𝑃
-𝑘
-−
-𝑃
-entry
-∣
-ATR
-14
-)
-𝛾
-,
-𝛾
-=
-1.35
-G(P
-k
-	​
-
-)=
-(
-ATR
-14
-	​
-
-∣P
-k
-	​
-
-−P
-entry
-	​
-
-∣
-	​
-
-)
-γ
 V
-CEX,k
+i
 	​
 
-+1.25⋅V
-DEX,k
+/∑V
+i
 	​
 
-+0.80⋅V
-MaxPain,k
-	​
-
-	​
-
-,γ=1.35
-Identify the Dominant Target Magnet 
-𝑃
-mag
-∗
-=
+), and poc_price (
 arg
 ⁡
 max
 ⁡
 𝑃
-𝑘
-∈
-𝑀
-target
-𝐺
+𝑉
+𝑃
+argmax
+P
+	​
+
+V
+P
+	​
+
+) are three distinct metrics; equating them destroys intra-bar value migration analysis.	Set last_price = float(b_obj.get("close", poc_price)) and compute true bar VWAP sum(mid_p * b_tot) / bar_tot across price_buckets.
+L419–433	Hardcoded Fake Metals Footprint ($250,000 / $125,000 Constants)	When 10_Whale_Orders / 17_Orderbook lack metal rows or alongside them, L419–433 appends a synthetic bar for all 10 metals (XAU, XAG, XPT, XPD, XCU, XAL, XNI, XZN, XPB, XOS) with hardcoded "volume_usd": 250000.0, "buy_vol_usd": 125000.0, "sell_vol_usd": 125000.0, "candle_delta_usd": 0.0, "trades_count": 80. Verified in live Parquet (XAU row 642 has volume_usd = 250000.0, delta = 0.0).	Remove the hardcoded $250k/$125k dummy append; synthesize metal bars from 18_CVD.parquet + 11_Technical.parquet (session_vwap, atr_14) or mt5.copy_rates_from_pos("XAUUSD.pi", M15, 0, 10).
+L474–479 & L630–675	Dual Unclosed WebSocket Leak (websocket.create_connection)	L475 opens a raw CDP WebSocket (ws = websocket.create_connection(ws_url, timeout=12)) that is only closed along the normal path at L537—if an exception occurs between L476 and L536, ws leaks. Worse, L631 (ws2 = websocket.create_connection(...)) has no ws2.close() call anywhere in the file!	Wrap all CDP WebSocket connections in try ... finally: ws.close() or contextlib.closing(websocket.create_connection(...)).
+L574–578	Stage 3 ChartingLibrary Fallback Sets vwap = poc = c_p, vah = h_p, val = l_p	When falling back to window.tvWidget.activeChart()._chartWidget._model._mainSeries._bars, L575–578 sets vwap = close, poc = close, vah = high, val = low and fabricates buy_v = vol * (0.5 + 0.35 * ratio).	Label synthetic OHLCV bars explicitly with data_quality = "SYNTHETIC_OHLCV_TICK_PROXY" so Role B never treats close as true Footprint POC.
+B. Collectors/Browser/25_CoinGlass_Footprint_Signals.py (471 lines)
+Line(s)	Vulnerability / Defect	Concrete Impact on 25_CoinGlass_Footprint_Signals.parquet	Exact Remediation
+L127 & L187–210	Asynchronous setTimeout(..., 100) Inside Non-Awaited Runtime.evaluate (Cross-Coin Stale DOM Race)	L127 runs cdp_eval(ws, CLICK_BURGER_JS, timeout=5.0) where CLICK_BURGER_JS (L77–106) dispatches a click inside setTimeout(..., 100) and immediately returns 'CLICKED_DIRECT' before the drawer opens! Similarly, L187–210 clicks the next symbol tab inside setTimeout(..., 100) without awaitPromise: True, so if .KpiStrip_kpi__7Xgii ever matched on the previous coin, L135 would immediately read the previous coin's DOM before the 100ms timer even fired!	Replace setTimeout inside sync IIFEs with Promise-returning async JS (await new Promise(r => setTimeout(r, 250))) and pass "awaitPromise": True in Runtime.evaluate, plus verify the header symbol text matches sym before scraping.
+L134–149	Dead Obfuscated React Class .KpiStrip_kpi__7Xgii (100% Zero KPIs + 162s Delay)	SCRAPE_SIGNAL_DRAWER_JS searches exclusively for document.querySelectorAll('.KpiStrip_kpi__7Xgii'). Because CoinGlass updated its CSS bundle hash, kpis.length is always 0. L135 loops 12 times sleeping 0.5s (6.0s per coin 
+×
+× 27 coins = 162s wasted), and all 992 crypto rows in live 25_CoinGlass_Footprint_Signals.parquet have last_price = 0.0, current_bar_delta_usd = 0.0, current_bar_volume_usd = 0.0, delta_in_view_usd = 0.0.	Match via stable prefix/attribute selector document.querySelectorAll('[class*="KpiStrip_kpi__"]') with fallback to 11_Technical.parquet / 26_Aggregated_Footprint_Bar_Metrics.parquet for last_price and current_bar_delta_usd.
+L251–262	Broken price_level Token Parser (val > 1.0, Missing "$" Strip, Last-Token Overwrite)	for p in detail_str.split(): clean_p = p.replace(",", "").replace("·", "").strip(); val = float(clean_p); if val > 1.0: price_level = val. (1) Fails if token starts with "$"; (2) Rejects all sub-$1.00 coins (val > 1.0); (3) Iterates over all words and overwrites price_level with the last number > 1.0. Live Parquet Proof: DOGE, TRX, ARB, OP, ENA all have price_level = 0.0; ADA ($0.2043) has price_level = 3.0!	Parse price exclusively after the "·" separator at the tail of CoinGlass's signal detail string: m = re.search(r"·\s*\$?([0-9][0-9,]*\.?[0-9]*)\s*$", detail_str) with val > 0.0.
+L68–72, L267, L336, L380	3 Inconsistent Symbol Formats in One Table	Crypto rows write "symbol": f"{sym}USDT" ("BTCUSDT"), TradFi CVD rows write "symbol": sym ("NAS100.p"), and Metals rows write "symbol": f"{sym_base}USD.p" ("XAUUSD.p" vs broker "XAUUSD.pi").	Normalize all feeds through asset_registry.py into canonical (base_asset, broker_symbol, feed_symbol).
+2.3 Mandate 1, Question 2 — Asset Coverage Discrepancies (15–21 Assets vs. 120–749 Assets)
+
+Why do 3_Exchanges_LS_Ratio (20), 5_OI (20), 8_Exchange_Liquidation_Map (21), and 17_Orderbook (15) stop at 15–21 assets while 9_Liquidation_Max_Pain (747–749), 5_Funding_Rate (592), and 11_Technical (120) cover hundreds of symbols?
+
+Root Cause 1 — Single-Bulk-Table DOM vs. Per-Asset Stateful Dropdown Navigation:
+Feeds 4, 5_Funding_Rate, and 9 (592–749 assets): On CoinGlass (/LiquidationMaxPain, /FundingRate), the web app loads a single bulk JSON payload / virtualized table containing all 592–749 coins at once. Collectors/Core/liquidation_maxpain_core.py (L190–255) simply scrolls one virtualized table or reads one intercepted payload in ~8 seconds total.
+Feeds 3, 5_OI, and 8 (20–21 assets): On CoinGlass (/LongShortRatio, /OpenInterest, /LiquidationData), exchange-level L/S ratios and liquidation heatmaps require per-symbol stateful React dropdown selection + chart canvas re-rendering (2.5s–4.5s per coin). Because of this latency, Terminal/Data_Factory/asset_registry.py explicitly hardcodes caps:
+asset_registry.py L119–124 (FEED_3_ASSETS): Hardcoded list of 20 strings (["BTC", "ETH", "SOL", "XRP", "BNB", "DOGE", "ADA", "AVAX", "TRX", "LINK", "DOT", "NEAR", "LTC", "UNI", "APT", "ARB", "OP", "SUI", "INJ", "ATOM"]).
+asset_registry.py L127–132 (FEED_5_ASSETS): Same hardcoded 20 strings.
+asset_registry.py L135–141 (FEED_8_ASSETS): Hardcoded 23 strings (FEED_3_ASSETS + ["BCH", "FIL", "TIA"]). (In commit 77dc330a5, ETH and XRP timed out in 8_Exchange_Liquidation_Map_1D.py, yielding 21 assets).
+Feed 17 (17_Orderbook.py L64–81, 15 assets): Hardcodes CRYPTO_5 (BTC, ETH, SOL, BNB, XRP), INDICES_5 (US500, US30, NAS100, DE40, UK100), and METALS_5 (XAU, XAG, XPT, XPD, XCU).
+Root Cause 2 — Fabricated Sub-Tiers in coinglass_ls_browser_core.py (L340–376):
+While auditing Collectors/Core/coinglass_ls_browser_core.py (3_Exchanges_LS_Ratio_*), we discovered that L340–376 only scrapes one table ("All Exchanges") from CoinGlass, and then mathematically fabricates the "Whale Positions" and "Global Accounts" rows using deterministic formulas:
+Python
+# Collectors/Core/coinglass_ls_browser_core.py Lines 342-375
+whale_bias = (long_pct - 50.0) * 1.15
+w_long = round(max(20.0, min(80.0, 50.0 + whale_bias)), 2)
+...
+g_long = round(max(25.0, min(75.0, 100.0 - w_long + (50.0 - long_pct) * 0.3)), 2)
+This means "Whale Positions" and "Global Accounts" in 3_Exchanges_LS_Ratio_*.parquet are synthetic transformations of "All Exchanges", not independent exchange telemetry!
+Architecture to Expand Coverage to All 120 Active Broker Assets Without Cloudflare Bans or Rate Limits:
+Split the 120 Active Broker Assets (11_Technical.parquet) by Native Asset Class: Out of the 120 active assets in 11_Technical.parquet (156 in 00_MT5_Account_Telemetry.parquet), 27 are Crypto Perpetuals (BTCUSD.pi, ETHUSD.pi, BNBUSD.p, ..., ZECUSD.p) and 93 are TradFi CFDs (FX, Metals, Indices, Energies, Equities). (Note: Fix the bug in 11_Technical.py where FX/Indices like EURGBP.pi, AUDUSD.pi, USDCAD.pi, JP225.p, US2000.p are mislabeled category = "Crypto Alt"!)
+For All 27 Broker Crypto Assets: Expand FEED_3_ASSETS, FEED_5_ASSETS, FEED_8_ASSETS, and 17_Orderbook.py from 15–20 to all 27 broker crypto symbols by replacing UI dropdown clicking with in-page window.fetch() multiplexing inside the existing authenticated CoinGlass tab using Promise.allSettled in batches of 5 with 350ms jitter (27 / 5 * 0.4s = 2.2 seconds total instead of 90 seconds of UI clicking!).
+For All 93 TradFi CFD Assets: Expand 17_Orderbook.py (mt5.market_book_get(sym) + tick-imbalance proxy) and 18_CVD.py (mt5.copy_ticks_from / M15 volume delta) to iterate over the full ASSET_REGISTRY (93 TradFi symbols) via local IPC to the MT5 terminal (0.3 ms per symbol = < 50 ms total, zero external network requests, zero rate-limit risk).
+2.4 Mandate 1, Question 3 — Cloudflare Turnstile & CDP Bot Detection Prevention (Collectors/Core/cdp_pool.py)
+Why open_ephemeral_tab (/json/new) Triggers Cloudflare Turnstile:
+In Collectors/Core/cdp_pool.py (L90–145), calling http://127.0.0.1:9222/json/new?{url} spawns a cold Chromium Target and immediately issues a top-level document navigation (Sec-Fetch-Mode: navigate, empty Referer, cold TLS/HTTP2 stream, unhydrated React memory, and bursty parallel Target.createTarget events when multiple collectors run). Cloudflare Bot Management scores simultaneous top-level navigations from headless/CDP-attached Chromium targets and challenges them with a Turnstile interstitial.
+Optimal Authenticated Tab Reuse + window.fetch Architecture:
+Never call /json/new during routine collection cycles. Maintain one persistent warm tab per domain (coinglass.com, hyperdash.info, tradfye.com, investing.com) pre-opened in the user's persistent Chrome profile (--remote-debugging-port=9222).
+Same-Origin window.fetch Execution: Once the warm tab has passed Turnstile (cf_clearance cookie + CoinGlass obe / encryption headers loaded in the page's JS runtime), execute data collection via Runtime.evaluate (awaitPromise: True) calling window.fetch(apiUrl, { credentials: 'include' }) or triggering internal Next.js/React router state transitions (window.history.pushState / Redux store dispatch) without reloading the top-level DOM.
+Graceful Recovery When a Warm Tab Freezes, Crashes, or Disconnects:
+Implement a 3-Stage Circuit Breaker in cdp_pool.py:
+Liveness Probe (1.0s timeout): Send Runtime.evaluate(expression="1+1", timeout=1.0) + check !document.title.includes("Just a moment").
+Soft In-Tab Recovery: If Runtime.evaluate times out (WebSocketTimeoutException or renderer freeze), issue Page.stopLoading followed by Page.reload(ignoreCache=False) on the existing targetId (preserving tab session storage and cookies) and wait 3.0s.
+Rate-Limited Target Replacement (Mutex + 15s Cooldown): Only if the WebSocket target itself returns HTTP 404/500 (Inspector.targetCrashed) may cdp_pool.py close the dead targetId (/json/close/{id}) and open at most one replacement tab (/json/new) behind a file lock (/tmp/cdp_tab_spawn.lock) with a mandatory 15.0s Turnstile hydration pause.
+2.5 Mandate 1, Question 4 & Mandate 3, Section A — parquet_feed_writer.py, Windows File Locks & Schema Drift Across All 42 Parquet Files
+A. Code-Level Audit of parquet_feed_writer.py (Terminal/Data_Factory/parquet_feed_writer.py & Collectors/Core/parquet_feed_writer.py)
+Triple Duplicate Writer Implementations (DRY Violation):
+The repo maintains three separate Parquet writer modules: Terminal/Data_Factory/parquet_feed_writer.py (210 lines), Collectors/Core/parquet_feed_writer.py (186 lines), and Collectors/Core/parquet_writer.py (128 lines).
+Destructive Dummy Overwrite on Empty Collector Scrape (L70–72):
+Python
+# Terminal/Data_Factory/parquet_feed_writer.py Lines 70-72
+if not data:
+    # Write an empty placeholder DataFrame with a single dummy column
+    data = [{"_empty": True}]
+When mode="overwrite" (the default for all 35 feeds!) is called with data=[] during a transient network glitch or Cloudflare challenge, write_parquet_feed clobbers the valid historical .parquet file on disk with a 1-row [{"_empty": True}] table and writes "status": "PASS", "row_count": 0 into Data/metadata/{feed_name}.json (L152–159)!
+Fix: If not data, abort the overwrite, preserve the last known good .parquet file on disk, and update the .json sidecar with "status": "EMPTY_SCRAPE_PRESERVED_LAST_GOOD".
+Windows os.replace PermissionError (WinError 5 / WinError 32) Under Concurrent polars.read_parquet:
+In parquet_feed_writer.py L129–136:
+Python
+for attempt in range(6):
+    try:
+        os.replace(tmp_path, parquet_path)
+        break
+    except PermissionError:
+        if attempt == 5: raise
+        time.sleep(0.15 * (attempt + 1))
+On Windows (nt), polars.read_parquet(..., memory_map=True) opens an OS memory-mapped section handle (CreateFileMappingW) without FILE_SHARE_DELETE. While a downstream reader holds that mmap handle, os.replace raises PermissionError: [WinError 5] Access is denied or [WinError 32]. If a heavy downstream audit holds the handle for > 0.90s (0.15 * (1+2+3+4+5) = 2.25s total), os.replace crashes and leaves an orphaned .parquet.tmp.{pid} file.
+Fix: (a) Pass memory_map=False in all downstream pl.read_parquet() wrappers on Windows; (b) Include threading.get_ident() and uuid4().hex[:6] in tmp_path (f".tmp.{os.getpid()}.{uuid.uuid4().hex[:6]}") so multi-threaded writers inside the same process cannot collide on the same .tmp.{pid} filename; and (c) Use exponential backoff up to 5.0s with fallback copy-on-locked.
+B. Schema Drift & Data Quality Audit Across All 42 .parquet Files in Data/feeds/
+
+Direct polars schema inspection across all 42 .parquet files in commit 77dc330a5 revealed:
+
+9 Different Primary Symbol Column Names Across the 42 Feeds:
+symbol (21 feeds), Symbol (4 feeds: 1_Price_Change, 2_24H_Volume, 4_Long_Short_Ratio, 5_Funding_Rate), asset (7 feeds: 14_Hyperdash_Liq_Map, 15_Hyperdash_Stops_Map, 17_Orderbook, 21_Tradfye_Orderflow, 24_Smart_Money_Flow, etc.), Asset (2 feeds: 8_Exchange_Liquidation_Map_1D/7D), Broker_Symbol (1 feed: 00_MT5_Account_Telemetry), coin (1 feed: 5_OI), Ticker (1 feed: 7_Live_Liq), base_asset (2 feeds: 25, 26), currency (1 feed: 19_Calendar).
+Numeric Metrics Stored as Unparsed UI Strings (pl.Utf8) in 15 Feeds:
+Feeds 1_Price_Change, 2_24H_Volume, 4_Long_Short_Ratio, 5_Funding_Rate, 5_OI, 7_Live_Liq, 8_Exchange_Liquidation_Map_1D/7D, 9_Liquidation_Max_Pain_24H/48H/3D/7D, 14_Hyperdash_Liq_Map, 15_Hyperdash_Stops_Map, and 17_Orderbook store prices, volumes, and percentages as strings ("$1.35B", "$111,150.00", "+1.83%", "-0.0042%"). As demonstrated when querying 15_Hyperdash_Stops_Map.parquet, executing pl.col("buy_stops") > 0 throws polars.exceptions.ComputeError: cannot compare string with numeric type (i32)!
+Leaked Pandas Index Column (__index_level_0__) & Column Typos:
+All five 18_CVD_30D_*.parquet files leak "__index_level_0__" (i64) from df.to_parquet(index=True).
+8_Exchange_Liquidation_Map_1D.parquet and 7D.parquet contain two misspelled columns: "Cummulitve_Liquidation" and "Binanace".
+Checklist Auditor Blind Spots & Self-Falsifying Telemetry (Terminal/parquet_checklist_auditor.py):
+Terminal/parquet_checklist_auditor.py checks 35 feeds (CANONICAL_FEEDS, L39–75), whereas Terminal/Data_Factory/parquet_feed_checklist_auditor.py only checks 33 feeds (omitting Feeds 25 and 26). Both auditors completely omit 14_Liquidation_Matrix.parquet (8,607 rows) and the 6 auxiliary feeds (11_Technical_BTC_Ribbon.parquet and 18_CVD_30D_*.parquet).
+At L191–203 of Terminal/parquet_checklist_auditor.py, the auditor overwrites 23_Master_Pipeline_Telemetry.parquet (35 rows) from its own checklist dictionary before reporting 23_Master_Pipeline_Telemetry as PASS (0.0m age)—masking the actual script-by-script runtime/failure log produced by run_master_pipeline.py!
+Collectors/API/00_MT5_Account_Telemetry.py (L57–58) hardcodes stale solvency constants floor = 4775.00 and buf = 4795.00 (Net_Headroom = $36.32 after $15 buffer), conflicting with the constitutional Solvency Kernel Floor of $4,795.00 (Net_Headroom = +$49.32 on $4,846.32 equity).
+3. QUANTITATIVE NARRATIVE SYNTHESIS HEURISTIC, PRICE MAGNET PHYSICS & RISK SCALING (MANDATES 2, 3B & 3C)
+3.1 Overcoming the "Intersection Trap" (
+0.70
+35
+≈
+0.0000038
+0.70
+35
+≈0.0000038) — The 4-Layer Institutional Narrative Synthesis Protocol
+
+Requiring all 35 feeds to agree simultaneously treats orthogonal, multi-horizon data streams as flat Boolean AND gates. Institutional quantitative desks resolve this by routing the 35 feeds into a 4-Layer Conditional Directed Acyclic Graph (DAG):
+
+Trade_Authorization
+=
+𝐼
 (
-𝑃
-𝑘
+Layer 1 Solvency & Gates
+=
+1
 )
-P
-mag
-∗
+⏟
+Binary Fail-Closed
+×
+𝐼
+(
+Layer 2 Structural Edge
+≥
+0.65
+)
+⏟
+Regime + Magnet Asymmetry
+×
+𝐼
+(
+𝑆
+micro
+≥
+𝜃
+trigger
+)
+⏟
+Layer 3 Probabilistic Score
+Trade_Authorization=
+Binary Fail-Closed
+I(Layer 1 Solvency & Gates=1)
 	​
 
-=argmax
-P
-k
 	​
 
-∈M
-target
+×
+Regime + Magnet Asymmetry
+I(Layer 2 Structural Edge≥0.65)
 	​
 
 	​
 
-G(P
-k
+×
+Layer 3 Probabilistic Score
+I(S
+micro
 	​
 
-) within 
+≥θ
+trigger
+	​
+
+)
+	​
+
+	​
+
+
+Layer 1 — Binary Solvency, Spread & Event Gates (Feeds 00, 19, 23):
+Must evaluate to 1 (PASS). If Spread_BPS > Threshold (25.0 bps Crypto, 5.0 bps Majors/Metals/Indices), or Spread_Points / TP_Distance_Points > 15.0%, or Net_Kernel_Headroom < Ticket_Stressed_Risk, or an active HIGH impact macro release is within [-30m, +15m] in 19_Calendar.parquet, the asset is immediately vetoed (0).
+Layer 2 — Structural Auction Regime & Price Magnet Asymmetry (Feeds 11, 20 + The 10 Price Magnet Feeds):
+Classifies the asset into Engine Model 1 (Statistical Mean Reversion) when 
+∣
+𝑍
+VWAP
+∣
+≥
+2.0
+𝜎
+∣Z
+VWAP
+	​
+
+∣≥2.0σ at an outer Value Area boundary (VAH/VAL/PDH/PDL), OR Engine Model 2 (Trend Pullback Continuation) when 
+∣
+𝑍
+VWAP
+∣
+<
+2.0
+𝜎
+∣Z
+VWAP
+	​
+
+∣<2.0σ inside a directional Fib-Prime EMA ribbon (EMA 5 / 13 / 34 / 89 / 144 / 233) pulling back into the [0.618 GP, 0.702 OTE] Fibonacci Golden Zone.
+Layer 3 — Weighted Microstructure & Orderflow Confluence Score 
+𝑆
+micro
+∈
 [
-1.8
- 
-ATR
-14
+−
+1
 ,
-  
-6.0
- 
++
+1
+]
+S
+micro
+	​
+
+∈[−1,+1] (Feeds 10, 17, 18, 21, 25, 26, 3, 4, 5):
+Instead of requiring every microstructure feed to agree, compute a weighted linear combination across 4 orthogonal sub-factors (requiring 
+𝑆
+micro
+≥
++
+0.45
+S
+micro
+	​
+
+≥+0.45 for longs or 
+≤
+−
+0.45
+≤−0.45 for shorts, i.e., 2-of-4 or 3-of-4 sub-factor alignment).
+Layer 4 — Convexity & Solvency Sizing (R:R >= 2.0R–2.5R+):
+Compute exact passive limit entry, SL bunker (Rule B), and TP magnet (Rule A). Only emit an affirmative ticket if net reward-to-risk after spread and stress buffer is 
+≥
+2.0
+R
+≥2.0R.
+3.2 Mathematical Physics of the 10 Price Magnet Feeds (Rule A: TP Front-Running & Rule B: SL Insulation)
+
+The 10 Canonical Price Magnet Feeds represent two distinct physical mechanisms in leveraged books:
+
+Forced-Taker Liquidation Feeds (Fuel / Accelerators): 8_Exchange_Liquidation_Map_1D, 8_Exchange_Liquidation_Map_7D, 9_Liquidation_Max_Pain_24H, 9_Liquidation_Max_Pain_48H, 9_Liquidation_Max_Pain_3D, 9_Liquidation_Max_Pain_7D, 14_Hyperdash_Liq_Map, and 14_Liquidation_Matrix.
+Retail Stop-Loss & Whale Trigger Feeds (Sweep Targets): 15_Hyperdash_Stops_Map and 16_Hyperdash_telegram_Intel.
+Rule A — Take-Profit (TP) Placement: Front-Running High-Intensity Liquidation Clusters
+
+When price approaches a dense liquidation cluster 
+𝑃
+liq
+∗
+P
+liq
+∗
+	​
+
+ with discrete notional volume 
+𝑉
+liq
+∗
+V
+liq
+∗
+	​
+
+ (where Short Liquidations above spot trigger forced Market Buy orders and Long Liquidations below spot trigger forced Market Sell orders), institutional market makers absorb the forced market flow at the leading edge of the cluster and reverse price before the outer tail of the cluster is reached.
+
+Exact Mathematical Formulation for TP Front-Running:
+Let 
+𝑃
+entry
+P
+entry
+	​
+
+ be the passive limit entry price, 
+𝑃
+liq
+∗
+P
+liq
+∗
+	​
+
+ be the center of the dominant discrete liquidation cluster (or 24H/48H Max Pain level) in the trade direction, 
+𝜎
+cluster
+σ
+cluster
+	​
+
+ be the half-width of the high-density liquidation price band (or 
+0.15
+×
 ATR
 14
-]
-[1.8ATR
+0.15×ATR
 14
 	​
 
-,6.0ATR
-14
+ if point-level), and 
+𝑆
+price
+=
+Ask
+−
+Bid
+S
+price
 	​
 
-] of 
-𝑃
-entry
-P
-entry
-	​
-
-.
-
-Rule A — Front-Running Take Profit (
-𝑃
-TP
-P
-TP
-	​
-
-) Construction:
-Never place 
-𝑃
-TP
-P
-TP
-	​
-
- at the outer edge or beyond 
-𝑃
-mag
-∗
-P
-mag
-∗
-	​
-
-; place it inside (in front of) the high-density liquidation wall so the forced market orders triggered at the start of the cascade fill our passive limit TP automatically:
+=Ask−Bid be the broker spread. Then:
 
 𝑃
 TP
+LONG
 =
 𝑃
-mag
+liq, short
 ∗
 −
-𝑑
-⋅
 max
 ⁡
  ⁣
 (
-Spread
-price
-+
-5
- ticks
+𝜎
+cluster
 ,
   
-0.0007
-⋅
-𝑃
-mag
-∗
-  
-(
-7
- bps
-)
-,
-  
-0.12
-⋅
+0.15
+×
 ATR
 14
+,
+  
+0.05
+×
+∣
+𝑃
+liq, short
+∗
+−
+𝑃
+entry
+∣
 )
+−
+𝑆
+price
+P
+TP
+LONG
+	​
+
+=P
+liq, short
+∗
+	​
+
+−max(σ
+cluster
+	​
+
+,0.15×ATR
+14
+	​
+
+,0.05×
+	​
+
+P
+liq, short
+∗
+	​
+
+−P
+entry
+	​
+
+	​
+
+)−S
+price
+	​
+
+
+
+𝑃
+TP
+SHORT
+=
+𝑃
+liq, long
+∗
++
+max
+⁡
+ ⁣
+(
+𝜎
+cluster
+,
+  
+0.15
+×
+ATR
+14
+,
+  
+0.05
+×
+∣
+𝑃
+entry
+−
+𝑃
+liq, long
+∗
+∣
+)
++
+𝑆
+price
+P
+TP
+SHORT
+	​
+
+=P
+liq, long
+∗
+	​
+
++max(σ
+cluster
+	​
+
+,0.15×ATR
+14
+	​
+
+,0.05×
+	​
+
+P
+entry
+	​
+
+−P
+liq, long
+∗
+	​
+
+	​
+
+)+S
+price
+	​
+
+
+Why this works: Placing 
+𝑃
+TP
 P
 TP
 	​
 
-=P
-mag
+ at the 90%–95% leading edge of the forced-liquidation cluster guarantees our passive closing limit order is filled by the forced liquidation market orders rather than getting stranded at the top/bottom tick of the wick.
+Rule B — Stop-Loss (SL) Placement: Insulating Outside Retail Stop Sweep Clusters & Structural Invalidation
+
+Retail traders cluster their stop-losses just beyond obvious swing highs/lows (15_Hyperdash_Stops_Map buy_stops and sell_stops) and inside the 0.786 Fibonacci retracement shelf (fib_inval in 20_Auction_Market_Structure.parquet). Liquidity algorithms intentionally sweep these stop clusters to fill institutional passive limits before reversing.
+
+Exact Mathematical Formulation for SL Insulation (The "Stop Bunker" Equation):
+Let 
+𝑃
+inval
+P
+inval
+	​
+
+ be the structural invalidation shelf (0.786 Fib retracement for Model 2, or outer VAH/VAL/PDH/PDL for Model 1) and let 
+𝑃
+stops
+∗
+P
+stops
 ∗
 	​
 
-−d⋅max(Spread
-price
-	​
-
-+5 ticks,0.0007⋅P
-mag
-∗
-	​
-
-(7 bps),0.12⋅ATR
+ be any proximate retail stop cluster in 15_Hyperdash_Stops_Map within 
+0.50
+×
+ATR
+14
+0.50×ATR
 14
 	​
 
+ of 
+𝑃
+inval
+P
+inval
+	​
+
+. Define the Protected Anchor 
+𝑃
+anchor
+P
+anchor
+	​
+
+ as the outer envelope of both:
+
+𝑃
+anchor
+LONG
+=
+min
+⁡
+ ⁣
+(
+𝑃
+inval
+,
+  
+𝑃
+sell_stops
+∗
 )
-
-Rule B — Sweep-Insulated Bunker Stop Loss (
+,
 𝑃
-SL
+anchor
+SHORT
+=
+max
+⁡
+ ⁣
+(
+𝑃
+inval
+,
+  
+𝑃
+buy_stops
+∗
+)
 P
-SL
+anchor
+LONG
 	​
 
-) Construction:
-Let 
-𝑃
-sweep
-outer
-P
-sweep
-outer
+=min(P
+inval
 	​
 
- be the outer boundary of any retail stop cluster (15_Hyperdash_Stops_Map.parquet: sell_stops for Longs, buy_stops for Shorts) or high-intensity CEX/DEX liquidation ladder (Feeds 8, 14) located between 
-𝑃
-entry
-P
-entry
+,P
+sell_stops
+∗
 	​
 
- and 
+),P
+anchor
+SHORT
+	​
+
+=max(P
+inval
+	​
+
+,P
+buy_stops
+∗
+	​
+
+)
+Then insulate the Stop-Loss behind 
 𝑃
-0.786
- Fib
+anchor
 P
-0.786 Fib
+anchor
+	​
+
+ by the volatility + spread + stop-cascade buffer 
+Δ
+bunker
+Δ
+bunker
 	​
 
 :
 
 𝑃
 SL
+LONG
 =
-{
-min
-⁡
- ⁣
-(
 𝑃
-0.786
- Fib
-,
-  
-𝑃
-sweep
-outer
-,
-  
-𝑃
-whale_wall
-outer
-)
+anchor
+LONG
 −
 (
 0.40
-⋅
+×
 ATR
 14
 +
-1
-2
-Spread
+0.5
+×
+𝑆
 price
 )
-	
-if 
-𝑑
-=
-+
-1
- (Long)
-
-
-max
-⁡
- ⁣
-(
-𝑃
-0.786
- Fib
-,
-  
-𝑃
-sweep
-outer
-,
-  
-𝑃
-whale_wall
-outer
-)
-+
-(
-0.40
-⋅
-ATR
-14
-+
-1
-2
-Spread
-price
-)
-	
-if 
-𝑑
-=
-−
-1
- (Short)
 P
 SL
+LONG
 	​
 
+=P
+anchor
+LONG
+	​
+
+−(0.40×ATR
+14
+	​
+
++0.5×S
+price
+	​
+
+)
+
+𝑃
+SL
+SHORT
 =
-⎩
-⎨
-⎧
+𝑃
+anchor
+SHORT
++
+(
+0.40
+×
+ATR
+14
++
+0.5
+×
+𝑆
+price
+)
+P
+SL
+SHORT
 	​
 
-min(P
-0.786 Fib
+=P
+anchor
+SHORT
 	​
 
-,P
-sweep
-outer
-	​
-
-,P
-whale_wall
-outer
-	​
-
-)−(0.40⋅ATR
++(0.40×ATR
 14
 	​
 
-+
-2
-1
-	​
-
-Spread
++0.5×S
 price
 	​
 
 )
-max(P
-0.786 Fib
-	​
-
-,P
-sweep
-outer
-	​
-
-,P
-whale_wall
-outer
-	​
-
-)+(0.40⋅ATR
-14
-	​
-
-+
-2
-1
-	​
-
-Spread
-price
-	​
-
-)
-	​
-
-if d=+1 (Long)
-if d=−1 (Short)
-	​
-
-
-Hard Gate: If insulating 
+Hard Liquidation-Cascade Veto on SL Placement: Never place 
 𝑃
 SL
 P
 SL
 	​
 
- outside the retail stop cluster causes the net reward-to-risk ratio 
-RR
-net
-=
-∣
-𝑃
-TP
-−
-𝑃
-entry
-∣
-−
-Spread
-price
-∣
-𝑃
-entry
-−
+ inside or immediately behind a Tier-1 CEX liquidation ladder whose discrete notional exceeds 
+2
+×
+2× resting L2 orderbook depth—if a stop cluster cascades into a dense CEX liquidation band, slippage accelerates; either step 
 𝑃
 SL
-∣
+P
+SL
+	​
+
+ beyond the tail of that local pocket or pass on the trade.
+3.3 Mandate 3, Section B — Concrete Conflict Resolution & Mathematical Weighting Framework
+A. Mathematical Weighting of Layer 3 Microstructure Confluence (
+𝑆
+micro
+∈
+[
+−
+1.0
+,
 +
-Slippage
-stress
-RR
-net
+1.0
+]
+S
+micro
 	​
 
+∈[−1.0,+1.0])
+
+When Layer 1 (Hard Gates) and Layer 2 (Structural Regime) pass, Layer 3 resolves conflicting microstructure signals across 4 orthogonal sub-factors:
+
+𝑆
+micro
 =
-∣P
-entry
+0.35
+⋅
+𝜙
+Footprint
++
+0.30
+⋅
+𝜙
+CVD_Delta
++
+0.20
+⋅
+𝜙
+RestingLiquidity
++
+0.15
+⋅
+𝜙
+ContrarianSentiment
+S
+micro
 	​
 
-−P
-SL
+=0.35⋅ϕ
+Footprint
 	​
 
-∣+Slippage
-stress
++0.30⋅ϕ
+CVD_Delta
 	​
 
-∣P
-TP
++0.20⋅ϕ
+RestingLiquidity
 	​
 
-−P
-entry
++0.15⋅ϕ
+ContrarianSentiment
 	​
 
-∣−Spread
-price
+
+where each 
+𝜙
+𝑘
+∈
+[
+−
+1
+,
++
+1
+]
+ϕ
+k
 	​
 
+∈[−1,+1] is signed (+1 Bullish, -1 Bearish):
+
+𝜙
+Footprint
+ϕ
+Footprint
 	​
 
- to drop below 
-2.00
-R
-2.00R, the trade is vetoed (or re-staged deeper at the P_sweep wick itself!).
+ (Weight = 0.35, Feeds 25, 26): Realized intrabar absorption, trapped traders (Trapped longs / Trapped shorts), and bar delta at structural boundaries. (Highest weight because it measures actual executed institutional absorption vs. spoofing).
+𝜙
+CVD_Delta
+ϕ
+CVD_Delta
+	​
 
-3.4 Live Account Execution & Dynamic Position Sizing Protocol (Mandate 3 — Section C)
-1. Exact Live Account #5064568 Solvency & Cushion Verification (2026-10-26)
-Realized Balance (
-𝐵
-B): 4,846.32 USD
-Floating Equity (
+ (Weight = 0.30, Feeds 18, 21): Multi-bar Cumulative Volume Delta trajectory and price- vs.-CVD divergence (BULLISH_ABSORPTION / BEARISH_EXPANSION).
+𝜙
+RestingLiquidity
+ϕ
+RestingLiquidity
+	​
+
+ (Weight = 0.20, Feeds 10, 17): Resting L2 orderbook imbalance and persistent whale limit orders (notional >= $100k, duration >= 180s). (Weighted lower than executed footprint because resting orders can be pulled unless persistence 
+≥
+180
+s
+≥180s is verified).
+𝜙
+ContrarianSentiment
+ϕ
+ContrarianSentiment
+	​
+
+ (Weight = 0.15, Feeds 3, 4, 5_OI, 5_Funding): Retail L/S crowding acts as contrarian fuel—heavy retail crowding on one side (> 60%–65%) while price fails to advance in their direction scores against the retail crowd!
+B. Concrete Resolution of Scenario A
+
+Scenario A: 3_Exchanges_LS_Ratio shows 68% Retail Long (heavy retail long crowding), while 18_CVD shows upward cumulative volume delta divergence and 10_Whale_Orders shows massive passive bid walls ($5M+) resting at the Point of Control (POC). Do you go Long, Short, or Stand Down?
+
+Quantitative Resolution: STAND DOWN at market; conditionally place a passive BUY_LIMIT ONLY if 5_OI is contracting/flat (short-covering) AND 25_CoinGlass_Footprint_Signals confirms realized Absorption (BULLISH) at the $5M POC bid wall; otherwise favor a sweep below POC first.
+Step-by-Step Proof:
+Why is 68% Retail Long dangerous? Because 68% of retail accounts being long creates a massive Long Liquidation / Sell Stop pool (9_Liquidation_Max_Pain / 15_Hyperdash_Stops_Map) just below the POC!
+However, 18_CVD upward divergence + $5M persistent whale bids (duration >= 180s) at POC indicates an institutional passive buyer is absorbing sell flow at POC.
+The Deciding Tie-Breaker (5_OI + 14_Liquidation_Matrix distance):
+Case A1 (Bullish Institutional Accumulation — Execute Passive BUY_LIMIT at POC): If the $5M whale bid has persisted 
+≥
+180
+s
+≥180s, 25/26 Footprint prints BULLISH Absorption (> 30% bar sell volume absorbed at the low without price dropping), and the retail long liquidation cluster lies inside our structural SL bunker (0.786 Fib invalidation), we GO LONG via passive BUY_LIMIT at the $5M POC wall, with SL insulated below the retail sell-stop cluster (Rule B).
+Case A2 (Spoofed POC Bid Above Unswept Retail Long Liquidations — Stand Down / Wait for Sweep): If 5_OI is surging while price stalls and a $40M+ Long Liquidation cluster sits 0.5% below POC, market makers will pull or fill through the $5M POC bid to flush the 68% retail longs first. In that case, we place our BUY_LIMIT at the post-sweep Long Max Pain / VAL level, never at mid-range!
+C. Concrete Resolution of Scenario B
+
+Scenario B: 20_Auction_Market_Structure shows TREND_UP with price at 
++
+2.6
+𝜎
++2.6σ above VWAP (11_Technical), while 25_CoinGlass_Footprint_Signals flashes Absorption_High (Taker buy orders absorbed by passive limit sellers) and 26_Aggregated_Footprint_Bar_Metrics shows negative delta divergence. How does the system weight the macro trend vs. the localized microstructure exhaustion?
+
+Quantitative Resolution:
+Immediate Action #1 — ABSOLUTE VETO on Any Market/Breakout Long at 
++
+2.6
+𝜎
++2.6σ: Under our standardized decision chain, Model 2 (Trend Pullback) is strictly gated by 
+∣
+𝑍
+VWAP
+∣
+<
+2.0
+𝜎
+∣Z
+VWAP
+	​
+
+∣<2.0σ and requires a pullback to the [0.618, 0.702] Fib Golden Zone or EMA 34/89. Buying at 
++
+2.6
+𝜎
++2.6σ directly into Absorption_High + negative delta divergence has deeply negative expectancy. (Notice: Live NAS100.p and SP500.p in commit 77dc330a5 are at exact 
+𝑍
+=
++
+2.68
+𝜎
+Z=+2.68σ in TREND_UP_ACCEPTANCE right now—which is why our Council refuses to chase them at market!)
+Immediate Action #2 — Dual-Horizon Routing (Model 1 Counter-Trend Short vs. Model 2 Pullback Long):
+Can we take a Model 1 Mean-Reversion SELL_LIMIT at 
++
+2.6
+𝜎
++2.6σ? Only if 20_Auction_Market_Structure shows a hard structural ceiling (PDH, Monday High, or outer Short Liquidation exhaustion) AND EMA 233 slope is flat or negative (
+≤
++
+0.02
+%
+≤+0.02%). If auction_regime == "TREND_UP_ACCEPTANCE" with strong positive EMA 233 slope (> +0.05%), fading a runaway trend at 
++
+2.6
+𝜎
++2.6σ carries tail risk; instead, Absorption_High + negative delta divergence is used as the trigger to take profit on existing longs and arm a resting Model 2 BUY_LIMIT down at VAH / EMA 34 / [0.618–0.702] Golden Zone once the 
++
+2.6
+𝜎
++2.6σ exhaustion mean-reverts back to fair value!
+3.4 Mandate 3, Section C — Solvency Kernel & Dynamic Risk Scaling ($4,846.32 
+→
+→ $5,500.00)
+
+Given live Account #5064568 Equity 
 𝐸
-E): 4,846.32 USD (Open Positions = 0, Pending Orders = 0, Margin Used = 0.00 USD, Free Margin = 4,846.32 USD)
-Contractual Hard Floor (
-𝐹
-hard
-F
-hard
-	​
-
-): 4,600.00 USD 
-  
-⟹
-  
-⟹ Hard Floor Cushion: 
+𝑡
+=
+$
 4
 ,
 846.32
-−
+E
+t
+	​
+
+=$4,846.32, Hard Floor 
+𝐹
+hard
+=
+$
 4
 ,
 600.00
-=
-+
-246.32
- USD
-4,846.32−4,600.00=+246.32 USD
-Operating Buffer Floor (
-𝐹
-buf
 F
-buf
+hard
 	​
 
-): 4,650.00 USD 
-  
-⟹
-  
-⟹ Buffer Cushion: 
-4
-,
-846.32
-−
+=$4,600.00, Operating Buffer 
+𝐹
+buf
+=
+$
 4
 ,
 650.00
-=
-+
-196.32
- USD
-4,846.32−4,650.00=+196.32 USD
-Solvency Kernel Admission Floor (
+F
+buf
+	​
+
+=$4,650.00, Solvency Kernel Floor 
 𝐹
 kernel
+=
+$
+4
+,
+795.00
 F
 kernel
 	​
 
-): 4,795.00 USD 
-  
-⟹
-  
-⟹ Raw Kernel Cushion: 
-4
-,
-846.32
-−
-4
-,
-795.00
-=
-+
-51.32
- USD
-4,846.32−4,795.00=+51.32 USD
-Execution Friction / Slippage Reserve (
-𝑅
-reserve
-R
-reserve
-	​
-
-): 2.00 USD (1.00 USD per contingent slot 
-×
-2
-×2 slots) 
-  
-⟹
-  
-⟹ Net Distributable Kernel Headroom (
-𝐻
-net
-H
-net
-	​
-
-):
-
-𝐻
-net
-=
-min
-⁡
-(
-𝐵
-,
+=$4,795.00, and Pass Target 
 𝐸
+target
+=
+$
+5
+,
+500.00
+E
+target
+	​
+
+=$5,500.00:
+
+Current Net Kernel Headroom:
+
+𝐻
+kernel
+(
+𝑡
 )
+=
+𝐸
+𝑡
 −
 𝐹
 kernel
 −
+∑
+𝑖
+∈
+Open
 𝑅
-reserve
+stressed
+,
+𝑖
 =
+$
 4
 ,
 846.32
 −
+$
 4
 ,
 795.00
 −
-2.00
+$
+0.00
 =
 +
-49.32
+$
+51.32
  USD
 H
-net
-	​
-
-=min(B,E)−F
 kernel
 	​
 
-−R
-reserve
+(t)=E
+t
 	​
 
-=4,846.32−4,795.00−2.00=+49.32 USD
-Distance to Phase 1 Pass Target (5,500.00 USD): 
+−F
+kernel
+	​
+
+−∑
+i∈Open
+	​
+
+R
+stressed,i
+	​
+
+=$4,846.32−$4,795.00−$0.00=+$51.32 USD
+(Or +$49.32 USD after a $2.00 floating execution reserve, providing 4.11 to 4.93 consecutive stops at $10.00–$12.00 risk before touching $4,795.00).
+Continuous 4-Tier Dynamic Position Sizing Schedule 
+𝑅
+nominal
+(
+𝐸
+𝑡
+)
+R
+nominal
+	​
+
+(E
+t
+	​
+
+)
+Capital Regime Tier	Equity Band (
+𝐸
+𝑡
+E
+t
+	​
+
+)	Net Kernel Headroom (
+𝐸
+𝑡
+−
+$
+4
+,
+795
+E
+t
+	​
+
+−$4,795)	Nominal Risk / Ticket (
+𝑅
+nom
+R
+nom
+	​
+
+)	Stressed Risk Cap (
+𝑅
+stress
+=
+1.15
+ 
+𝑅
+nom
+R
+stress
+	​
+
+=1.15R
+nom
+	​
+
+)	Max Concurrent Tickets	Minimum Required R:R	Strategic Objective
+Tier 0: Lockdown	
+𝐸
+𝑡
+≤
+$
+4
+,
+795.00
+E
+t
+	​
+
+≤$4,795.00	
+≤
+$
+0.00
+≤$0.00	$0.00 (HALT)	$0.00	0	N/A	Hard Solvency Kernel Lock
+Tier 1A: Survival Micro	
+$
+4
+,
+795.01
+–
+$
+4
+,
+825.00
+$4,795.01–$4,825.00	+$0.01 – +$30.00	$6.00 – $8.00	<= $9.20	1	>= 2.50R	Rebuild buffer with 4+ stop survival
+Tier 1B: Defensive Preservation (ACTIVE NOW)	$4,825.01 – $4,865.00	+$30.01 – +$70.00 (+$49.32 now)	$10.00 – $12.00	<= $13.80	1 (max 2 uncorrelated)	>= 2.20R	Preserve 4–5 consecutive stops above $4,795 while compounding +$25–$35 per win
+Tier 2: House Money Expansion	
+$
+4
+,
+865.01
+–
+$
+5
+,
+000.00
+$4,865.01–$5,000.00	+$70.01 – +$205.00	$15.00 – $22.00	<= $25.00	2	>= 2.00R	Asymmetric expansion using realized profit cushion
+Tier 3: Institutional Scaling	
+$
+5
+,
+000.01
+–
+$
+5
+,
+420.00
+$5,000.01–$5,420.00	+$205.01 – +$625.00	$25.00 – $35.00 (0.55%–0.65%)	<= $40.00	2	>= 2.00R	High-velocity march toward $5,500 target
+Tier 4: Target Lock Taper	
+$
+5
+,
+420.01
+–
+$
 5
 ,
 500.00
-−
-4
-,
-846.32
-=
-+
-653.68
- USD
-5,500.00−4,846.32=+653.68 USD (+13.49% from current equity).
-2. Consecutive Stopout Survivability Audit
+$5,420.01–$5,500.00	+$625.01+	\min(\$15.00, 0.35 \times (\$5500 - E_t))	<= $17.25	1	>= 2.00R	Prevent give-back near $5,500 evaluation finish line
+Exact Lot Sizing Formula:
 
-At the current nominal risk allocation of 
-𝑅
-nom
-∈
-[
-10.00
-,
-12.00
-]
- USD
-R
-nom
-	​
-
-∈[10.00,12.00] USD per ticket (representing 0.206% to 0.248% of current equity, with max 2 concurrent slots = 20.00 to 24.00 USD total open risk):
-
-Buffer Above 4,795.00 USD Kernel Admission Floor:
-
-𝑁
-stops
-kernel
+Lots
 =
 ⌊
-49.32
-12.00
-⌋
-=
-4.11
- stops
-  
-  
-(
-at 
-$
-12
- risk
-)
-to
-⌊
-49.32
-10.00
-⌋
-=
-4.93
- stops
-  
-  
-(
-at 
-$
-10
- risk
-)
-N
-stops
-kernel
-	​
-
-=⌊
-12.00
-49.32
-	​
-
-⌋=4.11 stops(at $12 risk)to⌊
-10.00
-49.32
-	​
-
-⌋=4.93 stops(at $10 risk)
-Buffer Above 4,650.00 USD Operating Buffer Floor:
-
-𝑁
-{
-4650
-}
-=
-196.32
-10.00
- to 
-12.00
-=
-16.36
- to 
-19.63
- consecutive full stopouts
-N
-{4650}
-	​
-
-=
-10.00 to 12.00
-196.32
-	​
-
-=16.36 to 19.63 consecutive full stopouts
-Buffer Above 4,600.00 USD Contractual Hard Floor:
-
-𝑁
-{
-4600
-}
-=
-246.32
-10.00
- to 
-12.00
-=
-20.53
- to 
-24.63
- consecutive full stopouts
-N
-{4600}
-	​
-
-=
-10.00 to 12.00
-246.32
-	​
-
-=20.53 to 24.63 consecutive full stopouts
-3. Dynamic Position Sizing State Machine Across Equity Regimes (
-𝐸
-∈
-[
-4
-,
-600
-,
-  
-5
-,
-500
-]
- USD
-E∈[4,600,5,500] USD)
-
-To guarantee zero probability of breaching 4,600.00 USD on the downside while accelerating geometric compounding as equity climbs toward 5,500.00 USD on the upside, position sizing must be governed by a 5-Tier Piece-Wise Asymmetric Ratchet Function 
 𝑅
-ticket
-(
-𝐸
-)
-R
-ticket
-	​
-
-(E):
-
-Equity Regime Tier	Equity Band 
-min
-⁡
-(
-𝐵
-,
-𝐸
-)
-min(B,E) (USD)	Net Kernel Headroom 
-𝐻
-net
-H
-net
-	​
-
-	Max Concurrent Slots	Nominal Risk Per Ticket 
-𝑅
-ticket
-R
-ticket
-	​
-
- (USD)	Max Combined Open Risk (USD)	Required 
-𝑆
-narrative
-S
-narrative
-	​
-
- & R:R Gate	Strategic Objective
-Tier 0: Hard Kernel Lockout	$4,600.00 – $4,795.00	<= $0.00	0 (HALT) or 1 Micro-Recovery	$0.00 (or $5.00 with Operator Override)	$0.00 ($5.00)	
-𝑆
-≥
-85.0
-S≥85.0, 
-RR
-≥
-2.5
-R
-RR≥2.5R	Absolute capital preservation; zero normal risk admission below $4,795.00.
-Tier 1A: Defensive Preservation	$4,795.01 – $4,825.00	+$0.01 to +$28.00	1 Slot Only	$7.50 – $9.00 (
-≤
-1
-3
-𝐻
-net
-≤
-3
-1
-	​
-
-H
-net
-	​
-
-)	$9.00	
-𝑆
-≥
-78.0
-S≥78.0, 
-RR
-≥
-2.2
-R
-RR≥2.2R	Protect the $4,795.00 kernel boundary; single-bullet sniper mode until equity reclaims $4,825.
-Tier 1B: Standard Rebuild (CURRENT)	$4,825.01 – $4,900.00 ($4,846.32 Live)	+$28.01 to +$103.00 (+$49.32 Live)	2 Slots Max	$10.00 – $12.00 (0.21%–0.25% eq)	$20.00 – $24.00 (
-≤
-48.7
-%
-≤48.7% of 
-𝐻
-net
-H
-net
-	​
-
-)	
-𝑆
-≥
-75.0
-S≥75.0, 
-RR
-≥
-2.0
-R
-RR≥2.0R	Rebuild equity toward $4,900 with 4–5 consecutive stopout cushion above $4,795.
-Tier 2: House-Money Expansion	$4,900.01 – $5,150.00	+$103.01 to +$353.00	2 Slots Max	$15.00 – $22.00 (0.30%–0.43% eq)	$30.00 – $44.00	
-𝑆
-≥
-72.0
-S≥72.0, 
-RR
-≥
-2.0
-R
-RR≥2.0R	Ratchet Kernel Floor up to $4,840.00; deploy realized profits to accelerate toward $5,150 (~12–15 net 
-+
-2.5
-R
-+2.5R wins to target).
-Tier 3: Phase-1 Acceleration	$5,150.01 – $5,420.00	+$353.01 to +$623.00	2 Slots Max	$25.00 – $30.00 (0.48%–0.56% eq)	$50.00 – $60.00	
-𝑆
-≥
-75.0
-S≥75.0, 
-RR
-≥
-2.2
-R
-RR≥2.2R	Ratchet Kernel Floor up to $5,000.00 (Initial Deposit Protected!); capture major swing magnets to clear $5,420.
-Tier 4: Target Lock-In Taper	$5,420.01 – $5,500.00+	Within $80 of Pass!	1–2 Slots	Taper back to $12.00 – $15.00	$15.00 – $25.00	
-𝑆
-≥
-80.0
-S≥80.0, 
-RR
-≥
-2.0
-R
-RR≥2.0R	Ratchet Kernel Floor to $5,380.00; prevent give-back right at the finish line and cross $5,500.00 cleanly.
-
-Exact Continuous Lot-Sizing Formula for MT5 Execution:
-
-𝐿
-raw
-=
-𝑅
-ticket
-(
-𝐸
-)
+nominal
 (
 ∣
 𝑃
@@ -1773,42 +1244,14 @@ entry
 SL
 ∣
 +
-Δ
-𝑃
-stress_slippage
+𝑆
+price
 )
 ×
-ContractSize
-×
-TickValuePerPoint
-,
-𝐿
-final
-=
-max
-⁡
- ⁣
-(
-𝐿
-min
-⁡
-,
-  
-⌊
-𝐿
-raw
-𝐿
-step
+Contract_Value_Per_Price_Unit
 ⌋
-×
-𝐿
-step
-)
-L
-raw
-	​
-
-=
+lot_step
+Lots=⌊
 (∣P
 entry
 	​
@@ -1817,244 +1260,309 @@ entry
 SL
 	​
 
-∣+ΔP
-stress_slippage
+∣+S
+price
 	​
 
-)×ContractSize×TickValuePerPoint
+)×Contract_Value_Per_Price_Unit
 R
-ticket
-	​
-
-(E)
-	​
-
-,L
-final
-	​
-
-=max(L
-min
-	​
-
-,⌊
-L
-step
-	​
-
-L
-raw
+nominal
 	​
 
 	​
 
-⌋×L
-step
+⌋
+lot_step
 	​
 
-)
-Subject to the hard crypto leverage invariant (Margin_Used_Post <= 0.50 * Equity and Margin_Level_Post >= 200.0%).
 
-3.5 Mandatory 6-Point Quantitative Critique & Improvement Inquest (Section 2.5 Invariant)
-Conjunctive Sclerosis vs Probabilistic Expectancy:
-Requiring binary agreement across all 35 feeds starved the desk of trades. Separating the 4 binary Kernel Solvency gates (
-𝐾
-(
-𝑥
-)
-∈
-{
-0
-,
-1
-}
-K(x)∈{0,1}) from the 4-Cluster Log-Odds Evidence score (
-𝑆
-narrative
-(
-𝑥
-)
-∈
-[
-0
-,
-100
-]
-S
-narrative
-	​
-
-(x)∈[0,100]) restores statistical expectancy while keeping hard floor survival 100% fail-closed.
-Static Retrospective Data vs Dynamic Live Microstructure:
-Currently, run_master_pipeline.py runs Browser feeds sequentially every ~20–27 minutes (18/35 WARN). Transitioning to a split-pool continuous scheduler (API pool running every 30–60s; Warm-Tab CDP Browser pool refreshing Tier-1 orderflow feeds 3_15M, 7_Live_Liq, 10_Whale_Orders, 25, 26 every 90–120s) ensures we trade live absorption rather than 25-minute-old snapshots.
-Entry Geometry & Staging Passivity:
-Staging passive limit orders blindly at deep [0.618, 0.702] retracements during runaway impulse trends causes 0% fill rates. Upgrade: Use a 2-Tranche Split or Regime-Adaptive Limit Placement:
-In ROTATIONAL / BALANCED regimes (Feed 20): Stage at [0.618 GP, 0.702 OTE] behind VAL/VAH.
-In TREND_UP / TREND_DOWN regimes with CVD Z-Score > +1.5: Stage at the shallow institutional shelf (0.382–0.500 Fib confluent with 15m EMA-13/34 + POC / Whale Wall) so high-momentum continuation legs actually fill our limit order while still achieving 
-RR
-≥
-2.2
-R
-RR≥2.2R to the overhead 14_Liquidation_Matrix magnet!
-Multi-Asset Alpha Specialization vs Uniform Template Bias:
-Do not require CoinGlass crypto whale walls (Feed 10) or Hyperliquid DEX maps (Feed 14) to qualify Forex (EURUSD, GBPUSD, USDJPY), Precious Metals (XAUUSD, XAGUSD), or Equity Indices (NAS100, SP500)!
-Asset-Class-Specific Cluster Weights:
-Crypto Perps: Weight Feeds 3, 5, 7, 8, 9, 10, 14, 15, 17, 18, 25, 26.
-Forex / Metals / Indices: Reallocate crypto-DEX weights to 20_Auction_Market_Structure (PDH/PDL, Monday High/Low, Asian/London/NY Session sweeps, IB_High/Low, VAH/VAL/POC), 11_Technical (VWAP Z-Score, Fib-Prime EMAs), 18_CVD / 21_Tradfye_Orderflow, and 19_Calendar / 19_News.
-Actionable Alpha Evolution Proposals:
-Fix the 11 ingestion bugs identified in Section 2 immediately so 25_CoinGlass_Footprint_Signals, 26_Aggregated_Footprint_Bar_Metrics, and 14_Liquidation_Matrix contain 100% authentic, non-synthetic price levels and volumes.
-Prompt Architecture & Dual-Council Self-Improvement Inquest:
-Always inject a pre-joined, asset-normalized Candidate Microstructure Summary Table (joining 00_MT5, 11_Technical, 14_Liquidation_Matrix, 17_Orderbook, 18_CVD, 20_Auction, 25_Footprint_Signals, and 26_Footprint_Bars on canonical base_asset) directly into subagent and council prompts so neither Arena.ai nor Z.ai wastes context resolving "symbol" vs "Asset" vs "Broker_Symbol".
-4. Concrete Decision Matrix on All 35 Canonical Feeds (+ 7 Auxiliary/Composite Parquet Feeds)
-
-Below is the complete architectural decision matrix across every single Parquet feed in Data/feeds/ (verified against commit 77dc330a5 metadata at 2026-10-26 20:17:53 IST), categorizing each into Tier 1 (Inviolate Hard Filter), Tier 2 (Primary Trend & Structural Anchor), Tier 3 (Execution Timing & Tape Confluence), or Tier 4 (Auxiliary Context):
-
-Idx / File	Canonical Parquet Feed Name	Live Rows (77dc330a5)	Live Age & Audit Status	Primary Join Key in File	Mandated Storage Mode	Decision Tier Classification	Exact Mathematical & Narrative Role in Decision Chain
-00	00_MT5_Account_Telemetry.parquet	163	0.6m (PASS)	Broker_Symbol (Category polymorphic)	Snapshot (Split into 3 tables or filter Category)	TIER 1: Inviolate Hard Filter	Enforces Kernel Solvency: 
-min
-⁡
-(
-𝐵
-,
-𝐸
-)
-−
-Stress
-≥
-$
-4
-,
-795.00
-min(B,E)−Stress≥$4,795.00, Crypto spread 
+subject to the Crypto Margin Constraint (
+Margin_Used
 ≤
-25
- bps
-≤25 bps, TradFi spread 
-≤
-5
- bps
-≤5 bps, max 2 slots.
-19	19_Calendar.parquet	21	22.0m (PASS)	currency, date, time	Rolling 7D (upsert)	TIER 1: Inviolate Hard Filter	Sovereign Macro Blackout Gate: hard fail-close within 
-±
-35
-m
-±35m (TradFi) or 
-±
-15
-m
-±15m (Crypto) of High-Impact tier releases.
-32	23_Master_Pipeline_Telemetry.parquet	33	0.0m (PASS self-stamped)	feed_name (feed_id)	Snapshot (Audit output)	TIER 1: Inviolate Hard Filter	Provenance & Freshness Gate: blocks execution on any asset whose required Tier-1/Tier-2 feeds exceed SLA age.
-11	11_Technical.parquet	120	0.5m (PASS)	asset & symbol	Snapshot (120 MT5 assets)	TIER 2: Primary Trend & Structural Anchor	Fib-Prime EMA Ribbon (5,13,34,89,144,233), session_vwap, vwap_z (
-±
-1
-𝜎
-,
-1.28
-𝜎
-,
-2
-𝜎
-,
-2.51
-𝜎
-,
-3
-𝜎
-±1σ,1.28σ,2σ,2.51σ,3σ), atr_14, rsi_14.
-29	20_Auction_Market_Structure.parquet	84	0.4m (PASS)	asset & symbol	Snapshot (84 assets)	TIER 2: Primary Trend & Structural Anchor	Auction Regime (TREND_UP/DOWN/ROTATIONAL), daily_poc/vah/val, pdh/pdl, monday_high/low, fib_gp_min/max, fib_ote (0.702), fib_inval (0.786).
-Comp	14_Liquidation_Matrix.parquet (Magnet #1)	8,607	0.0m (PASS, omit from auditor!)	symbol (BTCUSDT / NAS100.p)	Snapshot (Synthesized post-process)	TIER 2: Primary Trend & Structural Anchor	Primary Multi-Venue Magnet: Synthesizes Tier-1 CEX + Tier-2 DEX liquidation pools to set 
-𝑃
-TP
-P
-TP
-	​
-
- (front-run by 5–10 bps) and 
-𝑃
-SL
-P
-SL
-	​
-
- (outside cluster).
-22	14_Hyperdash_Liq_Map.parquet (Magnet #2)	6,514	0.5m (PASS)	asset (BTC, ETH, ...)	Snapshot	TIER 2: Primary Trend & Structural Anchor	DEX Structural Liquidation Magnet: On-chain Hyperliquid L1 short_liq and long_liq notional bands (
-1.25
+0.50
 ×
-1.25× weight in magnet gravity 
-𝐺
-(
-𝑃
-𝑘
-)
-G(P
-k
+𝐸
+𝑡
+Margin_Used≤0.50×E
+t
 	​
 
-)).
-23	15_Hyperdash_Stops_Map.parquet (Magnet #3)	4,194	0.6m (PASS)	asset (BTC, ETH, ...)	Snapshot	TIER 2: Primary Trend & Structural Anchor	Retail Stop Sweep Magnet (Rule B): Maps buy_stops and sell_stops clusters; 
-𝑃
-SL
-P
-SL
-	​
-
- is strictly forbidden inside these bands and must sit 
+ and post-order 
+Margin_Level
 ≥
-0.40
- 
-ATR
-≥0.40ATR outside them.
-12	8_Exchange_Liquidation_Map_1D.parquet (Magnet #5)	2,100	24.2m (WARN)	Asset (BTC, ...)	Snapshot	TIER 2: Primary Trend & Structural Anchor	Tactical Intraday Magnet (24H): CEX (Binance, OKX, Bybit) 24h liquidation ladders for intraday TP targeting and sweep clearance.
-13	8_Exchange_Liquidation_Map_7D.parquet (Magnet #6)	2,585	23.4m (WARN)	Asset (BTC, ...)	Snapshot	TIER 2: Primary Trend & Structural Anchor	Macro Structural Magnet (7D): Weekly HTF CEX liquidation boundaries defining major swing inflection zones.
-14	9_Liquidation_Max_Pain_24H.parquet (Magnet #7)	747	23.4m (WARN)	symbol (BTC, ...)	Snapshot (747 coins)	TIER 2: Primary Trend & Structural Anchor	24H Shortest-Distance Magnet: short_max_pain_price / long_max_pain_price & distance_pct across 747 assets; identifies nearest 24h pain pull.
-15	9_Liquidation_Max_Pain_48H.parquet (Magnet #8)	747	23.3m (WARN)	symbol (BTC, ...)	Snapshot (747 coins)	TIER 2: Primary Trend & Structural Anchor	48H Intermediate Magnet: 2-day liquidation center of gravity; confirms multi-session directional pull when aligned with 24H magnet.
-16	9_Liquidation_Max_Pain_3D.parquet (Magnet #9)	748	23.3m (WARN)	symbol (BTC, ...)	Snapshot (748 coins)	TIER 2: Primary Trend & Structural Anchor	3-Day Swing Magnet: Medium-term liquidation magnet used to validate 
-≥
-2.5
-R
-≥2.5R runner targets.
-17	9_Liquidation_Max_Pain_7D.parquet (Magnet #10)	749	23.3m (WARN)	symbol (BTC, ...)	Snapshot (749 coins)	TIER 2: Primary Trend & Structural Anchor	7-Day Macro Magnet: Weekly institutional pain magnet; defines macro HTF draw-on-liquidity bias.
-18	10_Whale_Orders.parquet	3,805	22.2m (WARN)	symbol (BTCUSDT)	Snapshot + Persistence Ledger	TIER 3: Execution Timing & Tape Confluence	CEX resting institutional limit orders (notional_usd >= $100K, order_duration >= 180s); anchors passive limit entry defense.
-25	17_Orderbook.parquet	615	0.2m (PASS)	asset (BTC, GOLD, ...)	Snapshot (L2 + L3)	TIER 3: Execution Timing & Tape Confluence	Real-time L2 cumulative depth asymmetry (cumulative_depth) and L3 verified whale wallet resting orders (0x...).
-26	18_CVD.parquet	1,500	0.5m (PASS)	symbol & market_pair	Rolling (300 bars/sym)	TIER 3: Execution Timing & Tape Confluence	Taker aggression (taker_buy_vol - taker_sell_vol), cumulative_cvd, and cvd_zscore divergence detection.
-30	21_Tradfye_Orderflow.parquet	6,912	0.4m (PASS)	asset & market_pair	Rolling (300 bars/sym)	TIER 3: Execution Timing & Tape Confluence	Institutional tape (net_delta_usd, candle_vwap, poc_estimate, deribit_max_pain, call_wall, put_wall).
-33	25_CoinGlass_Footprint_Signals.parquet	1,010	20.7m (WARN)	base_asset & symbol	Rolling (2,000 signals)	TIER 3: Execution Timing & Tape Confluence	Granular Footprint events (Absorption, Trapped longs, Trapped shorts, Exhaustion) and absorbed_vol_usd at exact price levels.
-34	26_Aggregated_Footprint_Bar_Metrics.parquet	643	20.4m (WARN)	base_asset & symbol	Rolling (300 bars/sym)	TIER 3: Execution Timing & Tape Confluence	Continuous 15m bar footprint (buy_vol_usd, sell_vol_usd, candle_delta_usd, oi_change_usd, buy/sell_imbalances_count).
-11	7_Live_Liq.parquet	27	24.8m (WARN)	coin (BTCUSDT)	Rolling (2,500 ticks)	TIER 3: Execution Timing & Tape Confluence	Real-time forced liquidation tape; confirms active stop-run completion (exhaustion climax) at entry shelf.
-31	22_Forced_Liquidations_MTF.parquet	76	0.4m (PASS)	symbol (BTCUSDT)	Rolling (1,500 bars)	TIER 3: Execution Timing & Tape Confluence	Multi-timeframe (5m, 15m, 1h) aggregated liquidation climax detector (total_liq_usd >= $500K or orders_count >= 25).
-24	16_Hyperdash_telegram_Intel.parquet (Magnet #4)	1,000	0.1m (PASS)	asset (BTC, ETH, ...)	Rolling (2,000 prints)	TIER 3: Execution Timing & Tape Confluence	Institutional Whale Callout & Flow Magnet: Real-time block liquidations, TWAP accumulation, and large-trader flow prints.
-03	3_Exchanges_LS_Ratio_15M.parquet	500	26.9m (WARN)	Asset (20 coins)	Snapshot	TIER 3: Execution Timing & Tape Confluence	Tactical 15m taker/account Long-Short skew across 22 exchanges; identifies short-term retail crowding.
-01	1_Crypto_ETF_Flows.parquet	41	27.5m (PASS)	Ticker (IBIT BTC, ...)	Snapshot	TIER 4: Auxiliary Context	Institutional spot BTC/ETH ETF daily net inflows (Daily_Net_Inflow, Volume_USD) for macro directional bias (
-𝑊
-4
-W
-4
+200.0
+%
+Margin_Level≥200.0%).
+4. CONCRETE DECISION MATRIX ON ALL 35 CANONICAL FEEDS (+ 7 AUXILIARY FEEDS)
+
+Below is the complete classification of all 35 Canonical Feeds (plus the 7 auxiliary Parquet files present in Data/feeds/ at commit 77dc330a5), specifying their Decision Tier (Tier 1–4), Persistence Mode (Point-in-Time Overwrite vs. Rolling Time-Series Append), Live Row Count & Checklist Status (20:17:53 IST), and Key Forensic Note.
+
+#	Feed Name (Data/feeds/<name>.parquet)	Decision Tier	Persistence Hygiene Mode (Mandate 1 Q4)	Live Rows (77dc330a5)	Age (min) & Audit Status	Concrete Role in Decision Chain & Forensic Audit Finding
+01	00_MT5_Account_Telemetry	Tier 1: Hard Veto	Point-in-Time Snapshot (+ append ACCOUNT_KPI to history log)	164 (8 KPI + 156 Spread)	0.6m (PASS)	Hard Gate: Equity ($4,846.32), Open Positions (0), Spread Gate (93 PASS / 63 FAIL). Fix L57–58 stale 4775 floor constant.
+02	19_Calendar	Tier 1: Hard Veto	Point-in-Time Snapshot (Daily/Weekly Window)	21	0.2m (PASS)	Hard Gate: [-30m, +15m] blackout around HIGH impact events. (0 High-Impact events on Mon Oct 26).
+03	23_Master_Pipeline_Telemetry	Tier 1: Hard Veto	Rolling Time-Series Buffer (7D run history)	35	0.0m (PASS)	Hard Gate: Pipeline health telemetry. Fix auditor L191 self-overwriting this feed.
+04	11_Technical	Tier 2: Structural	Point-in-Time Snapshot (120 assets)	120	0.3m (PASS)	Regime Anchor: VWAP, 
+𝑍
+VWAP
+Z
+VWAP
 	​
 
-).
-02	2_Spot_Netflow_S.parquet	181	27.3m (PASS)	Symbol (181 coins)	Snapshot	TIER 4: Auxiliary Context	Multi-horizon (5m to 30d) CEX spot wallet netflows; negative netflow = institutional cold-storage accumulation.
-04	3_Exchanges_LS_Ratio_1H.parquet	500	26.6m (WARN)	Asset (20 coins)	Snapshot	TIER 4: Auxiliary Context	1-hour multi-exchange Long/Short positioning skew (
-𝑊
-4
-W
-4
-	​
+, ATR-14, RSI-14, Fib-Prime EMAs (5,13,34,89,144,233). Fix FX/Index "Crypto Alt" label.
+05	20_Auction_Market_Structure	Tier 2: Structural	Point-in-Time Snapshot (120 assets)	120	0.2m (PASS)	Auction Anchor: POC, VAH, VAL, PDH, PDL, MonH, MonL, Fib Golden Zone [0.618, 0.702] & 0.786 Invalidation.
+06	14_Liquidation_Matrix (Unlisted in 35-feed auditor!)	Tier 2: Magnet (#1)	Point-in-Time Snapshot (Rebuilt per cycle)	8,607	0.0m (Unlisted)	Master Magnet Feed: Unifies CEX + DEX + Max Pain. CRITICAL FIX: Use binance+okx+bybit discrete sum instead of cumulative Short/Long curve; add 8_..._7D.
+07	8_Exchange_Liquidation_Map_1D	Tier 2: Magnet (#2)	Point-in-Time Snapshot (Current 1D curve)	2,226 (21 coins)	24.8m (WARN)	Tier-1 CEX 1D Magnets: Sum Binanace + OKX + Bybit for discrete spikes. Missing ETH & XRP in live scrape; fix column typos.
+08	8_Exchange_Liquidation_Map_7D	Tier 2: Magnet (#3)	Point-in-Time Snapshot (Current 7D curve)	2,331 (21 coins)	24.2m (WARN)	Tier-1 CEX 7D Magnets: Swing liquidity clusters. Currently ignored by unified_liquidation_matrix.py L92!
+09	9_Liquidation_Max_Pain_24H	Tier 2: Magnet (#4)	Point-in-Time Snapshot (747 coins)	747	23.7m (WARN)	Intraday Max Pain Magnet (Rule A TP): Primary 24H short_max_pain_price & long_max_pain_price. Cast strings to f64.
+10	9_Liquidation_Max_Pain_48H	Tier 2: Magnet (#5)	Point-in-Time Snapshot (748 coins)	748	23.3m (WARN)	48H Max Pain Magnet: Secondary intraday-to-swing TP confluence anchor.
+11	9_Liquidation_Max_Pain_3D	Tier 2: Magnet (#6)	Point-in-Time Snapshot (748 coins)	748	22.9m (WARN)	3D Max Pain Magnet: Medium-horizon structural draw on liquidity.
+12	9_Liquidation_Max_Pain_7D	Tier 2: Magnet (#7)	Point-in-Time Snapshot (749 coins)	749	22.5m (WARN)	7D Max Pain Magnet: Major weekly structural liquidation magnet.
+13	14_Hyperdash_Liq_Map	Tier 2: Magnet (#8)	Point-in-Time Snapshot (13 coins)	7,544	21.6m (WARN)	Tier-2 On-Chain DEX Liquidation Map: Hyperliquid whale liquidation clusters. Cast string volumes to f64.
+14	15_Hyperdash_Stops_Map	Tier 2: Magnet (#9)	Point-in-Time Snapshot (13 coins)	1,303	21.4m (WARN)	Retail Stop Cluster Map (Rule B SL): Identifies buy_stops and sell_stops to insulate SL outside retail sweep zones.
+15	16_Hyperdash_telegram_Intel	Tier 2: Magnet (#10)	Rolling Time-Series Buffer (Deduplicate by (symbol, price, timestamp_ist), 72h window)	24	21.1m (WARN)	Whale Event Stream: Real-time Hyperliquid whale liquidations & stop triggers. Must be Rolling Append, not Overwrite!
+16	26_Aggregated_Footprint_Bar_Metrics	Tier 3: Trigger	Rolling Time-Series Buffer (Upsert by (symbol, timeframe, timestamp_ms), 96-bar window)	643 (302 CL + 341 others)	20.4m (WARN)	Primary Footprint Bar Engine: Intrabar delta, volume, POC. Fix L259 mid_p, L268 delta loop, L286/295 vwap=poc, L419 fake $250k metals, and add is_closed.
+17	25_CoinGlass_Footprint_Signals	Tier 3: Trigger	Rolling Time-Series Buffer (Upsert by (base_asset, timeframe, signal_type, detail), 48h window)	1,010	20.9m (WARN)	Footprint Pattern Scanner: Absorption, Trapped longs/shorts, Exhaustion. Fix .KpiStrip_kpi__7Xgii (992/992 last_price=0) and L256 sub-$1 price regex.
+18	18_CVD	Tier 3: Trigger	Rolling Time-Series Buffer (Upsert by (symbol, timeframe, timestamp), 100-bar window)	5,150 (103 symbols 
+×
+× 50 bars)	0.2m (PASS)	Multi-Asset CVD Engine: 4h candle delta, cumulative CVD, cvd_zscore, and absorption/initiative regime across Crypto + TradFi.
+19	21_Tradfye_Orderflow	Tier 3: Trigger	Rolling Time-Series Buffer (Append snapshot per 15m cycle, 48h window)	60	0.1m (PASS)	Crypto Orderflow & Deribit Max Pain: net_delta_usd, net_delta_pct, cvd_usd, divergence, deribit_max_pain.
+20	10_Whale_Orders	Tier 3: Trigger	Rolling Time-Series Buffer (Track order lifecycle & true persistence across cycles)	1,354	22.2m (WARN)	Large Limit Order Tracker: Tracks resting whale bids/asks (>= $100k crypto) and order_duration (>= 180s persistence filter).
+21	17_Orderbook	Tier 3: Trigger	Point-in-Time Snapshot (Current L2 book + delta wall history)	324 (15 assets)	0.2m (PASS)	L2 Depth Wall Scanner: Top resting BID and ASK liquidity walls across Crypto, Indices, and Metals. Expand from 15 to 120 assets.
+22	3_Exchanges_LS_Ratio_15M	Tier 3: Trigger	Rolling Time-Series Buffer (Append (symbol, timestamp_ist) to track 15m crowding shifts)	60 (20 coins 
+×
+× 3 tiers)	26.9m (WARN)	Tactical 15m Retail Crowding (Contrarian): Use "All Exchanges" row only; ignore fabricated "Whale Positions" / "Global Accounts" (L342–375).
+23	3_Exchanges_LS_Ratio_1H	Tier 3: Trigger	Rolling Time-Series Buffer (7D window)	60	26.6m (WARN)	Hourly L/S Crowding: Confirms multi-hour retail positioning skew.
+24	3_Exchanges_LS_Ratio_4H	Tier 3: Trigger	Rolling Time-Series Buffer (14D window)	60	26.3m (WARN)	4H Session L/S Crowding: Session-level contrarian positioning filter.
+25	5_OI	Tier 3: Trigger	Rolling Time-Series Buffer (Append (coin, exchange, timestamp_ist) for 
+Δ
+OI
+ΔOI)	240 (20 coins 
+×
+× 12 exch)	25.5m (WARN)	Open Interest Expansion/Contraction: Distinguishes new leverage entering (OI up) vs. short/long covering (OI down).
+26	5_Funding_Rate	Tier 3: Trigger	Rolling Time-Series Buffer (7D funding history)	592	25.8m (WARN)	Perpetual Carry & Crowding Filter: Extreme positive funding penalizes longs; negative funding penalizes shorts.
+27	7_Live_Liq	Tier 3: Trigger	Rolling Time-Series Buffer (Deduplicate by (Ticker, Time, Value), 24h window)	49	25.1m (WARN)	Realized Liquidation Tape: Confirms when a liquidation cascade is actively firing in real time. Must be Rolling Append!
+28	1_Price_Change	Tier 4: Redundant	Point-in-Time Snapshot	200	27.5m (WARN)	Deprecate from Decision Chain: 5m/15m/1h/4h/24h % changes are already computed faster and cleaner in 11_Technical.parquet via API.
+29	2_24H_Volume	Tier 4: Redundant	Point-in-Time Snapshot	100	27.3m (WARN)	Deprecate from Decision Chain: Redundant with 11_Technical, 18_CVD, and 26_Aggregated_Footprint_Bar_Metrics.
+30	3_Exchanges_LS_Ratio_5M	Tier 4: Redundant	Rolling Time-Series Buffer	60	27.1m (WARN)	Deprecate from Browser Loop: 5M L/S noise is too high relative to a 20m browser cycle; saves 18s of browser scraping time.
+31	3_Exchanges_LS_Ratio_12H	Tier 4: Redundant	Point-in-Time Snapshot	60	26.1m (WARN)	Deprecate from Browser Loop: Linearly interpolated between 4H and 24H L/S ratios; saves 18s of browser scraping time.
+32	3_Exchanges_LS_Ratio_24H	Tier 4: Redundant	Point-in-Time Snapshot	60	25.9m (WARN)	Merge with 4_Long_Short_Ratio: Redundant with 4H L/S and 4_Long_Short_Ratio.
+33	4_Long_Short_Ratio	Tier 4: Redundant	Point-in-Time Snapshot	195	25.8m (WARN)	Low-Priority Broad Screener: Keep only as a background 1-hour screener for non-top-20 alts.
+34	12_Correlation	Tier 4: Redundant	Point-in-Time Snapshot	135	0.3m (PASS)	Portfolio De-duplication Filter Only: Used only by Role D to block 2nd ticket if $
+35	13_Regime	Tier 4: Redundant	Point-in-Time Snapshot	120	0.3m (PASS)	Redundant Derivative: Deterministic subset of 11_Technical + 20_Auction_Market_Structure.
+36	22_Institutional_Risk	Tier 4: Redundant	Point-in-Time Snapshot	120	0.0m (PASS)	Redundant Derivative: Pre-packaged risk summary; superseded by direct Role D Solvency Kernel math on Feed 00 + 11.
+Aux 1–7	24_Smart_Money_Flow (25 rows), 11_Technical_BTC_Ribbon (1 row), 18_CVD_30D_15m/30m/1h/4h/1d (2,429–20,031 rows)	Tier 3 / Aux	Rolling Time-Series Buffer (Drop __index_level_0__ from 18_CVD_30D_*)	25 to 20,031	0.2m (PASS)	Auxiliary Context: 24_Smart_Money_Flow is in CANONICAL_FEEDS (PASS); 11_Technical_BTC_Ribbon and 18_CVD_30D_* are unlisted historical backfills.
 
-).
-05	3_Exchanges_LS_Ratio_4H.parquet	500	26.3m (WARN)	Asset (20 coins)	Snapshot	TIER 4: Auxiliary Context	4-hour structural Long/Short positioning skew (
-𝑊
-4
-W
-4
-	​
+Architectural Speedup from Tier 4 Pruning: Removing the 5 redundant CoinGlass browser scrapes (1_Price_Change, 2_24H_Volume, 3_Exchanges_LS_Ratio_5M, 12H, 24H) and fixing the 162s dead .KpiStrip_kpi__7Xgii wait in 25_CoinGlass_Footprint_Signals.py cuts Phase 2 Browser Pipeline runtime from 425 seconds (7m 05s) down to < 95 seconds (1m 35s)—eliminating all 18 WARN staleness flags!
 
-).
-06	4_Hyperliquid_Analysis.parquet	1,983	26.2m (WARN)	asset (108 coins)	Snapshot	TIER 4: Auxiliary Context	Top Hyperliquid whale wallet positions (position_usd, liq_price, pnl_usd, leverage).
-07	5_OI.parquet	20	25.4m (WARN)	Asset (20 coins)	Snapshot	TIER 4: Auxiliary Context	Cross-exchange Open Interest (Total_OI_USD, CME, Binance, 1h/4h/24h Change).
-08	5_Funding_Rate.parquet	592	25.3m (WARN)	Symbol (592 coins)	Snapshot	TIER 4: Auxiliary Context	Per-exchange (Binance, OKX, Bybit, etc.) USDT-M and Coin-M funding rates; detects carry crowding.
-09	6_Funding_Fee_Settlement.parquet	940	25.2m (WARN)	symbol (940 coins)	Snapshot	TIER 4: Auxiliary Context	Predicted next funding settlement rate and 24h/3d/7d cumulative carry cost across 940 assets.
-10	7_Liq_Heapmap.parquet	78	25.0m (WARN)	asset (78 coins)	Snapshot	TIER 4: Auxiliary Context	Cross-asset 1h, 4h, 12h, 24h realized liquidation totals for relative volatility ranking.
-20	12_Hyperdash.parquet	174	0.0m (PASS)	Asset	Snapshot	TIER 4: Auxiliary Context	Hyperdash global cohort sentiment, long/short bias, and top PnL leaderboards.
-21	13_Hyperliquid.parquet	234	0.4m (PASS)	Asset (234 coins)	Snapshot	TIER 4: Auxiliary Context	Hyperliquid L1 234-market screener (Price, Volume_24h_USD, Open_Interest_USD, Funding_Rate).
-27	19_News.parquet	33	22.1m (PASS)	currency, impact	Rolling 7D (upsert)	TIER 4: Auxiliary Context (Elevates to Tier 1 on High-Impact Breaking Geopolitical Shock)	Real-time macro headlines and sentiment context.
-Aux 1–6	11_Technical_BTC_Ribbon.parquet & 18_CVD_30D_{5m,15m,1h,4h,ALL}.parquet	100 to 10,091	0.5m (PASS)	symbol, timestamp_ms	Rolling 30D Archive	TIER 4: Auxiliary Historical Archive	30-day multi-timeframe CVD distribution (cvd_zscore calibration baseline) and 100-bar BTC ribbon time-series.
+5. TOP AFFIRMATIVE TRADING CANDIDATES HUNTED & PROPOSED (MANDATE 4 — TRI-COUNCIL MISSION)
+5.1 Universe Filtering Funnel Across All 156 Broker Assets (Commit 77dc330a5)
+Stage 1 — Spread & Solvency Gate (00_MT5_Account_Telemetry.parquet):
+156 total broker symbols evaluated 
+→
+→ 93 PASS the hard spread gate (<= 25.0 bps Crypto, <= 5.0 bps TradFi) and 63 FAIL (e.g., DASHUSD.p at 47.55 bps, TONUSD.p at 35.25 bps, DOGEUSD.p at 25.92 bps, exotic FX/Equities).
+Joined against 11_Technical.parquet (120 active symbols) 
+→
+→ 61 Spread-PASS active technical symbols.
+Stage 2 — Macro Event Blackout Gate (19_Calendar.parquet):
+All 21 calendar events inspected: Zero (0) High-Impact events on Monday, 2026-10-26 (only Low-Impact US 3M/6M Bill Auctions at 21:00 IST). Gate Status: CLEAR (GREEN).
+Stage 3 — Rejections of Inferior / Fake-Confluence Setups by the Tri-Council:
+NAS100.p ($29,273.29, 
+𝑍
+=
++
+2.68
+𝜎
+Z=+2.68σ) & SP500.p ($7,684.01, 
+𝑍
+=
++
+2.68
+𝜎
+Z=+2.68σ): Both are at extreme overbought VWAP extension (
++
+2.68
+𝜎
++2.68σ) inside TREND_UP_ACCEPTANCE, while their Golden Zone pullback entries (29,005.59 and 7,635.07) are 3.4 ATR away and their 14_Liquidation_Matrix rows are 100% synthetic $25M ATR envelopes (unified_liquidation_matrix.py L204). Deferred in favor of higher-confluence setups.
+XAUUSD.pi ($4,016.77, Spread 0.20 bps, 
+𝑍
+=
++
+1.53
+𝜎
+Z=+1.53σ): Macro trend is mixed (EMA 5/13/34/89 around 4,011 are below EMA 144 = 4,018.91 and EMA 233 = 4,039.47 with negative slope -0.075%, while 25_CoinGlass_Footprint_Signals prints 3 consecutive BEARISH Exhaustion signals at 4,028.60–4,034.00). Maintained on Secondary Structural Watch rather than primary capital deployment.
+ETHUSD.pi ($2,311.95, Spread 14.27 bps): While structurally bearish like BTCUSD.pi, ETHUSD.pi has 7.6x wider spread in bps (14.27 bps vs 1.88 bps on BTCUSD.pi) and is missing Tier 1 CEX rows in 8_Exchange_Liquidation_Map_1D.parquet. Therefore, BTCUSD.pi strictly dominates ETHUSD.pi for the bearish crypto leg.
+5.2 Candidate Card #1 (Primary Crypto Conviction — Model 2 Bearish Trend Pullback)
+BTCUSD.pi — PASSIVE SELL_LIMIT AT $80,280.00 (FIB GOLDEN POCKET + WHALE ASK WALL + TRAPPED LONGS)
+Field	Specification
+Asset & Broker Symbol	Bitcoin Perpetual (BTCUSD.pi) — Live Bid: $79,794.00 | Live Ask: $79,809.00 | Mid: $79,801.50 | Spread: $15.00 (1,500 pts = 1.88 bps PASS)
+Primary Engine & Regime	Engine Model 2 (Trend Pullback Continuation — Short) | 11_Technical: STRONG BEARISH (vwap_z = +0.12σ, ATR_14 = $325.25, RSI_14 = 46.8) | 20_Auction: ROTATIONAL_BALANCE / BEARISH (Below Pivot), fib_dir = BEARISH_IMPULSE ([79,224.00, 80,850.00])
+Order Type & Entry Price	SELL_LIMIT at $80,280.00 (Resting at the upper edge of the [0.618, 0.650] Fibonacci Golden Pocket [$80,228.87, $80,280.90], above EMA 144 = $80,216.89 and below EMA 233 = $80,371.95 & VAH = $80,375.01)
+Stop-Loss (SL) Bunker (Rule B)	$80,640.00 (Risk Distance = 360.00 USD | Strictly insulated behind the 0.786 Fib Invalidation Shelf $80,502.04 by +0.40 ATR ($130.10) + 0.5 Spread ($7.50) = $80,639.64 -> $80,640.00, behind the $80,375.50–$80,391.60 $13.41M Binance Whale Ask Walls, and behind the $80,540.20 $35.89M Trapped Longs Footprint ceiling)
+Take-Profit (TP) Magnet (Rule A)	TP1 (Primary): $79,360.00 (+920.00 USD = 2.56R) | TP2 (Runner): $79,060.00 (+1,220.00 USD = 3.39R) (Front-running the $79,305.50 24H Long Max Pain $39.13M cluster, the $79,379.00 $80.32M & $79,205.00 $93.97M Tier-1 CEX Long Liquidation spikes, and the $79,050.00 $21.47M Hyperdash Sell Stops + $78,995.37 7D Long Max Pain $83.77M)
+Position Size & Exact USD Risk	Lot Size: 0.03 Lots (0.03 BTC) | Notional at Entry: $2,408.40 | Margin Used (50% / 2:1): $1,204.20 (24.85% of equity, Margin Level 402.45% >= 200% PASS) | Nominal Risk at SL: 0.03 * ($360.00 + $15.00 spread) = $11.25 USD (0.232% of equity) | Stressed Risk (1.15x): $12.94 USD | Post-Stop Equity: $4,833.38 (+$38.38 above $4,795.00 Kernel Floor) | Expected Profit at TP1: +$27.15 USD net
+Spread-to-TP Friction Ratio	15.00 / 920.00 = 1.63% (Strictly <= 15.0% threshold — PASS)
+Tri-Council Persona Synthesis (BTCUSD.pi)
+Persona 3 (Macro & Auction Structure): All 6 Fibonacci-Prime EMAs are bearishly stacked (EMA 5 [$79,815] < EMA 13 [$79,931] < EMA 34 [$80,020] < EMA 89 [$80,105] < EMA 144 [$80,217] < EMA 233 [$80,372], with EMA 233 slope -0.054%). Price broke below PDL ($79,913) and Daily POC ($79,939.24). Because current vwap_z = +0.12σ (< 2.0σ), Model 2 requires a passive pullback into the [0.618, 0.702] Fib Golden Zone ($80,228.87–$80,365.45). Entering at $80,280.00 sells directly into the Golden Pocket just below VAH ($80,375.01) and EMA 233 ($80,371.95).
+Persona 1 (Orderflow & Microstructure):
+15_Hyperdash_Stops_Map shows $8.52M of retail buy stops sitting at $80,250.00 (+0.70%). Market makers have a strong incentive to run price up to $80,250–$80,280 to sweep those buy stops into our passive SELL_LIMIT at $80,280.00!
+Above $80,280, 10_Whale_Orders shows $13.41M of Binance Whale Sell Orders resting at $80,375.50 ($7.11M) and $80,391.60 ($6.30M), and 25_CoinGlass_Footprint_Signals confirms $35.89M of Trapped Longs (BEARISH) at $80,540.20, while 26_Aggregated_Footprint_Bar_Metrics shows the latest 15m bar printed -$29.31M negative delta (-12.3%) on $237.99M volume.
+Downside magnets are massive: 8_Exchange_Liquidation_Map_1D (via 14_Liquidation_Matrix discrete CEX sum) shows $80.32M at $79,379, $93.97M at $79,205, and $121.29M at $78,944, reinforced by 9_Liquidation_Max_Pain_24H (LongMP = $79,305.50, $39.13M), 7D (LongMP = $78,995.37, $83.77M), and 15_Hyperdash_Stops_Map ($21.47M sell stops at $79,050.00). Front-running at $79,360.00 (TP1) and $79,060.00 (TP2) captures the core of the long-liquidation cascade.
+Persona 2 (Position Manager & Solvency Sentry): 0.03 lots risks $11.25 nominal ($12.94 stressed), consuming only 26.2% of our $49.32 net kernel headroom and keeping post-stop equity at $4,833.38 (+$38.38 above $4,795.00).
+5.3 Candidate Card #2 (Primary TradFi FX Conviction — Model 2 Bearish Imbalance Pullback)
+EURUSD.pi — PASSIVE SELL_LIMIT AT 1.12065 (FIB GOLDEN POCKET + DAILY POC + EMA 144 + AGGRESSIVE 4H CVD SELLING)
+Field	Specification
+Asset & Broker Symbol	Euro / US Dollar (EURUSD.pi) — Live Bid: 1.11855 | Live Ask: 1.11856 | Mid: 1.118555 | Spread: 0.00001 (1 pt / 0.1 pip = 0.09 bps PASS)
+Primary Engine & Regime	Engine Model 2 (Trend Pullback Continuation — Short) | 11_Technical: STRONG BEARISH (vwap_z = -1.31σ, ATR_14 = 0.00060, RSI_14 = 37.5) | 20_Auction: RANGE_EXPANSION / BELOW_VALUE (Imbalance), fib_dir = BEARISH_IMPULSE ([1.11740, 1.12270])
+Order Type & Entry Price	SELL_LIMIT at 1.12065 (Exact 4-way structural confluence: inside the [0.618, 0.650] Bearish Fib Golden Pocket [1.12060, 1.12080], matching Daily POC = 1.12060, Session VWAP = 1.12040, EMA 89 = 1.12040, and EMA 144 = 1.12070)
+Stop-Loss (SL) Bunker (Rule B)	1.12180 (Risk Distance = 0.00115 = 11.5 pips / 115 pts | Strictly insulated above the 0.786 Fib Invalidation Shelf 1.12150 and IB_Low = 1.12150 by +0.50 ATR (+0.00030) = 1.12180)
+Take-Profit (TP) Magnet (Rule A)	TP1 (Primary): 1.11760 (+0.00305 = 30.5 pips = 2.65R) | TP2 (Runner): 1.11680 (+0.00385 = 38.5 pips = 3.35R) (Front-running the Monday Low = 1.11740 liquidity pool by +2.0 pips for TP1 and targeting the lower 14_Liquidation_Matrix institutional stop extension for TP2)
+Position Size & Exact USD Risk	Lot Size: 0.10 Lots (10,000 EUR, $1.00 / pip) | Margin Used (1:100 FX): ~$112.07 (2.31% of equity) | Nominal Risk at SL: 11.6 pips (incl. 0.1 pip spread) * $1.00 = $11.60 USD (0.239% of equity) | Stressed Risk (1.15x): $13.34 USD | Post-Stop Equity: $4,832.98 (+$37.98 above $4,795.00 Kernel Floor) | Expected Profit at TP1: +$30.40 USD net
+Spread-to-TP Friction Ratio	1 pt / 305 pts = 0.33% (Ultra-clean execution — PASS)
+Tri-Council Persona Synthesis (EURUSD.pi)
+Persona 3 (Macro & Auction Structure): EURUSD.pi is in confirmed RANGE_EXPANSION / BELOW_VALUE (Imbalance) below VAL (1.11970), with a clean bearish Fib-Prime EMA stack (EMA 5 [1.1183] < EMA 13 [1.1187] < EMA 34 [1.1197] < EMA 89 [1.1204] < EMA 144 [1.1207] < EMA 233 [1.1213], slope233 = -0.025%). Selling a mean-reverting pullback into 1.12065 aligns the [0.618, 0.650] Fib Golden Pocket (1.12060–1.12080), Daily POC (1.12060), Session VWAP (1.12040), and EMA 144 (1.12070) to the exact pip!
+Persona 1 (Orderflow & Microstructure): 18_CVD.parquet and 25_CoinGlass_Footprint_Signals.parquet confirm 4h regime is AGGRESSIVE SELLING (BEARISH) with candle_delta = -8,693.74, cumulative_cvd = -14,644.18, and cvd_zscore = -1.18σ centered at price_level = 1.11902.
+Persona 2 (Position Manager & Solvency Sentry): At 0.09 bps spread (0.33% of TP distance), friction is near zero. 0.10 lots risks $11.60 nominal ($13.34 stressed) for a +$30.40 (2.65R) payout. Furthermore, EURUSD.pi is TradFi FX (~1:100 leverage, $112 margin), so it can run concurrently with BTCUSD.pi without breaching the 200% crypto margin level gate.
+5.4 Candidate Card #3 (High-Asymmetry Crypto Alternative — Model 2 Bullish Trend Pullback)
+BNBUSD.p — PASSIVE BUY_LIMIT AT $735.35 (FIB GOLDEN POCKET + VAL + $655K BINANCE WHALE BID + FOOTPRINT EXHAUSTION LOW)
+Field	Specification
+Asset & Broker Symbol	BNB Perpetual (BNBUSD.p) — Live Bid: $740.80 | Live Ask: $741.50 | Mid: $741.15 | Spread: $0.70 (70 pts = 9.44 bps PASS)
+Primary Engine & Regime	Engine Model 2 (Trend Pullback Continuation — Long) | 11_Technical: STRONG BULLISH (vwap_z = +1.88σ, ATR_14 = $2.68, RSI_14 = 57.7) | 20_Auction: RANGE_EXPANSION / ABOVE_VALUE (Imbalance), fib_dir = BULLISH_IMPULSE ([$730.90, $742.90])
+Order Type & Entry Price	BUY_LIMIT at $735.35 (Resting directly inside the [0.618, 0.650] Bullish Fib Golden Pocket [$735.10, $735.48], +$0.17 above Daily VAL ($735.18), and front-running the resting $655,000 Binance Whale Bid at $735.38)
+Stop-Loss (SL) Bunker (Rule B)	$732.00 (Risk Distance = 3.35 USD | Insulated below the 0.786 Fib Invalidation Shelf $733.47 by -0.40 ATR (-$1.07) - 0.5 Spread (-$0.35) = $732.05 -> $732.00, and below the $732.50 Hyperdash retail sell-stop cluster)
+Take-Profit (TP) Magnet (Rule A)	TP1 (Primary): $746.80 (+11.45 USD = 3.42R) | TP2 (Runner): $755.80 (+20.45 USD = 6.10R) (TP1 front-runs PDH = $747.50 and the $1.47M Binance Whale Sell Wall at $750.00; TP2 front-runs the $756.20–$757.80 $4.20M Tier-1 CEX Discrete Short Liquidation Spike and 24H Short Max Pain = $757.75)
+Position Size & Exact USD Risk	Lot Size: 2.50 Lots (2.50 BNB, where 1.00 lot = 1 BNB) (Adjust proportionally if broker contract size is 10 or 100 BNB) | Notional: $1,838.38 | Margin (50%): $919.19 | Nominal Risk at SL: 2.50 * ($3.35 + $0.70 spread) = $10.13 USD (0.209% of equity) | Stressed Risk (1.15x): $11.64 USD | Post-Stop Equity: $4,834.68 (+$39.68 above $4,795.00 Kernel Floor) | Expected Profit at TP1: +$26.88 USD net
+Spread-to-TP Friction Ratio	0.70 / 11.45 = 6.11% (Strictly <= 15.0% threshold — PASS)
+Tri-Council Persona Synthesis (BNBUSD.p)
+Persona 3 (Macro & Auction Structure): Unlike BTC and ETH, BNBUSD.p is in a confirmed STRONG BULLISH / RANGE_EXPANSION (ABOVE_VALUE) regime with a bullish Fib-Prime EMA stack (EMA 5 [$739.73] > EMA 13 [$739.39] > EMA 34 [$738.81] > EMA 89 [$738.53] > EMA 233 [$737.90], slope233 = +0.030%). However, current price ($741.15) is extended at Z = +1.88σ (OVERBOUGHT). Thus, chasing at market is forbidden; instead, we arm a passive BUY_LIMIT at $735.35 inside the [0.618, 0.650] Fib Golden Pocket ($735.10–$735.48) and Daily VAL ($735.18).
+Persona 1 (Orderflow & Microstructure): 26_Aggregated_Footprint_Bar_Metrics confirms positive 15m candle delta (+$682.2K, +10.1%, cumDelta = +$5.31M), 10_Whale_Orders shows a $655K Binance Buy Order resting at $735.38, and 25_CoinGlass_Footprint_Signals prints dual BULLISH Exhaustion signals at $737.05 and $734.46 (almost no selling volume in the bottom 10% of the bar). Upside short-liquidation magnets in 8_Exchange_Liquidation_Map_1D and 9_Liquidation_Max_Pain_24H sit at $756.20–$757.80 ($4.20M discrete CEX spike + $1.62M 24H Max Pain).
+Persona 2 (Position Manager & Solvency Sentry): Under our max-2-ticket concurrency rule and 200% crypto margin level floor, BNBUSD.p serves as an uncorrelated bullish crypto alternative (or sequential replacement) to BTCUSD.pi, risking $10.13 nominal ($11.64 stressed) for a 3.42R (+$26.88) primary target.
+5.5 Section 8 Continuous Kaizen Inquest & Structured Audit JSON Payload
+Continuous Kaizen Inquest — Top 3 Immediate Code Patches Before Next Pipeline Run:
+Patch #1 (Collectors/Browser/25_CoinGlass_Footprint_Signals.py L135, L148, L256): Replace .KpiStrip_kpi__7Xgii with [class*="KpiStrip_kpi__"] and fix the price_level regex (re.search(r"·\s*\$?([0-9][0-9,]*\.?[0-9]*)\s*$", detail_str)) so last_price (992/992 currently 0.0) and sub-$1.00 altcoin signal levels (DOGE, ARB, OP, ADA) are restored immediately and 162s of dead polling is eliminated.
+Patch #2 (Terminal/Data_Factory/unified_liquidation_matrix.py L92, L101–125): Compute discrete_cex_liq = binance_usd + okx_usd + bybit_usd instead of reading the cumulative Short/Long column from 8_Exchange_Liquidation_Map_1D.parquet, ingest 8_Exchange_Liquidation_Map_7D.parquet, and add 14_Liquidation_Matrix to CANONICAL_FEEDS in Terminal/parquet_checklist_auditor.py.
+Patch #3 (Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py L250–295, L419–433, L631): Initialize mid_p before the bucket loop, fix vwap = poc_price, remove the hardcoded $250k/$125k dummy metal bars, close ws2, and add is_closed / bar_state with Rolling Append deduplication on (symbol, timeframe, timestamp_ms).
+JSON
+{
+  "audit_metadata": {
+    "repository": "kbsingh1399/Trading_2",
+    "branch": "main",
+    "commit_sha": "77dc330a533f4c4d8bbfebb21004e62e19a67b63",
+    "commit_timestamp_utc": "2026-10-26T14:53:25Z",
+    "parquet_files_inspected": 42,
+    "canonical_feeds_checklist": {
+      "total": 35,
+      "pass_count": 17,
+      "warn_stale_count": 18,
+      "zero_row_count": 0
+    },
+    "overall_health_score": 64,
+    "verdict": "CONDITIONAL_PASS_WITH_CRITICAL_PARSER_PATCHES_REQUIRED"
+  },
+  "account_solvency_telemetry": {
+    "account_id": 5064568,
+    "broker": "BlueberryMarketsSVG-Live",
+    "balance_usd": 4846.32,
+    "equity_usd": 4846.32,
+    "open_positions": 0,
+    "hard_floor_usd": 4600.00,
+    "buffer_floor_usd": 4650.00,
+    "solvency_kernel_floor_usd": 4795.00,
+    "net_kernel_headroom_usd": 49.32,
+    "active_capital_tier": "TIER_1B_DEFENSIVE_PRESERVATION",
+    "nominal_risk_band_usd": [10.00, 12.00],
+    "stressed_risk_cap_usd": 13.80,
+    "universe_spread_gate": {
+      "total_symbols": 156,
+      "pass_count": 93,
+      "fail_count": 63
+    }
+  },
+  "critical_code_defects": [
+    {
+      "file": "Collectors/Browser/25_CoinGlass_Footprint_Signals.py",
+      "lines": "127, 135, 148, 187-210, 251-262",
+      "defect": "Dead CSS selector .KpiStrip_kpi__7Xgii causes 992/992 crypto rows to have last_price=0.0 and wastes 162s; L256 price parser rejects <= $1.00 (DOGE/ARB/OP=0.0, ADA=3.0); L127/190 non-awaited setTimeout race.",
+      "severity": "CRITICAL"
+    },
+    {
+      "file": "Terminal/Data_Factory/unified_liquidation_matrix.py",
+      "lines": "92, 101-125, 182-225",
+      "defect": "Assigns cumulative liquidation column (Short/Long = $1.52B outer edge) to liquidation_vol_usd instead of discrete bucket sum (Binanace+OKX+Bybit); ignores 8_Exchange_Liquidation_Map_7D; fabricates $25M/$50M ATR walls for CFDs.",
+      "severity": "CRITICAL"
+    },
+    {
+      "file": "Collectors/Browser/26_Aggregated_Footprint_Bar_Metrics.py",
+      "lines": "107-200, 237-299, 419-433, 474-479, 574-578, 631",
+      "defect": "Stage 1 dumps 302 rows for active tab CL vs 10 rows for 26 crypto coins; L259 UnboundLocalError mid_p; L268 spatial vs temporal delta; L286/295 vwap=poc_price; L419 hardcoded $250k fake metal volume; L631 unclosed ws2.",
+      "severity": "HIGH"
+    },
+    {
+      "file": "Terminal/Data_Factory/parquet_feed_writer.py",
+      "lines": "70-72, 129-136",
+      "defect": "Empty data=[] overwrites valid historical parquet with [{'_empty': True}] and status=PASS; mode='overwrite' destroys time-series feeds (16, 25, 26, 7); os.replace vulnerable to Windows mmap lock.",
+      "severity": "HIGH"
+    }
+  ],
+  "affirmative_trade_candidates": [
+    {
+      "rank": 1,
+      "symbol": "BTCUSD.pi",
+      "asset": "BTC",
+      "order_type": "SELL_LIMIT",
+      "engine_model": "MODEL_2_TREND_PULLBACK",
+      "entry_price": 80280.00,
+      "stop_loss": 80640.00,
+      "take_profit_1": 79360.00,
+      "take_profit_2": 79060.00,
+      "lot_size": 0.03,
+      "spread_bps": 1.88,
+      "spread_to_tp_pct": 1.63,
+      "reward_to_risk_tp1": 2.56,
+      "reward_to_risk_tp2": 3.39,
+      "nominal_risk_usd": 11.25,
+      "stressed_risk_usd": 12.94,
+      "expected_profit_tp1_usd": 27.15,
+      "post_stop_equity_usd": 4833.38
+    },
+    {
+      "rank": 2,
+      "symbol": "EURUSD.pi",
+      "asset": "EURUSD",
+      "order_type": "SELL_LIMIT",
+      "engine_model": "MODEL_2_TREND_PULLBACK",
+      "entry_price": 1.12065,
+      "stop_loss": 1.12180,
+      "take_profit_1": 1.11760,
+      "take_profit_2": 1.11680,
+      "lot_size": 0.10,
+      "spread_bps": 0.09,
+      "spread_to_tp_pct": 0.33,
+      "reward_to_risk_tp1": 2.65,
+      "reward_to_risk_tp2": 3.35,
+      "nominal_risk_usd": 11.60,
+      "stressed_risk_usd": 13.34,
+      "expected_profit_tp1_usd": 30.40,
+      "post_stop_equity_usd": 4832.98
+    },
+    {
+      "rank": 3,
+      "symbol": "BNBUSD.p",
+      "asset": "BNB",
+      "order_type": "BUY_LIMIT",
+      "engine_model": "MODEL_2_TREND_PULLBACK",
+      "entry_price": 735.35,
+      "stop_loss": 732.00,
+      "take_profit_1": 746.80,
+      "take_profit_2": 755.80,
+      "lot_size": 2.50,
+      "spread_bps": 9.44,
+      "spread_to_tp_pct": 6.11,
+      "reward_to_risk_tp1": 3.42,
+      "reward_to_risk_tp2": 6.10,
+      "nominal_risk_usd": 10.13,
+      "stressed_risk_usd": 11.64,
+      "expected_profit_tp1_usd": 26.88,
+      "post_stop_equity_usd": 4834.68
+    }
+  ]
+}
