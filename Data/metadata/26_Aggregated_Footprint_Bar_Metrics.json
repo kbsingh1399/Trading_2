@@ -32,9 +32,9 @@
     "sell_imbalances_count",
     "venue_source"
   ],
-  "byte_size": 48762,
-  "timestamp_ist": "2026-10-27 04:39:26 IST",
-  "timestamp_utc": "2026-10-26 23:09:26 UTC",
-  "epoch_utc": 1793056166.642404,
-  "write_duration_ms": 7.24
+  "byte_size": 48686,
+  "timestamp_ist": "2026-10-27 04:53:12 IST",
+  "timestamp_utc": "2026-10-26 23:23:12 UTC",
+  "epoch_utc": 1793056992.129075,
+  "write_duration_ms": 10.82
 }
