@@ -19,8 +19,8 @@
     "dominant_side"
   ],
   "byte_size": 5161,
-  "timestamp_ist": "2026-10-26 22:33:01 IST",
-  "timestamp_utc": "2026-10-26 17:03:01 UTC",
-  "epoch_utc": 1793034181.340429,
-  "write_duration_ms": 4.52
+  "timestamp_ist": "2026-10-26 22:34:31 IST",
+  "timestamp_utc": "2026-10-26 17:04:31 UTC",
+  "epoch_utc": 1793034271.003311,
+  "write_duration_ms": 5.35
 }
