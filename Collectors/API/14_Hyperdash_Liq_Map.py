@@ -212,7 +212,7 @@ def harvest_all_liquidation_maps(symbols: list[str]) -> list[dict]:
         return sym, fetch_liquidation_ladder(sym, now_ms, start_ms)
 
     log.info(f"Concurrently harvesting Hyperdash Liquidation Map for {len(symbols)} symbols...")
-    with ThreadPoolExecutor(max_workers=9) as executor:
+    with ThreadPoolExecutor(max_workers=3) as executor:
         fetched_dict = dict(executor.map(_fetch_liq_worker, symbols))
 
     for idx, sym in enumerate(symbols, start=1):
@@ -296,6 +296,10 @@ def main():
     log.info("Starting Hyperdash Liquidation Map harvest...")
     records = harvest_all_liquidation_maps(DEFAULT_UNIVERSE)
     if not records:
+        target_pq = ROOT_DIR_FOR_PQ / "Data" / "feeds" / f"{args.sheet_name}.parquet"
+        if target_pq.exists():
+            log.warning(f"Rate-limited on Hyperdash API; retaining existing {target_pq.name} dataset.")
+            sys.exit(0)
         log.error("No liquidation records returned from Hyperdash.")
         sys.exit(1)
 

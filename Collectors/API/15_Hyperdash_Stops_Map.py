@@ -150,37 +150,49 @@ def fetch_stops_ladder(coin: str, now_sec: float, start_sec: float) -> tuple[flo
         }
     )
     
-    try:
-        with urllib.request.urlopen(req, timeout=12) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            analytics = data.get("data", {}).get("analytics", {})
-            stop_data = analytics.get("stopOrderLevels")
-            if not stop_data:
-                return 0.0, []
-            
-            mark_price = float(stop_data.get("currentPrice") or 0.0)
-            bands = stop_data.get("bands", [])
-            
-            active_bands = []
-            for b in bands:
-                hist = b.get("historicalData")
-                if hist and len(hist) > 0:
-                    last_pt = hist[-1]
-                    amt = float(last_pt.get("totalAmount") or 0.0)
-                    if amt > 0:
-                        mid_px = (float(b["minPrice"]) + float(b["maxPrice"])) / 2.0
-                        notional = amt * mid_px
-                        is_buy = mid_px > mark_price
-                        active_bands.append({
-                            "mid_px": mid_px,
-                            "amt": amt,
-                            "notional": notional,
-                            "side": "Buy Stop" if is_buy else "Sell Stop",
-                        })
-            return mark_price, active_bands
-    except Exception as e:
-        log.warning(f"Error fetching stops ladder for {coin}: {e}")
-        return 0.0, []
+    import urllib.error
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                analytics = data.get("data", {}).get("analytics", {})
+                stop_data = analytics.get("stopOrderLevels")
+                if not stop_data:
+                    return 0.0, []
+                
+                mark_price = float(stop_data.get("currentPrice") or 0.0)
+                bands = stop_data.get("bands", [])
+                
+                active_bands = []
+                for b in bands:
+                    hist = b.get("historicalData")
+                    if hist and len(hist) > 0:
+                        last_pt = hist[-1]
+                        amt = float(last_pt.get("totalAmount") or 0.0)
+                        if amt > 0:
+                            mid_px = (float(b["minPrice"]) + float(b["maxPrice"])) / 2.0
+                            notional = amt * mid_px
+                            is_buy = mid_px > mark_price
+                            active_bands.append({
+                                "mid_px": mid_px,
+                                "amt": amt,
+                                "notional": notional,
+                                "side": "Buy Stop" if is_buy else "Sell Stop",
+                            })
+                return mark_price, active_bands
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 2:
+                time.sleep(1.2 * (attempt + 1))
+                continue
+            log.warning(f"Error fetching stops ladder for {coin}: {e}")
+            return 0.0, []
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(0.5 * (attempt + 1))
+                continue
+            log.warning(f"Error fetching stops ladder for {coin}: {e}")
+            return 0.0, []
+    return 0.0, []
 
 
 def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
@@ -200,7 +212,7 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
         return sym, fetch_stops_ladder(sym, now_sec, start_sec)
 
     log.info(f"Concurrently harvesting Hyperdash Stops Map for {len(symbols)} symbols...")
-    with ThreadPoolExecutor(max_workers=9) as executor:
+    with ThreadPoolExecutor(max_workers=3) as executor:
         fetched_dict = dict(executor.map(_fetch_worker, symbols))
 
     for idx, sym in enumerate(symbols, start=1):
@@ -283,6 +295,10 @@ def main():
     log.info("Starting Hyperdash Stops Map harvest...")
     records = harvest_all_stops_maps(DEFAULT_UNIVERSE)
     if not records:
+        target_pq = ROOT_DIR_FOR_PQ / "Data" / "feeds" / f"{args.sheet_name}.parquet"
+        if target_pq.exists():
+            log.warning(f"Rate-limited on Hyperdash API; retaining existing {target_pq.name} dataset.")
+            sys.exit(0)
         log.error("No stop records returned from Hyperdash.")
         sys.exit(1)
 
