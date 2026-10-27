@@ -107938,5 +107938,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "DOGE",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 5441.66,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.0783,
+    "wallet_address": "0x46f019e7c00ee7ee9e3682bd08c122397e868cb0",
+    "asset_slug": "DOGE",
+    "raw_text": "#DOGE Whale BUY: 5.44K USD at 0.0783 USD [API]",
+    "msg_id": "HL_TRADE_DOGE_139660923552270",
+    "timestamp_epoch": 1793127464,
+    "time_label": "18:57",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
