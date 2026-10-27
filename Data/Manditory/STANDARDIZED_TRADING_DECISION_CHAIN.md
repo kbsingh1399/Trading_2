@@ -52,6 +52,15 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >
 > 6. **Live Profit Ratchets Do Not Excuse Omission**:
 >    - When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator executes the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent swarm and dual council prompts.
+>
+> 7. **Mandatory 6-Pillar Parquet Narrative Synthesis Engine (Operator Mandate)**:
+>    - The desk is STRICTLY FORBIDDEN from issuing bare order recommendations without explicitly detailing how the 36 Parquet feeds synthesize into a coherent institutional trade narrative across all 6 strategic pillars:
+>      * **Pillar 1: Broker Telemetry & Solvency Defense** (`00_MT5_Account_Telemetry`) -> Live equity, free margin, spread in bps, hard floor (4,775.00 USD) defense.
+>      * **Pillar 2: Macro Liquidity & Institutional Netflows** (`1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `19_News`, `19_Calendar`) -> ETF allocations, spot exchange netflows, Tier-1 catalyst embargoes.
+>      * **Pillar 3: Market Sentiment & Leverage Crowding** (`3_Exchanges_LS_Ratio_15M/1H/4H`, `5_OI`, `5_Funding_Rate`, `6_Funding_Fee_Settlement`) -> Retail long/short bias, open interest expansion/contraction, funding rate carry traps.
+>      * **Pillar 4: Liquidation Geometry & Stop Sweep Magnets** (`7_Liq_Heapmap`, `7_Live_Liq`, `8_Exchange_Liquidation_Map_1D/7D`, `9_Liquidation_Max_Pain_24H/48H/3D/7D`, `22_Forced_Liquidations_MTF`, `14_Liquidation_Matrix`) -> Cumulative liquidation clusters, max pain gravitational pull, cascade exhaustion.
+>      * **Pillar 5: Real-Time Microstructure, Whale Armor & CVD Tape** (`10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`) -> L2/L3 orderbook resting whale bunkers (>= 100K USD, tau >= 180s), CVD absorption delta divergence, footprint imbalances.
+>      * **Pillar 6: Auction Market Structure & Cross-Venue Intelligence** (`11_Technical`, `12_Hyperdash`, `13_Hyperliquid`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `16_Hyperdash_telegram_Intel`, `20_Auction_Market_Structure`, `23_Master_Pipeline_Telemetry`) -> Profile value areas (VAH/VAL/POC), initial balance extensions, Hyperliquid DEX smart-money footprint, technical moving averages and VWAP Z-scores.
 
 ```mermaid
 flowchart TD
