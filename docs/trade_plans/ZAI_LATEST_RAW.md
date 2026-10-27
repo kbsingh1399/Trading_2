@@ -51,6 +51,21 @@ Algorithmic alternatives: reconciliation diff as pre-admission gate (today, deci
 §6 Required JSON Payload
 json
 {
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 372",
+  "cutoff_utc": "2026-10-27T11:26:11Z",
+  "evidence_manifest_sha256": "1ef6b945f2b64a82dded8e38ca8b81c45bad2498ebe714ec9bebdc2881060379",
+  "prompt_sha256": "46ff31ec93357f872f595aaa0cec6bd12f5b9c1aa77075604dfb3adeada878b1",
+  "dispatch_nonce": "58feb4af-0fe5-4b8c-9fdf-f496f6d2ca75",
+  "provenance_status": "DISPUTED_PARTIAL_INVENTORY_CONTRADICTION",
+  "inventory_status": "BALANCE_AND_POSITIONS_VERIFIED_PENDINGS_PRESENCE_CONTRADICTED_WITHIN_58S",
+  "hard_gate_results": {
+    "inventory_reconciliation": "FAIL - envelope empty-book vs telemetry 2 pendings live (ETH 19330613, SOL 19343853, stress 32.375) at +58s; calibrated bridge governs",
+    "cutoff_causality": "PASS_VACUOUS - no inventory stamps in envelope; telemetry epochs true-UTC consistent",
+    "orderflow_verification": "FAIL - DENIED_UNVERIFIED_ORDERFLOW 4th cycle (gen 5c2cd644, 11:27:09Z)",
+    "capital_admission": "FAIL_ON_GROUND_TRUTH - true H_net +7.705 with pendings reserved; capacity 4.564 < 12.00; envelope 40.08/12.0 rests on false empty-book premise; FAIL under envelope branch too (orderflow+calibration)",
+    "margin_collateralization": "PASS - utilization 0%; any single <=12-risk ticket passes (e.g., ETH fill -> 12.0% utilization, ML 833%)",
+    "kernel_stress_floor": "PASS - worst case (pendings live+fill) 4804.705 >= 4795 (+9.705); post-cancel margin +42.08",
     "probability_calibration": "FAIL - n=17 CP-95 LCB 0.4197, min n=100",
     "regime_data": "FAIL - zero series in both sources -> UNDEFINED -> both engines stand down",
     "quote_freshness": "FAIL - zero quotes shipped by envelope AND telemetry -> spread/geometry gates unverifiable",
