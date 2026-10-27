@@ -122,8 +122,7 @@ def load_cycle_state() -> Dict[str, Any]:
 
 def save_cycle_state(state: Dict[str, Any]) -> None:
     CYCLE_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(CYCLE_STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2)
+    CYCLE_STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 
 def start_cycle(cycle_id: str) -> Dict[str, Any]:
@@ -141,8 +140,9 @@ def start_cycle(cycle_id: str) -> Dict[str, Any]:
     state["components"]["arena_ai"]["status"] = "IN_PROGRESS"
     state["components"]["arena_ai"]["completed_at_utc"] = None
     
-    state["components"]["zai"]["status"] = "IN_PROGRESS"
-    state["components"]["zai"]["completed_at_utc"] = None
+    zai_key = "zai" if "zai" in state["components"] else "z_ai"
+    state["components"][zai_key]["status"] = "IN_PROGRESS"
+    state["components"][zai_key]["completed_at_utc"] = None
     
     save_cycle_state(state)
     logger.info("Cycle %s started at %s. Awaiting all 3 entities.", cycle_id, utc_now)
