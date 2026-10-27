@@ -2,7 +2,7 @@
   "feed_name": "19_News",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 35,
+  "row_count": 34,
   "column_count": 12,
   "columns": [
     "title",
@@ -18,9 +18,9 @@
     "category",
     "preview"
   ],
-  "byte_size": 10414,
-  "timestamp_ist": "2026-10-28 02:13:39 IST",
-  "timestamp_utc": "2026-10-27 20:43:39 UTC",
-  "epoch_utc": 1793133819.65548,
-  "write_duration_ms": 415.55
+  "byte_size": 9625,
+  "timestamp_ist": "2026-10-28 02:15:27 IST",
+  "timestamp_utc": "2026-10-27 20:45:27 UTC",
+  "epoch_utc": 1793133927.517498,
+  "write_duration_ms": 460.38
 }
