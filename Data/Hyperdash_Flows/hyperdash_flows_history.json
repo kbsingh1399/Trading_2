@@ -54218,5 +54218,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "XRP",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 13592.48,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 1.2991,
+    "wallet_address": "0x9a31f7aff78fd464bbceb398e11b82ba633c6525",
+    "asset_slug": "XRP",
+    "raw_text": "#XRP Whale SELL: 13.59K USD at 1.2991 USD [API]",
+    "msg_id": "HL_TRADE_XRP_292467713279095",
+    "timestamp_epoch": 1793073953,
+    "time_label": "04:05",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
