@@ -324,4 +324,323 @@ Nominal Risk:
 0.04×260.00×1.0=10.40 USD (<= 12.00 USD PASS).
 Stressed Risk: 
 (
-10
+10.40
+×
+1.25
+)
++
+2.00
+=
+15.00
+ USD
+(10.40×1.25)+2.00=15.00 USD.
+Expected Reward: 
+0.04
+×
+520.00
+×
+1.0
+=
++
+20.80
+ USD
+0.04×520.00×1.0=+20.80 USD (2.00R nominal). Margin Used: $1,596.76 USD.
+Baseline Verification (05:31 UTC) & Live Fill Confirmation (05:48–05:50 UTC):
+At 05:30:15 UTC (Mid = 79,652.50, Spread = 1.88 bps <= 25.0 bps, ATR14 = 181.47): Entry 79,838.00 sat 185.50 USD (1.02 ATR <= 2.0 ATR) above spot, aligned with Session VWAP (79,856.22) and EMA50 (79,868.04).
+Live Intra-Cycle Execution: Between 05:45 UTC and 05:48 UTC, BTC retraced into 79,838.00–79,890.00, filling Ticket #19343851 at 79,838.00 USD (00_MT5_Account_Telemetry.parquet at 11:18:22 IST and Data/dynamic_position_supervisor_status.json at 05:50:28 UTC, where price_current = 79,853.00, profit_usd = -$0.60, -0.06R_0).
+Whale Wall Persistence (>= 180s) & Post-Fill Stop Defense (SL: 80,098.00):
+10_Whale_Orders.parquet (BTCUSD & BTCUSDT) confirms heavy institutional overhead supply defending SL: 80,098.00:
+MT5-Crypto Native Ask Book (BTCUSD): $863,816 at 79,983.00, $644,255 at 79,987.00, $908,279 at 79,988.00, $507,237 at 79,991.00, and $463,101 at 79,992.00 (over $3.38M USD in direct broker ask walls below 80,000).
+CoinGlass / Binance & Bybit Perpetual Walls (BTCUSDT): $1,290,000 at 79,979.90 (dur = 14m 22s = 862s >= 180s, CG_WHALE_BTC_T_42), $1,290,000 at 80,095.60 (dur = 14m 22s = 862s >= 180s, CG_WHALE_BTC_T_27 — sitting 2.40 USD in front of SL: 80,098.00), $1,150,000 at 80,114.50 (dur = 15m 27s = 927s >= 180s), and $8,220,000 at 80,283.70 (dur = 14m 22s).
+Structural & Stop-Map Alignment: SL: 80,098.00 is guarded by Session VWAP +1SD (80,057.44), Session POC (80,093.95), and EMA200 (80,145.86). Hyperdash shows light buy-stops at 80,000–80,200 ($881K at 80,050, $301K at 80,150) before the main buy-stop cluster at 80,250–80,350 ($12.76M), while downside sell-stop clusters at 79,300–79,400 ($12,729,805 at mid 79,350, including whale stop $10,037,194 @ 79,373) act as a direct magnet for our TP: 79,318.00.
+Ratchet Schedule for Active Short #19343851 (
+𝑅
+0
+=
+260.00
+ USD
+R
+0
+	​
+
+=260.00 USD):
+Stage 1 Early-BE (+0.80R_0): Trigger at 79,630.00 USD (
+79
+,
+838
+−
+208
+79,838−208) 
+→
+→ moves SL to 79,799.00 USD (
++
+0.15
+𝑅
+0
+=
++
+$
+1.56
++0.15R
+0
+	​
+
+=+$1.56 locked).
+Stage 2 Profit-Lock (+1.50R_0): Trigger at 79,448.00 USD (
+79
+,
+838
+−
+390
+79,838−390) 
+→
+→ moves SL to 79,630.00 USD (
++
+0.80
+𝑅
+0
+=
++
+$
+8.32
++0.80R
+0
+	​
+
+=+$8.32 locked).
+Mandate B2 Verdict: KEEP_WORKING (at 05:31 UTC baseline) 
+→
+→ ACTIVE_FILLED_HOLD_MONITOR_RATCHET (at 05:50 UTC live state) (#19343851).
+2.3 Ticket #19343853 — SOLUSD.p SELL_LIMIT 0.20 lots @ 100.38 | SL: 100.94 | TP: 99.20
+Broker Valuation & Risk: contract_size = 100.0, SL dist = 0.56 USD (1.88 ATR), TP dist = 1.18 USD (3.97 ATR).
+Nominal Risk: 
+0.20
+×
+0.56
+×
+100
+=
+11.20
+ USD
+0.20×0.56×100=11.20 USD (<= 12.00 USD PASS).
+Stressed Risk: 
+(
+11.20
+×
+1.25
+)
++
+2.00
+=
+16.00
+ USD
+(11.20×1.25)+2.00=16.00 USD.
+Expected Reward: 
+0.20
+×
+1.18
+×
+100
+=
++
+23.60
+ USD
+0.20×1.18×100=+23.60 USD (2.11R nominal). Margin on fill: $1,003.80 USD.
+Spread & ATR Distance Verification:
+Spread: 22.04 bps at 05:30:15 UTC (99.69 / 99.91) and 23.02 bps at 05:44:35 UTC (99.80 / 100.03) — <= 25.0 bps PASS (transient 25.05–35.02 bps ticks in 00_MT5 do not degrade passive SELL_LIMIT entry fill quality at 100.38).
+Distance to Entry (<= 2.0 ATR):
+At 05:30:15 UTC (Mid = 99.80, ATR14 = 0.3017): 
+∣
+100.38
+−
+99.80
+∣
+=
+0.58
+ USD
+=
+1.92
+ 
+ATR
+≤
+2.0
+ 
+ATR
+∣100.38−99.80∣=0.58 USD=1.92ATR≤2.0ATR PASS.
+At 05:44:35 UTC (Mid = 99.915, ATR14 = 0.2973): 
+∣
+100.38
+−
+99.915
+∣
+=
+0.465
+ USD
+=
+1.56
+ 
+ATR
+≤
+2.0
+ 
+ATR
+∣100.38−99.915∣=0.465 USD=1.56ATR≤2.0ATR PASS.
+Whale Wall Persistence (>= 180s) & Structural Anti-Trap Proof:
+10_Whale_Orders.parquet (SOLUSDT & SOLUSD) verifies a dense, multi-exchange institutional ask wall ladder directly above 100.38 that shields SL: 100.94:
+100.40 USD: $841,000 (OKX/Binance, dur = 5m 42s = 342s >= 180s) + $610,000 (Bybit/Binance, dur = 5m 38s = 338s >= 180s) + $238,616 (MT5-Crypto)
+100.41–100.45 USD: $535,000 (dur = 5m 38s = 338s >= 180s) + $1,971,257 across MT5-Crypto resting asks (100.41–100.45)
+100.46 USD: $961,000 (Bybit/Binance, dur = 16m 01s = 961s >= 180s) + $468,063 (MT5-Crypto)
+100.47 USD: $738,000 (OKX/Binance, dur = 16m 05s = 965s >= 180s) + $465,757 (MT5-Crypto)
+100.50–100.52 USD: $706,000 (dur = 16m 30s = 990s), $1,030,000 (dur = 16m 59s = 1,019s), $588,000 (dur = 17m 27s = 1,047s), plus $1,249,071 in MT5-Crypto asks
+100.74 USD: $2,150,000 (Bybit/Binance, dur = 32m 29s = 1,949s >= 180s, CG_WHALE_SOL_T_31)
+101.01 USD: $524,000 (Bybit/Binance, dur = 52m 30s = 3,150s >= 180s, CG_WHALE_SOL_T_30), plus Hyperliquid L3 genuine SELL wall $8,738,097.81 at 101.54 USD (0xeac842...1ede, persist_s = 523.7s >= 180s).
+Confluence: 100.38 sits at EMA50 (100.30), Prior-Day VAL (100.40), and Session VWAP +1SD (100.56), with SL: 100.94 above Session VWAP +2SD (100.89), Session POC (100.70), and EMA200 (100.93). Downside TP: 99.20 captures the Hyperdash whale sell-stop at 99.58 ($1,991,600) while front-running the $2,590,000 (14h 04m) institutional BUY wall at 99.00 USD.
+Mandate B3 Verdict: KEEP_WORKING (#19343853).
+§3. Mandate C — Staging Reserve Limit Orders under the Settled N-Limit Model (XAUUSD.pi, XRPUSD.pi, & 24-Asset Universe Screen)
+3.1 Prime Reserve Candidate #1: XAUUSD.pi (Gold) — SELL_LIMIT 0.01 lots @ 4,021.80 | SL: 4,033.80 | TP: 3,991.80
+Exact Broker & Risk Math (contract_size = 100 oz, tick_size = 0.01, min_lot = 0.01):
+Entry Price: 4,021.80 USD | Stop Loss (SL): 4,033.80 USD (12.00 USD/oz = 1.90 ATR) | Take Profit (TP): 3,991.80 USD (30.00 USD/oz = 4.76 ATR)
+Nominal Risk: 
+0.01
+ lots
+×
+100
+ oz
+×
+∣
+4
+,
+033.80
+−
+4
+,
+021.80
+∣
+=
+12.00
+ USD
+0.01 lots×100 oz×∣4,033.80−4,021.80∣=12.00 USD (strictly <= 12.00 USD cap PASS).
+Stressed Risk: 
+(
+12.00
+×
+1.25
+)
++
+2.00
+=
+17.00
+ USD
+(12.00×1.25)+2.00=17.00 USD.
+Expected Reward & R:R: 
+0.01
+ lots
+×
+100
+ oz
+×
+(
+4
+,
+021.80
+−
+3
+,
+991.80
+)
+=
++
+30.00
+ USD
+0.01 lots×100 oz×(4,021.80−3,991.80)=+30.00 USD (2.50R nominal / 1.76R stressed).
+Margin Impact: $40.22 USD (at 1:100 metal leverage) to $201.09 USD (at 1:20), easily absorbed by the $564.10 USD post-4-slot free margin ($2,148.03 USD current free margin).
+Spread Gate: 0.20 bps (4,001.79 / 4,001.87 at 05:30 UTC; 4,008.12 / 4,008.20 at 05:44 UTC) <= 5.0 bps TradFi / 25.0 bps PASS.
+Microstructure, ATR Distance & Anti-Trap Proof:
+Multi-Timeframe Structural Confluence at 4,021.80:
+15m EMA200 = 4,021.87 USD (05:30 UTC) / 4,021.71 USD (05:44 UTC) / 4,022.58 USD (11_Technical.parquet).
+Session VWAP +3SD = 4,021.97 USD (05:30 UTC) / 4,022.28 USD (05:44 UTC), Session VAH = 4,023.43 USD, Prior-Day VAH = 4,025.01 USD, and Fibonacci Prime EMA233 = 4,025.37 USD.
+Orderflow & Whale Wall Defense:
+11_Technical.parquet confirms trend_bias = STRONG BEARISH (EMA5 4,009.47 < EMA13 4,011.95 < EMA34 4,013.16 < EMA89 4,013.28 < EMA144 4,016.24 < EMA233 4,025.37).
+Hyperliquid HIP-3 L2/L3 depth shows persistent ask-side control: OB Imb = -0.2934 (Ask20 = $1,867,428 vs Bid20 = $1,020,231 at 05:30 UTC) and -0.1126 (Ask20 = $1,775,952 vs Bid20 = $1,416,431 at 05:44 UTC), paired with TradFi_OF tick_cvd = -21.0 (SELLER_AGGRESSION).
+10_Whale_Orders.parquet (GOLDUSD) shows MT5-Metals institutional ASK walls stacked at 4,019.40 ($135,007), 4,019.90 ($283,240), and 4,020.00 ($233,356), while Hyperliquid L3 (0x31dea2...13f2) holds a $1,030,564.08 genuine SELL wall at 4,044.60 USD (persist_s = 210.5s >= 180s).
+Stop-Cascade & Liquidation Clearance: Hyperdash on-chain stop levels show minimal buy-stop fuel across 4,010–4,040 ($3,862 at 4,015, $103,672 at 4,025, $69,084 at 4,035 — well below the $4,861,709 whale buy-stop cluster at 4,145), whereas massive sell-stop clusters sit below at 3,970–3,980 ($2,582,820.33 at mid 3,975) and 3,980–3,990 ($386,384.68), pulling price toward our TP: 3,991.80 (just above HTF DayPOC = 3,993.75 and the 3,985 stop pool).
+ATR Distance Evolution: At 05:30 UTC (Mid = 4,001.83), 4,021.80 was 3.09 ATR away; by 05:48–05:50 UTC (20_Auction_Market_Structure price = 4,010.14, ATR14 = 6.6574), Gold rallied toward the upper band, compressing the distance to 11.66 USD = 1.75 ATR <= 2.0 ATR PASS.
+Mandate C1 Verdict: STAGE_RESERVE_SELL_LIMIT (XAUUSD.pi 0.01 @ 4,021.80 | SL: 4,033.80 | TP: 3,991.80). Under the N-Limit model, this order is staged as Reserve Limit #3 (alongside #19330613 ETH and #19343853 SOL, with 2/4 active positions filled). Note: to strictly preserve the internal $4,795.00 Operating Defense Buffer under a 4-slot simultaneous stress event ($4,782.44 before BNB BE vs $4,797.94 after BNB BE), staging is either sequenced upon #19329907 BNBUSD.p hitting its 739.13 Early-BE lock (1.73 USD away) or admitted immediately under the $4,775.00 Challenge Hard Floor (+$7.44 USD cushion) with Terminal/dynamic_position_supervisor.py auto-pulling the 5th ticket on the 4th fill.
+3.2 Prime Reserve Candidate #2: XRPUSD.pi (Ripple) — Spread, Microstructure & Dual-Side Quantitative Audit
+Spread Gate Audit (<= 25.0 bps):
+XRPUSD.pi (tick_size = 0.001, contract_size = 1,000, min_lot = 1.0, stops_level = 20 points = 0.020 USD):
+At 05:30:15 UTC (snap_0530.json): 1.292 / 1.295 
+→
+→ 23.19 bps <= 25.0 bps PASS.
+At 05:44:35 UTC (snap_0544.json): 1.297 / 1.300 
+→
+→ 23.10 bps <= 25.0 bps PASS.
+At 05:48:22 UTC (00_MT5_Account_Telemetry.parquet 29a7a47633): 1.299 / 1.302 
+→
+→ 23.07 bps <= 25.0 bps (PASS / QUALIFIED).
+(Note: A single 0.004 tick widening at 11:00:09 IST briefly printed 30.91 bps, so execution must strictly use a passive limit order when spread is locked at 0.003 / <= 23.2 bps).
+Regime, EMA Ribbon & Orderflow Structure (XRPUSD.pi):
+Unlike ETH, SOL, and GOLD (which are in BEARISH regimes), XRPUSD.pi is in a verified BULLISH (STRONG BULLISH) regime across both live_snapshot_latest.json and 11_Technical.parquet:
+Fibonacci Prime EMA Ribbon (11_Technical): EMA5 (1.2957) > EMA34 (1.2958) > EMA89 (1.2934) > EMA144 (1.2920) > EMA233 (1.2912) and EMA20 (1.2961) > EMA50 (1.2948) > EMA200 (1.2929) (slope3h = +0.0242%).
+Orderflow & CVD: 21_Tradfye_Orderflow.parquet shows 15m net_delta = +$1,422,645 (+23.07%, AGGRESSIVE_BUYER_DOMINATION) and 1h net_delta = +$2,503,504 (+10.32%, BULLISH_ABSORPTION); live_snapshot_latest.json (05:44 UTC) confirms 15m_delta = +$226,433, session_cvd = +$3,818,085, 24h_cvd = +$8,200,351, OB Imb = +0.1259 (Bid20 = $831,180 vs Ask20 = $645,326).
+Exact Mathematical Specification for XRPUSD.pi (BUY_LIMIT Primary Setup & SELL_LIMIT Secondary Setup):
+Primary Setup (XRPUSD.pi BUY_LIMIT 1.00 lot @ 1.2905 | SL: 1.2785 | TP: 1.3145 — Trend-Aligned Institutional Bid Shelf):
+Entry Price: 1.2905 USD — front-running the $2,090,396 USD MT5-Crypto native BUY wall cluster at 1.2900 USD (10_Whale_Orders.parquet: 10 resting institutional bid orders at 1.2900, including $410,400, $347,732, $273,763, $223,851) and the $498,000 Binance/Bybit BUY wall at 1.2901 USD (dur = 31m 32s = 1,892s >= 180s, CG_WHALE_XRP_T_41), backed by $561,000 at 1.2896 (15m 31s), $578,000 at 1.2895 (24m 29s), $315,000 at 1.2890 (1h 08m), $338,000 at 1.2888 (1h 06m), and $847,000 at 1.2885 (1h 04m = 3,840s >= 180s). Also aligns with HTF DayPOC (1.2912), EMA233 (1.2912), and Session VWAP -2SD (1.2927).
+ATR Distance (<= 2.0 ATR): 
+∣
+1.2985
+−
+1.2905
+∣
+=
+0.0080
+ USD
+=
+1.67
+ 
+ATR
+≤
+2.0
+ 
+ATR
+∣1.2985−1.2905∣=0.0080 USD=1.67ATR≤2.0ATR at 05:44 UTC (0.63 ATR from 05:30 UTC Mid = 1.2935; 2.00 ATR from 05:48 UTC Mid = 1.3005) PASS.
+Stop Loss (SL): 1.2785 USD (SL dist = 0.0120 USD = 2.40 ATR, respecting stops_level = 0.020 by 0.0120 < 0.020? WAIT — Crucial Broker Execution Engineer Check (Role D): Look at ExecSpecs for XRPUSD.pi in live_snapshot_latest.json: point = 0.001, stops_level = 20! 20 points * 0.001 = 0.020 USD minimum stop distance if broker enforces stops_level = 20 on XRPUSD.pi! Wait: let's verify! At 1.00 lot (min_lot = 1.0, contract_size = 1,000), each 0.001 point is $1.00 USD! So a 0.012 USD (12 points) stop is $12.00 USD nominal risk, whereas if MT5 enforces stops_level = 20 points (0.020 USD), a 20-point stop on 1.00 lot would equal 20 * $1.00 = $20.00 USD > $12.00 USD!).
+Role D & Role A Critical Broker Math Discovery on XRPUSD.pi:
+Because XRPUSD.pi has contract_size = 1,000.0, min_lot = 1.0, point = 0.001, and stops_level = 20 (0.020 USD):
+For Nominal Risk 
+≤
+12.00
+ USD
+≤12.00 USD at min_lot = 1.00 lot ($1.00/point), the maximum allowable SL distance is 12 points = 0.012 USD (SL = 1.2785 on BUY_LIMIT @ 1.2905, or SL = 1.3215 on SELL_LIMIT @ 1.3095), giving Nominal Risk = 12.00 USD, Stressed Risk = 17.00 USD, TP = 1.3145 (+24.00 USD, 2.00R).
+However, if Blueberry Markets MT5 enforces stops_level = 20 points (0.020 USD), any order with 
+∣
+𝐸
+𝑛
+𝑡
+𝑟
+𝑦
+−
+𝑆
+𝐿
+∣
+<
+0.020
+ USD
+∣Entry−SL∣<0.020 USD is rejected with TRADE_RETCODE_INVALID_STOPS, while widening 
+∣
+𝐸
+𝑛
+𝑡
+𝑟
+𝑦
+−
+𝑆
+𝐿
+∣
+∣Entry−SL∣ to 0.020 USD on min_lot = 1.00 forces Nominal Risk = 20.00 USD (Stressed Risk = 27.00 USD), violating the strict <= 12.00 USD per-ticket nominal risk mandate!
+Furthermore, 1.00 lot of XRPUSD.pi at 1.2905 requires $645.25 USD margin (at 50% crypto margin), which exceeds the $564.10 USD free margin remaining if BNB, BTC, ETH, and SOL are simultaneously active.
+Mandate C2 Verdict on XRPUSD.pi: CONDITIONAL_HOLD / DO_NOT_STAGE_UNTIL_CRYPTO_SLOT_FREES. We output the exact 12.00 USD risk geometry (BUY_LIMIT 1.00 @ 1.2905 | SL: 1.2785 | TP: 1.3145 and SELL_LIMIT 1.00 @ 1.3095 | SL: 1.3215 | TP: 1.2855) for the reserve ledger, but prioritize XAUUSD.pi SELL_LIMIT 0.01 @ 4,021.80 (stops_level = 0, min_lot = 0.01, spread = 0.20 bps, margin = $40.22, Nominal Risk = 12.00 USD, R:R = 2.50R) as the active Reserve Limit Order.
+§4. Mandate D — Non-Bypassable Actionable Execution Summary Table
+Mandate / Ticket ID	Symbol	Action / Classification	Direction & Order Type	Volume (Lots)	Entry Price	Stop Loss	Take Profit	Nominal Risk	Stressed Risk	Expected Reward & R:R	Primary Microstructure & Anti-Trap Proof
+Mandate A / #19329907	BNBUSD.p	HOLD & MONITOR RATCHET (Active Slot 1/4)	LONG (BUY Filled)	3.00	736.25	732.65 (-> 736.79 @ 739.13)	740.00	$10.80	$15.50	+$11.25 (1.04R / +0.32R live)	Shielded by $982.6K (51.3m) Hyperliquid L3 BUY wall @ 733.34, $334.1K (36.3m) @ 733.98, $655K (14.6m) Binance BUY wall @ 735.24, & $630K (13.8h) @ 735.00; clears $24.7K sell-stops @ 731.50 & $18.5K liqs @ 729.50. Live quote 737.40 (+$3.45 PnL) is 1.73 USD (1.14 ATR) from +0.80R0 Early-BE (739.13).
+Mandate B1 / #19330613	ETHUSD.pi	KEEP WORKING (Resting Limit #1)	SHORT (SELL_LIMIT)	0.50	2,320.50	2,343.50	2,274.50	$11.50	$16.38	+$23.00 (2.00R nominal)	Front-runs $4.67M SELL wall @ 2,320.56, $4.52M (5m 35s >= 180s) @ 2,321.03, $1.25M (27m 28s) @ 2,322.04, $6.39M (4h 49m) @ 2,331.00, & $13.05M (352.6s) Hyperliquid L3 SELL wall @ 2,340.10.
