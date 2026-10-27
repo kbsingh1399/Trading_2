@@ -164,8 +164,8 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
                 regime = "TREND_UP"
             elif mid < ema_34 < ema_89 < ema_233:
                 regime = "TREND_DOWN"
-            elif abs(vwap_z) < 1.0:
-                regime = "MEAN_REVERT"
+            else:
+                regime = "RANGE"
                 
         # Candidate Setup Logic
         setup_type = None
@@ -174,8 +174,8 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         sl = 0.0
         tp = 0.0
         
-        # Model 1: Extreme Mean Reversion
-        if abs(vwap_z) >= 2.0 and regime == "MEAN_REVERT":
+        # Model 1: Extreme Mean Reversion (Overextended Range / Auction Rejection)
+        if abs(vwap_z) >= 2.0 and regime == "RANGE":
             if vwap_z > 2.0 and rsi > 65.0:
                 setup_type = "MODEL_1_EXTREME_MR_SELL"
                 side = "SELL_LIMIT"
