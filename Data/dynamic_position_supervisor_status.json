@@ -1,28 +1,16 @@
 {
-  "timestamp_utc": "2026-10-27 09:34:01 UTC",
-  "balance_usd": 4847.88,
-  "equity_usd": 4843.53,
-  "free_margin_usd": 3739.15,
+  "timestamp_utc": "2026-10-27 10:47:58 UTC",
+  "balance_usd": 4837.08,
+  "equity_usd": 4837.08,
+  "free_margin_usd": 4837.08,
   "max_filled_positions": 4,
-  "filled_positions_count": 1,
-  "filled_slots_free": 3,
+  "filled_positions_count": 0,
+  "filled_slots_free": 4,
   "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [
-    {
-      "ticket": 19329907,
-      "symbol": "BNBUSD.p",
-      "type": "BUY",
-      "volume": 3.0,
-      "price_open": 736.25,
-      "price_current": 734.8,
-      "sl": 732.65,
-      "tp": 740.0,
-      "profit_usd": -4.35
-    }
-  ],
+  "active_positions": [],
   "resting_orders": [
     {
       "ticket": 19330613,
