@@ -62398,5 +62398,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "DOT",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 5390.54,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.9942,
+    "wallet_address": "0x08f68479872af12285641ab874bc1ccd596ff573",
+    "asset_slug": "DOT",
+    "raw_text": "#DOT Whale SELL: 5.39K USD at 0.9942 USD [API]",
+    "msg_id": "HL_TRADE_DOT_209213999619929",
+    "timestamp_epoch": 1793086743,
+    "time_label": "07:39",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
