@@ -170,6 +170,23 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >        - Confirm stop loss clears `dVAH`/`wVAH`/`pdVAH` or trapped-order swing extremes by at least $0.35$ to $0.50 \times \text{ATR}_{14}$.
 >        - Confirm resting limit is placed behind institutional whale armor (>= 100K USD, tau >= 180s).
 >      * **Step 8 (Re-Arm & Autonomous Sentry Continuity)**: Maintain cron firing on `0,20,40 * * * *` while continuous supervisor daemon runs every 5.0s.
+>
+> 8. **Mandatory Invariable Re-Evaluation Protocol for Running Positions, Resting Limits & Processes (OPERATOR MANDATE)**:
+>    - **Zero-Assumption Invariant**: On EVERY autonomous wakeup, the desk is STRICTLY PROHIBITED from assuming past states or orders remain valid without fresh empirical proof. The desk MUST explicitly re-evaluate:
+>      1. **All Running Positions**:
+>         - Calculate real-time PnL, current price distance to entry, SL, and TP.
+>         - Verify whether the original market regime/hypothesis still holds or has broken down.
+>         - Check ratchet triggers (+0.80R BE lock, +1.50R profit lock, 6h time decay, macro blackout deadlines).
+>         - Determine whether to continue holding, ratchet tighter, or execute defensive scratch.
+>      2. **All Resting Limit Orders**:
+>         - Measure exact live distance to fill (in price points and pips).
+>         - Re-query orderbook and whale feeds to verify resting armor (>= 100K USD, tau >= 180s) has not dissipated or spoofed.
+>         - Re-verify live tick bid/ask spread (must remain <= 12.0 bps).
+>         - Check if pre-fill market structure was broken (e.g. swept beyond invalidation level before fill).
+>         - Make a definitive RETAIN or PURGE/CANCEL decision on each order.
+>      3. **All Data Lake Feeds & Background Daemons**:
+>         - Confirm all 36 Parquet feeds are fresh (< 5.0m target).
+>         - Confirm continuous ingestion daemon (`task-148122`), position supervisor (`task-148877`), git sync daemon (`task-148131`), and AST graphify watcher (`task-148127`) are actively running.
 
 ```mermaid
 flowchart TD
