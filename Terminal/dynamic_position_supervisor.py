@@ -69,12 +69,24 @@ def load_ratchet_state() -> dict:
 
 
 def save_ratchet_state(state: dict):
-    try:
-        temp = RATCHET_STATE_FILE.with_suffix(".tmp")
-        temp.write_text(json.dumps(state, indent=2), encoding="utf-8")
-        temp.replace(RATCHET_STATE_FILE)
-    except Exception as e:
-        logger.error(f"Failed to save ratchet state: {e}")
+    for attempt in range(3):
+        try:
+            temp = RATCHET_STATE_FILE.with_suffix(".tmp")
+            temp.write_text(json.dumps(state, indent=2), encoding="utf-8")
+            if RATCHET_STATE_FILE.exists():
+                try:
+                    os.remove(RATCHET_STATE_FILE)
+                except Exception:
+                    pass
+            temp.replace(RATCHET_STATE_FILE)
+            return
+        except Exception:
+            if attempt == 2:
+                try:
+                    RATCHET_STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+                except Exception as ex:
+                    logger.error(f"Failed to save ratchet state: {ex}")
+            time.sleep(0.05)
 
 
 def check_and_supervise_positions() -> dict:
@@ -304,7 +316,18 @@ def check_and_supervise_positions() -> dict:
         temp_file = STATUS_FILE.with_suffix(".tmp")
         with open(temp_file, "w", encoding="utf-8") as f:
             json.dump(status_payload, f, indent=2)
-        temp_file.replace(STATUS_FILE)
+        try:
+            for _ in range(5):
+                try:
+                    temp_file.replace(STATUS_FILE)
+                    break
+                except PermissionError:
+                    time.sleep(0.05)
+            else:
+                with open(STATUS_FILE, "w", encoding="utf-8") as f:
+                    json.dump(status_payload, f, indent=2)
+        except Exception as write_err:
+            logger.warning(f"Status file write warning: {write_err}")
 
         HEARTBEAT_FILE.write_text(str(time.time()), encoding="utf-8")
 

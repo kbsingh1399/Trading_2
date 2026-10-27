@@ -1,28 +1,28 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-27 22:20:00 IST (2026-10-27 16:50:00 UTC) | **Session**: Multi-Asset Portfolio Supervision & Screener | In-House Antigravity Fleet Active
+**Last Updated**: 2026-10-28 00:05:00 IST (2026-10-27 18:35:00 UTC) | **Session**: Multi-Asset Portfolio Supervision & Adversarial AI Audit Synthesis | In-House Antigravity Fleet Active
 **Target Account**: Blueberry Markets MT5 Account #5064568 (SVG-Live, raw spread)
 **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD).
 
 ---
 
 ## 1. REAL-TIME ACCOUNT TELEMETRY & SOLVENCY SENTRY
-- **Balance / Equity**: **4,833.47 USD** / **4,832.37 USD** (Floating PnL: **-1.10 USD**)
-- **Margin Used / Free Margin**: **1,073.56 USD** / **3,759.91 USD**
-- **Margin Utilization**: **22.20%** (Strictly <= 50.00% statutory ceiling: PASS)
-- **Margin Level**: **450.1%** (Inviolable invariant >= 200.0%: PASS)
+- **Balance / Equity**: **4,833.47 USD** / **4,830.40 USD** (Floating PnL: **-3.07 USD**)
+- **Margin Used / Free Margin**: **1,072.27 USD** / **3,758.13 USD**
+- **Margin Utilization**: **22.18%** (Strictly <= 50.00% statutory ceiling: PASS)
+- **Margin Level**: **450.5%** (Inviolable invariant >= 200.0%: PASS)
 - **Active Running Positions**: **2 Positions (Model 1 Mean Reversion & Model 2 Pullback)**:
-  - Ticket `#19376039`: `USDJPY.pi` SELL `0.08 lots` @ `157.850` | Current: `157.896` | PnL: **-2.33 USD** | SL: `158.024` | TP: `157.450` (Risk: `8.81 USD`)
-  - Ticket `#19379711`: `BTCUSD.pi` SELL `0.02 lots` @ `80560.00` | Current: `80498.50` | PnL: **+1.23 USD (IN PROFIT)** | SL: `80860.00` | TP: `79910.00` (Risk: `6.00 USD`)
-- **Active Pending Limit Orders**: **2 Resting Maker Limit Orders**:
-  - Ticket `#19378313`: `UKBRENT.p` SELL_LIMIT `0.20 lots` @ `115.175` (SL: `115.668`, TP: `113.943`, Risk: `9.86 USD`, Commodities/Energy).
-  - Ticket `#19381300`: `XAUUSD.pi` BUY_LIMIT `0.01 lots` @ `4033.00` (SL: `4025.50`, TP: `4051.75`, Risk: `7.50 USD`, Precious Metals Raw).
+  - Ticket `#19376039`: `USDJPY.pi` SELL `0.08 lots` @ `157.850` | Current: `157.908` | PnL: **-4.66 USD** | SL: `158.024` | TP: `157.450` (Nominal Risk: `8.81 USD`)
+  - Ticket `#19379711`: `BTCUSD.pi` SELL `0.02 lots` @ `80560.00` | Current: `80504.00` | PnL: **+1.59 USD (IN PROFIT)** | SL: `80860.00` | TP: `79910.00` (Nominal Risk: `6.00 USD`)
+- **Active Pending Limit Orders**: **0 Resting Orders** (Pruned all 3 resting limits #19383569, #19378313, #19381300 per adversarial AI consensus to eliminate stressed insolvency risk & structural VAH sweep traps).
 - **Inviolable Triple Floor Governance**:
-  - Hard Floor: **4,775.00 USD** (Cushion: **+58.47 USD** -> 100% Intact)
-  - Operating Defense Buffer: **4,795.00 USD** (Cushion: **+38.47 USD** -> 100% Intact)
-  - Total Joint Stressed Risk (all 4 orders): **32.17 USD**
-  - Stressed Worst-Case Equity: **4,801.30 USD** (+26.30 USD above Hard Floor, +6.30 USD above Operating Buffer)
-- **Capital Regime**: **TIER 1 STANDARD** (10.00-12.00 USD nominal risk per ticket).
-- **Dynamic Capacity**: **4 concurrent filled slots allowed** (3 slots free, 1 filled: #19376039); **N resting limit orders allowed** (3 active: #19378313, #19379711, #19381300).
+  - Hard Floor: **4,775.00 USD** (Statutory DD Stop)
+  - Operating Defense Buffer: **4,795.00 USD** (Internal Risk Defense)
+  - Total Stressed Risk ($1.25 \times R_{\text{nom}} + 2.00 \text{ fee} + \text{spread}$): **22.86 USD**
+  - Stressed Worst-Case Equity: **4,807.54 USD**
+  - **Surplus Above Hard Floor**: **+32.54 USD SURPLUS (100% BULLETPROOF)**
+  - **Surplus Above Operating Buffer**: **+12.54 USD SURPLUS (100% BULLETPROOF)**
+- **Capital Regime**: **TIER 1 STANDARD** (8.00-10.00 USD nominal risk per ticket).
+- **Dynamic Capacity**: **4 concurrent filled slots allowed** (2 slots filled: #19376039 USDJPY, #19379711 BTCUSD; 2 slots free); **Pre-fill stressed solvency gate strictly active**.
 
 ---
 

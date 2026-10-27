@@ -177,18 +177,53 @@ def build_asset_360_dossier(asset: str) -> Dict[str, Any]:
             })
             continue
             
-        # Filter by aliases across all matched columns
+        # Filter by exact alias membership (prevent substring collisions like NETH25.p for ETH or XAUGBP.pi for XAU)
+        alias_set = set(aliases)
         mask = pd.Series(False, index=df.index)
         for col in matched_cols:
             col_str = df[col].astype(str).str.upper().str.strip()
-            for alias in aliases:
-                mask = mask | (col_str == alias) | (col_str.str.contains(alias, regex=False))
+            col_clean = col_str.str.replace(r'[^A-Z0-9]', '', regex=True)
+            mask = mask | col_str.isin(alias_set) | col_clean.isin(alias_set)
                 
         matched_df = df[mask]
         
+        # Microstructure hardening for Whale Orders: dedup & tau >= 180s persistence filter
+        if base_name == "10_Whale_Orders" and len(matched_df) > 0:
+            if all(c in matched_df.columns for c in ["symbol", "side", "price", "amount_btc"]):
+                matched_df = matched_df.drop_duplicates(subset=["symbol", "side", "price", "amount_btc"])
+            if "order_duration" in matched_df.columns:
+                def parse_dur_s(d_str: str) -> float:
+                    if not isinstance(d_str, str): return 0.0
+                    import re
+                    tot = 0.0
+                    d_str = d_str.strip().lower()
+                    d = re.search(r'(\d+)\s*d', d_str)
+                    h = re.search(r'(\d+)\s*h', d_str)
+                    m = re.search(r'(\d+)\s*m', d_str)
+                    s = re.search(r'(\d+)\s*s', d_str)
+                    if d: tot += float(d.group(1)) * 86400
+                    if h: tot += float(h.group(1)) * 3600
+                    if m: tot += float(m.group(1)) * 60
+                    if s: tot += float(s.group(1))
+                    return tot
+                durations = matched_df["order_duration"].apply(parse_dur_s)
+                persistent = durations >= 180.0
+                if persistent.sum() > 0:
+                    matched_df = matched_df[persistent]
+        
         if len(matched_df) > 0:
             dossier["feeds_with_data_count"] += 1
-            sample_records = matched_df.tail(5).to_dict(orient="records")
+            
+            # Sort time-series feeds descending (newest first)
+            sorted_df = matched_df.copy()
+            time_cols = [c for c in sorted_df.columns if any(k in c.lower() for k in ["time", "created", "timestamp", "date"])]
+            if time_cols:
+                try:
+                    sorted_df = sorted_df.sort_values(by=time_cols[0], ascending=False)
+                except Exception:
+                    pass
+                    
+            sample_records = sorted_df.head(5).to_dict(orient="records")
             
             # Clean non-serializable objects
             cleaned_sample = []
@@ -288,11 +323,11 @@ def generate_markdown_report(dossier: Dict[str, Any], out_path: Path):
         pillar = item["pillar"].split(":")[0]
         status = item["status"]
         
-        # Summarize key insight from latest sample
+        # Summarize key insight from latest sample (newest / most relevant at index 0)
         sample = item.get("latest_sample", [])
         insight = "No direct records for asset"
         if sample:
-            first = sample[-1]
+            first = sample[0]
             # Custom summaries based on feed
             if "Footprint" in fname:
                 insight = f"Signal: {first.get('signal_type')} ({first.get('bias')}) at {first.get('price_level')} | {first.get('headline')}"

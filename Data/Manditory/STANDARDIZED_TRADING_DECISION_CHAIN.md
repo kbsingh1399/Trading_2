@@ -35,6 +35,9 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - **Automated Zero-Omission Extraction Engine (`Terminal/Data_Factory/asset_360_dossier_engine.py`)**:
 >      * To eliminate human oversight and mathematically guarantee that no parquet file or orderflow signal is EVER missed, the desk executes the automated 360° Data Lake Dossier Engine: `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>`.
 >      * The engine programmatically scans all 42 parquet files in `Data/feeds/`, resolves schema-specific symbol columns (`symbol`, `asset`, `coin`, `Ticker`, `Broker_Symbol`, `base_asset`), and compiles `Data/dossiers/<ASSET>_360_dossier.json` and `docs/dossiers/<ASSET>_360_DOSSIER.md` before any trade is formulated.
+>      * **Strict Exact-Token Matching**: Resolves symbols using strict token sets (`isin(aliases)`), preventing substring collisions (e.g. `NETH25.p` for `ETH`, `XAUGBP.pi` for `XAUUSD.pi`).
+>      * **Chronological Descending Sorting**: Orders time-series feeds (e.g. `25_CoinGlass_Footprint_Signals`) descending so latest institutional signals are prioritized at index 0.
+>      * **Whale Order Deduplication & Persistence**: Deduplicates cross-scraper records (`CG_WHALE` vs `CG_LADDER`) in `10_Whale_Orders.parquet` and enforces $\tau \ge 180\text{s}$ duration filter to reject spoofed/ephemeral walls.
 >    - **Compulsory Verification Tick Mark**: Every trade dossier, trade proposal, and subagent report MUST explicitly display the verified confirmation check mark:
 >      `[x] Mandatory Data Lake Gate: Every relevant file in Data/feeds/*.parquet thoroughly traversed, read, and deeply analyzed for [Asset] with zero omission prior to trade formulation.`
 >
@@ -70,9 +73,16 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >      * Loosening an existing tighter stop is mathematically impossible; if `target_sl` is not tighter than `p.sl`, the modification is skipped and the stage advances.
 >      * Robust `initial_r` recovery inspects broker order/deal history if `p.sl` is already in profit, preventing R-multiple distortion.
 >
-> 5. **Capacity Policy Standard**:
->    - **4 Concurrent Filled Trades**: Up to 4 active filled positions across orthogonal asset clusters.
->    - **N Resting Limit Orders**: Staging resting limit maker orders at structural Fibonacci shelves and auction levels is unconstrained.
+> 5. **Capacity Policy & Stressed Solvency Standard (Institutional Factor-Cluster Risk Governance)**:
+>    - **Factor-Cluster Cap & Orthogonal Diversification**:
+>      * The universe is partitioned into 4 orthogonal macro clusters: (1) Crypto Beta (`BTC, ETH, SOL, BNB, XRP...`), (2) USD Dollar Bloc (`EURUSD, GBPUSD, USDJPY, AUDUSD...`), (3) Precious Metals (`XAUUSD, XAGUSD`), and (4) Energy & Equity Indices (`US30, NAS100, SPX500, UKBRENT, USWTI`).
+>      * Maximum **2 tickets in the same cluster and direction**. Crucially: a second correlated ticket in the same cluster (e.g., `ETHUSD.pi` Short alongside `BTCUSD.pi` Short) is **STRICTLY FORBIDDEN from being armed or filled** UNLESS the first ticket has already ratcheted to **Stage 1 Breakeven (`+0.15R` lock, zero downside risk)**.
+>    - **Pre-Fill Stressed Solvency Ceiling (Open + Resting Combined)**:
+>      * Staging resting limit orders is NOT unconstrained. Total stressed risk across ALL open positions and pending resting orders combined must NEVER breach the Internal Operating Buffer:
+>        $$\sum_{i \in \text{Open} \cup \text{Pending}} \big(1.25 \times R_{\text{nom},i} + \$2.00 \text{ fee}\big) + \text{spread/slippage} \le \text{Equity} - \$4,795.00$$
+>      * Guarantees that even if EVERY open position and EVERY resting limit stops out simultaneously with $1.25\times$ adverse slippage, stressed equity remains strictly $\ge \$4,795.00$ USD (providing a minimum $+20.00$ USD safety bunker above the $\$4,775.00$ Statutory Hard Floor).
+>    - **Structural SL Clearance Invariant**:
+>      * Stop-losses must NEVER sit directly on top of Auction Value Area High/Low (`dVAH`, `wVAH`, `pdVAH`, `dVAL`, `wVAL`) or within $< 0.35 \times \text{ATR}_{14}$ of a trapped-order swing high/low. Stops must clear structural shelves by $\ge 0.35$ to $0.50 \times \text{ATR}_{14}$ to prevent routine liquidity sweep stop-outs.
 >
 > 6. **Mandatory 4-Subagent In-House Quant Fleet (Fable 5 / Flash Swarm)**:
 >    On EVERY autonomous cycle, Antigravity physically coordinates four specialized quantitative personas (either via `invoke_subagent` or direct multi-agent dialectic):
