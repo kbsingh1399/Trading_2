@@ -1,9 +1,9 @@
 {
   "current_cycle_id": "Cycle 369",
-  "cycle_status": "IN_PROGRESS",
+  "cycle_status": "COMPLETED",
   "cycle_started_utc": "2026-10-27 05:31:00 UTC",
-  "cycle_completed_utc": null,
-  "next_cycle_scheduled_utc": null,
+  "cycle_completed_utc": "2026-10-27 07:18:39 UTC",
+  "next_cycle_scheduled_utc": "2026-10-27 07:38:39 UTC",
   "rest_interval_seconds": 1200,
   "consensus_action": "HOLD_BNB_MONITOR_RATCHET_STAGE_RESTING_LIMITS_EVALUATE_COUNCIL",
   "active_positions": [
@@ -14,12 +14,12 @@
       "volume": 3.0,
       "price_open": 736.25,
       "sl": 732.65,
-      "tp": 740.00,
-      "r0_usd": 3.60,
+      "tp": 740.0,
+      "r0_usd": 3.6,
       "early_be_trigger_usd": 739.13,
       "profit_lock_trigger_usd": 741.65,
-      "nominal_risk_usd": 10.80,
-      "contingent_stress_usd": 15.50
+      "nominal_risk_usd": 10.8,
+      "contingent_stress_usd": 15.5
     }
   ],
   "active_tickets": [
@@ -28,9 +28,9 @@
       "symbol": "ETHUSD.pi",
       "type": "SELL_LIMIT",
       "volume": 0.5,
-      "price": 2320.50,
-      "sl": 2343.50,
-      "tp": 2274.50,
+      "price": 2320.5,
+      "sl": 2343.5,
+      "tp": 2274.5,
       "contingent_stress_usd": 16.38
     },
     {
@@ -38,20 +38,20 @@
       "symbol": "BTCUSD.pi",
       "type": "SELL_LIMIT",
       "volume": 0.04,
-      "price": 79838.00,
-      "sl": 80098.00,
-      "tp": 79318.00,
-      "contingent_stress_usd": 15.00
+      "price": 79838.0,
+      "sl": 80098.0,
+      "tp": 79318.0,
+      "contingent_stress_usd": 15.0
     },
     {
       "ticket": 19343853,
       "symbol": "SOLUSD.p",
       "type": "SELL_LIMIT",
-      "volume": 0.20,
+      "volume": 0.2,
       "price": 100.38,
       "sl": 100.94,
-      "tp": 99.20,
-      "contingent_stress_usd": 16.00
+      "tp": 99.2,
+      "contingent_stress_usd": 16.0
     }
   ],
   "solvency_metrics": {
@@ -66,18 +66,21 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
-      "status": "IN_PROGRESS",
-      "details": "Mode 2 4-Quant Swarm supervising 1/4 filled positions and 3 resting limit orders."
+      "status": "COMPLETED",
+      "details": "Mode 2 4-Quant Swarm supervising 1/4 filled positions and 3 resting limit orders.",
+      "completed_at_utc": "2026-10-27 07:18:39 UTC"
     },
     "arena_ai": {
       "name": "Arena.ai Frontier Council (GPT-5.4 Astra)",
-      "status": "IN_PROGRESS",
-      "details": "Cycle 369 prompt injected via ProseMirror. Generating deep quantitative assessment."
+      "status": "COMPLETED",
+      "details": "Cycle 369 prompt injected via ProseMirror. Generating deep quantitative assessment.",
+      "completed_at_utc": "2026-10-27 07:18:46 UTC"
     },
     "z_ai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "details": "Cycle 369 prompt injected. Actively generating response."
+      "status": "COMPLETED",
+      "details": "Cycle 369 prompt injected. Actively generating response.",
+      "completed_at_utc": "2026-10-27 07:18:39 UTC"
     }
   }
 }
