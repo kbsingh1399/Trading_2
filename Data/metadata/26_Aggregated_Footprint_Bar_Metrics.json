@@ -1,7 +1,7 @@
 {
   "feed_name": "26_Aggregated_Footprint_Bar_Metrics",
   "status": "PASS",
-  "row_count": 310,
+  "row_count": 270,
   "column_count": 27,
   "columns": [
     "timestamp_ist",
@@ -32,9 +32,9 @@
     "sell_imbalances_count",
     "venue_source"
   ],
-  "byte_size": 48869,
-  "timestamp_ist": "2026-10-27 17:31:05 IST",
-  "timestamp_utc": "2026-10-27 12:01:05 UTC",
-  "epoch_utc": 1793102465.738306,
-  "write_duration_ms": 7.63
+  "byte_size": 43875,
+  "timestamp_ist": "2026-10-27 17:31:45 IST",
+  "timestamp_utc": "2026-10-27 12:01:45 UTC",
+  "epoch_utc": 1793102505.477902,
+  "write_duration_ms": 422.94
 }
