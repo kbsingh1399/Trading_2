@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-27 18:46:05 UTC",
+  "timestamp_utc": "2026-10-27 18:48:21 UTC",
   "balance_usd": 4833.47,
-  "equity_usd": 4829.0,
-  "free_margin_usd": 3756.73,
+  "equity_usd": 4829.9,
+  "free_margin_usd": 3757.63,
   "max_filled_positions": 4,
   "filled_positions_count": 2,
   "filled_slots_free": 2,
-  "resting_limits_count": 0,
+  "resting_limits_count": 1,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,12 @@
       "type": "SELL",
       "volume": 0.08,
       "price_open": 157.85,
-      "price_current": 157.923,
+      "price_current": 157.918,
       "sl": 158.024,
       "tp": 157.45,
-      "gain_r": -0.42,
+      "gain_r": -0.391,
       "ratchet_stage": 0,
-      "profit_usd": -3.7
+      "profit_usd": -3.44
     },
     {
       "ticket": 19379711,
@@ -30,13 +30,23 @@
       "type": "SELL",
       "volume": 0.02,
       "price_open": 80560.0,
-      "price_current": 80598.5,
+      "price_current": 80566.5,
       "sl": 80860.0,
       "tp": 79910.0,
-      "gain_r": -0.128,
+      "gain_r": -0.022,
       "ratchet_stage": 0,
-      "profit_usd": -0.77
+      "profit_usd": -0.13
     }
   ],
-  "resting_orders": []
+  "resting_orders": [
+    {
+      "ticket": 19384166,
+      "symbol": "UKBRENT.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.12,
+      "price": 115.4,
+      "sl": 115.98,
+      "tp": 113.943
+    }
+  ]
 }
