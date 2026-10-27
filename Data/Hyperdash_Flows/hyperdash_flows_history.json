@@ -75298,5 +75298,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "ARB",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 8019.05,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.1666,
+    "wallet_address": "0xa265636a3cf15e099c54632cb00c625d91543a13",
+    "asset_slug": "ARB",
+    "raw_text": "#ARB Whale SELL: 8.02K USD at 0.1666 USD [API]",
+    "msg_id": "HL_TRADE_ARB_887457529896976",
+    "timestamp_epoch": 1793107950,
+    "time_label": "13:32",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
