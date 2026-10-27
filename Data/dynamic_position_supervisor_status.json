@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-27 14:54:59 UTC",
+  "timestamp_utc": "2026-10-27 14:57:46 UTC",
   "balance_usd": 4826.99,
   "equity_usd": 4826.99,
   "free_margin_usd": 4826.99,
   "max_filled_positions": 4,
   "filled_positions_count": 0,
   "filled_slots_free": 4,
-  "resting_limits_count": 1,
+  "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -20,6 +20,15 @@
       "price": 157.85,
       "sl": 158.024,
       "tp": 157.45
+    },
+    {
+      "ticket": 19376886,
+      "symbol": "GBPUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.12,
+      "price": 1.33242,
+      "sl": 1.33318,
+      "tp": 1.33051
     }
   ]
 }
