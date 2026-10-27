@@ -1,6 +1,7 @@
 {
   "feed_name": "11_Technical_BTC_Ribbon",
   "status": "PASS",
+  "loading_settle_verified": true,
   "row_count": 100,
   "column_count": 31,
   "columns": [
@@ -36,9 +37,9 @@
     "bb_lower",
     "macd_hist"
   ],
-  "byte_size": 34629,
-  "timestamp_ist": "2026-10-28 01:48:26 IST",
-  "timestamp_utc": "2026-10-27 20:18:26 UTC",
-  "epoch_utc": 1793132306.093031,
-  "write_duration_ms": 8.09
+  "byte_size": 34642,
+  "timestamp_ist": "2026-10-28 01:52:02 IST",
+  "timestamp_utc": "2026-10-27 20:22:02 UTC",
+  "epoch_utc": 1793132522.699094,
+  "write_duration_ms": 9.55
 }
