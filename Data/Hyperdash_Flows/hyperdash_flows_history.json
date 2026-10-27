@@ -62358,5 +62358,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "APT",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 7488.66,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.687,
+    "wallet_address": "0x4d33d84f667f22644b09f501f09ccbd3e876c68e",
+    "asset_slug": "APT",
+    "raw_text": "#APT Whale BUY: 7.49K USD at 0.6870 USD [API]",
+    "msg_id": "HL_TRADE_APT_862300846810816",
+    "timestamp_epoch": 1793086409,
+    "time_label": "07:33",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
