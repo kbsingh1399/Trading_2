@@ -1,16 +1,30 @@
 {
-  "timestamp_utc": "2026-10-27 14:57:46 UTC",
+  "timestamp_utc": "2026-10-27 15:02:09 UTC",
   "balance_usd": 4826.99,
-  "equity_usd": 4826.99,
-  "free_margin_usd": 4826.99,
+  "equity_usd": 4827.35,
+  "free_margin_usd": 4294.38,
   "max_filled_positions": 4,
-  "filled_positions_count": 0,
-  "filled_slots_free": 4,
-  "resting_limits_count": 2,
+  "filled_positions_count": 1,
+  "filled_slots_free": 3,
+  "resting_limits_count": 1,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [],
+  "active_positions": [
+    {
+      "ticket": 19376886,
+      "symbol": "GBPUSD.pi",
+      "type": "SELL",
+      "volume": 0.12,
+      "price_open": 1.33242,
+      "price_current": 1.33239,
+      "sl": 1.33318,
+      "tp": 1.33051,
+      "gain_r": 0.039,
+      "ratchet_stage": 0,
+      "profit_usd": 0.36
+    }
+  ],
   "resting_orders": [
     {
       "ticket": 19376039,
@@ -20,15 +34,6 @@
       "price": 157.85,
       "sl": 158.024,
       "tp": 157.45
-    },
-    {
-      "ticket": 19376886,
-      "symbol": "GBPUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.12,
-      "price": 1.33242,
-      "sl": 1.33318,
-      "tp": 1.33051
     }
   ]
 }
