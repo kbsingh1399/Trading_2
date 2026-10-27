@@ -1,7 +1,7 @@
 {
   "feed_name": "10_Whale_Orders",
   "status": "PASS",
-  "row_count": 3781,
+  "row_count": 3917,
   "column_count": 17,
   "columns": [
     "sr_no",
@@ -22,9 +22,9 @@
     "order_duration",
     "order_id"
   ],
-  "byte_size": 148424,
-  "timestamp_ist": "2026-10-27 16:55:25 IST",
-  "timestamp_utc": "2026-10-27 11:25:25 UTC",
-  "epoch_utc": 1793100325.264681,
-  "write_duration_ms": 26.06
+  "byte_size": 150595,
+  "timestamp_ist": "2026-10-27 16:57:27 IST",
+  "timestamp_utc": "2026-10-27 11:27:27 UTC",
+  "epoch_utc": 1793100447.150379,
+  "write_duration_ms": 20.81
 }

@@ -88,16 +88,16 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 371",
-  "uuid": "63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1",
-  "dispatch_nonce": "04581747-de1e-4e3a-b58d-a1c1d3c79024",
-  "cutoff_utc": "2026-10-27 09:31:39 UTC",
+  "cycle_id": "Cycle 372",
+  "uuid": "d3cdcea5-5373-44a4-b118-e07a6bd05274",
+  "dispatch_nonce": "58feb4af-0fe5-4b8c-9fdf-f496f6d2ca75",
+  "cutoff_utc": "2026-10-27 11:26:11 UTC",
   "provenance": {
-    "git_commit": "16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69",
-    "git_tree": "ff12c330e6e9b0f7ac5077d3aabfe1f72531c296",
-    "prompt_sha256": "8b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367",
+    "git_commit": "7442a1040f4270dea04767c26e686db4309b27de",
+    "git_tree": "ccf0e5067e5f7fae3846b1e4afa3d5223be0144c",
+    "prompt_sha256": "46ff31ec93357f872f595aaa0cec6bd12f5b9c1aa77075604dfb3adeada878b1",
     "risk_policy_sha256": "65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e",
-    "evidence_manifest_sha256": "87bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43",
+    "evidence_manifest_sha256": "1ef6b945f2b64a82dded8e38ca8b81c45bad2498ebe714ec9bebdc2881060379",
     "parquet_freshness_verified": true,
     "parquet_audit_scorecard_fresh": true
   },
@@ -105,109 +105,34 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "account_login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
     "currency": "USD",
-    "balance": 4847.88,
-    "equity": 4843.23,
-    "margin_used": 1104.38,
-    "margin_free": 3738.85,
-    "margin_level": 438.54742027200774,
-    "active_positions_count": 1,
-    "pending_orders_count": 2,
-    "active_positions": [
-      {
-        "ticket": 19329907,
-        "time": 1793086620,
-        "time_msc": 1793086620618,
-        "time_update": 1793086620,
-        "time_update_msc": 1793086620618,
-        "type": 0,
-        "magic": 35601,
-        "identifier": 19329907,
-        "reason": 3,
-        "volume": 3.0,
-        "price_open": 736.25,
-        "sl": 732.65,
-        "tp": 740.0,
-        "price_current": 734.7,
-        "swap": 0.0,
-        "profit": -4.65,
-        "symbol": "BNBUSD.p",
-        "comment": "C356_BNB_BULL_GP",
-        "external_id": ""
-      }
-    ],
-    "pending_orders": [
-      {
-        "ticket": 19330613,
-        "time_setup": 1793045689,
-        "time_setup_msc": 1793045689670,
-        "time_done": 0,
-        "time_done_msc": 0,
-        "time_expiration": 0,
-        "type": 3,
-        "type_time": 0,
-        "type_filling": 2,
-        "state": 1,
-        "magic": 35603,
-        "position_id": 0,
-        "position_by_id": 0,
-        "reason": 3,
-        "volume_initial": 0.5,
-        "volume_current": 0.5,
-        "price_open": 2320.5,
-        "sl": 2343.5,
-        "tp": 2274.5,
-        "price_current": 2305.8,
-        "price_stoplimit": 0.0,
-        "symbol": "ETHUSD.pi",
-        "comment": "C356_ETH_BEAR_GP",
-        "external_id": ""
-      },
-      {
-        "ticket": 19343853,
-        "time_setup": 1793088821,
-        "time_setup_msc": 1793088821091,
-        "time_done": 0,
-        "time_done_msc": 0,
-        "time_expiration": 0,
-        "type": 3,
-        "type_time": 0,
-        "type_filling": 2,
-        "state": 1,
-        "magic": 0,
-        "position_id": 0,
-        "position_by_id": 0,
-        "reason": 3,
-        "volume_initial": 0.2,
-        "volume_current": 0.2,
-        "price_open": 100.38,
-        "sl": 100.94,
-        "tp": 99.2,
-        "price_current": 99.52,
-        "price_stoplimit": 0.0,
-        "symbol": "SOLUSD.p",
-        "comment": "",
-        "external_id": ""
-      }
-    ]
+    "balance": 4837.08,
+    "equity": 4837.08,
+    "margin_used": 0.0,
+    "margin_free": 4837.08,
+    "margin_level": 0.0,
+    "active_positions_count": 0,
+    "pending_orders_count": 0,
+    "active_positions": [],
+    "pending_orders": []
   },
   "solvency": {
     "hard_floor_usd": 4600.0,
     "operating_buffer_usd": 4650.0,
     "solvency_kernel_usd": 4795.0,
-    "base_capital_usd": 4843.23,
-    "hard_floor_cushion_usd": 243.23,
-    "operating_buffer_cushion_usd": 193.23,
-    "kernel_cushion_usd": 48.23,
+    "base_capital_usd": 4837.08,
+    "hard_floor_cushion_usd": 237.08,
+    "operating_buffer_cushion_usd": 187.08,
+    "kernel_cushion_usd": 42.08,
     "global_contingency_reserve_usd": 2.0,
-    "existing_ticket_stress_usd": 42.0625,
-    "realized_headroom_usd": 4.17,
-    "post_joint_stress_equity_usd": 4799.17,
+    "existing_ticket_stress_usd": 0.0,
+    "realized_headroom_usd": 40.08,
+    "post_joint_stress_equity_usd": 4835.08,
     "capital_mode": "TIER_1_STANDARD",
     "risk_min_usd": 12.0,
     "risk_max_usd": 12.0,
-    "nominal_risk_capacity_usd": 1.7339999999996507,
+    "nominal_risk_capacity_usd": 12.0,
     "max_concurrent_tickets": 4,
-    "new_risk_admissible": false,
+    "new_risk_admissible": true,
     "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
   },
   "market_clocks": {
@@ -368,10 +293,10 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
   6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
-     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-27 09:31:56 UTC).
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-27 11:27:19 UTC).
      - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
        * You MUST output a prominent alert at the very top of your written response:
-         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-27 09:31:56 UTC)`
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-27 11:27:19 UTC)`
        * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
