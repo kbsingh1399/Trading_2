@@ -1,7 +1,7 @@
 {
   "feed_name": "19_News",
   "status": "PASS",
-  "row_count": 35,
+  "row_count": 36,
   "column_count": 12,
   "columns": [
     "title",
@@ -17,9 +17,9 @@
     "category",
     "preview"
   ],
-  "byte_size": 10482,
-  "timestamp_ist": "2026-10-28 00:28:34 IST",
-  "timestamp_utc": "2026-10-27 18:58:34 UTC",
-  "epoch_utc": 1793127514.587271,
-  "write_duration_ms": 376.03
+  "byte_size": 10773,
+  "timestamp_ist": "2026-10-28 00:30:10 IST",
+  "timestamp_utc": "2026-10-27 19:00:10 UTC",
+  "epoch_utc": 1793127610.559097,
+  "write_duration_ms": 401.26
 }
