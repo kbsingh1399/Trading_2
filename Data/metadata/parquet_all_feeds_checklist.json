@@ -1,17 +1,11 @@
 {
-  "timestamp_ist": "2026-10-27 14:35:23 IST",
-  "timestamp_utc": "2026-10-27 08:54:55 UTC",
+  "timestamp_ist": "2026-10-27 14:37:09 IST",
+  "timestamp_utc": "2026-10-27 09:07:09 UTC",
   "total_canonical_feeds": 36,
   "passed_feeds": 36,
-  "failed_or_stale_count": 5,
-  "failed_or_stale_feeds": [
-    "7_Liq_Heapmap",
-    "8_Exchange_Liquidation_Map_7D",
-    "19_News",
-    "19_Calendar",
-    "21_Tradfye_Orderflow"
-  ],
-  "all_passed": false,
+  "failed_or_stale_count": 0,
+  "failed_or_stale_feeds": [],
+  "all_passed": true,
   "checklist": [
     {
       "idx": 0,
@@ -20,12 +14,11 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 163,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 1,
@@ -34,12 +27,11 @@
       "tier": "Macro",
       "exists": true,
       "rows": 41,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 2,
@@ -47,13 +39,12 @@
       "feed_name": "2_Spot_Netflow_S",
       "tier": "Macro",
       "exists": true,
-      "rows": 181,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 221,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 3,
@@ -62,12 +53,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 500,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 4,
@@ -76,12 +66,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 500,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 5,
@@ -90,12 +79,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 500,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 6,
@@ -103,13 +91,12 @@
       "feed_name": "4_Hyperliquid_Analysis",
       "tier": "Tactical",
       "exists": true,
-      "rows": 1984,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 1986,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 7,
@@ -118,12 +105,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 20,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 8,
@@ -131,13 +117,12 @@
       "feed_name": "5_Funding_Rate",
       "tier": "Tactical",
       "exists": true,
-      "rows": 587,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 588,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 9,
@@ -146,26 +131,24 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 940,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 10,
       "sheet_name": "7_Liq_Heapmap",
       "feed_name": "7_Liq_Heapmap",
       "tier": "Tactical",
-      "exists": false,
-      "rows": 81,
-      "age_minutes": 999.0,
-      "age_str": "MISSING",
+      "exists": true,
+      "rows": 84,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": false,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 11,
@@ -174,12 +157,11 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 27,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 12,
@@ -187,27 +169,25 @@
       "feed_name": "8_Exchange_Liquidation_Map_1D",
       "tier": "Tactical",
       "exists": true,
-      "rows": 2300,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 2116,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 13,
       "sheet_name": "8_Exchange_Liquidation_Map_7D",
       "feed_name": "8_Exchange_Liquidation_Map_7D",
       "tier": "Tactical",
-      "exists": false,
-      "rows": 2856,
-      "age_minutes": 999.0,
-      "age_str": "MISSING",
+      "exists": true,
+      "rows": 2859,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": false,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 14,
@@ -216,12 +196,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 15,
@@ -230,12 +209,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 16,
@@ -244,12 +222,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 17,
@@ -258,12 +235,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 751,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 18,
@@ -271,13 +247,12 @@
       "feed_name": "10_Whale_Orders",
       "tier": "Tactical",
       "exists": true,
-      "rows": 3991,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 3453,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 19,
@@ -285,13 +260,12 @@
       "feed_name": "11_Technical",
       "tier": "Tactical",
       "exists": true,
-      "rows": 109,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 120,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 20,
@@ -300,12 +274,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 242,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 21,
@@ -314,12 +287,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 235,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 22,
@@ -327,13 +299,12 @@
       "feed_name": "14_Hyperdash_Liq_Map",
       "tier": "Tactical",
       "exists": true,
-      "rows": 6258,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "rows": 6554,
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 23,
@@ -342,12 +313,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 4339,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 24,
@@ -356,12 +326,11 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 1000,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 25,
@@ -370,12 +339,11 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 615,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 26,
@@ -384,40 +352,37 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 1500,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 27,
       "sheet_name": "19_News",
       "feed_name": "19_News",
       "tier": "Macro",
-      "exists": false,
+      "exists": true,
       "rows": 36,
-      "age_minutes": 999.0,
-      "age_str": "MISSING",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": false,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 28,
       "sheet_name": "19_Calendar",
       "feed_name": "19_Calendar",
       "tier": "Macro",
-      "exists": false,
+      "exists": true,
       "rows": 21,
-      "age_minutes": 999.0,
-      "age_str": "MISSING",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": false,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 29,
@@ -426,26 +391,24 @@
       "tier": "Tactical",
       "exists": true,
       "rows": 84,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 30,
       "sheet_name": "21_Tradfye_Orderflow",
       "feed_name": "21_Tradfye_Orderflow",
       "tier": "Tactical",
-      "exists": false,
+      "exists": true,
       "rows": 6912,
-      "age_minutes": 999.0,
-      "age_str": "MISSING",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": false,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 31,
@@ -454,12 +417,11 @@
       "tier": "High Velocity",
       "exists": true,
       "rows": 48,
-      "age_minutes": 1.6,
-      "age_str": "1.6m",
+      "age_minutes": 0.7,
+      "age_str": "0.7m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:27 IST",
+      "is_fresh": true
     },
     {
       "idx": 32,
@@ -471,9 +433,8 @@
       "age_minutes": 0.0,
       "age_str": "0.0m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:37:09 IST",
+      "is_fresh": true
     },
     {
       "idx": 33,
@@ -481,13 +442,12 @@
       "feed_name": "25_CoinGlass_Footprint_Signals",
       "tier": "Tactical",
       "exists": true,
-      "rows": 814,
-      "age_minutes": 0.4,
-      "age_str": "0.4m",
+      "rows": 822,
+      "age_minutes": 0.6,
+      "age_str": "0.6m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:36:34 IST",
+      "is_fresh": true
     },
     {
       "idx": 34,
@@ -499,9 +459,8 @@
       "age_minutes": 0.1,
       "age_str": "0.1m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:37:04 IST",
+      "is_fresh": true
     },
     {
       "idx": 35,
@@ -509,13 +468,12 @@
       "feed_name": "14_Liquidation_Matrix",
       "tier": "Tactical",
       "exists": true,
-      "rows": 11679,
+      "rows": 11381,
       "age_minutes": 0.0,
       "age_str": "0.0m",
       "status": "PASS",
-      "banner_ist": "2026-10-27 14:35:15 IST",
-      "is_fresh": true,
-      "age_min": 0.1
+      "banner_ist": "2026-10-27 14:37:07 IST",
+      "is_fresh": true
     }
   ]
 }

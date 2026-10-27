@@ -137,4 +137,136 @@ Realized Balance (USD)	$4,847.88	$4,847.88	$4,847.88	Tier-2 House Money requires
 ⟹
   
 ⟹ TIER_1_STANDARD, $12.00 nominal risk)
-Floating PnL (#19329907 BNB)	-$4.35 (@ 734.80)	-$4.05 (@ 734.90)	-$3.45 (`@	
+Floating PnL (#19329907 BNB)	-$4.35 (@ 734.80)	-$4.05 (@ 734.90)	-$3.45 (@ 735.10)	1 active position (3.00 BNB @ 736.25)
+Account Equity (USD)	$4,843.53	$4,843.83	$4,844.43	>= $4,795.00 Solvency Kernel
+Base Capital (min(Bal, Eq))	$4,843.53	$4,843.83	$4,844.43	Cushion above $4,795.00 = $48.83 USD
+Margin Used (USD / % Eq)	$1,104.38 (22.80%)	$1,104.38 (22.80%)	$1,104.38 (22.80%)	PASS (<= 50.0% D3 cap) (3.0 × 736.25 × 0.50 = 1,104.375)
+Free Margin (USD)	$3,739.15	$3,739.45	$3,740.05	$4,843.83 - $1,104.38 = $3,739.45 USD
+Margin Level (%)	438.57%	438.6017%	438.66%	PASS (>= 200.0% D3 floor)
+Joint-Fill Slots Used	3 / 4 (1 active + 2 pending)	3 / 4 (1 free slot)	3 / 4 (1 free slot)	Max 4 concurrent joint-fill slots
+2.2 Exact Ticket-by-Ticket Stress & Reference-Frame Reconciliation (0.0001 USD Precision)
+
+We reconcile all three solvency reference frames side-by-side:
+
+Ticket	Symbol & Side	Volume & Levels (Open / Curr / SL / TP)	Frame 1: cycle_envelope.json (MTM Remaining Stress from Equity = $4,843.83)	Frame 2: Pure Balance Frame (Entry-to-SL Stress from Balance = $4,847.88)	Frame 3: live_snapshot_latest.json (Double-Counted Entry-to-SL from Equity = $4,843.53)	Initial Margin (50% Crypto)
+#19329907 (Active)	BNBUSD.p BUY	3.00 (1 BNB/lot) 736.25 / 734.90 / 732.65 / 740.00	Rem. Loss: (734.90 - 732.65)×3 = $6.75 Stress: 1.25×6.75 + 2 = $10.4375	Full Loss: (736.25 - 732.65)×3 = $10.80 Stress: 1.25×10.80 + 2 = $15.5000	Subtracts $15.5000 from Equity (double-counts -$4.35 MTM loss!)	$1,104.375 (Active)
+#19330613 (Pending)	ETHUSD.pi SELL_LIMIT	0.50 (1 ETH/lot) 2320.50 / 2307.00 / 2343.50 / 2274.50	Nom. Loss: (2343.50 - 2320.50)×0.5 = $11.50 Stress: 1.25×11.50 + 2 = $16.3750	Nom. Loss: $11.50 Stress: $16.3750	Nom. Loss: $11.50 Stress: $16.3750	$580.125 (On Fill)
+#19343853 (Pending)	SOLUSD.p SELL_LIMIT	0.20 (100 SOL/lot = 20 SOL) 100.38 / 99.60 / 100.94 / 99.20	Nom. Loss: (100.94 - 100.38)×20 = $11.20 Stress: 1.25×11.20 + 2 = $16.0000	Nom. Loss: $11.20 Stress: $16.0000	Nom. Loss: $11.20 Stress: $16.0000	$1,003.800 (On Fill)
+Portfolio Totals	3 Tickets (1 Active + 2 Pending)	Global Reserve: $2.00 USD	Stress = $42.8125 USD Post-Stress Eq = $4,799.02 USD Headroom = +$4.02 USD	Stress = $47.8750 USD Post-Stop Bal = $4,800.005 USD ($4,798.005 w/ $2 res = +$3.005)	Stress = $47.8750 USD Post-Stop Eq = $4,795.655 USD Headroom = +$0.655 USD	Active: $1,104.38 If All Fill: $2,688.31 (55.50%)
+
+Key Solvency Conclusions:
+
+Existing 3-Ticket Portfolio is 100% Solvent Across All Frames: Whether evaluated under the cycle_envelope.json MTM frame ($4,799.02 USD, +$4.02 USD headroom), the pure Realized-Balance frame ($4,798.005 USD after $2.00 USD reserve, +$3.005 USD headroom), or the double-counted live_snapshot_latest.json frame ($4,795.655 USD, +$0.655 USD headroom), worst-case joint stop-out equity remains strictly above the $4,795.00 USD Solvency Kernel.
+New Ticket Admission is Mathematically Inadmissible (new_risk_admissible = false): Although 1 joint-fill slot (3/4 used) is open after #19343851 closed, the available solvency headroom ($4.0175 USD in the envelope) supports at most:
+
+Nominal Risk Capacity
+=
+4.0175
+−
+2.00
+1.25
+=
+1.6140
+ USD
+<
+12.00
+ USD Minimum Tier-1 Ticket Risk
+Nominal Risk Capacity=
+1.25
+4.0175−2.00
+	​
+
+=1.6140 USD<12.00 USD Minimum Tier-1 Ticket Risk
+Staging a new $12.00 USD nominal risk ticket ($17.00 USD stressed risk) would depress post-joint-stress equity to $4,799.02 - $17.00 = $4,782.02 USD < $4,795.00 USD (-$12.98 USD kernel breach).
+2.3 Ratchet Audit & Microstructure Defense of Existing Tickets (#19329907, #19330613, #19343853)
+#19329907 (BNBUSD.p BUY 3.00 @ 736.25, SL 732.65, TP 740.00):
+Current Price & Recovery: Rebounded from 733.70 (-$7.65 USD) in Cycle 369 to 734.90 (-$4.05 USD) at 08:47:16Z cutoff and 735.10 (-$3.45 USD) at 08:50:31Z.
+Initial Risk Unit (
+𝑅
+0
+R
+0
+	​
+
+): 
+𝑅
+0
+=
+736.25
+−
+732.65
+=
+3.60
+ pts
+R
+0
+	​
+
+=736.25−732.65=3.60 pts ($10.80 USD nominal risk).
+Phase 1 Early-BE (+0.80 R_0) & Phase 2 Profit-Lock (+1.50 R_0):
+Phase 1 Trigger: 
+736.25
++
+0.80
+×
+3.60
+=
+739.13
+736.25+0.80×3.60=739.13 
+  
+⟹
+  
+⟹ move SL to 
+736.25
++
+0.15
+×
+3.60
+=
+736.79
+736.25+0.15×3.60=736.79 (+$1.62 USD locked). Notably, 739.13 front-runs the Hyperliquid L3 SELL wall at 739.78 ($1.379M, SAMPLED_RECURRENCE_VERIFIED).
+Phase 2 Trigger: 
+736.25
++
+1.50
+×
+3.60
+=
+741.65
+736.25+1.50×3.60=741.65 (above current TP = 740.00 = +1.042 R_0).
+Microstructure Defense of SL = 732.65: Protected by Hyperliquid L3 BUY walls at 733.79 ($336.6K, SAMPLED_RECURRENCE_VERIFIED) and 733.33 ($1.366M, SAMPLED_RECURRENCE_VERIFIED), Binance BUY wall at 729.39 ($650.0K, duration = 428s >= 180s in 10_Whale_Orders.parquet), positive book imbalance (+0.2395, 1.63x bid/ask ratio), and Tradfye 15m AGGRESSIVE_BUYER_DOMINATION (+$101.1K net delta, +61.04% at 08:30Z). Directive: HOLD_EXISTING_AND_MONITOR_SL_AND_RATCHET.
+#19330613 (ETHUSD.pi SELL_LIMIT 0.50 @ 2,320.50, SL 2,343.50, TP 2,274.50):
+Distance: 13.50 pts (1.82 × ATR14) above 2,307.00 cutoff price.
+Confluence: Sits inside the 15m [0.702 OTE = 2,318.24, 0.786 Invalidation = 2,321.02] zone, right at pdPOC = 2,319.30 and dVAH = 2,322.44, above OU theta = 2,310.65, with SL = 2,343.50 defended by Hyperliquid L3 SELL walls at 2,321.50 ($4.01M), 2,331.00 ($5.39M, SAMPLED_RECURRENCE_VERIFIED), and 2,346.50 ($10.52M, SAMPLED_RECURRENCE_VERIFIED), targeting TP = 2,274.50 (2.00R, Deribit Max Pain / Put Wall 2,300 gravity + $4.21M sell-stop cluster at 2,275.00). Directive: KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON.
+#19343853 (SOLUSD.p SELL_LIMIT 0.20 @ 100.38, SL 100.94, TP 99.20):
+Distance: 0.78 pts (2.43 × ATR14) above 99.60 cutoff price.
+Confluence: Sits directly at 15m Fib-Prime EMA144 (100.3543) / EMA233 (100.4144), 48-bar 0.702 OTE (100.3396), pdVAL (100.30), and dVAH (100.39), above OU theta = 99.9392, defended by OKX/Binance $4.25M SELL walls at 100.00 (duration = 930s >= 180s in 10_Whale_Orders.parquet) and Hyperliquid L3 SELL walls at 100.28 ($2.33M) and 101.62 ($8.59M, SAMPLED_RECURRENCE_VERIFIED). Directive: KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON.
+§3. Role B — Macro, Regime & Cross-Asset Strategist (Data/macro_calendar.json, 21_Tradfye, 23_Master_Pipeline)
+Macro Event Horizon & G2 Gate (Data/macro_calendar.json):
+Next Tier-1 Event: FOMC Rate Decision (2026-10-28 18:00:00 UTC, 32.74h away) — outside the [T-15m, T+15m] hard execution blackout, though US CB Consumer Confidence & JOLTS Job Openings (2026-10-27 14:00:00 UTC, T-5h 09m) will elevate afternoon USD volatility.
+Freshness Failure (G2): Data/macro_calendar.json carries verified_at: 2026-10-26T03:00:00Z (age = 107,454s > 900s limit), triggering a mandatory G2 Fail-Closed block on new live risk.
+Macro Sentiment & Flows: Crypto Fear & Greed Index = 48 (NEUTRAL); Spot ETF net flows = +$110.3M BTC inflow vs -$88.6M ETH outflow; Coinbase Premium Index = -18.77 bps (US_INSTITUTIONAL_SELL_PRESSURE).
+Deribit Options Gravity (21_Tradfye_Orderflow.parquet at 08:30:00 UTC):
+BTC: Max Pain = $78,000, Call Wall = $95,000, Put Wall = $60,000 (spot 79,638.50 sits +$1,638.50 above $78,000 Max Pain magnet).
+ETH: Max Pain = $2,300, Call Wall = $3,200, Put Wall = $2,300 (spot 2,305.95 sits right atop the $2,300 Max Pain / Put Wall pin).
+Multi-Timeframe Econometric Regime Matrix (15m, 1H, 4H across the 24-Asset Deep Matrix at 08:45:53 UTC):
+Symbol	Spread (bps) & Gate	15m VR(4) (z*)	1H VR(4) (z*)	4H VR(4) (z*)	15m ER(48) & t_drift	VWAP & VWAP_Z	OU theta (15m)	Econometric Regime Classification
+BTCUSD.pi	2.01 PASS	1.046 (+0.20)	0.600 (-1.67)	0.818 (-0.59)	0.140 / -0.77	79,765.45 (-0.63)	79,795.36	1H Mean-Reverting / 15m Bearish Stack Below dPOC 80,180
+ETHUSD.pi	13.44 PASS	1.021 (+0.10)	0.814 (-0.74)	0.736 (-1.03)	0.072 / -0.41	2,310.52 (-0.67)	2,310.65	Rotational Mean-Reverting Around $2,310 VWAP / $2,300 Max Pain
+SOLUSD.p	22.08 PASS*	1.046 (+0.21)	0.754 (-1.28)	0.628 (-1.20)	0.159 / -0.94	100.01 (-0.89)	99.9392	Bearish Fib-Prime Ribbon / 1H-4H Sub-Diffusive Mean-Reverting
+BNBUSD.p	6.80 PASS	0.805 (-0.81)	1.084 (+0.39)	0.752 (-1.28)	0.144 / -0.92	735.69 (-0.67)	735.3084	15m Mean-Reverting Pullback to pdVAL 734.23 (OU = 735.31)
+BCHUSD.p	17.06 PASS	0.693 (-1.39)	0.629 (-1.56)	0.799 (-1.01)	0.044 / -0.27	280.17 (+1.66)	280.1704	Multi-TF Sub-Diffusive Mean-Reversion Above OU 280.17
+XRPUSD.pi	23.09 WARN	0.957 (-0.25)	0.696 (-1.54)	0.620 (-1.69)	0.168 / -1.23	1.3071 (-1.35)	1.3029	Quote Age 68.5s FAIL / Spread Widened to 30.82 bps at 08:50Z
+TRXUSD.p	24.45 WARN	1.298 (+1.61)	0.788 (-1.15)	0.946 (-0.19)	0.388 / -2.38	0.3282 (-1.63)	0.3289	Quote Age 291.7s FAIL / Spread Widened to 27.50 bps at 08:50Z
+XAUUSD.pi	0.23 PASS	1.042 (+0.17)	0.495 (-1.93)	1.147 (+0.47)	0.151 / -0.77	4,009.50 (-3.10)	4,008.53	Strong 1H Mean-Reverting (VR4=0.495) / Swept London Low 3,991.86
+XAGUSD.pi	4.14 PASS	1.053 (+0.25)	0.580 (-1.96)	0.976 (-0.08)	0.169 / -0.89	47.571 (-2.80)	47.5471	Strong 1H Mean-Reverting (VR4=0.580) / Extreme -2.80 Z Stretch
+USWTI.p	2.90 PASS	1.132 (+0.64)	1.010 (+0.04)	0.922 (-0.26)	0.072 / +0.47	102.67 (+2.12)	102.4567	Overbought Stretch (RSI=76.92, Z=+2.12) Near dVAH 103.52
+EURUSD.pi	0.09 PASS	0.892 (-0.50)	1.077 (+0.34)	0.802 (-1.01)	0.239 / -1.68	1.1172 (-1.81)	1.1154	Clean Bearish Trend (ER=0.239 > 0.20, Strict Fib-Prime Ribbon)
+GBPUSD.pi	0.08 PASS	0.772 (-0.85)	0.946 (-0.22)	1.170 (+0.55)	0.205 / -1.27	1.3340 (-1.83)	1.3325	Clean Bearish Trend (ER=0.205 > 0.20, Strict Fib-Prime Ribbon)
+USDJPY.pi	0.38 PASS	0.744 (-1.38)	1.028 (+0.12)	0.835 (-0.87)	0.159 / +1.07	157.76 (+0.25)	157.8295	15m Mean-Reverting Inside Value (dVAL 157.69 – dVAH 157.83)
+SP500.p	1.08 PASS	1.008 (+0.04)	0.658 (-1.70)	0.958 (-0.22)	0.074 / -0.51	7,680.17 (-1.83)	7,679.22	1H Sub-Diffusive (VR4=0.658) / Swept London Low 7,666.08
+NAS100.p	0.43 PASS	1.073 (+0.39)	0.669 (-1.45)	1.060 (+0.31)	0.119 / -0.78	29,218.21 (-1.05)	29,214.25	1H Sub-Diffusive (VR4=0.669) / Testing dVAL 29,187.22
+DJ30.p	0.28 PASS	0.644 (-1.36)	0.880 (-0.55)	0.872 (-0.63)	0.124 / -1.08	52,442.49 (-2.05)	52,431.49	15m Sub-Diffusive (VR4=0.644) / Swept London Low 52,349.10
+GER40.p	0.43 PASS	0.942 (-0.27)	0.996 (-0.02)	0.961 (-0.22)	0.032 / -0.22	25,386.65 (-0.91)	25,382.90	Rotational Balance Inside Value (dVAL 25,342 – dVAH 25,409)
+§4. Role C — Microstructure, Orderbook, Liquidation & Tradfye Footprint Specialist
+4.1 Multi-Venue Persistent Whale Walls (10_Whale_Orders.parquet @ 08:41:05 UTC & Hyperliquid
