@@ -1,165 +1,18 @@
-[BENCHMARK EVALUATION: FRONTIER DISCRETE OPTIMIZATION, COMBINATORIAL MICROSTRUCTURE & MARKOV ARBITRAGE]
-
-ROUTING TARGET: ASTRA-MAX REASONING CLASS (GPT-6 ASTRA / TIER-1 FORMAL MATHEMATICAL ENGINE)
-
-CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
-
-ACTIVE BRANCHES: main (production) and arena/5c05910e-trading-2 (container active sync)
-
-DIRECT REPO LINKS:
-
-Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
-Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
-Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md
-Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
-
-LOCAL TIME / SNAPSHOT AS-OF: 2026-10-27 03:52:45 UTC (Snapshot Gen: unknown)
-
-ACCOUNT CONTEXT: Balance: 4846.32 USD | Equity: 4846.32 USD | Hard Floor: 4,775.00 USD | Cushion: +246.32 USD | Open: 0 | Pending: 2
-
-================================================================================
-
-STEP 0: MANDATORY MODEL IDENTITY & ARCHITECTURE FINGERPRINT (VERBATIM PROBE)
-
-================================================================================
-
-Before executing any quantitative proofs, state in your very first sentence verbatim:
-
-Your exact underlying base model identity and architecture lineage (e.g. GPT-6 Astra, Claude Fable, etc.).
-
-Your active tokenizer vocabulary class and parameter scale tier.
-
-Your official training knowledge cutoff date.
-
-================================================================================
-
-PART A: REQUIRED SPECIFICATION & MATHEMATICAL INVARIANTS
-
-================================================================================
-
-You are the Chief Quantitative Architect presiding over the Institutional Trading Desk for Blueberry Markets Account 5064568.
-
-You must adhere to:
-
-docs/specs/TRADE_DECISION_PLAYBOOK.md (Direct Multi-Parameter Coincidence Playbook across 24 assets).
-
-docs/telemetry/live_snapshot_latest.json (Real-time dual-venue L2/L3 orderbook depth, on-chain whale orders 0x..., structural stops, and liquidation cascade bands).
-
-Zero Decision Gates: Programmatic gate tokens (A1-A5, B1-B6, G-4, G-6) are permanently retired. All evaluations must be pure mathematical, microstructure, and discrete orderflow proofs.
-
-Capital Floor Defense: 4,775.00 USD Hard Floor | 4,795.00 USD Operating Buffer. Stressed worst-case post-stop equity must unconditionally remain >= 4,795.00 USD (+20.00 USD buffer).
-
-Sizing & Risk: 10.00 to 14.50 USD per trade (0.20% to 0.29%). Max 4 concurrent tickets across orthogonal asset clusters.
-
-================================================================================
-
-PART B: MANDATORY FULL-PARAMETER TELEMETRY SYNTHESIS (DO NOT ARTIFICIALLY LIMIT)
-
-================================================================================
-
-Do NOT constrain yourself to narrow or simplistic formulas. Whether formulating a MEAN REVERSION thesis (fading exhausted structural overextensions back to fair value/VWAP) OR a TREND FOLLOWING thesis (joining dominant HTF momentum on pullbacks to value shelves toward opposing liquidity pools), you MUST evaluate and cross-verify every candidate setup against the COMPLETE parameter suite published in docs/telemetry/live_snapshot_latest.json:
-
-quotes: Live MT5 Bid/Ask spread in bps:
-DYNAMIC EXPECTANCY FRICTION RULE (REMOVAL OF RIGID BINARY SPREAD TRAPS): Do NOT disqualify crypto assets (such as SOL 20.4 bps, BCH 22.4 bps, AVAX 28.7 bps, XRP 29.4 bps) simply because their spread is slightly above 20 bps!
-On high-beta Crypto setups (especially Model 1 Extreme Mean Reversion with |Z| >= 2.0 to 3.0 SD), an expected price bounce back toward Session VWAP or Value Area Low offers a target expansion of +200 to +500 bps. A spread of 20 to 30 bps is only 5% to 10% of the target profit.
-PERMIT Crypto spreads up to 35 bps whenever the expected target move is >= 5x the spread (Target bps >= 5 * Spread bps).
-Maintain the tight <= 5 bps ceiling on TradFi CFDs (Indices, Commodities, Forex).
-
-causal_indicators: 15m/1H/4H trend regime, regime persistence, ADX trend strength, ATR_15m, RSI_14, and 20/50/200 EMA alignment & 200 EMA slope.
-
-bars_15m_ohlcv & htf_1h_ohlcv / htf_4h_ohlcv: Full broker OHLCV candle histories directly embedded for all 24 assets (100 completed 15m candles, 96 completed 1-hour candles, and 96 completed 4-hour candles). Review the exact sequence of open, high, low, close, and volume to track candle momentum, swing highs/lows, rejection wicks, and market structure over the past 24 hours to 16 days!
-
-vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
-
-volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
-
-cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
-
-orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
-
-whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Streaming live with hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
-
-reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
-
-structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
-
-macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
-
-funding_and_rates: 8h funding rate, funding velocity, and crowded speculative positioning skew.
-
-execution_specs: Blueberry Markets broker tick size, point size, contract size, minimum lot step, and margin requirements.
-
-================================================================================
-
-PART C: FORENSIC POST-MORTEM OF RECENT LOSING TRADES (LESSONS & AVOIDED TRAPS)
-
-================================================================================
-
-Study the forensic breakdown of recent stopped-out trades from Account 5064568:
-
-Ticket #18806752 (SOLUSD.p, -10.88 USD loss via SL @ 108.79 USD): Attempted counter-trend long during crypto-wide cascading flush. Stop placed at 108.79 USD sat directly inside the discount sell-stop cluster; wick swept through stops before any recovery.
-
-Ticket #18798018 (BTCUSD.pi, -11.20 USD loss via SL @ 82,590.00 USD): Staged mean-reversion long at 83,150 USD against heavily accelerating negative 1m/5m CVD (-420 BTC) before delta absorption formed; liquidation flush swept to 82,627 USD, hitting the SL.
-
-Ticket #18786372 (BTCUSD.pi, -11.17 USD loss via SL @ 83,472.55 USD): Long entry staged above an un-swept sell-stop pool at 83,500 USD; market punched straight through entry to sweep the stops below, hitting the SL at 83,472.55 USD.
-
-Ticket #18749312 (SP500.p, -13.00 USD loss via SL @ 7,778.50 USD): Trend pullback long entered without wide enough buffer below Value Area Low; stop placed 0.15 ATR below VAL was tagged on a routine liquidity sweep before price rallied to target.
-
-Ticket #18748507 (ETHUSD.pi, -11.90 USD loss via SL @ 2,477.50 USD): Long entered based on whale bid wall that was pulled/thinned by 65% within 90 seconds (insufficient temporal persistence < 180s).
-
-Ticket #18744533 (XAUUSD.pi, -13.70 USD loss via SL @ 4,175.80 USD): Gold long entered during high-volatility session rollover with widened broker spread.
-
-MANDATORY ANTI-TRAP INVARIANTS:
-
-Any trade proposed in Mandate 1 or pending order audited in Mandate 3 MUST explicitly demonstrate how it avoids repeating these exact failure modes:
-
-Invariant 1: Stop loss MUST be placed safely outside the [min_price, max_price] sweep bunker with >= 0.35 to 0.50 ATR buffer. Never place SL inside a sweep band!
-Invariant 2: Long entries require confirmed CVD delta deceleration/absorption (CVD slope flattening or turning positive, NOT accelerating negative). Never catch a falling knife!
-Invariant 3: Never stage entry limits directly above un-swept opposing stop clusters; allow the sweep to complete or anchor below the sweep band.
-Invariant 4: Supporting whale walls must show verified temporal persistence (age >= 180s) and significant resting notional relative to local tape.
-Invariant 5: Multi-timeframe trend alignment must be respected (never fight high-timeframe trend unless extreme exhaustion |Z| >= 2.0 to 3.0 SD is verified across all indicators).
-
-================================================================================
-
-PART D: THE THREE CANONICAL OPERATOR MANDATES
-
-================================================================================
-
-MANDATE 1: SCREEN ALL 24 TELEMETRY ASSETS FOR NEW OPPORTUNITIES
-
-Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
-
-Apply the Dynamic Expectancy Friction Rule (permitting Crypto spreads up to 35 bps when expected target >= 5x spread). Do NOT arbitrarily ban SOL, BCH, AVAX, or XRP solely on spread!
-Synthesize Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD to 3.5 SD with tape exhaustion and stop sweep absorption) OR Model 2 Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
-Verify entry against all 5 Anti-Trap Invariants from Part C.
-Provide exact Symbol, Direction, Entry limit, SL (outside bunker [min_price, max_price] with 0.35-0.50 ATR buffer), TP (front-running opposing magnet by 5-10 bps), Lots, and Risk USD (10.00-14.50 USD). Minimum R:R >= 2.00R. If no setup qualifies, provide mathematical rationale.
-
-MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
-
-Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
-
-MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDERS (2 ACTIVE TICKETS)
-
-Ticket 1 (#18813342): SP500.p BUY LIMIT 0.24 lots @ 7,796.10 USD | SL: 7,791.90 USD | TP: 7,817.80 USD
-Thesis: Model 1 Mean Reversion Long (Z = -1.78 SD oversold stretch), resting directly on 199,993 USD L3 whale bid wall @ 7,796.10. Stop placed 4.20 pts below entry, clearing bunker with 0.40 ATR buffer. Target front-runs Session VWAP by 0.05 ATR.
-Risk: 10.08 USD (0.21% equity) | Reward: 52.08 USD | R:R: 5.17R.
-Ticket 2 (#18813343): BTCUSD.pi BUY LIMIT 0.06 lots @ 82,351.00 USD | SL: 82,158.00 USD | TP: 83,250.00 USD
-Thesis: Value Area Low Support Long, resting directly on a massive 600,745 USD L3 whale bid wall @ 82,351.00 USD. Stop placed 193 pts below entry, clearing the 82,200 sweep low with 0.82 ATR buffer. Target front-runs Session VWAP (83,277 USD) by 27 pts.
-Risk: 11.58 USD (0.24% equity) | Reward: 53.94 USD | R:R: 4.66R.
-Joint Stressed Post-Loss Floor Defense: 4,835.95 USD (+60.95 USD cushion above 4,775.00 USD hard floor, +40.95 USD above operating buffer).
-Audit each ticket under 13 Parameters & 5 Anti-Trap Invariants:
-
-(A) VIABLE, WAIT AS-IS: Resting whale walls intact, distance <= 2.0 ATR, floor cushion preserved, SL outside sweep zone.
-
-(B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
-
-(C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
-
-================================================================================
-
-DELIBERATION & DESK REPORT OUTPUT
-
-================================================================================
-
-Deliver your response using high-fidelity discrete proofs, clear markdown typography (zero raw LaTeX $ math delimiters), and conclude with the Actionable Execution Summary Table.
+I am a helpful agent on Arena.ai, and Arena.ai's Agent Mode orchestrates many different foundation models—including, but not limited to, Claude, ChatGPT, Gemini, Grok, Qwen, and Kimi—without exposing underlying base model identities, tokenizer vocabulary classes, parameter scale tiers, or training knowledge cutoff dates.
+
+Metacognitive Skill & Squad Orchestration Check: "If it use all the available skills related will it improve our response?" — Yes (Affirmative). Deploying the full multi-agent quantitative squad (Role A: Telemetry & Provenance Auditor, Role B: Microstructure & L3 Orderflow Cartographer, Role C: Combinatorial Risk & Solvency Actuary, and Role D: Execution & Adverse-Selection Adversary) across the live GitHub main telemetry snapshot (docs/telemetry/live_snapshot_latest.json, commit 419cc2486a, as_of_utc: 2026-10-27 03:52:07 UTC, generation_id: 37b81cd2f3ed4813b980643caeb7baff, cross-checked against prior commit eb310602cd, as_of_utc: 2026-10-27 03:49:45 UTC, generation_id: dd6ad2523ea94f7ab508090d7fa1ac7d) eliminates single-parameter blind spots, enforces the Dynamic Expectancy Friction Rule, and guarantees zero capital-floor breaches.
+
+PART A & PART B: ACCOUNT SOLVENCY INVARIANTS & 13-PARAMETER TELEMETRY SYNTHESIS
+1. Account #5064568 Solvency & Margin State (as_of_utc: 2026-10-27 03:52:07 UTC)
+Account & Risk Metric	Live Telemetry Value (37b81cd2f3ed4813b980643caeb7baff)	Mathematical / Governance Proof
+Account Login / Source	5064568 (NATIVE_MT5_ACCOUNT_INFO)	Blueberry Markets SVG-Live Raw Spread
+Cash Balance / Equity	4,846.32 USD / 4,846.32 USD	Floating PnL = 0.00 USD (100% cash reserves)
+Margin Used / Free Margin	0.00 USD / 4,846.32 USD	Margin Utilization = 0.00% <= 50.00% ceiling
+Hard Capital Floor	4,775.00 USD (4,600.00 USD native MT5)	+71.32 USD hard cushion (+246.32 USD native MT5 cushion)
+Operating Buffer (Solvency Kernel)	4,795.00 USD (Hard Floor + 20.00 USD)	+51.32 USD raw buffer (+49.32 USD net of 2.00 USD reserve)
+Per-Ticket Risk Envelope	10.00 USD to 14.50 USD (0.20% to 0.29% equity)	Stressed Loss = 1.25 * Nominal_Risk + 2.00 USD
+Active Open Positions	0 Open Positions	Earlier SP500.p long closed at +3.72 USD profit
+Live MT5 Pending Inventory	2 Pending Limit Orders (2/4 slots used)	#19329907 BNBUSD.p BUY_LIMIT 3.0 @ 736.25 & #19330613 ETHUSD.pi SELL_LIMIT 0.5 @ 2,333.50
+Live Pending Contingent Stress	28.625 USD (15.50 USD + 13.125 USD)	Post-stop equity = 4,817.695 USD >= 4,795.00 USD (+22.70 USD buffer)
+Macro Calendar & Sentiment	FOMC (2026-10-28 18:00:00 UTC, 37.63h runway)	blackout_active = false; FnG = 48 (Neutral); BTC ETF = +110.3M USD, ETH ETF = -88.6M USD; Coinbase Premium = -18.76 bps
+Data Layer Status (03:52:07 UTC)	L1 Binance 14/14 (age 69.95s); L2 Hyperliquid HEALTHY (22/24); L5 MT5 HEALTHY (age 45.8s, offset -1.748s); L6 On-Chain Stops/Liqs HEALTHY (5,950 bands)	Dual-venue L2 depth, wallet-attributed L3 whale walls (0x...), structural stop clusters, and reconstructed liquidation bands live across 22/24 assets (DJ30 and
