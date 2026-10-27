@@ -17,9 +17,9 @@
     "sell_stops",
     "size_coins"
   ],
-  "byte_size": 163598,
-  "timestamp_ist": "2026-10-27 08:41:19 IST",
-  "timestamp_utc": "2026-10-27 03:11:19 UTC",
-  "epoch_utc": 1793070679.604066,
-  "write_duration_ms": 510.26
+  "byte_size": 162625,
+  "timestamp_ist": "2026-10-27 08:45:34 IST",
+  "timestamp_utc": "2026-10-27 03:15:34 UTC",
+  "epoch_utc": 1793070934.571166,
+  "write_duration_ms": 482.45
 }
