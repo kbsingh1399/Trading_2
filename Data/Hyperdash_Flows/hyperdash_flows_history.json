@@ -55238,5 +55238,25 @@
     "date_heading": "October 26",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "AVAX",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 5322.27,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 8.7299,
+    "wallet_address": "0x30a68666b5f91348e7fc78785802e0769d86e62b",
+    "asset_slug": "AVAX",
+    "raw_text": "#AVAX Whale BUY: 5.32K USD at 8.7299 USD [API]",
+    "msg_id": "HL_TRADE_AVAX_584781061837371",
+    "timestamp_epoch": 1793076353,
+    "time_label": "04:45",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
