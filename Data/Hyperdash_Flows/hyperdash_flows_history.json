@@ -68158,5 +68158,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "ETH",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 400425.67,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 2312.9,
+    "wallet_address": "0x95995f302ad58138d791ce49f9f3b1274e80c60a",
+    "asset_slug": "ETH",
+    "raw_text": "#ETH Whale SELL: 400.43K USD at 2312.9000 USD [API]",
+    "msg_id": "HL_TRADE_ETH_328325695391620",
+    "timestamp_epoch": 1793101943,
+    "time_label": "11:52",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
