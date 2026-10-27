@@ -1,9 +1,148 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-27T05:44:51Z",
-  "prev_timestamp_utc": "2026-10-27T05:44:50Z",
+  "curr_timestamp_utc": "2026-10-27T05:50:32Z",
+  "prev_timestamp_utc": "2026-10-27T05:44:51Z",
   "time_gap_minutes": 0.0,
   "changes": {
-    "symbol_shifts": {}
+    "symbol_shifts": {
+      "ETH": {
+        "price_diff": -2306.7,
+        "z_score_diff": 0.88,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "SOL": {
+        "price_diff": -99.8,
+        "z_score_diff": 0.94,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "BNB": {
+        "price_diff": -736.4,
+        "z_score_diff": 1.09,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "XRP": {
+        "price_diff": -1.297,
+        "z_score_diff": 0.8,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "ADA": {
+        "price_diff": -0.2027,
+        "z_score_diff": -0.12,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "DOGE": {
+        "price_diff": -0.0763,
+        "z_score_diff": -4.25,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "TRX": {
+        "price_diff": -0.3282,
+        "z_score_diff": 0.0,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "DOT": {
+        "price_diff": -0.976,
+        "z_score_diff": 0.03,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "LINK": {
+        "price_diff": -11.299,
+        "z_score_diff": -1.83,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "BCH": {
+        "price_diff": -278.46,
+        "z_score_diff": 2.08,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "LTC": {
+        "price_diff": -56.165,
+        "z_score_diff": 0.09,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "AVAX": {
+        "price_diff": -8.73,
+        "z_score_diff": 0.83,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "NEAR": {
+        "price_diff": -4.412,
+        "z_score_diff": 0.48,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "SP500": {
+        "price_diff": -7672.13,
+        "z_score_diff": 4.81,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "NAS100": {
+        "price_diff": -29172.59,
+        "z_score_diff": 2.54,
+        "regime_prev": "RANGE_BOUND",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "DJ30": {
+        "price_diff": -52440.46,
+        "z_score_diff": 0.36,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "GER40": {
+        "price_diff": -25373.55,
+        "z_score_diff": 4.9,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "GOLD": {
+        "price_diff": -4008.12,
+        "z_score_diff": 1.53,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "SILVER": {
+        "price_diff": -53.219,
+        "z_score_diff": 2.51,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "USWTI": {
+        "price_diff": -101.676,
+        "z_score_diff": -0.38,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "EURUSD": {
+        "price_diff": -1.1167,
+        "z_score_diff": 1.69,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "GBPUSD": {
+        "price_diff": -1.3332,
+        "z_score_diff": 2.61,
+        "regime_prev": "BEARISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      },
+      "USDJPY": {
+        "price_diff": -157.659,
+        "z_score_diff": -0.53,
+        "regime_prev": "BULLISH",
+        "regime_curr": "UNAVAILABLE_NO_MT5_QUOTE"
+      }
+    }
   }
 }
