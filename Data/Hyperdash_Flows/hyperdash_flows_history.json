@@ -53158,5 +53158,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "CRV",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 250.4,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.3328,
+    "wallet_address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+    "asset_slug": "CRV",
+    "raw_text": "#CRV Liquidated Short: 0.25K USD at 0.3328 USD [API]",
+    "msg_id": "HL_LIQ_0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00_CRV_921471036467129",
+    "timestamp_epoch": 1793071145,
+    "time_label": "03:19",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
