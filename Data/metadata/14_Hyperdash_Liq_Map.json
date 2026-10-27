@@ -1,7 +1,7 @@
 {
   "feed_name": "14_Hyperdash_Liq_Map",
   "status": "PASS",
-  "row_count": 6501,
+  "row_count": 6527,
   "column_count": 12,
   "columns": [
     "sr_no",
@@ -17,9 +17,9 @@
     "long_liq",
     "size_coins"
   ],
-  "byte_size": 241178,
-  "timestamp_ist": "2026-10-27 05:21:25 IST",
-  "timestamp_utc": "2026-10-26 23:51:25 UTC",
-  "epoch_utc": 1793058685.319551,
-  "write_duration_ms": 486.92
+  "byte_size": 242864,
+  "timestamp_ist": "2026-10-27 05:36:04 IST",
+  "timestamp_utc": "2026-10-27 00:06:04 UTC",
+  "epoch_utc": 1793059564.612914,
+  "write_duration_ms": 654.62
 }
