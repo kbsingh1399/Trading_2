@@ -643,4 +643,357 @@ Mandate C2 Verdict on XRPUSD.pi: CONDITIONAL_HOLD / DO_NOT_STAGE_UNTIL_CRYPTO_SL
 §4. Mandate D — Non-Bypassable Actionable Execution Summary Table
 Mandate / Ticket ID	Symbol	Action / Classification	Direction & Order Type	Volume (Lots)	Entry Price	Stop Loss	Take Profit	Nominal Risk	Stressed Risk	Expected Reward & R:R	Primary Microstructure & Anti-Trap Proof
 Mandate A / #19329907	BNBUSD.p	HOLD & MONITOR RATCHET (Active Slot 1/4)	LONG (BUY Filled)	3.00	736.25	732.65 (-> 736.79 @ 739.13)	740.00	$10.80	$15.50	+$11.25 (1.04R / +0.32R live)	Shielded by $982.6K (51.3m) Hyperliquid L3 BUY wall @ 733.34, $334.1K (36.3m) @ 733.98, $655K (14.6m) Binance BUY wall @ 735.24, & $630K (13.8h) @ 735.00; clears $24.7K sell-stops @ 731.50 & $18.5K liqs @ 729.50. Live quote 737.40 (+$3.45 PnL) is 1.73 USD (1.14 ATR) from +0.80R0 Early-BE (739.13).
-Mandate B1 / #19330613	ETHUSD.pi	KEEP WORKING (Resting Limit #1)	SHORT (SELL_LIMIT)	0.50	2,320.50	2,343.50	2,274.50	$11.50	$16.38	+$23.00 (2.00R nominal)	Front-runs $4.67M SELL wall @ 2,320.56, $4.52M (5m 35s >= 180s) @ 2,321.03, $1.25M (27m 28s) @ 2,322.04, $6.39M (4h 49m) @ 2,331.00, & $13.05M (352.6s) Hyperliquid L3 SELL wall @ 2,340.10.
+Mandate B1 / #19330613	ETHUSD.pi	KEEP WORKING (Resting Limit #1)	SHORT (SELL_LIMIT)	0.50	2,320.50	2,343.50	2,274.50	$11.50	$16.38	+$23.00 (2.00R nominal)	Front-runs $4.67M SELL wall @ 2,320.56, $4.52M (5m 35s >= 180s) @ 2,321.03, $1.25M (27m 28s) @ 2,322.04, $6.39M (4h 49m) @ 2,331.00, & $13.05M (352.6s) Hyperliquid L3 SELL wall @ 2,340.10. Confluent with VWAP +1SD (2,319.86), Session POC (2,320.01), & DayPOC (2,319.30). Distance 1.74 ATR <= 2.0 ATR; spread 12.13 bps.
+Mandate B2 / #19343851	BTCUSD.pi	KEEP WORKING (05:31Z) 
+→
+→ FILLED ACTIVE (05:50Z) (Active Slot 2/4)	SHORT (SELL_LIMIT 
+→
+→ SELL Filled)	0.04	79,838.00	80,098.00 (-> 79,799 @ 79,630)	79,318.00	$10.40	$15.00	+$20.80 (2.00R nominal)	Filled on retrace into Session VWAP (79,847) / EMA50 (79,859). SL: 80,098 guarded by $3.38M MT5-Crypto ASK walls (79,983–79,992), $1.29M (14m 22s >= 180s) Binance SELL walls @ 79,979.90 & 80,095.60, VWAP +1SD (80,057), & Session POC (80,093.95). Targets $12.73M sell-stop pool @ 79,350. Distance at baseline 1.02 ATR; spread 1.88 bps.
+Mandate B3 / #19343853	SOLUSD.p	KEEP WORKING (Resting Limit #2)	SHORT (SELL_LIMIT)	0.20	100.38	100.94	99.20	$11.20	$16.00	+$23.60 (2.11R nominal)	Front-runs $1.45M (338–342s >= 180s) SELL walls @ 100.40, $535K (338s) @ 100.41, $961K (16m 01s) @ 100.46, $738K (16m 05s) @ 100.47, $2.32M (16.5–17.5m) @ 100.50–100.52, & $2.15M (32m 29s) @ 100.74. SL: 100.94 above VWAP +2SD (100.89) & EMA200 (100.93). Distance 1.56–1.92 ATR <= 2.0 ATR; spread 22.04–23.02 bps.
+Mandate C1 / RESERVE_XAU_01	XAUUSD.pi	STAGE RESERVE LIMIT (Resting Limit #3 — Auto-Pull Supervised)	SHORT (SELL_LIMIT)	0.01	4,021.80	4,033.80	3,991.80	$12.00	$17.00	+$30.00 (2.50R nominal)	Exact confluence of 15m EMA200 (4,021.71–4,021.87), VWAP +3SD (4,021.97–4,022.28), & Session VAH (4,023.43). Backed by -0.2934 Hyperliquid OB ask skew ($1.87M vs $1.02M), -$651.6K MT5-Metals ask walls (4,019.40–4,020.00), $1.03M (210.5s >= 180s) L3 SELL wall @ 4,044.60, & SELLER_AGGRESSION CVD. Targets $2.58M sell-stops @ 3,975. Spread 0.20 bps; distance 1.75 ATR at 05:48Z.
+Mandate C2-A / RESERVE_XRP_01	XRPUSD.pi	CONDITIONAL RESERVE (Hold Pending Slot Release & stops_level Check)	LONG (BUY_LIMIT)	1.00	1.2905	1.2785	1.3145	$12.00	$17.00	+$24.00 (2.00R nominal)	Trend-aligned (STRONG BULLISH EMA5>13>34>89>144>233, 24h CVD +$8.20M). Front-runs $2.09M MT5-Crypto BUY wall cluster @ 1.2900, $498K (31m 32s >= 180s) @ 1.2901, $578K (24m 29s) @ 1.2895, & $847K (1h 04m) @ 1.2885. SL: 1.2785 sits below VAL (1.2805) & above $778K sell-stops @ 1.2750. Distance 1.67 ATR; spread 23.07–23.19 bps. Deferred until 1 crypto margin slot frees ($645.25 margin required vs $564.10 post-4-slot free margin) and stops_level=20 (0.020) broker check passes.
+Mandate C2-B / RESERVE_XRP_02	XRPUSD.pi	ALTERNATIVE SHORT SPEC (Reference Only — Counter-Trend)	SHORT (SELL_LIMIT)	1.00	1.3095	1.3215	1.2855	$12.00	$17.00	+$24.00 (2.00R nominal)	Front-runs $578K (5h 30m >= 180s) SELL wall @ 1.3100 & Daily VAH (1.3091); SL: 1.3215 guarded by $920K (7h 25m) @ 1.3150, $1.28M (15m 31s) @ 1.3186, & $6.23M (357.6s) Hyperliquid L3 SELL wall @ 1.3196. Not staged due to counter-trend bullish CVD (+$3.82M session) and $543K buy-stop cluster @ 1.3250.
+§5. Complete 24-Asset Universe Screening & Disqualification Matrix (05:30:15 UTC & 05:44:35–05:50:28 UTC)
+#	Asset (Broker Symbol)	Category	Bid / Ask (05:30 UTC 
+→
+→ 05:44/05:48 UTC)	Spread (bps)	Gate (<=25 bps Crypto / <=5 bps TradFi)	Regime & Fibonacci EMA Ribbon Bias (11_Technical)	VWAP / Volume Profile / Whale Microstructure Summary	Cycle 369 Disposition
+1	BNBUSD.p	Crypto	736.10/736.70 
+→
+→ 737.10/737.70	8.15 
+→
+→ 6.79	PASS	BEARISH (RSI 36.39, ATR 1.52)	VWAP 739.98, POC 737.70, VAL 730.90, $982.6K L3 BUY @ 733.34	ACTIVE LONG (#19329907) — HOLD
+2	BTCUSD.pi	Crypto	79645/79660 
+→
+→ 79853.00	1.88 
+→
+→ 2.00	PASS	NEUTRAL/CHOP (RSI 43.53, ATR 181.58)	VWAP 79847.34, POC 80093.95, VAL 79734.32, $20.7M BUY @ 79700	ACTIVE SHORT (#19343851) — FILLED @ 79,838
+3	ETHUSD.pi	Crypto	2304.7/2307.6 
+→
+→ 2306.7/2309.5	12.58 
+→
+→ 12.13	PASS	STRONG BEARISH (RSI 43.88, ATR 7.14)	VWAP 2313.61, +1SD 2319.86, POC 2312.22, $4.52M SELL @ 2321.03	WORKING SELL_LIMIT (#19330613 @ 2,320.50)
+4	SOLUSD.p	Crypto	99.69/99.91 
+→
+→ 99.80/100.03	22.04 
+→
+→ 23.02	PASS	STRONG BEARISH (RSI 38.58, ATR 0.30)	VWAP 100.23, +1SD 100.56, POC 100.70, $1.45M SELL @ 100.40	WORKING SELL_LIMIT (#19343853 @ 100.38)
+5	XAUUSD.pi	Metals	4001.79/4001.87 
+→
+→ 4008.12/4008.20	0.20 
+→
+→ 0.20	PASS	STRONG BEARISH (RSI 40.88, ATR 6.30)	VWAP 4012.93, +3SD 4022.28, EMA200 4021.71, OB Imb -0.2934	STAGE RESERVE SELL_LIMIT (0.01 @ 4,021.80)
+6	XRPUSD.pi	Crypto	1.292/1.295 
+→
+→ 1.299/1.302	23.19 
+→
+→ 23.07	PASS	STRONG BULLISH (RSI 53.64, ATR 0.0048)	VWAP 1.3023, -2SD 1.2927, $2.09M BUY @ 1.2900, $498K @ 1.2901	CONDITIONAL RESERVE (BUY_LIMIT 1.00 @ 1.2905)
+7	BCHUSD.p	Crypto	277.08/277.66 
+→
+→ 278.46/279.04	20.91 
+→
+→ 20.81	PASS	NEUTRAL/CHOP (RSI 38.29, ATR 1.53)	VWAP 281.00 (-2SD 278.84), no verified Hyperliquid L3 whale walls (L3=0)	VETO (NO_VERIFIED_L3_WHALE_WALL)
+8	SP500.p	Indices	7676.66/7677.00 
+→
+→ 7672.13/7672.47	0.44 
+→
+→ 0.44	PASS	NEUTRAL/CHOP (RSI 39.94, ATR 5.70)	VWAP 7687.58 (z = -4.81), SELL wall @ 7815 (1.92% / 25 ATR away)	VETO (WALL_DIST_>2.0_ATR / -4.81 SD stretched)
+9	NAS100.p	Indices	29195.8/29197.0 
+→
+→ 29172.6/29173.8	0.42 
+→
+→ 0.42	PASS	NEUTRAL/CHOP (RSI 35.73, ATR 44.53)	VWAP 29313.20 (z = -2.54), L3 walls SINGLE_SAMPLE (persist_s = 0.0s)	VETO (INSUFFICIENT_WALL_PERSISTENCE_<180S)
+10	DJ30.p	Indices	52486.96/52488.44 
+→
+→ 52440.5/52442.0	0.28 
+→
+→ 0.30	PASS	NEUTRAL/CHOP (RSI 60.17, ATR 31.77)	VWAP 52457.19, no Hyperliquid DEX / L3 orderbook coverage (OB = None)	VETO (NO_L2_L3_ORDERBOOK_COVERAGE)
+11	GER40.p	Indices	25390.15/25390.95 
+→
+→ 25373.6/25374.5	0.32 
+→
+→ 0.35	PASS	NEUTRAL/CHOP (RSI 41.12, ATR 17.02)	VWAP 25414.57 (z = -4.90), no Hyperliquid DEX / L3 coverage (OB = None)	VETO (NO_L2_L3_ORDERBOOK_COVERAGE)
+12	USWTI.p	Comm.	101.365/101.411 
+→
+→ 101.676/101.722	4.54 
+→
+→ 4.52	PASS	NEUTRAL/CHOP (RSI 37.38, ATR 0.20)	VWAP 101.64, Hyperliquid basis +0.778 USD (100.935 vs 101.699 MT5)	VETO (BASIS_DIVERGENCE_76BPS_UNSAFE_MAP)
+13	EURUSD.pi	Forex	1.11642/1.11644 
+→
+→ 1.11670/1.11671	0.18 
+→
+→ 0.09	PASS	STRONG BEARISH (RSI 32.51, ATR 0.0003)	VWAP 1.1171, L3 walls @ 1.1308 / 1.1031 (>45 ATR away from spot)	VETO (WALL_DIST_>2.0_ATR)
+14	GBPUSD.pi	Forex	1.33312/1.33317 
+→
+→ 1.33320/1.33321	0.38 
+→
+→ 0.08	PASS	STRONG BEARISH (RSI 32.85, ATR 0.0004)	VWAP 1.3341 (z = -2.61), L3 walls SINGLE_SAMPLE (persist_s = 0.0s)	VETO (INSUFFICIENT_WALL_PERSISTENCE_<180S)
+15	USDJPY.pi	Forex	157.600/157.605 
+→
+→ 157.659/157.660	0.32 
+→
+→ 0.06	PASS	STRONG BULLISH (RSI 50.85, ATR 0.0692)	VWAP 157.63, no verified L2/L3 orderbook or stop-cluster feed (OB = None)	VETO (NO_L2_L3_ORDERBOOK_COVERAGE)
+16	XAGUSD.pi	Metals	53.069/53.105 
+→
+→ 53.219/53.255	6.78 
+→
+→ 6.76	FAIL (>5 bps)	STRONG BEARISH (RSI 27.75, ATR 0.1614)	00_MT5 SPREAD_DISQUALIFIED (6.78 bps > 5.0 bps Metals threshold)	VETO (MT5_SPREAD_GATE_BLOCKED)
+17	TRXUSD.p	Crypto	0.3282/0.3291 
+→
+→ 0.3285/0.3295	27.39 
+→
+→ 30.40	FAIL (>25 bps)	STRONG BEARISH (RSI 29.44, ATR 0.0002)	00_MT5 SPREAD_DISQUALIFIED (27.39–30.40 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+18	AVXUSD.p	Crypto	8.73/8.76 
+→
+→ 8.74/8.77	34.31 
+→
+→ 34.27	FAIL (>25 bps)	STRONG BEARISH (RSI 18.17, ATR 0.0347)	00_MT5 SPREAD_DISQUALIFIED (34.31 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+19	LTCUSD.pi	Crypto	56.175/56.475 
+→
+→ 56.245/56.545	53.26 
+→
+→ 53.20	FAIL (>25 bps)	STRONG BEARISH (RSI 42.99, ATR 0.1729)	00_MT5 SPREAD_DISQUALIFIED (53.26 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+20	NERUSD.p	Crypto	4.405/4.433 
+→
+→ 4.428/4.457	63.36 
+→
+→ 65.28	FAIL (>25 bps)	STRONG BEARISH (RSI 40.15, ATR 0.0316)	00_MT5 SPREAD_DISQUALIFIED (63.36 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+21	LNKUSD.p	Crypto	11.298/11.383 
+→
+→ 11.322/11.407	74.95 
+→
+→ 74.79	FAIL (>25 bps)	NEUTRAL/CHOP (RSI 45.72, ATR 0.0442)	00_MT5 SPREAD_DISQUALIFIED (74.95 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+22	ADAUSD.p	Crypto	0.2026/0.2047 
+→
+→ 0.2031/0.2052	103.1 
+→
+→ 102.9	FAIL (>25 bps)	STRONG BEARISH (RSI 38.85, ATR 0.0008)	00_MT5 SPREAD_DISQUALIFIED (103.12 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+23	DOTUSD.pi	Crypto	0.976/0.996 
+→
+→ 0.977/0.997	202.8 
+→
+→ 202.6	FAIL (>25 bps)	STRONG BEARISH (RSI 31.11, ATR 0.0046)	00_MT5 SPREAD_DISQUALIFIED (202.84 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+24	DOGUSD.p	Crypto	0.0762/0.0783 
+→
+→ 0.0764/0.0785	271.8 
+→
+→ 271.1	FAIL (>25 bps)	NEUTRAL/CHOP (RSI 46.48, ATR 0.0002)	00_MT5 SPREAD_DISQUALIFIED (271.84 bps > 25.0 bps)	VETO (SPREAD_GATE_EXCEEDED)
+§6. 4-Persona Quantitative Council Synthesis (§1–§7 Protocol Verification)
+Role A — Chief Risk & Solvency Officer ( Portfolio & Floor Defense):
+Hard Floor & Buffer Invariants: Challenge Hard Floor = $4,775.00 USD, Operating Defense Buffer = $4,795.00 USD, Snapshot Required Floor = $4,650.00 USD.
+Joint 4-Slot Stress Accounting:
+
+Total 4-Slot Stressed Risk (Core 4)
+=
+15.50
+ (BNB)
++
+15.00
+ (BTC)
++
+16.38
+ (ETH)
++
+16.00
+ (SOL)
+=
+62.88
+ USD
+Total 4-Slot Stressed Risk (Core 4)=15.50 (BNB)+15.00 (BTC)+16.38 (ETH)+16.00 (SOL)=62.88 USD
+
+Post-Stress Equity (at 
+05
+:
+50
+ UTC Equity 
+$
+4
+,
+849.17
+)
+=
+4
+,
+849.17
+−
+62.88
+=
+4
+,
+786.29
+ USD
+(
++
+$
+11.29
+ above 
+$
+4
+,
+775.00
+ Hard Floor
+)
+Post-Stress Equity (at 05:50 UTC Equity $4,849.17)=4,849.17−62.88=4,786.29 USD(+$11.29 above $4,775.00 Hard Floor)
+Early-BE Solvency Unlock: Once #19329907 BNBUSD.p travels the remaining +1.73 USD (1.14 ATR from 737.40) to 739.13 USD (+0.80R_0), its stop ratchets to 736.79 USD (+$1.62 locked profit), reducing 4-slot stressed risk from $62.88 to $47.38 USD (or $48.38 USD if XAUUSD.pi fills as the 4th slot) and elevating worst-case post-stress equity to $4,798.94–$4,801.79 USD (strictly above the $4,795.00 USD Operating Defense Buffer).
+Role B — Lead Microstructure & Orderflow Quant (L2/L3 Depth, CVD & Whale Persistence):
+Cross-Feed Reconciliation: While live_snapshot_latest.json Layer 3 (CG_Whale_Book) reported STALE in the JSON wrapper at 05:44:35 UTC, the canonical Parquet pipeline (10_Whale_Orders.parquet, 17_Orderbook.parquet, 18_CVD_30D_15m.parquet, 25_CoinGlass_Footprint_Signals.parquet, and 26_Aggregated_Footprint_Bar_Metrics.parquet) plus Layer 2 (Hyperliquid L2/L3) and Layer 6 (Hyperdash Liquidation & Stop Maps) remained fully populated and verified.
+Orderflow Divergence: BNB (15m CVD +$320.6K / +32.66%) and XRP (session CVD +$3.82M) exhibit institutional absorption on bids, supporting Long #19329907 BNBUSD.p (736.25), whereas ETH (15m CVD -$500.6K, ETF outflow -$88.6M), SOL (24h/cum_cvd -$13.61M), and GOLD (OB Imb -0.2934, SELLER_AGGRESSION) exhibit upper-band supply absorption, supporting our Short limit shelves.
+Role C — Auction Market Structure & Technical Strategist (VWAP Sigma Bands, VP & Fibonacci EMAs):
+Every staged limit order sits at a multi-factor auction boundary:
+ETHUSD.pi @ 2,320.50: VWAP +1SD (2,319.86) + Session POC (2,320.01) + HTF DayPOC (2,319.30) + EMA144 (2,319.73).
+BTCUSD.pi @ 79,838.00 (Filled): Session VWAP (79,847.34) + EMA50 (79,859.30) + Prior-Day POC (79,933.52).
+SOLUSD.p @ 100.38: EMA50 (100.30) + Prior-Day VAL (100.40) + VWAP +1SD (100.56).
+XAUUSD.pi @ 4,021.80: 15m EMA200 (4,021.71–4,021.87) + VWAP +3SD (4,021.97–4,022.28) + Session VAH (4,023.43).
+Role D — Execution & Latency Systems Engineer (MT5 Specs & Supervisor Daemon):
+Terminal/dynamic_position_supervisor.py (check_and_enforce()) is verified active at 05:50:28 UTC (29a7a47633), tracking positions_count = 2, orders_count = 2, filled_slots_free = 2.
+Identified the XRPUSD.pi stops_level = 20 (0.020 USD) and min_lot = 1.0 ($645.25 margin) constraint, preventing an invalid-stops rejection or margin-level breach while staging XAUUSD.pi 0.01 @ 4,021.80 (stops_level = 0, $40.22 margin).
+§7. Section 8 Continuous Kaizen Inquest
+What was the single highest-value cross-artifact insight uncovered in Cycle 369?
+Reconciling the exact Cycle 369 start baseline (05:31:00 UTC, where #19343851 BTCUSD.pi SELL_LIMIT 0.04 @ 79,838.00 was a resting order 1.02 ATR above 79,652.50 and #19329907 BNBUSD.p was at 735.30 / -$2.85 PnL) against the 05:50:28 UTC live repository state (29a7a47633), which proved that:
+#19329907 BNBUSD.p defended its 733.34–735.24 institutional bid walls and rallied to 737.40 USD (+$3.45 PnL, +0.32R_0), closing within 1.73 USD (1.14 ATR) of its 739.13 Early-BE lock; and
+#19343851 BTCUSD.pi filled passively at 79,838.00 USD, transitioning the account from 1/4 to 2/4 active positions ($2,148.03 free margin remaining).
+What structural vulnerability was prevented on XRPUSD.pi?
+XRPUSD.pi has contract_size = 1,000, min_lot = 1.00, point = 0.001, and stops_level = 20 (0.020 USD). While a 0.012 USD (12-point) stop yields exactly $12.00 USD nominal risk on 1.00 lot, if the broker enforces stops_level = 20 (0.020 USD), the minimum stop would cost $20.00 USD nominal risk (> $12.00 USD cap), and 1.00 lot requires $645.25 USD margin vs. $564.10 USD post-4-slot free margin. Flagging this prevented a margin/stop-level conflict and prioritized XAUUSD.pi SELL_LIMIT 0.01 @ 4,021.80 ($40.22 margin, 0.20 bps spread, 2.50R).
+§8. Canonical Machine-Readable Tri-Council Verdict JSON
+JSON
+{
+  "cycle_id": 369,
+  "cycle_started_utc": "2026-10-27 05:31:00 UTC",
+  "baseline_snapshot_utc": "2026-10-27 05:30:15 UTC",
+  "latest_live_sync_utc": "2026-10-27 05:50:28 UTC",
+  "account_login": 5064568,
+  "broker": "BlueberryMarkets-Live",
+  "account_metrics": {
+    "balance_usd": 4846.32,
+    "equity_usd_0531": 4844.67,
+    "equity_usd_0550": 4849.17,
+    "margin_used_usd_0531": 1104.38,
+    "margin_used_usd_0550": 2701.14,
+    "free_margin_usd_0550": 2148.03,
+    "hard_floor_usd": 4775.00,
+    "operating_defense_buffer_usd": 4795.00,
+    "post_stress_equity_4slot_usd": 4783.44,
+    "post_bnb_be_stress_equity_usd": 4798.94
+  },
+  "dynamic_capacity_supervisor": {
+    "daemon_script": "Terminal/dynamic_position_supervisor.py",
+    "max_filled_positions": 4,
+    "filled_positions_0531": 1,
+    "filled_positions_0550": 2,
+    "resting_limits_0531": 3,
+    "resting_limits_0550": 2,
+    "auto_pull_triggered": false
+  },
+  "mandate_a_active_position": {
+    "ticket": 19329907,
+    "symbol": "BNBUSD.p",
+    "direction": "LONG",
+    "volume_lots": 3.0,
+    "entry_price": 736.25,
+    "sl": 732.65,
+    "tp": 740.00,
+    "r0_distance_usd": 3.60,
+    "nominal_risk_usd": 10.80,
+    "stressed_risk_usd": 15.50,
+    "expected_reward_usd": 11.25,
+    "quote_0531": "735.30 / 735.90",
+    "quote_0550": "737.40",
+    "pnl_usd_0550": 3.45,
+    "r_multiple_0550": 0.32,
+    "early_be_trigger_price": 739.13,
+    "early_be_new_sl": 736.79,
+    "distance_to_early_be_usd_0550": 1.73,
+    "profit_lock_trigger_price": 741.65,
+    "profit_lock_new_sl": 739.13,
+    "action": "HOLD_POSITION_MONITOR_RATCHET"
+  },
+  "mandate_b_resting_limits": [
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.50,
+      "entry_price": 2320.50,
+      "sl": 2343.50,
+      "tp": 2274.50,
+      "nominal_risk_usd": 11.50,
+      "stressed_risk_usd": 16.38,
+      "expected_reward_usd": 23.00,
+      "rr_ratio": 2.00,
+      "distance_atr_0544": 1.74,
+      "spread_bps": 12.13,
+      "whale_wall_proof": "$4.67M @ 2320.56, $4.52M (335s) @ 2321.03, $6.39M (17340s) @ 2331.00, $13.05M L3 (352.6s) @ 2340.10",
+      "action": "KEEP_WORKING"
+    },
+    {
+      "ticket": 19343851,
+      "symbol": "BTCUSD.pi",
+      "order_type": "SELL_LIMIT_FILLED_TO_SHORT_POSITION",
+      "volume_lots": 0.04,
+      "entry_price": 79838.00,
+      "sl": 80098.00,
+      "tp": 79318.00,
+      "nominal_risk_usd": 10.40,
+      "stressed_risk_usd": 15.00,
+      "expected_reward_usd": 20.80,
+      "rr_ratio": 2.00,
+      "distance_atr_0530": 1.02,
+      "spread_bps": 1.88,
+      "early_be_trigger_price": 79630.00,
+      "early_be_new_sl": 79799.00,
+      "whale_wall_proof": "$3.38M MT5 ASK walls 79983-79992, $1.29M (862s) @ 79979.90 & 80095.60, $8.22M (862s) @ 80283.70",
+      "action": "KEEP_WORKING_0531_ACTIVE_HOLD_0550"
+    },
+    {
+      "ticket": 19343853,
+      "symbol": "SOLUSD.p",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.20,
+      "entry_price": 100.38,
+      "sl": 100.94,
+      "tp": 99.20,
+      "nominal_risk_usd": 11.20,
+      "stressed_risk_usd": 16.00,
+      "expected_reward_usd": 23.60,
+      "rr_ratio": 2.11,
+      "distance_atr_0544": 1.56,
+      "spread_bps": 22.04,
+      "whale_wall_proof": "$1.45M (338-342s) @ 100.40, $961K (961s) @ 100.46, $2.15M (1949s) @ 100.74, $8.74M L3 (523.7s) @ 101.54",
+      "action": "KEEP_WORKING"
+    }
+  ],
+  "mandate_c_reserve_candidates": [
+    {
+      "candidate_id": "RESERVE_XAU_01",
+      "symbol": "XAUUSD.pi",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 4021.80,
+      "sl": 4033.80,
+      "tp": 3991.80,
+      "nominal_risk_usd": 12.00,
+      "stressed_risk_usd": 17.00,
+      "expected_reward_usd": 30.00,
+      "rr_ratio": 2.50,
+      "spread_bps": 0.20,
+      "distance_atr_0548": 1.75,
+      "action": "STAGE_RESERVE_SELL_LIMIT"
+    },
+    {
+      "candidate_id": "RESERVE_XRP_01",
+      "symbol": "XRPUSD.pi",
+      "order_type": "BUY_LIMIT",
+      "volume_lots": 1.00,
+      "entry_price": 1.2905,
+      "sl": 1.2785,
+      "tp": 1.3145,
+      "nominal_risk_usd": 12.00,
+      "stressed_risk_usd": 17.00,
+      "expected_reward_usd": 24.00,
+      "rr_ratio": 2.00,
+      "spread_bps": 23.07,
+      "distance_atr_0544": 1.67,
+      "action": "CONDITIONAL_RESERVE_HOLD_PENDING_SLOT_FREE_AND_STOPS_LEVEL_CHECK"
+    }
+  ],
+  "consensus_action": "HOLD_BNB_AND_FILLED_BTC_MONITOR_RATCHETS_KEEP_ETH_SOL_WORKING_STAGE_XAU_RESERVE_LIMIT"
+}
