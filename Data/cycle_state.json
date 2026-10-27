@@ -5,7 +5,7 @@
   "cycle_completed_utc": null,
   "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
-  "consensus_action": "HOLD_BNB_MONITOR_RATCHET_STAGE_RESTING_LIMITS_EVALUATE_COUNCIL",
+  "consensus_action": "HOLD_EXISTING_INVENTORY_MONITOR_RATCHETS_STAND_ASIDE_NEW_RISK",
   "active_positions": [
     {
       "ticket": 19329907,
@@ -13,13 +13,10 @@
       "type": "BUY",
       "volume": 3.0,
       "price_open": 736.25,
+      "price_current": 735.0,
       "sl": 732.65,
       "tp": 740.0,
-      "r0_usd": 3.6,
-      "early_be_trigger_usd": 739.13,
-      "profit_lock_trigger_usd": 741.65,
-      "nominal_risk_usd": 10.8,
-      "contingent_stress_usd": 15.5
+      "profit_usd": -3.75
     }
   ],
   "active_tickets": [
@@ -30,18 +27,7 @@
       "volume": 0.5,
       "price": 2320.5,
       "sl": 2343.5,
-      "tp": 2274.5,
-      "contingent_stress_usd": 16.38
-    },
-    {
-      "ticket": 19343851,
-      "symbol": "BTCUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.04,
-      "price": 79838.0,
-      "sl": 80098.0,
-      "tp": 79318.0,
-      "contingent_stress_usd": 15.0
+      "tp": 2274.5
     },
     {
       "ticket": 19343853,
@@ -50,25 +36,25 @@
       "volume": 0.2,
       "price": 100.38,
       "sl": 100.94,
-      "tp": 99.2,
-      "contingent_stress_usd": 16.0
+      "tp": 99.2
     }
   ],
   "solvency_metrics": {
-    "balance_usd": 4846.32,
-    "equity_usd": 4843.77,
+    "balance_usd": 4847.88,
+    "equity_usd": 4844.13,
     "margin_usd": 1104.38,
-    "free_margin_usd": 3739.39,
-    "post_stress_equity_usd": 4783.44,
-    "hard_floor_cushion_usd": 68.77,
-    "operating_buffer_headroom_usd": 48.77
+    "free_margin_usd": 3739.75,
+    "hard_floor_cushion_usd": 69.13,
+    "operating_buffer_headroom_usd": 49.13,
+    "kernel_cushion_usd": 49.13,
+    "realized_headroom_usd": 4.02
   },
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
       "status": "COMPLETED",
-      "details": "Mode 2 4-Quant Swarm supervising 1/4 filled positions and 3 resting limit orders.",
-      "completed_at_utc": "2026-10-27 08:47:27 UTC"
+      "details": "Mode 2 In-Context 4-Quant Swarm completed 11-step sprint for Cycle 370. Solvency verified, existing inventory ratified.",
+      "completed_at_utc": "2026-10-27 08:49:15 UTC"
     },
     "arena_ai": {
       "name": "Arena.ai Frontier Council (GPT-5.4 Astra)",
