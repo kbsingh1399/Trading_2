@@ -2284,4 +2284,103 @@ JSON
       "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
       "estimator_references": [
         "Lo-MacKinlay VR(4)=1.113 (z*=+0.54 15m), VR(4)=0.671 (z*=-1.66 1H sub-diffusive)",
-        "OU Equilibrium theta=1.2925 (Entry 1.2905 < theta: favorable upward 
+        "OU Equilibrium theta=1.2925 (Entry 1.2905 < theta: favorable upward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.38,
+        "shadow_point_p_tp_given_fill": 0.54
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 24.0,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "VETOED_UNTIL_SPREAD_LE_25BPS_AND_STOPS_LEVEL_CLEARED"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 3.0,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 1.1
+      },
+      "wait_cost_usd": 0.2,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 58846.8,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 1.1,
+      "evidence_ids": [
+        "HYPERLIQUID_L3_0xf5a5_1.2905_2.00M_404.6s_PRESENCE_0.89",
+        "HYPERLIQUID_L3_0xf5a5_1.2781_5.70M_2001.9s_PRESENCE_0.86",
+        "PARQUET_21_TRADFYS_XRP_CVD_PLUS_17.63M"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BULLISH_STACK_89_144_233_FLAT_FAST_15M (EMA5 1.2958 < EMA13 1.2962 > EMA34 1.2960 > EMA89 1.2930 > EMA144 1.2907 > EMA233 1.2885)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 1.2915,
+        "gp_0650": 1.2905,
+        "ote_0702": 1.2889,
+        "invalidation_shelf_0786": 1.2864,
+        "entry_status": "EXACT_0.650_GOLDEN_POCKET_1.2905_AT_EMA144_1.2907_WITH_SL_1.2785_BELOW_0.786_SHELF"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_1.2885_PULLBACK_TO_LON_L_1.2900",
+        "session_extreme_sweep": "HOLDING_ASIAN_L_1.2800_AND_LON_IB_L_1.2900",
+        "macro_shelf_relation": "INSIDE_CWH_1.3100_CWL_1.2690",
+        "value_area_status": "PULLBACK_TO_PD_POC_1.2912_AND_WK_VWAP_1.2885"
+      },
+      "rejection_reasons": [
+        "BROKER_STOPS_LEVEL_20_POINTS_0.020_USD_EXCEEDS_0.012_USD_SL_DISTANCE_FOR_12_USD_RISK_AT_MIN_LOT_1.0",
+        "SPREAD_WIDENED_TO_30.79_BPS_IN_00_MT5_TELEMETRY_AT_0725Z_FAILING_25BPS_GATE",
+        "TICK_AGE_25.69S_GT_15S_AT_0715Z_CUTOFF",
+        "MARGIN_REQ_645.25_USD_EXCEEDS_POST_4_SLOT_FREE_MARGIN_567.39_USD",
+        "L3_WALL_PRESENCE_FRAC_0.857_TO_0.889_MARKED_INSUFFICIENT_PERSISTENCE_BY_G7"
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "balance_minus_kernel_cushion_check": "4846.32 - 4795.00 = 51.32 USD (Exact match to solvency.kernel_cushion_usd)",
+    "balance_minus_operating_buffer_check": "4846.32 - 4650.00 = 196.32 USD (Exact match to solvency.operating_buffer_cushion_usd)",
+    "balance_minus_hard_floor_check": "4846.32 - 4600.00 = 246.32 USD (Exact match to solvency.hard_floor_cushion_usd)",
+    "envelope_existing_stress_reproduction": "BNB (733.70 - 732.65)*3.0*1.25 + 2.00 = 5.9375 USD; BTC (79799.00 - 79495.50)*0.04*1.25 + 2.00 = 17.1750 USD; ETH (2343.50 - 2320.50)*0.50*1.25 + 2.00 = 16.3750 USD; SOL (100.94 - 100.38)*0.20*100*1.25 + 2.00 = 16.0000 USD; Sum = 55.4875 USD (Exact match to solvency.existing_ticket_stress_usd)",
+    "envelope_headroom_reproduction": "4846.32 - 4795.00 - 2.00 - 55.4875 = -6.1675 -> -6.17 USD (Exact match to solvency.realized_headroom_usd)",
+    "canonical_balance_frame_stress_check": "BNB 15.5000 + BTC 2.0000 (locked profit +1.56 nominal, 2.00 fee reserve) + ETH 16.3750 + SOL 16.0000 = 49.8750 USD; Post-stop equity = 4846.32 - 49.8750 = 4796.445 USD (Exact match to live_snapshot_latest.json risk.post_joint_stop_equity_usd)",
+    "margin_used_reproduction": "BNB 3.0 * 736.25 * 0.50 = 1104.375 USD; BTC 0.04 * 79838.00 * 0.50 = 1596.760 USD; Sum = 2701.135 -> 2701.14 USD (Exact match to inventory.margin_used)"
+  },
+  "disputes": [
+    "DISPUTE_1_ENVELOPE_REFERENCE_FRAME_BUG: Terminal/generate_cycle_envelope.py line 57 passes start=price_current instead of price_open for filled positions while setting capital=min(balance, equity)=4846.32 USD (realized balance frame). Because #19343851 BTCUSD.pi SELL 0.04 ratified Phase 1 Early-BE (SL=79799.00 < price_open=79838.00), a stop-out at 79799.00 realizes +1.56 USD gain relative to balance, yet generate_cycle_envelope.py penalizes balance by 17.175 USD (the mark-to-market giveback from 79495.50 to 79799.00) and under-counts #19329907 BNBUSD.p balance risk as 5.9375 USD instead of 15.50 USD, yielding 55.4875 USD instead of the canonical 49.875 USD reported in live_snapshot_latest.json.",
+    "DISPUTE_2_PROSEMIRROR_DISPATCH_TRUNCATION: The embedded cycle_envelope.json in the prompt suffered 3 character-splicing drops during browser DOM injection ('cutoff_utc': 'rovenance', '13,' on ticket 19330613, 'UIRES_ALL_HARD_GATES_AND_BROKER_CHECK'), though the underlying git-committed Data/cycle_envelope.json (sha256: ee5a90b40ee3c92c89409da37a91b458294ead188f8171f208533e457372b342) is 100% valid JSON.",
+    "DISPUTE_3_STALE_CALENDAR_AND_WORKBOOK_ARTIFACTS: Data/macro_calendar.json verified_at is 2026-10-26T03:00:00Z (age 102,590s > 900s limit), Data/DataBase_Trading.xlsx was last committed 2026-10-26T07:07:49Z, Data/forex_factory_live.json was last committed 2026-10-25T13:06:41Z, and 3 of 42 Parquet feeds (10_Whale_Orders, 14_Liquidation_Matrix, 18_CVD_30D_ALL) were dropped from git tracking after commit 926b7270dc."
+  ],
+  "unknowns": [
+    "Calibrated P(fill) and P(TP | fill) remain statistically uncalibrated (closed-trade sample n = 17 < 100 minimum required for isotonic/Platt calibration; exact one-sided 95% Clopper-Pearson lower bound = 0.4197).",
+    "Live CoinGlass L3 aggregated exchange whale scraper is STALE (total_orders_harvested = 0 in layer_3_coinglass_whale_orders) and Arkham on-chain intelligence is FEED_CORRUPT_OR_UNAVAILABLE; microstructure verification relies on Hyperliquid L2/L3 wallet-attributed snapshots and Binance L2 depth."
+  ],
+  "methodology_critique_and_improvements": [
+    "Fix Terminal/generate_cycle_envelope.py line 57 so that balance-frame solvency stress measures max(0.0, loss_from_price_open_to_sl) * 1.25 + 2.00 when capital = balance, or measures loss_from_price_current_to_sl when capital = equity, eliminating the mixed-frame distortion.",
+    "Fix Lo-MacKinlay z*(q) scaling in telemetry scripts to ensure sqrt(T) is applied outside (VR(q)-1)/sqrt(theta(q)) rather than dividing by unscaled asymptotic variance.",
+    "Switch browser prompt injection from chunked ProseMirror send_keys to atomic clipboard paste or direct API payload verification to prevent 4KB boundary character splicing."
+  ],
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Mobilizing @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks] enabled: (1) exact line-level root-cause isolation of the 5.6125 USD reference-frame discrepancy between cycle_envelope.json (55.4875 USD) and CANONICAL_LIVE_ADMISSION_BROKER_VALUATION (49.8750 USD); (2) heteroskedasticity-consistent Lo-MacKinlay VR(4) z* and Newey-West HAC drift t-statistics across 15m/1H/4H horizons; and (3) integration of Sheet 21_Tradfye_Orderflow 99th-percentile whale bubbles, absorption shelves, and Deribit gamma walls (BTC Max Pain 78,000, ETH Max Pain 2,300).",
+    "omitted_risk_dimensions": "Four critical risk dimensions are underestimated by single-horizon checks: (1) Cross-ticket USD/Crypto beta concentration (short BTC + short ETH + short SOL + long BNB creates a net short crypto beta exposure where a broad short-squeeze toward FOMC T-34.5h could trigger ETH and SOL limit fills simultaneously while testing BTC's 79,799 Early-BE stop); (2) Intraday spread expansion on Tier-2 crypto perpetuals (XRPUSD.pi widened from 23.14 bps at 07:15:56Z to 30.79 bps at 07:24:59Z, and TRXUSD.p widened from 21.34 bps to 27.43 bps, crossing the 25.0 bps gate mid-cycle); (3) Broker stops_level constraints (20 points on BNBUSD.p and XRPUSD.pi); and (4) Post-fill margin compression (filling both ETH and SOL pending orders raises margin used to 4,285.07 USD = 88.31% of equity, compressing margin level to 113.24% < 200% D3 gate).",
+    "algorithmic_alternatives": "Integrate four concrete upgrades in Cycle 371+: (1) Bivariate Hawkes Process intensity estimator for L3 whale wall cancellation vs taker depletion hazard rates; (2) Kalman Filter state-space spread estimator to filter transient spread spikes (e.g. XRP 23.14 -> 30.79 bps) and predict execution slippage; (3) GJR-GARCH(1,1) volatility cones for dynamic ATR stop-buffer scaling across London/NY session transitions; and (4) Beta-Binomial / Hierarchical Empirical Bayes shrinkage combined with Monotone Isotonic Regression to bridge the n=17 -> n=100 probability calibration cold-start gap."
+  },
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": "8b73a51a6aa2c739164e7e38b5af1d04444367a172aef50524d83d2d9a4f648e"
+}
