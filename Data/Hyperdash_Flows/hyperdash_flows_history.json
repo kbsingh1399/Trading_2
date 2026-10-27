@@ -55258,5 +55258,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "LTC",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 6094.67,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 56.453,
+    "wallet_address": "0x6ba889db7f923622d3548f621ecc2054b80c1817",
+    "asset_slug": "LTC",
+    "raw_text": "#LTC Whale SELL: 6.09K USD at 56.4530 USD [API]",
+    "msg_id": "HL_TRADE_LTC_311212777356978",
+    "timestamp_epoch": 1793076702,
+    "time_label": "04:51",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
