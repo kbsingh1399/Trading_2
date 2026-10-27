@@ -529,4 +529,772 @@ JSON
     "g0_envelope_integrity": "WARN_PROSEMIRROR_CHUNK_SPLICE_IN_PROMPT_VERIFIED_INTACT_IN_REPO_SHA256_8792c0b8",
     "g1_cutoff_causality": "PASS_FOR_19_OF_24_MATRIX_ASSETS_FAIL_QUOTE_AGE_ON_XRP_DOGE_TRX_DOT_LTC_AT_084553Z",
     "g2_macro_calendar_freshness": "FAIL_STALE_VERIFIED_AT_2026-10-26T03:00:00Z_AGE_107454S_GT_900S",
-    "g3_workbook_and
+    "g3_workbook_and_layer_freshness": "FAIL_LEGACY_XLSX_25H43M_STALE_COINGLASS_L3_LIVE_SCRAPER_STALE_ARKHAM_CORRUPT_PARQUET_35_OF_36_CANONICAL_PASS_7_LIVE_LIQ_FAIL",
+    "g4_solvency_kernel_headroom": "PASS_EXISTING_PORTFOLIO_HEADROOM_PLUS_4.02_USD_FAIL_NEW_12USD_TICKET_CAPACITY_1.614_USD_LT_12.00_USD",
+    "g5_margin_collateralization_d3": "PASS_CURRENT_MARGIN_USED_1104.38_USD_22.80PCT_LE_50PCT_MARGIN_LEVEL_438.60PCT_GE_200PCT_FAIL_IF_BOTH_PENDING_FILL_2688.31_USD_55.50PCT",
+    "g6_joint_fill_slot_capacity": "PASS_3_OF_4_SLOTS_USED_1_FILLED_2_PENDING_1_SLOT_AVAILABLE_BLOCKED_BY_SOLVENCY_HEADROOM",
+    "g7_whale_wall_persistence_180s": "PASS_ON_PARQUET_10_WHALE_ORDERS_AND_HYPERLIQUID_RECURRENCE_FAIL_CLOSED_ON_LIVE_COINGLASS_SCRAPER",
+    "g8_probability_calibration_n100": "FAIL_CLOSED_SAMPLE_N_17_LT_100_MIN_P_WIN_LCB_0.4197"
+  },
+  "universe_coverage": {
+    "total_broker_instruments_audited": 156,
+    "parquet_00_mt5_total_rows": 163,
+    "tradfi_assets_count": 98,
+    "crypto_perpetuals_count": 58,
+    "market_regime": "FULL_MARKET_OPEN",
+    "spread_gate_pass_total": 99,
+    "spread_gate_fail_total": 57,
+    "crypto_spread_qualified_le_25bps_at_cutoff": [
+      "BTCUSD.pi (2.01 bps)",
+      "NETH25.p (2.65 bps)",
+      "XMRUSD.p (6.19 bps)",
+      "BNBUSD.p (6.80 bps)",
+      "ZECUSD.p (6.87 bps)",
+      "DSHUSD.p (9.46 bps)",
+      "ETHUSD.pi (13.01-13.44 bps)",
+      "YFIUSD.p (14.85 bps)",
+      "VETUSD.p (15.74 bps)",
+      "BCHUSD.p (17.06-20.62 bps)",
+      "XLMUSD.p (17.92 bps)",
+      "AVEUSD.p (21.40 bps)",
+      "SOLUSD.p (22.08 bps at 08:45Z; 25.13 bps spike in 20_Auction at 08:45:42Z)",
+      "XRPUSD.pi (23.10 bps at 08:45Z -> 30.82 bps at 08:50Z)",
+      "TRXUSD.p (24.45 bps at 08:45Z -> 27.50 bps at 08:50Z)"
+    ],
+    "crypto_spread_disqualified_gt_25bps": [
+      "BARUSD.p (30.12 bps)",
+      "UNIUSD.p (32.79 bps)",
+      "AVXUSD.p (34.23-45.61 bps)",
+      "LTCUSD.pi (53.22 bps)",
+      "NERUSD.p (65.13-67.40 bps)",
+      "LNKUSD.p (75.03 bps)",
+      "ADAUSD.p (103.22 bps)",
+      "DOTUSD.pi (211.37 bps)",
+      "DOGUSD.p (272.20 bps)"
+    ],
+    "deep_telemetry_matrix_24_audited": 24,
+    "auction_structure_84_audited": 84
+  },
+  "account_tier_and_contingent_capacity": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "balance_usd": 4847.88,
+    "prior_cycle_balance_usd": 4846.32,
+    "realized_gain_from_btc_19343851_early_be_usd": 1.56,
+    "equity_cutoff_usd": 4843.83,
+    "equity_0845z_snapshot_usd": 4843.53,
+    "equity_0850z_latest_usd": 4844.43,
+    "base_capital_usd": 4843.83,
+    "margin_used_usd": 1104.38,
+    "margin_free_cutoff_usd": 3739.45,
+    "margin_level_cutoff_pct": 438.6,
+    "margin_utilization_pct": 22.8,
+    "capital_mode_envelope": "TIER_1_STANDARD",
+    "tier_2_unlock_threshold_usd": 4850.0,
+    "balance_deficit_to_tier_2_usd": 2.12,
+    "risk_min_usd": 12.0,
+    "risk_max_usd": 12.0,
+    "max_concurrent_tickets": 4,
+    "active_positions_count": 1,
+    "pending_orders_count": 2,
+    "joint_fill_slots_used": 3,
+    "joint_fill_slots_available": 1,
+    "envelope_reported_existing_stress_usd": 42.8125,
+    "envelope_reported_realized_headroom_usd": 4.02,
+    "envelope_reported_post_joint_stress_equity_usd": 4799.02,
+    "envelope_nominal_risk_capacity_usd": 1.614,
+    "canonical_balance_frame_existing_stress_usd": 47.875,
+    "canonical_balance_frame_post_stop_balance_usd": 4800.005,
+    "canonical_balance_frame_headroom_after_2usd_reserve_usd": 3.005,
+    "snapshot_double_counted_post_stop_equity_usd": 4795.655,
+    "pending_margin_on_fill_usd": 1583.925,
+    "total_margin_if_pending_fill_usd": 2688.305,
+    "free_margin_after_pending_fills_usd": 2155.525,
+    "new_risk_admissible": false
+  },
+  "global_contingency_usd": 2.0,
+  "existing_ticket_actions": [
+    {
+      "ticket": 19329907,
+      "symbol": "BNBUSD.p",
+      "kind": "ACTIVE_POSITION",
+      "side": "BUY",
+      "volume": 3.0,
+      "price_open": 736.25,
+      "price_current_cutoff": 734.9,
+      "price_current_0850z": 735.1,
+      "sl": 732.65,
+      "tp": 740.0,
+      "floating_pnl_cutoff_usd": -4.05,
+      "floating_pnl_0850z_usd": -3.45,
+      "nominal_risk_from_open_usd": 10.8,
+      "stressed_risk_from_open_usd": 15.5,
+      "envelope_mtm_remaining_stress_usd": 10.4375,
+      "r0_points": 3.6,
+      "ratchet_state": "PHASE_0_PENDING",
+      "early_be_080r_trigger_price": 739.13,
+      "early_be_new_sl": 736.79,
+      "profit_lock_150r_trigger_price": 741.65,
+      "profit_lock_new_sl": 739.13,
+      "action": "HOLD_EXISTING_AND_MONITOR_SL_AND_RATCHET",
+      "microstructure_defense_note": "Position recovered from 733.70 (-$7.65) in Cycle 369 to 734.90 (-$4.05) at cutoff and 735.10 (-$3.45) at 08:50:51Z. SL 732.65 is defended by Hyperliquid L3 BUY walls $336.6K @ 733.79 (SAMPLED_RECURRENCE_VERIFIED) and $1.366M @ 733.33 (SAMPLED_RECURRENCE_VERIFIED), plus Binance $650K BUY wall @ 729.39 (428s >= 180s in 10_Whale_Orders) and Tradfye 15m AGGRESSIVE_BUYER_DOMINATION delta +$101.1K (+61.04%) at 08:30Z. Phase 1 Early-BE triggers at 739.13, front-running the $1.379M L3 SELL wall at 739.78."
+    },
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "kind": "PENDING_ORDER",
+      "side": "SELL_LIMIT",
+      "volume": 0.5,
+      "price_open": 2320.5,
+      "price_current_cutoff": 2307.0,
+      "price_current_0850z": 2307.85,
+      "sl": 2343.5,
+      "tp": 2274.5,
+      "nominal_risk_usd": 11.5,
+      "stressed_risk_usd": 16.375,
+      "margin_on_fill_usd": 580.125,
+      "distance_atr": 1.82,
+      "action": "KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON",
+      "microstructure_defense_note": "Entry 2,320.50 sits inside 48-bar 0.702-0.786 OTE/Invalidation zone [2,318.24, 2,321.02] and dVAH 2,322.44, above OU theta 2,310.65, backed by Hyperliquid L3 SELL walls $4.01M @ 2,321.50, $5.39M @ 2,331.00 (SAMPLED_RECURRENCE_VERIFIED), and $10.52M @ 2,346.50 (SAMPLED_RECURRENCE_VERIFIED). TP 2,274.50 aligns with Deribit Max Pain / Put Wall 2,300 gravity and $4.21M sell-stop cluster at 2,275.00."
+    },
+    {
+      "ticket": 19343853,
+      "symbol": "SOLUSD.p",
+      "kind": "PENDING_ORDER",
+      "side": "SELL_LIMIT",
+      "volume": 0.2,
+      "price_open": 100.38,
+      "price_current_cutoff": 99.6,
+      "price_current_0850z": 99.68,
+      "sl": 100.94,
+      "tp": 99.2,
+      "nominal_risk_usd": 11.2,
+      "stressed_risk_usd": 16.0,
+      "margin_on_fill_usd": 1003.8,
+      "distance_atr": 2.43,
+      "action": "KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON",
+      "microstructure_defense_note": "Entry 100.38 aligns with 15m Fib-Prime EMA144 (100.3543) / EMA233 (100.4144), 48-bar 0.702 OTE (100.3396), and dVAH 100.39, above OU theta 99.9392, backed by OKX/Binance $4.25M SELL wall @ 100.00 (930s >= 180s in 10_Whale_Orders) and Hyperliquid L3 $2.33M SELL wall @ 100.28 + $8.59M SELL wall @ 101.62 (SAMPLED_RECURRENCE_VERIFIED). TP 99.20 front-runs London_L / cwl 99.09."
+    }
+  ],
+  "candidate_rows": [
+    {
+      "candidate_id": "CAND_ETH_SHORT_01_TICKET_19330613",
+      "symbol": "ETHUSD.pi",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 08:45:53.027 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:53.027 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 08:45:33.216 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 08:30:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 1036.0,
+      "evidence_age_at_cutoff_seconds": 82.97,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 2320.5,
+      "stop": 2343.5,
+      "target": 2274.5,
+      "volume": 0.5,
+      "broker_risk_usd": 11.5,
+      "broker_reward_usd": 23.0,
+      "rr": 2.0,
+      "spread_cost_usd": 1.55,
+      "stressed_loss_usd": 16.38,
+      "post_joint_stop_balance": 4799.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.021 (z*=+0.10 15m), VR(4)=0.814 (z*=-0.74 1H), VR(4)=0.736 (z*=-1.03 4H)",
+        "OU Equilibrium theta=2310.65 (Entry 2320.50 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.44,
+        "shadow_point_p_tp_given_fill": 0.58
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 23.0,
+        "sl_hit_nominal_usd": -11.5,
+        "sl_hit_stressed_usd": -16.38,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "AUTO_PULL_IF_4_FILLED_OR_CANCEL_AT_TTL"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 1.55,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.85
+      },
+      "wait_cost_usd": 0.15,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 53835.6,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.85,
+      "evidence_ids": [
+        "MT5_TICKET_19330613",
+        "HYPERLIQUID_L3_SELL_5.39M_2331.0_10.52M_2346.5",
+        "PARQUET_21_TRADFYS_ETH_BEARISH_EXPANSION_0815Z_MINUS_12.1M_DERIBIT_MAXPAIN_2300"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BEARISH_MACRO_STACK_15M (EMA13 2306.06 < EMA5 2306.77 < EMA34 2308.38 < EMA89 2311.88 < EMA144 2313.41 < EMA233 2314.53)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 2315.46,
+        "gp_0650": 2316.52,
+        "ote_0702": 2318.24,
+        "invalidation_shelf_0786": 2321.02,
+        "entry_status": "STAGED_AT_2320.50_INSIDE_0.702_OTE_TO_0.786_SHELF_WITH_SL_2343.50_BEHIND_2331_AND_2346.5_L3_WALLS"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_2318.15_PROTECTED_BY_MON_H_2348.00",
+        "session_extreme_sweep": "ABOVE_LONDON_H_2318.00_BELOW_ASIAN_H_2328.10",
+        "macro_shelf_relation": "INSIDE_CWH_2348.00_CWL_2288.30_TARGETING_PWL_2275.30",
+        "value_area_status": "ENTRY_AT_D_VAH_2322.44_AND_PD_POC_2319.30"
+      },
+      "rejection_reasons": [
+        "ALREADY_STAGED_AS_PENDING_TICKET_19330613_KEEP_WORKING",
+        "NEW_ADMISSION_FROZEN_BY_SOLVENCY_CAPACITY_1.614_USD_LT_12.00_USD_AND_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_SOL_SHORT_02_TICKET_19343853",
+      "symbol": "SOLUSD.p",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 08:45:52.917 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:52.917 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 08:45:33.216 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 08:30:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 1036.0,
+      "evidence_age_at_cutoff_seconds": 83.08,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 100.38,
+      "stop": 100.94,
+      "target": 99.2,
+      "volume": 0.2,
+      "broker_risk_usd": 11.2,
+      "broker_reward_usd": 23.6,
+      "rr": 2.11,
+      "spread_cost_usd": 4.4,
+      "stressed_loss_usd": 16.0,
+      "post_joint_stop_balance": 4799.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.046 (z*=+0.21 15m), VR(4)=0.754 (z*=-1.28 1H), VR(4)=0.628 (z*=-1.20 4H)",
+        "OU Equilibrium theta=99.9392 (Entry 100.38 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.43,
+        "shadow_point_p_tp_given_fill": 0.56
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 23.6,
+        "sl_hit_nominal_usd": -11.2,
+        "sl_hit_stressed_usd": -16.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "AUTO_PULL_IF_4_FILLED_OR_CANCEL_AT_TTL"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 4.4,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.9
+      },
+      "wait_cost_usd": 0.18,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 100179.2,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.9,
+      "evidence_ids": [
+        "MT5_TICKET_19343853",
+        "PARQUET_10_WHALE_OKX_BINANCE_SOL_100.00_4.25M_930S",
+        "HYPERLIQUID_L3_SELL_8.59M_101.62_RECURRENCE_VERIFIED"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 99.62 < EMA13 99.65 < EMA34 99.88 < EMA89 100.24 < EMA144 100.35 < EMA233 100.41)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 100.19,
+        "gp_0650": 100.25,
+        "ote_0702": 100.34,
+        "invalidation_shelf_0786": 100.49,
+        "entry_status": "STAGED_AT_100.38_CONFLUENT_WITH_0.702_OTE_100.34_AND_EMA144_100.35_WITH_SL_100.94_ABOVE_ASIAN_H_100.87"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_MID_101.01_RETESTING_PD_VAL_100.30_AND_D_VAH_100.39",
+        "session_extreme_sweep": "SWEPT_MON_L_99.56_TO_LONDON_L_99.09_PULLBACK_TO_D_VAH_100.39",
+        "macro_shelf_relation": "INSIDE_CWH_102.46_CWL_99.09",
+        "value_area_status": "ENTRY_AT_D_VAH_100.39_AND_PD_VAL_100.30_SUPPLY_SHELF"
+      },
+      "rejection_reasons": [
+        "ALREADY_STAGED_AS_PENDING_TICKET_19343853_KEEP_WORKING",
+        "NEW_ADMISSION_FROZEN_BY_SOLVENCY_CAPACITY_1.614_USD_LT_12.00_USD_AND_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_BTC_SHORT_RELOAD_03",
+      "symbol": "BTCUSD.pi",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 08:45:52.447 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:52.447 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "parquet_10_whale_orders_utc": "2026-10-27 08:38:46.000 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 08:30:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 1036.0,
+      "evidence_age_at_cutoff_seconds": 83.55,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 80002.5,
+      "stop": 80302.5,
+      "target": 79320.0,
+      "volume": 0.04,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 27.3,
+      "rr": 2.28,
+      "spread_cost_usd": 0.64,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4782.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.046 (z*=+0.20 15m), VR(4)=0.600 (z*=-1.67 1H sub-diffusive mean reversion)",
+        "OU Equilibrium theta=79795.36 (Entry 80002.50 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.39,
+        "shadow_point_p_tp_given_fill": 0.62
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 27.3,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SOLVENCY_HEADROOM_GE_17USD_AND_SLOT_FREES"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.64,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.8
+      },
+      "wait_cost_usd": 0.15,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 146644.6,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.8,
+      "evidence_ids": [
+        "PARQUET_10_WHALE_OKX_BINANCE_BTC_79850_19.6M_79900_19.7M_664S",
+        "HYPERLIQUID_L3_SELL_4.72M_80050_9.28M_80451_RECURRENCE_VERIFIED",
+        "PARQUET_25_COINGLASS_FOOTPRINT_BEARISH_ABSORPTION_80017.8",
+        "PARQUET_21_TRADFYS_DERIBIT_MAXPAIN_78000"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BEARISH_MACRO_STACK_15M (EMA13 79639.29 < EMA5 79643.17 < EMA34 79721.07 < EMA89 79851.93 < EMA144 79903.36 < EMA233 79937.66)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 79932.31,
+        "gp_0650": 79959.18,
+        "ote_0702": 80002.83,
+        "invalidation_shelf_0786": 80073.35,
+        "entry_status": "EXACT_0.702_OTE_80002.50_FRONT_RUNNING_80017.80_ABSORPTION_HIGH_AND_80050_L3_SELL_WALL_WITH_SL_80302.50_ABOVE_ASIAN_H_80253"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_79968.25_PROTECTED_BY_MON_H_80712.50",
+        "session_extreme_sweep": "SWEPT_LONDON_H_79928.13_AND_IB_H_79919.00_INTO_0.702_OTE_80002.83_WHILE_ASIAN_H_80253_GUARDS_SL",
+        "macro_shelf_relation": "INSIDE_CWH_80712.50_CWL_79224.00_TARGETING_MON_L_79224_FRONT_RUN_AT_79320",
+        "value_area_status": "CONFLUENT_WITH_D_VAH_79931.19_AND_PD_POC_79933.52"
+      },
+      "rejection_reasons": [
+        "SOLVENCY_HEADROOM_PLUS_4.02_USD_INSUFFICIENT_FOR_17.00_USD_STRESSED_TICKET_RISK_POST_STOP_4782.02_LT_4795.00",
+        "MARGIN_REQ_1600.05_USD_PLUS_EXISTING_1104.38_USD_EQUALS_2704.43_USD_55.83PCT_GT_50PCT_D3_GATE",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_XAU_RESERVE_SHORT_04",
+      "symbol": "XAUUSD.pi",
+      "native_market": "COMMODITIES_METALS_23_5",
+      "clock_status": "OPEN_LONDON_SESSION",
+      "quote_timestamp": "2026-10-27 08:45:52.369 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:52.369 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 08:45:33.216 UTC",
+        "auction_structure_utc": "2026-10-27 08:45:42.000 UTC"
+      },
+      "evidence_max_age_seconds": 38.76,
+      "evidence_age_at_cutoff_seconds": 83.63,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 4015.7,
+      "stop": 4027.7,
+      "target": 3990.5,
+      "volume": 0.01,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 25.2,
+      "rr": 2.1,
+      "spread_cost_usd": 0.09,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4782.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.042 (z*=+0.17 15m), VR(4)=0.495 (z*=-1.93 1H strong sub-diffusive mean reversion)",
+        "OU Equilibrium theta=4008.53 (Entry 4015.70 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.42,
+        "shadow_point_p_tp_given_fill": 0.61
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 25.2,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SOLVENCY_HEADROOM_GE_17USD"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.09,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.45
+      },
+      "wait_cost_usd": 0.05,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 4369.1,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.45,
+      "evidence_ids": [
+        "MT5_XAUUSD_SPREAD_0.23BPS",
+        "HYPERLIQUID_L3_SELL_618K_4016.1_621K_4030.7_626K_4068.7",
+        "PARQUET_20_AUCTION_XAU_D_VAH_4017.37_PD_POC_4016.36"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BEARISH_PULLBACK_15M (EMA5 3999.11 < EMA13 4002.89 < EMA34 4007.73 < EMA89 4010.50; EMA144 4010.40; EMA233 4009.70)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 4012.94,
+        "gp_0650": 4014.0,
+        "ote_0702": 4015.72,
+        "invalidation_shelf_0786": 4018.5,
+        "entry_status": "EXACT_0.702_OTE_4015.70_FRONT_RUNNING_4016.10_L3_SELL_WALL_AND_PD_POC_4016.36_WITH_SL_4027.70_ABOVE_ASIAN_H_4025.58"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_4004.09_SL_PROTECTED_BY_MON_H_4030.02",
+        "session_extreme_sweep": "SWEPT_LONDON_L_3991.86_FADING_RETRACE_TO_PD_POC_4016.36_AND_D_VAH_4017.37",
+        "macro_shelf_relation": "INSIDE_CWH_4030.02_CWL_3978.16_TARGETING_3990.50_ABOVE_3975_STOP_CLUSTER",
+        "value_area_status": "CONFLUENT_WITH_PD_POC_4016.36_PD_VAH_4015.33_AND_D_VAH_4017.37"
+      },
+      "rejection_reasons": [
+        "SOLVENCY_HEADROOM_PLUS_4.02_USD_INSUFFICIENT_FOR_17.00_USD_STRESSED_TICKET_RISK_POST_STOP_4782.02_LT_4795.00",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_EURUSD_RESERVE_SHORT_05",
+      "symbol": "EURUSD.pi",
+      "native_market": "FOREX_INTERBANK_24_5",
+      "clock_status": "OPEN_LONDON_SESSION",
+      "quote_timestamp": "2026-10-27 08:45:53.163 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:53.163 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 08:45:33.216 UTC",
+        "auction_structure_utc": "2026-10-27 08:45:48.000 UTC"
+      },
+      "evidence_max_age_seconds": 38.76,
+      "evidence_age_at_cutoff_seconds": 82.84,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 1.11695,
+      "stop": 1.11815,
+      "target": 1.11435,
+      "volume": 0.1,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 26.0,
+      "rr": 2.17,
+      "spread_cost_usd": 0.1,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4782.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=0.892 (z*=-0.50 15m), ER(48)=0.239 (>0.20 trend-qualified), t_drift=-1.68",
+        "OU Equilibrium theta=1.11539 (Entry 1.11695 > theta: favorable downward drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.45,
+        "shadow_point_p_tp_given_fill": 0.6
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 26.0,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SOLVENCY_HEADROOM_GE_17USD"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.1,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.35
+      },
+      "wait_cost_usd": 0.08,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 11408.2,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.35,
+      "evidence_ids": [
+        "MT5_EURUSD_SPREAD_0.09BPS",
+        "PARQUET_20_AUCTION_EURUSD_BELOW_VALUE_D_POC_1.11722_MON_L_1.11731",
+        "HYPERLIQUID_L3_SELL_198K_1.1300_RECURRENCE_VERIFIED"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 1.11588 < EMA13 1.11622 < EMA34 1.11672 < EMA89 1.11767 < EMA144 1.11831 < EMA233 1.11891)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 1.11674,
+        "gp_0650": 1.11682,
+        "ote_0702": 1.11695,
+        "invalidation_shelf_0786": 1.11716,
+        "entry_status": "EXACT_0.702_OTE_1.11695_AT_LONDON_H_1.11693_WITH_SL_1.11815_AT_PD_POC_1.11819_AND_EMA144_1.11831"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_L_1.11731_BREAKDOWN_RETEST_FROM_BELOW",
+        "session_extreme_sweep": "SWEPT_LONDON_L_1.11521_RETESTING_LONDON_H_1.11693_AND_D_POC_1.11722",
+        "macro_shelf_relation": "BELOW_PWL_1.11808_AND_PD_VAL_1.11736",
+        "value_area_status": "BELOW_VALUE_IMBALANCE_FADING_INTO_D_POC_1.11722_TARGETING_1.1150_STOP_POOL"
+      },
+      "rejection_reasons": [
+        "SOLVENCY_HEADROOM_PLUS_4.02_USD_INSUFFICIENT_FOR_17.00_USD_STRESSED_TICKET_RISK_POST_STOP_4782.02_LT_4795.00",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_GBPUSD_RESERVE_SHORT_06",
+      "symbol": "GBPUSD.pi",
+      "native_market": "FOREX_INTERBANK_24_5",
+      "clock_status": "OPEN_LONDON_SESSION",
+      "quote_timestamp": "2026-10-27 08:45:51.333 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 08:45:51.333 UTC",
+        "snapshot_utc": "2026-10-27 08:45:53.671 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 08:45:33.216 UTC",
+        "auction_structure_utc": "2026-10-27 08:45:48.000 UTC"
+      },
+      "evidence_max_age_seconds": 38.76,
+      "evidence_age_at_cutoff_seconds": 84.67,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 09:07:16 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 1.3339,
+      "stop": 1.3351,
+      "target": 1.3313,
+      "volume": 0.1,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 26.0,
+      "rr": 2.17,
+      "spread_cost_usd": 0.1,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4782.02,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=0.772 (z*=-0.85 15m), ER(48)=0.205 (>0.20 trend-qualified), t_drift=-1.27",
+        "OU Equilibrium theta=1.33254 (Entry 1.33390 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.43,
+        "shadow_point_p_tp_given_fill": 0.59
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 26.0,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SOLVENCY_HEADROOM_GE_17USD"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.1,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.35
+      },
+      "wait_cost_usd": 0.08,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 13412.5,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.35,
+      "evidence_ids": [
+        "MT5_GBPUSD_SPREAD_0.08BPS",
+        "PARQUET_20_AUCTION_GBPUSD_BELOW_VALUE_D_POC_1.33413_MON_L_1.33272",
+        "HYPERLIQUID_L2_SELL_189.3K_1.3330_596.3S"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 1.33252 < EMA13 1.33285 < EMA34 1.33343 < EMA89 1.33411 < EMA144 1.33447 < EMA233 1.33480)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 1.33365,
+        "gp_0650": 1.33375,
+        "ote_0702": 1.33392,
+        "invalidation_shelf_0786": 1.3342,
+        "entry_status": "EXACT_0.702_OTE_1.33390_AT_D_VAL_1.33390_AND_LONDON_H_1.33386_WITH_SL_1.33510_ABOVE_0.786_SHELF_1.33420_AND_ASIAN_H_1.33491"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_MID_1.33574_RETESTING_BROKEN_MON_L_1.33272_AND_ASIAN_L_1.33326",
+        "session_extreme_sweep": "SWEPT_LONDON_L_1.33160_FADING_RETRACE_TO_LONDON_H_1.33386",
+        "macro_shelf_relation": "INSIDE_CWH_1.33875_CWL_1.33160_TARGETING_PWL_1.32986_FRONT_RUN_AT_1.33130",
+        "value_area_status": "ENTRY_AT_D_VAL_1.33390_AND_D_POC_1.33413_SUPPLY_REJECTION"
+      },
+      "rejection_reasons": [
+        "SOLVENCY_HEADROOM_PLUS_4.02_USD_INSUFFICIENT_FOR_17.00_USD_STRESSED_TICKET_RISK_POST_STOP_4782.02_LT_4795.00",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "btc_19343851_early_be_realized_gain_check": "Prior Balance 4846.32 + (79838.00 - 79799.00) * 0.04 = 4846.32 + 1.56 = 4847.88 USD (Exact match to inventory.balance)",
+    "base_capital_and_cushions_check": "base_capital = min(4847.88, 4843.83) = 4843.83 USD; hard_floor_cushion = 4843.83 - 4600.00 = 243.83 USD; operating_buffer_cushion = 4843.83 - 4650.00 = 193.83 USD; kernel_cushion = 4843.83 - 4795.00 = 48.83 USD (100% match to solvency block)",
+    "envelope_existing_stress_reproduction": "BNB (734.90 - 732.65)*3.0*1.25 + 2.00 = 10.4375 USD; ETH (2343.50 - 2320.50)*0.50*1.25 + 2.00 = 16.3750 USD; SOL (100.94 - 100.38)*0.20*100*1.25 + 2.00 = 16.0000 USD; Sum = 42.8125 USD (Exact match to solvency.existing_ticket_stress_usd)",
+    "envelope_headroom_and_post_stress_equity_check": "48.83 - 2.00 - 42.8125 = 4.0175 -> 4.02 USD; 4843.83 - 2.00 - 42.8125 = 4799.0175 -> 4799.02 USD; nominal_risk_capacity = (4.0175 - 2.00)/1.25 = 1.614 USD (100% match to solvency block)",
+    "canonical_balance_frame_stress_check": "BNB (736.25 - 732.65)*3.0*1.25 + 2.00 = 15.5000 USD; ETH = 16.3750 USD; SOL = 16.0000 USD; Sum = 47.8750 USD (Exact match to live_snapshot_latest.json risk.total_contingent_stress_usd); Post-stop balance = 4847.88 - 47.8750 = 4800.005 USD (4798.005 USD after 2.00 USD global contingency reserve)",
+    "margin_used_reproduction": "BNB 3.0 * 736.25 * 0.50 = 1104.375 -> 1104.38 USD; Margin Level = (4843.83 / 1104.375) * 100 = 438.6038% (Exact match to inventory.margin_used and margin_level)"
+  },
+  "disputes": [
+    "DISPUTE_1_SNAPSHOT_DOUBLE_COUNTED_FLOATING_LOSS: In live_snapshot_latest.json (risk.post_joint_stop_equity_usd = 4795.655 USD at 08:45:53Z), the telemetry engine computes total_contingent_stress_usd = 47.875 USD from price_open (which already includes the -$4.35 floating loss on #19329907 BNBUSD.p stressed at 1.25x = $5.4375) and then subtracts 47.875 USD from equity_usd (4843.53 USD, which also deducts the -$4.35 floating loss), double-counting the floating loss by $4.35 USD. By contrast, cycle_envelope.json starts from base_capital = equity = 4843.83 USD and stresses only the remaining distance from price_current (734.90 -> 732.65 = $6.75 * 1.25 + 2.00 = $10.4375), yielding existing_ticket_stress_usd = 42.8125 USD and post_joint_stress_equity_usd = 4799.02 USD (+4.02 USD headroom vs +3.005 USD pure Balance-frame headroom).",
+    "DISPUTE_2_PROSEMIRROR_DISPATCH_TRUNCATION: The embedded cycle_envelope.json in the prompt suffered 3 character-splicing drops at 4KB DOM chunk boundaries ('cutoff_utc': '2026-10-27 08' spliced with ':47:16 UTC', 'tp': '2274.5,,' on ticket 19330613 missing price_current=2307.0, and 'DENIED_PENDING_FULL_HARDd JSON...'), whereas the repository artifact Data/cycle_envelope.json (4,172 bytes, sha256: 8792c0b8beed857cdaf3fece8067bbfedfdf9df9ec4d777ae1b7d8a1579746f8) is 100% valid JSON.",
+    "DISPUTE_3_ENVELOPE_PARQUET_SCORECARD_CLAIM_VS_CHECKLIST: cycle_envelope.json asserts parquet_freshness_verified=true and parquet_audit_scorecard_fresh=true, and 10_Whale_Orders.parquet (08:41:05Z) and 14_Liquidation_Matrix.parquet (08:42:55Z) are now fresh in git, but Data/metadata/parquet_all_feeds_checklist.json reports passed_feeds=35/36 (all_passed=false) due to 7_Live_Liq=FAIL in 23_Master_Pipeline_Telemetry.parquet, while Data/macro_calendar.json (2026-10-26T03:00:00Z), Data/DataBase_Trading.xlsx (2026-10-26T07:07:49Z), and Data/forex_factory_live.json (2026-10-25T13:06:41Z) remain stale."
+  ],
+  "unknowns": [
+    "Calibrated P(fill) and P(TP | fill) remain statistically uncalibrated (closed-trade sample n = 17 < 100 minimum required for isotonic/Platt calibration; exact one-sided 95% Clopper-Pearson lower bound = 0.4197).",
+    "Live CoinGlass L3 scraper inside live_snapshot_latest.json reports status=STALE (total_orders_harvested=0) and Arkham on-chain intelligence reports FEED_CORRUPT_OR_UNAVAILABLE, though 10_Whale_Orders.parquet was refreshed at 2026-10-27 08:41:05 UTC (14:11:05 IST) with 3,003 rows."
+  ],
+  "methodology_critique_and_improvements": [
+    "Unify the solvency reference frame between live_snapshot_latest.json and generate_cycle_envelope.py: if using from_open stress (47.875 USD), subtract from balance (4847.88 USD -> 4800.005 USD, or 4798.005 USD after $2.00 global reserve) rather than subtracting from equity_usd (which double-counts floating losses).",
+    "Reconcile Data/metadata/parquet_all_feeds_checklist.json (all_passed=false due to 7_Live_Liq=FAIL) with cycle_envelope.json (parquet_audit_scorecard_fresh=true) so envelope flags reflect exact feed health.",
+    "Replace chunked ProseMirror send_keys prompt injection with atomic clipboard paste to eliminate 4KB boundary character splicing."
+  ],
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Mobilizing @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks] enabled: (1) exact verification of the +$1.56 USD Early-BE stop-out on #19343851 BTCUSD.pi (raising balance from 4846.32 to 4847.88 USD and restoring margin level from 179.64% to 438.60%); (2) discovery of the floating-loss double-count in live_snapshot_latest.json (4795.655 USD) vs the MTM remaining-stress calculation in cycle_envelope.json (4799.02 USD, +4.02 USD headroom) and pure Balance-frame calculation (4798.005 USD, +3.005 USD headroom); and (3) multi-venue synthesis across newly refreshed 10_Whale_Orders.parquet (3,003 rows @ 08:41:05Z), 21_Tradfye_Orderflow.parquet (6,912 rows @ 08:30:00Z), and 25_CoinGlass_Footprint_Signals.parquet (814 rows @ 08:42:31Z).",
+    "omitted_risk_dimensions": "Four structural risk dimensions require active vigilance: (1) Intraday spread instability right at the 25.0 bps crypto boundary: SOLUSD.p printed 22.08 bps in 00_MT5_Account_Telemetry.parquet (08:45:32Z) and live_snapshot_latest.json (08:45:53Z), but spiked to 25.13 bps (FAIL) 10 seconds later in 20_Auction_Market_Structure.parquet (08:45:42Z), while XRPUSD.pi widened from 23.10 bps at 08:45:53Z to 30.82 bps at 08:50:31Z and TRXUSD.p widened from 24.45 bps to 27.50 bps; (2) Joint pending-fill margin utilization: while current margin used is 22.80% (1,104.38 USD), simultaneous fills on #19330613 ETH (580.13 USD) and #19343853 SOL (1,003.80 USD) would raise margin used to 2,688.31 USD (55.50% of equity, Margin Level 180.18% < 200% D3 floor); (3) Broker stops_level=20 points on BNBUSD.p and XRPUSD.pi; and (4) Upcoming US CB Consumer Confidence & JOLTS Job Openings at 14:00 UTC (T-5h 09m).",
+    "algorithmic_alternatives": "Deploy four mathematical upgrades in Cycle 371+: (1) Bivariate Hawkes Process orderbook survival model to estimate conditional fill-before-depletion probabilities on resting whale walls (such as the $19.7M BTC sell walls at 79,850-79,900 and $4.25M SOL sell wall at 100.00 in 10_Whale_Orders.parquet); (2) Kalman Filter dynamic spread state tracker to penalize boundary-straddling perpetuals (SOL 22.08-25.13 bps, XRP 23.10-30.82 bps, TRX 24.45-27.50 bps); (3) GJR-GARCH(1,1) conditional volatility cones for dynamic stop-buffer scaling into the 14:00 UTC US macro releases; and (4) Hierarchical Empirical Bayes (Beta-Binomial) shrinkage with Monotone Isotonic Regression to bridge the n=17 -> n=100 calibration cold-start gap."
+  },
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": "a9ce01ff50952f6470a6226b589b0539b14fdb0c178fd5eda63b7e9ef274a0b2"
+}
