@@ -60078,5 +60078,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "ENA",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 4999.66,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.2067,
+    "wallet_address": "0xbeccae9ffcb69e9d42a1d4e744abf8056149562d",
+    "asset_slug": "ENA",
+    "raw_text": "#ENA Liquidated Short: 5.00K USD at 0.2067 USD [API]",
+    "msg_id": "HL_LIQ_0xbeccae9ffcb69e9d42a1d4e744abf8056149562d_ENA_82960678644455",
+    "timestamp_epoch": 1793083866,
+    "time_label": "06:51",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
