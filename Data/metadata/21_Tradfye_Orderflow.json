@@ -1,7 +1,7 @@
 {
   "feed_name": "21_Tradfye_Orderflow",
   "status": "PASS",
-  "row_count": 6912,
+  "row_count": 6720,
   "column_count": 24,
   "columns": [
     "timestamp_ist",
@@ -29,9 +29,9 @@
     "deribit_call_wall",
     "deribit_put_wall"
   ],
-  "byte_size": 734568,
-  "timestamp_ist": "2026-10-27 11:34:49 IST",
-  "timestamp_utc": "2026-10-27 06:04:49 UTC",
-  "epoch_utc": 1793081089.997754,
-  "write_duration_ms": 3602.68
+  "byte_size": 715369,
+  "timestamp_ist": "2026-10-27 11:41:35 IST",
+  "timestamp_utc": "2026-10-27 06:11:35 UTC",
+  "epoch_utc": 1793081495.467352,
+  "write_duration_ms": 413.41
 }

@@ -1,7 +1,7 @@
 {
   "feed_name": "14_Liquidation_Matrix",
   "status": "PASS",
-  "row_count": 5115,
+  "row_count": 6524,
   "column_count": 14,
   "columns": [
     "timestamp_ist",
@@ -19,9 +19,9 @@
     "bybit_vol_usd",
     "is_synthetic"
   ],
-  "byte_size": 159085,
-  "timestamp_ist": "2026-10-27 11:35:43 IST",
-  "timestamp_utc": "2026-10-27 06:05:43 UTC",
-  "epoch_utc": 1793081143.646944,
-  "write_duration_ms": 561.53
+  "byte_size": 106434,
+  "timestamp_ist": "2026-10-27 11:41:35 IST",
+  "timestamp_utc": "2026-10-27 06:11:35 UTC",
+  "epoch_utc": 1793081495.467352,
+  "write_duration_ms": 327.73
 }
