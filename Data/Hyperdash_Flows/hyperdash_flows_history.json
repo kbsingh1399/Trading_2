@@ -75738,5 +75738,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "ADA",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 7413.38,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.2039,
+    "wallet_address": "0xc3a5b2551dbc5b477207fdd0f93150a6fe965b7c",
+    "asset_slug": "ADA",
+    "raw_text": "#ADA Whale BUY: 7.41K USD at 0.2039 USD [API]",
+    "msg_id": "HL_TRADE_ADA_112166238114587",
+    "timestamp_epoch": 1793108139,
+    "time_label": "13:35",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
