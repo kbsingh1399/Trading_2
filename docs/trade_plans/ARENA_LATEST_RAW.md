@@ -1419,4 +1419,869 @@ Ticket / Candidate ID	Symbol	Direction & Order Type	Volume (Lots)	Exact Entry Pr
 #19329907 (Active)	BNBUSD.p	BUY (Filled)	3.00	736.25	732.65	740.00	$10.80 / $15.50 ($5.94 MTM)	$11.25 (1.04R)	Phase 1 Early-BE (+0.80R0) at 739.13 
 →
 → moves SL to 736.79 (+$1.62 locked)	HOLD_EXISTING
-#19343851 (Active)	BTCUSD.pi									
+#19343851 (Active)	BTCUSD.pi	SELL (Filled)	0.04	79,838.00	79,799.00 (Locked +$1.56)	79,318.00	$0.00 (-$1.56 locked) / $2.00 ($17.18 MTM)	$20.80 (2.00R)	Phase 2 Profit Lock (+1.50R0) at 79,448.00 
+→
+→ moves SL to 79,630.00 (+$8.32 locked)	HOLD_PROFIT_LOCKED
+#19330613 (Pending)	ETHUSD.pi	SELL_LIMIT (Working)	0.50	2,320.50	2,343.50	2,274.50	$11.50 / $16.38	$23.00 (2.00R)	Keep working (3.18 ATR away); auto-pull daemon cancels if 4 positions fill	KEEP_WORKING (HOLD)
+#19343853 (Pending)	SOLUSD.p	SELL_LIMIT (Working)	0.20	100.38	100.94	99.20	$11.20 / $16.00	$23.60 (2.11R)	Keep working (3.05 ATR away); auto-pull daemon cancels if 4 positions fill	KEEP_WORKING (HOLD)
+CAND_XAU_03 (Reserve #1)	XAUUSD.pi	SELL_LIMIT (Unstaged)	0.01	4,017.10	4,029.10	3,991.80	$12.00 / $17.00	$25.30 (2.11R)	Stage only after 1 slot frees, headroom >= $17.00, and 4,023.10 L3 wall >= 180s	HOLD (DENIED_FAIL_CLOSED)
+CAND_EUR_04 (Reserve #2)	EURUSD.pi	SELL_LIMIT (Unstaged)	0.10	1.11760	1.11880	1.11500	$12.00 / $17.00	$26.00 (2.17R)	Stage only after 1 slot frees and solvency headroom >= $17.00	HOLD (DENIED_FAIL_CLOSED)
+CAND_BNB_05 (Reserve #3)	BNBUSD.p	SELL_LIMIT (Unstaged)	3.00	740.85	744.85	732.00	$12.00 / $17.00	$26.55 (2.21R)	Stage only after #19329907 exits at 740.00 TP and slot frees	HOLD (DENIED_FAIL_CLOSED)
+7. Section 8 — Continuous Kaizen & Methodology Improvement Inquest
+8.1 Skills & Methodology Optimization (skills_and_methodology_optimization)
+
+By explicitly orchestrating all ten domain skills (@[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks]), our squad achieved three concrete methodological breakthroughs this cycle:
+
+Exact Resolution of the Solvency Reference-Frame Bug: Using @[systematic-debugging] and @[trader-risk], we proved that Terminal/generate_cycle_envelope.py (line 57) mixes the Mark-to-Market Equity loss from price_current ($17.1750 on #19343851 BTCUSD.pi and $5.9375 on #19329907 BNBUSD.p) with the Realized Balance baseline (capital = min(balance, equity) = $4,846.32), creating a $5.6125 USD discrepancy against live_snapshot_latest.json ($55.4875 vs $49.8750). Patching line 57 to compute max(0.0, loss_from_price_open_to_sl) * 1.25 + 2.00 when capital == balance (and loss_from_price_current_to_sl * 1.25 + 2.00 when capital == equity) restores single-frame accounting consistency across all telemetry files.
+Heteroskedasticity-Consistent Multi-Horizon Diffusion Diagnostics: Applying @[sharpe-ratio-non-iid-corrections] and @[time-series-decomposer], we computed exact Lo-MacKinlay 
+𝑉
+𝑅
+(
+4
+)
+VR(4) and 
+𝑧
+∗
+(
+4
+)
+z
+∗
+(4) statistics across 15m, 1H, and 4H bars for all 24 assets, proving that while 15m bars on BTC (
+𝑉
+𝑅
+=
+1.041
+VR=1.041), ETH (
+𝑉
+𝑅
+=
+1.007
+VR=1.007), SOL (
+𝑉
+𝑅
+=
+1.032
+VR=1.032), and XAU (
+𝑉
+𝑅
+=
+1.044
+VR=1.044) are near random-walk diffusion during the Asian-to-London transition, their 1H bars are strongly mean-reverting (BTC 
+𝑉
+𝑅
+=
+0.601
+,
+𝑧
+∗
+=
+−
+1.68
+VR=0.601,z
+∗
+=−1.68; XAU 
+𝑉
+𝑅
+=
+0.492
+,
+𝑧
+∗
+=
+−
+1.94
+VR=0.492,z
+∗
+=−1.94; SOL 
+𝑉
+𝑅
+=
+0.765
+,
+𝑧
+∗
+=
+−
+1.22
+VR=0.765,z
+∗
+=−1.22), justifying passive Model 2 Golden-Zone limit entries rather than breakout chasing.
+Full Parquet Orderflow & Options Gamma Synthesis: Using @[market-ingest] and @[market-pattern], we verified that 21_Tradfye_Orderflow.parquet is sorted descending (head(1) = 2026-10-27 07:15:00 UTC), allowing us to integrate real-time 99th-percentile institutional whale bubbles, resting absorption shelves, and Deribit options gamma walls (BTC Max Pain = 78,000, ETH Max Pain = 2,300) directly into ticket supervision.
+8.2 Omitted Risk Dimensions (omitted_risk_dimensions)
+
+Four structural risk dimensions require explicit monitoring beyond static single-ticket checks:
+
+Cross-Ticket Crypto Beta & Short-Squeeze Correlation: Holding short BTCUSD.pi (#19343851) alongside working SELL_LIMIT orders on ETHUSD.pi (#19330613) and SOLUSD.p (#19343853) creates concentrated short-crypto beta exposure ahead of US Consumer Confidence / JOLTS (14:00 UTC) and FOMC (2026-10-28 18:00 UTC). A correlated upward short squeeze of +1.5% across crypto would simultaneously test BTC's 79,799.00 Early-BE stop while filling both ETH (2,320.50) and SOL (100.38) limit orders.
+Intraday Spread Expansion on Tier-2 Crypto Perpetuals: Between 07:15:56 UTC (live_snapshot_latest.json) and 07:24:59 UTC (00_MT5_Account_Telemetry.parquet), XRPUSD.pi widened from 23.14 bps to 30.79 bps and TRXUSD.p widened from 21.34 bps to 27.43 bps, crossing the 25.0 bps hard gate mid-cycle.
+Broker stops_level Micro-Constraints: BNBUSD.p, XRPUSD.pi, and LTCUSD.pi enforce stops_level = 20 points on Blueberry Markets, which blocks tight stop placement on XRPUSD.pi at min_lot = 1.0 (1,000 XRP) when targeting a $12.00 risk envelope ($0.012 < $0.020 minimum stop distance).
+Post-Fill Margin Level Compression (Finding D3): Active margin utilization is already 55.67% ($2,701.14 / $4,852.37, Margin Level = 179.64% < 200%). If both #19330613 (ETH, $580.13 margin) and #19343853 (SOL, $1,003.80 margin) fill simultaneously while #19329907 (BNB) and #19343851 (BTC) remain open, total margin used rises to $4,285.07 USD (88.31% of equity), compressing Margin Level to 113.24%. By contrast, TradFi reserve candidates (XAUUSD.pi at 0.01 lot = $20.09 margin; EURUSD.pi at 0.10 lot = $55.88 margin) consume < 1.2% of equity and offer 10x–20x higher capital-minute utility.
+8.3 Concrete Algorithmic Upgrades (algorithmic_alternatives)
+
+To harden the pipeline for Cycle 371+, we recommend four mathematical upgrades:
+
+Bivariate Hawkes Process L3 Wall Survival Estimator: Replace the binary duration >= 180s threshold with a self-exciting bivariate Hawkes intensity model 
+𝜆
+𝑐
+(
+𝑡
+)
+,
+𝜆
+𝑑
+(
+𝑡
+)
+λ
+c
+	​
+
+(t),λ
+d
+	​
+
+(t) estimating the conditional probability that an L3 whale wall (e.g., $10.51M ETH @ 2,333.60 or $1.37M BNB @ 731.82) survives until price arrival vs being canceled (spoofed) or depleted by aggressive market orders.
+State-Space Kalman Filter for Dynamic Spread & Slippage Gating: Model bid-ask spread 
+𝑠
+𝑡
+s
+t
+	​
+
+ as a latent mean-reverting state with Poisson jump innovations so assets with unstable spreads (XRPUSD.pi jumping 23.14 -> 30.79 bps, TRXUSD.p jumping 21.34 -> 27.43 bps) are filtered out before staging passive limits.
+GJR-GARCH(1,1) Asymmetric Volatility Cones for Session-Transition Stop Buffers: Replace the static 0.40 ATR stop buffer behind the 0.786 Fibonacci invalidation shelf with a GJR-GARCH(1,1) conditional volatility forecast scaled to the London/NY overlap and macro release windows (14:00 UTC Consumer Confidence / JOLTS).
+Hierarchical Empirical Bayes (Beta-Binomial) Shrinkage + Isotonic Calibration: Bridge the cold-start gap (
+𝑛
+=
+17
+<
+100
+n=17<100) by shrinking asset-specific win-rate posteriors toward the pooled strategy prior 
+Beta
+(
+𝛼
+0
+,
+𝛽
+0
+)
+Beta(α
+0
+	​
+
+,β
+0
+	​
+
+) and fitting a monotone PAVA (Pool-Adjacent-Violators) isotonic map once 
+𝑛
+≥
+30
+n≥30 while preserving the strict Clopper-Pearson 95% lower bound for solvency gating.
+8. Canonical Machine-Readable JSON Output (Part 4 Schema)
+JSON
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle-20261027T071649Z",
+  "cutoff_utc": "2026-10-27 07:16:49 UTC",
+  "evidence_manifest_sha256": "a641f5024cd6a3fb7d722c4f656c86bd3a3b2370f3fbf166874ea1935e1a21fe",
+  "prompt_sha256": "b7f88189e1e144fb1ab900d41d41afd1dba141c2d98883b554d804136fc6dbb3",
+  "dispatch_nonce": "6dee9d53-011c-4b55-9729-ea7366f617e1",
+  "provenance_status": "DENIED_FAIL_CLOSED",
+  "inventory_status": "ACCOUNT_AND_SOLVENCY_VERIFIED_WITH_REFERENCE_FRAME_DISCREPANCY",
+  "hard_gate_results": {
+    "g0_envelope_integrity": "WARN_PROSEMIRROR_CHUNK_SPLICE_IN_PROMPT_VERIFIED_INTACT_IN_REPO_SHA256_ee5a90b4",
+    "g1_cutoff_causality": "PASS_AT_SNAPSHOT_071556Z_FOR_20_OF_24_ASSETS_FAIL_QUOTE_AGE_ON_BNB_XRP_DOT_DOGE",
+    "g2_macro_calendar_freshness": "FAIL_STALE_VERIFIED_AT_2026-10-26T03:00:00Z_AGE_102590S_GT_900S",
+    "g3_workbook_and_layer_freshness": "FAIL_LEGACY_XLSX_24H22M_STALE_COINGLASS_L3_STALE_ARKHAM_CORRUPT_PARQUET_39_OF_42_ACTIVE",
+    "g4_solvency_kernel_headroom": "FAIL_NEW_ADMISSION_ENVELOPE_HEADROOM_MINUS_6.17_USD_CANONICAL_BALANCE_HEADROOM_MINUS_0.555_USD",
+    "g5_margin_collateralization_d3": "FAIL_NEW_ADMISSION_CURRENT_MARGIN_USED_55.67PCT_GT_50PCT_MARGIN_LEVEL_179.64PCT_LT_200PCT",
+    "g6_joint_fill_slot_capacity": "FAIL_NEW_ADMISSION_4_OF_4_SLOTS_COMMITTED_2_FILLED_2_PENDING",
+    "g7_whale_wall_persistence_180s": "PASS_ON_HYPERLIQUID_L3_AND_PARQUET_10_WHALE_ORDERS_FAIL_CLOSED_ON_LIVE_COINGLASS_SCRAPER",
+    "g8_probability_calibration_n100": "FAIL_CLOSED_SAMPLE_N_17_LT_100_MIN_P_WIN_LCB_0.4197"
+  },
+  "universe_coverage": {
+    "total_broker_instruments_audited": 156,
+    "tradfi_assets_count": 98,
+    "crypto_perpetuals_count": 58,
+    "market_regime": "FULL_MARKET_OPEN",
+    "spread_gate_pass_total": 95,
+    "spread_gate_fail_total": 61,
+    "crypto_spread_qualified_le_25bps_at_cutoff": [
+      "BTCUSD.pi (2.01 bps)",
+      "XMRUSD.p (4.85 bps)",
+      "NETH25.p (5.14 bps)",
+      "ZECUSD.p (6.12 bps)",
+      "BNBUSD.p (6.81 bps)",
+      "DSHUSD.p (10.77 bps)",
+      "ETHUSD.pi (13.49 bps)",
+      "YFIUSD.p (14.78 bps)",
+      "BCHUSD.p (17.16 bps)",
+      "XLMUSD.p (17.91 bps)",
+      "AVEUSD.p (20.56 bps)",
+      "TRXUSD.p (21.34 bps at 07:15Z -> 27.43 bps at 07:25Z)",
+      "SOLUSD.p (22.13 bps)",
+      "XRPUSD.pi (23.14 bps at 07:15Z -> 30.79 bps at 07:25Z)"
+    ],
+    "crypto_spread_disqualified_gt_25bps": [
+      "AVXUSD.p (45.71 bps)",
+      "LTCUSD.pi (53.36 bps)",
+      "NERUSD.p (65.72 bps)",
+      "LNKUSD.p (75.17 bps)",
+      "ADAUSD.p (103.32 bps)",
+      "DOTUSD.pi (212.23 bps)",
+      "DOGUSD.p (272.55 bps)"
+    ],
+    "deep_telemetry_matrix_24_audited": 24,
+    "auction_structure_84_audited": 84
+  },
+  "account_tier_and_contingent_capacity": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "balance_usd": 4846.32,
+    "equity_cutoff_usd": 4852.37,
+    "equity_latest_0731z_usd": 4850.39,
+    "margin_used_usd": 2701.14,
+    "margin_free_cutoff_usd": 2151.23,
+    "margin_level_cutoff_pct": 179.64,
+    "margin_utilization_pct": 55.67,
+    "capital_mode_envelope": "TIER_1_STANDARD",
+    "tier_2_unlock_threshold_usd": 4850.0,
+    "balance_deficit_to_tier_2_usd": 3.68,
+    "risk_min_usd": 12.0,
+    "risk_max_usd": 12.0,
+    "max_concurrent_tickets": 4,
+    "active_positions_count": 2,
+    "pending_orders_count": 2,
+    "joint_fill_slots_used": 4,
+    "joint_fill_slots_available": 0,
+    "envelope_reported_existing_stress_usd": 55.4875,
+    "envelope_reported_realized_headroom_usd": -6.17,
+    "envelope_reported_post_joint_stress_equity_usd": 4788.83,
+    "canonical_balance_frame_existing_stress_usd": 49.875,
+    "canonical_balance_frame_realized_headroom_usd": -0.555,
+    "canonical_balance_frame_post_joint_stop_equity_usd": 4796.445,
+    "pending_margin_on_fill_usd": 1583.925,
+    "free_margin_after_pending_fills_usd": 567.385,
+    "new_risk_admissible": false
+  },
+  "global_contingency_usd": 2.0,
+  "existing_ticket_actions": [
+    {
+      "ticket": 19329907,
+      "symbol": "BNBUSD.p",
+      "kind": "ACTIVE_POSITION",
+      "side": "BUY",
+      "volume": 3.0,
+      "price_open": 736.25,
+      "price_current_cutoff": 733.7,
+      "price_current_0731z": 734.6,
+      "sl": 732.65,
+      "tp": 740.0,
+      "floating_pnl_cutoff_usd": -7.65,
+      "floating_pnl_0731z_usd": -4.95,
+      "nominal_risk_from_open_usd": 10.8,
+      "stressed_risk_from_open_usd": 15.5,
+      "envelope_mtm_stress_usd": 5.9375,
+      "r0_points": 3.6,
+      "ratchet_state": "PHASE_0_PENDING",
+      "early_be_080r_trigger_price": 739.13,
+      "early_be_new_sl": 736.79,
+      "profit_lock_150r_trigger_price": 741.65,
+      "profit_lock_new_sl": 739.13,
+      "action": "HOLD_EXISTING_AND_MONITOR_SL_AND_RATCHET",
+      "microstructure_defense_note": "SL 732.65 is defended by Hyperliquid L3 BUY walls $333.8K @ 732.59 (273.6s >= 180s) and $1.366M @ 731.82 (1,795.7s >= 180s), plus Tradfye 5m BULLISH_EXPANSION delta +$300.1K (+42.3%) at 07:15 UTC."
+    },
+    {
+      "ticket": 19343851,
+      "symbol": "BTCUSD.pi",
+      "kind": "ACTIVE_POSITION",
+      "side": "SELL",
+      "volume": 0.04,
+      "price_open": 79838.0,
+      "price_current_cutoff": 79495.5,
+      "price_current_0731z": 79602.5,
+      "sl": 79799.0,
+      "tp": 79318.0,
+      "floating_pnl_cutoff_usd": 13.7,
+      "floating_pnl_0731z_usd": 9.42,
+      "nominal_risk_from_open_usd": -1.56,
+      "stressed_risk_from_open_usd": 2.0,
+      "envelope_mtm_stress_usd": 17.175,
+      "r0_points": 260.0,
+      "ratchet_state": "PHASE_1_PROFIT_LOCKED",
+      "early_be_080r_trigger_price": 79630.0,
+      "early_be_locked_sl": 79799.0,
+      "profit_lock_150r_trigger_price": 79448.0,
+      "profit_lock_new_sl": 79630.0,
+      "action": "HOLD_PROFIT_LOCKED_AND_ARM_PHASE2_RATCHET_AT_79448",
+      "microstructure_defense_note": "Phase 1 Early-BE ratchet already ratified (SL 79,799.00 locks +$1.56 nominal profit). Excursion reached 79,466.50 bid (+1.43R0), 18.50 USD above Phase 2 (+1.50R0 = 79,448.00) trigger which will ratchet SL to 79,630.00 (+$8.32 locked). Target 79,318.00 front-runs $4.44M long liquidation cascade at 79,350 and $9.14M L3 BUY wall at 79,159 (1,996.3s)."
+    },
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "kind": "PENDING_ORDER",
+      "side": "SELL_LIMIT",
+      "volume": 0.5,
+      "price_open": 2320.5,
+      "price_current_cutoff": 2297.5,
+      "price_current_0731z": 2303.95,
+      "sl": 2343.5,
+      "tp": 2274.5,
+      "nominal_risk_usd": 11.5,
+      "stressed_risk_usd": 16.375,
+      "margin_on_fill_usd": 580.125,
+      "distance_atr": 3.18,
+      "action": "KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON",
+      "microstructure_defense_note": "Entry 2,320.50 sits inside 48-bar 0.702-0.786 OTE/Invalidation zone [2,318.65, 2,321.32] and dVAH 2,321.47, backed by Bybit $4.52M SELL wall @ 2,321.03 (335s >= 180s), Binance $1.25M SELL wall @ 2,322.04 (1,648s), and Hyperliquid L3 $10.51M SELL wall @ 2,333.60 (1,136.7s >= 180s). TP 2,274.50 front-runs $10.23M L3 BUY wall @ 2,270.10 (1,136.7s)."
+    },
+    {
+      "ticket": 19343853,
+      "symbol": "SOLUSD.p",
+      "kind": "PENDING_ORDER",
+      "side": "SELL_LIMIT",
+      "volume": 0.2,
+      "price_open": 100.38,
+      "price_current_cutoff": 99.35,
+      "price_current_0731z": 99.555,
+      "sl": 100.94,
+      "tp": 99.2,
+      "nominal_risk_usd": 11.2,
+      "stressed_risk_usd": 16.0,
+      "margin_on_fill_usd": 1003.8,
+      "distance_atr": 3.05,
+      "action": "KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON",
+      "microstructure_defense_note": "Entry 100.38 aligns with 15m Fib-Prime EMA89 (100.3712) and 48-bar 0.702 OTE (100.3396), defended by Hyperliquid L3 SELL walls $4.58M @ 100.27 (1,273.7s >= 180s) and $8.58M @ 101.01 (1,273.7s >= 180s). TP 99.20 front-runs $2.31M L3 BUY wall @ 99.21 (272.6s) and Asian_L 99.09."
+    }
+  ],
+  "candidate_rows": [
+    {
+      "candidate_id": "CAND_ETH_SHORT_01_TICKET_19330613",
+      "symbol": "ETHUSD.pi",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 07:15:52.580 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:52.580 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:15:02.424 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 07:15:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 109.0,
+      "evidence_age_at_cutoff_seconds": 56.42,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 2320.5,
+      "stop": 2343.5,
+      "target": 2274.5,
+      "volume": 0.5,
+      "broker_risk_usd": 11.5,
+      "broker_reward_usd": 23.0,
+      "rr": 2.0,
+      "spread_cost_usd": 1.55,
+      "stressed_loss_usd": 16.38,
+      "post_joint_stop_balance": 4796.45,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.007 (z*=+0.03 15m), VR(4)=0.822 (z*=-0.71 1H)",
+        "OU Equilibrium theta=2313.85 (Entry 2320.50 > theta: favorable downward drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.34,
+        "shadow_point_p_tp_given_fill": 0.58
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 23.0,
+        "sl_hit_nominal_usd": -11.5,
+        "sl_hit_stressed_usd": -16.38,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "AUTO_PULL_IF_4_FILLED_OR_CANCEL_AT_TTL"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 1.55,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.85
+      },
+      "wait_cost_usd": 0.15,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 47338.2,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.85,
+      "evidence_ids": [
+        "MT5_TICKET_19330613",
+        "HYPERLIQUID_L3_0xab5e_2333.60_10.51M_1136.7s",
+        "PARQUET_10_WHALE_BYBIT_2321.03_4.52M_335s",
+        "PARQUET_21_TRADFYS_DERIBIT_MAXPAIN_2300"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 2303.43 < EMA13 2306.37 < EMA34 2309.69 < EMA89 2312.56 < EMA144 2313.48 < EMA233 2313.97)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 2315.99,
+        "gp_0650": 2317.01,
+        "ote_0702": 2318.65,
+        "invalidation_shelf_0786": 2321.32,
+        "entry_status": "STAGED_AT_0.755_OTE_TO_0.786_SHELF_WITH_SL_2343.50_BEHIND_MON_H_2339.00"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_MID_2314.65_SL_ABOVE_MON_H_2339.00",
+        "session_extreme_sweep": "ASIAN_L_2296.40_TESTED_REBOUNDING_TOWARD_D_POC_2309.29",
+        "macro_shelf_relation": "INSIDE_CWH_2348.00_CWL_2288.30_TARGETING_PWL_2275.30",
+        "value_area_status": "ENTRY_AT_D_VAH_2321.47_AND_PD_POC_2319.30"
+      },
+      "rejection_reasons": [
+        "ALREADY_STAGED_AS_PENDING_TICKET_19330613_KEEP_WORKING",
+        "NEW_ADMISSION_FROZEN_BY_4_OF_4_JOINT_SLOTS_AND_UNCALIBRATED_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_SOL_SHORT_02_TICKET_19343853",
+      "symbol": "SOLUSD.p",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 07:15:53.915 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:53.915 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:14:49.263 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 07:15:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 119.74,
+      "evidence_age_at_cutoff_seconds": 55.09,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 100.38,
+      "stop": 100.94,
+      "target": 99.2,
+      "volume": 0.2,
+      "broker_risk_usd": 11.2,
+      "broker_reward_usd": 23.6,
+      "rr": 2.11,
+      "spread_cost_usd": 4.4,
+      "stressed_loss_usd": 16.0,
+      "post_joint_stop_balance": 4796.45,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.032 (z*=+0.14 15m), VR(4)=0.765 (z*=-1.22 1H), VR(4)=0.628 (z*=-1.20 4H)",
+        "OU Equilibrium theta=100.2690 (Entry 100.38 > theta: favorable downward drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.41,
+        "shadow_point_p_tp_given_fill": 0.56
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 23.6,
+        "sl_hit_nominal_usd": -11.2,
+        "sl_hit_stressed_usd": -16.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "AUTO_PULL_IF_4_FILLED_OR_CANCEL_AT_TTL"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 4.4,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.9
+      },
+      "wait_cost_usd": 0.18,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 98773.9,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.9,
+      "evidence_ids": [
+        "MT5_TICKET_19343853",
+        "HYPERLIQUID_L3_0xeac8_101.01_8.58M_1273.7s",
+        "HYPERLIQUID_L3_0xeac8_100.27_4.58M_1273.7s",
+        "PARQUET_21_TRADFYS_SOL_ABSORPTION_100.4375"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 99.55 < EMA13 99.73 < EMA34 100.01 < EMA89 100.37 < EMA144 100.51 < EMA233 100.61)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 100.19,
+        "gp_0650": 100.25,
+        "ote_0702": 100.34,
+        "invalidation_shelf_0786": 100.49,
+        "entry_status": "STAGED_AT_0.702_OTE_AND_EMA89_100.37_WITH_SL_100.94_ABOVE_ASIAN_H_100.87"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_MID_101.01_AND_MON_L_99.57_RETEST",
+        "session_extreme_sweep": "SWEPT_MON_L_99.57_TO_ASIAN_L_99.09_PULLBACK_TO_PD_VAL_100.30",
+        "macro_shelf_relation": "INSIDE_CWH_102.46_CWL_99.09",
+        "value_area_status": "ENTRY_AT_D_VAL_100.17_TO_PD_VAL_100.30_REJECTION_SHELF"
+      },
+      "rejection_reasons": [
+        "ALREADY_STAGED_AS_PENDING_TICKET_19343853_KEEP_WORKING",
+        "NEW_ADMISSION_FROZEN_BY_4_OF_4_JOINT_SLOTS_AND_UNCALIBRATED_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_XAU_RESERVE_SHORT_03",
+      "symbol": "XAUUSD.pi",
+      "native_market": "COMMODITIES_METALS_23_5",
+      "clock_status": "OPEN_LONDON_SESSION",
+      "quote_timestamp": "2026-10-27 07:15:55.637 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:55.637 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:14:55.856 UTC",
+        "auction_structure_utc": "2026-10-27 07:25:10.000 UTC"
+      },
+      "evidence_max_age_seconds": 113.14,
+      "evidence_age_at_cutoff_seconds": 53.36,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 4017.1,
+      "stop": 4029.1,
+      "target": 3991.8,
+      "volume": 0.01,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 25.3,
+      "rr": 2.11,
+      "spread_cost_usd": 0.09,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4779.45,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.044 (z*=+0.18 15m), VR(4)=0.492 (z*=-1.94 1H sub-diffusive mean reversion)",
+        "OU Equilibrium theta=4012.89 (Entry 4017.10 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.46,
+        "shadow_point_p_tp_given_fill": 0.61
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 25.3,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SLOT_FREES_AND_HARD_GATES_PASS"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.09,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.45
+      },
+      "wait_cost_usd": 0.05,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 4434.88,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.45,
+      "evidence_ids": [
+        "MT5_XAUUSD_SPREAD_0.22BPS",
+        "PARQUET_11_TECH_XAU_STRONG_BEARISH_RIBBON",
+        "HYPERLIQUID_L3_0x31de_4023.10_732K_4035.30_1.03M_4073.30_626K_1670s"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 4003.32 < EMA13 4007.35 < EMA34 4010.81 < EMA89 4012.75 < EMA144 4013.15 < EMA233 4013.35)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 4014.8,
+        "gp_0650": 4015.7,
+        "ote_0702": 4017.17,
+        "invalidation_shelf_0786": 4019.54,
+        "entry_status": "EXACT_0.702_OTE_4017.10_WITH_SL_4029.10_ABOVE_0.786_SHELF_AND_ASIAN_H_4025.58"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_4009.44_SL_PROTECTED_BY_MON_H_4030.02",
+        "session_extreme_sweep": "FADING_RETRACE_TOWARD_D_POC_4018.08_AND_PD_VAH_4016.50",
+        "macro_shelf_relation": "INSIDE_CWH_4030.02_CWL_3978.16_TARGETING_MON_L_3988.86_FRONT_RUN_AT_3991.80",
+        "value_area_status": "CONFLUENT_WITH_PD_VAH_4016.50_AND_D_POC_4018.08"
+      },
+      "rejection_reasons": [
+        "HOLD_PENDING_SLOT_RELEASE_4_OF_4_SLOTS_USED",
+        "SOLVENCY_HEADROOM_DEFICIT_MINUS_6.17_USD_ENVELOPE_MINUS_0.555_USD_CANONICAL",
+        "L3_WHALE_WALL_AT_4023.10_AND_4035.30_PERSISTED_163.1S_NEEDS_16.9S_TO_CLEAR_180S_INVARIANT",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_EURUSD_RESERVE_SHORT_04",
+      "symbol": "EURUSD.pi",
+      "native_market": "FOREX_INTERBANK_24_5",
+      "clock_status": "OPEN_LONDON_SESSION",
+      "quote_timestamp": "2026-10-27 07:15:55.936 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:55.936 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:14:59.006 UTC"
+      },
+      "evidence_max_age_seconds": 109.99,
+      "evidence_age_at_cutoff_seconds": 53.06,
+      "row_causality_status": "CAUSAL_PRE_CUTOFF_VERIFIED",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 1.1176,
+      "stop": 1.1188,
+      "target": 1.115,
+      "volume": 0.1,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 26.0,
+      "rr": 2.17,
+      "spread_cost_usd": 0.1,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4779.45,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=0.959 (z*=-0.19 15m), ER(48)=0.300 (>0.20 trend-qualified), t_drift=-1.99",
+        "OU Equilibrium theta=1.1164 (Entry 1.1176 > theta: favorable downward drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.42,
+        "shadow_point_p_tp_given_fill": 0.59
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 26.0,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_WHEN_SLOT_FREES_AND_HARD_GATES_PASS"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 0.1,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.35
+      },
+      "wait_cost_usd": 0.08,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 11265.4,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.35,
+      "evidence_ids": [
+        "MT5_EURUSD_SPREAD_0.09BPS",
+        "PARQUET_11_TECH_EURUSD_STRONG_BEARISH_RIBBON",
+        "HYPERLIQUID_L3_0xfc66_1.1296_252.6K_422.6s"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "STRICT_BEARISH_HIERARCHY_15M (EMA5 1.1164 < EMA13 1.1167 < EMA34 1.1170 < EMA89 1.1180 < EMA144 1.1188 < EMA233 1.1195)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 1.1175,
+        "gp_0650": 1.1175,
+        "ote_0702": 1.1177,
+        "invalidation_shelf_0786": 1.1178,
+        "entry_status": "EXACT_0.650_TO_0.702_GOLDEN_ZONE_1.1176_WITH_SL_1.1188_AT_EMA144_ABOVE_0.786_SHELF"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "BELOW_MON_L_1.1172_BREAKDOWN_RETEST_AT_1.1176",
+        "session_extreme_sweep": "SWEPT_ASIAN_L_1.11607_RETESTING_ASIAN_H_1.11769_AND_D_POC_1.1178",
+        "macro_shelf_relation": "BELOW_PD_VAL_1.1191_AND_WK_VWAP_1.1193",
+        "value_area_status": "ENTRY_AT_D_POC_1.1178_REJECTION_TARGETING_1.1150_STOP_CLUSTER"
+      },
+      "rejection_reasons": [
+        "HOLD_PENDING_SLOT_RELEASE_4_OF_4_SLOTS_USED",
+        "SOLVENCY_HEADROOM_DEFICIT_MINUS_6.17_USD_ENVELOPE_MINUS_0.555_USD_CANONICAL",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_BNB_SHORT_FLIP_05",
+      "symbol": "BNBUSD.p",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 07:15:35.556 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:35.556 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:14:49.220 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 07:15:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 119.78,
+      "evidence_age_at_cutoff_seconds": 73.44,
+      "row_causality_status": "WARN_TICK_AGE_19.51S_GT_15S_AT_0715Z_FRESH_AT_0731Z",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 740.85,
+      "stop": 744.85,
+      "target": 732.0,
+      "volume": 3.0,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 26.55,
+      "rr": 2.21,
+      "spread_cost_usd": 1.5,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4794.95,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=0.827 (z*=-0.72 15m), ER(48)=0.234 (>0.20), t_drift=-0.44",
+        "OU Equilibrium theta=739.16 (Entry 740.85 > theta: favorable downward mean-reverting drift)",
+        "Clopper-Pearson 95% LCB=0.4197 (11/17 wins, n_min=100)"
+      ],
+      "calibration_diagnostics": {
+        "closed_trades_n": 17,
+        "closed_trades_wins": 11,
+        "empirical_win_rate": 0.6471,
+        "clopper_pearson_95_lcb": 0.4197,
+        "minimum_required_sample": 100,
+        "shadow_point_p_fill": 0.31,
+        "shadow_point_p_tp_given_fill": 0.57
+      },
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "p_win_95pct_one_sided_lower": 0.4197,
+        "p_win_95pct_two_sided": [
+          0.383,
+          0.858
+        ]
+      },
+      "outcome_model_and_timeout_branches": {
+        "tp_hit_net_usd": 26.55,
+        "sl_hit_nominal_usd": -12.0,
+        "sl_hit_stressed_usd": -17.0,
+        "timeout_ttl_minutes": 240,
+        "timeout_branch": "STAGE_ONLY_AFTER_TICKET_19329907_EXITS_AT_740.00_TP"
+      },
+      "cost_ledger_and_conditioning": {
+        "entry_maker_rebate_or_spread_usd": 0.0,
+        "exit_stop_spread_usd": 1.5,
+        "fee_and_slippage_reserve_usd": 2.0,
+        "adverse_selection_markout_5m_usd": 0.75
+      },
+      "wait_cost_usd": 0.14,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": 82684.9,
+      "utility": null,
+      "uncertainty_method": "EXACT_CLOPPER_PEARSON_AND_STATIONARY_BLOCK_BOOTSTRAP_SHADOW",
+      "adverse_selection_usd": 0.75,
+      "evidence_ids": [
+        "HYPERLIQUID_L3_0x02fb_739.26_1.38M_2163.5s",
+        "PARQUET_10_WHALE_BINANCE_750.00_1.03M_3D",
+        "PARQUET_21_TRADFYS_BNB_99P_BUBBLE_744.185_745.655"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "BEARISH_PULLBACK_15M (EMA5 734.75 < EMA13 736.05 < EMA34 738.09 < EMA89 739.31 < EMA144 739.40)",
+      "fib_golden_zone_confluence": {
+        "gp_0618": 740.45,
+        "gp_0650": 740.84,
+        "ote_0702": 741.45,
+        "invalidation_shelf_0786": 742.45,
+        "entry_status": "EXACT_0.650_GOLDEN_POCKET_740.85_ABOVE_LONG_TP_740.00_WITH_SL_744.85_BEHIND_0.786_SHELF_742.45"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "ABOVE_MON_MID_738.45_PROTECTED_BY_MON_H_746.00_AND_ASIAN_H_745.00",
+        "session_extreme_sweep": "RETRACE_INTO_D_VAH_741.47_AND_PD_VAH_739.90",
+        "macro_shelf_relation": "INSIDE_CWH_746.00_CWL_730.90",
+        "value_area_status": "ENTRY_AT_D_VAH_741.47_SUPPLY_SHELF_TARGETING_732.00_FRONT_RUNNING_731.82_L3_BUY_WALL"
+      },
+      "rejection_reasons": [
+        "OPPOSING_LONG_TICKET_19329907_CURRENTLY_ACTIVE_ON_BNBUSD.p",
+        "HOLD_UNTIL_TICKET_19329907_CLOSES_AND_SLOT_FREES",
+        "TICK_AGE_19.51S_GT_15S_AT_CUTOFF_SNAPSHOT",
+        "PROBABILITY_CALIBRATION_SAMPLE_N_17_LT_100"
+      ]
+    },
+    {
+      "candidate_id": "CAND_XRP_RESERVE_LONG_06",
+      "symbol": "XRPUSD.pi",
+      "native_market": "CRYPTO_PERP_24_7",
+      "clock_status": "OPEN_24_7",
+      "quote_timestamp": "2026-10-27 07:15:29.436 UTC",
+      "evidence_availability_timestamps": {
+        "mt5_tick_utc": "2026-10-27 07:15:29.436 UTC",
+        "snapshot_utc": "2026-10-27 07:15:56.343 UTC",
+        "hyperliquid_l3_utc": "2026-10-27 07:15:21.830 UTC",
+        "tradfye_orderflow_utc": "2026-10-27 07:15:00.000 UTC"
+      },
+      "evidence_max_age_seconds": 109.0,
+      "evidence_age_at_cutoff_seconds": 79.56,
+      "row_causality_status": "FAIL_TICK_AGE_25.69S_GT_15S_AT_0715Z_AND_SPREAD_30.79BPS_AT_0725Z",
+      "authorization_expiry_utc": "2026-10-27 07:38:39 UTC",
+      "side": "BUY",
+      "order_type": "BUY_LIMIT",
+      "entry": 1.2905,
+      "stop": 1.2785,
+      "target": 1.3145,
+      "volume": 1.0,
+      "broker_risk_usd": 12.0,
+      "broker_reward_usd": 24.0,
+      "rr": 2.0,
+      "spread_cost_usd": 3.0,
+      "stressed_loss_usd": 17.0,
+      "post_joint_stop_balance": 4779.45,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_FAIL_CLOSED_N_17_LT_100",
+      "estimator_references": [
+        "Lo-MacKinlay VR(4)=1.113 (z*=+0.54 15m), VR(4)=0.671 (z*=-1.66 1H sub-diffusive)",
+        "OU Equilibrium theta=1.2925 (Entry 1.2905 < theta: favorable upward 

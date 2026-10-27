@@ -62458,5 +62458,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "ADA",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 6648.18,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.2044,
+    "wallet_address": "0x6ba889db7f923622d3548f621ecc2054b80c1817",
+    "asset_slug": "ADA",
+    "raw_text": "#ADA Whale SELL: 6.65K USD at 0.2044 USD [API]",
+    "msg_id": "HL_TRADE_ADA_107109215708900",
+    "timestamp_epoch": 1793087744,
+    "time_label": "07:55",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
