@@ -64943,3 +64943,26 @@ User Directives Executed:
   3. Action Ratified: `PREVAIL_LIMITS_STAND_ASIDE_MARKET`.
   4. Updated `Data/cycle_state.json` to mark Cycle 367 COMPLETED.
   5. Armed 1,200s separation timer (`task-144869`) for autonomous Cycle 368 trigger at 10:22:43 IST (04:52:43 UTC).
+
+## Turn: 2026-10-27 10:25:20 IST - Cycle 368 Dispatch & BNB Position Fill Execution
+- **Trade Execution Event**:
+  - Ticket #19329907 BUY_LIMIT 3.00 lots @ 736.25 on `BNBUSD.p` WAS FILLED by Blueberry Markets MT5 at 736.25!
+  - Active Running Position:
+    * Symbol: `BNBUSD.p`
+    * Direction: BUY (3.00 lots)
+    * Open Price: 736.25 USD
+    * Stop Loss: 732.65 USD (R0 = 3.60 USD, protected behind -2SD VWAP / pd_VAL)
+    * Take Profit: 746.80 USD (Reward = 10.55 USD, 2.93R)
+    * Early-BE Threshold (+0.80R0): 739.13 USD (SL to Entry + 0.15R0 = 736.79 USD)
+    * Profit Lock Threshold (+1.50R0): 741.65 USD (SL to Entry + 0.80R0 = 739.13 USD)
+- **Account State**:
+  - Balance: 4,846.32 USD | Floating Equity: 4,844.37 USD (floating PnL: -1.95 USD spread friction).
+  - Hard Floor Cushion above 4,775.00 USD: +42.695 USD (post-stress worst-case).
+  - Operating Buffer Headroom above 4,795.00 USD: +20.695 USD.
+  - Active Pending Order: Ticket #19330613 `ETHUSD.pi` SELL_LIMIT 0.50 lot @ 2333.50.
+  - Capacity: Exactly 2 tickets (1 filled + 1 pending = 100% utilized). STAND ASIDE on new risk.
+- **Cycle 368 Status**:
+  - Dispatched Cycle 368 Prompt to Arena.ai and Z.ai.
+  - Both models actively generating.
+  - Armed one-shot reactive completion waiter task-144914 (`dual_completion_daemon.py --timeout 1200`, `IsDaemon=false`).
+  - Zero timers during generation; awaiting reactive completion wakeup.

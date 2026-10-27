@@ -10,8 +10,8 @@ DIRECT REPO LINKS:
 - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
 - Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
 
-LOCAL TIME / SNAPSHOT AS-OF: 2026-10-27 03:52:45 UTC (Snapshot Gen: unknown)
-ACCOUNT CONTEXT: Balance: 4846.32 USD | Equity: 4846.32 USD | Hard Floor: 4,775.00 USD | Cushion: +246.32 USD | Open: 0 | Pending: 2
+LOCAL TIME / SNAPSHOT AS-OF: 2026-10-27 04:54:31 UTC (Snapshot Gen: unknown)
+ACCOUNT CONTEXT: Balance: 4845.27 USD | Equity: 4845.27 USD | Hard Floor: 4,775.00 USD | Cushion: +245.27 USD | Open: 0 | Pending: 1
 
 ================================================================================
 STEP 0: MANDATORY MODEL IDENTITY & ARCHITECTURE FINGERPRINT (VERBATIM PROBE)
