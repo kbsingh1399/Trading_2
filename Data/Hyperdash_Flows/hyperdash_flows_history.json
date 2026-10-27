@@ -81318,5 +81318,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "DOT",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 6115.71,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.9882,
+    "wallet_address": "0xc3a5b2551dbc5b477207fdd0f93150a6fe965b7c",
+    "asset_slug": "DOT",
+    "raw_text": "#DOT Whale BUY: 6.12K USD at 0.9882 USD [API]",
+    "msg_id": "HL_TRADE_DOT_955515100305651",
+    "timestamp_epoch": 1793112186,
+    "time_label": "14:43",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
