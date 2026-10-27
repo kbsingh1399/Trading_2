@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-27 15:19:04 UTC",
+  "timestamp_utc": "2026-10-27 15:21:30 UTC",
   "balance_usd": 4826.99,
-  "equity_usd": 4837.43,
-  "free_margin_usd": 4304.46,
+  "equity_usd": 4838.39,
+  "free_margin_usd": 4305.42,
   "max_filled_positions": 4,
   "filled_positions_count": 1,
   "filled_slots_free": 3,
-  "resting_limits_count": 1,
+  "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,12 @@
       "type": "SELL",
       "volume": 0.12,
       "price_open": 1.33242,
-      "price_current": 1.33155,
-      "sl": 1.33231,
+      "price_current": 1.33147,
+      "sl": 1.33181,
       "tp": 1.33051,
-      "gain_r": 1.145,
-      "ratchet_stage": 1,
-      "profit_usd": 10.44
+      "gain_r": 1.25,
+      "ratchet_stage": 2,
+      "profit_usd": 11.4
     }
   ],
   "resting_orders": [
@@ -34,6 +34,15 @@
       "price": 157.85,
       "sl": 158.024,
       "tp": 157.45
+    },
+    {
+      "ticket": 19378313,
+      "symbol": "UKBRENT.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.2,
+      "price": 115.175,
+      "sl": 115.668,
+      "tp": 113.943
     }
   ]
 }
