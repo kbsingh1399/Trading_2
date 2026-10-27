@@ -1,12 +1,12 @@
 {
-  "last_updated_utc": "2026-10-27T01:58:50Z",
+  "last_updated_utc": "2026-10-27T01:59:57Z",
   "streams": {
     "telemetry": {
-      "total_snapshots": 256,
+      "total_snapshots": 258,
       "first_recorded_utc": "2026-10-26T07:07:44Z",
-      "latest_recorded_utc": "2026-10-27T01:58:50Z",
-      "latest_epoch": 1793066330.634714,
-      "latest_file": "Data\\history\\telemetry\\2026-10-27\\telemetry_20261027_015850.json.gz",
+      "latest_recorded_utc": "2026-10-27T01:59:57Z",
+      "latest_epoch": 1793066397.319738,
+      "latest_file": "Data\\history\\telemetry\\2026-10-27\\telemetry_20261027_015957.json.gz",
       "dates_present": [
         "2026-10-26",
         "2026-10-27"
@@ -2059,15 +2059,31 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 24
+        },
+        {
+          "utc": "2026-10-27T01:59:57Z",
+          "epoch": 1793066397.002723,
+          "file": "Data\\history\\telemetry\\2026-10-27\\telemetry_20261027_015957.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
+        },
+        {
+          "utc": "2026-10-27T01:59:57Z",
+          "epoch": 1793066397.319738,
+          "file": "Data\\history\\telemetry\\2026-10-27\\telemetry_20261027_015957.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
         }
       ]
     },
     "account_equity": {
-      "total_snapshots": 128,
+      "total_snapshots": 129,
       "first_recorded_utc": "2026-10-26T07:07:45Z",
-      "latest_recorded_utc": "2026-10-27T01:58:50Z",
-      "latest_epoch": 1793066330.920493,
-      "latest_file": "Data\\history\\account_equity\\2026-10-27\\account_equity_20261027_015850.json.gz",
+      "latest_recorded_utc": "2026-10-27T01:59:57Z",
+      "latest_epoch": 1793066397.507079,
+      "latest_file": "Data\\history\\account_equity\\2026-10-27\\account_equity_20261027_015957.json.gz",
       "dates_present": [
         "2026-10-26",
         "2026-10-27"
@@ -3093,6 +3109,14 @@
           "utc": "2026-10-27T01:58:50Z",
           "epoch": 1793066330.920493,
           "file": "Data\\history\\account_equity\\2026-10-27\\account_equity_20261027_015850.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 1
+        },
+        {
+          "utc": "2026-10-27T01:59:57Z",
+          "epoch": 1793066397.507079,
+          "file": "Data\\history\\account_equity\\2026-10-27\\account_equity_20261027_015957.json.gz",
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 1

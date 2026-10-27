@@ -49518,5 +49518,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "LINK",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 5465.3,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 11.32,
+    "wallet_address": "0xf508c2a6fb36f8e8323c60bd175d8ed1a3513a87",
+    "asset_slug": "LINK",
+    "raw_text": "#LINK Whale BUY: 5.47K USD at 11.3200 USD [API]",
+    "msg_id": "HL_TRADE_LINK_197917879777076",
+    "timestamp_epoch": 1793066327,
+    "time_label": "01:58",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
