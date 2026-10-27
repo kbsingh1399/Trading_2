@@ -59,3 +59,5 @@
     - Model: Model 2 Trend Pullback
     - Entry: 735.35 USD | SL: 732.00 USD | TP1: 746.80 USD (R:R = 3.42)
     - Lot Size: 2.50 lots | Nominal Risk: 10.13 USD | Stressed Risk: 11.64 USD
+| **CP-9141** | 2026-10-27 11:02 IST | Arena.ai | GPT Astra | `docs/prompts/CYCLE_369_COUNCIL_PROMPT.md` (Cycle 369 Canonical Tri-Council Synthesis) | 6,915 | `b60616a4...` | 🚀 Dispatched | In Progress | - |
+| **CP-9143** | 2026-10-27 11:02 IST | Z.ai | GLM-5.3-Flash | `docs/prompts/CYCLE_369_COUNCIL_PROMPT.md` (Cycle 369 Canonical Tri-Council Synthesis) | 6,915 | `b60616a4...` | 🚀 Dispatched | In Progress | - |

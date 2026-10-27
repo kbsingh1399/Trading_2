@@ -1,11 +1,11 @@
 {
-  "current_cycle_id": "Cycle 368",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-27 04:54:45 UTC",
-  "cycle_completed_utc": "2026-10-27 05:07:00 UTC",
-  "next_cycle_scheduled_utc": "2026-10-27 05:27:00 UTC",
+  "current_cycle_id": "Cycle 369",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-27 05:31:00 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
-  "consensus_action": "HOLD_BNB_POSITION_EVALUATE_ETH_MODIFY_STAGE_DYNAMIC_LIMITS",
+  "consensus_action": "HOLD_BNB_MONITOR_RATCHET_STAGE_RESTING_LIMITS_EVALUATE_COUNCIL",
   "active_positions": [
     {
       "ticket": 19329907,
@@ -14,7 +14,7 @@
       "volume": 3.0,
       "price_open": 736.25,
       "sl": 732.65,
-      "tp": 746.80,
+      "tp": 740.00,
       "r0_usd": 3.60,
       "early_be_trigger_usd": 739.13,
       "profit_lock_trigger_usd": 741.65,
@@ -28,35 +28,56 @@
       "symbol": "ETHUSD.pi",
       "type": "SELL_LIMIT",
       "volume": 0.5,
-      "price": 2333.50,
-      "sl": 2351.30,
-      "tp": 2291.00,
-      "contingent_stress_usd": 13.125
+      "price": 2320.50,
+      "sl": 2343.50,
+      "tp": 2274.50,
+      "contingent_stress_usd": 16.38
+    },
+    {
+      "ticket": 19343851,
+      "symbol": "BTCUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.04,
+      "price": 79838.00,
+      "sl": 80098.00,
+      "tp": 79318.00,
+      "contingent_stress_usd": 15.00
+    },
+    {
+      "ticket": 19343853,
+      "symbol": "SOLUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.20,
+      "price": 100.38,
+      "sl": 100.94,
+      "tp": 99.20,
+      "contingent_stress_usd": 16.00
     }
   ],
   "solvency_metrics": {
     "balance_usd": 4846.32,
-    "equity_usd": 4845.27,
+    "equity_usd": 4843.77,
     "margin_usd": 1104.38,
-    "post_stress_equity_usd": 4817.695,
-    "hard_floor_cushion_usd": 42.695,
-    "operating_buffer_headroom_usd": 20.695
+    "free_margin_usd": 3739.39,
+    "post_stress_equity_usd": 4783.44,
+    "hard_floor_cushion_usd": 68.77,
+    "operating_buffer_headroom_usd": 48.77
   },
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
-      "status": "COMPLETED",
-      "details": "Concluded Cycle 368 synthesis. Validated dynamic capacity model: 4 filled positions + N resting limits."
+      "status": "IN_PROGRESS",
+      "details": "Mode 2 4-Quant Swarm supervising 1/4 filled positions and 3 resting limit orders."
     },
     "arena_ai": {
       "name": "Arena.ai Frontier Council (GPT-5.4 Astra)",
-      "status": "COMPLETED",
-      "details": "35,248 chars harvested into docs/trade_plans/ARENA_LATEST_RAW.md. Recommends modifying ETH short to 2,320.50 and staging Gold/BTC/SOL limits."
+      "status": "IN_PROGRESS",
+      "details": "Cycle 369 prompt injected via ProseMirror. Generating deep quantitative assessment."
     },
     "z_ai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "details": "12,435 chars harvested into docs/trade_plans/ZAI_LATEST_RAW.md. Recommends sweep-safe stop management on BNB and cancelling/modifying dislocated ETH limit."
+      "status": "IN_PROGRESS",
+      "details": "Cycle 369 prompt injected. Actively generating response."
     }
   }
 }

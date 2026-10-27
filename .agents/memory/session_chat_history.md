@@ -64982,3 +64982,11 @@ User Directives Executed:
   * Order #19343851 (BTC): Staged SELL_LIMIT 0.04 lots @ 79,838.00 USD (SL 80,098.00 USD, TP 79,318.00 USD).
   * Order #19343853 (SOL): Staged SELL_LIMIT 0.20 lots @ 100.38 USD (SL 100.94 USD, TP 99.20 USD).
 - **Desk Capacity**: 1/4 filled positions + 3 staged resting limits.
+
+### [Cycle 369 Autonomous Wakeup & Council Dispatch] - 2026-10-27 05:34:15 UTC
+- **Wakeup**: Timer task-145016 triggered after 20-minute rest interval.
+- **Parquet Data Lake**: 36/36 feeds verified 100% fresh (0.1m - 0.3m). Root cause in git daemon fixed.
+- **MT5 State**: Balance 4,846.32 USD, Equity 4,843.77 USD. 1 filled position (BNB #19329907) + 3 resting limits (ETH, BTC, SOL).
+- **Dynamic Capacity**: 1/4 filled positions (3 open slots free). Dynamic position supervisor active (task-145140).
+- **Council Dispatch**: docs/prompts/CYCLE_369_COUNCIL_PROMPT.md injected into Arena.ai and Z.ai.
+- **Completion Waiter**: Armed reactive completion waiter task-145236.
