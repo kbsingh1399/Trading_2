@@ -108258,5 +108258,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "NEAR",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 5862.4,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 4.6479,
+    "wallet_address": "0x8c26d06dbaabd92a6bb83bf0d16c804beffaa17e",
+    "asset_slug": "NEAR",
+    "raw_text": "#NEAR Whale SELL: 5.86K USD at 4.6479 USD [API]",
+    "msg_id": "HL_TRADE_NEAR_550551780408316",
+    "timestamp_epoch": 1793127986,
+    "time_label": "19:06",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
