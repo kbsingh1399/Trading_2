@@ -66638,5 +66638,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "SOL",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 27713.27,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 100.16,
+    "wallet_address": "0x288304353665e83329e08ab1a664a4a1d48e6898",
+    "asset_slug": "SOL",
+    "raw_text": "#SOL Whale BUY: 27.71K USD at 100.1600 USD [API]",
+    "msg_id": "HL_TRADE_SOL_611513010853457",
+    "timestamp_epoch": 1793098818,
+    "time_label": "11:00",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
