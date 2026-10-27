@@ -1,77 +1,46 @@
 {
-  "current_cycle_id": "Cycle 371",
-  "cycle_status": "IN_PROGRESS",
-  "cycle_started_utc": "2026-10-27 09:32:30 UTC",
-  "cycle_completed_utc": null,
-  "next_cycle_scheduled_utc": "2026-10-27 09:28:22 UTC",
+  "current_cycle_id": "Cycle 372",
+  "cycle_status": "COMPLETED",
+  "cycle_started_utc": "2026-10-27 11:26:09 UTC",
+  "cycle_completed_utc": "2026-10-27 11:44:27 UTC",
+  "next_cycle_scheduled_utc": "2026-10-27 12:04:27 UTC",
   "rest_interval_seconds": 1200,
-  "consensus_action": "HOLD_EXISTING_INVENTORY_MONITOR_RATCHETS_STAND_ASIDE_NEW_RISK",
-  "active_positions": [
-    {
-      "ticket": 19329907,
-      "symbol": "BNBUSD.p",
-      "type": "BUY",
-      "volume": 3.0,
-      "price_open": 736.25,
-      "price_current": 735.0,
-      "sl": 732.65,
-      "tp": 740.0,
-      "profit_usd": -3.75
-    }
-  ],
-  "active_tickets": [
-    {
-      "ticket": 19330613,
-      "symbol": "ETHUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.5,
-      "price": 2320.5,
-      "sl": 2343.5,
-      "tp": 2274.5
-    },
-    {
-      "ticket": 19343853,
-      "symbol": "SOLUSD.p",
-      "type": "SELL_LIMIT",
-      "volume": 0.2,
-      "price": 100.38,
-      "sl": 100.94,
-      "tp": 99.2
-    }
-  ],
+  "consensus_action": "PRUNED_STALE_PENDING_ORDERS_STAND_BY_CANDIDATE_RADAR",
+  "active_positions": [],
+  "active_tickets": [],
   "solvency_metrics": {
-    "balance_usd": 4847.88,
-    "equity_usd": 4844.13,
-    "margin_usd": 1104.38,
-    "free_margin_usd": 3739.75,
-    "hard_floor_cushion_usd": 69.13,
-    "operating_buffer_headroom_usd": 49.13,
-    "kernel_cushion_usd": 49.13,
-    "realized_headroom_usd": 4.02
+    "balance_usd": 4837.08,
+    "equity_usd": 4837.08,
+    "margin_usd": 0.0,
+    "free_margin_usd": 4837.08,
+    "hard_floor_cushion_usd": 62.08,
+    "operating_buffer_headroom_usd": 42.08,
+    "kernel_cushion_usd": 42.08,
+    "realized_headroom_usd": 40.08
   },
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
       "status": "COMPLETED",
-      "details": "Mode 2 In-Context 4-Quant Swarm completed 11-step sprint for Cycle 370. Solvency verified, existing inventory ratified.",
-      "completed_at_utc": "2026-10-27 08:49:15 UTC"
+      "details": "Mode 2 In-Context 4-Quant Swarm completed 11-step sprint for Cycle 372. Solvency verified, stale limits canceled, multi-asset radar active.",
+      "completed_at_utc": "2026-10-27 11:26:09 UTC"
     },
     "arena_ai": {
       "name": "Arena.ai Frontier Council (GPT-5.4 Astra)",
       "status": "COMPLETED",
-      "details": "Cycle 369 prompt injected via ProseMirror. Generating deep quantitative assessment.",
-      "completed_at_utc": "2026-10-27 08:47:27 UTC"
+      "details": "Cycle 372 ruling completed (47,276 chars). Harvested to docs/trade_plans/ARENA_LATEST_RAW.md.",
+      "completed_at_utc": "2026-10-27 11:44:27 UTC"
     },
     "z_ai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "details": "Cycle 369 prompt injected. Actively generating response.",
-      "completed_at_utc": null
+      "status": "COMPLETED",
+      "details": "Cycle 372 ruling completed (12,539 chars). Harvested to docs/trade_plans/ZAI_LATEST_RAW.md.",
+      "completed_at_utc": "2026-10-27 11:44:27 UTC"
     },
     "web2api": {
       "name": "Gemini Web2API Council (Gemini 3.8 Flash)",
       "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 07:30:53 UTC",
+      "completed_at_utc": "2026-10-27 11:27:19 UTC",
       "raw_file": "docs/trade_plans/GEMINI_WEB2API_LATEST_RAW.md",
       "model": "Gemini 3.8 Flash"
     }
