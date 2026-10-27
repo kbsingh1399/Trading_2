@@ -1,14 +1,14 @@
 # 360° Data Lake Dossier: USDCAD
-**Generated**: 2026-10-27 23:35:35 IST (2026-10-27 18:05:35 UTC)
-**Aliases Scanned**: `USDCAD, USDCADUSDT, USDCADUSD, USDCADUSD.PI, USDCADUSD.P`
-**Coverage**: 3 feeds with direct asset data | 4 global macro feeds | 42 total feeds scanned
+**Generated**: 2026-10-28 00:14:48 IST (2026-10-27 18:44:48 UTC)
+**Aliases Scanned**: `USDCAD, USDCADUSD, USDCADUSD.P, USDCADUSD.PI, USDCADUSDT`
+**Coverage**: 2 feeds with direct asset data | 4 global macro feeds | 42 total feeds scanned
 
 ---
 
 ## 1. Executive Pillar Coverage Ledger
 | Strategic Pillar | Active Feeds | Coverage Status | Feeds Included |
 |---|---|---|---|
-| **Pillar 1: Broker Telemetry & Solvency** | 2/2 | `FULL / PASS` | 00_MT5_Account_Telemetry, 23_Master_Pipeline_Telemetry |
+| **Pillar 1: Broker Telemetry & Solvency** | 1/2 | `FULL / PASS` | 23_Master_Pipeline_Telemetry |
 | **Pillar 5: Microstructure, Whales & Footprints** | 0/11 | `ABSENT` |  |
 | **Pillar 6: Technical & Auction Profile** | 3/7 | `FULL / PASS` | 11_Technical, 11_Technical_BTC_Ribbon, 20_Auction_Market_Structure |
 | **Pillar 4: Liquidation & Stops Geometry** | 0/12 | `ABSENT` |  |
@@ -20,10 +20,10 @@
 ## 2. Granular Per-Feed Data Extraction Inventory
 | Feed Name | Rows Found | Pillar | Status | Key Specific Insights Extracted |
 |---|---|---|---|---|
-| `00_MT5_Account_Telemetry` | 1 | Pillar 1 | `DATA_EXTRACTED [PASS]` | Live Account Equity: N/A | Free Margin: N/A |
+| `00_MT5_Account_Telemetry` | 0 | Pillar 1 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `10_Whale_Orders` | 0 | Pillar 5 | `NO_DIRECT_MATCH` | No direct records for asset |
-| `11_Technical` | 1 | Pillar 6 | `DATA_EXTRACTED [PASS]` | VWAP Z: 2.2885302353401684 | RSI: 67.15119389065593 | EMA 89/233 alignment |
-| `11_Technical_BTC_Ribbon` | 100 | Pillar 6 | `MACRO_GLOBAL_CONTEXT` | VWAP Z: 2.2780050437745074 | RSI: 65.77405822941165 | EMA 89/233 alignment |
+| `11_Technical` | 1 | Pillar 6 | `DATA_EXTRACTED [PASS]` | VWAP Z: 2.7823026667151063 | RSI: 73.76777983441892 | EMA 89/233 alignment |
+| `11_Technical_BTC_Ribbon` | 100 | Pillar 6 | `MACRO_GLOBAL_CONTEXT` | VWAP Z: 1.5730724559062275 | RSI: 56.02241289402432 | EMA 89/233 alignment |
 | `12_Hyperdash` | 0 | Pillar 6 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `13_Hyperliquid` | 0 | Pillar 6 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `14_Hyperdash_Liq_Map` | 0 | Pillar 4 | `NO_DIRECT_MATCH` | No direct records for asset |
