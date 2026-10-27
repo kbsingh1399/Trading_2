@@ -1,15 +1,25 @@
 {
-  "timestamp_utc": "2026-10-27 13:11:32 UTC",
+  "timestamp_utc": "2026-10-27 13:13:17 UTC",
   "balance_usd": 4837.08,
   "equity_usd": 4837.08,
   "free_margin_usd": 4837.08,
   "max_filled_positions": 4,
   "filled_positions_count": 0,
   "filled_slots_free": 4,
-  "resting_limits_count": 0,
+  "resting_limits_count": 1,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
   "active_positions": [],
-  "resting_orders": []
+  "resting_orders": [
+    {
+      "ticket": 19367388,
+      "symbol": "XAUUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 4024.95,
+      "sl": 4034.97,
+      "tp": 4002.9
+    }
+  ]
 }

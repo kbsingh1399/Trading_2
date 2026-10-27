@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "dispatch_nonce": "",
-  "observed_at_utc": "2026-10-27 13:05:59 UTC",
+  "observed_at_utc": "2026-10-27 13:12:05 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -10,25 +10,25 @@
     "margin_free": 4837.08
   },
   "candidate": {
-    "symbol": "XAUUSD.pi",
+    "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
     "volume": 0.01,
-    "price": 4024.95,
-    "sl": 4034.97,
-    "tp": 4002.9
+    "price": 80350.0,
+    "sl": 80473.74,
+    "tp": 79604.18
   },
   "broker_tick": {
-    "bid": 4022.96,
-    "ask": 4023.04,
-    "mid": 4023.0,
-    "spread_raw": 0.08,
-    "spread_bps": 0.2,
-    "spread_cost_usd": 0.08,
-    "broker_server_time_raw": 1793117158,
+    "bid": 80110.0,
+    "ask": 80126.0,
+    "mid": 80118.0,
+    "spread_raw": 16.0,
+    "spread_bps": 2.0,
+    "spread_cost_usd": 0.16,
+    "broker_server_time_raw": 1793117524,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-27 13:05:58 UTC",
+    "tick_time_utc": "2026-10-27 13:12:04 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -3.04,
+    "clock_skew_seconds": -3.19,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -38,27 +38,27 @@
     "trade_mode_desc": "FULL",
     "volume_min": 0.01,
     "volume_step": 0.01,
-    "volume_max": 50.0,
+    "volume_max": 100.0,
     "stops_level": 0,
-    "contract_size": 100.0
+    "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -10.02,
-    "profit_at_tp_usd": 22.05,
-    "margin_required_usd": 402.5,
-    "base_nominal_risk_usd": 10.02,
-    "exit_spread_cost_usd": 0.08,
-    "total_nominal_risk_usd": 10.1,
-    "ticket_stress_usd": 14.63,
+    "profit_at_sl_usd": -1.24,
+    "profit_at_tp_usd": 7.46,
+    "margin_required_usd": 401.75,
+    "base_nominal_risk_usd": 1.24,
+    "exit_spread_cost_usd": 0.16,
+    "total_nominal_risk_usd": 1.4,
+    "ticket_stress_usd": 3.75,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 1201.76,
-    "margin_free_post_order": 4434.58
+    "margin_level_post_order": 1204.0,
+    "margin_free_post_order": 4435.33
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "9973f646fdcbc6b15dd013032c2378e84f7c727e7451a400d8caf43b0bd95791"
+  "receipt_sha256": "ca287d402fb6dbb9f963256f0fe66b830be088f497225bb8e5d0570343bb992f"
 }
