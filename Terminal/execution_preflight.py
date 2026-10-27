@@ -82,19 +82,19 @@ def run_preflight(
                 "observed_at_utc": observed_at.isoformat(),
             }
 
-        # Broker server time offset (Blueberry Markets SVG is UTC+3 = 10800s)
+        # Broker server time offset (Blueberry Markets SVG is UTC+3 = 10800s summer / UTC+2 winter)
+        # Fixed canonical broker offset eliminates circular calculation from tick.time
+        BROKER_OFFSET_SECONDS = 3 * 3600.0
         now_utc = datetime.datetime.now(datetime.timezone.utc)
-        offset_hours = round((tick.time - now_utc.timestamp()) / 3600.0)
-        broker_offset_s = offset_hours * 3600.0
-        tick_utc_ts = (tick.time_msc / 1000.0 if hasattr(tick, "time_msc") and tick.time_msc > 0 else float(tick.time)) - broker_offset_s
+        tick_raw_ts = tick.time_msc / 1000.0 if hasattr(tick, "time_msc") and tick.time_msc > 0 else float(tick.time)
+        tick_utc_ts = tick_raw_ts - BROKER_OFFSET_SECONDS
         tick_dt = datetime.datetime.fromtimestamp(tick_utc_ts, datetime.timezone.utc)
 
-        # Enforce strict physical causality: observation MUST succeed broker quotation.
-        # If broker server clock is ahead of client UTC, anchor observation at or 1s after quote:
-        observed_at = max(now_utc, tick_dt + datetime.timedelta(seconds=1))
-        tick_age_s = max(0.0, round((observed_at - tick_dt).total_seconds(), 2))
-        clock_skew_s = round(now_utc.timestamp() - tick_utc_ts, 2)
-        quote_fresh = tick_age_s <= max_tick_age_s
+        observed_at = now_utc
+        clock_skew_s = round((now_utc - tick_dt).total_seconds(), 2)
+        # Tick is fresh if it is within max_tick_age_s and not wildly in the future (skew >= -5.0s tolerance)
+        quote_fresh = (-5.0 <= clock_skew_s <= max_tick_age_s)
+        tick_age_s = max(0.0, clock_skew_s)
 
         # Map action string to MT5 order type
         action_upper = action.upper()
@@ -187,7 +187,7 @@ def run_preflight(
                 "spread_bps": round(spread_bps, 2),
                 "spread_cost_usd": exit_spread_usd,
                 "broker_server_time_raw": tick.time,
-                "broker_server_offset_seconds": broker_offset_s,
+                "broker_server_offset_seconds": BROKER_OFFSET_SECONDS,
                 "tick_time_utc": tick_dt.strftime("%Y-%m-%d %H:%M:%S UTC"),
                 "tick_age_seconds": round(max(0.0, tick_age_s), 2),
                 "clock_skew_seconds": clock_skew_s,

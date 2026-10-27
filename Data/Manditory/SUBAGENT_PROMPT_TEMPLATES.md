@@ -56,6 +56,11 @@ To prevent groupthink, redundant token burn, and contradictory authorizations, t
         (Arena.ai + Z.ai + Argon-High + 4-Quant Swarm)
 ```
 
+### Mandatory Subagent Read Gate Check Mark (OPERATOR MANDATE)
+Every single subagent MUST physically read and verify `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` before performing market analysis, regime classification, or order staging.
+Every subagent report MUST explicitly display the verified read confirmation check mark:
+`[x] Mandatory Subagent Read Gate: STANDARDIZED_TRADING_DECISION_CHAIN.md physically read, verified, and strictly enforced.`
+
 ### Shared Envelope Contract & Evidence Integrity
 1. The dispatcher generates and attaches one immutable `Data/cycle_envelope.json` per cycle.
 2. The prompt body contains zero hardcoded account-value placeholders; all values derive dynamically from the envelope.

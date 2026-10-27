@@ -35,7 +35,31 @@ Account Impact:     Realized Equity dropped from 4,818.51 USD to 4,799.88 USD
 Floor Cushion:      Compressed from +43.51 USD to +24.88 USD above 4,775.00 USD Hard Floor
 Buffer Cushion:     Compressed from +23.51 USD to +4.88 USD above 4,795.00 USD Buffer
 ========================================================================================
+
+========================================================================================
+TRADE AUTOPSY 3: XAUUSD.pi SELL 0.01 LOT (TICKET #19367388)
+========================================================================================
+Entry Price:        4,024.95 USD (Filled passively via SELL_LIMIT)
+Exit Deal:          #17548835 at 2026-10-27 14:04:31 UTC (19:34:31 IST)
+Exit Price:         4,034.97 USD (Hit planned broker Stop Loss)
+Nominal PnL:        -$10.02 USD (10.02 pts × 0.01 lot = -$10.02 USD; Commission: -$0.07 USD; Total: -$10.09 USD; Zero broker slippage)
+Account Impact:     Realized Equity adjusted from 4,837.08 USD to 4,826.99 USD
+Floor Cushion:      Preserved at +51.99 USD above 4,775.00 USD Hard Floor (100% Intact)
+Buffer Cushion:     Preserved at +31.99 USD above 4,795.00 USD Operating Buffer (100% Intact)
+========================================================================================
 ```
+
+### 🩸 Why Did Ticket #19367388 Fail? (The Gold Forensic Autopsy):
+1. **Regime Misclassification & Statistically Insignificant Signal (Random Walk Trap)**:
+   - *The Fatal Defect*: The trade attempted to fade an upward trend into the 0.618–0.702 Fibonacci retracement on the assumption of a mean-reverting regime. However, completed-bar Lo–MacKinlay Variance Ratio was `VR(4) = 0.967` with test statistic `z* = -0.151`. A z-score of -0.151 fails to reject the random walk null hypothesis. Fading a random walk or early trend expansion has zero statistical expectancy.
+2. **Winner's Curse / Adverse Selection on Passive Limit Placement**:
+   - *Microstructure Flaw*: Resting a passive sell limit at 4024.95 while spot traded at 4022.40 only fills when aggressive buyers push price up into the order. During the London/NY session overlap, incoming buy flow that fills an overhead limit is predominantly informed momentum or aggressive short covering that sweeps straight through the level.
+3. **Misinterpreting Negative CVD Delta as "Exhaustion" During an Illiquid Short Squeeze**:
+   - *Orderflow Trap*: Footprint telemetry showed 5 "Buyer Exhaustion" signals and negative session delta (-6.1K). In precious metals, negative delta while price makes new session highs is the signature of an **illiquid short squeeze / stop sweep** (stops triggering in a thin book). Fading an active squeeze before a confirmed M5 structural break is suicidal.
+4. **Stop Loss Placed Directly Inside the 1.0–1.5 ATR Liquidity Hunting Pool**:
+   - *Geometry Error*: The session swing high was 4031.55. The stop was placed at 4034.97 (only 3.42 USD / 0.40 ATR above the high). Liquidity sweeps routinely expand 1.0 to 1.5 ATR beyond session extremes to clear all retail protections. Price swept directly through 4032.18 to 4034.97, triggering our stop with zero slippage, before stalling.
+5. **Cross-Venue Basis Fallacy**:
+   - *Venue Disconnect*: Relying on external whale walls or Binance/Hyperliquid DOMs to defend a CFD position on Blueberry Markets is an invalid assumption; external walls do not exist in the broker's liquidity pool.
 
 ### 🩸 Why Did Ticket #19244087 Fail? (The NZD Forensic Autopsy):
 1. **Stop Loss Squeezed Inside Value Area Noise Band (Sub-ATR Stop)**:

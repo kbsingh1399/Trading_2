@@ -25,6 +25,32 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - Every subagent report MUST explicitly display the verified read confirmation check mark:
 >      `[x] Mandatory Subagent Read Gate: STANDARDIZED_TRADING_DECISION_CHAIN.md physically read, verified, and strictly enforced.`
 >
+> 2.1 **Mandatory Per-Asset Exhaustive Parquet Data Lake Traversal Gate (COMPULSORY INVARIANT)**:
+>    - **Compulsory Zero-Omission Rule**: Before formulating, planning, or staging any trade on ANY candidate asset, the desk and all subagents/personas are STRICTLY FORBIDDEN from relying on isolated screeners, single indicator columns, or partial data views.
+>    - **Deep File-by-Asset Analysis**: For any candidate asset (e.g. BTC, XAU, UKBRENT, USDJPY, etc.), EVERY SINGLE FILE in `Data/feeds/*.parquet` mentioning or containing data for that asset MUST be systematically traversed, read, and deeply analyzed across all 4 groups:
+>      1. Microstructure, Orderbook & CVD Tape (`00_MT5_Account_Telemetry`, `10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `18_CVD_30D_*`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`).
+>      2. Liquidation Geometry, Stop Hunt & Max Pain Magnets (`7_Liq_Heapmap`, `7_Live_Liq`, `8_Exchange_Liquidation_Map_1D/7D`, `9_Liquidation_Max_Pain_24H/48H/3D/7D`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `14_Liquidation_Matrix`, `22_Forced_Liquidations_MTF`).
+>      3. Technical Moving Averages & Auction Value Areas (`11_Technical`, `11_Technical_BTC_Ribbon`, `20_Auction_Market_Structure`, `12_Hyperdash`, `13_Hyperliquid`, `16_Hyperdash_telegram_Intel`, `23_Master_Pipeline_Telemetry`).
+>      4. Macro Netflows, Leverage & Funding (`1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `3_Exchanges_LS_Ratio_15M/1H/4H`, `4_Hyperliquid_Analysis`, `5_OI`, `5_Funding_Rate`, `6_Funding_Fee_Settlement`, `19_News`, `19_Calendar`).
+>    - **Automated Zero-Omission Extraction Engine (`Terminal/Data_Factory/asset_360_dossier_engine.py`)**:
+>      * To eliminate human oversight and mathematically guarantee that no parquet file or orderflow signal is EVER missed, the desk executes the automated 360° Data Lake Dossier Engine: `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>`.
+>      * The engine programmatically scans all 42 parquet files in `Data/feeds/`, resolves schema-specific symbol columns (`symbol`, `asset`, `coin`, `Ticker`, `Broker_Symbol`, `base_asset`), and compiles `Data/dossiers/<ASSET>_360_dossier.json` and `docs/dossiers/<ASSET>_360_DOSSIER.md` before any trade is formulated.
+>    - **Compulsory Verification Tick Mark**: Every trade dossier, trade proposal, and subagent report MUST explicitly display the verified confirmation check mark:
+>      `[x] Mandatory Data Lake Gate: Every relevant file in Data/feeds/*.parquet thoroughly traversed, read, and deeply analyzed for [Asset] with zero omission prior to trade formulation.`
+>
+> 2.2 **Mandatory Line-by-Line SOP Compliance Audit Protocol (LINE READ & COMPLIANCE GATE)**:
+>    - **Zero-Amnesia Line-by-Line Enforcement**: To guarantee that every single line, rule, and invariant of this document is read, understood, and strictly followed without omission, every cycle report and trade proposal MUST execute a line-level audit ledger verifying all 10 core invariants:
+>      * `[x] Line Check 1 (Section 1.1)`: 100% In-House Antigravity Quant Fleet & Direct Dialectic (Zero external browser/scraping dependencies).
+>      * `[x] Line Check 2 (Section 1.2)`: Mandatory Subagent Read Gate check mark displayed.
+>      * `[x] Line Check 3 (Section 1.2.1)`: Mandatory Per-Asset Exhaustive Parquet Data Lake Traversal check mark (all files traversed).
+>      * `[x] Line Check 4 (Section 1.3)`: Dual-Model Quantitative Architecture (Model 1 Mean Reversion vs Model 2 Fib Prime Trend Pullback).
+>      * `[x] Line Check 5 (Section 1.4)`: Monotone Non-Loosening Dynamic Stop Ratchet Invariant.
+>      * `[x] Line Check 6 (Section 1.5)`: Capacity Policy (Max 4 filled positions across flexible combinations + N resting maker limits).
+>      * `[x] Line Check 7 (Section 1.6 - Agent 2)`: Microstructure & Anti-Short-Squeeze Invariants (CVD delta alignment, Whale armor >= 100K USD, spread <= 12 bps).
+>      * `[x] Line Check 8 (Section 1.6 - Agent 3)`: Liquidation Geometry (Stops outside 1.5 ATR sweep band, TP front-running cascades by 5-10 bps).
+>      * `[x] Line Check 9 (Section 1.6 - Agent 4)`: Triple-Floor Solvency Defense (10.00 USD max risk, 4,775 USD Hard Floor, 4,795 USD Operating Buffer).
+>      * `[x] Line Check 10 (Section 1.4 / 1.7)`: Two-Speed Relative 20-Minute Timer Architecture (1200s macro cycle delay + 5.0s supervisor daemon).
+>
 > 3. **Dual-Model Quantitative Architecture (Model 1 & Model 2 Concurrent Execution)**:
 >    - **Model 1: Extreme Mean Reversion (Auction Rejection & Exhaustion Fades)**:
 >      * Triggers when: `VR(4) < 0.85` (z* < -1.96), low path efficiency `ER(48) < 0.20`, price stretched to `|Z_VWAP| >= 2.0 SD`, RSI extremes (< 35 or > 65), and footprint taker delta absorption.
@@ -76,8 +102,14 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - **Truncation Truth**: Overwriting a Parquet file via PyArrow/Pandas opens the file with OS truncation mode, resetting file size to 0 bytes and writing the new table from start to finish. If a feed transitions from 100 rows to 90 rows, the resulting file contains **exactly 90 rows** with zero remnant rows.
 >    - **Atomic Replacement Pattern**: All ingestion scripts and collectors must write to a temporary file (`.tmp_xyz.parquet`) and commit via `os.replace(tmp_file, target_file)`, guaranteeing that downstream readers never encounter missing files or 0-byte locks.
 >
-> 4. **Relative 20-Minute Post-Completion Delay (`T_finish + 20 min`)**:
->    - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1,200 seconds) to allow 15m candles to close and market orderbooks to develop. Fixed wall-clock cron collisions are eliminated.
+> 4. **Two-Speed Dynamic Timer Architecture (Relative 20-Minute Cycle + Continuous 5.0s Supervisor)**:
+>    - **Speed 1: Macro Analytical Cycle Timer (`T_finish + 20 min` = 1,200s)**:
+>      * The separation between completed Cycle X and the trigger for Cycle X+1 is strictly **20 minutes** (1,200 seconds relative delay), scheduled via the `schedule` tool (`DurationSeconds: 1200`).
+>      * This ensures that 15m candle bars close cleanly, orderbooks develop, and new macro data points arrive before re-running the full 156-asset screener and parquet lake audit.
+>      * **Token Annihilation Defense**: The coordinator NEVER polls `manage_task` or sleeps in tight loops. It sleeps for the full 1,200 seconds and relies entirely on reactive system wakeup.
+>    - **Speed 2: Continuous Background Microstructure Supervisor Daemon (5.0s Loop)**:
+>      * While the macro coordinator waits for the 20-minute cycle interval, the background daemon `Terminal/dynamic_position_supervisor.py --interval 5.0` runs continuously at **5.0-second intervals**.
+>      * It monitors live tick-by-tick quotes on MT5, actuates Stage 1 BE ratchets (+0.15R lock at +0.80R), actuates Stage 2 Profit ratchets (+0.80R lock at +1.50R), enforces the 6-hour time decay exit, and detects resting limit order fills in real time.
 >
 > 5. **30-Minute Watchdog Sentry Cron (`0,30 * * * *`)**:
 >    - Background watchdog verifies desk health, checks for stalled cycles, verifies persistent daemons, and triggers cycle advancement safely once the clean 20-minute separation has elapsed.
@@ -784,3 +816,6 @@ On EVERY cycle, deliberation turn, and prompt response, the in-house subagents a
    - `.agents/memory/session_chat_history.md`
    - Telemetry snapshots pushed to Git repository (`main` branch) every 60 seconds.
 3. **Zero-Litter Discipline**: All scratch scripts and exploratory debug artifacts must be immediately purged upon validation.
+4. **External AI Council Peer Review & Thinking Chain Audit**:
+   - Canonical External Review Prompt: `docs/prompts/EXTERNAL_AI_THINKING_CHAIN_REVIEW_PROMPT.md`
+   - Enables external frontier reasoning models (Arena.ai, Claude 3.5 Sonnet, Opus 5.5, GPT-4o, DeepSeek V3) to conduct adversarial forensic audits of the desk's 360° Data Lake Dossier, two-speed timer architecture, and multi-asset risk budget.
