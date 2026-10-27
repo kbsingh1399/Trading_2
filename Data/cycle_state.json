@@ -1,22 +1,28 @@
 {
-  "current_cycle_id": "Cycle 367",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-27 03:53:00 UTC",
-  "cycle_completed_utc": "2026-10-27 04:32:15 UTC",
-  "next_cycle_scheduled_utc": "2026-10-27 04:52:15 UTC",
+  "current_cycle_id": "Cycle 368",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-27 04:54:45 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
-  "consensus_action": "PREVAIL_LIMITS_STAND_ASIDE_MARKET",
-  "active_tickets": [
+  "consensus_action": "HOLD_FILLED_BNB_MONITOR_RATCHET_STAND_ASIDE_NEW",
+  "active_positions": [
     {
       "ticket": 19329907,
       "symbol": "BNBUSD.p",
-      "type": "BUY_LIMIT",
+      "type": "BUY",
       "volume": 3.0,
-      "price": 736.25,
+      "price_open": 736.25,
       "sl": 732.65,
       "tp": 746.80,
+      "r0_usd": 3.60,
+      "early_be_trigger_usd": 739.13,
+      "profit_lock_trigger_usd": 741.65,
+      "nominal_risk_usd": 10.80,
       "contingent_stress_usd": 15.50
-    },
+    }
+  ],
+  "active_tickets": [
     {
       "ticket": 19330613,
       "symbol": "ETHUSD.pi",
@@ -30,8 +36,8 @@
   ],
   "solvency_metrics": {
     "balance_usd": 4846.32,
-    "equity_usd": 4846.32,
-    "margin_usd": 0.0,
+    "equity_usd": 4844.37,
+    "margin_usd": 1104.38,
     "post_stress_equity_usd": 4817.695,
     "hard_floor_cushion_usd": 42.695,
     "operating_buffer_headroom_usd": 20.695
@@ -39,25 +45,20 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 04:32:15 UTC",
-      "details": "Mode 2 4-Quant Swarm verified: BNB/ETH limits intact, 100% solvency compliance, zero regression"
+      "status": "IN_PROGRESS",
+      "details": "Mode 2 4-Quant Swarm tracking BNB fill excursion towards 739.13 Early-BE threshold"
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 04:00:31 UTC",
-      "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
-      "characters": 34117,
-      "ruling": "PREVAIL_BNB_ETH_LIMITS_STAND_ASIDE_NEW"
+      "status": "GENERATING",
+      "dispatched_at_utc": "2026-10-27 04:54:35 UTC",
+      "prompt_file": "docs/prompts/ARENA_ASTRA_ROUTING_PROMPT.txt"
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 04:32:12 UTC",
-      "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
-      "characters": 31531,
-      "ruling": "DENIED_FAIL_CLOSED_PREVAIL_PASSIVE"
+      "status": "GENERATING",
+      "dispatched_at_utc": "2026-10-27 04:54:50 UTC",
+      "prompt_file": "docs/prompts/ARENA_ASTRA_ROUTING_PROMPT.txt"
     }
   }
 }

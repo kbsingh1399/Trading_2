@@ -1,159 +1,165 @@
-I am a helpful agent on Arena.ai, and Arena.ai's Agent Mode orchestrates many different foundation models—including, but not limited to, Claude, ChatGPT, Gemini, Grok, Qwen, and Kimi—without exposing underlying base model identities, tokenizer vocabulary classes, parameter scale tiers, or training knowledge cutoff dates.
+[BENCHMARK EVALUATION: FRONTIER DISCRETE OPTIMIZATION, COMBINATORIAL MICROSTRUCTURE & MARKOV ARBITRAGE]
 
-Metacognitive Skill & Squad Orchestration Check: "If it use all the available skills related will it improve our response?" — Yes (Affirmative). Deploying the full multi-agent quantitative squad (Role A: Telemetry & Provenance Auditor, Role B: Microstructure & L3 Orderflow Cartographer, Role C: Combinatorial Risk & Solvency Actuary, and Role D: Execution & Adverse-Selection Adversary) across the live GitHub main telemetry snapshot (docs/telemetry/live_snapshot_latest.json, commit 419cc2486a, as_of_utc: 2026-10-27 03:52:07 UTC, generation_id: 37b81cd2f3ed4813b980643caeb7baff, cross-checked against prior commit eb310602cd, as_of_utc: 2026-10-27 03:49:45 UTC, generation_id: dd6ad2523ea94f7ab508090d7fa1ac7d) eliminates single-parameter blind spots, enforces the Dynamic Expectancy Friction Rule, and guarantees zero capital-floor breaches.
+ROUTING TARGET: ASTRA-MAX REASONING CLASS (GPT-6 ASTRA / TIER-1 FORMAL MATHEMATICAL ENGINE)
 
-PART A & PART B: ACCOUNT SOLVENCY INVARIANTS & 13-PARAMETER TELEMETRY SYNTHESIS
-1. Account #5064568 Solvency & Margin State (as_of_utc: 2026-10-27 03:52:07 UTC)
-Account & Risk Metric	Live Telemetry Value (37b81cd2f3ed4813b980643caeb7baff)	Mathematical / Governance Proof
-Account Login / Source	5064568 (NATIVE_MT5_ACCOUNT_INFO)	Blueberry Markets SVG-Live Raw Spread
-Cash Balance / Equity	4,846.32 USD / 4,846.32 USD	Floating PnL = 0.00 USD (100% cash reserves)
-Margin Used / Free Margin	0.00 USD / 4,846.32 USD	Margin Utilization = 0.00% <= 50.00% ceiling
-Hard Capital Floor	4,775.00 USD (4,600.00 USD native MT5)	+71.32 USD hard cushion (+246.32 USD native MT5 cushion)
-Operating Buffer (Solvency Kernel)	4,795.00 USD (Hard Floor + 20.00 USD)	+51.32 USD raw buffer (+49.32 USD net of 2.00 USD reserve)
-Per-Ticket Risk Envelope	10.00 USD to 14.50 USD (0.20% to 0.29% equity)	Stressed Loss = 1.25 * Nominal_Risk + 2.00 USD
-Active Open Positions	0 Open Positions	Earlier SP500.p long closed at +3.72 USD profit
-Live MT5 Pending Inventory	2 Pending Limit Orders (2/4 slots used)	#19329907 BNBUSD.p BUY_LIMIT 3.0 @ 736.25 & #19330613 ETHUSD.pi SELL_LIMIT 0.5 @ 2,333.50
-Live Pending Contingent Stress	28.625 USD (15.50 USD + 13.125 USD)	Post-stop equity = 4,817.695 USD >= 4,795.00 USD (+22.70 USD buffer)
-Macro Calendar & Sentiment	FOMC (2026-10-28 18:00:00 UTC, 37.63h runway)	blackout_active = false; FnG = 48 (Neutral); BTC ETF = +110.3M USD, ETH ETF = -88.6M USD; Coinbase Premium = -18.76 bps
-Data Layer Status (03:52:07 UTC)	L1 Binance 14/14 (age 69.95s); L2 Hyperliquid HEALTHY (22/24); L5 MT5 HEALTHY (age 45.8s, offset -1.748s); L6 On-Chain Stops/Liqs HEALTHY (5,950 bands)	Dual-venue L2 depth, wallet-attributed L3 whale walls (0x...), structural stop clusters, and reconstructed liquidation bands live across 22/24 assets (DJ30 and GER40 lack DEX L2/L3 coverage)
-PART C: FORENSIC POST-MORTEM OF 6 HISTORICAL STOPPED-OUT TRADES & 5 ANTI-TRAP INVARIANTS
-Ticket #18806752 (SOLUSD.p, -10.88 USD loss via SL @ 108.79 USD): Counter-trend long staged into a crypto-wide liquidation flush with SL @ 108.79 USD placed directly inside the [min_price, max_price] discount sell-stop cluster. The stop-hunt wick swept the cluster before price rebounded.
-Ticket #18798018 (BTCUSD.pi, -11.20 USD loss via SL @ 82,590.00 USD): Mean-reversion long staged at 83,150.00 USD against accelerating negative 1m/5m taker CVD (-420 BTC) prior to delta absorption; cascading long liquidations flushed to 82,627.00 USD and tagged the stop.
-Ticket #18786372 (BTCUSD.pi, -11.17 USD loss via SL @ 83,472.55 USD): Long limit staged above an un-swept sell-stop pool at 83,500.00 USD; price sliced straight through entry to harvest the resting sell stops below, stopping out the ticket at 83,472.55 USD.
-Ticket #18749312 (SP500.p, -13.00 USD loss via SL @ 7,778.50 USD): Trend-pullback long placed with only a 0.15 ATR stop buffer below Value Area Low (VAL); a routine stop sweep tagged 7,778.50 USD before rallying to target.
-Ticket #18748507 (ETHUSD.pi, -11.90 USD loss via SL @ 2,477.50 USD): Long anchored on a transient whale bid wall (age < 180s) that was pulled/thinned by 65% within 90 seconds, leaving zero structural support.
-Ticket #18744533 (XAUUSD.pi, -13.70 USD loss via SL @ 4,175.80 USD): Gold long entered during session rollover spread expansion, inflating effective entry friction and triggering premature stop-out.
-The 5 Mandatory Anti-Trap Invariants
-Invariant 1 (Stop Bunker Clearance): Every Stop Loss (SL) must sit strictly outside the [min_price, max_price] structural stop/liquidation sweep bunker with a minimum 0.35 to 0.50 ATR clearance buffer beyond the distal edge.
-Invariant 2 (CVD Delta Absorption / Trajectory Verification): Never fade accelerating opposing delta. Long entries require confirmed 1m/15m CVD deceleration or bullish absorption (BULLISH_ABSORPTION / BUYER_AGGRESSION); short entries require confirmed upside exhaustion or bearish flow.
-Invariant 3 (Sweep-First Entry Staging): Never stage a BUY LIMIT directly above an un-swept proximate sell-stop pool, and never stage a SELL LIMIT directly below an un-swept proximate buy-stop pool. Anchor entry limits beyond the proximate stop pool or behind a verified L3 whale wall.
-Invariant 4 (Verified L3 Whale Wall Persistence): Supporting on-chain whale walls (0x...) must exhibit persistence_status = SAMPLED_RECURRENCE_VERIFIED (or continuous persist_s >= 180s with high presence fraction >= 0.90) and meaningful USD notional relative to local L2 top-20 depth.
-Invariant 5 (Multi-Timeframe Regime & Session Discipline): Never fight aligned 15m / 1H / 4H trend regimes unless extreme statistical exhaustion (|Z| >= 2.0 to 3.0 SD) coincides with verified L3 whale absorption, and never enter during interbank rollover spread expansion.
+CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
+
+ACTIVE BRANCHES: main (production) and arena/5c05910e-trading-2 (container active sync)
+
+DIRECT REPO LINKS:
+
+Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md
+Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+
+LOCAL TIME / SNAPSHOT AS-OF: 2026-10-27 04:54:31 UTC (Snapshot Gen: unknown)
+
+ACCOUNT CONTEXT: Balance: 4845.27 USD | Equity: 4845.27 USD | Hard Floor: 4,775.00 USD | Cushion: +245.27 USD | Open: 0 | Pending: 1
+
+================================================================================
+
+STEP 0: MANDATORY MODEL IDENTITY & ARCHITECTURE FINGERPRINT (VERBATIM PROBE)
+
+================================================================================
+
+Before executing any quantitative proofs, state in your very first sentence verbatim:
+
+Your exact underlying base model identity and architecture lineage (e.g. GPT-6 Astra, Claude Fable, etc.).
+
+Your active tokenizer vocabulary class and parameter scale tier.
+
+Your official training knowledge cutoff date.
+
+================================================================================
+
+PART A: REQUIRED SPECIFICATION & MATHEMATICAL INVARIANTS
+
+================================================================================
+
+You are the Chief Quantitative Architect presiding over the Institutional Trading Desk for Blueberry Markets Account 5064568.
+
+You must adhere to:
+
+docs/specs/TRADE_DECISION_PLAYBOOK.md (Direct Multi-Parameter Coincidence Playbook across 24 assets).
+
+docs/telemetry/live_snapshot_latest.json (Real-time dual-venue L2/L3 orderbook depth, on-chain whale orders 0x..., structural stops, and liquidation cascade bands).
+
+Zero Decision Gates: Programmatic gate tokens (A1-A5, B1-B6, G-4, G-6) are permanently retired. All evaluations must be pure mathematical, microstructure, and discrete orderflow proofs.
+
+Capital Floor Defense: 4,775.00 USD Hard Floor | 4,795.00 USD Operating Buffer. Stressed worst-case post-stop equity must unconditionally remain >= 4,795.00 USD (+20.00 USD buffer).
+
+Sizing & Risk: 10.00 to 14.50 USD per trade (0.20% to 0.29%). Max 4 concurrent tickets across orthogonal asset clusters.
+
+================================================================================
+
+PART B: MANDATORY FULL-PARAMETER TELEMETRY SYNTHESIS (DO NOT ARTIFICIALLY LIMIT)
+
+================================================================================
+
+Do NOT constrain yourself to narrow or simplistic formulas. Whether formulating a MEAN REVERSION thesis (fading exhausted structural overextensions back to fair value/VWAP) OR a TREND FOLLOWING thesis (joining dominant HTF momentum on pullbacks to value shelves toward opposing liquidity pools), you MUST evaluate and cross-verify every candidate setup against the COMPLETE parameter suite published in docs/telemetry/live_snapshot_latest.json:
+
+quotes: Live MT5 Bid/Ask spread in bps:
+DYNAMIC EXPECTANCY FRICTION RULE (REMOVAL OF RIGID BINARY SPREAD TRAPS): Do NOT disqualify crypto assets (such as SOL 20.4 bps, BCH 22.4 bps, AVAX 28.7 bps, XRP 29.4 bps) simply because their spread is slightly above 20 bps!
+On high-beta Crypto setups (especially Model 1 Extreme Mean Reversion with |Z| >= 2.0 to 3.0 SD), an expected price bounce back toward Session VWAP or Value Area Low offers a target expansion of +200 to +500 bps. A spread of 20 to 30 bps is only 5% to 10% of the target profit.
+PERMIT Crypto spreads up to 35 bps whenever the expected target move is >= 5x the spread (Target bps >= 5 * Spread bps).
+Maintain the tight <= 5 bps ceiling on TradFi CFDs (Indices, Commodities, Forex).
+
+causal_indicators: 15m/1H/4H trend regime, regime persistence, ADX trend strength, ATR_15m, RSI_14, and 20/50/200 EMA alignment & 200 EMA slope.
+
+bars_15m_ohlcv & htf_1h_ohlcv / htf_4h_ohlcv: Full broker OHLCV candle histories directly embedded for all 24 assets (100 completed 15m candles, 96 completed 1-hour candles, and 96 completed 4-hour candles). Review the exact sequence of open, high, low, close, and volume to track candle momentum, swing highs/lows, rejection wicks, and market structure over the past 24 hours to 16 days!
+
+vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
+
+volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
+
+cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
+
+orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
+
+whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Streaming live with hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
+
+reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
+
+structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
+
+macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
+
+funding_and_rates: 8h funding rate, funding velocity, and crowded speculative positioning skew.
+
+execution_specs: Blueberry Markets broker tick size, point size, contract size, minimum lot step, and margin requirements.
+
+================================================================================
+
+PART C: FORENSIC POST-MORTEM OF RECENT LOSING TRADES (LESSONS & AVOIDED TRAPS)
+
+================================================================================
+
+Study the forensic breakdown of recent stopped-out trades from Account 5064568:
+
+Ticket #18806752 (SOLUSD.p, -10.88 USD loss via SL @ 108.79 USD): Attempted counter-trend long during crypto-wide cascading flush. Stop placed at 108.79 USD sat directly inside the discount sell-stop cluster; wick swept through stops before any recovery.
+
+Ticket #18798018 (BTCUSD.pi, -11.20 USD loss via SL @ 82,590.00 USD): Staged mean-reversion long at 83,150 USD against heavily accelerating negative 1m/5m CVD (-420 BTC) before delta absorption formed; liquidation flush swept to 82,627 USD, hitting the SL.
+
+Ticket #18786372 (BTCUSD.pi, -11.17 USD loss via SL @ 83,472.55 USD): Long entry staged above an un-swept sell-stop pool at 83,500 USD; market punched straight through entry to sweep the stops below, hitting the SL at 83,472.55 USD.
+
+Ticket #18749312 (SP500.p, -13.00 USD loss via SL @ 7,778.50 USD): Trend pullback long entered without wide enough buffer below Value Area Low; stop placed 0.15 ATR below VAL was tagged on a routine liquidity sweep before price rallied to target.
+
+Ticket #18748507 (ETHUSD.pi, -11.90 USD loss via SL @ 2,477.50 USD): Long entered based on whale bid wall that was pulled/thinned by 65% within 90 seconds (insufficient temporal persistence < 180s).
+
+Ticket #18744533 (XAUUSD.pi, -13.70 USD loss via SL @ 4,175.80 USD): Gold long entered during high-volatility session rollover with widened broker spread.
+
+MANDATORY ANTI-TRAP INVARIANTS:
+
+Any trade proposed in Mandate 1 or pending order audited in Mandate 3 MUST explicitly demonstrate how it avoids repeating these exact failure modes:
+
+Invariant 1: Stop loss MUST be placed safely outside the [min_price, max_price] sweep bunker with >= 0.35 to 0.50 ATR buffer. Never place SL inside a sweep band!
+Invariant 2: Long entries require confirmed CVD delta deceleration/absorption (CVD slope flattening or turning positive, NOT accelerating negative). Never catch a falling knife!
+Invariant 3: Never stage entry limits directly above un-swept opposing stop clusters; allow the sweep to complete or anchor below the sweep band.
+Invariant 4: Supporting whale walls must show verified temporal persistence (age >= 180s) and significant resting notional relative to local tape.
+Invariant 5: Multi-timeframe trend alignment must be respected (never fight high-timeframe trend unless extreme exhaustion |Z| >= 2.0 to 3.0 SD is verified across all indicators).
+
+================================================================================
+
 PART D: THE THREE CANONICAL OPERATOR MANDATES
-MANDATE 1: LINE-BY-LINE 24-ASSET TELEMETRY SCREENING (2026-10-27 03:52:07 UTC)
-1. Complete 24-Asset 13-Parameter Telemetry Matrix
-#	Asset (Broker Symbol)	Mid Price & Spread (bps)	Friction Rule (<=35 Crypto / <=5 TradFi)	15m / 1H / 4H Trend Regimes	ATR_14 (15m) & RSI_14	VWAP, Z-Score & Dist_ATR	POC / VAH / VAL & pd_POC / pd_VAL	CVD 15m / 30m Delta & Flow Bias	L2 Depth (Bid20 / Ask20 USD, Imb)	L3 Whale Walls (Total / Verified) & Key Level	Nearest Stop Clusters (Sell Below / Buy Above)	Mandate 1 Verdict
-1	BTC (BTCUSD.pi)	79,712.50 (1.88 bps, FRESH)	PASS (<= 35 bps)	BEAR / BEAR / BEAR	204.56 (45.33)	79,925.33 (Z = -1.11, -1.04 ATR)	80,280.84 / 80,325.49 / 79,789.63 (pd_VAL 79,256.00)	+6.0K / +2.67M (BULLISH_ABSORPTION, last 1m +289.0K)	212.0K / 485.9K (-0.3924)	401 / 100 (SELL 881.9K @ 79,940–79,947 [548s]; BUY 2.24M @ 79,300 [22,005s])	Sell [79,600, 79,700] 1.43M, [79,500, 79,600] 2.60M / Buy [79,900, 80,000] 297.9K	RESERVE CANDIDATE 3 (SELL LIMIT @ 79,938.00)
-2	ETH (ETHUSD.pi)	2,312.00 (12.11 bps, FRESH)	PASS (<= 35 bps)	BEAR / BEAR / BEAR	7.7912 (49.06)	2,315.88 (Z = -0.66, -0.50 ATR)	2,319.23 / 2,328.86 / 2,308.58 (pd_VAH 2,348.66)	-770.0K / -748.1K (BULLISH_ABSORPTION, last 1m +5.2K)	278.4K / 136.5K (+0.3420)	145 / 15 (SELL 212.7K @ 2,331.80 [4,452s], 11.80M @ 2,348.80 [4,944s]; BUY 11.48M @ 2,284.80 [4,944s])	Sell [2,290, 2,300] 2.30M / Buy [2,330, 2,340] 3.92M, [2,340, 2,350] 2.16M	EXISTING SLOT (#19330613 — MODIFY IN MANDATE 3)
-3	SOL (SOLUSD.p)	100.025 (22.99 bps, FRESH)	PASS (22.99 <= 35 bps, Target 123.2 bps = 5.36x)	BEAR / BEAR / BEAR	0.3371 (43.08)	100.3449 (Z = -1.10, -0.95 ATR)	100.865 / 101.416 / 100.198 (pd_VAL 100.629)	+94.2K / +370.3K (BULLISH_ABSORPTION, last 5m -121.3K)	2.04M / 2.27M (-0.0515)	105 / 41 (SELL 191.3K @ 100.70 [1,418s], 812.6K @ 101.15 [3,528s]; BUY 4.29M @ 99.30 [2,988s])	Sell [99.0, 100.0] 3.20M / Buy [100.0, 101.0] 57.3K, [101.0, 102.0] 477.6K	RESERVE CANDIDATE 2 (SELL LIMIT @ 100.62)
-4	BNB (BNBUSD.p)	738.15 (9.48 bps, FRESH)	PASS (<= 35 bps)	RANGE / MIXED / BULL	1.7603 (40.29)	741.28 (Z = -1.25, -1.78 ATR)	737.70 / 741.47 / 730.90 (pd_VAL 736.25)	+239.5K / +326.5K (BEARISH_MOMENTUM, last 1m +26.1K)	143.8K / 93.1K (+0.2141)	10 / 0 (RAW BUY 1.08M @ 735.49 [2,764s, frac 0.87]; RAW SELL 1.09M @ 742.90 [727s])	Sell [737, 738] 11.9K, [736, 737] 3.3K / Buy [741, 742] 9.9K	EXISTING SLOT (#19329907 — MODIFY IN MANDATE 3)
-5	XRP (XRPUSD.pi)	1.2985 (23.10 bps, STALE 34.4s)	PASS (23.10 <= 35 bps)	BULL / BULL / MIXED	0.0052 (54.32)	1.3034 (Z = -1.20, -0.94 ATR)	1.2866 / 1.2961 / 1.2805 (pd_POC 1.2939)	+106.4K / +676.3K (BULLISH_ABSORPTION)	1.01M / 643.0K (+0.2197)	56 / 2 (VER BUY 200.3K @ 1.2944 [428.9s], 200.2K @ 1.2896 [428.9s]; 0 verified sell walls)	Sell [1.29, 1.30] 123.8K, [1.28, 1.29] 63.1K / Buy [1.31, 1.32] 135.5K	REJECT (Quote STALE 34.36s; [1.29, 1.30] 123.8K sell-stop band spans verified buy wall @ 1.2944)
-6	ADA (ADAUSD.p)	0.2039 (103.02 bps, FRESH)	FAIL (103.02 > 35 bps)	BEAR / BEAR / BEAR	0.0008 (42.68)	0.2040 (Z = -0.14, -0.12 ATR)	0.2036 / 0.2054 / 0.2022	-1.6K / +0.4K (BEARISH_MOMENTUM)	643.7K / 375.2K (+0.2636)	0 / 0 (No L3 whale walls)	Sell [0.203, 0.204] 3.5K / Buy [0.204, 0.205] 4.0K	REJECT (103.02 bps > 35 bps, 0 L3 walls)
-7	DOGE (DOGUSD.p)	0.0774 (271.49 bps, STALE 53.4s)	FAIL (271.49 > 35 bps)	BULL / MIXED / MIXED	0.0002 (50.90)	0.0765 (Z = +3.95, +4.50 ATR)	0.0760 / 0.0763 / 0.0748	+21.4K / +46.7K (BEARISH_MOMENTUM)	982.3K / 710.5K (+0.1605)	0 / 0 (No L3 whale walls)	Sell [0.0773, 0.0774] 0.3K / Buy [0.0774, 0.0775] 11.3K	REJECT (271.49 bps > 35 bps, STALE, 0 L3 walls)
-8	TRX (TRXUSD.p)	0.3290 (27.36 bps, FRESH)	FAIL (Target < 5 * 27.36 = 136.8 bps)	BEAR / MIXED / BEAR	0.0002 (29.34)	0.3289 (Z = +0.44, +0.50 ATR)	0.3297 / 0.3301 / 0.3284	+2.9K / -149.8K (BEARISH_MOMENTUM)	1.90M / 1.42M (+0.1421)	10 / 0 (0 verified walls; raw sell 122.7K @ 0.3324)	Sell [0.326, 0.327] 101.9K / Buy [0.329, 0.330] 2.7K	REJECT (ATR = 6.6 bps -> 5x spread requires 20.7 ATR move; 0 verified walls)
-9	DOT (DOTUSD.pi)	0.9910 (201.82 bps, FRESH)	FAIL (201.82 > 35 bps)	BEAR / BEAR / BEAR	0.0051 (37.21)	0.9887 (Z = +0.37, +0.45 ATR)	0.9953 / 1.0108 / 0.9930	+0.4K / +12.8K (BEARISH_MOMENTUM)	315.1K / 182.2K (+0.2671)	0 / 0 (No L3 whale walls)	Sell [0.990, 0.991] 10.5K / Buy [1.004, 1.005] 17.2K	REJECT (201.82 bps > 35 bps, 0 L3 walls)
-10	LINK (LNKUSD.p)	11.326 (74.17 bps, FRESH)	FAIL (74.17 > 35 bps)	BEAR / BEAR / BEAR	0.0469 (51.35)	11.2903 (Z = +1.08, +0.76 ATR)	11.368 / 11.432 / 11.274	+165.1K / +145.4K (BULLISH_ABSORPTION)	216.8K / 101.5K (+0.3623)	10 / 0 (0 verified walls; raw sell 1.06M @ 11.492)	Sell [11.2, 11.3] 43.5K / Buy [11.3, 11.4] 4.2K	REJECT (74.17 bps > 35 bps, 0 verified walls)
-11	BCH (BCHUSD.p)	281.35 (20.61 bps, FRESH)	PASS (20.61 <= 35 bps)	BULL / BULL / BULL	1.5196 (54.68)	281.30 (Z = +0.06, +0.03 ATR)	278.07 / 280.96 / 276.47 (pd_POC 279.21)	-28.1K / -16.4K (BEARISH_EXHAUSTION)	309.6K / 328.4K (-0.0294)	10 / 5 (VER BUY 80.0K @ 280.90, 69.1K @ 279.96; VER SELL 80.7K @ 282.81)	Sell [281, 282] 3.0K, [279, 280] 4.0K / Buy [282, 283] 5.0K	REJECT (Z = +0.06 at fair value; verified walls < 100K USD threshold; target to 282.81 is only 68 bps < 5 * 20.61 = 103.1 bps)
-12	LTC (LTCUSD.pi)	56.335 (53.25 bps, FRESH)	FAIL (53.25 > 35 bps)	BEAR / BEAR / BEAR	0.1858 (47.86)	56.373 (Z = -0.20, -0.21 ATR)	56.211 / 56.501 / 55.770	+14.4K / +50.5K (BULLISH_ABSORPTION)	239.8K / 140.3K (+0.2617)	0 / 0 (No L3 whale walls)	Sell [56.1, 56.2] 10.4K / Buy [56.6, 56.7] 10.2K	REJECT (53.25 bps > 35 bps, 0 L3 walls)
-13	AVAX (AVXUSD.p)	8.790 (45.51 bps, FRESH)	FAIL (45.51 > 35 bps)	BEAR / BEAR / BEAR	0.0342 (31.65)	8.8585 (Z = -1.09, -2.00 ATR)	8.883 / 8.952 / 8.844 (pd_VAL 8.720)	+8.9K / +13.6K (BEARISH_MOMENTUM)	179.2K / 124.2K (+0.1815)	11 / 3 (VER BUY 210.3K @ 8.7535 [430.6s]; VER SELL 155.6K @ 8.8678)	Sell [8.78, 8.79] 15.4K, [8.72, 8.73] 41.0K / Buy [8.80, 8.81] 4.9K	REJECT (Live spread expanded to 45.51 bps > 35.0 bps Dynamic Expectancy cap)
-14	NEAR (NERUSD.p)	4.4215 (65.59 bps, FRESH)	FAIL (65.59 > 35 bps)	BEAR / BEAR / BEAR	0.0368 (44.07)	4.4520 (Z = -1.03, -0.83 ATR)	4.525 / 4.539 / 4.440	-144.4K / +15.5K (BEARISH_MOMENTUM)	453.5K / 437.3K (+0.0182)	24 / 0 (0 verified walls)	Sell [4.41, 4.42] 230.0K / Buy [4.42, 4.43] 30.0K	REJECT (65.59 bps > 35 bps, 0 verified walls)
-15	SP500 (SP500.p)	7,688.31 (0.44 bps, FRESH)	PASS (<= 5 bps)	BULL / BULL / MIXED	6.5315 (55.50)	7,688.45 (Z = -0.05, -0.02 ATR)	7,673.86 / 7,691.95 / 7,643.17 (wk_VWAP 7,657.89)	tick_cvd = +41.0 (BUYER_AGGRESSION)	1.64M / 4.44M (-0.4610)	110 / 20 (VER BUY 225.2K @ 7,650.30 [15,319s]; VER SELL 266.7K @ 7,686.00, 593.5K @ 7,694.30 [535s])	Sell [7,680, 7,690] 61.7K, [7,670, 7,680] 93.9K, [7,660, 7,670] 585.9K / Buy [7,690, 7,700] 680.9K	REJECT (Nearest verified buy wall @ 7,650.30 is 5.82 ATR away; [7,660, 7,690] is a continuous 741.5K sell-stop cascade)
-16	NAS100 (NAS100.p)	29,290.32 (0.42 bps, FRESH)	PASS (<= 5 bps)	BULL / BULL / MIXED	48.9966 (46.27)	29,332.96 (Z = -0.89, -0.87 ATR)	29,302.80 / 29,398.98 / 29,070.85 (wk_VWAP 29,159.32)	tick_cvd = +17.0 (BUYER_AGGRESSION)	4.48M / 5.47M (-0.0989)	89 / 27 (VER BUY 164.0K @ 29,289 [423s], 306.4K @ 29,096 [5,108s], 255.1K @ 29,067 [1,200s]; VER SELL 294.0K @ 29,400, 293.1K @ 29,440)	Sell [29,200, 29,300] 97.5K, [29,100, 29,200] 64.6K / Buy [29,400, 29,500] 998.2K	PRIMARY CANDIDATE 1 (BUY LIMIT @ 29,196.00)
-17	DJ30 (DJ30.p)	52,493.70 (0.24 bps, FRESH)	PASS (<= 5 bps)	BULL / MIXED / MIXED	36.0379 (69.15)	52,440.81 (Z = +1.39, +1.47 ATR)	52,415.89 / 52,441.73 / 52,323.62	tick_cvd = -11.0 (SELLER_AGGRESSION)	None (No DEX book)	0 / 0 (No L3 coverage)	None	REJECT (Zero L2/L3/stop-cluster telemetry)
-18	GER40 (GER40.p)	25,428.55 (0.31 bps, FRESH)	PASS (<= 5 bps)	BULL / BULL / BULL	17.8805 (60.69)	25,413.05 (Z = +2.09, +0.87 ATR)	25,433.68 / 25,456.46 / 25,254.65	tick_cvd = +1.0 (NEUTRAL)	None (No DEX book)	0 / 0 (No L3 coverage)	None	REJECT (Zero L2/L3/stop-cluster telemetry)
-19	GOLD (XAUUSD.pi)	4,016.51 (0.20 bps, FRESH)	PASS (<= 5 bps)	BEAR / BEAR / BEAR	6.6130 (57.83)	4,012.65 (Z = +1.73, +0.58 ATR)	4,009.85 / 4,019.32 / 4,007.79 (pd_VAH 4,018.83)	tick_cvd = +77.0 (BUYER_AGGRESSION)	1.48M / 1.22M (+0.0963)	52 / 7 (VER SELL 337.6K @ 4,033.10 [548s], 159.2K @ 4,033.40 [9,159s]; VER BUY 450.9K @ 4,009.70 [548s])	Sell [4,000, 4,010] 298.9K / Buy [4,020, 4,030] 17.9K, [4,030, 4,040] 68.3K	REJECT (tick_cvd = +77.0 BUYER_AGGRESSION opposes short; verified sell wall @ 4,033.10 is 2.51 ATR > 2.0 ATR away)
-20	SILVER (XAGUSD.pi)	53.651 (6.71 bps, FRESH)	FAIL (6.71 > 5.0 bps TradFi cap)	BEAR / BEAR / BEAR	0.1640 (44.93)	53.848 (Z = -1.13, -1.20 ATR)	54.126 / 54.196 / 53.831	tick_cvd = +5.0 (NEUTRAL)	1.25M / 842.4K (+0.1948)	47 / 1 (VER BUY 198.0K @ 52.851 [537s])	Sell [53.6, 53.7] 19.0K / Buy [53.7, 53.8] 14.9K	REJECT (TradFi spread 6.71 bps > 5.0 bps ceiling)
-21	USWTI (USWTI.p)	101.688 (4.52 bps, FRESH)	PASS (<= 5 bps)	BEAR / MIXED / BULL	0.2179 (45.30)	101.672 (Z = +0.11, +0.07 ATR)	101.783 / 102.428 / 101.083	tick_cvd = -6.0 (SELLER_AGGRESSION)	3.97M / 5.19M (-0.1325, hl_mid 100.935)	36 / 19 (hl_mid = 100.935 dislocated -0.753 USD from MT5 101.688)	Sell [100, 101] 520.5K / Buy [101, 102] 1.71M	REJECT (Z = +0.11 fair value chop; -74 bps MT5-vs-DEX basis distortion)
-22	EURUSD (EURUSD.pi)	1.11730 (0.09 bps, FRESH)	PASS (<= 5 bps)	BEAR / BEAR / BEAR	0.0003 (50.69)	1.11710 (Z = +0.77, +0.67 ATR)	1.1178 / 1.1200 / 1.1163 (pd_VAL 1.1190)	tick_cvd = +8.0 (BUYER_AGGRESSION)	607.7K / 450.8K (+0.1482)	12 / 2 (VER BUY 246.7K @ 1.1031; VER SELL 252.9K @ 1.1308)	Sell [1.11, 1.12] 201.0K / Buy [1.12, 1.13] 172.9K	REJECT (Verified walls > 40 ATR away; tick_cvd = +8.0 opposes short)
-23	GBPUSD (GBPUSD.pi)	1.33440 (0.07 bps, FRESH)	PASS (<= 5 bps)	BEAR / BEAR / MIXED	0.0004 (53.88)	1.33420 (Z = +0.89, +0.50 ATR)	1.3350 / 1.3356 / 1.3339 (pd_VAL 1.3355)	tick_cvd = +48.0 (BUYER_AGGRESSION)	255.8K / 349.7K (-0.1550)	10 / 2 (VER BUY 99.0K @ 1.3159; VER SELL 99.0K @ 1.3508)	Sell [1.32, 1.33] 75.5K / Buy [1.33, 1.34] 4.2K	REJECT (Verified walls > 40 ATR away; tick_cvd = +48.0 opposes short)
-24	USDJPY (USDJPY.pi)	157.6585 (0.19 bps, FRESH)	PASS (<= 5 bps)	BULL / BULL / MIXED	0.0742 (55.32)	157.6294 (Z = +0.41, +0.39 ATR)	157.456 / 157.724 / 157.327 (wk_VWAP 157.262)	tick_cvd = -22.0 (SELLER_AGGRESSION)	727.0K / 1.11M (-0.2087)	31 / 7 (VER BUY 314.9K @ 157.47 [536s]; VER SELL 257.6K @ 157.66 [536s])	Sell [157.0, 158.0] 5.9K / Buy [158.0, 159.0] 74.7K	REJECT (tick_cvd = -22.0 SELLER_AGGRESSION and 257.6K verified sell wall @ 157.66 cap upside)
-2. Mandate 1 Qualifying Trade Setups (13-Parameter & 5-Invariant Proofs)
-Primary Candidate 1 (Orthogonal TradFi Indices Slot — Slot 3 of 4): NAS100.p Model 2 Trend-Pullback Long
-Execution Geometry: NAS100.p BUY LIMIT 0.01 lots @ 29,196.00 USD | SL: 29,076.00 USD | TP: 29,438.00 USD
-13-Parameter Coincidence Proof:
-Quotes & Friction: Live MT5 Bid 29,289.71 / Ask 29,290.93 / Mid 29,290.32 USD (Spread = 0.42 bps <= 5.0 bps TradFi ceiling, quote_age = 0.58s FRESH). Entry at 29,196.00 USD is 94.32 pts (1.92 ATR <= 2.0 ATR) below live mid.
-Causal Indicators & Multi-Timeframe Structure: 15m_Regime = BULLISH (EMA_20 29,311.63 > EMA_50 29,279.46 > EMA_200 29,174.71, 3h EMA_200 slope +0.0609%), 1H_Regime = BULLISH, ATR_14 = 48.9966 pts, RSI_14 = 46.27.
-VWAP & Volume Profile: Session VWAP = 29,332.96 USD, Sigma = 47.71 pts, -2SD = 29,237.54 USD, -3SD = 29,189.84 USD, EMA_200 = 29,174.71 USD, weekly_VWAP = 29,159.32 USD, VAL = 29,070.85 USD. Entry at 29,196.00 USD captures a deep -2.87 SD liquidity flush directly into the EMA_200 (29,174.71) and -3SD (29,189.84) structural shelf.
-CVD & Orderflow: tradfi_orderflow confirms session_tick_cvd = +17.0, 15m_tick_cvd = +17.0 (BUYER_AGGRESSION).
-L3 Whale Walls & Structural Stop Clusters:
-Nearest sell-stop clusters below mid are [29,200.00, 29,300.00] (97,502.33 USD stops + 7,818.71 USD long liquidations) and [29,100.00, 29,200.00] (64,577.60 USD stops + 80,590.12 USD long liquidations).
-Below the [29,200.00, 29,300.00] sweep band sit two SAMPLED_RECURRENCE_VERIFIED L3 whale buy walls: 306,412.89 USD @ 29,096.00 USD (0xecb63caa47, persist_s = 5,108.3s, 37 samples, presence_frac = 0.9024) and 255,080.37 USD @ 29,067.00 USD (0xecb63caa47, persist_s = 1,200.4s, 9 samples, presence_frac = 0.90).
-Overhead sits the primary buy-stop magnet [29,400.00, 29,500.00] (998,154.12 USD buy stops) and the verified L3 whale sell wall 293,089.92 USD @ 29,440.00 USD (0xecb63caa47, persist_s = 1,200.4s).
-5 Anti-Trap Invariants Verification:
-Invariant 1 (SL Bunker Clearance): SL @ 29,076.00 USD sits 24.00 pts (0.49 ATR buffer, inside [0.35, 0.50] ATR) below the [29,100.00, 29,200.00] sell-stop bunker and directly behind the 306.4K USD verified buy wall @ 29,096.00 USD.
-Invariant 2 (CVD Absorption): 15m_tick_cvd = +17.0 (BUYER_AGGRESSION).
-Invariant 3 (Sweep-First Staging): Entry @ 29,196.00 USD is staged 4.00 pts below the [29,200.00, 29,300.00] (97.5K USD) sell-stop pool so the proximate stop sweep completes before limit fill.
-Invariant 4 (Whale Persistence): Defended by 561,493.26 USD of SAMPLED_RECURRENCE_VERIFIED buy walls (29,096.00 persisted 5,108.3s >= 180s and 29,067.00 persisted 1,200.4s >= 180s).
-Invariant 5 (MTF Alignment): 15m and 1H regimes are BULLISH with positive EMA_200 slope (+0.0609%).
-Exact Broker Math (0.01 lots, contract_size = 10.0, 0.10 USD/pt):
-Nominal Risk: 0.01 * 10.0 * (29,196.00 - 29,076.00) = 0.10 * 120.00 = 12.00 USD (0.25% of equity; Stressed Risk = 1.25 * 12.00 + 2.00 = 17.00 USD).
-Nominal Reward: 0.01 * 10.0 * (29,438.00 - 29,196.00) = 0.10 * 242.00 = 24.20 USD (front-running the 293.1K USD verified sell wall @ 29,440.00 and harvesting [29,400, 29,500] 998.2K USD buy stops) -> R:R = 2.02R >= 2.00R.
-Reserve Candidate 2 (Dynamic Expectancy Friction Crypto Proof): SOLUSD.p Model 2 HTF Trend-Pullback Short
-Execution Geometry: SOLUSD.p SELL LIMIT 0.25 lots @ 100.62 USD | SL: 101.18 USD | TP: 99.38 USD
-Dynamic Expectancy Friction Proof: Live spread is 22.99 bps <= 35.0 bps. Expected target distance from 100.62 to 99.38 is 1.24 USD = 123.24 bps = 5.36x the 22.99 bps spread (>= 5.0x required), so SOLUSD.p PASSES the Dynamic Expectancy Friction Rule!
-13-Parameter & 5-Invariant Proof:
-15m / 1H / 4H regimes are BEARISH (EMA_20 100.24 < EMA_50 100.46 < EMA_200 101.01, slope -0.0981%, ATR_14 = 0.3371 USD).
-Entry @ 100.62 USD (+0.595 USD = 1.77 ATR <= 2.0 ATR above Mid 100.025) sits directly at +1SD VWAP (100.6362) and pd_VAL (100.6292), front-running a dense ladder of SAMPLED_RECURRENCE_VERIFIED whale sell walls at 100.70 (191,330.00 USD, persist = 1,418.0s), 100.80 (191,520.00 USD, persist = 1,212.6s), 101.15 (812,626.97 USD across two verified wallets, persist = 1,013.7s / 3,527.6s), and 101.16 (617,219.65 USD, persist = 1,013.7s).
-SL @ 101.18 USD clears the [100.00, 101.00] (57.3K USD) buy-stop band by +0.18 USD (0.53 ATR buffer), clears EMA_200 (101.01), and sits behind the 1.43M USD verified whale sell wall fortress at 101.15–101.16 USD.
-TP @ 99.38 USD harvests the [99.00, 100.00] 3,202,984.22 USD sell-stop & 710,084.71 USD long-liquidation cascade while front-running the 4,289,240.66 USD verified whale buy wall @ 99.30 (persist = 2,987.6s) and 173,736.33 USD verified buy wall @ 99.35 (persist = 2,535.7s).
-Broker Math (0.25 lots = 25 SOL, contract_size = 100.0): Nominal Risk = 25 * (101.18 - 100.62) = 14.00 USD (0.29% equity; Stressed = 19.50 USD); Nominal Reward = 25 * (100.62 - 99.38) = 31.00 USD -> R:R = 2.21R >= 2.00R.
-Reserve Candidate 3 (Crypto Benchmark Short): BTCUSD.pi Model 2 HTF Trend-Pullback Short
-Execution Geometry: BTCUSD.pi SELL LIMIT 0.05 lots @ 79,938.00 USD | SL: 80,198.00 USD | TP: 79,318.00 USD
-13-Parameter & 5-Invariant Proof:
-15m / 1H / 4H regimes are BEARISH (Spread = 1.88 bps, ATR_14 = 204.56 USD, EMA_50 = 79,934.52, EMA_200 = 80,183.44, Session VWAP = 79,925.33, wk_VWAP = 79,931.96, L2 book_imbalance = -0.3924 ask-heavy).
-Entry @ 79,938.00 USD (+225.50 pts = 1.10 ATR <= 2.0 ATR above Mid 79,712.50) sits at EMA_50 (79,934.52) / wk_VWAP (79,931.96), directly front-running 3 SAMPLED_RECURRENCE_VERIFIED whale sell walls totaling 881,916.46 USD at 79,940.00 (283.1K, persist = 548.0s), 79,943.00 (361.1K, persist = 548.0s), and 79,947.00 (237.7K, persist = 548.0s).
-SL @ 80,198.00 USD sits +98.00 pts (0.48 ATR buffer) above the [80,000.00, 80,100.00] (546.6K USD) buy-stop band and behind EMA_200 (80,183.44).
-TP @ 79,318.00 USD captures the [79,600, 79,700] (1.43M USD), [79,500, 79,600] (2.60M USD), and [79,300, 79,400] (12.90M USD) sell-stop cascade while front-running the 2,240,592.16 USD verified buy wall @ 79,300.00 (persist = 22,004.9s) by +18.00 pts.
-Broker Math (0.05 lots, contract_size = 1.0): Nominal Risk = 0.05 * 260.00 = 13.00 USD (0.27% equity; Stressed = 18.25 USD); Nominal Reward = 0.05 * 620.00 = 31.00 USD -> R:R = 2.38R >= 2.00R.
-MANDATE 2: AUDIT OF ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
-Live MT5 Open Positions (active_positions): 0 Open Positions (100.0% of 4,846.32 USD equity held in unencumbered cash reserves; margin_used_usd = 0.00 USD).
-Realized Desk Ledger Status: Earlier SP500.p long position was ratcheted to a BE+ profit lock and closed at +3.72 USD realized profit. Zero running exposure is subject to adverse excursion.
-MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDERS
 
-To ensure complete reconciliation between the benchmark prompt specifications and the live MT5 broker state (docs/telemetry/live_snapshot_latest.json at 2026-10-27 03:52:07 UTC), we audit both the two prompt-specified legacy tickets (#18813342 and #18813343) and the two live MT5 pending orders (#19329907 and #19330613).
+================================================================================
 
-Section 3A: Audit of Prompt-Specified Legacy Tickets (#18813342 & #18813343)
-1. Ticket #18813342: SP500.p BUY LIMIT 0.24 lots @ 7,796.10 USD | SL: 7,791.90 USD | TP: 7,817.80 USD
-Live Telemetry Comparison (03:52:07 UTC):
-Quotes & Distance: Live SP500.p Mid is 7,688.31 USD (Bid 7,688.14 / Ask 7,688.48, ATR_14 = 6.5315 pts, Session VWAP = 7,688.45 USD). An entry limit at 7,796.10 USD sits +107.79 pts (+16.50 ATR) ABOVE current market price (violating the <= 2.0 ATR staging rule, and a BUY LIMIT above market would cross the book immediately as a market fill at 7,688.48 with no stop protection near entry!).
-L3 Whale Wall Audit (Invariant 4 Failure): The historical 199,993 USD whale bid wall at 7,796.10 USD has been 100% pulled (> 50% thinning threshold breached). In fact, the 7,790–7,800 zone has flipped into SAMPLED_RECURRENCE_VERIFIED whale SELL walls (296,992.42 USD SELL @ 7,791.60 [persist = 13,009.0s] and 541,228.98 USD SELL @ 7,799.70 [persist = 15,318.9s]).
-Verdict: (C) DELETE / CANCEL IMMEDIATELY (Already purged from native MT5; structurally obsolete by +16.50 ATR and 100% bid-wall disappearance).
-2. Ticket #18813343: BTCUSD.pi BUY LIMIT 0.06 lots @ 82,351.00 USD | SL: 82,158.00 USD | TP: 83,250.00 USD
-Live Telemetry Comparison (03:52:07 UTC):
-Quotes & Distance: Live BTCUSD.pi Mid is 79,712.50 USD (Bid 79,705.00 / Ask 79,720.00, ATR_14 = 204.5625 USD, Session VWAP = 79,925.33 USD, VAL = 79,789.63 USD). The 82,351.00 USD limit sits +2,638.50 USD (+12.90 ATR) ABOVE current market price.
-L3 Whale Wall & Regime Audit (Invariants 4 & 5 Failure): The historical 600,745 USD whale bid wall at 82,351.00 USD has been 100% pulled, and 15m / 1H / 4H trend regimes have flipped to aligned BEARISH (EMA_20 79,865.62 < EMA_50 79,934.52 < EMA_200 80,183.44).
-Verdict: (C) DELETE / CANCEL IMMEDIATELY (Already purged from native MT5; thesis invalidated by -2,638.50 USD regime shift and 100% bid-wall disappearance).
-Section 3B: Adversarial Audit of Live MT5 Snapshot Pending Orders (#19329907 & #19330613)
-3. Live MT5 Ticket #19329907: BNBUSD.p BUY LIMIT 3.00 lots @ 736.25 USD | SL: 732.65 USD | TP: 746.80 USD
-Live Telemetry Audit (03:52:07 UTC):
-Quotes & Distance: Live BNBUSD.p Mid is 738.15 USD (Bid 737.80 / Ask 738.50, Spread = 9.48 bps <= 35.0 bps, ATR_14 = 1.7603 USD). Distance to 736.25 USD is 1.90 USD = 1.08 ATR <= 2.0 ATR (sits at -2SD VWAP = 736.255 USD and pd_VAL = 736.252 USD), with 15m_delta = +239,450 USD and 30m_delta = +326,544 USD showing strong dip absorption.
-Adversarial Microstructure Flaws Identified:
-Invariant 3 (Proximate Stop Cluster Overlap): [736.00, 737.00] is an active sell-stop band (3,320.64 USD below [737.00, 738.00] 11,852.04 USD stops), so 736.25 USD sits inside the [736.00, 737.00] sweep band, while the massive 1,076,376.38 USD L3 whale BUY wall (0x02fbbf39d1, persist_s = 2,764.3s, 20 samples) rests just below at 735.49 USD.
-Opposing Sell Wall Blocking TP: Current TP = 746.80 USD is blocked by a massive 1,087,283.18 USD L3 whale SELL wall at 742.90 USD (0x02fbbf39d1, persist_s = 727.0s), as well as pd_VAH = 742.47 USD and VAH = 741.47 USD.
-Verdict: (B) SLIGHT MODIFICATION REQUIRED
-Modified Parameters: BNBUSD.p BUY LIMIT 3.00 lots @ 735.60 USD | SL: 732.00 USD | TP: 742.80 USD
-Mathematical Proof of Modification:
-Entry @ 735.60 USD (1.45 ATR below live mid 738.15) stages below the [736.00, 737.00] sell-stop band (-0.40 USD clearance) and directly front-runs the 1,076,376.38 USD whale buy wall @ 735.49 USD (persist = 2,764.3s) by +0.11 USD.
-SL @ 732.00 USD preserves the exact same 3.60 USD stop width -> Nominal Risk = 3.00 * 3.60 = 10.80 USD (0.22% equity; Stressed Risk = 15.50 USD), while clearing the [736.00, 737.00] stop band by 2.27 ATR.
-TP @ 742.80 USD front-runs the 1,087,283.18 USD whale sell wall @ 742.90 USD by -0.10 USD (-1.3 bps) and captures Session VWAP (741.28) and VAH (741.47) -> Nominal Reward = 3.00 * 7.20 = 21.60 USD (R:R = 2.00R).
-4. Live MT5 Ticket #19330613: ETHUSD.pi SELL LIMIT 0.50 lots @ 2,333.50 USD | SL: 2,351.30 USD | TP: 2,291.00 USD
-Live Telemetry Audit (03:52:07 UTC):
-Quotes & Regime: Live ETHUSD.pi Mid is 2,312.00 USD (Bid 2,310.60 / Ask 2,313.40, Spread = 12.11 bps <= 35.0 bps, ATR_14 = 7.7912 USD). 15m / 1H / 4H regimes are aligned BEARISH (EMA_20 2,313.48 < EMA_50 2,314.35 < EMA_200 2,327.06).
-Adversarial Microstructure Flaws Identified:
-Invariant 3 (Entry Inside Buy-Stop Pool): 2,333.50 USD is 2.76 ATR above Mid 2,312.00 and sits directly inside the [2,330.00, 2,340.00] 3,918,442.75 USD buy-stop cluster (1,692.3 ETH), exposing the short to an upside stop-squeeze before reversal.
-Invariant 1 (SL Insufficient Clearance & Wall Alignment): [2,340.00, 2,350.00] holds 2,158,605.58 USD of buy stops, and at 2,348.80 USD sits a massive 11,801,916.24 USD SAMPLED_RECURRENCE_VERIFIED whale SELL wall (0xab5e6f3949, persist_s = 4,944.0s, 38 samples, presence_frac = 0.95). Current SL @ 2,351.30 USD is only 1.30 USD (0.17 ATR < 0.35 ATR minimum buffer) above 2,350.00.
-Opposing Verified Whale Buy Walls Blocking TP: Above 2,284.80 USD, there is a 1,170,303.25 USD verified buy wall @ 2,300.00 (persist = 21,976.9s), a 5,957,917.06 USD verified buy wall @ 2,297.10 (persist = 3,000.5s), and an 11,480,338.14 USD verified buy wall @ 2,284.80 USD (0xab5e6f3949, persist = 4,944.0s).
-Verdict: (B) SLIGHT MODIFICATION REQUIRED
-Modified Parameters: ETHUSD.pi SELL LIMIT 0.50 lots @ 2,331.50 USD | SL: 2,354.00 USD | TP: 2,286.50 USD
-Mathematical Proof of Modification:
-Entry @ 2,331.50 USD (+19.50 USD above mid, above EMA_200 = 2,327.06, +2SD VWAP = 2,327.65, and VAH = 2,328.86) front-runs the SAMPLED_RECURRENCE_VERIFIED 212,671.35 USD whale sell wall @ 2,331.80 USD (0x72774e2fe1, persist_s = 4,452.1s, 34 samples, presence_frac = 0.9444).
-SL @ 2,354.00 USD sits +4.00 USD (0.51 ATR >= 0.50 ATR buffer) above the [2,340.00, 2,350.00] (2.16M USD) buy-stop bunker and +5.20 USD behind the 11,801,916.24 USD verified whale sell wall @ 2,348.80 USD.
-TP @ 2,286.50 USD harvests the [2,290.00, 2,300.00] (2.30M USD sell-stop + 304.8K USD long-liquidation) cascade while front-running the 11,480,338.14 USD verified whale buy wall @ 2,284.80 USD (persist = 4,944.0s) by +1.70 USD (+7.4 bps).
-Broker Math (0.50 lots, contract_size = 1.0): Nominal Risk = 0.50 * (2,354.00 - 2,331.50) = 0.50 * 22.50 = 11.25 USD (0.23% equity; Stressed Risk = 1.25 * 11.25 + 2.00 = 16.06 USD); Nominal Reward = 0.50 * (2,331.50 - 2,286.50) = 0.50 * 45.00 = 22.50 USD -> R:R = 2.00R.
-Portfolio Solvency & Capital Floor Proof Across All Active / Proposed Tickets
-Portfolio Slot	Ticket / Symbol	Direction & Volume	Nominal Stop Loss (USD)	Stressed Stop Loss (1.25x + 2.00 USD)	Margin on Fill (USD)	Cumulative Post-Stop Equity (USD)
-Starting Account State	Account #5064568	100% Cash	0.00 USD	0.00 USD	0.00 USD	4,846.32 USD
-Slot 1 (Modified #19329907)	BNBUSD.p	BUY LIMIT 3.00 lots @ 735.60	10.80 USD (0.22%)	15.50 USD	1,103.40 USD	4,830.82 USD
-Slot 2 (Modified #19330613)	ETHUSD.pi	SELL LIMIT 0.50 lots @ 2,331.50	11.25 USD (0.23%)	16.06 USD (16.0625)	582.88 USD	4,814.76 USD
-Slot 3 (New Primary Mandate 1)	NAS100.p	BUY LIMIT 0.01 lots @ 29,196.00	12.00 USD (0.25%)	17.00 USD	58.39 USD	4,797.76 USD
-Combined 3-Ticket Portfolio	3 / 4 Slots Used	Orthogonal Clusters	34.05 USD (0.70%)	48.56 USD (<= 49.32 cap)	1,744.67 USD (36.0% <= 50%)	4,797.76 USD >= 4,795.00 USD PASS (+2.76 USD above Operating Buffer, +22.76 USD above 4,775.00 Hard Floor)
-ACTIONABLE EXECUTION SUMMARY TABLE
-Mandate / Ticket ID	Symbol (Broker)	Action / Classification	Direction & Order Type	Volume (Lots)	Entry Price (USD)	Stop Loss (SL USD)	Take Profit (TP USD)	Nominal Risk (USD / % Eq)	Stressed Risk (USD)	Expected Reward (USD & R:R)	Primary Microstructure & Anti-Trap Proof
-Mandate 2 (Running)	All 24 Assets	CONFIRM FLAT (0 OPEN)	NONE (100% CASH)	0.00	N/A	N/A	N/A	0.00 USD (0.00%)	0.00 USD	Realized +3.72 USD (SP500.p)	Balance = Equity = Free Margin = 4,846.32 USD; zero open risk
-Mandate 3 (#18813342)	SP500.p	(C) DELETE / CANCEL IMMEDIATELY	BUY LIMIT (Legacy)	0.24	7,796.10	7,791.90	7,817.80	10.08 USD (0.21%)	14.60 USD	52.08 USD (5.17R)	Dislocated +16.50 ATR above live 7,688.31; 199.9K bid wall 100% pulled (7,791.6 & 7,799.7 now verified SELL walls)
-Mandate 3 (#18813343)	BTCUSD.pi	(C) DELETE / CANCEL IMMEDIATELY	BUY LIMIT (Legacy)	0.06	82,351.00	82,158.00	83,250.00	11.58 USD (0.24%)	16.48 USD	53.94 USD (4.66R)	Dislocated +12.90 ATR above live 79,712.50; 600.7K bid wall 100% pulled; 15m/1H/4H regimes BEARISH
-Mandate 3 (#19329907 Live MT5)	BNBUSD.p	(B) SLIGHT MODIFICATION REQUIRED	BUY LIMIT (Modify from 736.25 / 732.65 / 746.80)	3.00	735.60	732.00	742.80	10.80 USD (0.22%)	15.50 USD	21.60 USD (2.00R)	Stages below [736, 737] sell stops onto 1.08M USD buy wall @ 735.49 (persist = 2,764.3s); TP front-runs 1.09M USD sell wall @ 742.90
-Mandate 3 (#19330613 Live MT5)	ETHUSD.pi	(B) SLIGHT MODIFICATION REQUIRED	SELL LIMIT (Modify from 2,333.50 / 2,351.30 / 2,291.00)	0.50	2,331.50	2,354.00	2,286.50	11.25 USD (0.23%)	16.06 USD	22.50 USD (2.00R)	Front-runs verified 212.7K sell wall @ 2,331.80 (persist = 4,452s); SL 0.51 ATR above [2,340, 2,350] stops & behind 11.80M USD verified sell wall @ 2,348.80; TP front-runs 11.48M USD verified buy wall @ 2,284.80
-Mandate 1 (New Primary — Slot 3)	NAS100.p	STAGE NEW LIMIT (PRIMARY)	BUY LIMIT (Model 2 Trend Pullback)	0.01	29,196.00	29,076.00	29,438.00	12.00 USD (0.25%)	17.00 USD	24.20 USD (2.02R)	15m/1H BULLISH, tick_cvd = +17.0, stages below [29,200, 29,300] stops at EMA_200 29,174.71, backed by verified 306.4K (@ 29,096, 5,108s) & 255.1K (@ 29,067, 1,200s) buy walls; SL 0.49 ATR below [29,100, 29,200]
-Mandate 1 (Reserve — Crypto Dynamic Friction)	SOLUSD.p	RESERVE CANDIDATE (STAGE IF CRYPTO SLOT FREED)	SELL LIMIT (Model 2 Trend Pullback)	0.25	100.62	101.18	99.38	14.00 USD (0.29%)	19.50 USD	31.00 USD (2.21R)	22.99 bps <= 35 bps (Target 123.2 bps = 5.36x spread), 15m/1H/4H BEARISH, front-runs verified 191.3K (@ 100.70) & 1.43M (@ 101.15–101.16) sell walls; TP front-runs 4.29M verified buy wall @ 99.30
-Mandate 1 (Reserve — Crypto Benchmark)	BTCUSD.pi	RESERVE CANDIDATE (STAGE IF CRYPTO SLOT FREED)	SELL LIMIT (Model 2 Trend Pullback)	0.05	79,938.00	80,198.00	79,318.00	13.00 USD (0.27%)	18.25 USD	31.00 USD (2.38R)	1.88 bps spread, 15m/1H/4H BEARISH, front-runs 881.9K USD verified sell walls @ 79,940–79,947 (persist = 548s); SL 0.48 ATR above [80,000, 80,100] & behind EMA_200 80,183.44; TP front-runs 2.24M verified buy wall @ 79,300
+MANDATE 1: SCREEN ALL 24 TELEMETRY ASSETS FOR NEW OPPORTUNITIES
+
+Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
+
+Apply the Dynamic Expectancy Friction Rule (permitting Crypto spreads up to 35 bps when expected target >= 5x spread). Do NOT arbitrarily ban SOL, BCH, AVAX, or XRP solely on spread!
+Synthesize Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD to 3.5 SD with tape exhaustion and stop sweep absorption) OR Model 2 Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
+Verify entry against all 5 Anti-Trap Invariants from Part C.
+Provide exact Symbol, Direction, Entry limit, SL (outside bunker [min_price, max_price] with 0.35-0.50 ATR buffer), TP (front-running opposing magnet by 5-10 bps), Lots, and Risk USD (10.00-14.50 USD). Minimum R:R >= 2.00R. If no setup qualifies, provide mathematical rationale.
+
+MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
+
+Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
+
+MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDERS (2 ACTIVE TICKETS)
+
+Ticket 1 (#18813342): SP500.p BUY LIMIT 0.24 lots @ 7,796.10 USD | SL: 7,791.90 USD | TP: 7,817.80 USD
+Thesis: Model 1 Mean Reversion Long (Z = -1.78 SD oversold stretch), resting directly on 199,993 USD L3 whale bid wall @ 7,796.10. Stop placed 4.20 pts below entry, clearing bunker with 0.40 ATR buffer. Target front-runs Session VWAP by 0.05 ATR.
+Risk: 10.08 USD (0.21% equity) | Reward: 52.08 USD | R:R: 5.17R.
+Ticket 2 (#18813343): BTCUSD.pi BUY LIMIT 0.06 lots @ 82,351.00 USD | SL: 82,158.00 USD | TP: 83,250.00 USD
+Thesis: Value Area Low Support Long, resting directly on a massive 600,745 USD L3 whale bid wall @ 82,351.00 USD. Stop placed 193 pts below entry, clearing the 82,200 sweep low with 0.82 ATR buffer. Target front-runs Session VWAP (83,277 USD) by 27 pts.
+Risk: 11.58 USD (0.24% equity) | Reward: 53.94 USD | R:R: 4.66R.
+Joint Stressed Post-Loss Floor Defense: 4,835.95 USD (+60.95 USD cushion above 4,775.00 USD hard floor, +40.95 USD above operating buffer).
+Audit each ticket under 13 Parameters & 5 Anti-Trap Invariants:
+
+(A) VIABLE, WAIT AS-IS: Resting whale walls intact, distance <= 2.0 ATR, floor cushion preserved, SL outside sweep zone.
+
+(B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
+
+(C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
+
+================================================================================
+
+DELIBERATION & DESK REPORT OUTPUT
+
+================================================================================
+
+Deliver your response using high-fidelity discrete proofs, clear markdown typography (zero raw LaTeX $ math delimiters), and conclude with the Actionable Execution Summary Table.
