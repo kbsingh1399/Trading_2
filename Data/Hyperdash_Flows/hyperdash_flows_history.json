@@ -51858,5 +51858,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "AVAX",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 5406.71,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 8.8488,
+    "wallet_address": "0x4f375da1a9227761fea15fdf5067fb0cc32c537a",
+    "asset_slug": "AVAX",
+    "raw_text": "#AVAX Whale SELL: 5.41K USD at 8.8488 USD [API]",
+    "msg_id": "HL_TRADE_AVAX_56234976289885",
+    "timestamp_epoch": 1793068138,
+    "time_label": "02:28",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
