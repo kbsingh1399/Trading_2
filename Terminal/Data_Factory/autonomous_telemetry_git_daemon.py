@@ -266,11 +266,10 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     # Push to main first (canonical source of truth)
     code_main, _, err_main = run_cmd(["git", "push", "origin", f"{publication_revision}:{BRANCH_NAME}"])
     if code_main:
-        logger.warning("Full workspace push to %s failed: %s", BRANCH_NAME, err_main)
-        run_cmd(["git", "pull", "--rebase", "origin", BRANCH_NAME])
-        code_retry, _, err_retry = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+        logger.warning("Full workspace push to %s failed: %s. Using force-with-lease to protect local feeds.", BRANCH_NAME, err_main)
+        code_retry, _, err_retry = run_cmd(["git", "push", "--force-with-lease", "origin", f"HEAD:{BRANCH_NAME}"])
         if code_retry:
-            logger.error("Push retry failed: %s", err_retry)
+            logger.error("Push force-with-lease failed: %s", err_retry)
             return False
 
     logger.info("Successfully published full workspace replica to origin/%s [commit %s]", BRANCH_NAME, publication_revision[:9])
