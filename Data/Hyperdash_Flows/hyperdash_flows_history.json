@@ -54018,5 +54018,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "BTC",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 482.49,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 79618.0,
+    "wallet_address": "0x493364de7f4a39ed24f9c68ece229973f324d369",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Liquidated Short: 0.48K USD at 79618.0000 USD [API]",
+    "msg_id": "HL_LIQ_0x493364de7f4a39ed24f9c68ece229973f324d369_BTC_478912118698783",
+    "timestamp_epoch": 1793071133,
+    "time_label": "03:18",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
