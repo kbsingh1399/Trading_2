@@ -132,6 +132,28 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >      * **Pillar 4: Liquidation Geometry & Stop Sweep Magnets** (`7_Liq_Heapmap`, `7_Live_Liq`, `8_Exchange_Liquidation_Map_1D/7D`, `9_Liquidation_Max_Pain_24H/48H/3D/7D`, `22_Forced_Liquidations_MTF`, `14_Liquidation_Matrix`) -> Cumulative liquidation clusters, max pain gravitational pull, cascade exhaustion.
 >      * **Pillar 5: Real-Time Microstructure, Whale Armor & CVD Tape** (`10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`) -> L2/L3 orderbook resting whale bunkers (>= 100K USD, tau >= 180s), CVD absorption delta divergence, footprint imbalances.
 >      * **Pillar 6: Auction Market Structure & Cross-Venue Intelligence** (`11_Technical`, `12_Hyperdash`, `13_Hyperliquid`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `16_Hyperdash_telegram_Intel`, `20_Auction_Market_Structure`, `23_Master_Pipeline_Telemetry`) -> Profile value areas (VAH/VAL/POC), initial balance extensions, Hyperliquid DEX smart-money footprint, technical moving averages and VWAP Z-scores.
+>
+> 7. **Autonomous Wakeup Cron / Timer SOP & Mandatory Document Read List (OPERATOR MANDATE)**:
+>    - **Mandatory Pre-Flight Document Read Gate**:
+>      Upon every autonomous timer or cron trigger, the coordinator and all subagent personas MUST physically read and cross-reference the following canonical documents before formulating hypotheses:
+>      1. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`: Enforce all 10 Line-Check protocols, Dual-Model criteria, Pre-Fill Stressed Solvency ceiling, and Structural SL Clearance.
+>      2. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`: Enforce pitfall avoidance (Pitfall 1 Wick Sweeps on VAH/VAL shelves, Pitfall 2 Correlated Crypto Beta Stacking, Pitfall 3 Ephemeral Whale Spoofing, Pitfall 4 Un-Stressed Solvency Breaches).
+>      3. `.agents/rules/ACTIVE_CONTEXT.md`: Verify live broker equity, balance, margin utilization, open tickets, and real-time cushion to the 4,775.00 USD Hard Floor.
+>    - **Mandatory 8-Step Autonomous Wakeup Execution Order**:
+>      * **Step 1 (Account & Solvency Audit)**: Query live MT5 account telemetry (`mt5.account_info()`). Verify Equity >= 4,795.00 USD Operating Buffer. Calculate current stressed risk across open positions.
+>      * **Step 2 (Parquet Data Lake Freshness Gate)**: Read `Data/metadata/parquet_all_feeds_checklist.json`. Enforce strictly < 5.0m age in IST across all 36 canonical production feeds. Output the Freshness Scorecard and Narrative Ledger.
+>      * **Step 3 (Active Position Supervision & Ratchet Actuator)**:
+>        - Inspect `BTCUSD.pi` Short (#19379711): Accelerate Stage 1 BE lock (+0.15R to 80,515 USD) if price tests the 80,290.00 USD (8.66M USD) bid wall.
+>        - Inspect `USDJPY.pi` Short (#19376039): Execute defensive exit near breakeven (157.850–157.865) on retest of dVAH (157.864); purge before FOMC blackout cutoff (2026-10-28 17:25:00 UTC).
+>      * **Step 4 (Multi-Asset Universe Screening)**: Screen the 156-asset universe across the 4 orthogonal macro clusters: (1) Crypto Beta, (2) USD Dollar Bloc, (3) Precious Metals, (4) Energy & Equity Indices. Filter for Model 1 (Mean Reversion: |VWAP Z| >= 2.0, RSI < 35 or > 65, VR(4) < 0.85) or Model 2 (Fib Prime Trend Pullback: VR(4) > 1.15, ER(48) > 0.35, EMA 34/89/233 expansion).
+>      * **Step 5 (Candidate 360° Data Lake Dossier Traversal)**: For any screened asset meeting Model 1 or Model 2 criteria, execute `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>` to inspect all 42 parquet files with 0 omission.
+>      * **Step 6 (Pre-Fill Stressed Solvency & Factor-Cluster Sizing)**:
+>        - Calculate: $\sum_{i \in \text{Open} \cup \text{Pending}} (1.25 \times R_{\text{nom},i} + 2.00) + \text{spread} \le \text{Equity} - 4,795.00 \text{ USD}$.
+>        - Verify correlated sector cap: Max 2 tickets per cluster; second ticket permitted ONLY if first is ratcheted to Stage 1 BE (+0.15R lock).
+>      * **Step 7 (Maker Limit Order Staging & Invalidation Clearance)**:
+>        - Stage resting limit maker orders at confirmed auction shelves or Fibonacci prime shelves.
+>        - Invalidation clearance: Stop loss must clear `dVAH`/`wVAH`/`pdVAH` or trapped-order swing extremes by at least $0.35$ to $0.50 \times \text{ATR}_{14}$.
+>      * **Step 8 (Re-Arm Autonomous Cycle Timer / Cron)**: Schedule the next autonomous wakeup aligned to the 15-minute candle close (+10s flush) via the `schedule` tool.
 
 ```mermaid
 flowchart TD
