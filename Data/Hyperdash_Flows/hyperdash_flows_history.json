@@ -111718,5 +111718,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "ETH",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 95925.8,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 2347.9,
+    "wallet_address": "0x251f933e62283b6178d6f8c5629859dfa8b96e5d",
+    "asset_slug": "ETH",
+    "raw_text": "#ETH Whale BUY: 95.93K USD at 2347.9000 USD [API]",
+    "msg_id": "HL_TRADE_ETH_684680216257367",
+    "timestamp_epoch": 1793130163,
+    "time_label": "19:42",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
