@@ -18,8 +18,8 @@
     "size_coins"
   ],
   "byte_size": 163598,
-  "timestamp_ist": "2026-10-27 08:37:52 IST",
-  "timestamp_utc": "2026-10-27 03:07:52 UTC",
-  "epoch_utc": 1793070472.957705,
-  "write_duration_ms": 553.6
+  "timestamp_ist": "2026-10-27 08:41:19 IST",
+  "timestamp_utc": "2026-10-27 03:11:19 UTC",
+  "epoch_utc": 1793070679.604066,
+  "write_duration_ms": 510.26
 }
