@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-27 16:35:42 UTC",
+  "timestamp_utc": "2026-10-27 18:17:02 UTC",
   "balance_usd": 4833.47,
-  "equity_usd": 4832.1,
-  "free_margin_usd": 4565.43,
+  "equity_usd": 4830.72,
+  "free_margin_usd": 3758.45,
   "max_filled_positions": 4,
-  "filled_positions_count": 1,
-  "filled_slots_free": 3,
-  "resting_limits_count": 2,
+  "filled_positions_count": 2,
+  "filled_slots_free": 2,
+  "resting_limits_count": 3,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,25 @@
       "type": "SELL",
       "volume": 0.08,
       "price_open": 157.85,
-      "price_current": 157.877,
+      "price_current": 157.923,
       "sl": 158.024,
       "tp": 157.45,
-      "gain_r": -0.155,
+      "gain_r": -0.42,
       "ratchet_stage": 0,
-      "profit_usd": -1.37
+      "profit_usd": -3.7
+    },
+    {
+      "ticket": 19379711,
+      "symbol": "BTCUSD.pi",
+      "type": "SELL",
+      "volume": 0.02,
+      "price_open": 80560.0,
+      "price_current": 80512.5,
+      "sl": 80860.0,
+      "tp": 79910.0,
+      "gain_r": 0.158,
+      "ratchet_stage": 0,
+      "profit_usd": 0.95
     }
   ],
   "resting_orders": [
@@ -36,13 +49,22 @@
       "tp": 113.943
     },
     {
-      "ticket": 19379711,
-      "symbol": "BTCUSD.pi",
+      "ticket": 19381300,
+      "symbol": "XAUUSD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.01,
+      "price": 4033.0,
+      "sl": 4025.5,
+      "tp": 4051.75
+    },
+    {
+      "ticket": 19383569,
+      "symbol": "ETHUSD.pi",
       "type": "SELL_LIMIT",
-      "volume": 0.02,
-      "price": 80560.0,
-      "sl": 80860.0,
-      "tp": 79910.0
+      "volume": 0.5,
+      "price": 2348.5,
+      "sl": 2365.0,
+      "tp": 2312.0
     }
   ]
 }
