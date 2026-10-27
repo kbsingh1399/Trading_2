@@ -187,6 +187,20 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >      3. **All Data Lake Feeds & Background Daemons**:
 >         - Confirm all 36 Parquet feeds are fresh (< 5.0m target).
 >         - Confirm continuous ingestion daemon (`task-148122`), position supervisor (`task-148877`), git sync daemon (`task-148131`), and AST graphify watcher (`task-148127`) are actively running.
+>
+> 9. **Mandatory 'Loading Before Dumping' (Settling & Absorption) Verification Gate (OPERATOR MANDATE)**:
+>    - **The Core Problem**: In both data ingestion and trade execution, rushing to "dump" before sufficient "loading" creates fatal failure modes:
+>      1. *Data Pipeline Dimension*: Dumping / writing Parquet tables before the browser DOM, WebSockets, or API streams have fully loaded leads to partial tables, 0-byte corruptions, or cross-asset data contamination.
+>      2. *Microstructure Execution Dimension*: Anticipating an institutional "dump" (or reversal) on the very first touch of resistance without confirming that smart money has finished "loading" (accumulating/absorbing inventory behind passive limit shelves) leads to premature entries that get swept by secondary liquidity spikes.
+>    - **Invariable Dual-Layer 'Loading-Before-Dumping' Invariant**:
+>      * **Layer 1: Pipeline Data Hydration & Stability Settlement**:
+>        - All browser and API collectors MUST enforce a dynamic stability gate: before extracting DOM elements or writing to Parquet, the collector must observe $\Delta \text{rows} = 0$ for at least $1.5\text{ to }2.0\text{ seconds}$ to guarantee network and render completion.
+>        - In `Terminal/Data_Factory/parquet_feed_writer.py`, payloads are strictly validated for complete row counts and schema integrity before invoking the atomic `os.replace` swap.
+>      * **Layer 2: Microstructure Institutional Loading / Absorption Confirmation**:
+>        - Before staging any limit order expecting a market reversal or cascade (dump), the desk MUST verify that the asset has completed an institutional loading phase:
+>          (a) **Minimum Shelf Loading Duration**: At least 2 candles (30 minutes on M15) of price consolidation at or near the boundary (VAH/VAL/shelf) where resting limit volume is observed.
+>          (b) **Orderflow Absorption Footprint**: In `25_CoinGlass_Footprint_Signals` and `26_Aggregated_Footprint_Bar_Metrics`, verify that aggressive taker orders are being absorbed by passive limit orders (Footprint Absorption Ratio $\ge 1.50$ and negative delta on high volume for short entries; positive delta on high volume for long entries).
+>          (c) **Whale Wall Persistence**: Confirm that resting whale defense bunkers in `10_Whale_Orders.parquet` have a verified duration $\tau \ge 180\text{ seconds}$ and $\ge 100\text{K USD}$ notional depth, proving smart money is actively loading, not spoofing.
 
 ```mermaid
 flowchart TD
