@@ -60658,5 +60658,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "XYZ:GOLD",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 5835.03,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 4850.0,
+    "wallet_address": "0xf61694ff4df2a4227b485c332c2c26bc87e60584",
+    "asset_slug": "XYZ:GOLD",
+    "raw_text": "#XYZ:GOLD Liquidated Short: 5.84K USD at 4850.0000 USD [API]",
+    "msg_id": "HL_LIQ_0xf61694ff4df2a4227b485c332c2c26bc87e60584_XYZ:GOLD_753832008780022",
+    "timestamp_epoch": 1773839722,
+    "time_label": "13:15",
+    "date_heading": "March 18",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
