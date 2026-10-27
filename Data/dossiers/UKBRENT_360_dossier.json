@@ -1,14 +1,14 @@
 {
   "asset": "UKBRENT",
   "aliases": [
-    "UKBRENT",
-    "BRENT",
     "CRUDE",
     "OIL",
+    "UKBRENT",
+    "BRENT",
     "UKBRENT.P"
   ],
-  "timestamp_ist": "2026-10-28 05:00:43 IST",
-  "timestamp_utc": "2026-10-27 23:30:43 UTC",
+  "timestamp_ist": "2026-10-28 05:20:48 IST",
+  "timestamp_utc": "2026-10-27 23:50:48 UTC",
   "total_files_scanned": 42,
   "feeds_with_data_count": 3,
   "global_macro_feeds_count": 4,
@@ -89,7 +89,7 @@
           "Execution_Posture": "PASSIVE LIMIT ONLY",
           "Order_Type_Allowed": "BUY_LIMIT / SELL_LIMIT",
           "Pillar_1_Clearance": "QUALIFIED",
-          "Timestamp_IST": "2026-10-28 04:53:44 IST"
+          "Timestamp_IST": "2026-10-28 05:08:04 IST"
         }
       ]
     },
@@ -99,7 +99,7 @@
       "pillar": "Pillar 5: Microstructure, Whales & Footprints",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 3788,
+      "total_rows": 3157,
       "key_columns": [
         "sr_no",
         "exchange",
@@ -115,7 +115,7 @@
       "pillar": "Pillar 6: Technical & Auction Profile",
       "status": "DATA_EXTRACTED [PASS]",
       "matching_rows": 1,
-      "total_rows": 118,
+      "total_rows": 87,
       "key_columns": [
         "asset",
         "category",
@@ -184,7 +184,7 @@
           "daily_val": 114.3344,
           "week_high": 117.625,
           "week_low": 114.093,
-          "sr_no": 101
+          "sr_no": 77
         }
       ]
     },
@@ -206,39 +206,6 @@
         "vwap_u1"
       ],
       "latest_sample": [
-        {
-          "bar_time_utc": "2026-10-27 22:30",
-          "open": 80802.0,
-          "high": 80840.0,
-          "low": 80637.0,
-          "close": 80778.0,
-          "volume": 1885.0,
-          "session_vwap": 80016.74439129428,
-          "vwap_u1": 80387.0760365084,
-          "vwap_l1": 79646.41274608017,
-          "vwap_u1_28": 80490.76889716835,
-          "vwap_l1_28": 79542.71988542021,
-          "vwap_u2": 80757.40768172251,
-          "vwap_l2": 79276.08110086605,
-          "vwap_u2_01": 80761.11099817466,
-          "vwap_l2_01": 79272.37778441391,
-          "vwap_u2_51": 80946.27682078171,
-          "vwap_l2_51": 79087.21196180685,
-          "vwap_u3": 81127.73932693663,
-          "vwap_l3": 78905.74945565194,
-          "vwap_z": 2.0556050733001237,
-          "ema_9": 80731.03358667454,
-          "ema_20": 80635.47662871321,
-          "ema_50": 80394.48103976296,
-          "ema_100": 80210.4918504229,
-          "ema_200": 80151.12314509804,
-          "rsi_14": 62.408412799382724,
-          "atr_14": 206.3168814756166,
-          "bb_upper": 80868.39249612682,
-          "bb_mid": 80631.775,
-          "bb_lower": 80395.15750387317,
-          "macd_hist": -1.9203551694257044
-        },
         {
           "bar_time_utc": "2026-10-27 22:45",
           "open": 80777.0,
@@ -262,15 +229,15 @@
           "vwap_z": 2.0807428215875916,
           "ema_9": 80744.62686933964,
           "ema_20": 80651.05028312147,
-          "ema_50": 80410.3445283997,
-          "ema_100": 80222.14547714719,
-          "ema_200": 80157.56968096772,
-          "rsi_14": 63.33617977009089,
-          "atr_14": 204.7942470841386,
-          "bb_upper": 80870.36475082795,
+          "ema_50": 80410.34451510894,
+          "ema_100": 80222.14031834832,
+          "ema_200": 80157.46809782268,
+          "rsi_14": 63.336179770132006,
+          "atr_14": 204.79424708528873,
+          "bb_upper": 80870.36475082797,
           "bb_mid": 80652.35,
-          "bb_lower": 80434.33524917206,
-          "macd_hist": -2.9173313989444694
+          "bb_lower": 80434.33524917204,
+          "macd_hist": -2.917331399056053
         },
         {
           "bar_time_utc": "2026-10-27 23:00",
@@ -295,15 +262,48 @@
           "vwap_z": 2.094338917033483,
           "ema_9": 80760.90149547171,
           "ema_20": 80667.71216091943,
-          "ema_50": 80426.64474297226,
-          "ema_100": 80234.1029924512,
-          "ema_200": 80164.22072891828,
-          "rsi_14": 64.54767610714248,
-          "atr_14": 199.38037229121738,
+          "ema_50": 80426.64473020271,
+          "ema_100": 80234.09793580677,
+          "ema_200": 80164.12015655082,
+          "rsi_14": 64.547676107183,
+          "atr_14": 199.38037229219327,
           "bb_upper": 80889.69479637356,
           "bb_mid": 80667.525,
           "bb_lower": 80445.35520362643,
-          "macd_hist": -2.809606809832246
+          "macd_hist": -2.809606809944796
+        },
+        {
+          "bar_time_utc": "2026-10-27 23:15",
+          "open": 80825.0,
+          "high": 80839.0,
+          "low": 80653.0,
+          "close": 80832.0,
+          "volume": 3566.0,
+          "session_vwap": 80036.46192379578,
+          "vwap_u1": 80421.60995217747,
+          "vwap_l1": 79651.31389541409,
+          "vwap_u1_28": 80529.45140012434,
+          "vwap_l1_28": 79543.47244746723,
+          "vwap_u2": 80806.75798055915,
+          "vwap_l2": 79266.16586703241,
+          "vwap_u2_01": 80810.60946084297,
+          "vwap_l2_01": 79262.31438674859,
+          "vwap_u2_51": 81003.18347503382,
+          "vwap_l2_51": 79069.74037255775,
+          "vwap_u3": 81191.90600894084,
+          "vwap_l3": 78881.01783865072,
+          "vwap_z": 2.065538488011764,
+          "ema_9": 80775.12119637738,
+          "ema_20": 80683.35862178424,
+          "ema_50": 80442.5410152928,
+          "ema_100": 80245.93758064228,
+          "ema_200": 80170.76572713241,
+          "rsi_14": 64.82582699820126,
+          "atr_14": 198.42463141396814,
+          "bb_upper": 80904.2198165093,
+          "bb_mid": 80683.7,
+          "bb_lower": 80463.1801834907,
+          "macd_hist": -3.3488915282221257
         }
       ]
     },
@@ -313,7 +313,7 @@
       "pillar": "Pillar 6: Technical & Auction Profile",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 282,
+      "total_rows": 283,
       "key_columns": [
         "Section",
         "Asset",
@@ -345,7 +345,7 @@
       "pillar": "Pillar 4: Liquidation & Stops Geometry",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 6472,
+      "total_rows": 6492,
       "key_columns": [
         "sr_no",
         "asset",
@@ -361,7 +361,7 @@
       "pillar": "Pillar 4: Liquidation & Stops Geometry",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 10216,
+      "total_rows": 10276,
       "key_columns": [
         "timestamp_ist",
         "symbol",
@@ -576,8 +576,8 @@
       "file_name": "19_News.parquet",
       "pillar": "Pillar 2: Macro & ETF Netflows",
       "status": "MACRO_GLOBAL_CONTEXT",
-      "matching_rows": 35,
-      "total_rows": 35,
+      "matching_rows": 34,
+      "total_rows": 34,
       "key_columns": [
         "title",
         "url",
@@ -590,12 +590,26 @@
       ],
       "latest_sample": [
         {
+          "title": "CFI Records Highest-Ever Quarterly Trading Volume of USD 3.45 Trillion",
+          "url": "https://www.forexfactory.com/",
+          "source": "tradeinformer.com",
+          "time_ago": "33 hr ago",
+          "timestamp_utc": "2026-10-26 14:48:09",
+          "timestamp_ist": "2026-10-26 20:18:09 IST",
+          "exact_title_time": "",
+          "impact": "Low Impact",
+          "comments": "0 comments",
+          "currency": "USD",
+          "category": "General Market Intel",
+          "preview": "CFI Financial Group, a leading online trading provider, recorded notional trading volume of USD 3.45 trillion in Q3 2026, the highest in its history. Volume more than doubled year on year, increasing approximately 123%, while rising a further 14% quarter on quarter. This marks CFI\u2019s 11th consecutive announced quarter of record trading volume. Quarterly ..."
+        },
+        {
           "title": "Tom Brady whips out $500K rainbow Rolex for Lions vs. Packers game",
           "url": "https://www.forexfactory.com/",
           "source": "pagesix.com",
-          "time_ago": "20 hr ago",
-          "timestamp_utc": "2026-10-27 03:19:46",
-          "timestamp_ist": "2026-10-27 08:49:46 IST",
+          "time_ago": "21 hr ago",
+          "timestamp_utc": "2026-10-27 02:48:09",
+          "timestamp_ist": "2026-10-27 08:18:09 IST",
           "exact_title_time": "",
           "impact": "Low Impact",
           "comments": "0 comments",
@@ -608,28 +622,14 @@
           "url": "https://www.forexfactory.com/",
           "source": "equiti.com",
           "time_ago": "Oct 24, 2026",
-          "timestamp_utc": "2026-10-27 23:19:46",
-          "timestamp_ist": "2026-10-28 04:49:46 IST",
+          "timestamp_utc": "2026-10-27 23:48:09",
+          "timestamp_ist": "2026-10-28 05:18:09 IST",
           "exact_title_time": "",
           "impact": "Low Impact",
           "comments": "0 comments",
           "currency": "OIL",
           "category": "General Market Intel",
           "preview": "Two oil traders can agree that crude prices will rise over the coming months and still experience very different investment returns. The difference may have little to do with their forecasts. It can come from the structure of the futures market itself. Every futures contract has an expiration date, and contracts covering different delivery months frequently ..."
-        },
-        {
-          "title": "What Hard Work Means to Traders",
-          "url": "https://www.forexfactory.com/",
-          "source": "banyanhill.com",
-          "time_ago": "Oct 23, 2026",
-          "timestamp_utc": "2026-10-27 23:19:46",
-          "timestamp_ist": "2026-10-28 04:49:46 IST",
-          "exact_title_time": "",
-          "impact": "Low Impact",
-          "comments": "0 comments",
-          "currency": "GLOBAL",
-          "category": "General Market Intel",
-          "preview": "Work = Profits. You get out of trading what you put into it. I didn\u2019t conjure my 7-Step Framework out of thin air. Years of study and testing went into its development. Trading is no different than any other skill. Do you think Tom Cruise just pops up one day and pulls off his death-defying stunts? World Cup star Lionel Messi toiled for years to become the ..."
         }
       ]
     },
@@ -670,7 +670,7 @@
       ],
       "latest_sample": [
         {
-          "timestamp": "2026-10-28 04:53:58 IST",
+          "timestamp": "2026-10-28 05:08:17 IST",
           "sr_no": 53,
           "asset": "UKBRENT",
           "symbol": "UKBRENT.p",
@@ -756,7 +756,7 @@
       "pillar": "Pillar 4: Liquidation & Stops Geometry",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 64,
+      "total_rows": 44,
       "key_columns": [
         "symbol",
         "timeframe",
@@ -806,7 +806,7 @@
       "pillar": "Pillar 5: Microstructure, Whales & Footprints",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 956,
+      "total_rows": 921,
       "key_columns": [
         "timestamp_ist",
         "signal_time",
@@ -966,7 +966,7 @@
       "pillar": "Pillar 4: Liquidation & Stops Geometry",
       "status": "NO_DIRECT_MATCH",
       "matching_rows": 0,
-      "total_rows": 93,
+      "total_rows": 85,
       "key_columns": [
         "rank",
         "asset",
