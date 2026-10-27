@@ -15,12 +15,14 @@ import pyarrow.parquet as pq
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 FEEDS_DIR = ROOT / "Data" / "feeds"
+METADATA_DIR = ROOT / "Data" / "metadata"
 
-def stamp_all_parquet_feeds(cycle_id: str = "Cycle 359"):
+def stamp_all_parquet_feeds(cycle_id: str = "Cycle 363"):
     now_utc = datetime.datetime.now(datetime.timezone.utc)
     now_ist = now_utc + datetime.timedelta(hours=5, minutes=30)
     ts_utc_str = now_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
     ts_ist_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
+    epoch_utc = now_utc.timestamp()
     
     stamped_count = 0
     errors = []
@@ -39,6 +41,22 @@ def stamp_all_parquet_feeds(cycle_id: str = "Cycle 359"):
             new_meta[b"cycle_timestamp_ist"] = ts_ist_str.encode("utf-8")
             new_table = table.replace_schema_metadata(new_meta)
             pq.write_table(new_table, p, compression="snappy")
+            
+            # Also update metadata JSON sidecar if present
+            meta_json = METADATA_DIR / f"{p.stem}.json"
+            if meta_json.exists():
+                try:
+                    import json
+                    with open(meta_json, "r", encoding="utf-8") as f:
+                        m_data = json.load(f)
+                    m_data["timestamp_ist"] = ts_ist_str
+                    m_data["timestamp_utc"] = ts_utc_str
+                    m_data["epoch_utc"] = epoch_utc
+                    with open(meta_json, "w", encoding="utf-8") as f:
+                        json.dump(m_data, f, indent=2)
+                except Exception:
+                    pass
+
             stamped_count += 1
         except Exception as e:
             errors.append((p.name, str(e)))
