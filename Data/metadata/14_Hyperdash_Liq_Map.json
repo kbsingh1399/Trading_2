@@ -17,9 +17,9 @@
     "long_liq",
     "size_coins"
   ],
-  "byte_size": 242205,
-  "timestamp_ist": "2026-10-27 07:18:30 IST",
-  "timestamp_utc": "2026-10-27 01:48:30 UTC",
-  "epoch_utc": 1793065710.557404,
-  "write_duration_ms": 467.53
+  "byte_size": 242387,
+  "timestamp_ist": "2026-10-27 07:20:15 IST",
+  "timestamp_utc": "2026-10-27 01:50:15 UTC",
+  "epoch_utc": 1793065815.748,
+  "write_duration_ms": 551.94
 }
