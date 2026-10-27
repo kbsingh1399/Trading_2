@@ -112698,5 +112698,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "XYZ:META",
+    "side": "SHORT_LIQUIDATED",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 4358.03,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 619.39,
+    "wallet_address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+    "asset_slug": "XYZ:META",
+    "raw_text": "#XYZ:META Liquidated Short: 4.36K USD at 619.3900 USD [API]",
+    "msg_id": "HL_LIQ_0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00_XYZ:META_189634454622369",
+    "timestamp_epoch": 1793132039,
+    "time_label": "20:13",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
