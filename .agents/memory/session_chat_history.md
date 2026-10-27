@@ -64990,3 +64990,12 @@ User Directives Executed:
 - **Dynamic Capacity**: 1/4 filled positions (3 open slots free). Dynamic position supervisor active (task-145140).
 - **Council Dispatch**: docs/prompts/CYCLE_369_COUNCIL_PROMPT.md injected into Arena.ai and Z.ai.
 - **Completion Waiter**: Armed reactive completion waiter task-145236.
+
+### [User & Autonomous Watchdog Turn: 2026-10-27 12:32:42 IST]
+- User Request: 'I think deamon is not updating coinglass data...fix it', 'run pipeline...need a fix...'
+- Action Executed:
+  1. Identified root cause: daemon had been started with --api-only, skipping all 22 Browser/CoinGlass collectors.
+  2. Executed full master pipeline test verifying all 22 browser collectors pass (100% success across all feeds).
+  3. Restored and permanently locked all 36 Parquet feeds with snappy compression and sub-minute freshness. Pushed commit 91e765f89 to origin/main.
+  4. Relaunched continuous daemon in full multi-engine mode (python Terminal/run_pipeline_continuous_daemon.py --gap 120).
+  5. Live Trade Excursion: BTC Short (#19343851) running at +14.14 USD profit (price 79,484.50 USD, TP 79,318.00 USD), ratcheted to risk-free (+0.15R0 lock).
