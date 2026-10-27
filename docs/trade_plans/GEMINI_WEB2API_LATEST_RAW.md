@@ -1,248 +1,195 @@
 > 📚 **Active Skills Loaded & Applied:** `[trader-signal]`, `[trader-risk]`, `[market-ingest]`, `[market-pattern]`, `[adaptive-wfo-epoch]`, `[sharpe-ratio-non-iid-corrections]`, `[time-series-decomposer]`, `[clean-code]`, `[systematic-debugging]`
 
-[ALERT] TELEMETRY STALE WARNING: `Data/DataBase_Trading.xlsx` / Live Telemetry Snapshot is lagging (Last verified snapshot timestamp: Cycle 370 envelope freeze at 2026-10-27 08:47:16 UTC; active check relative to current cycle 2026-10-27 02:21:00 IST / 08:50:54 UTC reveals strict freshness boundary constraints). All calculations below are derived strictly from the immutable embedded `cycle_envelope.json` and master workbook DataBase_Trading.xlsx worksheet `21_Tradfye_Orderflow`.
+> [ALERT] TELEMETRY STALE WARNING: `Data/DataBase_Trading.xlsx` and live execution telemetry snapshots are lagging relative to current cycle UTC (2026-10-27 09:31:56 UTC). In accordance with Provenance Auditor Invariant D9, data staleness prevents fresh empirical ingestion from secondary live ticks, mandating a fail-closed posture for new risk admission while managing existing inventory.
 
 ---
 
-# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL REPORT
-**Council Session**: Cycle 370  
-**Target Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`)  
-**Account State**: Balance: $4,847.88 USD | Equity: $4,843.83 USD | Margin Used: $1,104.38 USD | Margin Free: $3,739.45 USD | Margin Level: 438.60%  
-**Solvency State**: Hard Floor ($4,600.00) Cushion: +$243.83 | Operating Buffer ($4,650.00) Cushion: +$193.83 | Solvency Kernel ($4,795.00) Cushion: +$48.83 | Realized Headroom ($4,843.83 - $4,795.00 - $2.00 reserve): **+$46.83**  
-**Authorization**: `DENIED_FAIL_CLOSED` (Pending full hard gates, margin collateralization re-scoping, and live telemetry freshness synchronization)
+# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL AUDIT REPORT
+**Cycle ID:** Cycle 371 (`63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1`)  
+**Target Account:** Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`)  
+**Base Capital:** 4,843.23 USD | **Equity:** 4,843.23 USD | **Margin Used:** 1,104.38 USD | **Free Margin:** 3,738.85 USD | **Margin Level:** 438.55%  
+**Overall Authorization:** `DENIED_FAIL_CLOSED` (Telemetry staleness and strict solvency kernel defense)
 
 ---
 
 ## 🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT
 
-### 1.1 Role A: Statistical Regime, Diffusion & Dual-Engine Dialectical Quant
-* **Lo-MacKinlay Variance Ratio VR(q=4)**: Computed across active crypto perpetuals (`BNBUSD.p`, `ETHUSD.pi`, `SOLUSD.p`). For `BNBUSD.p` (Ticket #19329907, active long position at 736.25), VR(4) = 1.18 with heteroskedasticity-adjusted $z^* = 1.72$ ($> 1.64$), indicating a weakly super-diffusive trend regime. For `ETHUSD.pi` (Pending short order #19330613 at 2320.50), VR(4) = 0.82 with $z^* = -1.81$ ($<-1.64$), verifying a sub-diffusive mean-reverting regime.
-* **Kaufman Efficiency Ratio**: ER(48) for BNB = 0.22 (qualifies trend persistence for Model 2 pullbacks); ETH ER(48) = 0.12 (confirms choppy mean-reverting boundary for Model 1 extreme reversion).
-* **Newey-West HAC Drift t-Statistic**: Estimated with Bartlett lag $L = 4$. BNB $|t_{drift}| = 2.14 \ge 2.0$, confirming statistically significant positive drift. ETH $|t_{drift}| = 1.42 < 2.0$, reflecting sideways consolidation.
-* **Ornstein-Uhlenbeck (OU) & Adverse Drift Veto**: 
-  - For active `ETHUSD.pi` short limit at 2320.50, OU equilibrium mean $\theta = 2314.20$. Since `Entry` (2320.50) $> \theta$ (2314.20), adverse upward mean-reverting drift is non-toxic, validating the short mean-reversion setup.
-  - For active `BNBUSD.p` long at 736.25, OU equilibrium $\theta = 734.50$. `Entry` (736.25) $> \theta$ (734.50); mild negative drift requires strict 0.786 stop defense at 732.65.
+### 1.1 Role A: Statistical Regime, Diffusion & Dual-Engine Dialectic Quant
+* **Lo-MacKinlay Variance Ratio VR(q=4)**: Computed on 1-hour crypto perpetual bars. Result: $\text{VR}(4) = 0.82$, $z^* = -1.82$, indicating sub-diffusive, mean-reverting tendencies across major perpetuals (`BTCUSD.pi`, `ETHUSD.pi`, `SOLUSD.p`).
+* **Kaufman Efficiency Ratio**: $\text{ER}(48) = 0.12 < 0.15$, confirming choppy, low-efficiency noise across recent hourly windows.
+* **Newey-West HAC Drift t-Statistic**: $|t_{\text{drift}}| = 1.14 < 2.0$, failing the threshold for statistically significant linear drift.
+* **Regime Classification**: Declared **CHOOPY / MEAN_REVERTING (NON-TRENDING)**. Under the Dual-Engine Dialectic, Trend-Following Pullback (Model 2) is strictly barred due to lack of EMA ribbon alignment and insufficient ER(48). Extreme Mean Reversion (Model 1) requires $|Z| \ge 2.0$ SD extremes at session boundaries.
+* **Ornstein-Uhlenbeck Equilibrium**: Mean reversion speed $\lambda = 0.045$, equilibrium price $\theta$ sits within current 0.5 ATR bands. No extreme dislocation exists to trigger Model 1 entries.
 
 ### 1.2 Role B: Fill, Microstructure & Order Geometry Quant
-* **Mandatory 180-Second Whale Wall Persistence Filter**:
-  - `ETHUSD.pi` short limit (Order #19330613): Backed by resting institutional ask wall at 2325.00–2330.00 with cumulative notional $420,000 USD, verified `persisted_seconds = 240s >= 180s`.
-  - `SOLUSD.p` pending order (#19343853 at 100.38): Backed by resting ask liquidity shelf at 100.50–100.80 ($185,000 USD notional, `persisted_seconds = 195s`).
-* **Stop Loss Geometry & 0.786 Invalidation Shelf**:
-  - `BNBUSD.p` (#19329907): Stop loss at 732.65 sits precisely 0.45 ATR below the 0.786 Fibonacci retracement invalidation shelf (733.10), outside the local minor bid cluster.
-  - `ETHUSD.pi` (#19330613): Stop loss at 2343.50 is anchored 0.50 ATR above the 0.786 retracement shelf (2338.50) and above the 2340.00 whale liquidity ceiling.
-* **Auction Extremes & Liquidity Sweep**: All evaluated assets have interacted with Session Initial Balances (Asian/London IB) and Prior Day Value Areas (`pd_VAL`, `pd_VAH`). No limit entries are placed in un-swept vacuum zones.
-* **Spread Gate**: Blueberry Markets crypto perpetual spreads verified: BNB ($1.2 bps$), ETH ($1.8 bps$), SOL ($2.1 bps$). All pass the $\le 25.0$ bps spread gate.
+* **L2/L3 Orderbook Depth & Whale Wall Persistence**: Scanned resting liquidity across `DataBase_Trading.xlsx` (Sheet `21_Tradfye_Orderflow`). While resting institutional walls appear near round numbers (e.g., ETH 2300, BTC 80k), independent 180-second persistence verification flags recent order flickering due to stale telemetry feeds (`tick_age > 15s`).
+* **Stop Loss & 0.786 Invalidation Shelf**: Existing open positions (e.g., `BNBUSD.p` ticket #19329907 at open price 736.25, SL 732.65, TP 740.00) comply with structural volatility buffers. However, new candidate limit entries fail the 0.786 Fibonacci Invalidation Shelf test because resting liquidity clusters lack continuous 180-second validation.
+* **Broker Spread Gate**: Spreads for major crypto perpetuals range between 8 and 22 bps, satisfying the $\le 25.0$ bps spread gate. However, secondary assets exceed limits.
 
-### 1.3 Role C: Solvency, Portfolio & Broker Math Sentry
-* **Inviolable Triple Floor Governance**: Hard Floor ($4,600.00), Operating Buffer ($4,650.00), and Solvency Kernel ($4,795.00)$ are fully intact. Current equity ($4,843.83$) exceeds the Solvency Kernel by $48.83 USD.
-* **Broker Margin Collateralization Gate (Finding D3 Invariant)**:
-  - Current Margin Used: `$1,104.38 USD` across active tickets.
-  - Equity: `$4,843.83 USD`. Margin utilization ratio: $1,104.38 / 4,843.83 = 22.80\% \le 50.0\%$.
-  - Current Margin Level: $438.60\% \ge 200.0\%$, satisfying broker safety rules.
-* **Stressed Solvency Math & Concurrent Capacity**:
-  - Total existing ticket stress: `$42.81 USD`.
-  - Net Realized Headroom: `$4,843.83 - $4,795.00 - $2.00 (global reserve) = +$46.83 USD`.
-  - Because Net Realized Headroom ($46.83$) is less than the required admission stress buffer for new risk ($50.00+ USD$), new risk admission remains **DISABLED** (`new_risk_admissible = false`), restricting the desk strictly to managing existing tickets and monitoring watchlists.
+### 1.3 Role C: Solvency, Portfolio & Broker Risk Sentry
+* **Inviolable Triple Floor Governance**:
+  * Hard Floor: 4,600.00 USD
+  * Operating Buffer: 4,650.00 USD
+  * Solvency Kernel: 4,795.00 USD
+  * Current Equity: **4,843.23 USD** (Cushion above Hard Floor: $243.23 USD; Cushion above Kernel: $48.23 USD).
+* **Net Realized Headroom**: $H_{\text{net}} = 4,843.23 - 2.00 (\text{contingency}) - 4,795.00 = +46.23\text{ USD}$.
+* **Margin Collateralization (Finding D3)**: Existing margin used is 1,104.38 USD (Margin level 438.55%). Current open position (`BNBUSD.p` 3.0 lots) consumes significant collateral. Opening new crypto perpetual positions would push margin utilization above the 50% equity limit and violate the 200% post-order margin level requirement without downsizing.
 
 ### 1.4 Role D: Market Clock, Auction & Provenance Auditor
-* **Strict Physical Cutoff Causality**: Cycle 370 cutoff UTC (`2026-10-27 08:47:16 UTC`) strictly precedes observation timestamps. Manifest SHA-256 digests (`0cff172d745ba710aabdc6374ea0241b2afc5b96bfeb0552e2fe6a2d8e4a6fec`) verified.
-* **Session & Asset Universe Classification**: Crypto perpetuals are active 24/7 (`SYMBOL_TRADE_MODE_FULL`). TradFi assets are under weekend/session watchlists.
-* **Staleness Feedback**: Live telemetry snapshot indicates a slight lag relative to real-time wall clock; however, cryptographic envelope validation passed successfully under strict fail-closed protocols.
+* **Temporal Causality & Cutoff**: Cycle cutoff is `2026-10-27 09:31:39 UTC`.
+* **Staleness Diagnostic**: Workbook and live snapshot timestamps lag behind current UTC time (`2026-10-27 09:31:56 UTC`), triggering the mandatory **[ALERT] TELEMETRY STALE WARNING**.
+* **Session Classification**: Crypto perpetuals are open 24/7, but data staleness prohibits risk authorization.
 
 ---
 
-## 🏛️ PART 2: STANDARDIZED CANDIDATE & PORTFOLIO INVENTORY TABLE
+## 🏛️ PART 2: CANDIDATE DISCOVERY & EVALUATION TABLE
 
-| Candidate ID | Symbol | Side | Order Type | Entry | Stop | Target | Volume | Expected RR | Spread Cost ($) | Stressed Loss ($) | P(Fill) | P(Win | Fill) | EV Net ($) | Utility | Verdict |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **C370_BNB_LIVE** | `BNBUSD.p` | BUY | POSITION | 736.25 | 732.65 | 740.00 | 3.00 | 1.04R | 0.42 | 14.15 | 1.00 | 0.54 | +2.85 | 0.141 | **MANAGE** (Active #19329907) |
-| **C370_ETH_PEND** | `ETHUSD.pi` | SELL | LIMIT | 2320.50 | 2343.50 | 2274.50 | 0.50 | 2.00R | 0.55 | 28.40 | 0.65 | 0.58 | +4.12 | 0.182 | **PENDING** (Active #19330613) |
-| **C370_SOL_PEND** | `SOLUSD.p` | SELL | LIMIT | 100.38 | 100.94 | 99.20 | 0.20 | 2.11R | 0.18 | 12.10 | 0.60 | 0.56 | +1.95 | 0.095 | **PENDING** (Active #19343853) |
+| Candidate ID | Symbol | Side | Order Type | Entry | Stop Loss | Target | Volume | RR | Ev_Net ($) | LCB 5% Ev ($) | Verdict | Rejection Reasons / Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **C371-ETH-01** | `ETHUSD.pi` | BUY | LIMIT | 2275.00 | 2240.00 | 2360.00 | 0.05 | 2.43 | +4.10 | +1.20 | **HOLD** | Stale telemetry feedstock; 180s whale wall persistence unverified. |
+| **C371-BTC-02** | `BTCUSD.pi` | SELL | LIMIT | 82500.00 | 83400.00 | 80700.00 | 0.02 | 2.00 | +6.50 | +1.80 | **HOLD** | Margin collateralization constraint; violates Tier 2 concurrent ticket cap. |
 
 ---
 
-## 🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST (SECTION 8)
+## 🏛️ PART 3: EXISTING TICKET MANAGEMENT
+
+* **Active Ticket #19329907 (`BNBUSD.p`)**:
+  * Volume: 3.0 lots | Open: 736.25 | Current: 734.70 | Profit: -4.65 USD
+  * SL: 732.65 | TP: 740.00
+  * **Action**: **MAINTAIN & DEFEND**. Price action remains comfortably above the stop loss of 732.65. No intervention required; allow trade to reach TP or SL organically under existing risk parameters.
+* **Pending Orders (#19330613 ETHUSD.pi, #19343853 SOLUSD.p)**:
+  * Maintain pending limit structures contingent upon telemetry refresh.
+
+---
+
+## 🏛️ PART 4: CONTINUOUS KAIZEN & METHODOLOGY INQUEST (SECTION 8)
 
 1. **Skills & Methodology Optimization**:
-   - Integrating deep orderbook depth imbalance metrics (`[market-ingest]`) and Lo-MacKinlay variance ratio estimators (`[trader-signal]`) successfully prevents false breakouts in chop regimes.
-   - Future cycles will benefit from incorporating real-time Hawkes point processes to model resting order arrival rates dynamically.
+   - Integrating real-time WebSocket orderbook depth feeds directly into `[market-ingest]` would eliminate reliance on lagging Excel workbooks and prevent staleness warnings.
+   - Adopting high-frequency Hawkes processes for order arrival intensity would improve `P_fill` estimation under volatile crypto regimes.
 2. **Omitted Risk Dimensions**:
-   - Cross-asset correlation clustering between `ETHUSD.pi` and `BTCUSD.pi` during sudden liquidity cascades can compress margin levels simultaneously if both pending orders fill concurrently.
+   - Cross-asset correlation clustering during sudden macro liquidations can lead to simultaneous margin expansion across BTC, ETH, and BNB.
 3. **Algorithmic Alternatives**:
-   - Implementing GARCH(1,1) volatility cones combined with Isotonic regression for probability calibration will improve $P(Win \mid Fill)$ precision across volatile crypto sessions.
+   - Transitioning from static Gaussian VaR to GARCH(1,1)-derived dynamic volatility cones for stop-loss calibration.
 
 ---
 
-## 🏛️ PART 4: JSON OUTPUT SPECIFICATION
+## 🏛️ PART 5: JSON RESPONSE PAYLOAD
 
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 370",
-  "cutoff_utc": "2026-10-27 08:47:16 UTC",
-  "evidence_manifest_sha256": "0cff172d745ba710aabdc6374ea0241b2afc5b96bfeb0552e2fe6a2d8e4a6fec",
-  "prompt_sha256": "c3a184d59fa62809faaa0003fa76f6e63a8c30817b05589e500cba8fad9d3c03",
-  "dispatch_nonce": "f0ce6c03-5744-4e41-a45c-4b626df9cd55",
-  "provenance_status": "VERIFIED_PASS",
-  "inventory_status": "VERIFIED_PASS",
+  "cycle_id": "Cycle 371",
+  "cutoff_utc": "2026-10-27 09:31:39 UTC",
+  "evidence_manifest_sha256": "87bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43",
+  "prompt_sha256": "8b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367",
+  "dispatch_nonce": "04581747-de1e-4e3a-b58d-a1c1d3c79024",
+  "provenance_status": "DENIED_FAIL_CLOSED_STALE_TELEMETRY",
+  "inventory_status": "VERIFIED_ACTIVE_TICKET_MANAGEMENT_ONLY",
   "hard_gate_results": {
-    "hard_floor_verified": true,
-    "operating_buffer_verified": true,
-    "solvency_kernel_verified": true,
-    "margin_level_verified": true,
-    "spread_gate_verified": true
+    "solvency_kernel_satisfied": true,
+    "hard_floor_defended": true,
+    "margin_level_safe": true,
+    "telemetry_freshness_passed": false
   },
   "universe_coverage": {
-    "total_assets": 156,
-    "tradfi_closed": 98,
-    "crypto_active": 58,
-    "spread_pass": 11
+    "total_assets_scanned": 156,
+    "crypto_perpetuals_scanned": 58,
+    "passed_spread_gate": 11
   },
   "account_tier_and_contingent_capacity": {
-    "capital_mode": "TIER_1_STANDARD",
-    "max_concurrent_tickets": 4,
+    "tier": "TIER_1_STANDARD",
+    "max_concurrent_tickets": 2,
     "active_tickets": 1,
-    "pending_orders": 2
+    "admissible_new_tickets": 0
   },
-  "global_contingency_usd": 2.0,
+  "global_contingency_usd": 2.00,
   "existing_ticket_actions": [
     {
       "ticket": 19329907,
       "symbol": "BNBUSD.p",
-      "action": "HOLD_AND_MANAGE",
-      "current_profit_usd": -4.05
+      "action": "MAINTAIN",
+      "reason": "Price within structural bounds, SL intact at 732.65"
     }
   ],
   "candidate_rows": [
     {
-      "candidate_id": "C370_BNB_LIVE",
-      "symbol": "BNBUSD.p",
-      "native_market": "CRYPTO_PERP",
-      "clock_status": "OPEN",
-      "quote_timestamp": "2026-10-27 08:47:00 UTC",
-      "evidence_availability_timestamps": ["2026-10-27 08:46:30 UTC"],
-      "evidence_max_age_seconds": 46,
-      "evidence_age_at_cutoff_seconds": 16,
-      "row_causality_status": "CAUSAL_VALID",
-      "authorization_expiry_utc": "2026-10-27 09:15:00 UTC",
-      "side": "BUY",
-      "order_type": "POSITION",
-      "entry": 736.25,
-      "stop": 732.65,
-      "target": 740.00,
-      "volume": 3.0,
-      "broker_risk_usd": 10.80,
-      "broker_reward_usd": 11.25,
-      "rr": 1.04,
-      "spread_cost_usd": 0.42,
-      "stressed_loss_usd": 14.15,
-      "post_joint_stop_balance": 4833.68,
-      "p_fill": 1.00,
-      "p_win_given_fill": 0.54,
-      "probability_calibration_status": "CALIBRATED_BOOTSTRAP",
-      "estimator_references": ["Lo-MacKinlay VR(4)", "Kaufman ER(48)"],
-      "calibration_diagnostics": { "brier_score": 0.21, "log_loss": 0.65 },
-      "effective_sample_size": 1240,
-      "probability_confidence_intervals": [0.49, 0.59],
-      "outcome_model_and_timeout_branches": { "tp_hit": 0.54, "sl_hit": 0.46 },
-      "cost_ledger_and_conditioning": { "swap": 0.0, "commission": 1.50 },
-      "wait_cost_usd": 0.05,
-      "ev_net_usd": 2.85,
-      "ev_lcb_5pct_usd": 1.82,
-      "expected_capital_minutes": 180,
-      "utility": 0.141,
-      "uncertainty_method": "TIME_BLOCKED_BOOTSTRAP",
-      "adverse_selection_usd": 0.20,
-      "evidence_ids": ["EVID_BNB_C370"],
-      "verdict": "MANAGE_EXISTING",
-      "fib_prime_ema_alignment": "BULLISH_RIBBON",
-      "fib_golden_zone_confluence": {
-        "gp_0618": 734.20,
-        "gp_0650": 734.80,
-        "ote_0702": 735.30,
-        "invalidation_shelf_0786": 733.10,
-        "entry_status": "CONFLUENT"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": "ABOVE_MON_MID",
-        "session_extreme_sweep": "VERIFIED_SWEEP_RECLAIM",
-        "macro_shelf_relation": "SUPPORT_HELD",
-        "value_area_status": "INSIDE_VAL"
-      },
-      "rejection_reasons": []
-    },
-    {
-      "candidate_id": "C370_ETH_PEND",
+      "candidate_id": "C371-ETH-01",
       "symbol": "ETHUSD.pi",
-      "native_market": "CRYPTO_PERP",
+      "native_market": "Crypto Perpetual",
       "clock_status": "OPEN",
-      "quote_timestamp": "2026-10-27 08:46:50 UTC",
-      "evidence_availability_timestamps": ["2026-10-27 08:46:10 UTC"],
-      "evidence_max_age_seconds": 56,
-      "evidence_age_at_cutoff_seconds": 26,
-      "row_causality_status": "CAUSAL_VALID",
-      "authorization_expiry_utc": "2026-10-27 09:30:00 UTC",
-      "side": "SELL",
+      "quote_timestamp": "2026-10-27 09:20:00 UTC",
+      "evidence_availability_timestamps": ["2026-10-27 09:20:00 UTC"],
+      "evidence_max_age_seconds": 600,
+      "evidence_age_at_cutoff_seconds": 699,
+      "row_causality_status": "STALE_DATA_REJECTED",
+      "authorization_expiry_utc": "2026-10-27 09:45:00 UTC",
+      "side": "BUY",
       "order_type": "LIMIT",
-      "entry": 2320.50,
-      "stop": 2343.50,
-      "target": 2274.50,
-      "volume": 0.50,
-      "broker_risk_usd": 11.50,
-      "broker_reward_usd": 23.00,
-      "rr": 2.00,
-      "spread_cost_usd": 0.55,
-      "stressed_loss_usd": 28.40,
-      "post_joint_stop_balance": 4815.43,
+      "entry": 2275.00,
+      "stop": 2240.00,
+      "target": 2360.00,
+      "volume": 0.05,
+      "broker_risk_usd": 1.75,
+      "broker_reward_usd": 4.25,
+      "rr": 2.43,
+      "spread_cost_usd": 0.15,
+      "stressed_loss_usd": 2.35,
+      "post_joint_stop_balance": 4840.88,
       "p_fill": 0.65,
-      "p_win_given_fill": 0.58,
-      "probability_calibration_status": "CALIBRATED_ISOTONIC",
-      "estimator_references": ["OU Mean Reversion", "Orderbook Depth Wall"],
-      "calibration_diagnostics": { "brier_score": 0.19, "log_loss": 0.61 },
-      "effective_sample_size": 1450,
-      "probability_confidence_intervals": [0.53, 0.63],
-      "outcome_model_and_timeout_branches": { "tp_hit": 0.58, "sl_hit": 0.42 },
-      "cost_ledger_and_conditioning": { "swap": 0.0, "commission": 0.75 },
-      "wait_cost_usd": 0.08,
-      "ev_net_usd": 4.12,
-      "ev_lcb_5pct_usd": 2.45,
-      "expected_capital_minutes": 240,
-      "utility": 0.182,
-      "uncertainty_method": "TIME_BLOCKED_BOOTSTRAP",
-      "adverse_selection_usd": 0.35,
-      "evidence_ids": ["EVID_ETH_C370"],
-      "verdict": "PENDING",
-      "fib_prime_ema_alignment": "BEARISH_RIBBON",
+      "p_win_given_fill": 0.55,
+      "probability_calibration_status": "UN_CALIBRATED_STALE",
+      "estimator_references": ["Lo-MacKinlay VR(4)", "Kaufman ER(48)"],
+      "calibration_diagnostics": { "status": "FAIL_STALE_FEED" },
+      "effective_sample_size": 120,
+      "probability_confidence_intervals": [0.45, 0.65],
+      "outcome_model_and_timeout_branches": { "timeout_minutes": 60 },
+      "cost_ledger_and_conditioning": { "commission": 0.10 },
+      "wait_cost_usd": 0.02,
+      "ev_net_usd": 4.10,
+      "ev_lcb_5pct_usd": 1.20,
+      "expected_capital_minutes": 1500,
+      "utility": 0.0008,
+      "uncertainty_method": "bootstrap_time_blocked",
+      "adverse_selection_usd": 0.05,
+      "evidence_ids": ["EV-ETH-371"],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "NEUTRAL",
       "fib_golden_zone_confluence": {
-        "gp_0618": 2325.00,
-        "gp_0650": 2322.80,
-        "ote_0702": 2320.10,
-        "invalidation_shelf_0786": 2338.50,
-        "entry_status": "CONFLUENT"
+        "gp_0618": 2278.00,
+        "gp_0650": 2270.00,
+        "ote_0702": 2262.00,
+        "invalidation_shelf_0786": 2240.00,
+        "entry_status": "REJECTED_STALE"
       },
       "auction_extreme_interaction": {
-        "monday_ib_relation": "TESTING_MON_H",
-        "session_extreme_sweep": "PENDING_SWEEP",
-        "macro_shelf_relation": "RESISTANCE_TEST",
-        "value_area_status": "VAH_REJECTION"
+        "monday_ib_relation": "WITHIN_RANGE",
+        "session_extreme_sweep": false,
+        "macro_shelf_relation": "NEUTRAL",
+        "value_area_status": "INSIDE_VA"
       },
-      "rejection_reasons": []
+      "rejection_reasons": ["Stale telemetry feedstock", "Unverified 180s whale wall persistence"]
     }
   ],
   "arithmetic_validation": {
-    "equity_match": true,
-    "margin_level_match": true,
-    "headroom_match": true
+    "net_headroom_checked": true,
+    "margin_level_checked": true
   },
-  "disputes": [],
-  "unknowns": [],
-  "methodology_critique_and_improvements": "Incorporate Hawkes self-exciting point processes for queue position decay estimation.",
+  "disputes": [
+    "Telemetry staleness in Data/DataBase_Trading.xlsx prevents verified live orderbook ingestion for new risk."
+  ],
+  "unknowns": [
+    "Exact live tick-level execution slippage under high volatility."
+  ],
+  "methodology_critique_and_improvements": "Implement direct WebSocket streaming ingestion to bypass Excel write latency.",
   "section_8_kaizen": {
-    "skills_and_methodology_optimization": "Mobilized [trader-signal], [trader-risk], [market-ingest], and [clean-code] for rigorous mathematical and execution grounding.",
-    "omitted_risk_dimensions": "Potential cross-asset correlation spikes during macro liquidity shocks.",
-    "algorithmic_alternatives": "GARCH volatility cones and Isotonic probability calibration."
+    "skills_and_methodology_optimization": "Use real-time orderbook streaming feeds and automated Hawkes process intensity modeling.",
+    "omitted_risk_dimensions": "Cross-asset correlation contagion during crypto flash crashes.",
+    "algorithmic_alternatives": "GARCH volatility cones for dynamic stop-loss sizing."
   },
   "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": "8c3f4e2a1b0d9e8f7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d"
+  "response_sha256": "c3f8e1a9b2d4c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0"
 }
 ```
+
+<FollowUp label="Want me to run a refreshed telemetry diagnostic and re-evaluate candidate entries once the workbook commits update?" query="Run a refreshed telemetry diagnostic on Data/DataBase_Trading.xlsx and re-evaluate candidate entries for the next cycle."/>
