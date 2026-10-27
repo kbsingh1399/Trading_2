@@ -9,18 +9,18 @@ import os
 DG_MODE = os.getenv("DG_MODE", "shadow")
 
 # Single binding risk envelope (Operator authorized [7.50, 25.00 USD] for whale bunker stops)
-MIN_RISK_USD = 7.50
-MAX_RISK_USD = 25.00
-DEFAULT_RISK_CAP_USD = 25.00
+MIN_RISK_USD = 5.00
+MAX_RISK_USD = 10.00
+DEFAULT_RISK_CAP_USD = 10.00
 
 # Capital floor defense invariants
-HARD_FLOOR_USD = 4600.00
-OPERATING_BUFFER_USD = 4650.00
+HARD_FLOOR_USD = 4775.00
+OPERATING_BUFFER_USD = 4795.00
 MIN_FLOOR_CUSHION_USD = 20.00
 
 # Maximum concurrent filled positions
 MAX_CONCURRENT_POSITIONS = 4
-MAX_RESTING_LIMITS = 5
+MAX_RESTING_LIMITS = 25  # Relaxed for N limit orders per operator mandate
 
 # Actual completed-bar requirements shared by producer, regime gate and audit.
 HTF_MIN_COMPLETED = 35

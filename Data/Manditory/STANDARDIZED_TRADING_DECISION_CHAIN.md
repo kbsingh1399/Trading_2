@@ -14,46 +14,75 @@
 
 Under strict institutional hedge fund governance, **no trading analysis, hypothesis formation, order staging, modification, or cancellation may ever occur in an ad-hoc or single-agent vacuum**.
 
-### 🚨 MANDATORY INVIOLATE TRI-TRACK COUNCIL & JOINT-COMPLETION LIFECYCLE (OPERATOR MANDATE)
+### 🚨 MANDATORY INVIOLATE IN-HOUSE ANTIGRAVITY QUANT SWARM LIFECYCLE (OPERATOR MANDATE)
 > **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
-> 1. **Mandatory 4-Subagent Quant Fleet (Fable 5)**: On EVERY autonomous cycle, Antigravity MUST physically invoke four specialized quantitative subagents via `invoke_subagent` (`Model='flash'` / Fable 5 runtime):
->    - **Agent 1: Statistical Regime & Diffusion Quant**: Calculates Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent `H`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, and Newey-West drift `t`-stat. Strict stand-aside on `UNDEFINED` regime.
->    - **Agent 2: Microstructure & Liquidation Quant**: L2/L3 orderbook depth asymmetry, continuous CVD delta divergence (`zc_div > 0.8`), liquidation ladders (Feeds 10-17, 22), retail resting stop clusters (Feed 23), resting whale walls (Feeds 18 & 25, persistence `tau >= 180s`, refill `rho >= 0.60`), and live footprint signals & bar orderflow metrics (Feeds 33 & 34).
->    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,775.00 USD hard floor**, **4,795.00 USD operating buffer**, and **4,795.00 USD kernel admission floor**.
->    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 15.0%`), 35-feed Parquet data lake verification (all 35 feeds loaded, zero nulls, byte-typed, <= 5.0m fresh in IST/UTC), and Event Risk Clock embargoes.
+> 1. **100% In-House Antigravity Autonomous Decision Desk**:
+>    - The desk is fully decoupled from external web-based scraping dependencies (Arena.ai, Z.ai, Chrome CDP automation). All candidate screening, mathematical testing, microstructure analysis, and order execution are performed natively within Antigravity.
+>    - Eliminates external browser crashes, session token expirations, and uncalibrated boilerplate responses. Antigravity operates directly with native broker quotes, raw L2/L3 orderbooks, and the canonical Parquet data lake.
 >
-> 2. **Mandatory Parallel Tri-Council Trade Hunting Engine (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash as Co-Equal Hunting Councils)**:
->    - **Zero Mere "Red Team" Bias**: Arena.ai and Z.ai are NOT passive adversarial red-teams or destructive critics meant solely to veto ideas. They are **Full Co-Equal Quantitative Trading Councils**.
->    - **Active Trade Hunting Across 156 Assets**: On EVERY single cycle, all three councils:
->      1. **Council 1**: Antigravity Internal Desk (Fable 5 4-Quant Swarm)
->      2. **Council 2**: Arena.ai Frontier Council (GPT Astra)
->      3. **Council 3**: Z.ai Sovereign Council (GLM-5.3-Flash)
->      are explicitly commanded to **ACTIVELY HUNT FOR AFFIRMATIVE TRADING CANDIDATES** across all 156 assets in our universe using the 35 Parquet feeds, auction structures, and the 10 Price Magnet feeds.
->    - **3-Persona Candidate Proposal Requirement**: Both external councils must evaluate candidates across:
->      * *Orderflow & Microstructure Persona*: CVD delta, resting whale walls, footprint bar absorption, liquidation ladders.
->      * *Position Manager & Solvency Sentry Persona*: Broker sizing, capital floor preservation (4,795.00 USD), 10.00–25.00 USD risk budget.
->      * *Macro & Auction Analyst Persona*: Volume Profile VPOC/VAH/VAL, session sweeps, regime classification.
->    - **Dialectic Synthesis**: All three councils compare their affirmative candidates. When consensus emerges on an entry with validated structural backing and safe bunker protection, the trade is staged passively on MT5.
+> 2. **Mandatory Subagent Read Gate Check Mark (OPERATOR MANDATE)**:
+>    - Every subagent invoked for trade analysis, hypothesis formation, or order planning MUST physically read and verify `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+>    - Every subagent report MUST explicitly display the verified read confirmation check mark:
+>      `[x] Mandatory Subagent Read Gate: STANDARDIZED_TRADING_DECISION_CHAIN.md physically read, verified, and strictly enforced.`
 >
-> 3. **Joint 3-Entity Completion Gate & Cycle Finish Rule (Operator Mandate)**:
->    - A cycle is marked officially **FINISHED** only when **ALL THREE entities complete processing**:
->      1. Antigravity 4-Quant Subagent Swarm (Fable 5)
->      2. Arena.ai Frontier Council (GPT Astra)
->      3. Z.ai Sovereign Council (GLM-5.3-Flash)
->    - Neither prompt dispatch nor partial completion marks a cycle finished. All 3 must finish, and their outputs must be harvested into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md` for co-equal synthesis.
+> 3. **Dual-Model Quantitative Architecture (Model 1 & Model 2 Concurrent Execution)**:
+>    - **Model 1: Extreme Mean Reversion (Auction Rejection & Exhaustion Fades)**:
+>      * Triggers when: `VR(4) < 0.85` (z* < -1.96), low path efficiency `ER(48) < 0.20`, price stretched to `|Z_VWAP| >= 2.0 SD`, RSI extremes (< 35 or > 65), and footprint taker delta absorption.
+>      * Targets: Fading auction extremes back towards Point of Control (POC) / Session VWAP.
+>    - **Model 2: Trend Continuation Pullback (Fibonacci Prime Ribbon Momentum)**:
+>      * Triggers when: `VR(4) > 1.15` (z* > +1.96), high path efficiency `ER(48) > 0.35`, and Fibonacci Prime EMA Ribbon Expansion:
+>        - Canonical Institutional Fibonacci Prime EMAs: `(21, 34, 55, 89, 144, 233)`.
+>        - Primary Intermediate Dynamic Shelf: **EMA 89** (Fibonacci prime).
+>        - Macro Invalidation & Trend Anchor: **EMA 233** (Fibonacci prime).
+>        - `BULL_EXPANSION`: Price > EMA 34 > EMA 89 > EMA 233. Pullbacks to EMA 34 / EMA 89 / VWAP shelf are staged as `BUY_LIMIT`.
+>        - `BEAR_EXPANSION`: Price < EMA 34 < EMA 89 < EMA 233. Pullbacks to EMA 34 / EMA 89 / VWAP shelf are staged as `SELL_LIMIT`.
+>
+> 4. **Monotone Non-Loosening Dynamic Stop Ratchet Invariant**:
+>    - All dynamic ratchet adjustments sent by the supervisor (`dynamic_position_supervisor.py`) are mathematically guaranteed to be strictly non-loosening:
+>      * For BUY: `target_sl > p.sl` (SL can only ratchet UP).
+>      * For SELL: `target_sl < p.sl` (SL can only ratchet DOWN).
+>      * Loosening an existing tighter stop is mathematically impossible; if `target_sl` is not tighter than `p.sl`, the modification is skipped and the stage advances.
+>      * Robust `initial_r` recovery inspects broker order/deal history if `p.sl` is already in profit, preventing R-multiple distortion.
+>
+> 5. **Capacity Policy Standard**:
+>    - **4 Concurrent Filled Trades**: Up to 4 active filled positions across orthogonal asset clusters.
+>    - **N Resting Limit Orders**: Staging resting limit maker orders at structural Fibonacci shelves and auction levels is unconstrained.
+>
+> 6. **Mandatory 4-Subagent In-House Quant Fleet (Fable 5 / Flash Swarm)**:
+>    On EVERY autonomous cycle, Antigravity physically coordinates four specialized quantitative personas (either via `invoke_subagent` or direct multi-agent dialectic):
+>    - **Agent 1: Statistical Diffusion & Regime Gatekeeper**:
+>      * Lo-MacKinlay Variance Ratio `VR(4)`: Mandatory minimum rolling window of N >= 120 completed 15m bars (30 hours). Requires `VR(4) < 0.85` AND test statistic `|z*| >= 1.96` (rejection of random walk at p < 0.05). If `|z*| < 1.96`, regime is strictly `RANDOM_WALK / UNCERTAIN` and fading is forbidden fail-closed.
+>      * Kaufman Efficiency Ratio `ER(48)`: Combined with regime hysteresis (stronger evidence required to enter a regime than to stay in it).
+>      * Newey-West HAC Drift: `t_drift = mean(r) / sqrt(sigma_NW^2 / N)`. Non-directional regimes must exhibit `|t_drift| < 1.5`.
+>      * Ornstein-Uhlenbeck (OU) Mean Drift: Half-life `tau_half in [20m, 4h]`. Directional veto: short only above equilibrium mean theta; long only below theta.
+>    - **Agent 2: Microstructure, CVD & Adverse Selection Sentry**:
+>      * Passive Limit Winner's Curse Filter: Prohibits staging passive limits into active momentum waves or high-velocity news impulses. Requires orderbook depth refill velocity `rho >= 0.60`.
+>      * Anti-Short-Squeeze / Delta Inversion Invariant: When price prints higher highs while market delta (CVD) is negative, this represents an **illiquid short squeeze / stop sweep**, NOT buyer exhaustion. Fading is strictly prohibited until a confirmed structural shift (M5/M15 lower high + lower low with high-volume rejection) is printed.
+>      * Top-20 L2/L3 Orderbook Asymmetry: Imbalance ratio > +0.25 for longs, < -0.25 for shorts.
+>      * Resting Whale Armor: Validates resting limit bunkers (>= 100K USD, persistence `tau >= 180s`).
+>    - **Agent 3: Liquidation Geometry, Stop Hunt & Auction Profile Quant**:
+>      * Stop Loss Placement Invariant: Stop losses for short positions must NEVER sit within 1.0–1.5 ATR of a recent session swing high (the primary liquidity sweep band). Stops must sit safely beyond structural invalidation levels + a forward volatility buffer.
+>      * Cumulative Liquidation Ladders (Feeds 10, 12, 13, 14, 22): Maps nearest liquidation bands [min_price, max_price]. Take Profit front-runs opposing liquidation clusters by 5–10 bps.
+>      * Max Pain Target Magnets (Feeds 14–17): Anchors multi-day gravitational pull toward intraday and weekly balance points.
+>      * Auction Market Structure (Feed 29 `20_Auction_Market_Structure.parquet`): Volume Profile Daily/Weekly VPOC, Value Area High/Low (VAH/VAL), Monday Opening Range (IB_W), and Fibonacci Golden Zone [0.618 GP, 0.702 OTE].
+>    - **Agent 4: Solvency, Execution & Dynamic Ratchet Supervisor**:
+>      * Grounded Account Telemetry: Live MT5 read (`5064568`). Strictly enforces **4,775.00 USD Hard Floor** and **4,795.00 USD Operating Buffer**.
+>      * Single-Trade Risk Envelope: Hard ceiling of **10.00–12.00 USD nominal risk per ticket** (Tier 1 Standard). Max 2 open slots.
+>      * Dynamic Ratchet Actuator: Active supervisor daemon automatically moves SL to Entry +/- 0.15R at +0.80R gain, moves SL to Entry +/- 0.80R at +1.50R gain, and triggers market exit if held >= 6 hours with gain < +0.20R.
+>      * Passivity Re-Verification Gate: Re-verifies spread and passivity on refreshed quotes immediately prior to broker dispatch.
+>
+> 3. **Mandatory Zero-Deletion Atomic Parquet Overwrite Invariant (Data Lake Governance)**:
+>    - **Zero-Deletion Protocol**: Parquet files in `Data/feeds/*.parquet` must **NEVER be deleted, unlinked, or removed from disk**.
+>    - **Truncation Truth**: Overwriting a Parquet file via PyArrow/Pandas opens the file with OS truncation mode, resetting file size to 0 bytes and writing the new table from start to finish. If a feed transitions from 100 rows to 90 rows, the resulting file contains **exactly 90 rows** with zero remnant rows.
+>    - **Atomic Replacement Pattern**: All ingestion scripts and collectors must write to a temporary file (`.tmp_xyz.parquet`) and commit via `os.replace(tmp_file, target_file)`, guaranteeing that downstream readers never encounter missing files or 0-byte locks.
 >
 > 4. **Relative 20-Minute Post-Completion Delay (`T_finish + 20 min`)**:
->    - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1200 seconds).
->    - Fixed wall-clock cron triggers that fire regardless of completion time are permanently eliminated to prevent cycle overlap, prompt collisions, and context collapse.
+>    - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1,200 seconds) to allow 15m candles to close and market orderbooks to develop. Fixed wall-clock cron collisions are eliminated.
 >
 > 5. **30-Minute Watchdog Sentry Cron (`0,30 * * * *`)**:
->    - Antigravity maintains an autonomous background watchdog cron (`0,30 * * * *` at :00 and :30 of every hour) via `Terminal/joint_cycle_controller.py --watchdog`.
->    - The watchdog verifies desk health, checks for stalled cycles (>30 min), verifies persistent daemons, and triggers cycle advancement safely once the clean 20-minute post-completion separation has elapsed.
+>    - Background watchdog verifies desk health, checks for stalled cycles, verifies persistent daemons, and triggers cycle advancement safely once the clean 20-minute separation has elapsed.
 >
-> 6. **Live Profit Ratchets Do Not Excuse Omission**:
->    - When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator executes the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent swarm and dual council prompts.
->
-> 7. **Mandatory 6-Pillar Parquet Narrative Synthesis Engine (Operator Mandate)**:
+> 6. **Mandatory 6-Pillar Parquet Narrative Synthesis Engine (Operator Mandate)**:
 >    - The desk is STRICTLY FORBIDDEN from issuing bare order recommendations without explicitly detailing how the 36 Parquet feeds synthesize into a coherent institutional trade narrative across all 6 strategic pillars:
 >      * **Pillar 1: Broker Telemetry & Solvency Defense** (`00_MT5_Account_Telemetry`) -> Live equity, free margin, spread in bps, hard floor (4,775.00 USD) defense.
 >      * **Pillar 2: Macro Liquidity & Institutional Netflows** (`1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `19_News`, `19_Calendar`) -> ETF allocations, spot exchange netflows, Tier-1 catalyst embargoes.
@@ -64,27 +93,19 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 
 ```mermaid
 flowchart TD
-    subgraph MultiAgentCouncil ["Autonomous Tri-Track Multi-Agent Council"]
-        subgraph TrackA ["Track A: Local Fleet (Fable 5)"]
-            A1["Statistical Regime Quant<br/>(VR, ER, Hurst, OU Half-Life)"]
-            A2["Microstructure Quant<br/>(L2/L3 Book, CVD, Whales, Liq)"]
-            A3["Solvency Sentry<br/>(MT5 Telemetry, Ratchets, Solvency)"]
-            A4["Auction Profile Quant<br/>(VAH/VAL/POC, Spread Gate, 35 Feeds)"]
-        end
-        subgraph TrackB ["Track B: Arena.ai (GPT Astra)"]
-            Arena["Arena.ai (Chrome CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
-        end
-        subgraph TrackC ["Track C: Z.ai (GLM-5.3-Flash)"]
-            Zai["Z.ai Sovereign Council (CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
-        end
+    subgraph MultiAgentDesk ["Autonomous In-House Antigravity Quant Fleet"]
+        A1["Agent 1: Statistical Diffusion Quant<br/>(VR N>=120, |z*|>=1.96, ER, HAC Drift, OU)"]
+        A2["Agent 2: Microstructure & CVD Sentry<br/>(L2/L3 Book, Anti-Squeeze CVD, Whale Armor)"]
+        A3["Agent 3: Liquidation & Auction Quant<br/>(Stops Outside 1.5 ATR Sweep, VPOC/VAH/VAL)"]
+        A4["Agent 4: Solvency & Ratchet Supervisor<br/>(MT5 Telemetry, 4775 Floor, Dynamic Ratchets)"]
     end
 
-    subgraph DataLake ["Canonical Parquet Data Lake"]
-        DB["Data/feeds/*.parquet<br/>(35 Production Feeds + Unified Matrix)"]
+    subgraph DataLake ["Canonical Parquet Data Lake (Zero Deletions)"]
+        DB["Data/feeds/*.parquet<br/>(36 Production Feeds + Unified Matrix)<br/>Atomic os.replace Overwrite Protocol"]
     end
 
     subgraph CycleControl ["Joint Cycle Controller (Terminal/joint_cycle_controller.py)"]
-        State["Data/cycle_state.json<br/>- All 3 Entities Complete<br/>- Clean 20-Min Relative Delay<br/>- 30-Min Watchdog Sentry"]
+        State["Data/cycle_state.json<br/>- In-House Swarm Consensus<br/>- Clean 20-Min Relative Delay<br/>- 30-Min Watchdog Sentry"]
     end
 
     subgraph ExecutionBridge ["MetaTrader 5 Institutional Desk"]
@@ -93,12 +114,8 @@ flowchart TD
     end
 
     DB --> A1 & A2 & A3 & A4
-    DB --> Arena
-    DB --> Zai
     Scanner --> A1 & A2 & A3 & A4
-    Scanner --> Arena
-    Scanner --> Zai
-    TrackA & TrackB & TrackC --> State
+    A1 & A2 & A3 & A4 --> State
     State --> MT5
 ```
 
@@ -557,7 +574,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 3. **The 3-of-4 Adaptive Confluence Framework (Replacing Rigid 7-Gate Boolean AND)**:
    - Rather than demanding a rigid boolean `AND` across 7 micro-metrics simultaneously (which mathematically causes 0% candidate survival), the desk evaluates:
      * **Tier 1 (Non-Negotiable Solvency & Risk Floors - 100% Strict)**:
-       1. `min(balance,equity) - StressedLoss >= 4,795.00 USD` kernel admission, above the 4,650.00 USD operating buffer and 4,600.00 USD hard floor; recompute fresh cushions.
+       1. `min(balance,equity) - StressedLoss >= 4,795.00 USD` kernel admission, above the 4,795.00 USD operating buffer and 4,775.00 USD hard floor; recompute fresh cushions.
        2. Dynamic Spread Friction: `Spread Points / TP Distance Points <= 15.0%`.
        3. Macro Blackout: Zero entries during active Tier-1 High-Impact red folder news and FX rollover (21:15–22:30 UTC).
        4. Reward-to-Risk >= 2.0R to structural target.
@@ -727,11 +744,11 @@ stateDiagram-v2
 > *"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 35-feed Parquet data lake, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?"*
 
 ### Mandatory 6-Point Quantitative Critique & Improvement Framework:
-On EVERY cycle, deliberation turn, and prompt response, the council models (Arena.ai, Z.ai), subagents, and coordinator MUST dedicate an explicit section to answering:
+On EVERY cycle, deliberation turn, and prompt response, the in-house subagents and coordinator MUST dedicate an explicit section to answering:
 0. **The Universal Metacognitive Skills Inquest (MANDATORY EVERYWHERE)**:
    - *"If it use all the available skills related will it improve our response?"*
    - Actively audit installed repository skills (@[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[clean-code], @[systematic-debugging], @[backtesting-frameworks], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections]). Prove whether applying their mathematical formulas, order flow estimators, or Tradfye footprint metrics directly improves trade expectancy or eliminates false signals.
-On EVERY cycle, deliberation turn, and prompt response, the council models (Arena.ai, Z.ai GLM-5.3-Flash), subagents, and coordinator MUST dedicate an explicit section to answering this question:
+On EVERY cycle, deliberation turn, and prompt response, the in-house subagents and coordinator MUST dedicate an explicit section to answering this question:
 
 1. **Conjunctive Sclerosis vs Probabilistic Expectancy**:
    - Are our 5-pillar filters overly conjunctive, creating an impossible bottleneck where genuine profitable trades with statistical expectancy are rejected due to minor, non-causal discrepancies?
@@ -755,7 +772,7 @@ On EVERY cycle, deliberation turn, and prompt response, the council models (Aren
 6. **Mandatory Prompt Architecture & Dual-Council Self-Improvement Inquest (Operator Invariant)**:
    - *How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Parquet Pipeline Auditor) or external frontier councils (Arena.ai, Z.ai)?*
    - *What specific prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?*
-   - *Mandatory 3-Persona Coverage*: Every council dispatch to Arena.ai and Z.ai MUST explicitly command deliberation across all 3 quantitative personas simultaneously: (1) Orderflow Analyst, (2) Position Manager, and (3) Macro Risk Analyst.
+   - *Mandatory 3-Persona Coverage*: Every internal deliberation MUST explicitly synthesize across all 4 quantitative personas simultaneously: (1) Statistical Diffusion Quant, (2) Microstructure & CVD Sentry, (3) Liquidation & Auction Quant, and (4) Solvency & Ratchet Supervisor.
 
 ---
 

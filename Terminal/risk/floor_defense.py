@@ -19,10 +19,10 @@ from typing import List, Optional
 
 logger = logging.getLogger("FloorDefense")
 
-HARD_FLOOR_USD        = 4_600.00
-OPERATING_BUFFER_USD  = 4_650.00
+HARD_FLOOR_USD        = 4_775.00
+OPERATING_BUFFER_USD  = 4_795.00
 SOLVENCY_KERNEL_USD   = 4_795.00
-BUFFER_USD            =    50.00
+BUFFER_USD            =    20.00
 MIN_RISK_USD          =     7.50
 MAX_RISK_USD          =    25.00
 
@@ -32,11 +32,11 @@ CLUSTER_MAP: dict[str, list[str]] = {
                 "DOTUSD.pi", "DOTUSD.p", "XRPUSD.pi", "BNBUSD.pi", "DOGEUSD.p", "DOGUSD.p",
                 "LTCUSD.p", "LTCUSD.pi", "LINKUSD.p", "LNKUSD.p", "AVAXUSD.p",
                 "AVXUSD.p", "NEARUSD.p", "NERUSD.p", "TRXUSD.p", "BCHUSD.p"],
-    "energy":  ["USWTI.p", "UKOIL.p"],
+    "energy":  ["USWTI.p", "UKOIL.p", "UKBRENT.p", "BRENT.p", "NGAS.p"],
     "indices": ["SP500.p", "NAS100.p", "UK100.p", "GER40.p", "JPN225.p", "DJ30.p", "US30.p"],
     "forex":   ["EURUSD.pi", "GBPUSD.pi", "USDJPY.pi", "AUDUSD.pi", "NZDUSD.pi",
-                "USDCAD.pi", "USDCHF.pi"],
-    "metals":  ["XAUUSD.pi", "XAGUSD.pi"],
+                "USDCAD.pi", "USDCHF.pi", "AUDJPY.pi", "AUDCHF.pi", "CADJPY.pi", "CHFJPY.pi", "EURGBP.pi", "EURJPY.pi", "EURAUD.pi", "EURCAD.pi", "EURCHF.pi", "GBPJPY.pi", "GBPAUD.pi", "NZDJPY.pi", "AUDSGD.pi", "CHFSGD.pi", "CNHJPY.pi", "EURCNH.pi"],
+    "metals":  ["XAUUSD.pi", "XAGUSD.pi", "COPPER.p", "ALUMINIUM.p"],
 }
 
 

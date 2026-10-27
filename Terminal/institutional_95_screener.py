@@ -43,8 +43,8 @@ if str(ROOT) not in sys.path:
 
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 
-HARD_FLOOR = 4600.00
-BUFFER_FLOOR = 4650.00
+HARD_FLOOR = 4775.00
+BUFFER_FLOOR = 4795.00
 
 def get_institutional_156_symbols() -> List[Dict[str, Any]]:
     """Scan all 156 MT5 instruments from canonical universe definition."""
@@ -125,7 +125,7 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
     live_buffer_cushion = max(0.0, equity - BUFFER_FLOOR)
     
     if nominal_risk_target is None:
-        nominal_risk_target = max(10.0, min(25.0, (live_buffer_cushion - 2.50) / 1.25))
+        nominal_risk_target = max(5.0, min(10.0, (live_buffer_cushion - 2.50) / 1.25))
         
     symbols = get_institutional_156_symbols()
     
@@ -149,19 +149,20 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         vwap_z = (mid - session_vwap) / sigma if (session_vwap and sigma and sigma > 0) else 0.0
         rsi = ind.get("rsi_14", 50.0)
         atr = ind.get("atr_14", 0.0)
-        ema_20 = ind.get("ema_20")
-        ema_50 = ind.get("ema_50")
-        ema_200 = ind.get("ema_200")
+        # Upgraded to Institutional Fibonacci Prime Ribbon: 34, 89 (prime), 233 (prime)
+        ema_34 = ind.get("ema_34") or ind.get("ema_20")
+        ema_89 = ind.get("ema_89") or ind.get("ema_50")
+        ema_233 = ind.get("ema_233") or ind.get("ema_200")
         
         if atr <= 0:
             continue
             
         # Determine Market Regime
         regime = "UNDEFINED"
-        if ema_20 and ema_50 and ema_200:
-            if mid > ema_20 > ema_50 > ema_200:
+        if ema_34 and ema_89 and ema_233:
+            if mid > ema_34 > ema_89 > ema_233:
                 regime = "TREND_UP"
-            elif mid < ema_20 < ema_50 < ema_200:
+            elif mid < ema_34 < ema_89 < ema_233:
                 regime = "TREND_DOWN"
             elif abs(vwap_z) < 1.0:
                 regime = "MEAN_REVERT"
@@ -192,7 +193,7 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         elif regime == "TREND_UP" and 0.2 <= vwap_z <= 1.8:
             setup_type = "MODEL_2_TREND_PULLBACK_BUY"
             side = "BUY_LIMIT"
-            entry = max(session_vwap, ema_20) if (session_vwap and ema_20) else item["bid"]
+            entry = max(session_vwap, ema_34) if (session_vwap and ema_34) else (ema_34 or item["bid"])
             if entry > item["bid"]:
                 entry = item["bid"]
             sl = entry - (1.0 * atr)
@@ -201,7 +202,7 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         elif regime == "TREND_DOWN" and -1.8 <= vwap_z <= -0.2:
             setup_type = "MODEL_2_TREND_PULLBACK_SELL"
             side = "SELL_LIMIT"
-            entry = min(session_vwap, ema_20) if (session_vwap and ema_20) else item["ask"]
+            entry = min(session_vwap, ema_34) if (session_vwap and ema_34) else (ema_34 or item["ask"])
             if entry < item["ask"]:
                 entry = item["ask"]
             sl = entry + (1.0 * atr)
