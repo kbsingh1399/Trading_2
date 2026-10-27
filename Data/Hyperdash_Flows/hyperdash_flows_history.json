@@ -56478,5 +56478,25 @@
     "date_heading": "October 27",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "BTC",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 42943.64,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 79812.0,
+    "wallet_address": "0x4e5bb61d1a2e2aa21152ba328399e20f3b9138d8",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Whale BUY: 42.94K USD at 79812.0000 USD [API]",
+    "msg_id": "HL_TRADE_BTC_909704194998804",
+    "timestamp_epoch": 1793078769,
+    "time_label": "05:26",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
