@@ -1,0 +1,55 @@
+{
+  "timestamp_utc": "2026-10-27 05:20:50 UTC",
+  "balance_usd": 4846.32,
+  "equity_usd": 4847.97,
+  "free_margin_usd": 3743.59,
+  "max_filled_positions": 4,
+  "filled_positions_count": 1,
+  "filled_slots_free": 3,
+  "resting_limits_count": 3,
+  "is_position_capped": false,
+  "auto_pull_executed": false,
+  "pulled_orders": [],
+  "active_positions": [
+    {
+      "ticket": 19329907,
+      "symbol": "BNBUSD.p",
+      "type": "BUY",
+      "volume": 3.0,
+      "price_open": 736.25,
+      "price_current": 736.8,
+      "sl": 732.65,
+      "tp": 740.0,
+      "profit_usd": 1.65
+    }
+  ],
+  "resting_orders": [
+    {
+      "ticket": 19330613,
+      "symbol": "ETHUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.5,
+      "price": 2320.5,
+      "sl": 2343.5,
+      "tp": 2274.5
+    },
+    {
+      "ticket": 19343851,
+      "symbol": "BTCUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.04,
+      "price": 79838.0,
+      "sl": 80098.0,
+      "tp": 79318.0
+    },
+    {
+      "ticket": 19343853,
+      "symbol": "SOLUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.2,
+      "price": 100.38,
+      "sl": 100.94,
+      "tp": 99.2
+    }
+  ]
+}

@@ -20,6 +20,11 @@
 >    1. **ALL THREE entities complete processing**: (1) Antigravity 4-Quant Subagents, (2) Arena.ai Frontier Council (GPT-5.4 Astra), and (3) Z.ai Sovereign Council (GLM-5.3-Flash), with their markdown responses harvested into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`.
 >    2. **Mandatory RAM & CPU Optimization**: Execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1` to prune zombie processes, trim working sets, and reclaim physical RAM below 75%.
 >    3. **20-Minute Relative Post-Completion Separation**: The difference between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1,200 seconds).
+> **Dynamic Capacity & Auto-Pull Invariant (Operator Mandate)**:
+>    - **Filled Positions**: Strictly capped at **4 active running positions** (`len(positions) <= 4`).
+>    - **Resting Limit Orders**: Unconstrained count **N** staged at high-confluence institutional orderbook shelves.
+>    - **Auto-Pull Enforcement**: The instant filled positions reaches **4**, the supervisor daemon (`Terminal/dynamic_position_supervisor.py`) automatically cancels/pulls ALL remaining resting limit orders to guarantee zero 5th-fill risk.
+>    - **Slot Re-opening**: When any position closes (TP or SL), capacity re-opens and limits are re-staged.
 
 ---
 
