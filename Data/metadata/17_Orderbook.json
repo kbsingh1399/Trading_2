@@ -20,8 +20,8 @@
     "explorer_url"
   ],
   "byte_size": 31226,
-  "timestamp_ist": "2026-10-27 17:23:36 IST",
-  "timestamp_utc": "2026-10-27 11:53:36 UTC",
-  "epoch_utc": 1793102016.78675,
+  "timestamp_ist": "2026-10-27 17:31:05 IST",
+  "timestamp_utc": "2026-10-27 12:01:05 UTC",
+  "epoch_utc": 1793102465.738306,
   "write_duration_ms": 318.1
 }
