@@ -33,8 +33,8 @@
     "venue_source"
   ],
   "byte_size": 48892,
-  "timestamp_ist": "2026-10-27 11:20:35 IST",
-  "timestamp_utc": "2026-10-27 05:50:35 UTC",
-  "epoch_utc": 1793080235.147337,
+  "timestamp_ist": "2026-10-27 10:45:58 IST",
+  "timestamp_utc": "2026-10-27 05:15:58 UTC",
+  "epoch_utc": 1793078158.78861,
   "write_duration_ms": 7.71
 }
