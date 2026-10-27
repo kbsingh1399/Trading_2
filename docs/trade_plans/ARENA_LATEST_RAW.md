@@ -1,30 +1,61 @@
-
 📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], @[backtesting-frameworks]
+
 [ALERT] TELEMETRY STALE WARNING: Data/DataBase_Trading.xlsx is stale (Last updated: 2026-10-26 07:07:49 UTC [commit 12b0f13aa9] vs Current Cycle: 2026-10-27 09:31:56 UTC — lag: 26h 24m 07s > 20m threshold; superseded by 41 live Parquet feeds in Data/feeds/*.parquet synced at 2026-10-27 09:22:24–09:34:00 UTC [commits 16e8e0787f / 49a5c42c75 / 7c5e7e3150])
 [ALERT] TELEMETRY STALE WARNING: Data/macro_calendar.json is stale (Last updated: 2026-10-26 07:07:49 UTC [commit 12b0f13aa9], internal verified_at: 2026-10-26T03:00:00Z vs Current Cycle: 2026-10-27 09:31:56 UTC — lag: 30h 31m 56s [109,916s > 900s gate])
 [ALERT] TELEMETRY STALE WARNING: Data/forex_factory_live.json is stale/missing from HEAD tree (Last updated: 2026-10-25 13:06:41 UTC [commit e48405e9f8] vs Current Cycle: 2026-10-27 09:31:56 UTC — lag: 44h 25m 15s > 20m threshold)
 [ALERT] TELEMETRY STALE WARNING: Data/feeds/23_Master_Pipeline_Telemetry.parquet & Data/metadata/parquet_all_feeds_checklist.json report partial feed failures at target commit 16e8e0787f (Last updated: 2026-10-27 09:22:24 UTC vs Current Cycle: 2026-10-27 09:31:56 UTC — 34/36 canonical feeds PASS, all_passed=false; 5 non-pass feeds: 3_Exchanges_LS_Ratio_15M, 3_Exchanges_LS_Ratio_1H, 3_Exchanges_LS_Ratio_4H, 7_Live_Liq, 8_Exchange_Liquidation_Map_7D; at post-cycle #12 sync 7c5e7e3150 [09:34:00 UTC]: 34/36 PASS, 2 lagging: 20_Auction_Market_Structure & 21_Tradfye_Orderflow)
-[INFO] TELEMETRY FRESHNESS VERIFIED: docs/telemetry/live_snapshot_latest.json is FRESH at target commit 16e8e0787f (as_of_utc: 2026-10-27 09:29:59 UTC, git commit: 2026-10-27 09:30:18 UTC — lag: 01m 40s prior to cutoff_utc 2026-10-27 09:31:39 UTC and 01m 57s vs Current Cycle: 2026-10-27 09:31:56 UTC) and at commit 49a5c42c75 (as_of_utc: 2026-10-27 09:32:58 UTC)🏛️ Autonomous Multi-Agent Quantitative Council Audit — Cycle 371 (63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1)Mandatory Metacognitive Evaluation: Skill Mobilization Question
+[INFO] TELEMETRY FRESHNESS VERIFIED: docs/telemetry/live_snapshot_latest.json is FRESH at target commit 16e8e0787f (as_of_utc: 2026-10-27 09:29:59 UTC, git commit: 2026-10-27 09:30:18 UTC — lag: 01m 40s prior to cutoff_utc 2026-10-27 09:31:39 UTC and 01m 57s vs Current Cycle: 2026-10-27 09:31:56 UTC) and at commit 49a5c42c75 (as_of_utc: 2026-10-27 09:32:58 UTC)
+
+🏛️ Autonomous Multi-Agent Quantitative Council Audit — Cycle 371 (63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1)
+Mandatory Metacognitive Evaluation: Skill Mobilization Question
+
 Mandatory Question: "If it use all the available skills related will it improve our response?"
+
 Answer — YES (Substantively and Quantitatively): Mobilizing the full domain skill stack (@[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks]) directly improves the mathematical precision, code-level root-cause forensics, and institutional capital protection of this response across five concrete dimensions:
 
 Source-Code Forensic Proof of Two Opposite Solvency Artifacts (@[systematic-debugging] + @[clean-code] + @[trader-risk]): By inspecting Terminal/generate_cycle_envelope.py (line 67) alongside docs/telemetry/live_snapshot_latest.json (09:29:59 UTC), we uncovered a critical mathematical divergence between the two engines when active position #19329907 (BNBUSD.p BUY 3.00 @ 736.25, SL 732.65) dipped from 734.90 (Cycle 370) to 734.50 (09:29:59 UTC) and 734.70 (09:31:39 UTC cutoff):
-
 False Kernel-Breach Alert in live_snapshot_latest.json (09:29:59 UTC): At 09:29:59 UTC, BNBUSD.p traded at 734.50 (floating PnL = -$5.25 USD, equity_usd = $4,842.63 USD). Because live_snapshot_latest.json computes total_contingent_stress_usd = $47.8750 USD from price_open = 736.25 ($15.5000 BNB + $16.3750 ETH + $16.0000 SOL) and then subtracts $47.8750 USD from equity_usd ($4,842.63 USD), it double-counts the -$5.25 USD floating loss, printing post_joint_stop_equity_usd = $4,794.755 USD (-$0.245 USD below the $4,795.00 USD Solvency Kernel!) even though the true realized balance after all 3 stops hit is $4,847.88 - $47.8750 = $4,800.005 USD ($4,798.005 USD or +$3.005 USD headroom after the $2.00 USD global contingency reserve).
 Paradoxical Headroom Increase in Terminal/generate_cycle_envelope.py (09:31:39 UTC): Conversely, generate_cycle_envelope.py line 67 sets start = number(row.get("price_open" if pending else "price_current")). When BNBUSD.p dropped -0.20 pts (-$0.60 USD) from 734.90 (Cycle 370) to 734.70 (Cycle 371), base_capital_usd = equity fell by -$0.6000 USD ($4,843.83 -> $4,843.23 USD), while existing_ticket_stress_usd (1.25 × (734.70 - 732.65) × 3.00 + 2.00 = $9.6875 USD + $16.3750 + $16.0000) fell by 1.25 × $0.60 = -$0.7500 USD ($42.8125 -> $42.0625 USD). Consequently, post_joint_stress_equity_usd paradoxically rose by +$0.15 USD (from $4,799.02 USD to $4,799.17 USD, realized_headroom_usd = $4.17 USD, nominal_risk_capacity_usd = $1.734 USD) as the position moved closer to its Stop Loss!
-
-
 Exact Cryptographic Provenance Verification (@[clean-code]): By auditing generate_cycle_envelope.py lines 20 and 143, we verified that evidence_manifest_sha256 (87bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43) matches Data/history/master_manifest.json (180,859 bytes) 100% byte-for-byte, and prompt_sha256 (8b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367) matches docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt (32,680 bytes, CRLF) 100% byte-for-byte.
 Multi-Venue Microstructure & Footprint Synthesis (@[market-ingest] + @[market-pattern]): Cross-referencing 10_Whale_Orders.parquet (3,547 rows synced at 14:48–14:49 IST / 09:18–09:19 UTC), 14_Liquidation_Matrix.parquet (9,944 rows synced at 14:52:22 IST / 09:22:22 UTC), 21_Tradfye_Orderflow.parquet (6,528 rows through 09:00:00 UTC), and 25_CoinGlass_Footprint_Signals.parquet (776 rows through 09:21:59 UTC) confirms exact institutional absorption and wall persistence (>= 180s).
 Non-IID Regime Econometrics (@[sharpe-ratio-non-iid-corrections] + @[time-series-decomposer]): Computing heteroskedasticity-adjusted Lo-MacKinlay VR(4) (z*), Kaufman ER(48), Newey-West t_drift, and Ornstein-Uhlenbeck theta across 15m, 1H, and 4H bars prevents trading against higher-timeframe mean-reversion gravity.
 Cold-Start Calibration Guard (@[adaptive-wfo-epoch] + @[backtesting-frameworks]): Enforcing the n = 17 < 100 sample-size gate (11/17 wins, exact one-sided 95% Clopper-Pearson LCB 0.4197) prevents uncalibrated probability fabrication.
+PART 1: 4-PERSONA QUANTITATIVE COUNCIL AUDIT (§1 – §7)
+§1. Role D — Market Clock, Auction & Provenance Auditor (G0, G1, G2, G3 & Artifact Synchronization)
+1.1 Cryptographic Digest & Envelope Reconciliation (Cycle 371)
 
-PART 1: 4-PERSONA QUANTITATIVE COUNCIL AUDIT (§1 – §7)§1. Role D — Market Clock, Auction & Provenance Auditor (G0, G1, G2, G3 & Artifact Synchronization)1.1 Cryptographic Digest & Envelope Reconciliation (Cycle 371)We cross-verified the prompt's embedded cycle_envelope.json against the clean repository artifact Data/cycle_envelope.json (4,173 bytes, sha256: 108ae5d4a0f90b944bc1d340503d44b9732b0b9dede72a042e082baf4d857a19 at commit 49a5c42c75 / 7c5e7e3150) and target commit 16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69 (2026-10-27 09:30:18 UTC):Audit Parameter / DigestPrompt Envelope ValueRepo / Computed Ground TruthVerification Verdictcycle_id / uuidCycle 371 / 63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1Cycle 371 / 63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1PASS (100% Exact Match)dispatch_nonce04581747-de1e-4e3a-b58d-a1c1d3c7902404581747-de1e-4e3a-b58d-a1c1d3c79024PASS (100% Exact Match)cutoff_utc"2026-10-27 09\n  \"git_commit\":" (spliced in prompt)"2026-10-27 09:31:39 UTC" in clean Data/cycle_envelope.jsonWARN (ProseMirror 4KB splice in prompt; intact in repo)git_commit16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69Commit 16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69 (2026-10-27 09:30:18 UTC)PASS (Verified on GitHub main)git_treeff12c330e6e9b0f7ac5077d3aabfe1f72531c296Tree ff12c330e6e9b0f7ac5077d3aabfe1f72531c296PASS (100% Exact Match)Data/cycle_envelope.json3 DOM chunk-boundary splices in prompt text4,173 bytes, sha256: 108ae5d4a0f90b944bc1d340503d44b9732b0b9dede72a042e082baf4d857a19PASS (Clean repo JSON verified)evidence_manifest_sha25687bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43Data/history/master_manifest.json (180,859B at 16e8e0787f): 87bb25afa8...PASS (100% Byte-for-Byte Match)prompt_sha2568b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt (CRLF, 32,680B at 16e8e0787f): 8b755fddce...PASS (100% CRLF Match)risk_policy_sha25665f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1ePASS (100% Exact Match)1.2 Mandatory Timestamp & Staleness Audit vs 2026-10-27 09:31:56 UTC (§1.4.6)File / Telemetry LayerLast Git Commit & Timestamp (UTC)Internal as_of / Data TimestampAge vs 09:31:39 UTC CutoffAge vs 09:31:56 UTC Audit TargetGate Status (<= 20m / 900s)docs/telemetry/live_snapshot_latest.json (16e8e0787f)2026-10-27 09:30:18 UTC2026-10-27 09:29:59 UTC (data_layer: 09:30:14 UTC)100.0s (1m 40s)117.0s (1m 57s)PASS (FRESH & CAUSAL)docs/telemetry/live_snapshot_latest.json (49a5c42c75)2026-10-27 09:33:25 UTC2026-10-27 09:32:58 UTC (data_layer: 09:33:16 UTC)Post-cutoff (+79.0s)Post-target (+62.0s)PASS (FRESHEST REPO HEAD)Data/feeds/00_MT5_Account_Telemetry.parquet (163 rows)2026-10-27 09:30:18 UTC2026-10-27 09:25:14 UTC (14:55:14 IST)385.0s (6m 25s)402.0s (6m 42s)PASS (FRESH)Data/feeds/10_Whale_Orders.parquet (3,547 rows)2026-10-27 09:22:26 UTC (d4acd24ba6)2026-10-27 09:18:11–09:19:03 UTC (14:48–14:49 IST)756.0s (12m 36s)773.0s (12m 53s)PASS (FRESH)Data/feeds/14_Liquidation_Matrix.parquet (9,944 rows)2026-10-27 09:22:26 UTC (d4acd24ba6)2026-10-27 09:22:22 UTC (14:52:22 IST)557.0s (9m 17s)574.0s (9m 34s)PASS (FRESH)Data/feeds/20_Auction_Market_Structure.parquet (84 rows)2026-10-27 09:22:26 UTC2026-10-27 09:10:01–09:10:08 UTC (14:40:01 IST)1,291.0s (21m 31s)1,308.0s (21m 48s)WARN (21m 48s > 20m)Data/feeds/21_Tradfye_Orderflow.parquet (6,528 rows)2026-10-27 09:22:26 UTC2026-10-27 09:00:00 UTC (15m bar; banner 09:21:18 UTC)621.0s (10m 21s banner)638.0s (10m 38s banner)PASS (09:00 UTC bar)Data/feeds/25_CoinGlass_Footprint_Signals.parquet (776 rows)2026-10-27 09:22:26 UTC2026-10-27 09:21:59 UTC (14:51:59 IST)580.0s (9m 40s)597.0s (9m 57s)PASS (FRESH)Data/feeds/26_Aggregated_Footprint_Bar_Metrics.parquet (310 rows)2026-10-27 09:22:26 UTC2026-10-27 09:15:00 UTC (14:45:00 IST)999.0s (16m 39s)1,016.0s (16m 56s)PASS (FRESH)Data/feeds/23_Master_Pipeline_Telemetry.parquet (33 rows)2026-10-27 09:30:18 UTC2026-10-27 09:28:12 UTC (28 PASS / 5 FAIL)207.0s (3m 27s)224.0s (3m 44s)FAIL (5 feeds FAIL)Data/DataBase_Trading.xlsx2026-10-26 07:07:49 UTC (12b0f13aa9)Legacy static Excel snapshot26h 23m 50s26h 24m 07sFAIL ([ALERT] STALE > 20m)Data/macro_calendar.json2026-10-26 07:07:49 UTC (12b0f13aa9)verified_at: 2026-10-26T03:00:00Z109,899s (30h 31m)109,916s (30h 31m)FAIL (G2 STALE > 900s)Data/forex_factory_live.json2026-10-25 13:06:41 UTC (e48405e9f8)Absent from current HEAD tree44h 24m 58s44h 25m 15sFAIL ([ALERT] STALE/ABSENT)1.3 Universe Coverage & Broker Spread Gate (00_MT5_Account_Telemetry.parquet & live_snapshot_latest.json)
+We cross-verified the prompt's embedded cycle_envelope.json against the clean repository artifact Data/cycle_envelope.json (4,173 bytes, sha256: 108ae5d4a0f90b944bc1d340503d44b9732b0b9dede72a042e082baf4d857a19 at commit 49a5c42c75 / 7c5e7e3150) and target commit 16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69 (2026-10-27 09:30:18 UTC):
+
+Audit Parameter / Digest	Prompt Envelope Value	Repo / Computed Ground Truth	Verification Verdict
+cycle_id / uuid	Cycle 371 / 63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1	Cycle 371 / 63d8a1b9-ecfe-4a9e-8255-79e0d73c07e1	PASS (100% Exact Match)
+dispatch_nonce	04581747-de1e-4e3a-b58d-a1c1d3c79024	04581747-de1e-4e3a-b58d-a1c1d3c79024	PASS (100% Exact Match)
+cutoff_utc	"2026-10-27 09\n \"git_commit\":" (spliced in prompt)	"2026-10-27 09:31:39 UTC" in clean Data/cycle_envelope.json	WARN (ProseMirror 4KB splice in prompt; intact in repo)
+git_commit	16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69	Commit 16e8e0787f5f4c7fb1d559a7e637f6f8b36a9b69 (2026-10-27 09:30:18 UTC)	PASS (Verified on GitHub main)
+git_tree	ff12c330e6e9b0f7ac5077d3aabfe1f72531c296	Tree ff12c330e6e9b0f7ac5077d3aabfe1f72531c296	PASS (100% Exact Match)
+Data/cycle_envelope.json	3 DOM chunk-boundary splices in prompt text	4,173 bytes, sha256: 108ae5d4a0f90b944bc1d340503d44b9732b0b9dede72a042e082baf4d857a19	PASS (Clean repo JSON verified)
+evidence_manifest_sha256	87bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43	Data/history/master_manifest.json (180,859B at 16e8e0787f): 87bb25afa8...	PASS (100% Byte-for-Byte Match)
+prompt_sha256	8b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367	docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt (CRLF, 32,680B at 16e8e0787f): 8b755fddce...	PASS (100% CRLF Match)
+risk_policy_sha256	65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e	65f0e1214087b19ba8c3b3e7fe6806402b5b3b0c04bc575426371689feebdd1e	PASS (100% Exact Match)
+1.2 Mandatory Timestamp & Staleness Audit vs 2026-10-27 09:31:56 UTC (§1.4.6)
+File / Telemetry Layer	Last Git Commit & Timestamp (UTC)	Internal as_of / Data Timestamp	Age vs 09:31:39 UTC Cutoff	Age vs 09:31:56 UTC Audit Target	Gate Status (<= 20m / 900s)
+docs/telemetry/live_snapshot_latest.json (16e8e0787f)	2026-10-27 09:30:18 UTC	2026-10-27 09:29:59 UTC (data_layer: 09:30:14 UTC)	100.0s (1m 40s)	117.0s (1m 57s)	PASS (FRESH & CAUSAL)
+docs/telemetry/live_snapshot_latest.json (49a5c42c75)	2026-10-27 09:33:25 UTC	2026-10-27 09:32:58 UTC (data_layer: 09:33:16 UTC)	Post-cutoff (+79.0s)	Post-target (+62.0s)	PASS (FRESHEST REPO HEAD)
+Data/feeds/00_MT5_Account_Telemetry.parquet (163 rows)	2026-10-27 09:30:18 UTC	2026-10-27 09:25:14 UTC (14:55:14 IST)	385.0s (6m 25s)	402.0s (6m 42s)	PASS (FRESH)
+Data/feeds/10_Whale_Orders.parquet (3,547 rows)	2026-10-27 09:22:26 UTC (d4acd24ba6)	2026-10-27 09:18:11–09:19:03 UTC (14:48–14:49 IST)	756.0s (12m 36s)	773.0s (12m 53s)	PASS (FRESH)
+Data/feeds/14_Liquidation_Matrix.parquet (9,944 rows)	2026-10-27 09:22:26 UTC (d4acd24ba6)	2026-10-27 09:22:22 UTC (14:52:22 IST)	557.0s (9m 17s)	574.0s (9m 34s)	PASS (FRESH)
+Data/feeds/20_Auction_Market_Structure.parquet (84 rows)	2026-10-27 09:22:26 UTC	2026-10-27 09:10:01–09:10:08 UTC (14:40:01 IST)	1,291.0s (21m 31s)	1,308.0s (21m 48s)	WARN (21m 48s > 20m)
+Data/feeds/21_Tradfye_Orderflow.parquet (6,528 rows)	2026-10-27 09:22:26 UTC	2026-10-27 09:00:00 UTC (15m bar; banner 09:21:18 UTC)	621.0s (10m 21s banner)	638.0s (10m 38s banner)	PASS (09:00 UTC bar)
+Data/feeds/25_CoinGlass_Footprint_Signals.parquet (776 rows)	2026-10-27 09:22:26 UTC	2026-10-27 09:21:59 UTC (14:51:59 IST)	580.0s (9m 40s)	597.0s (9m 57s)	PASS (FRESH)
+Data/feeds/26_Aggregated_Footprint_Bar_Metrics.parquet (310 rows)	2026-10-27 09:22:26 UTC	2026-10-27 09:15:00 UTC (14:45:00 IST)	999.0s (16m 39s)	1,016.0s (16m 56s)	PASS (FRESH)
+Data/feeds/23_Master_Pipeline_Telemetry.parquet (33 rows)	2026-10-27 09:30:18 UTC	2026-10-27 09:28:12 UTC (28 PASS / 5 FAIL)	207.0s (3m 27s)	224.0s (3m 44s)	FAIL (5 feeds FAIL)
+Data/DataBase_Trading.xlsx	2026-10-26 07:07:49 UTC (12b0f13aa9)	Legacy static Excel snapshot	26h 23m 50s	26h 24m 07s	FAIL ([ALERT] STALE > 20m)
+Data/macro_calendar.json	2026-10-26 07:07:49 UTC (12b0f13aa9)	verified_at: 2026-10-26T03:00:00Z	109,899s (30h 31m)	109,916s (30h 31m)	FAIL (G2 STALE > 900s)
+Data/forex_factory_live.json	2026-10-25 13:06:41 UTC (e48405e9f8)	Absent from current HEAD tree	44h 24m 58s	44h 25m 15s	FAIL ([ALERT] STALE/ABSENT)
+1.3 Universe Coverage & Broker Spread Gate (00_MT5_Account_Telemetry.parquet & live_snapshot_latest.json)
 Total Broker Instruments Audited: 156 active instruments (163 total rows in 00_MT5_Account_Telemetry.parquet; 98 TradFi + 58 Crypto Perpetuals).
 Market Regime: FULL_MARKET_OPEN (European/London session active across Forex, Metals, Energies, Indices, and 24/7 Crypto Perpetuals).
 Spread Gate Summary (00_MT5_Account_Telemetry.parquet at 09:25:14 UTC): 97 PASS, 59 SPREAD_DISQUALIFIED (VETUSD.p and XAGUSD.pi migrated from PASS in Cycle 370 to SPREAD_DISQUALIFIED in Cycle 371).
 Crypto Perpetuals Passing <= 25.0 bps (13 perpetuals + NETH25.p index at 09:25:14–09:29:59 UTC):
-
 BTCUSD.pi: 79,560.50 / 79,576.50 (16.00 pts = 2.01 bps PASS, quote age 0.12s; at 09:32:58Z: 79,592.50 / 79,608.50 = 2.01 bps PASS)
 NETH25.p: 1,134.25 / 1,134.55 (0.30 pts = 2.64 bps PASS)
 XMRUSD.p: 599.29 / 599.55 (0.26 pts = 4.34 bps PASS)
@@ -39,108 +70,178 @@ AVEUSD.p: 130.44 / 130.71 (0.27 pts = 20.68 bps PASS)
 TRXUSD.p: 0.3268 / 0.3276 (0.0008 pts = 24.45 bps PASS in live_snapshot_latest.json, 21.40 bps in 00_MT5; quote age 30.45s at 09:29:59Z -> 2.15s at 09:32:58Z)
 SOLUSD.p: 99.47 / 99.70 (0.23 pts = 23.10 bps PASS, quote age 6.49s; at 09:32:58Z: 99.58 / 99.81 = 23.07 bps PASS)
 XRPUSD.pi: 1.2960 / 1.2990 (0.0030 pts = 23.12 bps PASS, quote age 7.36s at 09:29:59Z)
-
-
 Crypto Perpetuals Disqualified by Spread (> 25.0 bps): BARUSD.p (30.23 bps), VETUSD.p (31.50 bps — widened from 15.74 bps in Cycle 370), AVXUSD.p (34.23–45.71 bps), UNIUSD.p (34.29 bps), LTCUSD.pi (53.32–53.37 bps), ARWUSD.p (65.03 bps), NERUSD.p (65.12–67.49 bps), LNKUSD.p (75.15–76.09 bps), ADAUSD.p (103.42–108.53 bps), DOTUSD.pi (202.43–212.44 bps), DOGUSD.p (272.55–272.90 bps), plus 34 illiquid altcoin perpetuals.
-§2. Role C — Solvency, Portfolio & Broker Math Sentry (Account #5064568 Audit)2.1 Account State & Three-Frame Solvency Reconciliation (0.0001 USD Precision)Account Metric09:29:59 UTC (snap_0929)09:31:39 UTC (cycle_envelope)09:32:58 UTC (snap_0932)Policy Gate / ThresholdRealized Balance (USD)$4,847.88$4,847.88$4,847.88Tier-2 House Money requires > $4,850.00 (-$2.12 deficit   ⟹  \implies⟹ TIER_1_STANDARD, $12.00 nominal risk)Floating PnL (#19329907 BNB)-$5.25 (@ 734.50)-$4.65 (@ 734.70)-$4.95 (@ 734.60)1 active position (3.00 BNB @ 736.25)Account Equity (USD)$4,842.63$4,843.23$4,842.93>= $4,795.00 Solvency KernelBase Capital (min(Bal, Eq))$4,842.63$4,843.23$4,842.93Cushion above $4,795.00 = $48.23 USDMargin Used (USD / % Eq)$1,104.38 (22.81%)$1,104.38 (22.80%)$1,104.38 (22.80%)PASS (<= 50.0% D3 cap) (3.0 × 736.25 × 0.50 = 1,104.375)Free Margin (USD)$3,738.25$3,738.85$3,738.55$4,843.23 - $1,104.38 = $3,738.85 USDMargin Level (%)438.49%438.5474%438.52%PASS (>= 200.0% D3 floor)Joint-Fill Slots Used3 / 4 (1 active + 2 pending)3 / 4 (1 free slot)3 / 4 (1 free slot)Max 4 concurrent joint-fill slotsWe now prove the exact arithmetic of all three solvency reference frames side-by-side:TicketSymbol & SideVolume & Levels (Open / Curr / SL / TP)Frame 1: cycle_envelope.json (MTM Remaining Stress from Equity = $4,843.23)Frame 2: Pure Balance Frame (Entry-to-SL Stress from Balance = $4,847.88)Frame 3: live_snapshot_latest.json (09:29:59Z, Double-Counted Entry-to-SL from Equity = $4,842.63)Initial Margin (50% Crypto)#19329907 (Active)BNBUSD.p BUY3.00 (1 BNB/lot) 736.25 / 734.70 / 732.65 / 740.00Rem. Loss: (734.70 - 732.65)×3 = $6.15 Stress: 1.25×6.15 + 2 = $9.6875Full Loss: (736.25 - 732.65)×3 = $10.80 Stress: 1.25×10.80 + 2 = $15.5000Subtracts $15.5000 from Equity (double-counts -$5.25 MTM loss!)$1,104.375 (Active)#19330613 (Pending)ETHUSD.pi SELL_LIMIT0.50 (1 ETH/lot) 2320.50 / 2305.80 / 2343.50 / 2274.50Nom. Loss: (2343.50 - 2320.50)×0.5 = $11.50 Stress: 1.25×11.50 + 2 = $16.3750Nom. Loss: $11.50 Stress: $16.3750Nom. Loss: $11.50 Stress: $16.3750$580.125 (On Fill)#19343853 (Pending)SOLUSD.p SELL_LIMIT0.20 (100 SOL/lot = 20 SOL) 100.38 / 99.52 / 100.94 / 99.20Nom. Loss: (100.94 - 100.38)×20 = $11.20 Stress: 1.25×11.20 + 2 = $16.0000Nom. Loss: $11.20 Stress: $16.0000Nom. Loss: $11.20 Stress: $16.0000$1,003.800 (On Fill)Portfolio Totals3 Tickets (1 Active + 2 Pending)Global Reserve: $2.00 USDStress = $42.0625 USD Post-Stress Eq = $4,799.17 USD Headroom = +$4.17 USDStress = $47.8750 USD Post-Stop Bal = $4,800.005 USD ($4,798.005 w/ $2 res = +$3.005)Stress = $47.8750 USD Post-Stop Eq = $4,794.755 USD (-$0.245 USD false breach!)Active: $1,104.38 If All Fill: $2,688.31 (55.51%)Key Solvency Conclusions:
+§2. Role C — Solvency, Portfolio & Broker Math Sentry (Account #5064568 Audit)
+2.1 Account State & Three-Frame Solvency Reconciliation (0.0001 USD Precision)
+Account Metric	09:29:59 UTC (snap_0929)	09:31:39 UTC (cycle_envelope)	09:32:58 UTC (snap_0932)	Policy Gate / Threshold
+Realized Balance (USD)	$4,847.88	$4,847.88	$4,847.88	Tier-2 House Money requires > $4,850.00 (-$2.12 deficit 
+  
+⟹
+  
+⟹ TIER_1_STANDARD, $12.00 nominal risk)
+Floating PnL (#19329907 BNB)	-$5.25 (@ 734.50)	-$4.65 (@ 734.70)	-$4.95 (@ 734.60)	1 active position (3.00 BNB @ 736.25)
+Account Equity (USD)	$4,842.63	$4,843.23	$4,842.93	>= $4,795.00 Solvency Kernel
+Base Capital (min(Bal, Eq))	$4,842.63	$4,843.23	$4,842.93	Cushion above $4,795.00 = $48.23 USD
+Margin Used (USD / % Eq)	$1,104.38 (22.81%)	$1,104.38 (22.80%)	$1,104.38 (22.80%)	PASS (<= 50.0% D3 cap) (3.0 × 736.25 × 0.50 = 1,104.375)
+Free Margin (USD)	$3,738.25	$3,738.85	$3,738.55	$4,843.23 - $1,104.38 = $3,738.85 USD
+Margin Level (%)	438.49%	438.5474%	438.52%	PASS (>= 200.0% D3 floor)
+Joint-Fill Slots Used	3 / 4 (1 active + 2 pending)	3 / 4 (1 free slot)	3 / 4 (1 free slot)	Max 4 concurrent joint-fill slots
+
+We now prove the exact arithmetic of all three solvency reference frames side-by-side:
+
+Ticket	Symbol & Side	Volume & Levels (Open / Curr / SL / TP)	Frame 1: cycle_envelope.json (MTM Remaining Stress from Equity = $4,843.23)	Frame 2: Pure Balance Frame (Entry-to-SL Stress from Balance = $4,847.88)	Frame 3: live_snapshot_latest.json (09:29:59Z, Double-Counted Entry-to-SL from Equity = $4,842.63)	Initial Margin (50% Crypto)
+#19329907 (Active)	BNBUSD.p BUY	3.00 (1 BNB/lot) 736.25 / 734.70 / 732.65 / 740.00	Rem. Loss: (734.70 - 732.65)×3 = $6.15 Stress: 1.25×6.15 + 2 = $9.6875	Full Loss: (736.25 - 732.65)×3 = $10.80 Stress: 1.25×10.80 + 2 = $15.5000	Subtracts $15.5000 from Equity (double-counts -$5.25 MTM loss!)	$1,104.375 (Active)
+#19330613 (Pending)	ETHUSD.pi SELL_LIMIT	0.50 (1 ETH/lot) 2320.50 / 2305.80 / 2343.50 / 2274.50	Nom. Loss: (2343.50 - 2320.50)×0.5 = $11.50 Stress: 1.25×11.50 + 2 = $16.3750	Nom. Loss: $11.50 Stress: $16.3750	Nom. Loss: $11.50 Stress: $16.3750	$580.125 (On Fill)
+#19343853 (Pending)	SOLUSD.p SELL_LIMIT	0.20 (100 SOL/lot = 20 SOL) 100.38 / 99.52 / 100.94 / 99.20	Nom. Loss: (100.94 - 100.38)×20 = $11.20 Stress: 1.25×11.20 + 2 = $16.0000	Nom. Loss: $11.20 Stress: $16.0000	Nom. Loss: $11.20 Stress: $16.0000	$1,003.800 (On Fill)
+Portfolio Totals	3 Tickets (1 Active + 2 Pending)	Global Reserve: $2.00 USD	Stress = $42.0625 USD Post-Stress Eq = $4,799.17 USD Headroom = +$4.17 USD	Stress = $47.8750 USD Post-Stop Bal = $4,800.005 USD ($4,798.005 w/ $2 res = +$3.005)	Stress = $47.8750 USD Post-Stop Eq = $4,794.755 USD (-$0.245 USD false breach!)	Active: $1,104.38 If All Fill: $2,688.31 (55.51%)
+
+Key Solvency Conclusions:
+
 Why live_snapshot_latest.json (09:29:59Z) Printed $4,794.755 USD (-$0.245 USD Below $4,795.00 USD): Because live_snapshot_latest.json deducts total_contingent_stress_usd = $47.8750 USD (which already includes the full $10.80 USD entry-to-SL loss on #19329907 BNBUSD.p stressed at 1.25×) from equity_usd = $4,842.63 USD (which already deducts -$5.25 USD of that same loss!), any floating drawdown larger than -$4.875 USD on BNBUSD.p causes live_snapshot_latest.json to report a false Solvency Kernel breach. At 09:32:58Z, when BNBUSD.p ticked back up 0.10 pts to 734.60 (equity_usd = $4,842.93 USD), post_joint_stop_equity_usd immediately returned to $4,795.055 USD (+$0.055 USD above $4,795.00 USD).
 Why cycle_envelope.json (09:31:39Z) Paradoxically Gained +$0.15 USD Headroom ($4.02 -> $4.17 USD): Because Terminal/generate_cycle_envelope.py line 67 stresses active positions from price_current, a -$0.60 USD drop in BNBUSD.p (734.90 -> 734.70) reduced base_capital_usd by $0.6000 USD (1.00×) while reducing existing_ticket_stress_usd by 1.25 × $0.60 = $0.7500 USD ($42.8125 -> $42.0625 USD), increasing realized_headroom_usd by +0.25 × $0.60 = +$0.15 USD ($4.0175 -> $4.1675 USD ≡ $4.17 USD).
 True Mark-to-Market-Invariant Solvency & New Risk Veto (new_risk_admissible = false): Under the MTM-invariant Realized-Balance frame, worst-case post-stop balance is $4,800.005 USD ($4,798.005 USD or +$3.005 USD headroom after the $2.00 USD global contingency reserve). Because both +$3.005 USD (Balance frame) and +$4.17 USD (Envelope MTM frame, nominal_risk_capacity_usd = $1.734 USD) are well below the $17.00 USD stressed risk ($12.00 USD nominal risk) required for a new Tier-1 ticket, new_risk_admissible = false.
 2.2 Ratchet Audit & Microstructure Defense of Existing Tickets (#19329907, #19330613, #19343853)
 #19329907 (BNBUSD.p BUY 3.00 @ 736.25, SL 732.65, TP 740.00):
-
 Current Price: 734.70 at 09:31:39Z cutoff (-$4.65 USD floating PnL), trading right at 15m Ornstein-Uhlenbeck equilibrium theta = 734.7762.
-Initial Risk Unit (R0R_0R0​): R0=736.25−732.65=3.60 ptsR_0 = 736.25 - 732.65 = \mathbf{3.60\text{ pts}}R0​=736.25−732.65=3.60 pts ($10.80 USD nominal risk).
+Initial Risk Unit (
+𝑅
+0
+R
+0
+	​
+
+): 
+𝑅
+0
+=
+736.25
+−
+732.65
+=
+3.60
+ pts
+R
+0
+	​
+
+=736.25−732.65=3.60 pts ($10.80 USD nominal risk).
 Phase 1 Early-BE (+0.80 R_0 = 739.13 -> SL 736.79) & Phase 2 Profit-Lock (+1.50 R_0 = 741.65 -> SL 739.13): Currently PHASE_0_PENDING (-0.43 R_0).
 Microstructure Defense of SL = 732.65: Protected by Daily Value Area Low dVAL = 733.38 (20_Auction_Market_Structure.parquet), London Session Low 733.10, Hyperliquid L3 BUY walls at 734.48 ($336.6K, SAMPLED_RECURRENCE_VERIFIED) and 733.58 ($1.427M), strong positive orderbook imbalance (+0.4432, 2.59× bid/ask skew), and two consecutive Tradfye 15m AGGRESSIVE_BUYER_DOMINATION (BULLISH_EXPANSION) bars at 08:45Z (+$536.2K net delta, +40.54%) and 09:00Z (+$153.2K net delta, +13.29%, cumulative CVD = +$21.66M). Directive: HOLD_EXISTING_AND_MONITOR_SL_AND_RATCHET.
-
-
 #19330613 (ETHUSD.pi SELL_LIMIT 0.50 @ 2,320.50, SL 2,343.50, TP 2,274.50):
-
 Distance: 14.70 pts (2.00 × ATR14) above 2,305.80 cutoff price.
 Confluence: Sits inside the 48-bar [0.702 OTE = 2,318.24, 0.786 Invalidation = 2,321.02] zone, right at pdPOC = 2,319.30 and dVAH = 2,321.47, above OU theta = 2,310.12, backed by heavy top-20 ask depth ($358.6K ask vs $57.6K bid, book_imbalance = -0.7231, skew = 0.16x) and Hyperliquid L3 SELL walls at 2,327.40 ($6.78M, SAMPLED_RECURRENCE_VERIFIED) and 2,342.30 ($13.23M, SAMPLED_RECURRENCE_VERIFIED, directly guarding SL = 2,343.50), targeting TP = 2,274.50 (2.00R, Deribit Max Pain / Put Wall 2,300 + PWL = 2,275.30). Directive: KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON.
-
-
 #19343853 (SOLUSD.p SELL_LIMIT 0.20 @ 100.38, SL 100.94, TP 99.20):
-
 Distance: 0.86 pts (2.81 × ATR14) above 99.52 cutoff price.
 Confluence: Sits directly at 15m Fib-Prime EMA144 (100.4040), 48-bar 0.702 OTE (100.3396), dVAH (100.37), and pdVAL (100.40), above OU theta = 99.7422, defended by Hyperliquid L3 SELL walls at 100.25 ($2.74M) and 100.63 ($5.40M) plus Bybit/Binance $2.77M SELL walls at 102.83 (duration = 1h 29m = 5,340s >= 180s in 10_Whale_Orders.parquet), targeting TP = 99.20 (2.11R, front-running London_L / cwl = 99.09). Directive: KEEP_WORKING_SUPERVISED_BY_AUTO_PULL_DAEMON.
+§3. Role A — Statistical Regime, Diffusion & Dual-Engine Dialectic Quant (15m, 1H, 4H)
 
+We compute Lo-MacKinlay VR(4) with heteroskedasticity-consistent z*, Kaufman ER(48), Newey-West t_drift, Ornstein-Uhlenbeck theta (b), Fib-Prime EMA hierarchy (5, 13, 34, 89, 144, 233), and 48-bar Golden Zones across the 24-Asset Matrix at 09:29:59 UTC:
 
-§3. Role A — Statistical Regime, Diffusion & Dual-Engine Dialectic Quant (15m, 1H, 4H)We compute Lo-MacKinlay VR(4) with heteroskedasticity-consistent z*, Kaufman ER(48), Newey-West t_drift, Ornstein-Uhlenbeck theta (b), Fib-Prime EMA hierarchy (5, 13, 34, 89, 144, 233), and 48-bar Golden Zones across the 24-Asset Matrix at 09:29:59 UTC:SymbolSpread (bps) & Gate15m VR(4) (z*)1H VR(4) (z*)4H VR(4) (z*)15m ER(48) & t_driftVWAP & VWAP_ZOU theta (15m)Econometric Regime ClassificationBTCUSD.pi2.01 PASS1.201 (+0.90)0.602 (-1.66)0.873 (-0.51)0.054 / -0.3479,757.83 (-0.96)79,733.381H Sub-Diffusive Mean-Reverting (z*=-1.66) / 15m Bearish Macro StackETHUSD.pi13.00 PASS1.154 (+0.73)0.818 (-0.72)0.725 (-1.07)0.030 / +0.192,310.17 (-0.50)2,310.12Rotational Balance Around $2,310 VWAP / $2,300 Deribit Max PainSOLUSD.p23.10 PASS1.216 (+1.09)0.757 (-1.26)0.621 (-1.22)0.079 / -0.4899.97 (-0.93)99.7422Strict Bearish 15m Fib-Prime Ribbon / 1H-4H Sub-Diffusive Mean-RevertingBNBUSD.p8.16 PASS1.045 (+0.24)0.891 (-0.54)0.732 (-1.02)0.138 / -0.71738.21 (-0.98)734.7762Rotational Balance Testing OU theta = 734.78 & dVAL = 733.38XRPUSD.pi23.12 PASS1.168 (+0.78)0.672 (-1.64)0.869 (-0.55)0.133 / +0.561.3006 (-0.67)1.29771H Sub-Diffusive Mean-Reverting (z*=-1.64) Around OU 1.2977BCHUSD.p20.61 WARN0.728 (-1.21)0.633 (-1.53)0.858 (-0.59)0.131 / +1.00280.76 (+1.07)280.3949Multi-TF Sub-Diffusive Mean-Reversion; Quote Age 37.0s at 09:29ZTRXUSD.p24.45 WARN0.810 (-0.63)0.728 (-1.34)0.874 (-0.52)0.556 / -2.780.3281 (-1.27)0.3307Strong Downward Drift (t=-2.78, ER=0.556); Quote Age 30.5s at 09:29ZXAUUSD.pi0.23 PASS1.032 (+0.13)0.496 (-1.92)0.990 (-0.05)0.112 / -0.774,008.37 (-1.66)4,006.90Strong 1H Mean-Reverting (VR4=0.496, z*=-1.92) / Swept 3,989.09XAGUSD.pi10.91 FAIL*1.181 (+0.75)0.597 (-1.69)1.177 (+0.72)0.207 / -1.1953.427 (-0.54)52.8354Spread 10.91 bps > 10.0 bps Metal Gate (FAIL in 00_MT5 & 20_Auction)USWTI.p2.92 PASS1.189 (+0.94)0.803 (-1.00)0.685 (-1.89)0.043 / +0.19102.25 (+0.77)102.27314H Sub-Diffusive Mean-Reverting (VR4=0.685, z*=-1.89) Near dVAH 102.76EURUSD.pi0.09 PASS0.823 (-0.92)0.952 (-0.23)1.116 (+0.51)0.322 / -1.911.1164 (-3.30)1.1178Strong Bearish Trend (ER=0.322 > 0.20, t=-1.91, Strict Fib-Prime Ribbon)GBPUSD.pi0.08 PASS0.724 (-1.06)0.865 (-0.55)1.182 (+0.62)0.244 / -1.571.3334 (-2.43)1.3395Clean Bearish Trend (ER=0.244 > 0.20, Strict Fib-Prime Ribbon)USDJPY.pi0.06 PASS0.786 (-1.14)0.876 (-0.52)0.783 (-1.05)0.093 / +0.55157.67 (+0.90)157.6813Multi-TF Sub-Diffusive Rotational Balance Inside Value (dPOC 157.66)SP500.p1.08 PASS1.213 (+1.10)0.645 (-1.78)1.163 (+0.74)0.032 / +0.187,681.16 (+0.15)7,681.431H Sub-Diffusive (VR4=0.645, z*=-1.78) / Balanced at VWAP 7,681NAS100.p0.43 PASS1.292 (+1.53)0.786 (-1.16)1.252 (+1.15)0.021 / -0.1229,268.67 (+0.26)29,265.02Rotational Balance Inside Value (dPOC 29,255.77 – dVAH 29,327.27)DJ30.p0.30 PASS0.633 (-1.42)0.736 (-1.12)0.878 (-0.77)0.124 / +0.6852,436.06 (+0.16)52,446.30Multi-TF Sub-Diffusive Rotational Balance Around OU 52,446.30GER40.p0.43 PASS0.955 (-0.19)1.082 (+0.40)1.088 (+0.50)0.021 / +0.1225,388.76 (-0.52)25,394.14Rotational Balance Inside Value (dVAL 25,370.68 – dVAH 25,427.76)§4. Role B — Microstructure, Orderbook, Liquidation & Tradfye Footprint Quant4.1 Multi-Venue Persistent Whale Walls (10_Whale_Orders.parquet @ 09:18–09:19 UTC & Hyperliquid L3 @ 09:25:12 UTC)From 10_Whale_Orders.parquet (3,547 rows synced at 14:48–14:49 IST / 09:18–09:19 UTC) and live_snapshot_latest.json (09:29:59 UTC), we verify continuous wall persistence (>= 180s Rule B5):
+Symbol	Spread (bps) & Gate	15m VR(4) (z*)	1H VR(4) (z*)	4H VR(4) (z*)	15m ER(48) & t_drift	VWAP & VWAP_Z	OU theta (15m)	Econometric Regime Classification
+BTCUSD.pi	2.01 PASS	1.201 (+0.90)	0.602 (-1.66)	0.873 (-0.51)	0.054 / -0.34	79,757.83 (-0.96)	79,733.38	1H Sub-Diffusive Mean-Reverting (z*=-1.66) / 15m Bearish Macro Stack
+ETHUSD.pi	13.00 PASS	1.154 (+0.73)	0.818 (-0.72)	0.725 (-1.07)	0.030 / +0.19	2,310.17 (-0.50)	2,310.12	Rotational Balance Around $2,310 VWAP / $2,300 Deribit Max Pain
+SOLUSD.p	23.10 PASS	1.216 (+1.09)	0.757 (-1.26)	0.621 (-1.22)	0.079 / -0.48	99.97 (-0.93)	99.7422	Strict Bearish 15m Fib-Prime Ribbon / 1H-4H Sub-Diffusive Mean-Reverting
+BNBUSD.p	8.16 PASS	1.045 (+0.24)	0.891 (-0.54)	0.732 (-1.02)	0.138 / -0.71	738.21 (-0.98)	734.7762	Rotational Balance Testing OU theta = 734.78 & dVAL = 733.38
+XRPUSD.pi	23.12 PASS	1.168 (+0.78)	0.672 (-1.64)	0.869 (-0.55)	0.133 / +0.56	1.3006 (-0.67)	1.2977	1H Sub-Diffusive Mean-Reverting (z*=-1.64) Around OU 1.2977
+BCHUSD.p	20.61 WARN	0.728 (-1.21)	0.633 (-1.53)	0.858 (-0.59)	0.131 / +1.00	280.76 (+1.07)	280.3949	Multi-TF Sub-Diffusive Mean-Reversion; Quote Age 37.0s at 09:29Z
+TRXUSD.p	24.45 WARN	0.810 (-0.63)	0.728 (-1.34)	0.874 (-0.52)	0.556 / -2.78	0.3281 (-1.27)	0.3307	Strong Downward Drift (t=-2.78, ER=0.556); Quote Age 30.5s at 09:29Z
+XAUUSD.pi	0.23 PASS	1.032 (+0.13)	0.496 (-1.92)	0.990 (-0.05)	0.112 / -0.77	4,008.37 (-1.66)	4,006.90	Strong 1H Mean-Reverting (VR4=0.496, z*=-1.92) / Swept 3,989.09
+XAGUSD.pi	10.91 FAIL*	1.181 (+0.75)	0.597 (-1.69)	1.177 (+0.72)	0.207 / -1.19	53.427 (-0.54)	52.8354	Spread 10.91 bps > 10.0 bps Metal Gate (FAIL in 00_MT5 & 20_Auction)
+USWTI.p	2.92 PASS	1.189 (+0.94)	0.803 (-1.00)	0.685 (-1.89)	0.043 / +0.19	102.25 (+0.77)	102.2731	4H Sub-Diffusive Mean-Reverting (VR4=0.685, z*=-1.89) Near dVAH 102.76
+EURUSD.pi	0.09 PASS	0.823 (-0.92)	0.952 (-0.23)	1.116 (+0.51)	0.322 / -1.91	1.1164 (-3.30)	1.1178	Strong Bearish Trend (ER=0.322 > 0.20, t=-1.91, Strict Fib-Prime Ribbon)
+GBPUSD.pi	0.08 PASS	0.724 (-1.06)	0.865 (-0.55)	1.182 (+0.62)	0.244 / -1.57	1.3334 (-2.43)	1.3395	Clean Bearish Trend (ER=0.244 > 0.20, Strict Fib-Prime Ribbon)
+USDJPY.pi	0.06 PASS	0.786 (-1.14)	0.876 (-0.52)	0.783 (-1.05)	0.093 / +0.55	157.67 (+0.90)	157.6813	Multi-TF Sub-Diffusive Rotational Balance Inside Value (dPOC 157.66)
+SP500.p	1.08 PASS	1.213 (+1.10)	0.645 (-1.78)	1.163 (+0.74)	0.032 / +0.18	7,681.16 (+0.15)	7,681.43	1H Sub-Diffusive (VR4=0.645, z*=-1.78) / Balanced at VWAP 7,681
+NAS100.p	0.43 PASS	1.292 (+1.53)	0.786 (-1.16)	1.252 (+1.15)	0.021 / -0.12	29,268.67 (+0.26)	29,265.02	Rotational Balance Inside Value (dPOC 29,255.77 – dVAH 29,327.27)
+DJ30.p	0.30 PASS	0.633 (-1.42)	0.736 (-1.12)	0.878 (-0.77)	0.124 / +0.68	52,436.06 (+0.16)	52,446.30	Multi-TF Sub-Diffusive Rotational Balance Around OU 52,446.30
+GER40.p	0.43 PASS	0.955 (-0.19)	1.082 (+0.40)	1.088 (+0.50)	0.021 / +0.12	25,388.76 (-0.52)	25,394.14	Rotational Balance Inside Value (dVAL 25,370.68 – dVAH 25,427.76)
+§4. Role B — Microstructure, Orderbook, Liquidation & Tradfye Footprint Quant
+4.1 Multi-Venue Persistent Whale Walls (10_Whale_Orders.parquet @ 09:18–09:19 UTC & Hyperliquid L3 @ 09:25:12 UTC)
+
+From 10_Whale_Orders.parquet (3,547 rows synced at 14:48–14:49 IST / 09:18–09:19 UTC) and live_snapshot_latest.json (09:29:59 UTC), we verify continuous wall persistence (>= 180s Rule B5):
 
 BTCUSD.pi Institutional Supply & Demand Architecture:
 
 Bybit + Binance Persistent Whale Walls (10_Whale_Orders.parquet):
-
 SELL: $7,920,000 USD at 80,028.60 on both Bybit and Binance ($15.84M combined, duration = 3m 27s = 207s >= 180s PASS).
 BUY: $12,700,000 USD at 77,750.00 (Binance, duration = 7d 16h >= 180s PASS), $8,660,000 USD at 79,307.20 on both Bybit and Binance ($17.32M combined, duration = 14h 48m = 53,280s >= 180s PASS).
-
-
 Hyperliquid L3 Concentrated Walls (live_snapshot_latest.json):
-
 SELL: 80,314.00 ($15.74M, SAMPLED_RECURRENCE_VERIFIED), 80,828.00 ($21.51M, SAMPLED_RECURRENCE_VERIFIED).
 BUY: 79,185.00 ($15.52M, SAMPLED_RECURRENCE_VERIFIED), 78,671.00 ($20.93M, SAMPLED_RECURRENCE_VERIFIED).
-
-
 CoinGlass Footprint Signals (25_CoinGlass_Footprint_Signals.parquet @ 14:50:42 IST / 09:20:42 UTC):
-
 Bearish Absorption at High: 80,017.80 (368 BTC taker buying absorbed at high) and 79,907.00 (799 BTC taker buying absorbed at high).
 Bullish Absorption & Trapped Shorts at Low: 79,606.80 (293 BTC taker selling absorbed) and 79,600.00 (312 BTC failed breakdown).
-
-
-
-
 
 ETHUSD.pi Institutional Supply & Demand Architecture:
 
 Bybit + Binance Persistent Whale Walls (10_Whale_Orders.parquet):
-
 BUY: $10,600,000 USD at 2,302.00 on both Bybit and Binance ($21.20M combined, duration = 1h 04m = 3,840s >= 180s PASS), $6,740,000 USD at 2,300.00 (duration = 1h 35m = 5,700s PASS), $6,420,000 USD at 2,295.00 (duration = 1d 04h PASS).
-
-
 Hyperliquid L3 Walls:
-
 SELL: 2,327.40 ($6.78M, SAMPLED_RECURRENCE_VERIFIED), 2,342.30 ($13.23M, SAMPLED_RECURRENCE_VERIFIED) — directly defending #19330613 (SELL_LIMIT @ 2,320.50, SL 2,343.50)!
 BUY: 2,294.90 ($6.68M, SAMPLED_RECURRENCE_VERIFIED), 2,280.00 ($12.87M, SAMPLED_RECURRENCE_VERIFIED).
-
-
-
-
 
 SOLUSD.p Institutional Supply & Demand Architecture:
 
 Bybit + Binance Persistent Whale Walls (10_Whale_Orders.parquet):
-
 SELL: $2,770,000 USD at 102.83 on both Bybit and Binance ($5.54M combined, duration = 1h 29m = 5,340s >= 180s PASS).
 BUY: $2,920,000 USD at 97.04 (duration = 2h 27m = 8,820s PASS), $2,840,000 USD at 96.90 (duration = 1d 06h PASS), $2,590,000 USD at 99.00 (duration = 1d 00h PASS).
-
-
 Hyperliquid L3/L2 Walls:
-
 SELL: 100.25 ($2.74M), 100.63 ($5.40M) — sitting immediately around #19343853 (SELL_LIMIT @ 100.38, SL 100.94).
 BUY: 99.70 ($332.9K L2 PERSISTENT_VERIFIED), 99.48 ($2.72M L3 SAMPLED_RECURRENCE_VERIFIED), 99.01 ($5.31M L3).
-
-
-
-
 
 BNBUSD.p Institutional Supply & Demand Architecture:
 
 Bybit + Binance Whale Walls (10_Whale_Orders.parquet):
-
 BUY: $326,000 USD at 720.90 & 717.00 (duration = 15m 11s = 911s >= 180s PASS); flicker walls at 730.04 ($331K, 21s < 180s rejected as anchor).
-
-
 Hyperliquid L3 Walls:
-
 BUY: 734.48 ($336.6K, SAMPLED_RECURRENCE_VERIFIED), 733.58 ($1.427M) — sitting above #19329907 SL = 732.65!
 SELL: 738.71 ($347.7K, SAMPLED_RECURRENCE_VERIFIED), 738.95 ($325.1K, SAMPLED_RECURRENCE_VERIFIED).
+4.2 Tradfye Institutional Orderflow (21_Tradfye_Orderflow.parquet — Through 09:00:00 UTC)
+Asset	08:30 UTC Vol & Net Delta (%)	08:45 UTC Vol & Net Delta (%)	09:00 UTC Vol & Net Delta (%)	09:00 UTC POC / VWAP	09:00 UTC Cumulative CVD (USD)	Tradfye Microstructure Regime (08:45Z 
+→
+→ 09:00Z)
+BTC (15m)	$44.76M / -$6.83M (-15.26%)	$32.74M / -$2.77M (-8.46%)	$29.67M / +$907.7K (+3.06%)	79,809.90 / 79,816.76	+$35.76M	TWO_SIDED_ABSORPTION (BEARISH 
+→
+→ BULLISH_ABSORPTION; MaxPain 78k)
+ETH (15m)	$39.05M / -$7.95M (-20.35%)	$28.74M / +$130.8K (+0.46%)	$19.41M / +$1.46M (+7.54%)	2,313.70 / 2,313.49	+$85.69M	TWO_SIDED_ABSORPTION (BULLISH_EXPANSION; MaxPain/PutWall 2,300)
+SOL (15m)	$7.61M / +$308.5K (+4.06%)	$4.21M / +$714.0K (+16.97%)	$4.16M / +$708.9K (+17.02%)	99.9325 / 99.9166	-$11.21M	AGGRESSIVE_BUYER_DOMINATION (BULLISH_EXPANSION pullback toward 100.38)
+BNB (15m)	$1.27M / -$5.1K (-0.40%)	$1.32M / +$536.2K (+40.54%)	$1.15M / +$153.2K (+13.29%)	737.71 / 737.48	+$21.66M	AGGRESSIVE_BUYER_DOMINATION (BULLISH_EXPANSION supporting #19329907)
+BCH (15m)	$316.7K / -$83.7K (-26.44%)	$731.8K / +$290.6K (+39.71%)	$320.0K / +$34.3K (+10.72%)	282.67 / 282.37	+$1.45M	AGGRESSIVE_BUYER_DOMINATION 
+→
+→ TWO_SIDED_ABSORPTION
+XRP (1h)	07:00Z: -$1.03M (-7.01%)	08:00Z: -$805.8K (-6.65%)	09:00Z: +$778.5K (+41.96%)	1.3015 / 1.3009	+$19.07M	TWO_SIDED_ABSORPTION 
+→
+→ AGGRESSIVE_BUYER_DOMINATION
+TRX (15m)	$568.2K / -$14.9K (-2.62%)	$529.0K / +$195.2K (+36.90%)	$429.8K / +$3.8K (+0.88%)	0.3272 / 0.3272	-$3.33M	AGGRESSIVE_BUYER_DOMINATION 
+→
+→ TWO_SIDED_ABSORPTION
+§5 & §6. Affirmative Multi-Asset Candidate Discovery & Broker Execution Verification
 
+Even though new ticket staging is blocked by G4 Solvency Headroom ($1.734 USD nominal risk capacity < $12.00 USD minimum Tier-1 risk) and G2/G3/G8 Fail-Closed Gates, the Council completes its affirmative discovery across all spread-qualified Crypto and TradFi instruments, evaluating the 2 working pending orders (#19330613 ETH, #19343853 SOL) and 4 institutional reserve setups (BTC, XAU, EURUSD, GBPUSD) ready for immediate staging once a slot and >= $17.00 USD stressed headroom open:
 
+Candidate ID & Symbol	Side & Type	Entry / SL / TP	Lot (Vol)	Broker Risk / Reward (RR)	Stressed Loss (1.25× + $2)	15m Fib-Prime EMA Ribbon (5, 13, 34, 89, 144, 233)	48-Bar Fib Golden Zone [0.618 GP, 0.702 OTE, 0.786 Shelf]	Auction Profile (dVAH/dPOC/dVAL, pdPOC, IB) & Whale Wall Defense	Council Verdict
+CAND_ETH_SHORT_01 ETHUSD.pi (Ticket #19330613)	SELL_LIMIT	2320.50 / 2343.50 / 2274.50	0.50 (0.5 ETH)	$11.50 / $23.00 (2.00R)	$16.38 (Already in $42.06)	Bearish Macro (2306.2, 2306.0, 2308.0, 2311.8, 2313.9, 2315.6)	0.618: 2315.46 0.702: 2318.24 0.786: 2321.02	At pdPOC 2319.30 & dVAH 2321.47; above OU 2310.12; L3 SELL $6.78M @ 2327.4 & $13.23M @ 2342.3	HOLD (Keep Working #19330613)
+CAND_SOL_SHORT_02 SOLUSD.p (Ticket #19343853)	SELL_LIMIT	100.38 / 100.94 / 99.20	0.20 (20 SOL)	$11.20 / $23.60 (2.11R)	$16.00 (Already in $42.06)	Strict Bearish (99.58 < 99.62 < 99.83 < 100.23 < 100.40 < 100.53)	0.618: 100.19 0.702: 100.34 0.786: 100.49	At dVAH 100.37 & pdVAL 100.40; above OU 99.74; L3 SELL $2.74M @ 100.25 & $5.40M @ 100.63 + CEX $5.54M @ 102.83 (89m)	HOLD (Keep Working #19343853)
+CAND_BTC_SHORT_03 BTCUSD.pi (Reserve Reload)	SELL_LIMIT	80002.50 / 80302.50 / 79320.00	0.04 (0.04 BTC)	$12.00 / $27.30 (2.28R)	$17.00 (Post-Stop $4,782.17)	Bearish Macro (79643, 79642, 79709, 79851, 79920, 79976)	0.618: 79932.31 0.702: 80002.83 0.786: 80073.35	Exact 0.702 OTE (80,002.83); front-runs 80,017.8 absorption high & $15.84M CEX SELL wall at 80,028.6 (207s); L3 $15.74M @ 80,314 guards SL	HOLD (Stand Aside: Headroom $4.17 < $17.00)
+CAND_XAU_SHORT_04 XAUUSD.pi (Reserve Short)	SELL_LIMIT	4014.70 / 4026.70 / 3989.50	0.01 (1 oz)	$12.00 / $25.20 (2.10R)	$17.00 (Post-Stop $4,782.17)	Bearish Pullback (3996.6 < 4000.0 < 4005.7 < 4009.7 < 4010.1 < 4010.2)	0.618: 4011.64 0.702: 4014.71 0.786: 4017.77	Exact 0.702 OTE (4,014.71), pdVAH 4,014.17, pdPOC 4,016.36, dVAH 4,017.67; 1H VR4=0.496; L3 SELL $731.5K @ 4,019.3 & $1.03M @ 4,031.4	HOLD (Stand Aside: Headroom $4.17 < $17.00)
+CAND_EURUSD_SHORT_05 EURUSD.pi (Reserve Short)	SELL_LIMIT	1.11666 / 1.11786 / 1.11406	0.10 (10k EUR)	$12.00 / $26.00 (2.17R)	$17.00 (Post-Stop $4,782.17)	Strict Bearish (1.1153 < 1.1158 < 1.1165 < 1.1175 < 1.1182 < 1.1189)	0.618: 1.11637 0.702: 1.11666 0.786: 1.11695	Exact 0.702 OTE (1.11666), dVAL 1.11660, broken Mon_L 1.11731; ER(48)=0.322, t=-1.91; SL above Asian_H 1.11769	HOLD (Stand Aside: Headroom $4.17 < $17.00)
+CAND_GBPUSD_SHORT_06 GBPUSD.pi (Reserve Short)	SELL_LIMIT	1.33390 / 1.33510 / 1.33130	0.10 (10k GBP)	$12.00 / $26.00 (2.17R)	$17.00 (Post-Stop $4,782.17)	Strict Bearish (1.3322 < 1.3326 < 1.3332 < 1.3340 < 1.3343 < 1.3347)	0.618: 1.33365 0.702: 1.33392 0.786: 1.33420	Exact 0.702 OTE (1.33392), EMA89 1.33397, London_H 1.33386; ER(48)=0.244; SL above 0.786 (1.33420) & Asian_H 1.33491	HOLD (Stand Aside: Headroom $4.17 < $17.00)
+PART 2: CALIBRATED EXPECTED UTILITY, CAPITAL-TIME EFFICIENCY & OUTCOME BRANCHES
 
+Because the closed-trade calibration ledger in docs/telemetry/live_snapshot_latest.json contains n = 17 closed trades (11 wins, 6 losses, empirical win rate 64.71%, exact one-sided 95% Clopper-Pearson lower bound p_win_lower_bound = 0.4197), which is below the n_min = 100 threshold required for isotonic/Platt probability calibration, all canonical probability and expected-value fields (p_fill, p_win_given_fill, ev_net_usd, ev_lcb_5pct_usd, utility) are set to null (UNCALIBRATED_FAIL_CLOSED_N_17_LT_100) in the JSON payload. Shadow diagnostics and capital-time efficiency metrics are reported below:
 
-4.2 Tradfye Institutional Orderflow (21_Tradfye_Orderflow.parquet — Through 09:00:00 UTC)Asset08:30 UTC Vol & Net Delta (%)08:45 UTC Vol & Net Delta (%)09:00 UTC Vol & Net Delta (%)09:00 UTC POC / VWAP09:00 UTC Cumulative CVD (USD)Tradfye Microstructure Regime (08:45Z →\to→ 09:00Z)BTC (15m)$44.76M / -$6.83M (-15.26%)$32.74M / -$2.77M (-8.46%)$29.67M / +$907.7K (+3.06%)79,809.90 / 79,816.76+$35.76MTWO_SIDED_ABSORPTION (BEARISH →\to→ BULLISH_ABSORPTION; MaxPain 78k)ETH (15m)$39.05M / -$7.95M (-20.35%)$28.74M / +$130.8K (+0.46%)$19.41M / +$1.46M (+7.54%)2,313.70 / 2,313.49+$85.69MTWO_SIDED_ABSORPTION (BULLISH_EXPANSION; MaxPain/PutWall 2,300)SOL (15m)$7.61M / +$308.5K (+4.06%)$4.21M / +$714.0K (+16.97%)$4.16M / +$708.9K (+17.02%)99.9325 / 99.9166-$11.21MAGGRESSIVE_BUYER_DOMINATION (BULLISH_EXPANSION pullback toward 100.38)BNB (15m)$1.27M / -$5.1K (-0.40%)$1.32M / +$536.2K (+40.54%)$1.15M / +$153.2K (+13.29%)737.71 / 737.48+$21.66MAGGRESSIVE_BUYER_DOMINATION (BULLISH_EXPANSION supporting #19329907)BCH (15m)$316.7K / -$83.7K (-26.44%)$731.8K / +$290.6K (+39.71%)$320.0K / +$34.3K (+10.72%)282.67 / 282.37+$1.45MAGGRESSIVE_BUYER_DOMINATION →\to→ TWO_SIDED_ABSORPTIONXRP (1h)07:00Z: -$1.03M (-7.01%)08:00Z: -$805.8K (-6.65%)09:00Z: +$778.5K (+41.96%)1.3015 / 1.3009+$19.07MTWO_SIDED_ABSORPTION →\to→ AGGRESSIVE_BUYER_DOMINATIONTRX (15m)$568.2K / -$14.9K (-2.62%)$529.0K / +$195.2K (+36.90%)$429.8K / +$3.8K (+0.88%)0.3272 / 0.3272-$3.33MAGGRESSIVE_BUYER_DOMINATION →\to→ TWO_SIDED_ABSORPTION§5 & §6. Affirmative Multi-Asset Candidate Discovery & Broker Execution VerificationEven though new ticket staging is blocked by G4 Solvency Headroom ($1.734 USD nominal risk capacity < $12.00 USD minimum Tier-1 risk) and G2/G3/G8 Fail-Closed Gates, the Council completes its affirmative discovery across all spread-qualified Crypto and TradFi instruments, evaluating the 2 working pending orders (#19330613 ETH, #19343853 SOL) and 4 institutional reserve setups (BTC, XAU, EURUSD, GBPUSD) ready for immediate staging once a slot and >= $17.00 USD stressed headroom open:Candidate ID & SymbolSide & TypeEntry / SL / TPLot (Vol)Broker Risk / Reward (RR)Stressed Loss (1.25× + $2)15m Fib-Prime EMA Ribbon (5, 13, 34, 89, 144, 233)48-Bar Fib Golden Zone [0.618 GP, 0.702 OTE, 0.786 Shelf]Auction Profile (dVAH/dPOC/dVAL, pdPOC, IB) & Whale Wall DefenseCouncil VerdictCAND_ETH_SHORT_01 ETHUSD.pi (Ticket #19330613)SELL_LIMIT2320.50 / 2343.50 / 2274.500.50 (0.5 ETH)$11.50 / $23.00 (2.00R)$16.38 (Already in $42.06)Bearish Macro (2306.2, 2306.0, 2308.0, 2311.8, 2313.9, 2315.6)0.618: 2315.46 0.702: 2318.24 0.786: 2321.02At pdPOC 2319.30 & dVAH 2321.47; above OU 2310.12; L3 SELL $6.78M @ 2327.4 & $13.23M @ 2342.3HOLD (Keep Working #19330613)CAND_SOL_SHORT_02 SOLUSD.p (Ticket #19343853)SELL_LIMIT100.38 / 100.94 / 99.200.20 (20 SOL)$11.20 / $23.60 (2.11R)$16.00 (Already in $42.06)Strict Bearish (99.58 < 99.62 < 99.83 < 100.23 < 100.40 < 100.53)0.618: 100.19 0.702: 100.34 0.786: 100.49At dVAH 100.37 & pdVAL 100.40; above OU 99.74; L3 SELL $2.74M @ 100.25 & $5.40M @ 100.63 + CEX $5.54M @ 102.83 (89m)HOLD (Keep Working #19343853)CAND_BTC_SHORT_03 BTCUSD.pi (Reserve Reload)SELL_LIMIT80002.50 / 80302.50 / 79320.000.04 (0.04 BTC)$12.00 / $27.30 (2.28R)$17.00 (Post-Stop $4,782.17)Bearish Macro (79643, 79642, 79709, 79851, 79920, 79976)0.618: 79932.31 0.702: 80002.83 0.786: 80073.35Exact 0.702 OTE (80,002.83); front-runs 80,017.8 absorption high & $15.84M CEX SELL wall at 80,028.6 (207s); L3 $15.74M @ 80,314 guards SLHOLD (Stand Aside: Headroom $4.17 < $17.00)CAND_XAU_SHORT_04 XAUUSD.pi (Reserve Short)SELL_LIMIT4014.70 / 4026.70 / 3989.500.01 (1 oz)$12.00 / $25.20 (2.10R)$17.00 (Post-Stop $4,782.17)Bearish Pullback (3996.6 < 4000.0 < 4005.7 < 4009.7 < 4010.1 < 4010.2)0.618: 4011.64 0.702: 4014.71 0.786: 4017.77Exact 0.702 OTE (4,014.71), pdVAH 4,014.17, pdPOC 4,016.36, dVAH 4,017.67; 1H VR4=0.496; L3 SELL $731.5K @ 4,019.3 & $1.03M @ 4,031.4HOLD (Stand Aside: Headroom $4.17 < $17.00)CAND_EURUSD_SHORT_05 EURUSD.pi (Reserve Short)SELL_LIMIT1.11666 / 1.11786 / 1.114060.10 (10k EUR)$12.00 / $26.00 (2.17R)$17.00 (Post-Stop $4,782.17)Strict Bearish (1.1153 < 1.1158 < 1.1165 < 1.1175 < 1.1182 < 1.1189)0.618: 1.11637 0.702: 1.11666 0.786: 1.11695Exact 0.702 OTE (1.11666), dVAL 1.11660, broken Mon_L 1.11731; ER(48)=0.322, t=-1.91; SL above Asian_H 1.11769HOLD (Stand Aside: Headroom $4.17 < $17.00)CAND_GBPUSD_SHORT_06 GBPUSD.pi (Reserve Short)SELL_LIMIT1.33390 / 1.33510 / 1.331300.10 (10k GBP)$12.00 / $26.00 (2.17R)$17.00 (Post-Stop $4,782.17)Strict Bearish (1.3322 < 1.3326 < 1.3332 < 1.3340 < 1.3343 < 1.3347)0.618: 1.33365 0.702: 1.33392 0.786: 1.33420Exact 0.702 OTE (1.33392), EMA89 1.33397, London_H 1.33386; ER(48)=0.244; SL above 0.786 (1.33420) & Asian_H 1.33491HOLD (Stand Aside: Headroom $4.17 < $17.00)PART 2: CALIBRATED EXPECTED UTILITY, CAPITAL-TIME EFFICIENCY & OUTCOME BRANCHESBecause the closed-trade calibration ledger in docs/telemetry/live_snapshot_latest.json contains n = 17 closed trades (11 wins, 6 losses, empirical win rate 64.71%, exact one-sided 95% Clopper-Pearson lower bound p_win_lower_bound = 0.4197), which is below the n_min = 100 threshold required for isotonic/Platt probability calibration, all canonical probability and expected-value fields (p_fill, p_win_given_fill, ev_net_usd, ev_lcb_5pct_usd, utility) are set to null (UNCALIBRATED_FAIL_CLOSED_N_17_LT_100) in the JSON payload. Shadow diagnostics and capital-time efficiency metrics are reported below:Candidate IDInitial Margin Required (USD)Expected Hold E[tau] (min)Expected_Capital_Minutes (USD·min)Spread + Slippage Reserve (USD)5m Adverse Selection (USD)Wait Cost (USD)Shadow Point P(fill) / P(TP|fill)Shadow Point EV_net (USD)Shadow LCB (p=0.4197) EV (USD)Canonical JSON ev_net_usd / utilityCAND_ETH_SHORT_01 (#19330613)$580.13 (50%)92.853,835.6$1.50 + $2.00$0.85$0.150.44 / 0.58+$2.47+$0.09null (FAIL_CLOSED_N_17)CAND_SOL_SHORT_02 (#19343853)$1,003.80 (50%)99.8100,179.2$4.60 + $2.00$0.90$0.180.43 / 0.56+$2.26+$0.04null (FAIL_CLOSED_N_17)CAND_BTC_SHORT_03 (Reload)$1,600.05 (50%)91.7146,644.6$0.64 + $2.00$0.80$0.150.39 / 0.62+$4.12+$0.58null (FAIL_CLOSED_N_17)CAND_XAU_SHORT_04 (Reserve)$40.15 (1%)108.84,368.0$0.09 + $2.00$0.45$0.050.42 / 0.61+$3.98+$0.34null (FAIL_CLOSED_N_17)CAND_EURUSD_SHORT_05 (Reserve)$111.67 (1%)102.111,401.1$0.10 + $2.00$0.35$0.080.45 / 0.60+$4.25+$0.52null (FAIL_CLOSED_N_17)CAND_GBPUSD_SHORT_06 (Reserve)$133.39 (1%)100.613,412.5$0.10 + $2.00$0.35$0.080.43 / 0.59+$3.91+$0.49null (FAIL_CLOSED_N_17)PART 3: SECTION 8 — CONTINUOUS KAIZEN & SELF-IMPROVEMENT INQUEST8.1 Skills & Methodology OptimizationMobilizing @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks] delivered three major improvements in Cycle 371:
+Candidate ID	Initial Margin Required (USD)	Expected Hold E[tau] (min)	Expected_Capital_Minutes (USD·min)	Spread + Slippage Reserve (USD)	5m Adverse Selection (USD)	Wait Cost (USD)	Shadow Point P(fill) / P(TP|fill)	Shadow Point EV_net (USD)	Shadow LCB (p=0.4197) EV (USD)	Canonical JSON ev_net_usd / utility
+CAND_ETH_SHORT_01 (#19330613)	$580.13 (50%)	92.8	53,835.6	$1.50 + $2.00	$0.85	$0.15	0.44 / 0.58	+$2.47	+$0.09	null (FAIL_CLOSED_N_17)
+CAND_SOL_SHORT_02 (#19343853)	$1,003.80 (50%)	99.8	100,179.2	$4.60 + $2.00	$0.90	$0.18	0.43 / 0.56	+$2.26	+$0.04	null (FAIL_CLOSED_N_17)
+CAND_BTC_SHORT_03 (Reload)	$1,600.05 (50%)	91.7	146,644.6	$0.64 + $2.00	$0.80	$0.15	0.39 / 0.62	+$4.12	+$0.58	null (FAIL_CLOSED_N_17)
+CAND_XAU_SHORT_04 (Reserve)	$40.15 (1%)	108.8	4,368.0	$0.09 + $2.00	$0.45	$0.05	0.42 / 0.61	+$3.98	+$0.34	null (FAIL_CLOSED_N_17)
+CAND_EURUSD_SHORT_05 (Reserve)	$111.67 (1%)	102.1	11,401.1	$0.10 + $2.00	$0.35	$0.08	0.45 / 0.60	+$4.25	+$0.52	null (FAIL_CLOSED_N_17)
+CAND_GBPUSD_SHORT_06 (Reserve)	$133.39 (1%)	100.6	13,412.5	$0.10 + $2.00	$0.35	$0.08	0.43 / 0.59	+$3.91	+$0.49	null (FAIL_CLOSED_N_17)
+PART 3: SECTION 8 — CONTINUOUS KAIZEN & SELF-IMPROVEMENT INQUEST
+8.1 Skills & Methodology Optimization
+
+Mobilizing @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging], and @[backtesting-frameworks] delivered three major improvements in Cycle 371:
+
 Direct Source-Code Root-Cause Audit of Terminal/generate_cycle_envelope.py vs live_snapshot_latest.json: We proved why live_snapshot_latest.json (09:29:59Z) printed post_joint_stop_equity_usd = $4,794.755 USD (-$0.245 USD below $4,795.00 USD due to double-counting the -$5.25 USD floating loss on #19329907 BNBUSD.p), while generate_cycle_envelope.py (09:31:39Z) printed post_joint_stress_equity_usd = $4,799.17 USD (+$0.15 USD higher than Cycle 370 despite BNB dropping -0.20 pts, because line 67 stresses active positions from price_current and therefore drops 0.25 × dL of slippage surcharge as floating loss grows).
 Exact Cryptographic Manifest & Prompt Provenance Resolution: Verified Data/history/master_manifest.json (180,859 bytes, sha256: 87bb25afa8...) and docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt (32,680 bytes, CRLF sha256: 8b755fddce...) against generate_cycle_envelope.py lines 20 and 143.
 Multi-Venue Orderflow & Liquidation Matrix Integration: Synthesized 10_Whale_Orders.parquet (3,547 rows), 14_Liquidation_Matrix.parquet (9,944 rows), and 21_Tradfye_Orderflow.parquet (through 09:00:00 UTC).
@@ -151,11 +252,78 @@ Joint Pending-Fill Margin Utilization (55.51% of Equity): Simultaneous fills on 
 Afternoon US Macro Cluster (14:00 UTC): US CB Consumer Confidence and JOLTS Job Openings (T-4h 28m) represent the primary intraday volatility catalyst prior to tomorrow's FOMC decision.
 8.3 Concrete Algorithmic Upgrades for Cycle 372+
 Mark-to-Market-Invariant Solvency Formula in generate_cycle_envelope.py and live_snapshot_latest.json: Replace both equity - stress_from_open (which double-counts floating losses) and equity - stress_from_current (which paradoxically increases headroom as floating losses grow) with the exact MTM-invariant formula:
-Post_Stop_Equity=Balance−∑i∈Open(1.25×max⁡(0,Lossiopen→SL)+2.00−max⁡(0,LockedProfiti))−∑j∈PendingStressj−Global_Reserve\text{Post\_Stop\_Equity} = \text{Balance} - \sum_{i \in \text{Open}} \left(1.25 \times \max(0, \text{Loss}_i^{\text{open}\to\text{SL}}) + 2.00 - \max(0, \text{LockedProfit}_i)\right) - \sum_{j \in \text{Pending}} \text{Stress}_j - \text{Global\_Reserve}Post_Stop_Equity=Balance−∑i∈Open​(1.25×max(0,Lossiopen→SL​)+2.00−max(0,LockedProfiti​))−∑j∈Pending​Stressj​−Global_Reserve
+
+Post_Stop_Equity
+=
+Balance
+−
+∑
+𝑖
+∈
+Open
+(
+1.25
+×
+max
+⁡
+(
+0
+,
+Loss
+𝑖
+open
+→
+SL
+)
++
+2.00
+−
+max
+⁡
+(
+0
+,
+LockedProfit
+𝑖
+)
+)
+−
+∑
+𝑗
+∈
+Pending
+Stress
+𝑗
+−
+Global_Reserve
+Post_Stop_Equity=Balance−∑
+i∈Open
+	​
+
+(1.25×max(0,Loss
+i
+open→SL
+	​
+
+)+2.00−max(0,LockedProfit
+i
+	​
+
+))−∑
+j∈Pending
+	​
+
+Stress
+j
+	​
+
+−Global_Reserve
 Bivariate Hawkes Process Orderbook Survival Estimator: Model self-exciting market-order arrival intensity against resting whale wall depth in 10_Whale_Orders.parquet (such as the $15.84M Bybit/Binance BTC sell walls at 80,028.60 and $21.20M ETH buy walls at 2,302.00).
 Kalman Filter Dynamic Spread State Tracker: Pre-emptively penalize instruments exhibiting spread variance expansion (VETUSD.p 15.74 -> 31.50 bps, XAGUSD.pi 4.14 -> 10.91 bps).
 Hierarchical Empirical Bayes (Beta-Binomial) Shrinkage with Monotone Isotonic Regression: Bridge the n = 17 -> 100 calibration cold-start regime.
-PART 4: CANONICAL JSON OUTPUT (schema_version: "1.1.0")JSON{
+PART 4: CANONICAL JSON OUTPUT (schema_version: "1.1.0")
+JSON
+{
   "schema_version": "1.1.0",
   "cycle_id": "Cycle 371",
   "cutoff_utc": "2026-10-27 09:31:39 UTC",
