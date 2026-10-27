@@ -1,0 +1,27 @@
+{
+  "asset_rows": [
+    {
+      "Asset": "BTC",
+      "Total_OI_USD": "\u002455.14B",
+      "Binance": "\u002411.31B",
+      "Bybit": "\u00245.93B",
+      "OKX": "\u00243.33B",
+      "CME": "\u00249.04B",
+      "KuCoin": "\u0024903.01M",
+      "Gate": "\u00244.76B",
+      "Bitget": "\u00241.96B",
+      "BingX": "\u0024583.53M",
+      "MEXC": "\u00244.94B",
+      "Bitunix": "\u0024930.14M",
+      "Hyperliquid": "\u00243.47B",
+      "Others": "\u00247.99B",
+      "Total_OI_Tokens": "684,056.4 BTC",
+      "24h_Total_Change": "+1.99%",
+      "4h_Total_Change": "-0.01%",
+      "1h_Total_Change": "-0.08%",
+      "OI___24h_Vol": "1.3605",
+      "Timestamp_IST": "2026-10-27 22:33:21 IST"
+    }
+  ],
+  "global_context_rows": []
+}

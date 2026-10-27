@@ -1,0 +1,18 @@
+{
+  "asset_rows": [
+    {
+      "ranking": 1,
+      "symbol": "BTC",
+      "price": 80540.2,
+      "short_max_pain_price": 81100.1,
+      "short_max_pain_vol": 73618060.3,
+      "short_distance_usd": 559.9000000000087,
+      "short_distance_pct": 0.6951807917040296,
+      "long_max_pain_price": 78707.3,
+      "long_max_pain_vol": 55487527.39,
+      "long_distance_usd": -1832.8999999999942,
+      "long_distance_pct": -2.2757579444798925
+    }
+  ],
+  "global_context_rows": []
+}

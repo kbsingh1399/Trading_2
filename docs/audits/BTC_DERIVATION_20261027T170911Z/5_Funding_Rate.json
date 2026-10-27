@@ -1,0 +1,24 @@
+{
+  "asset_rows": [
+    {
+      "Symbol": "BTC",
+      "USDT_Binance": "0.0100%",
+      "USDT_OKX": "0.0100%",
+      "USDT_Bybit": "0.0100%",
+      "USDT_KuCoin": "0.0100%",
+      "USDT_MEXC": "0.0100%",
+      "USDT_BingX": "0.0100%",
+      "USDT_Gate": "0.0019%",
+      "USDT_Bitunix": "0.0100%",
+      "USDT_Bitget": "0.0100%",
+      "USDT_WhiteBIT": "0.0100%",
+      "USDT_LBank": "0.0100%",
+      "USDT_tradeXYZ": "-",
+      "CoinM_Binance": "0.0100%",
+      "CoinM_OKX": "0.0100%",
+      "CoinM_Bybit": "0.0100%",
+      "Timestamp_IST": "2026-10-27 22:34:20 IST"
+    }
+  ],
+  "global_context_rows": []
+}

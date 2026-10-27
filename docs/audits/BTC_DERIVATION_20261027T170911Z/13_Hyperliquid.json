@@ -1,0 +1,16 @@
+{
+  "asset_rows": [
+    {
+      "Section": "FUNDING_ARBITRAGE",
+      "Asset": "BTC",
+      "Price": null,
+      "Change_24h": -0.875,
+      "Volume_24h_USD": null,
+      "Open_Interest_USD": null,
+      "Funding_Rate": 1.25e-05,
+      "Detail": "HL: 10.95% APR | Next: 2026-10-28 00:00",
+      "Timestamp_IST": "2026-10-27 22:31:06 IST"
+    }
+  ],
+  "global_context_rows": []
+}

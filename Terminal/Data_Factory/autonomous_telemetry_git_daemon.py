@@ -82,13 +82,28 @@ def ensure_web2api_service() -> bool:
     """Guarantees gemini_web2api.py reverse proxy is running on port 8081 (Endogen architecture)."""
     global _web2api_proc
     import urllib.request
+    import urllib.error
+    
+    # 1. First probe if service is already responding (200 OK or 401 Auth Required proves server is alive)
     try:
-        req = urllib.request.urlopen(f"http://127.0.0.1:{WEB2API_PORT}/v1/models", timeout=2)
-        if req.status == 200:
+        req = urllib.request.Request(
+            f"http://127.0.0.1:{WEB2API_PORT}/v1/models",
+            headers={"Authorization": "Bearer sk-gemini"},
+        )
+        with urllib.request.urlopen(req, timeout=2) as resp:
+            if resp.status == 200:
+                return True
+    except urllib.error.HTTPError as he:
+        if he.code in (200, 401):
             return True
     except Exception:
         pass
 
+    # 2. Check if we already hold an active subprocess handle that is still running
+    if _web2api_proc is not None and _web2api_proc.poll() is None:
+        return True
+
+    # 3. Only spawn if definitely not running and script exists
     if WEB2API_SCRIPT.exists():
         logger.info("Spawning unified gemini_web2api service on port %d...", WEB2API_PORT)
         try:
@@ -96,7 +111,7 @@ def ensure_web2api_service() -> bool:
                 [sys.executable, str(WEB2API_SCRIPT), "--port", str(WEB2API_PORT)],
                 cwd=str(WEB2API_DIR),
                 stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
+                stderr=subprocess.DEVNULL,
             )
             time.sleep(2.0)
             logger.info("Spawned unified gemini_web2api PID %d on port %d", _web2api_proc.pid, WEB2API_PORT)

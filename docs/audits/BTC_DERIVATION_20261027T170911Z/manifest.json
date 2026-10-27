@@ -1,0 +1,2972 @@
+{
+  "asset": "BTC",
+  "capture_started_utc": "2026-10-27T17:09:11.478194+00:00",
+  "atomic_cross_feed_snapshot": false,
+  "files": [
+    {
+      "file": "00_MT5_Account_Telemetry.parquet",
+      "read_utc": "2026-10-27T17:09:11.479347+00:00",
+      "sha256": "a3daf6c8ce65b3373f3607eff1f11c8b2f14b67efe0904b0d1c5e5b559f99889",
+      "total_rows": 164,
+      "asset_rows": 2,
+      "context_rows": 6,
+      "columns": [
+        "Category",
+        "Broker_Symbol",
+        "Bid_Quote",
+        "Ask_Quote",
+        "Mid_Price",
+        "Spread_Points",
+        "Spread_BPS",
+        "Threshold_BPS",
+        "Gate_Status",
+        "Execution_Posture",
+        "Order_Type_Allowed",
+        "Pillar_1_Clearance",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:30:59 IST",
+          "max_lexical": "2026-10-27 22:30:59 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "00_MT5_Account_Telemetry",
+        "status": "PASS",
+        "row_count": 164,
+        "column_count": 13,
+        "columns": [
+          "Category",
+          "Broker_Symbol",
+          "Bid_Quote",
+          "Ask_Quote",
+          "Mid_Price",
+          "Spread_Points",
+          "Spread_BPS",
+          "Threshold_BPS",
+          "Gate_Status",
+          "Execution_Posture",
+          "Order_Type_Allowed",
+          "Pillar_1_Clearance",
+          "Timestamp_IST"
+        ],
+        "byte_size": 11909,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 472.74
+      }
+    },
+    {
+      "file": "10_Whale_Orders.parquet",
+      "read_utc": "2026-10-27T17:09:11.963619+00:00",
+      "sha256": "819284efe063bfb33bd64c95a78a9a94a6f4142560856afe0170a905c248e6ca",
+      "total_rows": 3487,
+      "asset_rows": 212,
+      "context_rows": 0,
+      "columns": [
+        "sr_no",
+        "exchange",
+        "symbol",
+        "type",
+        "side",
+        "price",
+        "amount_btc",
+        "notional_usd",
+        "initial_value_usd",
+        "traded_value_usd",
+        "traded_value_pct",
+        "initial_size_btc",
+        "traded_size_btc",
+        "traded_size_pct",
+        "order_time_ist",
+        "order_duration",
+        "order_id"
+      ],
+      "row_time_ranges_unparsed": {
+        "order_time_ist": {
+          "min_lexical": "2026-10-27 21:36:52 IST",
+          "max_lexical": "2026-10-27 22:38:13 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "10_Whale_Orders",
+        "status": "PASS",
+        "row_count": 3487,
+        "column_count": 17,
+        "columns": [
+          "sr_no",
+          "exchange",
+          "symbol",
+          "type",
+          "side",
+          "price",
+          "amount_btc",
+          "notional_usd",
+          "initial_value_usd",
+          "traded_value_usd",
+          "traded_value_pct",
+          "initial_size_btc",
+          "traded_size_btc",
+          "traded_size_pct",
+          "order_time_ist",
+          "order_duration",
+          "order_id"
+        ],
+        "byte_size": 139808,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 26.45
+      }
+    },
+    {
+      "file": "11_Technical.parquet",
+      "read_utc": "2026-10-27T17:09:12.045287+00:00",
+      "sha256": "e85a2668af777239519c832c8acfc10b6418c5d07903869b23b5716ac3e4a74b",
+      "total_rows": 120,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "asset",
+        "category",
+        "symbol",
+        "last_price",
+        "change_24h_pct",
+        "session_vwap",
+        "vwap_z",
+        "upper_1sd",
+        "lower_1sd",
+        "upper_1_28sd",
+        "lower_1_28sd",
+        "upper_2sd",
+        "lower_2sd",
+        "upper_2_01sd",
+        "lower_2_01sd",
+        "upper_2_51sd",
+        "lower_2_51sd",
+        "upper_3sd",
+        "lower_3sd",
+        "dist_to_vwap_pct",
+        "rolling_vwap_24h",
+        "ema_5",
+        "ema_13",
+        "ema_34",
+        "ema_89",
+        "ema_144",
+        "ema_233",
+        "ema_233_slope_pct",
+        "ema_9",
+        "ema_20",
+        "ema_50",
+        "ema_100",
+        "ema_200",
+        "ema_200_slope_pct",
+        "trend_bias",
+        "rsi_14",
+        "rsi_state",
+        "atr_14",
+        "atr_pct",
+        "bb_upper",
+        "bb_mid",
+        "bb_lower",
+        "bb_bandwidth",
+        "macd_line",
+        "macd_signal",
+        "macd_hist",
+        "mr_bias",
+        "high_24h",
+        "low_24h",
+        "daily_poc",
+        "daily_vah",
+        "daily_val",
+        "week_high",
+        "week_low",
+        "sr_no"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "11_Technical",
+        "status": "PASS",
+        "row_count": 120,
+        "column_count": 55,
+        "columns": [
+          "asset",
+          "category",
+          "symbol",
+          "last_price",
+          "change_24h_pct",
+          "session_vwap",
+          "vwap_z",
+          "upper_1sd",
+          "lower_1sd",
+          "upper_1_28sd",
+          "lower_1_28sd",
+          "upper_2sd",
+          "lower_2sd",
+          "upper_2_01sd",
+          "lower_2_01sd",
+          "upper_2_51sd",
+          "lower_2_51sd",
+          "upper_3sd",
+          "lower_3sd",
+          "dist_to_vwap_pct",
+          "rolling_vwap_24h",
+          "ema_5",
+          "ema_13",
+          "ema_34",
+          "ema_89",
+          "ema_144",
+          "ema_233",
+          "ema_233_slope_pct",
+          "ema_9",
+          "ema_20",
+          "ema_50",
+          "ema_100",
+          "ema_200",
+          "ema_200_slope_pct",
+          "trend_bias",
+          "rsi_14",
+          "rsi_state",
+          "atr_14",
+          "atr_pct",
+          "bb_upper",
+          "bb_mid",
+          "bb_lower",
+          "bb_bandwidth",
+          "macd_line",
+          "macd_signal",
+          "macd_hist",
+          "mr_bias",
+          "high_24h",
+          "low_24h",
+          "daily_poc",
+          "daily_vah",
+          "daily_val",
+          "week_high",
+          "week_low",
+          "sr_no"
+        ],
+        "byte_size": 70457,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 10.51
+      }
+    },
+    {
+      "file": "11_Technical_BTC_Ribbon.parquet",
+      "read_utc": "2026-10-27T17:09:12.062750+00:00",
+      "sha256": "bca24ca5e3080a34c953fb535f4c4e00d73ef15c8cb369d1b18daa4a090a592a",
+      "total_rows": 100,
+      "asset_rows": 100,
+      "context_rows": 0,
+      "columns": [
+        "bar_time_utc",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "session_vwap",
+        "vwap_u1",
+        "vwap_l1",
+        "vwap_u1_28",
+        "vwap_l1_28",
+        "vwap_u2",
+        "vwap_l2",
+        "vwap_u2_01",
+        "vwap_l2_01",
+        "vwap_u2_51",
+        "vwap_l2_51",
+        "vwap_u3",
+        "vwap_l3",
+        "vwap_z",
+        "ema_9",
+        "ema_20",
+        "ema_50",
+        "ema_100",
+        "ema_200",
+        "rsi_14",
+        "atr_14",
+        "bb_upper",
+        "bb_mid",
+        "bb_lower",
+        "macd_hist"
+      ],
+      "row_time_ranges_unparsed": {
+        "bar_time_utc": {
+          "min_lexical": "2026-10-26 16:00",
+          "max_lexical": "2026-10-27 16:45"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "11_Technical_BTC_Ribbon",
+        "status": "PASS",
+        "row_count": 100,
+        "column_count": 31,
+        "columns": [
+          "bar_time_utc",
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume",
+          "session_vwap",
+          "vwap_u1",
+          "vwap_l1",
+          "vwap_u1_28",
+          "vwap_l1_28",
+          "vwap_u2",
+          "vwap_l2",
+          "vwap_u2_01",
+          "vwap_l2_01",
+          "vwap_u2_51",
+          "vwap_l2_51",
+          "vwap_u3",
+          "vwap_l3",
+          "vwap_z",
+          "ema_9",
+          "ema_20",
+          "ema_50",
+          "ema_100",
+          "ema_200",
+          "rsi_14",
+          "atr_14",
+          "bb_upper",
+          "bb_mid",
+          "bb_lower",
+          "macd_hist"
+        ],
+        "byte_size": 34602,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 6.66
+      }
+    },
+    {
+      "file": "12_Hyperdash.parquet",
+      "read_utc": "2026-10-27T17:09:12.072224+00:00",
+      "sha256": "586c13b530352822f08a3bc6d8d8b892a607ad387dff1599e10ac0aaaabfd74d",
+      "total_rows": 257,
+      "asset_rows": 67,
+      "context_rows": 0,
+      "columns": [
+        "Section",
+        "Asset",
+        "Type_or_Side",
+        "Price",
+        "Size",
+        "Notional_USD",
+        "Detail",
+        "Wallet_or_Address",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:31:16 IST",
+          "max_lexical": "2026-10-27 22:31:16 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "12_Hyperdash",
+        "status": "PASS",
+        "row_count": 257,
+        "column_count": 9,
+        "columns": [
+          "Section",
+          "Asset",
+          "Type_or_Side",
+          "Price",
+          "Size",
+          "Notional_USD",
+          "Detail",
+          "Wallet_or_Address",
+          "Timestamp_IST"
+        ],
+        "byte_size": 9831,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 4.13
+      }
+    },
+    {
+      "file": "13_Hyperliquid.parquet",
+      "read_utc": "2026-10-27T17:09:12.078536+00:00",
+      "sha256": "9683dca9b7a5d803b58efddb888cdfce0e4d8c2d3ac91cd72ad428d74010eaea",
+      "total_rows": 235,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "Section",
+        "Asset",
+        "Price",
+        "Change_24h",
+        "Volume_24h_USD",
+        "Open_Interest_USD",
+        "Funding_Rate",
+        "Detail",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:31:06 IST",
+          "max_lexical": "2026-10-27 22:31:06 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "13_Hyperliquid",
+        "status": "PASS",
+        "row_count": 235,
+        "column_count": 9,
+        "columns": [
+          "Section",
+          "Asset",
+          "Price",
+          "Change_24h",
+          "Volume_24h_USD",
+          "Open_Interest_USD",
+          "Funding_Rate",
+          "Detail",
+          "Timestamp_IST"
+        ],
+        "byte_size": 6388,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 386.67
+      }
+    },
+    {
+      "file": "14_Hyperdash_Liq_Map.parquet",
+      "read_utc": "2026-10-27T17:09:12.085710+00:00",
+      "sha256": "ff6b4a3e1d4ec7ff7c4f4e3671754fe8435df722a08f009cb3ce47caea679771",
+      "total_rows": 6585,
+      "asset_rows": 1527,
+      "context_rows": 0,
+      "columns": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price",
+        "price",
+        "distance_pct",
+        "side",
+        "cumulative_liq",
+        "short_liq",
+        "long_liq",
+        "size_coins"
+      ],
+      "row_time_ranges_unparsed": {
+        "time_window": {
+          "min_lexical": "Live",
+          "max_lexical": "Live"
+        },
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:30:58 IST",
+          "max_lexical": "2026-10-27 22:30:58 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "14_Hyperdash_Liq_Map",
+        "status": "PASS",
+        "row_count": 6585,
+        "column_count": 12,
+        "columns": [
+          "sr_no",
+          "asset",
+          "time_window",
+          "timestamp_ist",
+          "mark_price",
+          "price",
+          "distance_pct",
+          "side",
+          "cumulative_liq",
+          "short_liq",
+          "long_liq",
+          "size_coins"
+        ],
+        "byte_size": 245307,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 388.14
+      }
+    },
+    {
+      "file": "14_Liquidation_Matrix.parquet",
+      "read_utc": "2026-10-27T17:09:12.180538+00:00",
+      "sha256": "6156aff960e94ae523a3608e307847784680d11b60d97939cbfe8578c25a2b25",
+      "total_rows": 11544,
+      "asset_rows": 1823,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "symbol",
+        "asset_class",
+        "venue_tier",
+        "venue_name",
+        "timeframe",
+        "side",
+        "price_level",
+        "liquidation_vol_usd",
+        "cumulative_liq_usd",
+        "binance_vol_usd",
+        "okx_vol_usd",
+        "bybit_vol_usd",
+        "is_synthetic"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:28:38 IST",
+          "max_lexical": "2026-10-27 22:28:38 IST"
+        },
+        "timeframe": {
+          "min_lexical": "1D",
+          "max_lexical": "Live"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "14_Liquidation_Matrix",
+        "status": "PASS",
+        "row_count": 11544,
+        "column_count": 14,
+        "columns": [
+          "timestamp_ist",
+          "symbol",
+          "asset_class",
+          "venue_tier",
+          "venue_name",
+          "timeframe",
+          "side",
+          "price_level",
+          "liquidation_vol_usd",
+          "cumulative_liq_usd",
+          "binance_vol_usd",
+          "okx_vol_usd",
+          "bybit_vol_usd",
+          "is_synthetic"
+        ],
+        "byte_size": 251947,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 323.82
+      }
+    },
+    {
+      "file": "15_Hyperdash_Stops_Map.parquet",
+      "read_utc": "2026-10-27T17:09:12.360170+00:00",
+      "sha256": "c6d9c1916625f396d7ec8fe262d5ac33562af380430b64efa1f31d5e69817232",
+      "total_rows": 4360,
+      "asset_rows": 852,
+      "context_rows": 0,
+      "columns": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price",
+        "price",
+        "distance_pct",
+        "side",
+        "cumulative_stops",
+        "buy_stops",
+        "sell_stops",
+        "size_coins"
+      ],
+      "row_time_ranges_unparsed": {
+        "time_window": {
+          "min_lexical": "Live",
+          "max_lexical": "Live"
+        },
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:30:58 IST",
+          "max_lexical": "2026-10-27 22:30:58 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "15_Hyperdash_Stops_Map",
+        "status": "PASS",
+        "row_count": 4360,
+        "column_count": 12,
+        "columns": [
+          "sr_no",
+          "asset",
+          "time_window",
+          "timestamp_ist",
+          "mark_price",
+          "price",
+          "distance_pct",
+          "side",
+          "cumulative_stops",
+          "buy_stops",
+          "sell_stops",
+          "size_coins"
+        ],
+        "byte_size": 165049,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 379.36
+      }
+    },
+    {
+      "file": "16_Hyperdash_telegram_Intel.parquet",
+      "read_utc": "2026-10-27T17:09:12.442712+00:00",
+      "sha256": "6f7a3cad71f220af7818b4c79c94b36735002937b975c48b2d7d4ca4f478741f",
+      "total_rows": 1000,
+      "asset_rows": 217,
+      "context_rows": 0,
+      "columns": [
+        "category",
+        "event_type",
+        "asset",
+        "side",
+        "notional_usd",
+        "price",
+        "distance_or_metric",
+        "market_impact",
+        "duration_rate",
+        "wallet_address",
+        "raw_text",
+        "post_id",
+        "timestamp_ist",
+        "source",
+        "sr_no"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2025-04-25 14:55:37",
+          "max_lexical": "2026-10-26 07:04:03"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "16_Hyperdash_telegram_Intel",
+        "status": "PASS",
+        "row_count": 1000,
+        "column_count": 15,
+        "columns": [
+          "category",
+          "event_type",
+          "asset",
+          "side",
+          "notional_usd",
+          "price",
+          "distance_or_metric",
+          "market_impact",
+          "duration_rate",
+          "wallet_address",
+          "raw_text",
+          "post_id",
+          "timestamp_ist",
+          "source",
+          "sr_no"
+        ],
+        "byte_size": 59564,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 352.23
+      }
+    },
+    {
+      "file": "17_Orderbook.parquet",
+      "read_utc": "2026-10-27T17:09:12.461699+00:00",
+      "sha256": "81efe4cbce6beda63a42cfda39ce2cee64e77c461b36fc6ffb61a2fbd703aa69",
+      "total_rows": 615,
+      "asset_rows": 41,
+      "context_rows": 0,
+      "columns": [
+        "sr_no",
+        "data_layer",
+        "asset_class",
+        "asset",
+        "side",
+        "price",
+        "size_coins",
+        "notional_usd",
+        "cumulative_depth",
+        "orders_count_tier",
+        "distance_pct",
+        "spread_or_bias",
+        "wallet_address",
+        "explorer_url"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "17_Orderbook",
+        "status": "PASS",
+        "row_count": 615,
+        "column_count": 14,
+        "columns": [
+          "sr_no",
+          "data_layer",
+          "asset_class",
+          "asset",
+          "side",
+          "price",
+          "size_coins",
+          "notional_usd",
+          "cumulative_depth",
+          "orders_count_tier",
+          "distance_pct",
+          "spread_or_bias",
+          "wallet_address",
+          "explorer_url"
+        ],
+        "byte_size": 31438,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 323.7
+      }
+    },
+    {
+      "file": "18_CVD.parquet",
+      "read_utc": "2026-10-27T17:09:12.472947+00:00",
+      "sha256": "eb263019219fe28e66b0f145e6a9930af18fe0507823e39cda413c5849cbbf65",
+      "total_rows": 1500,
+      "asset_rows": 0,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD",
+        "status": "PASS",
+        "row_count": 1500,
+        "column_count": 25,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count"
+        ],
+        "byte_size": 199081,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 14.1
+      }
+    },
+    {
+      "file": "18_CVD_30D_15m.parquet",
+      "read_utc": "2026-10-27T17:09:12.514708+00:00",
+      "sha256": "ae1eef313c5539430eb68ff5e0f3a7c2984a6b1d37748b490b6436833591e7f4",
+      "total_rows": 2668,
+      "asset_rows": 96,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count",
+        "__index_level_0__"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-26 22:45:00 IST",
+          "max_lexical": "2026-10-27 22:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-26 17:15:00",
+          "max_lexical": "2026-10-27 17:00:00"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793034900000",
+          "max_lexical": "1793120400000"
+        },
+        "timeframe": {
+          "min_lexical": "15m",
+          "max_lexical": "15m"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD_30D_15m",
+        "status": "PASS",
+        "row_count": 2668,
+        "column_count": 26,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count",
+          "__index_level_0__"
+        ],
+        "byte_size": 387232,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 16.73
+      }
+    },
+    {
+      "file": "18_CVD_30D_1h.parquet",
+      "read_utc": "2026-10-27T17:09:12.583867+00:00",
+      "sha256": "ed5d7b7430afdb4e572d243446e464bb145bd8df28661a5d4483500f6eb4161e",
+      "total_rows": 667,
+      "asset_rows": 24,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count",
+        "__index_level_0__"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-26 23:30:00 IST",
+          "max_lexical": "2026-10-27 22:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-26 18:00:00",
+          "max_lexical": "2026-10-27 17:00:00"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793037600000",
+          "max_lexical": "1793120400000"
+        },
+        "timeframe": {
+          "min_lexical": "1h",
+          "max_lexical": "1h"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD_30D_1h",
+        "status": "PASS",
+        "row_count": 667,
+        "column_count": 26,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count",
+          "__index_level_0__"
+        ],
+        "byte_size": 111224,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 8.15
+      }
+    },
+    {
+      "file": "18_CVD_30D_4h.parquet",
+      "read_utc": "2026-10-27T17:09:12.610570+00:00",
+      "sha256": "30b99f62eac45d9b03def4d2766d4ee919bee99c8f6a1be1a6b78bbb378160fe",
+      "total_rows": 168,
+      "asset_rows": 6,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count",
+        "__index_level_0__"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 01:30:00 IST",
+          "max_lexical": "2026-10-27 21:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-26 20:00:00",
+          "max_lexical": "2026-10-27 16:00:00"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793044800000",
+          "max_lexical": "1793116800000"
+        },
+        "timeframe": {
+          "min_lexical": "4h",
+          "max_lexical": "4h"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD_30D_4h",
+        "status": "PASS",
+        "row_count": 168,
+        "column_count": 26,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count",
+          "__index_level_0__"
+        ],
+        "byte_size": 40480,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 6.3
+      }
+    },
+    {
+      "file": "18_CVD_30D_5m.parquet",
+      "read_utc": "2026-10-27T17:09:12.622124+00:00",
+      "sha256": "f7234d63f9aa8762310ca3d2c2a0e9de0056078c4e0d6fb51eb1142cd75650f0",
+      "total_rows": 8004,
+      "asset_rows": 288,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count",
+        "__index_level_0__"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-26 22:35:00 IST",
+          "max_lexical": "2026-10-27 22:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-26 17:05:00",
+          "max_lexical": "2026-10-27 17:00:00"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793034300000",
+          "max_lexical": "1793120400000"
+        },
+        "timeframe": {
+          "min_lexical": "5m",
+          "max_lexical": "5m"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD_30D_5m",
+        "status": "PASS",
+        "row_count": 8004,
+        "column_count": 26,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count",
+          "__index_level_0__"
+        ],
+        "byte_size": 1075281,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 25.55
+      }
+    },
+    {
+      "file": "18_CVD_30D_ALL.parquet",
+      "read_utc": "2026-10-27T17:09:12.842596+00:00",
+      "sha256": "aecf10471c2099639185b231bec5635d4fba60f6a0b70185385c6b0ebc7c7a3b",
+      "total_rows": 11507,
+      "asset_rows": 414,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol",
+        "market_pair",
+        "source",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_volume",
+        "quote_volume_usd",
+        "taker_buy_vol",
+        "taker_sell_vol",
+        "candle_delta",
+        "candle_delta_base",
+        "delta_pct",
+        "cumulative_cvd",
+        "cumulative_cvd_base",
+        "cvd_zscore",
+        "price_return_pct",
+        "regime",
+        "trades_count"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-26 22:35:00 IST",
+          "max_lexical": "2026-10-27 22:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-26 17:05:00",
+          "max_lexical": "2026-10-27 17:00:00"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793034300000",
+          "max_lexical": "1793120400000"
+        },
+        "timeframe": {
+          "min_lexical": "15m",
+          "max_lexical": "5m"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "18_CVD_30D_ALL",
+        "status": "PASS",
+        "row_count": 11507,
+        "column_count": 25,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "category",
+          "symbol",
+          "market_pair",
+          "source",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_volume",
+          "quote_volume_usd",
+          "taker_buy_vol",
+          "taker_sell_vol",
+          "candle_delta",
+          "candle_delta_base",
+          "delta_pct",
+          "cumulative_cvd",
+          "cumulative_cvd_base",
+          "cvd_zscore",
+          "price_return_pct",
+          "regime",
+          "trades_count"
+        ],
+        "byte_size": 1439871,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 41.36
+      }
+    },
+    {
+      "file": "19_Calendar.parquet",
+      "read_utc": "2026-10-27T17:09:13.267066+00:00",
+      "sha256": "ef24037d14ea5fb7c7532ee767da585f86f3f41a50fab9be86133b3daead11d3",
+      "total_rows": 44,
+      "asset_rows": 0,
+      "context_rows": 44,
+      "columns": [
+        "date",
+        "time",
+        "currency",
+        "impact",
+        "event",
+        "actual",
+        "forecast",
+        "previous",
+        "outcome",
+        "url"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {},
+      "sidecar": {
+        "feed_name": "19_Calendar",
+        "status": "PASS",
+        "row_count": 44,
+        "column_count": 10,
+        "columns": [
+          "date",
+          "time",
+          "currency",
+          "impact",
+          "event",
+          "actual",
+          "forecast",
+          "previous",
+          "outcome",
+          "url"
+        ],
+        "byte_size": 4527,
+        "timestamp_ist": "2026-10-27 22:38:25 IST",
+        "timestamp_utc": "2026-10-27 17:08:25 UTC",
+        "epoch_utc": 1793120905.469001,
+        "write_duration_ms": 387.81
+      }
+    },
+    {
+      "file": "19_News.parquet",
+      "read_utc": "2026-10-27T17:09:13.284765+00:00",
+      "sha256": "88c657f606ecd54d62343ccb1f10e935c40a2544ac4164ba426562848b012152",
+      "total_rows": 35,
+      "asset_rows": 0,
+      "context_rows": 35,
+      "columns": [
+        "title",
+        "url",
+        "source",
+        "time_ago",
+        "timestamp_utc",
+        "timestamp_ist",
+        "exact_title_time",
+        "impact",
+        "comments",
+        "currency",
+        "category",
+        "preview"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "19_News",
+        "status": "PASS",
+        "row_count": 35,
+        "column_count": 12,
+        "columns": [
+          "title",
+          "url",
+          "source",
+          "time_ago",
+          "timestamp_utc",
+          "timestamp_ist",
+          "exact_title_time",
+          "impact",
+          "comments",
+          "currency",
+          "category",
+          "preview"
+        ],
+        "byte_size": 10279,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 554.38
+      }
+    },
+    {
+      "file": "1_Crypto_ETF_Flows.parquet",
+      "read_utc": "2026-10-27T17:09:13.288161+00:00",
+      "sha256": "d3de066c6dc8d040194c4aec5334798531bbb5755ad6eee456ca46833e1bdc7f",
+      "total_rows": 41,
+      "asset_rows": 17,
+      "context_rows": 0,
+      "columns": [
+        "#",
+        "Ticker",
+        "ETF_Name",
+        "Price",
+        "Price_Change",
+        "Volume_USD",
+        "Volume_Shares",
+        "Turnover_Rate",
+        "Shares_Outstanding",
+        "AUM",
+        "Market_Cap",
+        "Expense_Ratio",
+        "Asset_Category",
+        "Issuer",
+        "Daily_Net_Inflow",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:31:54 IST",
+          "max_lexical": "2026-10-27 22:31:54 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "1_Crypto_ETF_Flows",
+        "status": "PASS",
+        "row_count": 41,
+        "column_count": 16,
+        "columns": [
+          "#",
+          "Ticker",
+          "ETF_Name",
+          "Price",
+          "Price_Change",
+          "Volume_USD",
+          "Volume_Shares",
+          "Turnover_Rate",
+          "Shares_Outstanding",
+          "AUM",
+          "Market_Cap",
+          "Expense_Ratio",
+          "Asset_Category",
+          "Issuer",
+          "Daily_Net_Inflow",
+          "Timestamp_IST"
+        ],
+        "byte_size": 8986,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 382.53
+      }
+    },
+    {
+      "file": "20_Auction_Market_Structure.parquet",
+      "read_utc": "2026-10-27T17:09:13.292128+00:00",
+      "sha256": "8d94a6cf871821f6b2f7fdbdfadebd87901fdb9a80db944a6407e0c6b8c16ba2",
+      "total_rows": 84,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "timestamp",
+        "sr_no",
+        "asset",
+        "symbol",
+        "category",
+        "price",
+        "spread_bps",
+        "spread_gate",
+        "va_position",
+        "daily_poc",
+        "daily_vah",
+        "daily_val",
+        "dist_poc_pct",
+        "dist_vah_pct",
+        "dist_val_pct",
+        "pd_poc",
+        "pd_vah",
+        "pd_val",
+        "pdh",
+        "pdl",
+        "pdc",
+        "monday_high",
+        "monday_low",
+        "monday_mid",
+        "weekly_poc",
+        "weekly_vah",
+        "weekly_val",
+        "cwh",
+        "cwl",
+        "pwh",
+        "pwl",
+        "cmh",
+        "cml",
+        "pmh",
+        "pml",
+        "asian_high",
+        "asian_low",
+        "london_high",
+        "london_low",
+        "ny_high",
+        "ny_low",
+        "ib_high",
+        "ib_low",
+        "fib_swing_h",
+        "fib_swing_l",
+        "fib_dir",
+        "fib_gp_min",
+        "fib_gp_max",
+        "fib_ote",
+        "fib_inval",
+        "fib_status",
+        "auction_regime",
+        "pivot",
+        "r1",
+        "s1",
+        "r2",
+        "s2",
+        "weekly_pivot",
+        "weekly_r1",
+        "weekly_s1",
+        "session_bias"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp": {
+          "min_lexical": "2026-10-27 22:31:08 IST",
+          "max_lexical": "2026-10-27 22:31:08 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "20_Auction_Market_Structure",
+        "status": "PASS",
+        "row_count": 84,
+        "column_count": 61,
+        "columns": [
+          "timestamp",
+          "sr_no",
+          "asset",
+          "symbol",
+          "category",
+          "price",
+          "spread_bps",
+          "spread_gate",
+          "va_position",
+          "daily_poc",
+          "daily_vah",
+          "daily_val",
+          "dist_poc_pct",
+          "dist_vah_pct",
+          "dist_val_pct",
+          "pd_poc",
+          "pd_vah",
+          "pd_val",
+          "pdh",
+          "pdl",
+          "pdc",
+          "monday_high",
+          "monday_low",
+          "monday_mid",
+          "weekly_poc",
+          "weekly_vah",
+          "weekly_val",
+          "cwh",
+          "cwl",
+          "pwh",
+          "pwl",
+          "cmh",
+          "cml",
+          "pmh",
+          "pml",
+          "asian_high",
+          "asian_low",
+          "london_high",
+          "london_low",
+          "ny_high",
+          "ny_low",
+          "ib_high",
+          "ib_low",
+          "fib_swing_h",
+          "fib_swing_l",
+          "fib_dir",
+          "fib_gp_min",
+          "fib_gp_max",
+          "fib_ote",
+          "fib_inval",
+          "fib_status",
+          "auction_regime",
+          "pivot",
+          "r1",
+          "s1",
+          "r2",
+          "s2",
+          "weekly_pivot",
+          "weekly_r1",
+          "weekly_s1",
+          "session_bias"
+        ],
+        "byte_size": 55133,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 10.37
+      }
+    },
+    {
+      "file": "21_Tradfye_Orderflow.parquet",
+      "read_utc": "2026-10-27T17:09:13.299052+00:00",
+      "sha256": "d11021dc069efd35e82bec38dfcf4b4c935d681cd1794fe7670422b96fad5352",
+      "total_rows": 6912,
+      "asset_rows": 384,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "asset",
+        "market_pair",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "total_vol_usd",
+        "taker_buy_usd",
+        "taker_sell_usd",
+        "net_delta_usd",
+        "net_delta_pct",
+        "cvd_usd",
+        "candle_vwap",
+        "trades_count",
+        "avg_trade_usd",
+        "poc_estimate",
+        "regime",
+        "divergence",
+        "deribit_max_pain",
+        "deribit_call_wall",
+        "deribit_put_wall"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-25 22:45:00 IST",
+          "max_lexical": "2026-10-27 22:30:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-25 17:15:00 UTC",
+          "max_lexical": "2026-10-27 17:00:00 UTC"
+        },
+        "timeframe": {
+          "min_lexical": "15m",
+          "max_lexical": "5m"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "21_Tradfye_Orderflow",
+        "status": "PASS",
+        "row_count": 6912,
+        "column_count": 24,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "asset",
+          "market_pair",
+          "timeframe",
+          "open",
+          "high",
+          "low",
+          "close",
+          "total_vol_usd",
+          "taker_buy_usd",
+          "taker_sell_usd",
+          "net_delta_usd",
+          "net_delta_pct",
+          "cvd_usd",
+          "candle_vwap",
+          "trades_count",
+          "avg_trade_usd",
+          "poc_estimate",
+          "regime",
+          "divergence",
+          "deribit_max_pain",
+          "deribit_call_wall",
+          "deribit_put_wall"
+        ],
+        "byte_size": 747582,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 407.33
+      }
+    },
+    {
+      "file": "22_Forced_Liquidations_MTF.parquet",
+      "read_utc": "2026-10-27T17:09:13.478475+00:00",
+      "sha256": "0aca920b9f3fdd710eb17ca26a4f399efd44432f6617a9d435b2720c424d21d5",
+      "total_rows": 48,
+      "asset_rows": 0,
+      "context_rows": 0,
+      "columns": [
+        "symbol",
+        "timeframe",
+        "candle_start_epoch",
+        "candle_start_ist",
+        "candle_end_ist",
+        "candle_start_utc",
+        "candle_end_utc",
+        "long_liq_usd",
+        "short_liq_usd",
+        "total_liq_usd",
+        "net_liq_delta_usd",
+        "orders_count",
+        "dominant_side"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "22_Forced_Liquidations_MTF",
+        "status": "PASS",
+        "row_count": 48,
+        "column_count": 13,
+        "columns": [
+          "symbol",
+          "timeframe",
+          "candle_start_epoch",
+          "candle_start_ist",
+          "candle_end_ist",
+          "candle_start_utc",
+          "candle_end_utc",
+          "long_liq_usd",
+          "short_liq_usd",
+          "total_liq_usd",
+          "net_liq_delta_usd",
+          "orders_count",
+          "dominant_side"
+        ],
+        "byte_size": 5012,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 4.93
+      }
+    },
+    {
+      "file": "23_Master_Pipeline_Telemetry.parquet",
+      "read_utc": "2026-10-27T17:09:13.495905+00:00",
+      "sha256": "6a76da371ed6efaae799894e187ad61aa2a821ae2c13178a5c6d72c71510acc1",
+      "total_rows": 33,
+      "asset_rows": 0,
+      "context_rows": 33,
+      "columns": [
+        "feed_id",
+        "feed_name",
+        "status",
+        "tier"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {},
+      "sidecar": {
+        "feed_name": "23_Master_Pipeline_Telemetry",
+        "status": "PASS",
+        "row_count": 33,
+        "column_count": 4,
+        "columns": [
+          "feed_id",
+          "feed_name",
+          "status",
+          "tier"
+        ],
+        "byte_size": 2078,
+        "timestamp_ist": "2026-10-27 22:38:22 IST",
+        "timestamp_utc": "2026-10-27 17:08:22 UTC",
+        "epoch_utc": 1793120902.872813,
+        "write_duration_ms": 418.71
+      }
+    },
+    {
+      "file": "25_CoinGlass_Footprint_Signals.parquet",
+      "read_utc": "2026-10-27T17:09:13.499510+00:00",
+      "sha256": "22a0ddf99afc53ef123b0a1f38704cb257c28686ab62bcca265bc83d866a1890",
+      "total_rows": 686,
+      "asset_rows": 9,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "signal_time",
+        "symbol",
+        "base_asset",
+        "timeframe",
+        "signal_type",
+        "bias",
+        "headline",
+        "detail",
+        "price_level",
+        "absorbed_vol_usd",
+        "last_price",
+        "current_bar_delta_usd",
+        "current_bar_volume_usd",
+        "delta_in_view_usd",
+        "latest_signal_kpi",
+        "latest_signal_bias"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:27:30 IST",
+          "max_lexical": "2026-10-27 22:27:30 IST"
+        },
+        "signal_time": {
+          "min_lexical": "10-27 08:29",
+          "max_lexical": "10-27 20:52"
+        },
+        "timeframe": {
+          "min_lexical": "Range 250",
+          "max_lexical": "Volume 2.5K BTC"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "25_CoinGlass_Footprint_Signals",
+        "status": "PASS",
+        "row_count": 686,
+        "column_count": 17,
+        "columns": [
+          "timestamp_ist",
+          "signal_time",
+          "symbol",
+          "base_asset",
+          "timeframe",
+          "signal_type",
+          "bias",
+          "headline",
+          "detail",
+          "price_level",
+          "absorbed_vol_usd",
+          "last_price",
+          "current_bar_delta_usd",
+          "current_bar_volume_usd",
+          "delta_in_view_usd",
+          "latest_signal_kpi",
+          "latest_signal_bias"
+        ],
+        "byte_size": 30864,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 10.42
+      }
+    },
+    {
+      "file": "26_Aggregated_Footprint_Bar_Metrics.parquet",
+      "read_utc": "2026-10-27T17:09:13.524040+00:00",
+      "sha256": "317d9bbe4d16677c70dc5835f2d36ff4b90630f460a1e4cb9e0e8b2c116ef058",
+      "total_rows": 310,
+      "asset_rows": 10,
+      "context_rows": 0,
+      "columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "symbol",
+        "base_asset",
+        "timeframe",
+        "last_price",
+        "vwap",
+        "poc",
+        "vah",
+        "val",
+        "volume_usd",
+        "buy_vol_usd",
+        "sell_vol_usd",
+        "candle_delta_usd",
+        "delta_pct",
+        "max_delta_usd",
+        "min_delta_usd",
+        "cumulative_delta_usd",
+        "trades_count",
+        "avg_trade_size_usd",
+        "open_interest_usd",
+        "oi_change_usd",
+        "imbalance_ratio_pct",
+        "buy_imbalances_count",
+        "sell_imbalances_count",
+        "venue_source"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 20:00:00 IST",
+          "max_lexical": "2026-10-27 22:15:00 IST"
+        },
+        "timestamp_utc": {
+          "min_lexical": "2026-10-27 14:30:00 UTC",
+          "max_lexical": "2026-10-27 16:45:00 UTC"
+        },
+        "timestamp_ms": {
+          "min_lexical": "1793111400000",
+          "max_lexical": "1793119500000"
+        },
+        "timeframe": {
+          "min_lexical": "15m",
+          "max_lexical": "15m"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "26_Aggregated_Footprint_Bar_Metrics",
+        "status": "PASS",
+        "row_count": 310,
+        "column_count": 27,
+        "columns": [
+          "timestamp_ist",
+          "timestamp_utc",
+          "timestamp_ms",
+          "symbol",
+          "base_asset",
+          "timeframe",
+          "last_price",
+          "vwap",
+          "poc",
+          "vah",
+          "val",
+          "volume_usd",
+          "buy_vol_usd",
+          "sell_vol_usd",
+          "candle_delta_usd",
+          "delta_pct",
+          "max_delta_usd",
+          "min_delta_usd",
+          "cumulative_delta_usd",
+          "trades_count",
+          "avg_trade_size_usd",
+          "open_interest_usd",
+          "oi_change_usd",
+          "imbalance_ratio_pct",
+          "buy_imbalances_count",
+          "sell_imbalances_count",
+          "venue_source"
+        ],
+        "byte_size": 48859,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 7.05
+      }
+    },
+    {
+      "file": "2_Spot_Netflow_S.parquet",
+      "read_utc": "2026-10-27T17:09:13.538457+00:00",
+      "sha256": "8341ebc1a64772b2617eeacdfc110fa2e5b60f50aa06c684eaf3e10335712a78",
+      "total_rows": 201,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "Symbol",
+        "5_minute",
+        "15_minute",
+        "30_minute",
+        "1_hour",
+        "2_hour",
+        "4_hour",
+        "6_hour",
+        "8_hour",
+        "12_hour",
+        "24_hour",
+        "1_week",
+        "15_day",
+        "30_day",
+        "Market_Cap",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:32:04 IST",
+          "max_lexical": "2026-10-27 22:32:04 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "2_Spot_Netflow_S",
+        "status": "PASS",
+        "row_count": 201,
+        "column_count": 16,
+        "columns": [
+          "Symbol",
+          "5_minute",
+          "15_minute",
+          "30_minute",
+          "1_hour",
+          "2_hour",
+          "4_hour",
+          "6_hour",
+          "8_hour",
+          "12_hour",
+          "24_hour",
+          "1_week",
+          "15_day",
+          "30_day",
+          "Market_Cap",
+          "Timestamp_IST"
+        ],
+        "byte_size": 28719,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 356.88
+      }
+    },
+    {
+      "file": "3_Exchanges_LS_Ratio_15M.parquet",
+      "read_utc": "2026-10-27T17:09:13.548957+00:00",
+      "sha256": "7f6bb48198fa266488b248203cdead6413e6c15e1eba6280ec36893173eeeb3f",
+      "total_rows": 500,
+      "asset_rows": 25,
+      "context_rows": 0,
+      "columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%",
+        "L_S_Ratio",
+        "Long_Volume",
+        "Short_Volume",
+        "Total_Volume",
+        "Timeframe",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timeframe": {
+          "min_lexical": "15m",
+          "max_lexical": "15m"
+        },
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:32:18 IST",
+          "max_lexical": "2026-10-27 22:32:18 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "3_Exchanges_LS_Ratio_15M",
+        "status": "PASS",
+        "row_count": 500,
+        "column_count": 11,
+        "columns": [
+          "Asset",
+          "#",
+          "Exchange",
+          "Long_%",
+          "Short_%",
+          "L_S_Ratio",
+          "Long_Volume",
+          "Short_Volume",
+          "Total_Volume",
+          "Timeframe",
+          "Timestamp_IST"
+        ],
+        "byte_size": 19412,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 6.42
+      }
+    },
+    {
+      "file": "3_Exchanges_LS_Ratio_1H.parquet",
+      "read_utc": "2026-10-27T17:09:13.563264+00:00",
+      "sha256": "da697b103c5f436e1a79040758f44a23fad1339696cae88f801d670ff07d1342",
+      "total_rows": 500,
+      "asset_rows": 25,
+      "context_rows": 0,
+      "columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%",
+        "L_S_Ratio",
+        "Long_Volume",
+        "Short_Volume",
+        "Total_Volume",
+        "Timeframe",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timeframe": {
+          "min_lexical": "1h",
+          "max_lexical": "1h"
+        },
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:32:37 IST",
+          "max_lexical": "2026-10-27 22:32:37 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "3_Exchanges_LS_Ratio_1H",
+        "status": "PASS",
+        "row_count": 500,
+        "column_count": 11,
+        "columns": [
+          "Asset",
+          "#",
+          "Exchange",
+          "Long_%",
+          "Short_%",
+          "L_S_Ratio",
+          "Long_Volume",
+          "Short_Volume",
+          "Total_Volume",
+          "Timeframe",
+          "Timestamp_IST"
+        ],
+        "byte_size": 20361,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 6.95
+      }
+    },
+    {
+      "file": "3_Exchanges_LS_Ratio_4H.parquet",
+      "read_utc": "2026-10-27T17:09:13.576740+00:00",
+      "sha256": "d52c0db131d0f9beee10fec08d7692aa154db2f75782406035853bfb2f80fb70",
+      "total_rows": 500,
+      "asset_rows": 25,
+      "context_rows": 0,
+      "columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%",
+        "L_S_Ratio",
+        "Long_Volume",
+        "Short_Volume",
+        "Total_Volume",
+        "Timeframe",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timeframe": {
+          "min_lexical": "4h",
+          "max_lexical": "4h"
+        },
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:32:56 IST",
+          "max_lexical": "2026-10-27 22:32:56 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "3_Exchanges_LS_Ratio_4H",
+        "status": "PASS",
+        "row_count": 500,
+        "column_count": 11,
+        "columns": [
+          "Asset",
+          "#",
+          "Exchange",
+          "Long_%",
+          "Short_%",
+          "L_S_Ratio",
+          "Long_Volume",
+          "Short_Volume",
+          "Total_Volume",
+          "Timeframe",
+          "Timestamp_IST"
+        ],
+        "byte_size": 19704,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 5.93
+      }
+    },
+    {
+      "file": "4_Hyperliquid_Analysis.parquet",
+      "read_utc": "2026-10-27T17:09:13.589111+00:00",
+      "sha256": "aa798636dd31277fb40e77fca10e927b5a99f139141fab488f326aa933dbda7d",
+      "total_rows": 2019,
+      "asset_rows": 346,
+      "context_rows": 0,
+      "columns": [
+        "rank",
+        "user_display",
+        "wallet_address",
+        "asset",
+        "side",
+        "position_formatted",
+        "pnl_formatted",
+        "entry_formatted",
+        "liq_price",
+        "margin",
+        "funding_fee",
+        "current_price",
+        "entry_time_formatted",
+        "position_usd",
+        "position_tokens",
+        "pnl_usd",
+        "pnl_pct",
+        "entry_price",
+        "leverage",
+        "timestamp_ist"
+      ],
+      "row_time_ranges_unparsed": {
+        "entry_time_formatted": {
+          "min_lexical": "00:00:09\n2026-10-09",
+          "max_lexical": "23:59:44\n2026-10-19"
+        },
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:33:13 IST",
+          "max_lexical": "2026-10-27 22:33:13 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "4_Hyperliquid_Analysis",
+        "status": "PASS",
+        "row_count": 2019,
+        "column_count": 20,
+        "columns": [
+          "rank",
+          "user_display",
+          "wallet_address",
+          "asset",
+          "side",
+          "position_formatted",
+          "pnl_formatted",
+          "entry_formatted",
+          "liq_price",
+          "margin",
+          "funding_fee",
+          "current_price",
+          "entry_time_formatted",
+          "position_usd",
+          "position_tokens",
+          "pnl_usd",
+          "pnl_pct",
+          "entry_price",
+          "leverage",
+          "timestamp_ist"
+        ],
+        "byte_size": 363607,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 442.15
+      }
+    },
+    {
+      "file": "5_Funding_Rate.parquet",
+      "read_utc": "2026-10-27T17:09:13.668332+00:00",
+      "sha256": "40bcaa3c9f55676d8fd273ae619f2681c083177ef596d3625aab5a95e46b12db",
+      "total_rows": 592,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "Symbol",
+        "USDT_Binance",
+        "USDT_OKX",
+        "USDT_Bybit",
+        "USDT_KuCoin",
+        "USDT_MEXC",
+        "USDT_BingX",
+        "USDT_Gate",
+        "USDT_Bitunix",
+        "USDT_Bitget",
+        "USDT_WhiteBIT",
+        "USDT_LBank",
+        "USDT_tradeXYZ",
+        "CoinM_Binance",
+        "CoinM_OKX",
+        "CoinM_Bybit",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:34:20 IST",
+          "max_lexical": "2026-10-27 22:34:20 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "5_Funding_Rate",
+        "status": "PASS",
+        "row_count": 592,
+        "column_count": 17,
+        "columns": [
+          "Symbol",
+          "USDT_Binance",
+          "USDT_OKX",
+          "USDT_Bybit",
+          "USDT_KuCoin",
+          "USDT_MEXC",
+          "USDT_BingX",
+          "USDT_Gate",
+          "USDT_Bitunix",
+          "USDT_Bitget",
+          "USDT_WhiteBIT",
+          "USDT_LBank",
+          "USDT_tradeXYZ",
+          "CoinM_Binance",
+          "CoinM_OKX",
+          "CoinM_Bybit",
+          "Timestamp_IST"
+        ],
+        "byte_size": 22038,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 378.95
+      }
+    },
+    {
+      "file": "5_OI.parquet",
+      "read_utc": "2026-10-27T17:09:13.689243+00:00",
+      "sha256": "12af9034b7e74bc0cab64d12580c8799cd0d360f582353e9aa303ab16bbd177c",
+      "total_rows": 19,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "Asset",
+        "Total_OI_USD",
+        "Binance",
+        "Bybit",
+        "OKX",
+        "CME",
+        "KuCoin",
+        "Gate",
+        "Bitget",
+        "BingX",
+        "MEXC",
+        "Bitunix",
+        "Hyperliquid",
+        "Others",
+        "Total_OI_Tokens",
+        "24h_Total_Change",
+        "4h_Total_Change",
+        "1h_Total_Change",
+        "OI___24h_Vol",
+        "Timestamp_IST"
+      ],
+      "row_time_ranges_unparsed": {
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:33:21 IST",
+          "max_lexical": "2026-10-27 22:33:21 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "5_OI",
+        "status": "PASS",
+        "row_count": 19,
+        "column_count": 20,
+        "columns": [
+          "Asset",
+          "Total_OI_USD",
+          "Binance",
+          "Bybit",
+          "OKX",
+          "CME",
+          "KuCoin",
+          "Gate",
+          "Bitget",
+          "BingX",
+          "MEXC",
+          "Bitunix",
+          "Hyperliquid",
+          "Others",
+          "Total_OI_Tokens",
+          "24h_Total_Change",
+          "4h_Total_Change",
+          "1h_Total_Change",
+          "OI___24h_Vol",
+          "Timestamp_IST"
+        ],
+        "byte_size": 8400,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 583.47
+      }
+    },
+    {
+      "file": "6_Funding_Fee_Settlement.parquet",
+      "read_utc": "2026-10-27T17:09:13.695732+00:00",
+      "sha256": "5ac352604af2670ea062aebc62a2d8786949762664676217eec58a0ae3ab1c89",
+      "total_rows": 941,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "rank",
+        "symbol",
+        "price",
+        "price_24h_pct",
+        "open_interest",
+        "current",
+        "last_24h",
+        "last_3d",
+        "last_7d",
+        "timestamp_ist"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:34:27 IST",
+          "max_lexical": "2026-10-27 22:34:27 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "6_Funding_Fee_Settlement",
+        "status": "PASS",
+        "row_count": 941,
+        "column_count": 10,
+        "columns": [
+          "rank",
+          "symbol",
+          "price",
+          "price_24h_pct",
+          "open_interest",
+          "current",
+          "last_24h",
+          "last_3d",
+          "last_7d",
+          "timestamp_ist"
+        ],
+        "byte_size": 54481,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 532.48
+      }
+    },
+    {
+      "file": "7_Liq_Heapmap.parquet",
+      "read_utc": "2026-10-27T17:09:13.712143+00:00",
+      "sha256": "70554ac4bdc1f0aeec600316ddbc39d8ab3480bb8da25889355dfec41995fa3f",
+      "total_rows": 83,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "rank",
+        "asset",
+        "tf_1h",
+        "tf_4h",
+        "tf_12h",
+        "tf_24h",
+        "timestamp_ist"
+      ],
+      "row_time_ranges_unparsed": {
+        "timestamp_ist": {
+          "min_lexical": "2026-10-27 22:34:35 IST",
+          "max_lexical": "2026-10-27 22:34:35 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "7_Liq_Heapmap",
+        "status": "PASS",
+        "row_count": 83,
+        "column_count": 7,
+        "columns": [
+          "rank",
+          "asset",
+          "tf_1h",
+          "tf_4h",
+          "tf_12h",
+          "tf_24h",
+          "timestamp_ist"
+        ],
+        "byte_size": 4809,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 452.38
+      }
+    },
+    {
+      "file": "7_Live_Liq.parquet",
+      "read_utc": "2026-10-27T17:09:13.717102+00:00",
+      "sha256": "72ac89a889ac205e473cfb870daf3a671f1ba17a55a08053f098a567d4eb9106",
+      "total_rows": 27,
+      "asset_rows": 0,
+      "context_rows": 0,
+      "columns": [
+        "idx",
+        "coin",
+        "side",
+        "price",
+        "amount",
+        "time",
+        "exchange",
+        "full_time"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "7_Live_Liq",
+        "status": "PASS",
+        "row_count": 27,
+        "column_count": 8,
+        "columns": [
+          "idx",
+          "coin",
+          "side",
+          "price",
+          "amount",
+          "time",
+          "exchange",
+          "full_time"
+        ],
+        "byte_size": 3524,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 449.46
+      }
+    },
+    {
+      "file": "8_Exchange_Liquidation_Map_1D.parquet",
+      "read_utc": "2026-10-27T17:09:13.721869+00:00",
+      "sha256": "3d9e055892987b1a23062d6215196db93419861a6c9de012d57068f83f135f92",
+      "total_rows": 2344,
+      "asset_rows": 105,
+      "context_rows": 0,
+      "columns": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price",
+        "Cumulative_Liquidation",
+        "Short",
+        "Long",
+        "Binance",
+        "Cummulitve_Liquidation",
+        "Binanace",
+        "OKX",
+        "Bybit"
+      ],
+      "row_time_ranges_unparsed": {
+        "Time": {
+          "min_lexical": "1D",
+          "max_lexical": "1D"
+        },
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:34:58 IST",
+          "max_lexical": "2026-10-27 22:34:58 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "8_Exchange_Liquidation_Map_1D",
+        "status": "PASS",
+        "row_count": 2344,
+        "column_count": 13,
+        "columns": [
+          "Sr.No",
+          "Asset",
+          "Time",
+          "Timestamp_IST",
+          "Price",
+          "Cumulative_Liquidation",
+          "Short",
+          "Long",
+          "Binance",
+          "Cummulitve_Liquidation",
+          "Binanace",
+          "OKX",
+          "Bybit"
+        ],
+        "byte_size": 114099,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 539.59
+      }
+    },
+    {
+      "file": "8_Exchange_Liquidation_Map_7D.parquet",
+      "read_utc": "2026-10-27T17:09:13.778099+00:00",
+      "sha256": "1b42d21df945f4574aa25ed72a545c02e3e44d935d7d2440c6b2e0200c8a26a6",
+      "total_rows": 2706,
+      "asset_rows": 194,
+      "context_rows": 0,
+      "columns": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price",
+        "Cumulative_Liquidation",
+        "Short",
+        "Long",
+        "Binance",
+        "Cummulitve_Liquidation",
+        "Binanace",
+        "OKX",
+        "Bybit"
+      ],
+      "row_time_ranges_unparsed": {
+        "Time": {
+          "min_lexical": "7D",
+          "max_lexical": "7D"
+        },
+        "Timestamp_IST": {
+          "min_lexical": "2026-10-27 22:35:30 IST",
+          "max_lexical": "2026-10-27 22:35:30 IST"
+        }
+      },
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "8_Exchange_Liquidation_Map_7D",
+        "status": "PASS",
+        "row_count": 2706,
+        "column_count": 13,
+        "columns": [
+          "Sr.No",
+          "Asset",
+          "Time",
+          "Timestamp_IST",
+          "Price",
+          "Cumulative_Liquidation",
+          "Short",
+          "Long",
+          "Binance",
+          "Cummulitve_Liquidation",
+          "Binanace",
+          "OKX",
+          "Bybit"
+        ],
+        "byte_size": 144253,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 916.27
+      }
+    },
+    {
+      "file": "9_Liquidation_Max_Pain_24H.parquet",
+      "read_utc": "2026-10-27T17:09:13.844056+00:00",
+      "sha256": "d6acac45da1bb72ab862a5d46a56990fcc1a5a09153f9c6ad4e55b7070b0e88d",
+      "total_rows": 751,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol",
+        "short_distance_usd",
+        "short_distance_pct",
+        "long_max_pain_price",
+        "long_max_pain_vol",
+        "long_distance_usd",
+        "long_distance_pct"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "9_Liquidation_Max_Pain_24H",
+        "status": "PASS",
+        "row_count": 751,
+        "column_count": 11,
+        "columns": [
+          "ranking",
+          "symbol",
+          "price",
+          "short_max_pain_price",
+          "short_max_pain_vol",
+          "short_distance_usd",
+          "short_distance_pct",
+          "long_max_pain_price",
+          "long_max_pain_vol",
+          "long_distance_usd",
+          "long_distance_pct"
+        ],
+        "byte_size": 70787,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 304.49
+      }
+    },
+    {
+      "file": "9_Liquidation_Max_Pain_3D.parquet",
+      "read_utc": "2026-10-27T17:09:13.861699+00:00",
+      "sha256": "53d91f98ec6bbd5f5fbb4a59ad5b2736951b1543ab60f56f37c12c7a18758088",
+      "total_rows": 751,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol",
+        "short_distance_usd",
+        "short_distance_pct",
+        "long_max_pain_price",
+        "long_max_pain_vol",
+        "long_distance_usd",
+        "long_distance_pct"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "9_Liquidation_Max_Pain_3D",
+        "status": "PASS",
+        "row_count": 751,
+        "column_count": 11,
+        "columns": [
+          "ranking",
+          "symbol",
+          "price",
+          "short_max_pain_price",
+          "short_max_pain_vol",
+          "short_distance_usd",
+          "short_distance_pct",
+          "long_max_pain_price",
+          "long_max_pain_vol",
+          "long_distance_usd",
+          "long_distance_pct"
+        ],
+        "byte_size": 70811,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 7.72
+      }
+    },
+    {
+      "file": "9_Liquidation_Max_Pain_48H.parquet",
+      "read_utc": "2026-10-27T17:09:13.877108+00:00",
+      "sha256": "0c5d4ffa47ee6ec2be79c84dc212b9fe06f1ffc10eec60181638f8ce352e7c0d",
+      "total_rows": 751,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol",
+        "short_distance_usd",
+        "short_distance_pct",
+        "long_max_pain_price",
+        "long_max_pain_vol",
+        "long_distance_usd",
+        "long_distance_pct"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "9_Liquidation_Max_Pain_48H",
+        "status": "PASS",
+        "row_count": 751,
+        "column_count": 11,
+        "columns": [
+          "ranking",
+          "symbol",
+          "price",
+          "short_max_pain_price",
+          "short_max_pain_vol",
+          "short_distance_usd",
+          "short_distance_pct",
+          "long_max_pain_price",
+          "long_max_pain_vol",
+          "long_distance_usd",
+          "long_distance_pct"
+        ],
+        "byte_size": 71072,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 7.6
+      }
+    },
+    {
+      "file": "9_Liquidation_Max_Pain_7D.parquet",
+      "read_utc": "2026-10-27T17:09:13.890751+00:00",
+      "sha256": "5b0795e91e35bf9c074d17f687d2215ee2cfdcb7e11553d8879d578d2aa1f222",
+      "total_rows": 751,
+      "asset_rows": 1,
+      "context_rows": 0,
+      "columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol",
+        "short_distance_usd",
+        "short_distance_pct",
+        "long_max_pain_price",
+        "long_max_pain_vol",
+        "long_distance_usd",
+        "long_distance_pct"
+      ],
+      "row_time_ranges_unparsed": {},
+      "schema_metadata": {
+        "cycle_id": "Cycle 359",
+        "cycle_timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "cycle_timestamp_ist": "2026-10-27 22:38:20 IST"
+      },
+      "sidecar": {
+        "feed_name": "9_Liquidation_Max_Pain_7D",
+        "status": "PASS",
+        "row_count": 751,
+        "column_count": 11,
+        "columns": [
+          "ranking",
+          "symbol",
+          "price",
+          "short_max_pain_price",
+          "short_max_pain_vol",
+          "short_distance_usd",
+          "short_distance_pct",
+          "long_max_pain_price",
+          "long_max_pain_vol",
+          "long_distance_usd",
+          "long_distance_pct"
+        ],
+        "byte_size": 71157,
+        "timestamp_ist": "2026-10-27 22:38:20 IST",
+        "timestamp_utc": "2026-10-27 17:08:20 UTC",
+        "epoch_utc": 1793120900.162994,
+        "write_duration_ms": 8.69
+      }
+    }
+  ],
+  "capture_finished_utc": "2026-10-27T17:09:13.905484+00:00"
+}

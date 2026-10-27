@@ -402,6 +402,28 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
             harvested_data = None
             for poll in range(35):
                 await asyncio.sleep(0.3)
+                # Instant CoinGlass 'nodata' check
+                if poll >= 3:
+                    js_nodata_check = """
+                    (() => {
+                        const allElements = Array.from(document.querySelectorAll('*'));
+                        const header = allElements.find(el => el.children.length === 0 && (el.innerText || '').includes('Exchange Liquidation Map'));
+                        let container = header ? header.parentElement : null;
+                        while (container && !container.querySelector('[_echarts_instance_]') && !container.querySelector('canvas')) {
+                            container = container.parentElement;
+                        }
+                        if (container) {
+                            const txt = (container.innerText || '').toLowerCase();
+                            if (txt.includes('nodata') || txt.includes('no data')) return true;
+                        }
+                        return false;
+                    })()
+                    """
+                    nd_res = await cdp_cmd("Runtime.evaluate", {"expression": js_nodata_check, "returnByValue": True})
+                    if nd_res.get("result", {}).get("value") is True:
+                        log.warning(f"  -> CoinGlass upstream reports 'nodata' for {sym} on 1D timeframe. Skipping cleanly.")
+                        break
+
                 ext = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
                 val = ext.get("result", {}).get("value")
                 if not val or not val.get("rows"):

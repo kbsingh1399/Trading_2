@@ -46,6 +46,54 @@ def ensure_directories():
     METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
+def validate_loading_before_dump(
+    feed_name: str,
+    table: pa.Table,
+    target_file: pathlib.Path,
+    mode: str = "overwrite",
+) -> tuple[bool, str]:
+    """
+    Settling & Loading Verification Gate:
+    Verifies that the incoming dataset was fully loaded and hydrated before dumping.
+    Detects premature dumps, skeleton DOM scrapes, and severe row collapse.
+    """
+    # 1. Reject empty payloads
+    if table.num_rows == 0 or (table.num_rows == 1 and "_empty" in table.column_names):
+        return False, "Empty or stub payload rejected: zero records extracted."
+
+    # 2. Check for skeleton table dumps (all nulls in non-identifier columns)
+    if table.num_columns > 2:
+        null_col_count = 0
+        for col_name in table.column_names:
+            col = table.column(col_name)
+            if col.null_count == table.num_rows:
+                null_col_count += 1
+        if null_col_count >= (table.num_columns * 0.75):
+            return False, f"Skeleton scrape rejected: {null_col_count}/{table.num_columns} columns are 100% null."
+
+    # 3. Severe Row Collapse Detection (Premature dump before pagination / hydration)
+    # Feeds that are single-row by definition: 00_MT5_Account_Telemetry, 23_Master_Pipeline_Telemetry, etc.
+    single_row_feeds = {
+        "00_MT5_Account_Telemetry",
+        "23_Master_Pipeline_Telemetry",
+        "6_Funding_Fee_Settlement",
+        "test_feed",
+    }
+    if mode.lower() == "overwrite" and target_file.exists() and feed_name not in single_row_feeds:
+        try:
+            existing_meta = get_parquet_feed_metadata(feed_name)
+            if existing_meta and "row_count" in existing_meta:
+                prev_rows = existing_meta["row_count"]
+                curr_rows = table.num_rows
+                # If previously > 20 rows and current < 5 rows, the DOM was likely dumped before loading
+                if prev_rows >= 20 and curr_rows < 5:
+                    return False, f"Premature dump detected: row count collapsed from {prev_rows} to {curr_rows} (< 25% of baseline). DOM likely not loaded."
+        except Exception:
+            pass
+
+    return True, "PASS"
+
+
 def write_parquet_feed(
     feed_name: str,
     data: Union[pa.Table, List[Dict[str, Any]], Any],
@@ -53,10 +101,12 @@ def write_parquet_feed(
     mode: str = "overwrite",
     retention_rows: Optional[int] = None,
     custom_metadata: Optional[Dict[str, Any]] = None,
+    force_dump: bool = False,
 ) -> Dict[str, Any]:
     """
     Atomically writes a dataset to Data/feeds/<feed_name>.parquet
     and emits a sub-millisecond sidecar metadata file to Data/metadata/<feed_name>.json.
+    Enforces the 'Loading Before Dumping' settling & hydration verification gate.
     """
     t0 = time.perf_counter()
     ensure_directories()
@@ -104,6 +154,24 @@ def write_parquet_feed(
             table = pa.Table.from_pylist(list(data), schema=schema)
 
     target_file = FEEDS_DIR / f"{feed_name}.parquet"
+    
+    # Settling & Loading Verification Gate
+    if not force_dump:
+        is_valid, reason = validate_loading_before_dump(feed_name, table, target_file, mode=mode)
+        if not is_valid and target_file.exists():
+            log.warning(
+                f"[LoadingGate] Write rejected for '{feed_name}': {reason}. Preserving existing {target_file.name}."
+            )
+            meta_target = METADATA_DIR / f"{feed_name}.json"
+            if meta_target.exists():
+                try:
+                    with open(meta_target, "r", encoding="utf-8") as f:
+                        meta = json.load(f)
+                    meta["warning"] = f"LoadingGate rejected premature dump: {reason}"
+                    return meta
+                except Exception:
+                    pass
+
     is_empty_payload = (table.num_rows == 0) or (table.num_rows == 1 and "_empty" in table.column_names)
 
     # Protection: Never clobber existing healthy parquet files with empty payloads
@@ -175,6 +243,7 @@ def write_parquet_feed(
         meta = {
             "feed_name": feed_name,
             "status": "PASS",
+            "loading_settle_verified": True,
             "row_count": table.num_rows,
             "column_count": table.num_columns,
             "columns": table.column_names,

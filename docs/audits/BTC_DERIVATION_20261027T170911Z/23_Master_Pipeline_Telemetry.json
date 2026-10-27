@@ -1,0 +1,203 @@
+{
+  "asset_rows": [],
+  "global_context_rows": [
+    {
+      "feed_id": 0,
+      "feed_name": "00_MT5_Account_Telemetry",
+      "status": "PASS",
+      "tier": "High Velocity"
+    },
+    {
+      "feed_id": 1,
+      "feed_name": "1_Crypto_ETF_Flows",
+      "status": "PASS",
+      "tier": "Macro"
+    },
+    {
+      "feed_id": 2,
+      "feed_name": "2_Spot_Netflow_S",
+      "status": "PASS",
+      "tier": "Macro"
+    },
+    {
+      "feed_id": 3,
+      "feed_name": "3_Exchanges_LS_Ratio_15M",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 4,
+      "feed_name": "3_Exchanges_LS_Ratio_1H",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 5,
+      "feed_name": "3_Exchanges_LS_Ratio_4H",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 6,
+      "feed_name": "4_Hyperliquid_Analysis",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 7,
+      "feed_name": "5_OI",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 8,
+      "feed_name": "5_Funding_Rate",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 9,
+      "feed_name": "6_Funding_Fee_Settlement",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 10,
+      "feed_name": "7_Liq_Heapmap",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 11,
+      "feed_name": "7_Live_Liq",
+      "status": "PASS",
+      "tier": "High Velocity"
+    },
+    {
+      "feed_id": 12,
+      "feed_name": "8_Exchange_Liquidation_Map_1D",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 13,
+      "feed_name": "8_Exchange_Liquidation_Map_7D",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 14,
+      "feed_name": "9_Liquidation_Max_Pain_24H",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 15,
+      "feed_name": "9_Liquidation_Max_Pain_48H",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 16,
+      "feed_name": "9_Liquidation_Max_Pain_3D",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 17,
+      "feed_name": "9_Liquidation_Max_Pain_7D",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 18,
+      "feed_name": "10_Whale_Orders",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 19,
+      "feed_name": "11_Technical",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 20,
+      "feed_name": "12_Hyperdash",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 21,
+      "feed_name": "13_Hyperliquid",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 22,
+      "feed_name": "14_Hyperdash_Liq_Map",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 23,
+      "feed_name": "15_Hyperdash_Stops_Map",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 24,
+      "feed_name": "16_Hyperdash_telegram_Intel",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 25,
+      "feed_name": "17_Orderbook",
+      "status": "PASS",
+      "tier": "High Velocity"
+    },
+    {
+      "feed_id": 26,
+      "feed_name": "18_CVD",
+      "status": "PASS",
+      "tier": "High Velocity"
+    },
+    {
+      "feed_id": 27,
+      "feed_name": "19_News",
+      "status": "PASS",
+      "tier": "Macro"
+    },
+    {
+      "feed_id": 28,
+      "feed_name": "19_Calendar",
+      "status": "PASS",
+      "tier": "Macro"
+    },
+    {
+      "feed_id": 29,
+      "feed_name": "20_Auction_Market_Structure",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 30,
+      "feed_name": "21_Tradfye_Orderflow",
+      "status": "PASS",
+      "tier": "Tactical"
+    },
+    {
+      "feed_id": 31,
+      "feed_name": "22_Forced_Liquidations_MTF",
+      "status": "PASS",
+      "tier": "High Velocity"
+    },
+    {
+      "feed_id": 32,
+      "feed_name": "23_Master_Pipeline_Telemetry",
+      "status": "PASS",
+      "tier": "High Velocity"
+    }
+  ]
+}

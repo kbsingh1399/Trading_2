@@ -1,0 +1,17 @@
+{
+  "asset_rows": [
+    {
+      "rank": 1,
+      "symbol": "BTC",
+      "price": "\u002480,540.10",
+      "price_24h_pct": "+0.29%",
+      "open_interest": "\u002417.44B",
+      "current": "\u00241.74M",
+      "last_24h": "\u00244.62M",
+      "last_3d": "\u002411.56M",
+      "last_7d": "\u002421.68M",
+      "timestamp_ist": "2026-10-27 22:34:27 IST"
+    }
+  ],
+  "global_context_rows": []
+}

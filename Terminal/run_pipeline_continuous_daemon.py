@@ -91,7 +91,8 @@ def push_cycle_to_github(cycle_num: int):
     """Atomically commits and pushes all fresh parquet feeds and telemetry to GitHub immediately after cycle."""
     try:
         now_ist = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5, minutes=30))).strftime("%Y-%m-%d %H:%M:%S IST")
-        log.info(f"[Cycle #{cycle_num}] Staging and pushing all parquet feeds and telemetry to GitHub...")
+        log.info(f"[Cycle #{cycle_num}] Settling disk buffers before staging and pushing to GitHub...")
+        time.sleep(2.0)
         
         # 0. Stamp all parquet feeds with fresh cycle metadata so git commits all files simultaneously
         try:

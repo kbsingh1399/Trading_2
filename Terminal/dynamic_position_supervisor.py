@@ -117,9 +117,30 @@ def check_and_supervise_positions() -> dict:
         pulled_orders = []
 
         # -------------------------------------------------------------
-        # INVARIANT: Auto-Pull all resting limits if filled positions >= 4
+        # INVARIANT: Hard Reservation Cap & Drawdown Defense Sentry
+        # 1. If Equity <= Operating Buffer (4,795.00 USD), pull ALL pending orders immediately.
+        # 2. If filled positions >= MAX_FILLED_POSITIONS (4), pull ALL pending orders.
+        # 3. If open + pending > MAX_FILLED_POSITIONS (4), prune excess pending orders.
         # -------------------------------------------------------------
-        if pos_count >= MAX_FILLED_POSITIONS and order_count > 0:
+        OPERATING_BUFFER = 4795.00
+        is_defense_mode = (acc.equity <= OPERATING_BUFFER)
+
+        if is_defense_mode and order_count > 0:
+            logger.warning(
+                f"[DEFENSE SENTRY TRIGGERED] Equity {acc.equity:.2f} <= {OPERATING_BUFFER:.2f} buffer. "
+                f"Pulling ALL {order_count} resting limit order(s) to guarantee floor preservation..."
+            )
+            for o in orders:
+                req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
+                res = mt5.order_send(req)
+                status_code = res.retcode if res else -1
+                comment = res.comment if res else "No response"
+                logger.info(f"Pulled Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_DEFENSE"})
+            orders = list(mt5.orders_get() or ())
+            order_count = len(orders)
+
+        elif pos_count >= MAX_FILLED_POSITIONS and order_count > 0:
             logger.warning(
                 f"[AUTO-PULL TRIGGERED] Active filled positions reached {pos_count}/{MAX_FILLED_POSITIONS}. "
                 f"Pulling {order_count} resting limit order(s) immediately..."
@@ -142,7 +163,20 @@ def check_and_supervise_positions() -> dict:
                     "retcode": status_code,
                     "comment": comment
                 })
-            # Refresh orders list after pull
+            orders = list(mt5.orders_get() or ())
+            order_count = len(orders)
+
+        elif (pos_count + order_count) > MAX_FILLED_POSITIONS and order_count > 0:
+            excess = (pos_count + order_count) - MAX_FILLED_POSITIONS
+            logger.warning(
+                f"[RESERVATION CAP EXCEEDED] Open ({pos_count}) + Pending ({order_count}) = {pos_count + order_count} > {MAX_FILLED_POSITIONS}. "
+                f"Pruning {excess} excess pending order(s) to restore strict <= {MAX_FILLED_POSITIONS} invariant..."
+            )
+            for o in orders[:excess]:
+                req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
+                res = mt5.order_send(req)
+                logger.info(f"Pruned Excess Order #{o.ticket} ({o.symbol})")
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_EXCESS"})
             orders = list(mt5.orders_get() or ())
             order_count = len(orders)
 

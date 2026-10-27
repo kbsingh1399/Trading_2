@@ -1,0 +1,24 @@
+{
+  "19376039": {
+    "ticket": 19376039,
+    "symbol": "USDJPY.pi",
+    "type": "SELL",
+    "price_open": 157.85,
+    "initial_sl": 158.024,
+    "initial_tp": 157.45,
+    "initial_r": 0.1740000000000066,
+    "stage": 0,
+    "open_time": 1793126235
+  },
+  "19379711": {
+    "ticket": 19379711,
+    "symbol": "BTCUSD.pi",
+    "type": "SELL",
+    "price_open": 80560.0,
+    "initial_sl": 80860.0,
+    "initial_tp": 79910.0,
+    "initial_r": 300.0,
+    "stage": 0,
+    "open_time": 1793131190
+  }
+}

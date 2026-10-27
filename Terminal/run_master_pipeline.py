@@ -257,9 +257,17 @@ def main():
     if not args.api_only:
         run_browser_phase()
 
+    # Mandatory Loading-Before-Dumping Settling Gate: Pause 2.5s for OS file buffers and parquet atomic swaps to settle
+    log.info("=" * 80)
+    log.info("   SETTLING GATE: Pausing 2.5s to ensure complete parquet hydration & disk settling...")
+    log.info("=" * 80)
+    time.sleep(2.5)
+
     # Always synthesize Unified Liquidation Matrix
     run_post_processing_phase()
 
+    # Brief settling before final audit
+    time.sleep(1.0)
     all_passed = run_audit_phase()
     cleanup_browser_tabs()
     total_time = time.perf_counter() - t_start

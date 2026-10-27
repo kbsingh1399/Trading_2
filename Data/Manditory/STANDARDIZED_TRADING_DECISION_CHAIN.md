@@ -75,16 +75,33 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >      * Loosening an existing tighter stop is mathematically impossible; if `target_sl` is not tighter than `p.sl`, the modification is skipped and the stage advances.
 >      * Robust `initial_r` recovery inspects broker order/deal history if `p.sl` is already in profit, preventing R-multiple distortion.
 >
-> 5. **Capacity Policy & Stressed Solvency Standard (Institutional Factor-Cluster Risk Governance)**:
+> 5. **Capacity Policy, Hard Reservation Cap & Dynamic Stressed Solvency Standard**:
 >    - **Factor-Cluster Cap & Orthogonal Diversification**:
 >      * The universe is partitioned into 4 orthogonal macro clusters: (1) Crypto Beta (`BTC, ETH, SOL, BNB, XRP...`), (2) USD Dollar Bloc (`EURUSD, GBPUSD, USDJPY, AUDUSD...`), (3) Precious Metals (`XAUUSD, XAGUSD`), and (4) Energy & Equity Indices (`US30, NAS100, SPX500, UKBRENT, USWTI`).
->      * Maximum **2 tickets in the same cluster and direction**. Crucially: a second correlated ticket in the same cluster (e.g., `ETHUSD.pi` Short alongside `BTCUSD.pi` Short) is **STRICTLY FORBIDDEN from being armed or filled** UNLESS the first ticket has already ratcheted to **Stage 1 Breakeven (`+0.15R` lock, zero downside risk)**.
->    - **Pre-Fill Stressed Solvency Ceiling (Open + Resting Combined)**:
->      * Staging resting limit orders is NOT unconstrained. Total stressed risk across ALL open positions and pending resting orders combined must NEVER breach the Internal Operating Buffer:
->        $$\sum_{i \in \text{Open} \cup \text{Pending}} \big(1.25 \times R_{\text{nom},i} + \$2.00 \text{ fee}\big) + \text{spread/slippage} \le \text{Equity} - \$4,795.00$$
->      * Guarantees that even if EVERY open position and EVERY resting limit stops out simultaneously with $1.25\times$ adverse slippage, stressed equity remains strictly $\ge \$4,795.00$ USD (providing a minimum $+20.00$ USD safety bunker above the $\$4,775.00$ Statutory Hard Floor).
->    - **Structural SL Clearance Invariant**:
->      * Stop-losses must NEVER sit directly on top of Auction Value Area High/Low (`dVAH`, `wVAH`, `pdVAH`, `dVAL`, `wVAL`) or within $< 0.35 \times \text{ATR}_{14}$ of a trapped-order swing high/low. Stops must clear structural shelves by $\ge 0.35$ to $0.50 \times \text{ATR}_{14}$ to prevent routine liquidity sweep stop-outs.
+>      * Maximum **2 tickets in the same cluster and direction**. Crucially: a second correlated ticket in the same cluster (e.g., `ETHUSD.pi` Short alongside `BTCUSD.pi` Short, or `AUDNZD.pi` alongside `USDJPY.pi`) is **STRICTLY FORBIDDEN from being armed or filled** UNLESS the first ticket has already ratcheted to **Stage 1 Breakeven (`+0.15R` lock, zero downside risk)**.
+>    - **Admission-Time Hard Reservation Cap (Eliminating TOCTOU Multi-Fill Race Conditions)**:
+>      * To eliminate the Time-of-Check to Time-of-Use (TOCTOU) race condition where multiple resting limits fill simultaneously inside broker matching engines before a client polling loop can react:
+>        $$N_{\text{open}} + N_{\text{pending}} \le \min\left(4, \left\lfloor \frac{\text{Equity} - \$4,795.00}{\bar{S}_{\text{stressed}}} \right\rfloor\right)$$
+>      * Every pending limit order is counted as **already filled at admission time**. Under Drawdown Defense Mode ($\text{Equity} - \$4,795.00 < \$45.00$), total simultaneous $N_{\text{open}} + N_{\text{pending}}$ is strictly capped at $\le 3$. No pending limit order may ever be staged on the server if $N_{\text{open}} + N_{\text{pending}} \ge 4$.
+>    - **Pre-Fill Stressed Solvency Standard (Asset-Class & Event-Conditioned Multipliers)**:
+>      * Total stressed loss across ALL open positions and pending resting orders combined must NEVER breach the Internal Operating Buffer ($4,795.00$ USD):
+>        $$\text{Balance} - \sum_{i \in \text{Open} \cup \text{Pending}} S_i(t) \ge \$4,795.00 \text{ USD}$$
+>      * Replace static $1.25\times + \$2.00$ with dynamic regime- and asset-class conditioned stress operator $S_i(t)$:
+>        - **Crypto Beta CFDs** (`BTC, ETH`): $1.40\times R_{\text{nom}} + \$2.50$ (High-vol: $1.85\times + \$3.50$).
+>        - **FX Majors** (`EURUSD, USDJPY`): $1.25\times R_{\text{nom}} + \$1.50$ (Rollover: $1.75\times + \$3.00$).
+>        - **FX Crosses** (`AUDNZD, GBPJPY`): $1.45\times R_{\text{nom}} + \$2.00$ (Rollover: $2.20\times + \$4.00$).
+>        - **Precious Metals** (`XAUUSD, XAGUSD`): $1.50\times R_{\text{nom}} + \$2.50$ (Event: $2.10\times + \$4.00$).
+>        - **Energy CFDs** (`UKBRENT, USWTI`): $1.65\times R_{\text{nom}} + \$3.00$ (Inventory/Settlement: $2.50\times + \$5.00$).
+>    - **Sweep-Zone Limit Staging & Low-Volume Node (LVN) Invalidation**:
+>      * **Sweep-Zone Entry Offset**: For Model 1 fades, do NOT enter directly at the VAH/VAL edge and suffer the institutional liquidity sweep as drawdown. Stage maker limit entries at the **Sweep Exhaustion Zone** ($E_{\text{short}} = \text{VAH} + 0.35 \times \text{ATR}_{14}$), aligned with the `14_Liquidation_Matrix` / `15_Hyperdash_Stops_Map` cluster centroid.
+>      * **LVN Structural Stop Clearance**: Query `20_Auction_Market_Structure.parquet` to locate the nearest external Low Volume Node (LVN) or single-print rejection tail outside VAH/VAL, and place the stop $0.15 \times \text{ATR}_{14}$ beyond the LVN (or $\text{Limit} \pm 0.45 \times \text{ATR}_{14}$), guaranteeing placement beyond the 90th percentile of sweep excursions.
+>    - **Whale Shield Ordering Constraint**:
+>      * Whenever a trade cites a defending whale wall $[W_{\text{low}}, W_{\text{high}}]$ from `10_Whale_Orders.parquet`, enforce the hard geometric inequality:
+>        $$\text{SL}_{\text{short}} \ge W_{\text{high}} + \text{Spread}_{99\%} + 0.10 \times \text{ATR}_{14} \quad (\text{adjusted for 60m MT5-to-Binance basis } \hat{B}_t)$$
+>      * Placing a stop loss inside or in front of the defending whale wall is **strictly prohibited at pre-admission** (prevents stopping out before institutional absorption can defend).
+>    - **Event-Aware Auto-Purge & Rollover Blackout**:
+>      * Cancel all resting limit orders $\ge 30\text{ minutes}$ prior to Tier-1 scheduled macro releases (e.g. CPI, FOMC, NFP, EIA).
+>      * Freeze all limit placement and pending orders during the daily interbank rollover spread widening window (21:00–22:15 UTC / 17:00 EST).
 >
 > 6. **Mandatory 4-Subagent In-House Quant Fleet (Fable 5 / Flash Swarm)**:
 >    On EVERY autonomous cycle, Antigravity physically coordinates four specialized quantitative personas (either via `invoke_subagent` or direct multi-agent dialectic):
