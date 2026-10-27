@@ -1,13 +1,34 @@
 {
-  "current_cycle_id": "Cycle 372",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-27 11:26:09 UTC",
-  "cycle_completed_utc": "2026-10-27 11:44:27 UTC",
-  "next_cycle_scheduled_utc": "2026-10-27 12:04:27 UTC",
+  "current_cycle_id": "Cycle 373",
+  "cycle_status": "COMPLETED_ORDER_STAGED",
+  "cycle_started_utc": "2026-10-27 12:55:45 UTC",
+  "cycle_completed_utc": "2026-10-27 13:13:00 UTC",
+  "next_cycle_scheduled_utc": "2026-10-27 13:33:00 UTC",
   "rest_interval_seconds": 1200,
-  "consensus_action": "PRUNED_STALE_PENDING_ORDERS_STAND_BY_CANDIDATE_RADAR",
+  "consensus_action": "STAGED_PASSIVE_LIMIT_XAUUSD_PI_TICKET_19367388",
   "active_positions": [],
-  "active_tickets": [],
+  "active_tickets": [19367388],
+  "pending_orders": [
+    {
+      "ticket": 19367388,
+      "symbol": "XAUUSD.pi",
+      "action": "SELL_LIMIT",
+      "volume": 0.01,
+      "entry": 4024.95,
+      "sl": 4034.97,
+      "tp": 4002.90,
+      "nominal_risk_usd": 10.02,
+      "reward_usd": 22.05,
+      "rr_ratio": 2.20,
+      "margin_required_usd": 402.50,
+      "stressed_risk_usd": 14.63,
+      "post_stress_equity_usd": 4822.45,
+      "buffer_surplus_usd": 27.45,
+      "magic": 100895,
+      "comment": "C373_XAU_MR",
+      "status": "RESTING_PASSIVE"
+    }
+  ],
   "solvency_metrics": {
     "balance_usd": 4837.08,
     "equity_usd": 4837.08,
@@ -16,33 +37,17 @@
     "hard_floor_cushion_usd": 62.08,
     "operating_buffer_headroom_usd": 42.08,
     "kernel_cushion_usd": 42.08,
-    "realized_headroom_usd": 40.08
+    "realized_headroom_usd": 40.08,
+    "reserved_pending_stress_usd": 14.63,
+    "unencumbered_headroom_usd": 25.45
   },
   "components": {
-    "antigravity_subagents": {
-      "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
+    "antigravity_4quant_swarm": {
+      "name": "Antigravity 4-Quant Sovereign Swarm (Roles A, B, C, D)",
       "status": "COMPLETED",
-      "details": "Mode 2 In-Context 4-Quant Swarm completed 11-step sprint for Cycle 372. Solvency verified, stale limits canceled, multi-asset radar active.",
-      "completed_at_utc": "2026-10-27 11:26:09 UTC"
-    },
-    "arena_ai": {
-      "name": "Arena.ai Frontier Council (GPT-5.4 Astra)",
-      "status": "COMPLETED",
-      "details": "Cycle 372 ruling completed (47,276 chars). Harvested to docs/trade_plans/ARENA_LATEST_RAW.md.",
-      "completed_at_utc": "2026-10-27 11:59:34 UTC"
-    },
-    "z_ai": {
-      "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "details": "Cycle 372 ruling completed (12,539 chars). Harvested to docs/trade_plans/ZAI_LATEST_RAW.md.",
-      "completed_at_utc": "2026-10-27 11:44:27 UTC"
-    },
-    "web2api": {
-      "name": "Gemini Web2API Council (Gemini 3.8 Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 11:27:19 UTC",
-      "raw_file": "docs/trade_plans/GEMINI_WEB2API_LATEST_RAW.md",
-      "model": "Gemini 3.8 Flash"
+      "verdict": "RATIFIED_AND_EXECUTED",
+      "details": "Model 1A Statistical Mean Reversion approved. VR(4)=0.203, ER(48)=0.074, OU half-life 5.6 bars, zero adverse drift. Staged 0.01 lot XAUUSD.pi Sell Limit @ 4024.95.",
+      "completed_at_utc": "2026-10-27 13:13:00 UTC"
     }
   }
 }

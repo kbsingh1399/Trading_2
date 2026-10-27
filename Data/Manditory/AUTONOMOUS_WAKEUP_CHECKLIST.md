@@ -1,150 +1,192 @@
 # 📋 AUTONOMOUS WAKE-UP CHECKLIST & JOINT-COMPLETION LIFECYCLE
 ## Antigravity Desk, Arena.ai, Z.ai & Gemini-4 Argon High Co-Equal Quantitative Council
 
-> **Canonical Production Checklist**: Non-bypassable Master Autonomous Desk Wake-Up Sequence (Read & Execute Fully Line-by-Line).  
+> **Document Status**: CANONICAL PRODUCTION MASTER CHECKLIST (MANDATORY LINE-BY-LINE STUDY)  
+> **Location**: `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md`  
 > **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568) | Antigravity Autonomous Decision Desk  
 > **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD).  
-> **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
-> **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists `[ ]`.  
-> **Mandatory Foundation & Compendiums (MUST READ Before Any Trade Staging)**:
-> - [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Canonical 36-Feed Parquet Data Lake (`Data/feeds/*.parquet` & `Data/metadata/`).
-> - [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (**MUST READ** — Fatal Sub-ATR Noise Stops, Value Area Misplacements, Lot-Size Inflation & Post-Mortem Autopsy).
-> - [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) (**MUST READ** — Row-by-Row 35-Feed Deep Questioning Engine & Real-World Pitfall Avoidance Directive).
-> **Standard Council Prompt Templates**:
-> - [`ARENA_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_AI_STANDARD_PROMPT_TEMPLATE.md) (GPT-5.4 Astra Frontier Model via Chrome CDP Port 9222)
-> - [`Z_AI_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Z_AI_STANDARD_PROMPT_TEMPLATE.md) (GLM-5.3-Flash / Claude 3.7 Sonnet Sovereign Adversarial Arbiter via Chrome CDP Port 9222)
-> - [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md) (4-Quant Subagent Roles: Role A, B, C, D)  
-> **Cadence & Separation**: Clean 20-Minute Relative Post-Completion Separation (`T_finish + 20 min`) between completed Cycle X and Cycle X+1 trigger, enforced via `schedule(DurationSeconds=1200)`.  
-> **Token Preservation Rule**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<symbol/concept>"` FIRST before reading large code files.  
-> **Strict Joint-Completion & Hardware Health Invariant (Operator Mandate)**: A cycle is NEVER completed upon prompt dispatch. A cycle is marked officially **FINISHED** only when:
->    1. **ALL THREE entities complete processing**: (1) Antigravity 4-Quant Subagents, (2) Arena.ai Frontier Council (GPT-5.4 Astra), and (3) Z.ai Sovereign Council (GLM-5.3-Flash), with their markdown responses harvested into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`.
->    2. **Mandatory RAM & CPU Optimization**: Execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1` to prune zombie processes, trim working sets, and reclaim physical RAM below 75%.
->    3. **20-Minute Relative Post-Completion Separation**: The difference between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1,200 seconds).
-> **Dynamic Capacity & Auto-Pull Invariant (Operator Mandate)**:
->    - **Filled Positions**: Strictly capped at **4 active running positions** (`len(positions) <= 4`).
->    - **Resting Limit Orders**: Unconstrained count **N** staged at high-confluence institutional orderbook shelves.
->    - **Auto-Pull Enforcement**: The instant filled positions reaches **4**, the supervisor daemon (`Terminal/dynamic_position_supervisor.py`) automatically cancels/pulls ALL remaining resting limit orders to guarantee zero 5th-fill risk.
->    - **Slot Re-opening**: When any position closes (TP or SL), capacity re-opens and limits are re-staged.
+> **INVIOLABLE OPERATOR MANDATE (LINE-BY-LINE STUDY & PARQUET NARRATIVE)**:
+> Whenever this document is referred to or triggered, the coordinator and all subagents **MUST READ IT LINE-BY-LINE**, along with all referenced foundational documents line-by-line. Furthermore, the desk is **STRICTLY MANDATED TO READ EACH PARQUET FILE IN DATA/FEEDS TO BUILD A LOGICAL, DATA-DRIVEN NARRATIVE BEFORE IDENTIFYING TRADES**. For every potential trade or stand-aside decision, print the exact data-driven and microstructure reason behind the trade. The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
+> **STRICT COMPLETE-UNIVERSE SCAN DIRECTIVE (ALL 157 TRADABLE ASSETS)**: The desk is STRICTLY FORBIDDEN from maintaining crypto-only tunnel vision or limiting scanning to a handful of symbols. The scanner MUST evaluate **ALL 157 TRADABLE ASSETS ACROSS OUR COMPLETE UNIVERSE** (all Metals, Indices, Forex Majors/Crosses, Commodities, and Crypto Perpetuals). Mathematical confluence alone determines candidate ranking.  
 
 ---
 
-## 🚨 MANDATORY QUANT FLEET DISPATCH OR IN-CONTEXT EXECUTION PIVOT
+## 📚 MANDATORY COMPANION COMPENDIUMS (MUST READ LINE-BY-LINE)
 
-To prevent token exhaustion, 429 rate limit exceptions, or system bloat, the autonomous desk supports **TWO AUTHORIZED QUANT MODES**:
+Before staging, evaluating, or punching ANY order on MetaTrader 5, the coordinator and all subagents MUST systematically read and cross-verify line-by-line against these core compendiums:
 
-1. **Mode 1 (Full Autonomous Parallel Swarm)**:
-   - When API quota permits, physically dispatch all 4 subagents via `invoke_subagent` (`Model='flash'`):
-     * **Role A**: Statistical Regime, Volatility Diffusion & Market Mechanics Quant
-     * **Role B**: Orderflow, Microstructure, Liquidation & Tape Exhaustion Specialist
-     * **Role C**: Convex Position Manager, Risk Engineer & Solvency Gatekeeper
-     * **Role D**: Auction Market Structure, Relative Friction & Session Clock Arbitrageur
-2. **Mode 2 (In-Context Unified Sequential Processing — Token Preservation Pivot)**:
-   - When requested by the operator or when conserving tokens, Antigravity executes all 4 institutional roles (Role A, B, C, D) **directly in-context** within a single structured response, following the exact prompts, formulas, and JSON schemas in `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md`.
-   - Guarantees 100% mathematical fidelity, zero API quota saturation, zero 429 dropouts, and instant cross-role synthesis.
-
----
-
-## 🧠 THE CANONICAL WAKE-UP INQUEST: 9 MANDATORY SELF-INTERROGATION GATEWAYS
-
-Before evaluating data, touching code, or dispatching orders, the coordinator and all subagents MUST systematically self-interrogate through these 9 non-bypassable gateways:
-
-### Gateway 0: Automated 36-Feed Parquet Data Lake Quality & Per-Feed Freshness (< 5.0 Min) Audit
-- **Verification Criteria**:
-  * Total Feeds: 36 canonical production Parquet files present and readable in `Data/feeds/*.parquet`. Zero Excel dependencies.
-  * Metadata Stamping: Verified schema metadata stamped with current cycle UTC and IST timestamps via `Terminal/Data_Factory/stamp_all_parquet_feeds.py`.
-  * Freshness Target: Every dynamic feed must be `< 5.0 minutes` old in IST/UTC.
-  * Scorecard: Verified live age and row counts in `Data/metadata/parquet_all_feeds_checklist.json`.
-- **Fail-Closed Gate**: If any critical operational feed is corrupted or stale, trading is frozen in 100% Cash Defense until the pipeline refreshes.
-
-### Gateway 1: Mission, Runway & Macro Clock
-- **Primary Target**: Pass Phase 1 of Blueberry Markets evaluation (#5064568) by reaching **5,500.00 USD** equity.
-- **Dollar Bridge**: Distance = 5,500.00 USD - Current Equity (4,846.32 USD) = **653.68 USD**.
-- **Macro Blackout & Session Clock**: Check `Data/macro_calendar.json` and Sheet 28 (`19_Calendar.parquet`) for Tier-1 macroeconomic releases within +/-30 minutes. Enforce the strict **21:15–22:30 UTC interbank FX rollover spread expansion embargo**.
-
-### Gateway 2: Capital Floor & Solvency Sentry
-- **Live Baseline**: Realized Balance = **4,846.32 USD** | Equity = **4,846.32 USD** | Margin Used = **0.00 USD**.
-- **Inviolable Triple Floor Governance**:
-  * Hard Floor: **4,775.00 USD** (Cushion: **+71.32 USD**).
-  * Operating Defense Buffer: **4,795.00 USD** (Cushion: **+51.32 USD**).
-  * Stricter Kernel Admission Floor: **4,795.00 USD** (Cushion: **+51.32 USD**).
-  * Global Contingency Reserve: **2.00 USD** (deducted ex-ante).
-  * Net Realized Admission Headroom: **+49.32 USD**.
-- **Joint Stressed Solvency Constraint**:
-  `min(Balance, Equity) - sum(1.25 * NominalLoss_i + 2.00 USD) - 2.00 USD >= 4,795.00 USD`.
-
-### Gateway 3: Contingent Capacity & Tier Allocation
-- **Tier 1 Standard (ACTIVE)**: 4,795.00 – 4,850.00 USD -> Nominal risk 10.00–12.00 USD per ticket.
-- **Tier 2 Expansion**: Strictly unlocked at Realized Balance > 4,850.00 USD -> Nominal risk 15.00–25.00 USD per ticket.
-- **Max Contingent Slots**: At most **2 independent, non-correlated tickets** across the entire universe, counting filled positions plus resting pending orders.
-
-### Gateway 4: Active Running Positions Re-Evaluation & Dynamic Ratchets
-- **Floating P&L & R0 Excursion**: `R = (Current Market Price - Entry Price) / R0`.
-- **Dynamic Ratchet Execution**:
-  * **Phase Early-BE (+0.75R0 to +0.80R0)**: Move Stop Loss to `Entry + 0.15 * R0` immediately.
-  * **Phase 1 (+1.50R0)**: Move Stop Loss to `Entry + 0.80 * R0`.
-  * **Take Profit Target (+2.50R0)**: Front-run opposing high-density liquidation magnet by 5–10 bps.
-  * **Time Decay Rule**: Exit at market if trade age > 24 bars (6 hours) and gain < +0.20R0.
-
-### Gateway 5: Resting Limit Orders Structural, Liquidation & Microstructure Sentry
-- **Active Orders Sentry**:
-  1. **Ticket #19329907 (`BNBUSD.p` BUY_LIMIT 3.00 lots @ 736.25)**: Backed by resting bid wall > 120K USD (tau >= 210s), 0.786 Fibonacci shelf, Short Max Pain magnet at 757.79. Consensus: **PREVAIL / HOLD RESTING**.
-  2. **Ticket #19329908 (`EURUSD.pi` SELL_LIMIT 0.10 lot @ 1.12065)**: Market price (1.11732) traded below TP (1.11760). Alpha exhausted. Approaching 21:15–22:30 UTC rollover window. Consensus: **PRUNE / CANCEL IMMEDIATELY** (releases 16.98 USD stressed risk).
-  3. **Ticket #19330613 (`ETHUSD.pi` SELL_LIMIT 0.50 lot @ 2,333.50)**: Backed by footprint absorption at 2,329.20, cumulative delta -10.89M USD, Long Max Pain magnet at 2,285.66 USD. Aligned with +2SD VWAP boundary (2,333.52). Consensus: **PREVAIL / HOLD RESTING**.
-
-### Gateway 6: Candidate Formulation & 5-Pillar Confluence Pipeline
-- **Mandatory Pre-Candidate Failure Check (MUST READ Before Order Staging)**:
-  * Cross-examine every prospective setup against the 10 fatal traps in [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (strictly forbid sub-ATR noise stops, value area balance misplacements, lot-size inflation, and unaligned limits lacking resting whale backing).
-  * Systematically interrogate all 35 feeds using the concrete reasoning questions in [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md). If any feed triggers an invalidation answer, fail-closed into 100% Cash Defense.
-- **Dynamic Spread Friction Budgeting**: `Spread Points / TP Distance Points <= 15.0%`.
-- **5-Pillar Confluence Stack**:
-  1. Dynamic spread friction gate passed (Efficiency Ratio <= 15%).
-  2. Multi-horizon taker CVD delta divergence/absorption (`zc_div > 0.8`, Spot > 0, Futures < 0).
-  3. Auction location: Model 1 Extreme Mean Reversion (|Z| >= 2.0 to 3.5 SD) sweeping liquidation pools OR Model 2 Trend Pullback into Golden Zone [0.618 GP, 0.702 OTE] / Fib-Prime EMA 34/89 shelf.
-  4. Verified structural backing: Resting whale wall >= 100K USD (persistence >= 180s) or VPOC/EMA shelf.
-  5. Macro clearance (zero Tier-1 event blackout).
-
-### Gateway 7: 100% Pure Parquet Data Lake Integrity Audit
-- **Master Data Warehouse**: `Data/feeds/*.parquet` (36 canonical feeds).
-- **Zero Formula Errors, Zero Nulls, Monotonic Timestamps**.
-- **Continuous Pipeline Daemon (`task-141945`)**: Cycling with IP rotation and metadata stamping.
-
-### Gateway 8: Hardware Health, Background Daemons & Workspace Hygiene
-- **RAM Check**: RAM usage <= 75%. If not, run `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`.
-- **Verify Core Persistent Background Tasks in Antigravity Task Manager**:
-  1. Daemon 1: Autonomous Telemetry Git Sync Daemon (`autonomous_telemetry_git_daemon.py --interval 60`, `isDaemon=true`)
-  2. Daemon 2: Gemini Web2API Council Daemon (port 8081, `isDaemon=true`)
-  3. Daemon 3: Graphify AST Watcher Daemon (`run_graphify_watcher.py`, `isDaemon=true`)
-  4. Daemon 4: Pipeline Continuous Daemon (`run_pipeline_continuous_daemon.py --gap 180`, `isDaemon=true`)
-  5. Daemon 5: Dual AI Completion & Tab Refresh Daemon (`dual_completion_daemon.py --daemon`, `isDaemon=true`)
-  6. Daemon 6: Dynamic Post-Cycle Stabilization Timer (`schedule` relative seconds, chaining next cycle)
-  7. Daemon 7: Standing Watchdog Cron (`schedule` cron `0,30 * * * *`, `isDaemon=true`, waker at :00 and :30)
-- **Zero Scratch Litter**: Prune all temporary scripts in `scratch/` immediately after verification.
-- **Turn Ledger Append**: Append turn record to `.agents/memory/session_chat_history.md`.
+1. **[`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md)**:
+   - **MUST READ LINE-BY-LINE**: Forensic post-mortem of losing trades (`SOLUSD.p Ticket #19174858` -$17.00 USD and `NZDUSD.pi Ticket #19244087` -$18.63 USD).
+   - Inviolable prohibitions against sub-ATR noise stops, placing stops inside Value Area balance, lot-size inflation to fit artificial micro-stops, ghost whale walls (orderbook polarity inversion), and catching unabsorbed CVD waterfalls.
+2. **[`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md)**:
+   - **MUST READ LINE-BY-LINE**: Exhaustive 35-Feed Row-by-Row & Column-by-Column Questioning Engine.
+   - For every prospective candidate, explicitly articulate the answers to the real-world thinking questions across all 4 data lake clusters (Macro/ETF, Derivatives/Regime, Liquidations/Stop Cascades, Depth/CVD/Footprint).
+3. **[`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)**:
+   - Canonical 12-Step Quantitative Standard Operating Procedure (SOP).
+4. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md)**:
+   - Active account challenge contract and risk budget boundaries.
 
 ---
 
-## 🔄 THE 11-STEP JOINT-COMPLETION WAKE-UP SPRINT (STEPS 0–10)
+## 🏛️ PART 1: THE COMPLETE MULTI-ASSET TRADING UNIVERSE (ALL 157 ASSETS SCANNED)
+
+The desk scans the entire available universe on Blueberry Markets MT5 (#5064568) and all 18 Binance Perpetuals without arbitrary omissions, pre-filtering, or cherry-picking:
 
 ```mermaid
 flowchart TD
-    S0["Step 0: Open Immutable Cycle Envelope<br/>(Data/cycle_envelope.json & Hash Digest)"] --> S1["Step 1: Parquet Data Lake & Freshness Scorecard<br/>(36 Feeds < 5.0m Fresh, Metadata Stamped)"] --> S2["Step 2: MT5 Account & Triple Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 / Kernel 4,795 USD)"]
-    S2 --> S3["Step 3: Active Position & Resting Limit Order Audit<br/>(Ratchet Sentry / Prune Expired Tickets)"]
-    S3 --> S4["Step 4: 156-Asset Scanner & Dynamic Friction Radar<br/>(Spread / TP <= 15% | All 6 Asset Classes)"]
-    S4 --> S5["Step 5: Quad-Council Initiation<br/>(Swarm Mode 1 or In-Context Mode 2 + Arena.ai + Z.ai + Argon High)"]
-    S5 --> S6["Step 6: Completion Wait & Harvesting Gate<br/>(dual_completion_daemon.py & 5m CDP Tab Refresh)"]
-    S6 --> S7["Step 7: Forensic Cross-Verification & Dialectic Debate<br/>(Internal Quant Findings vs Arena.ai & Z.ai)"]
-    S7 --> S8["Step 8: Error Correction & Consensus Ratification<br/>(Broker-Grid Sizing & Hard Authorization)"]
+    Universe["🏛️ COMPLETE TRADING UNIVERSE (ALL 157 ASSETS SCANNED)"]
+    M["🥇 ALL Precious Metals<br/>XAUUSD.pi (Gold, 0.23 bps) | XAGUSD.pi (Silver, 1.20 bps)<br/>XPTUSD.p (Platinum) | XPDUSD.p (Palladium)"]
+    I["📈 ALL Global Equity Indices<br/>NAS100.p (0.43 bps) | DJ30.p / US30.pi (0.30 bps)<br/>SPX500.pi / US500.p (0.48 bps) | GER40.p (0.43 bps)<br/>UK100.p | JP225.p | AUS200.p | ESTX50.p | HK50.p"]
+    F["💱 ALL Foreign Exchange (Majors & Liquid Crosses)<br/>USDJPY.pi (0.06 bps) | GBPUSD.pi (0.08 bps) | EURUSD.pi (0.09 bps)<br/>AUDUSD.pi (0.14 bps) | USDCAD.pi (0.14 bps) | CHFJPY.pi (0.16 bps)<br/>EURJPY.pi (0.17 bps) | EURGBP.pi (0.24 bps) | GBPAUD.pi (0.26 bps)<br/>AUDJPY.pi (0.27 bps) | NZDUSD.pi (0.35 bps) | All 60+ FX Crosses<br/>(Strict 21:15–22:30 UTC Rollover Spread Embargo)"]
+    C["⚡ ALL Crypto Perpetuals & CFDs (18 Binance + MT5)<br/>BTCUSD.pi (1.93 bps) | ETHUSD.pi (3.10 bps) | BNBUSD.p (8.50 bps)<br/>SOLUSD.p (21.8 bps) | XRPUSD.pi | BCHUSD.p | LTCUSD.pi<br/>DOTUSD.pi | ADAUSD.p | TRXUSD.p | DOGEUSD.p | LINKUSD.p<br/>AVAXUSD.p | SUIUSD.p | NEARUSD.p | APTUSD.p | OPUSD.p | ARBUSD.p"]
+    E["🛢️ ALL Commodities & Energy<br/>CL.p / WTI.p (Crude Oil) | BRENT.p (Brent Oil)<br/>NG.p (Natural Gas) | COPPER.p"]
+
+    Universe --> M
+    Universe --> I
+    Universe --> F
+    Universe --> C
+    Universe --> E
+```
+
+### Full-Universe Dynamic Scanning & Ranking Protocol:
+1. **Zero Ex-Ante Asset Disqualification**: Every single asset across all 157 symbols is evaluated dynamically on live tick and bar data every cycle.
+2. **Quantitative Metrics Selection**: Assets are ranked dynamically by:
+   - **Transaction Friction Efficiency**: `Spread Points / TP Distance Points <= 15.0%`.
+   - **Taker Orderflow & CVD Divergence**: Multi-horizon delta absorption (`zc_div > 0.8`, Spot > 0, Futures < 0).
+   - **Auction Market Structure Location**: Stretch relative to session VWAP (|Z| >= 2.0 to 3.5 SD for Model 1) or pullback to Golden Zone [0.618 GP, 0.702 OTE] / Fib-Prime EMA shelf for Model 2.
+   - **Resting Liquidity Backing**: Verified resting institutional whale bunker (> 100K USD, persistence >= 180s).
+   - **Macro Clearance**: Clear of Tier-1 news releases and outside the 21:15–22:30 UTC FX rollover window.
+
+---
+
+## 📈 PART 2: MANDATORY PARQUET FEED READING & DATA-DRIVEN TRADE NARRATIVE
+
+The desk is strictly forbidden from evaluating setups based on surface summaries or isolated indicators. On EVERY cycle:
+1. **Mandatory Line-by-Line Feed Analysis**: The desk physically reads and analyzes each canonical production Parquet file (`Data/feeds/*.parquet`).
+2. **Logical Synthesis Across 4 Clusters**:
+   - **Cluster A (Macro & ETF Flows)**: Feeds 00, 01, 02, 19, 28 -> Establishes broad capital direction, liquidity conditions, and macro news blackouts.
+   - **Cluster B (Derivatives Skew & Sentiment)**: Feeds 03, 04, 05, 07, 08, 09, 11, 20 -> Measures funding friction, open interest buildup, Long/Short ratio crowding, and technical trend regimes.
+   - **Cluster C (Liquidations & Stop Cascades)**: Feeds 10, 12, 13, 14, 15, 16, 17, 22, 23, 35 -> Maps structural liquidation magnets, 24H/48H/3D/7D Max Pain levels, and retail stop-loss sweep zones.
+   - **Cluster D (Depth, Whales, CVD & Footprint)**: Feeds 06, 18, 21, 25, 26, 27 -> Verifies resting whale wall persistence (> 100K USD, tau >= 180s), multi-timeframe taker CVD delta divergence, and footprint absorption prints.
+3. **Print Logical Reason Behind Trade**: For every staged order or stand-aside decision, print the exact quantitative logic, citing the contributing feeds and empirical numbers.
+
+---
+
+## ⚡ PART 3: DUAL COMPLETION AUTO-WAKEUP ARCHITECTURE & 20-MINUTE RELATIVE REST
+
+The desk operates on a strictly event-driven, token-preserving autonomous lifecycle:
+
+```mermaid
+flowchart TD
+    CycleStart["Cycle N Dispatch<br/>(Arena.ai + Z.ai + Web2API)"] --> WaitDaemon["dual_completion_daemon.py --wait<br/>(IsDaemon=false, blocks asynchronously)"]
+    WaitDaemon --> BothDone{"Both Arena.ai AND Z.ai Complete?"}
+    BothDone -- "No (Streaming)" --> WaitDaemon
+    BothDone -- "YES (Finished)" --> Harvest["Auto-Harvest Markdown Outputs<br/>docs/trade_plans/ARENA_LATEST_RAW.md<br/>docs/trade_plans/ZAI_LATEST_RAW.md"]
+    Harvest --> Wakeup["Exit Code 0 -> Reactive Antigravity Wakeup<br/>(System resumes automatically)"]
+    Wakeup --> Synthesis["Forensic Cross-Verification & Live MT5 Sizing<br/>(Sprint Steps 7-9)"]
+    Synthesis --> RestTimer["Arm 20-Minute Relative Rest Interval<br/>schedule(DurationSeconds=1200)<br/>T_next = T_finish + 20 min"]
+    RestTimer --> NextCycle["Cycle N+1 Autonomous Wakeup"]
+```
+
+### Auto-Wakeup Architecture Fixed & Enforced:
+1. **The Wakeup Mechanism**: Antigravity is woken reactively by a terminating background command. Launching `dual_completion_daemon.py` with `IsDaemon=false` and `--timeout 1200` means that the instant both models finish writing, the script exits with code 0. This exit event delivers a high-priority system wake-up message to Antigravity without requiring manual polling!
+2. **Dual Initial Probe Logic**: `dual_completion_daemon.py` checks both Arena.ai (`button[aria-label="Copy"]` or complete text) and Z.ai (Send icon ready) on initial boot. If both finished while Antigravity was busy, it harvests immediately and exits in under 1 second.
+3. **Mandatory 20-Minute Relative Rest**: Cycle N+1 NEVER begins immediately after Cycle N finishes. A mandatory 1,200-second (20-minute) quiet interval is enforced via `schedule(DurationSeconds=1200)` so market bars develop and orderbooks refresh.
+
+---
+
+## 🔄 PART 4: THE 11-STEP JOINT-COMPLETION WAKE-UP SPRINT (STEPS 0–10)
+
+Upon every autonomous wake-up, execute this 11-step sequence line-by-line:
+
+```mermaid
+flowchart TD
+    S0["Step 0: Cycle Envelope & Hash Digest<br/>(Terminal/generate_cycle_envelope.py)"] --> S1["Step 1: Parquet Data Lake & Freshness Scorecard<br/>(36 Feeds < 5.0m Fresh, Metadata Stamped)"]
+    S1 --> S2["Step 2: MT5 Account & Triple Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 / Kernel 4,795 USD)"]
+    S2 --> S3["Step 3: Active Position & Resting Limit Order Audit<br/>(Dynamic Ratchets / Prune Stale Tickets)"]
+    S3 --> S4["Step 4: Full Multi-Asset 157-Symbol Scanner<br/>(Spread / TP <= 15% across All 5 Asset Classes)"]
+    S4 --> S5["Step 5: Quad-Council Initiation<br/>(Swarm Mode 1 or In-Context Mode 2 + Arena + Z.ai + Argon)"]
+    S5 --> S6["Step 6: Completion Wait & Auto-Harvesting Gate<br/>(dual_completion_daemon.py & Chrome CDP Port 9222)"]
+    S6 --> S7["Step 7: Forensic Cross-Verification & Dialectic Debate<br/>(Cross-check Top 10 Pitfalls & 35-Feed Questions)"]
+    S7 --> S8["Step 8: Error Correction & Consensus Ratification<br/>(Broker-Grid Sizing: Reduce Lots, Never Squeeze SL)"]
     S8 --> S9["Step 9: Autonomous Live Execution on MT5<br/>(Passive Limit Punch / Ratchet / Cancel)"]
     S9 --> S10["Step 10: Validated Joint Completion & 20-Min Quiet Interval<br/>(Dynamic 1,200s Schedule Timer)"]
 ```
 
+### Step 0: Open Immutable Cycle Envelope
+- **Action**: Run `python Terminal/generate_cycle_envelope.py "Cycle <ID>"`.
+- **Verification**: Generates `Data/cycle_envelope.json` containing SHA-256 hash digests of MT5 state, feed metadata, and open tickets.
+
+### Step 1: Parquet Data Lake Quality & Freshness Scorecard (< 5.0m Target)
+- **Action**: Run `python Terminal/Data_Factory/parquet_feed_checklist_auditor.py`.
+- **Verification**: All 36 production feeds in `Data/feeds/*.parquet` verified readable, 0 nulls, monotonic timestamps, age `< 5.0m` IST. Display live scorecard table.
+- **Fail-Closed**: If any critical feed is corrupt or stale, freeze in 100% Cash Defense.
+
+### Step 2: MT5 Account, Capital Floor & Solvency Sentry
+- **Action**: Query `bridge.get_account_info()`.
+- **Verification**:
+  * Realized Balance and Floating Equity audited to the exact cent.
+  * Hard Floor Cushion: `Equity - 4,775.00 USD`.
+  * Operating Buffer Cushion: `Equity - 4,795.00 USD`.
+  * Kernel Headroom: `Equity - 4,795.00 USD - Contingency Reserve (2.00 USD)`.
+  * Stressed Loss Constraint: `min(Balance, Equity) - sum(1.25 * Risk_i + 2.00 USD) - 2.00 USD >= 4,795.00 USD`.
+
+### Step 3: Active Position Management & Resting Limit Order Audit
+- **Action**: Query `bridge.get_open_positions()` and `bridge.get_pending_orders()`.
+- **Verification**:
+  * For active positions: Calculate `R = (Price - Entry) / R0`. Apply dynamic ratchets:
+    - `+0.80R0` -> Move SL to `Entry + 0.15R0` (Breakeven lock).
+    - `+1.50R0` -> Move SL to `Entry + 0.80R0` (Profit lock).
+    - `+2.50R0` -> Take Profit front-running opposing liquidity magnet.
+    - Time Decay: Close at market if age > 24 bars (6h) and gain < +0.20R0.
+  * For resting limit orders: Verify supporting whale wall persistence (> 100K USD, tau >= 180s). Prune any stale, unbacked, or expired orders immediately.
+
+### Step 4: Full Multi-Asset 157-Symbol Scanner & Dynamic Friction Radar
+- **Action**: Scan all 157 tradable assets across Metals, Indices, Forex, Crypto, and Commodities.
+- **Verification**:
+  * Efficiency Ratio: `Spread Points / TP Distance Points <= 15.0%`.
+  * Rollover Embargo: Strict blackout on FX entries between 21:15 and 22:30 UTC.
+
+### Step 5: Quad-Council Initiation
+- **Action**: Dispatch Cycle prompt to external frontier models and internal quants:
+  * External: Arena.ai (GPT-5.4 Astra via CDP 9222) and Z.ai (GLM-5.3-Flash via CDP 9222).
+  * Auxiliary: Gemini Web2API Council on port 8081 (`gemini_web2api.py`).
+  * Internal: Swarm Mode 1 (Flash subagents) or In-Context Mode 2 (Roles A, B, C, D).
+
+### Step 6: Completion Wait & Auto-Harvesting Gate
+- **Action**: Run `python Terminal/dual_completion_daemon.py --timeout 1200` (`IsDaemon=false`).
+- **Verification**: Automatically detects when BOTH Arena.ai and Z.ai finish output generation, auto-harvests markdown files into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`, and triggers instant reactive wakeup upon process exit.
+
+### Step 7: Forensic Cross-Verification & Dialectic Debate
+- **Action**: Cross-examine external proposals against:
+  * [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) (Check for ghost walls, un-swept stop cascades, sub-ATR stops, mid-range chop, overhead blockades).
+  * [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) (Row-by-row interrogation across all 35 feeds).
+- **Verification**: Surface divergences, challenge assumptions, and reject any trade failing a safety gate.
+
+### Step 8: Error Correction & Broker-Grid Sizing
+- **Action**: Calibrate position sizing strictly to dollar risk.
+- **Rule**:
+  * **NEVER SQUEEZE THE STOP LOSS**: If placing a structural stop behind the liquidation bunker (> 0.45 ATR buffer) exceeds risk budget, **REDUCE LOT SIZE** (e.g. 0.02 -> 0.01 lot) or **STAND ASIDE**.
+  * Single slot max: 10.00–12.00 USD nominal risk. High-conviction solo: 15.00–25.00 USD max.
+
+### Step 9: Autonomous Live Execution on MT5
+- **Action**: Punch validated passive limit orders into MT5 via `Terminal/MT5_Execution_Bridge.py`.
+- **Rule**: Passive limit orders only, safely anchored behind verified institutional liquidity walls (> 100K USD, tau >= 180s). Zero marketable spread crossing.
+
+### Step 10: Validated Joint Completion & 20-Minute Quiet Interval
+- **Action**:
+  1. Record cycle completion state in `Data/cycle_state.json`.
+  2. Free RAM: `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`.
+  3. Arm the 20-minute relative rest timer: `schedule(DurationSeconds=1200)`.
+  4. Append turn record to `.agents/memory/session_chat_history.md`.
+
 ---
 
-## 🔒 PERPETUAL GOAL INVARIANTS (NEVER COMPROMISED)
+## 🛑 PERPETUAL GOAL INVARIANTS (NEVER COMPROMISED)
 
 1. **Perpetual Goal Contract**: Under NO circumstances may `<!-- GOAL_COMPLETE -->` or `<!-- GOAL_CANCELLED -->` be emitted until live equity >= 5,500.00 USD is proven on MetaTrader 5.
-2. **Inviolable Floors**: **4,775.00 USD Hard Floor** | **4,795.00 USD Operating Buffer** | **4,795.00 USD Solvency Kernel**.
+2. **Inviolable Triple Floors**: **4,775.00 USD Hard Floor** | **4,795.00 USD Operating Buffer** | **4,795.00 USD Kernel Admission Floor**.
 3. **Never Widen Stops**: Follow verified immutable R0 ledgers and ticket-specific ratchets; never loosen a protective stop.
-4. **Strict Passive Limit Posture**: Passive limit orders only, safely anchored behind verified institutional liquidity (> 100,000 USD, tau >= 180s). Zero marketable spread crossing.
-5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the joint completion lifecycle.
+4. **Strict Passive Limit Posture**: Passive limit orders only, anchored behind verified institutional liquidity. Zero aggressive spread crossing.
+5. **Zero Token Polling**: Polling loops <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the joint completion lifecycle.
 6. **Plain-Text Formatting**: Zero raw LaTeX delimiters in chat; use clean plain text and unicode.

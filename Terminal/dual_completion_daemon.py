@@ -58,20 +58,29 @@ async def probe_arena_tab(tab_ws_url: str):
             js = """
             (() => {
                 const stopBtn = document.querySelector('button[aria-label="Stop generating"], button[aria-label="Stop"]');
-                const copyBtns = Array.from(document.querySelectorAll('button[aria-label="Copy"], button:has(svg.lucide-copy)'));
-                const hasCopy = copyBtns.length > 0;
-                const yesNo = Array.from(document.querySelectorAll('button')).some(b => b.innerText.includes('Keep working') || b.innerText.includes('Yes'));
-                
-                // If Copy button exists or Yes/No exists, and there is no explicit Stop Generating button, generation is complete!
-                const isGenerating = !!stopBtn && !hasCopy;
+                const isGenerating = !!stopBtn;
                 
                 const proses = Array.from(document.querySelectorAll('.prose')).filter(p => !p.classList.contains('tiptap'));
-                const lastText = proses.length > 0 ? proses[proses.length - 1].innerText : '';
+                const lastProse = proses.length > 0 ? proses[proses.length - 1] : null;
+                const lastText = lastProse ? (lastProse.innerText || '') : '';
+                
+                // Check if the last assistant message has finished (Copy button in its parent/sibling container or terminal json)
+                let lastHasCopy = false;
+                if (lastProse) {
+                    const parent = lastProse.closest('div[class*="message"], div[class*="group"], article') || lastProse.parentElement;
+                    if (parent) {
+                        lastHasCopy = !!parent.querySelector('button[aria-label="Copy"], svg.lucide-copy');
+                    }
+                }
+                const hasTerminalJson = lastText.includes('"authorization"') || lastText.includes('"response_sha256"');
+                const isComplete = !isGenerating && (lastHasCopy || hasTerminalJson || lastText.length > 300);
+
                 return {
                     connected: true,
                     isGenerating: isGenerating,
-                    hasCopy: hasCopy,
-                    hasYesNo: yesNo,
+                    isComplete: isComplete,
+                    hasCopy: lastHasCopy,
+                    hasTerminalJson: hasTerminalJson,
                     textLen: lastText.length,
                     text: lastText
                 };
@@ -161,9 +170,24 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
     # Check if Arena is already in finished state
     if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
         astate = await probe_arena_tab(arena_tab.get("webSocketDebuggerUrl"))
-        if not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and astate.get("textLen", 0) > 300:
+        if not astate.get("isGenerating") and astate.get("isComplete") and astate.get("textLen", 0) > 1000:
+            ARENA_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
+            ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
             arena_done = True
-            print(f"[DualWatcher] Arena.ai already in completed state ({astate.get('textLen', 0):,} chars).", flush=True)
+            print(f"[DualWatcher] Arena.ai already in completed state ({astate.get('textLen', 0):,} chars) -> harvested.", flush=True)
+
+    # Check if Z.ai is already in finished state
+    if zai_tab and zai_tab.get("webSocketDebuggerUrl"):
+        zstate = await probe_zai_tab(zai_tab.get("webSocketDebuggerUrl"))
+        if not zstate.get("isGenerating") and zstate.get("hasSendReady") and zstate.get("textLen", 0) > 300:
+            ZAI_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
+            ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
+            zai_done = True
+            print(f"[DualWatcher] Z.ai already in completed state ({zstate.get('textLen', 0):,} chars) -> harvested.", flush=True)
+
+    if arena_done and zai_done:
+        print("\n🎉 BOTH ARENA.AI AND Z.AI RESPONSES COMPLETE ON INITIAL PROBE! Triggering instant unified wakeup.", flush=True)
+        return 0
 
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
@@ -179,7 +203,7 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
                 if astate.get("isGenerating"):
                     saw_arena_generating = True
                 t_len = astate.get("textLen", 0)
-                if astate.get("connected") and not astate.get("isGenerating") and (astate.get("hasCopy") or astate.get("hasYesNo")) and t_len > 300:
+                if astate.get("connected") and not astate.get("isGenerating") and astate.get("isComplete") and t_len > 1000:
                     ARENA_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                     ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                     arena_done = True
@@ -237,7 +261,7 @@ async def run_dual_daemon(poll_interval: float = 3.0, refresh_interval_s: float 
                         "has_copy_button": astate.get("hasCopy", False),
                         "checked_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     }
-                    if not arena_is_gen and t_len > 300 and t_len != last_arena_len and (astate.get("hasCopy") or astate.get("hasYesNo")):
+                    if not arena_is_gen and astate.get("isComplete") and t_len > 1000 and t_len != last_arena_len:
                         ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                         last_arena_len = t_len
                         status_payload["completed_at_utc"] = status_payload["checked_at_utc"]

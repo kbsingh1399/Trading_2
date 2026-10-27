@@ -10,6 +10,7 @@ so GitHub shows all feeds updated simultaneously ("now") with zero stale file ti
 import os
 import pathlib
 import datetime
+import time
 import pyarrow as pa
 import pyarrow.parquet as pq
 
@@ -40,7 +41,24 @@ def stamp_all_parquet_feeds(cycle_id: str = "Cycle 363"):
             new_meta[b"cycle_timestamp_utc"] = ts_utc_str.encode("utf-8")
             new_meta[b"cycle_timestamp_ist"] = ts_ist_str.encode("utf-8")
             new_table = table.replace_schema_metadata(new_meta)
-            pq.write_table(new_table, p, compression="snappy")
+            tmp_file = p.parent / f".tmp_{p.stem}_{os.getpid()}_{int(time.time()*1000)}.parquet"
+            pq.write_table(new_table, tmp_file, compression="snappy")
+            
+            replaced = False
+            for attempt in range(10):
+                try:
+                    os.replace(tmp_file, p)
+                    replaced = True
+                    break
+                except PermissionError:
+                    time.sleep(0.05 * (attempt + 1))
+            if not replaced:
+                try:
+                    tmp_file.unlink(missing_ok=True)
+                except Exception:
+                    pass
+                print(f"[Parquet Stamper] Warning: Could not replace {p.name} due to active read lock. Keeping existing file.")
+                continue
             
             # Also update metadata JSON sidecar if present
             meta_json = METADATA_DIR / f"{p.stem}.json"

@@ -39,8 +39,6 @@ def get_live_telemetry():
 
 def build_unified_prompt(cycle_id: str = "AUTO") -> str:
     template_path = ROOT / "Data" / "Manditory" / "Arena_GLM_Standard_Prompt.md"
-    if not template_path.exists():
-        template_path = ROOT / "docs" / "prompts" / "Arena_GLM_Standard_Prompt.md"
 
     if template_path.exists():
         raw_text = template_path.read_text(encoding="utf-8").strip()
