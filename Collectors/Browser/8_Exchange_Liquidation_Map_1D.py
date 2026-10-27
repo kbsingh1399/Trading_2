@@ -209,9 +209,44 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
 
         await cdp_cmd("Network.enable")
 
-        if is_ephemeral:
-            log.info("Awaiting page hydration on new tab (6s)...")
-            await asyncio.sleep(6.0)
+        log.info("Awaiting complete page readiness and initial chart data population...")
+        for p in range(40):
+            await asyncio.sleep(0.5)
+            js_check = """
+            (() => {
+                const allElements = Array.from(document.querySelectorAll('*'));
+                const header = allElements.find(el => el.children.length === 0 && (el.innerText || '').includes('Exchange Liquidation Map'));
+                if (!header) return { loaded: false };
+                let container = header.parentElement;
+                while (container && !container.querySelector('[_echarts_instance_]') && !container.querySelector('canvas')) {
+                    container = container.parentElement;
+                }
+                if (!container) return { loaded: false };
+                const echartsDom = container.querySelector('[_echarts_instance_]');
+                if (!echartsDom) return { loaded: false };
+                const fiberKey = Object.keys(echartsDom).find(k => k.startsWith('__reactFiber$') || k.startsWith('__reactInternalInstance$'));
+                let dataLen = 0;
+                if (fiberKey && echartsDom[fiberKey]) {
+                    let f = echartsDom[fiberKey];
+                    while (f) {
+                        const p = f.memoizedProps || {};
+                        if (p.option && p.option.xAxis && p.option.xAxis[0] && p.option.xAxis[0].data) {
+                            dataLen = p.option.xAxis[0].data.length;
+                            break;
+                        }
+                        f = f.return;
+                    }
+                }
+                return {
+                    loaded: document.readyState === 'complete' && dataLen > 0,
+                    dataLen: dataLen
+                };
+            })()
+            """
+            chk = await cdp_cmd("Runtime.evaluate", {"expression": js_check, "returnByValue": True})
+            if chk.get("result", {}).get("value", {}).get("loaded"):
+                log.info(f"Page & baseline chart fully loaded with {chk.get('result', {}).get('value', {}).get('dataLen')} data points.")
+                break
 
         # 1. Set timeframe to '1 day' on bottom chart
         js_set_tf = f"""
@@ -319,53 +354,49 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
             search_term = asset_registry.resolve_coinglass_search_term(sym) if asset_registry else sym
             log.info(f"[{sym_idx+1}/{len(symbols)}] Harvesting 1D Liquidation Map for {sym} (Search: '{search_term}', Ref ~${expected_price:,.2f})...")
 
-            # 1. Type and click symbol
-            js_select = f"""
-            (() => {{
+            # 1. Open symbol dropdown, wait for options list to populate, and select target symbol
+            js_open_dropdown = """
+            (() => {
                 const allElements = Array.from(document.querySelectorAll('*'));
                 const header = allElements.find(el => el.children.length === 0 && (el.innerText || '').includes('Exchange Liquidation Map'));
                 let container = header.parentElement;
-                while (container && !container.querySelector('[_echarts_instance_]') && !container.querySelector('canvas')) {{
+                while (container && !container.querySelector('[_echarts_instance_]') && !container.querySelector('canvas')) {
                     container = container.parentElement;
-                }}
-                const symInput = container.querySelector('input.MuiAutocomplete-input');
-                if (!symInput) return {{ error: 'No symInput' }};
-                
-                symInput.focus();
-                symInput.click();
-                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                nativeSetter.call(symInput, '{search_term}');
-                symInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                return {{ listId: symInput.getAttribute('aria-controls') }};
-            }})()
+                }
+                const popupBtn = container.querySelector('.MuiAutocomplete-popupIndicator, button[title="Open"]');
+                if (popupBtn) popupBtn.click();
+                return { opened: true };
+            })()
             """
-            sel_res = await cdp_cmd("Runtime.evaluate", {"expression": js_select, "returnByValue": True})
-            list_id = sel_res.get("result", {}).get("value", {}).get("listId")
-            await asyncio.sleep(0.3)
+            await cdp_cmd("Runtime.evaluate", {"expression": js_open_dropdown, "returnByValue": True})
 
-            js_click = f"""
-            (() => {{
-                let listbox = document.getElementById("{list_id}");
-                if (!listbox) listbox = document.querySelector('.MuiAutocomplete-listbox');
-                if (!listbox) return {{ error: 'No listbox' }};
-                const searchTarget = '{search_term}'.toUpperCase();
-                const symTarget = '{sym}'.toUpperCase();
-                const opts = Array.from(listbox.querySelectorAll('[role="option"], li'));
-                let opt = opts.find(el => el.innerText.trim().toUpperCase() === symTarget || el.innerText.trim().toUpperCase() === searchTarget);
-                if (!opt) {{
-                    opt = opts.find(el => el.innerText.trim().toUpperCase().startsWith(symTarget) || el.innerText.trim().toUpperCase().startsWith(searchTarget));
-                }}
-                if (!opt) {{
-                    opt = opts.find(el => el.innerText.trim().toUpperCase().includes(symTarget) || el.innerText.trim().toUpperCase().includes(searchTarget));
-                }}
-                if (opt) {{
-                    opt.click();
-                    return {{ clicked: true, text: opt.innerText.trim() }};
-                }}
-                return {{ error: 'Option not found' }};
-            }})()
-            """
-            await cdp_cmd("Runtime.evaluate", {"expression": js_click, "returnByValue": True})
+            target_upper = sym.upper()
+            search_upper = search_term.upper()
+            clicked_option = False
+            for p in range(25):
+                await asyncio.sleep(0.2)
+                js_click_opt = f"""
+                (() => {{
+                    const listboxes = Array.from(document.querySelectorAll('[role="listbox"]'));
+                    for (const lb of listboxes) {{
+                        const opts = Array.from(lb.querySelectorAll('[role="option"], li'));
+                        if (opts.length > 50) {{
+                            let opt = opts.find(o => o.innerText.trim().toUpperCase() === '{target_upper}' || o.innerText.trim().toUpperCase() === '{search_upper}');
+                            if (!opt) opt = opts.find(o => o.innerText.trim().toUpperCase().startsWith('{target_upper}') || o.innerText.trim().toUpperCase().startsWith('{search_upper}'));
+                            if (!opt) opt = opts.find(o => o.innerText.trim().toUpperCase().includes('{target_upper}') || o.innerText.trim().toUpperCase().includes('{search_upper}'));
+                            if (opt) {{
+                                opt.click();
+                                return {{ clicked: true, text: opt.innerText.trim() }};
+                            }}
+                        }}
+                    }}
+                    return {{ clicked: false }};
+                }})()
+                """
+                c_res = await cdp_cmd("Runtime.evaluate", {"expression": js_click_opt, "returnByValue": True})
+                if c_res.get("result", {}).get("value", {}).get("clicked"):
+                    clicked_option = True
+                    break
 
             # 2. Verification loop: poll until price matches expected reference bounds and non-zero liquidation values exist
             harvested_data = None

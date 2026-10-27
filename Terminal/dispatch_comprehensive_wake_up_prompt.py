@@ -329,7 +329,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("")
     lines.append("2. Canonical Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
     lines.append("3. Standardized Trading Decision Chain SOP: docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (Mandatory Non-Bypassable 10-Step Chain)")
-    lines.append("4. Autonomous Wake-Up Checklist: docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md")
+    lines.append("4. Autonomous Wake-Up Checklist: Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md")
     lines.append("5. Live Order Desk & Session Context: docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md & .agents/rules/ACTIVE_CONTEXT.md")
     lines.append("")
 

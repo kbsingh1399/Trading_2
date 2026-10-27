@@ -44,8 +44,8 @@ if str(ROOT) not in sys.path:
 
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 
-HARD_FLOOR = 4600.00
-BUFFER_FLOOR = 4650.00
+HARD_FLOOR = 4775.00
+BUFFER_FLOOR = 4795.00
 ADMISSION_FLOOR = 4795.00
 
 def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
@@ -374,7 +374,7 @@ def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
     }
 
 if __name__ == "__main__":
-    risk_param = 18.00
+    risk_param = 10.00
     if len(sys.argv) > 1:
         try:
             risk_param = float(sys.argv[1])

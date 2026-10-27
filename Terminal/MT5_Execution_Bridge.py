@@ -742,17 +742,26 @@ class MT5ExecutionBridge:
         if min(abs(price-sl), abs(tp-price))+point*1e-6 < min_distance:
             return {"success": False, "retcode": 10016, "error": "pending_bracket_inside_broker_stops_level"}
         tick_age = self.tick_age_seconds(tick, symbol)
-        if tick_age is None or tick_age > 2.0:
-            for _ in range(4):
-                time.sleep(0.15)
+        if tick_age is None or tick_age > 5.0:
+            for _ in range(8):
+                time.sleep(0.25)
                 new_tick = mt5.symbol_info_tick(symbol)
                 if new_tick:
                     tick = new_tick
                     tick_age = self.tick_age_seconds(tick, symbol)
-                    if tick_age is not None and tick_age <= 2.0:
+                    if tick_age is not None and tick_age <= 5.0:
                         break
-        if tick_age is None or tick_age > 2.0:
+        if tick_age is None or tick_age > 5.0:
             return {"success": False, "error": "pending_quote_clock_unverified_or_stale", "age_ms": None if tick_age is None else tick_age * 1000}
+        # Re-verify spread and passivity on the refreshed tick to prevent toxic aggressive fills
+        spread_points = max(0.0, float(tick.ask - tick.bid) / point)
+        if max_spread_points is not None and spread_points > float(max_spread_points):
+            return {"success": False, "error": f"Spread guard on refreshed quote: {spread_points:.1f} > {max_spread_points} points"}
+        if passive_only:
+            if is_long and price >= float(tick.bid):
+                return {"success": False, "error": f"Buy limit {price} crosses refreshed ask/bid (must rest strictly below bid {tick.bid})"}
+            if not is_long and price <= float(tick.ask):
+                return {"success": False, "error": f"Sell limit {price} crosses refreshed bid/ask (must rest strictly above ask {tick.ask})"}
         normalized = self._floor_volume(volume, info.volume_step, info.volume_min, info.volume_max)
         if normalized <= 0.0:
             return {"success": False, "error": "Requested volume is below broker minimum"}
@@ -784,7 +793,7 @@ class MT5ExecutionBridge:
             if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
                 return {"success": False, "retcode": getattr(checked, "retcode", None), "error": "pending_order_check_rejected:"+str(getattr(checked, "comment", mt5.last_error()))}
         age = self.tick_age_seconds(tick, symbol)
-        if age is None or age > 2.0:
+        if age is None or age > 5.0:
             return {"success": False, "error": "pre_send_quote_stale_or_clock_unverified"}
         sampled_at = time.monotonic()
         try:

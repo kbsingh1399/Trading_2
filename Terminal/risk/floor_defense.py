@@ -72,7 +72,7 @@ class FloorDefense:
         buffer: float     = BUFFER_USD,
         min_risk: float   = MIN_RISK_USD,
         max_risk: float   = MAX_RISK_USD,
-        max_concurrent: int = 2,  # Tier 2 House Money cap
+        max_concurrent: int = 4,  # Tier 2 House Money cap
     ):
         self.hard_floor    = hard_floor
         self.buffer        = buffer
@@ -219,17 +219,12 @@ class FloorDefense:
         return "other"
 
     def _cluster_check(self, proposed: str, open_syms: List[str]) -> Optional[str]:
-        """Return a rejection reason if proposed symbol is in the same cluster as an open position."""
-        pc = self.cluster_of(proposed)
-        if pc == "other":
-            return None   # unknown — no veto, let qualitative review decide
+        """Check for duplicate symbol orders. Flexible multi-asset combinations
+        (all 4 crypto, 1 crypto + 2 forex + 1 metal, etc.) are fully permitted up to max_concurrent."""
+        prop_clean = proposed.strip().upper()
         for sym in open_syms:
-            ec = self.cluster_of(sym)
-            if ec == pc:
-                return (
-                    f"correlation_cluster_veto: {proposed} (cluster={pc}) conflicts "
-                    f"with open position {sym} (same cluster)"
-                )
+            if sym.strip().upper() == prop_clean:
+                return f"duplicate_symbol_veto: {proposed} already has an active order/position"
         return None
 
     # ------------------------------------------------------------------
