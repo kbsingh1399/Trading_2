@@ -240,23 +240,16 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         logger.warning("git fetch failed: %s", err)
         return False
 
-    local_code, local_rev, _ = run_cmd(["git", "rev-parse", "HEAD"])
-    remote_code, remote_rev, _ = run_cmd(["git", "rev-parse", f"origin/{BRANCH_NAME}"])
-    if not local_code and not remote_code and local_rev and remote_rev and local_rev != remote_rev:
-        code_ancestor, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH_NAME}"])
-        if code_ancestor == 0:
-            code, _, err = run_cmd(["git", "merge", "--ff-only", f"origin/{BRANCH_NAME}"])
-            if code:
-                logger.warning("Safe fast-forward merge failed: %s", err)
-
-    # Operator Mandate: Full workspace replica sync (stage ALL changes)
+    # Operator Mandate: Full workspace replica sync (stage ALL changes but NEVER delete Data/feeds)
     try:
         from Terminal.Data_Factory.stamp_all_parquet_feeds import stamp_all_parquet_feeds
         stamp_all_parquet_feeds()
     except Exception as stamp_exc:
         logger.debug("Parquet stamp notice in git daemon: %s", stamp_exc)
 
-    run_cmd(["git", "add", "-A"])
+    # Protect Data/feeds: never allow git daemon to stage feed removals
+    run_cmd(["git", "add", "--ignore-removal", "Data/feeds", "Data/metadata"])
+    run_cmd(["git", "add", "docs/telemetry", "docs/trade_plans", "Data/*.json"])
 
     code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
     if modified_output:
