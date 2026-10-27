@@ -13,14 +13,15 @@
 - **Active Running Positions**: **2 Positions (Model 1 Mean Reversion & Model 2 Pullback)**:
   - Ticket `#19376039`: `USDJPY.pi` SELL `0.08 lots` @ `157.850` | Current: `157.908` | PnL: **-4.66 USD** | SL: `158.024` | TP: `157.450` (Nominal Risk: `8.81 USD`)
   - Ticket `#19379711`: `BTCUSD.pi` SELL `0.02 lots` @ `80560.00` | Current: `80504.00` | PnL: **+1.59 USD (IN PROFIT)** | SL: `80860.00` | TP: `79910.00` (Nominal Risk: `6.00 USD`)
-- **Active Pending Limit Orders**: **0 Resting Orders** (Pruned all 3 resting limits #19383569, #19378313, #19381300 per adversarial AI consensus to eliminate stressed insolvency risk & structural VAH sweep traps).
-- **Inviolable Triple Floor Governance**:
+- **Active Pending Limit Orders**: **3 Resting Maker Limit Orders (Strict 4-Filled Auto-Pull Invariant)**:
+  - Ticket `#19384166`: `UKBRENT.p` SELL_LIMIT `0.12 lots` @ `115.400` (SL: `115.980`, TP: `113.943`, Risk: `6.96 USD`, Commodities/Energy - Cluster 4).
+  - Ticket `#19384254`: `AUDNZD.pi` SELL_LIMIT `0.07 lots` @ `1.23675` (SL: `1.23825`, TP: `1.23300`, Risk: `6.30 USD`, Australasian Non-USD Cross).
+  - Ticket `#19384256`: `XAUUSD.pi` BUY_LIMIT `0.01 lots` @ `4,020.25` (SL: `4,013.00`, TP: `4,051.75`, Risk: `7.25 USD`, Precious Metals - Cluster 3).
+- **Inviolable Triple Floor & Capacity Governance**:
   - Hard Floor: **4,775.00 USD** (Statutory DD Stop)
   - Operating Defense Buffer: **4,795.00 USD** (Internal Risk Defense)
-  - Total Stressed Risk ($1.25 \times R_{\text{nom}} + 2.00 \text{ fee} + \text{spread}$): **22.86 USD**
-  - Stressed Worst-Case Equity: **4,807.54 USD**
-  - **Surplus Above Hard Floor**: **+32.54 USD SURPLUS (100% BULLETPROOF)**
-  - **Surplus Above Operating Buffer**: **+12.54 USD SURPLUS (100% BULLETPROOF)**
+  - Active Supervisor Daemon: Strictly enforces `MAX_FILLED_POSITIONS = 4`. The instant filled positions reach 4, all remaining resting limit orders are automatically pulled.
+  - Multi-Asset Orthogonality: Each active ticket sits in a distinct, uncorrelated macro cluster (Crypto, USD FX, Energy, Australasian Cross, Metals), eliminating cluster concentration risk.
 - **Capital Regime**: **TIER 1 STANDARD** (8.00-10.00 USD nominal risk per ticket).
 - **Dynamic Capacity**: **4 concurrent filled slots allowed** (2 slots filled: #19376039 USDJPY, #19379711 BTCUSD; 2 slots free); **Pre-fill stressed solvency gate strictly active**.
 

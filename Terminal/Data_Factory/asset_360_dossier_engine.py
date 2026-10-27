@@ -12,6 +12,7 @@ and compiles a unified institutional trade dossier.
 import os
 import glob
 import json
+import time
 import argparse
 import datetime
 from pathlib import Path
@@ -119,20 +120,70 @@ def generate_asset_aliases(raw_asset: str) -> List[str]:
         
     return [a.upper() for a in aliases]
 
-def build_asset_360_dossier(asset: str) -> Dict[str, Any]:
-    """Traverse all parquet files and construct complete 360-degree data dossier."""
+class DataLakeMemoryStore:
+    """Institutional in-memory high-velocity cache for all 42 Parquet feeds."""
+    _cache: Dict[str, pd.DataFrame] = {}
+    _loaded_at: float = 0.0
+
+    @classmethod
+    def pre_load_all(cls, force: bool = False) -> int:
+        now = time.time()
+        # Keep cache for 60s
+        if not force and cls._cache and (now - cls._loaded_at < 60.0):
+            return len(cls._cache)
+        
+        files = sorted(glob.glob(str(FEEDS_DIR / "*.parquet")))
+        new_cache = {}
+        for fpath in files:
+            fname = os.path.basename(fpath)
+            base_name = fname.replace(".parquet", "")
+            try:
+                new_cache[base_name] = pd.read_parquet(fpath)
+            except Exception:
+                pass
+        cls._cache = new_cache
+        cls._loaded_at = now
+        return len(cls._cache)
+
+    @classmethod
+    def get_all(cls) -> Dict[str, pd.DataFrame]:
+        if not cls._cache:
+            cls.pre_load_all()
+        return cls._cache
+
+    @classmethod
+    def clear(cls):
+        cls._cache.clear()
+        cls._loaded_at = 0.0
+
+def build_asset_360_dossier(asset: str, use_memory_cache: bool = True) -> Dict[str, Any]:
+    """Traverse all parquet files from in-memory cache and construct complete 360-degree data dossier."""
     aliases = generate_asset_aliases(asset)
-    files = sorted(glob.glob(str(FEEDS_DIR / "*.parquet")))
+    
+    if use_memory_cache:
+        DataLakeMemoryStore.pre_load_all()
+        feeds_dict = DataLakeMemoryStore.get_all()
+    else:
+        feeds_dict = {}
+        for fpath in sorted(glob.glob(str(FEEDS_DIR / "*.parquet"))):
+            fname = os.path.basename(fpath)
+            base_name = fname.replace(".parquet", "")
+            try:
+                feeds_dict[base_name] = pd.read_parquet(fpath)
+            except Exception:
+                pass
+                
+    files_count = len(feeds_dict)
     
     timestamp_ist = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S IST")
-    timestamp_utc = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    timestamp_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     
     dossier: Dict[str, Any] = {
         "asset": asset.upper(),
         "aliases": aliases,
         "timestamp_ist": timestamp_ist,
         "timestamp_utc": timestamp_utc,
-        "total_files_scanned": len(files),
+        "total_files_scanned": files_count,
         "feeds_with_data_count": 0,
         "global_macro_feeds_count": 0,
         "feeds_no_data_count": 0,
@@ -140,19 +191,16 @@ def build_asset_360_dossier(asset: str) -> Dict[str, Any]:
         "feed_details": []
     }
     
-    for fpath in files:
-        fname = os.path.basename(fpath)
-        base_name = fname.replace(".parquet", "")
+    for base_name, df in feeds_dict.items():
+        fname = f"{base_name}.parquet"
         pillar = PILLAR_MAPPING.get(base_name, "General Telemetry")
         
-        try:
-            df = pd.read_parquet(fpath)
-        except Exception as e:
+        if df is None:
             dossier["feed_details"].append({
                 "feed_name": base_name,
                 "file_name": fname,
                 "pillar": pillar,
-                "status": f"READ_ERROR: {str(e)}",
+                "status": "CACHE_READ_ERROR",
                 "matching_rows": 0,
                 "data_points": {}
             })

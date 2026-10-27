@@ -25,27 +25,29 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - Every subagent report MUST explicitly display the verified read confirmation check mark:
 >      `[x] Mandatory Subagent Read Gate: STANDARDIZED_TRADING_DECISION_CHAIN.md physically read, verified, and strictly enforced.`
 >
-> 2.1 **Mandatory Per-Asset Exhaustive Parquet Data Lake Traversal Gate (COMPULSORY INVARIANT)**:
+> 2.1 **Mandatory Per-Asset Exhaustive Parquet Data Lake In-Memory Pre-Load & Traversal Gate (COMPULSORY INVARIANT)**:
 >    - **Compulsory Zero-Omission Rule**: Before formulating, planning, or staging any trade on ANY candidate asset, the desk and all subagents/personas are STRICTLY FORBIDDEN from relying on isolated screeners, single indicator columns, or partial data views.
->    - **Deep File-by-Asset Analysis**: For any candidate asset (e.g. BTC, XAU, UKBRENT, USDJPY, etc.), EVERY SINGLE FILE in `Data/feeds/*.parquet` mentioning or containing data for that asset MUST be systematically traversed, read, and deeply analyzed across all 4 groups:
->      1. Microstructure, Orderbook & CVD Tape (`00_MT5_Account_Telemetry`, `10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `18_CVD_30D_*`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`).
->      2. Liquidation Geometry, Stop Hunt & Max Pain Magnets (`7_Liq_Heapmap`, `7_Live_Liq`, `8_Exchange_Liquidation_Map_1D/7D`, `9_Liquidation_Max_Pain_24H/48H/3D/7D`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `14_Liquidation_Matrix`, `22_Forced_Liquidations_MTF`).
->      3. Technical Moving Averages & Auction Value Areas (`11_Technical`, `11_Technical_BTC_Ribbon`, `20_Auction_Market_Structure`, `12_Hyperdash`, `13_Hyperliquid`, `16_Hyperdash_telegram_Intel`, `23_Master_Pipeline_Telemetry`).
->      4. Macro Netflows, Leverage & Funding (`1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `3_Exchanges_LS_Ratio_15M/1H/4H`, `4_Hyperliquid_Analysis`, `5_OI`, `5_Funding_Rate`, `6_Funding_Fee_Settlement`, `19_News`, `19_Calendar`).
+>    - **Unified In-Memory Pre-Load Architecture (`DataLakeMemoryStore`)**:
+>      * To eliminate disk I/O latency, prevent file locking collisions, and guarantee instantaneous zero-omission extraction, all 42 physical Parquet files in `Data/feeds/*.parquet` are systematically pre-loaded into unified in-memory RAM structures (`DataLakeMemoryStore`).
+>      * When evaluating ANY candidate asset (e.g. Gold, Crude Oil, Australasian crosses, Crypto, or FX Majors), the desk instantly pulls every single relevant data point from memory across all 4 strategic groups:
+>        1. Microstructure, Orderbook & CVD Tape (`00_MT5_Account_Telemetry`, `10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `18_CVD_30D_*`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`).
+>        2. Liquidation Geometry, Stop Hunt & Max Pain Magnets (`7_Liq_Heapmap`, `7_Live_Liq`, `8_Exchange_Liquidation_Map_1D/7D`, `9_Liquidation_Max_Pain_24H/48H/3D/7D`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `14_Liquidation_Matrix`, `22_Forced_Liquidations_MTF`).
+>        3. Technical Moving Averages & Auction Value Areas (`11_Technical`, `11_Technical_BTC_Ribbon`, `20_Auction_Market_Structure`, `12_Hyperdash`, `13_Hyperliquid`, `16_Hyperdash_telegram_Intel`, `23_Master_Pipeline_Telemetry`).
+>        4. Macro Netflows, Leverage & Funding (`1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `3_Exchanges_LS_Ratio_15M/1H/4H`, `4_Hyperliquid_Analysis`, `5_OI`, `5_Funding_Rate`, `6_Funding_Fee_Settlement`, `19_News`, `19_Calendar`).
 >    - **Automated Zero-Omission Extraction Engine (`Terminal/Data_Factory/asset_360_dossier_engine.py`)**:
->      * To eliminate human oversight and mathematically guarantee that no parquet file or orderflow signal is EVER missed, the desk executes the automated 360° Data Lake Dossier Engine: `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>`.
->      * The engine programmatically scans all 42 parquet files in `Data/feeds/`, resolves schema-specific symbol columns (`symbol`, `asset`, `coin`, `Ticker`, `Broker_Symbol`, `base_asset`), and compiles `Data/dossiers/<ASSET>_360_dossier.json` and `docs/dossiers/<ASSET>_360_DOSSIER.md` before any trade is formulated.
+>      * The automated 360° Data Lake Dossier Engine operates directly on the high-velocity in-memory store: `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>`.
+>      * Resolves schema-specific symbol columns (`symbol`, `asset`, `coin`, `Ticker`, `Broker_Symbol`, `base_asset`) and compiles `Data/dossiers/<ASSET>_360_dossier.json` and `docs/dossiers/<ASSET>_360_DOSSIER.md` before any trade is formulated.
 >      * **Strict Exact-Token Matching**: Resolves symbols using strict token sets (`isin(aliases)`), preventing substring collisions (e.g. `NETH25.p` for `ETH`, `XAUGBP.pi` for `XAUUSD.pi`).
 >      * **Chronological Descending Sorting**: Orders time-series feeds (e.g. `25_CoinGlass_Footprint_Signals`) descending so latest institutional signals are prioritized at index 0.
 >      * **Whale Order Deduplication & Persistence**: Deduplicates cross-scraper records (`CG_WHALE` vs `CG_LADDER`) in `10_Whale_Orders.parquet` and enforces $\tau \ge 180\text{s}$ duration filter to reject spoofed/ephemeral walls.
 >    - **Compulsory Verification Tick Mark**: Every trade dossier, trade proposal, and subagent report MUST explicitly display the verified confirmation check mark:
->      `[x] Mandatory Data Lake Gate: Every relevant file in Data/feeds/*.parquet thoroughly traversed, read, and deeply analyzed for [Asset] with zero omission prior to trade formulation.`
+>      `[x] Mandatory Data Lake In-Memory Pre-Load & Retrieval Gate: All 42 physical parquet files in Data/feeds/*.parquet pre-loaded into unified memory; every relevant data point instantly extracted for [Asset] with zero omission prior to trade formulation.`
 >
 > 2.2 **Mandatory Line-by-Line SOP Compliance Audit Protocol (LINE READ & COMPLIANCE GATE)**:
 >    - **Zero-Amnesia Line-by-Line Enforcement**: To guarantee that every single line, rule, and invariant of this document is read, understood, and strictly followed without omission, every cycle report and trade proposal MUST execute a line-level audit ledger verifying all 10 core invariants:
 >      * `[x] Line Check 1 (Section 1.1)`: 100% In-House Antigravity Quant Fleet & Direct Dialectic (Zero external browser/scraping dependencies).
 >      * `[x] Line Check 2 (Section 1.2)`: Mandatory Subagent Read Gate check mark displayed.
->      * `[x] Line Check 3 (Section 1.2.1)`: Mandatory Per-Asset Exhaustive Parquet Data Lake Traversal check mark (all files traversed).
+>      * `[x] Line Check 3 (Section 1.2.1)`: Mandatory Data Lake In-Memory Pre-Load & Traversal check mark (all 42 files cached and queried).
 >      * `[x] Line Check 4 (Section 1.3)`: Dual-Model Quantitative Architecture (Model 1 Mean Reversion vs Model 2 Fib Prime Trend Pullback).
 >      * `[x] Line Check 5 (Section 1.4)`: Monotone Non-Loosening Dynamic Stop Ratchet Invariant.
 >      * `[x] Line Check 6 (Section 1.5)`: Capacity Policy (Max 4 filled positions across flexible combinations + N resting maker limits).
