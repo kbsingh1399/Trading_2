@@ -1,9 +1,148 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-27T03:52:54Z",
-  "prev_timestamp_utc": "2026-10-27T03:52:53Z",
+  "curr_timestamp_utc": "2026-10-27T03:55:32Z",
+  "prev_timestamp_utc": "2026-10-27T03:52:54Z",
   "time_gap_minutes": 0.0,
   "changes": {
-    "symbol_shifts": {}
+    "symbol_shifts": {
+      "BTC": {
+        "price_diff": -63.0,
+        "z_score_diff": -0.33,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "ETH": {
+        "price_diff": -2.6,
+        "z_score_diff": -0.43,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "SOL": {
+        "price_diff": -0.06,
+        "z_score_diff": -0.2,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "BNB": {
+        "price_diff": -0.4,
+        "z_score_diff": -0.17,
+        "regime_prev": "RANGE_BOUND",
+        "regime_curr": "RANGE_BOUND"
+      },
+      "XRP": {
+        "price_diff": -0.002,
+        "z_score_diff": -0.49,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "ADA": {
+        "price_diff": -0.0001,
+        "z_score_diff": -0.08,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "DOGE": {
+        "price_diff": -0.0001,
+        "z_score_diff": -0.47,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "TRX": {
+        "price_diff": 0.0,
+        "z_score_diff": -0.27,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "DOT": {
+        "price_diff": -0.001,
+        "z_score_diff": -0.16,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "LINK": {
+        "price_diff": -0.008,
+        "z_score_diff": -0.23,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "BCH": {
+        "price_diff": -0.5,
+        "z_score_diff": -0.61,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "LTC": {
+        "price_diff": -0.025,
+        "z_score_diff": -0.12,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "AVAX": {
+        "price_diff": -0.01,
+        "z_score_diff": -0.16,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "NEAR": {
+        "price_diff": 0.004,
+        "z_score_diff": 0.12,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "SP500": {
+        "price_diff": 0.07,
+        "z_score_diff": 0.03,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "NAS100": {
+        "price_diff": -3.25,
+        "z_score_diff": -0.07,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "DJ30": {
+        "price_diff": 6.5,
+        "z_score_diff": 0.17,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "GOLD": {
+        "price_diff": -0.72,
+        "z_score_diff": -0.33,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "SILVER": {
+        "price_diff": -0.01,
+        "z_score_diff": -0.06,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "USWTI": {
+        "price_diff": -0.095,
+        "z_score_diff": -0.68,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "EURUSD": {
+        "price_diff": 0.0,
+        "z_score_diff": 0.23,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "GBPUSD": {
+        "price_diff": 0.0001,
+        "z_score_diff": 0.21,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "USDJPY": {
+        "price_diff": -0.008,
+        "z_score_diff": -0.13,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      }
+    }
   }
 }

@@ -1,9 +1,9 @@
 {
-  "current_cycle_id": "Cycle 366",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-27 02:52:15 UTC",
-  "cycle_completed_utc": "2026-10-27 03:29:30 UTC",
-  "next_cycle_scheduled_utc": "2026-10-27 03:49:30 UTC",
+  "current_cycle_id": "Cycle 367",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-27 03:53:00 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
   "consensus_action": "PREVAIL_LIMITS_STAND_ASIDE_MARKET",
   "active_tickets": [
@@ -39,25 +39,20 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 03:29:30 UTC",
-      "details": "Mode 2 4-Quant Swarm verified: BNB/ETH limits intact, 100% solvency compliance, zero regression"
+      "status": "IN_PROGRESS",
+      "details": "Mode 2 4-Quant Swarm monitoring limits, solvency, and tape"
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 03:02:15 UTC",
-      "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
-      "characters": 35553,
-      "ruling": "PREVAIL_BNB_ETH_LIMITS_STAND_ASIDE_NEW"
+      "status": "GENERATING",
+      "dispatched_at_utc": "2026-10-27 03:52:45 UTC",
+      "prompt_file": "docs/prompts/ARENA_ASTRA_ROUTING_PROMPT.txt"
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-27 03:26:00 UTC",
-      "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
-      "characters": 44393,
-      "ruling": "DENIED_FAIL_CLOSED_PREVAIL_PASSIVE"
+      "status": "GENERATING",
+      "dispatched_at_utc": "2026-10-27 03:53:00 UTC",
+      "prompt_file": "docs/prompts/ARENA_ASTRA_ROUTING_PROMPT.txt"
     }
   }
 }
