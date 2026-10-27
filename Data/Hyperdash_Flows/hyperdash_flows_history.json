@@ -45598,5 +45598,25 @@
     "date_heading": "October 26",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "XYZ:AMD",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 2995.97,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 537.49,
+    "wallet_address": "0xf9109ada2f73c62e9889b45453065f0d99260a2d",
+    "asset_slug": "XYZ:AMD",
+    "raw_text": "#XYZ:AMD Liquidated Long: 3.00K USD at 537.4900 USD [API]",
+    "msg_id": "HL_LIQ_0xf9109ada2f73c62e9889b45453065f0d99260a2d_XYZ:AMD_1045117152479018",
+    "timestamp_epoch": 1793059290,
+    "time_label": "00:01",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
