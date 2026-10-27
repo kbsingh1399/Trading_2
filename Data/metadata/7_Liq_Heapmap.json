@@ -12,9 +12,9 @@
     "tf_24h",
     "timestamp_ist"
   ],
-  "byte_size": 4733,
-  "timestamp_ist": "2026-10-27 12:46:30 IST",
-  "timestamp_utc": "2026-10-27 07:16:30 UTC",
-  "epoch_utc": 1793085390.792289,
-  "write_duration_ms": 397.31
+  "byte_size": 4761,
+  "timestamp_ist": "2026-10-27 12:59:05 IST",
+  "timestamp_utc": "2026-10-27 07:29:05 UTC",
+  "epoch_utc": 1793086145.3093,
+  "write_duration_ms": 434.2
 }
