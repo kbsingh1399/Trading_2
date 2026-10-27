@@ -282,21 +282,18 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
 
     logger.info("Successfully published full workspace replica to origin/%s [commit %s]", BRANCH_NAME, publication_revision[:9])
 
-    # Push to active Arena branches
+    # Push to active Arena branches (push only, never merge remote Arena branch back into main)
     for arena_br in [ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH]:
         code_br, _, err_br = run_cmd(["git", "push", "origin", f"{publication_revision}:{arena_br}"])
         if code_br == 0:
             logger.info("Published full workspace to origin/%s", arena_br)
         else:
-            logger.warning("Push to %s rejected/failed (%s); attempting auto-merge sync", arena_br, err_br)
-            run_cmd(["git", "fetch", "origin", arena_br])
-            m_code, _, _ = run_cmd(["git", "merge", "-X", "ours", f"origin/{arena_br}", "-m", f"daemon: auto-merge {arena_br} ref"])
-            if m_code == 0:
-                run_cmd(["git", "push", "origin", f"HEAD:{arena_br}"])
-                run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
-                logger.info("Auto-synchronized origin/%s after merge", arena_br)
+            # Force push replica to Arena branch so main never gets corrupted by obsolete branch states
+            code_f, _, err_f = run_cmd(["git", "push", "--force", "origin", f"{publication_revision}:{arena_br}"])
+            if code_f == 0:
+                logger.info("Force-updated origin/%s with current main replica", arena_br)
             else:
-                run_cmd(["git", "merge", "--abort"])
+                logger.warning("Push to %s rejected: %s", arena_br, err_f)
     return True
 
 
