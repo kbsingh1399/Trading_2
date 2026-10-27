@@ -1,7 +1,7 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-27T04:57:33Z",
-  "prev_timestamp_utc": "2026-10-27T04:57:32Z",
+  "curr_timestamp_utc": "2026-10-27T05:02:47Z",
+  "prev_timestamp_utc": "2026-10-27T05:02:46Z",
   "time_gap_minutes": 0.0,
   "changes": {
     "symbol_shifts": {}
