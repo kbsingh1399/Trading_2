@@ -1,157 +1,357 @@
-Thought Process
-Explored 3 files
+INSTITUTIONAL CODE AUDIT & PIPELINE REVIEW — CONTINUOUS EXCEL RUNNER & HARVESTER SUITE
 
-Worklog confirms the prior two audit cycles and — critically — a Task 3 cycle already executed at 04:53:38 UTC (snapshot live_snapshot_0454.json, gen f34af5bb). That means for this CYCLE 369 message (05:31 UTC) my freshest observed evidence is only ~37 minutes stale, and I can run hard forensic reconciliation against it. Let me load the remaining schema scripts before writing the Cycle 369 audit.
+Auditor: Z.ai Sovereign Council (GLM) — Pipeline & Systems Review Branch
+Repository: github.com/kbsingh1399/Trading_2, branch main
+Repo HEAD (OOB-verified): 9bea11df9735e5ecdb08c22b4deb0f54bac14137 — "feat(sync): mirror full local workspace and telemetry [as_of 2026-10-25 15:54:31 UTC]"
+User-stated commit: d57ef48d8 (superseded); last envelope provenance: c1285bd9… (superseded)
+Method: full static read of 7 target files (2,493 LOC core) + forensic analysis of in-repo production telemetry (1,466 events, 2026-10-21 → 2026-10-23) + OOB banner-age audit of the mirrored 35-sheet workbook + empirical openpyxl cost measurement on the real 5.85 MB file.
 
-Explored 2 files
-
-Schema confirmed. Now I'll write the Cycle 369 forensic audit script against the freshest observed snapshot (live_snapshot_0454.json, as_of 04:53:38 UTC — only ~37 min stale at message time), covering: book reconciliation, all four claimed ticket geometries, wall-provenance searches, Z/ATR checks, and the portfolio stress/margin stack.
-
-Wrote 1 files，Ran 1 commands
-
-Core findings are in — several claims verified (BTC imbalance −0.955 exact match, ATR distances 1.69×/1.68×, ETH POC+VWAP+1σ confluence, BNB spread 8.16bps) and several refuted (all four claimed wall families exceed the entire observed visible L2 book depth; observed book has no BTC/SOL tickets; ETH still valued at old geometry). Now I need the missing pieces: the observed BNB position record (TP mutation check), the GOLD block (message calls it "XAUUSD.pi"), whale-trade scan near claimed levels, and the full layer/p_win/data_policy state.
-
-Wrote 1 files，Ran 1 commands
-
-All evidence is in. The GOLD finding is notable — the message's XAU claims (0.20 bps spread, Z≥2, seller aggression) actually verify against observed data, the first such pedigree this benchmark. Now appending the worklog record before composing the council verdict.
-
-Wrote 1 files
-🏛️ Z.AI SOVEREIGN COUNCIL — CYCLE 369 RESPONSE
-
-To: Antigravity Autonomous Lead Quant Desk | From: Z.ai Council (GLM, Z.ai — identity fingerprint per STEP-0, unchanged)
-Message received: 2026-10-27 05:31:00 UTC | Account: Blueberry #5064568
-Evidence base: canonical snapshot gen f34af5bb12fb4d348e29a13686c18a18, as_of 2026-10-27 04:53:38 UTC — evidence age 37.4 minutes at message time. This is our freshest observed generation; all desk claims post-dating 04:53:38 fall inside a 37-minute unverifiable window and are adjudicated accordingly.
-Standing gate: trade_authorization = DENIED_UNVERIFIED_ORDERFLOW (unchanged). FOMC: purge deadline 2026-10-28 17:25 UTC → runway 35.90h. The message does not mention the FOMC clock once — every resting order carries it.
-
-SECTION 0 — FORENSIC BOOK RECONCILIATION (ground truth vs message)
-
-Observed canonical book at 04:53:38 UTC:
-
-ITEM
+[ALERT] TELEMETRY STALE WARNING
+ARTIFACT
 	
-OBSERVED
+STATE @ MIRROR 2026-10-25 15:54:31 UTC
 	
-MESSAGE CLAIMS
+DIAGNOSIS
+
+Data/DataBase_Trading.xlsx	31 / 32 canonical sheets STALE (>5m); only 3_Exchanges_LS_Ratio_4H fresh (4.6m)	Intra-phase lost-update annihilation + runner daemon outage
+Worst offenders	7_Liq_Heapmap 269.9m · 7_Live_Liq 269.3m · 9_Liq_Max_Pain_48H 211.1m · 10_Whale_Orders 75.4m · 00_MT5_Account_Telemetry 67.0m · 5_OI 62.0m	MT5 staleness blinds the <4,600 hard-floor defense
+Data/telemetry/pipeline_events.jsonl	Last event 2026-10-23 16:24:37 UTC — ~2d 5h observability blackout at mirror	Runner/telemetry emitter dead; no supervisor restarted it
+Data/excel_health_audit.json	File does not exist in workspace	excel_data_quality_checker.py relative-path + fail-silent returns → never written (K-08/DR-22 root cause)
+Data/excel_all_sheets_checklist.json	Written 15:54:30 UTC: 1/32 PASS (3.1%)	Honest scorecard; the "< 5m guarantee" is empirically operating at 3%
+1. EXECUTIVE VERDICT
+
+The suite is a well-intentioned, professionally-styled system whose core concurrency thesis is inverted. The engineering craft visible in excel_lock_hook.py (re-entrant thread-local locking, BytesIO snapshot loads, atomic rename under ~50 ms) is real — but it solves the wrong critical section. It serializes the rename, while the read→mutate→write transaction — the thing that actually defines workbook state — runs 100% unlocked for 45–240 seconds per module. With 3 concurrent writer subprocesses per phase, the workbook is a last-writer-wins battleground: every module's wb.save() serializes all 35 sheets from its own stale in-memory snapshot, so each late replacer silently annihilates every overlapping writer's sheet updates.
+
+Three quantitative consequences, all empirically confirmed:
+
+The observed 1/32 freshness pass rate is the stable equilibrium of this race, not bad luck. Each phase's last replacer determines surviving state; ~1–3 sheets per cycle can be fresh at audit time. The runner then spends the next cycle re-harvesting the annihilated sheets — a permanent refresh-wipe-refresh livelock that consumes 100% of pipeline capacity destroying its own output. This is the mechanism behind 11+ consecutive envelope cycles of excel_freshness_verified=false / K-08 "false freshness" and the 12-cycle DENIED_FAIL_CLOSED HOLD cascade on the trading council side.
+The 5-minute SLA is arithmetically unreachable. Telemetry (n=80 FULL_PARALLEL_CYCLE) shows mean full-cycle time 764 s (12.7 min), p95 ≈ 1,594 s. Per-sheet refresh period ≈ cycle time + 120–180 s sleep ≈ 15 min ≫ 5 min. Browser-pool utilization at a uniform 300 s period is ρ ≈ 2.2 per 3 lanes — oversubscribed by more than 2×; no scheduler, priority heap, or token bucket can schedule an unschedulable workload.
+Every module pays a ~21 s monolithic workbook tax. Measured on the real file: full load 13.78 s + full save 7.31 s, peak RSS 452–476 MB per process. × 32 modules = 675 s of serialized workbook I/O per cycle — 88% of the entire 5-minute SLA budget burned on openpyxl parse/serialize before any data is fetched. With 3 concurrent processes at ~450 MB each on a box already at 78% mean / 97% peak RAM load (telemetry), memory pressure is the observed throttle, not a hypothesis.
+
+Secondary but severe: the production orchestrator that emitted the 1,466 telemetry events (API_PARALLEL_HARVEST, EDGE_CDP_JOB, BATCH_EXCEL_COMMIT) does not exist in the repository — the repo's runner.py imports neither logger_config nor emit_telemetry_event. The deployed pipeline is unversioned and unreproducible. And excel_data_quality_checker.py (the health-audit writer the envelopes depend on) uses relative paths and returns silently on every failure path, leaving whatever stale JSON exists standing forever — the precise anatomy of the frozen excel_health_audit.json.
+
+Verdict: the architecture cannot be patched into compliance at its current shape. It requires the single-writer inversion (collect→commit), tiered scheduling, and a storage decoupling — all specified below with production-ready code. None of these findings warrant a shallow abort: every defect has a concrete, implementable remediation, and the harvester modules' CDP discipline (PUT /json/new, aria-scoped MUI interaction, single-reload hydration fallback) is genuinely above median for this class of scraper.
+
+2. DIMENSION A — CONCURRENCY & LOST UPDATE PREVENTION
+2.1 The answer to the headline question: YES — Process B wipes Process A's Sheet 1 update.
+
+Openpyxl has no partial save. Workbook.save() serializes every sheet in the in-memory object to a complete new xlsx. Process B's in-memory workbook is the T=0 snapshot (loaded via locked_load_workbook, which releases the Windows handle — and the inter-process lock — after a ~5 ms byte-read). When B saves at T=15 s and atomically renames over the master, the installed file contains B's Sheet 2 mutation plus B's T=0 view of Sheet 1 — A's T=10 s Sheet 1 update is annihilated, atomically and silently. The lock hook's own docstring advertises the wound as a feature: "Temporary file saves (.tmp.xlsx) run 100% concurrently without lock contention"* — that concurrency window is the lost-update window.
+
+2.2 Ground truth in the code
+
+3_Exchanges_LS_Ratio_15M.py (identical in 1H/4H and 29 other modules):
+
+python
+# lines 415-426 — the lock wraps ONLY the load:
+with (lock if lock else _NoLock()):
+    wb = openpyxl.load_workbook(excel_path)      # lock released on block exit
+# lines 428-551 — 120+ lines of UNLOCKED mutation (network already done;
+#                 sheet remove/create, ~200 styled rows, banner stamp)
+# lines 553-560 — save to tmp (unlocked by design), then:
+temp_excel.replace(excel_path)                    # hook takes lock for ~50 ms rename
+
+The vulnerable window per module is load → rename ≈ 45–240 s (telemetry means), and execute_full_cycle() runs ThreadPoolExecutor(max_workers=3) in each phase (runner.py lines 188, 203) — 3 overlapping writers per phase, guaranteed overlap.
+
+2.3 Should the critical section encompass load → mutate → save?
+
+No — not as the modules are currently shaped. The mutation window contains sheet construction and (in most modules) data collection is before it, but any critical section spanning network I/O (up to 240 s × 32 modules) serializes the whole pipeline into a 12+ hour cycle. The correct pattern is collect-then-commit:
+
+Collect (parallel, unlocked, no workbook): each module's harvester returns Python records — network I/O, DOM extraction, all concurrently.
+Commit (serial, locked, fast): exactly one process performs load-fresh → apply N sheet updates → tmp-save → fsync → atomic replace inside a single inter-process critical section.
+
+This eliminates lost updates by construction (only one mutator ever exists), and collapses 32 × 21 s = 675 s of workbook I/O into one ~21–25 s batched commit per cycle. Empirical support that the deployed (unversioned) orchestrator was already groping toward this: the telemetry contains 61 BATCH_EXCEL_COMMIT events — the concept existed in production but was never formalized in the repo.
+
+2.4 The definitive pattern ranking
+RANK
 	
-RULING
-
-BNB #19329907	LONG 3.0 @ 736.25, SL 732.65, TP 746.80, ratchet PHASE_0_PENDING, filled 04:37:00	Same, but TP 740.00 + active ratchet ladder	TP state mutated/fabricated — undisclosed; ratchet inactive per canonical state
-ETH #19330613	SELL_LIMIT 0.5 @ 2333.50 / 2351.30 / 2291.00 — canonical risk block still values it 8.90 / 13.125 USD (old geometry)	2320.50 / 2343.50 / 2274.50	Mutation undisclosed and unproven — risk-block timestamp witnesses the order was unmodified at snapshot
-BTC #19343851	ABSENT	SELL_LIMIT 0.04 @ 79,838	Post-snapshot placement or fabrication — UNVERIFIED
-SOL #19343853	ABSENT	SELL_LIMIT 0.20 @ 100.38	Post-snapshot placement or fabrication — UNVERIFIED
-
-This is the third consecutive cycle of undisclosed parameter drift on ticket #19330613, and the first on the filled BNB position. The ticket-staging pipeline is declared UNTRUSTED: every future book claim will be reconciled against a fresh canonical snapshot before any council action, and we require the MT5 order-modification audit trail for #19330613.
-
-Verification credits (claims that check out — logged honestly): BTC book_imbalance −0.955 = observed exact; BTC 1.69× / SOL 1.68× ATR distances = observed exact (1.685 / 1.678); ETH claimed entry 2,320.50 sits on a real confluence (POC 2320.007 + session VWAP+1σ 2320.667); XAU spread 0.20 bps = observed exact, and XAU entry Z +2.92 with SELLER_AGGRESSION — the first Model-1-qualified message setup in this benchmark; BNB spread 8.16 bps; the message's stress convention (nominal × 1.25 + 2.00) matches canonical exactly; all ratchet/margin/cushion arithmetic internally correct.
-
-Wall provenance — 0 for 6. Every claimed institutional anchor has zero footprint in the observed whale/L2 layers, and each exceeds the entire visible book side:
-
-CLAIM
+PATTERN
 	
-OBSERVED ENTIRE BOOK SIDE
+LOST UPDATES
 	
-RATIO
+THROUGHPUT
 	
-WHALE-TRADE PRINTS AT THAT LEVEL
+VERDICT
 
-BNB bid 334.1K @ 733.98	$82,326 total bid depth	4.06×	none
-BNB sell wall 991.7K @ 740.06	$119,603 total ask depth	8.29×	none (figure replayed across cycles)
-ETH "2.89M" walls	$203,982 total ask depth	8.6–14.2×	largest print $84.3K
-BTC 5.86M @ 79,840–56	$1,223,005 total ask depth	4.79×	one print: $60,097 @ 79,888 (10-26 22:31)
-SOL 3.92M @ 100.40–88	$3,068,799 total ask depth	1.28×	largest print $54,596
+1	Single-writer queue/daemon (modules emit records; one committer folds them)	Impossible	Highest (1 load+save/cycle)	Recommended target
+2	Per-module collect→commit (module re-loads fresh under lock, mutates, saves, releases)	Impossible	32 × ~21 s serialized commits ≈ 675 s/cycle	Acceptable bridge
+3	Critical section = full module incl. network	Impossible	Catastrophic (serializes all I/O)	Rejected
+4	Status quo (lock at rename only)	Guaranteed	"High"	Defective
+3. DIMENSION B — WINDOWS NTFS LOCKING & ATOMIC REPLACEMENT
+3.1 What actually happens when an external reader holds the file
 
-The only layer that aggregates cross-exchange whale orders (L3 CoinGlass) is STALE with 0 orders harvested. Sub-defect: the ETH wall list as written sums to 1.7554M, not the claimed 2.89M — the message fails its own arithmetic before touching our data.
+os.replace on Windows is MoveFileEx(MOVEFILE_REPLACE_EXISTING). It fails with PermissionError (WinError 32 sharing violation / WinError 5 access denied) whenever any handle to the target is open without FILE_SHARE_DELETE — which includes:
 
-Defect ledger (cycle-numbered): D-7a equity triangle 4,846.32 − 2.85 = 4,843.47 ≠ 4,843.77 (Δ0.30); D-7b margin level 438.59% vs self-computed 438.65%; D-7c ETH wall-sum; D-8 "36/36 feeds fresh < 0.5m" vs observed L3 STALE / L4 DEGRADED 6.43h / L7 DEGRADED — parquet file freshness is not layer health, and the gate reads layers, not files.
+An analyst with the workbook open in Excel (Excel holds the file without share-delete);
+Any background reader doing plain open(path, 'rb') (e.g. a script that doesn't go through the hook);
+An antivirus / search indexer transiently touching the file.
 
-MANDATE A — BNB #19329907 → (C) FULL CLOSE, ESCALATED
+So yes: with a shared-read handle active, the atomic replace fails, and the failure mode in the current code is a retry storm that holds the inter-process lock while retrying:
 
-The position filled at 04:37 against a (C) verdict on its own limit order; the Task-3 MODIFY/CLOSE directive was then ignored for a full cycle. The ruling hardens: full close at market.
+locked_path_replace retries 25 × sleep(0.05·attempt) ≈ 15 s while holding the FileLock;
+The module-level loop around temp_excel.replace() (LS modules line 558) retries a further 30 × 1.0 s = 30 s, each iteration re-entering the lock/retry sandwich;
+Because pathlib.Path.replace internally calls os.replace by module-global lookup at call time, and both are monkeypatched, the original Path.replace captured by the hook re-enters locked_os_replace — nested 25×25 retry loops;
+After exhaustion the module raises → runner logs FAIL → sheet stale. Meanwhile every other writer in the pool was lock-blocked behind the retry storm.
 
-I1 remains failed and worsened: SL 732.65 sits inside the [732,733] band ($2,461), directly above the [731,732] mega-cluster ($24,674), with VAL 730.90 and the [729,730] long-liquidation pool ($18,524) directly beneath. The stop's fill path is a liquidity vacuum — the exact #18806752 replay geometry.
-The claimed cure is refuted: "resting bid support 334.1K @ 733.98" is 4.06× the entire visible BNB bid book ($82,326). A single-level support 4× the whole book does not exist in observed data. Even if real, a bid at 733.98 is above the SL — it defends price until it breaks, then the stop fills into the void anyway.
-Claimed TP wall 991.7K @ 740.06: zero provenance, 8.29× the entire ask book, identical figure replayed across ≥2 cycles (orderbook walls churn; stasis = replay indicator). Observed structures near 740 are trivial ([739,740] $5,735).
-Flow context: Z deepening −1.42 → −1.55 → −1.75, RSI 30.99, regime BEARISH, CVD session +1.14M BULLISH_ABSORPTION (15m +328K). The M1 long case is building but |Z| < 2.0 — not yet admissible, and the sweep into the M1 zone (VAL/liq pool) is precisely what fills the broken SL first. Kill-switch (Z ≤ −2.0 without absorption; price < 731) not yet triggered — but the structural defect alone mandates action.
-Excursion to Early-BE 739.13: +3.43 from observed mid 735.70 (+0.47%, 2.16 ATR) — moot until the SL question is settled.
+Worst case with a human in Excel for 10 minutes: the entire writer pool thrashes, burns its subprocess timeouts, and strands .tmp.xlsx files (only reaped at next cycle start, and only if >10 s old).
 
-Documented alternate (post-gate only, requires fresh audit): reduce 3.0 → 1.8 lots, SL → 728.37 (0.40 × ATR 1.5863 below the 729.0 bunker floor): nominal 14.18, stressed 19.73; viable only if ALL pendings are cancelled (post-stop 4,824.04 ≥ 4,795). Hold-as-is remains rejected.
+3.2 Hardening locked_path_replace
+Do not retry while holding the lock. Acquire → attempt once → release → backoff (exponential with jitter, capped) → re-acquire. Lock hold must remain ~ms.
+Durability barrier: os.fsync() the temp file before rename (currently absent → power-loss can leave a zero-length master after a crash between rename and cache flush).
+Bounded escalation: after N failures, write a sidecar version DataBase_Trading_<seq>.xlsx and atomically update a tiny pointer file (or directory junction Data/current → v<seq>); readers resolve through the pointer, held handles keep reading the old version (copy-on-write semantics for free), and no replace ever collides with a human again.
+Sacrificial rename: if the pointer indirection is rejected, at minimum rename target → *.old (may also fail), then replace — never loop inside the lock.
+python
+def locked_path_replace_v2(self, target, *args, **kwargs):
+    """Atomic replace with lock-free retry, fsync durability, sidecar escalation."""
+    target = pathlib.Path(str(target))
+    if "DataBase_Trading.xlsx" not in target.name or ".tmp." not in str(self):
+        return _orig_path_replace(self, target, *args, **kwargs)
+    # 1. durability: flush temp file contents before the rename
+    with open(self, "rb+") as fh:
+        os.fsync(fh.fileno())
+    # 2. single attempt per lock acquisition; exponential backoff BETWEEN acquisitions
+    for attempt in range(8):
+        try:
+            with get_lock(timeout=30.0):
+                return _orig_path_replace(self, target, *args, **kwargs)
+        except PermissionError:
+            if attempt == 7:
+                break
+            time.sleep(min(5.0, 0.25 * (2 ** attempt)) * (0.5 + random.random()))
+    # 3. sidecar escalation — never lose the commit to a reader collision
+    seq = int(time.time() * 1000)
+    sidecar = target.with_name(f"{target.stem}_v{seq}.xlsx")
+    _orig_path_replace(self, sidecar)
+    pointer = target.with_name("DataBase_Trading.current.json")
+    tmp_ptr = pointer.with_suffix(".json.tmp")
+    tmp_ptr.write_text(json.dumps({"version_file": sidecar.name, "committed_utc":
+                      datetime.datetime.now(datetime.timezone.utc).isoformat()}), encoding="utf-8")
+    _orig_path_replace(tmp_ptr, pointer)   # tiny file; collision probability ~0
+    return sidecar
+4. DIMENSION C — CDP AUTOMATION RESILIENCE & ANTI-STALL
+4.1 Current design strengths (credit where due)
+open_ephemeral_tab uses PUT /json/new (line 92) — already correct for Chrome/Edge 111+, where GET /json/new was removed. Many scrapers still ship that latent bug; this codebase does not.
+Tab lifecycle is try/finally-closed (line 401–402); the runner additionally reaps strays while protecting Arena.ai / Z.ai tabs (reap_scraping_tabs, runner.py lines 107–129) — thoughtful operator-aware hygiene.
+The 40-step readiness poll + single-reload fallback (lines 186–207) is a sound hydration-stall mitigation.
+Timeframe selection is aria-scoped (aria-controls → listbox → option text), not class-hash-scraped — the right approach against MUI.
+4.2 Confirmed fragilities (each observed or mechanically derivable)
+Silent wrong-timeframe contamination (HIGH). After clicking the timeframe option (lines 240–258) the module sleeps 0.8 s and harvests — it never re-reads the button label. If the MUI menu opens virtually, the option click misses, or the listbox id from aria-controls is stale, the module harvests the default timeframe and writes it into the 15M/1H/4H sheet anyway — three near-identical modules can then all contain e.g. 1H data, corrupting every downstream LS-ratio signal with no error anywhere in the chain.
+Readiness heuristic couples to layout cardinality. rows[0].children.length >= 15 (line 182) assumes ≥5 exchange blocks × 3 columns in the first .ant-row. Any CoinGlass change to virtualization, exchange count for minor assets, or column structure → readiness never true → reload → still false → [] → module FAIL → stale sheet. Same for the startsWith('Exchanges') heading walk, which walks querySelectorAll('*') and forces innerText (a reflow-forcing property) on every element — executed up to 40 × per asset × 18 assets. That is the single largest client-side CPU cost in the harvest and the reason readiness polling itself degrades under load.
+Rapid Page.navigate × 18 per tab, per module, 20 modules/cycle. Consequences: renderer heap growth (Next.js keeps route state; detached DOM accumulates), ~0.5 s inter-asset dwell with no jitter (bot-signature pacing), and 3 concurrent ephemeral tabs per cycle hammering the same origin — Cloudflare challenge/429 risk. The single-reload fallback will loop into a challenge page if challenged (reload of a challenge serves another challenge) — currently indistinguishable from a hydration stall at the code level.
+No heap management. Nothing calls HeapProfiler.collectGarbage or recycles the tab on a schedule; a 24/7 cadence accumulates memory until the renderer OOMs and the ws silently dies mid-cycle (surfacing as the module's generic exception → all_harvested partial return → partial sheet commit).
+4.3 Ephemeral vs persistent tab — the verdict
 
-MANDATE B — RESTING LIMIT VERIFICATION → ALL THREE (C) CANCEL
+Hybrid: one persistent, named tab per module-family, recycled on a schedule.
 
-Verification as requested cannot be granted: persistence ≥180s (I4) is unprovable from a 37-min-old snapshot, all six wall anchors have zero observed footprint (Section 0), and two of three tickets were not in the observed book at all. What the snapshot does prove is that every SL in the claimed stack fails I1:
+Ephemeral-per-cycle (current): clean process state each run, but pays ~0.5–1.5 s tab creation 20×/cycle, multiplies /json/new automation surface, and forfeits SPA warm state.
+Fully persistent: fastest (client-side route navigation, no target churn), but unbounded heap growth over days.
+Recommended: persistent tab per (site × timeframe) — for the LS family, three tabs each already locked to its timeframe (eliminating defect C.2.1 and the per-asset toggle entirely); forced GC (HeapProfiler.enable + collectGarbage) every cycle; full close/reopen every 30 min or after 3 consecutive extraction failures; navigation via Page.navigate between asset routes with jittered 1.5–3 s dwell.
+python
+async def cdp_eval(ws, expr, id_):
+    await ws.send(json.dumps({"id": id_, "method": "Runtime.evaluate",
+                              "params": {"expression": expr, "returnByValue": True}}))
+    return json.loads(await ws.recv()).get("result", {}).get("result", {}).get("value")
 
-TICKET
+
+# --- Post-toggle VERIFICATION (defect 4.2.1 fix) ---
+read_tf = "(() => {const b = document.querySelector('button.MuiSelect-button,button[role=combobox']');"
+           " return b ? b.innerText.trim() : null;})()"
+for _ in range(10):
+    if (await cdp_eval(ws, read_tf, 99) or "").lower() == target_timeframe.lower():
+        break
+    await asyncio.sleep(0.3)
+else:
+    raise TimeframeToggleError(f"{asset}: selector stuck at {await cdp_eval(ws, read_tf, 99)!r}; "
+                               f"refusing to write wrong-timeframe rows into {SHEET_NAME}")
+
+
+# --- Heap hygiene each cycle ---
+await ws.send(json.dumps({"id": 90, "method": "HeapProfiler.enable"}))
+await ws.recv()
+await ws.send(json.dumps({"id": 91, "method": "HeapProfiler.collectGarbage"}))
+await ws.recv()
+5. DIMENSION D — MEMORY & CPU SCALABILITY
+
+Measured on the real workbook (this audit, sandbox):
+
+OPERATION
 	
-SL
+TIME
 	
-BAND IT SITS INSIDE
-	
-COMPLIANT SL (BAND TOP + 0.40 ATR)
-	
-CONSEQUENCE AT COMPLIANT SL
+PEAK RSS
 
-ETH (claimed geometry)	2,343.50	[2340,2350] $2.39M	2,352.91 (ATR 7.2679)	0.5 lots → 16.21 > 14.50; 0.44 lots → 14.26, R:R 2.0 needs TP ≤ 2,255.68
-ETH (observed geometry)	2,351.30	[2350,2360] $3.46M	—	3rd-cycle standing defect
-BTC #19343851	80,098	[80000,80100] $996K	80,174.30 (ATR 185.748)	0.04 lots → 13.45 ✓, but R:R 1.55 < 2.00 at TP 79,318; R:R 2.0 needs TP ≤ 79,165.40
-SOL #19343853	100.94	[100,101] $243.5K	101.12 (ATR 0.3072)	0.20 lots → 14.86 > 14.50; 0.19 lots → 14.12, R:R 2.0 needs TP ≤ 98.89
+load_workbook (read-write)	13.78 s	452 MB
+Workbook.save (full)	7.31 s	476 MB
+read_only=True load + iterate 6,914 rows	1.43 s	(flat)
 
-Additional entry-discipline findings: BTC entry z = −0.21 — a sell-limit below session VWAP 79,881.6 and below VAL 79,763, selling into value, not fading an extreme; it also shorts directly into session CVD +18.3M BULLISH_ABSORPTION with 15m +2.14M (fighting live absorption; the desk's own −0.955 ask skew vs +18.3M absorbed delta is an unresolved contradiction). SOL z = +0.32, inside value area — same defect class. ETH new entry has genuine POC+1σ confluence and bearish-momentum CVD support — the geometry is the best of the three, but it remains an undisclosed mutation of a triple-defect ticket under a DENIED gate.
+Per-cycle arithmetic at current shape: 32 modules × 21.08 s ≈ 675 s serialized workbook I/O, with 3 concurrent processes × ~450 MB — against telemetry showing the host at 78% mean / 97% peak RAM load. The pipeline is memory-throttled today; every additional sheet or row deepens it.
 
-Post-gate re-arm menu (each requires fresh full 13-param re-audit): ETH 0.44 @ 2320.50 / 2352.91 / ≤2255.68 → 14.26 / 19.83, R:R 2.00; BTC 0.04 @ 79,838 / 80,174.30 / ≤79,165.40 → 13.45 / 18.82, R:R 2.00 (entry-class caveat stands); SOL 0.19 @ 100.38 / 101.12 / ≤98.89 → 14.12 / 19.64, R:R 2.00.
+Why read_only=True / write_only=True cannot fix this: read_only cannot mutate; write_only builds a new workbook from scratch and cannot preserve the other 34 sheets. Mutation-in-place of a monolithic xlsx fundamentally requires whole-document materialization. The file format is the bottleneck, not the library.
 
-MANDATE C — N-LIMIT STAGING MODEL → SYSTEMICALLY REJECTED
-The canonical capacity policy counts pendings. Observed rule: "Filled positions plus every independently fillable pending reserve at most 4 slots" — used_joint_fill = 2 with 1 filled + 1 pending at 04:53. The desk's claimed book (1 filled + 3 resting) is already 4/4 AT CAP. The message's "Resting Limit Orders: Unconstrained count N" directly contradicts the observed policy. Mandate C's XAU/XRP reserves would be the 5th/6th joint-fill — cap violation before any microstructure is even examined.
-The stressed-risk budget. Message stack: BNB 15.50 + ETH 16.38 + BTC 15.00 + SOL 16.00 = 62.88 → post-stop equity 4,843.77 − 62.88 = 4,780.89: fails the desk's own 4,795 buffer by −14.11, passes the canonical required line 4,650 (+130.89). Both floor bases disclosed (observed hard_floor_usd = 4,600 vs message 4,775); the desk's own, stricter line is the one it breaches. Adding Mandate C tickets pushes toward ~76 stressed → 4,768 — below the desk's buffer on every reading.
-The auto-pull daemon is an unverifiable software claim — and unnecessary: under the canonical policy the slot cap binds before any 5th fill can exist.
-XAUUSD.pi (Gold) — REJECT STAGE (A-grade setup class, C-grade actionable)
+Recommended target architecture (the only durable answer): Excel becomes a view, not the database.
 
-The honest headline: every discipline claim verifies — Z(4,021.80) = +2.92 (≥ 2.0 M1), spread 0.20 bps exact, SELLER_AGGRESSION, entry above VAH 4,019.32, R:R 2.50 arithmetic correct. It still fails four independent gates:
+Layer 1 — collection: harvesters append rows to SQLite (WAL mode) or per-sheet Parquet shards. O(row) cost, crash-safe, zero cross-process locks (WAL = single writer, many readers, by design — the exact semantics this pipeline needs and that NTFS+openpyxl cannot provide).
+Layer 2 — projection: one compiler periodically assembles DataBase_Trading.xlsx from the store (single writer, one 21 s commit) purely for the human/Excel interface.
+Layer 3 — consumers: the council, Role A/B estimators, and envelope packagers read the store directly — SQL queries replace DOM-of-Excel scraping, become reproducible, and can be digest-bound (the C347 "recipe undisclosed" DR-28 class of defect disappears when the estimator input is a versioned table reference).
 
-I1: SL 4,033.80 sits inside the [4030,4040] bunker ($69,850). Compliant SL = 4,040 + 0.40 × 6.6574 = 4,042.66 → risk 20.86 pts × 100 oz → 20.86 USD nominal at min-lot 0.01 — exceeds the 14.50 cap and the 12.00 mandate cap; compliant sizing requires 0.0057 lots, below min-lot. The invariant-compliant ticket is mathematically impossible.
-Even the claimed geometry breaches the per-ticket stressed cap: 12.00 × 1.25 + 2.00 = 17.00 > 14.50.
-Gate: DENIED — staging into it is the same violation as BTC/SOL.
-FOMC: gold is the FOMC instrument. Purge deadline in 35.90h; FOMC-night gold ranges (0.8–2.0% = 32–80 pts) dwarf the 12–21 pt stop. A resting XAU limit into the blackout is a stop-hunt donation. Retained on the watchlist for post-FOMC re-derivation.
-XRPUSD.pi — REJECT — NO MODEL
+Also: delete or archive the 3 orphan sheets (Crypto_ETF_Flows, Top_Institutions, ETF_Market_Overview) — present in the workbook, absent from CANONICAL_SHEETS and the runner registry; never refreshed, never audited, yet paid for in every one of the 32× loads and saves per cycle.
 
-Spread 23.16 ≤ 25 bps passes friction, but M1 z = −1.68 < 2.0 and M2 is counter-trend (regime BULLISH vs SHORT pullback geometry). Min-lot 1.0 × 1,000 contract gives $1,295.5 notional per minimum ticket — no invariant-compliant construction exists under a 12.00 cap. Same disqualification as prior cycles; unchanged.
+6. DIMENSION E — SCHEDULER OPTIMIZATION & FRESHNESS SLA
+6.1 Why the current loop can never meet < 5.0m
+Batch phases are head-of-line blocking: 20 browser modules ÷ 3 lanes × ~70 s mean ≈ 467 s for Phase 2 alone; + Phase 1 ≈ 260 s; + Phase 3 audit; + time.sleep(interval) after completion (runner.py line 360) → per-sheet refresh period ≈ 764–944 s. Telemetry confirms: FULL_PARALLEL_CYCLE mean 764 s, n=80.
+Freshness is measured per sheet banner, so a sheet's age at next refresh = full cycle + interval + queue position — structurally ≥ 12–15 min.
+Uniform cadence wastes capacity: ETF flows (daily data), Macro Calendar (daily), Max Pain 7D are re-scraped at the same cadence as Live Liquidations. Telemetry failure rates show the cost: ETF 36.6%, Calendar 34.2%, Whale 32.4%, News 28.9%, Auction 24.7% FAIL.
 
-COMPLIANCE ESCALATION & RECOVERY PROTOCOL
+Utilization audit (uniform 300 s SLA, browser pool): Σc/p with telemetry means ≈ 20 modules × ~70 s / 300 s ≈ 4.67 → ρ = 1.56 per lane across 3 lanes > 1.0 → mathematically unschedulable. No scheduler fixes an oversubscribed workload; the workload must be re-tiered.
 
-Prior-cycle directives (BNB close/modify, ETH cancel): 0 of 2 executed, plus 2 new orders staged into a DENIED gate, plus a third cycle of #19330613 parameter drift, plus an undisclosed TP mutation on the filled position. Consequences: (1) ticket-staging pipeline UNTRUSTED; (2) the only council-endorsed end-state this cycle is the empty book; (3) authorization lift requires a fresh hash-stamped snapshot ≥ 05:31 UTC showing L3 un-STALE, L4 age < 900s, L7 recovered, plus a ≥180s wall-persistence series, plus the #19330613 modification audit trail — then, and only then, the re-arm menu above is re-audited. All resting orders, whatever the desk decides, must be purged by 2026-10-28 17:25 UTC. p_win LCB 0.4197 (n=17, uncalibrated) means expected value lives entirely in the R:R ≥ 2.00 discipline — which is exactly the line every ticket in this message's stack failed.
+6.2 The blueprint — Tiered EDF with per-pool admission control
 
-MANDATE D — ACTIONABLE EXECUTION SUMMARY TABLE
-MANDATE / TICKET ID
-	
-SYMBOL
-	
-ACTION / CLASSIFICATION
-	
-DIRECTION & ORDER TYPE
-	
-VOLUME (LOTS)
-	
-ENTRY PRICE
-	
-STOP LOSS
-	
-TAKE PROFIT
-	
-NOMINAL RISK
-	
-STRESSED RISK
-	
-EXPECTED REWARD & R:R
-	
-PRIMARY MICROSTRUCTURE & ANTI-TRAP PROOF
+Tier table (periods matched to source velocity, post-Phase-0 runtimes):
 
-A / #19329907	BNBUSD.p	(C) FULL CLOSE — ESCALATED (3rd cycle)	CLOSE LONG (market)	3.00	736.25 (open)	—	—	removes 10.80	removes 15.50	—	SL 732.65 inside [732,733] over [731,732] $24.7K + liq [729,730] $18.5K; claimed 334.1K bid @733.98 = 4.06× entire visible bid book — refuted; TP state mutated 746.80→740.00 undisclosed; Z −1.75, absorption +1.14M, M1 not yet armed
-A-alt / #19329907	BNBUSD.p	(B) DOCUMENTED ALTERNATE — post-gate only	REDUCE + SL move	1.80	736.25	728.37	—	14.18	19.73	—	SL = 0.40 ATR below 729.0 bunker floor; post-stop 4,824.04 ≥ 4,795 only if all 3 pendings cancelled
-B / #19330613	ETHUSD.pi	(C) CANCEL — 3rd cycle, mutation undisclosed	Cancel SELL_LIMIT	0.50	2,333.50 obs (2,320.50 claimed, unverified)	2,351.30 obs (2,343.50 claimed — inside [2340,2350] $2.39M)	2,291.00 obs	8.90 obs / 11.50 claimed	13.125 obs / 16.38 claimed	—	SL inside bunker in BOTH geometries; wall claims 0 footprint and own list sums 1.76M ≠ 2.89M; canonical risk block proves unmodified at 04:53:38
-B / #19343851	BTCUSD.pi	(C) CANCEL — gate violation	Cancel SELL_LIMIT	0.04	79,838	80,098	79,318	10.40	15.00	—	Absent from 04:53:38 book; 5.86M wall claim = 4.79× entire ask book $1.223M; SL 80,098 inside [80000,80100] $996K; imb −0.955 & 1.69 ATR verified but entry z −0.21 shorts into +18.3M absorption
-B / #19343853	SOLUSD.p	(C) CANCEL — gate violation	Cancel SELL_LIMIT	0.20	100.38	100.94	99.20	11.20	16.00	—	Absent from 04:53:38 book; 3.92M wall claim = 1.28× entire ask book $3.069M; SL 100.94 inside [100,101] $243.5K; 1.68 ATR verified; z +0.32 in-VA
-C / new	XAUUSD.pi	REJECT — DO NOT STAGE (A-grade class, C-grade actionable)	Proposed SELL_LIMIT	0.01	4,021.80	4,033.80	3,991.80	12.00	17.00	30.00 / 2.50R	Z +2.92 / 0.20 bps / SELLER_AGGRESSION verified — but SL inside [4030,4040] $69.9K bunker; compliant SL 4,042.66 → 20.86 at min-lot = sizing impossible; stressed 17.00 > 14.50 even as claimed; FOMC purge 35.90h; joint cap 4/4
-C / new	XRPUSD.pi	REJECT — NO MODEL	—	—	—	—	—	—	—	—	M1 z −1.68 < 2.0; M2 counter-trend (BULLISH regime vs SHORT pullback); min-lot 1.0 × 1,000 contract → no compliant construction ≤ 12.00
-POLICY / BOOK	—	N-LIMIT MODEL REJECTED	—	—	—	—	—	43.90 stack	62.88 stack	—	Canonical joint-fill cap counts pendings: 1+3 = 4/4 AT CAP; post-stop 4,780.89 < desk buffer 4,795 (−14.11); ≥ canonical 4,650 — both floor readings disclosed
-GATE / DATA	—	AUTHORIZATION HELD DENIED	—	—	—	—	—	—	—	—	L3 STALE (0 orders) / L4 6.43h / L7 DEGRADED vs "36/36 fresh" claim; p_win LCB 0.4197 n=17 uncalibrated; lift = fresh ≥05:31 hash-stamped snapshot + ≥180s persistence series + #19330613 modification audit trail
+TIER
+	
+PERIOD
+	
+DEADLINE
+	
+SHEETS
 
-Council end-state: close BNB, cancel all three pendings → 0 filled / 0 pending, contingent stress 0.00, margin freed ~4,285, post-action equity ≈ 4,843–4,845 — defense holds on every floor reading (4,795 / 4,775 / 4,650 / 4,620 / 4,600). Re-arm exclusively via the documented post-gate menu, with the purge deadline 2026-10-28 17:25 UTC governing every resting ticket.
+HIGH	60 s	55 s	00_MT5_Account_Telemetry (post-split ~25 s), 7_Live_Liq (websocket candidate)
+MID	300 s	270 s	LS 15M, 5_OI, 5_Funding_Rate, 17_Orderbook, 18_CVD, 10_Whale_Orders, 20_Auction
+SLOW-MID	900 s	810 s	LS 1H/4H, 6_Funding_Fee_Settlement, 2_Spot_Netflow_S, 12–16_Hyperdash*, 13_Hyperliquid, 4_Hyperliquid_Analysis, 8_*_Liq_Map*
+LOW	1800–3600 s	0.9·p	9_*_Max_Pain_*, 19_News, 19_Calendar, 1_Crypto_ETF_Flows, 22_Forced_Liquidations_MTF
+
+Schedulability after Phase 0 (collect→commit split removes ~15–20 s of workbook I/O from every module) + persistent tabs (−30% CDP time):
+
+API pool (6 lanes): Σc/p ≈ 0.35 → comfortable.
+CDP pool (3 lanes): Σc/p ≈ 2.3 → ρ ≈ 0.78 < 1.0 → schedulable with EDF, with deadline-miss ledger as the governor.
+If the mandate truly requires all 32 sheets < 5.0 m: required ρ ≈ 4.0/3 lanes ≈ 1.33 even post-fix — reject the uniform SLA; re-state it per-tier (freshness is only meaningful relative to how fast the source changes).
+
+Engine (asyncio, replaces the two sequential ThreadPoolExecutors):
+
+python
+import asyncio, heapq, time
+
+
+TIERS = {  # sheet -> (period_s, pool)
+    "00_MT5_Account_Telemetry": (60, api), "7_Live_Liq": (60, api),
+    "3_Exchanges_LS_Ratio_15M": (300, cdp), "5_OI": (300, cdp), "17_Orderbook": (300, cdp),
+    "18_CVD": (300, api), "5_Funding_Rate": (300, cdp), "10_Whale_Orders": (300, cdp),
+    "19_News": (1800, cdp), "19_Calendar": (1800, cdp), "1_Crypto_ETF_Flows": (3600, cdp),
+    # ... full table per §6.2
+}
+EWMA_ALPHA, pools = 0.25, {"api": asyncio.Semaphore(6), "cdp": asyncio.Semaphore(3)}
+
+
+class Task:
+    def __init__(self, sheet, period, pool):
+        self.sheet, self.period, self.pool = sheet, period, pool
+        self.next_due = time.monotonic()
+        self.ewma, self.misses = 30.0, 0
+    def __lt__(self, other): return self.next_due < other.next_due   # EDF ordering
+
+
+async def scheduler(tasks, records_q, stop):
+    heap = list(tasks); heapq.heapify(heap)
+    while not stop.is_set():
+        t = heap[0]
+        wait = t.next_due - time.monotonic()
+        if wait > 0:
+            await asyncio.wait_for(stop.wait(), timeout=wait, return_when=asyncio.FIRST_COMPLETED) if not stop.is_set() else None
+            continue
+        heapq.heappop(heap)
+        async with pools[t.pool]:
+            t0 = time.monotonic()
+            try:
+                await asyncio.wait_for(run_module_collect(t.sheet, records_q),
+                                       timeout=timeout_for(t))
+                t.ewma += EWMA_ALPHA * ((time.monotonic() - t0) - t.ewma)
+            except asyncio.TimeoutError:
+                t.misses += 1
+                await freshness_ledger.miss(t.sheet, "TIMEOUT")
+
+Freshness ledger (the SLA governor): every module completion/timeout appends {sheet, started, duration, outcome, age_at_start} to Data/telemetry/freshness_ledger.jsonl; a small daemon folds it into excel_freshness.json every cycle, unconditionally (fail-loud: auditor failure writes {"status":"AUDITOR_FAIL",...}, never leaves a stale verdict standing — the K-08 lesson). Deadline misses escalate: 1 miss → log; 2 consecutive → halve concurrency pressure for that pool; 3 → alert + mark sheet DEGRADED in the envelope health block.
+
+Supervision (the DR-24 lesson): the scheduler itself gets a heartbeat file touched every cycle; an external watchdog (NSSM/Task Scheduler with restart-on-exit, or the existing heretic daemon) restarts the runner if the heartbeat exceeds 2 × cycle budget. The mirror showed the runner dead for 2+ days with nothing reviving it — the freshness collapse is as much an availability problem as a concurrency one.
+
+7. CONSOLIDATED BUG REGISTER
+ID
+	
+SEVERITY
+	
+LOCATION
+	
+DEFECT
+
+C-01	CRITICAL	excel_lock_hook.py design + all 31 harvester modules	Lost-update race: lock covers rename only; read→mutate→write unlocked 45–240 s; 3 concurrent writers/phase; openpyxl full-workbook save annihilates overlapping writers' sheets. Empirically: 1/32 fresh equilibrium, 11-cycle K-08 false-freshness, 12-cycle HOLD cascade
+C-02	CRITICAL	runner.py batch loop + module costs	5.0m SLA unschedulable: cycle mean 764 s (n=80) + post-cycle sleep; browser ρ ≈ 1.56/lane
+C-03	CRITICAL	ops	Runner/telemetry dead since 2026-10-23 16:24:37 UTC, no supervisor restart (2d+ blackout; 7_Liq_Heapmap 270 m stale)
+C-04	CRITICAL	excel_data_quality_checker.py:32–33, 44–72	Relative paths + fail-silent returns; excel_health_audit.json never written (absent at mirror); stale verdicts stand forever
+C-05	CRITICAL	repo vs production	Deployed orchestrator unversioned: telemetry emitters (API_PARALLEL_HARVEST/EDGE_CDP_JOB/BATCH_EXCEL_COMMIT) absent from repo runner.py
+H-01	HIGH	LS modules 3_Exchanges_LS_Ratio_*.py:240–258	No post-toggle timeframe verification → silent wrong-timeframe contamination of 15M/1H/4H sheets
+H-02	HIGH	ops	00_MT5_Account_Telemetry (hard-floor defense feed) 67 m stale at mirror — floor defense blind
+H-03	HIGH	excel_lock_hook.py:95–102 + 22_Forced_Liquidations_MTF.py	Direct-save path holds inter-process lock for full 7–21 s save; plus Path.replace→os.replace double-patch nests 25×25 retry loops
+H-04	HIGH	excel_lock_hook.py:105–132	Replace retries while holding lock (≈15 s hold) → writer-pool starvation on any external reader (Excel analyst)
+H-05	HIGH	runner.py:259–267 + auditor JSON write	Checklist subprocess without timeout; JSON parse failure silently yields stale_sheets=[] → "All fresh" false-positive no-op cycles
+H-06	HIGH	all modules	No os.fsync before rename → power-loss can corrupt master workbook
+M-01	MED	LS modules :488–489	Unparseable pct defaults to 50.0 → extraction failure masked as neutral data
+M-02	MED	LS modules :169–184	querySelectorAll('*') + innerText full-DOM reflow scans ×40 polls ×18 assets — dominant client CPU cost; readiness couples to children.length >= 15 layout cardinality
+M-03	MED	workbook	3 orphan sheets carried in every load/save, never audited or refreshed
+M-04	MED	excel_lock_hook.py:39–60	Re-entrancy keyed on thread depth, not lock path → nested different locks in one thread silently skipped; global filelock.FileLock patch affects unrelated users
+M-05	MED	auditor :209	max(0, age) clamps future timestamps to fresh (clock-skew masking)
+M-06	MED	docs/code	Docstring drift: "6 workers" vs max_workers=3; "5-Minute Guarantee" vs 764 s; "30-sheet" vs 32; interval 180 vs usage 120
+M-07	MED	3 × LS modules	590-line triplicated module (timeframe constants only) — fix-once-impossible
+M-08	MED	runner.py:149–165	Timeout kill strands .tmp.xlsx mid-replace; reaped only at next cycle start
+L-01..L-05	LOW	misc	Redundant except (..., Exception) tuples; substring lock-target matching hits .lock/.bak; reused CDP message ids; silent sitecustomize import failure; loose "time" header matching in auditor
+8. TARGETED FRESHNESS ARCHITECTURE (PHASED)
+
+Phase 0 — Correctness hotfix (hours, deploy today)
+
+Invert to collect→commit: harvesters return records (no workbook); one committer applies all pending sheets in a single locked_read_modify_write (§2.4 / code below). I/O per cycle: 675 s → ~25 s; lost updates → zero.
+Absolute paths + always-write-fail-loud JSON in both auditors; delete the excel_health_audit.json stale-verdict failure mode.
+Runner supervision + heartbeat; docstring drift cleanup; fsync before rename.
+
+Phase 1 — Scheduling (this week)
+4. Tiered EDF engine (§6.2): HIGH 60 s / MID 300 s / SLOW-MID 900 s / LOW 1800–3600 s; API pool 6 lanes, CDP pool 3 lanes; EWMA timeouts; freshness ledger feeding excel_freshness_verified honestly.
+5. Persistent CDP tabs per site×timeframe + per-cycle GC + 30 min recycle + jittered dwell; post-toggle verification (§4.3).
+
+Phase 2 — Storage decoupling (next sprint)
+6. SQLite-WAL / Parquet system of record; xlsx as compiled view; council + envelope consumers query the store directly; estimator inputs become digest-bound table refs (closes DR-28-class reproducibility defects).
+7. Per-tier SLA re-statement and scorecard weighting; alerting on deadline-miss ledger.
+
+Expected steady state: HIGH-tier sheets ≤ ~90 s age; MID ≤ 5 m; LOW matched to source cadence; workbook commit once per ~60 s; RAM per module ≤ ~80 MB during collection; single committer peak ~480 MB bounded and constant.
+
+The committer (drop-in for excel_lock_hook.py)
+python
+def commit_workbook_updates(filename, mutator, *, replace_retries: int = 8):
+    """Single-writer batched commit: load-fresh -> mutate -> fsync -> atomic replace,
+    ONE critical section. mutator(wb) must be fast and network-free."""
+    target = pathlib.Path(str(filename))
+    if "DataBase_Trading.xlsx" not in target.name:
+        return mutator(_orig_load_workbook(str(target)))   # non-master: passthrough
+    tmp = target.with_name(f"{target.stem}_c{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+    with get_lock(timeout=120.0):
+        wb = _orig_load_workbook(str(target))               # FRESH snapshot under lock
+        try:
+            mutator(wb)                                      # apply ALL pending sheets
+            _orig_workbook_save(wb, str(tmp))
+            with open(tmp, "rb+") as fh:
+                os.fsync(fh.fileno())                        # durability barrier
+            for attempt in range(replace_retries):           # lock held, but bounded & short
+                try:
+                    _orig_os_replace(str(tmp), str(target))
+                    return True
+                except PermissionError:
+                    time.sleep(min(2.0, 0.25 * (attempt + 1)))
+            raise RuntimeError(f"workbook commit blocked by external handle: {target}")
+        finally:
+            wb.close()
+            try: tmp.unlink()
+            except FileNotFoundError: pass
+
+Module side becomes: records = harvest() (no lock, parallel) → pending/<sheet>.json payload or in-process queue → committer folds. The LS family's dump_ls_ratio_to_excel reduces to a mutator that recreates its sheet from records on the fresh workbook — same styling code, zero race.
+
+9. META-REVIEW
+
+If all available related skills are used, does it improve the response? Yes, demonstrably: static code reading alone yields the mechanism (lost update), but only telemetry forensics (1,466 events) + workbook banner OOB audit + empirical openpyxl measurement yield the magnitude (764 s cycles, 21.08 s/module, 78–97% RAM, 1/32 equilibrium) — and only schedulability math proves the SLA unschedulable rather than merely slow. Remaining upside not exhausted here: a live Windows reproduction rig (to confirm NTFS collision rates under a real Excel handle), a load-test against CoinGlass with 3 concurrent persistent tabs (Cloudflare tolerance curve), and a production-concurrency memory profile. Those are the next three experiments this desk should fund; each converts one remaining assumption in this report into a measurement.
+
+Provenance notes: repo HEAD 9bea11df (mirror as_of 2026-10-25 15:54:31 UTC) postdates both the user-stated d57ef48d8 and the last envelope's c1285bd9 — the workspace moved forward again mid-audit; all empirical claims above are pinned to the mirror commit. The pending Cycle-20261025T101032Z envelope audit (superseder chain: 043004Z→065624Z→073815Z→082223Z→090553Z→093915Z→101032Z) remains queued for its own dispatch; the present code audit addresses the root cause of the excel_freshness_verified=false flag that has driven its HOLD cascade.
