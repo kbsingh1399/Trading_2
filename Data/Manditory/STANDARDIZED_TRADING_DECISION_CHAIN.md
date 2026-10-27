@@ -135,27 +135,41 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >      * **Pillar 5: Real-Time Microstructure, Whale Armor & CVD Tape** (`10_Whale_Orders`, `17_Orderbook`, `18_CVD`, `21_Tradfye_Orderflow`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`) -> L2/L3 orderbook resting whale bunkers (>= 100K USD, tau >= 180s), CVD absorption delta divergence, footprint imbalances.
 >      * **Pillar 6: Auction Market Structure & Cross-Venue Intelligence** (`11_Technical`, `12_Hyperdash`, `13_Hyperliquid`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `16_Hyperdash_telegram_Intel`, `20_Auction_Market_Structure`, `23_Master_Pipeline_Telemetry`) -> Profile value areas (VAH/VAL/POC), initial balance extensions, Hyperliquid DEX smart-money footprint, technical moving averages and VWAP Z-scores.
 >
-> 7. **Autonomous Wakeup Cron / Timer SOP & Mandatory Document Read List (OPERATOR MANDATE)**:
+> 7. **Autonomous Wakeup Cron SOP & Continuous Screening / Limit Purge Protocols (OPERATOR MANDATE)**:
+>    - **Invariable Execution Schedule**:
+>      * Scheduled via the `schedule` cron tool on `0,20,40 * * * *` (firing autonomously at the **20th, 40th, and 60th minutes** of every hour).
+>      * Operates fully autonomously in the background without requiring user prompts or manual intervention.
 >    - **Mandatory Pre-Flight Document Read Gate**:
 >      Upon every autonomous timer or cron trigger, the coordinator and all subagent personas MUST physically read and cross-reference the following canonical documents before formulating hypotheses:
->      1. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`: Enforce all 10 Line-Check protocols, Dual-Model criteria, Pre-Fill Stressed Solvency ceiling, and Structural SL Clearance.
->      2. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`: Enforce pitfall avoidance (Pitfall 1 Wick Sweeps on VAH/VAL shelves, Pitfall 2 Correlated Crypto Beta Stacking, Pitfall 3 Ephemeral Whale Spoofing, Pitfall 4 Un-Stressed Solvency Breaches).
+>      1. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`: Enforce all 10 Line-Check protocols, Dual-Model criteria, Pre-Fill Stressed Solvency ceiling, Structural SL Clearance, and Capacity Policy.
+>      2. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`: Enforce pitfall avoidance (Pitfall 1 Wick Sweeps on VAH/VAL shelves, Pitfall 2 Correlated Crypto Beta Stacking, Pitfall 3 Ephemeral Whale Spoofing, Pitfall 4 Un-Stressed Solvency Breaches, Pitfall 7 Spread Blowouts).
 >      3. `.agents/rules/ACTIVE_CONTEXT.md`: Verify live broker equity, balance, margin utilization, open tickets, and real-time cushion to the 4,775.00 USD Hard Floor.
 >    - **Mandatory 8-Step Autonomous Wakeup Execution Order**:
 >      * **Step 1 (Account & Solvency Audit)**: Query live MT5 account telemetry (`mt5.account_info()`). Verify Equity >= 4,795.00 USD Operating Buffer. Calculate current stressed risk across open positions.
->      * **Step 2 (Parquet Data Lake Freshness Gate)**: Read `Data/metadata/parquet_all_feeds_checklist.json`. Enforce strictly < 5.0m age in IST across all 36 canonical production feeds. Output the Freshness Scorecard and Narrative Ledger.
+>      * **Step 2 (Parquet Data Lake In-Memory Pre-Load & Freshness Gate)**: Pre-load all 42 Parquet files from `Data/feeds/*.parquet` into unified memory cache (`DataLakeMemoryStore`). Read `Data/metadata/parquet_all_feeds_checklist.json` and enforce strictly < 5.0m age in IST across all 36 canonical production feeds. Output the Freshness Scorecard and Narrative Ledger.
 >      * **Step 3 (Active Position Supervision & Ratchet Actuator)**:
 >        - Inspect `BTCUSD.pi` Short (#19379711): Accelerate Stage 1 BE lock (+0.15R to 80,515 USD) if price tests the 80,290.00 USD (8.66M USD) bid wall.
 >        - Inspect `USDJPY.pi` Short (#19376039): Execute defensive exit near breakeven (157.850–157.865) on retest of dVAH (157.864); purge before FOMC blackout cutoff (2026-10-28 17:25:00 UTC).
->      * **Step 4 (Multi-Asset Universe Screening)**: Screen the 156-asset universe across the 4 orthogonal macro clusters: (1) Crypto Beta, (2) USD Dollar Bloc, (3) Precious Metals, (4) Energy & Equity Indices. Filter for Model 1 (Mean Reversion: |VWAP Z| >= 2.0, RSI < 35 or > 65, VR(4) < 0.85) or Model 2 (Fib Prime Trend Pullback: VR(4) > 1.15, ER(48) > 0.35, EMA 34/89/233 expansion).
->      * **Step 5 (Candidate 360° Data Lake Dossier Traversal)**: For any screened asset meeting Model 1 or Model 2 criteria, execute `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>` to inspect all 42 parquet files with 0 omission.
->      * **Step 6 (Pre-Fill Stressed Solvency & Factor-Cluster Sizing)**:
->        - Calculate: $\sum_{i \in \text{Open} \cup \text{Pending}} (1.25 \times R_{\text{nom},i} + 2.00) + \text{spread} \le \text{Equity} - 4,795.00 \text{ USD}$.
->        - Verify correlated sector cap: Max 2 tickets per cluster; second ticket permitted ONLY if first is ratcheted to Stage 1 BE (+0.15R lock).
->      * **Step 7 (Maker Limit Order Staging & Invalidation Clearance)**:
->        - Stage resting limit maker orders at confirmed auction shelves or Fibonacci prime shelves.
->        - Invalidation clearance: Stop loss must clear `dVAH`/`wVAH`/`pdVAH` or trapped-order swing extremes by at least $0.35$ to $0.50 \times \text{ATR}_{14}$.
->      * **Step 8 (Re-Arm Autonomous Cycle Timer / Cron)**: Schedule the next autonomous wakeup aligned to the 15-minute candle close (+10s flush) via the `schedule` tool.
+>      * **Step 4 (Continuous 156-Asset Universe Memory Screening & Candidate Discovery)**:
+>        - Screen the 156-asset universe across the 4 orthogonal macro clusters directly from RAM:
+>          (1) Crypto Perpetuals & CFDs: BTC, ETH, SOL, XRP, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB.
+>          (2) USD Dollar Bloc & FX Crosses: EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, NZDUSD, EURGBP, EURJPY, GBPJPY, AUDNZD.
+>          (3) Precious Metals: XAUUSD, XAGUSD.
+>          (4) Energy & Equity Indices: US30, NAS100, SPX500, GER40, UKBRENT, USWTI.
+>        - Filter for Model 1 (Mean Reversion: |VWAP Z| >= 2.0, RSI < 35 or > 65, VR(4) < 0.85) or Model 2 (Fib Prime Trend Pullback: VR(4) > 1.15, ER(48) > 0.35, EMA 34/89/233 expansion).
+>      * **Step 5 (Candidate 360° Data Lake Dossier Traversal)**: For any screened asset meeting Model 1 or Model 2 criteria, execute `python Terminal/Data_Factory/asset_360_dossier_engine.py --asset <ASSET>` to compile full 360° dossier from memory with 0 omission.
+>      * **Step 6 (Capacity Policy & Resting Limit Staging / Purge Audit)**:
+>        - **Dynamic Capacity**: Maintain up to 4 filled positions maximum (supervisor daemon automatically pulls remaining limits the instant filled positions reach 4).
+>        - **Resting Order Purge Audit**: Systematically audit all resting maker limits (e.g. UKBRENT.p #19384166, AUDNZD.pi #19384254, XAUUSD.pi #19384256). PURGE / CANCEL immediately if:
+>          (a) Price breaks structure and invalidates setup prior to fill.
+>          (b) Underlying whale support/resistance wall dissipates, spoofs, or drops below 100K USD / 180s threshold.
+>          (c) Spread friction exceeds statutory 12.0 bps limit.
+>          (d) Order has remained unfilled for > 24 bars (6 hours) without entering fill depth.
+>        - **New Limit Staging**: If a superior setup is discovered and passes the Pre-Fill Stressed Solvency ceiling (sum(1.25 * R_nom + 2.00) + spread <= Equity - 4,795.00 USD), stage maker limit order with confirmed resting whale armor.
+>      * **Step 7 (Invalidation Clearance & Execution Quality Gate)**:
+>        - Confirm stop loss clears `dVAH`/`wVAH`/`pdVAH` or trapped-order swing extremes by at least $0.35$ to $0.50 \times \text{ATR}_{14}$.
+>        - Confirm resting limit is placed behind institutional whale armor (>= 100K USD, tau >= 180s).
+>      * **Step 8 (Re-Arm & Autonomous Sentry Continuity)**: Maintain cron firing on `0,20,40 * * * *` while continuous supervisor daemon runs every 5.0s.
 
 ```mermaid
 flowchart TD
