@@ -1,25 +1,29 @@
 {
-  "timestamp_utc": "2026-10-28 19:53:29 UTC",
+  "timestamp_utc": "2026-10-28 19:57:06 UTC",
   "balance_usd": 4782.61,
-  "equity_usd": 4782.61,
-  "free_margin_usd": 4782.61,
+  "equity_usd": 4778.41,
+  "free_margin_usd": 3595.41,
   "max_filled_positions": 4,
-  "filled_positions_count": 0,
-  "filled_slots_free": 4,
-  "resting_limits_count": 1,
+  "filled_positions_count": 1,
+  "filled_slots_free": 3,
+  "resting_limits_count": 0,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [],
-  "resting_orders": [
+  "active_positions": [
     {
-      "ticket": 19435815,
+      "ticket": 19436001,
       "symbol": "ETHUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.15,
-      "price": 2366.0,
-      "sl": 2391.0,
-      "tp": 2325.0
+      "type": "SELL",
+      "volume": 1.0,
+      "price_open": 2366.0,
+      "price_current": 2370.2,
+      "sl": 2378.0,
+      "tp": 2325.0,
+      "gain_r": -0.35,
+      "ratchet_stage": 0,
+      "profit_usd": -4.2
     }
-  ]
+  ],
+  "resting_orders": []
 }
