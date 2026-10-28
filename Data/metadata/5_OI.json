@@ -26,9 +26,9 @@
     "OI___24h_Vol",
     "Timestamp_IST"
   ],
-  "byte_size": 8531,
-  "timestamp_ist": "2026-10-29 04:19:32 IST",
-  "timestamp_utc": "2026-10-28 22:49:32 UTC",
-  "epoch_utc": 1793227772.691069,
-  "write_duration_ms": 827.14
+  "byte_size": 8530,
+  "timestamp_ist": "2026-10-29 04:21:40 IST",
+  "timestamp_utc": "2026-10-28 22:51:40 UTC",
+  "epoch_utc": 1793227900.325649,
+  "write_duration_ms": 495.61
 }

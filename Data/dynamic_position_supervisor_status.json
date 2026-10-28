@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-28 22:49:33 UTC",
+  "timestamp_utc": "2026-10-28 22:51:40 UTC",
   "balance_usd": 4751.61,
-  "equity_usd": 4756.19,
-  "free_margin_usd": 2302.13,
+  "equity_usd": 4754.53,
+  "free_margin_usd": 2300.47,
   "max_filled_positions": 15,
   "filled_positions_count": 4,
   "filled_slots_free": 11,
@@ -17,15 +17,12 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 1.3993,
-      "price_current": 1.39907,
+      "price_current": 1.39896,
       "sl": 1.3978,
       "tp": 1.4027,
-      "gain_r": -0.153,
+      "gain_r": -0.227,
       "ratchet_stage": 0,
-      "profit_usd": -1.48,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": -2.19
     },
     {
       "ticket": 19437062,
@@ -33,15 +30,12 @@
       "type": "BUY",
       "volume": 0.4,
       "price_open": 6.661,
-      "price_current": 6.66009,
+      "price_current": 6.66007,
       "sl": 6.6594999999999995,
       "tp": 6.6642,
-      "gain_r": -0.607,
+      "gain_r": -0.62,
       "ratchet_stage": 0,
-      "profit_usd": -5.47,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": -5.59
     },
     {
       "ticket": 19437065,
@@ -49,15 +43,12 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52505.34,
+      "price_current": 52519.34,
       "sl": 52756.77,
       "tp": 52298.0,
-      "gain_r": 0.69,
+      "gain_r": 0.596,
       "ratchet_stage": 0,
-      "profit_usd": 10.27,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 8.87
     },
     {
       "ticket": 19437499,
@@ -65,15 +56,12 @@
       "type": "BUY",
       "volume": 0.01,
       "price_open": 29465.0,
-      "price_current": 29470.96,
+      "price_current": 29476.71,
       "sl": 29340.0,
       "tp": 29720.0,
-      "gain_r": 0.048,
+      "gain_r": 0.094,
       "ratchet_stage": 0,
-      "profit_usd": 0.6,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 1.17
     }
   ],
   "resting_orders": [
