@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-28 21:51:55 UTC",
+  "timestamp_utc": "2026-10-28 21:53:58 UTC",
   "balance_usd": 4751.61,
   "equity_usd": 4753.22,
   "free_margin_usd": 3927.14,
@@ -22,10 +22,7 @@
       "tp": 1.4027,
       "gain_r": -0.14,
       "ratchet_stage": 0,
-      "profit_usd": -1.35,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": -1.35
     },
     {
       "ticket": 19437065,
@@ -38,10 +35,7 @@
       "tp": 52298.0,
       "gain_r": 0.154,
       "ratchet_stage": 0,
-      "profit_usd": 2.3,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 2.3
     }
   ],
   "resting_orders": [
