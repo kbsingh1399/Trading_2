@@ -154898,5 +154898,25 @@
     "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "FARTCOIN",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 3056.69,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.1333,
+    "wallet_address": "0xf9109ada2f73c62e9889b45453065f0d99260a2d",
+    "asset_slug": "FARTCOIN",
+    "raw_text": "#FARTCOIN Liquidated Long: 3.06K USD at 0.1333 USD [API]",
+    "msg_id": "HL_LIQ_0xf9109ada2f73c62e9889b45453065f0d99260a2d_FARTCOIN_967284124574488",
+    "timestamp_epoch": 1793153791,
+    "time_label": "02:16",
+    "date_heading": "October 28",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
