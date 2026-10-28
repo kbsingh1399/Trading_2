@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-10-28T05:01:11.028807+00:00",
+  "account_login": 5064568,
+  "total": 0,
+  "symbols_evaluated": 156,
+  "broker_symbols": 156,
+  "risk_policy": {
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "solvency_kernel_usd": 4795.0,
+    "base_capital_usd": 4815.01,
+    "hard_floor_cushion_usd": 215.01,
+    "operating_buffer_cushion_usd": 165.01,
+    "kernel_cushion_usd": 20.01,
+    "global_contingency_reserve_usd": 2.0,
+    "existing_ticket_stress_usd": 16.0625,
+    "realized_headroom_usd": 1.95,
+    "post_joint_stress_equity_usd": 4796.95,
+    "capital_mode": "TIER_0_DEFENSIVE",
+    "risk_min_usd": 10.0,
+    "risk_max_usd": 10.0,
+    "nominal_risk_capacity_usd": 0.0,
+    "max_concurrent_tickets": 4,
+    "new_risk_admissible": false,
+    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
+  },
+  "vetoes": {
+    "portfolio": "capital_or_capacity_unavailable"
+  },
+  "authorization": "WATCHLIST_ONLY_PENDING_FULL_HARD_GATES",
+  "pipeline": {
+    "Crypto": [],
+    "Indices": [],
+    "Commodities/Metals": [],
+    "Forex/Other": []
+  }
+}
