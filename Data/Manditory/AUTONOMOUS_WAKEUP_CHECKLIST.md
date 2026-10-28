@@ -41,7 +41,12 @@
 > 2. Physically pre-load all 42 Parquet feeds (`Data/feeds/*.parquet`) into in-memory RAM cache (`DataLakeMemoryStore`).
 > 3. Verify freshness scorecard (< 5.0m target) and execute the Mandatory 43-Feed Forensic Combined Microstructure & Macro Analysis Matrix in BOTH the internal thinking chain and final response (generic boilerplate ledgers strictly banned; thinking chain must systematically interrogate all 43 feeds, liquidation cascades, whale walls, and spread-padded SL bounds for each screened asset without operator prompting).
 > 4. Audit MT5 account solvency against the **4,775.00 USD Hard Statutory Floor** and **4,795.00 USD Operating Defense Buffer**.
-> 5. Supervise live positions (ratcheting +0.80R to BE lock, +1.50R to profit lock, 6h time decay scratch).
+> 5. **Mandatory Running Trade & Order Validity Interrogation ("Should I let it run or cut it? Is it still a valid trade?")**:
+>    On EVERY cycle, the desk MUST explicitly audit every active position and resting order:
+>    - Formally ask and answer: **"Should I let it run or cut it? Is it still a valid trade?"**
+>    - Interrogate orderflow delta, CVD divergence, resting whale wall persistence, and market structure evolution.
+>    - If valid and developing: LET IT RUN with active ratchets (+0.80R to BE lock, +1.50R to profit lock).
+>    - If thesis invalidated, adverse liquidation cascade forming, or time decay > 24 bars (6h) with gain < +0.20R: CUT/SCRATCH at market immediately to protect capital.
 > 6. Perform vectorized scanning across all 156+ assets across all 4 macro clusters (Crypto, FX, Metals, Indices) with zero omission.
 > 7. If in Capital Preservation Mode (Equity <= 4,795.00 USD), candidate radar is armed; stage limit orders autonomously the instant capacity unlocks.
 > 8. Mathematically validate proposed candidates through `Terminal/Harness/execution_harness.py`.

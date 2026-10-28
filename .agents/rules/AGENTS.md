@@ -26,6 +26,9 @@ trigger: always_on
 >    - Cross-reference defending institutional whale walls in 10_Whale_Orders.parquet and verify that limit orders lean against verified resting walls (> 100K USD, > 180s persistence).
 >    - Verify multi-timeframe CVD delta absorption across 1m, 5m, 15m, 1h, and 4h in 18_CVD*.parquet.
 >    - Enforce the mandatory Spread-Padded SL Invariant (SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price) in the thinking chain before generating any broker order request.
+> 6. **Mandatory Trade Lifecycle Interrogation ("Should I let it run or cut it? Is it still valid?")**:
+>    On EVERY wakeup cycle and in EVERY response, the coordinator and subagents MUST systematically interrogate each live filled position and resting order with the core existential question: **"Should I let it run or cut it? Is it still a valid trade?"**
+>    Evaluate structural validity, orderflow absorption vs waterfall, defending whale wall persistence, and time decay. Cut any invalidated position immediately at market; allow valid trades to run to statistical profit ratchets.
 
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
 Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line, followed immediately by the mandatory 33-feed Parquet freshness scorecard before any other content:
