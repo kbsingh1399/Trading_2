@@ -1,29 +1,15 @@
 {
-  "timestamp_utc": "2026-10-28 00:08:15 UTC",
-  "balance_usd": 4817.08,
-  "equity_usd": 4816.39,
-  "free_margin_usd": 4409.87,
+  "timestamp_utc": "2026-10-28 00:10:21 UTC",
+  "balance_usd": 4815.01,
+  "equity_usd": 4815.01,
+  "free_margin_usd": 4815.01,
   "max_filled_positions": 4,
-  "filled_positions_count": 1,
-  "filled_slots_free": 3,
+  "filled_positions_count": 0,
+  "filled_slots_free": 4,
   "resting_limits_count": 0,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [
-    {
-      "ticket": 19385697,
-      "symbol": "XAUUSD.pi",
-      "type": "SELL",
-      "volume": 0.01,
-      "price_open": 4065.2,
-      "price_current": 4065.89,
-      "sl": 4067.2,
-      "tp": 4024.5,
-      "gain_r": -0.345,
-      "ratchet_stage": 0,
-      "profit_usd": -0.69
-    }
-  ],
+  "active_positions": [],
   "resting_orders": []
 }
