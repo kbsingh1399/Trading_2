@@ -202,7 +202,7 @@ async def extract_footprint_for_coin(cdp_cmd, coin: str) -> List[Dict[str, Any]]
     for attempt in range(15):
         await asyncio.sleep(0.3)
         res = await cdp_cmd("Runtime.evaluate", {
-            "expression": "(() => { return document.querySelectorAll('.SidePanel_lrow__m40N_').length; })()",
+            "expression": "(() => { return document.querySelectorAll('[class*="SidePanel_lrow"]').length; })()",
             "returnByValue": True
         })
         sig_count = res.get("value", 0)
@@ -211,7 +211,7 @@ async def extract_footprint_for_coin(cdp_cmd, coin: str) -> List[Dict[str, Any]]
 
     js_signals = """
     (() => {
-        const rows = Array.from(document.querySelectorAll('.SidePanel_lrow__m40N_'));
+        const rows = Array.from(document.querySelectorAll('[class*="SidePanel_lrow"]'));
         return rows.map(r => {
             const txt = r.innerText ? r.innerText.trim() : '';
             const lines = txt.split('\\n').map(l => l.trim()).filter(Boolean);

@@ -214,9 +214,23 @@ async def harvest_spot_netflows(
 
         await cdp_cmd("Network.enable")
 
-        if is_ephemeral:
-            log.info("Awaiting page hydration on new tab (5s)...")
-            await asyncio.sleep(5.0)
+        # Universal Component Hydration Check: wait until DOM & tables are fully mounted
+        js_wait = """
+        (() => {
+            const isDocReady = (document.readyState === 'complete' || document.readyState === 'interactive');
+            const tables = document.querySelectorAll('table');
+            const rows = document.querySelectorAll('table tbody tr').length;
+            return { ready: isDocReady && tables.length > 0 && rows > 5, rows, tableCount: tables.length };
+        })()
+        """
+        log.info("Awaiting full page and component hydration...")
+        for attempt in range(30):
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_wait, "returnByValue": True})
+            val = res.get("result", {}).get("value", {})
+            if val.get("ready"):
+                log.info(f"Page and components fully hydrated ({val.get('rows')} rows across {val.get('tableCount')} tables).")
+                break
+            await asyncio.sleep(0.5)
 
         # 1. Ensure 'Spot' tab is active
         js_ensure_spot = """

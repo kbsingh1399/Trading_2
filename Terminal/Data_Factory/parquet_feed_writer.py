@@ -102,6 +102,7 @@ def write_parquet_feed(
     retention_rows: Optional[int] = None,
     custom_metadata: Optional[Dict[str, Any]] = None,
     force_dump: bool = False,
+    merge_missing_assets: bool = False,
 ) -> Dict[str, Any]:
     """
     Atomically writes a dataset to Data/feeds/<feed_name>.parquet
@@ -200,6 +201,25 @@ def write_parquet_feed(
             logging.getLogger("ParquetWriter").warning(
                 f"Could not append to existing parquet for '{feed_name}': {e}. Writing new table."
             )
+
+    # Asset-Level Snapshot Merge-on-Write: Preserve missing assets from prior snapshot
+    sym_col = "symbol" if "symbol" in table.column_names else ("Asset" if "Asset" in table.column_names else None)
+    if merge_missing_assets and target_file.exists() and not is_empty_payload and sym_col:
+        try:
+            existing_table = read_parquet_feed(feed_name)
+            if sym_col in existing_table.column_names:
+                curr_syms = set(table.column(sym_col).to_pylist())
+                exist_syms = set(existing_table.column(sym_col).to_pylist())
+                missing_syms = exist_syms - curr_syms
+                if missing_syms:
+                    import pyarrow.compute as pc
+                    mask = pc.is_in(existing_table.column(sym_col), pa.array(list(missing_syms), type=pa.string()))
+                    missing_rows = existing_table.filter(mask)
+                    if missing_rows.num_rows > 0:
+                        log.info(f"[MergeOnWrite] Preserving {missing_rows.num_rows} prior records for missing assets {missing_syms} in '{feed_name}'.")
+                        table = pa.concat_tables([table, missing_rows], promote_options="default")
+        except Exception as e:
+            log.warning(f"[MergeOnWrite] Failed to merge missing assets for '{feed_name}': {e}")
 
     # Apply retention slicing if requested
     if retention_rows and table.num_rows > retention_rows:

@@ -153,8 +153,11 @@ class DataLakeMemoryStore:
 
     @classmethod
     def clear(cls):
+        """Purge all parquet dataframes from memory and force OS garbage collection."""
         cls._cache.clear()
         cls._loaded_at = 0.0
+        import gc
+        gc.collect()
 
 def build_asset_360_dossier(asset: str, use_memory_cache: bool = True) -> Dict[str, Any]:
     """Traverse all parquet files from in-memory cache and construct complete 360-degree data dossier."""
@@ -403,13 +406,56 @@ def generate_markdown_report(dossier: Dict[str, Any], out_path: Path):
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
+def run_auto_cycle_dossiers() -> List[str]:
+    """Automatically build/update dossiers for all active positions and prime candidates."""
+    # Active open positions from MT5 if available
+    active_symbols = ["BTC", "USDJPY", "XAUUSD", "EURUSD", "USDCAD", "UKBRENT", "US2000"]
+    try:
+        import MetaTrader5 as mt5
+        if mt5.initialize():
+            positions = mt5.positions_get()
+            if positions:
+                for p in positions:
+                    base = p.symbol.split(".")[0].replace("USD", "").replace("pi", "").replace("p", "")
+                    if base and base not in active_symbols:
+                        active_symbols.append(base)
+            mt5.shutdown()
+    except Exception:
+        pass
+
+    # Pre-load in-memory cache once
+    DataLakeMemoryStore.pre_load_all(force=True)
+    
+    updated = []
+    for asset in active_symbols:
+        try:
+            build_asset_360_dossier(asset, use_memory_cache=True)
+            updated.append(asset)
+        except Exception as e:
+            print(f"Error building dossier for {asset}: {e}")
+            
+    return updated
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Asset 360° Data Lake Dossier Engine")
     parser.add_argument("--asset", type=str, default="BTC", help="Asset ticker (e.g. BTC, ETH, XAU, USDJPY)")
+    parser.add_argument("--auto-cycle", action="store_true", help="Auto-build dossiers for all active positions and candidates")
+    parser.add_argument("--batch", type=str, help="Comma-separated assets to build (e.g. BTC,ETH,XAU,USDJPY)")
     args = parser.parse_args()
     
-    print(f"Building 360° Data Lake Dossier for {args.asset}...")
-    res = build_asset_360_dossier(args.asset)
-    print(f"COMPLETE: Scanned {res['total_files_scanned']} feeds. Extracted data from {res['feeds_with_data_count']} feeds (+{res['global_macro_feeds_count']} global macro feeds).")
-    print(f"Dossier JSON saved to: Data/dossiers/{args.asset.upper()}_360_dossier.json")
-    print(f"Dossier Markdown saved to: docs/dossiers/{args.asset.upper()}_360_DOSSIER.md")
+    if args.auto_cycle:
+        print("Running Auto-Cycle 360° Dossier generation across active positions and candidates...")
+        done = run_auto_cycle_dossiers()
+        print(f"COMPLETE: Updated 360° dossiers for {len(done)} assets: {', '.join(done)}")
+    elif args.batch:
+        assets = [a.strip() for a in args.batch.split(",") if a.strip()]
+        DataLakeMemoryStore.pre_load_all(force=True)
+        for a in assets:
+            res = build_asset_360_dossier(a, use_memory_cache=True)
+            print(f"Updated dossier for {a} (Data: {res['feeds_with_data_count']} feeds)")
+    else:
+        print(f"Building 360° Data Lake Dossier for {args.asset}...")
+        res = build_asset_360_dossier(args.asset)
+        print(f"COMPLETE: Scanned {res['total_files_scanned']} feeds. Extracted data from {res['feeds_with_data_count']} feeds (+{res['global_macro_feeds_count']} global macro feeds).")
+        print(f"Dossier JSON saved to: Data/dossiers/{args.asset.upper()}_360_dossier.json")
+        print(f"Dossier Markdown saved to: docs/dossiers/{args.asset.upper()}_360_DOSSIER.md")

@@ -1,0 +1,1070 @@
+{
+  "asset": "EURGBP",
+  "aliases": [
+    "EURGBPUSD.PI",
+    "EURGBPUSD",
+    "EURGBPUSD.P",
+    "EURGBPUSDT",
+    "EURGBP"
+  ],
+  "timestamp_ist": "2026-10-28 15:26:52 IST",
+  "timestamp_utc": "2026-10-28 09:56:52 UTC",
+  "total_files_scanned": 42,
+  "feeds_with_data_count": 2,
+  "global_macro_feeds_count": 4,
+  "feeds_no_data_count": 36,
+  "pillar_summary": {
+    "Pillar 1: Broker Telemetry & Solvency": {
+      "feeds_with_data": 1,
+      "total_feeds": 2,
+      "feeds": [
+        "23_Master_Pipeline_Telemetry"
+      ]
+    },
+    "Pillar 5: Microstructure, Whales & Footprints": {
+      "feeds_with_data": 0,
+      "total_feeds": 11,
+      "feeds": []
+    },
+    "Pillar 6: Technical & Auction Profile": {
+      "feeds_with_data": 3,
+      "total_feeds": 7,
+      "feeds": [
+        "11_Technical",
+        "11_Technical_BTC_Ribbon",
+        "20_Auction_Market_Structure"
+      ]
+    },
+    "Pillar 4: Liquidation & Stops Geometry": {
+      "feeds_with_data": 0,
+      "total_feeds": 12,
+      "feeds": []
+    },
+    "Pillar 2: Macro & ETF Netflows": {
+      "feeds_with_data": 2,
+      "total_feeds": 4,
+      "feeds": [
+        "19_Calendar",
+        "19_News"
+      ]
+    },
+    "Pillar 3: Sentiment & Leverage Crowding": {
+      "feeds_with_data": 0,
+      "total_feeds": 6,
+      "feeds": []
+    }
+  },
+  "feed_details": [
+    {
+      "feed_name": "00_MT5_Account_Telemetry",
+      "file_name": "00_MT5_Account_Telemetry.parquet",
+      "pillar": "Pillar 1: Broker Telemetry & Solvency",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 163,
+      "key_columns": [
+        "Category",
+        "Broker_Symbol",
+        "Bid_Quote",
+        "Ask_Quote",
+        "Mid_Price"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "10_Whale_Orders",
+      "file_name": "10_Whale_Orders.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 3431,
+      "key_columns": [
+        "sr_no",
+        "exchange",
+        "symbol",
+        "type",
+        "side"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "11_Technical",
+      "file_name": "11_Technical.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "DATA_EXTRACTED [PASS]",
+      "matching_rows": 1,
+      "total_rows": 120,
+      "key_columns": [
+        "asset",
+        "category",
+        "symbol",
+        "last_price",
+        "change_24h_pct",
+        "session_vwap",
+        "vwap_z",
+        "upper_1sd",
+        "lower_1sd",
+        "upper_1_28sd"
+      ],
+      "latest_sample": [
+        {
+          "asset": "EURGBP",
+          "category": "Crypto Alt",
+          "symbol": "EURGBP.pi",
+          "last_price": 0.83762,
+          "change_24h_pct": 0.1099557786542407,
+          "session_vwap": 0.8366413827904842,
+          "vwap_z": 2.5161171201381185,
+          "upper_1sd": 0.8370303222407519,
+          "lower_1sd": 0.8362524433402164,
+          "upper_1_28sd": 0.8371392252868269,
+          "lower_1_28sd": 0.8361435402941414,
+          "upper_2sd": 0.8374192616910198,
+          "lower_2sd": 0.8358635038899486,
+          "upper_2_01sd": 0.8374231510855225,
+          "lower_2_01sd": 0.8358596144954459,
+          "upper_2_51sd": 0.8376176208106563,
+          "lower_2_51sd": 0.8356651447703121,
+          "upper_3sd": 0.8378082011412875,
+          "lower_3sd": 0.8354745644396808,
+          "dist_to_vwap_pct": 0.11696973513930689,
+          "rolling_vwap_24h": 0.8366608778219836,
+          "ema_5": 0.8370944258583617,
+          "ema_13": 0.8369675849726955,
+          "ema_34": 0.8367559304349884,
+          "ema_89": 0.8367208907884905,
+          "ema_144": 0.8368661440128742,
+          "ema_233": 0.8371760725403189,
+          "ema_233_slope_pct": -0.001873407140202263,
+          "ema_9": 0.8370195190974129,
+          "ema_20": 0.8368812978990864,
+          "ema_50": 0.8366923915550571,
+          "ema_100": 0.8367469650034527,
+          "ema_200": 0.837045579009034,
+          "ema_200_slope_pct": -0.0002165466025656449,
+          "trend_bias": "BULLISH",
+          "rsi_14": 67.355714417791,
+          "rsi_state": "BULLISH",
+          "atr_14": 0.00026624061600107686,
+          "atr_pct": 0.031785369976967695,
+          "bb_upper": 0.8374612946606799,
+          "bb_mid": 0.8368909999999999,
+          "bb_lower": 0.83632070533932,
+          "bb_bandwidth": 0.13628887410186666,
+          "macd_line": 0.00016184736777569153,
+          "macd_signal": 0.00015211302793621869,
+          "macd_hist": 9.734339839472845e-06,
+          "mr_bias": "EXTREME OVERBOUGHT",
+          "high_24h": 0.83769,
+          "low_24h": 0.83561,
+          "daily_poc": 0.8362541000000001,
+          "daily_vah": 0.8369181000000001,
+          "daily_val": 0.8360383,
+          "week_high": 0.84021,
+          "week_low": 0.83561,
+          "sr_no": 41
+        }
+      ]
+    },
+    {
+      "feed_name": "11_Technical_BTC_Ribbon",
+      "file_name": "11_Technical_BTC_Ribbon.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "MACRO_GLOBAL_CONTEXT",
+      "matching_rows": 100,
+      "total_rows": 100,
+      "key_columns": [
+        "bar_time_utc",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "session_vwap",
+        "vwap_u1"
+      ],
+      "latest_sample": [
+        {
+          "bar_time_utc": "2026-10-28 09:00",
+          "open": 81350.5,
+          "high": 81437.5,
+          "low": 81278.5,
+          "close": 81416.5,
+          "volume": 2966.0,
+          "session_vwap": 80903.71981999368,
+          "vwap_u1": 81136.56280884164,
+          "vwap_l1": 80670.87683114572,
+          "vwap_u1_28": 81201.75884571907,
+          "vwap_l1_28": 80605.6807942683,
+          "vwap_u2": 81369.40579768961,
+          "vwap_l2": 80438.03384229775,
+          "vwap_u2_01": 81371.73422757808,
+          "vwap_l2_01": 80435.70541240928,
+          "vwap_u2_51": 81488.15572200208,
+          "vwap_l2_51": 80319.28391798529,
+          "vwap_u3": 81602.24878653757,
+          "vwap_l3": 80205.19085344979,
+          "vwap_z": 2.202257334624494,
+          "ema_9": 81198.89302596592,
+          "ema_20": 81038.67191271139,
+          "ema_50": 80842.06870654729,
+          "ema_100": 80608.25976004521,
+          "ema_200": 80400.63057464967,
+          "rsi_14": 68.47107719270313,
+          "atr_14": 170.45499106663868,
+          "bb_upper": 81453.52942292509,
+          "bb_mid": 80957.175,
+          "bb_lower": 80460.82057707492,
+          "macd_hist": 65.22373776428364
+        },
+        {
+          "bar_time_utc": "2026-10-28 09:15",
+          "open": 81414.5,
+          "high": 81432.5,
+          "low": 81281.5,
+          "close": 81353.5,
+          "volume": 2356.0,
+          "session_vwap": 80914.17977872484,
+          "vwap_u1": 81153.91783289767,
+          "vwap_l1": 80674.441724552,
+          "vwap_u1_28": 81221.04448806607,
+          "vwap_l1_28": 80607.3150693836,
+          "vwap_u2": 81393.6558870705,
+          "vwap_l2": 80434.70367037917,
+          "vwap_u2_01": 81396.05326761224,
+          "vwap_l2_01": 80432.30628983743,
+          "vwap_u2_51": 81515.92229469866,
+          "vwap_l2_51": 80312.43726275102,
+          "vwap_u3": 81633.39394124334,
+          "vwap_l3": 80194.96561620633,
+          "vwap_z": 1.8325009885933268,
+          "ema_9": 81229.81442077275,
+          "ema_20": 81068.65554007221,
+          "ema_50": 80862.1248357023,
+          "ema_100": 80623.01699251957,
+          "ema_200": 80410.1118624641,
+          "rsi_14": 64.97873076926325,
+          "atr_14": 169.06534884726216,
+          "bb_upper": 81506.03731132741,
+          "bb_mid": 80983.1,
+          "bb_lower": 80460.1626886726,
+          "macd_hist": 57.23527502271642
+        },
+        {
+          "bar_time_utc": "2026-10-28 09:30",
+          "open": 81349.5,
+          "high": 81418.5,
+          "low": 81224.5,
+          "close": 81405.5,
+          "volume": 2227.0,
+          "session_vwap": 80923.49602720198,
+          "vwap_u1": 81168.70645810591,
+          "vwap_l1": 80678.28559629805,
+          "vwap_u1_28": 81237.36537875902,
+          "vwap_l1_28": 80609.62667564495,
+          "vwap_u2": 81413.91688900984,
+          "vwap_l2": 80433.07516539413,
+          "vwap_u2_01": 81416.36899331887,
+          "vwap_l2_01": 80430.62306108509,
+          "vwap_u2_51": 81538.97420877084,
+          "vwap_l2_51": 80308.01784563312,
+          "vwap_u3": 81659.12731991376,
+          "vwap_l3": 80187.8647344902,
+          "vwap_z": 1.9656748329228424,
+          "ema_9": 81264.9515366182,
+          "ema_20": 81100.73596482724,
+          "ema_50": 80883.43366567476,
+          "ema_100": 80638.51170553897,
+          "ema_200": 80420.01622204157,
+          "rsi_14": 66.49764406145833,
+          "atr_14": 170.84639535856581,
+          "bb_upper": 81562.43340548864,
+          "bb_mid": 81009.775,
+          "bb_lower": 80457.11659451135,
+          "macd_hist": 51.66944141105192
+        }
+      ]
+    },
+    {
+      "feed_name": "12_Hyperdash",
+      "file_name": "12_Hyperdash.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 293,
+      "key_columns": [
+        "Section",
+        "Asset",
+        "Type_or_Side",
+        "Price",
+        "Size"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "13_Hyperliquid",
+      "file_name": "13_Hyperliquid.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 235,
+      "key_columns": [
+        "Section",
+        "Asset",
+        "Price",
+        "Change_24h",
+        "Volume_24h_USD"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "14_Hyperdash_Liq_Map",
+      "file_name": "14_Hyperdash_Liq_Map.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 6527,
+      "key_columns": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "14_Liquidation_Matrix",
+      "file_name": "14_Liquidation_Matrix.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 10032,
+      "key_columns": [
+        "timestamp_ist",
+        "symbol",
+        "asset_class",
+        "venue_tier",
+        "venue_name"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "15_Hyperdash_Stops_Map",
+      "file_name": "15_Hyperdash_Stops_Map.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 4357,
+      "key_columns": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "16_Hyperdash_telegram_Intel",
+      "file_name": "16_Hyperdash_telegram_Intel.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 1000,
+      "key_columns": [
+        "category",
+        "event_type",
+        "asset",
+        "side",
+        "notional_usd"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "17_Orderbook",
+      "file_name": "17_Orderbook.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 615,
+      "key_columns": [
+        "sr_no",
+        "data_layer",
+        "asset_class",
+        "asset",
+        "side"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD",
+      "file_name": "18_CVD.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 1500,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD_30D_15m",
+      "file_name": "18_CVD_30D_15m.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 2668,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD_30D_1h",
+      "file_name": "18_CVD_30D_1h.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 667,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD_30D_4h",
+      "file_name": "18_CVD_30D_4h.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 168,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD_30D_5m",
+      "file_name": "18_CVD_30D_5m.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 8004,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "18_CVD_30D_ALL",
+      "file_name": "18_CVD_30D_ALL.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 11507,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "19_Calendar",
+      "file_name": "19_Calendar.parquet",
+      "pillar": "Pillar 2: Macro & ETF Netflows",
+      "status": "MACRO_GLOBAL_CONTEXT",
+      "matching_rows": 44,
+      "total_rows": 44,
+      "key_columns": [
+        "date",
+        "time",
+        "currency",
+        "impact",
+        "event",
+        "actual",
+        "forecast",
+        "previous"
+      ],
+      "latest_sample": [
+        {
+          "date": "Wed Oct 28",
+          "time": "8:00pm",
+          "currency": "USD",
+          "impact": "Low Impact",
+          "event": "Crude Oil Inventories",
+          "actual": "",
+          "forecast": "0.1M",
+          "previous": "-3.1M",
+          "outcome": "Pending",
+          "url": ""
+        },
+        {
+          "date": "Wed Oct 28",
+          "time": "11:30pm",
+          "currency": "USD",
+          "impact": "High Impact",
+          "event": "Federal Funds Rate",
+          "actual": "",
+          "forecast": "4.00%",
+          "previous": "4.00%",
+          "outcome": "Pending",
+          "url": ""
+        },
+        {
+          "date": "Wed Oct 28",
+          "time": "11:30pm",
+          "currency": "USD",
+          "impact": "High Impact",
+          "event": "FOMC Statement",
+          "actual": "",
+          "forecast": "",
+          "previous": "",
+          "outcome": "Pending",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "feed_name": "19_News",
+      "file_name": "19_News.parquet",
+      "pillar": "Pillar 2: Macro & ETF Netflows",
+      "status": "MACRO_GLOBAL_CONTEXT",
+      "matching_rows": 34,
+      "total_rows": 34,
+      "key_columns": [
+        "title",
+        "url",
+        "source",
+        "time_ago",
+        "timestamp_utc",
+        "timestamp_ist",
+        "exact_title_time",
+        "impact"
+      ],
+      "latest_sample": [
+        {
+          "title": "Vantage adds 49 more stocks to 24/5 offering, including ARM and Goldman Sachs",
+          "url": "https://www.forexfactory.com/",
+          "source": "tradeinformer.com",
+          "time_ago": "16 hr ago",
+          "timestamp_utc": "2026-10-27 17:55:56",
+          "timestamp_ist": "2026-10-27 23:25:56 IST",
+          "exact_title_time": "",
+          "impact": "Low Impact",
+          "comments": "0 comments",
+          "currency": "GLOBAL",
+          "category": "General Market Intel",
+          "preview": "Vantage has added 49 stocks to its 24/5 offering, with the new instruments going live on Tuesday. The list includes ARM Holdings, Goldman Sachs, CME Group and Spotify. All carry a .24H suffix, according to the broker\u2019s product notice. It is the second batch this month. Vantage added 48 stocks on October 13, including Alphabet, BlackRock and Shopify. The new ..."
+        },
+        {
+          "title": "CFI Records Highest-Ever Quarterly Trading Volume of USD 3.45 Trillion",
+          "url": "https://www.forexfactory.com/",
+          "source": "tradeinformer.com",
+          "time_ago": "43 hr ago",
+          "timestamp_utc": "2026-10-26 14:55:56",
+          "timestamp_ist": "2026-10-26 20:25:56 IST",
+          "exact_title_time": "",
+          "impact": "Low Impact",
+          "comments": "0 comments",
+          "currency": "USD",
+          "category": "General Market Intel",
+          "preview": "CFI Financial Group, a leading online trading provider, recorded notional trading volume of USD 3.45 trillion in Q3 2026, the highest in its history. Volume more than doubled year on year, increasing approximately 123%, while rising a further 14% quarter on quarter. This marks CFI\u2019s 11th consecutive announced quarter of record trading volume. Quarterly ..."
+        },
+        {
+          "title": "Contango vs backwardation: what futures curves tell traders",
+          "url": "https://www.forexfactory.com/",
+          "source": "equiti.com",
+          "time_ago": "Oct 24, 2026",
+          "timestamp_utc": "2026-10-28 09:55:56",
+          "timestamp_ist": "2026-10-28 15:25:56 IST",
+          "exact_title_time": "",
+          "impact": "Low Impact",
+          "comments": "0 comments",
+          "currency": "OIL",
+          "category": "General Market Intel",
+          "preview": "Two oil traders can agree that crude prices will rise over the coming months and still experience very different investment returns. The difference may have little to do with their forecasts. It can come from the structure of the futures market itself. Every futures contract has an expiration date, and contracts covering different delivery months frequently ..."
+        }
+      ]
+    },
+    {
+      "feed_name": "1_Crypto_ETF_Flows",
+      "file_name": "1_Crypto_ETF_Flows.parquet",
+      "pillar": "Pillar 2: Macro & ETF Netflows",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 41,
+      "key_columns": [
+        "#",
+        "Ticker",
+        "ETF_Name",
+        "Price",
+        "Price_Change"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "20_Auction_Market_Structure",
+      "file_name": "20_Auction_Market_Structure.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "DATA_EXTRACTED [PASS]",
+      "matching_rows": 1,
+      "total_rows": 84,
+      "key_columns": [
+        "timestamp",
+        "sr_no",
+        "asset",
+        "symbol",
+        "category",
+        "price",
+        "spread_bps",
+        "spread_gate",
+        "va_position",
+        "daily_poc"
+      ],
+      "latest_sample": [
+        {
+          "timestamp": "2026-10-28 15:19:56 IST",
+          "sr_no": 68,
+          "asset": "EURGBP",
+          "symbol": "EURGBP.pi",
+          "category": "FX Cross",
+          "price": 0.83753,
+          "spread_bps": 0.12,
+          "spread_gate": "PASS",
+          "va_position": "ABOVE_VALUE (Imbalance)",
+          "daily_poc": 0.83626,
+          "daily_vah": 0.83692,
+          "daily_val": 0.83604,
+          "dist_poc_pct": 0.15,
+          "dist_vah_pct": 0.07,
+          "dist_val_pct": 0.18,
+          "pd_poc": 0.83734,
+          "pd_vah": 0.83764,
+          "pd_val": 0.83664,
+          "pdh": 0.83785,
+          "pdl": 0.83591,
+          "pdc": 0.83595,
+          "monday_high": 0.84021,
+          "monday_low": 0.83727,
+          "monday_mid": 0.83874,
+          "weekly_poc": 0.83734,
+          "weekly_vah": 0.83835,
+          "weekly_val": 0.83615,
+          "cwh": 0.84021,
+          "cwl": 0.83561,
+          "pwh": 0.8429,
+          "pwl": 0.83614,
+          "cmh": 0.85474,
+          "cml": 0.83561,
+          "pmh": 0.86122,
+          "pml": 0.85386,
+          "asian_high": 0.83657,
+          "asian_low": 0.83561,
+          "london_high": 0.83771,
+          "london_low": 0.83647,
+          "ny_high": null,
+          "ny_low": null,
+          "ib_high": 0.83666,
+          "ib_low": 0.83647,
+          "fib_swing_h": 0.83771,
+          "fib_swing_l": 0.83561,
+          "fib_dir": "BULLISH_IMPULSE",
+          "fib_gp_min": 0.83635,
+          "fib_gp_max": 0.83641,
+          "fib_ote": 0.83624,
+          "fib_inval": 0.83606,
+          "fib_status": "SHALLOW_RETRACE",
+          "auction_regime": "RANGE_EXPANSION",
+          "pivot": 0.83657,
+          "r1": 0.83723,
+          "s1": 0.83529,
+          "r2": 0.83851,
+          "s2": 0.83463,
+          "weekly_pivot": 0.83872,
+          "weekly_r1": 0.84131,
+          "weekly_s1": 0.83455,
+          "session_bias": "BULLISH (Above Pivot)"
+        }
+      ]
+    },
+    {
+      "feed_name": "21_Tradfye_Orderflow",
+      "file_name": "21_Tradfye_Orderflow.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 6912,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "asset",
+        "market_pair",
+        "timeframe"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "22_Forced_Liquidations_MTF",
+      "file_name": "22_Forced_Liquidations_MTF.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 64,
+      "key_columns": [
+        "symbol",
+        "timeframe",
+        "candle_start_epoch",
+        "candle_start_ist",
+        "candle_end_ist"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "23_Master_Pipeline_Telemetry",
+      "file_name": "23_Master_Pipeline_Telemetry.parquet",
+      "pillar": "Pillar 1: Broker Telemetry & Solvency",
+      "status": "MACRO_GLOBAL_CONTEXT",
+      "matching_rows": 33,
+      "total_rows": 33,
+      "key_columns": [
+        "feed_id",
+        "feed_name",
+        "status",
+        "tier"
+      ],
+      "latest_sample": [
+        {
+          "feed_id": 30,
+          "feed_name": "21_Tradfye_Orderflow",
+          "status": "PASS",
+          "tier": "Tactical"
+        },
+        {
+          "feed_id": 31,
+          "feed_name": "22_Forced_Liquidations_MTF",
+          "status": "PASS",
+          "tier": "High Velocity"
+        },
+        {
+          "feed_id": 32,
+          "feed_name": "23_Master_Pipeline_Telemetry",
+          "status": "PASS",
+          "tier": "High Velocity"
+        }
+      ]
+    },
+    {
+      "feed_name": "25_CoinGlass_Footprint_Signals",
+      "file_name": "25_CoinGlass_Footprint_Signals.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 673,
+      "key_columns": [
+        "timestamp_ist",
+        "signal_time",
+        "symbol",
+        "base_asset",
+        "timeframe"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "26_Aggregated_Footprint_Bar_Metrics",
+      "file_name": "26_Aggregated_Footprint_Bar_Metrics.parquet",
+      "pillar": "Pillar 5: Microstructure, Whales & Footprints",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 310,
+      "key_columns": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "symbol",
+        "base_asset"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "2_Spot_Netflow_S",
+      "file_name": "2_Spot_Netflow_S.parquet",
+      "pillar": "Pillar 2: Macro & ETF Netflows",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 221,
+      "key_columns": [
+        "Symbol",
+        "5_minute",
+        "15_minute",
+        "30_minute",
+        "1_hour"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "3_Exchanges_LS_Ratio_15M",
+      "file_name": "3_Exchanges_LS_Ratio_15M.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 500,
+      "key_columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "3_Exchanges_LS_Ratio_1H",
+      "file_name": "3_Exchanges_LS_Ratio_1H.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 500,
+      "key_columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "3_Exchanges_LS_Ratio_4H",
+      "file_name": "3_Exchanges_LS_Ratio_4H.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 500,
+      "key_columns": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "4_Hyperliquid_Analysis",
+      "file_name": "4_Hyperliquid_Analysis.parquet",
+      "pillar": "Pillar 6: Technical & Auction Profile",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 2023,
+      "key_columns": [
+        "rank",
+        "user_display",
+        "wallet_address",
+        "asset",
+        "side"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "5_Funding_Rate",
+      "file_name": "5_Funding_Rate.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 595,
+      "key_columns": [
+        "Symbol",
+        "USDT_Binance",
+        "USDT_OKX",
+        "USDT_Bybit",
+        "USDT_KuCoin"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "5_OI",
+      "file_name": "5_OI.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 19,
+      "key_columns": [
+        "Asset",
+        "Total_OI_USD",
+        "Binance",
+        "Bybit",
+        "OKX"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "6_Funding_Fee_Settlement",
+      "file_name": "6_Funding_Fee_Settlement.parquet",
+      "pillar": "Pillar 3: Sentiment & Leverage Crowding",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 940,
+      "key_columns": [
+        "rank",
+        "symbol",
+        "price",
+        "price_24h_pct",
+        "open_interest"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "7_Liq_Heapmap",
+      "file_name": "7_Liq_Heapmap.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 84,
+      "key_columns": [
+        "rank",
+        "asset",
+        "tf_1h",
+        "tf_4h",
+        "tf_12h"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "7_Live_Liq",
+      "file_name": "7_Live_Liq.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 27,
+      "key_columns": [
+        "idx",
+        "coin",
+        "side",
+        "price",
+        "amount"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "8_Exchange_Liquidation_Map_1D",
+      "file_name": "8_Exchange_Liquidation_Map_1D.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 2494,
+      "key_columns": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "8_Exchange_Liquidation_Map_7D",
+      "file_name": "8_Exchange_Liquidation_Map_7D.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 800,
+      "key_columns": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "9_Liquidation_Max_Pain_24H",
+      "file_name": "9_Liquidation_Max_Pain_24H.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 751,
+      "key_columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "9_Liquidation_Max_Pain_3D",
+      "file_name": "9_Liquidation_Max_Pain_3D.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 751,
+      "key_columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "9_Liquidation_Max_Pain_48H",
+      "file_name": "9_Liquidation_Max_Pain_48H.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 751,
+      "key_columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ],
+      "latest_sample": []
+    },
+    {
+      "feed_name": "9_Liquidation_Max_Pain_7D",
+      "file_name": "9_Liquidation_Max_Pain_7D.parquet",
+      "pillar": "Pillar 4: Liquidation & Stops Geometry",
+      "status": "NO_DIRECT_MATCH",
+      "matching_rows": 0,
+      "total_rows": 751,
+      "key_columns": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ],
+      "latest_sample": []
+    }
+  ]
+}

@@ -10,6 +10,78 @@
 
 ---
 
+## SECTION 0: CANONICAL RISK & STATE CONTRACT (SINGLE SOURCE OF TRUTH — SUPERSEDES ALL OTHER SECTIONS)
+
+> **WHY THIS SECTION EXISTS (2026-10-28 RECONCILIATION)**: A forensic audit found this document internally contradicted itself (hard floor stated as 4,600/4,650 in one section and 4,775/4,795 in others), shipped two different ratchet ladders, and contained a Step 8 sizing formula that mathematically forbade Tier 1 trading entirely. Divergent numbers across artifacts (`cycle_envelope.json` listed floor 4,600 while the live equity snapshot used 4,775) caused a live $175 tier disagreement. **Every number below is CANONICAL. Any section of any governance document, prompt, status JSON, or code that conflicts with this table is STALE AND VOID, and trading MUST NOT proceed until the conflict is reconciled.**
+
+### 0.1 Canonical Capital Defense Ladder (authoritative)
+
+| Layer | Canonical Value (USD) | Rule |
+|---|---:|---|
+| Hard Floor (statistical DD stop) | **4,775.00** | Equity/balance at or below → immediate 100% Cash Lockdown, zero open risk, zero new orders |
+| Operating Defense Buffer | **4,795.00** | Equity below → Capital Preservation Mode (see tier table) |
+| Kernel Admission Floor | **4,795.00** | `min(balance,equity) − StressedLoss − 2.00 global reserve >= 4,795.00` for ANY new order |
+| Global Contingency Reserve | **2.00** | Deducted ex-ante from all admission math |
+| Legacy 4,600.00 / 4,650.00 values | **VOID** | Pre-floor-change legacy. Any artifact still carrying them (e.g. stale `cycle_envelope.json`) must be regenerated before trading |
+
+### 0.2 Canonical Risk Tier Table (authoritative; tier metric = `min(realized_balance, equity)`)
+
+| Regime | Band (USD) | Nominal Risk / Ticket | Max Filled Slots | Max Pending |
+|---|---|---|---|---|
+| 100% Cash Lockdown | <= 4,775.00 | 0.00 | 0 | 0 |
+| Capital Preservation | 4,775.00 – 4,795.00 | 5.00 – 8.00 | 1 | 0 |
+| Tier 1 Standard (default) | 4,795.00 – 4,850.00 | 10.00 – 12.00 | 2 | counted as filled |
+| Tier 2 Expansion | > 4,850.00 | 15.00 – 25.00 | 2 | counted as filled |
+
+Under Drawdown Defense (`min(balance,equity) − 4,795.00 < 45.00`): `N_open + N_pending <= 3`. Setup quality NEVER raises a tier. Deadline pressure NEVER raises a tier. Floating profit NEVER provides admission credit.
+
+### 0.3 Canonical Dynamic Ratchet Ladder (single definition; all other statements defer to this)
+
+| Trigger (unrealized gain) | Mandatory action |
+|---|---|
+| +0.75R to +0.80R | SL → Entry ± 0.10R (Early-BE lock) |
+| +1.25R | SL → Entry ± 0.15R (Phase 0) |
+| +1.65R | SL → Entry ± 0.80R (Phase 1 profit lock) |
+| >= +2.00R | Continuous 0.50 ATR trail behind 15m micro-shelves (Phase 2) |
+| Held >= 6h (24 x 15m bars) with gain < +0.20R | Market-close time-decay exit |
+| Any moment | Monotone non-loosening invariant: BUY requires `target_sl > p.sl`; SELL requires `target_sl < p.sl`; otherwise skip and advance stage |
+
+### 0.4 Canonical Spread & Blackout Gates
+
+- **Primary gate (all assets)**: Dynamic Friction Efficiency `Spread Points / TP Distance Points <= 15.0%`.
+- **Baseline ceilings (secondary, per class)**: Crypto <= 35.0 bps | Indices & Commodities <= 10.0 bps | FX Majors/Crosses <= 6.0 bps | FX Exotics <= 25.0 bps. The legacy "statutory 12.0 bps" figure is a TradFi/FX *target*, not a universal ceiling; the friction ratio above governs.
+- **Tier-1 news blackout**: ±15 min (crypto) / ±35 min (TradFi) around red-folder releases; all resting limits >= 30 min before release are cancelled.
+- **Post-news quarantine (NEW)**: No NEW entries within 30 minutes AFTER a Tier-1 release actual prints (spread normalization + stop-hunt whipsaw window).
+- **FX rollover embargo**: 21:15–22:30 UTC — no entries, and existing resting FX orders are pulled.
+
+### 0.5 Canonical Data Lake Contract (authoritative)
+
+- **42 physical feeds** in `Data/feeds/*.parquet` — ALL 42 are subject to the freshness audit (previously only 36 were; the 6 excluded `18_CVD_30D_*` and `11_Technical_BTC_Ribbon` feeds went stale undetected).
+- Freshness tiers: High Velocity < 1.0m | Tactical < 5.0m | Macro < 15.0m. Any feed over age → fail-closed Cash Defense for orders citing it.
+- **Canonical CVD path**: `Data/feeds/18_CVD*.parquet`. The duplicate `Data/CVD/` tree is LEGACY and MUST NOT be read by any decision process (hashes have diverged).
+- **Row-timestamp requirement**: `11_Technical` and `17_Orderbook` currently lack row-level timestamps; until a timestamp column is added, neither may serve as PRIMARY evidence for an order — only corroborating evidence alongside `20_Auction_Market_Structure`.
+- **Residue detection**: Any `*.tmp*` file in `Data/feeds/` or `Data/telemetry/latest/` older than 60s = broken atomic-write invariant → halt new orders until purged and root-caused.
+- **Staleness sentinels**: `Data/coinglass/whale_persistence_ledger.json` and `16_Hyperdash_telegram_Intel` must be checked for actual last-write time before any whale-armor citation; a banner PASS on the family does not certify these.
+
+### 0.6 Canonical State Contract & Kill-Switches (NEW — highest priority invariants)
+
+Authoritative state artifacts, checked in this order at the start of EVERY cycle:
+
+| # | Kill-Switch | Check | Action if violated |
+|---|---|---|---|
+| KS-1 | **Cycle Liveness** | `Data/cycle_state.json` completion timestamp age <= 40 min | **MANAGE-ONLY MODE**: supervise/ratchet/close existing positions, but NO new orders and NO new pending limits until a cycle completes and records fresh state. (Audit found orders executed while the ledger was frozen 25h.) |
+| KS-2 | **Floor Agreement** | `hard_floor` value in `cycle_envelope.json`, equity snapshot, and Section 0.1 all equal 4,775.00 | Regenerate the offending artifact; if it cannot be regenerated within one cycle, MANAGE-ONLY MODE. |
+| KS-3 | **Execution Receipt Completeness** | Every broker dispatch (order_send, modify, cancel, close) writes `Data/execution_receipts/<UTC-timestamp>_<ticket>.json` with symbol, side, lots, price, SL/TP, gate verdicts, and the cycle ID | Missing receipt for a live ticket → halt new orders; reconcile MT5 deal history first. (Audit found the receipts directory EMPTY.) |
+| KS-4 | **Preflight-Binding** | The symbol/ticket in `execution_preflight_receipt.json` MUST match the staged order symbol/ticket | Mismatch → cancel staging, re-run preflight for the actual instrument. (Audit found preflight for BTCUSD.pi while XAUUSD.pi was staged.) |
+| KS-5 | **Daily Deal Reconciliation** | Once per UTC day: pull MT5 `history_deals_get` since last checkpoint, sum realized P/L + commissions + swap, and reconcile against balance delta | Unexplained delta >= 5.00 USD → MANAGE-ONLY MODE + Kaizen autopsy. (Audit found a ~$40.67 balance decline with zero internal record.) |
+| KS-6 | **Circuit Breaker Status** | Read `Data/circuit_breaker.json` (see Section 2.7) | Any active breaker → respect its halt window absolutely. |
+
+### 0.7 No-Ephemeral-State Rule
+
+Governance documents MUST NOT hardcode live account numbers, open tickets, or cushions (the previous revision embedded "4,846.32 USD, 0 positions" and stale ticket numbers, which rotted within hours). Live state is read ONLY from: `00_MT5_Account_Telemetry.parquet`, `Data/account_equity/latest/account_equity_snapshot.json`, and `Data/dynamic_position_supervisor_status.json`. Every previously hardcoded state block in this document is hereby replaced by this rule.
+
+---
+
 ## SECTION 1: MANDATORY SKILLS ENSEMBLE FOUNDATION & 4-SUBAGENT SWARM
 
 Under strict institutional hedge fund governance, **no trading analysis, hypothesis formation, order staging, modification, or cancellation may ever occur in an ad-hoc or single-agent vacuum**.

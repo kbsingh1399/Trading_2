@@ -1,6 +1,6 @@
 # 360° Data Lake Dossier: USDCAD
-**Generated**: 2026-10-28 00:14:48 IST (2026-10-27 18:44:48 UTC)
-**Aliases Scanned**: `USDCAD, USDCADUSD, USDCADUSD.P, USDCADUSD.PI, USDCADUSDT`
+**Generated**: 2026-10-28 11:01:18 IST (2026-10-28 05:31:18 UTC)
+**Aliases Scanned**: `USDCAD, USDCADUSD, USDCADUSD.PI, USDCADUSDT, USDCADUSD.P`
 **Coverage**: 2 feeds with direct asset data | 4 global macro feeds | 42 total feeds scanned
 
 ---
@@ -22,8 +22,8 @@
 |---|---|---|---|---|
 | `00_MT5_Account_Telemetry` | 0 | Pillar 1 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `10_Whale_Orders` | 0 | Pillar 5 | `NO_DIRECT_MATCH` | No direct records for asset |
-| `11_Technical` | 1 | Pillar 6 | `DATA_EXTRACTED [PASS]` | VWAP Z: 2.7823026667151063 | RSI: 73.76777983441892 | EMA 89/233 alignment |
-| `11_Technical_BTC_Ribbon` | 100 | Pillar 6 | `MACRO_GLOBAL_CONTEXT` | VWAP Z: 1.5730724559062275 | RSI: 56.02241289402432 | EMA 89/233 alignment |
+| `11_Technical` | 1 | Pillar 6 | `DATA_EXTRACTED [PASS]` | VWAP Z: 1.2296359678745337 | RSI: 66.33247316085229 | EMA 89/233 alignment |
+| `11_Technical_BTC_Ribbon` | 100 | Pillar 6 | `MACRO_GLOBAL_CONTEXT` | VWAP Z: 0.5742418494837214 | RSI: 54.12584752084207 | EMA 89/233 alignment |
 | `12_Hyperdash` | 0 | Pillar 6 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `13_Hyperliquid` | 0 | Pillar 6 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `14_Hyperdash_Liq_Map` | 0 | Pillar 4 | `NO_DIRECT_MATCH` | No direct records for asset |
@@ -38,7 +38,7 @@
 | `18_CVD_30D_5m` | 0 | Pillar 5 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `18_CVD_30D_ALL` | 0 | Pillar 5 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `19_Calendar` | 44 | Pillar 2 | `MACRO_GLOBAL_CONTEXT` | Extracted 44 rows. Latest keys: ['date', 'time', 'currency', 'impact'] |
-| `19_News` | 35 | Pillar 2 | `MACRO_GLOBAL_CONTEXT` | Extracted 35 rows. Latest keys: ['title', 'url', 'source', 'time_ago'] |
+| `19_News` | 33 | Pillar 2 | `MACRO_GLOBAL_CONTEXT` | Extracted 33 rows. Latest keys: ['title', 'url', 'source', 'time_ago'] |
 | `1_Crypto_ETF_Flows` | 0 | Pillar 2 | `NO_DIRECT_MATCH` | No direct records for asset |
 | `20_Auction_Market_Structure` | 1 | Pillar 6 | `DATA_EXTRACTED [PASS]` | Extracted 1 rows. Latest keys: ['timestamp', 'sr_no', 'asset', 'symbol'] |
 | `21_Tradfye_Orderflow` | 0 | Pillar 5 | `NO_DIRECT_MATCH` | No direct records for asset |

@@ -1,0 +1,34 @@
+{
+  "timestamp_utc": "2026-10-28T15:46:38.721377+00:00",
+  "symbol": "XAUUSD.pi",
+  "direction": "BUY",
+  "entry_price": 4040.5,
+  "sl_price": 4031.0,
+  "tp_price": 4064.25,
+  "lots": 0.01,
+  "model_type": "MODEL_2_PULLBACK",
+  "passed": true,
+  "failures": [],
+  "metrics": {
+    "nominal_risk_usd": 9.5,
+    "spread_bps": 0.22,
+    "vr4": 1.284,
+    "higher_lows": "4",
+    "lower_highs": "2",
+    "atr14": 4.81,
+    "vol_ratio": 0.1,
+    "stop_atr_ratio": 1.98,
+    "footprint_opposing_signals": 0,
+    "data_lake_360_evidence": {
+      "19_Calendar": "VERIFIED_CLEAR",
+      "19_News": "VERIFIED_CLEAR",
+      "25_CoinGlass_Footprint_Signals": "VERIFIED_CLEAR",
+      "18_CVD": "VERIFIED_CLEAR",
+      "15_Hyperdash_Stops_Map": "VERIFIED_CLEAR",
+      "14_Hyperdash_Liq_Map": "VERIFIED_CLEAR",
+      "5_Funding_Rate": "VERIFIED_CLEAR",
+      "3_Exchanges_LS_Ratio_15M": "VERIFIED_CLEAR",
+      "20_Auction_Market_Structure": "VERIFIED_CLEAR"
+    }
+  }
+}

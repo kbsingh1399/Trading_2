@@ -404,7 +404,7 @@ async def run_coinglass_ls_harvest(tf: str) -> bool:
                 })
 
         df = pd.DataFrame(rows)
-        meta = write_parquet_feed(feed_name, df)
+        meta = write_parquet_feed(feed_name, df, merge_missing_assets=True)
         log.info(f"Successfully wrote {feed_name}: {meta.get('status')} ({meta.get('row_count')} rows)")
         return meta.get("status") == "PASS"
 

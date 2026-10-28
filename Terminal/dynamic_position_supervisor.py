@@ -117,18 +117,20 @@ def check_and_supervise_positions() -> dict:
         pulled_orders = []
 
         # -------------------------------------------------------------
-        # INVARIANT: Hard Reservation Cap & Drawdown Defense Sentry
-        # 1. If Equity <= Operating Buffer (4,795.00 USD), pull ALL pending orders immediately.
-        # 2. If filled positions >= MAX_FILLED_POSITIONS (4), pull ALL pending orders.
-        # 3. If open + pending > MAX_FILLED_POSITIONS (4), prune excess pending orders.
+        # INVARIANT: Hard Statutory Floor & Dynamic Capacity Sentry
+        # 1. Hard Floor: 4,775.00 USD is strictly defended (Pull all pending if equity <= 4,775.00 USD).
+        # 2. Drawdown Defense Mode (Equity <= 4,795.00 USD): Max Capacity is 2 (pos_count + order_count <= 2).
+        # 3. Solvency Gate: Stressed equity (Equity - Stressed Risk) must remain >= 4,775.00 USD.
         # -------------------------------------------------------------
+        HARD_STATUTORY_FLOOR = 4775.00
         OPERATING_BUFFER = 4795.00
         is_defense_mode = (acc.equity <= OPERATING_BUFFER)
+        max_allowed_combined = 2 if is_defense_mode else MAX_FILLED_POSITIONS
 
-        if is_defense_mode and order_count > 0:
+        if acc.equity <= HARD_STATUTORY_FLOOR and order_count > 0:
             logger.warning(
-                f"[DEFENSE SENTRY TRIGGERED] Equity {acc.equity:.2f} <= {OPERATING_BUFFER:.2f} buffer. "
-                f"Pulling ALL {order_count} resting limit order(s) to guarantee floor preservation..."
+                f"[HARD FLOOR TRIGGERED] Equity {acc.equity:.2f} <= {HARD_STATUTORY_FLOOR:.2f} Hard Floor. "
+                f"Pulling ALL {order_count} resting limit order(s) immediately..."
             )
             for o in orders:
                 req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
@@ -136,7 +138,23 @@ def check_and_supervise_positions() -> dict:
                 status_code = res.retcode if res else -1
                 comment = res.comment if res else "No response"
                 logger.info(f"Pulled Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
-                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_DEFENSE"})
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_HARD_FLOOR"})
+            orders = list(mt5.orders_get() or ())
+            order_count = len(orders)
+
+        elif (pos_count + order_count) > max_allowed_combined and order_count > 0:
+            excess = (pos_count + order_count) - max_allowed_combined
+            logger.warning(
+                f"[CAPACITY SENTRY] Combined orders {pos_count + order_count} exceeds limit {max_allowed_combined}. "
+                f"Pruning {excess} excess resting limit order(s)..."
+            )
+            for o in orders[:excess]:
+                req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
+                res = mt5.order_send(req)
+                status_code = res.retcode if res else -1
+                comment = res.comment if res else "No response"
+                logger.info(f"Pruned Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PRUNED_CAPACITY"})
             orders = list(mt5.orders_get() or ())
             order_count = len(orders)
 
@@ -179,6 +197,73 @@ def check_and_supervise_positions() -> dict:
                 pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_EXCESS"})
             orders = list(mt5.orders_get() or ())
             order_count = len(orders)
+
+        # -------------------------------------------------------------
+        # ACTIVE RESTING LIMIT SENTRY (MOMENTUM & STALE ORDER PURGE)
+        # -------------------------------------------------------------
+        for o in orders:
+            # 1. Stale Order Purge (> 6 hours / 21600s)
+            order_age_sec = time.time() - o.time_setup
+            if order_age_sec > 21600:
+                logger.warning(
+                    f"[PURGE STALE ORDER] Order #{o.ticket} ({o.symbol}) age {order_age_sec/3600:.1f}h > 6.0h limit. Removing..."
+                )
+                mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_STALE_TIME_DECAY"})
+                continue
+
+            # 2. Dynamic Approach Velocity Sentry
+            tick = mt5.symbol_info_tick(o.symbol)
+            if tick and tick.time > 0:
+                rates15 = mt5.copy_rates_from_pos(o.symbol, mt5.TIMEFRAME_M15, 0, 20)
+                if rates15 is not None and len(rates15) >= 15:
+                    import numpy as np
+                    tr = np.maximum(
+                        rates15['high'][1:] - rates15['low'][1:],
+                        np.maximum(
+                            abs(rates15['high'][1:] - rates15['close'][:-1]),
+                            abs(rates15['low'][1:] - rates15['close'][:-1])
+                        )
+                    )
+                    atr14 = float(np.mean(tr[-14:]))
+                    cur_price = tick.ask if o.type == mt5.ORDER_TYPE_SELL_LIMIT else tick.bid
+                    dist_to_limit = abs(cur_price - o.price_open)
+
+                    if dist_to_limit <= 1.0 * atr14:
+                        if o.type == mt5.ORDER_TYPE_SELL_LIMIT:
+                            lows = rates15['low'][-4:]
+                            higher_lows = sum(lows[i] > lows[i-1] for i in range(1, len(lows)))
+                            avg_vol = np.mean(rates15['tick_volume'][-10:])
+                            vol_surge = (rates15['tick_volume'][-1] > 1.8 * avg_vol) if avg_vol > 0 else False
+
+                            if higher_lows >= 3 or vol_surge:
+                                logger.warning(
+                                    f"[PURGE MOMENTUM SWEEP] Order #{o.ticket} ({o.symbol} SELL_LIMIT @ {o.price_open}): "
+                                    f"Price approaching via impulse (dist={dist_to_limit:.2f} <= {atr14:.2f} ATR, higher_lows={higher_lows}, vol_surge={vol_surge}). "
+                                    f"Auto-pulling order to prevent absorption loss!"
+                                )
+                                mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
+                                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_MOMENTUM_APPROACH"})
+                                continue
+
+                        elif o.type == mt5.ORDER_TYPE_BUY_LIMIT:
+                            highs = rates15['high'][-4:]
+                            lower_highs = sum(highs[i] < highs[i-1] for i in range(1, len(highs)))
+                            avg_vol = np.mean(rates15['tick_volume'][-10:])
+                            vol_surge = (rates15['tick_volume'][-1] > 1.8 * avg_vol) if avg_vol > 0 else False
+
+                            if lower_highs >= 3 or vol_surge:
+                                logger.warning(
+                                    f"[PURGE MOMENTUM SWEEP] Order #{o.ticket} ({o.symbol} BUY_LIMIT @ {o.price_open}): "
+                                    f"Price waterfalling into limit (dist={dist_to_limit:.2f} <= {atr14:.2f} ATR, lower_highs={lower_highs}, vol_surge={vol_surge}). "
+                                    f"Auto-pulling order to prevent absorption loss!"
+                                )
+                                mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket})
+                                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_MOMENTUM_APPROACH"})
+                                continue
+
+        orders = list(mt5.orders_get() or ())
+        order_count = len(orders)
 
         # -------------------------------------------------------------
         # Dynamic Ratchet & Excursion Supervision
@@ -363,7 +448,10 @@ def check_and_supervise_positions() -> dict:
         except Exception as write_err:
             logger.warning(f"Status file write warning: {write_err}")
 
-        HEARTBEAT_FILE.write_text(str(time.time()), encoding="utf-8")
+        try:
+            HEARTBEAT_FILE.write_text(str(time.time()), encoding="utf-8")
+        except Exception:
+            pass
 
         return status_payload
     finally:

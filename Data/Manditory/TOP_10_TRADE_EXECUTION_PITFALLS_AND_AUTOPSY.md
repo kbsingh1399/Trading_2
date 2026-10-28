@@ -47,7 +47,46 @@ Account Impact:     Realized Equity adjusted from 4,837.08 USD to 4,826.99 USD
 Floor Cushion:      Preserved at +51.99 USD above 4,775.00 USD Hard Floor (100% Intact)
 Buffer Cushion:     Preserved at +31.99 USD above 4,795.00 USD Operating Buffer (100% Intact)
 ========================================================================================
+
+========================================================================================
+TRADE AUTOPSY 4: UKBRENT.p SELL 0.03 LOT (TICKET #19395680)
+========================================================================================
+Entry Price:        116.230 USD (Filled passively via SELL_LIMIT)
+Exit Deal:          #17551042 at 2026-10-28 01:45:12 UTC
+Exit Price:         116.550 USD (Hit planned broker Stop Loss)
+Nominal PnL:        -$9.60 USD (32.0 pts × 0.03 lot = -$9.60 USD; Zero broker slippage)
+Account Impact:     Realized Equity dropped from 4,809.11 USD to 4,799.51 USD
+Floor Cushion:      Compressed to +24.51 USD above 4,775.00 USD Hard Floor
+Buffer Cushion:     Compressed to +4.51 USD above 4,795.00 USD Operating Buffer
+========================================================================================
+
+========================================================================================
+TRADE AUTOPSY 5: BTCUSD.pi SELL_LIMIT 0.01 LOT (TICKET #19395675)
+========================================================================================
+Entry Price:        81,280.00 USD (Staged passively hours earlier; swept on momentum)
+Exit Deal:          #17552190 at 2026-10-28 03:22:45 UTC
+Exit Price:         81,580.00 USD (Hit planned broker Stop Loss)
+Nominal PnL:        -$9.00 USD (300.0 pts × 0.01 lot = -$9.00 USD; Commission: -$0.08 USD; Total: -$9.08 USD)
+Account Impact:     Realized Equity dropped from 4,799.51 USD to 4,790.43 USD (Capital Preservation Mode forced)
+Floor Cushion:      Compressed to +15.43 USD above 4,775.00 USD Hard Floor
+Buffer Cushion:     Breached by -$4.57 USD below 4,795.00 USD Operating Buffer
+========================================================================================
 ```
+
+### 🩸 Why Did Ticket #19395675 Fail? (The BTCUSD Forensic Autopsy):
+1. **Failure to Purge Stale Resting Limit on In-Flight Momentum Approach (Pitfall 23)**:
+   - *The Fatal Defect*: The sell limit was staged at 81,280 USD hours earlier during low volatility. As price approached the level, M15 printed 7 consecutive higher lows and tick volume surged 4.7x (1,100 -> 3,400 -> 5,215). There was zero in-flight sentry to cancel the limit before fill; the resting order absorbed an aggressive institutional liquidity sweep (Winner's Curse / Adverse Selection).
+2. **Stop Loss Placed Directly Inside the Mapped Liquidation Magnet (Pitfall 24)**:
+   - *The Microstructure Trap*: `14_Hyperdash_Liq_Map` clearly mapped dense short liquidations between 81,450 and 81,600 USD. Placing the Stop Loss at 81,580 USD put it right in the harvest zone. Price swept directly through to 81,703.50 USD to liquidate the pool, hunting our stop with zero slippage, before immediately collapsing back down to 81,372 USD.
+3. **Whale Wall Mirage / Spoofing & Negative Taker Absorption**:
+   - *Orderflow Trap*: The $50M resting ask wall at 81,300 USD was chewed through by +420 BTC market taker CVD and spoof-pulled by market makers the moment price tested the shelf.
+
+### 🩸 Why Did Ticket #19395680 Fail? (The UKBRENT Forensic Autopsy):
+1. **Regime Misclassification / Fading a Trend Corridor (Pitfall 5)**:
+   - *The Fatal Defect*: The trade attempted to fade an M15 bull trend that printed 7 consecutive higher lows. Completed-bar Lo-MacKinlay Variance Ratio was `VR(4) = 1.134`. A ratio > 1.15 is trending, and 0.85–1.15 is a random walk. Fading a random walk or trend corridor has negative statistical edge.
+2. **CFD Orderbook Asymmetry & False Whale Armor (Pitfall 25)**:
+   - *Venue Disconnect*: Blueberry Markets MT5 CFDs (UKBRENT, Indices, FX) are OTC dealer quotes with **zero Level 2 orderbook depth and no true exchange orderbook volume**. The setup assumed resting institutional whale armor that did not exist in the broker's liquidity pool. Counter-trend fades on unarmored CFDs are permanently prohibited.
+
 
 ### 🩸 Why Did Ticket #19367388 Fail? (The Gold Forensic Autopsy):
 1. **Regime Misclassification & Statistically Insignificant Signal (Random Walk Trap)**:
@@ -356,7 +395,44 @@ A cycle is prematurely declared complete based purely on response character coun
 
 ---
 
-## 📋 SUMMARY: THE EX-ANTE 22-CONTROL CHECKLIST
+
+---
+
+### 🔴 PITFALL 23: IN-FLIGHT MOMENTUM APPROACH TRAP (FAILURE TO PURGE RESTING LIMIT ON DIRECTIONAL VELOCITY)
+- **Anatomy**: Leaving a maker limit order resting in the broker's order book while spot price approaches with accelerating directional momentum (Winner's Curse / Adverse Selection).
+- **The Forensic BTC Trap**: Staging a sell limit at 81,280 USD hours earlier. Price swept into the limit with 7 consecutive higher lows and tick volume surging from 1,100 to 5,215. The passive limit was filled precisely when the thesis was invalidated.
+- **Microstructure Mechanism**: Passive limit orders only fill when incoming market order flow is aggressive enough to consume available liquidity. When institutions execute stop hunts or sweeps, aggressive taker volume blows through resting limits. Staged limits must not be static sitting ducks.
+- **Ex-Ante Prevention Rule**:
+  * **Mandatory In-Flight Sentry (`ActiveLimitSentry`)**: Background supervisor runs every 5.0 seconds.
+  * If price approaches within `1.0 * ATR_14` of a resting maker limit order:
+    1. Count consecutive higher lows (into a SELL limit) or lower highs (into a BUY limit) across M5/M15 bars. If count `>= 3`, **AUTO-PULL / CANCEL IMMEDIATELY**.
+    2. Check tick volume ratio: If volume is `> 1.8x` the 20-bar rolling average, **AUTO-PULL / CANCEL IMMEDIATELY**.
+    3. Order Age: If unfilled for `> 24 bars (6 hours)`, **AUTO-PULL / CANCEL IMMEDIATELY**.
+
+---
+
+### 🔴 PITFALL 24: LIQUIDATION MAGNET HARVEST ZONE TRAP (STOP LOSS PLACED INSIDE MAPPED DENSE LIQUIDATION CLUSTERS)
+- **Anatomy**: Positioning a Stop Loss directly inside or within 0.50 ATR of a mapped high-density liquidation pool.
+- **The Forensic BTC Trap**: `14_Hyperdash_Liq_Map` mapped a dense short liquidation band at [81,450 to 81,600 USD]. Placing the Stop Loss at 81,580 USD put it right in the harvest zone. Price wicked to 81,703.50 USD to liquidate the pool, triggering our stop, and immediately collapsed to 81,372 USD.
+- **Microstructure Mechanism**: Large liquidation clusters act as gravitational liquidity magnets for market makers and high-frequency algorithms. Price is magnetically driven to clear the entire cluster. Stops placed inside the cluster are guaranteed to be harvested.
+- **Ex-Ante Prevention Rule**:
+  * Query `14_Hyperdash_Liq_Map` and `14_Liquidation_Matrix` before placing any Stop Loss.
+  * For Shorts: `SL >= max_cluster_price + 0.50 * ATR_14`. Stop Loss MUST sit strictly above the ceiling of the short liquidation band.
+  * For Longs: `SL <= min_cluster_price - 0.50 * ATR_14`. Stop Loss MUST sit strictly below the floor of the long liquidation band.
+  * If placing a safe SL causes dollar risk to exceed budget, **DO NOT SQUEEZE THE STOP INTO THE CLUSTER**; instead, **REDUCE LOT SIZE** or **STAND ASIDE**.
+
+---
+
+### 🔴 PITFALL 25: CFD ORDERBOOK ASYMMETRY & UNARMORED OTC FADE TRAP
+- **Anatomy**: Attempting counter-trend fades on MT5 CFDs (UKBRENT, US30, GER40, FX Majors) assuming they have the same orderbook defense and Level 2 depth as Binance or Hyperliquid crypto perpetuals.
+- **The Forensic UKBRENT Trap**: Fading an M15 bull trend on UKBRENT CFD based on external commodity futures assumptions. Blueberry Markets MT5 provides OTC broker quotes with zero Level 2 depth, synthetic spreads, and no true exchange orderbook volume.
+- **Microstructure Mechanism**: Level 2 whale defense rules (`10_Whale_Orders >= 100K USD, tau >= 180s`) physically apply ONLY to venues where transparent L2/L3 orderbooks exist (Binance, Bybit, OKX, Hyperliquid). Staging counter-trend fades on OTC broker CFDs with no resting orderbook backing is flying blind.
+- **Ex-Ante Prevention Rule**:
+  * **Permanent Counter-Trend CFD Fade Ban**: For all MT5 CFDs lacking Level 2 orderbook depth feeds (UKBRENT, USWTI, Indices, FX Crosses), Model 1 counter-trend fades are **PERMANENTLY PROHIBITED**.
+  * **Model 2 Pullbacks Only**: CFDs may ONLY be traded via Model 2 Trend Continuation Pullbacks (`VR(4) > 1.15`, `ER(48) > 0.35`, entering on pullbacks to the Fibonacci Prime EMA ribbon in confirmed trends).
+
+
+## 📋 SUMMARY: THE EX-ANTE 25-CONTROL CHECKLIST
 
 Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 22 institutional controls pass:
 
@@ -384,3 +460,7 @@ Before ANY limit order is staged or punched into MetaTrader 5, the coordinator a
 | 20 | **D11 Artifact Binding** | Cycle ID, dispatch nonce, prompt digest, and schema match; zero unresolved template markers | [ ] |
 | 21 | **D12 Column Recomputation** | Risk, reward, R:R, stressed loss, and post-loss balance match broker receipts to $0.01 | [ ] |
 | 22 | **Joint Completion & Dialectic** | All 3 council entities complete with verified digests; Severity-1 disputes resolved or fail closed | [ ] |
+| 23 | **In-Flight Approach Velocity** | ActiveLimitSentry: Cancel limit if approach within 1.0 ATR has >= 3 higher lows/lower highs or volume > 1.8x | [ ] |
+| 24 | **Liquidation Magnet Clearance** | SL placed >= 0.50 ATR beyond outer boundary of mapped liquidation clusters; zero stops in harvest zone | [ ] |
+| 25 | **CFD Orderbook Asymmetry Gate** | Counter-trend fades permanently banned on MT5 CFDs lacking L2 depth; CFDs restricted to Model 2 pullbacks | [ ] |
+

@@ -43,6 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger("TelemetryGitDaemon")
 
 BRANCH_NAME = "main"
+CURRENT_ARENA_BRANCH = "arena/66c9be42-trading-2"
 ASTRA_BRANCH = "arena/d6de1eb4-trading-2"
 FABLE_BRANCH = "arena/af999588-trading-2"
 ACTIVE_ARENA_BRANCH = "arena/74cd2d1a-trading-2"
@@ -50,7 +51,7 @@ PRIOR_ARENA_BRANCH = "arena/7a89a384-trading-2"
 ACTIVE_ARENA_SESSION = "arena/186525a3-trading-2"
 LEGACY_ARENA_1 = "arena/5c05910e-trading-2"
 LEGACY_ARENA_2 = "arena/e3d7cc98-trading-2"
-TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
+TARGET_BRANCHES = [BRANCH_NAME, CURRENT_ARENA_BRANCH, ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 DATA_SYNC_FILES = [
@@ -264,7 +265,7 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
 
     # Protect Data/feeds: never allow git daemon to stage feed removals
     run_cmd(["git", "add", "--ignore-removal", "Data/feeds", "Data/metadata"])
-    run_cmd(["git", "add", "docs/telemetry", "docs/trade_plans", "Data/*.json"])
+    run_cmd(["git", "add", "docs/telemetry", "docs/trade_plans", "docs/prompts", "Data/*.json", "Data/cycle_envelope.json", "Terminal/*.py"])
 
     code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
     if modified_output:
@@ -290,7 +291,7 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     logger.info("Successfully published full workspace replica to origin/%s [commit %s]", BRANCH_NAME, publication_revision[:9])
 
     # Push to active Arena branches (push only, never merge remote Arena branch back into main)
-    for arena_br in [ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH]:
+    for arena_br in [CURRENT_ARENA_BRANCH, ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH]:
         code_br, _, err_br = run_cmd(["git", "push", "origin", f"{publication_revision}:{arena_br}"])
         if code_br == 0:
             logger.info("Published full workspace to origin/%s", arena_br)

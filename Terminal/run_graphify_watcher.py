@@ -54,7 +54,7 @@ def main() -> None:
                 subprocess.run(
                     [sys.executable, "-m", "graphify", "update", "."],
                     cwd=str(repo_root),
-                    timeout=60,
+                    timeout=180,
                     check=False,
                 )
             gc.collect()

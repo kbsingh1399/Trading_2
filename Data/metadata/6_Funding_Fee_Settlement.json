@@ -2,7 +2,7 @@
   "feed_name": "6_Funding_Fee_Settlement",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 941,
+  "row_count": 940,
   "column_count": 10,
   "columns": [
     "rank",
@@ -16,9 +16,9 @@
     "last_7d",
     "timestamp_ist"
   ],
-  "byte_size": 55122,
-  "timestamp_ist": "2026-10-28 10:52:49 IST",
-  "timestamp_utc": "2026-10-28 05:22:49 UTC",
-  "epoch_utc": 1793164969.146543,
-  "write_duration_ms": 477.85
+  "byte_size": 54289,
+  "timestamp_ist": "2026-10-29 00:15:44 IST",
+  "timestamp_utc": "2026-10-28 18:45:44 UTC",
+  "epoch_utc": 1793213144.98396,
+  "write_duration_ms": 428.81
 }

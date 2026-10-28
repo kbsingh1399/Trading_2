@@ -61,10 +61,11 @@ API_COLLECTORS = [
     "22_Forced_Liquidations_MTF.py",
 ]
 
-# 20 Browser CDP Collectors
+# 21 Browser CDP Collectors
 BROWSER_COLLECTORS = [
     "1_Crypto_ETF_Flows.py",
     "2_Spot_Netflow_S.py",
+    "2_Future_Netflow.py",
     "3_Exchanges_LS_Ratio_15M.py",
     "3_Exchanges_LS_Ratio_1H.py",
     "3_Exchanges_LS_Ratio_4H.py",

@@ -195,9 +195,23 @@ async def extract_coinglass_overview_table() -> list[dict]:
                 if d.get("id") == m:
                     return d.get("result", {})
 
-        if is_ephemeral:
-            log.info("Awaiting page hydration on new ETF tab (4s)...")
-            await asyncio.sleep(4.0)
+        # Hydration check: wait until page and table components have loaded fully before extraction
+        js_wait = """
+        (() => {
+            const isDocReady = (document.readyState === 'complete' || document.readyState === 'interactive');
+            const rows = document.querySelectorAll('table tbody tr').length;
+            const tabs = document.querySelectorAll('[role="tab"]').length;
+            return { ready: isDocReady && rows > 0 && tabs > 0, rows, tabs };
+        })()
+        """
+        log.info("Awaiting full page and component hydration...")
+        for attempt in range(30):
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_wait, "returnByValue": True})
+            val = res.get("result", {}).get("value", {})
+            if val.get("ready"):
+                log.info(f"Page and components fully hydrated ({val.get('rows')} rows, {val.get('tabs')} tabs).")
+                break
+            await asyncio.sleep(0.5)
 
         # 1. Tab rotation function across ETF categories
         async def click_tab(tab_name: str) -> bool:

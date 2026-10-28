@@ -43,12 +43,16 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
+from Terminal.Data_Factory.asset_360_dossier_engine import DataLakeMemoryStore, generate_asset_aliases
 
 HARD_FLOOR = 4775.00
 BUFFER_FLOOR = 4795.00
 ADMISSION_FLOOR = 4795.00
 
 def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
+    # MANDATORY PRE-LOAD GATE: Ingest all 42 Parquet feeds into in-memory RAM cache
+    loaded_feeds_count = DataLakeMemoryStore.pre_load_all(force=True)
+
     if not mt5.initialize():
         return {"error": "MT5 initialization failed"}
 
@@ -76,6 +80,7 @@ def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
         symbols_to_scan = [s.name for s in mt5.symbols_get() or []]
 
     opportunities = []
+    armed_radar = []
 
     for sym in symbols_to_scan:
         tick = mt5.symbol_info_tick(sym)
@@ -325,13 +330,9 @@ def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
         stressed_loss = actual_risk * 1.25 + 2.00  # 1.25x slippage stress + 2.00 commission reserve
         stressed_equity = equity - stressed_loss
 
-        # Inviolable operating buffer defense gate (stressed equity >= 4,795.00 USD)
-        if stressed_equity < ADMISSION_FLOOR:
-            continue
-
         potential_reward = actual_risk * rr_ratio
 
-        opportunities.append({
+        candidate_data = {
             "symbol": sym,
             "group": group,
             "spread_bps": round(spread_bps, 2),
@@ -350,27 +351,41 @@ def scan_all_156_assets(nominal_risk_target: float = 10.00) -> Dict[str, Any]:
             "nominal_risk_usd": round(actual_risk, 2),
             "potential_reward_usd": round(potential_reward, 2),
             "stressed_equity_usd": round(stressed_equity, 2),
-            "buffer_surplus_usd": round(stressed_equity - BUFFER_FLOOR, 2)
-        })
+            "buffer_surplus_usd": round(stressed_equity - BUFFER_FLOOR, 2),
+            "admitted": stressed_equity >= ADMISSION_FLOOR
+        }
+        
+        armed_radar.append(candidate_data)
+        if candidate_data["admitted"]:
+            opportunities.append(candidate_data)
 
-    # Sort opportunities:
-    # 1. Model 1 extreme first, then Model 2
-    # 2. Lowest spread
-    # 3. Best buffer surplus
+    # Sort candidates
+    armed_radar.sort(key=lambda x: (
+        0 if "MODEL_1" in x["setup_type"] else 1,
+        x["spread_bps"],
+        -x["buffer_surplus_usd"]
+    ))
     opportunities.sort(key=lambda x: (
         0 if "MODEL_1" in x["setup_type"] else 1,
         x["spread_bps"],
         -x["buffer_surplus_usd"]
     ))
 
+    # Free all parquet dataframes from memory and garbage collect
+    DataLakeMemoryStore.clear()
+
     return {
         "as_of_utc": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
         "total_scanned": len(symbols_to_scan),
+        "pre_loaded_feeds_count": loaded_feeds_count,
         "total_opportunities": len(opportunities),
+        "total_armed_setups": len(armed_radar),
         "live_equity": equity,
+        "live_balance": balance,
         "buffer_floor": BUFFER_FLOOR,
         "hard_floor": HARD_FLOOR,
-        "opportunities": opportunities
+        "opportunities": opportunities,
+        "armed_radar": armed_radar
     }
 
 if __name__ == "__main__":
@@ -382,9 +397,12 @@ if __name__ == "__main__":
             pass
 
     res = scan_all_156_assets(nominal_risk_target=risk_param)
-    print(f"Scanned {res.get('total_scanned')} symbols. Found {res.get('total_opportunities')} qualified opportunities (Target Risk: ${risk_param:.2f}).")
+    print(f"[PRE-LOAD GATE] Pre-loaded {res.get('pre_loaded_feeds_count', 42)} Parquet feeds into DataLakeMemoryStore.")
+    print(f"Scanned {res.get('total_scanned')} symbols. Found {res.get('total_opportunities')} immediately admitted opportunities, {res.get('total_armed_setups')} total high-confluence setups (Target Risk: ${risk_param:.2f}).")
     print("=" * 130)
-    print(f"{'Symbol':<12} | {'Asset Class':<18} | {'Setup':<26} | {'Side':<10} | {'Lot':<5} | {'Entry':<10} | {'SL':<10} | {'TP':<10} | {'Risk $':<7} | {'Reward $':<8} | {'Surplus $'}")
+    print(f"{'Symbol':<12} | {'Asset Class':<18} | {'Setup':<26} | {'Side':<10} | {'Lot':<5} | {'Entry':<10} | {'SL':<10} | {'TP':<10} | {'Risk $':<7} | {'Surplus $':<9} | {'Status'}")
     print("-" * 130)
-    for opp in res.get("opportunities", [])[:20]:
-        print(f"{opp['symbol']:<12} | {opp['group']:<18} | {opp['setup_type']:<26} | {opp['side']:<10} | {opp['lot']:<5.2f} | {opp['entry']:<10} | {opp['sl']:<10} | {opp['tp']:<10} | {opp['nominal_risk_usd']:<7.2f} | {opp['potential_reward_usd']:<8.2f} | +{opp['buffer_surplus_usd']:.2f}")
+    display_list = res.get("opportunities") if res.get("opportunities") else res.get("armed_radar", [])
+    for opp in display_list[:15]:
+        status_str = "ADMITTED" if opp.get("admitted") else f"ARMED (Needs +{abs(opp['buffer_surplus_usd']):.2f}$ unlock)"
+        print(f"{opp['symbol']:<12} | {opp['group']:<18} | {opp['setup_type']:<26} | {opp['side']:<10} | {opp['lot']:<5.2f} | {opp['entry']:<10} | {opp['sl']:<10} | {opp['tp']:<10} | {opp['nominal_risk_usd']:<7.2f} | {opp['buffer_surplus_usd']:<9.2f} | {status_str}")

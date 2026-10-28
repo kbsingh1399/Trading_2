@@ -1,48 +1,43 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-28 02:05:00 IST (2026-10-27 20:35:00 UTC) | **Session**: Multi-Asset Portfolio Supervision & Autonomous Cron Iteration 5 | In-House Antigravity Fleet Active
+**Last Updated**: 2026-10-28 23:41:00 IST (2026-10-28 18:11:00 UTC) | **Session**: Autonomous Wake-Up Checklist Execution (Iteration 8) | In-House Antigravity Fleet Active
 **Target Account**: Blueberry Markets MT5 Account #5064568 (SVG-Live, raw spread)
-**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD).
+**Core Mission & Mandatory Friday Mandate**:
+🚨 **MANDATORY STATUTORY GOAL: REACH 5,500.00+ USD EQUITY BY FRIDAY MARKET CLOSE (2026-10-30 21:00 UTC / 2026-10-31 02:30 IST)**
+- Current Balance / Equity: **4,795.69 USD** / **4,783.39 USD**
+- Required Profit to Target: **+716.61 USD** (+14.98%)
+- Time Remaining: **~46.9 hours**
+- Execution Directives: High-confluence maker limit order execution, strict 4,775.00 USD Hard Floor defense, DeepMind optimal execution.
 
 ---
 
 ## 1. REAL-TIME ACCOUNT TELEMETRY & SOLVENCY SENTRY
-- **Balance / Equity**: **4,833.47 USD** / **4,827.47 USD** (Floating PnL: **-6.00 USD**)
-- **Margin Used / Free Margin**: **1,072.27 USD** / **3,755.20 USD**
-- **Margin Utilization**: **22.18%** (Strictly <= 50.00% statutory ceiling: PASS)
-- **Margin Level**: **450.2%** (Inviolable invariant >= 200.0%: PASS)
-- **Active Running Positions**: **2 Positions (Model 1 Mean Reversion & Model 2 Pullback)**:
-  - Ticket `#19376039`: `USDJPY.pi` SELL `0.08 lots` @ `157.850` | Current: `157.925` | PnL: **-5.67 USD** | SL: `158.024` | TP: `157.450` (Nominal Risk: `8.81 USD`, Stressed Risk: `12.51 USD`)
-  - Ticket `#19379711`: `BTCUSD.pi` SELL `0.02 lots` @ `80560.00` | Current: `80557.00` | PnL: **+0.06 USD** | SL: `80860.00` | TP: `79910.00` (Nominal Risk: `6.00 USD`, Stressed Risk: `10.90 USD`)
-- **Active Pending Limit Orders**: **0 Resting Orders (Full Solvency & Capacity Purge Complete)**:
-  - All 3 pending orders (`UKBRENT.p` #19384166, `AUDNZD.pi` #19384254, `XAUUSD.pi` #19384256) PURGED per adversarial audit.
-- **Inviolable Triple Floor & Capacity Governance**:
-  - Hard Floor: **4,775.00 USD** (Statutory DD Stop)
-  - Operating Defense Buffer: **4,795.00 USD** (Internal Risk Defense)
-  - Floor Cushion: **+32.47 USD** to 4,795.00 USD buffer | **+52.47 USD** to 4,775.00 USD hard floor.
-  - Cumulative Stressed Risk: **23.41 USD** <= **32.47 USD** Available Cushion (100% PASS).
-  - Hard Pre-Stage Reservation Cap: Strictly enforced `N_open + N_pending <= 4` at admission time.
-  - Autonomous Cron Task: Running on `0,20,40 * * * *` (20th, 40th, and 60th minutes of every hour).
-  - Active Supervisor Daemon: Strictly enforces `MAX_FILLED_POSITIONS = 4`.
-  - Capital Regime: **TIER 1 STANDARD** (Scaled down to 4.00-6.00 USD in drawdown defense).
-  - Dynamic Capacity: **2 positions open, 2 slots free; zero pending limits staged**.
+- **Balance / Equity**: **4,795.69 USD** / **4,783.39 USD** (Floating PnL: **-12.30 USD**)
+- **Margin Used / Free Margin**: **404.40 USD** / **4,378.99 USD**
+- **Active Running Positions (1 High-Confluence Trade Active)**:
+  1. Ticket `#19423119`: `XAUUSD.pi` BUY `0.01 lots` @ `4044.01` | SL: `4031.00` (1.55 * ATR_14) | TP: `4064.25` (2.50R) | Risk: **13.01 USD** (0.27%) | Spread: **0.22 bps** | VR(4): **1.285** (Model 2 Bullish Pullback) | Status: **LIVE RUNNING (Defending 4031.00 Stop)**
+- **Active Pending Limit Orders**: **1 Pending Order Active**
+  1. Ticket `#19424811`: `ETHUSD.pi` SELL_LIMIT `0.50 lots` @ `2365.50` | SL: `2375.50` (1.20 * ATR_14) | TP: `2340.50` (2.50R) | Risk: **5.00 USD** (0.10%) | Spread: **12.86 bps** | VR(4): **0.897** (Model 2B Trend Pullback Resistance) | Status: **RESTING MAKER LIMIT**
+- **Total Combined Nominal Risk**: **18.01 USD** (0.37% portfolio risk envelope)
+- **Stressed Capital Floor Cushion**: **+2.68 USD** above Hard Statutory Floor (4,775.00 USD). Stressed loss equity = **4,777.68 USD** >= **4,775.00 USD** (Fully Solvency Compliant).
+- **Active Mode**: **CAPITAL PRESERVATION MODE** (Equity <= 4,795.00 USD Buffer; Capacity: N_open + N_pending = 2 <= 2)
+- **Supervisor Active**: `dynamic_position_supervisor.py` (`task-153993`) actively tracking ratchet (+0.8R -> BE+0.15R, +1.5R -> profit lock +0.8R, 6h time decay scratch).
 
 ---
 
-## 2. 100% PURE PARQUET DATA LAKE (36 FEEDS) & ATOMIC OVERWRITE INVARIANT
-- **Total Parquet Feeds**: 42 production feeds in `Data/feeds/*.parquet` (all verified present, 0 nulls, stamped fresh < 5.0m).
-- **Zero-Deletion Protocol**: Feeds are NEVER deleted or unlinked from disk. All updates use atomic `os.replace` from temporary files.
-- **Truncation Guarantee**: In-place overwriting resets file size to 0 bytes upon open; writing 90 rows completely replaces 100 rows with zero remnant records.
-- **In-House Antigravity 4-Agent Quant Fleet**:
-  1. **Agent 1: Statistical Diffusion & Regime Gatekeeper**: Lo-MacKinlay `VR(4)` (N >= 120 bars, `|z*| >= 1.96` required to reject random walk), `ER(48)` with regime hysteresis, Newey-West HAC drift `|t_drift| < 1.5`, OU mean drift.
-  2. **Agent 2: Microstructure, CVD & Adverse Selection Sentry**: Anti-winner's-curse passivity filter, anti-short-squeeze delta inversion gate, L2/L3 orderbook asymmetry (> +0.25 / < -0.25), persistent whale armor (>= 100K USD, tau >= 180s).
-  3. **Agent 3: Liquidation Geometry, Stop Hunt & Auction Profile Quant**: Stops placed safely outside the 1.0–1.5 ATR liquidity sweep zone, cumulative liquidation ladders, max pain magnets, Daily/Weekly Volume Profile VPOC/VAH/VAL.
-  4. **Agent 4: Solvency, Execution & Dynamic Ratchet Supervisor**: MT5 account telemetry verification (#5064568), 4,775.00 USD hard floor defense, single-trade risk capped at 10.00 USD, dynamic ratchet actuation (+0.80R to BE +/- 0.15R, +1.50R to +/- 0.80R lock, 6h time decay exit).
+## 2. 360-DEGREE DATA LAKE VALIDATION ENGINE & PERSISTENT BACKGROUND DAEMONS
+- **All Feeds Healthy**: `Data/feeds/2_Future_Netflow.parquet` (Feed #36) fully integrated. Total canonical feeds: **37/37 (100% PASS)**.
+- **DeepMind Quant Suite Active**: `rlax`, `distrax`, `chex`, `jax`, `jaxlib` operating locally for high-speed RL execution & stochastic control.
+- **Cron Wakeup (`task-153486`)**: `0,20,40 * * * *` (Autonomous 20-minute cycle cron, next trigger at 00:00:00 IST)
+- **Position Supervisor Daemon (`task-153993`)**: Active on 5.0s loop
+- **Master Pipeline Daemon (`task-153818`)**: Continuous 120s loop (all 37 feeds fresh < 1.5m)
+- **AST Graphify Watcher (`task-154061`)**: Active on file changes (180s timeout guard)
+- **Telemetry Git Sync (`task-153482`)**: Active 60s push loop
+- **Hardware Optimization**: Total RAM: 15.34 GB, Free RAM: 7.66 GB (50.0% used).
 
 ---
 
 ## 3. CANONICAL GOVERNANCE SPECIFICATIONS (DATA/MANDITORY/)
-All canonical governance specifications are verified, active, and synchronized in `Data/Manditory/`:
-1. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical In-House Antigravity Quantitative Decision Architecture)
-2. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Forensic Pitfall Directory including Gold Stop-Out Inquest)
-3. `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (Risk Checklist)
-4. `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (4-Quant Subagent Roles: Role A, B, C, D)
+1. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical SOP & Risk Tiers, 990 lines, SHA-256: `20243a9f0afd247242a564bf6dac35b1cb64fcebe436a6d05477ae1e30a532d2`)
+2. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Forensic Autopsies & 25 Controls, 467 lines, SHA-256: `d97077bdbe0d3566291519116cf9bc1ec69b56fcfeb5ad424a3759cba48464fe`)
+3. `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-Feed Risk Interrogation, 1,057 lines, SHA-256: `20c099bb3dcc9ae2f1363b93f1b198e3ac031b469121463246dec808b925db75`)
+4. `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md` (Sovereign Autonomous Push/Delete/Modify Rights & Mandatory 5,500 USD Friday Mandate)

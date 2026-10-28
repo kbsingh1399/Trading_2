@@ -125,8 +125,22 @@ async def harvest_live_liquidations(max_orders: int = 1000) -> list[dict]:
                 if d.get("id") == m:
                     return d.get("result", {})
 
-        log.info("Awaiting page hydration (6s)...")
-        await asyncio.sleep(6)
+        # Universal Component Hydration Check: wait until DOM and live liquidation rows are fully mounted
+        js_wait = """
+        (() => {
+            const isDocReady = (document.readyState === 'complete' || document.readyState === 'interactive');
+            const rows = document.querySelectorAll('table tbody tr, .ant-table-row, [class*="row"]').length;
+            return { ready: isDocReady && rows > 0, count: rows };
+        })()
+        """
+        log.info("Awaiting full live liquidation page and component hydration...")
+        for attempt in range(30):
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_wait, "returnByValue": True})
+            val = res.get("result", {}).get("value", {})
+            if val.get("ready"):
+                log.info(f"Live liquidation components fully hydrated ({val.get('count')} rows).")
+                break
+            await asyncio.sleep(0.5)
 
         # Fast virtual scroll and harvest script
         scroll_script = """

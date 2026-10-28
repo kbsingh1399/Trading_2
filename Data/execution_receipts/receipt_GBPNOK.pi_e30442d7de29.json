@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-28T11:39:14.875377+00:00",
+  "symbol": "GBPNOK.pi",
+  "direction": "SELL_LIMIT",
+  "entry_price": 12.3635,
+  "sl_price": 12.3755,
+  "tp_price": 12.3335,
+  "lots": 0.07,
+  "model_type": "MODEL_2_PULLBACK",
+  "passed": true,
+  "failures": [],
+  "metrics": {
+    "nominal_risk_usd": 9.04,
+    "spread_bps": 2.12,
+    "vr4": 1.168,
+    "higher_lows": "0",
+    "lower_highs": "5",
+    "atr14": 0.0084,
+    "vol_ratio": 0.53,
+    "stop_atr_ratio": 1.43
+  }
+}

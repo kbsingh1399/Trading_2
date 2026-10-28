@@ -108,3 +108,71 @@ def find_or_create_tab(url: str, wait_secs: float = 1.0) -> Optional[Dict[str, A
     except Exception as e:
         log.error(f"Failed to create new tab for {url}: {e}")
         return None
+
+
+async def wait_for_page_and_component_load(
+    cdp_cmd,
+    selector: str = "table tbody tr, canvas, [_echarts_instance_], [class*='grid'], [class*='table']",
+    min_elements: int = 1,
+    timeout_sec: float = 30.0,
+    poll_interval: float = 0.4,
+    log: Optional[logging.Logger] = None,
+) -> bool:
+    """
+    Universal Page & Component Hydration Readiness Gate:
+    1. Awaits document.readyState === 'complete'.
+    2. Ensures active spinners / skeleton loaders (.ant-spin, .skeleton, .loading) are cleared.
+    3. Confirms target DOM elements are present, rendered (height > 0), and meet min_elements.
+    4. Guarantees zero blank / empty scrapes by preventing premature execution.
+    """
+    import asyncio
+    import time
+
+    t0 = time.time()
+    logger = log or logging.getLogger("CDPPool")
+    
+    js_check = f"""
+    (() => {{
+        const isDocReady = (document.readyState === 'complete' || document.readyState === 'interactive');
+        if (!isDocReady) return {{ ready: false, reason: "document.readyState = " + document.readyState }};
+        
+        // Check for blocking global loaders
+        const spinners = document.querySelectorAll('.ant-spin-spinning, .spinner, .global-loading, [class*="skeleton"]');
+        if (spinners.length > 0) {{
+            const visibleSpinner = Array.from(spinners).some(s => s.offsetParent !== null);
+            if (visibleSpinner) return {{ ready: false, reason: "active spinner detected" }};
+        }}
+
+        // Check target component presence and hydration
+        const selector = {json.dumps(selector)};
+        const elements = Array.from(document.querySelectorAll(selector));
+        const validElements = elements.filter(el => {{
+            const rect = el.getBoundingClientRect();
+            return (rect.width > 0 || rect.height > 0 || el.innerText.trim().length > 0);
+        }});
+
+        if (validElements.length < {min_elements}) {{
+            return {{ ready: false, reason: "found " + validElements.length + "/{min_elements} valid elements for selector" }};
+        }}
+
+        return {{ ready: true, count: validElements.length }};
+    }})()
+    """
+
+    while time.time() - t0 < timeout_sec:
+        try:
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_check, "returnByValue": True})
+            val = res.get("result", {}).get("value") if "result" in res else res.get("value", {})
+            if val and val.get("ready") is True:
+                elapsed = time.time() - t0
+                logger.info(f"Page & component hydrated successfully in {elapsed:.2f}s ({val.get('count')} elements matching '{selector}').")
+                return True
+        except Exception as e:
+            logger.debug(f"Hydration polling check notice: {e}")
+
+        await asyncio.sleep(poll_interval)
+
+    elapsed = time.time() - t0
+    logger.warning(f"Component hydration gate timed out after {elapsed:.2f}s for selector '{selector}'")
+    return False
+

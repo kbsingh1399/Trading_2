@@ -509,7 +509,7 @@ async def extract_active_footprint_tab(cdp_base_url: str = CDP_BASE_URL) -> Tupl
 
             extract_js = """
             (() => {
-                const chartDiv = document.querySelector('.ChartPane_plot__o9CVJ') || document.querySelector('canvas').parentElement;
+                const chartDiv = document.querySelector('[class*="ChartPane_plot"]') || document.querySelector('canvas').parentElement;
                 if (!chartDiv) return { error: 'No chart div' };
                 const fiberKey = Object.keys(chartDiv).find(k => k.startsWith('__reactFiber'));
                 let curr = chartDiv[fiberKey];

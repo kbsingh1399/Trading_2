@@ -400,10 +400,11 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
 
             # 2. Verification loop: poll until price matches expected reference bounds and non-zero liquidation values exist
             harvested_data = None
-            for poll in range(35):
+            consecutive_nodata = 0
+            for poll in range(40):
                 await asyncio.sleep(0.3)
-                # Instant CoinGlass 'nodata' check
-                if poll >= 3:
+                # Resilient CoinGlass 'nodata' check: wait for settling (poll >= 12, ~3.6s) and require 4 consecutive confirmations
+                if poll >= 12:
                     js_nodata_check = """
                     (() => {
                         const allElements = Array.from(document.querySelectorAll('*'));
@@ -421,8 +422,12 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
                     """
                     nd_res = await cdp_cmd("Runtime.evaluate", {"expression": js_nodata_check, "returnByValue": True})
                     if nd_res.get("result", {}).get("value") is True:
-                        log.warning(f"  -> CoinGlass upstream reports 'nodata' for {sym} on 1D timeframe. Skipping cleanly.")
-                        break
+                        consecutive_nodata += 1
+                        if consecutive_nodata >= 4:
+                            log.warning(f"  -> CoinGlass upstream confirmed 'nodata' for {sym} on 1D timeframe after settling ({consecutive_nodata} confirmations). Skipping.")
+                            break
+                    else:
+                        consecutive_nodata = 0
 
                 ext = await cdp_cmd("Runtime.evaluate", {"expression": js_extract, "returnByValue": True})
                 val = ext.get("result", {}).get("value")
@@ -515,7 +520,7 @@ def main():
         sys.exit(1)
 
     # 1. Pure Parquet Dump
-    meta = write_parquet_feed(FEED_NAME, records)
+    meta = write_parquet_feed(FEED_NAME, records, merge_missing_assets=True)
     log.info(f"Successfully dumped feed to Parquet: {meta}")
 
     log.info("1D Liquidation Map pipeline executed successfully.")

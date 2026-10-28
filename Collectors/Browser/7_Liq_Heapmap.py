@@ -150,8 +150,22 @@ async def harvest_liquidation_heatmap() -> list[dict]:
                 if d.get("id") == m:
                     return d.get("result", {})
 
-        log.info("Awaiting page hydration (6s)...")
-        await asyncio.sleep(6)
+        # Universal Component Hydration Check: wait until DOM and heatmap tiles are fully loaded
+        js_wait = """
+        (() => {
+            const isDocReady = (document.readyState === 'complete' || document.readyState === 'interactive');
+            const tiles = document.querySelectorAll('.lp-tile, [class*="heatmap-tile"], div[role="tab"], .MuiTab-root');
+            return { ready: isDocReady && tiles.length > 3, count: tiles.length };
+        })()
+        """
+        log.info("Awaiting full heatmap page and component hydration...")
+        for attempt in range(30):
+            res = await cdp_cmd("Runtime.evaluate", {"expression": js_wait, "returnByValue": True})
+            val = res.get("result", {}).get("value", {})
+            if val.get("ready"):
+                log.info(f"Heatmap components fully hydrated ({val.get('count')} tiles/tabs).")
+                break
+            await asyncio.sleep(0.5)
 
         # Extraction script per timeframe
         script_extract = """

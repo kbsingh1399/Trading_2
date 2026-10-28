@@ -1,48 +1,15 @@
 {
-  "timestamp_utc": "2026-10-28 05:22:47 UTC",
-  "balance_usd": 4815.01,
-  "equity_usd": 4815.01,
-  "free_margin_usd": 4604.08,
+  "timestamp_utc": "2026-10-28 18:46:04 UTC",
+  "balance_usd": 4782.61,
+  "equity_usd": 4782.61,
+  "free_margin_usd": 4782.61,
   "max_filled_positions": 4,
-  "filled_positions_count": 1,
-  "filled_slots_free": 3,
-  "resting_limits_count": 2,
+  "filled_positions_count": 0,
+  "filled_slots_free": 4,
+  "resting_limits_count": 0,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [
-    {
-      "ticket": 19388702,
-      "symbol": "AUDUSD.pi",
-      "type": "BUY",
-      "volume": 0.09,
-      "price_open": 0.7031,
-      "price_current": 0.7031,
-      "sl": 0.70198,
-      "tp": 0.7059,
-      "gain_r": 0.0,
-      "ratchet_stage": 0,
-      "profit_usd": 0.0
-    }
-  ],
-  "resting_orders": [
-    {
-      "ticket": 19395675,
-      "symbol": "BTCUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.03,
-      "price": 81280.0,
-      "sl": 81580.0,
-      "tp": 80640.0
-    },
-    {
-      "ticket": 19395680,
-      "symbol": "UKBRENT.p",
-      "type": "SELL_LIMIT",
-      "volume": 0.3,
-      "price": 116.23,
-      "sl": 116.55,
-      "tp": 115.4
-    }
-  ]
+  "active_positions": [],
+  "resting_orders": []
 }

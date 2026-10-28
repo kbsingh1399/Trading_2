@@ -1,0 +1,37 @@
+{
+  "timestamp_utc": "2026-10-28T11:58:01.390818+00:00",
+  "symbol": "ETHUSD.pi",
+  "direction": "SELL_LIMIT",
+  "entry_price": 2365.5,
+  "sl_price": 2375.5,
+  "tp_price": 2340.5,
+  "lots": 0.99,
+  "model_type": "MODEL_1_FADE",
+  "passed": true,
+  "failures": [],
+  "metrics": {
+    "nominal_risk_usd": 9.9,
+    "spread_bps": 11.87,
+    "vr4": 0.823,
+    "higher_lows": "1",
+    "lower_highs": "3",
+    "atr14": 7.03,
+    "vol_ratio": 0.41,
+    "stop_atr_ratio": 1.42,
+    "whale_wall_usd": 1900000.0,
+    "footprint_opposing_signals": 0,
+    "data_lake_360_evidence": {
+      "19_Calendar": "VERIFIED_CLEAR",
+      "19_News": "VERIFIED_CLEAR",
+      "25_CoinGlass_Footprint_Signals": "VERIFIED_CLEAR",
+      "18_CVD": "VERIFIED_CLEAR",
+      "15_Hyperdash_Stops_Map": "VERIFIED_CLEAR",
+      "14_Hyperdash_Liq_Map": "VERIFIED_CLEAR",
+      "defending_whale_wall_usd": 1900000.0,
+      "10_Whale_Orders": "VERIFIED_CLEAR",
+      "5_Funding_Rate": "VERIFIED_CLEAR",
+      "3_Exchanges_LS_Ratio_15M": "VERIFIED_CLEAR",
+      "20_Auction_Market_Structure": "VERIFIED_CLEAR"
+    }
+  }
+}

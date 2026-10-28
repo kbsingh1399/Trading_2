@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-28T11:14:24.470129+00:00",
+  "symbol": "XAUUSD.pi",
+  "direction": "BUY_LIMIT",
+  "entry_price": 4038.5,
+  "sl_price": 4028.5,
+  "tp_price": 4063.5,
+  "lots": 0.01,
+  "model_type": "MODEL_2_PULLBACK",
+  "passed": true,
+  "failures": [],
+  "metrics": {
+    "nominal_risk_usd": 10.0,
+    "spread_bps": 0.2,
+    "vr4": 1.164,
+    "higher_lows": "0",
+    "lower_highs": "5",
+    "atr14": 5.23,
+    "vol_ratio": 0.89,
+    "stop_atr_ratio": 1.91
+  }
+}

@@ -97,8 +97,27 @@ async def reload_arena_tab(target: str = "arena1") -> None:
             except Exception:
                 pass
         await asyncio.sleep(4.0)
+        print(f"[CouncilWatcher] Successfully refreshed {target} tab via CDP Page.reload", flush=True)
     except Exception as e:
         print(f"[CouncilWatcher] Error reloading {target} tab: {e}", file=sys.stderr)
+
+
+async def reload_zai_tab() -> None:
+    """Reloads the Z.ai tab via CDP Page.reload and waits for full DOM rehydration."""
+    try:
+        ws_url = _find_zai_ws_url()
+        if not ws_url:
+            return
+        async with websockets.connect(ws_url, open_timeout=5) as ws:
+            await ws.send(json.dumps({"id": 9998, "method": "Page.reload", "params": {"ignoreCache": True}}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.5)
+            except Exception:
+                pass
+        await asyncio.sleep(4.0)
+        print(f"[CouncilWatcher] Successfully refreshed Z.ai tab via CDP Page.reload", flush=True)
+    except Exception as e:
+        print(f"[CouncilWatcher] Error reloading Z.ai tab: {e}", file=sys.stderr)
 
 
 async def probe_arena_state(target: str = "arena1") -> dict:
@@ -149,7 +168,8 @@ async def probe_arena_state(target: str = "arena1") -> dict:
             return Array.from(node.childNodes).map(nodeToMd).join('');
         }
 
-        const btnStop = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"]');
+        // Enhanced stop button detection matching exact live DOM
+        const btnStop = document.querySelector('button[aria-label="Stop generating"], button:has(svg rect), button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
         const isGenerating = Boolean(btnStop);
         const allProses = Array.from(document.querySelectorAll('.prose'));
         const proseCount = allProses.length;
@@ -208,10 +228,10 @@ async def probe_zai_state() -> dict:
         return {"connected": False, "error": "Z.ai tab not found on CDP 9222"}
 
     js = """(() => {
-        const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
-        const stopSquare = document.querySelector('button span.size-3.rounded-xs');
-        const sendBtn = document.querySelector('button#send-message-button');
-        const thinkingBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').includes('Thinking'));
+        const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button, button:has(span.size-3.rounded-xs), button:has(span.block.size-3)');
+        const stopSquare = document.querySelector('button span.size-3.rounded-xs, button span.block.size-3');
+        const sendBtn = document.querySelector('button#send-message-button, button[aria-label="Send"], button[aria-label*="Send"]');
+        const thinkingBtn = Array.from(document.querySelectorAll('button, div, span')).find(b => (b.innerText || '').trim().startsWith('Thinking'));
         const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn || Boolean(thinkingBtn);
         const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
         const proseCount = allChatMsgs.length;
@@ -355,199 +375,161 @@ def save_zai_completion_artifacts(state: dict) -> None:
     ZAI_STATUS_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float = 1800.0) -> int:
+async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float = 1800.0, refresh_limit_s: float = 300.0) -> int:
     start_ts = time.time()
-    initial = await probe_arena_state("arena1")
-    initial_hash = initial.get("textHash", "")
-    initial_generating = initial.get("isGenerating", False)
-    saw_generating = initial_generating
-
-    initial_fable = await probe_arena_state("fable")
-    fable_active = initial_fable.get("connected", False)
-    initial_fable_hash = initial_fable.get("textHash", "")
-    initial_fable_generating = initial_fable.get("isGenerating", False)
-    saw_fable_generating = initial_fable_generating
-
-    initial_zai = await probe_zai_state()
-    zai_active = initial_zai.get("connected", False)
-    initial_zai_hash = initial_zai.get("textHash", "")
-    initial_zai_count = initial_zai.get("proseCount", 0)
-    saw_zai_generating = initial_zai.get("isGenerating", False)
+    
+    # Independent State Tracking & Timers
+    arena_gen_start: float = 0.0
+    zai_gen_start: float = 0.0
+    arena_last_refresh: float = 0.0
+    zai_last_refresh: float = 0.0
+    
+    stable_arena_ticks: int = 0
+    stable_zai_ticks: int = 0
+    
+    last_arena_hash: str = ""
+    last_zai_hash: str = ""
+    
+    # Initial Probe
+    init_a = await probe_arena_state("arena1")
+    init_z = await probe_zai_state()
+    
+    arena_active = init_a.get("connected", False)
+    zai_active = init_z.get("connected", False)
+    
+    arena_done = False
+    zai_done = not zai_active  # If not connected, mark done immediately
+    
+    if init_a.get("isGenerating"):
+        arena_gen_start = time.time()
+    else:
+        # If Arena already finished a turn before script started, save it as baseline
+        if init_a.get("lastLen", 0) > 100 and (init_a.get("hasCopyButton") or init_a.get("hasYesNoBanner")):
+            arena_done = True
+            last_arena_hash = init_a.get("textHash", "")
+            
+    if init_z.get("isGenerating"):
+        zai_gen_start = time.time()
+        zai_done = False
+    else:
+        if init_z.get("lastLen", 0) > 100:
+            zai_done = True
+            last_zai_hash = init_z.get("textHash", "")
 
     print(
-        f"[CouncilWatcher] Started wait-for-completion watcher "
-        f"(Arena1: gen={initial_generating}, hash={initial_hash} | "
-        f"Arena2 Fable: connected={fable_active}, gen={initial_fable_generating}, hash={initial_fable_hash} | "
-        f"Z.ai: connected={zai_active}, gen={saw_zai_generating})",
+        f"[DualCouncilWatcher] Initialized: Arena (connected={arena_active}, gen={init_a.get('isGenerating')}, done={arena_done}) | "
+        f"Z.ai (connected={zai_active}, gen={init_z.get('isGenerating')}, done={zai_done}) | "
+        f"Auto-refresh threshold: {refresh_limit_s}s (5 minutes)",
         flush=True,
     )
-    cycle_state_file = ROOT / "Data" / "cycle_state.json"
-    if cycle_state_file.exists():
-        try:
-            with open(cycle_state_file, "r", encoding="utf-8") as f:
-                cs = json.load(f)
-            sub_status = cs.get("components", {}).get("antigravity_subagents", {}).get("status")
-            print(f"[CouncilWatcher] Antigravity Subagent status in cycle_state: {sub_status}", flush=True)
-            if sub_status != "COMPLETED":
-                print(f"[CouncilWatcher] 🚨 REMINDER: Ensure Antigravity has dispatched 4 Fable 5 subagents in parallel!", flush=True)
-        except Exception:
-            pass
 
-    stable_ready_ticks = 0
-    last_seen_hash = initial_hash
-    arena_active = initial.get("connected", False)
-    arena_done = not arena_active
-    arena_done_ts = 0.0
-
-    stable_fable_ticks = 0
-    last_seen_fable_hash = initial_fable_hash
-    fable_done = not fable_active
-    fable_done_ts = 0.0
-
-    zai_stable_ticks = 0
-    last_seen_zai_hash = initial_zai_hash
-    zai_done = not zai_active
+    last_log_ts = time.time()
 
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
+        now = time.time()
+        elapsed = int(now - start_ts)
 
-        # 1. Check Arena 1 Primary
-        if not arena_done:
-            state = await probe_arena_state("arena1")
-            if state.get("connected"):
-                is_gen = state.get("isGenerating", False)
-                if is_gen:
-                    saw_generating = True
-                    stable_ready_ticks = 0
+        # -------------------------------------------------------------
+        # 1. EVALUATE ARENA.AI
+        # -------------------------------------------------------------
+        if arena_active:
+            astate = await probe_arena_state("arena1")
+            if astate.get("connected"):
+                is_a_gen = astate.get("isGenerating", False)
+                a_hash = astate.get("textHash", "")
+                a_len = astate.get("lastLen", 0)
+                
+                if is_a_gen:
+                    if arena_gen_start == 0.0:
+                        arena_gen_start = now
+                    arena_done = False  # NEVER done while actively generating!
+                    stable_arena_ticks = 0
+                    
+                    # 5-MINUTE AUTO-REFRESH GATE: If generating for >= refresh_limit_s (300s)
+                    gen_duration = now - arena_gen_start
+                    if gen_duration >= refresh_limit_s and (now - arena_last_refresh) >= refresh_limit_s:
+                        print(f"[DualCouncilWatcher] ⚠️ Arena has been generating for {int(gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
+                        await reload_arena_tab("arena1")
+                        arena_last_refresh = now
+                        arena_gen_start = now  # Reset timer post-refresh
                 else:
-                    curr_hash = state.get("textHash", "")
-                    has_copy = state.get("hasCopyButton", False)
-                    has_yes_no = state.get("hasYesNoBanner", False)
-                    has_footer = state.get("hasDurationFooter", False)
-                    last_len = state.get("lastLen", 0)
-                    is_new_or_finished = (
-                        saw_generating
-                        or (curr_hash != initial_hash and last_len > 200)
-                        or ((time.time() - start_ts) >= 8.0 and (has_copy or has_yes_no) and last_len > 200)
-                    )
-                    if not is_gen and (has_copy or has_yes_no or has_footer) and is_new_or_finished:
-                        if curr_hash == last_seen_hash and curr_hash != "":
-                            stable_ready_ticks += 1
+                    arena_gen_start = 0.0
+                    has_copy = astate.get("hasCopyButton", False)
+                    has_yes_no = astate.get("hasYesNoBanner", False)
+                    has_footer = astate.get("hasDurationFooter", False)
+                    
+                    # Ready when generation stop button is gone and output exists
+                    if a_len > 100 and (has_copy or has_yes_no or has_footer or not arena_done):
+                        if a_hash == last_arena_hash and a_hash != "":
+                            stable_arena_ticks += 1
                         else:
-                            last_seen_hash = curr_hash
-                            stable_ready_ticks = 1
-                        if stable_ready_ticks >= 2:
-                            print(f"[CouncilWatcher] Refreshing Arena tab for clean markdown rehydration...", flush=True)
-                            await reload_arena_tab("arena1")
-                            re_state = await probe_arena_state("arena1")
-                            if re_state.get("connected") and re_state.get("lastLen", 0) > 200:
-                                state = re_state
-                            save_completion_artifacts(state)
+                            last_arena_hash = a_hash
+                            stable_arena_ticks = 1
+                            
+                        if stable_arena_ticks >= 2:
+                            save_completion_artifacts(astate)
                             arena_done = True
-                            arena_done_ts = time.time()
-                            print(
-                                f"\n🔔 ARENA 1 PRIMARY RESPONSE COMPLETE (len={state.get('lastLen')}, hash={state.get('textHash')}) -> saved {LATEST_RAW_FILE.name}",
-                                flush=True,
-                            )
                     else:
-                        last_seen_hash = curr_hash
-                        stable_ready_ticks = 0
+                        stable_arena_ticks = 0
 
-        # 2. Check Arena 2 Fable Orchestrator
-        if fable_active and not fable_done:
-            fstate = await probe_arena_state("fable")
-            if fstate.get("connected"):
-                is_fgen = fstate.get("isGenerating", False)
-                if is_fgen:
-                    saw_fable_generating = True
-                    stable_fable_ticks = 0
-                else:
-                    curr_fhash = fstate.get("textHash", "")
-                    has_fcopy = fstate.get("hasCopyButton", False)
-                    has_fyes_no = fstate.get("hasYesNoBanner", False)
-                    has_ffooter = fstate.get("hasDurationFooter", False)
-                    last_flen = fstate.get("lastLen", 0)
-                    is_new_fable = (
-                        saw_fable_generating
-                        or (curr_fhash != initial_fable_hash and last_flen > 200)
-                        or ((time.time() - start_ts) >= 8.0 and (has_fcopy or has_fyes_no) and last_flen > 200)
-                    )
-                    if not is_fgen and (has_fcopy or has_fyes_no or has_ffooter) and is_new_fable:
-                        if curr_fhash == last_seen_fable_hash and curr_fhash != "":
-                            stable_fable_ticks += 1
-                        else:
-                            last_seen_fable_hash = curr_fhash
-                            stable_fable_ticks = 1
-                        if stable_fable_ticks >= 2:
-                            save_arena_fable_completion_artifacts(fstate)
-                            fable_done = True
-                            fable_done_ts = time.time()
-                            print(
-                                f"\n🔔 ARENA 2 FABLE RESPONSE COMPLETE (len={last_flen}, hash={curr_fhash}) -> saved {ARENA_FABLE_RAW_FILE.name}",
-                                flush=True,
-                            )
-                    else:
-                        last_seen_fable_hash = curr_fhash
-                        stable_fable_ticks = 0
-
-        # 3. Check Z.ai Chat (if active)
-        if zai_active and not zai_done:
+        # -------------------------------------------------------------
+        # 2. EVALUATE Z.AI
+        # -------------------------------------------------------------
+        if zai_active:
             zstate = await probe_zai_state()
             if zstate.get("connected"):
-                z_gen = zstate.get("isGenerating", False)
-                if z_gen:
-                    saw_zai_generating = True
-                    zai_stable_ticks = 0
+                is_z_gen = zstate.get("isGenerating", False)
+                z_hash = zstate.get("textHash", "")
+                z_len = zstate.get("lastLen", 0)
+                
+                if is_z_gen:
+                    if zai_gen_start == 0.0:
+                        zai_gen_start = now
+                    zai_done = False  # NEVER done while actively generating!
+                    stable_zai_ticks = 0
+                    
+                    # 5-MINUTE AUTO-REFRESH GATE: If generating for >= refresh_limit_s (300s)
+                    z_gen_duration = now - zai_gen_start
+                    if z_gen_duration >= refresh_limit_s and (now - zai_last_refresh) >= refresh_limit_s:
+                        print(f"[DualCouncilWatcher] ⚠️ Z.ai has been generating for {int(z_gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
+                        await reload_zai_tab()
+                        zai_last_refresh = now
+                        zai_gen_start = now  # Reset timer post-refresh
                 else:
-                    z_hash = zstate.get("textHash", "")
-                    z_len = zstate.get("lastLen", 0)
-                    z_count = zstate.get("proseCount", 0)
-                    z_is_new = saw_zai_generating or (z_hash != initial_zai_hash and z_len > 200) or (z_count > initial_zai_count and z_len > 200)
-                    if not z_gen and z_is_new and z_len > 200:
-                        if z_hash == last_seen_zai_hash and z_hash != "":
-                            zai_stable_ticks += 1
+                    zai_gen_start = 0.0
+                    if z_len > 100:
+                        if z_hash == last_zai_hash and z_hash != "":
+                            stable_zai_ticks += 1
                         else:
-                            last_seen_zai_hash = z_hash
-                            zai_stable_ticks = 1
-                        if zai_stable_ticks >= 3:
+                            last_zai_hash = z_hash
+                            stable_zai_ticks = 1
+                            
+                        if stable_zai_ticks >= 2:
                             save_zai_completion_artifacts(zstate)
                             zai_done = True
-                            print(
-                                f"\n🔔 Z.AI CHAT RESPONSE COMPLETE (len={z_len}, hash={z_hash}) -> saved {ZAI_LATEST_RAW_FILE.name}",
-                                flush=True,
-                            )
+                    else:
+                        stable_zai_ticks = 0
 
-        # Wake up when ALL active instances are done (or if secondary instances timeout when idle)
-        fable_is_gen = fstate.get("isGenerating", False) if (fable_active and not fable_done and 'fstate' in locals()) else False
-        fable_timed_out = False
-        if not fable_is_gen:
-            if arena_done and (time.time() - arena_done_ts) >= 180.0:
-                fable_timed_out = True
-        else:
-            # If actively generating, allow up to 45 minutes (2700s)
-            if arena_done and (time.time() - arena_done_ts) >= 2700.0:
-                fable_timed_out = True
-        # Z.ai timeout handling (allow up to 900s if actively generating)
-        zai_is_gen = zstate.get("isGenerating", False) if (zai_active and not zai_done and 'zstate' in locals()) else False
-        zai_timed_out = False
-        if zai_active and not zai_done:
-            if arena_done and arena_done_ts > 0.0:
-                elapsed_since_arena = time.time() - arena_done_ts
-                if zai_is_gen:
-                    if elapsed_since_arena >= 1800.0:
-                        zai_timed_out = True
-                else:
-                    if elapsed_since_arena >= 180.0:
-                        zai_timed_out = True
-        else:
-            zai_timed_out = True
+        # Periodic status logging every 10 seconds
+        if now - last_log_ts >= 10.0:
+            last_log_ts = now
+            a_desc = f"GENERATING ({int(now - arena_gen_start)}s)" if astate.get("isGenerating") else ("COMPLETED" if arena_done else "IDLE")
+            z_desc = f"GENERATING ({int(now - zai_gen_start)}s)" if zstate.get("isGenerating") else ("COMPLETED" if zai_done else "IDLE")
+            print(f"[DualCouncilWatcher t={elapsed}s] Arena.ai: {a_desc} | Z.ai: {z_desc}", flush=True)
 
-        all_arenas_done = arena_done and (fable_done or fable_timed_out)
-        if all_arenas_done and (zai_done or zai_timed_out):
-            print("\n✅ COUNCIL WAKE UP TRIGGERED (Both Arena and Z.ai ready for Antigravity synthesis)!", flush=True)
+        # -------------------------------------------------------------
+        # 3. CONVERGENCE CHECK: BOTH MUST BE DONE & NEITHER GENERATING
+        # -------------------------------------------------------------
+        a_is_still_working = astate.get("isGenerating", False) if arena_active and 'astate' in locals() else False
+        z_is_still_working = zstate.get("isGenerating", False) if zai_active and 'zstate' in locals() else False
+
+        if arena_done and zai_done and not a_is_still_working and not z_is_still_working:
+            print("\n🎉 DUAL COUNCIL WAKE UP TRIGGERED: Both Arena.ai and Z.ai have finished and artifacts are harvested!", flush=True)
             return 0
 
-    print("[CouncilWatcher] Timeout reached while waiting for council completion.", file=sys.stderr, flush=True)
+    print("[DualCouncilWatcher] Timeout reached waiting for council completion.", file=sys.stderr, flush=True)
+    return 1
     return 1
 
 
@@ -598,11 +580,6 @@ async def run_persistent_daemon(poll_interval: float = 3.0) -> None:
                     stable_ticks = 1
 
                 if stable_ticks >= 2:
-                    print(f"[CouncilWatcher] Refreshing Arena tab for clean markdown rehydration...", flush=True)
-                    await reload_arena_tab("arena1")
-                    re_state = await probe_arena_state("arena1")
-                    if re_state.get("connected") and re_state.get("lastLen", 0) > 200:
-                        state = re_state
                     save_completion_artifacts(state)
                     last_recorded_hash = state.get("textHash", curr_hash)
                     print(
@@ -674,12 +651,13 @@ def main() -> None:
     parser.add_argument("--wait", action="store_true", help="Wait for current/next Arena + Z.ai response to finish and exit 0 to wake up agent")
     parser.add_argument("--poll-interval", type=float, default=2.0, help="Polling interval in seconds")
     parser.add_argument("--timeout", type=float, default=1800.0, help="Timeout in seconds for --wait mode")
+    parser.add_argument("--refresh-limit", type=float, default=300.0, help="Seconds before auto-refreshing a tab that remains generating (default 300s / 5m)")
     args = parser.parse_args()
 
     if args.daemon:
         asyncio.run(run_persistent_daemon(poll_interval=args.poll_interval))
     else:
-        rc = asyncio.run(run_wait_for_completion(poll_interval=args.poll_interval, timeout_s=args.timeout))
+        rc = asyncio.run(run_wait_for_completion(poll_interval=args.poll_interval, timeout_s=args.timeout, refresh_limit_s=args.refresh_limit))
         sys.exit(rc)
 
 
