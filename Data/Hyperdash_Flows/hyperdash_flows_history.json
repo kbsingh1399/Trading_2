@@ -148318,5 +148318,25 @@
     "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "TRX",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 5398.94,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.3316,
+    "wallet_address": "0x7d0c59691fec7f3fea385cdc3126c37a41d91b28",
+    "asset_slug": "TRX",
+    "raw_text": "#TRX Whale SELL: 5.40K USD at 0.3316 USD [API]",
+    "msg_id": "HL_TRADE_TRX_79163588448708",
+    "timestamp_epoch": 1793145958,
+    "time_label": "00:05",
+    "date_heading": "October 28",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
