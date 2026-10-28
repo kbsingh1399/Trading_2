@@ -2,7 +2,7 @@
   "feed_name": "11_Technical",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 99,
+  "row_count": 114,
   "column_count": 55,
   "columns": [
     "asset",
@@ -61,9 +61,9 @@
     "week_low",
     "sr_no"
   ],
-  "byte_size": 61387,
-  "timestamp_ist": "2026-10-28 07:38:25 IST",
-  "timestamp_utc": "2026-10-28 02:08:25 UTC",
-  "epoch_utc": 1793153305.993819,
-  "write_duration_ms": 9.64
+  "byte_size": 68112,
+  "timestamp_ist": "2026-10-28 07:40:57 IST",
+  "timestamp_utc": "2026-10-28 02:10:57 UTC",
+  "epoch_utc": 1793153457.499148,
+  "write_duration_ms": 11.89
 }
