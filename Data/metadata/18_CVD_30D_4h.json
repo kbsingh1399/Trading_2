@@ -32,9 +32,9 @@
     "trades_count",
     "__index_level_0__"
   ],
-  "byte_size": 40576,
-  "timestamp_ist": "2026-10-29 00:19:27 IST",
-  "timestamp_utc": "2026-10-28 18:49:27 UTC",
-  "epoch_utc": 1793213367.402279,
-  "write_duration_ms": 9.19
+  "byte_size": 40563,
+  "timestamp_ist": "2026-10-29 00:23:21 IST",
+  "timestamp_utc": "2026-10-28 18:53:21 UTC",
+  "epoch_utc": 1793213601.249809,
+  "write_duration_ms": 12.42
 }
