@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-28 04:10:17 UTC",
+  "timestamp_utc": "2026-10-28 04:12:08 UTC",
   "balance_usd": 4815.01,
-  "equity_usd": 4816.18,
-  "free_margin_usd": 4605.25,
+  "equity_usd": 4815.73,
+  "free_margin_usd": 4604.8,
   "max_filled_positions": 4,
   "filled_positions_count": 1,
   "filled_slots_free": 3,
@@ -17,12 +17,12 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 0.7031,
-      "price_current": 0.70323,
+      "price_current": 0.70318,
       "sl": 0.70198,
       "tp": 0.7059,
-      "gain_r": 0.116,
+      "gain_r": 0.071,
       "ratchet_stage": 0,
-      "profit_usd": 1.17
+      "profit_usd": 0.72
     }
   ],
   "resting_orders": []
