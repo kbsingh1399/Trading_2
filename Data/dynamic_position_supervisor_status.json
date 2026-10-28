@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-28 19:45:39 UTC",
+  "timestamp_utc": "2026-10-28 19:47:35 UTC",
   "balance_usd": 4782.61,
   "equity_usd": 4782.61,
   "free_margin_usd": 4782.61,
@@ -13,13 +13,13 @@
   "active_positions": [],
   "resting_orders": [
     {
-      "ticket": 19435574,
+      "ticket": 19435815,
       "symbol": "ETHUSD.pi",
       "type": "SELL_LIMIT",
-      "volume": 0.35,
+      "volume": 0.15,
       "price": 2366.0,
-      "sl": 2378.0,
-      "tp": 2341.0
+      "sl": 2391.0,
+      "tp": 2325.0
     }
   ]
 }
