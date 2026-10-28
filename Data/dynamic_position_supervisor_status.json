@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-28 20:29:35 UTC",
+  "timestamp_utc": "2026-10-28 20:32:22 UTC",
   "balance_usd": 4757.61,
   "equity_usd": 4757.61,
   "free_margin_usd": 4757.61,
   "max_filled_positions": 15,
   "filled_positions_count": 0,
   "filled_slots_free": 15,
-  "resting_limits_count": 8,
+  "resting_limits_count": 9,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -83,6 +83,15 @@
       "price": 25803.4,
       "sl": 25876.2,
       "tp": 25652.0
+    },
+    {
+      "ticket": 19437168,
+      "symbol": "SOLUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.2,
+      "price": 102.5,
+      "sl": 103.85,
+      "tp": 100.6
     }
   ]
 }
