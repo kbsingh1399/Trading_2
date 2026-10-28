@@ -37,7 +37,7 @@
 > When instantiated, execute the entire 11-step pipeline end-to-end without fail:
 > 1. Physically load and audit all mandatory governance documents line-by-line via `audit_file_read_verifier.py`.
 > 2. Physically pre-load all 42 Parquet feeds (`Data/feeds/*.parquet`) into in-memory RAM cache (`DataLakeMemoryStore`).
-> 3. Verify freshness scorecard (< 5.0m target) and print the narrative decision ledger.
+> 3. Verify freshness scorecard (< 5.0m target) and execute the Mandatory 43-Feed Forensic Combined Microstructure & Macro Analysis Matrix (generic boilerplate ledgers strictly banned).
 > 4. Audit MT5 account solvency against the **4,775.00 USD Hard Statutory Floor** and **4,795.00 USD Operating Defense Buffer**.
 > 5. Supervise live positions (ratcheting +0.80R to BE lock, +1.50R to profit lock, 6h time decay scratch).
 > 6. Perform vectorized scanning across all 156+ assets across all 4 macro clusters (Crypto, FX, Metals, Indices) with zero omission.
