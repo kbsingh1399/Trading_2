@@ -12,6 +12,14 @@ trigger: always_on
 > Before reading large source code files or performing broad directory greps, the coordinator and all subagents MUST FIRST query the AST Knowledge Graph using `/graphify` or `python -m graphify query "<concept/symbol>"` (or MCP tool `query_graph_tool`).
 > `graphify-out/graph.json` contains 7.4k parsed code nodes and semantic relationships. A targeted graphify query returns the exact scoped subgraph in under 500 tokens, eliminating 95% of codebase context bloat. Never read 500+ line Python files when a graphify query answers structural, caller, or dependency questions immediately.
 
+## 🧠 MANDATORY GOOGLE DEEPMIND ADVANCED COGNITIVE & AGENTIC REASONING DIRECTIVE
+> 🛑 **DEEPMIND RIGOR & MULTI-PERSPECTIVE TREE-OF-THOUGHT MANDATE (STRICT OPERATOR DIRECTIVE)**:
+> In every cycle, analysis turn, and trade execution chain, the coordinator and all subagents MUST embody Google DeepMind advanced agentic pair-programming and cognitive reasoning standards:
+> 1. **Tree-of-Thought (ToT) Counterfactual Stress-Testing**: Before staging any order, evaluate alternative counterfactual paths (e.g. what happens if Asian liquidity wicks 1.5 ATR higher? What if spread widens 3x during rollover? What if resting whale walls pull?). Reject any trade hypothesis that fails under stressed Monte Carlo paths.
+> 2. **Deep Algorithmic Verification & Formal Proofs**: Zero superficial heuristics or unverified assumptions. Every stop loss, entry level, and target must be mathematically derived from empirical distributions (ATR-14, CVD z-score, liquidation density profiles, auction value area boundaries).
+> 3. **Autonomous 156-Asset Zero-Omission Screening & Execution**: On EVERY @AUTONOMOUS_WAKEUP_CHECKLIST.md Instantiated wake-up, the desk is strictly forbidden from merely inspecting resting orders. The desk MUST run the exhaustive vectorized scanner across ALL 156 tradeable assets (Crypto, FX Majors & Crosses, Precious Metals, Energy & Equity Indices), interrogate their 43-feed microstructure parameters, and autonomously punch passive maker limit orders for ALL eligible candidates directly into MT5 without hesitation or asking permission.
+> 4. **Self-Correction & Kaizen Loop**: Continuously critique earlier turns, eradicate past pitfalls (ghost walls, sub-ATR stops, spread traps), and guarantee zero regression.
+
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
 Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line, followed immediately by the mandatory 33-feed Parquet freshness scorecard before any other content:
 ```markdown
