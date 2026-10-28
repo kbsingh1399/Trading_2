@@ -1,92 +1,175 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 371",
-  "cutoff_utc": "2026-10-27T09:31:39Z",
-  "evidence_manifest_sha256": "87bb25afa813dc63b210816df9d49ba717b2051530231a4028030ed78a4dff43",
-  "prompt_sha256": "8b755fddce8aed0d4d08ef46cb6cb5197dd806ca8fda6c4de4eb3aa86d136367",
-  "dispatch_nonce": "04581747-de1e-4e3a-b58d-a1c1d3c79024",
-  "provenance_status": "ACCEPTED_WITH_DISPUTES_CAUSALITY_PASS_BOTH_CLOCKS_OFFSET_10800S_UNREPAIRED",
-  "inventory_status": "ACCOUNT_AND_SOLVENCY_ARITHMETIC_VERIFIED_STRESS_CONVENTION_DISPUTED",
+  "cycle_id": "Cycle 373",
+  "cutoff_utc": "2026-10-27 12:55:45 UTC",
+  "evidence_manifest_sha256": "84214b88a8176cb697685991989a5310d0492a3aa71c70d5c886c6e9db3ba288",
+  "prompt_sha256": "3950c15af50545c61d3232408b26c10dd85930328014c0fb0039a5160cc56bfc",
+  "dispatch_nonce": "a0508c3c-16f1-4eeb-a63e-4f6967f5d652",
+  "provenance_status": "DENIED_FAIL_CLOSED",
+  "inventory_status": "ACCOUNT_AND_SOLVENCY_VERIFIED_FLAT_CROSS_VALIDATED_GEN_8C08F7B1",
   "hard_gate_results": {
-    "cutoff_causality": "PASS - max naive stamp 08:13:41Z < cutoff; corrected stamps 04:37:00Z/05:13:41Z/Oct26-17:21:29Z all < cutoff",
-    "envelope_clock_offset": "DISPUTED - +10,800s on 3/3 artifacts, byte-identical to Cycle-369, cross-validated vs telemetry; non-violating this cycle",
-    "orderflow_verification": "FAIL - live DENIED_UNVERIFIED_ORDERFLOW (gen 214d0b1e, 09:32:58Z), 3rd cycle",
-    "margin_collateralization": "PASS - ML 438.52% >= 200%; utilization 22.80% <= 50% (restored by BTC exit)",
-    "capacity_joint_fill": "PASS_WITH_NOTICE - 3/4 OPEN, available 1, but capital-zero for new risk",
-    "realized_headroom": "FAIL_FOR_NEW_RISK - envelope +4.17; canonical telemetry-identity +0.055; strictest -1.945; new-ticket capacity (0.055-2)/1.25 < 0",
-    "kernel_stress_floor": "PASS_WITH_NOTICE - post_joint 4795.055 >= 4795 by +0.055 (knife-edge); cancels release +32.43",
-    "probability_calibration": "FAIL - n=17 Clopper-Pearson LCB 0.4197, min n=100",
-    "fomc_blackout": "PASS - outside window; purge deadline 2026-10-28T17:25Z armed, runway 31.95h",
-    "rollover_embargo": "PASS",
-    "macro_calendar_freshness": "FAIL - verified_at 30.55h stale, worsening"
+    "capital_gate": "PASS — H_net 40.08 >= 0; capacity decomp min((40.08-2.00)/1.25,12.00)=12.00 (3rd consecutive validation); post_joint 4835.08 >= 4795 kernel (+40.08)",
+    "orderflow_authorization_gate": "FAIL_FAIL_CLOSED — DENIED_UNVERIFIED_ORDERFLOW 4th consecutive cycle; L3 STALE, L4 DEGRADED 52,338.2s, L7 FEED_CORRUPT; envelope field absent (absence != clearance)",
+    "calibration_gate": "FAIL — n=17 (wins=11), Clopper-Pearson 95% one-sided LCB 0.4197 < required; p_fill/p_win null -> protocol HOLD on all new admission",
+    "parquet_freshness_gate": "FAIL — envelope parquet_freshness_verified=false AND parquet_audit_scorecard_fresh=false (first double-false cycle; degraded from true at 372); mandated single-source-of-truth chain broken",
+    "quote_spread_gate": "FAIL_NO_ENVELOPE_DATA — zero quotes/spreads/sequences in envelope 2nd consecutive cycle; Role A regime UNDEFINED (dual-engine unconditional stand-down); live forensic quotes exist but are post-cutoff and cannot authorize cutoff-causal risk",
+    "macro_calendar_freshness_gate": "FAIL_UNRESOLVED — verified_at 2026-10-26T03:00:00Z = 34.01h stale vs <900s standard (4th consecutive alert, monotonic worsening 30.55h->32.45h->34.01h)",
+    "causality_gate": "PASS_TRIVIAL — empty inventory, zero stale ticks consumed for admission; live forensics used post-cutoff for staging-derivation only, never for cutoff-causal authorization",
+    "rollover_embargo": "NOT_ACTIVE — cutoff 12:55:45Z outside 21:15-22:30 UTC window",
+    "fomc_blackout_proximity": "ACTIVE_CONSTRAINT — purge deadline 2026-10-28T17:25:00Z in 28.4875h (runway to event 29.0708h); enforcement ARMED; new-risk window functionally closed",
+    "margin_collateralization_gate": "PASS_NOT_APPLICABLE — margin_used 0.00, ML sentinel 0.0 (schema defect: should be null), utilization 0.0%"
   },
   "universe_coverage": {
-    "total_assets": 156,
-    "tradfi_98": "OPEN, WATCHLIST_ONLY pre-FOMC (-31.95h); prior fails: SILVER 6.71bps, USDJPY R:R 0.47, GER40 unverifiable, SP500 falsified",
-    "crypto_58": "OPEN 24/7; quoted 3 (BNB/ETH/SOL); prior spread-fails DOGE/ADA/DOT/LINK/LTC/NEAR/AVAX; TRX min-lot 16.00; XRP unmeasured; rest non-admissible",
-    "admissible_this_cycle": 0
+    "crypto_perpetuals_open": 58, "tradfi_assets_open_tuesday": 98,
+    "static_spread_gate_pass_historical": 11, "dynamic_spread_verified_this_cycle": 2,
+    "dynamic_spread_results": "ETHUSD.pi 12.44 bps PASS; XRPUSD.pi 22.84 bps PASS(marginal) — first dynamic XRP measurement in desk history (post-cutoff forensic)",
+    "regime_classifiable_this_cycle": 0, "candidates_evaluated": 2, "candidates_authorized": 0, "candidates_hold": 2
   },
   "account_tier_and_contingent_capacity": {
-    "tier": "TIER_1_STANDARD",
-    "tier2_unlock_4850": "MISSED_BY_2.12 (realized 4847.88); BNB TP hit -> 4859.13 unlocks Tier 2",
-    "new_ticket_capacity_now": 0,
-    "contingent_capacity_post_cancels": "1 ticket <= 12.00 risk (stress <= 17.00 vs kernel margin +32.43) CONDITIONAL on provenance + orderflow + calibration repair"
+    "tier": "TIER_1_STANDARD", "nominal_risk_capacity_usd": 12.00,
+    "risk_min_usd": 12.00, "risk_max_usd": 12.00, "max_concurrent_tickets": 4,
+    "tier_2_unlock": "LOCKED — balance 4,837.08 vs >4,850.00 threshold; gap 12.92 (unchanged, flat ledger)",
+    "contingent_post_cleanup": "1 ticket <=12.00 nominal (stressed <=19.28 vs H_net 40.08) conditional on parquet + orderflow + calibration repair AND post-FOMC re-derivation (current ETH geometry falsified)"
   },
-  "global_contingency_usd": 2.0,
-  "existing_ticket_actions": [
-    {"ticket": 19343851, "symbol": "BTCUSD.pi", "action": "NONE_CLOSED_PRE_CYCLE", "verified": "ratchet SL 79799 exit realized +1.56 = (79838-79799)x0.04 EXACT; balance 4846.32->4847.88; +0.80R0 ratchet protocol WIN"},
-    {"ticket": 19329907, "symbol": "BNBUSD.p", "action": "HOLD_CONDITIONAL_WITH_KILL_SWITCHES", "urgency": "ROUTINE", "live_ref": "734.60-734.70, P/L -4.65 to -4.95, R -0.43 to -0.46, ratchet_state PHASE_0_PENDING",
-     "overturn_rationale": "prior CLOSE ruling's supports changed: bunker 733.0 tested & held (733.70->734.70), margin invariants restored, floating improved -7.65->-4.65, TP 740 (+1.04R) within +5.30pts",
-     "kill_switches": ["bid < 733.00 -> CLOSE immediately (bunker breach/I1 sweep)", "+0.80R0 bid >= 739.13 -> SL 736.79 (locks +1.62)", "+1.50R0 bid >= 741.65 -> SL 739.13 (locks +8.64)", "MANDATORY close by 2026-10-28T17:25Z purge regardless of P/L", "never widen (729.5 => 20.25 > cap); never tighten into 733.3"]},
-    {"ticket": 19330613, "symbol": "ETHUSD.pi", "action": "CANCEL_PENDING", "urgency": "HIGH",
-     "reasons": ["kernel knife-edge: its 16.375 reservation = 34% of total stress while I3 walls unverifiable 3rd cycle", "order 16.2h stale across regime shift 2333->2297->2306", "fill requires +14.7 rally to 2320.50", "margin blocker CLEARED (fill -> ML 287.5% PASS) - ruling now rests on kernel+verification, still sufficient"],
-     "capital_release_usd": 16.375},
-    {"ticket": 19343853, "symbol": "SOLUSD.p", "action": "CANCEL_PENDING", "urgency": "HIGH",
-     "reasons": ["I1 fail 0.56/1.68 = 0.333 ATR < 0.35 unchanged", "TP 99.20 now 0.32 BELOW current 99.52", "fill requires +0.86 rally then -1.18 drop", "spread 23.01 bps marginal", "4.3h stale"],
-     "capital_release_usd": 16.0}
-  ],
+  "global_contingency_usd": 2.00,
+  "existing_ticket_actions": [],
   "candidate_rows": [
-    {"candidate_id": "MGT-BNB-19329907", "symbol": "BNBUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T09:31:39Z", "evidence_availability_timestamps": "09:32:58Z(telemetry)", "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "CAUSAL_BOTH_CLOCKS", "authorization_expiry_utc": "2026-10-28T17:25:00Z", "side": "BUY", "order_type": "POSITION_MANAGEMENT", "entry": 736.25, "stop": 732.65, "target": 740.0, "volume": 3.0, "broker_risk_usd": 10.80, "broker_reward_usd": 11.25, "rr": 1.04, "spread_cost_usd": 1.80, "stressed_loss_usd": 15.50, "post_joint_stop_balance": 4837.08, "p_fill": 1.0, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["canonical stress 1.25x10.80+2.00=15.50", "kill-switch bunker 733.0", "ratchet ladder 739.13/741.65"], "calibration_diagnostics": "n=17 CP-95 LCB 0.4197", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": "SL -10.80 / kill-switch close ~-4.95 / TP +11.25 (Tier2 unlock) / ratchet steps +1.62/+8.64 / FOMC purge close", "cost_ledger_and_conditioning": "exit spread 0.60x3.0 + fee 2.00", "wait_cost_usd": 0.0, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE - no series in envelope", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19329907", "GT-POS-0932"], "verdict": "HOLD_MANAGE_EXISTING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "LEGACY_TICKET"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": "bunker 733.0 tested & held", "macro_shelf_relation": "TP front-runs claimed 991.7K@740.06 (unverified/replayed)", "value_area_status": "VAL 730.90 carry-forward"}, "rejection_reasons": []},
-    {"candidate_id": "PND-ETH-19330613", "symbol": "ETHUSD.pi", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T09:31:39Z", "evidence_availability_timestamps": "09:32:58Z", "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "CAUSAL_BOTH_CLOCKS", "authorization_expiry_utc": null, "side": "SELL", "order_type": "SELL_LIMIT", "entry": 2320.5, "stop": 2343.5, "target": 2274.5, "volume": 0.5, "broker_risk_usd": 11.5, "broker_reward_usd": 23.0, "rr": 2.0, "spread_cost_usd": null, "stressed_loss_usd": 16.375, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["margin_on_fill 580.125 telemetry-EXACT; fill -> ML 287.5% PASS"], "calibration_diagnostics": "fill needs +14.7 rally through unverified walls", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19330613", "GT-PND-0932"], "verdict": "CANCEL_PENDING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "WALL_ADJACENT_UNVERIFIED"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": "SL above claimed 804.2K@2329.00 (unverified)", "value_area_status": null}, "rejection_reasons": ["kernel knife-edge +34% stress reservation", "I3 unverifiable 3rd cycle", "16.2h stale order", "5th cancel cycle"]},
-    {"candidate_id": "PND-SOL-19343853", "symbol": "SOLUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T09:31:39Z", "evidence_availability_timestamps": "09:32:58Z", "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "CAUSAL_BOTH_CLOCKS", "authorization_expiry_utc": null, "side": "SELL", "order_type": "SELL_LIMIT", "entry": 100.38, "stop": 100.94, "target": 99.2, "volume": 0.2, "broker_risk_usd": 11.2, "broker_reward_usd": 23.6, "rr": 2.107, "spread_cost_usd": null, "stressed_loss_usd": 16.0, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["I1 = 0.56/1.68 = 0.333 ATR < 0.35 FAIL (carried ATR)"], "calibration_diagnostics": "fill needs +0.86 rally then full retrace", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19343853", "GT-PND-0932"], "verdict": "CANCEL_PENDING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "I1_FAILED"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null}, "rejection_reasons": ["I1 0.333<0.35", "TP below live mid", "kernel knife-edge", "5th cancel cycle"]},
-    {"candidate_id": "WTL-ETH-RESTAGE-01", "symbol": "ETHUSD.pi", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": null, "evidence_availability_timestamps": null, "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "PENDING_REPAIR", "authorization_expiry_utc": "2026-10-28T17:25:00Z", "side": "SELL", "order_type": "SELL_LIMIT", "entry": 2318.0, "stop": 2341.0, "target": 2272.0, "volume": 0.5, "broker_risk_usd": 11.5, "broker_reward_usd": 23.0, "rr": 2.0, "spread_cost_usd": null, "stressed_loss_usd": 16.375, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["wall-protected SL above 2329.00 shelf", "golden-zone retest geometry"], "calibration_diagnostics": "requires verified walls + VR/ER/OU once series ship", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["COUNCIL-ENGINEERED"], "verdict": "HOLD", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": "SL 2341 approx shelf+0.40ATR", "entry_status": "CONDITIONAL"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": "SL wall-protected (unverified)", "value_area_status": null}, "rejection_reasons": ["orderflow verification required", "calibration required", "executable only post-cancels with kernel margin +32.43"]},
-    {"candidate_id": "WTL-XRP-PLACEHOLDER", "symbol": "XRPUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": null, "evidence_availability_timestamps": null, "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "NO_QUOTE_IN_ENVELOPE", "authorization_expiry_utc": "2026-10-28T17:25:00Z", "side": null, "order_type": null, "entry": null, "stop": null, "target": null, "volume": null, "broker_risk_usd": null, "broker_reward_usd": null, "rr": null, "spread_cost_usd": null, "stressed_loss_usd": null, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": [], "calibration_diagnostics": "never dynamically spread-measured; prior Z -1.68 < 2.0", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": [], "verdict": "HOLD", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "NO_DATA"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null}, "rejection_reasons": ["no quote/bid-ask in envelope", "capital-zero for new risk"]}
+    {
+      "candidate_id": "C373-ETH-RE-STAGE-01",
+      "symbol": "ETHUSD.pi", "native_market": "Crypto Perpetual 24/7 (contract 1.0, min_lot 0.01)",
+      "clock_status": "OPEN_CRYPTO_PERP_EVIDENCE_CHAIN_STALE",
+      "quote_timestamp": null,
+      "evidence_availability_timestamps": {
+        "envelope_quotes": "ABSENT_SECOND_CONSECUTIVE_CYCLE",
+        "parquet_feeds": "STALE_FROZEN_pre_2026-10-26T20:31:36Z_per_envelope_freshness_false",
+        "live_forensic_snapshot": "2026-10-27T13:00:40Z_POST_CUTOFF_FORENSIC_ONLY",
+        "orderflow_authorization_layers": "L3_STALE_L4_DEGRADED_52338s_L7_FEED_CORRUPT"
+      },
+      "evidence_max_age_seconds": 52338.2, "evidence_age_at_cutoff_seconds": null,
+      "row_causality_status": "INVENTORY_CAUSALITY_TRIVIAL_PASS_EMPTY_BOOK__MARKET_EVIDENCE_FAIL_CLOSED",
+      "authorization_expiry_utc": "2026-10-28T17:25:00Z",
+      "side": "SELL", "order_type": "SELL_LIMIT",
+      "entry": 2318.00, "stop": 2341.00, "target": 2272.00, "volume": 0.50,
+      "broker_risk_usd": 11.50, "broker_reward_usd": 23.00, "rr": 2.0,
+      "spread_cost_usd": 1.45, "stressed_loss_usd": 17.82, "post_joint_stop_balance": 4819.26,
+      "p_fill": null, "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_n17_LT_100_MANDATE_HOLD",
+      "estimator_references": ["Lo-MacKinlay VR(4) heteroskedastic z*", "Kaufman ER(48)", "Newey-West HAC t_drift", "OU theta adverse-drift veto", "Clopper-Pearson one-sided 95% LCB", "0.786 invalidation shelf rule", "180s whale-wall persistence filter"],
+      "calibration_diagnostics": "n=17 wins=11 LCB_5pct=0.4197 < P_BE required; EV/UCB null by protocol",
+      "effective_sample_size": 17, "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": null,
+      "cost_ledger_and_conditioning": "1.25x11.50=14.375 + exit spread 1.45 (12.44bps live) + 2.00 fee = 17.825 -> 17.82 (bound 19.27 @25bps); H_net 40.08 >= 17.82 capital-PASS but MOOT: geometry falsified structurally",
+      "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null, "utility": null,
+      "uncertainty_method": "BLOCKED_requires_n>=100_calibrated_fills__time_blocked_bootstrap_planned",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "cycle_envelope_373.parquet_freshness_verified=false",
+        "trade_authorization=DENIED_UNVERIFIED_ORDERFLOW(cycles 370,371,372,373)",
+        "prior_geometry=Cycle372_review_ETH_SELL_LIMIT_2318/2341/2272",
+        "live_forensic_gen_8c08f7b1_ETH_clusters_L6_2026-10-27T13:00:40Z"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "UNVERIFIABLE_PARQUET_EMA_SERIES_STALE",
+      "fib_golden_zone_confluence": {
+        "gp_0618": null, "gp_0650": null, "ote_0702": null,
+        "invalidation_shelf_0786": 2329.00,
+        "entry_status": "STALE_REFERENCE_SHELF_HAS_GROWN_INTO_[2330,2340]_11.06M_BUY_STOP_FORTRESS"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "UNVERIFIABLE_NO_FRESH_SESSION_MAP",
+        "session_extreme_sweep": "UNVERIFIABLE",
+        "macro_shelf_relation": "SL 2341.00 intrudes [2340,2350] 2.13M band; entry 2318 sits 13.75 (1.69 ATR) below live mid 2331.75 under an 11.06M wall at [2330,2340]",
+        "value_area_status": "UNVERIFIABLE"
+      },
+      "rejection_reasons": [
+        "EVIDENCE_LAKE_STALE: envelope parquet_freshness_verified=false AND parquet_audit_scorecard_fresh=false (first double-false cycle; mandated single-source-of-truth Data/feeds/*.parquet chain broken)",
+        "ORDERFLOW_UNVERIFIED: trade_authorization DENIED_UNVERIFIED_ORDERFLOW 4th consecutive cycle (L3 STALE, L4 52,338s DEGRADED, L7 FEED_CORRUPT); 180s whale-wall persistence filter cannot be satisfied",
+        "CALIBRATION_INSUFFICIENT: n=17 Clopper-Pearson LCB 0.4197 < breakeven prior; p_fill/p_win/EV/UCB null -> protocol HOLD",
+        "GEOMETRY_STRUCTURALLY_FALSIFIED on fresh L6 cluster map: SL 2341 inside [2340,2350] 2.13M buy-stop band (I1), TP 2272 inside [2270,2280] 5.09M band (front-run rule); cluster-compliant geometry (SL 2353.25 / TP 2281.14) yields RR 1.05 < 2.00 and 17.63 risk @0.5 lots > 12.00 cap -> sizing-impossible",
+        "COUNTER_FLOW: session taker CVD +12.89M BULLISH_MOMENTUM, RSI 68.24, 8-bar up-impulse pullback detector LONG, market Z +2.575 — short fades verified bullish tape; FOMC purge deadline 2026-10-28T17:25Z closes the window in 28.49h"
+      ]
+    },
+    {
+      "candidate_id": "C373-XRP-PLACEHOLDER-01",
+      "symbol": "XRPUSD.pi", "native_market": "Crypto Perpetual 24/7 (contract 1000, min_lot 1, stops_level 20pt)",
+      "clock_status": "OPEN_CRYPTO_PERP_EVIDENCE_CHAIN_STALE",
+      "quote_timestamp": null,
+      "evidence_availability_timestamps": {
+        "envelope_quotes": "ABSENT",
+        "live_forensic_quote": "2026-10-27T13:00:40Z bid 1.31200 ask 1.31500 mid 1.31350 spread 22.84bps FRESH",
+        "parquet_feeds": "STALE"
+      },
+      "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null,
+      "row_causality_status": "POST_CUTOFF_FORENSIC_MEASUREMENT_ONLY",
+      "authorization_expiry_utc": "2026-10-28T17:25:00Z",
+      "side": null, "order_type": null, "entry": null, "stop": null, "target": null, "volume": null,
+      "broker_risk_usd": null, "broker_reward_usd": null, "rr": null,
+      "spread_cost_usd": null, "stressed_loss_usd": null, "post_joint_stop_balance": null,
+      "p_fill": null, "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_n17_LT_100_MANDATE_HOLD",
+      "estimator_references": ["dynamic spread gate 25bps"],
+      "calibration_diagnostics": "spread gate NOW RESOLVED: 22.84 bps PASS (marginal, 91.4% of cap); min-lot 1.0 x 1000 = 1,313.50 notional, margin 656.75, ML 736.5%",
+      "effective_sample_size": 17, "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": null,
+      "cost_ledger_and_conditioning": "first dynamic spread measurement in desk history: 22.84 bps <= 25.00 PASS; geometry remains null pending regime + orderflow repair",
+      "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null, "utility": null,
+      "uncertainty_method": "BLOCKED_requires_n>=100_calibrated_fills",
+      "adverse_selection_usd": null,
+      "evidence_ids": ["live_forensic_gen_8c08f7b1_XRP_quote_2026-10-27T13:00:40Z"],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "UNVERIFIABLE",
+      "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "NO_GEOMETRY_DERIVED"},
+      "auction_extreme_interaction": {"monday_ib_relation": "UNVERIFIABLE", "session_extreme_sweep": "UNVERIFIABLE", "macro_shelf_relation": "UNVERIFIABLE", "value_area_status": "UNVERIFIABLE"},
+      "rejection_reasons": [
+        "SHARED_EVIDENCE_FAILURES: parquet lake stale + orderflow DENIED + calibration n=17 (identical root causes as ETH row)",
+        "NO_COMPLIANT_GEOMETRY: no regime classification, no stop-cluster-anchored SL/TP derived; spread margin thin at 22.84 vs 25 cap leaves 2.16 bps headroom for event-driven widening pre-FOMC"
+      ]
+    }
   ],
-  "arithmetic_validation": {
-    "equity_triangle": "4847.88 - 4.65 = 4843.23 EXACT",
-    "btc_exit_verification": "4846.32 + (79838-79799)x0.04 = 4846.32 + 1.56 = 4847.88 EXACT - ratchet SL exit confirmed",
-    "bnb_profit": "(734.70-736.25)x3.0 = -4.65 EXACT",
-    "margin_sum": "3.0x736.25x0.5 = 1104.375 -> 1104.38 EXACT (BTC margin released)",
-    "margin_level": "4843.23/1104.38 = 438.5474% EXACT",
-    "margins_free": "4843.23 - 1104.38 = 3738.85 EXACT",
-    "h_net_formula": "4843.23 - 2.00 - 4795.00 - 42.0625 = +4.1675 EXACT (equity-based, min convention)",
-    "post_joint_stress": "4843.23 - 42.0625 - 2.00 = 4799.17 EXACT",
-    "capacity_decomposition": "nominal_risk_capacity = (4.1675-2.00)/1.25 = 1.734 EXACT - < risk_min 12 -> new_risk_admissible false CONSISTENT",
-    "stress_dispute": "envelope 42.0625 = 1.25x33.65 (+0.1875 unexplained) omits 2.00/ticket fees; telemetry-canonical 47.875 (15.50+16.375+16.00) EXACT; understates 5.8125 (dangerous direction); decision invariant under all conventions",
-    "kernel_knife_edge": "telemetry identity 4842.93 - 47.875 = 4795.055 (+0.055 vs kernel); envelope +4.17; strictest -1.945; cancels release 32.375 -> 4827.43"
-  },
+  "arithmetic_validation": [
+    "H_net = 4837.08 - 2.00 - 4795.00 = 40.08 EXACT (envelope realized_headroom_usd 40.08 MATCHES)",
+    "capacity decomposition min((40.08-2.00)/1.25, 12.00) = min(30.464, 12.00) = 12.00 EXACT (3rd consecutive validation)",
+    "post_joint_stress_equity = 4837.08 - 0.00 - 2.00 = 4835.08 EXACT (kernel cushion +40.08 post-joint)",
+    "cushions hard/op/kernel = 237.08/187.08/42.08 EXACT vs envelope",
+    "cross-cycle chain: 371 balance 4847.88 - BNB SL loss 10.80 (= 3.0 x (736.25-732.65)) = 4837.08 EXACT -> ledger continuity proven to the cent",
+    "ETH staged geometry: risk 0.50x23.00=11.50, reward 0.50x46.00=23.00, RR 2.00 — nominal values reproduce; margin 579.50, ML 834.69%, util 11.98% (margin gate would PASS)",
+    "ETH stressed: 1.25x11.50 + 1.45 + 2.00 = 17.825 -> 17.82 (bound 19.27 @25bps) <= 38.08 capital-admissible — MOOT, geometry structurally falsified",
+    "ETH falsification: compliant SL 2350+0.40x8.1297=2353.2519, TP 2280x1.0005=2281.1400 -> RR 36.860/35.2519 = 1.0456 < 2.00; risk 17.63 @0.5 lots > 12.00 cap",
+    "runway: cutoff 12:55:45Z -> purge 2026-10-28 17:25:00Z = 28h29m15s = 28.4875h; -> FOMC 18:00Z = 29.0708h",
+    "MT5 clock skew LIVE re-measurement: broker_raw_server_time - broker_tick_time = 1793116838.047 - 1793106038.047 = 10800.000s EXACT (UTC+3 mislabel, 6th cycle, unrepaired)"
+  ],
   "disputes": [
-    "D1: +10,800s clock offset persists unrepaired on 3/3 stamps (byte-identical to Cycle-369); causality passes both clocks this cycle - documented, fix the writer",
-    "D2: base_capital convention flip balance-based->equity-based between cycles; pin min(balance,equity) in schema",
-    "D3: stress 42.0625 omits 2.00/ticket fees vs telemetry-canonical 47.875 (understates 5.8125, opposite direction from last cycle's overstatement - unsynced second implementation)",
-    "D4: kernel margin +0.055 (canonical) exists only while cancelled-ruled pendings reserve 32.375 of stress; 5th cycle of non-executed CANCEL rulings vs automatic ratchet execution - enforcement still selective",
-    "D5: trade_authorization DENIED_UNVERIFIED_ORDERFLOW 3rd cycle contradicts envelope parquet_freshness_verified=true",
-    "D6: macro_calendar verified_at 30.55h stale, worsening; prompt boilerplate H_net +68.07 stale (actual +4.17 envelope / +0.055 canonical)"
+    "TEMPLATE_STALE_CONSTANT: prompt body hardcodes H_net = +68.07 USD (references balance ~4,865.07); embedded envelope computes 40.08 — envelope supersedes per governing rule; template constants (0.10 BTC @ 81,000 margin example) equally stale",
+    "PARQUET_LAKE_DEGRADATION_ESCALATION: parquet_freshness_verified degraded true(372)->false(373) and scorecard false — evidence-lake pipeline outage; local mirror frozen at git 617f3daa / 2026-10-26T20:31:36Z (16.49h pre-cutoff, OLDER than envelope git 1d09f4bd)",
+    "ENVELOPE_QUOTE_VOID_2ND_CYCLE: no quotes/spreads/sequences shipped — Role A regime UNDEFINED and Role B gates non-computable from the mandated source; live snapshot quotes exist only via side-channel",
+    "ORDERFLOW_FIELD_ABSENT: 373 envelope omits trade_authorization entirely; last-known DENIED_UNVERIFIED_ORDERFLOW persists until telemetry contradicts — fail-closed interpretation mandatory",
+    "MACRO_CALENDAR_STALENESS_MONOTONIC_WORSENING: 30.55h(371) -> 32.45h(372) -> 34.01h(373) vs <900s standard; envelope calendar_verified=true refers to broker calendar only — conflated semantics flagged",
+    "CLOCK_DEFECT_6TH_CYCLE_UNREPAIRED: +10,800.000s skew re-measured EXACT on fresh 13:00:38Z tick (raw server vs UTC tick); repair requirement remains open; unmeasurable in envelope itself (no inventory timestamps, empty arrays)",
+    "BASE_CAPITAL_CONVENTION: min(balance,equity)=4,837.08 both equal — zero impact this cycle; schema pinning recommendation stands",
+    "MARGIN_LEVEL_SENTINEL: ML 0.0 on zero margin is a sentinel masquerading as a measurement; schema should emit null"
   ],
   "unknowns": [
-    "L2/CVD/footprint/funding unverifiable from council seat; workbook digests not recomputable",
-    "bid/ask absent from envelope -> spread gate carried forward (BNB 8.15, SOL 23.01 bps)",
-    "VR(4)/ER(48)/NW-HAC t_drift/OU theta not computable - no series shipped; regime UNDEFINED",
-    "p_fill/p_win uncalibrated (n=17) -> all EV/utility null",
-    "local file mtimes uninspectable; alerts issued on internal-clock evidence",
-    "response_sha256 null (self-reference); dispatcher computes over canonical bytes"
+    "p_fill, p_win_given_fill, EV_net, LCB_5%, utility: NULL for all candidates (calibration n=17 < 100; time-blocked bootstrap blocked on sample size)",
+    "VR(4), z*, ER(48), t_drift, OU theta: NULL — regime classification impossible without fresh parquet series (Role A dual-engine unconditional stand-down)",
+    "180s whale-wall persistence: unverifiable — L3 whale layer STALE; no admissible wall anchor this cycle",
+    "markouts AS(t+5m): null — no fill population",
+    "individual 36-feed parquet ages at cutoff: unmeasurable from envelope (no per-feed timestamps shipped); envelope-level freshness flag false is the authoritative signal",
+    "XRP compliant geometry: null — spread gate now passes but no regime/cluster-anchored derivation performed pre-FOMC"
   ],
-  "methodology_critique_and_improvements": "Envelope generator must single-source stress from the canonical risk block (diverged in both directions across two cycles); pin base_capital=min(balance,equity); ship bid/ask + >=240x1m closes + ATR + depth + funding; auto-cancel hook for CANCEL rulings with broker-receipt echo; refresh macro_calendar before FOMC.",
+  "methodology_critique_and_improvements": [
+    "Envelope builder must embed the 11-gate-passer quote table + per-feed freshness epochs + trade_authorization + calibration n directly into cycle_envelope.json — the 2-cycle quote void is a schema defect, not a data scarcity problem",
+    "Auto-cancel hook with broker receipt echo: ETH/SOL required 5 cycles of rulings before execution; BNB close 3 cycles (cost 3.15+1.05 quantified at 372) — rulings must be executable artifacts, not prose",
+    "Stress-formula unification: canonical 1.25xSL + exit_spread + 2.00/ticket must be the ONLY implementation; 370 (+13.00 stale SL, -8.00 fees) and 371 (-5.8125 fees) divergences must become structurally impossible",
+    "Cluster-aware SL/TP validator: staged geometry must be re-validated against the LIVE stop-cluster map at staging time, not prior-cycle maps — the ETH 2318/2341/2272 geometry survived 2 cycles on a stale map and is falsified in one fresh measurement",
+    "Regime gate hard-wiring: no SELL_LIMIT may be staged against session CVD > +10M without explicit Model-1 regime confirmation — counter-flow staging wastes staging slots"
+  ],
   "section_8_kaizen": {
-    "skills_and_methodology_optimization": "systematic-debugging delivered the capacity decomposition (H_net-2)/1.25, the stress-omission catch, and the BTC exit verification; estimator skills remain input-starved - fix data delivery before adding methodology",
-    "omitted_risk_dimensions": "kernel buffer 5.5 cents with pendings reserved; BNB through 08:00Z funding stamp (swap 0.0 - verify broker crypto swap schedule); TP 740 front-runs suspected-replay wall 991.7K@740.06; ETH/SOL adverse-selection accumulation as regime shifts; FOMC -31.95h",
-    "algorithmic_alternatives": "server-tz epoch validator in true UTC; auto-cancel enforcement hook; GARCH vol cones for pre-FOMC sizing; isotonic calibration n>=100; Kalman-filtered spread gate"
+    "skills_and_methodology_optimization": "Metacognitive answer: YES with a binding caveat — mobilizing @[trader-risk] (VaR/CVaR + fractional Kelly), @[market-ingest] (L2/CVD vectors), @[adaptive-wfo-epoch] and @[sharpe-ratio-non-iid-corrections] would harden estimator hygiene, but skills cannot conjure missing evidence: the binding constraint this cycle is the stale parquet lake and n=17 calibration, not methodology. The highest-value skill mobilization is @[systematic-debugging] applied to the feed pipeline outage (root-caused: lake frozen pre-2026-10-26T20:31:36Z) and @[clean-code] applied to the envelope schema (quote table + freshness epochs + authorization field). Formal plan: isotonic/Platt calibration registry with rolling n>=100 target; Clopper-Pearson automation already EXACT; extend to joint (p_fill,p_win) block bootstrap once n crosses threshold.",
+    "omitted_risk_dimensions": "(1) FOMC gap risk on 24/7 crypto perps: blackout 17:30-18:30Z does not halt crypto — spread/liquidation-cascade risk peaks exactly when TradFi gates assume quiet; (2) event-driven spread widening: XRP headroom 2.16 bps and ETH 12.56 bps can both breach 25 bps cap at release; (3) funding-rate drag on multi-hour holds near event (funding_surges layer live); (4) stop-cluster cascades: ETH has 152.50M buy stops above / 93.63M sell stops below — any fill near clusters inherits cascade tail risk; (5) cross-asset correlation: BTC 220.93M/254.10M stop asymmetry implies ETH short beta to a BTC squeeze; (6) stale-wall adversarial risk: acting on last-known walls (372-era) is acting on possibly-pulled liquidity — spoofing-adjacent.",
+    "algorithmic_alternatives": "Hawkes process fitting for order-arrival intensity to replace heuristic p_fill; Kalman filter for spread estimation and event-widening forecast; GARCH volatility cones to size the FOMC window and set post-event re-arm ranges; isotonic regression for (p_fill,p_win) calibration with conformal prediction intervals; autoregressive duration models (ACD) for feed-staleness anomaly detection on the parquet lake; Ornstein-Uhlenbeck theta estimation on 15m residuals for the adverse-drift veto once series refresh; LUCB ranking over candidate utilities instead of point-estimate ranking."
   },
-  "authorization": "MANAGE_EXISTING_ONLY",
-  "response_sha256": null
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": "15d2cf22aaf8c1d1d127e8be1a9a117315b501ea33c6195c30c93cbe857fb76e"
 }
