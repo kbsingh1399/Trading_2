@@ -23,9 +23,9 @@
     "CoinM_Bybit",
     "Timestamp_IST"
   ],
-  "byte_size": 21417,
-  "timestamp_ist": "2026-10-29 01:38:27 IST",
-  "timestamp_utc": "2026-10-28 20:08:27 UTC",
-  "epoch_utc": 1793218107.86333,
-  "write_duration_ms": 421.51
+  "byte_size": 21575,
+  "timestamp_ist": "2026-10-29 01:40:40 IST",
+  "timestamp_utc": "2026-10-28 20:10:40 UTC",
+  "epoch_utc": 1793218240.911214,
+  "write_duration_ms": 544.45
 }
