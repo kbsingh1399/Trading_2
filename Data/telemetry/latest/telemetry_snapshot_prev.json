@@ -129968,8 +129968,8 @@
   },
   "_temporal_meta": {
     "stream": "telemetry",
-    "recorded_at_utc": "2026-10-28T20:59:39Z",
-    "recorded_at_epoch": 1793221179.919172,
+    "recorded_at_utc": "2026-10-28T20:59:40Z",
+    "recorded_at_epoch": 1793221180.269766,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
