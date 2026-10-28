@@ -2,7 +2,7 @@
   "feed_name": "7_Live_Liq",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 8,
+  "row_count": 27,
   "column_count": 8,
   "columns": [
     "idx",
@@ -14,9 +14,9 @@
     "exchange",
     "full_time"
   ],
-  "byte_size": 2630,
-  "timestamp_ist": "2026-10-28 07:26:39 IST",
-  "timestamp_utc": "2026-10-28 01:56:39 UTC",
-  "epoch_utc": 1793152599.904763,
-  "write_duration_ms": 387.48
+  "byte_size": 3366,
+  "timestamp_ist": "2026-10-28 07:28:55 IST",
+  "timestamp_utc": "2026-10-28 01:58:55 UTC",
+  "epoch_utc": 1793152735.287882,
+  "write_duration_ms": 444.19
 }
