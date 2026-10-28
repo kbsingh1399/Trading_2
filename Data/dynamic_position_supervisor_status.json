@@ -1,28 +1,41 @@
 {
-  "timestamp_utc": "2026-10-28 20:41:50 UTC",
+  "timestamp_utc": "2026-10-28 20:43:51 UTC",
   "balance_usd": 4757.61,
-  "equity_usd": 4759.1,
-  "free_margin_usd": 4233.02,
+  "equity_usd": 4759.0,
+  "free_margin_usd": 3932.92,
   "max_filled_positions": 15,
-  "filled_positions_count": 1,
-  "filled_slots_free": 14,
-  "resting_limits_count": 8,
+  "filled_positions_count": 2,
+  "filled_slots_free": 13,
+  "resting_limits_count": 7,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
   "active_positions": [
+    {
+      "ticket": 19437060,
+      "symbol": "USDCAD.pi",
+      "type": "BUY",
+      "volume": 0.09,
+      "price_open": 1.3993,
+      "price_current": 1.3993,
+      "sl": 1.3978,
+      "tp": 1.4027,
+      "gain_r": 0.0,
+      "ratchet_stage": 0,
+      "profit_usd": 0.0
+    },
     {
       "ticket": 19437065,
       "symbol": "DJ30.p",
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52593.09,
+      "price_current": 52594.09,
       "sl": 52756.77,
       "tp": 52298.0,
-      "gain_r": 0.1,
+      "gain_r": 0.094,
       "ratchet_stage": 0,
-      "profit_usd": 1.49
+      "profit_usd": 1.39
     }
   ],
   "resting_orders": [
@@ -52,15 +65,6 @@
       "price": 4087.5,
       "sl": 4099.12,
       "tp": 4035.0
-    },
-    {
-      "ticket": 19437060,
-      "symbol": "USDCAD.pi",
-      "type": "BUY_LIMIT",
-      "volume": 0.09,
-      "price": 1.3993,
-      "sl": 1.3978,
-      "tp": 1.4027
     },
     {
       "ticket": 19437062,
