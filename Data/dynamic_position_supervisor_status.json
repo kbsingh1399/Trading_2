@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-28 21:14:55 UTC",
+  "timestamp_utc": "2026-10-28 21:17:15 UTC",
   "balance_usd": 4757.61,
-  "equity_usd": 4760.89,
-  "free_margin_usd": 3934.81,
+  "equity_usd": 4754.49,
+  "free_margin_usd": 2903.41,
   "max_filled_positions": 15,
-  "filled_positions_count": 2,
-  "filled_slots_free": 13,
-  "resting_limits_count": 15,
+  "filled_positions_count": 3,
+  "filled_slots_free": 12,
+  "resting_limits_count": 14,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -22,10 +22,7 @@
       "tp": 1.4027,
       "gain_r": 0.033,
       "ratchet_stage": 0,
-      "profit_usd": 0.32,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 0.32
     },
     {
       "ticket": 19437065,
@@ -38,10 +35,20 @@
       "tp": 52298.0,
       "gain_r": 0.154,
       "ratchet_stage": 0,
-      "profit_usd": 2.3,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 2.3
+    },
+    {
+      "ticket": 19437168,
+      "symbol": "SOLUSD.p",
+      "type": "SELL",
+      "volume": 0.2,
+      "price_open": 102.5,
+      "price_current": 102.82,
+      "sl": 103.85,
+      "tp": 100.6,
+      "gain_r": -0.237,
+      "ratchet_stage": 0,
+      "profit_usd": -6.4
     }
   ],
   "resting_orders": [
@@ -98,15 +105,6 @@
       "price": 25803.4,
       "sl": 25876.2,
       "tp": 25652.0
-    },
-    {
-      "ticket": 19437168,
-      "symbol": "SOLUSD.p",
-      "type": "SELL_LIMIT",
-      "volume": 0.2,
-      "price": 102.5,
-      "sl": 103.85,
-      "tp": 100.6
     },
     {
       "ticket": 19437494,

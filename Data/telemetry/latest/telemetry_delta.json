@@ -1,88 +1,9 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-28T21:14:54Z",
-  "prev_timestamp_utc": "2026-10-28T21:12:15Z",
+  "curr_timestamp_utc": "2026-10-28T21:17:13Z",
+  "prev_timestamp_utc": "2026-10-28T21:17:13Z",
   "time_gap_minutes": 0.0,
   "changes": {
-    "symbol_shifts": {
-      "BTC": {
-        "price_diff": 80.0,
-        "z_score_diff": 0.27,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "ETH": {
-        "price_diff": 3.4,
-        "z_score_diff": 0.24,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "SOL": {
-        "price_diff": 0.11,
-        "z_score_diff": 0.16,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "BNB": {
-        "price_diff": 0.5,
-        "z_score_diff": 0.11,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "XRP": {
-        "price_diff": 0.001,
-        "z_score_diff": 0.13,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "ADA": {
-        "price_diff": 0.0005,
-        "z_score_diff": 0.25,
-        "regime_prev": "RANGE_BOUND",
-        "regime_curr": "RANGE_BOUND"
-      },
-      "DOGE": {
-        "price_diff": 0.0001,
-        "z_score_diff": 0.18,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "DOT": {
-        "price_diff": 0.001,
-        "z_score_diff": 0.1,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "LINK": {
-        "price_diff": 0.023,
-        "z_score_diff": 0.2,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "BCH": {
-        "price_diff": 0.668,
-        "z_score_diff": 0.12,
-        "regime_prev": "BEARISH",
-        "regime_curr": "RANGE_BOUND"
-      },
-      "LTC": {
-        "price_diff": 0.175,
-        "z_score_diff": 0.25,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "AVAX": {
-        "price_diff": 0.01,
-        "z_score_diff": 0.14,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      },
-      "NEAR": {
-        "price_diff": 0.01,
-        "z_score_diff": 0.19,
-        "regime_prev": "BULLISH",
-        "regime_curr": "BULLISH"
-      }
-    }
+    "symbol_shifts": {}
   }
 }
