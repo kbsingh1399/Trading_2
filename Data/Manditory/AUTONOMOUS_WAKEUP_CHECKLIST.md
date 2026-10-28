@@ -17,9 +17,11 @@
 > 
 > ### 2. THE SOVEREIGN AUTONOMOUS TRADE MANDATE (FULL PUSH, DELETE & MODIFY RIGHTS):
 > The coordinator and autonomous quant desk hold **FULL SOVEREIGN AUTHORITY TO ACTUATE BROKER TRADES END-TO-END WITHOUT ASKING PERMISSION**:
-> - **AUTONOMOUS PUSH AUTHORITY (STAGE MAKER LIMIT ORDERS)**:
->   * Full authority to stage maker limit orders on MT5 for high-confluence candidates discovered during in-memory 156-asset lake scans (e.g. from the Top Candidate Radar).
->   * Pre-requisites: Must pass `execution_harness.py` 25-point audit, obey the Structural SL clearance rule (`SL >= 1.2 * ATR_14` behind whale armor), and adhere to dynamic capacity (`N_open + N_pending <= 3` in DD Defense, or max 1 open risk in Capital Preservation Mode).
+> - **AUTONOMOUS PUSH AUTHORITY (STAGE MAKER LIMIT ORDERS ACROSS ALL POTENTIAL CANDIDATES)**:
+>   * **Full Sovereign Authority to Stage All Eligible Candidates**: The desk is explicitly authorized to apply passive maker limit orders for ALL high-confluence potential candidates discovered during in-memory 156-asset lake scans simultaneously (up to 15 resting pending limits across Crypto, FX, Metals, Indices).
+>   * **Zero Pre-Fill Capital Drag**: Passive maker limit orders commit zero margin and tie up zero realized capital while resting.
+>   * **Spread-Padded Structural SL Invariant (Short Asymmetric Buffer)**: For all SHORT positions, because stops trigger at the broker ASK price while charts display BID, Stop Loss MUST explicitly incorporate a mandatory spread clearance buffer (`SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`). This strictly eliminates artificial stop-outs caused by spread expansion when the Bid price never violated structural resistance.
+>   * **Dynamic Fill Supervision**: Dynamic Position Supervisor (`dynamic_position_supervisor.py`) actively supervises fills: capping concurrently filled positions to <= 2 and immediately ratcheting to Breakeven (+0.15R) at +0.80R gain.
 > - **AUTONOMOUS DELETE / PURGE AUTHORITY (PRUNE STALE / INVALIDATED ORDERS)**:
 >   * Full authority to cancel or delete resting limit orders immediately upon observing:
 >     (a) Thesis invalidation (price breaks swing high/low prior to fill).
@@ -198,11 +200,18 @@ On EVERY single autonomous wake-up cycle, the desk is STRICTLY FORBIDDEN from me
   * Nominal Risk (USD) and Stressed Equity Buffer Impact.
   * Proof of 0 violations across all 25 institutional controls via `execution_harness.py`.
 
-### 5. Dynamic Capacity & Solvency Floor Defense Gate
-- **Stressed Loss Rule**: `min(Balance, Equity) - sum(1.25 * Risk_i + 2.00 USD) - 2.00 USD >= 4,795.00 USD`.
-- **Operating Buffer Constraint**:
-  * If Cushion to 4,795.00 USD Buffer is `< 15.00 USD`: **CAPITAL PRESERVATION MODE** is strictly active. Maximum 1 live open position. Discovered candidates are placed on **ARMED WATCHLIST RADAR**; limit orders are staged only when capacity unlocks (either active position closes or hits Stage 1 BE lock).
-  * If Cushion to 4,795.00 USD Buffer is `>= 15.00 USD`: Staged maker limit orders authorized across orthogonal clusters up to the capacity cap (`N_open + N_pending <= 3`).
+### 5. Dynamic Capacity & Solvency Floor Defense Gate (All Potential Candidates Authorized)
+- **Universal Multi-Candidate Limit Staging Mandate**:
+  * Passive maker limit orders are staged for ALL eligible candidates discovered across the 156-asset universe (up to 15 pending limits across Crypto, FX, Metals, Indices).
+  * Zero capital/margin drag while resting on broker queue.
+- **Dynamic Post-Fill Capacity & Solvency Gate**:
+  * Maximum concurrently filled live positions: **2**.
+  * Dynamic Position Supervisor monitors ticks every 5.0s, executing:
+    (a) Immediate breakeven lock (`+0.15R`) once any filled position gains `+0.80R`.
+    (b) Immediate profit lock (`+0.80R`) at `+1.50R`.
+    (c) Automatic 6-hour time decay scratch if gain `< +0.20R`.
+- **Mandatory Spread Padding Rule on Short Stops**:
+  * `SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price` (Guarantees Bid price must actually breach level before Ask triggers stop).
 
 ## 🏛️ PART 1: THE COMPLETE MULTI-ASSET TRADING UNIVERSE (ALL 157 ASSETS SCANNED)
 

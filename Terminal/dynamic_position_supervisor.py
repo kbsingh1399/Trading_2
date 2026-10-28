@@ -117,20 +117,18 @@ def check_and_supervise_positions() -> dict:
         pulled_orders = []
 
         # -------------------------------------------------------------
-        # INVARIANT: Hard Statutory Floor & Dynamic Capacity Sentry
-        # 1. Hard Floor: 4,775.00 USD is strictly defended (Pull all pending if equity <= 4,775.00 USD).
-        # 2. Drawdown Defense Mode (Equity <= 4,795.00 USD): Max Capacity is 2 (pos_count + order_count <= 2).
-        # 3. Solvency Gate: Stressed equity (Equity - Stressed Risk) must remain >= 4,775.00 USD.
+        # INVARIANT: Sovereign Dynamic Multi-Candidate Sentry (Operator Mandate)
+        # 1. Passive maker limit orders tie up ZERO margin and commit NO capital until filled.
+        # 2. Max resting pending limits: 15 across the full multi-asset universe.
+        # 3. Max concurrently filled open positions: 2 (to strictly defend equity).
         # -------------------------------------------------------------
-        HARD_STATUTORY_FLOOR = 4775.00
-        OPERATING_BUFFER = 4795.00
-        is_defense_mode = (acc.equity <= OPERATING_BUFFER)
-        max_allowed_combined = 2 if is_defense_mode else MAX_FILLED_POSITIONS
+        MAX_PENDING_ORDERS = 15
+        MAX_CONCURRENT_FILLED = 2
 
-        if acc.equity <= HARD_STATUTORY_FLOOR and order_count > 0:
-            logger.warning(
-                f"[HARD FLOOR TRIGGERED] Equity {acc.equity:.2f} <= {HARD_STATUTORY_FLOOR:.2f} Hard Floor. "
-                f"Pulling ALL {order_count} resting limit order(s) immediately..."
+        if pos_count >= MAX_CONCURRENT_FILLED and order_count > 0:
+            logger.info(
+                f"[CAPACITY LOCKED] Active filled positions reached {pos_count}/{MAX_CONCURRENT_FILLED}. "
+                f"Pausing fresh fills by temporarily pulling {order_count} resting limit order(s)..."
             )
             for o in orders:
                 req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
@@ -138,15 +136,15 @@ def check_and_supervise_positions() -> dict:
                 status_code = res.retcode if res else -1
                 comment = res.comment if res else "No response"
                 logger.info(f"Pulled Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
-                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_HARD_FLOOR"})
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_MAX_FILLED"})
             orders = list(mt5.orders_get() or ())
             order_count = len(orders)
 
-        elif (pos_count + order_count) > max_allowed_combined and order_count > 0:
-            excess = (pos_count + order_count) - max_allowed_combined
+        elif order_count > MAX_PENDING_ORDERS:
+            excess = order_count - MAX_PENDING_ORDERS
             logger.warning(
-                f"[CAPACITY SENTRY] Combined orders {pos_count + order_count} exceeds limit {max_allowed_combined}. "
-                f"Pruning {excess} excess resting limit order(s)..."
+                f"[PENDING LIMIT SENTRY] Pending orders {order_count} exceeds maximum {MAX_PENDING_ORDERS}. "
+                f"Pruning {excess} oldest resting limit order(s)..."
             )
             for o in orders[:excess]:
                 req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
@@ -154,47 +152,7 @@ def check_and_supervise_positions() -> dict:
                 status_code = res.retcode if res else -1
                 comment = res.comment if res else "No response"
                 logger.info(f"Pruned Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
-                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PRUNED_CAPACITY"})
-            orders = list(mt5.orders_get() or ())
-            order_count = len(orders)
-
-        elif pos_count >= MAX_FILLED_POSITIONS and order_count > 0:
-            logger.warning(
-                f"[AUTO-PULL TRIGGERED] Active filled positions reached {pos_count}/{MAX_FILLED_POSITIONS}. "
-                f"Pulling {order_count} resting limit order(s) immediately..."
-            )
-            for o in orders:
-                req = {
-                    "action": mt5.TRADE_ACTION_REMOVE,
-                    "order": o.ticket
-                }
-                res = mt5.order_send(req)
-                status_code = res.retcode if res else -1
-                comment = res.comment if res else "No response"
-                logger.info(f"Pulled Order #{o.ticket} ({o.symbol}): retcode={status_code}, comment={comment}")
-                pulled_orders.append({
-                    "ticket": o.ticket,
-                    "symbol": o.symbol,
-                    "type": o.type,
-                    "price": o.price_open,
-                    "status": "PULLED",
-                    "retcode": status_code,
-                    "comment": comment
-                })
-            orders = list(mt5.orders_get() or ())
-            order_count = len(orders)
-
-        elif (pos_count + order_count) > MAX_FILLED_POSITIONS and order_count > 0:
-            excess = (pos_count + order_count) - MAX_FILLED_POSITIONS
-            logger.warning(
-                f"[RESERVATION CAP EXCEEDED] Open ({pos_count}) + Pending ({order_count}) = {pos_count + order_count} > {MAX_FILLED_POSITIONS}. "
-                f"Pruning {excess} excess pending order(s) to restore strict <= {MAX_FILLED_POSITIONS} invariant..."
-            )
-            for o in orders[:excess]:
-                req = {"action": mt5.TRADE_ACTION_REMOVE, "order": o.ticket}
-                res = mt5.order_send(req)
-                logger.info(f"Pruned Excess Order #{o.ticket} ({o.symbol})")
-                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PULLED_EXCESS"})
+                pulled_orders.append({"ticket": o.ticket, "symbol": o.symbol, "status": "PRUNED_MAX_PENDING"})
             orders = list(mt5.orders_get() or ())
             order_count = len(orders)
 
