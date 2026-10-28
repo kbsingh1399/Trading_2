@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-28 22:28:51 UTC",
+  "timestamp_utc": "2026-10-28 22:31:11 UTC",
   "balance_usd": 4751.61,
-  "equity_usd": 4755.67,
-  "free_margin_usd": 2596.26,
+  "equity_usd": 4756.02,
+  "free_margin_usd": 2596.61,
   "max_filled_positions": 15,
   "filled_positions_count": 3,
   "filled_slots_free": 12,
@@ -17,12 +17,15 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 1.3993,
-      "price_current": 1.39945,
+      "price_current": 1.39944,
       "sl": 1.3978,
       "tp": 1.4027,
-      "gain_r": 0.1,
+      "gain_r": 0.093,
       "ratchet_stage": 0,
-      "profit_usd": 0.96
+      "profit_usd": 0.9,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
     },
     {
       "ticket": 19437062,
@@ -30,12 +33,15 @@
       "type": "BUY",
       "volume": 0.4,
       "price_open": 6.661,
-      "price_current": 6.66013,
+      "price_current": 6.66014,
       "sl": 6.6594999999999995,
       "tp": 6.6642,
-      "gain_r": -0.58,
+      "gain_r": -0.573,
       "ratchet_stage": 0,
-      "profit_usd": -5.23
+      "profit_usd": -5.17,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
     },
     {
       "ticket": 19437065,
@@ -43,12 +49,15 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52531.34,
+      "price_current": 52527.84,
       "sl": 52756.77,
       "tp": 52298.0,
-      "gain_r": 0.515,
+      "gain_r": 0.539,
       "ratchet_stage": 0,
-      "profit_usd": 7.67
+      "profit_usd": 8.02,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
     }
   ],
   "resting_orders": [
