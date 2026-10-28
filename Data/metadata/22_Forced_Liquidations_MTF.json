@@ -2,7 +2,7 @@
   "feed_name": "22_Forced_Liquidations_MTF",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 60,
+  "row_count": 84,
   "column_count": 13,
   "columns": [
     "symbol",
@@ -19,9 +19,9 @@
     "orders_count",
     "dominant_side"
   ],
-  "byte_size": 5035,
-  "timestamp_ist": "2026-10-28 05:36:20 IST",
-  "timestamp_utc": "2026-10-28 00:06:20 UTC",
-  "epoch_utc": 1793145980.254664,
-  "write_duration_ms": 6.06
+  "byte_size": 5392,
+  "timestamp_ist": "2026-10-28 05:38:19 IST",
+  "timestamp_utc": "2026-10-28 00:08:19 UTC",
+  "epoch_utc": 1793146099.12007,
+  "write_duration_ms": 6.25
 }
