@@ -2,7 +2,7 @@
   "feed_name": "5_Funding_Rate",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 592,
+  "row_count": 593,
   "column_count": 17,
   "columns": [
     "Symbol",
@@ -23,9 +23,9 @@
     "CoinM_Bybit",
     "Timestamp_IST"
   ],
-  "byte_size": 22293,
-  "timestamp_ist": "2026-10-28 06:24:14 IST",
-  "timestamp_utc": "2026-10-28 00:54:14 UTC",
-  "epoch_utc": 1793148854.588205,
-  "write_duration_ms": 458.59
+  "byte_size": 22124,
+  "timestamp_ist": "2026-10-28 06:26:35 IST",
+  "timestamp_utc": "2026-10-28 00:56:35 UTC",
+  "epoch_utc": 1793148995.949971,
+  "write_duration_ms": 460.15
 }

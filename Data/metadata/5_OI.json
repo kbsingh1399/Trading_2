@@ -2,7 +2,7 @@
   "feed_name": "5_OI",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 20,
+  "row_count": 19,
   "column_count": 20,
   "columns": [
     "Asset",
@@ -26,9 +26,9 @@
     "OI___24h_Vol",
     "Timestamp_IST"
   ],
-  "byte_size": 8570,
-  "timestamp_ist": "2026-10-28 06:24:14 IST",
-  "timestamp_utc": "2026-10-28 00:54:14 UTC",
-  "epoch_utc": 1793148854.588205,
-  "write_duration_ms": 471.15
+  "byte_size": 8438,
+  "timestamp_ist": "2026-10-28 06:26:35 IST",
+  "timestamp_utc": "2026-10-28 00:56:35 UTC",
+  "epoch_utc": 1793148995.949971,
+  "write_duration_ms": 440.11
 }
