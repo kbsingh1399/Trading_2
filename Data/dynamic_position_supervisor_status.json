@@ -1,15 +1,88 @@
 {
-  "timestamp_utc": "2026-10-28 20:25:01 UTC",
+  "timestamp_utc": "2026-10-28 20:26:58 UTC",
   "balance_usd": 4757.61,
   "equity_usd": 4757.61,
   "free_margin_usd": 4757.61,
   "max_filled_positions": 15,
   "filled_positions_count": 0,
   "filled_slots_free": 15,
-  "resting_limits_count": 0,
+  "resting_limits_count": 8,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
   "active_positions": [],
-  "resting_orders": []
+  "resting_orders": [
+    {
+      "ticket": 19437057,
+      "symbol": "ETHUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.05,
+      "price": 2388.8,
+      "sl": 2412.2,
+      "tp": 2322.75
+    },
+    {
+      "ticket": 19437058,
+      "symbol": "BTCUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 81869.5,
+      "sl": 82549.0,
+      "tp": 79954.6
+    },
+    {
+      "ticket": 19437059,
+      "symbol": "XAUUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 4087.5,
+      "sl": 4099.12,
+      "tp": 4035.0
+    },
+    {
+      "ticket": 19437060,
+      "symbol": "USDCAD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.09,
+      "price": 1.3993,
+      "sl": 1.3978,
+      "tp": 1.4027
+    },
+    {
+      "ticket": 19437062,
+      "symbol": "USDCNH.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.4,
+      "price": 6.661,
+      "sl": 6.6594999999999995,
+      "tp": 6.6642
+    },
+    {
+      "ticket": 19437063,
+      "symbol": "AUDUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.1,
+      "price": 0.70586,
+      "sl": 0.70686,
+      "tp": 0.70368
+    },
+    {
+      "ticket": 19437065,
+      "symbol": "DJ30.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 52608.0,
+      "sl": 52756.77,
+      "tp": 52298.0
+    },
+    {
+      "ticket": 19437066,
+      "symbol": "GER40.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 25803.4,
+      "sl": 25876.2,
+      "tp": 25652.0
+    }
+  ]
 }
