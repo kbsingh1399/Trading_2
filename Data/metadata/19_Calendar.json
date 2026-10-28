@@ -2,7 +2,7 @@
   "feed_name": "19_Calendar",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 43,
+  "row_count": 21,
   "column_count": 10,
   "columns": [
     "date",
@@ -16,9 +16,9 @@
     "outcome",
     "url"
   ],
-  "byte_size": 4511,
-  "timestamp_ist": "2026-10-29 05:25:09 IST",
-  "timestamp_utc": "2026-10-28 23:55:09 UTC",
-  "epoch_utc": 1793231709.364177,
-  "write_duration_ms": 373.3
+  "byte_size": 3747,
+  "timestamp_ist": "2026-10-29 05:27:22 IST",
+  "timestamp_utc": "2026-10-28 23:57:22 UTC",
+  "epoch_utc": 1793231842.373113,
+  "write_duration_ms": 423.32
 }
