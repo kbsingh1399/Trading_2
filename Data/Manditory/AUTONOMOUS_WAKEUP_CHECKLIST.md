@@ -178,34 +178,25 @@ On EVERY single autonomous wake-up cycle, the desk is STRICTLY FORBIDDEN from me
 - **Output Metrics Table**: For each screened asset, compute and display:
   * `Close Price`, `Live Spread (bps)`, `Lo-MacKinlay VR(4)`, `VWAP Z-Score`, `RSI(14)`, `ATR(14)`, `Consecutive Momentum Candles (hl/lh count)`, `Tick Volume Ratio`.
 
-### 4. High-Confluence Candidate Discovery Radar & Concrete Limit Proposals (Multi-Pillar Evidence)
-- **Filtering Gates**:
-  * *Model 1 Mean Reversion*: `|VWAP Z| >= 2.0 SD`, `VR(4) < 0.85` (Lo-MacKinlay sub-diffusive regime; random walk rejected), `RSI < 35 or > 65`, `hl_count < 3`, `Spread <= 5.0 bps (TradFi) / <= 25.0 bps (Crypto)`, verified whale wall `>= 100K USD / 180s` (Crypto) or structural volume shelf (TradFi). Counter-trend fades on unarmored CFDs are strictly prohibited.
-  * *Model 2 Trend Pullback*: `VR(4) > 1.15` (momentum expansion), `ER(48) > 0.35`, pullback to Fibonacci Prime EMA ribbon (EMA 34/89/233) or Symmetrical Golden Pocket (0.618-0.702).
-- **Mandatory Multi-Pillar Parquet Cross-Referencing**:
-  For every candidate placed on the Radar, the desk MUST extract and display the exact underlying Parquet evidence:
-  1. *Whale Orders (`10_Whale_Orders.parquet`)*: Exact price, notional dollar size, side, exchange, and resting duration (`order_duration >= 180s`) of defending maker walls. Proves zero ghost walls (Pitfall 1).
-  2. *Liquidation Geometry (`14_Hyperdash_Liq_Map.parquet` & `7_Liq_Heapmap.parquet`)*: Distance to short/long liquidation honey pots. Proves Stop Loss is anchored `>= 1.2 * ATR_14` away AND outside mapped liquidation cascades (Pitfall 2 & 4).
-  3. *Orderbook Depth (`17_Orderbook.parquet`)*: Top-20 level depth and live spread friction. Proves spread consumes `<= 15.0%` of TP distance (Pitfall 6).
-  4. *CVD Tape & Footprints (`18_CVD.parquet` & `21_Tradfye_Orderflow.parquet`)*: Spot vs Perpetual cumulative delta and taker absorption prints. Proves absence of unabsorbed CVD waterfalls (Pitfall 3).
-  5. *Auction Market Structure (`20_Auction_Market_Structure.parquet`)*: Daily/Weekly VAH/VAL/POC levels. Entry must align with Value Area extremes (Model 1) or POC retest shelves (Model 2).
-  6. *Derivatives Carry & Skew (`5_Funding_Rate.parquet` & `3_Exchanges_LS_Ratio`)*: Funding rates across Binance, OKX, Bybit. Confirms absence of crowded squeeze overhang.
-  7. *Macro Netflows & Calendar (`1_Crypto_ETF_Flows.parquet` & `19_Calendar.parquet`)*: Institutional ETF netflows and verification of zero Tier-1 events (CPI/FOMC/NFP) within the +-35m window.
-- **Output Requirements for Top Candidates**:
-  * Candidate Asset, Macro Cluster, & Setup Model.
-  * Planned Limit Entry Price (Passive maker limit at auction exhaustion / Golden Pocket).
-  * Planned Stop Loss Price (anchored safely behind whale armor and outside liquidation magnets).
-  * Planned Take Profit Price (front-running opposing POC / liquidity shelf).
-  * Expected Net R:R (minimum 2.0R realizable).
-  * Nominal Risk (USD) and Stressed Equity Buffer Impact.
-  * Proof of 0 violations across all 25 institutional controls via `execution_harness.py`.
+### 4. High-Confluence Candidate Discovery Radar & Mandatory 43-Feed Forensic Deep Audit (STANDARD INVARIANT)
+> 🛑 **MANDATORY ASSET-BY-ASSET 43-FEED EXTRACTION DIRECTIVE (STRICT OPERATOR MANDATE)**:
+> On EVERY wakeup and instantiation of this checklist, the desk MUST execute and display the complete, individual file-by-file forensic breakdown of ALL 43 Parquet data feeds for EACH eligible candidate in the universe (BTC, ETH, SOL, XAUUSD, USDCAD, USDCNH, AUDUSD, DJ30, GER40, etc.), detailing:
+> 1. Exact Liquidation Geometry: 1D/7D liquidations, Hyperdash nodes, and liquidation matrix honey pots.
+> 2. Max Pain Continuum: 24H, 48H, 3D, and 7D Short and Long Max Pain levels with exact volumes.
+> 3. Orderbook & Whales: Active resting whale walls, L2 depth tiers, and bid/ask liquidity thickness.
+> 4. Multi-Timeframe CVD: 5m, 15m, 1h, 4h, and 30D cumulative delta and taker absorption prints.
+> 5. Auction Market Structure: Daily/Weekly POC, VAH, VAL, R1, R2, S1, S2, and value area regime.
+> 6. Derivatives Carry & Skew: Funding rates, total open interest, and 15M/1H/4H L/S ratios.
+> 7. Macro Netflows & Calendar: Spot/futures netflows (15m/1h), ETF institutional flows, and Tier-1 blackout sentry.
+> 8. Asymmetric Spread Padding on Stop Loss: Mandatory `+1.5 * Spread` buffer for all short stops to prevent Ask-tick spread expansion stop-outs.
+> 9. Concrete Order Formulation: Passive maker limit entry price, spread-padded stop loss, take profit target, net R:R, and nominal risk.
 
 ### 5. Dynamic Capacity & Solvency Floor Defense Gate (All Potential Candidates Authorized)
 - **Universal Multi-Candidate Limit Staging Mandate**:
   * Passive maker limit orders are staged for ALL eligible candidates discovered across the 156-asset universe (up to 15 pending limits across Crypto, FX, Metals, Indices).
   * Zero capital/margin drag while resting on broker queue.
 - **Dynamic Post-Fill Capacity & Solvency Gate**:
-  * Maximum concurrently filled live positions: **2**.
+  * Maximum concurrently filled live positions: **15** (Unrestricted open capacity).
   * Dynamic Position Supervisor monitors ticks every 5.0s, executing:
     (a) Immediate breakeven lock (`+0.15R`) once any filled position gains `+0.80R`.
     (b) Immediate profit lock (`+0.80R`) at `+1.50R`.
