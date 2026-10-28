@@ -19,6 +19,13 @@ trigger: always_on
 > 2. **Deep Algorithmic Verification & Formal Proofs**: Zero superficial heuristics or unverified assumptions. Every stop loss, entry level, and target must be mathematically derived from empirical distributions (ATR-14, CVD z-score, liquidation density profiles, auction value area boundaries).
 > 3. **Autonomous 156-Asset Zero-Omission Screening & Execution**: On EVERY @AUTONOMOUS_WAKEUP_CHECKLIST.md Instantiated wake-up, the desk is strictly forbidden from merely inspecting resting orders. The desk MUST run the exhaustive vectorized scanner across ALL 156 tradeable assets (Crypto, FX Majors & Crosses, Precious Metals, Energy & Equity Indices), interrogate their 43-feed microstructure parameters, and autonomously punch passive maker limit orders for ALL eligible candidates directly into MT5 without hesitation or asking permission.
 > 4. **Self-Correction & Kaizen Loop**: Continuously critique earlier turns, eradicate past pitfalls (ghost walls, sub-ATR stops, spread traps), and guarantee zero regression.
+> 5. **Mandatory Explicit Thinking-Chain Forensics Across ALL 43 Feeds & Liquidation Defense (NON-NEGOTIABLE OPERATOR MANDATE)**:
+>    In the internal thinking chain of EVERY turn and candidate evaluation, the model MUST explicitly debate, inspect, and forensically analyze empirical data across ALL 43 Parquet feeds without waiting for operator prompts or reminders:
+>    - Forensically inspect 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, and 7_Liq_Heapmap.parquet to locate exact 1D and 7D liquidation cascades and magnetic clusters.
+>    - Verify that NO Stop Loss is placed inside a liquidation band, sweep pocket, or retail stop cluster (Pitfall 4 & Pitfall 2 elimination).
+>    - Cross-reference defending institutional whale walls in 10_Whale_Orders.parquet and verify that limit orders lean against verified resting walls (> 100K USD, > 180s persistence).
+>    - Verify multi-timeframe CVD delta absorption across 1m, 5m, 15m, 1h, and 4h in 18_CVD*.parquet.
+>    - Enforce the mandatory Spread-Padded SL Invariant (SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price) in the thinking chain before generating any broker order request.
 
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
 Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line, followed immediately by the mandatory 33-feed Parquet freshness scorecard before any other content:
