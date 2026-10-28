@@ -152718,5 +152718,25 @@
     "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "SUI",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 5007.13,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 0.9356,
+    "wallet_address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+    "asset_slug": "SUI",
+    "raw_text": "#SUI Whale SELL: 5.01K USD at 0.9356 USD [API]",
+    "msg_id": "HL_TRADE_SUI_436670833834639",
+    "timestamp_epoch": 1793152348,
+    "time_label": "01:52",
+    "date_heading": "October 28",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
