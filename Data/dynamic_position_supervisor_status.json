@@ -1,25 +1,29 @@
 {
-  "timestamp_utc": "2026-10-28 02:15:41 UTC",
+  "timestamp_utc": "2026-10-28 02:17:42 UTC",
   "balance_usd": 4815.01,
-  "equity_usd": 4815.01,
-  "free_margin_usd": 4815.01,
+  "equity_usd": 4814.92,
+  "free_margin_usd": 4603.99,
   "max_filled_positions": 4,
-  "filled_positions_count": 0,
-  "filled_slots_free": 4,
-  "resting_limits_count": 1,
+  "filled_positions_count": 1,
+  "filled_slots_free": 3,
+  "resting_limits_count": 0,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [],
-  "resting_orders": [
+  "active_positions": [
     {
       "ticket": 19388702,
       "symbol": "AUDUSD.pi",
-      "type": "BUY_LIMIT",
+      "type": "BUY",
       "volume": 0.09,
-      "price": 0.7031,
+      "price_open": 0.7031,
+      "price_current": 0.70309,
       "sl": 0.70198,
-      "tp": 0.7059
+      "tp": 0.7059,
+      "gain_r": -0.009,
+      "ratchet_stage": 0,
+      "profit_usd": -0.09
     }
-  ]
+  ],
+  "resting_orders": []
 }
