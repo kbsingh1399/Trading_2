@@ -1,14 +1,14 @@
 {
   "asset": "US2000",
   "aliases": [
-    "US2000USD.PI",
-    "US2000USD.P",
-    "US2000",
     "US2000USD",
-    "US2000USDT"
+    "US2000USD.P",
+    "US2000USDT",
+    "US2000USD.PI",
+    "US2000"
   ],
-  "timestamp_ist": "2026-10-28 08:20:40 IST",
-  "timestamp_utc": "2026-10-28 02:50:40 UTC",
+  "timestamp_ist": "2026-10-28 08:23:01 IST",
+  "timestamp_utc": "2026-10-28 02:53:01 UTC",
   "total_files_scanned": 42,
   "feeds_with_data_count": 7,
   "global_macro_feeds_count": 4,

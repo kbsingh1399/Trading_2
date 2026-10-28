@@ -1,17 +1,17 @@
 {
   "asset": "BTC",
   "aliases": [
+    "BTCPERP",
+    "BTCUSDT",
+    "BTC-PERP",
+    "XBT",
     "BTCUSD.P",
     "BTC",
-    "BTC-PERP",
-    "BTCUSDT",
     "BTCUSD",
-    "XBT",
-    "BTCUSD.PI",
-    "BTCPERP"
+    "BTCUSD.PI"
   ],
-  "timestamp_ist": "2026-10-28 08:20:38 IST",
-  "timestamp_utc": "2026-10-28 02:50:38 UTC",
+  "timestamp_ist": "2026-10-28 08:22:59 IST",
+  "timestamp_utc": "2026-10-28 02:52:59 UTC",
   "total_files_scanned": 42,
   "feeds_with_data_count": 35,
   "global_macro_feeds_count": 4,
