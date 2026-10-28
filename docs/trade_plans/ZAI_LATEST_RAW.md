@@ -1,3 +1,6 @@
+# Z.AI CYCLE 375 INDEPENDENT RESEARCH & VERDICT
+
+## Chat Assistant Output:
 Thought Process
 
 Cycle 375 received — 19:10:00Z dispatch, with a new mandatory governance-document compliance gate. Before I rule, I will actually do what the commission demands: physically read the canonical documents (local mirror + GitHub), and run my own independent data acquisition (fresh post-FOMC market data via public APIs — something the desk's frozen cache cannot provide).
@@ -138,10 +141,8 @@ All files in task
 cycle_375_council_response
 · json
 
-================================================================================
-Z.AI ATTACHED OUTPUT FILE:  (2472 chars)
-================================================================================
-
+## Workspace JSON Payload:
+```json
 {
   "audit_type": "INSTITUTIONAL_360_REVIEW",
   "evidence_anchor": {"snapshot_gen": "35ecb6d9", "as_of_utc": "2026-10-27T16:35:35Z", "publication_stall_s": 6139},
@@ -170,3 +171,4 @@ Z.AI ATTACHED OUTPUT FILE:  (2472 chars)
   "mandated_actions": ["cancel_ETH_or_close_USDJPY", "USDJPY_purge_deadline", "BTC_SL_to_80897.8", "balance_reconciliation_-10.09", "ingest_calibration_win", "restart_stalled_publisher"],
   "overall": "PORTFOLIO_STRESS_INSOLVENT__IMMEDIATE_HEADROOM_RESTORE_REQUIRED"
 }
+```
