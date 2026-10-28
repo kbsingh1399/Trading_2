@@ -6,9 +6,9 @@
 > **Mirror Location**: `docs/specs/Z_AI_STANDARD_PROMPT_TEMPLATE.md`  
 > **Target Council**: Z.ai Sovereign Council (GLM-5.3-Flash / Claude 3.7 Sonnet via Chrome CDP Port 9222)  
 > **Role Definition**: Sovereign Independent Adversarial Risk Arbiter & Forensic Quantitative Cross-Examiner  
-> **Operating Mandate**: Adversarially challenge, stress-test, and cross-examine proposed trades, candidate geometries, and market regimes across ALL 36 Parquet feeds in `Data/feeds/*.parquet`.  
-> **Execution Invariant**: Advisory & Adversarial Veto ONLY. Z.ai serves as the Devil's Advocate and Chief Forensic Auditor. Does not passively ratify Arena.ai or Antigravity subagents.  
-> **Data Provenance**: 100% Pure Parquet Data Lake (`Data/feeds/*.parquet`, Zero Excel Dependency).  
+> **Operating Mandate**: Adversarially challenge, stress-test, and cross-examine proposed trades, candidate geometries, and market regimes across the full 156-asset universe using ALL 37 Parquet feeds in `Data/feeds/*.parquet`.  
+> **Execution Invariant**: Advisory & Adversarial Veto ONLY. Z.ai serves as the Devil's Advocate and Chief Forensic Auditor across all 156 assets. Does not passively ratify Arena.ai or Antigravity subagents.  
+> **Data Provenance**: 100% Pure Parquet Data Lake (`Data/feeds/*.parquet`, Zero Excel Dependency, 37 Feeds).  
 > **Governing Quant SOP**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
 > **Mandatory Kaizen & Pitfall Governance**: Interrogates [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md).
 
@@ -229,44 +229,44 @@ Z.ai MUST stress-test the 3 active resting limit orders and issue an explicit ra
 Z.ai (GLM-5.3-Flash / Claude 3.7 Sonnet) MUST confirm that each of the 36 canonical Parquet feeds in `Data/feeds/*.parquet` was physically read, inspected, and cross-examined before formulating any adversarial challenge or outputting the final JSON ruling.
 
 You MUST include this exact checked checklist in your response, explicitly verifying that each feed was inspected:
-- [x] Feed 00: `00_MT5_Account_Telemetry.parquet` (Balance 4,846.32 USD, Equity 4,846.32 USD, 4,775 / 4,795 USD floors, spreads in bps)
+- [x] Feed 00: `00_MT5_Account_Telemetry.parquet` (Balance 4,782.61 USD, Equity 4,782.61 USD, 4,775 / 4,795 USD floors, spreads in bps)
 - [x] Feed 01: `1_Crypto_ETF_Flows.parquet` (IBIT, FBTC, ETHA spot flows and institutional net accumulation)
 - [x] Feed 02: `2_Spot_Netflow_S.parquet` (CEX spot netflows across 500 assets; accumulation vs distribution)
-- [x] Feed 03: `3_Exchanges_LS_Ratio_15M.parquet` (15m Long/Short positioning across Binance, OKX, Bybit)
-- [x] Feed 04: `3_Exchanges_LS_Ratio_1H.parquet` (1h Long/Short account ratios)
-- [x] Feed 05: `3_Exchanges_LS_Ratio_4H.parquet` (4h macro sentiment trends)
-- [x] Feed 06: `4_Hyperliquid_Analysis.parquet` (1,979+ whale positions, leverage tiers, liquidation prices)
-- [x] Feed 07: `5_OI.parquet` (Open interest notional deltas across top 20 perpetuals)
-- [x] Feed 08: `5_Funding_Rate.parquet` (8h funding rates and annualized APR across 589 assets)
-- [x] Feed 09: `6_Funding_Fee_Settlement.parquet` (Historical funding transfer history and carry costs)
-- [x] Feed 10: `7_Liq_Heapmap.parquet` (Exchange liquidation heatmap clusters)
-- [x] Feed 11: `7_Live_Liq.parquet` (Sub-second live forced liquidation tape)
-- [x] Feed 12: `8_Exchange_Liquidation_Map_1D.parquet` (24h depth liquidation profile across BTC, ETH, SOL, BNB)
-- [x] Feed 13: `8_Exchange_Liquidation_Map_7D.parquet` (7d macro liquidation bands and short/long asymmetry)
-- [x] Feed 14: `9_Liquidation_Max_Pain_24H.parquet` (24h liquidation max pain magnetic equilibrium prices)
-- [x] Feed 15: `9_Liquidation_Max_Pain_48H.parquet` (48h max pain anchors)
-- [x] Feed 16: `9_Liquidation_Max_Pain_3D.parquet` (3d max pain anchors)
-- [x] Feed 17: `9_Liquidation_Max_Pain_7D.parquet` (7d macro max pain anchors)
-- [x] Feed 18: `10_Whale_Orders.parquet` (Resting whale limit orders >= 100K USD, price, side, tau >= 180s)
-- [x] Feed 19: `11_Technical.parquet` (Session VWAP, SD bands +/-1,2,3, VWAP Z, Fib-Prime EMAs 5-233, RSI, ATR)
-- [x] Feed 20: `11_Technical_BTC_Ribbon.parquet` (Fibonacci Prime EMA ribbon structure for BTC)
-- [x] Feed 21: `12_Hyperdash.parquet` (Cross-market orderflow aggregations and volatility skew)
-- [x] Feed 22: `13_Hyperliquid.parquet` (Hyperliquid L1/L2 metrics, basis spreads, vault positioning)
-- [x] Feed 23: `14_Hyperdash_Liq_Map.parquet` (Hyperdash multi-exchange liquidation density clusters)
-- [x] Feed 24: `15_Hyperdash_Stops_Map.parquet` (Retail stop hunt levels, sweep thresholds, liquidity voids)
-- [x] Feed 25: `16_Hyperdash_telegram_Intel.parquet` (Automated institutional alerts and whale block trade flags)
-- [x] Feed 26: `17_Orderbook.parquet` (20-level aggregated L2 bid/ask depth, imbalance ratio, spread bps)
-- [x] Feed 27: `18_CVD.parquet` (1m/5m/15m/30m taker cumulative volume delta and zc_div divergence)
-- [x] Feed 28: `18_CVD_30D_ALL.parquet` (Multi-timeframe 30-day cumulative delta trends)
-- [x] Feed 29: `19_News.parquet` (Real-time financial wire headlines and sentiment classification)
-- [x] Feed 30: `19_Calendar.parquet` (Forex Factory macro calendar Tier-1 scheduled releases and forecasts)
-- [x] Feed 31: `20_Auction_Market_Structure.parquet` (Daily/Weekly POC, VAH, VAL, Mon_H/L/Mid IB_W, Asian extremes)
-- [x] Feed 32: `21_Tradfye_Orderflow.parquet` (Institutional multi-timeframe orderflow delta across 156 assets)
-- [x] Feed 33: `22_Forced_Liquidations_MTF.parquet` (Aggregated multi-timeframe liquidation spikes)
-- [x] Feed 34: `23_Master_Pipeline_Telemetry.parquet` (Pipeline write latency and feed health verification)
-- [x] Feed 35: `25_CoinGlass_Footprint_Signals.parquet` (Aggressive buying/selling absorption, exhaustion nodes)
-- [x] Feed 36: `26_Aggregated_Footprint_Bar_Metrics.parquet` (Bar-level delta, min/max delta, footprint VPOC)
-- [x] Feed 37: `14_Liquidation_Matrix.parquet` (Multi-asset cross-exchange composite liquidation matrix)
+- [x] Feed 03: `2_Future_Netflow.parquet` (Multi-timeframe futures netflow, Spot vs Futures netflow divergence)
+- [x] Feed 04: `3_Exchanges_LS_Ratio_15M.parquet` (15m Long/Short positioning across Binance, OKX, Bybit)
+- [x] Feed 05: `3_Exchanges_LS_Ratio_1H.parquet` (1h Long/Short account ratios)
+- [x] Feed 06: `3_Exchanges_LS_Ratio_4H.parquet` (4h macro sentiment trends)
+- [x] Feed 07: `4_Hyperliquid_Analysis.parquet` (1,979+ whale positions, leverage tiers, liquidation prices)
+- [x] Feed 08: `5_OI.parquet` (Open interest notional deltas across top 20 perpetuals)
+- [x] Feed 09: `5_Funding_Rate.parquet` (8h funding rates and annualized APR across 589 assets)
+- [x] Feed 10: `6_Funding_Fee_Settlement.parquet` (Historical funding transfer history and carry costs)
+- [x] Feed 11: `7_Liq_Heapmap.parquet` (Exchange liquidation heatmap clusters)
+- [x] Feed 12: `7_Live_Liq.parquet` (Sub-second live forced liquidation tape)
+- [x] Feed 13: `8_Exchange_Liquidation_Map_1D.parquet` (24h depth liquidation profile across BTC, ETH, SOL, BNB)
+- [x] Feed 14: `8_Exchange_Liquidation_Map_7D.parquet` (7d macro liquidation bands and short/long asymmetry)
+- [x] Feed 15: `9_Liquidation_Max_Pain_24H.parquet` (24h liquidation max pain magnetic equilibrium prices)
+- [x] Feed 16: `9_Liquidation_Max_Pain_48H.parquet` (48h max pain anchors)
+- [x] Feed 17: `9_Liquidation_Max_Pain_3D.parquet` (3d max pain anchors)
+- [x] Feed 18: `9_Liquidation_Max_Pain_7D.parquet` (7d macro max pain anchors)
+- [x] Feed 19: `10_Whale_Orders.parquet` (Resting whale limit orders >= 100K USD, price, side, tau >= 180s)
+- [x] Feed 20: `11_Technical.parquet` (Session VWAP, SD bands +/-1,2,3, VWAP Z, Fib-Prime EMAs 5-233, RSI, ATR)
+- [x] Feed 21: `11_Technical_BTC_Ribbon.parquet` (Fibonacci Prime EMA ribbon structure for BTC)
+- [x] Feed 22: `12_Hyperdash.parquet` (Cross-market orderflow aggregations and volatility skew)
+- [x] Feed 23: `13_Hyperliquid.parquet` (Hyperliquid L1/L2 metrics, basis spreads, vault positioning)
+- [x] Feed 24: `14_Hyperdash_Liq_Map.parquet` (Hyperdash multi-exchange liquidation density clusters)
+- [x] Feed 25: `15_Hyperdash_Stops_Map.parquet` (Retail stop hunt levels, sweep thresholds, liquidity voids)
+- [x] Feed 26: `16_Hyperdash_telegram_Intel.parquet` (Automated institutional alerts and whale block trade flags)
+- [x] Feed 27: `17_Orderbook.parquet` (20-level aggregated L2 bid/ask depth, imbalance ratio, spread bps)
+- [x] Feed 28: `18_CVD.parquet` (1m/5m/15m/30m taker cumulative volume delta and zc_div divergence)
+- [x] Feed 29: `18_CVD_30D_ALL.parquet` (Multi-timeframe 30-day cumulative delta trends)
+- [x] Feed 30: `19_News.parquet` (Real-time financial wire headlines and sentiment classification)
+- [x] Feed 31: `19_Calendar.parquet` (Forex Factory macro calendar Tier-1 scheduled releases and forecasts)
+- [x] Feed 32: `20_Auction_Market_Structure.parquet` (Daily/Weekly POC, VAH, VAL, Mon_H/L/Mid IB_W, Asian extremes)
+- [x] Feed 33: `21_Tradfye_Orderflow.parquet` (Institutional multi-timeframe orderflow delta across 156 assets)
+- [x] Feed 34: `22_Forced_Liquidations_MTF.parquet` (Aggregated multi-timeframe liquidation spikes)
+- [x] Feed 35: `23_Master_Pipeline_Telemetry.parquet` (Pipeline write latency and feed health verification)
+- [x] Feed 36: `25_CoinGlass_Footprint_Signals.parquet` (Aggressive buying/selling absorption, exhaustion nodes)
+- [x] Feed 37: `26_Aggregated_Footprint_Bar_Metrics.parquet` (Bar-level delta, min/max delta, footprint VPOC)
 
 ---
 
@@ -277,35 +277,34 @@ Z.ai must conclude its response with a standardized Adversarial Audit JSON block
 {
   "council": "Z_AI_SOVEREIGN_COUNCIL",
   "model": "GLM_5_3_FLASH_OR_SONNET",
-  "cycle_id": "[CYCLE_ID]",
+  "cycle_id": "Cycle-374",
   "timestamp_utc": "[TIMESTAMP_UTC]",
   "parquet_lake_audit_checklist": {
-    "all_36_feeds_read": true,
-    "verified_feeds_count": 36,
+    "all_37_feeds_read": true,
+    "verified_feeds_count": 37,
     "checklist_status": "100_PERCENT_VERIFIED"
   },
   "adversarial_orders_audit": {
-    "ticket_19329907_bnb": {
-      "verdict": "RATIFY_PREVAIL",
-      "reason": "Resting whale wall > 120K USD persisted > 210s. 0.786 Fibonacci shelf backing. 24H Short Max Pain magnet at 757.79."
-    },
-    "ticket_19329908_eurusd": {
-      "verdict": "MANDATORY_CANCEL_IMMEDIATELY",
-      "reason": "Alpha exhausted: market price 1.117495 already exceeded 1.11760 TP target without fill. Imminent 21:15-22:30 UTC rollover spread blowout trap."
-    },
-    "ticket_19330613_eth": {
-      "verdict": "RATIFY_PREVAIL",
-      "reason": "Footprint absorption confirmed at 2329.20. Cumulative delta -10.89M USD. Long Max Pain magnet at 2285.66 USD."
-    }
+    "open_positions": 0,
+    "pending_orders": 0,
+    "status": "ALL_CASH_READY_FOR_CANDIDATE"
   },
-  "new_risk_admission_ruling": {
-    "verdict": "DENIED_FAIL_CLOSED",
-    "regime_state": "LOW_EFFICIENCY_CHOP",
-    "universal_er_48": 0.061,
-    "solvency_kernel_floor_usd": 4795.00,
-    "equity_usd": 4846.32,
-    "released_headroom_post_prune_usd": 21.99,
-    "rationale": "Universal Kaufman ER(48) < 0.20 across all 156 assets prohibits new trend pullbacks. Stand aside unconditionally."
+  "candidate_cross_examination": {
+    "symbol": "[PROPOSED_SYMBOL]",
+    "verdict": "[RATIFY / VETO]",
+    "veto_reasons": [],
+    "spread_bps": 0.0,
+    "whale_armor_persisted_s": 0,
+    "stressed_risk_usd": 0.0,
+    "solvency_kernel_check": "PASS_OR_FAIL"
+  },
+  "solvency_kernel_status": {
+    "equity_usd": 4782.61,
+    "hard_floor_usd": 4775.00,
+    "operating_buffer_usd": 4795.00,
+    "net_headroom_usd": 7.61,
+    "friday_mandate_target_usd": 5500.00,
+    "verdict": "RATIFIED_CAPITAL_PRESERVATION"
   }
 }
 ```
@@ -317,7 +316,7 @@ Z.ai must conclude its response with a standardized Adversarial Audit JSON block
 As Sovereign Adversarial Arbiter and Co-Equal Quantitative Council, Z.ai (GLM-5.3-Flash / Claude 3.7 Sonnet) is explicitly commanded by the operator to aggressively stress-test our entire system and address the following 4 core inquiries in detail:
 
 1. **System Architecture, Pipeline & Daemon Optimization**:
-   - Critically evaluate our end-to-end architecture: the 36-feed pure Parquet lake (`Data/feeds/*.parquet`), continuous background collection daemon (`run_pipeline_continuous_daemon.py`), metadata schema stamping (`stamp_all_parquet_feeds.py`), autonomous git telemetry sync daemon (`autonomous_telemetry_git_daemon.py`), Chrome CDP dual completion monitoring daemon (`dual_completion_daemon.py`), and the 20-minute post-cycle stabilization pacing gap.
+   - Critically evaluate our end-to-end architecture: the 37-feed pure Parquet lake (`Data/feeds/*.parquet`), continuous background collection daemon (`run_pipeline_continuous_daemon.py`), metadata schema stamping (`stamp_all_parquet_feeds.py`), autonomous git telemetry sync daemon (`autonomous_telemetry_git_daemon.py`), Chrome CDP dual completion monitoring daemon (`arena_completion_daemon.py`), and the 20-minute post-cycle stabilization pacing gap.
    - What architectural bottlenecks, race conditions, or latency points exist in our operational pipeline, and how can we fundamentally enhance our execution throughput and system reliability?
 
 2. **Forensic Bug Hunt, Logic Anomalies & Mathematical Inconsistencies**:

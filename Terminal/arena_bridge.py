@@ -1948,6 +1948,30 @@ def main():
         asyncio.run(dismiss_arena_popup())
         success = asyncio.run(post_prompt_to_arena(p))
         sys.exit(0 if success else 1)
+    elif len(sys.argv) > 2 and sys.argv[1] == "post-file-zai":
+        filepath = Path(sys.argv[2])
+        if not filepath.exists():
+            print(f"Error: file {filepath} not found.")
+            sys.exit(1)
+        p = filepath.read_text(encoding="utf-8")
+        asyncio.run(dismiss_zai_popup())
+        success = asyncio.run(post_prompt_to_zai(p))
+        sys.exit(0 if success else 1)
+    elif len(sys.argv) > 2 and sys.argv[1] == "post-file-both":
+        filepath = Path(sys.argv[2])
+        if not filepath.exists():
+            print(f"Error: file {filepath} not found.")
+            sys.exit(1)
+        p = filepath.read_text(encoding="utf-8")
+        print("Dispatching prompt to Arena.ai...")
+        asyncio.run(dismiss_arena_popup())
+        success_a = asyncio.run(post_prompt_to_arena(p))
+        print("Arena.ai post status:", success_a)
+        print("Dispatching prompt to Z.ai...")
+        asyncio.run(dismiss_zai_popup())
+        success_z = asyncio.run(post_prompt_to_zai(p))
+        print("Z.ai post status:", success_z)
+        sys.exit(0 if (success_a or success_z) else 1)
     elif len(sys.argv) > 1 and sys.argv[1] == "check":
         asyncio.run(dismiss_arena_popup())
         done, text = asyncio.run(check_arena_response())

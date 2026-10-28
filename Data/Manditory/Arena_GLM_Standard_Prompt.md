@@ -8,7 +8,7 @@
 >   2. **Arena.ai Frontier Council**: Co-Equal Autonomous Quantitative Strategist & Deep Reasoning Engine.  
 >   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter.  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
-> **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel  
+> **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD by Friday close) while defending the 4,775.00 USD Hard Floor, 4,795.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel (Current Equity: 4,782.61 USD)  
 > **Canonical Repositories**:  
 >   - Core Trading: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)  
 >   - Dual-Repo Twin: `https://github.com/kbsingh1399/Engine_2.git` (Parity mirror)  
