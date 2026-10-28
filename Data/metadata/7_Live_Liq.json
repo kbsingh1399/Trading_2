@@ -15,8 +15,8 @@
     "full_time"
   ],
   "byte_size": 3500,
-  "timestamp_ist": "2026-10-28 09:53:39 IST",
-  "timestamp_utc": "2026-10-28 04:23:39 UTC",
-  "epoch_utc": 1793161419.119889,
+  "timestamp_ist": "2026-10-28 09:55:40 IST",
+  "timestamp_utc": "2026-10-28 04:25:40 UTC",
+  "epoch_utc": 1793161540.539025,
   "write_duration_ms": 392.39
 }
