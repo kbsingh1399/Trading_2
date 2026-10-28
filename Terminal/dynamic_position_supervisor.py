@@ -236,7 +236,7 @@ def check_and_supervise_positions() -> dict:
                             avg_vol = np.mean(rates15['tick_volume'][-10:])
                             vol_surge = (rates15['tick_volume'][-1] > 1.8 * avg_vol) if avg_vol > 0 else False
 
-                            if higher_lows >= 3 or vol_surge:
+                            if vol_surge and higher_lows >= 3:
                                 logger.warning(
                                     f"[PURGE MOMENTUM SWEEP] Order #{o.ticket} ({o.symbol} SELL_LIMIT @ {o.price_open}): "
                                     f"Price approaching via impulse (dist={dist_to_limit:.2f} <= {atr14:.2f} ATR, higher_lows={higher_lows}, vol_surge={vol_surge}). "
@@ -252,7 +252,7 @@ def check_and_supervise_positions() -> dict:
                             avg_vol = np.mean(rates15['tick_volume'][-10:])
                             vol_surge = (rates15['tick_volume'][-1] > 1.8 * avg_vol) if avg_vol > 0 else False
 
-                            if lower_highs >= 3 or vol_surge:
+                            if vol_surge and lower_highs >= 3:
                                 logger.warning(
                                     f"[PURGE MOMENTUM SWEEP] Order #{o.ticket} ({o.symbol} BUY_LIMIT @ {o.price_open}): "
                                     f"Price waterfalling into limit (dist={dist_to_limit:.2f} <= {atr14:.2f} ATR, lower_highs={lower_highs}, vol_surge={vol_surge}). "
