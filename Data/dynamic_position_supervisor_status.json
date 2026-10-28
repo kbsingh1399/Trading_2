@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-28 20:46:02 UTC",
+  "timestamp_utc": "2026-10-28 20:49:55 UTC",
   "balance_usd": 4757.61,
-  "equity_usd": 4758.31,
-  "free_margin_usd": 3932.23,
+  "equity_usd": 4762.61,
+  "free_margin_usd": 3936.53,
   "max_filled_positions": 15,
   "filled_positions_count": 2,
   "filled_slots_free": 13,
-  "resting_limits_count": 7,
+  "resting_limits_count": 15,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,12 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 1.3993,
-      "price_current": 1.39928,
+      "price_current": 1.3994900000000001,
       "sl": 1.3978,
       "tp": 1.4027,
-      "gain_r": -0.013,
+      "gain_r": 0.127,
       "ratchet_stage": 0,
-      "profit_usd": -0.13
+      "profit_usd": 1.22
     },
     {
       "ticket": 19437065,
@@ -30,12 +30,12 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52599.74,
+      "price_current": 52570.24,
       "sl": 52756.77,
       "tp": 52298.0,
-      "gain_r": 0.056,
+      "gain_r": 0.254,
       "ratchet_stage": 0,
-      "profit_usd": 0.83
+      "profit_usd": 3.78
     }
   ],
   "resting_orders": [
@@ -101,6 +101,78 @@
       "price": 102.5,
       "sl": 103.85,
       "tp": 100.6
+    },
+    {
+      "ticket": 19437494,
+      "symbol": "USDJPY.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.08,
+      "price": 157.62,
+      "sl": 157.44,
+      "tp": 158.05
+    },
+    {
+      "ticket": 19437495,
+      "symbol": "GBPUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.08,
+      "price": 1.3348,
+      "sl": 1.3364,
+      "tp": 1.3312
+    },
+    {
+      "ticket": 19437496,
+      "symbol": "EURUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.1,
+      "price": 1.1172,
+      "sl": 1.1186,
+      "tp": 1.114
+    },
+    {
+      "ticket": 19437497,
+      "symbol": "USDCHF.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.1,
+      "price": 0.8268,
+      "sl": 0.8256,
+      "tp": 0.8295
+    },
+    {
+      "ticket": 19437498,
+      "symbol": "US2000.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 2846.5,
+      "sl": 2858.0,
+      "tp": 2822.0
+    },
+    {
+      "ticket": 19437499,
+      "symbol": "NAS100.p",
+      "type": "BUY_LIMIT",
+      "volume": 0.01,
+      "price": 29465.0,
+      "sl": 29340.0,
+      "tp": 29720.0
+    },
+    {
+      "ticket": 19437500,
+      "symbol": "EURCAD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.08,
+      "price": 1.5594000000000001,
+      "sl": 1.5577999999999999,
+      "tp": 1.5645
+    },
+    {
+      "ticket": 19437501,
+      "symbol": "UKBRENT.p",
+      "type": "BUY_LIMIT",
+      "volume": 0.01,
+      "price": 114.8,
+      "sl": 113.9,
+      "tp": 117.2
     }
   ]
 }
