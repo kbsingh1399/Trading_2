@@ -159238,5 +159238,25 @@
     "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "BTC",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 33529.18,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 81273.0,
+    "wallet_address": "0x339030695894d065719b8ee501459a467ef1388a",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Liquidated Long: 33.53K USD at 81273.0000 USD [API]",
+    "msg_id": "HL_LIQ_0x339030695894d065719b8ee501459a467ef1388a_BTC_644378164909125",
+    "timestamp_epoch": 1793136823,
+    "time_label": "21:33",
+    "date_heading": "October 27",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
