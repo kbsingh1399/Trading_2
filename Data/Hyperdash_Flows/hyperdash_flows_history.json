@@ -155998,5 +155998,25 @@
     "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "IO:SNDK",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 197.41,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 1350.3,
+    "wallet_address": "0xd0956a1eba0a9060baf5f73ee26b9601dc47ec43",
+    "asset_slug": "IO:SNDK",
+    "raw_text": "#IO:SNDK Liquidated Long: 0.20K USD at 1350.3000 USD [API]",
+    "msg_id": "HL_LIQ_0xd0956a1eba0a9060baf5f73ee26b9601dc47ec43_IO:SNDK_728529624548446",
+    "timestamp_epoch": 1793155814,
+    "time_label": "02:50",
+    "date_heading": "October 28",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
   }
 ]
