@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAS
 **Canonical Key**: `GAS` | **Broker Instrument**: `GAS.p` | **Asset Class**: `Energy / Commodity`
-**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:46:55 IST` (`2026-10-29 18:16:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2.66` | **Live Ask Quote**: `2.67` | **Mid Price**: `2.66`
-- **Spread Points**: `10.00` | **Spread BPS**: `37.59 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `2.65` | **Live Ask Quote**: `2.66` | **Mid Price**: `2.66`
+- **Spread Points**: `10.00` | **Spread BPS**: `37.66 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2.71` (Distance: `-2.02%`)
-  * Point of Control (POC) = `2.65` (Distance: `+0.42%`)
-  * Value Area Low (VAL) = `2.59` (Distance: `+2.56%`)
+  * Value Area High (VAH) = `2.71` (Distance: `-2.12%`)
+  * Point of Control (POC) = `2.65` (Distance: `+0.27%`)
+  * Value Area Low (VAL) = `2.59` (Distance: `+2.41%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2.76` | POC=`2.74` | VAL=`2.73`
@@ -59,8 +59,8 @@
   * New York Session (13:00-21:00 UTC): High=`2.75` | Low=`2.59`
   * Initial Balance (First Hour): IB High=`2.73` | IB Low=`2.72`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2.65` - `2.67`
-  * Optimal Trade Entry (OTE 0.705): `2.67`
+  * Golden Pocket Zone (0.618 - 0.650): `2.64` - `2.67`
+  * Optimal Trade Entry (OTE 0.705): `2.66`
   * Structural Invalidation Anchor (0.786): `2.68`
 
 ---
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 1,960.00 USD | **`ACCUMULATION`** |
-| `15m` | 0.00 USD | 11,900.00 USD | **`ACCUMULATION`** |
-| `30m` | 0.00 USD | -14,280.00 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -42,240.00 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | -67,640.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -45,080.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -45,910.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | -51,280.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -27,410.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -7,990.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | -67,090.00 USD | **`DISTRIBUTION`** |
-| `30d` | 0.00 USD | -1,390,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 35.85 USD | 2,260.00 USD | **`ACCUMULATION`** |
+| `15m` | 1,240.00 USD | -2,570.00 USD | **`DISTRIBUTION`** |
+| `30m` | 2,480.00 USD | -4,490.00 USD | **`DISTRIBUTION`** |
+| `1h` | 6,850.00 USD | -39,190.00 USD | **`DISTRIBUTION`** |
+| `2h` | -14,260.00 USD | -83,300.00 USD | **`DISTRIBUTION`** |
+| `4h` | -36,410.00 USD | -54,360.00 USD | **`DISTRIBUTION`** |
+| `6h` | -147,790.00 USD | -49,410.00 USD | **`DISTRIBUTION`** |
+| `8h` | -143,650.00 USD | -56,380.00 USD | **`DISTRIBUTION`** |
+| `12h` | -137,000.00 USD | -33,180.00 USD | **`DISTRIBUTION`** |
+| `24h` | -217,490.00 USD | -13,360.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,810,000.00 USD | -71,900.00 USD | **`DISTRIBUTION`** |
+| `30d` | -3,350,000.00 USD | -1,390,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+1.96K` | 15m=`+11.90K` | 1h=`-42.24K` | 24h=`-7.99K`
+* Spot Capital Netflows: 5m=`+35.85` | 15m=`+1.24K` | 1h=`+6.85K` | 24h=`-217.49K`
+* Futures Capital Netflows: 5m=`+2.26K` | 15m=`-2.57K` | 1h=`-39.19K` | 24h=`-13.36K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

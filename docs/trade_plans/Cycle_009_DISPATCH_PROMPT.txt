@@ -1,0 +1,72 @@
+# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_009]
+**Authority**: Antigravity Sovereign Coordinator (MetaTrader 5 Account #5064568)
+**Execution Protocol**: SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER
+**Timestamp**: 2026-10-29 18:16:00 UTC (23:46:00 IST)
+
+---
+
+## 🏛️ 1. TRI-COUNCIL TARGET IDENTIFICATION & MANDATE
+- **Seat 1 (Lead Quantitative Architect)**: Arena.ai (GPT-5.4 Astra via Chrome CDP Port 9222)
+- **Seat 2 (Adversarial Microstructure Sentry)**: Z.ai (GLM-5.3-Flash via Chrome CDP Port 9222)
+- **Executing Desk & Final Boss**: Antigravity (Local Quantitative Engine)
+
+You are bound by the SOVEREIGN TRI-COUNCIL STANDING CHARTER. You are prompted exclusively with the assets that have strictly PASSED the broker spread test (TradFi <= 5.00 bps, Crypto <= 25.00 bps).
+
+---
+
+## ⚡ 2. MANDATORY OPERATIONAL CONSTRAINTS & SPREAD-PASSED ASSET DOSSIERS
+Analyze these specific Master Dossiers line-by-line across all 43 Parquet feeds:
+
+### Group 1: Foreign Exchange Majors & Crosses (Broker Spread <= 5.00 bps)
+1. `USDJPY` (Spread: 0.06 bps) -> `docs/dossiers/USDJPY_MASTER_DOSSIER.md`
+2. `GBPUSD` (Spread: 0.07 bps) -> `docs/dossiers/GBPUSD_MASTER_DOSSIER.md`
+3. `EURUSD` (Spread: 0.09 bps) -> `docs/dossiers/EURUSD_MASTER_DOSSIER.md`
+4. `EURGBP` (Spread: 0.12 bps) -> `docs/dossiers/EURGBP_MASTER_DOSSIER.md`
+5. `AUDUSD` (Spread: 0.14 bps) -> `docs/dossiers/AUDUSD_MASTER_DOSSIER.md`
+6. `USDCAD` (Spread: 0.21 bps) -> `docs/dossiers/USDCAD_MASTER_DOSSIER.md`
+7. `EURJPY` (Spread: 0.34 bps) -> `docs/dossiers/EURJPY_MASTER_DOSSIER.md`
+8. `NZDUSD` (Spread: 0.36 bps) -> `docs/dossiers/NZDUSD_MASTER_DOSSIER.md`
+9. `USDCHF` (Spread: 0.97 bps) -> `docs/dossiers/USDCHF_MASTER_DOSSIER.md`
+
+### Group 2: Precious Metals & Energy Commodities (Broker Spread <= 5.00 bps)
+10. `XAUUSD` (Gold, Spread: 0.22 bps) -> `docs/dossiers/XAUUSD_MASTER_DOSSIER.md`
+11. `COPPER` (Copper, Spread: 4.49 bps) -> `docs/dossiers/COPPER_MASTER_DOSSIER.md`
+12. `USWTI` (WTI Crude Oil, Spread: 2.94 bps) -> `docs/dossiers/USWTI_MASTER_DOSSIER.md`
+13. `UKBRENT` (Brent Crude Oil, Spread: 3.74 bps) -> `docs/dossiers/UKBRENT_MASTER_DOSSIER.md`
+
+### Group 3: Global Equity Indices (Broker Spread <= 5.00 bps)
+14. `DJ30` (Dow Jones 30, Spread: 0.23 bps) -> `docs/dossiers/DJ30_MASTER_DOSSIER.md`
+15. `NAS100` (Nasdaq 100, Spread: 0.40 bps) -> `docs/dossiers/NAS100_MASTER_DOSSIER.md`
+16. `GER40` (DAX 40, Spread: 4.18 bps) -> `docs/dossiers/GER40_MASTER_DOSSIER.md`
+17. `JP225` (Nikkei 225, Spread: 0.93 bps) -> `docs/dossiers/JP225_MASTER_DOSSIER.md`
+18. `SP500` (S&P 500, Spread: 1.00 bps) -> `docs/dossiers/SP500_MASTER_DOSSIER.md`
+
+### Group 4: Crypto Perpetuals & CFDs (Broker Spread <= 25.00 bps)
+19. `BTC` (Bitcoin, Spread: 2.10 bps) -> `docs/dossiers/BTC_MASTER_DOSSIER.md`
+20. `BNB` (Binance Coin, Spread: 8.03 bps) -> `docs/dossiers/BNB_MASTER_DOSSIER.md`
+21. `ETH` (Ethereum, Spread: 12.77 bps) -> `docs/dossiers/ETH_MASTER_DOSSIER.md`
+22. `BCH` (Bitcoin Cash, Spread: 20.10 bps) -> `docs/dossiers/BCH_MASTER_DOSSIER.md`
+
+---
+
+## 📊 3. LIVE MT5 PORTFOLIO & SOLVENCY CONSTRAINTS
+- **Account**: Blueberry Markets MT5 #5064568
+- **Balance**: 4,742.31 USD | **Equity**: 4,742.31 USD | **Margin**: 0.00 USD | **Free Margin**: 4,742.31 USD
+- **Open Positions**: 0 (100% Flat) | **Resting Orders**: 0
+- **Inviolate Hard Floor**: 4,775.00 USD (Deficit: -32.69 USD)
+- **Operating Buffer**: 4,795.00 USD (Deficit: -52.69 USD)
+- **Standing Solvency Refusal Protocol**: Because equity is currently below the 4,775.00 USD hard floor, all trade setups must be evaluated for maximum statistical edge but tagged as **STAGED_INTENT_ONLY** until solvency recovery is confirmed.
+
+---
+
+## 🎯 4. MANDATORY EXECUTION REQUIREMENTS FOR CANDIDATE PROPOSALS
+For each proposed candidate trade:
+1. **Passive Maker Limit Only**: `BUY_LIMIT` or `SELL_LIMIT`. Zero market chasing.
+2. **Sweep Exhaustion Entry**: Level must sit at auction extreme (`VAH/VAL + 0.35 * ATR_14`) with verified resting whale defense (> 100K USD, > 180s persistence).
+3. **Mandatory Spread-Padded Stop Loss**: Must strictly satisfy $SL = Level \pm (1.2 \times ATR_{14} + 1.5 \times Spread)$ beyond local Low Volume Nodes.
+4. **Asymmetric Exit Ratchet**: Target +2.5R front-running opposing liquidity cascades.
+5. **Strict Risk Cap**: Nominal risk <= 10.00 USD per ticket.
+6. **Strict Syntax Rule**: Strictly ZERO literal dollar signs anywhere in your response (`USD` exclusively).
+
+Begin your report immediately with:
+# [COUNCIL REPORT: Cycle_009]

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:46:55 IST` (`2026-10-29 18:16:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0020` | **Live Ask Quote**: `0.0021` | **Mid Price**: `0.0020`
-- **Spread Points**: `10.00` | **Spread BPS**: `492.61 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `10.00` | **Spread BPS**: `495.05 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0019` | VWAP Z-Score: `+1.77` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.0019` | VWAP Z-Score: `+1.51` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.000018` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `60.94` (State: `NEUTRAL`)
+  * 14-Period RSI: `56.63` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0020` | Lower -3.00σ Band: `0.0018`
   * Upper +2.51σ Band: `0.0020` | Lower -2.51σ Band: `0.0018`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0020` | EMA-20=`0.0020` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0019` (Slope: `+0.0000`) | EMA-100=`0.0019`
-  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `+0.5624`) | EMA-233=`0.0019`
+  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `+0.5470`) | EMA-233=`0.0019`
 - **Range Boundaries**: 24H High=`0.0020` | 24H Low=`0.0018` | Weekly High=`0.0020` | Weekly Low=`0.0018`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.0019` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.0019` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.0019` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `0.0018` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0020` | POC=`0.0020` | VAL=`0.0020`
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.0019` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `0.0018` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `0.0017` (Risk Distance: `0.0010` pts)
-  * +2.5R Take Profit: `0.0044`
+  * +2.5R Take Profit: `0.0043`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

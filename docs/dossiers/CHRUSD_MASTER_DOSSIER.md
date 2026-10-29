@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHRUSD
 **Canonical Key**: `CHRUSD` | **Broker Instrument**: `CHRUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:46:55 IST` (`2026-10-29 18:16:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0164` | VWAP Z-Score: `+0.88` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000086` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0164` | VWAP Z-Score: `+0.87` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000080` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `49.84` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0172` | Lower -3.00σ Band: `0.0156`
   * Upper +2.51σ Band: `0.0170` | Lower -2.51σ Band: `0.0157`
   * Upper +2.01σ Band: `0.0169` | Lower -2.01σ Band: `0.0158`
-  * Upper +2.00σ Band: `0.0169` | Lower -2.00σ Band: `0.0158`
+  * Upper +2.00σ Band: `0.0169` | Lower -2.00σ Band: `0.0159`
   * Upper +1.28σ Band: `0.0167` | Lower -1.28σ Band: `0.0160`
   * Upper +1.00σ Band: `0.0166` | Lower -1.00σ Band: `0.0161`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0167` | EMA-20=`0.0166` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0165` (Slope: `+0.0000`) | EMA-100=`0.0165`
-  * Institutional Anchors: EMA-144=`0.0165` | EMA-200=`0.0165` (Slope: `+0.2447`) | EMA-233=`0.0164`
+  * Institutional Anchors: EMA-144=`0.0165` | EMA-200=`0.0165` (Slope: `+0.2307`) | EMA-233=`0.0164`
 - **Range Boundaries**: 24H High=`0.0174` | 24H Low=`0.0160` | Weekly High=`0.0174` | Weekly Low=`0.0156`
 
 ---

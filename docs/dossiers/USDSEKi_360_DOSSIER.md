@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:46:55 IST` (`2026-10-29 18:16:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.85` | **Live Ask Quote**: `9.85` | **Mid Price**: `9.85`
-- **Spread Points**: `130.00` | **Spread BPS**: `1.32 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `118.00` | **Spread BPS**: `1.20 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -31,13 +31,13 @@
   * Upper +2.51σ Band: `9.91` | Lower -2.51σ Band: `9.80`
   * Upper +2.01σ Band: `9.89` | Lower -2.01σ Band: `9.81`
   * Upper +2.00σ Band: `9.89` | Lower -2.00σ Band: `9.81`
-  * Upper +1.28σ Band: `9.88` | Lower -1.28σ Band: `9.83`
+  * Upper +1.28σ Band: `9.88` | Lower -1.28σ Band: `9.82`
   * Upper +1.00σ Band: `9.87` | Lower -1.00σ Band: `9.83`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.85` | EMA-20=`9.85` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.85` (Slope: `+0.0000`) | EMA-100=`9.85`
   * Institutional Anchors: EMA-144=`9.85` | EMA-200=`9.85` (Slope: `+0.0000`) | EMA-233=`9.85`
-- **Range Boundaries**: 24H High=`9.95` | 24H Low=`9.75` | Weekly High=`10.05` | Weekly Low=`9.66`
+- **Range Boundaries**: 24H High=`9.95` | 24H Low=`9.75` | Weekly High=`10.05` | Weekly Low=`9.65`
 
 ---
 
@@ -270,13 +270,13 @@
   * Execution Entry: `9.82` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `8.62` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `12.83`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.88` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.08` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `6.88`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

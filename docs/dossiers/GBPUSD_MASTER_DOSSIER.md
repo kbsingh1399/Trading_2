@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:46:55 IST` (`2026-10-29 18:16:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.33` | VWAP Z-Score: `+1.74` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000948` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `66.08` (State: `OVERBOUGHT`)
+  * Session VWAP: `1.33` | VWAP Z-Score: `+1.81` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000924` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `67.69` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.34` | Lower -3.00σ Band: `1.33`
   * Upper +2.51σ Band: `1.34` | Lower -2.51σ Band: `1.33`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.34` | EMA-20=`1.34` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.33` (Slope: `+0.0000`) | EMA-100=`1.33`
-  * Institutional Anchors: EMA-144=`1.33` | EMA-200=`1.33` (Slope: `+0.0432`) | EMA-233=`1.33`
+  * Institutional Anchors: EMA-144=`1.33` | EMA-200=`1.33` (Slope: `+0.0427`) | EMA-233=`1.33`
 - **Range Boundaries**: 24H High=`1.34` | 24H Low=`1.33` | Weekly High=`1.34` | Weekly Low=`1.33`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.33` (Distance: `+0.25%`)
-  * Point of Control (POC) = `1.33` (Distance: `+0.36%`)
-  * Value Area Low (VAL) = `1.33` (Distance: `+0.47%`)
+  * Value Area High (VAH) = `1.33` (Distance: `+0.27%`)
+  * Point of Control (POC) = `1.33` (Distance: `+0.38%`)
+  * Value Area Low (VAL) = `1.33` (Distance: `+0.50%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.33` | POC=`1.33` | VAL=`1.33`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `775` | 1,035.08 USD | -184.21 USD | `-17.80%` | 6,787.76 USD | `-0.62` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `774` | 1,034.07 USD | 695.03 USD | `+67.21%` | 7,482.79 USD | `+0.47` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `653` | 872.87 USD | 703.75 USD | `+80.63%` | 8,186.55 USD | `+0.44` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.33` | `1.33` | `1.33` | `1.33` | `2,844` | 3,796.43 USD | 2,458.76 USD | `+64.77%` | 12,482.76 USD | `+1.20` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.33` | `1.34` | `1.33` | `1.34` | `2,359` | 3,150.66 USD | 1,683.56 USD | `+53.44%` | 14,166.32 USD | `+0.67` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `2,145` | 2,868.34 USD | 2,575.16 USD | `+89.78%` | 16,741.48 USD | `+1.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `653` | 872.87 USD | 703.75 USD | `+80.63%` | 8,680.86 USD | `+0.44` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `718` | 960.12 USD | 681.02 USD | `+70.93%` | 9,361.88 USD | `+0.49` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `613` | 819.76 USD | 37.84 USD | `+4.62%` | 9,399.71 USD | `-0.47` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `15m` | `1.33` | `1.34` | `1.33` | `1.34` | `2,359` | 3,150.66 USD | 1,683.56 USD | `+53.44%` | 14,976.20 USD | `+0.67` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `2,145` | 2,868.34 USD | 2,575.16 USD | `+89.78%` | 17,551.37 USD | `+1.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `2,289` | 3,060.83 USD | -635.71 USD | `-20.77%` | 16,915.65 USD | `-0.79` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `1.33` | `1.33` | `1.33` | `1.33` | `12,725` | 16,955.04 USD | 5,816.29 USD | `+34.30%` | 14,155.26 USD | `+1.21` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `1.33` | `1.34` | `1.33` | `1.34` | `12,464` | 16,646.79 USD | 13,879.53 USD | `+83.38%` | 28,034.80 USD | `+2.56` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `1.34` | `1.34` | `1.34` | `1.34` | `9,181` | 12,279.59 USD | 8,466.97 USD | `+68.95%` | 36,501.77 USD | `+1.64` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -406,13 +406,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.33` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0012` pts)
+  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0011` pts)
   * +2.5R Take Profit: `1.33`
   * Mathematical Lot Sizing: **`0.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.33` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0012` pts)
+  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0011` pts)
   * +2.5R Take Profit: `1.33`
   * Mathematical Lot Sizing: **`0.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
