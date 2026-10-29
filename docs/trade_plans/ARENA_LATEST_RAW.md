@@ -162,4 +162,5 @@
       "whale_defense_and_liquidation_proof": {
         "defending_whale_walls": "1,040,000.00 USD Ask Wall @ 749.03 (Hyperliquid/Binance, dur=3m 17s [197s >= 180s], id=CG_WHALE_BNB_T_33) & 672,000.00 USD Ask Wall @ 753.71 (Binance, dur=3m 11s [191s >= 180s], id=CG_WHALE_BNB_T_10)",
         "mtf_cvd_alignment": "4h CVD = -1,267,233 USD (-2.5%); Session Bias = BEARISH (Below Pivot); Bearish Fib OTE = 753.01",
-        "liquidation_map_clearance": "SL (757.22) sits behind 672K USD Ask Wall @ 753.71 and below 24H Short Max Pain @ 758.31 (2.40M USD) & Buy-Stop pocket @ 763.50 (211.75K USD); TP (743.53) front-runs PD VAL (742.97), 1.\n```\n
+        "liquidation_map_clearance": "SL (757.22) sits behind 672K USD Ask Wall @ 753.71 and below 24H Short Max Pain @ 758.31 (2.40M USD) & Buy-Stop pocket @ 763.50 (211.75K USD); TP (743.53) front-runs PD VAL (742.97), 1.03M USD Bid Wall @ 742.79 (dur=1816s), and 24H Long Max Pain @ 736.45 (2.10M USD)"
+      },\n```\n
