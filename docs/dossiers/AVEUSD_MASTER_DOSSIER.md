@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 04:10:46 IST` (`2026-10-29 22:40:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -478,7 +478,7 @@
 | `5:00 UTC` | `125.60` | `125.78` | `125.60` | `127.08` | `124.86` | 6,899,831.48 USD | 3,656,346.75 USD | 3,243,484.73 USD | 412,862.03 USD | `+5.98%` | `12B / 8S` |
 | `0:00 UTC` | `124.36` | `124.46` | `124.36` | `125.78` | `123.48` | 7,451,122.63 USD | 3,127,709.63 USD | 4,323,413.00 USD | -1,195,703.37 USD | `-16.05%` | `4B / 21S` |
 | `5:00 UTC` | `123.61` | `123.98` | `123.61` | `125.07` | `123.01` | 4,418,811.12 USD | 2,143,156.99 USD | 2,275,654.12 USD | -132,497.13 USD | `-3.00%` | `7B / 11S` |
-| `0:00 UTC` | `124.10` | `124.31` | `124.10` | `124.62` | `123.82` | 369,664.60 USD | 219,328.71 USD | 150,335.89 USD | 68,992.82 USD | `+18.66%` | `19B / 12S` |
+| `0:00 UTC` | `124.61` | `123.90` | `124.61` | `125.27` | `122.83` | 7,601,187.28 USD | 3,062,569.25 USD | 4,538,618.03 USD | -1,476,048.78 USD | `-19.42%` | `1B / 28S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -560,21 +560,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 03:29:36 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:00:36 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:00:36 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:59:36 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:01:36 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:01:36 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:01:36 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:36 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:36 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:36 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:36 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:36 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:36 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:36 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:01:36 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:30:16 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:11:16 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:11:16 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:10:16 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:12:17 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:12:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:12:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:12:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:12:17 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:12:17 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:12:17 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:12:17 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:12:17 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:12:17 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:12:17 IST`: [ForexFactory] - (Sentiment: `Neutral`)
 
 
 ---
