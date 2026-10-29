@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCAD
 **Canonical Key**: `GBPCAD` | **Broker Instrument**: `GBPCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:29:18 IST` (`2026-10-29 18:59:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 

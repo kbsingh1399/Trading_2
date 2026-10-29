@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:29:18 IST` (`2026-10-29 18:59:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -117,9 +117,9 @@
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `236` | `0x0911...129a` | `LONG` | 9,936,500.46 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -286,241.96 USD | `-2.88%` | `20X Isolated` |
-| `1175` | `0xe03b...ed11` | `SHORT` | 1,944,958.75 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 48,244.57 USD | `+2.48%` | `50X Isolated` |
-| `1775` | `0x3f31...a3d7` | `SHORT` | 1,202,033.41 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -2,101.97 USD | `-0.17%` | `50X Isolated` |
-| `1863` | `0x9df2...c665` | `SHORT` | 1,116,529.77 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 4,040.07 USD | `+0.36%` | `5X Isolated` |
+| `1179` | `0xe03b...ed11` | `SHORT` | 1,944,958.75 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 48,244.57 USD | `+2.48%` | `50X Isolated` |
+| `1773` | `0x3f31...a3d7` | `SHORT` | 1,202,033.41 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -2,101.97 USD | `-0.17%` | `50X Isolated` |
+| `1866` | `0x9df2...c665` | `SHORT` | 1,116,529.77 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 4,040.07 USD | `+0.36%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
