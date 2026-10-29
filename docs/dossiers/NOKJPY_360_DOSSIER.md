@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NOKJPY
 **Canonical Key**: `NOKJPY` | **Broker Instrument**: `NOKJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:43:29 IST` (`2026-10-29 22:13:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:46:30 IST` (`2026-10-29 22:16:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `17.03` | **Live Ask Quote**: `17.05` | **Mid Price**: `17.04`
-- **Spread Points**: `25.00` | **Spread BPS**: `14.67 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `17.03` | **Live Ask Quote**: `17.06` | **Mid Price**: `17.04`
+- **Spread Points**: `30.00` | **Spread BPS**: `17.60 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `17.16` | Lower -3.00σ Band: `16.92`
-  * Upper +2.51σ Band: `17.14` | Lower -2.51σ Band: `16.95`
+  * Upper +2.51σ Band: `17.13` | Lower -2.51σ Band: `16.95`
   * Upper +2.01σ Band: `17.11` | Lower -2.01σ Band: `16.97`
   * Upper +2.00σ Band: `17.11` | Lower -2.00σ Band: `16.97`
   * Upper +1.28σ Band: `17.09` | Lower -1.28σ Band: `16.99`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`17.11` | POC=`17.04` | VAL=`16.97`
   * Prior Day Extremes: PDH=`17.14` | PDL=`16.94` | PDC=`17.04`
   * Monday Range Blueprint: High=`17.13` | Mid=`17.04` | Low=`16.96`
-  * Developing Weekly Value Area: Weekly VAH=`17.18` | Weekly POC=`17.04` | Weekly VAL=`16.91`
+  * Developing Weekly Value Area: Weekly VAH=`17.18` | Weekly POC=`17.04` | Weekly VAL=`16.90`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`17.08` | Low=`17.01`
   * London Session (08:00-16:00 UTC): High=`17.11` | Low=`16.97`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `16.99` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `15.75` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `20.09`
-  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `15.74` (Risk Distance: `1.25` pts)
+  * +2.5R Take Profit: `20.10`
+  * Mathematical Lot Sizing: **`8.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `17.09` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `18.33` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `14.00`
-  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `18.34` (Risk Distance: `1.25` pts)
+  * +2.5R Take Profit: `13.98`
+  * Mathematical Lot Sizing: **`8.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ONTUSD
 **Canonical Key**: `ONTUSD` | **Broker Instrument**: `ONTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:43:29 IST` (`2026-10-29 22:13:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:46:30 IST` (`2026-10-29 22:16:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0476` | VWAP Z-Score: `-1.88` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000488` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `26.15` (State: `OVERSOLD`)
+  * Session VWAP: `0.0475` | VWAP Z-Score: `-1.98` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000510` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `24.01` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0504` | Lower -3.00σ Band: `0.0447`
-  * Upper +2.51σ Band: `0.0499` | Lower -2.51σ Band: `0.0452`
-  * Upper +2.01σ Band: `0.0494` | Lower -2.01σ Band: `0.0457`
-  * Upper +2.00σ Band: `0.0494` | Lower -2.00σ Band: `0.0457`
-  * Upper +1.28σ Band: `0.0488` | Lower -1.28σ Band: `0.0464`
-  * Upper +1.00σ Band: `0.0485` | Lower -1.00σ Band: `0.0466`
+  * Upper +3.00σ Band: `0.0505` | Lower -3.00σ Band: `0.0445`
+  * Upper +2.51σ Band: `0.0500` | Lower -2.51σ Band: `0.0450`
+  * Upper +2.01σ Band: `0.0495` | Lower -2.01σ Band: `0.0455`
+  * Upper +2.00σ Band: `0.0495` | Lower -2.00σ Band: `0.0455`
+  * Upper +1.28σ Band: `0.0488` | Lower -1.28σ Band: `0.0462`
+  * Upper +1.00σ Band: `0.0485` | Lower -1.00σ Band: `0.0465`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0465` | EMA-20=`0.0472` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0477` (Slope: `+0.0000`) | EMA-100=`0.0478`
-  * Institutional Anchors: EMA-144=`0.0478` | EMA-200=`0.0478` (Slope: `-0.2385`) | EMA-233=`0.0478`
+  * Fast EMA Array: EMA-9=`0.0463` | EMA-20=`0.0470` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0476` (Slope: `+0.0000`) | EMA-100=`0.0478`
+  * Institutional Anchors: EMA-144=`0.0478` | EMA-200=`0.0478` (Slope: `-0.2894`) | EMA-233=`0.0478`
 - **Range Boundaries**: 24H High=`0.0493` | 24H Low=`0.0448` | Weekly High=`0.0493` | Weekly Low=`0.0448`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0486` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.0487` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.0473` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `0.0471` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.0486` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0524` (Risk Distance: `0.0042` pts)
-  * +2.5R Take Profit: `0.0381`
+  * Execution Entry: `0.0487` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.0525` (Risk Distance: `0.0042` pts)
+  * +2.5R Take Profit: `0.0382`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
