@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDNOK
 **Canonical Key**: `USDNOK` | **Broker Instrument**: `USDNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:34:24 IST` (`2026-10-29 22:04:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:37:25 IST` (`2026-10-29 22:07:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `9.24` | **Live Ask Quote**: `9.26` | **Mid Price**: `9.25`
-- **Spread Points**: `2411.00` | **Spread BPS**: `26.07 bps` (Charter Threshold: `25.00 bps`)
-- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
+- **Live Bid Quote**: `9.24` | **Live Ask Quote**: `9.25` | **Mid Price**: `9.25`
+- **Spread Points**: `1320.00` | **Spread BPS**: `14.27 bps` (Charter Threshold: `25.00 bps`)
+- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -30,7 +30,7 @@
   * Upper +3.00σ Band: `9.31` | Lower -3.00σ Band: `9.18`
   * Upper +2.51σ Band: `9.30` | Lower -2.51σ Band: `9.20`
   * Upper +2.01σ Band: `9.29` | Lower -2.01σ Band: `9.21`
-  * Upper +2.00σ Band: `9.29` | Lower -2.00σ Band: `9.21`
+  * Upper +2.00σ Band: `9.28` | Lower -2.00σ Band: `9.21`
   * Upper +1.28σ Band: `9.27` | Lower -1.28σ Band: `9.22`
   * Upper +1.00σ Band: `9.27` | Lower -1.00σ Band: `9.23`
 - **Moving Average Ribbon & Trend Slopes**:
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `9.22` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`9.29` | POC=`9.25` | VAL=`9.21`
+  * Prior Day Value Area: VAH=`9.28` | POC=`9.25` | VAL=`9.21`
   * Prior Day Extremes: PDH=`9.30` | PDL=`9.19` | PDC=`9.25`
   * Monday Range Blueprint: High=`9.29` | Mid=`9.25` | Low=`9.20`
   * Developing Weekly Value Area: Weekly VAH=`9.32` | Weekly POC=`9.25` | Weekly VAL=`9.17`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.27` | Low=`9.23`
-  * London Session (08:00-16:00 UTC): High=`9.29` | Low=`9.21`
+  * London Session (08:00-16:00 UTC): High=`9.28` | Low=`9.21`
   * New York Session (13:00-21:00 UTC): High=`9.30` | Low=`9.19`
   * Initial Balance (First Hour): IB High=`9.28` | IB Low=`9.22`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `9.21` - `9.29`
+  * Golden Pocket Zone (0.618 - 0.650): `9.21` - `9.28`
   * Optimal Trade Entry (OTE 0.705): `9.27`
   * Structural Invalidation Anchor (0.786): `9.32`
 
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `9.22` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7.98` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `12.31`
-  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `8.00` (Risk Distance: `1.22` pts)
+  * +2.5R Take Profit: `12.27`
+  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.28` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `10.51` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `6.19`
-  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `10.50` (Risk Distance: `1.22` pts)
+  * +2.5R Take Profit: `6.23`
+  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
