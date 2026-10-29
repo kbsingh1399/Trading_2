@@ -154,3 +154,20 @@
     {
       "ticket": 19448978,
       "symbol": "USDCAD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.1,
+      "price": 1.3972,
+      "sl": 1.3961999999999999,
+      "tp": 1.3992
+    },
+    {
+      "ticket": 19448979,
+      "symbol": "BNBUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 0.7,
+      "price": 762.5,
+      "sl": 772.5,
+      "tp": 747.0
+    }
+  ]
+}
