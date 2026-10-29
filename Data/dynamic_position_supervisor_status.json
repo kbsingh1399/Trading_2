@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-29 09:04:22 UTC",
+  "timestamp_utc": "2026-10-29 09:10:12 UTC",
   "balance_usd": 4718.94,
-  "equity_usd": 4729.69,
-  "free_margin_usd": 4463.02,
+  "equity_usd": 4732.24,
+  "free_margin_usd": 4351.12,
   "max_filled_positions": 15,
-  "filled_positions_count": 1,
-  "filled_slots_free": 14,
-  "resting_limits_count": 8,
+  "filled_positions_count": 2,
+  "filled_slots_free": 13,
+  "resting_limits_count": 7,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,28 @@
       "type": "BUY",
       "volume": 0.08,
       "price_open": 157.62,
-      "price_current": 157.832,
+      "price_current": 157.885,
       "sl": 157.764,
       "tp": 158.05,
-      "gain_r": 1.178,
+      "gain_r": 1.472,
       "ratchet_stage": 2,
-      "profit_usd": 10.75,
+      "profit_usd": 13.43,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
+    },
+    {
+      "ticket": 19445579,
+      "symbol": "UKBRENT.p",
+      "type": "BUY",
+      "volume": 0.1,
+      "price_open": 114.45,
+      "price_current": 114.437,
+      "sl": 113.9,
+      "tp": 115.8,
+      "gain_r": -0.024,
+      "ratchet_stage": 0,
+      "profit_usd": -0.13,
       "decision": "LET_IT_RUN",
       "is_valid_trade": true,
       "audit_verdict": "VALID_DEVELOPING"
@@ -37,15 +53,6 @@
       "price": 7705.5,
       "sl": 7695.5,
       "tp": 7728.5
-    },
-    {
-      "ticket": 19445579,
-      "symbol": "UKBRENT.p",
-      "type": "BUY_LIMIT",
-      "volume": 0.1,
-      "price": 114.45,
-      "sl": 113.9,
-      "tp": 115.8
     },
     {
       "ticket": 19447583,
@@ -102,3 +109,4 @@
       "tp": 1.3312
     }
   ]
+}
