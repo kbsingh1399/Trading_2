@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SOL
 **Canonical Key**: `SOL` | **Broker Instrument**: `SOLUSD.p` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:03 IST` (`2026-10-29 17:25:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `101.44` | **Live Ask Quote**: `101.75` | **Mid Price**: `101.59`
-- **Spread Points**: `31.00` | **Spread BPS**: `30.51 bps` (Charter Threshold: `25.00 bps`)
-- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
+- **Live Bid Quote**: `101.42` | **Live Ask Quote**: `101.67` | **Mid Price**: `101.55`
+- **Spread Points**: `25.00` | **Spread BPS**: `24.62 bps` (Charter Threshold: `25.00 bps`)
+- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `2` | Point: `0.01`
   * Point Value (1.0 Lot): `0.01 USD` | Point Value (0.01 Lot): `0.0001 USD`
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `100.38` | VWAP Z-Score: `+1.43` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.5213` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `58.03` (State: `NEUTRAL`)
+  * Session VWAP: `101.55` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `103.04` | Lower -3.00σ Band: `97.72`
-  * Upper +2.51σ Band: `102.61` | Lower -2.51σ Band: `98.15`
-  * Upper +2.01σ Band: `102.16` | Lower -2.01σ Band: `98.60`
-  * Upper +2.00σ Band: `102.15` | Lower -2.00σ Band: `98.60`
-  * Upper +1.28σ Band: `101.51` | Lower -1.28σ Band: `99.24`
-  * Upper +1.00σ Band: `101.27` | Lower -1.00σ Band: `99.49`
+  * Upper +3.00σ Band: `102.26` | Lower -3.00σ Band: `100.83`
+  * Upper +2.51σ Band: `102.10` | Lower -2.51σ Band: `100.99`
+  * Upper +2.01σ Band: `101.97` | Lower -2.01σ Band: `101.12`
+  * Upper +2.00σ Band: `101.95` | Lower -2.00σ Band: `101.14`
+  * Upper +1.28σ Band: `101.83` | Lower -1.28σ Band: `101.26`
+  * Upper +1.00σ Band: `101.75` | Lower -1.00σ Band: `101.34`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`101.75` | EMA-20=`101.31` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`100.84` (Slope: `+0.0000`) | EMA-100=`100.82`
-  * Institutional Anchors: EMA-144=`100.85` | EMA-200=`100.78` (Slope: `+0.1175`) | EMA-233=`100.72`
-- **Range Boundaries**: 24H High=`103.63` | 24H Low=`98.95` | Weekly High=`103.63` | Weekly Low=`98.85`
+  * Fast EMA Array: EMA-9=`101.55` | EMA-20=`101.55` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`101.55` (Slope: `+0.0000`) | EMA-100=`101.55`
+  * Institutional Anchors: EMA-144=`101.55` | EMA-200=`101.55` (Slope: `+0.0000`) | EMA-233=`101.55`
+- **Range Boundaries**: 24H High=`102.56` | 24H Low=`100.53` | Weekly High=`103.58` | Weekly Low=`99.51`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `101.32` (Distance: `+0.31%`)
-  * Point of Control (POC) = `99.92` (Distance: `+1.72%`)
-  * Value Area Low (VAL) = `98.96` (Distance: `+2.70%`)
+  * Value Area High (VAH) = `101.35` (Distance: `+0.18%`)
+  * Point of Control (POC) = `99.92` (Distance: `+1.62%`)
+  * Value Area Low (VAL) = `98.96` (Distance: `+2.60%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`102.11` | POC=`100.90` | VAL=`100.63`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`102.93` | Low=`99.78`
   * Initial Balance (First Hour): IB High=`100.61` | IB Low=`99.91`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `101.19` - `102.00`
-  * Optimal Trade Entry (OTE 0.705): `101.80`
-  * Structural Invalidation Anchor (0.786): `102.41`
+  * Golden Pocket Zone (0.618 - 0.650): `101.14` - `101.95`
+  * Optimal Trade Entry (OTE 0.705): `101.75`
+  * Structural Invalidation Anchor (0.786): `102.36`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `101.87` | `101.93` | `101.69` | `101.80` | `53,777` | 5,476,602.85 USD | -1,719,500.96 USD | `-31.40%` | -50,654,353.02 USD | `-0.48` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `101.81` | `101.81` | `101.56` | `101.71` | `98,561` | 10,020,189.77 USD | -2,838,733.61 USD | `-28.33%` | -53,493,086.63 USD | `-0.94` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `101.71` | `101.75` | `101.62` | `101.73` | `28,450` | 2,893,261.61 USD | -831,092.68 USD | `-28.73%` | -54,324,179.31 USD | `+0.06` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `102.14` | `102.21` | `101.81` | `101.97` | `249,949` | 25,493,228.16 USD | -3,010,666.79 USD | `-11.81%` | -47,406,793.13 USD | `-0.49` | **`BEARISH`** | `DELTA ALIGNED` |
-| `15m` | `101.96` | `102.01` | `101.75` | `101.86` | `152,608` | 15,546,239.68 USD | -1,528,058.93 USD | `-9.83%` | -48,934,852.06 USD | `-0.18` | **`BEARISH`** | `DELTA ALIGNED` |
-| `15m` | `101.87` | `101.93` | `101.56` | `101.73` | `180,612` | 18,372,196.44 USD | -5,400,381.34 USD | `-29.39%` | -54,335,233.40 USD | `-0.93` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `101.71` | `101.75` | `101.53` | `101.54` | `49,088` | 4,990,178.12 USD | -1,924,619.06 USD | `-38.57%` | -55,735,056.58 USD | `-0.45` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `101.54` | `101.71` | `101.53` | `101.62` | `48,555` | 4,933,868.73 USD | 646,543.68 USD | `+13.10%` | -55,088,512.91 USD | `+0.76` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `101.63` | `101.78` | `101.58` | `101.64` | `21,711` | 2,208,008.89 USD | -242,976.01 USD | `-11.00%` | -55,331,488.92 USD | `+0.38` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `101.96` | `102.01` | `101.75` | `101.86` | `152,608` | 15,546,239.68 USD | -1,528,058.93 USD | `-9.83%` | -49,119,715.84 USD | `-0.18` | **`BEARISH`** | `DELTA ALIGNED` |
+| `15m` | `101.87` | `101.93` | `101.53` | `101.54` | `201,425` | 20,486,970.74 USD | -6,482,853.63 USD | `-31.64%` | -55,602,569.47 USD | `-1.13` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `101.54` | `101.78` | `101.53` | `101.64` | `70,117` | 7,126,731.26 USD | 403,041.12 USD | `+5.66%` | -55,199,528.35 USD | `+0.29` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `101.75` | `102.70` | `101.69` | `102.66` | `1,128,658` | 115,436,116.22 USD | 3,102,728.09 USD | `+2.69%` | -39,299,496.40 USD | `+0.72` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `1h` | `102.66` | `103.16` | `101.75` | `101.86` | `1,100,013` | 112,591,915.90 USD | -12,028,545.03 USD | `-10.68%` | -51,328,041.42 USD | `-1.21` | **`BEARISH`** | `DELTA ALIGNED` |
-| `1h` | `101.87` | `101.93` | `101.56` | `101.73` | `180,330` | 18,343,522.81 USD | -5,371,974.26 USD | `-29.29%` | -56,700,015.69 USD | `-0.33` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `1h` | `101.87` | `101.93` | `101.53` | `101.64` | `271,618` | 27,621,412.37 USD | -6,086,721.95 USD | `-22.04%` | -57,414,763.37 USD | `-0.42` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `99.71` | `100.79` | `99.70` | `100.34` | `1,518,349` | 152,283,655.59 USD | -4,293,353.88 USD | `-2.82%` | -42,310,715.88 USD | `+0.42` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `100.34` | `102.70` | `100.03` | `102.66` | `4,178,003` | 423,242,147.26 USD | -1,557,927.33 USD | `-0.37%` | -43,868,643.21 USD | `+0.52` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `4h` | `102.66` | `103.16` | `101.56` | `101.73` | `1,280,801` | 130,981,970.13 USD | -17,417,872.28 USD | `-13.30%` | -61,286,515.49 USD | `-0.55` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `102.66` | `103.16` | `101.53` | `101.64` | `1,371,556` | 140,205,617.89 USD | -18,108,357.54 USD | `-12.92%` | -61,977,000.75 USD | `-0.59` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `102.37` | `102.50` | `99.16` | `99.64` | `3,450,297` | 345,810,531.49 USD | -35,022,306.76 USD | `-10.13%` | -43,673,756.58 USD | `-1.00` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `99.63` | `100.78` | `99.40` | `99.71` | `1,690,194` | 169,196,763.38 USD | 5,656,394.57 USD | `+3.34%` | -38,017,362.01 USD | `+1.09` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `99.71` | `100.79` | `99.70` | `100.34` | `1,518,349` | 152,283,655.59 USD | -4,293,353.88 USD | `-2.82%` | -42,310,715.88 USD | `+0.42` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `100.34` | `102.70` | `100.03` | `102.66` | `4,178,003` | 423,242,147.26 USD | -1,557,927.33 USD | `-0.37%` | -43,868,643.21 USD | `+0.52` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `4h` | `102.66` | `103.16` | `101.56` | `101.73` | `1,280,801` | 130,981,970.13 USD | -17,417,872.28 USD | `-13.30%` | -61,286,515.49 USD | `-0.55` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `102.66` | `103.16` | `101.53` | `101.64` | `1,371,556` | 140,205,617.89 USD | -18,108,357.54 USD | `-12.92%` | -61,977,000.75 USD | `-0.59` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -101,57 +101,57 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`101.59`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`101.55`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID` | `101.56` | `799.1800` | 81,164.72 USD | 7,110,709.93 USD | `12 orders` | `-0.19%` | `-` |
-| `BID` | `101.57` | `2820.5400` | 286,482.25 USD | 7,029,545.21 USD | `10 orders` | `-0.18%` | `-` |
-| `BID` | `101.58` | `1096.3100` | 111,363.17 USD | 6,743,062.96 USD | `16 orders` | `-0.17%` | `-` |
-| `BID` | `101.59` | `8062.4500` | 819,064.30 USD | 6,631,699.79 USD | `12 orders` | `-0.16%` | `-` |
-| `BID` | `101.60` | `1200.8600` | 122,007.38 USD | 5,812,635.49 USD | `16 orders` | `-0.15%` | `-` |
-| `BID` | `101.61` | `6811.8300` | 692,150.05 USD | 5,690,628.12 USD | `14 orders` | `-0.14%` | `-` |
-| `BID` | `101.62` | `3380.8500` | 343,561.98 USD | 4,998,478.07 USD | `16 orders` | `-0.13%` | `-` |
-| `BID` | `101.63` | `3892.1200` | 395,556.16 USD | 4,654,916.09 USD | `9 orders` | `-0.12%` | `-` |
-| `BID` | `101.64` | `2021.9400` | 205,509.98 USD | 4,259,359.94 USD | `15 orders` | `-0.11%` | `-` |
-| `BID` | `101.65` | `3176.6000` | 322,901.39 USD | 4,053,849.96 USD | `16 orders` | `-0.10%` | `-` |
-| `BID` | `101.66` | `4208.6000` | 427,846.28 USD | 3,730,948.57 USD | `21 orders` | `-0.09%` | `-` |
-| `BID` | `101.67` | `5987.1500` | 608,713.54 USD | 3,303,102.29 USD | `19 orders` | `-0.08%` | `-` |
-| `BID` | `101.68` | `4859.4000` | 494,103.79 USD | 2,694,388.75 USD | `21 orders` | `-0.07%` | `-` |
-| `BID` | `101.69` | `2782.5500` | 282,957.51 USD | 2,200,284.96 USD | `14 orders` | `-0.06%` | `-` |
-| `BID` | `101.70` | `3058.7000` | 311,069.79 USD | 1,917,327.45 USD | `21 orders` | `-0.05%` | `-` |
-| `BID` | `101.71` | `4105.7500` | 417,595.83 USD | 1,606,257.66 USD | `17 orders` | `-0.04%` | `-` |
-| `BID` | `101.72` | `5212.4700` | 530,212.45 USD | 1,188,661.83 USD | `16 orders` | `-0.03%` | `-` |
-| `BID` | `101.73` | `2688.1300` | 273,463.46 USD | 658,449.38 USD | `18 orders` | `-0.02%` | `-` |
-| `BID` | `101.74` | `3201.6200` | 325,732.82 USD | 384,985.91 USD | `8 orders` | `-0.01%` | `-` |
-| `MID_SPREAD` | `101.75` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 101.75` | `0.00%` | `-` |
-| `BID` | `101.75` | `582.3400` | 59,253.10 USD | 59,253.10 USD | `11 orders` | `-0.00%` | `-` |
-| `ASK` | `101.76` | `505.5500` | 51,444.77 USD | 51,444.77 USD | `9 orders` | `+0.00%` | `-` |
-| `ASK` | `101.77` | `879.9700` | 89,554.55 USD | 140,999.31 USD | `20 orders` | `+0.01%` | `-` |
-| `ASK` | `101.78` | `1591.7400` | 162,007.30 USD | 303,006.61 USD | `29 orders` | `+0.02%` | `-` |
-| `ASK` | `101.79` | `3090.1200` | 314,543.31 USD | 617,549.93 USD | `16 orders` | `+0.03%` | `-` |
-| `ASK` | `101.80` | `4512.9800` | 459,421.36 USD | 1,076,971.29 USD | `26 orders` | `+0.04%` | `-` |
-| `ASK` | `101.81` | `5930.0500` | 603,738.39 USD | 1,680,709.68 USD | `29 orders` | `+0.05%` | `-` |
-| `ASK` | `101.82` | `2941.8700` | 299,541.20 USD | 1,980,250.88 USD | `19 orders` | `+0.06%` | `-` |
-| `ASK` | `101.83` | `5372.7500` | 547,107.13 USD | 2,527,358.02 USD | `14 orders` | `+0.07%` | `-` |
-| `ASK` | `101.84` | `3705.0900` | 377,326.37 USD | 2,904,684.38 USD | `12 orders` | `+0.08%` | `-` |
-| `ASK` | `101.85` | `6354.3600` | 647,191.57 USD | 3,551,875.95 USD | `12 orders` | `+0.09%` | `-` |
-| `ASK` | `101.86` | `3193.0300` | 325,242.04 USD | 3,877,117.98 USD | `11 orders` | `+0.10%` | `-` |
-| `ASK` | `101.87` | `1865.3100` | 190,019.13 USD | 4,067,137.11 USD | `8 orders` | `+0.11%` | `-` |
-| `ASK` | `101.88` | `7165.7000` | 730,041.52 USD | 4,797,178.63 USD | `22 orders` | `+0.12%` | `-` |
-| `ASK` | `101.89` | `2033.3100` | 207,173.96 USD | 5,004,352.59 USD | `12 orders` | `+0.13%` | `-` |
-| `ASK` | `101.90` | `3254.4500` | 331,628.46 USD | 5,335,981.04 USD | `12 orders` | `+0.14%` | `-` |
-| `ASK` | `101.91` | `4940.1500` | 503,450.69 USD | 5,839,431.73 USD | `12 orders` | `+0.15%` | `-` |
-| `ASK` | `101.92` | `1987.5300` | 202,569.06 USD | 6,042,000.79 USD | `10 orders` | `+0.16%` | `-` |
-| `ASK` | `101.93` | `511.9400` | 52,182.04 USD | 6,094,182.83 USD | `8 orders` | `+0.17%` | `-` |
-| `ASK` | `101.94` | `4756.5600` | 484,883.73 USD | 6,579,066.56 USD | `12 orders` | `+0.18%` | `-` |
-| `ASK` | `101.95` | `3771.9500` | 384,550.30 USD | 6,963,616.86 USD | `5 orders` | `+0.19%` | `-` |
+| `BID` | `101.47` | `1951.9100` | 198,060.31 USD | 5,944,134.81 USD | `10 orders` | `-0.19%` | `-` |
+| `BID` | `101.48` | `2079.7100` | 211,048.97 USD | 5,746,074.50 USD | `10 orders` | `-0.18%` | `-` |
+| `BID` | `101.49` | `2360.7300` | 239,590.49 USD | 5,535,025.53 USD | `15 orders` | `-0.17%` | `-` |
+| `BID` | `101.50` | `3107.2800` | 315,388.92 USD | 5,295,435.05 USD | `15 orders` | `-0.16%` | `-` |
+| `BID` | `101.51` | `3960.6500` | 402,045.58 USD | 4,980,046.13 USD | `14 orders` | `-0.15%` | `-` |
+| `BID` | `101.52` | `3438.5200` | 349,078.55 USD | 4,578,000.54 USD | `15 orders` | `-0.14%` | `-` |
+| `BID` | `101.53` | `5416.4100` | 549,928.11 USD | 4,228,921.99 USD | `16 orders` | `-0.13%` | `-` |
+| `BID` | `101.54` | `3360.0700` | 341,181.51 USD | 3,678,993.89 USD | `15 orders` | `-0.12%` | `-` |
+| `BID` | `101.55` | `3259.5300` | 331,005.27 USD | 3,337,812.38 USD | `12 orders` | `-0.11%` | `-` |
+| `BID` | `101.56` | `2413.1800` | 245,082.56 USD | 3,006,807.11 USD | `13 orders` | `-0.10%` | `-` |
+| `BID` | `101.57` | `5148.2900` | 522,911.82 USD | 2,761,724.55 USD | `18 orders` | `-0.09%` | `-` |
+| `BID` | `101.58` | `3440.4000` | 349,475.83 USD | 2,238,812.73 USD | `19 orders` | `-0.08%` | `-` |
+| `BID` | `101.59` | `2021.8100` | 205,395.68 USD | 1,889,336.90 USD | `14 orders` | `-0.07%` | `-` |
+| `BID` | `101.60` | `4780.1100` | 485,659.18 USD | 1,683,941.22 USD | `23 orders` | `-0.06%` | `-` |
+| `BID` | `101.61` | `1679.7800` | 170,682.45 USD | 1,198,282.04 USD | `24 orders` | `-0.05%` | `-` |
+| `BID` | `101.62` | `3533.9900` | 359,124.06 USD | 1,027,599.60 USD | `24 orders` | `-0.04%` | `-` |
+| `BID` | `101.63` | `1905.9600` | 193,702.71 USD | 668,475.53 USD | `25 orders` | `-0.03%` | `-` |
+| `BID` | `101.64` | `3641.3100` | 370,102.75 USD | 474,772.82 USD | `28 orders` | `-0.02%` | `-` |
+| `BID` | `101.65` | `414.7200` | 42,156.29 USD | 104,670.07 USD | `10 orders` | `-0.01%` | `-` |
+| `MID_SPREAD` | `101.66` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 101.66` | `0.00%` | `-` |
+| `BID` | `101.66` | `614.9300` | 62,513.78 USD | 62,513.78 USD | `13 orders` | `-0.00%` | `-` |
+| `ASK` | `101.67` | `310.6200` | 31,580.74 USD | 31,580.74 USD | `6 orders` | `+0.00%` | `-` |
+| `ASK` | `101.68` | `604.5700` | 61,472.68 USD | 93,053.41 USD | `10 orders` | `+0.01%` | `-` |
+| `ASK` | `101.69` | `1563.7900` | 159,021.81 USD | 252,075.22 USD | `22 orders` | `+0.02%` | `-` |
+| `ASK` | `101.70` | `2650.8900` | 269,595.51 USD | 521,670.73 USD | `18 orders` | `+0.03%` | `-` |
+| `ASK` | `101.71` | `1448.6900` | 147,346.26 USD | 669,016.99 USD | `29 orders` | `+0.04%` | `-` |
+| `ASK` | `101.72` | `3579.7600` | 364,133.19 USD | 1,033,150.18 USD | `17 orders` | `+0.05%` | `-` |
+| `ASK` | `101.73` | `2057.3100` | 209,290.15 USD | 1,242,440.32 USD | `22 orders` | `+0.06%` | `-` |
+| `ASK` | `101.74` | `4807.9400` | 489,159.82 USD | 1,731,600.14 USD | `23 orders` | `+0.07%` | `-` |
+| `ASK` | `101.75` | `2486.9600` | 253,048.18 USD | 1,984,648.32 USD | `20 orders` | `+0.08%` | `-` |
+| `ASK` | `101.76` | `3593.4800` | 365,672.52 USD | 2,350,320.84 USD | `12 orders` | `+0.09%` | `-` |
+| `ASK` | `101.77` | `2562.7300` | 260,809.03 USD | 2,611,129.88 USD | `19 orders` | `+0.10%` | `-` |
+| `ASK` | `101.78` | `2502.9100` | 254,746.18 USD | 2,865,876.06 USD | `11 orders` | `+0.11%` | `-` |
+| `ASK` | `101.79` | `4678.0200` | 476,175.66 USD | 3,342,051.71 USD | `12 orders` | `+0.12%` | `-` |
+| `ASK` | `101.80` | `2672.6400` | 272,074.75 USD | 3,614,126.46 USD | `14 orders` | `+0.13%` | `-` |
+| `ASK` | `101.81` | `5656.7400` | 575,912.70 USD | 4,190,039.16 USD | `21 orders` | `+0.14%` | `-` |
+| `ASK` | `101.82` | `3788.3100` | 385,725.72 USD | 4,575,764.89 USD | `15 orders` | `+0.15%` | `-` |
+| `ASK` | `101.83` | `2489.0700` | 253,462.00 USD | 4,829,226.89 USD | `9 orders` | `+0.16%` | `-` |
+| `ASK` | `101.84` | `2292.8200` | 233,500.79 USD | 5,062,727.68 USD | `8 orders` | `+0.17%` | `-` |
+| `ASK` | `101.85` | `1598.9400` | 162,852.04 USD | 5,225,579.71 USD | `9 orders` | `+0.18%` | `-` |
+| `ASK` | `101.86` | `1888.4800` | 192,360.57 USD | 5,417,940.29 USD | `7 orders` | `+0.19%` | `-` |
 
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:44:58 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:54:46 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -1456,17 +1456,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `98.96` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `97.87` (Risk Distance: `1.09` pts)
-  * +2.5R Take Profit: `101.69`
-  * Mathematical Lot Sizing: **`9.16 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `97.38` (Risk Distance: `1.58` pts)
+  * +2.5R Take Profit: `102.90`
+  * Mathematical Lot Sizing: **`6.34 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `101.32` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `102.41` (Risk Distance: `1.09` pts)
-  * +2.5R Take Profit: `98.59`
-  * Mathematical Lot Sizing: **`9.16 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Execution Entry: `101.35` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `102.92` (Risk Distance: `1.58` pts)
+  * +2.5R Take Profit: `97.41`
+  * Mathematical Lot Sizing: **`6.34 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`102.41`) or if 21:15 UTC rollover blackout begins.
+**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`102.36`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

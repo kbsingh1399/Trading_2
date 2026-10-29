@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.76` | **Live Ask Quote**: `8.76` | **Mid Price**: `8.76`
-- **Spread Points**: `17.00` | **Spread BPS**: `0.19 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `26.00` | **Spread BPS**: `0.30 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,17 +27,17 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `8.82` | Lower -3.00σ Band: `8.70`
-  * Upper +2.51σ Band: `8.81` | Lower -2.51σ Band: `8.71`
+  * Upper +3.00σ Band: `8.83` | Lower -3.00σ Band: `8.70`
+  * Upper +2.51σ Band: `8.81` | Lower -2.51σ Band: `8.72`
   * Upper +2.01σ Band: `8.80` | Lower -2.01σ Band: `8.73`
   * Upper +2.00σ Band: `8.80` | Lower -2.00σ Band: `8.73`
   * Upper +1.28σ Band: `8.79` | Lower -1.28σ Band: `8.74`
-  * Upper +1.00σ Band: `8.78` | Lower -1.00σ Band: `8.74`
+  * Upper +1.00σ Band: `8.78` | Lower -1.00σ Band: `8.75`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`8.76` | EMA-20=`8.76` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.76` (Slope: `+0.0000`) | EMA-100=`8.76`
   * Institutional Anchors: EMA-144=`8.76` | EMA-200=`8.76` (Slope: `+0.0000`) | EMA-233=`8.76`
-- **Range Boundaries**: 24H High=`8.85` | 24H Low=`8.67` | Weekly High=`8.94` | Weekly Low=`8.59`
+- **Range Boundaries**: 24H High=`8.85` | 24H Low=`8.68` | Weekly High=`8.94` | Weekly Low=`8.59`
 
 ---
 
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`8.80` | POC=`8.76` | VAL=`8.73`
-  * Prior Day Extremes: PDH=`8.81` | PDL=`8.71` | PDC=`8.76`
+  * Prior Day Extremes: PDH=`8.82` | PDL=`8.71` | PDC=`8.76`
   * Monday Range Blueprint: High=`8.81` | Mid=`8.76` | Low=`8.72`
   * Developing Weekly Value Area: Weekly VAH=`8.83` | Weekly POC=`8.76` | Weekly VAL=`8.69`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`8.78` | Low=`8.74`
+  * Asian Session (00:00-08:00 UTC): High=`8.78` | Low=`8.75`
   * London Session (08:00-16:00 UTC): High=`8.80` | Low=`8.73`
-  * New York Session (13:00-21:00 UTC): High=`8.81` | Low=`8.71`
+  * New York Session (13:00-21:00 UTC): High=`8.82` | Low=`8.71`
   * Initial Balance (First Hour): IB High=`8.79` | IB Low=`8.74`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `8.73` - `8.80`

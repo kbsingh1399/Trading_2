@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,17 +27,17 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `23.89` | Lower -3.00σ Band: `23.56`
+  * Upper +3.00σ Band: `23.88` | Lower -3.00σ Band: `23.55`
   * Upper +2.51σ Band: `23.85` | Lower -2.51σ Band: `23.59`
   * Upper +2.01σ Band: `23.82` | Lower -2.01σ Band: `23.62`
-  * Upper +2.00σ Band: `23.82` | Lower -2.00σ Band: `23.63`
-  * Upper +1.28σ Band: `23.79` | Lower -1.28σ Band: `23.66`
+  * Upper +2.00σ Band: `23.81` | Lower -2.00σ Band: `23.62`
+  * Upper +1.28σ Band: `23.78` | Lower -1.28σ Band: `23.65`
   * Upper +1.00σ Band: `23.77` | Lower -1.00σ Band: `23.67`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`23.72` | EMA-20=`23.72` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`23.72` (Slope: `+0.0000`) | EMA-100=`23.72`
   * Institutional Anchors: EMA-144=`23.72` | EMA-200=`23.72` (Slope: `+0.0000`) | EMA-233=`23.72`
-- **Range Boundaries**: 24H High=`23.96` | 24H Low=`23.48` | Weekly High=`24.20` | Weekly Low=`23.25`
+- **Range Boundaries**: 24H High=`23.96` | 24H Low=`23.48` | Weekly High=`24.19` | Weekly Low=`23.24`
 
 ---
 
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `23.65` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`23.82` | POC=`23.72` | VAL=`23.63`
+  * Prior Day Value Area: VAH=`23.81` | POC=`23.72` | VAL=`23.62`
   * Prior Day Extremes: PDH=`23.86` | PDL=`23.58` | PDC=`23.72`
   * Monday Range Blueprint: High=`23.84` | Mid=`23.72` | Low=`23.60`
   * Developing Weekly Value Area: Weekly VAH=`23.91` | Weekly POC=`23.72` | Weekly VAL=`23.53`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`23.77` | Low=`23.67`
-  * London Session (08:00-16:00 UTC): High=`23.82` | Low=`23.63`
+  * London Session (08:00-16:00 UTC): High=`23.81` | Low=`23.62`
   * New York Session (13:00-21:00 UTC): High=`23.86` | Low=`23.58`
   * Initial Balance (First Hour): IB High=`23.79` | IB Low=`23.65`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `23.63` - `23.82`
+  * Golden Pocket Zone (0.618 - 0.650): `23.62` - `23.81`
   * Optimal Trade Entry (OTE 0.705): `23.77`
   * Structural Invalidation Anchor (0.786): `23.91`
 

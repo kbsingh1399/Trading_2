@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURZAR
 **Canonical Key**: `EURZAR` | **Broker Instrument**: `EURZAR.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `18.56` | **Live Ask Quote**: `18.57` | **Mid Price**: `18.56`
-- **Spread Points**: `535.00` | **Spread BPS**: `2.88 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `481.00` | **Spread BPS**: `2.59 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`18.56` | EMA-20=`18.56` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`18.56` (Slope: `+0.0000`) | EMA-100=`18.56`
   * Institutional Anchors: EMA-144=`18.56` | EMA-200=`18.56` (Slope: `+0.0000`) | EMA-233=`18.56`
-- **Range Boundaries**: 24H High=`18.75` | 24H Low=`18.38` | Weekly High=`18.93` | Weekly Low=`18.19`
+- **Range Boundaries**: 24H High=`18.75` | 24H Low=`18.38` | Weekly High=`18.94` | Weekly Low=`18.19`
 
 ---
 
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`18.64` | POC=`18.56` | VAL=`18.49`
-  * Prior Day Extremes: PDH=`18.67` | PDL=`18.45` | PDC=`18.56`
+  * Prior Day Extremes: PDH=`18.68` | PDL=`18.45` | PDC=`18.56`
   * Monday Range Blueprint: High=`18.66` | Mid=`18.56` | Low=`18.47`
   * Developing Weekly Value Area: Weekly VAH=`18.71` | Weekly POC=`18.56` | Weekly VAL=`18.42`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`18.60` | Low=`18.53`
   * London Session (08:00-16:00 UTC): High=`18.64` | Low=`18.49`
-  * New York Session (13:00-21:00 UTC): High=`18.67` | Low=`18.45`
+  * New York Session (13:00-21:00 UTC): High=`18.68` | Low=`18.45`
   * Initial Balance (First Hour): IB High=`18.62` | IB Low=`18.51`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `18.49` - `18.64`
@@ -270,13 +270,13 @@
   * Execution Entry: `18.51` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `17.30` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `21.53`
-  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `18.62` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `19.83` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `15.60`
-  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ATMUSD
 **Canonical Key**: `ATMUSD` | **Broker Instrument**: `ATMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1.61` | **Live Ask Quote**: `1.63` | **Mid Price**: `1.62`
-- **Spread Points**: `23.00` | **Spread BPS**: `141.93 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `1.60` | **Live Ask Quote**: `1.63` | **Mid Price**: `1.61`
+- **Spread Points**: `23.00` | **Spread BPS**: `142.46 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.60` | VWAP Z-Score: `+0.83` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0089` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `53.24` (State: `NEUTRAL`)
+  * Session VWAP: `1.60` | VWAP Z-Score: `+0.43` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0087` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `48.27` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.65` | Lower -3.00σ Band: `1.56`
   * Upper +2.51σ Band: `1.64` | Lower -2.51σ Band: `1.56`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.61` | EMA-20=`1.61` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.61` (Slope: `+0.0000`) | EMA-100=`1.61`
-  * Institutional Anchors: EMA-144=`1.61` | EMA-200=`1.61` (Slope: `+0.0138`) | EMA-233=`1.61`
+  * Institutional Anchors: EMA-144=`1.61` | EMA-200=`1.61` (Slope: `+0.0163`) | EMA-233=`1.61`
 - **Range Boundaries**: 24H High=`1.65` | 24H Low=`1.57` | Weekly High=`1.66` | Weekly Low=`1.57`
 
 ---
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.62` (Distance: `+0.01%`)
-  * Point of Control (POC) = `1.61` (Distance: `+0.53%`)
-  * Value Area Low (VAL) = `1.58` (Distance: `+2.41%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `1.62` (Distance: `-0.30%`)
+  * Point of Control (POC) = `1.61` (Distance: `+0.22%`)
+  * Value Area Low (VAL) = `1.58` (Distance: `+2.09%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.64` | POC=`1.62` | VAL=`1.61`
   * Prior Day Extremes: PDH=`1.65` | PDL=`1.59` | PDC=`1.63`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`1.63` | Low=`1.60`
   * Initial Balance (First Hour): IB High=`1.61` | IB Low=`1.59`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1.61` - `1.63`
+  * Golden Pocket Zone (0.618 - 0.650): `1.61` - `1.62`
   * Optimal Trade Entry (OTE 0.705): `1.62`
   * Structural Invalidation Anchor (0.786): `1.63`
 

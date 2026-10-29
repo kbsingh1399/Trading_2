@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1693` | VWAP Z-Score: `+1.49` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000874` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `60.58` (State: `NEUTRAL`)
+  * Session VWAP: `0.1694` | VWAP Z-Score: `+0.92` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000889` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `51.49` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1746` | Lower -3.00σ Band: `0.1641`
-  * Upper +2.51σ Band: `0.1738` | Lower -2.51σ Band: `0.1649`
+  * Upper +3.00σ Band: `0.1747` | Lower -3.00σ Band: `0.1641`
+  * Upper +2.51σ Band: `0.1738` | Lower -2.51σ Band: `0.1650`
   * Upper +2.01σ Band: `0.1729` | Lower -2.01σ Band: `0.1658`
   * Upper +2.00σ Band: `0.1729` | Lower -2.00σ Band: `0.1658`
   * Upper +1.28σ Band: `0.1716` | Lower -1.28σ Band: `0.1671`
   * Upper +1.00σ Band: `0.1711` | Lower -1.00σ Band: `0.1676`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1718` | EMA-20=`0.1711` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1702` (Slope: `+0.0000`) | EMA-100=`0.1700`
-  * Institutional Anchors: EMA-144=`0.1699` | EMA-200=`0.1697` (Slope: `+0.1464`) | EMA-233=`0.1695`
+  * Fast EMA Array: EMA-9=`0.1716` | EMA-20=`0.1711` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1703` (Slope: `+0.0000`) | EMA-100=`0.1700`
+  * Institutional Anchors: EMA-144=`0.1699` | EMA-200=`0.1697` (Slope: `+0.1463`) | EMA-233=`0.1695`
 - **Range Boundaries**: 24H High=`0.1749` | 24H Low=`0.1665` | Weekly High=`0.1749` | Weekly Low=`0.1661`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1712` (Distance: `+0.17%`)
-  * Point of Control (POC) = `0.1675` (Distance: `+2.38%`)
-  * Value Area Low (VAL) = `0.1668` (Distance: `+2.81%`)
+  * Value Area High (VAH) = `0.1712` (Distance: `+0.08%`)
+  * Point of Control (POC) = `0.1675` (Distance: `+2.30%`)
+  * Value Area Low (VAL) = `0.1668` (Distance: `+2.73%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1722` | POC=`0.1715` | VAL=`0.1698`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`0.1736` | Low=`0.1680`
   * Initial Balance (First Hour): IB High=`0.1696` | IB Low=`0.1684`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.1707` - `0.1720`
+  * Golden Pocket Zone (0.618 - 0.650): `0.1707` - `0.1721`
   * Optimal Trade Entry (OTE 0.705): `0.1717`
   * Structural Invalidation Anchor (0.786): `0.1727`
 
@@ -269,13 +269,13 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1668` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `0.1653` (Risk Distance: `0.0015` pts)
-  * +2.5R Take Profit: `0.1705`
+  * +2.5R Take Profit: `0.1706`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1712` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `0.1727` (Risk Distance: `0.0015` pts)
-  * +2.5R Take Profit: `0.1675`
+  * +2.5R Take Profit: `0.1674`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

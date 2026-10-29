@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: OP
 **Canonical Key**: `OP` | **Broker Instrument**: `OPUSD.p` | **Asset Class**: `Crypto Alt L2`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.1129` | `0.1132` | `0.1128` | `0.1130` | `761,689` | 86,031.08 USD | 3,576.83 USD | `+4.16%` | -522,149.15 USD | `+0.18` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `5m` | `0.1130` | `0.1130` | `0.1125` | `0.1126` | `885,663` | 99,790.28 USD | -17,624.36 USD | `-17.66%` | -539,773.51 USD | `-0.26` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `0.1126` | `0.1127` | `0.1124` | `0.1126` | `530,003` | 59,639.83 USD | 1,283.75 USD | `+2.15%` | -538,489.75 USD | `+0.14` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `15m` | `0.1132` | `0.1135` | `0.1126` | `0.1130` | `6,020,436` | 680,945.05 USD | -207,333.38 USD | `-30.45%` | -498,481.71 USD | `-2.81` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.1130` | `0.1130` | `0.1127` | `0.1129` | `2,159,370` | 243,648.48 USD | -27,244.27 USD | `-11.18%` | -525,725.97 USD | `-0.49` | **`BEARISH`** | `DELTA ALIGNED` |
-| `15m` | `0.1129` | `0.1132` | `0.1124` | `0.1126` | `2,177,355` | 245,461.18 USD | -12,763.78 USD | `-5.20%` | -538,489.75 USD | `-0.35` | **`BEARISH`** | `DELTA ALIGNED` |
+| `5m` | `0.1126` | `0.1127` | `0.1123` | `0.1123` | `746,349` | 83,957.23 USD | -6,079.56 USD | `-7.24%` | -617,870.78 USD | `+0.01` | **`BEARISH`** | `DELTA ALIGNED` |
+| `5m` | `0.1123` | `0.1124` | `0.1119` | `0.1121` | `1,547,643` | 173,583.04 USD | -51,094.98 USD | `-29.44%` | -668,965.76 USD | `-0.79` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.1121` | `0.1124` | `0.1120` | `0.1120` | `1,043,001` | 117,026.92 USD | -30,333.30 USD | `-25.92%` | -699,299.06 USD | `-0.39` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `0.1130` | `0.1130` | `0.1127` | `0.1129` | `2,159,370` | 243,648.48 USD | -27,244.27 USD | `-11.18%` | -582,210.41 USD | `-0.49` | **`BEARISH`** | `DELTA ALIGNED` |
+| `15m` | `0.1129` | `0.1132` | `0.1123` | `0.1123` | `2,393,701` | 269,778.58 USD | -20,127.09 USD | `-7.46%` | -602,337.50 USD | `-0.44` | **`BEARISH`** | `DELTA ALIGNED` |
+| `15m` | `0.1123` | `0.1124` | `0.1119` | `0.1120` | `2,590,945` | 290,643.70 USD | -81,394.54 USD | `-28.00%` | -683,732.04 USD | `-1.14` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `0.1119` | `0.1141` | `0.1117` | `0.1139` | `17,968,115` | 2,030,636.79 USD | 9,855.25 USD | `+0.49%` | -531,384.47 USD | `+0.23` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `1h` | `0.1140` | `0.1148` | `0.1126` | `0.1129` | `21,471,756` | 2,437,488.22 USD | -123,745.56 USD | `-5.08%` | -655,130.03 USD | `-0.29` | **`BEARISH`** | `DELTA ALIGNED` |
-| `1h` | `0.1129` | `0.1132` | `0.1124` | `0.1126` | `2,177,355` | 245,461.18 USD | -12,763.78 USD | `-5.20%` | -667,893.81 USD | `+0.19` | **`BEARISH`** | `DELTA ALIGNED` |
+| `1h` | `0.1129` | `0.1132` | `0.1119` | `0.1120` | `4,984,434` | 560,398.54 USD | -101,545.37 USD | `-18.12%` | -756,675.40 USD | `-0.17` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `0.1076` | `0.1111` | `0.1075` | `0.1099` | `45,357,664` | 4,969,550.08 USD | 142,722.83 USD | `+2.87%` | -1,229,700.44 USD | `+0.64` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1099` | `0.1141` | `0.1093` | `0.1139` | `69,113,404` | 7,714,245.64 USD | 341,255.60 USD | `+4.42%` | -888,444.84 USD | `+0.76` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.1140` | `0.1148` | `0.1124` | `0.1126` | `23,651,197` | 2,683,184.35 USD | -136,274.40 USD | `-5.08%` | -1,024,719.24 USD | `+0.06` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.1140` | `0.1148` | `0.1119` | `0.1120` | `26,456,402` | 2,997,910.51 USD | -225,267.19 USD | `-7.51%` | -1,113,712.03 USD | `-0.06` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.1131` | `0.1136` | `0.1072` | `0.1085` | `76,338,549` | 8,353,905.81 USD | -1,528,374.61 USD | `-18.30%` | -1,480,991.26 USD | `-1.00` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `0.1085` | `0.1106` | `0.1071` | `0.1076` | `47,048,931` | 5,111,570.05 USD | 108,567.99 USD | `+2.12%` | -1,372,423.27 USD | `+0.75` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.1076` | `0.1111` | `0.1075` | `0.1099` | `45,357,664` | 4,969,550.08 USD | 142,722.83 USD | `+2.87%` | -1,229,700.44 USD | `+0.64` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1099` | `0.1141` | `0.1093` | `0.1139` | `69,113,404` | 7,714,245.64 USD | 341,255.60 USD | `+4.42%` | -888,444.84 USD | `+0.76` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.1140` | `0.1148` | `0.1124` | `0.1126` | `23,651,197` | 2,683,184.35 USD | -136,274.40 USD | `-5.08%` | -1,024,719.24 USD | `+0.06` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.1140` | `0.1148` | `0.1119` | `0.1120` | `26,456,402` | 2,997,910.51 USD | -225,267.19 USD | `-7.51%` | -1,113,712.03 USD | `-0.06` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:44:58 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:54:46 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |

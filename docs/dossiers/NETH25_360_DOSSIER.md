@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NETH25
 **Canonical Key**: `NETH25` | **Broker Instrument**: `NETH25.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1143.05` | **Live Ask Quote**: `1143.35` | **Mid Price**: `1143.20`
+- **Live Bid Quote**: `1142.77` | **Live Ask Quote**: `1143.07` | **Mid Price**: `1142.92`
 - **Spread Points**: `30.00` | **Spread BPS**: `2.62 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1140.81` | VWAP Z-Score: `+1.07` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.65` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `55.94` (State: `NEUTRAL`)
+  * Session VWAP: `1140.83` | VWAP Z-Score: `+0.69` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.63` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.90` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1149.62` | Lower -3.00σ Band: `1132.00`
-  * Upper +2.51σ Band: `1148.18` | Lower -2.51σ Band: `1133.43`
-  * Upper +2.01σ Band: `1146.71` | Lower -2.01σ Band: `1134.90`
-  * Upper +2.00σ Band: `1146.68` | Lower -2.00σ Band: `1134.93`
-  * Upper +1.28σ Band: `1144.56` | Lower -1.28σ Band: `1137.05`
-  * Upper +1.00σ Band: `1143.74` | Lower -1.00σ Band: `1137.87`
+  * Upper +3.00σ Band: `1149.63` | Lower -3.00σ Band: `1132.03`
+  * Upper +2.51σ Band: `1148.19` | Lower -2.51σ Band: `1133.47`
+  * Upper +2.01σ Band: `1146.72` | Lower -2.01σ Band: `1134.94`
+  * Upper +2.00σ Band: `1146.69` | Lower -2.00σ Band: `1134.97`
+  * Upper +1.28σ Band: `1144.58` | Lower -1.28σ Band: `1137.08`
+  * Upper +1.00σ Band: `1143.76` | Lower -1.00σ Band: `1137.90`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1143.29` | EMA-20=`1142.97` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1141.42` (Slope: `+0.0000`) | EMA-100=`1139.71`
-  * Institutional Anchors: EMA-144=`1138.69` | EMA-200=`1137.83` (Slope: `+0.0585`) | EMA-233=`1137.45`
+  * Fast EMA Array: EMA-9=`1143.20` | EMA-20=`1142.96` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1141.47` (Slope: `+0.0000`) | EMA-100=`1139.78`
+  * Institutional Anchors: EMA-144=`1138.75` | EMA-200=`1137.89` (Slope: `+0.0593`) | EMA-233=`1137.51`
 - **Range Boundaries**: 24H High=`1147.15` | 24H Low=`1134.15` | Weekly High=`1147.15` | Weekly Low=`1127.75`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1146.51` (Distance: `-0.29%`)
-  * Point of Control (POC) = `1142.82` (Distance: `+0.03%`)
-  * Value Area Low (VAL) = `1137.50` (Distance: `+0.50%`)
+  * Value Area High (VAH) = `1146.51` (Distance: `-0.31%`)
+  * Point of Control (POC) = `1142.82` (Distance: `+0.01%`)
+  * Value Area Low (VAL) = `1137.50` (Distance: `+0.48%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1138.56` | POC=`1136.91` | VAL=`1133.96`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`1147.15` | Low=`1139.30`
   * Initial Balance (First Hour): IB High=`1139.25` | IB Low=`1137.05`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1138.63` - `1147.77`
-  * Optimal Trade Entry (OTE 0.705): `1145.49`
-  * Structural Invalidation Anchor (0.786): `1152.35`
+  * Golden Pocket Zone (0.618 - 0.650): `1138.35` - `1147.49`
+  * Optimal Trade Entry (OTE 0.705): `1145.21`
+  * Structural Invalidation Anchor (0.786): `1152.06`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1137.50` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1135.07` (Risk Distance: `2.43` pts)
-  * +2.5R Take Profit: `1143.57`
-  * Mathematical Lot Sizing: **`4.12 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1135.09` (Risk Distance: `2.41` pts)
+  * +2.5R Take Profit: `1143.53`
+  * Mathematical Lot Sizing: **`4.14 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1146.51` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1148.94` (Risk Distance: `2.43` pts)
-  * +2.5R Take Profit: `1140.44`
-  * Mathematical Lot Sizing: **`4.12 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1148.92` (Risk Distance: `2.41` pts)
+  * +2.5R Take Profit: `1140.48`
+  * Mathematical Lot Sizing: **`4.14 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1152.35`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1152.06`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
