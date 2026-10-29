@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BNB
 **Canonical Key**: `BNB` | **Broker Instrument**: `BNBUSD.p` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-30 03:10:07 IST` (`2026-10-29 21:40:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:13:09 IST` (`2026-10-29 21:43:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -2272,7 +2272,7 @@
 | `5:00 UTC` | `694.05` | `694.59` | `694.05` | `707.85` | `677.85` | 179,693,058.88 USD | 96,266,693.98 USD | 83,426,364.90 USD | 12,840,329.08 USD | `+7.15%` | `3B / 4S` |
 | `0:00 UTC` | `705.15` | `704.71` | `705.15` | `718.65` | `690.75` | 186,631,734.60 USD | 100,794,189.14 USD | 85,837,545.46 USD | 14,956,643.67 USD | `+8.01%` | `11B / 2S` |
 | `5:00 UTC` | `717.75` | `715.45` | `717.75` | `727.95` | `707.85` | 126,482,329.61 USD | 66,523,365.17 USD | 59,958,964.44 USD | 6,564,400.73 USD | `+5.19%` | `10B / 3S` |
-| `0:00 UTC` | `714.75` | `714.11` | `714.75` | `715.65` | `712.65` | 7,445,945.11 USD | 4,340,758.68 USD | 3,105,186.43 USD | 1,235,572.26 USD | `+16.59%` | `1B / 0S` |
+| `0:00 UTC` | `709.95` | `711.68` | `709.95` | `715.65` | `706.35` | 27,932,972.43 USD | 12,191,099.50 USD | 15,741,872.93 USD | -3,550,773.43 USD | `-12.71%` | `1B / 5S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -2336,21 +2336,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:53:46 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:14:46 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:00:46 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:59:46 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:59:46 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:59:46 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:46 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:46 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:01:46 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:46 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:46 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:46 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:46 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:01:46 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:01:46 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
