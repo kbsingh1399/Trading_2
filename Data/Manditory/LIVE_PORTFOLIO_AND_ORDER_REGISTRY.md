@@ -14,11 +14,11 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,718.94 USD**
-- **Floating Equity**: **4,743.73 USD**
-- **Free Margin**: **4,362.61 USD**
+- **Floating Equity**: **4,741.42 USD**
+- **Free Margin**: **4,360.30 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 09:53:03 UTC`
+- **Last Updated**: `2026-10-29 09:59:05 UTC`
 
 ---
 
@@ -26,8 +26,8 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.955 | **157.764** | 158.05 | **+16.97 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19445579** | `UKBRENT.p` | BUY | 0.10 | 114.45 | 115.232 | **114.89** | 115.8 | **+7.82 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.957 | **157.764** | 158.05 | **+17.07 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19445579** | `UKBRENT.p` | BUY | 0.10 | 114.45 | 114.991 | **114.89** | 115.8 | **+5.41 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
