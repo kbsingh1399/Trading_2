@@ -14,11 +14,11 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,697.67 USD**
-- **Floating Equity**: **4,727.51 USD**
-- **Free Margin**: **4,197.08 USD**
+- **Floating Equity**: **4,731.10 USD**
+- **Free Margin**: **4,200.67 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 08:27:01 UTC`
+- **Last Updated**: `2026-10-29 08:33:10 UTC`
 
 ---
 
@@ -26,13 +26,13 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437063** | `AUDUSD.pi` | SELL | 0.10 | 0.70586 | 0.70405 | **0.70506** | 0.70368 | **+18.10 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.849 | **157.764** | 158.05 | **+11.61 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2845.16 | **2858.0** | 2822.0 | **+0.13 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437063** | `AUDUSD.pi` | SELL | 0.10 | 0.70586 | 0.70388 | **0.70506** | 0.70368 | **+19.80 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.886 | **157.764** | 158.05 | **+13.48 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2845.02 | **2858.0** | 2822.0 | **+0.15 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (7 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (9 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
@@ -43,3 +43,5 @@
 | **#19448978** | `USDCAD.pi` | BUY_LIMIT | 0.10 | **1.3972** | **1.3961999999999999** | 1.3992 | Resting passive maker order |
 | **#19448979** | `BNBUSD.p` | SELL_LIMIT | 0.70 | **762.5** | **772.5** | 747.0 | Resting passive maker order |
 | **#19457311** | `XAUUSD.pi` | SELL_LIMIT | 0.01 | **4064.5** | **4088.5** | 3995.0 | Resting passive maker order |
+| **#19457516** | `NAS100.p` | SELL_LIMIT | 0.01 | **29740.0** | **30025.0** | 29230.0 | Resting passive maker order |
+| **#19457518** | `GBPUSD.pi` | SELL_LIMIT | 0.08 | **1.3348** | **1.3364** | 1.3312 | Resting passive maker order |
