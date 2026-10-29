@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHRUSD
 **Canonical Key**: `CHRUSD` | **Broker Instrument**: `CHRUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -24,7 +24,7 @@
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
   * Session VWAP: `0.0164` | VWAP Z-Score: `+0.09` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000086` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period ATR: `0.000080` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `40.08` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0171` | Lower -3.00σ Band: `0.0156`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0165` | EMA-20=`0.0165` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0165` (Slope: `+0.0000`) | EMA-100=`0.0165`
-  * Institutional Anchors: EMA-144=`0.0165` | EMA-200=`0.0165` (Slope: `+0.0847`) | EMA-233=`0.0164`
+  * Institutional Anchors: EMA-144=`0.0165` | EMA-200=`0.0165` (Slope: `+0.0597`) | EMA-233=`0.0164`
 - **Range Boundaries**: 24H High=`0.0174` | 24H Low=`0.0160` | Weekly High=`0.0174` | Weekly Low=`0.0156`
 
 ---

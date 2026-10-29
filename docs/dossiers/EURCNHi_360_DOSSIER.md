@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.43` | **Live Ask Quote**: `7.43` | **Mid Price**: `7.43`
-- **Spread Points**: `48.00` | **Spread BPS**: `0.65 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `41.00` | **Spread BPS**: `0.55 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,7 +27,7 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `7.49` | Lower -3.00σ Band: `7.38`
+  * Upper +3.00σ Band: `7.48` | Lower -3.00σ Band: `7.38`
   * Upper +2.51σ Band: `7.47` | Lower -2.51σ Band: `7.39`
   * Upper +2.01σ Band: `7.46` | Lower -2.01σ Band: `7.40`
   * Upper +2.00σ Band: `7.46` | Lower -2.00σ Band: `7.40`
@@ -44,20 +44,20 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `7.46` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `7.45` (Distance: `+0.00%`)
   * Point of Control (POC) = `7.43` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `7.41` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7.46` | POC=`7.43` | VAL=`7.40`
   * Prior Day Extremes: PDH=`7.48` | PDL=`7.39` | PDC=`7.43`
-  * Monday Range Blueprint: High=`7.47` | Mid=`7.43` | Low=`7.40`
+  * Monday Range Blueprint: High=`7.47` | Mid=`7.43` | Low=`7.39`
   * Developing Weekly Value Area: Weekly VAH=`7.49` | Weekly POC=`7.43` | Weekly VAL=`7.37`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`7.45` | Low=`7.42`
   * London Session (08:00-16:00 UTC): High=`7.46` | Low=`7.40`
   * New York Session (13:00-21:00 UTC): High=`7.48` | Low=`7.39`
-  * Initial Balance (First Hour): IB High=`7.46` | IB Low=`7.41`
+  * Initial Balance (First Hour): IB High=`7.45` | IB Low=`7.41`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `7.40` - `7.46`
   * Optimal Trade Entry (OTE 0.705): `7.45`
@@ -273,8 +273,8 @@
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `7.46` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `8.66` (Risk Distance: `1.20` pts)
+  * Execution Entry: `7.45` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `8.65` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.45`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

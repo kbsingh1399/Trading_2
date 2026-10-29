@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNDUSD
 **Canonical Key**: `SNDUSD` | **Broker Instrument**: `SNDUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0461` | VWAP Z-Score: `+0.56` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000345` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.60` (State: `NEUTRAL`)
+  * Session VWAP: `0.0461` | VWAP Z-Score: `+0.75` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000342` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `47.72` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0492` | Lower -3.00σ Band: `0.0431`
   * Upper +2.51σ Band: `0.0487` | Lower -2.51σ Band: `0.0436`
   * Upper +2.01σ Band: `0.0482` | Lower -2.01σ Band: `0.0441`
   * Upper +2.00σ Band: `0.0482` | Lower -2.00σ Band: `0.0441`
   * Upper +1.28σ Band: `0.0474` | Lower -1.28σ Band: `0.0448`
-  * Upper +1.00σ Band: `0.0471` | Lower -1.00σ Band: `0.0451`
+  * Upper +1.00σ Band: `0.0472` | Lower -1.00σ Band: `0.0451`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0471` | EMA-20=`0.0471` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0470` | EMA-20=`0.0471` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0467` (Slope: `+0.0000`) | EMA-100=`0.0465`
-  * Institutional Anchors: EMA-144=`0.0464` | EMA-200=`0.0464` (Slope: `+0.2288`) | EMA-233=`0.0465`
+  * Institutional Anchors: EMA-144=`0.0464` | EMA-200=`0.0464` (Slope: `+0.2069`) | EMA-233=`0.0465`
 - **Range Boundaries**: 24H High=`0.0481` | 24H Low=`0.0445` | Weekly High=`0.0481` | Weekly Low=`0.0445`
 
 ---

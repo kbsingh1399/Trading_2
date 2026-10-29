@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XSIUSD
 **Canonical Key**: `XSIUSD` | **Broker Instrument**: `XSIUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1942` | VWAP Z-Score: `-0.27` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.1942` | VWAP Z-Score: `-0.05` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0015` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `32.42` (State: `OVERSOLD`)
+  * 14-Period RSI: `37.22` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.2077` | Lower -3.00σ Band: `0.1807`
-  * Upper +2.51σ Band: `0.2055` | Lower -2.51σ Band: `0.1829`
+  * Upper +3.00σ Band: `0.2076` | Lower -3.00σ Band: `0.1808`
+  * Upper +2.51σ Band: `0.2054` | Lower -2.51σ Band: `0.1830`
   * Upper +2.01σ Band: `0.2032` | Lower -2.01σ Band: `0.1852`
-  * Upper +2.00σ Band: `0.2032` | Lower -2.00σ Band: `0.1852`
-  * Upper +1.28σ Band: `0.2000` | Lower -1.28σ Band: `0.1885`
+  * Upper +2.00σ Band: `0.2031` | Lower -2.00σ Band: `0.1853`
+  * Upper +1.28σ Band: `0.1999` | Lower -1.28σ Band: `0.1885`
   * Upper +1.00σ Band: `0.1987` | Lower -1.00σ Band: `0.1897`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1972` | EMA-20=`0.1979` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1965` (Slope: `+0.0000`) | EMA-100=`0.1958`
-  * Institutional Anchors: EMA-144=`0.1956` | EMA-200=`0.1953` (Slope: `+0.2504`) | EMA-233=`0.1952`
+  * Fast EMA Array: EMA-9=`0.1966` | EMA-20=`0.1976` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1964` (Slope: `+0.0000`) | EMA-100=`0.1958`
+  * Institutional Anchors: EMA-144=`0.1956` | EMA-200=`0.1953` (Slope: `+0.2020`) | EMA-233=`0.1952`
 - **Range Boundaries**: 24H High=`0.2100` | 24H Low=`0.1870` | Weekly High=`0.2100` | Weekly Low=`0.1870`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.1970` (Distance: `+3.96%`)
   * Point of Control (POC) = `0.1930` (Distance: `+6.19%`)
-  * Value Area Low (VAL) = `0.1880` (Distance: `+8.96%`)
+  * Value Area Low (VAL) = `0.1880` (Distance: `+8.87%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.2010` | POC=`0.1960` | VAL=`0.1950`

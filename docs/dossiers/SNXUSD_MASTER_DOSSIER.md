@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNXUSD
 **Canonical Key**: `SNXUSD` | **Broker Instrument**: `SNXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1884` | VWAP Z-Score: `+0.23` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.1885` | VWAP Z-Score: `+0.22` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `39.29` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1959` | Lower -3.00σ Band: `0.1810`
-  * Upper +2.51σ Band: `0.1947` | Lower -2.51σ Band: `0.1822`
+  * Upper +3.00σ Band: `0.1958` | Lower -3.00σ Band: `0.1811`
+  * Upper +2.51σ Band: `0.1946` | Lower -2.51σ Band: `0.1823`
   * Upper +2.01σ Band: `0.1934` | Lower -2.01σ Band: `0.1835`
   * Upper +2.00σ Band: `0.1934` | Lower -2.00σ Band: `0.1835`
   * Upper +1.28σ Band: `0.1916` | Lower -1.28σ Band: `0.1853`
   * Upper +1.00σ Band: `0.1909` | Lower -1.00σ Band: `0.1860`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1898` | EMA-20=`0.1902` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.1896` | EMA-20=`0.1901` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.1896` (Slope: `+0.0000`) | EMA-100=`0.1893`
-  * Institutional Anchors: EMA-144=`0.1891` | EMA-200=`0.1888` (Slope: `+0.1076`) | EMA-233=`0.1886`
+  * Institutional Anchors: EMA-144=`0.1891` | EMA-200=`0.1888` (Slope: `+0.0908`) | EMA-233=`0.1886`
 - **Range Boundaries**: 24H High=`0.1960` | 24H Low=`0.1840` | Weekly High=`0.1960` | Weekly Low=`0.1830`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.1930` (Distance: `+3.08%`)
   * Point of Control (POC) = `0.1920` (Distance: `+3.63%`)
-  * Value Area Low (VAL) = `0.1870` (Distance: `+6.69%`)
+  * Value Area Low (VAL) = `0.1870` (Distance: `+6.64%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1920` | POC=`0.1910` | VAL=`0.1890`

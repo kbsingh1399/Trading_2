@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KNCUSD
 **Canonical Key**: `KNCUSD` | **Broker Instrument**: `KNCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1071` | VWAP Z-Score: `-0.04` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000597` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.1071` | VWAP Z-Score: `-0.05` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000626` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `38.46` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.1112` | Lower -3.00σ Band: `0.1029`
   * Upper +2.51σ Band: `0.1105` | Lower -2.51σ Band: `0.1036`
-  * Upper +2.01σ Band: `0.1099` | Lower -2.01σ Band: `0.1043`
+  * Upper +2.01σ Band: `0.1098` | Lower -2.01σ Band: `0.1043`
   * Upper +2.00σ Band: `0.1098` | Lower -2.00σ Band: `0.1043`
   * Upper +1.28σ Band: `0.1088` | Lower -1.28σ Band: `0.1053`
   * Upper +1.00σ Band: `0.1084` | Lower -1.00σ Band: `0.1057`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1078` | EMA-20=`0.1080` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.1077` | EMA-20=`0.1079` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.1076` (Slope: `+0.0000`) | EMA-100=`0.1077`
-  * Institutional Anchors: EMA-144=`0.1079` | EMA-200=`0.1081` (Slope: `+0.0199`) | EMA-233=`0.1083`
+  * Institutional Anchors: EMA-144=`0.1079` | EMA-200=`0.1081` (Slope: `-0.0079`) | EMA-233=`0.1083`
 - **Range Boundaries**: 24H High=`0.1110` | 24H Low=`0.1050` | Weekly High=`0.1110` | Weekly Low=`0.1050`
 
 ---

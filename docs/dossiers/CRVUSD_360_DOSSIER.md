@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:20:51 IST` (`2026-10-29 19:50:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:23:53 IST` (`2026-10-29 19:53:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.3169` | VWAP Z-Score: `-1.26` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.3169` | VWAP Z-Score: `-1.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0024` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `34.17` (State: `OVERSOLD`)
+  * 14-Period RSI: `38.14` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.3285` | Lower -3.00σ Band: `0.3053`
-  * Upper +2.51σ Band: `0.3266` | Lower -2.51σ Band: `0.3072`
-  * Upper +2.01σ Band: `0.3247` | Lower -2.01σ Band: `0.3091`
-  * Upper +2.00σ Band: `0.3246` | Lower -2.00σ Band: `0.3092`
+  * Upper +3.00σ Band: `0.3285` | Lower -3.00σ Band: `0.3052`
+  * Upper +2.51σ Band: `0.3266` | Lower -2.51σ Band: `0.3071`
+  * Upper +2.01σ Band: `0.3246` | Lower -2.01σ Band: `0.3091`
+  * Upper +2.00σ Band: `0.3246` | Lower -2.00σ Band: `0.3091`
   * Upper +1.28σ Band: `0.3218` | Lower -1.28σ Band: `0.3119`
-  * Upper +1.00σ Band: `0.3208` | Lower -1.00σ Band: `0.3130`
+  * Upper +1.00σ Band: `0.3207` | Lower -1.00σ Band: `0.3130`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.3143` | EMA-20=`0.3165` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.3175` (Slope: `+0.0000`) | EMA-100=`0.3190`
-  * Institutional Anchors: EMA-144=`0.3201` | EMA-200=`0.3213` (Slope: `-0.2039`) | EMA-233=`0.3219`
+  * Fast EMA Array: EMA-9=`0.3141` | EMA-20=`0.3162` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.3173` (Slope: `+0.0000`) | EMA-100=`0.3189`
+  * Institutional Anchors: EMA-144=`0.3200` | EMA-200=`0.3212` (Slope: `-0.2321`) | EMA-233=`0.3219`
 - **Range Boundaries**: 24H High=`0.3340` | 24H Low=`0.3090` | Weekly High=`0.3360` | Weekly Low=`0.3090`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.3210` (Distance: `+1.07%`)
-  * Point of Control (POC) = `0.3150` (Distance: `+3.02%`)
-  * Value Area Low (VAL) = `0.3110` (Distance: `+4.34%`)
+  * Value Area High (VAH) = `0.3210` (Distance: `+0.91%`)
+  * Point of Control (POC) = `0.3150` (Distance: `+2.86%`)
+  * Value Area Low (VAL) = `0.3110` (Distance: `+4.18%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.3300` | POC=`0.3270` | VAL=`0.3240`
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 01:14:07 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 01:23:08 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -519,20 +519,20 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 2,990.00 USD | 15,880.00 USD | **`ACCUMULATION`** |
-| `15m` | 14,820.00 USD | 189,150.00 USD | **`ACCUMULATION`** |
-| `30m` | -20,120.00 USD | 108,780.00 USD | **`ACCUMULATION`** |
-| `1h` | -21,910.00 USD | 117,160.00 USD | **`ACCUMULATION`** |
-| `2h` | -243,660.00 USD | -793,180.00 USD | **`DISTRIBUTION`** |
-| `4h` | -343,590.00 USD | -2,020,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -100,630.00 USD | -2,400,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -139,520.00 USD | -2,560,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -328,620.00 USD | -2,820,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -326,840.00 USD | -4,620,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,700,000.00 USD | -15,700,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -15,320,000.00 USD | -57,850,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 15,880.00 USD | **`ACCUMULATION`** |
+| `15m` | 0.00 USD | 189,150.00 USD | **`ACCUMULATION`** |
+| `30m` | 0.00 USD | 108,780.00 USD | **`ACCUMULATION`** |
+| `1h` | 0.00 USD | 117,160.00 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | -793,180.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -2,020,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -2,400,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -2,560,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -2,820,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -4,620,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -15,700,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -57,850,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+2.99K` | 15m=`+14.82K` | 1h=`-21.91K` | 24h=`-326.84K`
+* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
 * Futures Capital Netflows: 5m=`+15.88K` | 15m=`+189.15K` | 1h=`+117.16K` | 24h=`-4.62M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
