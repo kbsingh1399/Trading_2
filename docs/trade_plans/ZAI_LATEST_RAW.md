@@ -100,7 +100,6 @@ Canonical JSON Payload
 Authoritative hashed artifact: /home/z/my-project/download/Council_Response_Cycle-20261028T183502Z_seat2.json (26,031 bytes). Verbatim:
 
 json
-{
       "hard_4775": 7.61,
       "buffer_4795": -12.39,
       "kernel": -12.39

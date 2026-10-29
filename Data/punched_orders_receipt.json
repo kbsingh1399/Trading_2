@@ -1,0 +1,65 @@
+[
+  {
+    "symbol": "BTCUSD.pi",
+    "status": "PUNCHED",
+    "ticket": 19489155,
+    "price": 81084.0,
+    "volume": 0.01,
+    "sl": 81446.0,
+    "tp": 80180.0
+  },
+  {
+    "symbol": "USDJPY.pi",
+    "status": "PUNCHED",
+    "ticket": 19489156,
+    "price": 157.97,
+    "volume": 0.13,
+    "sl": 158.08,
+    "tp": 157.71
+  },
+  {
+    "symbol": "BNBUSD.p",
+    "status": "PUNCHED",
+    "ticket": 19489157,
+    "price": 753.3,
+    "volume": 0.05,
+    "sl": 757.2,
+    "tp": 743.5
+  },
+  {
+    "symbol": "XAUUSD.pi",
+    "status": "PUNCHED",
+    "ticket": 19489158,
+    "price": 4040.5,
+    "volume": 0.01,
+    "sl": 4049.5,
+    "tp": 4018.0
+  },
+  {
+    "symbol": "NAS100.p",
+    "status": "PUNCHED",
+    "ticket": 19489159,
+    "price": 29535.0,
+    "volume": 0.01,
+    "sl": 29620.0,
+    "tp": 29320.0
+  },
+  {
+    "symbol": "DJ30.p",
+    "status": "PUNCHED",
+    "ticket": 19489160,
+    "price": 52638.0,
+    "volume": 0.01,
+    "sl": 52732.0,
+    "tp": 52402.0
+  },
+  {
+    "symbol": "USWTI.p",
+    "status": "PUNCHED",
+    "ticket": 19489161,
+    "price": 101.55,
+    "volume": 0.01,
+    "sl": 100.99,
+    "tp": 102.93
+  }
+]
