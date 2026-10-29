@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNDUSD
 **Canonical Key**: `SNDUSD` | **Broker Instrument**: `SNDUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0479` (Distance: `+0.17%`)
-  * Point of Control (POC) = `0.0466` (Distance: `+3.00%`)
-  * Value Area Low (VAL) = `0.0454` (Distance: `+5.73%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
+  * Value Area High (VAH) = `0.0479` (Distance: `-0.04%`)
+  * Point of Control (POC) = `0.0467` (Distance: `+2.58%`)
+  * Value Area Low (VAL) = `0.0454` (Distance: `+5.51%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0475` | POC=`0.0469` | VAL=`0.0465`
   * Prior Day Extremes: PDH=`0.0479` | PDL=`0.0457` | PDC=`0.0467`
   * Monday Range Blueprint: High=`0.0479` | Mid=`0.0469` | Low=`0.0458`
-  * Developing Weekly Value Area: Weekly VAH=`0.0472` | Weekly POC=`0.0466` | Weekly VAL=`0.0459`
+  * Developing Weekly Value Area: Weekly VAH=`0.0471` | Weekly POC=`0.0467` | Weekly VAL=`0.0459`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.0471` | Low=`0.0445`
   * London Session (08:00-16:00 UTC): High=`0.0469` | Low=`0.0446`

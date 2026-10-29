@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPTUSD
 **Canonical Key**: `XPTUSD` | **Broker Instrument**: `XPTUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1522.54` (Distance: `-2.57%`)
-  * Point of Control (POC) = `1482.15` (Distance: `+0.08%`)
-  * Value Area Low (VAL) = `1475.72` (Distance: `+0.52%`)
+  * Value Area High (VAH) = `1522.54` (Distance: `-2.51%`)
+  * Point of Control (POC) = `1482.15` (Distance: `+0.15%`)
+  * Value Area Low (VAL) = `1475.72` (Distance: `+0.58%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1544.14` | POC=`1538.53` | VAL=`1530.44`
   * Prior Day Extremes: PDH=`1556.70` | PDL=`1525.56` | PDC=`1534.85`
   * Monday Range Blueprint: High=`1564.57` | Mid=`1540.25` | Low=`1515.93`
-  * Developing Weekly Value Area: Weekly VAH=`1552.40` | Weekly POC=`1538.14` | Weekly VAL=`1519.73`
+  * Developing Weekly Value Area: Weekly VAH=`1552.40` | Weekly POC=`1538.14` | Weekly VAL=`1519.14`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1544.35` | Low=`1517.70`
   * London Session (08:00-16:00 UTC): High=`1528.24` | Low=`1479.56`

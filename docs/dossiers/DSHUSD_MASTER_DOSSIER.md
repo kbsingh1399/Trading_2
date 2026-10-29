@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: DSHUSD
 **Canonical Key**: `DSHUSD` | **Broker Instrument**: `DSHUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `51.82` (Distance: `-1.65%`)
-  * Point of Control (POC) = `50.53` (Distance: `+0.84%`)
-  * Value Area Low (VAL) = `50.10` (Distance: `+1.71%`)
+  * Value Area High (VAH) = `51.79` (Distance: `-2.01%`)
+  * Point of Control (POC) = `50.53` (Distance: `+0.42%`)
+  * Value Area Low (VAL) = `50.10` (Distance: `+1.28%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`54.77` | POC=`53.23` | VAL=`52.82`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`14.48 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `51.82` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `52.51` (Risk Distance: `0.6902` pts)
-  * +2.5R Take Profit: `50.09`
+  * Execution Entry: `51.79` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `52.48` (Risk Distance: `0.6902` pts)
+  * +2.5R Take Profit: `50.06`
   * Mathematical Lot Sizing: **`14.48 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

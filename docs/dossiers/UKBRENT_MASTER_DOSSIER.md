@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UKBRENT
 **Canonical Key**: `UKBRENT` | **Broker Instrument**: `UKBRENT.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `115.52` (Distance: `+0.21%`)
-  * Point of Control (POC) = `115.20` (Distance: `+0.49%`)
-  * Value Area Low (VAL) = `114.60` (Distance: `+1.01%`)
+  * Value Area High (VAH) = `115.52` (Distance: `+0.14%`)
+  * Point of Control (POC) = `115.20` (Distance: `+0.42%`)
+  * Value Area Low (VAL) = `114.60` (Distance: `+0.94%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`116.72` | POC=`116.16` | VAL=`115.61`

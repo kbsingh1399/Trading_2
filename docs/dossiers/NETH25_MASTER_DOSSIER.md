@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NETH25
 **Canonical Key**: `NETH25` | **Broker Instrument**: `NETH25.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1146.51` (Distance: `-0.31%`)
-  * Point of Control (POC) = `1142.82` (Distance: `+0.01%`)
-  * Value Area Low (VAL) = `1137.58` (Distance: `+0.47%`)
+  * Value Area High (VAH) = `1146.51` (Distance: `-0.29%`)
+  * Point of Control (POC) = `1142.82` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `1137.67` (Distance: `+0.48%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1138.56` | POC=`1136.91` | VAL=`1133.96`
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `1137.58` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1135.58` (Risk Distance: `2.00` pts)
-  * +2.5R Take Profit: `1142.59`
+  * Execution Entry: `1137.67` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `1135.67` (Risk Distance: `2.00` pts)
+  * +2.5R Take Profit: `1142.68`
   * Mathematical Lot Sizing: **`4.99 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

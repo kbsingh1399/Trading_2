@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDJPY
 **Canonical Key**: `NZDJPY` | **Broker Instrument**: `NZDJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `88.81` (Distance: `+0.07%`)
-  * Point of Control (POC) = `88.66` (Distance: `+0.24%`)
-  * Value Area Low (VAL) = `88.61` (Distance: `+0.30%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `88.81` (Distance: `+0.10%`)
+  * Point of Control (POC) = `88.66` (Distance: `+0.27%`)
+  * Value Area Low (VAL) = `88.61` (Distance: `+0.32%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`88.98` | POC=`88.84` | VAL=`88.49`
   * Prior Day Extremes: PDH=`89.80` | PDL=`88.07` | PDC=`88.76`

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCAD
 **Canonical Key**: `AUDCAD` | **Broker Instrument**: `AUDCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.9856` (Distance: `-0.25%`)
-  * Point of Control (POC) = `0.9830` (Distance: `+0.01%`)
-  * Value Area Low (VAL) = `0.9822` (Distance: `+0.10%`)
+  * Value Area High (VAH) = `0.9856` (Distance: `-0.23%`)
+  * Point of Control (POC) = `0.9830` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `0.9822` (Distance: `+0.12%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.9890` | POC=`0.9881` | VAL=`0.9874`
   * Prior Day Extremes: PDH=`0.9910` | PDL=`0.9863` | PDC=`0.9870`
   * Monday Range Blueprint: High=`0.9874` | Mid=`0.9852` | Low=`0.9830`
-  * Developing Weekly Value Area: Weekly VAH=`0.9892` | Weekly POC=`0.9875` | Weekly VAL=`0.9844`
+  * Developing Weekly Value Area: Weekly VAH=`0.9892` | Weekly POC=`0.9875` | Weekly VAL=`0.9843`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.9875` | Low=`0.9857`
   * London Session (08:00-16:00 UTC): High=`0.9868` | Low=`0.9821`

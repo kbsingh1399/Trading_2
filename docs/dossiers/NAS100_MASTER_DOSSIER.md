@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `29538.14` (Distance: `-0.82%`)
-  * Point of Control (POC) = `29461.28` (Distance: `-0.56%`)
-  * Value Area Low (VAL) = `29361.36` (Distance: `-0.22%`)
+  * Value Area High (VAH) = `29540.70` (Distance: `-0.75%`)
+  * Point of Control (POC) = `29461.28` (Distance: `-0.49%`)
+  * Value Area Low (VAL) = `29361.36` (Distance: `-0.15%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`29765.34` | POC=`29684.92` | VAL=`29644.71`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `29435.68` | `29455.68` | `29420.64` | `29451.49` | `16,787` | 494,402,162.63 USD | 299,618,433.89 USD | `+60.60%` | 421,059,249.43 USD | `+0.66` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `29451.56` | `29499.06` | `29445.62` | `29497.31` | `16,074` | 474,139,760.94 USD | 424,498,818.53 USD | `+89.53%` | 845,558,067.96 USD | `+1.07` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `29497.37` | `29500.46` | `29452.25` | `29453.41` | `17,170` | 505,715,049.70 USD | -455,143,544.73 USD | `-90.00%` | 390,414,523.23 USD | `-1.75` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `29457.66` | `29518.79` | `29453.49` | `29475.37` | `52,486` | 1,547,044,269.82 USD | -45,368,909.29 USD | `-2.93%` | 177,695,406.98 USD | `-0.22` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `29475.03` | `29499.06` | `29420.64` | `29497.31` | `50,608` | 1,492,799,864.48 USD | 925,147,582.42 USD | `+61.97%` | 1,102,842,989.41 USD | `+1.35` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `29497.37` | `29500.46` | `29395.35` | `29405.06` | `50,397` | 1,481,926,808.82 USD | -1,254,794,843.35 USD | `-84.67%` | -151,951,853.95 USD | `-2.00` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `29436.58` | `29438.93` | `29395.35` | `29405.06` | `16,817` | 494,504,894.02 USD | -315,902,162.68 USD | `-63.88%` | 179,043,745.79 USD | `-1.10` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `29404.83` | `29423.57` | `29390.30` | `29411.66` | `16,491` | 485,027,685.06 USD | 118,669,232.23 USD | `+24.47%` | 297,712,978.03 USD | `+0.26` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `29411.68` | `29424.64` | `29380.75` | `29391.62` | `16,468` | 484,021,198.16 USD | -232,747,035.48 USD | `-48.09%` | 64,965,942.55 USD | `-0.81` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `29475.03` | `29499.06` | `29420.64` | `29497.31` | `50,608` | 1,492,799,864.48 USD | 925,147,582.42 USD | `+61.97%` | 828,760,877.81 USD | `+1.35` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `29497.37` | `29500.46` | `29395.35` | `29405.06` | `50,397` | 1,481,926,808.82 USD | -1,254,794,843.35 USD | `-84.67%` | -426,033,965.55 USD | `-2.00` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `29404.83` | `29425.40` | `29380.75` | `29409.66` | `47,911` | 1,409,046,220.26 USD | 284,018,275.08 USD | `+20.16%` | -142,015,690.47 USD | `+0.27` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `29389.48` | `29471.73` | `29290.59` | `29368.39` | `271,503` | 7,973,605,990.17 USD | -1,026,303,542.35 USD | `-12.87%` | 1,703,976,572.94 USD | `-0.64` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `29367.70` | `29518.79` | `29366.32` | `29497.31` | `215,283` | 6,350,269,388.73 USD | 4,979,590,792.40 USD | `+78.42%` | 6,683,567,365.33 USD | `+2.31` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `29497.37` | `29500.46` | `29362.03` | `29433.74` | `181,401` | 5,339,309,869.74 USD | -1,130,886,118.48 USD | `-21.18%` | 5,552,681,246.86 USD | `-0.63` | **`BEARISH`** | `AGGRESSIVE SELLING` |
@@ -290,9 +290,9 @@
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `8.95 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `29538.14` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `29627.60` (Risk Distance: `89.46` pts)
-  * +2.5R Take Profit: `29314.49`
+  * Execution Entry: `29540.70` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `29630.16` (Risk Distance: `89.46` pts)
+  * +2.5R Take Profit: `29317.05`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `8.95 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

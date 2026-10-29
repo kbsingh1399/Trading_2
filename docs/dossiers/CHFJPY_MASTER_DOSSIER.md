@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `190.79` (Distance: `+0.20%`)
-  * Point of Control (POC) = `190.58` (Distance: `+0.31%`)
-  * Value Area Low (VAL) = `190.41` (Distance: `+0.40%`)
+  * Value Area High (VAH) = `190.79` (Distance: `+0.18%`)
+  * Point of Control (POC) = `190.58` (Distance: `+0.29%`)
+  * Value Area Low (VAL) = `190.40` (Distance: `+0.39%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`190.77` | POC=`190.63` | VAL=`190.26`
@@ -267,7 +267,7 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `190.41` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `190.40` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `190.28` (Risk Distance: `0.1288` pts)
   * +2.5R Take Profit: `190.73`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)

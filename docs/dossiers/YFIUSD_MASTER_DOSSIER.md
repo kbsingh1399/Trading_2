@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: YFIUSD
 **Canonical Key**: `YFIUSD` | **Broker Instrument**: `YFIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2079.20` (Distance: `-0.78%`)
-  * Point of Control (POC) = `2060.60` (Distance: `+0.11%`)
-  * Value Area Low (VAL) = `2035.70` (Distance: `+1.34%`)
+  * Value Area High (VAH) = `2078.60` (Distance: `-0.82%`)
+  * Point of Control (POC) = `2060.60` (Distance: `+0.04%`)
+  * Value Area Low (VAL) = `2035.70` (Distance: `+1.27%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2116.10` | POC=`2109.10` | VAL=`2076.00`
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | -163.42 USD | **`DISTRIBUTION`** |
-| `15m` | -302.10 USD | -4,760.00 USD | **`DISTRIBUTION`** |
-| `30m` | -654.51 USD | 5,370.00 USD | **`ACCUMULATION`** |
-| `1h` | -6,840.00 USD | 3,130.00 USD | **`DISTRIBUTION`** |
-| `2h` | -13,640.00 USD | -23,460.00 USD | **`DISTRIBUTION`** |
-| `4h` | -4,760.00 USD | 3,570.00 USD | **`DISTRIBUTION`** |
-| `6h` | 290.06 USD | 26,970.00 USD | **`ACCUMULATION`** |
-| `8h` | 8,210.00 USD | 34,040.00 USD | **`ACCUMULATION`** |
-| `12h` | 7,550.00 USD | 18,240.00 USD | **`ACCUMULATION`** |
-| `24h` | 13,360.00 USD | -15,480.00 USD | **`DISTRIBUTION`** |
-| `1w` | -201,200.00 USD | -480,490.00 USD | **`DISTRIBUTION`** |
-| `30d` | -1,050,000.00 USD | -2,540,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 20.02 USD | 0.00 USD | **`ACCUMULATION`** |
+| `15m` | -1,340.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `30m` | -1,970.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `1h` | -6,070.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `2h` | -13,850.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `4h` | -7,380.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `6h` | -320.40 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `8h` | 7,660.00 USD | 0.00 USD | **`ACCUMULATION`** |
+| `12h` | 7,540.00 USD | 0.00 USD | **`ACCUMULATION`** |
+| `24h` | 12,930.00 USD | 0.00 USD | **`ACCUMULATION`** |
+| `1w` | -202,570.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `30d` | -1,050,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-302.10` | 1h=`-6.84K` | 24h=`+13.36K`
-* Futures Capital Netflows: 5m=`-163.42` | 15m=`-4.76K` | 1h=`+3.13K` | 24h=`-15.48K`
+* Spot Capital Netflows: 5m=`+20.02` | 15m=`-1.34K` | 1h=`-6.07K` | 24h=`+12.93K`
+* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.63 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `2079.20` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2095.03` (Risk Distance: `15.83` pts)
-  * +2.5R Take Profit: `2039.63`
+  * Execution Entry: `2078.60` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `2094.43` (Risk Distance: `15.83` pts)
+  * +2.5R Take Profit: `2039.03`
   * Mathematical Lot Sizing: **`0.63 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

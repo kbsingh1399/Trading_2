@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDUSD
 **Canonical Key**: `AUDUSD` | **Broker Instrument**: `AUDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.7044` (Distance: `-0.20%`)
-  * Point of Control (POC) = `0.7035` (Distance: `-0.07%`)
-  * Value Area Low (VAL) = `0.7028` (Distance: `+0.02%`)
+  * Value Area High (VAH) = `0.7044` (Distance: `-0.18%`)
+  * Point of Control (POC) = `0.7035` (Distance: `-0.05%`)
+  * Value Area Low (VAL) = `0.7028` (Distance: `+0.05%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.7043` | POC=`0.7033` | VAL=`0.7030`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.7033` | `0.7038` | `0.7033` | `0.7037` | `1,630` | 1,147.01 USD | 716.88 USD | `+62.50%` | -2,484.06 USD | `+1.37` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `0.7037` | `0.7040` | `0.7037` | `0.7039` | `752` | 529.36 USD | 310.05 USD | `+58.57%` | -2,174.01 USD | `+0.51` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `0.7039` | `0.7039` | `0.7037` | `0.7038` | `1,252` | 881.13 USD | -482.52 USD | `-54.76%` | -2,656.54 USD | `-1.12` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.7033` | `0.7038` | `0.7033` | `0.7036` | `5,527` | 3,888.52 USD | 872.93 USD | `+22.45%` | -623.74 USD | `+0.84` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `0.7036` | `0.7040` | `0.7033` | `0.7039` | `3,948` | 2,779.12 USD | 1,765.11 USD | `+63.51%` | 1,141.37 USD | `+1.73` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `0.7039` | `0.7042` | `0.7037` | `0.7040` | `4,293` | 3,022.23 USD | 409.26 USD | `+13.54%` | 1,550.63 USD | `+0.12` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `0.7040` | `0.7042` | `0.7038` | `0.7040` | `1,495` | 1,052.47 USD | -25.67 USD | `-2.44%` | -2,294.83 USD | `-0.22` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `5m` | `0.7040` | `0.7040` | `0.7036` | `0.7036` | `1,714` | 1,206.00 USD | -1,073.64 USD | `-89.02%` | -3,368.47 USD | `-2.03` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.7036` | `0.7038` | `0.7036` | `0.7037` | `1,347` | 947.95 USD | 453.37 USD | `+47.83%` | -2,915.10 USD | `+0.79` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.7036` | `0.7040` | `0.7033` | `0.7039` | `3,948` | 2,779.12 USD | 1,765.11 USD | `+63.51%` | 614.33 USD | `+1.73` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.7039` | `0.7042` | `0.7037` | `0.7040` | `4,293` | 3,022.23 USD | 409.26 USD | `+13.54%` | 1,023.59 USD | `+0.12` | **`BULLISH`** | `DELTA ALIGNED` |
+| `15m` | `0.7040` | `0.7040` | `0.7035` | `0.7036` | `3,563` | 2,506.82 USD | -2,046.38 USD | `-81.63%` | -1,022.80 USD | `-2.28` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `0.7019` | `0.7031` | `0.7015` | `0.7027` | `6,988` | 4,910.19 USD | 2,262.83 USD | `+46.08%` | -8,455.76 USD | `+1.27` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `0.7027` | `0.7040` | `0.7025` | `0.7039` | `17,241` | 12,136.46 USD | 10,466.68 USD | `+86.24%` | 2,010.91 USD | `+3.69` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `0.7039` | `0.7042` | `0.7034` | `0.7038` | `13,037` | 9,175.05 USD | -1,352.73 USD | `-14.74%` | 658.18 USD | `-0.42` | **`BEARISH`** | `DELTA ALIGNED` |

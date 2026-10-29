@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.12` (Distance: `+0.05%`)
-  * Point of Control (POC) = `1.11` (Distance: `+0.22%`)
-  * Value Area Low (VAL) = `1.11` (Distance: `+0.33%`)
+  * Value Area High (VAH) = `1.12` (Distance: `+0.06%`)
+  * Point of Control (POC) = `1.11` (Distance: `+0.24%`)
+  * Value Area Low (VAL) = `1.11` (Distance: `+0.35%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.12` | POC=`1.11` | VAL=`1.11`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `730` | 815.14 USD | 301.90 USD | `+37.04%` | 4,002.49 USD | `+0.43` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `882` | 984.64 USD | -562.65 USD | `-57.14%` | 3,439.84 USD | `-1.22` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `552` | 616.02 USD | -313.82 USD | `-50.94%` | 3,126.02 USD | `-0.63` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `2,810` | 3,136.97 USD | 263.73 USD | `+8.41%` | 7,778.46 USD | `+0.06` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `2,466` | 2,752.97 USD | -526.80 USD | `-19.14%` | 7,251.66 USD | `-0.50` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `1,379` | 1,540.19 USD | 1,083.59 USD | `+70.35%` | 8,335.24 USD | `+0.66` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `339` | 378.63 USD | 316.89 USD | `+83.70%` | 3,331.81 USD | `+0.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `388` | 433.10 USD | -389.79 USD | `-90.00%` | 2,942.02 USD | `-0.89` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `368` | 410.87 USD | 280.14 USD | `+68.18%` | 3,222.16 USD | `+0.54` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `2,466` | 2,752.97 USD | -526.80 USD | `-19.14%` | 6,769.18 USD | `-0.50` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `1,379` | 1,540.19 USD | 1,083.59 USD | `+70.35%` | 7,852.77 USD | `+0.66` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `1,188` | 1,326.00 USD | -1,164.10 USD | `-87.79%` | 6,688.67 USD | `-0.99` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `1.11` | `1.12` | `1.11` | `1.12` | `9,481` | 10,581.65 USD | 6,918.77 USD | `+65.38%` | 9,276.37 USD | `+1.94` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `8,551` | 9,546.08 USD | 136.37 USD | `+1.43%` | 9,412.75 USD | `+0.00` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `4,883` | 5,451.14 USD | -163.07 USD | `-2.99%` | 9,249.68 USD | `-0.14` | **`BEARISH`** | `BEARISH ABSORPTION` |
@@ -111,15 +111,15 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 00:43:50 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 00:53:52 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `232` | `0x0911...129a` | `LONG` | 9,937,390.35 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -285,352.07 USD | `-2.87%` | `20X Isolated` |
+| `233` | `0x0911...129a` | `LONG` | 9,937,390.35 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -285,352.07 USD | `-2.87%` | `20X Isolated` |
 | `1180` | `0xe03b...ed11` | `SHORT` | 1,945,132.94 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 48,070.38 USD | `+2.47%` | `50X Isolated` |
-| `1774` | `0x3f31...a3d7` | `SHORT` | 1,202,033.41 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -2,101.97 USD | `-0.17%` | `50X Isolated` |
-| `1863` | `0x9df2...c665` | `SHORT` | 1,116,529.77 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 4,040.07 USD | `+0.36%` | `5X Isolated` |
+| `1779` | `0x3f31...a3d7` | `SHORT` | 1,202,141.06 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -2,209.62 USD | `-0.18%` | `50X Isolated` |
+| `1868` | `0x9df2...c665` | `SHORT` | 1,116,629.76 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 3,940.08 USD | `+0.35%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |

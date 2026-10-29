@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNXUSD
 **Canonical Key**: `SNXUSD` | **Broker Instrument**: `SNXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.1930` (Distance: `+3.08%`)
   * Point of Control (POC) = `0.1920` (Distance: `+3.63%`)
-  * Value Area Low (VAL) = `0.1860` (Distance: `+6.73%`)
+  * Value Area Low (VAL) = `0.1870` (Distance: `+6.69%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1920` | POC=`0.1910` | VAL=`0.1890`
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 2,210.00 USD | **`ACCUMULATION`** |
-| `15m` | 0.00 USD | 587.93 USD | **`ACCUMULATION`** |
-| `30m` | 0.00 USD | 3,450.00 USD | **`ACCUMULATION`** |
-| `1h` | 0.00 USD | -623.21 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | 6,300.00 USD | **`ACCUMULATION`** |
-| `4h` | 0.00 USD | -34,680.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -72,520.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | -58,410.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -64,960.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -196,390.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | -895,700.00 USD | **`DISTRIBUTION`** |
-| `30d` | 0.00 USD | -5,020,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `1h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `2h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `4h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `6h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `8h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `12h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `24h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `1w` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `30d` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+2.21K` | 15m=`+587.93` | 1h=`-623.21` | 24h=`-196.39K`
+* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.1860` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.1546` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.2860`
+  * Execution Entry: `0.1870` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.1556` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.2870`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADJPY
 **Canonical Key**: `CADJPY` | **Broker Instrument**: `CADJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `112.96` (Distance: `-0.01%`)
-  * Point of Control (POC) = `112.83` (Distance: `+0.10%`)
-  * Value Area Low (VAL) = `112.78` (Distance: `+0.15%`)
+  * Value Area High (VAH) = `112.96` (Distance: `-0.03%`)
+  * Point of Control (POC) = `112.83` (Distance: `+0.09%`)
+  * Value Area Low (VAL) = `112.78` (Distance: `+0.13%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`112.81` | POC=`112.71` | VAL=`112.32`
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `112.78` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `112.69` (Risk Distance: `0.0965` pts)
-  * +2.5R Take Profit: `113.02`
+  * +2.5R Take Profit: `113.03`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

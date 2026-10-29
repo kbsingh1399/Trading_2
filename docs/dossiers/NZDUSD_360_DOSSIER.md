@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5625` (Distance: `+0.03%`)
-  * Point of Control (POC) = `0.5621` (Distance: `+0.11%`)
-  * Value Area Low (VAL) = `0.5611` (Distance: `+0.30%`)
+  * Value Area High (VAH) = `0.5625` (Distance: `+0.08%`)
+  * Point of Control (POC) = `0.5621` (Distance: `+0.16%`)
+  * Value Area Low (VAL) = `0.5611` (Distance: `+0.35%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.5630` | POC=`0.5614` | VAL=`0.5604`

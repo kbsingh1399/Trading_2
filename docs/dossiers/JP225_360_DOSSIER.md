@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `64837.10` (Distance: `-0.50%`)
-  * Point of Control (POC) = `64666.20` (Distance: `-0.23%`)
-  * Value Area Low (VAL) = `64381.50` (Distance: `+0.21%`)
+  * Value Area High (VAH) = `64829.00` (Distance: `-0.41%`)
+  * Point of Control (POC) = `64666.20` (Distance: `-0.16%`)
+  * Value Area Low (VAL) = `64381.50` (Distance: `+0.28%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`64598.90` | POC=`64505.50` | VAL=`64235.50`
@@ -186,20 +186,20 @@
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
 | `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | -25.81 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
 | `30m` | 0.00 USD | -25.81 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -32.23 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | -12.89 USD | **`DISTRIBUTION`** |
 | `2h` | 0.00 USD | -17,640.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -16,190.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -15,580.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -15,900.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -16,300.00 USD | **`DISTRIBUTION`** |
 | `8h` | 0.00 USD | -16,920.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -16,900.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -29,320.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -16,910.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -29,100.00 USD | **`DISTRIBUTION`** |
 | `1w` | 0.00 USD | 14,480.00 USD | **`ACCUMULATION`** |
 | `30d` | 0.00 USD | -17,690.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+0.00` | 15m=`-25.81` | 1h=`-32.23` | 24h=`-29.32K`
+* Futures Capital Netflows: 5m=`+0.00` | 15m=`+0.00` | 1h=`-12.89` | 24h=`-29.10K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.05 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `64837.10` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `65026.87` (Risk Distance: `189.77` pts)
-  * +2.5R Take Profit: `64362.67`
+  * Execution Entry: `64829.00` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `65018.77` (Risk Distance: `189.77` pts)
+  * +2.5R Take Profit: `64354.57`
   * Mathematical Lot Sizing: **`0.05 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

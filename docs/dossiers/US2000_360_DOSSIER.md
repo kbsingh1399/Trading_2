@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: US2000
 **Canonical Key**: `US2000` | **Broker Instrument**: `US2000.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2860.67` (Distance: `-0.35%`)
-  * Point of Control (POC) = `2843.14` (Distance: `+0.26%`)
-  * Value Area Low (VAL) = `2837.80` (Distance: `+0.45%`)
+  * Value Area High (VAH) = `2860.67` (Distance: `-0.30%`)
+  * Point of Control (POC) = `2843.14` (Distance: `+0.32%`)
+  * Value Area Low (VAL) = `2837.80` (Distance: `+0.51%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2823.02` | POC=`2816.63` | VAL=`2812.02`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `2863.81` | `2865.05` | `2862.80` | `2864.21` | `6,014` | 17,225,358.94 USD | 3,713,021.82 USD | `+21.56%` | 221,668,450.31 USD | `+0.20` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `2864.20` | `2866.56` | `2863.89` | `2866.20` | `5,462` | 15,655,184.40 USD | 11,580,145.76 USD | `+73.97%` | 233,248,596.07 USD | `+0.89` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `2866.22` | `2866.98` | `2864.30` | `2865.27` | `5,809` | 16,644,353.43 USD | -5,247,939.79 USD | `-31.53%` | 228,000,656.28 USD | `-0.54` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `2868.07` | `2871.22` | `2867.46` | `2868.02` | `17,715` | 50,806,974.30 USD | -18,174,303.31 USD | `-35.77%` | 294,426,113.33 USD | `-1.05` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `2868.01` | `2868.06` | `2862.80` | `2866.20` | `19,005` | 54,472,131.00 USD | -1,398,048.99 USD | `-2.57%` | 293,028,064.34 USD | `-0.36` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `15m` | `2866.22` | `2866.98` | `2860.51` | `2861.36` | `16,032` | 45,873,323.52 USD | -34,139,111.71 USD | `-74.42%` | 258,888,952.63 USD | `-1.53` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `2862.82` | `2863.30` | `2860.51` | `2861.36` | `4,982` | 14,255,295.52 USD | -6,514,516.77 USD | `-45.70%` | 207,201,231.76 USD | `-0.53` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `2861.38` | `2863.90` | `2860.12` | `2863.65` | `5,407` | 15,483,755.55 USD | 11,367,042.76 USD | `+73.41%` | 218,568,274.53 USD | `+0.88` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `2863.69` | `2865.87` | `2863.44` | `2864.62` | `5,316` | 15,228,319.92 USD | 2,694,723.28 USD | `+17.70%` | 221,262,997.81 USD | `+0.26` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `2868.01` | `2868.06` | `2862.80` | `2866.20` | `19,005` | 54,472,131.00 USD | -1,398,048.99 USD | `-2.57%` | 283,791,864.23 USD | `-0.36` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `15m` | `2866.22` | `2866.98` | `2860.51` | `2861.36` | `16,032` | 45,873,323.52 USD | -34,139,111.71 USD | `-74.42%` | 249,652,752.52 USD | `-1.53` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2861.38` | `2865.87` | `2860.12` | `2864.50` | `15,274` | 43,752,373.00 USD | 23,321,917.09 USD | `+53.30%` | 272,974,669.61 USD | `+0.59` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `2857.05` | `2867.61` | `2852.62` | `2859.21` | `118,950` | 340,103,029.50 USD | 3,970,515.69 USD | `+1.17%` | 406,278,951.12 USD | `-0.21` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `1h` | `2859.24` | `2871.22` | `2858.01` | `2866.20` | `76,694` | 219,820,342.80 USD | 84,283,878.60 USD | `+38.34%` | 490,562,829.72 USD | `+0.68` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `2866.22` | `2866.98` | `2858.88` | `2863.59` | `53,503` | 153,210,655.77 USD | -12,389,256.73 USD | `-8.09%` | 478,173,572.99 USD | `-0.59` | **`BEARISH`** | `DELTA ALIGNED` |

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPJPY
 **Canonical Key**: `GBPJPY` | **Broker Instrument**: `GBPJPY.pi` | **Asset Class**: `FX Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `210.54` (Distance: `+0.25%`)
+  * Value Area High (VAH) = `210.55` (Distance: `+0.24%`)
   * Point of Control (POC) = `210.21` (Distance: `+0.41%`)
   * Value Area Low (VAL) = `210.06` (Distance: `+0.48%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`210.65` | POC=`210.46` | VAL=`209.90`
   * Prior Day Extremes: PDH=`210.65` | PDL=`209.57` | PDC=`210.31`
   * Monday Range Blueprint: High=`210.43` | Mid=`210.03` | Low=`209.63`
-  * Developing Weekly Value Area: Weekly VAH=`210.46` | Weekly POC=`210.21` | Weekly VAL=`209.90`
+  * Developing Weekly Value Area: Weekly VAH=`210.47` | Weekly POC=`210.21` | Weekly VAL=`209.90`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`210.43` | Low=`210.08`
   * London Session (08:00-16:00 UTC): High=`210.66` | Low=`209.97`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.14 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `210.54` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `210.55` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `210.69` (Risk Distance: `0.1431` pts)
-  * +2.5R Take Profit: `210.18`
+  * +2.5R Take Profit: `210.19`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.14 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDJPY
 **Canonical Key**: `AUDJPY` | **Broker Instrument**: `AUDJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -45,14 +45,14 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `111.32` (Distance: `-0.25%`)
-  * Point of Control (POC) = `111.07` (Distance: `-0.03%`)
-  * Value Area Low (VAL) = `110.98` (Distance: `+0.05%`)
+  * Point of Control (POC) = `111.07` (Distance: `-0.02%`)
+  * Value Area Low (VAL) = `110.98` (Distance: `+0.06%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`111.48` | POC=`111.37` | VAL=`111.07`
   * Prior Day Extremes: PDH=`111.50` | PDL=`110.87` | PDC=`111.32`
   * Monday Range Blueprint: High=`110.76` | Mid=`110.42` | Low=`110.08`
-  * Developing Weekly Value Area: Weekly VAH=`111.45` | Weekly POC=`111.00` | Weekly VAL=`110.68`
+  * Developing Weekly Value Area: Weekly VAH=`111.45` | Weekly POC=`111.05` | Weekly VAL=`110.68`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`111.56` | Low=`111.17`
   * London Session (08:00-16:00 UTC): High=`111.41` | Low=`111.00`

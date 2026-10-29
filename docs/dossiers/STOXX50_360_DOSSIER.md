@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: STOXX50
 **Canonical Key**: `STOXX50` | **Broker Instrument**: `STOXX50.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6176.08` (Distance: `+0.60%`)
-  * Point of Control (POC) = `6162.49` (Distance: `+0.82%`)
-  * Value Area Low (VAL) = `6158.53` (Distance: `+0.89%`)
+  * Value Area High (VAH) = `6176.08` (Distance: `+0.63%`)
+  * Point of Control (POC) = `6162.49` (Distance: `+0.85%`)
+  * Value Area Low (VAL) = `6158.53` (Distance: `+0.92%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`6165.54` | POC=`6152.10` | VAL=`6148.26`

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1005` (Distance: `-1.22%`)
+  * Value Area High (VAH) = `0.1004` (Distance: `-1.17%`)
   * Point of Control (POC) = `0.0981` (Distance: `+1.18%`)
   * Value Area Low (VAL) = `0.0974` (Distance: `+1.90%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
@@ -399,21 +399,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 1,110.00 USD | 8,170.00 USD | **`ACCUMULATION`** |
-| `15m` | 451.38 USD | -19,680.00 USD | **`DISTRIBUTION`** |
-| `30m` | -15,130.00 USD | 9,630.00 USD | **`DISTRIBUTION`** |
-| `1h` | -35,190.00 USD | -29,830.00 USD | **`DISTRIBUTION`** |
-| `2h` | -86,740.00 USD | -158,240.00 USD | **`DISTRIBUTION`** |
-| `4h` | -117,580.00 USD | -504,220.00 USD | **`DISTRIBUTION`** |
-| `6h` | -129,020.00 USD | -591,280.00 USD | **`DISTRIBUTION`** |
-| `8h` | -111,080.00 USD | -496,330.00 USD | **`DISTRIBUTION`** |
-| `12h` | -39,240.00 USD | -358,620.00 USD | **`DISTRIBUTION`** |
-| `24h` | -175,050.00 USD | -822,500.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,470,000.00 USD | -2,440,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -12,750,000.00 USD | -20,030,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -5,790.00 USD | 3,780.00 USD | **`DISTRIBUTION`** |
+| `15m` | 3,400.00 USD | 19,780.00 USD | **`ACCUMULATION`** |
+| `30m` | -17,650.00 USD | 302.56 USD | **`DISTRIBUTION`** |
+| `1h` | -41,780.00 USD | -25,290.00 USD | **`DISTRIBUTION`** |
+| `2h` | -70,410.00 USD | -116,700.00 USD | **`DISTRIBUTION`** |
+| `4h` | -104,230.00 USD | -498,150.00 USD | **`DISTRIBUTION`** |
+| `6h` | -133,000.00 USD | -583,680.00 USD | **`DISTRIBUTION`** |
+| `8h` | -123,500.00 USD | -547,460.00 USD | **`DISTRIBUTION`** |
+| `12h` | -49,300.00 USD | -370,010.00 USD | **`DISTRIBUTION`** |
+| `24h` | -172,300.00 USD | -793,560.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,460,000.00 USD | -2,430,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -12,780,000.00 USD | -20,020,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+1.11K` | 15m=`+451.38` | 1h=`-35.19K` | 24h=`-175.05K`
-* Futures Capital Netflows: 5m=`+8.17K` | 15m=`-19.68K` | 1h=`-29.83K` | 24h=`-822.50K`
+* Spot Capital Netflows: 5m=`-5.79K` | 15m=`+3.40K` | 1h=`-41.78K` | 24h=`-172.30K`
+* Futures Capital Netflows: 5m=`+3.78K` | 15m=`+19.78K` | 1h=`-25.29K` | 24h=`-793.56K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -487,9 +487,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.1005` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1048` (Risk Distance: `0.0046` pts)
-  * +2.5R Take Profit: `0.0890`
+  * Execution Entry: `0.1004` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.1047` (Risk Distance: `0.0046` pts)
+  * +2.5R Take Profit: `0.0889`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

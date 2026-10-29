@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCHF
 **Canonical Key**: `AUDCHF` | **Broker Instrument**: `AUDCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5837` (Distance: `-0.49%`)
-  * Point of Control (POC) = `0.5826` (Distance: `-0.30%`)
-  * Value Area Low (VAL) = `0.5807` (Distance: `+0.02%`)
+  * Value Area High (VAH) = `0.5837` (Distance: `-0.47%`)
+  * Point of Control (POC) = `0.5826` (Distance: `-0.28%`)
+  * Value Area Low (VAL) = `0.5807` (Distance: `+0.04%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.5844` | POC=`0.5841` | VAL=`0.5836`

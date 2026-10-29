@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: HK50
 **Canonical Key**: `HK50` | **Broker Instrument**: `HK50.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `23147.17` (Distance: `-0.11%`)
-  * Point of Control (POC) = `23110.15` (Distance: `+0.05%`)
-  * Value Area Low (VAL) = `23030.25` (Distance: `+0.40%`)
+  * Value Area High (VAH) = `23147.17` (Distance: `-0.08%`)
+  * Point of Control (POC) = `23110.15` (Distance: `+0.08%`)
+  * Value Area Low (VAL) = `23030.25` (Distance: `+0.43%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`23116.96` | POC=`23097.84` | VAL=`23054.58`

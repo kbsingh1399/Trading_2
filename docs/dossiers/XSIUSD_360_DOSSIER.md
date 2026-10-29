@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XSIUSD
 **Canonical Key**: `XSIUSD` | **Broker Instrument**: `XSIUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1970` (Distance: `+3.45%`)
-  * Point of Control (POC) = `0.1930` (Distance: `+5.67%`)
-  * Value Area Low (VAL) = `0.1880` (Distance: `+8.42%`)
+  * Value Area High (VAH) = `0.1970` (Distance: `+3.70%`)
+  * Point of Control (POC) = `0.1930` (Distance: `+5.93%`)
+  * Value Area Low (VAL) = `0.1880` (Distance: `+8.69%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.2010` | POC=`0.1960` | VAL=`0.1950`

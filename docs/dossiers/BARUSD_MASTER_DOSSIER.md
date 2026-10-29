@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BARUSD
 **Canonical Key**: `BARUSD` | **Broker Instrument**: `BARUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0746` (Distance: `-2.27%`)
-  * Point of Control (POC) = `0.0736` (Distance: `-0.91%`)
-  * Value Area Low (VAL) = `0.0730` (Distance: `-0.12%`)
-  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
+  * Value Area High (VAH) = `0.0746` (Distance: `-2.14%`)
+  * Point of Control (POC) = `0.0736` (Distance: `-0.75%`)
+  * Value Area Low (VAL) = `0.0730` (Distance: `+0.05%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0763` | POC=`0.0753` | VAL=`0.0749`
   * Prior Day Extremes: PDH=`0.0771` | PDL=`0.0745` | PDC=`0.0757`

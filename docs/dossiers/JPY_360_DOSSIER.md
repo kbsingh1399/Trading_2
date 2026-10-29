@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `157.97` (Distance: `-0.01%`)
-  * Point of Control (POC) = `157.87` (Distance: `+0.05%`)
-  * Value Area Low (VAL) = `157.76` (Distance: `+0.13%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `157.97` (Distance: `-0.03%`)
+  * Point of Control (POC) = `157.87` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `157.76` (Distance: `+0.11%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`158.04` | POC=`157.89` | VAL=`157.79`
   * Prior Day Extremes: PDH=`158.35` | PDL=`157.65` | PDC=`157.82`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `157.88` | `157.89` | `157.84` | `157.86` | `553` | 87,296.03 USD | -24,248.90 USD | `-27.78%` | -270,624.34 USD | `-0.30` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `157.86` | `157.87` | `157.81` | `157.82` | `402` | 63,443.64 USD | -35,920.30 USD | `-56.62%` | -306,544.64 USD | `-0.45` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `157.82` | `157.88` | `157.81` | `157.87` | `516` | 81,462.47 USD | 68,097.53 USD | `+83.59%` | -238,447.11 USD | `+1.09` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `157.81` | `157.91` | `157.77` | `157.84` | `1,922` | 303,378.09 USD | 55,468.38 USD | `+18.28%` | -1,152,206.54 USD | `+0.42` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `157.84` | `157.89` | `157.81` | `157.82` | `1,627` | 256,773.14 USD | -119,216.10 USD | `-46.43%` | -1,271,422.64 USD | `-0.60` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `157.82` | `157.88` | `157.78` | `157.78` | `1,388` | 218,998.64 USD | -139,362.77 USD | `-63.64%` | -1,410,785.41 USD | `-0.68` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `157.84` | `157.84` | `157.78` | `157.78` | `438` | 69,107.64 USD | -60,610.80 USD | `-87.70%` | -332,131.50 USD | `-0.82` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `157.78` | `157.83` | `157.76` | `157.83` | `404` | 63,762.11 USD | 46,493.20 USD | `+72.92%` | -285,638.30 USD | `+0.95` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `157.83` | `157.84` | `157.79` | `157.81` | `440` | 69,438.16 USD | -12,702.10 USD | `-18.29%` | -298,340.40 USD | `-0.12` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `157.84` | `157.89` | `157.81` | `157.82` | `1,627` | 256,773.14 USD | -119,216.10 USD | `-46.43%` | -1,182,792.91 USD | `-0.60` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `157.82` | `157.88` | `157.78` | `157.78` | `1,388` | 218,998.64 USD | -139,362.77 USD | `-63.64%` | -1,322,155.69 USD | `-0.68` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `157.78` | `157.85` | `157.76` | `157.85` | `1,148` | 181,211.80 USD | 154,328.73 USD | `+85.16%` | -1,167,826.95 USD | `+0.98` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `157.83` | `158.01` | `157.81` | `157.86` | `11,030` | 1,741,162.71 USD | -351,663.40 USD | `-20.20%` | -2,046,522.99 USD | `-0.53` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `157.86` | `157.91` | `157.77` | `157.82` | `7,013` | 1,106,791.66 USD | -321,457.87 USD | `-29.04%` | -2,367,980.86 USD | `-0.61` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `157.82` | `157.93` | `157.76` | `157.88` | `4,599` | 726,108.52 USD | 298,606.76 USD | `+41.12%` | -2,069,374.10 USD | `+0.57` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `209` | `0x0911...129a` | `SHORT` | 10,455,981.05 USD | `66,223.20` | `156.58` | `157.89` | `167.73` | -86,960.82 USD | `-0.83%` | `20X Isolated` |
-| `1143` | `0xec0b...b078` | `SHORT` | 1,992,175.50 USD | `12,617.49` | `158.22` | `157.89` | `162.95` | 4,190.18 USD | `+0.21%` | `20X Isolated` |
-| `1153` | `0xc966...f6b6` | `SHORT` | 1,980,377.96 USD | `12,542.77` | `157.61` | `157.89` | `215.28` | -3,568.89 USD | `-0.18%` | `5X Isolated` |
-| `1234` | `0xbef1...d2e5` | `LONG` | 1,866,463.48 USD | `11,821.29` | `157.63` | `157.89` | `155.51` | 3,102.87 USD | `+0.17%` | `50X Isolated` |
-| `1523` | `0x9dea...d617` | `LONG` | 1,467,769.12 USD | `9,296.15` | `157.69` | `157.89` | `146.10` | 1,852.25 USD | `+0.13%` | `50X Isolated` |
-| `1895` | `0x3d89...eb14` | `LONG` | 1,089,441.00 USD | `6,900.00` | `158.17` | `157.89` | `127.36` | -1,948.60 USD | `-0.18%` | `5X Isolated` |
+| `209` | `0x0911...129a` | `SHORT` | 10,454,656.58 USD | `66,223.20` | `156.58` | `157.86` | `167.73` | -85,636.35 USD | `-0.82%` | `20X Isolated` |
+| `1144` | `0xec0b...b078` | `SHORT` | 1,991,923.15 USD | `12,617.49` | `158.22` | `157.86` | `162.95` | 4,442.53 USD | `+0.22%` | `20X Isolated` |
+| `1166` | `0xc966...f6b6` | `SHORT` | 1,966,697.23 USD | `12,458.49` | `157.61` | `157.86` | `215.28` | -3,171.15 USD | `-0.16%` | `5X Isolated` |
+| `1236` | `0xbef1...d2e5` | `LONG` | 1,866,108.84 USD | `11,821.29` | `157.63` | `157.86` | `155.51` | 2,748.23 USD | `+0.15%` | `50X Isolated` |
+| `1524` | `0x9dea...d617` | `LONG` | 1,467,583.20 USD | `9,296.15` | `157.69` | `157.86` | `146.10` | 1,666.32 USD | `+0.11%` | `50X Isolated` |
+| `1899` | `0x3d89...eb14` | `LONG` | 1,089,234.00 USD | `6,900.00` | `158.17` | `157.86` | `127.36` | -2,155.60 USD | `-0.20%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |

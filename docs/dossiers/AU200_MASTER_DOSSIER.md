@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AU200
 **Canonical Key**: `AU200` | **Broker Instrument**: `AU200.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `8923.69` (Distance: `-0.08%`)
-  * Point of Control (POC) = `8911.34` (Distance: `+0.06%`)
-  * Value Area Low (VAL) = `8878.23` (Distance: `+0.43%`)
+  * Value Area High (VAH) = `8923.13` (Distance: `-0.09%`)
+  * Point of Control (POC) = `8911.34` (Distance: `+0.05%`)
+  * Value Area Low (VAL) = `8878.23` (Distance: `+0.42%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`8882.52` | POC=`8875.31` | VAL=`8857.62`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.85 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `8923.69` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `8935.33` (Risk Distance: `11.64` pts)
-  * +2.5R Take Profit: `8894.60`
+  * Execution Entry: `8923.13` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `8934.77` (Risk Distance: `11.64` pts)
+  * +2.5R Take Profit: `8894.04`
   * Mathematical Lot Sizing: **`0.85 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

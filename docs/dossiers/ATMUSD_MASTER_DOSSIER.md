@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ATMUSD
 **Canonical Key**: `ATMUSD` | **Broker Instrument**: `ATMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.62` (Distance: `-2.03%`)
-  * Point of Control (POC) = `1.61` (Distance: `-1.35%`)
-  * Value Area Low (VAL) = `1.58` (Distance: `+0.20%`)
+  * Value Area High (VAH) = `1.62` (Distance: `-1.91%`)
+  * Point of Control (POC) = `1.61` (Distance: `-1.22%`)
+  * Value Area Low (VAL) = `1.58` (Distance: `+0.33%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.64` | POC=`1.62` | VAL=`1.61`

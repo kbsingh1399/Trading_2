@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UK100
 **Canonical Key**: `UK100` | **Broker Instrument**: `UK100.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:56:34 IST` (`2026-10-29 19:26:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `10746.67` (Distance: `-0.13%`)
-  * Point of Control (POC) = `10732.16` (Distance: `+0.01%`)
-  * Value Area Low (VAL) = `10708.82` (Distance: `+0.23%`)
+  * Value Area High (VAH) = `10746.67` (Distance: `-0.08%`)
+  * Point of Control (POC) = `10732.79` (Distance: `+0.05%`)
+  * Value Area Low (VAL) = `10708.82` (Distance: `+0.28%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`10709.92` | POC=`10691.51` | VAL=`10661.82`
