@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNOK
 **Canonical Key**: `EURNOK` | **Broker Instrument**: `EURNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.34` | **Live Ask Quote**: `10.34` | **Mid Price**: `10.34`
-- **Spread Points**: `116.00` | **Spread BPS**: `1.12 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `120.00` | **Spread BPS**: `1.16 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`10.38` | POC=`10.34` | VAL=`10.30`
   * Prior Day Extremes: PDH=`10.40` | PDL=`10.27` | PDC=`10.34`
-  * Monday Range Blueprint: High=`10.39` | Mid=`10.34` | Low=`10.28`
+  * Monday Range Blueprint: High=`10.39` | Mid=`10.34` | Low=`10.29`
   * Developing Weekly Value Area: Weekly VAH=`10.42` | Weekly POC=`10.34` | Weekly VAL=`10.25`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`10.36` | Low=`10.32`

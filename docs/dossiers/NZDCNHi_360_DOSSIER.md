@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDCNH
 **Canonical Key**: `NZDCNH` | **Broker Instrument**: `NZDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `3.75` | **Live Ask Quote**: `3.75` | **Mid Price**: `3.75`
-- **Spread Points**: `23.00` | **Spread BPS**: `0.61 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `11.00` | **Spread BPS**: `0.29 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,7 +27,7 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `3.78` | Lower -3.00σ Band: `3.72`
+  * Upper +3.00σ Band: `3.77` | Lower -3.00σ Band: `3.72`
   * Upper +2.51σ Band: `3.77` | Lower -2.51σ Band: `3.73`
   * Upper +2.01σ Band: `3.76` | Lower -2.01σ Band: `3.73`
   * Upper +2.00σ Band: `3.76` | Lower -2.00σ Band: `3.73`

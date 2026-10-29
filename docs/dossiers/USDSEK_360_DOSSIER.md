@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.85` | **Live Ask Quote**: `9.85` | **Mid Price**: `9.85`
-- **Spread Points**: `144.00` | **Spread BPS**: `1.46 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `205.00` | **Spread BPS**: `2.08 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `9.92` | Lower -3.00σ Band: `9.78`
-  * Upper +2.51σ Band: `9.90` | Lower -2.51σ Band: `9.80`
+  * Upper +2.51σ Band: `9.91` | Lower -2.51σ Band: `9.80`
   * Upper +2.01σ Band: `9.89` | Lower -2.01σ Band: `9.81`
   * Upper +2.00σ Band: `9.89` | Lower -2.00σ Band: `9.81`
   * Upper +1.28σ Band: `9.88` | Lower -1.28σ Band: `9.82`

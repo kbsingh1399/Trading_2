@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SKLUSD
 **Canonical Key**: `SKLUSD` | **Broker Instrument**: `SKLUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0039` | **Live Ask Quote**: `0.0041` | **Mid Price**: `0.0040`
-- **Spread Points**: `20.00` | **Spread BPS**: `501.25 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `20.00` | **Spread BPS**: `502.51 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`0.0040` | POC=`0.0040` | VAL=`0.0040`
   * Prior Day Extremes: PDH=`0.0040` | PDL=`0.0040` | PDC=`0.0040`
   * Monday Range Blueprint: High=`0.0040` | Mid=`0.0040` | Low=`0.0040`
-  * Developing Weekly Value Area: Weekly VAH=`0.0040` | Weekly POC=`0.0040` | Weekly VAL=`0.0040`
+  * Developing Weekly Value Area: Weekly VAH=`0.0040` | Weekly POC=`0.0040` | Weekly VAL=`0.0039`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.0040` | Low=`0.0040`
   * London Session (08:00-16:00 UTC): High=`0.0040` | Low=`0.0040`

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `191.18` | **Live Ask Quote**: `191.19` | **Mid Price**: `191.19`
-- **Spread Points**: `7.00` | **Spread BPS**: `0.37 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `9.00` | **Spread BPS**: `0.47 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`190.77` | POC=`190.63` | VAL=`190.26`
   * Prior Day Extremes: PDH=`190.85` | PDL=`189.87` | PDC=`190.56`
   * Monday Range Blueprint: High=`190.79` | Mid=`190.42` | Low=`190.05`
-  * Developing Weekly Value Area: Weekly VAH=`190.64` | Weekly POC=`190.46` | Weekly VAL=`190.29`
+  * Developing Weekly Value Area: Weekly VAH=`190.64` | Weekly POC=`190.44` | Weekly VAL=`190.29`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`190.69` | Low=`190.37`
   * London Session (08:00-16:00 UTC): High=`190.88` | Low=`190.33`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `190.40` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `190.29` (Risk Distance: `0.1177` pts)
+  * Spread-Padded Stop Loss: `190.28` (Risk Distance: `0.1207` pts)
   * +2.5R Take Profit: `190.70`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `190.79` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `190.90` (Risk Distance: `0.1177` pts)
+  * Spread-Padded Stop Loss: `190.91` (Risk Distance: `0.1207` pts)
   * +2.5R Take Profit: `190.49`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

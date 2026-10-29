@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:11:45 IST` (`2026-10-29 19:41:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.49` | Lower -3.00σ Band: `7.38`
   * Upper +2.51σ Band: `7.47` | Lower -2.51σ Band: `7.39`
-  * Upper +2.01σ Band: `7.47` | Lower -2.01σ Band: `7.40`
+  * Upper +2.01σ Band: `7.46` | Lower -2.01σ Band: `7.40`
   * Upper +2.00σ Band: `7.46` | Lower -2.00σ Band: `7.40`
   * Upper +1.28σ Band: `7.45` | Lower -1.28σ Band: `7.41`
   * Upper +1.00σ Band: `7.45` | Lower -1.00σ Band: `7.42`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`7.43` | EMA-20=`7.43` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`7.43` (Slope: `+0.0000`) | EMA-100=`7.43`
   * Institutional Anchors: EMA-144=`7.43` | EMA-200=`7.43` (Slope: `+0.0000`) | EMA-233=`7.43`
-- **Range Boundaries**: 24H High=`7.51` | 24H Low=`7.36` | Weekly High=`7.58` | Weekly Low=`7.29`
+- **Range Boundaries**: 24H High=`7.51` | 24H Low=`7.36` | Weekly High=`7.58` | Weekly Low=`7.28`
 
 ---
 
