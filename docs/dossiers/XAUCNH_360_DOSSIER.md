@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUCNH
 **Canonical Key**: `XAUCNH` | **Broker Instrument**: `XAUCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:40:27 IST` (`2026-10-29 22:10:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:43:29 IST` (`2026-10-29 22:13:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -265,8 +265,8 @@
 | `7D` | `3979.00` | 313,290.00 USD | 0.00 USD | 313,290.00 USD | 132,500.00 USD | 0.00 USD | 75,930.00 USD |
 | `1D` | `3979.60` | 17,240.00 USD | 0.00 USD | 17,240.00 USD | 17,240.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `3983.20` | 104,860.00 USD | 0.00 USD | 104,860.00 USD | 30,500.00 USD | 0.00 USD | 74,360.00 USD |
-| `7D` | `4014.70` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `1D` | `4017.20` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
+| `7D` | `4018.40` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `4067.20` | 301,610.00 USD | 301,610.00 USD | 0.00 USD | 31,730.00 USD | 0.00 USD | 269,880.00 USD |
 | `7D` | `4071.40` | 1,190,000.00 USD | 1,190,000.00 USD | 0.00 USD | 306,700.00 USD | 0.00 USD | 578,530.00 USD |
 | `7D` | `4075.60` | 2,770,000.00 USD | 2,770,000.00 USD | 0.00 USD | 493,770.00 USD | 0.00 USD | 1,090,000.00 USD |
@@ -523,21 +523,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 03:29:54 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:53:54 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:30:54 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:30:54 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:29:54 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:29:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:31:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:54 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:31:54 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:31:54 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:29:57 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:53:57 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:40:57 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:57 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:57 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:57 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:41:57 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:41:57 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:41:57 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:41:57 IST`: [ForexFactory] - (Sentiment: `Neutral`)
 
 
 ---
