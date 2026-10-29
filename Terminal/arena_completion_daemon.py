@@ -381,14 +381,16 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
     # Independent State Tracking & Timers
     arena_gen_start: float = 0.0
     zai_gen_start: float = 0.0
-    arena_last_refresh: float = 0.0
-    zai_last_refresh: float = 0.0
+    arena_last_refresh: float = time.time()
+    zai_last_refresh: float = time.time()
     
     stable_arena_ticks: int = 0
     stable_zai_ticks: int = 0
     
     last_arena_hash: str = ""
     last_zai_hash: str = ""
+    astate: dict = {}
+    zstate: dict = {}
     
     # Initial Probe
     init_a = await probe_arena_state("arena1")
@@ -468,8 +470,9 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                     else:
                         stable_arena_ticks = 0
 
-            # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed
-            if not arena_done and (now - arena_last_refresh) >= refresh_limit_s:
+            # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed (only if generating for >= refresh_limit_s)
+            gen_dur = (now - arena_gen_start) if arena_gen_start > 0 else 0.0
+            if is_a_gen and gen_dur >= refresh_limit_s and (now - arena_last_refresh) >= refresh_limit_s:
                 print(f"[DualCouncilWatcher] ⏱️ 5-Minute milestone reached without Arena completion -> Triggering CDP Page.reload refresh!", flush=True)
                 await reload_arena_tab("arena1")
                 arena_last_refresh = now
@@ -508,8 +511,9 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                     else:
                         stable_zai_ticks = 0
 
-            # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed
-            if not zai_done and (now - zai_last_refresh) >= refresh_limit_s:
+            # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed (only if generating for >= refresh_limit_s)
+            z_dur = (now - zai_gen_start) if zai_gen_start > 0 else 0.0
+            if is_z_gen and z_dur >= refresh_limit_s and (now - zai_last_refresh) >= refresh_limit_s:
                 print(f"[DualCouncilWatcher] ⏱️ 5-Minute milestone reached without Z.ai completion -> Triggering CDP Page.reload refresh!", flush=True)
                 await reload_zai_tab()
                 zai_last_refresh = now
@@ -540,9 +544,9 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
 async def run_persistent_daemon(poll_interval: float = 3.0, refresh_limit_s: float = 300.0) -> None:
     print(f"[ArenaDaemon] Persistent Tri-Council Completion Watcher Daemon started (Auto-refresh watchdog: {refresh_limit_s}s / 5m).", flush=True)
     arena_gen_start: float = 0.0
-    arena_last_refresh: float = 0.0
+    arena_last_refresh: float = time.time()
     zai_gen_start: float = 0.0
-    zai_last_refresh: float = 0.0
+    zai_last_refresh: float = time.time()
     last_recorded_hash = ""
     if STATUS_FILE.exists():
         try:
