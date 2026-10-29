@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:59:02 IST` (`2026-10-29 18:29:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -186,20 +186,20 @@
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
 | `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | -16,250.00 USD | **`DISTRIBUTION`** |
-| `30m` | 0.00 USD | -17,360.00 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -17,600.00 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | -18,010.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -15,700.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -15,760.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | -16,180.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -16,890.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -30,100.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | 13,500.00 USD | **`ACCUMULATION`** |
-| `30d` | 0.00 USD | -16,920.00 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | -19.34 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | -16,290.00 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | -17,620.00 USD | **`DISTRIBUTION`** |
+| `2h` | 0.00 USD | -18,030.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -15,740.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -15,780.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -16,920.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -16,950.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -30,120.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | 13,480.00 USD | **`ACCUMULATION`** |
+| `30d` | 0.00 USD | -16,940.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+0.00` | 15m=`-16.25K` | 1h=`-17.60K` | 24h=`-30.10K`
+* Futures Capital Netflows: 5m=`+0.00` | 15m=`-19.34` | 1h=`-17.62K` | 24h=`-30.12K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
