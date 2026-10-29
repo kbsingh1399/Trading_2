@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNZD
 **Canonical Key**: `GBPNZD` | **Broker Instrument**: `GBPNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`2.38` | POC=`2.37` | VAL=`2.36`
   * Prior Day Extremes: PDH=`2.39` | PDL=`2.36` | PDC=`2.37`
   * Monday Range Blueprint: High=`2.39` | Mid=`2.37` | Low=`2.36`
-  * Developing Weekly Value Area: Weekly VAH=`2.39` | Weekly POC=`2.37` | Weekly VAL=`2.35`
+  * Developing Weekly Value Area: Weekly VAH=`2.39` | Weekly POC=`2.37` | Weekly VAL=`2.36`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`2.38` | Low=`2.37`
   * London Session (08:00-16:00 UTC): High=`2.38` | Low=`2.36`

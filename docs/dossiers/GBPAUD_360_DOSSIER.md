@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPAUD
 **Canonical Key**: `GBPAUD` | **Broker Instrument**: `GBPAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.90` (Distance: `-0.00%`)
-  * Point of Control (POC) = `1.90` (Distance: `+0.02%`)
-  * Value Area Low (VAL) = `1.90` (Distance: `+0.04%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `1.90` (Distance: `+0.02%`)
+  * Point of Control (POC) = `1.90` (Distance: `+0.04%`)
+  * Value Area Low (VAL) = `1.90` (Distance: `+0.05%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.90` | POC=`1.90` | VAL=`1.89`
   * Prior Day Extremes: PDH=`1.90` | PDL=`1.89` | PDC=`1.90`

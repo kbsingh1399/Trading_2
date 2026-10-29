@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.34` (Distance: `-0.01%`)
-  * Point of Control (POC) = `1.34` (Distance: `-0.00%`)
-  * Value Area Low (VAL) = `1.34` (Distance: `+0.00%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `1.34` (Distance: `+0.00%`)
+  * Point of Control (POC) = `1.34` (Distance: `+0.01%`)
+  * Value Area Low (VAL) = `1.34` (Distance: `+0.02%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.33` | POC=`1.33` | VAL=`1.33`
   * Prior Day Extremes: PDH=`1.34` | PDL=`1.33` | PDC=`1.34`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `414` | 553.37 USD | -160.19 USD | `-28.95%` | 8,632.69 USD | `-0.29` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `371` | 496.06 USD | 415.18 USD | `+83.70%` | 9,047.87 USD | `+1.38` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `331` | 442.49 USD | -301.14 USD | `-68.06%` | 8,746.73 USD | `-0.80` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,223` | 1,634.94 USD | -393.60 USD | `-24.07%` | 17,303.51 USD | `-0.74` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,202` | 1,607.17 USD | 998.00 USD | `+62.10%` | 18,301.51 USD | `+0.17` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,052` | 1,405.91 USD | -1,265.32 USD | `-90.00%` | 17,036.19 USD | `-1.23` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `305` | 407.52 USD | -339.60 USD | `-83.33%` | 4,196.94 USD | `-0.82` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `329` | 439.58 USD | -219.79 USD | `-50.00%` | 3,977.15 USD | `-0.36` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `268` | 358.08 USD | -8.53 USD | `-2.38%` | 3,968.62 USD | `+0.37` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,202` | 1,607.17 USD | 998.00 USD | `+62.10%` | 11,938.86 USD | `+0.17` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,052` | 1,405.91 USD | -1,265.32 USD | `-90.00%` | 10,673.54 USD | `-1.23` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `902` | 1,205.19 USD | -774.76 USD | `-64.29%` | 9,898.77 USD | `-1.02` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `1.34` | `1.34` | `1.34` | `1.34` | `6,560` | 8,769.34 USD | -3,203.17 USD | `-36.53%` | 27,374.26 USD | `-0.90` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `1.34` | `1.34` | `1.34` | `1.34` | `5,661` | 7,567.79 USD | -1,435.27 USD | `-18.97%` | 25,938.99 USD | `-0.50` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `1.34` | `1.34` | `1.34` | `1.34` | `3,990` | 5,331.12 USD | -3,998.34 USD | `-75.00%` | 21,940.65 USD | `-1.00` | **`BEARISH`** | `AGGRESSIVE SELLING` |

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPJPY
 **Canonical Key**: `GBPJPY` | **Broker Instrument**: `GBPJPY.pi` | **Asset Class**: `FX Cross`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `210.89` (Distance: `+0.03%`)
-  * Point of Control (POC) = `210.87` (Distance: `+0.04%`)
-  * Value Area Low (VAL) = `210.87` (Distance: `+0.04%`)
+  * Value Area High (VAH) = `210.88` (Distance: `+0.03%`)
+  * Point of Control (POC) = `210.86` (Distance: `+0.04%`)
+  * Value Area Low (VAL) = `210.86` (Distance: `+0.04%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`210.57` | POC=`210.21` | VAL=`210.06`
@@ -55,11 +55,11 @@
   * Developing Weekly Value Area: Weekly VAH=`210.48` | Weekly POC=`210.21` | Weekly VAL=`209.90`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`210.99` | Low=`210.85`
-  * London Session (08:00-16:00 UTC): High=`211.79` | Low=`210.10`
-  * New York Session (13:00-21:00 UTC): High=`212.21` | Low=`209.68`
-  * Initial Balance (First Hour): IB High=`211.58` | IB Low=`210.31`
+  * London Session (08:00-16:00 UTC): High=`211.78` | Low=`210.10`
+  * New York Session (13:00-21:00 UTC): High=`212.20` | Low=`209.67`
+  * Initial Balance (First Hour): IB High=`211.57` | IB Low=`210.31`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `210.10` - `211.79`
+  * Golden Pocket Zone (0.618 - 0.650): `210.10` - `211.78`
   * Optimal Trade Entry (OTE 0.705): `211.36`
   * Structural Invalidation Anchor (0.786): `212.63`
 
@@ -267,13 +267,13 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `210.87` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `210.86` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `210.53` (Risk Distance: `0.3353` pts)
-  * +2.5R Take Profit: `211.71`
+  * +2.5R Take Profit: `211.70`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.34 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `210.89` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `210.88` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `211.22` (Risk Distance: `0.3353` pts)
   * +2.5R Take Profit: `210.05`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.34 USD <= 10.00 USD`)

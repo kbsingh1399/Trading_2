@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `6.66` | **Live Ask Quote**: `6.66` | **Mid Price**: `6.66`
-- **Spread Points**: `181.00` | **Spread BPS**: `2.72 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `161.00` | **Spread BPS**: `2.42 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `6.66` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `6.65` (Risk Distance: `0.0036` pts)
-  * +2.5R Take Profit: `6.67`
+  * Spread-Padded Stop Loss: `6.65` (Risk Distance: `0.0032` pts)
+  * +2.5R Take Profit: `6.66`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `6.66` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `6.66` (Risk Distance: `0.0036` pts)
+  * Spread-Padded Stop Loss: `6.66` (Risk Distance: `0.0032` pts)
   * +2.5R Take Profit: `6.65`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5633` | **Live Ask Quote**: `0.5636` | **Mid Price**: `0.5635`
+- **Live Bid Quote**: `0.5633` | **Live Ask Quote**: `0.5635` | **Mid Price**: `0.5634`
 - **Spread Points**: `22.00` | **Spread BPS**: `3.90 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -56,12 +56,12 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.5634` | Low=`0.5632`
   * London Session (08:00-16:00 UTC): High=`0.5657` | Low=`0.5612`
-  * New York Session (13:00-21:00 UTC): High=`0.5668` | Low=`0.5601`
-  * Initial Balance (First Hour): IB High=`0.5651` | IB Low=`0.5618`
+  * New York Session (13:00-21:00 UTC): High=`0.5668` | Low=`0.5600`
+  * Initial Balance (First Hour): IB High=`0.5651` | IB Low=`0.5617`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.5612` - `0.5657`
-  * Optimal Trade Entry (OTE 0.705): `0.5646`
-  * Structural Invalidation Anchor (0.786): `0.5680`
+  * Optimal Trade Entry (OTE 0.705): `0.5645`
+  * Structural Invalidation Anchor (0.786): `0.5679`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.5680`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.5679`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

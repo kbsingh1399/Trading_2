@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 03:13:10 IST` (`2026-10-29 21:43:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `102.56` | `102.61` | `102.54` | `102.57` | `393` | 40,309.22 USD | -2,687.28 USD | `-6.67%` | 119,577.03 USD | `-0.43` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `5m` | `102.55` | `102.62` | `102.37` | `102.42` | `419` | 42,914.82 USD | -23,909.68 USD | `-55.71%` | 95,667.35 USD | `-1.22` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `102.41` | `102.78` | `102.38` | `102.70` | `542` | 55,662.32 USD | 37,014.03 USD | `+66.50%` | 132,681.38 USD | `+1.02` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `102.66` | `102.74` | `102.46` | `102.56` | `1,202` | 123,274.72 USD | -39,624.02 USD | `-32.14%` | 410,320.09 USD | `-0.49` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `102.57` | `102.62` | `102.37` | `102.42` | `1,200` | 122,906.40 USD | -73,493.01 USD | `-59.80%` | 336,827.08 USD | `-0.84` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `102.41` | `102.78` | `102.38` | `102.66` | `1,691` | 173,592.99 USD | 88,338.56 USD | `+50.89%` | 425,165.65 USD | `+0.61` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `102.62` | `102.90` | `102.57` | `102.84` | `484` | 49,775.53 USD | 33,738.43 USD | `+67.78%` | 209,994.61 USD | `+0.88` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `102.85` | `102.90` | `102.71` | `102.77` | `306` | 31,447.01 USD | -13,088.75 USD | `-41.62%` | 196,905.85 USD | `-0.81` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `102.77` | `102.99` | `102.77` | `102.91` | `307` | 31,594.29 USD | 14,392.95 USD | `+45.56%` | 211,298.81 USD | `+0.28` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `102.57` | `102.62` | `102.37` | `102.42` | `1,200` | 122,906.40 USD | -73,493.01 USD | `-59.80%` | 342,506.19 USD | `-0.84` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `102.41` | `102.78` | `102.38` | `102.66` | `1,691` | 173,592.99 USD | 88,338.56 USD | `+50.89%` | 430,844.75 USD | `+0.61` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `102.62` | `102.99` | `102.57` | `102.91` | `1,097` | 112,895.56 USD | 74,468.67 USD | `+65.96%` | 505,313.42 USD | `+0.40` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `101.36` | `102.01` | `101.32` | `101.98` | `5,786` | 590,044.71 USD | 528,493.28 USD | `+89.57%` | -802,271.63 USD | `+1.93` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `101.97` | `102.88` | `101.90` | `102.56` | `5,791` | 593,913.38 USD | 283,583.00 USD | `+47.75%` | -518,688.63 USD | `+1.05` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `102.57` | `103.03` | `102.37` | `102.79` | `4,695` | 482,613.14 USD | 151,046.86 USD | `+31.30%` | -367,641.77 USD | `+0.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 03:04:58 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 03:15:37 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
