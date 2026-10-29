@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDHKD
 **Canonical Key**: `USDHKD` | **Broker Instrument**: `USDHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:29:57 IST` (`2026-10-29 19:59:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `7.85` | VWAP Z-Score: `+0.37` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000667` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `47.58` (State: `NEUTRAL`)
+  * Session VWAP: `7.85` | VWAP Z-Score: `+0.42` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000669` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `48.05` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.85` | Lower -3.00σ Band: `7.84`
   * Upper +2.51σ Band: `7.85` | Lower -2.51σ Band: `7.84`

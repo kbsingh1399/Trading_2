@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: IOTUSD
 **Canonical Key**: `IOTUSD` | **Broker Instrument**: `IOTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:29:57 IST` (`2026-10-29 19:59:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0391` | **Live Ask Quote**: `0.0413` | **Mid Price**: `0.0402`
-- **Spread Points**: `22.00` | **Spread BPS**: `547.26 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0388` | **Live Ask Quote**: `0.0410` | **Mid Price**: `0.0399`
+- **Spread Points**: `22.00` | **Spread BPS**: `551.38 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -24,7 +24,7 @@
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
   * Session VWAP: `0.0393` | VWAP Z-Score: `-0.36` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000256` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period ATR: `0.000252` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `40.11` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0407` | Lower -3.00σ Band: `0.0379`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0392` | EMA-20=`0.0394` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0394` (Slope: `+0.0000`) | EMA-100=`0.0396`
-  * Institutional Anchors: EMA-144=`0.0398` | EMA-200=`0.0400` (Slope: `-0.2135`) | EMA-233=`0.0401`
+  * Institutional Anchors: EMA-144=`0.0398` | EMA-200=`0.0400` (Slope: `-0.2337`) | EMA-233=`0.0401`
 - **Range Boundaries**: 24H High=`0.0417` | 24H Low=`0.0385` | Weekly High=`0.0419` | Weekly Low=`0.0385`
 
 ---
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `0.0386` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0404` | POC=`0.0402` | VAL=`0.0400`
-  * Prior Day Extremes: PDH=`0.0404` | PDL=`0.0400` | PDC=`0.0402`
-  * Monday Range Blueprint: High=`0.0404` | Mid=`0.0402` | Low=`0.0400`
-  * Developing Weekly Value Area: Weekly VAH=`0.0405` | Weekly POC=`0.0402` | Weekly VAL=`0.0399`
+  * Prior Day Value Area: VAH=`0.0401` | POC=`0.0399` | VAL=`0.0397`
+  * Prior Day Extremes: PDH=`0.0401` | PDL=`0.0397` | PDC=`0.0399`
+  * Monday Range Blueprint: High=`0.0401` | Mid=`0.0399` | Low=`0.0397`
+  * Developing Weekly Value Area: Weekly VAH=`0.0402` | Weekly POC=`0.0399` | Weekly VAL=`0.0396`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0403` | Low=`0.0401`
-  * London Session (08:00-16:00 UTC): High=`0.0404` | Low=`0.0400`
-  * New York Session (13:00-21:00 UTC): High=`0.0404` | Low=`0.0400`
-  * Initial Balance (First Hour): IB High=`0.0403` | IB Low=`0.0401`
+  * Asian Session (00:00-08:00 UTC): High=`0.0400` | Low=`0.0398`
+  * London Session (08:00-16:00 UTC): High=`0.0401` | Low=`0.0397`
+  * New York Session (13:00-21:00 UTC): High=`0.0401` | Low=`0.0397`
+  * Initial Balance (First Hour): IB High=`0.0400` | IB Low=`0.0398`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0400` - `0.0404`
-  * Optimal Trade Entry (OTE 0.705): `0.0403`
-  * Structural Invalidation Anchor (0.786): `0.0405`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0397` - `0.0401`
+  * Optimal Trade Entry (OTE 0.705): `0.0400`
+  * Structural Invalidation Anchor (0.786): `0.0402`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.0405`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.0402`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

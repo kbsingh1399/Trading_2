@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPHKD
 **Canonical Key**: `GBPHKD` | **Broker Instrument**: `GBPHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:29:57 IST` (`2026-10-29 19:59:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.49` | **Live Ask Quote**: `10.49` | **Mid Price**: `10.49`
-- **Spread Points**: `66.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `80.00` | **Spread BPS**: `0.76 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,8 +27,8 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `10.56` | Lower -3.00σ Band: `10.41`
-  * Upper +2.51σ Band: `10.54` | Lower -2.51σ Band: `10.43`
+  * Upper +3.00σ Band: `10.56` | Lower -3.00σ Band: `10.42`
+  * Upper +2.51σ Band: `10.55` | Lower -2.51σ Band: `10.43`
   * Upper +2.01σ Band: `10.53` | Lower -2.01σ Band: `10.44`
   * Upper +2.00σ Band: `10.53` | Lower -2.00σ Band: `10.45`
   * Upper +1.28σ Band: `10.52` | Lower -1.28σ Band: `10.46`
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`10.53` | POC=`10.49` | VAL=`10.45`
-  * Prior Day Extremes: PDH=`10.55` | PDL=`10.42` | PDC=`10.49`
-  * Monday Range Blueprint: High=`10.54` | Mid=`10.49` | Low=`10.43`
+  * Prior Day Extremes: PDH=`10.55` | PDL=`10.43` | PDC=`10.49`
+  * Monday Range Blueprint: High=`10.54` | Mid=`10.49` | Low=`10.44`
   * Developing Weekly Value Area: Weekly VAH=`10.57` | Weekly POC=`10.49` | Weekly VAL=`10.40`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`10.51` | Low=`10.47`
   * London Session (08:00-16:00 UTC): High=`10.53` | Low=`10.45`
-  * New York Session (13:00-21:00 UTC): High=`10.55` | Low=`10.42`
+  * New York Session (13:00-21:00 UTC): High=`10.55` | Low=`10.43`
   * Initial Balance (First Hour): IB High=`10.52` | IB Low=`10.46`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `10.45` - `10.53`
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `10.46` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `9.25` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `9.26` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `13.46`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

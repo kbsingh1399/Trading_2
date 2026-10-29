@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFSGD
 **Canonical Key**: `CHFSGD` | **Broker Instrument**: `CHFSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:29:57 IST` (`2026-10-29 19:59:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -37,14 +37,14 @@
   * Fast EMA Array: EMA-9=`1.55` | EMA-20=`1.55` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.55` (Slope: `+0.0000`) | EMA-100=`1.55`
   * Institutional Anchors: EMA-144=`1.55` | EMA-200=`1.55` (Slope: `+0.0000`) | EMA-233=`1.55`
-- **Range Boundaries**: 24H High=`1.57` | 24H Low=`1.53` | Weekly High=`1.58` | Weekly Low=`1.52`
+- **Range Boundaries**: 24H High=`1.57` | 24H Low=`1.54` | Weekly High=`1.58` | Weekly Low=`1.52`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.55` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `1.56` (Distance: `+0.00%`)
   * Point of Control (POC) = `1.55` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `1.55` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -57,7 +57,7 @@
   * Asian Session (00:00-08:00 UTC): High=`1.55` | Low=`1.55`
   * London Session (08:00-16:00 UTC): High=`1.56` | Low=`1.54`
   * New York Session (13:00-21:00 UTC): High=`1.56` | Low=`1.54`
-  * Initial Balance (First Hour): IB High=`1.55` | IB Low=`1.55`
+  * Initial Balance (First Hour): IB High=`1.56` | IB Low=`1.55`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.54` - `1.56`
   * Optimal Trade Entry (OTE 0.705): `1.55`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.55` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3451` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.3456` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.55`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `1.55` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2.75` (Risk Distance: `1.20` pts)
+  * Execution Entry: `1.56` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `2.76` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `-1.45`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
