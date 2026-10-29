@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 01:14:46 IST` (`2026-10-29 19:44:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:17:49 IST` (`2026-10-29 19:47:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -187,11 +187,11 @@
 |:---:|:---:|:---:|:---:|
 | `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
 | `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30m` | 0.00 USD | -25.81 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
 | `1h` | 0.00 USD | -25.81 USD | **`DISTRIBUTION`** |
 | `2h` | 0.00 USD | -17,640.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -16,150.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -16,300.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -17,630.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -15,400.00 USD | **`DISTRIBUTION`** |
 | `8h` | 0.00 USD | -16,920.00 USD | **`DISTRIBUTION`** |
 | `12h` | 0.00 USD | -16,910.00 USD | **`DISTRIBUTION`** |
 | `24h` | 0.00 USD | -29,100.00 USD | **`DISTRIBUTION`** |
