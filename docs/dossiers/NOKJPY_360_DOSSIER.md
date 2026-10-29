@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NOKJPY
 **Canonical Key**: `NOKJPY` | **Broker Instrument**: `NOKJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:36:54 IST` (`2026-10-29 17:06:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:39:56 IST` (`2026-10-29 17:09:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,11 +152,11 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `24.18` | Last 24h: `48.69` | Last 3d: `1.53K` | Last 7d: `4.53K`
+  * Current Rate: `7.54` | Last 24h: `86.82` | Last 3d: `1.56K` | Last 7d: `2.98K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0031%` |
+| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0002%` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `0.0000%` |
 | **USDT MEXC** | `0.0000%` | **USDT BingX** | `-` |
 | **USDT Gate** | `0.0000%` | **USDT Bitget** | `-` |

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: STOUSD
 **Canonical Key**: `STOUSD` | **Broker Instrument**: `STOUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:36:54 IST` (`2026-10-29 17:06:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:39:56 IST` (`2026-10-29 17:09:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `152.00` | Last 24h: `706.00` | Last 3d: `2.55K` | Last 7d: `5.35K`
+  * Current Rate: `162.29` | Last 24h: `687.59` | Last 3d: `2.55K` | Last 7d: `5.40K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-` | **USDT OKX** | `-` |
-| **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `-` | **USDT BingX** | `-` |
-| **USDT Gate** | `-` | **USDT Bitget** | `-` |
+| **USDT Binance** | `0.0050%` | **USDT OKX** | `-` |
+| **USDT Bybit** | `0.0050%` | **USDT KuCoin** | `0.0050%` |
+| **USDT MEXC** | `0.0050%` | **USDT BingX** | `0.0050%` |
+| **USDT Gate** | `-0.0122%` | **USDT Bitget** | `0.0050%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
