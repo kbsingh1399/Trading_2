@@ -37,9 +37,9 @@
     "bb_lower",
     "macd_hist"
   ],
-  "byte_size": 34706,
-  "timestamp_ist": "2026-10-29 16:45:57 IST",
-  "timestamp_utc": "2026-10-29 11:15:57 UTC",
-  "epoch_utc": 1793272557.241769,
-  "write_duration_ms": 12.94
+  "byte_size": 34704,
+  "timestamp_ist": "2026-10-29 16:47:56 IST",
+  "timestamp_utc": "2026-10-29 11:17:56 UTC",
+  "epoch_utc": 1793272676.276052,
+  "write_duration_ms": 7.08
 }
