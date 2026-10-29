@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 04:47:08 IST` (`2026-10-29 23:17:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:50:10 IST` (`2026-10-29 23:20:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,7 +152,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `0.25` | Last 24h: `18.87` | Last 3d: `27.93` | Last 7d: `134.23`
+  * Current Rate: `2.32` | Last 24h: `18.87` | Last 3d: `27.93` | Last 7d: `134.23`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
@@ -186,20 +186,20 @@
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
 | `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30m` | 0.00 USD | -995.73 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -1,740.00 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | -1,900.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -4,460.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -22,070.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | -19,840.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -21,130.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -25,710.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | 3,590.00 USD | **`ACCUMULATION`** |
-| `30d` | 0.00 USD | -13,990.00 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | -12.69 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | -12.69 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | -1,760.00 USD | **`DISTRIBUTION`** |
+| `2h` | 0.00 USD | -1,910.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -4,450.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -22,080.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -19,300.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -20,950.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -25,730.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | 3,570.00 USD | **`ACCUMULATION`** |
+| `30d` | 0.00 USD | -14,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+0.00` | 15m=`+0.00` | 1h=`-1.74K` | 24h=`-25.71K`
+* Futures Capital Netflows: 5m=`+0.00` | 15m=`-12.69` | 1h=`-1.76K` | 24h=`-25.73K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
