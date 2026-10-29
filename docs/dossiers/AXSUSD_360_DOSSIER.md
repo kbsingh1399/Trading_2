@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 02:09:27 IST` (`2026-10-29 20:39:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:15:31 IST` (`2026-10-29 20:45:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.8100` | **Live Ask Quote**: `1.01` | **Mid Price**: `0.9100`
-- **Spread Points**: `20.00` | **Spread BPS**: `2197.80 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.7800` | **Live Ask Quote**: `0.9800` | **Mid Price**: `0.8800`
+- **Spread Points**: `20.00` | **Spread BPS**: `2272.73 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8400` (Distance: `+8.17%`)
-  * Point of Control (POC) = `0.8300` (Distance: `+9.63%`)
-  * Value Area Low (VAL) = `0.8100` (Distance: `+12.34%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
+  * Value Area High (VAH) = `0.8400` (Distance: `+4.39%`)
+  * Point of Control (POC) = `0.8200` (Distance: `+7.36%`)
+  * Value Area Low (VAL) = `0.8100` (Distance: `+8.69%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8700` | POC=`0.8600` | VAL=`0.8500`
   * Prior Day Extremes: PDH=`0.8800` | PDL=`0.8400` | PDC=`0.8600`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.8600` | Low=`0.8200`
   * Initial Balance (First Hour): IB High=`0.8300` | IB Low=`0.8200`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.9064` - `0.9136`
-  * Optimal Trade Entry (OTE 0.705): `0.9118`
-  * Structural Invalidation Anchor (0.786): `0.9173`
+  * Golden Pocket Zone (0.618 - 0.650): `0.8765` - `0.8835`
+  * Optimal Trade Entry (OTE 0.705): `0.8818`
+  * Structural Invalidation Anchor (0.786): `0.8870`
 
 ---
 
@@ -140,22 +140,7 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `0.3205` | 17,400.00 USD | 0.00 USD | 171.72 USD | `-65.60%` | `535.80` |
-| `Live` | `Long` | `0.3495` | 17,230.00 USD | 0.00 USD | 333.42 USD | `-62.48%` | `954.00` |
-| `Live` | `Long` | `0.5225` | 16,900.00 USD | 0.00 USD | 1,180.00 USD | `-43.91%` | `2,259.30` |
-| `Live` | `Long` | `0.7035` | 15,710.00 USD | 0.00 USD | 133.59 USD | `-24.49%` | `189.90` |
-| `Live` | `Long` | `0.7825` | 15,580.00 USD | 0.00 USD | 849.64 USD | `-16.01%` | `1,085.80` |
-| `Live` | `Long` | `0.8085` | 14,730.00 USD | 0.00 USD | 128.55 USD | `-13.21%` | `159.00` |
-| `Live` | `Long` | `0.8145` | 14,600.00 USD | 0.00 USD | 151.09 USD | `-12.57%` | `185.50` |
-| `Live` | `Long` | `0.8285` | 14,450.00 USD | 0.00 USD | 10,380.00 USD | `-11.07%` | `12,527.10` |
-| `Live` | `Long` | `0.8375` | 4,070.00 USD | 0.00 USD | 566.90 USD | `-10.10%` | `676.90` |
-| `Live` | `Long` | `0.8415` | 3,510.00 USD | 0.00 USD | 167.46 USD | `-9.67%` | `199.00` |
-| `Live` | `Long` | `0.8445` | 3,340.00 USD | 0.00 USD | 2,670.00 USD | `-9.35%` | `3,160.10` |
-| `Live` | `Long` | `0.8825` | 669.90 USD | 0.00 USD | 176.50 USD | `-5.27%` | `200.00` |
-| `Live` | `Long` | `0.9035` | 493.40 USD | 0.00 USD | 493.40 USD | `-3.02%` | `546.10` |
-| `Live` | `Short` | `1.31` | 342.57 USD | 342.57 USD | 0.00 USD | `+40.56%` | `261.60` |
-| `Live` | `Short` | `1.61` | 13,910.00 USD | 13,570.00 USD | 0.00 USD | `+72.55%` | `8,442.70` |
-| `Live` | `Short` | `1.83` | 14,900.00 USD | 989.74 USD | 0.00 USD | `+96.60%` | `540.40` |
+| Map | Near Money | - | - | - | - | 0.00% | - |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
@@ -260,21 +245,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:35:49 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:00:49 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:35:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -310,5 +295,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.9173`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.8870`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

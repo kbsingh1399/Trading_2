@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFSGD
 **Canonical Key**: `CHFSGD` | **Broker Instrument**: `CHFSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:09:27 IST` (`2026-10-29 20:39:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:15:30 IST` (`2026-10-29 20:45:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.55` | **Live Ask Quote**: `1.55` | **Mid Price**: `1.55`
-- **Spread Points**: `11.00` | **Spread BPS**: `0.71 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `34.00` | **Spread BPS**: `2.19 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:35:49 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:00:49 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:35:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.55` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3477` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.3473` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.55`
-  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.56` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `2.76` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `-1.44`
-  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

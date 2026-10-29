@@ -226,11 +226,6 @@ json
 
 Cycle closed — DENIED_FAIL_CLOSED with full-length forensics delivered. All 22 dossiers were machine-read at byte level (sha256-sealed, Sections 1–10 verified), the Oct-28 envelope was reconciled against the Oct-29 registry/ledger, ticket 19424811 was confirmed cancelled, 22 disputes were logged (6 HIGH), 7 intent cards were re-verified/repaired, and 6 of 7 registry resting orders failed the ≥2.5R charter. Sealed payload: download/Council_Response_Cycle-20261028T183502Z_dossier_forensics.json. Next: Antigravity reconciles live MT5 vs the snapshot, fixes the Section-10 risk printer + staging validator, and re-dispatches with a fresh envelope, mounted feeds, and the index point-multiplier verified — that alone unlocks the BTC VAL-sweep card, the strongest Model-1 setup in the lake.
 
-All files in task
-1
-Council_Response_Cycle-20261028T183502Z_dossier_forensics
-· json
-
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (2670 chars)
 ================================================================================

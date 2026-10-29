@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:09:27 IST` (`2026-10-29 20:39:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:15:30 IST` (`2026-10-29 20:45:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.34` | **Live Ask Quote**: `1.34` | **Mid Price**: `1.34`
-- **Spread Points**: `1.00` | **Spread BPS**: `0.07 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `8.00` | **Spread BPS**: `0.60 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.33` (Distance: `+0.33%`)
-  * Point of Control (POC) = `1.33` (Distance: `+0.46%`)
-  * Value Area Low (VAL) = `1.33` (Distance: `+0.62%`)
+  * Value Area High (VAH) = `1.33` (Distance: `+0.31%`)
+  * Point of Control (POC) = `1.33` (Distance: `+0.45%`)
+  * Value Area Low (VAL) = `1.33` (Distance: `+0.61%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.33` | POC=`1.33` | VAL=`1.33`
@@ -70,9 +70,9 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `377` | 504.09 USD | 161.31 USD | `+32.00%` | 8,515.47 USD | `+0.36` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `362` | 483.93 USD | -428.62 USD | `-88.57%` | 8,086.85 USD | `-1.02` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `619` | 827.43 USD | -173.49 USD | `-20.97%` | 7,913.36 USD | `-0.37` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `619` | 827.43 USD | -173.49 USD | `-20.97%` | 7,986.92 USD | `-0.37` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `572` | 764.60 USD | -132.34 USD | `-17.31%` | 7,854.58 USD | `-0.21` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `436` | 582.91 USD | 255.02 USD | `+43.75%` | 8,109.60 USD | `+0.64` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,553` | 2,076.25 USD | -224.46 USD | `-10.81%` | 17,208.75 USD | `-0.55` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,258` | 1,681.72 USD | -960.98 USD | `-57.14%` | 16,247.77 USD | `-0.94` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,627` | 2,175.22 USD | 767.72 USD | `+35.29%` | 17,015.49 USD | `+0.12` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -81,12 +81,12 @@
 | `1h` | `1.34` | `1.34` | `1.34` | `1.34` | `5,661` | 7,567.79 USD | -1,435.27 USD | `-18.97%` | 32,102.35 USD | `-0.50` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `1.33` | `1.33` | `1.33` | `1.33` | `23,876` | 31,800.92 USD | 4,068.43 USD | `+12.79%` | -7,908.43 USD | `+1.38` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `1.33` | `1.34` | `1.33` | `1.34` | `40,930` | 54,714.81 USD | 35,923.87 USD | `+65.66%` | 28,015.44 USD | `+1.94` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `4h` | `1.34` | `1.34` | `1.34` | `1.34` | `15,218` | 20,366.40 USD | 15,854.86 USD | `+77.85%` | 43,870.30 USD | `+0.58` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `4h` | `1.34` | `1.34` | `1.34` | `1.34` | `15,659` | 20,953.46 USD | 13,558.12 USD | `+64.71%` | 41,573.56 USD | `+0.45` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `4h` | `1.33` | `1.33` | `1.33` | `1.33` | `17,244` | 22,969.01 USD | -1,056.57 USD | `-4.60%` | -3,726.39 USD | `+1.00` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `1.33` | `1.33` | `1.33` | `1.33` | `17,831` | 23,736.63 USD | -8,250.46 USD | `-34.76%` | -11,976.86 USD | `-1.38` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `1.33` | `1.33` | `1.33` | `1.33` | `23,876` | 31,800.92 USD | 4,068.43 USD | `+12.79%` | -7,908.43 USD | `+1.38` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `1.33` | `1.34` | `1.33` | `1.34` | `40,930` | 54,714.81 USD | 35,923.87 USD | `+65.66%` | 28,015.44 USD | `+1.94` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `4h` | `1.34` | `1.34` | `1.34` | `1.34` | `15,218` | 20,366.40 USD | 15,854.86 USD | `+77.85%` | 43,870.30 USD | `+0.58` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `4h` | `1.34` | `1.34` | `1.34` | `1.34` | `15,659` | 20,953.46 USD | 13,558.12 USD | `+64.71%` | 41,573.56 USD | `+0.45` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -305,16 +305,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `19:55:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 709.84 USD | 673.54 USD | 36.30 USD | 637.24 USD | `+89.77%` | `1B / 0S` |
-| `20:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 7,567.79 USD | 3,066.26 USD | 4,501.53 USD | -1,435.27 USD | `-18.97%` | `0B / 1S` |
+| `20:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 20,366.40 USD | 18,110.63 USD | 2,255.77 USD | 15,854.86 USD | `+77.85%` | `1B / 0S` |
 | `20:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 673.76 USD | 217.57 USD | 456.19 USD | -238.62 USD | `-35.42%` | `0B / 1S` |
-| `20:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 19,747.84 USD | 17,315.13 USD | 2,432.70 USD | 14,882.43 USD | `+75.36%` | `1B / 0S` |
-| `20:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,076.25 USD | 925.90 USD | 1,150.36 USD | -224.46 USD | `-10.81%` | `0B / 1S` |
 | `20:05:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 722.07 USD | 572.68 USD | 149.39 USD | 423.28 USD | `+58.62%` | `1B / 0S` |
 | `20:10:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 680.50 USD | 99.51 USD | 580.99 USD | -481.48 USD | `-70.75%` | `0B / 1S` |
-| `20:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,681.72 USD | 360.37 USD | 1,321.35 USD | -960.98 USD | `-57.14%` | `0B / 1S` |
 | `20:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 693.90 USD | 439.47 USD | 254.43 USD | 185.04 USD | `+26.67%` | `1B / 0S` |
+| `20:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,681.72 USD | 360.37 USD | 1,321.35 USD | -960.98 USD | `-57.14%` | `0B / 1S` |
 | `20:20:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 504.09 USD | 332.70 USD | 171.39 USD | 161.31 USD | `+32.00%` | `1B / 0S` |
+| `20:25:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 483.93 USD | 27.65 USD | 456.28 USD | -428.62 USD | `-88.57%` | `0B / 1S` |
+| `20:30:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 827.43 USD | 326.97 USD | 500.46 USD | -173.49 USD | `-20.97%` | `0B / 1S` |
+| `20:30:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,175.22 USD | 1,471.47 USD | 703.75 USD | 767.72 USD | `+35.29%` | `1B / 0S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -369,21 +369,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:35:49 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:00:49 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:35:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -407,15 +407,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.33` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.000977` pts)
+  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0011` pts)
   * +2.5R Take Profit: `1.33`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.33` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.000977` pts)
+  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.0011` pts)
   * +2.5R Take Profit: `1.33`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**

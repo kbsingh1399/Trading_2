@@ -122,14 +122,58 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 - [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai**
   - [x] Dispatched Cycle_013 prompt to Arena.ai, Z.ai (GLM-5.3-Flash), and Web2API.
 
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
+  - [x] `rock_hard_dual_watchdog.py --cycle Cycle_013` completed surveillance.
+  - [x] Successfully harvested Arena.ai (`docs/trade_plans/ARENA_LATEST_RAW.md`, 52,816 chars).
+  - [x] Successfully harvested Z.ai (`docs/trade_plans/ZAI_LATEST_RAW.md`, 29,510 chars).
+
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades**
+  - [x] Conducted 3-way Tri-Council comparative forensics across Antigravity, Arena.ai, and Z.ai:
+    * Arena.ai validates active resting limits on BTC, BNB, XAUUSD, NAS100, DJ30, and AUDUSD; endorses purge of USWTI and quarantine of FX pre-rollover entries.
+    * Z.ai endorses `STAGED_FROZEN_CAPACITY_ZERO`, confirming that no new speculative risk should be staged while preserving TIER_0_DEFENSIVE capital defense.
+    * Antigravity confirms MT5 execution status: 0 open positions, 6 passive resting limits, total contingent downside risk = `42.87 USD`.
+  - [x] Interrogated live orders ("Should I let it run or cut it?"): All 6 orders maintain valid auction structure, defending whale armor, and SL immunity beyond liquidation cascades. Orders remain resting.
+  - [x] Sizing & solvency invariant preserved: Nominal risk per ticket <= 10.00 USD. Capital floor (4,775.00 USD) fully defended.
+
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Synchronized `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` and `cycle_envelope.json`.
+  - [x] Cycle_013 COMPLETED & FULLY VERIFIED. Advanced to Cycle_014.
+
+---
+
+### ⏳ Cycle_014 Scorecard: PRE-INITIALIZED & ARMED
+**Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
+
+- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
+  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
+  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`.
+
+- [ ] **Step 1: Identify Eligible Assets**
+  - [ ] Live MT5 account telemetry interrogated (`00_MT5_Account_Telemetry.parquet`).
+  - [ ] Spread thresholds validated: TradFi <= 5.0 bps, Crypto <= 25.0 bps.
+
+- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics**
+  - [ ] Full-length master dossier examination executed across all 4 macro sectors:
+    * Crypto: `docs/dossiers/BTC_MASTER_DOSSIER.md` (Sections 1-10 read).
+    * Precious Metals: `docs/dossiers/XAUUSD_MASTER_DOSSIER.md` (1,011 lines read to EOF).
+    * Global Indices: `docs/dossiers/NAS100_MASTER_DOSSIER.md` & `docs/dossiers/DJ30_MASTER_DOSSIER.md`.
+    * FX Majors: `docs/dossiers/AUDUSD_MASTER_DOSSIER.md`.
+  - [ ] SL immunity against short max pain & liquidation cascades verified.
+
+- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry**
+  - [ ] `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` synchronized with live MT5 tickets.
+
+- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai**
+  - [ ] Explicitly stamp and embed the active Cycle ID (`Cycle_014`) in the prompt header, metadata block, and JSON schema.
+  - [ ] Dispatch Cycle_014 prompt to Arena.ai, Z.ai (GLM-5.3-Flash), and Web2API.
+
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [x] `rock_hard_dual_watchdog.py --cycle Cycle_013 --timeout 1200` (`task-161246`) running.
-  - [ ] Awaiting completion detection and raw file harvesting (`ARENA_LATEST_RAW.md` & `ZAI_LATEST_RAW.md`).
+  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_014 --timeout 1200` to monitor Arena.ai and Z.ai completion status.
 
 - [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades**
-  - [ ] Conduct 3-way Tri-Council comparative forensics.
-  - [ ] Interrogate live orders: "Should I let it run or cut it?"
-  - [ ] Punch new consensus candidates or maintain resting limits.
+  - [ ] Conduct Tri-Council deliberation comparison, interrogate live orders ('Should I let it run or cut it?'), punch consensus limit orders, and trail stops.
 
 - [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Synchronize registries and re-arm timer for Cycle_014.
+  - [ ] Re-arm dynamic 20-minute cycle timer and advance to Cycle_015.

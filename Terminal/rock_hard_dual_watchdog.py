@@ -260,11 +260,18 @@ async def reload_cdp_tab(match_keyword: str) -> bool:
         for t in tabs:
             if match_keyword in t.get("url", "") and t.get("webSocketDebuggerUrl"):
                 ws_url = t["webSocketDebuggerUrl"]
-                async with websockets.connect(ws_url, max_size=50_000_000, open_timeout=5, close_timeout=3) as ws:
+                try:
+                    ws = await asyncio.wait_for(websockets.connect(ws_url, max_size=50_000_000, open_timeout=4, close_timeout=2), timeout=5.0)
                     print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via Page.reload...")
-                    await ws.send(json.dumps({"id": 9999, "method": "Page.reload"}))
-                    await asyncio.sleep(3.5)
-                    return True
+                    await asyncio.wait_for(ws.send(json.dumps({"id": 9999, "method": "Page.reload"})), timeout=3.0)
+                    try:
+                        await asyncio.wait_for(ws.close(), timeout=2.0)
+                    except Exception:
+                        pass
+                except Exception as ws_err:
+                    print(f"[RockHardWatchdog] Notice on ws reload for {match_keyword}: {ws_err}")
+                await asyncio.sleep(3.5)
+                return True
     except Exception as e:
         print(f"[RockHardWatchdog] Warning: failed to reload tab for '{match_keyword}': {e}", file=sys.stderr)
     return False

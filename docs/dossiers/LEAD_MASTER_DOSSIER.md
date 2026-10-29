@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: LEAD
 **Canonical Key**: `LEAD` | **Broker Instrument**: `LEAD.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 02:09:27 IST` (`2026-10-29 20:39:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:15:31 IST` (`2026-10-29 20:45:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1908.00` | VWAP Z-Score: `+1.10` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `2.16` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `50.02` (State: `NEUTRAL`)
+  * Session VWAP: `1913.90` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `4.78` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1918.64` | Lower -3.00σ Band: `1897.36`
-  * Upper +2.51σ Band: `1916.90` | Lower -2.51σ Band: `1899.10`
-  * Upper +2.01σ Band: `1915.13` | Lower -2.01σ Band: `1900.87`
-  * Upper +2.00σ Band: `1915.09` | Lower -2.00σ Band: `1900.91`
-  * Upper +1.28σ Band: `1912.54` | Lower -1.28σ Band: `1903.46`
-  * Upper +1.00σ Band: `1911.55` | Lower -1.00σ Band: `1904.46`
+  * Upper +3.00σ Band: `1927.30` | Lower -3.00σ Band: `1900.50`
+  * Upper +2.51σ Band: `1924.43` | Lower -2.51σ Band: `1903.37`
+  * Upper +2.01σ Band: `1921.94` | Lower -2.01σ Band: `1905.86`
+  * Upper +2.00σ Band: `1921.56` | Lower -2.00σ Band: `1906.24`
+  * Upper +1.28σ Band: `1919.26` | Lower -1.28σ Band: `1908.54`
+  * Upper +1.00σ Band: `1917.73` | Lower -1.00σ Band: `1910.07`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1913.18` | EMA-20=`1912.46` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1911.00` (Slope: `+0.0000`) | EMA-100=`1912.52`
-  * Institutional Anchors: EMA-144=`1914.09` | EMA-200=`1915.18` (Slope: `-0.0084`) | EMA-233=`1916.73`
-- **Range Boundaries**: 24H High=`1931.45` | 24H Low=`1879.00` | Weekly High=`1940.05` | Weekly Low=`1879.00`
+  * Fast EMA Array: EMA-9=`1913.90` | EMA-20=`1913.90` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1913.90` (Slope: `+0.0000`) | EMA-100=`1913.90`
+  * Institutional Anchors: EMA-144=`1913.90` | EMA-200=`1913.90` (Slope: `+0.0000`) | EMA-233=`1913.90`
+- **Range Boundaries**: 24H High=`1933.04` | 24H Low=`1894.76` | Weekly High=`1952.18` | Weekly Low=`1875.62`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:35:49 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:59:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:58:49 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:49 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:00:49 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:00:49 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:35:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:09:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:08:25 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:10:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:10:25 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:10:25 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1903.88` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1825.09` (Risk Distance: `101.60` pts)
+  * Spread-Padded Stop Loss: `1821.94` (Risk Distance: `101.60` pts)
   * +2.5R Take Profit: `2157.88`
   * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1911.71` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1990.50` (Risk Distance: `101.60` pts)
+  * Spread-Padded Stop Loss: `1993.65` (Risk Distance: `101.60` pts)
   * +2.5R Take Profit: `1657.71`
   * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
