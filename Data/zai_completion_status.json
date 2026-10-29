@@ -1,11 +1,11 @@
 {
-  "completed_at_utc": "2026-10-29 18:12:41 UTC",
-  "completed_at_epoch": 1793297561.5778198,
+  "completed_at_utc": "2026-10-29 18:23:58 UTC",
+  "completed_at_epoch": 1793298238.0373976,
   "prose_count": 5,
-  "text_length": 14914,
-  "workspace_file_name": "Cycle_310_Council_Audit.md",
+  "text_length": 2724,
+  "workspace_file_name": "",
   "workspace_file_length": 303,
-  "text_hash": "72fb818afd0b98a7",
+  "text_hash": "7b303f5e12404534",
   "is_generating": false,
   "latest_raw_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_RAW.md",
   "latest_attachment_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_ATTACHMENT.md"
