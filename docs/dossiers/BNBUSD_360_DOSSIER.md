@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BNB
 **Canonical Key**: `BNB` | **Broker Instrument**: `BNBUSD.p` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-30 03:07:05 IST` (`2026-10-29 21:37:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:10:07 IST` (`2026-10-29 21:40:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1931,8 +1931,8 @@
 | `7D` | `708.20` | 69,690,000.00 USD | 0.00 USD | 69,690,000.00 USD | 796,640.00 USD | 138,200.00 USD | 42,800.00 USD |
 | `7D` | `709.10` | 68,710,000.00 USD | 0.00 USD | 68,710,000.00 USD | 392,150.00 USD | 156,040.00 USD | 195,500.00 USD |
 | `7D` | `710.00` | 67,970,000.00 USD | 0.00 USD | 67,970,000.00 USD | 450,480.00 USD | 167,090.00 USD | 176,960.00 USD |
+| `1D` | `710.20` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `710.90` | 67,180,000.00 USD | 0.00 USD | 67,180,000.00 USD | 922,450.00 USD | 160,040.00 USD | 236,990.00 USD |
-| `1D` | `711.40` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `711.80` | 65,860,000.00 USD | 0.00 USD | 65,860,000.00 USD | 608,910.00 USD | 232,130.00 USD | 114,740.00 USD |
 | `7D` | `712.70` | 64,900,000.00 USD | 0.00 USD | 64,900,000.00 USD | 1,190,000.00 USD | 217,390.00 USD | 236,970.00 USD |
 | `7D` | `713.60` | 63,260,000.00 USD | 0.00 USD | 63,260,000.00 USD | 2,250,000.00 USD | 279,180.00 USD | 308,960.00 USD |
@@ -2162,18 +2162,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `1.37B` | Total OI Tokens: `1,929,934.9 BNB`
-  * 1h OI Change: `+12.22%` | 4h OI Change: `+11.03%` | 24h OI Change: `+7.77%`
-  * Exchange Breakdown: Binance=`603.78M` | Bybit=`135.03M` | OKX=`59.29M` | Hyperliquid=`94.68M`
+  * Total Open Interest: `1.36B` | Total OI Tokens: `1,918,532.4 BNB`
+  * 1h OI Change: `+8.57%` | 4h OI Change: `+10.46%` | 24h OI Change: `+7.45%`
+  * Exchange Breakdown: Binance=`601.90M` | Bybit=`133.18M` | OKX=`59.51M` | Hyperliquid=`89.54M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-35.92K` | Last 24h: `109.28K` | Last 3d: `307.00K` | Last 7d: `451.01K`
+  * Current Rate: `-38.75K` | Last 24h: `109.28K` | Last 3d: `307.00K` | Last 7d: `451.01K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0053%` |
-| **USDT Bybit** | `-0.0299%` | **USDT KuCoin** | `-0.0037%` |
+| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0028%` |
+| **USDT Bybit** | `-0.0315%` | **USDT KuCoin** | `-0.0056%` |
 | **USDT MEXC** | `0.0000%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0069%` | **USDT Bitget** | `0.0100%` |
+| **USDT Gate** | `0.0051%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0000%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
