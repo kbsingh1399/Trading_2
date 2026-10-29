@@ -1,26 +1,6 @@
 [
   {
     "type": "LIQUIDATION",
-    "coin": "NEAR",
-    "side": "SHORT_LIQUIDATED",
-    "market_impact": "BUY_PRESSURE",
-    "notional_usd": 34641.47,
-    "distance_pct": null,
-    "duration_hours": null,
-    "rate_usd_per_min": null,
-    "price": 4.26,
-    "wallet_address": "0x6b90f8c97c9e649d7b25169f39ccabbed2548766",
-    "asset_slug": "NEAR",
-    "raw_text": "#NEAR Liquidated Short: 34.64K USD at 4.2600 USD [API]",
-    "msg_id": "HL_LIQ_0x6b90f8c97c9e649d7b25169f39ccabbed2548766_NEAR_618804730590067",
-    "timestamp_epoch": 1790178793,
-    "time_label": "15:53",
-    "date_heading": "September 23",
-    "source": "HYPERLIQUID_L1_NATIVE_API",
-    "identity_basis": "NATIVE_TID"
-  },
-  {
-    "type": "LIQUIDATION",
     "coin": "XYZ:SKHX",
     "side": "LONG_LIQUIDATED",
     "market_impact": "SELL_PRESSURE",
@@ -199996,6 +199976,26 @@
     "timestamp_epoch": 1793275325,
     "time_label": "12:02",
     "date_heading": "October 29",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "LIQUIDATION",
+    "coin": "BTC",
+    "side": "LONG_LIQUIDATED",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 424.72,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 81520.0,
+    "wallet_address": "0x81af5d0f7dfdfb923843ccceb2b204737f68892d",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Liquidated Long: 0.42K USD at 81520.0000 USD [API]",
+    "msg_id": "HL_LIQ_0x81af5d0f7dfdfb923843ccceb2b204737f68892d_BTC_16760660919554",
+    "timestamp_epoch": 1793217390,
+    "time_label": "19:56",
+    "date_heading": "October 28",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
   }

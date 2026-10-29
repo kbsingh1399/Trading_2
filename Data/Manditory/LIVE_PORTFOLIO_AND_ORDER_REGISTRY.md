@@ -18,7 +18,7 @@
 - **Free Margin**: **4,744.55 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 12:03:06 UTC`
+- **Last Updated**: `2026-10-29 12:05:12 UTC`
 
 ---
 
