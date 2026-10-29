@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FR40
 **Canonical Key**: `FR40` | **Broker Instrument**: `FR40.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `7973.70` | **Live Ask Quote**: `7975.00` | **Mid Price**: `7974.35`
-- **Spread Points**: `130.00` | **Spread BPS**: `1.63 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `7970.50` | **Live Ask Quote**: `7971.70` | **Mid Price**: `7971.10`
+- **Spread Points**: `120.00` | **Spread BPS**: `1.51 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `7992.48` (Distance: `-0.22%`)
-  * Point of Control (POC) = `7982.52` (Distance: `-0.10%`)
-  * Value Area Low (VAL) = `7938.53` (Distance: `+0.45%`)
+  * Value Area High (VAH) = `7992.48` (Distance: `-0.26%`)
+  * Point of Control (POC) = `7982.52` (Distance: `-0.14%`)
+  * Value Area Low (VAL) = `7938.53` (Distance: `+0.41%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7893.42` | POC=`7887.59` | VAL=`7874.61`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`7998.70` | Low=`7935.10`
   * Initial Balance (First Hour): IB High=`7904.22` | IB Low=`7888.72`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `7942.45` - `8006.25`
-  * Optimal Trade Entry (OTE 0.705): `7990.30`
-  * Structural Invalidation Anchor (0.786): `8038.14`
+  * Golden Pocket Zone (0.618 - 0.650): `7939.22` - `8002.98`
+  * Optimal Trade Entry (OTE 0.705): `7987.04`
+  * Structural Invalidation Anchor (0.786): `8034.87`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `7938.53` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7922.03` (Risk Distance: `16.50` pts)
-  * +2.5R Take Profit: `7979.77`
-  * Mathematical Lot Sizing: **`0.60 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `7922.18` (Risk Distance: `16.35` pts)
+  * +2.5R Take Profit: `7979.39`
+  * Mathematical Lot Sizing: **`0.61 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `7992.48` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `8008.98` (Risk Distance: `16.50` pts)
-  * +2.5R Take Profit: `7951.24`
-  * Mathematical Lot Sizing: **`0.60 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `8008.83` (Risk Distance: `16.35` pts)
+  * +2.5R Take Profit: `7951.62`
+  * Mathematical Lot Sizing: **`0.61 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`8038.14`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`8034.87`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

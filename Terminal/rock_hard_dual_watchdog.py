@@ -102,7 +102,7 @@ async def probe_arena() -> dict:
 
         const btnStop = document.querySelector('button[aria-label="Stop generating"], button:has(svg rect), button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
         const isGenerating = Boolean(btnStop);
-        const allProses = Array.from(document.querySelectorAll('.prose'));
+        const allProses = Array.from(document.querySelectorAll('.prose')).filter(p => (p.innerText || '').trim().length > 50);
         const lastProse = allProses.length > 0 ? allProses[allProses.length - 1] : null;
         const lastText = lastProse ? nodeToMd(lastProse).trim() : '';
 

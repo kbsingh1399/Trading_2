@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:55:59 IST` (`2026-10-29 18:25:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.33` (Distance: `+0.27%`)
-  * Point of Control (POC) = `1.33` (Distance: `+0.38%`)
-  * Value Area Low (VAL) = `1.33` (Distance: `+0.50%`)
+  * Value Area High (VAH) = `1.33` (Distance: `+0.23%`)
+  * Point of Control (POC) = `1.33` (Distance: `+0.34%`)
+  * Value Area Low (VAL) = `1.33` (Distance: `+0.46%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.33` | POC=`1.33` | VAL=`1.33`
@@ -70,9 +70,9 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `653` | 872.87 USD | 703.75 USD | `+80.63%` | 8,680.86 USD | `+0.44` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `718` | 960.12 USD | 681.02 USD | `+70.93%` | 9,361.88 USD | `+0.49` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `613` | 819.76 USD | 37.84 USD | `+4.62%` | 9,399.71 USD | `-0.47` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `613` | 819.76 USD | 37.84 USD | `+4.62%` | 9,568.28 USD | `-0.47` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `693` | 926.82 USD | 218.07 USD | `+23.53%` | 9,786.36 USD | `-0.32` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `983` | 1,314.46 USD | -644.59 USD | `-49.04%` | 9,141.77 USD | `-1.49` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `15m` | `1.33` | `1.34` | `1.33` | `1.34` | `2,359` | 3,150.66 USD | 1,683.56 USD | `+53.44%` | 14,976.20 USD | `+0.67` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `2,145` | 2,868.34 USD | 2,575.16 USD | `+89.78%` | 17,551.37 USD | `+1.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `2,289` | 3,060.83 USD | -635.71 USD | `-20.77%` | 16,915.65 USD | `-0.79` | **`BEARISH`** | `AGGRESSIVE SELLING` |

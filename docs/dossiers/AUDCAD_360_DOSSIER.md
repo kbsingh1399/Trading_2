@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCAD
 **Canonical Key**: `AUDCAD` | **Broker Instrument**: `AUDCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.9829` | **Live Ask Quote**: `0.9829` | **Mid Price**: `0.9829`
+- **Live Bid Quote**: `0.9829` | **Live Ask Quote**: `0.9830` | **Mid Price**: `0.9830`
 - **Spread Points**: `5.00` | **Spread BPS**: `0.51 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -44,8 +44,8 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.9857` (Distance: `-0.28%`)
-  * Point of Control (POC) = `0.9832` (Distance: `-0.03%`)
+  * Value Area High (VAH) = `0.9856` (Distance: `-0.27%`)
+  * Point of Control (POC) = `0.9830` (Distance: `-0.00%`)
   * Value Area Low (VAL) = `0.9822` (Distance: `+0.08%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.9857` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `0.9856` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `0.9864` (Risk Distance: `0.0010` pts)
-  * +2.5R Take Profit: `0.9832`
+  * +2.5R Take Profit: `0.9831`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

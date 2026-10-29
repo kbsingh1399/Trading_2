@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCAD
 **Canonical Key**: `GBPCAD` | **Broker Instrument**: `GBPCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.87` | **Live Ask Quote**: `1.87` | **Mid Price**: `1.87`
-- **Spread Points**: `6.00` | **Spread BPS**: `0.32 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `5.00` | **Spread BPS**: `0.27 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.87` (Distance: `+0.15%`)
-  * Point of Control (POC) = `1.86` (Distance: `+0.31%`)
-  * Value Area Low (VAL) = `1.86` (Distance: `+0.39%`)
+  * Value Area High (VAH) = `1.87` (Distance: `+0.13%`)
+  * Point of Control (POC) = `1.86` (Distance: `+0.30%`)
+  * Value Area Low (VAL) = `1.86` (Distance: `+0.38%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.87` | POC=`1.87` | VAL=`1.87`

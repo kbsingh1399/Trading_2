@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPAUD
 **Canonical Key**: `GBPAUD` | **Broker Instrument**: `GBPAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.90` (Distance: `+0.16%`)
-  * Point of Control (POC) = `1.89` (Distance: `+0.64%`)
-  * Value Area Low (VAL) = `1.89` (Distance: `+0.74%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
+  * Value Area High (VAH) = `1.90` (Distance: `-0.09%`)
+  * Point of Control (POC) = `1.90` (Distance: `+0.01%`)
+  * Value Area Low (VAL) = `1.89` (Distance: `+0.57%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.89` | POC=`1.89` | VAL=`1.89`
   * Prior Day Extremes: PDH=`1.89` | PDL=`1.89` | PDC=`1.89`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.90` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `1.90` (Risk Distance: `0.0015` pts)
-  * +2.5R Take Profit: `1.89`
+  * +2.5R Take Profit: `1.90`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

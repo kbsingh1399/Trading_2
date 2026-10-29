@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCAD
 **Canonical Key**: `USDCAD` | **Broker Instrument**: `USDCAD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.40` | **Live Ask Quote**: `1.40` | **Mid Price**: `1.40`
-- **Spread Points**: `2.00` | **Spread BPS**: `0.14 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `1.00` | **Spread BPS**: `0.07 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.40` (Distance: `-0.18%`)
-  * Point of Control (POC) = `1.40` (Distance: `-0.14%`)
-  * Value Area Low (VAL) = `1.40` (Distance: `-0.03%`)
-  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
+  * Value Area High (VAH) = `1.40` (Distance: `-0.15%`)
+  * Point of Control (POC) = `1.40` (Distance: `-0.11%`)
+  * Value Area Low (VAL) = `1.40` (Distance: `+0.01%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.41` | POC=`1.41` | VAL=`1.40`
   * Prior Day Extremes: PDH=`1.41` | PDL=`1.40` | PDC=`1.40`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.40` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000951` pts)
+  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000936` pts)
   * +2.5R Take Profit: `1.40`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.40` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000951` pts)
+  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000936` pts)
   * +2.5R Take Profit: `1.40`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

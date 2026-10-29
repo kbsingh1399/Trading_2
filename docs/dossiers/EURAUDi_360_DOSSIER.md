@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURAUD
 **Canonical Key**: `EURAUD` | **Broker Instrument**: `EURAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:56:00 IST` (`2026-10-29 18:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.59` | **Live Ask Quote**: `1.59` | **Mid Price**: `1.59`
-- **Spread Points**: `11.00` | **Spread BPS**: `0.69 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `10.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.59` (Distance: `+0.14%`)
-  * Point of Control (POC) = `1.58` (Distance: `+0.22%`)
-  * Value Area Low (VAL) = `1.58` (Distance: `+0.59%`)
+  * Value Area High (VAH) = `1.59` (Distance: `+0.13%`)
+  * Point of Control (POC) = `1.58` (Distance: `+0.21%`)
+  * Value Area Low (VAL) = `1.58` (Distance: `+0.58%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.58` | POC=`1.58` | VAL=`1.58`
