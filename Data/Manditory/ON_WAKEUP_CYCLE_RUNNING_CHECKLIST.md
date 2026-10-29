@@ -28,6 +28,7 @@ Establish a continuous, evidence-driven, multi-agent trading intelligence loop t
 7. **Evidence-Driven Execution**: Never place a trade solely on the basis of consensus, incomplete analysis, or an unverified setup.
 8. **Continuous Operation**: Repeat the complete workflow every 20 minutes after each cycle finishes.
 9. **Failure Handling**: If a system, daemon, or data source fails, report the failure, preserve the current state, and avoid treating incomplete work as completed.
+10. **Standing Hourly Watchdog Recovery Cron**: An independent standing daemon cron job (`0 * * * *`, Task ID `task-161494`) fires every 60 minutes to audit the system, verify Parquet feeds freshness (< 5.0m), detect any stalled watchdogs or cycle halts, and immediately unstuck and resume autonomous execution.
 
 ---
 

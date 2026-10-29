@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:15:30 IST` (`2026-10-29 20:45:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:18:33 IST` (`2026-10-29 20:48:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,10 +116,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `231` | `0x0911...129a` | `LONG` | 9,950,738.69 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -272,003.74 USD | `-2.73%` | `20X Isolated` |
-| `1168` | `0xe03b...ed11` | `SHORT` | 1,947,745.73 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 45,457.59 USD | `+2.33%` | `50X Isolated` |
+| `229` | `0x0911...129a` | `LONG` | 9,954,298.24 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -268,444.18 USD | `-2.70%` | `20X Isolated` |
+| `1169` | `0xe03b...ed11` | `SHORT` | 1,948,442.47 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 44,760.85 USD | `+2.30%` | `50X Isolated` |
 | `1764` | `0x3f31...a3d7` | `SHORT` | 1,203,863.48 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -3,932.04 USD | `-0.33%` | `50X Isolated` |
-| `1866` | `0x9df2...c665` | `SHORT` | 1,118,129.67 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,440.17 USD | `+0.22%` | `5X Isolated` |
+| `1860` | `0x9df2...c665` | `SHORT` | 1,118,129.67 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,440.17 USD | `+0.22%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
