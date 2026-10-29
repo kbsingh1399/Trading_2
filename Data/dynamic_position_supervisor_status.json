@@ -1,26 +1,17 @@
 {
-  "timestamp_utc": "2026-10-29 13:36:57 UTC",
+  "timestamp_utc": "2026-10-29 13:39:28 UTC",
   "balance_usd": 4744.55,
   "equity_usd": 4744.55,
   "free_margin_usd": 4744.55,
   "max_filled_positions": 15,
   "filled_positions_count": 0,
   "filled_slots_free": 15,
-  "resting_limits_count": 2,
+  "resting_limits_count": 1,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
   "active_positions": [],
   "resting_orders": [
-    {
-      "ticket": 19447583,
-      "symbol": "NZDUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.12,
-      "price": 0.5632,
-      "sl": 0.56388,
-      "tp": 0.5605
-    },
     {
       "ticket": 19464650,
       "symbol": "BTCUSD.pi",

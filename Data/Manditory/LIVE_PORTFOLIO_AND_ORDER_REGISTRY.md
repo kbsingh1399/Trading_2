@@ -18,7 +18,7 @@
 - **Free Margin**: **4,744.55 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 13:36:57 UTC`
+- **Last Updated**: `2026-10-29 13:39:28 UTC`
 
 ---
 
@@ -30,9 +30,8 @@
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (2 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (1 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
-| **#19447583** | `NZDUSD.pi` | SELL_LIMIT | 0.12 | **0.5632** | **0.56388** | 0.5605 | Resting passive maker order |
 | **#19464650** | `BTCUSD.pi` | SELL_LIMIT | 0.01 | **80340.0** | **80563.5** | 79663.5 | Resting passive maker order |
