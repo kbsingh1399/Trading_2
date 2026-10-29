@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:49:57 IST` (`2026-10-29 18:19:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:52:58 IST` (`2026-10-29 18:22:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -151,120 +151,119 @@
 - **Exchange Multi-Horizon Liquidation Density Map Table (8_Exchange_Liquidation_Map_1D/7D.parquet)**:
 | Horizon | Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Binance (USD) | OKX (USD) | Bybit (USD) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `7D` | `1.20` | 44,750.00 USD | 0.00 USD | 44,750.00 USD | 0.00 USD | 0.00 USD | 56.91 USD |
-| `7D` | `1.20` | 44,700.00 USD | 0.00 USD | 44,700.00 USD | 0.00 USD | 0.00 USD | 690.23 USD |
-| `7D` | `1.20` | 44,010.00 USD | 0.00 USD | 44,010.00 USD | 0.00 USD | 0.00 USD | 879.37 USD |
-| `7D` | `1.20` | 43,130.00 USD | 0.00 USD | 43,130.00 USD | 0.00 USD | 0.00 USD | 55.13 USD |
+| `7D` | `1.20` | 45,140.00 USD | 0.00 USD | 45,140.00 USD | 0.00 USD | 0.00 USD | 56.91 USD |
+| `7D` | `1.20` | 45,080.00 USD | 0.00 USD | 45,080.00 USD | 0.00 USD | 0.00 USD | 426.40 USD |
+| `7D` | `1.20` | 44,660.00 USD | 0.00 USD | 44,660.00 USD | 0.00 USD | 0.00 USD | 1,150.00 USD |
+| `7D` | `1.20` | 43,510.00 USD | 0.00 USD | 43,510.00 USD | 0.00 USD | 0.00 USD | 41.14 USD |
 | `1D` | `1.21` | 16,260.00 USD | 0.00 USD | 16,260.00 USD | 0.00 USD | 0.00 USD | 51.11 USD |
-| `7D` | `1.21` | 43,070.00 USD | 0.00 USD | 43,070.00 USD | 0.00 USD | 0.00 USD | 138.62 USD |
-| `7D` | `1.21` | 42,930.00 USD | 0.00 USD | 42,930.00 USD | 0.00 USD | 0.00 USD | 29.04 USD |
-| `7D` | `1.28` | 42,910.00 USD | 0.00 USD | 42,910.00 USD | 0.00 USD | 0.00 USD | 28.92 USD |
-| `7D` | `1.28` | 42,880.00 USD | 0.00 USD | 42,880.00 USD | 0.00 USD | 0.00 USD | 947.40 USD |
+| `7D` | `1.21` | 43,470.00 USD | 0.00 USD | 43,470.00 USD | 0.00 USD | 0.00 USD | 149.97 USD |
+| `7D` | `1.21` | 43,320.00 USD | 0.00 USD | 43,320.00 USD | 0.00 USD | 0.00 USD | 29.04 USD |
+| `7D` | `1.28` | 43,290.00 USD | 0.00 USD | 43,290.00 USD | 0.00 USD | 0.00 USD | 19.09 USD |
+| `7D` | `1.28` | 43,270.00 USD | 0.00 USD | 43,270.00 USD | 0.00 USD | 0.00 USD | 957.13 USD |
 | `1D` | `1.28` | 16,210.00 USD | 0.00 USD | 16,210.00 USD | 0.00 USD | 0.00 USD | 79.53 USD |
-| `7D` | `1.28` | 41,930.00 USD | 0.00 USD | 41,930.00 USD | 0.00 USD | 0.00 USD | 142.27 USD |
+| `7D` | `1.28` | 42,310.00 USD | 0.00 USD | 42,310.00 USD | 0.00 USD | 0.00 USD | 141.97 USD |
 | `1D` | `1.28` | 16,130.00 USD | 0.00 USD | 16,130.00 USD | 0.00 USD | 0.00 USD | 59.87 USD |
-| `7D` | `1.28` | 41,790.00 USD | 0.00 USD | 41,790.00 USD | 0.00 USD | 0.00 USD | 1,220.00 USD |
+| `7D` | `1.28` | 42,170.00 USD | 0.00 USD | 42,170.00 USD | 0.00 USD | 0.00 USD | 1,120.00 USD |
 | `1D` | `1.28` | 16,070.00 USD | 0.00 USD | 16,070.00 USD | 0.00 USD | 0.00 USD | 2,000.00 USD |
-| `7D` | `1.28` | 40,560.00 USD | 0.00 USD | 40,560.00 USD | 0.00 USD | 0.00 USD | 3,200.00 USD |
+| `7D` | `1.28` | 41,050.00 USD | 0.00 USD | 41,050.00 USD | 0.00 USD | 0.00 USD | 3,290.00 USD |
 | `1D` | `1.28` | 14,080.00 USD | 0.00 USD | 14,080.00 USD | 0.00 USD | 0.00 USD | 47.77 USD |
-| `7D` | `1.28` | 37,360.00 USD | 0.00 USD | 37,360.00 USD | 0.00 USD | 0.00 USD | 82.52 USD |
+| `7D` | `1.28` | 37,760.00 USD | 0.00 USD | 37,760.00 USD | 0.00 USD | 0.00 USD | 83.83 USD |
 | `1D` | `1.28` | 14,030.00 USD | 0.00 USD | 14,030.00 USD | 0.00 USD | 0.00 USD | 115.48 USD |
-| `7D` | `1.29` | 37,280.00 USD | 0.00 USD | 37,280.00 USD | 0.00 USD | 0.00 USD | 425.34 USD |
+| `7D` | `1.29` | 37,680.00 USD | 0.00 USD | 37,680.00 USD | 0.00 USD | 0.00 USD | 461.81 USD |
 | `1D` | `1.29` | 13,910.00 USD | 0.00 USD | 13,910.00 USD | 0.00 USD | 0.00 USD | 16.13 USD |
-| `7D` | `1.29` | 36,860.00 USD | 0.00 USD | 36,860.00 USD | 0.00 USD | 0.00 USD | 126.51 USD |
-| `7D` | `1.29` | 36,730.00 USD | 0.00 USD | 36,730.00 USD | 0.00 USD | 0.00 USD | 9.37 USD |
-| `7D` | `1.30` | 36,720.00 USD | 0.00 USD | 36,720.00 USD | 0.00 USD | 0.00 USD | 57.84 USD |
-| `7D` | `1.30` | 36,660.00 USD | 0.00 USD | 36,660.00 USD | 0.00 USD | 0.00 USD | 1,890.00 USD |
+| `7D` | `1.29` | 37,220.00 USD | 0.00 USD | 37,220.00 USD | 0.00 USD | 0.00 USD | 101.87 USD |
+| `7D` | `1.29` | 37,110.00 USD | 0.00 USD | 37,110.00 USD | 0.00 USD | 0.00 USD | 9.37 USD |
+| `7D` | `1.30` | 37,100.00 USD | 0.00 USD | 37,100.00 USD | 0.00 USD | 0.00 USD | 38.18 USD |
+| `7D` | `1.30` | 37,070.00 USD | 0.00 USD | 37,070.00 USD | 0.00 USD | 0.00 USD | 1,910.00 USD |
 | `1D` | `1.31` | 13,900.00 USD | 0.00 USD | 13,900.00 USD | 0.00 USD | 0.00 USD | 13.17 USD |
-| `7D` | `1.31` | 34,770.00 USD | 0.00 USD | 34,770.00 USD | 0.00 USD | 0.00 USD | 284.55 USD |
+| `7D` | `1.31` | 35,150.00 USD | 0.00 USD | 35,150.00 USD | 0.00 USD | 0.00 USD | 283.93 USD |
 | `1D` | `1.31` | 13,880.00 USD | 0.00 USD | 13,880.00 USD | 0.00 USD | 0.00 USD | 253.19 USD |
-| `7D` | `1.31` | 34,480.00 USD | 0.00 USD | 34,480.00 USD | 0.00 USD | 0.00 USD | 2,420.00 USD |
+| `7D` | `1.31` | 34,870.00 USD | 0.00 USD | 34,870.00 USD | 0.00 USD | 0.00 USD | 2,230.00 USD |
 | `1D` | `1.31` | 13,630.00 USD | 0.00 USD | 13,630.00 USD | 0.00 USD | 0.00 USD | 2,980.00 USD |
-| `7D` | `1.31` | 32,060.00 USD | 0.00 USD | 32,060.00 USD | 0.00 USD | 0.00 USD | 6,420.00 USD |
+| `7D` | `1.31` | 32,630.00 USD | 0.00 USD | 32,630.00 USD | 0.00 USD | 0.00 USD | 6,580.00 USD |
 | `1D` | `1.31` | 10,650.00 USD | 0.00 USD | 10,650.00 USD | 0.00 USD | 0.00 USD | 1,120.00 USD |
-| `7D` | `1.31` | 25,640.00 USD | 0.00 USD | 25,640.00 USD | 0.00 USD | 0.00 USD | 90.19 USD |
+| `7D` | `1.31` | 26,050.00 USD | 0.00 USD | 26,050.00 USD | 0.00 USD | 0.00 USD | 131.34 USD |
 | `1D` | `1.31` | 9,530.00 USD | 0.00 USD | 9,530.00 USD | 0.00 USD | 0.00 USD | 230.96 USD |
-| `7D` | `1.31` | 25,550.00 USD | 0.00 USD | 25,550.00 USD | 0.00 USD | 0.00 USD | 446.25 USD |
+| `7D` | `1.31` | 25,920.00 USD | 0.00 USD | 25,920.00 USD | 0.00 USD | 0.00 USD | 908.31 USD |
 | `1D` | `1.31` | 9,300.00 USD | 0.00 USD | 9,300.00 USD | 0.00 USD | 0.00 USD | 32.26 USD |
-| `7D` | `1.31` | 25,100.00 USD | 0.00 USD | 25,100.00 USD | 0.00 USD | 0.00 USD | 699.25 USD |
-| `7D` | `1.31` | 24,400.00 USD | 0.00 USD | 24,400.00 USD | 0.00 USD | 0.00 USD | 51.79 USD |
-| `7D` | `1.32` | 24,350.00 USD | 0.00 USD | 24,350.00 USD | 0.00 USD | 0.00 USD | 39.33 USD |
-| `7D` | `1.32` | 24,310.00 USD | 0.00 USD | 24,310.00 USD | 0.00 USD | 0.00 USD | 3,400.00 USD |
+| `7D` | `1.31` | 25,010.00 USD | 0.00 USD | 25,010.00 USD | 0.00 USD | 0.00 USD | 255.45 USD |
+| `7D` | `1.31` | 24,760.00 USD | 0.00 USD | 24,760.00 USD | 0.00 USD | 0.00 USD | 18.73 USD |
+| `7D` | `1.32` | 24,740.00 USD | 0.00 USD | 24,740.00 USD | 0.00 USD | 0.00 USD | 3,400.00 USD |
 | `1D` | `1.32` | 9,260.00 USD | 0.00 USD | 9,260.00 USD | 0.00 USD | 0.00 USD | 26.34 USD |
-| `7D` | `1.32` | 20,910.00 USD | 0.00 USD | 20,910.00 USD | 0.00 USD | 0.00 USD | 655.32 USD |
+| `7D` | `1.32` | 21,330.00 USD | 0.00 USD | 21,330.00 USD | 0.00 USD | 0.00 USD | 694.70 USD |
 | `1D` | `1.32` | 9,240.00 USD | 0.00 USD | 9,240.00 USD | 0.00 USD | 0.00 USD | 298.99 USD |
-| `7D` | `1.32` | 20,260.00 USD | 0.00 USD | 20,260.00 USD | 0.00 USD | 0.00 USD | 3,000.00 USD |
+| `7D` | `1.32` | 20,640.00 USD | 0.00 USD | 20,640.00 USD | 0.00 USD | 0.00 USD | 3,130.00 USD |
 | `1D` | `1.32` | 8,940.00 USD | 0.00 USD | 8,940.00 USD | 0.00 USD | 0.00 USD | 1,310.00 USD |
-| `7D` | `1.32` | 17,260.00 USD | 0.00 USD | 17,260.00 USD | 0.00 USD | 0.00 USD | 8,860.00 USD |
+| `7D` | `1.32` | 17,510.00 USD | 0.00 USD | 17,510.00 USD | 0.00 USD | 0.00 USD | 4,460.00 USD |
 | `1D` | `1.32` | 7,630.00 USD | 0.00 USD | 7,630.00 USD | 0.00 USD | 0.00 USD | 7,050.00 USD |
-| `7D` | `1.32` | 8,390.00 USD | 0.00 USD | 8,390.00 USD | 0.00 USD | 0.00 USD | 6,350.00 USD |
+| `7D` | `1.32` | 13,050.00 USD | 0.00 USD | 13,050.00 USD | 0.00 USD | 0.00 USD | 10,510.00 USD |
 | `1D` | `1.32` | 579.32 USD | 0.00 USD | 579.32 USD | 0.00 USD | 0.00 USD | 52.87 USD |
-| `7D` | `1.32` | 2,040.00 USD | 0.00 USD | 2,040.00 USD | 0.00 USD | 0.00 USD | 568.64 USD |
+| `7D` | `1.32` | 2,530.00 USD | 0.00 USD | 2,530.00 USD | 0.00 USD | 0.00 USD | 557.27 USD |
 | `1D` | `1.33` | 526.45 USD | 0.00 USD | 526.45 USD | 0.00 USD | 0.00 USD | 526.45 USD |
-| `7D` | `1.33` | 1,470.00 USD | 0.00 USD | 1,470.00 USD | 0.00 USD | 0.00 USD | 1,470.00 USD |
+| `7D` | `1.33` | 1,980.00 USD | 0.00 USD | 1,980.00 USD | 0.00 USD | 0.00 USD | 1,640.00 USD |
+| `7D` | `1.33` | 335.74 USD | 0.00 USD | 335.74 USD | 0.00 USD | 0.00 USD | 335.74 USD |
 | `1D` | `1.34` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `1.34` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
-| `7D` | `1.34` | 39.33 USD | 39.33 USD | 0.00 USD | 0.00 USD | 0.00 USD | 39.33 USD |
-| `7D` | `1.34` | 3,440.00 USD | 3,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,400.00 USD |
+| `7D` | `1.34` | 3,400.00 USD | 3,400.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,400.00 USD |
 | `1D` | `1.34` | 26.34 USD | 26.34 USD | 0.00 USD | 0.00 USD | 0.00 USD | 26.34 USD |
-| `7D` | `1.35` | 4,100.00 USD | 4,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 655.32 USD |
+| `7D` | `1.35` | 4,100.00 USD | 4,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 694.70 USD |
 | `1D` | `1.35` | 325.33 USD | 325.33 USD | 0.00 USD | 0.00 USD | 0.00 USD | 298.99 USD |
-| `7D` | `1.35` | 7,100.00 USD | 7,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,000.00 USD |
+| `7D` | `1.35` | 7,230.00 USD | 7,230.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,130.00 USD |
 | `1D` | `1.35` | 1,640.00 USD | 1,640.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,310.00 USD |
-| `7D` | `1.35` | 12,020.00 USD | 12,020.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 4,920.00 USD |
+| `7D` | `1.35` | 9,440.00 USD | 9,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2,210.00 USD |
 | `1D` | `1.35` | 8,670.00 USD | 8,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 7,040.00 USD |
-| `7D` | `1.35` | 22,180.00 USD | 22,180.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 10,160.00 USD |
+| `7D` | `1.35` | 22,200.00 USD | 22,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 12,760.00 USD |
 | `1D` | `1.35` | 8,740.00 USD | 8,740.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 63.02 USD |
-| `7D` | `1.35` | 22,720.00 USD | 22,720.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 541.38 USD |
+| `7D` | `1.35` | 22,650.00 USD | 22,650.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 448.39 USD |
 | `1D` | `1.35` | 9,260.00 USD | 9,260.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 526.45 USD |
-| `7D` | `1.35` | 24,250.00 USD | 24,250.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,530.00 USD |
-| `7D` | `1.35` | 24,740.00 USD | 24,740.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 488.27 USD |
-| `7D` | `1.36` | 24,790.00 USD | 24,790.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 57.84 USD |
-| `7D` | `1.36` | 26,690.00 USD | 26,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,890.00 USD |
+| `7D` | `1.35` | 24,350.00 USD | 24,350.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,700.00 USD |
+| `7D` | `1.35` | 24,740.00 USD | 24,740.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 382.56 USD |
+| `7D` | `1.36` | 24,770.00 USD | 24,770.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 38.18 USD |
+| `7D` | `1.36` | 26,690.00 USD | 26,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,910.00 USD |
 | `1D` | `1.36` | 9,280.00 USD | 9,280.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 13.17 USD |
-| `7D` | `1.36` | 26,920.00 USD | 26,920.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 233.92 USD |
+| `7D` | `1.36` | 26,920.00 USD | 26,920.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 233.30 USD |
 | `1D` | `1.36` | 9,520.00 USD | 9,520.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 246.15 USD |
-| `7D` | `1.36` | 29,390.00 USD | 29,390.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2,470.00 USD |
+| `7D` | `1.36` | 29,000.00 USD | 29,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2,080.00 USD |
 | `1D` | `1.36` | 12,510.00 USD | 12,510.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2,990.00 USD |
-| `7D` | `1.36` | 35,820.00 USD | 35,820.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6,420.00 USD |
+| `7D` | `1.36` | 35,400.00 USD | 35,400.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6,400.00 USD |
 | `1D` | `1.36` | 13,630.00 USD | 13,630.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,120.00 USD |
-| `7D` | `1.36` | 35,910.00 USD | 35,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 90.19 USD |
+| `7D` | `1.36` | 35,910.00 USD | 35,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 506.65 USD |
 | `1D` | `1.36` | 13,630.00 USD | 13,630.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.49 USD |
-| `7D` | `1.37` | 36,260.00 USD | 36,260.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 356.86 USD |
+| `7D` | `1.37` | 36,670.00 USD | 36,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 760.49 USD |
 | `1D` | `1.37` | 13,900.00 USD | 13,900.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 262.73 USD |
-| `7D` | `1.37` | 36,960.00 USD | 36,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 695.22 USD |
-| `7D` | `1.37` | 37,100.00 USD | 37,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 145.21 USD |
-| `7D` | `1.38` | 37,130.00 USD | 37,130.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 28.92 USD |
-| `7D` | `1.38` | 38,080.00 USD | 38,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 947.40 USD |
+| `7D` | `1.37` | 36,970.00 USD | 36,970.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 305.33 USD |
+| `7D` | `1.37` | 37,100.00 USD | 37,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 131.25 USD |
+| `7D` | `1.38` | 37,120.00 USD | 37,120.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 19.09 USD |
+| `7D` | `1.38` | 38,080.00 USD | 38,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 957.13 USD |
 | `1D` | `1.39` | 13,900.00 USD | 13,900.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6.59 USD |
-| `7D` | `1.39` | 38,200.00 USD | 38,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 116.96 USD |
+| `7D` | `1.39` | 38,200.00 USD | 38,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 116.65 USD |
 | `1D` | `1.39` | 14,030.00 USD | 14,030.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 123.06 USD |
-| `7D` | `1.39` | 38,920.00 USD | 38,920.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 727.84 USD |
+| `7D` | `1.39` | 39,150.00 USD | 39,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 951.04 USD |
 | `1D` | `1.39` | 15,520.00 USD | 15,520.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1,490.00 USD |
-| `7D` | `1.39` | 42,640.00 USD | 42,640.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,720.00 USD |
+| `7D` | `1.39` | 42,440.00 USD | 42,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,290.00 USD |
 | `1D` | `1.39` | 16,080.00 USD | 16,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 557.26 USD |
-| `7D` | `1.39` | 42,690.00 USD | 42,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 45.10 USD |
+| `7D` | `1.39` | 42,690.00 USD | 42,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 253.33 USD |
 | `1D` | `1.39` | 16,080.00 USD | 16,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2.92 USD |
-| `7D` | `1.39` | 42,850.00 USD | 42,850.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 156.88 USD |
+| `7D` | `1.39` | 43,050.00 USD | 43,050.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 363.25 USD |
 | `1D` | `1.39` | 16,210.00 USD | 16,210.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 131.61 USD |
-| `7D` | `1.39` | 43,210.00 USD | 43,210.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 369.15 USD |
+| `7D` | `1.39` | 43,220.00 USD | 43,220.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 162.63 USD |
 | `7D` | `1.39` | 43,290.00 USD | 43,290.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 72.61 USD |
-| `7D` | `1.46` | 43,300.00 USD | 43,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 11.57 USD |
-| `7D` | `1.46` | 43,670.00 USD | 43,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 370.40 USD |
+| `7D` | `1.46` | 43,300.00 USD | 43,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 7.64 USD |
+| `7D` | `1.46` | 43,670.00 USD | 43,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 374.30 USD |
 | `1D` | `1.47` | 16,210.00 USD | 16,210.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2.63 USD |
 | `7D` | `1.47` | 43,720.00 USD | 43,720.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 46.66 USD |
 | `1D` | `1.47` | 16,260.00 USD | 16,260.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 40.90 USD |
-| `7D` | `1.47` | 43,970.00 USD | 43,970.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 252.38 USD |
+| `7D` | `1.47` | 43,980.00 USD | 43,980.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 265.40 USD |
 | `1D` | `1.47` | 16,450.00 USD | 16,450.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 195.68 USD |
-| `7D` | `1.47` | 44,850.00 USD | 44,850.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 886.38 USD |
+| `7D` | `1.47` | 44,750.00 USD | 44,750.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 765.19 USD |
 | `1D` | `1.47` | 16,910.00 USD | 16,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 457.71 USD |
-| `7D` | `1.47` | 45,300.00 USD | 45,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 441.09 USD |
+| `7D` | `1.47` | 45,300.00 USD | 45,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 552.03 USD |
 | `1D` | `1.47` | 16,910.00 USD | 16,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 5.29 USD |
-| `7D` | `1.47` | 45,340.00 USD | 45,340.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 39.05 USD |
+| `7D` | `1.47` | 45,330.00 USD | 45,330.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 33.02 USD |
 | `1D` | `1.47` | 16,960.00 USD | 16,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 49.42 USD |
 | `1D` | `1.47` | 16,970.00 USD | 16,970.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 1.69 USD |
-| `7D` | `1.47` | 45,470.00 USD | 45,470.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 134.92 USD |
-| `7D` | `1.47` | 45,490.00 USD | 45,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 15.10 USD |
+| `7D` | `1.47` | 45,480.00 USD | 45,480.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 145.89 USD |
+| `7D` | `1.47` | 45,490.00 USD | 45,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 12.20 USD |
 
 - **Multi-Timeframe Forced Liquidations Summary Table (22_Forced_Liquidations_MTF.parquet)**:
 | Timeframe | Dominant Side | Long Liq (USD) | Short Liq (USD) | Total Liq (USD) | Net Liq Delta (USD) | Orders Count | Window (UTC) |
@@ -304,16 +303,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `17:35:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,167.13 USD | 881.83 USD | 285.30 USD | 596.53 USD | `+51.11%` | `1B / 0S` |
-| `17:40:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,241.45 USD | 1,150.16 USD | 91.28 USD | 1,058.88 USD | `+85.29%` | `1B / 0S` |
 | `17:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 1,064.19 USD | 873.65 USD | 190.55 USD | 683.10 USD | `+64.19%` | `1B / 0S` |
-| `17:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 3,150.66 USD | 2,417.11 USD | 733.55 USD | 1,683.56 USD | `+53.44%` | `1B / 0S` |
 | `17:50:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 1,051.27 USD | 918.35 USD | 132.92 USD | 785.44 USD | `+74.71%` | `1B / 0S` |
 | `17:55:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,035.08 USD | 425.44 USD | 609.65 USD | -184.21 USD | `-17.80%` | `0B / 1S` |
-| `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,868.34 USD | 2,721.75 USD | 146.59 USD | 2,575.16 USD | `+89.78%` | `1B / 0S` |
 | `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 12,279.59 USD | 10,373.28 USD | 1,906.31 USD | 8,466.97 USD | `+68.95%` | `1B / 0S` |
 | `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,034.07 USD | 864.55 USD | 169.52 USD | 695.03 USD | `+67.21%` | `1B / 0S` |
+| `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,868.34 USD | 2,721.75 USD | 146.59 USD | 2,575.16 USD | `+89.78%` | `1B / 0S` |
 | `18:05:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 872.87 USD | 788.31 USD | 84.56 USD | 703.75 USD | `+80.63%` | `1B / 0S` |
+| `18:10:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 960.12 USD | 820.57 USD | 139.55 USD | 681.02 USD | `+70.93%` | `1B / 0S` |
+| `18:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 819.76 USD | 428.80 USD | 390.96 USD | 37.84 USD | `+4.62%` | `1B / 0S` |
+| `18:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 3,060.83 USD | 1,212.56 USD | 1,848.27 USD | -635.71 USD | `-20.77%` | `0B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -368,21 +367,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:30:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:25:59 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:03:59 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:59 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:54:59 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:44:59 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:40:59 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:39:59 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:39:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:39:59 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:39:59 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:41:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:41:59 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:41:59 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:41:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:26:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:55:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:51:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:51:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:50:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:50:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:50:26 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:52:26 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:52:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:52:26 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:52:26 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:52:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
