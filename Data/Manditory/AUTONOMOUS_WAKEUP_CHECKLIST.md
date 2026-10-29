@@ -39,7 +39,12 @@
 > When instantiated, execute the entire 11-step pipeline end-to-end without fail:
 > 1. Physically load and audit all mandatory governance documents line-by-line via `audit_file_read_verifier.py`.
 > 2. Physically pre-load all 42 Parquet feeds (`Data/feeds/*.parquet`) into in-memory RAM cache (`DataLakeMemoryStore`).
-> 3. Verify freshness scorecard (< 5.0m target) and execute the Mandatory 43-Feed Forensic Combined Microstructure & Macro Analysis Matrix in BOTH the internal thinking chain and final response (generic boilerplate ledgers strictly banned; thinking chain must systematically interrogate all 43 feeds, liquidation cascades, whale walls, and spread-padded SL bounds for each screened asset without operator prompting).
+> 3. Verify freshness scorecard (< 5.0m target) and execute the Mandatory 43-Feed Forensic Combined Microstructure & Macro Analysis Matrix in BOTH the internal thinking chain and final response (generic boilerplate ledgers strictly banned).
+>    * **MANDATORY THINKING CHAIN INDIVIDUAL ASSET FORENSICS (NON-BYPASSABLE OPERATOR MANDATE)**:
+>      On EVERY single wake-up, turn, and cycle, the internal thinking chain MUST explicitly debate, inspect, and forensically analyze empirical data across ALL 43 Parquet feeds for:
+>      (a) **All Live Running Positions**: Interrogate structural validity, orderflow delta, and ratchets ("Should I let it run or cut it?").
+>      (b) **All Live Resting Maker Limits**: Inspect defending whale armor persistence (>100K USD, >180s), 1D/7D liquidation pools, and Max Pain sweep boundaries (`9_Liquidation_Max_Pain_24H.parquet`), modifying SL or purging immediately if inside a sweep pocket (eliminating Pitfall 2 & Pitfall 4).
+>      (c) **All Screened Potential Candidates**: Follow the sequential candidate-by-candidate pipeline across all 4 macro clusters (Metals, Energy, FX, Crypto) so NO trade opportunity is missed.
 > 4. Audit MT5 account solvency against the **4,775.00 USD Hard Statutory Floor** and **4,795.00 USD Operating Defense Buffer**.
 > 5. **Mandatory Running Trade & Order Validity Interrogation ("Should I let it run or cut it? Is it still a valid trade?")**:
 >    On EVERY cycle, the desk MUST explicitly audit every active position and resting order:
