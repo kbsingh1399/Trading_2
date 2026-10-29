@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "21cc823f-0dbf-4d40-8249-6c7d1ce2c3e4",
+  "dispatch_nonce": "6d405085-e755-429c-8ffc-0480e3693d8f",
   "observed_at_utc": "2026-10-27 13:12:05 UTC",
   "account": {
     "login": 5064568,
@@ -60,5 +60,5 @@
     "margin_free_post_order": 4435.33
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "5cd08d81be44c8475322ac70670e27c5b26450121c1413846738f1f3649f56cf"
+  "receipt_sha256": "a8efbabb569064590ee25aedbbb31bd5c4e09dbccc88eb264e2543a2cd68951c"
 }
