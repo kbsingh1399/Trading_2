@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:54:57 IST` (`2026-10-29 21:24:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:57:59 IST` (`2026-10-29 21:27:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.5621` | VWAP Z-Score: `+1.76` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000378` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `57.62` (State: `NEUTRAL`)
+  * Session VWAP: `0.5634` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0014` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.5641` | Lower -3.00σ Band: `0.5601`
-  * Upper +2.51σ Band: `0.5638` | Lower -2.51σ Band: `0.5604`
-  * Upper +2.01σ Band: `0.5634` | Lower -2.01σ Band: `0.5607`
-  * Upper +2.00σ Band: `0.5634` | Lower -2.00σ Band: `0.5607`
-  * Upper +1.28σ Band: `0.5629` | Lower -1.28σ Band: `0.5612`
-  * Upper +1.00σ Band: `0.5627` | Lower -1.00σ Band: `0.5614`
+  * Upper +3.00σ Band: `0.5673` | Lower -3.00σ Band: `0.5594`
+  * Upper +2.51σ Band: `0.5665` | Lower -2.51σ Band: `0.5603`
+  * Upper +2.01σ Band: `0.5657` | Lower -2.01σ Band: `0.5610`
+  * Upper +2.00σ Band: `0.5656` | Lower -2.00σ Band: `0.5611`
+  * Upper +1.28σ Band: `0.5649` | Lower -1.28σ Band: `0.5618`
+  * Upper +1.00σ Band: `0.5645` | Lower -1.00σ Band: `0.5622`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.5632` | EMA-20=`0.5630` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.5626` (Slope: `+0.0000`) | EMA-100=`0.5625`
-  * Institutional Anchors: EMA-144=`0.5628` | EMA-200=`0.5637` (Slope: `-0.0127`) | EMA-233=`0.5641`
-- **Range Boundaries**: 24H High=`0.5636` | 24H Low=`0.5607` | Weekly High=`0.5707` | Weekly Low=`0.5568`
+  * Fast EMA Array: EMA-9=`0.5634` | EMA-20=`0.5634` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.5634` (Slope: `+0.0000`) | EMA-100=`0.5634`
+  * Institutional Anchors: EMA-144=`0.5634` | EMA-200=`0.5634` (Slope: `+0.0000`) | EMA-233=`0.5634`
+- **Range Boundaries**: 24H High=`0.5690` | 24H Low=`0.5577` | Weekly High=`0.5746` | Weekly Low=`0.5521`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5633` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.5633` (Distance: `+0.01%`)
   * Point of Control (POC) = `0.5633` (Distance: `+0.02%`)
-  * Value Area Low (VAL) = `0.5633` (Distance: `+0.02%`)
+  * Value Area Low (VAL) = `0.5632` (Distance: `+0.02%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.5626` | POC=`0.5621` | VAL=`0.5611`
@@ -54,9 +54,9 @@
   * Monday Range Blueprint: High=`0.5707` | Mid=`0.5688` | Low=`0.5670`
   * Developing Weekly Value Area: Weekly VAH=`0.5686` | Weekly POC=`0.5622` | Weekly VAL=`0.5584`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.5634` | Low=`0.5633`
+  * Asian Session (00:00-08:00 UTC): High=`0.5634` | Low=`0.5632`
   * London Session (08:00-16:00 UTC): High=`0.5656` | Low=`0.5611`
-  * New York Session (13:00-21:00 UTC): High=`0.5668` | Low=`0.5600`
+  * New York Session (13:00-21:00 UTC): High=`0.5667` | Low=`0.5600`
   * Initial Balance (First Hour): IB High=`0.5651` | IB Low=`0.5617`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.5611` - `0.5656`
@@ -267,16 +267,16 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.5633` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5625` (Risk Distance: `0.000784` pts)
-  * +2.5R Take Profit: `0.5652`
-  * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `0.5632` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.5612` (Risk Distance: `0.0020` pts)
+  * +2.5R Take Profit: `0.5683`
+  * Mathematical Lot Sizing: **`0.04 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.5633` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.5641` (Risk Distance: `0.000784` pts)
-  * +2.5R Take Profit: `0.5614`
-  * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.5653` (Risk Distance: `0.0020` pts)
+  * +2.5R Take Profit: `0.5582`
+  * Mathematical Lot Sizing: **`0.04 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

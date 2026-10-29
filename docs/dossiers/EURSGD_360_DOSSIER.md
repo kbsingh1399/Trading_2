@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSGD
 **Canonical Key**: `EURSGD` | **Broker Instrument**: `EURSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:54:57 IST` (`2026-10-29 21:24:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:57:59 IST` (`2026-10-29 21:27:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.43` | **Live Ask Quote**: `1.43` | **Mid Price**: `1.43`
-- **Spread Points**: `153.00` | **Spread BPS**: `10.69 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `141.00` | **Spread BPS**: `9.85 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.43` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.2243` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.2244` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.43`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

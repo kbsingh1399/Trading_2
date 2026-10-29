@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:54:57 IST` (`2026-10-29 21:24:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:57:59 IST` (`2026-10-29 21:27:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.11` | VWAP Z-Score: `+1.87` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000742` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `58.00` (State: `NEUTRAL`)
+  * Session VWAP: `1.12` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0028` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.12` | Lower -3.00σ Band: `1.11`
+  * Upper +3.00σ Band: `1.13` | Lower -3.00σ Band: `1.11`
   * Upper +2.51σ Band: `1.12` | Lower -2.51σ Band: `1.11`
   * Upper +2.01σ Band: `1.12` | Lower -2.01σ Band: `1.11`
   * Upper +2.00σ Band: `1.12` | Lower -2.00σ Band: `1.11`
   * Upper +1.28σ Band: `1.12` | Lower -1.28σ Band: `1.11`
-  * Upper +1.00σ Band: `1.12` | Lower -1.00σ Band: `1.11`
+  * Upper +1.00σ Band: `1.12` | Lower -1.00σ Band: `1.12`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.12` | EMA-20=`1.12` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.12` (Slope: `+0.0000`) | EMA-100=`1.12`
-  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.11` (Slope: `+0.0231`) | EMA-233=`1.11`
-- **Range Boundaries**: 24H High=`1.12` | 24H Low=`1.11` | Weekly High=`1.12` | Weekly Low=`1.11`
+  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0000`) | EMA-233=`1.12`
+- **Range Boundaries**: 24H High=`1.13` | 24H Low=`1.11` | Weekly High=`1.14` | Weekly Low=`1.10`
 
 ---
 
@@ -111,20 +111,20 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 02:45:18 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 02:55:39 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `218` | `0x0911...129a` | `LONG` | 9,948,069.02 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -274,673.40 USD | `-2.76%` | `20X Isolated` |
-| `1160` | `0xe03b...ed11` | `SHORT` | 1,947,223.17 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 45,980.15 USD | `+2.36%` | `50X Isolated` |
-| `1748` | `0x3f31...a3d7` | `SHORT` | 1,203,432.88 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -3,501.43 USD | `-0.29%` | `50X Isolated` |
-| `1845` | `0x9df2...c665` | `SHORT` | 1,117,829.68 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,740.15 USD | `+0.25%` | `5X Isolated` |
+| `223` | `0x0911...129a` | `LONG` | 9,947,179.13 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -275,563.29 USD | `-2.77%` | `20X Isolated` |
+| `1156` | `0xe03b...ed11` | `SHORT` | 1,947,048.98 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 46,154.34 USD | `+2.37%` | `50X Isolated` |
+| `1749` | `0x3f31...a3d7` | `SHORT` | 1,203,325.23 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -3,393.78 USD | `-0.28%` | `50X Isolated` |
+| `1853` | `0x9df2...c665` | `SHORT` | 1,117,729.69 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,840.15 USD | `+0.25%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| Intel | Baseline | - | - | - | Neutral | - | No anomalous telegram alerts in current window | - |
+| `ANNOUNCEMENT` | `INFO` | `1.13` | 13,990.92 USD | `-` | `NEWS_INTEL` | `-` | #XYZ:EUR Liquidated Short: 13.99K USD at 1.1270 USD [API] | `2026-10-01 10:00:42` |
 
 
 ---
@@ -383,15 +383,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.12` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.0015` pts)
-  * +2.5R Take Profit: `1.12`
-  * Mathematical Lot Sizing: **`0.06 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.11` (Risk Distance: `0.0040` pts)
+  * +2.5R Take Profit: `1.13`
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.12` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.0015` pts)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.0040` pts)
   * +2.5R Take Profit: `1.11`
-  * Mathematical Lot Sizing: **`0.06 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
