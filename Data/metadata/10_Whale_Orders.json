@@ -24,8 +24,8 @@
     "order_id"
   ],
   "byte_size": 187373,
-  "timestamp_ist": "2026-10-29 15:40:14 IST",
-  "timestamp_utc": "2026-10-29 10:10:14 UTC",
-  "epoch_utc": 1793268614.074894,
+  "timestamp_ist": "2026-10-29 15:42:39 IST",
+  "timestamp_utc": "2026-10-29 10:12:39 UTC",
+  "epoch_utc": 1793268759.101515,
   "write_duration_ms": 16.94
 }
