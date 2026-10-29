@@ -2,7 +2,7 @@
   "feed_name": "2_Spot_Netflow_S",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 183,
+  "row_count": 202,
   "column_count": 16,
   "columns": [
     "Symbol",
@@ -22,9 +22,9 @@
     "Market_Cap",
     "Timestamp_IST"
   ],
-  "byte_size": 26597,
-  "timestamp_ist": "2026-10-29 09:11:35 IST",
-  "timestamp_utc": "2026-10-29 03:41:35 UTC",
-  "epoch_utc": 1793245295.493094,
-  "write_duration_ms": 437.94
+  "byte_size": 28805,
+  "timestamp_ist": "2026-10-29 09:14:13 IST",
+  "timestamp_utc": "2026-10-29 03:44:13 UTC",
+  "epoch_utc": 1793245453.737811,
+  "write_duration_ms": 439.97
 }
