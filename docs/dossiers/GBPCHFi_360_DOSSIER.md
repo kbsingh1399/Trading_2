@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCHF
 **Canonical Key**: `GBPCHF` | **Broker Instrument**: `GBPCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:33:42 IST` (`2026-10-29 21:03:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:36:44 IST` (`2026-10-29 21:06:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.10` | **Live Ask Quote**: `1.10` | **Mid Price**: `1.10`
-- **Spread Points**: `28.00` | **Spread BPS**: `2.54 bps` (Charter Threshold: `5.00 bps`)
-- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
+- **Spread Points**: `123.00` | **Spread BPS**: `11.16 bps` (Charter Threshold: `5.00 bps`)
+- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.10` | VWAP Z-Score: `-1.24` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000557` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `33.84` (State: `OVERSOLD`)
+  * Session VWAP: `1.10` | VWAP Z-Score: `-1.65` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000549` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `31.09` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.11` | Lower -3.00σ Band: `1.10`
   * Upper +2.51σ Band: `1.11` | Lower -2.51σ Band: `1.10`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.10` | EMA-20=`1.10` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.10` (Slope: `+0.0000`) | EMA-100=`1.10`
-  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `+0.0026`) | EMA-233=`1.10`
+  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `+0.0009`) | EMA-233=`1.10`
 - **Range Boundaries**: 24H High=`1.11` | 24H Low=`1.10` | Weekly High=`1.11` | Weekly Low=`1.10`
 
 ---
@@ -44,20 +44,20 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.10` (Distance: `-0.14%`)
-  * Point of Control (POC) = `1.10` (Distance: `-0.08%`)
-  * Value Area Low (VAL) = `1.10` (Distance: `-0.02%`)
-  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `1.10` (Distance: `+0.04%`)
+  * Point of Control (POC) = `1.10` (Distance: `+0.08%`)
+  * Value Area Low (VAL) = `1.10` (Distance: `+0.08%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.10` | POC=`1.10` | VAL=`1.10`
-  * Prior Day Extremes: PDH=`1.10` | PDL=`1.10` | PDC=`1.10`
+  * Prior Day Extremes: PDH=`1.11` | PDL=`1.10` | PDC=`1.10`
   * Monday Range Blueprint: High=`1.10` | Mid=`1.10` | Low=`1.10`
   * Developing Weekly Value Area: Weekly VAH=`1.10` | Weekly POC=`1.10` | Weekly VAL=`1.10`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.10` | Low=`1.10`
-  * London Session (08:00-16:00 UTC): High=`1.10` | Low=`1.10`
+  * London Session (08:00-16:00 UTC): High=`1.11` | Low=`1.10`
   * New York Session (13:00-21:00 UTC): High=`1.11` | Low=`1.10`
-  * Initial Balance (First Hour): IB High=`1.10` | IB Low=`1.10`
+  * Initial Balance (First Hour): IB High=`1.11` | IB Low=`1.10`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.10` - `1.11`
   * Optimal Trade Entry (OTE 0.705): `1.10`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.10` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.0011` pts)
+  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.0025` pts)
   * +2.5R Take Profit: `1.11`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.10` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.11` (Risk Distance: `0.0011` pts)
+  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.0025` pts)
   * +2.5R Take Profit: `1.10`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

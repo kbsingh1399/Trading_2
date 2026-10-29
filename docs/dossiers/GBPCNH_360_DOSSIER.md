@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCNH
 **Canonical Key**: `GBPCNH` | **Broker Instrument**: `GBPCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:33:42 IST` (`2026-10-29 21:03:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:36:44 IST` (`2026-10-29 21:06:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `8.91` | **Live Ask Quote**: `8.91` | **Mid Price**: `8.91`
-- **Spread Points**: `125.00` | **Spread BPS**: `1.40 bps` (Charter Threshold: `5.00 bps`)
-- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
+- **Live Bid Quote**: `8.90` | **Live Ask Quote**: `8.91` | **Mid Price**: `8.91`
+- **Spread Points**: `549.00` | **Spread BPS**: `6.16 bps` (Charter Threshold: `5.00 bps`)
+- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `8.97` | Lower -3.00σ Band: `8.84`
-  * Upper +2.51σ Band: `8.96` | Lower -2.51σ Band: `8.86`
+  * Upper +2.51σ Band: `8.95` | Lower -2.51σ Band: `8.86`
   * Upper +2.01σ Band: `8.94` | Lower -2.01σ Band: `8.87`
   * Upper +2.00σ Band: `8.94` | Lower -2.00σ Band: `8.87`
   * Upper +1.28σ Band: `8.93` | Lower -1.28σ Band: `8.88`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`8.91` | EMA-20=`8.91` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.91` (Slope: `+0.0000`) | EMA-100=`8.91`
   * Institutional Anchors: EMA-144=`8.91` | EMA-200=`8.91` (Slope: `+0.0000`) | EMA-233=`8.91`
-- **Range Boundaries**: 24H High=`9.00` | 24H Low=`8.82` | Weekly High=`9.08` | Weekly Low=`8.73`
+- **Range Boundaries**: 24H High=`8.99` | 24H Low=`8.82` | Weekly High=`9.08` | Weekly Low=`8.73`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`8.94` | POC=`8.91` | VAL=`8.87`
   * Prior Day Extremes: PDH=`8.96` | PDL=`8.85` | PDC=`8.91`
   * Monday Range Blueprint: High=`8.95` | Mid=`8.91` | Low=`8.86`
-  * Developing Weekly Value Area: Weekly VAH=`8.98` | Weekly POC=`8.91` | Weekly VAL=`8.84`
+  * Developing Weekly Value Area: Weekly VAH=`8.98` | Weekly POC=`8.91` | Weekly VAL=`8.83`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.92` | Low=`8.89`
   * London Session (08:00-16:00 UTC): High=`8.94` | Low=`8.87`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `8.88` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7.68` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `11.88`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `7.67` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `11.90`
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `8.93` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `10.13` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `5.93`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `10.14` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `5.91`
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

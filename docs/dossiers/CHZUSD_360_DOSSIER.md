@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 02:33:42 IST` (`2026-10-29 21:03:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:36:44 IST` (`2026-10-29 21:06:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0119` | **Live Ask Quote**: `0.0123` | **Mid Price**: `0.0121`
-- **Spread Points**: `41.00` | **Spread BPS**: `337.87 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `41.00` | **Spread BPS**: `339.83 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,18 +49,18 @@
   * Value Area Low (VAL) = `0.0123` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0122` | POC=`0.0121` | VAL=`0.0121`
-  * Prior Day Extremes: PDH=`0.0122` | PDL=`0.0121` | PDC=`0.0121`
-  * Monday Range Blueprint: High=`0.0122` | Mid=`0.0121` | Low=`0.0121`
+  * Prior Day Value Area: VAH=`0.0121` | POC=`0.0121` | VAL=`0.0120`
+  * Prior Day Extremes: PDH=`0.0121` | PDL=`0.0120` | PDC=`0.0121`
+  * Monday Range Blueprint: High=`0.0121` | Mid=`0.0121` | Low=`0.0120`
   * Developing Weekly Value Area: Weekly VAH=`0.0122` | Weekly POC=`0.0121` | Weekly VAL=`0.0120`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0122` | Low=`0.0121`
-  * London Session (08:00-16:00 UTC): High=`0.0122` | Low=`0.0121`
-  * New York Session (13:00-21:00 UTC): High=`0.0122` | Low=`0.0121`
-  * Initial Balance (First Hour): IB High=`0.0122` | IB Low=`0.0121`
+  * Asian Session (00:00-08:00 UTC): High=`0.0121` | Low=`0.0120`
+  * London Session (08:00-16:00 UTC): High=`0.0121` | Low=`0.0120`
+  * New York Session (13:00-21:00 UTC): High=`0.0121` | Low=`0.0120`
+  * Initial Balance (First Hour): IB High=`0.0121` | IB Low=`0.0120`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0121` - `0.0122`
-  * Optimal Trade Entry (OTE 0.705): `0.0122`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0120` - `0.0121`
+  * Optimal Trade Entry (OTE 0.705): `0.0121`
   * Structural Invalidation Anchor (0.786): `0.0122`
 
 ---
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -8,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `15m` | -42,660.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30m` | -51,170.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1h` | -63,810.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `2h` | -95,910.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `4h` | -133,370.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `6h` | -73,420.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `8h` | 35.72 USD | 0.00 USD | **`ACCUMULATION`** |
-| `12h` | 32,930.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `24h` | -103,290.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1w` | -957,350.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30d` | -7,030,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 29,930.00 USD | **`ACCUMULATION`** |
+| `15m` | 0.00 USD | 591,620.00 USD | **`ACCUMULATION`** |
+| `30m` | 0.00 USD | 337,260.00 USD | **`ACCUMULATION`** |
+| `1h` | 0.00 USD | 368,580.00 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | 377,430.00 USD | **`ACCUMULATION`** |
+| `4h` | 0.00 USD | 389,780.00 USD | **`ACCUMULATION`** |
+| `6h` | 0.00 USD | 382,530.00 USD | **`ACCUMULATION`** |
+| `8h` | 0.00 USD | 376,750.00 USD | **`ACCUMULATION`** |
+| `12h` | 0.00 USD | 412,060.00 USD | **`ACCUMULATION`** |
+| `24h` | 0.00 USD | 85,680.00 USD | **`ACCUMULATION`** |
+| `1w` | 0.00 USD | -325,130.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -10,770,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-8.00K` | 15m=`-42.66K` | 1h=`-63.81K` | 24h=`-103.29K`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Futures Capital Netflows: 5m=`+29.93K` | 15m=`+591.62K` | 1h=`+368.58K` | 24h=`+85.68K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

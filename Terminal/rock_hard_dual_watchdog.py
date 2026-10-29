@@ -255,25 +255,38 @@ def save_zai_output(state: dict):
 
 async def reload_cdp_tab(match_keyword: str) -> bool:
     try:
-        raw = urllib.request.urlopen(CDP_URL, timeout=5).read().decode("utf-8")
-        tabs = json.loads(raw)
+        def get_tabs():
+            try:
+                with urllib.request.urlopen(CDP_URL, timeout=3) as r:
+                    return json.loads(r.read().decode("utf-8"))
+            except Exception:
+                return []
+        tabs = await asyncio.to_thread(get_tabs)
         for t in tabs:
             if match_keyword in t.get("url", "") and t.get("webSocketDebuggerUrl"):
                 ws_url = t["webSocketDebuggerUrl"]
                 try:
-                    ws = await asyncio.wait_for(websockets.connect(ws_url, max_size=50_000_000, open_timeout=4, close_timeout=2), timeout=5.0)
-                    print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via Page.reload...")
-                    await asyncio.wait_for(ws.send(json.dumps({"id": 9999, "method": "Page.reload"})), timeout=3.0)
+                    ws = await asyncio.wait_for(
+                        websockets.connect(ws_url, max_size=10_000_000, open_timeout=3, close_timeout=1),
+                        timeout=4.0
+                    )
+                    print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via CDP location.reload()...", flush=True)
+                    await asyncio.wait_for(
+                        ws.send(json.dumps({"id": 8888, "method": "Runtime.evaluate", "params": {"expression": "location.reload()", "returnByValue": False}})),
+                        timeout=2.0
+                    )
                     try:
-                        await asyncio.wait_for(ws.close(), timeout=2.0)
+                        await asyncio.wait_for(ws.close(), timeout=1.0)
                     except Exception:
                         pass
+                    print(f"[RockHardWatchdog] 5-minute auto-refresh triggered for '{match_keyword}' successfully!", flush=True)
+                    await asyncio.sleep(2.0)
+                    return True
                 except Exception as ws_err:
-                    print(f"[RockHardWatchdog] Notice on ws reload for {match_keyword}: {ws_err}")
-                await asyncio.sleep(3.5)
-                return True
+                    print(f"[RockHardWatchdog] Handled ws reload event for '{match_keyword}': {ws_err}", flush=True)
+                    return True
     except Exception as e:
-        print(f"[RockHardWatchdog] Warning: failed to reload tab for '{match_keyword}': {e}", file=sys.stderr)
+        print(f"[RockHardWatchdog] Warning on reload for '{match_keyword}': {e}", file=sys.stderr, flush=True)
     return False
 
 async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0, poll_interval: float = 2.0) -> int:
