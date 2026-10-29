@@ -2,7 +2,7 @@
   "feed_name": "4_Hyperliquid_Analysis",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 1976,
+  "row_count": 1985,
   "column_count": 20,
   "columns": [
     "rank",
@@ -26,9 +26,9 @@
     "leverage",
     "timestamp_ist"
   ],
-  "byte_size": 355854,
-  "timestamp_ist": "2026-10-29 10:17:04 IST",
-  "timestamp_utc": "2026-10-29 04:47:04 UTC",
-  "epoch_utc": 1793249224.94623,
-  "write_duration_ms": 381.69
+  "byte_size": 357770,
+  "timestamp_ist": "2026-10-29 10:19:38 IST",
+  "timestamp_utc": "2026-10-29 04:49:38 UTC",
+  "epoch_utc": 1793249378.451607,
+  "write_duration_ms": 624.92
 }
