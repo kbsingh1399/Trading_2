@@ -306,7 +306,7 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                 cur_text = astate.get("lastText", "")
                 cur_hash = astate.get("textHash", "")
                 has_anchor = astate.get("hasCopyButton") or astate.get("hasYesNoBanner")
-                has_cycle = expected_cycle in cur_text if expected_cycle else (cur_hash != a_initial_hash)
+                has_cycle = (expected_cycle in cur_text) or (cur_hash != a_initial_hash and len(cur_text) >= 1000) if expected_cycle else (cur_hash != a_initial_hash)
                 
                 if has_cycle and not is_gen and has_anchor and len(cur_text) > 50:
                     if cur_hash == last_a_hash:
@@ -330,7 +330,7 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                 is_gen = zstate.get("isGenerating", False)
                 cur_text = zstate.get("lastText", "")
                 cur_hash = zstate.get("textHash", "")
-                has_cycle = expected_cycle in cur_text if expected_cycle else (cur_hash != z_initial_hash)
+                has_cycle = (expected_cycle in cur_text) or (cur_hash != z_initial_hash and len(cur_text) >= 1000) if expected_cycle else (cur_hash != z_initial_hash)
                 
                 if has_cycle and not is_gen and len(cur_text) > 50:
                     if cur_hash == last_z_hash:
