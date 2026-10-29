@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCAD
 **Canonical Key**: `USDCAD` | **Broker Instrument**: `USDCAD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:41:24 IST` (`2026-10-29 19:11:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:47:28 IST` (`2026-10-29 19:17:28 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.40` | **Live Ask Quote**: `1.40` | **Mid Price**: `1.40`
-- **Spread Points**: `3.00` | **Spread BPS**: `0.21 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `2.00` | **Spread BPS**: `0.14 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.40` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000900` pts)
+  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000885` pts)
   * +2.5R Take Profit: `1.40`
   * Mathematical Lot Sizing: **`0.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.40` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000900` pts)
+  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `0.000885` pts)
   * +2.5R Take Profit: `1.40`
   * Mathematical Lot Sizing: **`0.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

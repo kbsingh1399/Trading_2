@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCAD
 **Canonical Key**: `GBPCAD` | **Broker Instrument**: `GBPCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:41:24 IST` (`2026-10-29 19:11:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:47:28 IST` (`2026-10-29 19:17:28 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.87` | **Live Ask Quote**: `1.87` | **Mid Price**: `1.87`
-- **Spread Points**: `7.00` | **Spread BPS**: `0.37 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `16.00` | **Spread BPS**: `0.86 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,8 +44,8 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.87` (Distance: `+0.16%`)
-  * Point of Control (POC) = `1.86` (Distance: `+0.34%`)
+  * Value Area High (VAH) = `1.87` (Distance: `+0.15%`)
+  * Point of Control (POC) = `1.86` (Distance: `+0.33%`)
   * Value Area Low (VAL) = `1.86` (Distance: `+0.42%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.86` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.86` (Risk Distance: `0.0013` pts)
+  * Spread-Padded Stop Loss: `1.86` (Risk Distance: `0.0014` pts)
   * +2.5R Take Profit: `1.86`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.87` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.87` (Risk Distance: `0.0013` pts)
+  * Spread-Padded Stop Loss: `1.87` (Risk Distance: `0.0014` pts)
   * +2.5R Take Profit: `1.86`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

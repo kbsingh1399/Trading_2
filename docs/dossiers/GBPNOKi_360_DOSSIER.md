@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNOK
 **Canonical Key**: `GBPNOK` | **Broker Instrument**: `GBPNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:41:24 IST` (`2026-10-29 19:11:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:47:28 IST` (`2026-10-29 19:17:28 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `12.38` | **Live Ask Quote**: `12.38` | **Mid Price**: `12.38`
-- **Spread Points**: `207.00` | **Spread BPS**: `1.67 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `271.00` | **Spread BPS**: `2.19 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,7 +27,7 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `12.47` | Lower -3.00σ Band: `12.29`
+  * Upper +3.00σ Band: `12.46` | Lower -3.00σ Band: `12.29`
   * Upper +2.51σ Band: `12.45` | Lower -2.51σ Band: `12.31`
   * Upper +2.01σ Band: `12.43` | Lower -2.01σ Band: `12.33`
   * Upper +2.00σ Band: `12.43` | Lower -2.00σ Band: `12.33`
@@ -37,14 +37,14 @@
   * Fast EMA Array: EMA-9=`12.38` | EMA-20=`12.38` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`12.38` (Slope: `+0.0000`) | EMA-100=`12.38`
   * Institutional Anchors: EMA-144=`12.38` | EMA-200=`12.38` (Slope: `+0.0000`) | EMA-233=`12.38`
-- **Range Boundaries**: 24H High=`12.50` | 24H Low=`12.26` | Weekly High=`12.63` | Weekly Low=`12.13`
+- **Range Boundaries**: 24H High=`12.50` | 24H Low=`12.25` | Weekly High=`12.63` | Weekly Low=`12.13`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `12.42` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `12.41` (Distance: `+0.00%`)
   * Point of Control (POC) = `12.38` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `12.34` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -57,7 +57,7 @@
   * Asian Session (00:00-08:00 UTC): High=`12.40` | Low=`12.35`
   * London Session (08:00-16:00 UTC): High=`12.43` | Low=`12.33`
   * New York Session (13:00-21:00 UTC): High=`12.45` | Low=`12.30`
-  * Initial Balance (First Hour): IB High=`12.42` | IB Low=`12.34`
+  * Initial Balance (First Hour): IB High=`12.41` | IB Low=`12.34`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `12.33` - `12.43`
   * Optimal Trade Entry (OTE 0.705): `12.40`
@@ -270,13 +270,13 @@
   * Execution Entry: `12.34` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `11.14` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `15.35`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `12.42` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `12.41` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `13.62` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `9.41`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `9.40`
+  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:41:24 IST` (`2026-10-29 19:11:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:47:28 IST` (`2026-10-29 19:17:28 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.76` | **Live Ask Quote**: `8.76` | **Mid Price**: `8.76`
-- **Spread Points**: `22.00` | **Spread BPS**: `0.25 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `17.00` | **Spread BPS**: `0.19 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,20 +44,20 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `8.78` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `8.79` (Distance: `+0.00%`)
   * Point of Control (POC) = `8.76` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `8.73` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`8.79` | POC=`8.76` | VAL=`8.72`
   * Prior Day Extremes: PDH=`8.81` | PDL=`8.71` | PDC=`8.76`
-  * Monday Range Blueprint: High=`8.80` | Mid=`8.76` | Low=`8.71`
+  * Monday Range Blueprint: High=`8.80` | Mid=`8.76` | Low=`8.72`
   * Developing Weekly Value Area: Weekly VAH=`8.83` | Weekly POC=`8.76` | Weekly VAL=`8.69`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.78` | Low=`8.74`
   * London Session (08:00-16:00 UTC): High=`8.79` | Low=`8.72`
   * New York Session (13:00-21:00 UTC): High=`8.81` | Low=`8.71`
-  * Initial Balance (First Hour): IB High=`8.78` | IB Low=`8.73`
+  * Initial Balance (First Hour): IB High=`8.79` | IB Low=`8.73`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `8.72` - `8.79`
   * Optimal Trade Entry (OTE 0.705): `8.78`
@@ -158,7 +158,7 @@
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `0.0040%` | **USDT BingX** | `-` |
+| **USDT MEXC** | `0.0043%` | **USDT BingX** | `-` |
 | **USDT Gate** | `-` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
@@ -273,7 +273,7 @@
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `8.78` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `8.79` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `9.99` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `5.78`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
