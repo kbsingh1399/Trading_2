@@ -24,8 +24,8 @@
     "latest_signal_bias"
   ],
   "byte_size": 28468,
-  "timestamp_ist": "2026-10-30 03:13:59 IST",
-  "timestamp_utc": "2026-10-29 21:43:59 UTC",
-  "epoch_utc": 1793310239.725455,
+  "timestamp_ist": "2026-10-30 03:16:08 IST",
+  "timestamp_utc": "2026-10-29 21:46:08 UTC",
+  "epoch_utc": 1793310368.414357,
   "write_duration_ms": 7.37
 }
