@@ -1,11 +1,11 @@
 {
-  "timestamp_utc": "2026-10-29 02:00:17 UTC",
-  "balance_usd": 4714.57,
-  "equity_usd": 4707.51,
-  "free_margin_usd": 4149.15,
+  "timestamp_utc": "2026-10-29 02:02:18 UTC",
+  "balance_usd": 4706.57,
+  "equity_usd": 4706.02,
+  "free_margin_usd": 4442.26,
   "max_filled_positions": 15,
-  "filled_positions_count": 3,
-  "filled_slots_free": 12,
+  "filled_positions_count": 2,
+  "filled_slots_free": 13,
   "resting_limits_count": 11,
   "is_position_capped": false,
   "auto_pull_executed": false,
@@ -17,12 +17,12 @@
       "type": "SELL",
       "volume": 0.1,
       "price_open": 0.70586,
-      "price_current": 0.70605,
+      "price_current": 0.70594,
       "sl": 0.70686,
       "tp": 0.70368,
-      "gain_r": -0.19,
+      "gain_r": -0.08,
       "ratchet_stage": 0,
-      "profit_usd": -1.9
+      "profit_usd": -0.8
     },
     {
       "ticket": 19437498,
@@ -30,25 +30,12 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 2846.5,
-      "price_current": 2845.18,
+      "price_current": 2843.97,
       "sl": 2858.0,
       "tp": 2822.0,
-      "gain_r": 0.115,
+      "gain_r": 0.22,
       "ratchet_stage": 0,
-      "profit_usd": 0.13
-    },
-    {
-      "ticket": 19439187,
-      "symbol": "NAS100.p",
-      "type": "BUY",
-      "volume": 0.01,
-      "price_open": 29460.0,
-      "price_current": 29407.11,
-      "sl": 29380.0,
-      "tp": 29650.0,
-      "gain_r": -0.661,
-      "ratchet_stage": 0,
-      "profit_usd": -5.29
+      "profit_usd": 0.25
     }
   ],
   "resting_orders": [
