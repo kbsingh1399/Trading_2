@@ -44,6 +44,8 @@ STATE_DIR.mkdir(parents=True, exist_ok=True)
 RATCHET_STATE_FILE = STATE_DIR / "ratchet_state.json"
 HEARTBEAT_FILE = STATE_DIR / "heartbeat"
 
+REGISTRY_MD_FILE = ROOT / "Data" / "Manditory" / "LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md"
+
 ACCOUNT_LOGIN = 5064568
 MAX_FILLED_POSITIONS = 15
 CHECK_INTERVAL_SEC = 5.0
@@ -87,6 +89,78 @@ def save_ratchet_state(state: dict):
                 except Exception as ex:
                     logger.error(f"Failed to save ratchet state: {ex}")
             time.sleep(0.05)
+
+
+
+def update_markdown_registry(status: dict):
+    try:
+        lines = [
+            "# 📊 LIVE PORTFOLIO & ORDER REGISTRY",
+            "**Authoritative Real-Time Position, Order & Solvency Registry**",
+            "*Maintained Continuously by Antigravity Autonomous Position Supervisor*",
+            "",
+            "> **GOVERNANCE PURPOSE**:",
+            "> This registry serves as the single source of truth for all live running positions, resting pending maker limit orders, locked-in profit ratchets, and banked session profits.",
+            "> It is automatically updated by the dynamic position supervisor daemon and pushed to GitHub main every 60 seconds (`https://github.com/kbsingh1399/Trading_2.git`).",
+            "> ",
+            "> **RAW GITHUB FETCH URL FOR ARENA.AI & Z.AI**:",
+            "> `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`",
+            "",
+            "---",
+            "",
+            "## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS",
+            f"- **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)",
+            f"- **Account Balance**: **{status.get('balance_usd', 0.0):,.2f} USD**",
+            f"- **Floating Equity**: **{status.get('equity_usd', 0.0):,.2f} USD**",
+            f"- **Free Margin**: **{status.get('free_margin_usd', 0.0):,.2f} USD**",
+            "- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)",
+            "- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)",
+            f"- **Last Updated**: `{status.get('timestamp_utc', 'N/A')}`",
+            "",
+            "---",
+            "",
+            f"## 🚀 2. LIVE RUNNING POSITIONS ({len(status.get('active_positions', []))} ACTIVE)",
+            "",
+            "| Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: \"Should I let it run or cut it?\" |",
+            "|---|---|---|---|---|---|---|---|---|---|---|"
+        ]
+        
+        pos_list = status.get("active_positions", [])
+        if not pos_list:
+            lines.append("| - | NONE | - | - | - | - | - | - | 0.00 USD | Flat | No open positions. Capital 100% defended. |")
+        else:
+            for p in pos_list:
+                stage_desc = f"Stage {p.get('ratchet_stage', 0)}"
+                if p.get('ratchet_stage', 0) == 1:
+                    stage_desc += " (+0.15R BE Lock)"
+                elif p.get('ratchet_stage', 0) >= 2:
+                    stage_desc += " (+0.80R Profit Lock)"
+                interrog = "LET IT RUN. Developing toward target; risk locked." if p.get('profit_usd', 0) >= 0 else "DEFEND. Structural invalidation check active."
+                lines.append(f"| **#{p['ticket']}** | `{p['symbol']}` | {p['type']} | {p['volume']:.2f} | {p['price_open']} | {p['price_current']} | **{p['sl']}** | {p['tp']} | **{p['profit_usd']:+.2f} USD** | {stage_desc} | **{interrog}** |")
+
+        lines.extend([
+            "",
+            "---",
+            "",
+            f"## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS ({len(status.get('resting_orders', []))} STAGED)",
+            "",
+            "| Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |",
+            "|---|---|---|---|---|---|---|---|"
+        ])
+
+        ord_list = status.get("resting_orders", [])
+        if not ord_list:
+            lines.append("| - | NONE | - | - | - | - | - | No resting limit orders. |")
+        else:
+            for o in ord_list:
+                lines.append(f"| **#{o['ticket']}** | `{o['symbol']}` | {o['type']} | {o['volume']:.2f} | **{o['price']}** | **{o['sl']}** | {o['tp']} | Resting passive maker order |")
+
+        lines.append("")
+        content = "\n".join(lines)
+        REGISTRY_MD_FILE.parent.mkdir(parents=True, exist_ok=True)
+        REGISTRY_MD_FILE.write_text(content, encoding="utf-8")
+    except Exception as e:
+        logger.warning(f"Failed to update Markdown registry: {e}")
 
 
 def check_and_supervise_positions() -> dict:
@@ -413,6 +487,11 @@ def check_and_supervise_positions() -> dict:
             HEARTBEAT_FILE.write_text(str(time.time()), encoding="utf-8")
         except Exception:
             pass
+
+        try:
+            update_markdown_registry(status_payload)
+        except Exception as reg_err:
+            logger.warning(f"Markdown registry auto-update warning: {reg_err}")
 
         return status_payload
     finally:
