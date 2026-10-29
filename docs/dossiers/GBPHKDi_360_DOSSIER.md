@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPHKD
 **Canonical Key**: `GBPHKD` | **Broker Instrument**: `GBPHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:33:52 IST` (`2026-10-29 17:03:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:36:53 IST` (`2026-10-29 17:06:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.49` | **Live Ask Quote**: `10.49` | **Mid Price**: `10.49`
-- **Spread Points**: `36.00` | **Spread BPS**: `0.34 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `66.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`10.49` | EMA-20=`10.49` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`10.49` (Slope: `+0.0000`) | EMA-100=`10.49`
   * Institutional Anchors: EMA-144=`10.49` | EMA-200=`10.49` (Slope: `+0.0000`) | EMA-233=`10.49`
-- **Range Boundaries**: 24H High=`10.60` | 24H Low=`10.39` | Weekly High=`10.70` | Weekly Low=`10.28`
+- **Range Boundaries**: 24H High=`10.59` | 24H Low=`10.38` | Weekly High=`10.70` | Weekly Low=`10.28`
 
 ---
 
