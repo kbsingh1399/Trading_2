@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:30:40 IST` (`2026-10-29 21:00:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -235,8 +235,8 @@
 | `7D` | `1.47` | 15,620.00 USD | 15,620.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 2.10 USD |
 | `1D` | `1.47` | 15,680.00 USD | 15,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 51.19 USD |
 | `7D` | `1.47` | 15,680.00 USD | 15,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 51.19 USD |
-| `1D` | `1.47` | 15,680.00 USD | 15,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6.96 USD |
 | `7D` | `1.47` | 15,680.00 USD | 15,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6.96 USD |
+| `1D` | `1.47` | 15,680.00 USD | 15,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6.96 USD |
 
 - **Multi-Timeframe Forced Liquidations Summary Table (22_Forced_Liquidations_MTF.parquet)**:
 | Timeframe | Dominant Side | Long Liq (USD) | Short Liq (USD) | Total Liq (USD) | Net Liq Delta (USD) | Orders Count | Window (UTC) |

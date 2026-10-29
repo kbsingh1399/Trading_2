@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:30:40 IST` (`2026-10-29 21:00:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -158,7 +158,7 @@
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `0.0103%` | **USDT BingX** | `-` |
+| **USDT MEXC** | `0.0030%` | **USDT BingX** | `-` |
 | **USDT Gate** | `-` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 

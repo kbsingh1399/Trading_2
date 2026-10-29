@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ENJUSD
 **Canonical Key**: `ENJUSD` | **Broker Instrument**: `ENJUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:27:39 IST` (`2026-10-29 20:57:39 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:30:40 IST` (`2026-10-29 21:00:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,12 +152,12 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `130.23` | Last 24h: `533.61` | Last 3d: `1.52K` | Last 7d: `2.23K`
+  * Current Rate: `135.03` | Last 24h: `533.61` | Last 3d: `1.52K` | Last 7d: `2.23K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0050%` | **USDT OKX** | `0.0050%` |
-| **USDT Bybit** | `0.0019%` | **USDT KuCoin** | `-0.0339%` |
+| **USDT Bybit** | `0.0015%` | **USDT KuCoin** | `-0.0297%` |
 | **USDT MEXC** | `0.0050%` | **USDT BingX** | `0.0050%` |
 | **USDT Gate** | `0.0050%` | **USDT Bitget** | `0.0050%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
