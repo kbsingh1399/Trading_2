@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,39 +27,39 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `23.84` | Lower -3.00σ Band: `23.51`
+  * Upper +3.00σ Band: `23.85` | Lower -3.00σ Band: `23.52`
   * Upper +2.51σ Band: `23.81` | Lower -2.51σ Band: `23.55`
   * Upper +2.01σ Band: `23.78` | Lower -2.01σ Band: `23.58`
-  * Upper +2.00σ Band: `23.77` | Lower -2.00σ Band: `23.58`
-  * Upper +1.28σ Band: `23.75` | Lower -1.28σ Band: `23.61`
-  * Upper +1.00σ Band: `23.73` | Lower -1.00σ Band: `23.63`
+  * Upper +2.00σ Band: `23.78` | Lower -2.00σ Band: `23.59`
+  * Upper +1.28σ Band: `23.75` | Lower -1.28σ Band: `23.62`
+  * Upper +1.00σ Band: `23.73` | Lower -1.00σ Band: `23.64`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`23.68` | EMA-20=`23.68` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`23.68` (Slope: `+0.0000`) | EMA-100=`23.68`
   * Institutional Anchors: EMA-144=`23.68` | EMA-200=`23.68` (Slope: `+0.0000`) | EMA-233=`23.68`
-- **Range Boundaries**: 24H High=`23.92` | 24H Low=`23.44` | Weekly High=`24.15` | Weekly Low=`23.21`
+- **Range Boundaries**: 24H High=`23.92` | 24H Low=`23.45` | Weekly High=`24.16` | Weekly Low=`23.21`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `23.75` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `23.76` (Distance: `+0.00%`)
   * Point of Control (POC) = `23.68` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `23.61` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`23.77` | POC=`23.68` | VAL=`23.58`
-  * Prior Day Extremes: PDH=`23.82` | PDL=`23.54` | PDC=`23.68`
-  * Monday Range Blueprint: High=`23.80` | Mid=`23.68` | Low=`23.56`
+  * Prior Day Value Area: VAH=`23.78` | POC=`23.68` | VAL=`23.59`
+  * Prior Day Extremes: PDH=`23.83` | PDL=`23.54` | PDC=`23.68`
+  * Monday Range Blueprint: High=`23.80` | Mid=`23.68` | Low=`23.57`
   * Developing Weekly Value Area: Weekly VAH=`23.87` | Weekly POC=`23.68` | Weekly VAL=`23.49`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`23.73` | Low=`23.63`
-  * London Session (08:00-16:00 UTC): High=`23.77` | Low=`23.58`
-  * New York Session (13:00-21:00 UTC): High=`23.82` | Low=`23.54`
-  * Initial Balance (First Hour): IB High=`23.75` | IB Low=`23.61`
+  * Asian Session (00:00-08:00 UTC): High=`23.73` | Low=`23.64`
+  * London Session (08:00-16:00 UTC): High=`23.78` | Low=`23.59`
+  * New York Session (13:00-21:00 UTC): High=`23.83` | Low=`23.54`
+  * Initial Balance (First Hour): IB High=`23.76` | IB Low=`23.61`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `23.58` - `23.77`
+  * Golden Pocket Zone (0.618 - 0.650): `23.59` - `23.78`
   * Optimal Trade Entry (OTE 0.705): `23.73`
   * Structural Invalidation Anchor (0.786): `23.87`
 
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `23.61` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `22.40` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `22.41` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `26.62`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `23.75` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `24.95` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `20.74`
+  * Execution Entry: `23.76` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `24.96` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `20.75`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

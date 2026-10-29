@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDZAR
 **Canonical Key**: `USDZAR` | **Broker Instrument**: `USDZAR.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `16.60` | **Live Ask Quote**: `16.63` | **Mid Price**: `16.61`
-- **Spread Points**: `2163.00` | **Spread BPS**: `13.02 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `16.61` | **Live Ask Quote**: `16.62` | **Mid Price**: `16.61`
+- **Spread Points**: `1518.00` | **Spread BPS**: `9.14 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `16.73` | Lower -3.00σ Band: `16.50`
-  * Upper +2.51σ Band: `16.71` | Lower -2.51σ Band: `16.52`
+  * Upper +2.51σ Band: `16.70` | Lower -2.51σ Band: `16.52`
   * Upper +2.01σ Band: `16.68` | Lower -2.01σ Band: `16.54`
   * Upper +2.00σ Band: `16.68` | Lower -2.00σ Band: `16.55`
   * Upper +1.28σ Band: `16.66` | Lower -1.28σ Band: `16.57`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `16.56` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `15.33` (Risk Distance: `1.23` pts)
-  * +2.5R Take Profit: `19.65`
-  * Mathematical Lot Sizing: **`8.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `15.34` (Risk Distance: `1.22` pts)
+  * +2.5R Take Profit: `19.62`
+  * Mathematical Lot Sizing: **`8.17 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `16.66` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `17.90` (Risk Distance: `1.23` pts)
-  * +2.5R Take Profit: `13.58`
-  * Mathematical Lot Sizing: **`8.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `17.89` (Risk Distance: `1.22` pts)
+  * +2.5R Take Profit: `13.61`
+  * Mathematical Lot Sizing: **`8.17 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

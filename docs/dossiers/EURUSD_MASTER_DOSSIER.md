@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.12` (Distance: `+0.04%`)
-  * Point of Control (POC) = `1.12` (Distance: `+0.12%`)
-  * Value Area Low (VAL) = `1.12` (Distance: `+0.13%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
+  * Value Area High (VAH) = `1.12` (Distance: `-0.01%`)
+  * Point of Control (POC) = `1.12` (Distance: `+0.01%`)
+  * Value Area Low (VAL) = `1.12` (Distance: `+0.09%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.12` | POC=`1.11` | VAL=`1.11`
   * Prior Day Extremes: PDH=`1.12` | PDL=`1.11` | PDC=`1.12`
@@ -70,9 +70,9 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `181` | 202.04 USD | -89.80 USD | `-44.44%` | -31.67 USD | `-0.29` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `244` | 272.37 USD | 34.05 USD | `+12.50%` | 2.38 USD | `+0.34` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `255` | 284.67 USD | 142.33 USD | `+50.00%` | 144.71 USD | `+0.89` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `255` | 284.67 USD | 142.33 USD | `+50.00%` | 550.05 USD | `+0.89` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `170` | 189.80 USD | 159.83 USD | `+84.21%` | 709.89 USD | `+1.04` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `323` | 360.67 USD | 197.51 USD | `+54.76%` | 907.39 USD | `+1.12` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `895` | 998.97 USD | -402.81 USD | `-40.32%` | 4,757.37 USD | `-0.73` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `752` | 839.43 USD | 34.03 USD | `+4.05%` | 4,791.40 USD | `-0.20` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `748` | 835.22 USD | 640.34 USD | `+76.67%` | 5,431.74 USD | `+0.65` | **`BULLISH`** | `AGGRESSIVE BUYING` |

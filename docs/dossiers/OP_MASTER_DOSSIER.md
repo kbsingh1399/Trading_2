@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: OP
 **Canonical Key**: `OP` | **Broker Instrument**: `OPUSD.p` | **Asset Class**: `Crypto Alt L2`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.1013` | `0.1016` | `0.1003` | `0.1014` | `5,072,364` | 512,372.00 USD | -111,179.89 USD | `-21.70%` | -2,945,480.31 USD | `-0.20` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `5m` | `0.1014` | `0.1022` | `0.1013` | `0.1014` | `2,077,720` | 211,471.15 USD | 31,041.96 USD | `+14.68%` | -2,914,438.35 USD | `+0.57` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `0.1014` | `0.1014` | `0.1013` | `0.1013` | `57,524` | 5,830.62 USD | 1,582.91 USD | `+27.15%` | -2,912,855.44 USD | `+0.35` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `5m` | `0.1014` | `0.1024` | `0.1009` | `0.1022` | `2,345,745` | 238,550.20 USD | 73,160.82 USD | `+30.67%` | -2,832,860.71 USD | `+0.75` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `0.1022` | `0.1026` | `0.1020` | `0.1025` | `2,109,143` | 215,736.85 USD | 21,955.81 USD | `+10.18%` | -2,810,904.90 USD | `+0.41` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `0.1024` | `0.1025` | `0.1023` | `0.1025` | `46,948` | 4,806.78 USD | 2,268.40 USD | `+47.19%` | -2,808,636.50 USD | `+0.04` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `0.1025` | `0.1029` | `0.1018` | `0.1018` | `5,081,383` | 520,168.37 USD | 58,829.21 USD | `+11.31%` | -2,843,966.25 USD | `+0.61` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `15m` | `0.1018` | `0.1023` | `0.1003` | `0.1014` | `9,565,551` | 969,689.66 USD | -62,055.28 USD | `-6.40%` | -2,906,021.53 USD | `+0.12` | **`BEARISH`** | `DELTA ALIGNED` |
-| `15m` | `0.1014` | `0.1014` | `0.1013` | `0.1013` | `57,524` | 5,830.62 USD | 1,582.91 USD | `+27.15%` | -2,904,438.62 USD | `+0.37` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `15m` | `0.1014` | `0.1026` | `0.1009` | `0.1024` | `4,497,088` | 458,607.31 USD | 96,912.33 USD | `+21.13%` | -2,809,109.20 USD | `+0.73` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `0.1101` | `0.1103` | `0.0989` | `0.1012` | `136,699,709` | 14,218,772.66 USD | -1,614,985.67 USD | `-11.36%` | -2,750,784.93 USD | `-3.57` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `0.1012` | `0.1044` | `0.1007` | `0.1018` | `43,149,466` | 4,433,523.07 USD | -89,220.85 USD | `-2.01%` | -2,840,005.78 USD | `+0.06` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `1h` | `0.1018` | `0.1023` | `0.1003` | `0.1014` | `9,614,014` | 974,601.73 USD | -59,955.45 USD | `-6.15%` | -2,899,961.23 USD | `+0.05` | **`BEARISH`** | `DELTA ALIGNED` |
+| `1h` | `0.1018` | `0.1026` | `0.1003` | `0.1024` | `14,062,638` | 1,428,296.97 USD | 34,857.05 USD | `+2.44%` | -2,805,148.73 USD | `+0.29` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1099` | `0.1141` | `0.1093` | `0.1139` | `69,113,404` | 7,714,245.64 USD | 341,255.60 USD | `+4.42%` | -935,828.18 USD | `+0.76` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1140` | `0.1148` | `0.1094` | `0.1101` | `61,838,594` | 6,908,457.75 USD | -176,140.28 USD | `-2.55%` | -1,111,968.46 USD | `+0.07` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1014` | `189,465,848` | 19,627,167.08 USD | -1,764,051.71 USD | `-8.99%` | -2,876,020.17 USD | `-1.53` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1023` | `193,889,641` | 20,078,322.87 USD | -1,671,113.21 USD | `-8.32%` | -2,783,081.67 USD | `-1.48` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.1085` | `0.1106` | `0.1071` | `0.1076` | `47,048,931` | 5,111,570.05 USD | 108,567.99 USD | `+2.12%` | -1,419,806.61 USD | `+1.00` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.1076` | `0.1111` | `0.1075` | `0.1099` | `45,357,664` | 4,969,550.08 USD | 142,722.83 USD | `+2.87%` | -1,277,083.78 USD | `+0.73` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1099` | `0.1141` | `0.1093` | `0.1139` | `69,113,404` | 7,714,245.64 USD | 341,255.60 USD | `+4.42%` | -935,828.18 USD | `+0.76` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1140` | `0.1148` | `0.1094` | `0.1101` | `61,838,594` | 6,908,457.75 USD | -176,140.28 USD | `-2.55%` | -1,111,968.46 USD | `+0.07` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1014` | `189,465,848` | 19,627,167.08 USD | -1,764,051.71 USD | `-8.99%` | -2,876,020.17 USD | `-1.53` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1023` | `193,889,641` | 20,078,322.87 USD | -1,671,113.21 USD | `-8.32%` | -2,783,081.67 USD | `-1.48` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -121,7 +121,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.1101` | 5,182.99 USD | `-` | `NEWS_INTEL` | `-` | #OP Whale SELL: 5.18K USD at 0.1101 USD [API] | `2026-10-28 13:20:09` |
 | `ANNOUNCEMENT` | `INFO` | `0.1100` | 5,889.99 USD | `-` | `NEWS_INTEL` | `-` | #OP Whale BUY: 5.89K USD at 0.1100 USD [API] | `2026-10-28 14:48:40` |
 | `ANNOUNCEMENT` | `INFO` | `0.1096` | 6,503.12 USD | `-` | `NEWS_INTEL` | `-` | #OP Whale SELL: 6.50K USD at 0.1096 USD [API] | `2026-10-28 17:22:10` |
 | `ANNOUNCEMENT` | `INFO` | `0.1122` | 5,004.01 USD | `-` | `NEWS_INTEL` | `-` | #OP Whale BUY: 5.00K USD at 0.1122 USD [API] | `2026-10-28 18:57:46` |

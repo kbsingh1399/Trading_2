@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDSGD
 **Canonical Key**: `NZDSGD` | **Broker Instrument**: `NZDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.7210` | **Live Ask Quote**: `0.7211` | **Mid Price**: `0.7210`
-- **Spread Points**: `13.00` | **Spread BPS**: `1.80 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `14.00` | **Spread BPS**: `1.94 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`0.7210` | EMA-20=`0.7210` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.7210` (Slope: `+0.0000`) | EMA-100=`0.7210`
   * Institutional Anchors: EMA-144=`0.7210` | EMA-200=`0.7210` (Slope: `+0.0000`) | EMA-233=`0.7210`
-- **Range Boundaries**: 24H High=`0.7282` | 24H Low=`0.7138` | Weekly High=`0.7355` | Weekly Low=`0.7066`
+- **Range Boundaries**: 24H High=`0.7283` | 24H Low=`0.7138` | Weekly High=`0.7355` | Weekly Low=`0.7066`
 
 ---
 
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.7239` | POC=`0.7210` | VAL=`0.7182`
   * Prior Day Extremes: PDH=`0.7254` | PDL=`0.7167` | PDC=`0.7210`
-  * Monday Range Blueprint: High=`0.7246` | Mid=`0.7210` | Low=`0.7174`
+  * Monday Range Blueprint: High=`0.7247` | Mid=`0.7210` | Low=`0.7174`
   * Developing Weekly Value Area: Weekly VAH=`0.7268` | Weekly POC=`0.7210` | Weekly VAL=`0.7153`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.7225` | Low=`0.7196`

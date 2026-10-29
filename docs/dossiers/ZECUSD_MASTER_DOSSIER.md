@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZECUSD
 **Canonical Key**: `ZECUSD` | **Broker Instrument**: `ZECUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1251.19` | **Live Ask Quote**: `1252.53` | **Mid Price**: `1251.86`
-- **Spread Points**: `134.00` | **Spread BPS**: `10.70 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `1258.35` | **Live Ask Quote**: `1260.19` | **Mid Price**: `1259.27`
+- **Spread Points**: `184.00` | **Spread BPS**: `14.61 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1277.75` (Distance: `-2.15%`)
-  * Point of Control (POC) = `1268.53` (Distance: `-1.44%`)
-  * Value Area Low (VAL) = `1249.72` (Distance: `+0.05%`)
+  * Value Area High (VAH) = `1276.64` (Distance: `-1.23%`)
+  * Point of Control (POC) = `1260.05` (Distance: `+0.07%`)
+  * Value Area Low (VAL) = `1247.88` (Distance: `+1.05%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1309.91` | POC=`1246.71` | VAL=`1230.27`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`1296.14` | Weekly POC=`1239.01` | Weekly VAL=`1196.53`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1296.00` | Low=`1240.69`
-  * London Session (08:00-16:00 UTC): High=`1256.87` | Low=`1246.85`
-  * New York Session (13:00-21:00 UTC): High=`1259.37` | Low=`1244.35`
-  * Initial Balance (First Hour): IB High=`1255.62` | IB Low=`1248.10`
+  * London Session (08:00-16:00 UTC): High=`1264.31` | Low=`1254.23`
+  * New York Session (13:00-21:00 UTC): High=`1266.83` | Low=`1251.71`
+  * Initial Balance (First Hour): IB High=`1263.05` | IB Low=`1255.49`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1246.85` - `1256.87`
-  * Optimal Trade Entry (OTE 0.705): `1254.36`
-  * Structural Invalidation Anchor (0.786): `1261.87`
+  * Golden Pocket Zone (0.618 - 0.650): `1254.23` - `1264.31`
+  * Optimal Trade Entry (OTE 0.705): `1261.79`
+  * Structural Invalidation Anchor (0.786): `1269.34`
 
 ---
 
@@ -277,7 +277,7 @@
 - **Multi-Timeframe Forced Liquidations Summary Table (22_Forced_Liquidations_MTF.parquet)**:
 | Timeframe | Dominant Side | Long Liq (USD) | Short Liq (USD) | Total Liq (USD) | Net Liq Delta (USD) | Orders Count | Window (UTC) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `BALANCED` | 0.00 USD | 1,750.00 USD | 1,750.00 USD | 1,750.00 USD | `1` | `2026-10-29 22:15:00 UTC - 2026-10-29 22:20:00 UTC` |
+| `5m` | `BALANCED` | 0.00 USD | 1,750.00 USD | 1,750.00 USD | 1,750.00 USD | `1` | `2026-10-29 22:25:00 UTC - 2026-10-29 22:30:00 UTC` |
 | `15m` | `BALANCED` | 0.00 USD | 1,750.00 USD | 1,750.00 USD | 1,750.00 USD | `1` | `2026-10-29 22:15:00 UTC - 2026-10-29 22:30:00 UTC` |
 | `1h` | `BALANCED` | 0.00 USD | 1,750.00 USD | 1,750.00 USD | 1,750.00 USD | `1` | `2026-10-29 22:00:00 UTC - 2026-10-29 23:00:00 UTC` |
 | `4h` | `BALANCED` | 0.00 USD | 1,750.00 USD | 1,750.00 USD | 1,750.00 USD | `1` | `2026-10-29 20:00:00 UTC - 2026-10-30 00:00:00 UTC` |
@@ -428,18 +428,18 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `1249.72` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1220.41` (Risk Distance: `29.31` pts)
-  * +2.5R Take Profit: `1322.98`
-  * Mathematical Lot Sizing: **`0.34 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `1247.88` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `1217.82` (Risk Distance: `30.06` pts)
+  * +2.5R Take Profit: `1323.02`
+  * Mathematical Lot Sizing: **`0.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `1277.75` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1307.06` (Risk Distance: `29.31` pts)
-  * +2.5R Take Profit: `1204.49`
-  * Mathematical Lot Sizing: **`0.34 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `1276.64` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `1306.70` (Risk Distance: `30.06` pts)
+  * +2.5R Take Profit: `1201.50`
+  * Mathematical Lot Sizing: **`0.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1261.87`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1269.34`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

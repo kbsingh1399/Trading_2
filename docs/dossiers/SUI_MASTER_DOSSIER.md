@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SUI
 **Canonical Key**: `SUI` | **Broker Instrument**: `SUIUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.8764` | `0.8812` | `0.8719` | `0.8807` | `3,357,437` | 2,942,400.55 USD | 101,250.26 USD | `+3.44%` | -15,385,683.19 USD | `+0.37` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `5m` | `0.8807` | `0.8887` | `0.8792` | `0.8821` | `2,317,002` | 2,049,915.55 USD | 179,716.70 USD | `+8.77%` | -15,205,966.49 USD | `+0.42` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `0.8820` | `0.8822` | `0.8813` | `0.8819` | `83,028` | 73,203.07 USD | -5,557.60 USD | `-7.59%` | -15,211,524.09 USD | `+0.24` | **`BEARISH`** | `DELTA ALIGNED` |
+| `5m` | `0.8820` | `0.8877` | `0.8776` | `0.8856` | `1,668,171` | 1,471,620.68 USD | 206,051.63 USD | `+14.00%` | -15,037,520.33 USD | `+0.43` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `0.8855` | `0.8889` | `0.8837` | `0.8878` | `1,170,212` | 1,037,401.17 USD | 125,485.29 USD | `+12.10%` | -14,912,035.04 USD | `+0.34` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `0.8879` | `0.8879` | `0.8871` | `0.8874` | `28,248` | 25,065.59 USD | 10,967.50 USD | `+43.76%` | -14,901,067.55 USD | `-0.20` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `15m` | `0.8854` | `0.8885` | `0.8799` | `0.8823` | `5,833,582` | 5,162,774.90 USD | -452,551.62 USD | `-8.77%` | -15,175,679.42 USD | `-0.08` | **`BEARISH`** | `DELTA ALIGNED` |
 | `15m` | `0.8824` | `0.8887` | `0.8719` | `0.8821` | `8,697,073` | 7,652,579.47 USD | -67,892.53 USD | `-0.89%` | -15,243,571.96 USD | `+0.23` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `15m` | `0.8820` | `0.8822` | `0.8813` | `0.8820` | `80,026` | 70,555.67 USD | -4,532.94 USD | `-6.42%` | -15,248,104.89 USD | `+0.32` | **`BEARISH`** | `DELTA ALIGNED` |
+| `15m` | `0.8820` | `0.8889` | `0.8776` | `0.8873` | `2,867,238` | 2,534,625.20 USD | 343,014.67 USD | `+13.53%` | -14,900,557.29 USD | `+0.60` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `0.9294` | `0.9303` | `0.8574` | `0.8737` | `71,708,417` | 63,836,842.40 USD | -6,009,876.59 USD | `-9.41%` | -15,181,110.62 USD | `-3.07` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `0.8736` | `0.9001` | `0.8692` | `0.8823` | `37,030,182` | 32,817,210.50 USD | 141,157.12 USD | `+0.43%` | -15,039,953.50 USD | `+0.42` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `1h` | `0.8824` | `0.8887` | `0.8719` | `0.8820` | `8,777,099` | 7,723,135.15 USD | -72,425.47 USD | `-0.94%` | -15,112,378.97 USD | `+0.21` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `1h` | `0.8824` | `0.8889` | `0.8719` | `0.8875` | `11,564,963` | 10,187,784.02 USD | 275,635.64 USD | `+2.71%` | -14,764,317.86 USD | `+0.44` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.9221` | `0.9548` | `0.9166` | `0.9539` | `53,988,780` | 50,583,791.87 USD | 2,028,716.92 USD | `+4.01%` | -6,589,251.83 USD | `+0.90` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.9539` | `0.9617` | `0.9250` | `0.9295` | `47,160,892` | 44,338,664.22 USD | -2,573,311.69 USD | `-5.80%` | -9,162,563.53 USD | `-0.20` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.9294` | `0.9303` | `0.8574` | `0.8819` | `117,521,249` | 104,382,082.92 USD | -5,940,769.01 USD | `-5.69%` | -15,103,332.54 USD | `-0.93` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.9294` | `0.9303` | `0.8574` | `0.8874` | `120,302,304` | 106,840,719.81 USD | -5,594,107.59 USD | `-5.24%` | -14,756,671.12 USD | `-0.86` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.9043` | `0.9222` | `0.9010` | `0.9063` | `37,205,563` | 33,852,646.16 USD | 118,750.50 USD | `+0.35%` | -8,478,733.68 USD | `+1.00` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.9064` | `0.9286` | `0.9052` | `0.9221` | `31,513,227` | 28,896,267.25 USD | -139,235.07 USD | `-0.48%` | -8,617,968.75 USD | `+0.68` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.9221` | `0.9548` | `0.9166` | `0.9539` | `53,988,780` | 50,583,791.87 USD | 2,028,716.92 USD | `+4.01%` | -6,589,251.83 USD | `+0.90` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.9539` | `0.9617` | `0.9250` | `0.9295` | `47,160,892` | 44,338,664.22 USD | -2,573,311.69 USD | `-5.80%` | -9,162,563.53 USD | `-0.20` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.9294` | `0.9303` | `0.8574` | `0.8819` | `117,521,249` | 104,382,082.92 USD | -5,940,769.01 USD | `-5.69%` | -15,103,332.54 USD | `-0.93` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.9294` | `0.9303` | `0.8574` | `0.8874` | `120,302,304` | 106,840,719.81 USD | -5,594,107.59 USD | `-5.24%` | -14,756,671.12 USD | `-0.86` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -165,9 +165,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.9816` | 154.30 USD | `-` | `NEWS_INTEL` | `-` | #SUI Liquidated Long: 0.15K USD at 0.9816 USD [API] | `2026-09-21 08:38:19` |
-| `ANNOUNCEMENT` | `INFO` | `0.9230` | 5,007.28 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.01K USD at 0.9230 USD [API] | `2026-10-28 13:20:03` |
-| `ANNOUNCEMENT` | `INFO` | `0.9224` | 5,007.13 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale BUY: 5.01K USD at 0.9224 USD [API] | `2026-10-28 13:30:10` |
 | `ANNOUNCEMENT` | `INFO` | `0.9190` | 5,958.72 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.96K USD at 0.9190 USD [API] | `2026-10-28 13:52:39` |
 | `ANNOUNCEMENT` | `INFO` | `0.9208` | 5,007.16 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.01K USD at 0.9208 USD [API] | `2026-10-28 14:42:33` |
 | `ANNOUNCEMENT` | `INFO` | `0.9254` | 7,207.83 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale BUY: 7.21K USD at 0.9254 USD [API] | `2026-10-28 16:15:35` |

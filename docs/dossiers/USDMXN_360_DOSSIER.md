@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDMXN
 **Canonical Key**: `USDMXN` | **Broker Instrument**: `USDMXN.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `18.86` | **Live Ask Quote**: `18.87` | **Mid Price**: `18.86`
-- **Spread Points**: `495.00` | **Spread BPS**: `2.62 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `538.00` | **Spread BPS**: `2.85 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `19.00` | Lower -3.00σ Band: `18.73`
   * Upper +2.51σ Band: `18.97` | Lower -2.51σ Band: `18.76`
-  * Upper +2.01σ Band: `18.94` | Lower -2.01σ Band: `18.79`
+  * Upper +2.01σ Band: `18.94` | Lower -2.01σ Band: `18.78`
   * Upper +2.00σ Band: `18.94` | Lower -2.00σ Band: `18.79`
   * Upper +1.28σ Band: `18.92` | Lower -1.28σ Band: `18.81`
   * Upper +1.00σ Band: `18.90` | Lower -1.00σ Band: `18.83`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`18.94` | POC=`18.86` | VAL=`18.79`
   * Prior Day Extremes: PDH=`18.98` | PDL=`18.75` | PDC=`18.86`
   * Monday Range Blueprint: High=`18.96` | Mid=`18.86` | Low=`18.77`
-  * Developing Weekly Value Area: Weekly VAH=`19.02` | Weekly POC=`18.86` | Weekly VAL=`18.71`
+  * Developing Weekly Value Area: Weekly VAH=`19.01` | Weekly POC=`18.86` | Weekly VAL=`18.71`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`18.90` | Low=`18.83`
   * London Session (08:00-16:00 UTC): High=`18.94` | Low=`18.79`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `18.79` - `18.94`
   * Optimal Trade Entry (OTE 0.705): `18.90`
-  * Structural Invalidation Anchor (0.786): `19.02`
+  * Structural Invalidation Anchor (0.786): `19.01`
 
 ---
 
@@ -270,15 +270,15 @@
   * Execution Entry: `18.81` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `17.60` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `21.83`
-  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `18.92` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `20.13` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `15.90`
-  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`19.02`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`19.01`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

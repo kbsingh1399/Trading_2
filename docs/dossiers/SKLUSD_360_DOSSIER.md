@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SKLUSD
 **Canonical Key**: `SKLUSD` | **Broker Instrument**: `SKLUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0037` | **Live Ask Quote**: `0.0039` | **Mid Price**: `0.0038`
-- **Spread Points**: `20.00` | **Spread BPS**: `523.56 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `20.00` | **Spread BPS**: `520.83 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `0.0038` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0038` | POC=`0.0038` | VAL=`0.0038`
-  * Prior Day Extremes: PDH=`0.0038` | PDL=`0.0038` | PDC=`0.0038`
-  * Monday Range Blueprint: High=`0.0038` | Mid=`0.0038` | Low=`0.0038`
+  * Prior Day Value Area: VAH=`0.0039` | POC=`0.0038` | VAL=`0.0038`
+  * Prior Day Extremes: PDH=`0.0039` | PDL=`0.0038` | PDC=`0.0038`
+  * Monday Range Blueprint: High=`0.0039` | Mid=`0.0038` | Low=`0.0038`
   * Developing Weekly Value Area: Weekly VAH=`0.0039` | Weekly POC=`0.0038` | Weekly VAL=`0.0038`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.0038` | Low=`0.0038`
-  * London Session (08:00-16:00 UTC): High=`0.0038` | Low=`0.0038`
-  * New York Session (13:00-21:00 UTC): High=`0.0038` | Low=`0.0038`
-  * Initial Balance (First Hour): IB High=`0.0038` | IB Low=`0.0038`
+  * London Session (08:00-16:00 UTC): High=`0.0039` | Low=`0.0038`
+  * New York Session (13:00-21:00 UTC): High=`0.0039` | Low=`0.0038`
+  * Initial Balance (First Hour): IB High=`0.0039` | IB Low=`0.0038`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0038` - `0.0038`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0038` - `0.0039`
   * Optimal Trade Entry (OTE 0.705): `0.0038`
   * Structural Invalidation Anchor (0.786): `0.0039`
 

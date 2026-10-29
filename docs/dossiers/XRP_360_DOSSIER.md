@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XRP
 **Canonical Key**: `XRP` | **Broker Instrument**: `XRPUSD.pi` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.25` | **Live Ask Quote**: `1.25` | **Mid Price**: `1.25`
-- **Spread Points**: `3.00` | **Spread BPS**: `24.07 bps` (Charter Threshold: `25.00 bps`)
-- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
+- **Spread Points**: `4.00` | **Spread BPS**: `32.05 bps` (Charter Threshold: `25.00 bps`)
+- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.28` | VWAP Z-Score: `-1.63` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0122` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `32.77` (State: `OVERSOLD`)
+  * Session VWAP: `1.25` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.34` | Lower -3.00σ Band: `1.22`
-  * Upper +2.51σ Band: `1.33` | Lower -2.51σ Band: `1.23`
-  * Upper +2.01σ Band: `1.32` | Lower -2.01σ Band: `1.24`
-  * Upper +2.00σ Band: `1.32` | Lower -2.00σ Band: `1.24`
-  * Upper +1.28σ Band: `1.31` | Lower -1.28σ Band: `1.25`
-  * Upper +1.00σ Band: `1.30` | Lower -1.00σ Band: `1.26`
+  * Upper +3.00σ Band: `1.26` | Lower -3.00σ Band: `1.24`
+  * Upper +2.51σ Band: `1.25` | Lower -2.51σ Band: `1.24`
+  * Upper +2.01σ Band: `1.25` | Lower -2.01σ Band: `1.24`
+  * Upper +2.00σ Band: `1.25` | Lower -2.00σ Band: `1.24`
+  * Upper +1.28σ Band: `1.25` | Lower -1.28σ Band: `1.24`
+  * Upper +1.00σ Band: `1.25` | Lower -1.00σ Band: `1.25`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1.25` | EMA-20=`1.27` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1.28` (Slope: `+0.0000`) | EMA-100=`1.29`
-  * Institutional Anchors: EMA-144=`1.29` | EMA-200=`1.30` (Slope: `-0.3916`) | EMA-233=`1.30`
-- **Range Boundaries**: 24H High=`1.33` | 24H Low=`1.22` | Weekly High=`1.34` | Weekly Low=`1.22`
+  * Fast EMA Array: EMA-9=`1.25` | EMA-20=`1.25` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1.25` (Slope: `+0.0000`) | EMA-100=`1.25`
+  * Institutional Anchors: EMA-144=`1.25` | EMA-200=`1.25` (Slope: `+0.0000`) | EMA-233=`1.25`
+- **Range Boundaries**: 24H High=`1.26` | 24H Low=`1.24` | Weekly High=`1.27` | Weekly Low=`1.22`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.26` (Distance: `-0.98%`)
-  * Point of Control (POC) = `1.25` (Distance: `-0.17%`)
-  * Value Area Low (VAL) = `1.25` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `1.26` (Distance: `-0.61%`)
+  * Point of Control (POC) = `1.25` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `1.24` (Distance: `+0.44%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.31` | POC=`1.29` | VAL=`1.28`
@@ -56,7 +56,7 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.26` | Low=`1.23`
   * London Session (08:00-16:00 UTC): High=`1.25` | Low=`1.24`
-  * New York Session (13:00-21:00 UTC): High=`1.25` | Low=`1.24`
+  * New York Session (13:00-21:00 UTC): High=`1.26` | Low=`1.24`
   * Initial Balance (First Hour): IB High=`1.25` | IB Low=`1.24`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.24` - `1.25`
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.25` | `1.25` | `1.25` | `1.25` | `12,509,135` | 15,627,462.60 USD | -2,236,809.19 USD | `-14.31%` | -77,538,486.33 USD | `-0.21` | **`BEARISH`** | `DELTA ALIGNED` |
-| `5m` | `1.25` | `1.26` | `1.25` | `1.25` | `5,840,906` | 7,311,649.90 USD | 755,629.26 USD | `+10.33%` | -76,782,857.07 USD | `+0.49` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `1.25` | `1.25` | `1.25` | `1.25` | `227,342` | 283,992.09 USD | 90,770.58 USD | `+31.96%` | -76,692,086.49 USD | `+0.29` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `5m` | `1.25` | `1.25` | `1.25` | `1.25` | `7,628,812` | 9,529,263.94 USD | -765,518.43 USD | `-8.03%` | -77,389,314.76 USD | `+0.08` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `1.25` | `1.25` | `1.25` | `1.25` | `11,418,654` | 14,283,492.34 USD | -45,579.05 USD | `-0.32%` | -77,434,893.81 USD | `+0.14` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `5m` | `1.25` | `1.25` | `1.25` | `1.25` | `138,570` | 173,251.78 USD | 1,967.19 USD | `+1.14%` | -77,432,926.62 USD | `+0.01` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `15m` | `1.25` | `1.26` | `1.25` | `1.25` | `10,406,661` | 13,078,738.26 USD | -163,908.89 USD | `-1.25%` | -75,412,213.12 USD | `+0.38` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `15m` | `1.25` | `1.26` | `1.25` | `1.25` | `30,318,431` | 37,964,913.08 USD | -1,211,583.20 USD | `-3.19%` | -76,623,796.33 USD | `+0.20` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `15m` | `1.25` | `1.25` | `1.25` | `1.25` | `224,436` | 280,362.86 USD | 93,144.82 USD | `+33.22%` | -76,530,651.51 USD | `+0.43` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `15m` | `1.25` | `1.25` | `1.25` | `1.25` | `19,181,458` | 23,980,283.65 USD | -805,388.93 USD | `-3.36%` | -77,429,185.26 USD | `+0.28` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `1.28` | `1.28` | `1.22` | `1.24` | `208,906,305` | 260,797,546.37 USD | -37,805,029.03 USD | `-14.50%` | -77,339,869.93 USD | `-3.92` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `1.24` | `1.26` | `1.23` | `1.25` | `86,510,066` | 108,215,327.13 USD | 1,874,321.17 USD | `+1.73%` | -75,465,548.76 USD | `+0.57` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `1h` | `1.25` | `1.26` | `1.25` | `1.25` | `30,537,410` | 38,238,461.56 USD | -1,111,824.84 USD | `-2.91%` | -76,577,373.60 USD | `+0.20` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `1h` | `1.25` | `1.26` | `1.25` | `1.25` | `49,499,889` | 61,945,196.73 USD | -2,016,972.13 USD | `-3.26%` | -77,482,520.89 USD | `+0.10` | **`BEARISH`** | `NEUTRAL CHOP` |
 | `4h` | `1.29` | `1.31` | `1.29` | `1.31` | `105,451,962` | 136,952,441.12 USD | 1,861,993.66 USD | `+1.36%` | -24,527,234.86 USD | `+0.80` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `1.31` | `1.32` | `1.28` | `1.28` | `114,056,020` | 147,369,675.26 USD | -15,411,794.95 USD | `-10.46%` | -39,939,029.81 USD | `-0.77` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `1.28` | `1.28` | `1.22` | `1.25` | `325,953,782` | 407,251,335.05 USD | -37,042,532.70 USD | `-9.10%` | -76,981,562.52 USD | `-1.73` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `1.28` | `1.28` | `1.22` | `1.25` | `344,916,261` | 430,958,070.23 USD | -37,947,679.99 USD | `-8.81%` | -77,886,709.81 USD | `-1.75` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `1.29` | `1.30` | `1.29` | `1.29` | `60,938,672` | 78,900,359.45 USD | -1,841,235.66 USD | `-2.33%` | -25,072,364.54 USD | `+1.00` | **`BEARISH`** | `NEUTRAL CHOP` |
 | `4h` | `1.29` | `1.30` | `1.29` | `1.29` | `51,543,790` | 66,567,053.49 USD | -1,316,863.99 USD | `-1.98%` | -26,389,228.53 USD | `+0.73` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `1.29` | `1.31` | `1.29` | `1.31` | `105,451,962` | 136,952,441.12 USD | 1,861,993.66 USD | `+1.36%` | -24,527,234.86 USD | `+0.80` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `1.31` | `1.32` | `1.28` | `1.28` | `114,056,020` | 147,369,675.26 USD | -15,411,794.95 USD | `-10.46%` | -39,939,029.81 USD | `-0.77` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `1.28` | `1.28` | `1.22` | `1.25` | `325,953,782` | 407,251,335.05 USD | -37,042,532.70 USD | `-9.10%` | -76,981,562.52 USD | `-1.73` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `1.28` | `1.28` | `1.22` | `1.25` | `344,916,261` | 430,958,070.23 USD | -37,947,679.99 USD | `-8.81%` | -77,886,709.81 USD | `-1.75` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -197,7 +197,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `1.32` | 13,385.45 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale SELL: 13.39K USD at 1.3163 USD [API] | `2026-10-28 13:24:44` |
 | `ANNOUNCEMENT` | `INFO` | `1.32` | 5,006.85 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale SELL: 5.01K USD at 1.3169 USD [API] | `2026-10-28 13:35:00` |
 | `ANNOUNCEMENT` | `INFO` | `1.32` | 6,810.27 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale SELL: 6.81K USD at 1.3211 USD [API] | `2026-10-28 13:40:07` |
 | `ANNOUNCEMENT` | `INFO` | `1.32` | 7,784.41 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale BUY: 7.78K USD at 1.3156 USD [API] | `2026-10-28 13:49:13` |
@@ -309,6 +308,47 @@
 | `ANNOUNCEMENT` | `INFO` | `1.33` | 9,621.60 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale SELL: 9.62K USD at 1.3273 USD [API] | `2026-10-28 18:59:08` |
 | `ANNOUNCEMENT` | `INFO` | `1.33` | 5,004.10 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale BUY: 5.00K USD at 1.3277 USD [API] | `2026-10-28 18:58:43` |
 | `ANNOUNCEMENT` | `INFO` | `1.33` | 5,004.67 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale BUY: 5.00K USD at 1.3275 USD [API] | `2026-10-28 19:01:57` |
+| `ANNOUNCEMENT` | `INFO` | `1.33` | 8,899.49 USD | `-` | `NEWS_INTEL` | `-` | #XRP Whale BUY: 8.90K USD at 1.3265 USD [API] | `2026-10-28 19:01:19` |
+| `ANNOUNCEMENT` | `INFO` | `1.31` | 7,412.48 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Short: 7.41K USD at 1.3087 USD [API] | `2026-10-25 02:05:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.31` | 1,486.68 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Short: 1.49K USD at 1.3087 USD [API] | `2026-10-25 02:05:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.31` | 3,565.66 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Short: 3.57K USD at 1.3085 USD [API] | `2026-10-25 02:05:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 1,076.93 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.08K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 247.84 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.25K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 3,999.85 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 4.00K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 9,709.00 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 9.71K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 2,644.43 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.64K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 2,644.43 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.64K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 1,880.48 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.88K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.28` | 2,737.68 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.74K USD at 1.2775 USD [API] | `2026-10-24 09:04:06` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 3,546.56 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 3.55K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 245.70 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.25K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 2,830.84 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.83K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 693.02 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.69K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 9,485.97 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 9.49K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 128.19 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.13K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 6,492.23 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 6.49K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 3,519.85 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 3.52K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 9,485.97 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 9.49K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 1,555.62 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.56K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 1,010.82 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.01K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 2,626.54 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.63K USD at 1.3353 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 1,674.59 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.67K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 404.63 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.40K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 245.71 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 0.25K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 5,005.08 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 5.01K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 3,876.67 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 3.88K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 2,509.22 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.51K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 3,508.10 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 3.51K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 2,425.09 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.43K USD at 1.3354 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 1,262.05 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.26K USD at 1.3355 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.34` | 4,568.75 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 4.57K USD at 1.3355 USD [API] | `2026-10-22 08:02:53` |
+| `ANNOUNCEMENT` | `INFO` | `1.29` | 5,783.59 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 5.78K USD at 1.2930 USD [API] | `2026-10-15 02:24:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.29` | 3,999.25 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 4.00K USD at 1.2930 USD [API] | `2026-10-15 02:24:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.29` | 9,997.48 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 10.00K USD at 1.2930 USD [API] | `2026-10-15 02:24:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.29` | 5,376.29 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 5.38K USD at 1.2930 USD [API] | `2026-10-15 02:24:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.29` | 1,239.99 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 1.24K USD at 1.2930 USD [API] | `2026-10-15 02:24:20` |
+| `ANNOUNCEMENT` | `INFO` | `1.39` | 11,492.70 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 11.49K USD at 1.3865 USD [API] | `2026-10-12 12:37:31` |
+| `ANNOUNCEMENT` | `INFO` | `1.39` | 2,086.83 USD | `-` | `NEWS_INTEL` | `-` | #XRP Liquidated Long: 2.09K USD at 1.3866 USD [API] | `2026-10-12 12:37:31` |
 
 
 ---
@@ -1762,18 +1802,18 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `1.25` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.23` (Risk Distance: `0.0191` pts)
-  * +2.5R Take Profit: `1.29`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `1.24` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.0370` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `4.26`
+  * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.26` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.28` (Risk Distance: `0.0191` pts)
-  * +2.5R Take Profit: `1.21`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `2.46` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `-1.76`
+  * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
 - Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.26`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

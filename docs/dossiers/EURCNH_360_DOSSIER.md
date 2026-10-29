@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:55:35 IST` (`2026-10-29 22:25:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.50` | Lower -3.00σ Band: `7.39`
   * Upper +2.51σ Band: `7.49` | Lower -2.51σ Band: `7.41`
-  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.41`
+  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.42`
   * Upper +2.00σ Band: `7.48` | Lower -2.00σ Band: `7.42`
   * Upper +1.28σ Band: `7.47` | Lower -1.28σ Band: `7.43`
   * Upper +1.00σ Band: `7.46` | Lower -1.00σ Band: `7.43`
