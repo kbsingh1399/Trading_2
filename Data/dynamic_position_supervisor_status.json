@@ -1,26 +1,17 @@
 {
-  "timestamp_utc": "2026-10-29 11:50:14 UTC",
+  "timestamp_utc": "2026-10-29 11:52:10 UTC",
   "balance_usd": 4744.55,
   "equity_usd": 4744.55,
   "free_margin_usd": 4744.55,
   "max_filled_positions": 15,
   "filled_positions_count": 0,
   "filled_slots_free": 15,
-  "resting_limits_count": 3,
+  "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
   "active_positions": [],
   "resting_orders": [
-    {
-      "ticket": 19444900,
-      "symbol": "SP500.p",
-      "type": "BUY_LIMIT",
-      "volume": 0.02,
-      "price": 7705.5,
-      "sl": 7695.5,
-      "tp": 7728.5
-    },
     {
       "ticket": 19447583,
       "symbol": "NZDUSD.pi",
