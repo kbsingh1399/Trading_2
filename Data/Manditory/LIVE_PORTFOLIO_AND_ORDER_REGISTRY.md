@@ -19,9 +19,11 @@
 - **Margin Used**: **0.00 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: -32.69 USD)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: -52.69 USD)
-- **Standing Risk Capacity**: **0.00 USD** (Capital Defense Invariant: No live market exposure while below 4,775.00 USD floor)
-- **Execution Posture**: **STAGED_INTENT_ONLY**
-- **Last Synchronized (UTC)**: `2026-10-29 18:27:00 UTC` (`2026-10-29 23:57:00 IST`)
+- **Active Running Positions**: **0 ACTIVE (100% Flat Cash)**
+- **Active Resting Pending Orders**: **7 LIVE PENDING MAKER LIMIT ORDERS**
+- **Total Contingent Downside Risk**: **40.33 USD** (Max per-ticket risk capped at <= 10.00 USD)
+- **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
+- **Last Synchronized (UTC)**: `2026-10-29 19:40:00 UTC` (`2026-10-30 01:10:00 IST`)
 
 ---
 
@@ -31,18 +33,22 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | - | NONE | - | - | - | - | - | - | 0.00 USD | Flat | **Book is 100% Cash Defense. Zero open risk.** |
 
-*Note: Prior test trade #19464650 (`BTCUSD.pi` SELL 0.01 @ 80,340.00, SL 80,563.50) stopped out during afternoon expansion for -2.24 USD, leaving account at 4,742.31 USD.*
+---
+
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (7 LIVE BROKER TICKETS EXECUTED)
+
+| Priority | Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Live Status & Forensic Armor |
+|---|---|---|---|---|---|---|---|---|---|
+| **Resting #1** | `#19489155` | `BTCUSD.pi` | SELL_LIMIT | 0.01 lot | 81,084.00 | 81,446.00 | 80,180.00 | 3.62 USD | **LIVE_RESTING_PENDING** (Armored by 16.3M USD wall @ 81,500 & 9.65M @ 81,264) |
+| **Resting #2** | `#19489156` | `USDJPY.pi` | SELL_LIMIT | 0.13 lot | 157.970 | 158.080 | 157.710 | 9.05 USD | **LIVE_RESTING_PENDING** (0.06 bps spread, VAH sweep fade) |
+| **Resting #3** | `#19489157` | `BNBUSD.p` | SELL_LIMIT | 0.05 lot | 753.30 | 757.20 | 743.50 | 0.20 USD | **LIVE_RESTING_PENDING** (Armored by 1.04M USD wall @ 749.03 & 672K @ 753.71) |
+| **Resting #4** | `#19489158` | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | 4040.50 | 4049.50 | 4018.00 | 9.00 USD | **LIVE_RESTING_PENDING** (Gold 0.20 bps spread, VAH sweep exhaustion) |
+| **Resting #5** | `#19489159` | `NAS100.p` | SELL_LIMIT | 0.01 lot | 29,535.00 | 29,620.00 | 29,320.00 | 8.50 USD | **LIVE_RESTING_PENDING** (Nasdaq 0.34 bps spread, VAH fade) |
+| **Resting #6** | `#19489160` | `DJ30.p` | SELL_LIMIT | 0.01 lot | 52,638.00 | 52,732.00 | 52,402.00 | 9.40 USD | **LIVE_RESTING_PENDING** (Dow 30 0.23 bps spread, VAH fade) |
+| **Resting #7** | `#19489161` | `USWTI.p` | BUY_LIMIT | 0.01 lot | 101.550 | 100.990 | 102.930 | 0.56 USD | **LIVE_RESTING_PENDING** (WTI Crude 4.48 bps spread, VAL fade) |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 EXECUTED / 7 STAGED INTENT)
-
-| Priority | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Staged Status & Forensic Armor |
-|---|---|---|---|---|---|---|---|---|
-| **Staged #1** | BTCUSD.pi | SELL_LIMIT | 0.02 | 81,084.34 | 81,446.12 | 80,179.89 | 7.24 USD | **STAGED_INTENT_ONLY** (Protected by 16.3M USD wall @ 81,500 & 9.65M wall @ 81,264) |
-| **Staged #2** | USDJPY.pi | SELL_LIMIT | 0.13 | 158.004 | 158.123 | 157.707 | 9.80 USD | **STAGED_INTENT_ONLY** (0.06 bps spread, VAH sweep fade) |
-| **Staged #3** | BNBUSD.p | SELL_LIMIT | 2.55 | 753.31 | 757.22 | 743.53 | 9.97 USD | **STAGED_INTENT_ONLY** (Armored by 1.04M USD wall @ 749.03 & 672K wall @ 753.71) |
-| **Staged #4** | XAUUSD.pi | SELL_LIMIT | 0.01 | 4040.53 | 4049.55 | 4017.98 | 0.09 USD | **STAGED_INTENT_ONLY** (Gold 0.20 bps spread, VAH sweep exhaustion) |
-| **Staged #5** | NAS100.p | SELL_LIMIT | 0.10 | 29,535.58 | 29,620.66 | 29,322.88 | 8.51 USD | **STAGED_INTENT_ONLY** (Nasdaq 0.34 bps spread, VAH fade) |
-| **Staged #6** | DJ30.p | SELL_LIMIT | 0.10 | 52,638.43 | 52,732.98 | 52,402.05 | 8.92 USD | **STAGED_INTENT_ONLY** (Dow 30 0.23 bps spread, VAH fade) |
-| **Staged #7** | USWTI.p | BUY_LIMIT | 0.10 | 101.55 | 100.99 | 102.93 | 0.55 USD | **STAGED_INTENT_ONLY** (WTI Crude 4.48 bps spread, VAL fade) |
+## 📈 4. RECENT CLOSED TRADES & SESSION EQUITY LOG
+- Ticket #19464650 (`BTCUSD.pi` SELL 0.01 @ 80,340.00, SL 80,563.50) closed for -2.24 USD.
+- Account Solvency: Realized Balance 4,742.31 USD | Floating Equity 4,742.31 USD.
