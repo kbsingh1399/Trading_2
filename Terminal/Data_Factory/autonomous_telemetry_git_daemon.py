@@ -250,6 +250,16 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
             logger.warning("REFUSING noncanonical origin %s URL", kind)
             return False
 
+    # Clean stale git index.lock if present
+    lock_file = ROOT / ".git" / "index.lock"
+    if lock_file.exists():
+        try:
+            if time.time() - lock_file.stat().st_mtime > 15.0:
+                lock_file.unlink(missing_ok=True)
+                logger.info("Evicted stale .git/index.lock (>15s old)")
+        except Exception:
+            pass
+
     # Fetch origin main to maintain continuity
     code, _, err = run_cmd(["git", "fetch", "origin", BRANCH_NAME])
     if code:
