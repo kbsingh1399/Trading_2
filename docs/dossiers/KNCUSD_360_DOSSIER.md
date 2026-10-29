@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KNCUSD
 **Canonical Key**: `KNCUSD` | **Broker Instrument**: `KNCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1067` | VWAP Z-Score: `-1.63` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.1067` | VWAP Z-Score: `-2.17` (Regime: `STRETCH_EXTREME`)
   * 14-Period ATR: `0.0011` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `33.81` (State: `OVERSOLD`)
+  * 14-Period RSI: `29.86` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1118` | Lower -3.00σ Band: `0.1017`
-  * Upper +2.51σ Band: `0.1109` | Lower -2.51σ Band: `0.1025`
-  * Upper +2.01σ Band: `0.1101` | Lower -2.01σ Band: `0.1034`
-  * Upper +2.00σ Band: `0.1101` | Lower -2.00σ Band: `0.1034`
-  * Upper +1.28σ Band: `0.1089` | Lower -1.28σ Band: `0.1046`
-  * Upper +1.00σ Band: `0.1084` | Lower -1.00σ Band: `0.1051`
+  * Upper +3.00σ Band: `0.1118` | Lower -3.00σ Band: `0.1016`
+  * Upper +2.51σ Band: `0.1110` | Lower -2.51σ Band: `0.1024`
+  * Upper +2.01σ Band: `0.1101` | Lower -2.01σ Band: `0.1033`
+  * Upper +2.00σ Band: `0.1101` | Lower -2.00σ Band: `0.1033`
+  * Upper +1.28σ Band: `0.1089` | Lower -1.28σ Band: `0.1045`
+  * Upper +1.00σ Band: `0.1084` | Lower -1.00σ Band: `0.1050`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1049` | EMA-20=`0.1061` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1068` (Slope: `+0.0000`) | EMA-100=`0.1073`
-  * Institutional Anchors: EMA-144=`0.1076` | EMA-200=`0.1079` (Slope: `-0.2573`) | EMA-233=`0.1081`
+  * Fast EMA Array: EMA-9=`0.1045` | EMA-20=`0.1058` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1067` (Slope: `+0.0000`) | EMA-100=`0.1072`
+  * Institutional Anchors: EMA-144=`0.1075` | EMA-200=`0.1078` (Slope: `-0.3007`) | EMA-233=`0.1081`
 - **Range Boundaries**: 24H High=`0.1110` | 24H Low=`0.1010` | Weekly High=`0.1110` | Weekly Low=`0.1010`
 
 ---
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
@@ -274,8 +274,8 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1081` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1394` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.0080`
+  * Spread-Padded Stop Loss: `0.1395` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.0081`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

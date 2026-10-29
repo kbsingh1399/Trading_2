@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: US2000
 **Canonical Key**: `US2000` | **Broker Instrument**: `US2000.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `2849.85` | `2849.97` | `2846.42` | `2847.12` | `3,849` | 10,958,564.88 USD | -7,532,084.03 USD | `-68.73%` | 162,451,473.50 USD | `-0.77` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `2847.11` | `2849.95` | `2846.89` | `2848.10` | `3,253` | 9,264,869.30 USD | 529,853.64 USD | `+5.72%` | 162,981,327.14 USD | `+0.66` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `2848.11` | `2848.75` | `2847.00` | `2848.36` | `2,687` | 7,653,543.32 USD | 2,667,806.53 USD | `+34.86%` | 165,649,133.67 USD | `+0.95` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `2853.19` | `2853.85` | `2851.42` | `2853.22` | `12,049` | 34,378,447.78 USD | 8,488,505.62 USD | `+24.69%` | 202,218,984.40 USD | `+0.13` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `2853.26` | `2854.65` | `2849.41` | `2849.84` | `11,353` | 32,354,233.52 USD | -24,080,440.98 USD | `-74.43%` | 178,138,543.42 USD | `-0.89` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `2849.85` | `2849.97` | `2846.42` | `2848.36` | `9,789` | 27,882,596.04 USD | -4,555,466.40 USD | `-16.34%` | 173,583,077.02 USD | `-0.17` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `2848.37` | `2849.70` | `2848.05` | `2849.04` | `2,911` | 8,293,555.44 USD | 2,513,198.62 USD | `+30.30%` | 169,936,728.81 USD | `+0.86` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `2849.02` | `2851.09` | `2848.99` | `2850.69` | `3,626` | 10,336,601.94 USD | 7,309,454.23 USD | `+70.71%` | 177,246,183.04 USD | `+1.50` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `2850.70` | `2851.70` | `2849.97` | `2850.50` | `3,152` | 8,984,776.00 USD | -2,259,177.78 USD | `-25.14%` | 174,987,005.26 USD | `-0.01` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2853.26` | `2854.65` | `2849.41` | `2849.84` | `11,353` | 32,354,233.52 USD | -24,080,440.98 USD | `-74.43%` | 235,466,229.16 USD | `-0.89` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2849.85` | `2849.97` | `2846.42` | `2848.36` | `9,789` | 27,882,596.04 USD | -4,555,466.40 USD | `-16.34%` | 230,910,762.77 USD | `-0.17` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2848.37` | `2851.70` | `2848.05` | `2850.50` | `9,689` | 27,618,494.50 USD | 12,787,741.29 USD | `+46.30%` | 243,698,504.06 USD | `+0.51` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `2866.22` | `2866.98` | `2858.88` | `2863.59` | `53,503` | 153,210,655.77 USD | -12,389,256.73 USD | `-8.09%` | 631,070,786.98 USD | `-0.59` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `2863.60` | `2865.64` | `2851.11` | `2853.18` | `51,289` | 146,336,749.02 USD | -104,792,420.75 USD | `-71.61%` | 526,278,366.23 USD | `-2.04` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `2853.19` | `2854.65` | `2846.42` | `2850.50` | `42,880` | 122,229,440.00 USD | -20,495,337.45 USD | `-16.77%` | 505,783,028.78 USD | `-0.50` | **`BEARISH`** | `AGGRESSIVE SELLING` |
@@ -246,21 +246,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

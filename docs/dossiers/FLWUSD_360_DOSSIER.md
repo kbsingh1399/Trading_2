@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0153` | VWAP Z-Score: `-3.54` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000485` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0153` | VWAP Z-Score: `-3.26` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000522` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `17.78` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0173` | Lower -3.00σ Band: `0.0134`
-  * Upper +2.51σ Band: `0.0170` | Lower -2.51σ Band: `0.0137`
-  * Upper +2.01σ Band: `0.0167` | Lower -2.01σ Band: `0.0140`
-  * Upper +2.00σ Band: `0.0167` | Lower -2.00σ Band: `0.0140`
-  * Upper +1.28σ Band: `0.0162` | Lower -1.28σ Band: `0.0145`
-  * Upper +1.00σ Band: `0.0160` | Lower -1.00σ Band: `0.0147`
+  * Upper +3.00σ Band: `0.0174` | Lower -3.00σ Band: `0.0132`
+  * Upper +2.51σ Band: `0.0171` | Lower -2.51σ Band: `0.0135`
+  * Upper +2.01σ Band: `0.0167` | Lower -2.01σ Band: `0.0139`
+  * Upper +2.00σ Band: `0.0167` | Lower -2.00σ Band: `0.0139`
+  * Upper +1.28σ Band: `0.0162` | Lower -1.28σ Band: `0.0144`
+  * Upper +1.00σ Band: `0.0160` | Lower -1.00σ Band: `0.0146`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0140` | EMA-20=`0.0147` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0152` (Slope: `+0.0000`) | EMA-100=`0.0154`
-  * Institutional Anchors: EMA-144=`0.0155` | EMA-200=`0.0156` (Slope: `-0.9435`) | EMA-233=`0.0157`
+  * Fast EMA Array: EMA-9=`0.0138` | EMA-20=`0.0145` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0151` (Slope: `+0.0000`) | EMA-100=`0.0154`
+  * Institutional Anchors: EMA-144=`0.0155` | EMA-200=`0.0156` (Slope: `-1.0609`) | EMA-233=`0.0157`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0120` | Weekly High=`0.0170` | Weekly Low=`0.0120`
 
 ---
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

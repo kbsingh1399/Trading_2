@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:18 IST` (`2026-10-29 21:58:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `29313.03` | `29317.80` | `29269.21` | `29280.87` | `13,357` | 391,104,580.59 USD | -231,129,204.19 USD | `-59.10%` | -521,352,972.53 USD | `-0.92` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `29280.82` | `29294.68` | `29267.41` | `29275.95` | `11,881` | 347,827,561.95 USD | -96,044,794.33 USD | `-27.61%` | -617,397,766.86 USD | `-0.25` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `29276.02` | `29287.65` | `29267.03` | `29285.12` | `11,199` | 327,964,058.88 USD | 196,110,419.30 USD | `+59.80%` | -421,287,347.56 USD | `+1.01` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `29305.20` | `29329.25` | `29285.96` | `29326.46` | `38,683` | 1,134,435,452.18 USD | 772,668,729.67 USD | `+68.11%` | -653,579,531.99 USD | `+0.95` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `29326.58` | `29336.60` | `29296.65` | `29312.93` | `39,429` | 1,155,779,516.97 USD | -304,350,451.03 USD | `-26.33%` | -957,929,983.02 USD | `-0.67` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `29313.03` | `29317.80` | `29267.03` | `29285.12` | `36,437` | 1,067,061,917.44 USD | -446,623,315.85 USD | `-41.86%` | -1,404,553,298.87 USD | `-0.83` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `29285.10` | `29295.15` | `29275.77` | `29290.53` | `10,794` | 316,161,980.82 USD | 127,003,148.64 USD | `+40.17%` | -535,204,523.65 USD | `+0.61` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `29290.37` | `29320.08` | `29288.43` | `29314.35` | `10,994` | 322,281,963.90 USD | 224,884,586.82 USD | `+69.78%` | -310,319,936.83 USD | `+1.01` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `29314.21` | `29327.75` | `29306.62` | `29307.15` | `10,271` | 301,013,737.65 USD | -193,244,266.50 USD | `-64.20%` | -503,564,203.33 USD | `-1.08` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `29326.58` | `29336.60` | `29296.65` | `29312.93` | `39,429` | 1,155,779,516.97 USD | -304,350,451.03 USD | `-26.33%` | -665,026,900.67 USD | `-0.67` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `29313.03` | `29317.80` | `29267.03` | `29285.12` | `36,437` | 1,067,061,917.44 USD | -446,623,315.85 USD | `-41.86%` | -1,111,650,216.51 USD | `-0.83` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `29285.10` | `29327.75` | `29275.77` | `29307.15` | `32,059` | 939,557,921.85 USD | 296,707,258.31 USD | `+31.58%` | -814,942,958.20 USD | `+0.30` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `29497.37` | `29500.46` | `29362.03` | `29433.74` | `181,401` | 5,339,309,869.74 USD | -1,130,886,118.48 USD | `-21.18%` | 4,743,637,593.80 USD | `-0.63` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `29433.66` | `29435.87` | `29276.87` | `29305.29` | `159,581` | 4,676,567,483.49 USD | -3,390,217,301.79 USD | `-72.49%` | 1,353,420,292.01 USD | `-1.75` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `29305.20` | `29336.60` | `29267.03` | `29307.15` | `146,608` | 4,296,662,647.20 USD | 389,707,363.86 USD | `+9.07%` | 1,743,127,655.88 USD | `+0.20` | **`BULLISH`** | `DELTA ALIGNED` |
@@ -247,21 +247,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

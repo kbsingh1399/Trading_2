@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: TRX
 **Canonical Key**: `TRX` | **Broker Instrument**: `TRXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 03:19:12 IST` (`2026-10-29 21:49:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:18 IST` (`2026-10-29 21:58:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.3445` | **Live Ask Quote**: `0.3479` | **Mid Price**: `0.3462`
-- **Spread Points**: `34.00` | **Spread BPS**: `98.21 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.3565` | **Live Ask Quote**: `0.3626` | **Mid Price**: `0.3595`
+- **Spread Points**: `61.00` | **Spread BPS**: `169.66 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,45 +23,45 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.3318` | VWAP Z-Score: `+1.92` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0023` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `75.35` (State: `OVERBOUGHT`)
+  * Session VWAP: `0.3332` | VWAP Z-Score: `+2.30` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.0031` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `81.79` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.3433` | Lower -3.00σ Band: `0.3204`
-  * Upper +2.51σ Band: `0.3414` | Lower -2.51σ Band: `0.3223`
-  * Upper +2.01σ Band: `0.3395` | Lower -2.01σ Band: `0.3242`
-  * Upper +2.00σ Band: `0.3395` | Lower -2.00σ Band: `0.3242`
-  * Upper +1.28σ Band: `0.3367` | Lower -1.28σ Band: `0.3270`
-  * Upper +1.00σ Band: `0.3357` | Lower -1.00σ Band: `0.3280`
+  * Upper +3.00σ Band: `0.3480` | Lower -3.00σ Band: `0.3184`
+  * Upper +2.51σ Band: `0.3456` | Lower -2.51σ Band: `0.3208`
+  * Upper +2.01σ Band: `0.3431` | Lower -2.01σ Band: `0.3233`
+  * Upper +2.00σ Band: `0.3430` | Lower -2.00σ Band: `0.3233`
+  * Upper +1.28σ Band: `0.3395` | Lower -1.28σ Band: `0.3269`
+  * Upper +1.00σ Band: `0.3381` | Lower -1.00σ Band: `0.3282`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.3333` | EMA-20=`0.3319` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.3311` (Slope: `+0.0000`) | EMA-100=`0.3307`
-  * Institutional Anchors: EMA-144=`0.3304` | EMA-200=`0.3302` (Slope: `+0.0642`) | EMA-233=`0.3301`
-- **Range Boundaries**: 24H High=`0.3471` | 24H Low=`0.3275` | Weekly High=`0.3471` | Weekly Low=`0.3266`
+  * Fast EMA Array: EMA-9=`0.3355` | EMA-20=`0.3331` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.3317` (Slope: `+0.0000`) | EMA-100=`0.3310`
+  * Institutional Anchors: EMA-144=`0.3306` | EMA-200=`0.3303` (Slope: `+0.1052`) | EMA-233=`0.3302`
+- **Range Boundaries**: 24H High=`0.3472` | 24H Low=`0.3275` | Weekly High=`0.3472` | Weekly Low=`0.3266`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.3447` (Distance: `+0.19%`)
-  * Point of Control (POC) = `0.3362` (Distance: `+2.72%`)
-  * Value Area Low (VAL) = `0.3362` (Distance: `+2.72%`)
+  * Value Area High (VAH) = `0.3474` (Distance: `+2.85%`)
+  * Point of Control (POC) = `0.3440` (Distance: `+3.85%`)
+  * Value Area Low (VAL) = `0.3353` (Distance: `+6.57%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.3312` | POC=`0.3307` | VAL=`0.3293`
   * Prior Day Extremes: PDH=`0.3335` | PDL=`0.3275` | PDC=`0.3275`
   * Monday Range Blueprint: High=`0.3310` | Mid=`0.3300` | Low=`0.3289`
-  * Developing Weekly Value Area: Weekly VAH=`0.3313` | Weekly POC=`0.3308` | Weekly VAL=`0.3287`
+  * Developing Weekly Value Area: Weekly VAH=`0.3316` | Weekly POC=`0.3309` | Weekly VAL=`0.3286`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.3472` | Low=`0.3335`
-  * London Session (08:00-16:00 UTC): High=`0.3476` | Low=`0.3448`
-  * New York Session (13:00-21:00 UTC): High=`0.3483` | Low=`0.3441`
-  * Initial Balance (First Hour): IB High=`0.3472` | IB Low=`0.3452`
+  * Asian Session (00:00-08:00 UTC): High=`0.3615` | Low=`0.3335`
+  * London Session (08:00-16:00 UTC): High=`0.3610` | Low=`0.3581`
+  * New York Session (13:00-21:00 UTC): High=`0.3617` | Low=`0.3574`
+  * Initial Balance (First Hour): IB High=`0.3606` | IB Low=`0.3585`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.3448` - `0.3476`
-  * Optimal Trade Entry (OTE 0.705): `0.3469`
-  * Structural Invalidation Anchor (0.786): `0.3490`
+  * Golden Pocket Zone (0.618 - 0.650): `0.3581` - `0.3610`
+  * Optimal Trade Entry (OTE 0.705): `0.3603`
+  * Structural Invalidation Anchor (0.786): `0.3624`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.3411` | `0.3425` | `0.3366` | `0.3392` | `19,149,313` | 6,487,559.96 USD | 219,939.79 USD | `+3.39%` | 1,781,083.17 USD | `+0.48` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `5m` | `0.3392` | `0.3499` | `0.3360` | `0.3415` | `30,170,485` | 10,319,602.17 USD | 887,101.54 USD | `+8.60%` | 2,668,184.71 USD | `+1.57` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `0.3415` | `0.3475` | `0.3409` | `0.3464` | `13,790,689` | 4,745,734.62 USD | 1,045,436.71 USD | `+22.03%` | 3,713,621.42 USD | `+1.63` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `0.3295` | `0.3414` | `0.3282` | `0.3414` | `36,583,734` | 12,234,359.27 USD | 1,511,979.51 USD | `+12.36%` | 1,892,337.32 USD | `+2.95` | **`BULLISH`** | `DELTA ALIGNED` |
-| `15m` | `0.3414` | `0.3497` | `0.3385` | `0.3411` | `44,134,931` | 15,171,697.80 USD | -331,193.94 USD | `-2.18%` | 1,561,143.38 USD | `-0.57` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `15m` | `0.3411` | `0.3499` | `0.3360` | `0.3466` | `63,107,039` | 21,551,701.96 USD | 2,153,603.53 USD | `+9.99%` | 3,714,746.91 USD | `+2.93` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `0.3469` | `0.3623` | `0.3466` | `0.3620` | `32,618,709` | 11,617,310.84 USD | 441,277.90 USD | `+3.80%` | 4,148,141.40 USD | `+0.58` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `5m` | `0.3620` | `0.3650` | `0.3485` | `0.3599` | `55,056,822` | 19,649,397.67 USD | -1,181,254.87 USD | `-6.01%` | 2,966,886.52 USD | `-1.83` | **`BEARISH`** | `DELTA ALIGNED` |
+| `5m` | `0.3599` | `0.3620` | `0.3555` | `0.3575` | `6,354,398` | 2,285,007.93 USD | 118,481.97 USD | `+5.19%` | 3,085,368.49 USD | `+0.12` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `15m` | `0.3414` | `0.3497` | `0.3385` | `0.3411` | `44,134,931` | 15,171,697.80 USD | -331,193.94 USD | `-2.18%` | 1,556,022.20 USD | `-0.57` | **`BEARISH`** | `NEUTRAL CHOP` |
+| `15m` | `0.3411` | `0.3499` | `0.3360` | `0.3469` | `63,787,992` | 21,787,549.51 USD | 2,150,841.30 USD | `+9.87%` | 3,706,863.49 USD | `+2.93` | **`BULLISH`** | `DELTA ALIGNED` |
+| `15m` | `0.3469` | `0.3650` | `0.3466` | `0.3568` | `93,374,537` | 33,318,067.30 USD | -617,834.00 USD | `-1.85%` | 3,089,029.49 USD | `-0.92` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `0.3313` | `0.3316` | `0.3312` | `0.3315` | `2,121,059` | 702,996.80 USD | 82,277.88 USD | `+11.70%` | 2,342,614.46 USD | `-0.05` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `0.3315` | `0.3363` | `0.3285` | `0.3295` | `44,626,076` | 14,795,667.86 USD | -1,967,377.84 USD | `-13.30%` | 375,236.63 USD | `-3.96` | **`BEARISH`** | `DELTA ALIGNED` |
-| `1h` | `0.3295` | `0.3499` | `0.3282` | `0.3461` | `143,858,403` | 48,969,079.78 USD | 3,325,982.05 USD | `+6.79%` | 3,701,218.68 USD | `+3.60` | **`BULLISH`** | `DELTA ALIGNED` |
+| `1h` | `0.3295` | `0.3650` | `0.3282` | `0.3572` | `237,660,367` | 82,432,866.72 USD | 2,754,941.94 USD | `+3.34%` | 3,130,178.57 USD | `+3.37` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.3315` | `0.3318` | `0.3306` | `0.3314` | `23,511,075` | 7,789,850.35 USD | 369,308.17 USD | `+4.74%` | 1,633,134.85 USD | `-0.16` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3315` | `11,250,742` | 3,727,253.77 USD | 212,090.87 USD | `+5.69%` | 1,845,225.72 USD | `-0.66` | **`BULLISH`** | `DELTA ALIGNED` |
-| `4h` | `0.3315` | `0.3499` | `0.3282` | `0.3458` | `188,546,631` | 63,786,242.82 USD | 1,338,559.96 USD | `+2.10%` | 3,183,785.68 USD | `+1.92` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `4h` | `0.3315` | `0.3650` | `0.3282` | `0.3572` | `282,286,443` | 97,228,534.58 USD | 787,564.10 USD | `+0.81%` | 2,632,789.82 USD | `+1.31` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.3307` | `0.3316` | `0.3306` | `0.3311` | `18,393,472` | 6,092,518.66 USD | 646,685.42 USD | `+10.61%` | 1,247,572.49 USD | `+1.00` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `0.3311` | `0.3316` | `0.3311` | `0.3315` | `11,939,433` | 3,956,492.73 USD | 16,254.19 USD | `+0.41%` | 1,263,826.68 USD | `-1.41` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.3315` | `0.3318` | `0.3306` | `0.3314` | `23,511,075` | 7,789,850.35 USD | 369,308.17 USD | `+4.74%` | 1,633,134.85 USD | `-0.16` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3315` | `11,250,742` | 3,727,253.77 USD | 212,090.87 USD | `+5.69%` | 1,845,225.72 USD | `-0.66` | **`BULLISH`** | `DELTA ALIGNED` |
-| `4h` | `0.3315` | `0.3499` | `0.3282` | `0.3458` | `188,546,631` | 63,786,242.82 USD | 1,338,559.96 USD | `+2.10%` | 3,183,785.68 USD | `+1.92` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `4h` | `0.3315` | `0.3650` | `0.3282` | `0.3572` | `282,286,443` | 97,228,534.58 USD | 787,564.10 USD | `+0.81%` | 2,632,789.82 USD | `+1.31` | **`BULLISH`** | `NEUTRAL CHOP` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -101,7 +101,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`0.3462`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`0.3595`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -111,13 +111,13 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 03:15:37 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 03:25:41 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `774` | `0xecb6...2b00` | `LONG` | 3,005,349.37 USD | `8,508,194.00` | `0.3328` | `0.3539` | `0.000000` | 174,189.43 USD | `+5.80%` | `10X Cross` |
-| `1613` | `0xeadc...9d55` | `LONG` | 1,363,560.00 USD | `4,000,000.00` | `0.3421` | `0.3539` | `0.000000` | -4,918.09 USD | `-0.36%` | `10X Cross` |
+| `758` | `0xecb6...2b00` | `LONG` | 3,053,047.38 USD | `8,562,987.00` | `0.3330` | `0.3589` | `0.000000` | 201,828.25 USD | `+6.61%` | `10X Cross` |
+| `1534` | `0xeadc...9d55` | `LONG` | 1,450,640.00 USD | `4,000,000.00` | `0.3421` | `0.3589` | `0.000000` | 82,161.91 USD | `+5.66%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -145,10 +145,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`0.3380` (Vol: 430,600.00 USD, Dist: `+2.04%`) | Long MP=`0.3248` (Vol: 480,000.00 USD, Dist: `--1.96%`)
-  * 48H Horizon: Short MP=`0.3381` (Vol: 573,800.00 USD, Dist: `+2.05%`) | Long MP=`0.3250` (Vol: 651,100.00 USD, Dist: `--1.90%`)
-  * 3D Horizon: Short MP=`0.3381` (Vol: 529,100.00 USD, Dist: `+2.04%`) | Long MP=`0.3250` (Vol: 624,900.00 USD, Dist: `--1.91%`)
-  * 7D Horizon: Short MP=`0.3381` (Vol: 651,800.00 USD, Dist: `+2.04%`) | Long MP=`0.3250` (Vol: 685,700.00 USD, Dist: `--1.91%`)
+  * 24H Horizon: Short MP=`0.000000` (Vol: 0.00 USD, Dist: `+0.00%`) | Long MP=`0.3248` (Vol: 494,500.00 USD, Dist: `--10.97%`)
+  * 48H Horizon: Short MP=`0.000000` (Vol: 0.00 USD, Dist: `+0.00%`) | Long MP=`0.3251` (Vol: 581,100.00 USD, Dist: `--10.89%`)
+  * 3D Horizon: Short MP=`0.000000` (Vol: 0.00 USD, Dist: `+0.00%`) | Long MP=`0.3250` (Vol: 826,400.00 USD, Dist: `--10.91%`)
+  * 7D Horizon: Short MP=`0.000000` (Vol: 0.00 USD, Dist: `+0.00%`) | Long MP=`0.3250` (Vol: 887,200.00 USD, Dist: `--10.91%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -225,260 +225,273 @@
 | `Live` | `Long Liquidation` | `0.2925` | 957.64 USD | 135,050.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.2945` | 3,760.00 USD | 134,090.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.2955` | 125.29 USD | 130,330.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.2957` | 8,280,000.00 USD | 8,280,000.00 USD | 916.45 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2962` | 8,280,000.00 USD | 8,280,000.00 USD | 287.05 USD | 1,050.00 USD | 9,660.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2967` | 8,270,000.00 USD | 8,270,000.00 USD | 29,160.00 USD | 8,730.00 USD | 10,410.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2972` | 8,220,000.00 USD | 8,220,000.00 USD | 7,160.00 USD | 6,450.00 USD | 12,470.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2977` | 8,200,000.00 USD | 8,200,000.00 USD | 17,630.00 USD | 5,900.00 USD | 5,580.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2957` | 12,260,000.00 USD | 12,260,000.00 USD | 916.45 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2963` | 12,260,000.00 USD | 12,260,000.00 USD | 2,730.00 USD | 2,200.00 USD | 10,450.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2969` | 12,240,000.00 USD | 12,240,000.00 USD | 32,600.00 USD | 8,650.00 USD | 13,880.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2975` | 12,190,000.00 USD | 12,190,000.00 USD | 2,420.00 USD | 8,790.00 USD | 10,560.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2979` | 12,830,000.00 USD | 12,830,000.00 USD | 70,110.00 USD | 8,600.00 USD | 10,570.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2982` | 8,170,000.00 USD | 8,170,000.00 USD | 47,710.00 USD | 13,860.00 USD | 26,580.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2981` | 12,160,000.00 USD | 12,160,000.00 USD | 36,990.00 USD | 11,120.00 USD | 20,640.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2983` | 12,740,000.00 USD | 12,740,000.00 USD | 117,250.00 USD | 10,950.00 USD | 36,400.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.2985` | 244.47 USD | 130,210.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.2987` | 8,080,000.00 USD | 8,080,000.00 USD | 117,260.00 USD | 13,490.00 USD | 10,750.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2987` | 12,090,000.00 USD | 12,090,000.00 USD | 143,230.00 USD | 18,380.00 USD | 19,440.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2987` | 12,580,000.00 USD | 12,580,000.00 USD | 83,850.00 USD | 9,860.00 USD | 6,170.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2991` | 12,480,000.00 USD | 12,480,000.00 USD | 23,720.00 USD | 6,910.00 USD | 3,870.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2992` | 7,940,000.00 USD | 7,940,000.00 USD | 0.00 USD | 0.00 USD | 8,790.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2993` | 11,910,000.00 USD | 11,910,000.00 USD | 0.00 USD | 1,250.00 USD | 8,790.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.2995` | 127.89 USD | 129,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.2997` | 7,930,000.00 USD | 7,930,000.00 USD | 0.00 USD | 1,250.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3002` | 7,930,000.00 USD | 7,930,000.00 USD | 4,620.00 USD | 3,220.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3005` | 11,900,000.00 USD | 11,900,000.00 USD | 4,620.00 USD | 5,020.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3005` | 7,130.00 USD | 129,830.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3007` | 7,920,000.00 USD | 7,920,000.00 USD | 13,540.00 USD | 5,210.00 USD | 16,090.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3011` | 11,890,000.00 USD | 11,890,000.00 USD | 13,540.00 USD | 3,410.00 USD | 16,090.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3015` | 12,010.00 USD | 122,710.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3022` | 7,880,000.00 USD | 7,880,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3023` | 11,860,000.00 USD | 11,860,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3025` | 694.54 USD | 110,700.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3027` | 7,870,000.00 USD | 7,870,000.00 USD | 275.03 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3029` | 11,840,000.00 USD | 11,840,000.00 USD | 275.03 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3035` | 693.50 USD | 110,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3042` | 7,870,000.00 USD | 7,870,000.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3041` | 11,840,000.00 USD | 11,840,000.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3045` | 5,540.00 USD | 109,310.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3047` | 7,830,000.00 USD | 7,830,000.00 USD | 31,710.00 USD | 15,020.00 USD | 42,260.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3047` | 11,810,000.00 USD | 11,810,000.00 USD | 31,710.00 USD | 15,020.00 USD | 42,260.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3051` | 12,440,000.00 USD | 12,440,000.00 USD | 380.73 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3052` | 7,740,000.00 USD | 7,740,000.00 USD | 18,570.00 USD | 10,520.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3053` | 11,720,000.00 USD | 11,720,000.00 USD | 18,570.00 USD | 10,520.00 USD | 37,740.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3055` | 12,440,000.00 USD | 12,440,000.00 USD | 1,380.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3055` | 5,300.00 USD | 103,770.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3057` | 7,710,000.00 USD | 7,710,000.00 USD | 0.00 USD | 0.00 USD | 37,740.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3063` | 12,440,000.00 USD | 12,440,000.00 USD | 1,940.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3065` | 11,650,000.00 USD | 11,650,000.00 USD | 29,570.00 USD | 19,440.00 USD | 92,160.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3065` | 14,720.00 USD | 98,470.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3067` | 7,680,000.00 USD | 7,680,000.00 USD | 31,170.00 USD | 7,200.00 USD | 35,690.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3067` | 12,440,000.00 USD | 12,440,000.00 USD | 5,660.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3071` | 11,510,000.00 USD | 11,510,000.00 USD | 1,770.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3071` | 12,440,000.00 USD | 12,440,000.00 USD | 6,280.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3072` | 7,600,000.00 USD | 7,600,000.00 USD | 564.69 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3075` | 12,430,000.00 USD | 12,430,000.00 USD | 2,850.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3077` | 7,600,000.00 USD | 7,600,000.00 USD | 23,630.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3077` | 11,510,000.00 USD | 11,510,000.00 USD | 23,730.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3079` | 12,430,000.00 USD | 12,430,000.00 USD | 2,180.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3082` | 7,580,000.00 USD | 7,580,000.00 USD | 18,680.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3083` | 11,490,000.00 USD | 11,490,000.00 USD | 18,680.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3083` | 12,420,000.00 USD | 12,420,000.00 USD | 1,680.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3085` | 6,670.00 USD | 83,750.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3087` | 7,560,000.00 USD | 7,560,000.00 USD | 682.92 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3087` | 12,420,000.00 USD | 12,420,000.00 USD | 2,630.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3089` | 11,470,000.00 USD | 11,470,000.00 USD | 743.94 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3091` | 12,420,000.00 USD | 12,420,000.00 USD | 1,320.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3092` | 7,560,000.00 USD | 7,560,000.00 USD | 222.64 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3097` | 7,560,000.00 USD | 7,560,000.00 USD | 610.25 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3102` | 7,560,000.00 USD | 7,560,000.00 USD | 54,040.00 USD | 15,820.00 USD | 46,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3095` | 11,470,000.00 USD | 11,470,000.00 USD | 161.62 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3101` | 11,470,000.00 USD | 11,470,000.00 USD | 37,510.00 USD | 15,820.00 USD | 46,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3107` | 11,370,000.00 USD | 11,370,000.00 USD | 17,130.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3107` | 12,420,000.00 USD | 12,420,000.00 USD | 1,790.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3111` | 12,420,000.00 USD | 12,420,000.00 USD | 554.30 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3115` | 304.34 USD | 77,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Long Liquidation` | `0.3119` | 12,420,000.00 USD | 12,420,000.00 USD | 2,590.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3122` | 7,440,000.00 USD | 7,440,000.00 USD | 2,060.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3123` | 12,410,000.00 USD | 12,410,000.00 USD | 7,550.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3125` | 11,350,000.00 USD | 11,350,000.00 USD | 2,160.00 USD | 3,950.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3125` | 17,770.00 USD | 76,780.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3127` | 7,440,000.00 USD | 7,440,000.00 USD | 705.70 USD | 3,950.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3127` | 12,410,000.00 USD | 12,410,000.00 USD | 8,380.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3131` | 11,340,000.00 USD | 11,340,000.00 USD | 447.80 USD | 0.00 USD | 21,520.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3131` | 12,400,000.00 USD | 12,400,000.00 USD | 3,800.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3132` | 7,430,000.00 USD | 7,430,000.00 USD | 252.10 USD | 0.00 USD | 21,520.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3135` | 12,390,000.00 USD | 12,390,000.00 USD | 2,910.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3135` | 44,080.00 USD | 59,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3137` | 7,410,000.00 USD | 7,410,000.00 USD | 696.62 USD | 6,500.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3137` | 11,320,000.00 USD | 11,320,000.00 USD | 696.62 USD | 6,500.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3139` | 12,390,000.00 USD | 12,390,000.00 USD | 2,250.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3142` | 7,400,000.00 USD | 7,400,000.00 USD | 453.70 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3143` | 11,310,000.00 USD | 11,310,000.00 USD | 877.30 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3143` | 12,390,000.00 USD | 12,390,000.00 USD | 184,260.00 USD | 34,890.00 USD | 11,170.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3145` | 1,220.00 USD | 14,930.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3147` | 7,400,000.00 USD | 7,400,000.00 USD | 852.30 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3147` | 12,160,000.00 USD | 12,160,000.00 USD | 101,940.00 USD | 16,380.00 USD | 10,680.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3149` | 11,310,000.00 USD | 11,310,000.00 USD | 644.30 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3151` | 12,030,000.00 USD | 12,030,000.00 USD | 142,080.00 USD | 23,130.00 USD | 45,340.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3152` | 7,400,000.00 USD | 7,400,000.00 USD | 215.60 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3155` | 11,820,000.00 USD | 11,820,000.00 USD | 149,140.00 USD | 37,570.00 USD | 17,280.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3155` | 142.29 USD | 13,710.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3157` | 7,400,000.00 USD | 7,400,000.00 USD | 0.00 USD | 0.00 USD | 10,130.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3159` | 11,610,000.00 USD | 11,610,000.00 USD | 334,950.00 USD | 101,710.00 USD | 112,500.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3162` | 7,390,000.00 USD | 7,390,000.00 USD | 63,820.00 USD | 23,030.00 USD | 26,430.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3161` | 11,310,000.00 USD | 11,310,000.00 USD | 33,690.00 USD | 16,860.00 USD | 29,820.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3163` | 11,070,000.00 USD | 11,070,000.00 USD | 225,120.00 USD | 112,010.00 USD | 134,250.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3165` | 1,490.00 USD | 13,560.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3167` | 7,280,000.00 USD | 7,280,000.00 USD | 59,910.00 USD | 11,700.00 USD | 34,110.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3167` | 11,230,000.00 USD | 11,230,000.00 USD | 129,550.00 USD | 16,710.00 USD | 39,610.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3167` | 10,590,000.00 USD | 10,590,000.00 USD | 328,930.00 USD | 75,090.00 USD | 95,630.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3171` | 10,090,000.00 USD | 10,090,000.00 USD | 293,450.00 USD | 89,970.00 USD | 96,960.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3172` | 7,170,000.00 USD | 7,170,000.00 USD | 11,370.00 USD | 20,390.00 USD | 24,450.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3173` | 11,050,000.00 USD | 11,050,000.00 USD | 11,370.00 USD | 22,390.00 USD | 26,390.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3175` | 9,610,000.00 USD | 9,610,000.00 USD | 28,570.00 USD | 12,370.00 USD | 39,210.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3175` | 938.85 USD | 12,070.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3177` | 7,120,000.00 USD | 7,120,000.00 USD | 64,010.00 USD | 17,160.00 USD | 17,150.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3179` | 10,990,000.00 USD | 10,990,000.00 USD | 89,610.00 USD | 31,340.00 USD | 34,710.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3179` | 9,530,000.00 USD | 9,530,000.00 USD | 231,050.00 USD | 40,270.00 USD | 53,150.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3182` | 7,020,000.00 USD | 7,020,000.00 USD | 444,410.00 USD | 66,580.00 USD | 99,600.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3183` | 9,210,000.00 USD | 9,210,000.00 USD | 574,820.00 USD | 53,700.00 USD | 82,240.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3187` | 6,410,000.00 USD | 6,410,000.00 USD | 65,570.00 USD | 15,380.00 USD | 24,560.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3185` | 10,830,000.00 USD | 10,830,000.00 USD | 483,600.00 USD | 65,770.00 USD | 82,690.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3187` | 8,500,000.00 USD | 8,500,000.00 USD | 117,850.00 USD | 29,330.00 USD | 11,120.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3191` | 10,200,000.00 USD | 10,200,000.00 USD | 787.56 USD | 0.00 USD | 21,980.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3191` | 8,340,000.00 USD | 8,340,000.00 USD | 59,160.00 USD | 13,950.00 USD | 11,780.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3192` | 6,300,000.00 USD | 6,300,000.00 USD | 0.00 USD | 3,120.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3197` | 6,300,000.00 USD | 6,300,000.00 USD | 825.10 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3202` | 6,300,000.00 USD | 6,300,000.00 USD | 24,400.00 USD | 8,050.00 USD | 23,180.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3207` | 6,240,000.00 USD | 6,240,000.00 USD | 33,860.00 USD | 13,040.00 USD | 40,220.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3197` | 10,180,000.00 USD | 10,180,000.00 USD | 47,610.00 USD | 3,120.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3203` | 10,120,000.00 USD | 10,120,000.00 USD | 24,400.00 USD | 8,050.00 USD | 23,180.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3207` | 8,260,000.00 USD | 8,260,000.00 USD | 158,770.00 USD | 34,380.00 USD | 7,770.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3209` | 10,070,000.00 USD | 10,070,000.00 USD | 33,860.00 USD | 16,490.00 USD | 40,220.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3211` | 8,050,000.00 USD | 8,050,000.00 USD | 403,080.00 USD | 68,150.00 USD | 35,920.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3212` | 6,160,000.00 USD | 6,160,000.00 USD | 914.92 USD | 3,450.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3215` | 9,980,000.00 USD | 9,980,000.00 USD | 914.92 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3215` | 7,550,000.00 USD | 7,550,000.00 USD | 184,080.00 USD | 34,690.00 USD | 73,480.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3219` | 7,260,000.00 USD | 7,260,000.00 USD | 307,930.00 USD | 61,830.00 USD | 47,940.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3222` | 6,150,000.00 USD | 6,150,000.00 USD | 0.00 USD | 0.00 USD | 41,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3221` | 9,980,000.00 USD | 9,980,000.00 USD | 0.00 USD | 0.00 USD | 41,470.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3223` | 6,840,000.00 USD | 6,840,000.00 USD | 435,620.00 USD | 137,210.00 USD | 89,860.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3227` | 6,110,000.00 USD | 6,110,000.00 USD | 74,780.00 USD | 36,030.00 USD | 62,120.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3227` | 9,940,000.00 USD | 9,940,000.00 USD | 124,040.00 USD | 33,720.00 USD | 121,380.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3227` | 6,170,000.00 USD | 6,170,000.00 USD | 600,750.00 USD | 199,800.00 USD | 227,150.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3231` | 5,150,000.00 USD | 5,150,000.00 USD | 589,500.00 USD | 180,670.00 USD | 295,130.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3232` | 5,940,000.00 USD | 5,940,000.00 USD | 152,600.00 USD | 33,430.00 USD | 69,140.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3233` | 9,660,000.00 USD | 9,660,000.00 USD | 172,680.00 USD | 33,430.00 USD | 79,210.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3235` | 4,080,000.00 USD | 4,080,000.00 USD | 507,910.00 USD | 168,260.00 USD | 205,040.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3235` | 11,000.00 USD | 11,130.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3237` | 5,680,000.00 USD | 5,680,000.00 USD | 35,500.00 USD | 34,210.00 USD | 48,660.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3239` | 9,370,000.00 USD | 9,370,000.00 USD | 22,730.00 USD | 44,770.00 USD | 52,780.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3239` | 3,200,000.00 USD | 3,200,000.00 USD | 354,650.00 USD | 119,100.00 USD | 114,090.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3242` | 5,560,000.00 USD | 5,560,000.00 USD | 127,850.00 USD | 30,720.00 USD | 95,620.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3243` | 2,610,000.00 USD | 2,610,000.00 USD | 265,190.00 USD | 39,180.00 USD | 42,580.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3247` | 5,310,000.00 USD | 5,310,000.00 USD | 328,460.00 USD | 141,300.00 USD | 196,020.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3245` | 9,250,000.00 USD | 9,250,000.00 USD | 210,360.00 USD | 85,930.00 USD | 137,110.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3247` | 2,270,000.00 USD | 2,270,000.00 USD | 594,480.00 USD | 90,270.00 USD | 196,520.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3251` | 8,820,000.00 USD | 8,820,000.00 USD | 992,770.00 USD | 169,100.00 USD | 309,860.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3251` | 1,380,000.00 USD | 1,380,000.00 USD | 826,800.00 USD | 69,770.00 USD | 61,340.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3252` | 4,640,000.00 USD | 4,640,000.00 USD | 807,840.00 USD | 93,570.00 USD | 169,520.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3255` | 426,520.00 USD | 426,520.00 USD | 251,380.00 USD | 60,580.00 USD | 35,520.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3257` | 3,570,000.00 USD | 3,570,000.00 USD | 46,420.00 USD | 26,300.00 USD | 138,320.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3257` | 7,350,000.00 USD | 7,350,000.00 USD | 100,120.00 USD | 26,300.00 USD | 138,320.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.3259` | 79,040.00 USD | 79,040.00 USD | 51,940.00 USD | 16,810.00 USD | 10,280.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3262` | 3,360,000.00 USD | 3,360,000.00 USD | 0.00 USD | 6,240.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3263` | 7,080,000.00 USD | 7,080,000.00 USD | 0.00 USD | 6,240.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Long Liquidation` | `0.3265` | 129.62 USD | 129.62 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.3272` | 3,360,000.00 USD | 3,360,000.00 USD | 123,940.00 USD | 43,110.00 USD | 135,590.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3277` | 3,050,000.00 USD | 3,050,000.00 USD | 125,690.00 USD | 23,970.00 USD | 80,450.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3287` | 2,820,000.00 USD | 2,820,000.00 USD | 45,960.00 USD | 0.00 USD | 115,570.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3307` | 2,660,000.00 USD | 2,660,000.00 USD | 0.00 USD | 13,130.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3312` | 2,650,000.00 USD | 2,650,000.00 USD | 195,280.00 USD | 78,490.00 USD | 251,580.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3317` | 2,120,000.00 USD | 2,120,000.00 USD | 158,550.00 USD | 75,110.00 USD | 288,960.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3322` | 1,600,000.00 USD | 1,600,000.00 USD | 92,840.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3327` | 1,510,000.00 USD | 1,510,000.00 USD | 0.00 USD | 52,610.00 USD | 188,720.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3337` | 1,270,000.00 USD | 1,270,000.00 USD | 147,860.00 USD | 52,590.00 USD | 232,260.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3269` | 7,080,000.00 USD | 7,080,000.00 USD | 123,940.00 USD | 64,710.00 USD | 276,750.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3275` | 6,610,000.00 USD | 6,610,000.00 USD | 105,300.00 USD | 26,070.00 USD | 80,450.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3281` | 6,400,000.00 USD | 6,400,000.00 USD | 57,970.00 USD | 6,900.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3287` | 6,330,000.00 USD | 6,330,000.00 USD | 45,960.00 USD | 0.00 USD | 115,570.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3293` | 6,170,000.00 USD | 6,170,000.00 USD | 38,710.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3311` | 6,130,000.00 USD | 6,130,000.00 USD | 234,580.00 USD | 91,620.00 USD | 251,580.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3317` | 5,560,000.00 USD | 5,560,000.00 USD | 158,550.00 USD | 75,110.00 USD | 288,960.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3323` | 5,030,000.00 USD | 5,030,000.00 USD | 92,840.00 USD | 52,610.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3329` | 4,890,000.00 USD | 4,890,000.00 USD | 0.00 USD | 0.00 USD | 188,720.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3335` | 4,700,000.00 USD | 4,700,000.00 USD | 0.00 USD | 71,080.00 USD | 340,980.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3339` | 455,400.00 USD | 455,400.00 USD | 363,280.00 USD | 69,780.00 USD | 22,330.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3341` | 4,290,000.00 USD | 4,290,000.00 USD | 223,020.00 USD | 42,700.00 USD | 232,260.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3343` | 708,090.00 USD | 708,090.00 USD | 198,570.00 USD | 32,750.00 USD | 21,370.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3347` | 833,830.00 USD | 833,830.00 USD | 115,940.00 USD | 16,250.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3347` | 3,790,000.00 USD | 3,790,000.00 USD | 156,670.00 USD | 16,250.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3347` | 1,000,000.00 USD | 1,000,000.00 USD | 184,080.00 USD | 34,690.00 USD | 73,480.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3351` | 1,420,000.00 USD | 1,420,000.00 USD | 307,930.00 USD | 61,830.00 USD | 47,940.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3353` | 3,620,000.00 USD | 3,620,000.00 USD | 0.00 USD | 0.00 USD | 59,820.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3355` | 2,080,000.00 USD | 2,080,000.00 USD | 435,620.00 USD | 137,210.00 USD | 89,860.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3357` | 701,640.00 USD | 701,640.00 USD | 91,920.00 USD | 0.00 USD | 65,250.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3359` | 3,560,000.00 USD | 3,560,000.00 USD | 169,350.00 USD | 0.00 USD | 65,250.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3359` | 3,110,000.00 USD | 3,110,000.00 USD | 600,750.00 USD | 199,800.00 USD | 227,150.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3363` | 4,170,000.00 USD | 4,170,000.00 USD | 589,500.00 USD | 180,670.00 USD | 295,130.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3367` | 544,460.00 USD | 544,460.00 USD | 46,250.00 USD | 20,810.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3365` | 3,320,000.00 USD | 3,320,000.00 USD | 38,540.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3367` | 5,050,000.00 USD | 5,050,000.00 USD | 507,910.00 USD | 168,260.00 USD | 205,040.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3371` | 3,280,000.00 USD | 3,280,000.00 USD | 15,410.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3371` | 5,640,000.00 USD | 5,640,000.00 USD | 354,650.00 USD | 119,100.00 USD | 114,090.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3372` | 477,400.00 USD | 477,400.00 USD | 7,700.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3375` | 5,990,000.00 USD | 5,990,000.00 USD | 265,190.00 USD | 39,180.00 USD | 42,580.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.3377` | 469,700.00 USD | 469,700.00 USD | 184,520.00 USD | 52,820.00 USD | 232,360.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3377` | 3,270,000.00 USD | 3,270,000.00 USD | 292,530.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3379` | 6,870,000.00 USD | 6,870,000.00 USD | 594,480.00 USD | 90,270.00 USD | 196,520.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3383` | 2,970,000.00 USD | 2,970,000.00 USD | 78,600.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3383` | 7,830,000.00 USD | 7,830,000.00 USD | 826,800.00 USD | 69,770.00 USD | 61,340.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3387` | 8,180,000.00 USD | 8,180,000.00 USD | 251,380.00 USD | 60,580.00 USD | 35,520.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3391` | 8,260,000.00 USD | 8,260,000.00 USD | 51,940.00 USD | 16,810.00 USD | 10,280.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3403` | 8,360,000.00 USD | 8,360,000.00 USD | 79,380.00 USD | 17,190.00 USD | 3,890.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3405` | 10,680.00 USD | 10,680.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.3407` | 2,900,000.00 USD | 2,900,000.00 USD | 0.00 USD | 0.00 USD | 117,320.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3407` | 8,570,000.00 USD | 8,570,000.00 USD | 162,870.00 USD | 34,080.00 USD | 13,980.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3411` | 8,740,000.00 USD | 8,740,000.00 USD | 121,920.00 USD | 17,350.00 USD | 35,690.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3413` | 2,780,000.00 USD | 2,780,000.00 USD | 116,970.00 USD | 0.00 USD | 62,690.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3415` | 8,860,000.00 USD | 8,860,000.00 USD | 75,860.00 USD | 17,240.00 USD | 23,220.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3419` | 2,600,000.00 USD | 2,600,000.00 USD | 81,460.00 USD | 0.00 USD | 119,640.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3419` | 9,080,000.00 USD | 9,080,000.00 USD | 154,360.00 USD | 45,810.00 USD | 19,490.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3423` | 9,570,000.00 USD | 9,570,000.00 USD | 312,710.00 USD | 82,020.00 USD | 100,690.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3427` | 10,040,000.00 USD | 10,040,000.00 USD | 225,120.00 USD | 112,010.00 USD | 134,250.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3431` | 10,540,000.00 USD | 10,540,000.00 USD | 328,930.00 USD | 75,090.00 USD | 95,630.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3435` | 11,030,000.00 USD | 11,030,000.00 USD | 295,240.00 USD | 89,970.00 USD | 96,960.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3435` | 153.89 USD | 10,830.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.3437` | 2,400,000.00 USD | 2,400,000.00 USD | 141,670.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3439` | 11,110,000.00 USD | 11,110,000.00 USD | 29,120.00 USD | 12,370.00 USD | 39,210.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3443` | 2,260,000.00 USD | 2,260,000.00 USD | 0.00 USD | 12,860.00 USD | 154,340.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3443` | 11,430,000.00 USD | 11,430,000.00 USD | 231,050.00 USD | 40,270.00 USD | 53,150.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3445` | 611.49 USD | 11,450.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Short Liquidation` | `0.3447` | 11,910,000.00 USD | 11,910,000.00 USD | 378,020.00 USD | 36,640.00 USD | 68,590.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3449` | 2,090,000.00 USD | 2,090,000.00 USD | 216,030.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3451` | 12,240,000.00 USD | 12,240,000.00 USD | 274,980.00 USD | 26,900.00 USD | 20,240.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3455` | 12,380,000.00 USD | 12,380,000.00 USD | 97,690.00 USD | 33,430.00 USD | 16,310.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3459` | 12,410,000.00 USD | 12,410,000.00 USD | 22,340.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3463` | 12,410,000.00 USD | 12,410,000.00 USD | 3,330.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3467` | 12,410,000.00 USD | 12,410,000.00 USD | 1,130.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3471` | 12,410,000.00 USD | 12,410,000.00 USD | 2,140.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3473` | 1,870,000.00 USD | 1,870,000.00 USD | 0.00 USD | 61,200.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3475` | 12,420,000.00 USD | 12,420,000.00 USD | 3,200.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3475` | 1,700.00 USD | 13,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Short Liquidation` | `0.3479` | 12,420,000.00 USD | 12,420,000.00 USD | 1,770.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3485` | 1,810,000.00 USD | 1,810,000.00 USD | 233,940.00 USD | 0.00 USD | 125,380.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3491` | 12,420,000.00 USD | 12,420,000.00 USD | 1,340.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3495` | 12,420,000.00 USD | 12,420,000.00 USD | 415.52 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3503` | 12,420,000.00 USD | 12,420,000.00 USD | 1,940.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3505` | 212.40 USD | 13,360.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3507` | 1,600.00 USD | 1,600.00 USD | 1,600.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3507` | 12,430,000.00 USD | 12,430,000.00 USD | 5,660.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3509` | 1,450,000.00 USD | 1,450,000.00 USD | 284,960.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3511` | 12,430,000.00 USD | 12,430,000.00 USD | 4,590.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3512` | 99,790.00 USD | 99,790.00 USD | 30,490.00 USD | 0.00 USD | 67,700.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3515` | 1,170,000.00 USD | 1,170,000.00 USD | 240.33 USD | 128,040.00 USD | 608,730.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3515` | 12,440,000.00 USD | 12,440,000.00 USD | 3,690.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3515` | 3,720.00 USD | 17,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3517` | 776,300.00 USD | 776,300.00 USD | 270,450.00 USD | 134,860.00 USD | 271,200.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3519` | 12,440,000.00 USD | 12,440,000.00 USD | 2,490.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3522` | 977,470.00 USD | 977,470.00 USD | 79,330.00 USD | 16,200.00 USD | 105,640.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3521` | 430,240.00 USD | 430,240.00 USD | 153.89 USD | 48,730.00 USD | 144,480.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3523` | 12,440,000.00 USD | 12,440,000.00 USD | 846.39 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3527` | 1,050,000.00 USD | 1,050,000.00 USD | 46,670.00 USD | 26,300.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3527` | 236,880.00 USD | 236,880.00 USD | 243.85 USD | 26,300.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3527` | 12,440,000.00 USD | 12,440,000.00 USD | 1,610.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3531` | 12,440,000.00 USD | 12,440,000.00 USD | 2,400.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3532` | 1,150,000.00 USD | 1,150,000.00 USD | 1,560.00 USD | 0.00 USD | 94,360.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3533` | 210,330.00 USD | 210,330.00 USD | 1,560.00 USD | 0.00 USD | 94,360.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3535` | 12,440,000.00 USD | 12,440,000.00 USD | 1,320.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3535` | 223.06 USD | 17,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3537` | 1,150,000.00 USD | 1,150,000.00 USD | 161.62 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3542` | 1,350,000.00 USD | 1,350,000.00 USD | 73,930.00 USD | 37,780.00 USD | 89,230.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3547` | 1,470,000.00 USD | 1,470,000.00 USD | 0.00 USD | 13,370.00 USD | 107,590.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3552` | 1,530,000.00 USD | 1,530,000.00 USD | 57,970.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3557` | 1,560,000.00 USD | 1,560,000.00 USD | 0.00 USD | 32,500.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3562` | 1,640,000.00 USD | 1,640,000.00 USD | 45,960.00 USD | 0.00 USD | 32,630.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3587` | 1,940,000.00 USD | 1,940,000.00 USD | 136,760.00 USD | 45,120.00 USD | 116,180.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3539` | 114,410.00 USD | 114,410.00 USD | 161.62 USD | 30,600.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3545` | 83,650.00 USD | 83,650.00 USD | 0.00 USD | 51,150.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.3557` | 32,500.00 USD | 32,500.00 USD | 0.00 USD | 32,500.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3587` | 1,670.00 USD | 1,670.00 USD | 1,670.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3599` | 12,470,000.00 USD | 12,470,000.00 USD | 18,580.00 USD | 6,010.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3603` | 12,530,000.00 USD | 12,530,000.00 USD | 48,320.00 USD | 6,290.00 USD | 2,910.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3605` | 20,520.00 USD | 37,820.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Short Liquidation` | `0.3607` | 12,570,000.00 USD | 12,570,000.00 USD | 31,470.00 USD | 4,710.00 USD | 4,750.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3611` | 12,600,000.00 USD | 12,600,000.00 USD | 24,060.00 USD | 2,960.00 USD | 10,110.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3612` | 1,950,000.00 USD | 1,950,000.00 USD | 1,220.00 USD | 9,890.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3615` | 12,680,000.00 USD | 12,680,000.00 USD | 61,190.00 USD | 8,080.00 USD | 1,960.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3617` | 2,010,000.00 USD | 2,010,000.00 USD | 1,060.00 USD | 6,680.00 USD | 53,800.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3617` | 3,840.00 USD | 3,840.00 USD | 2,180.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3619` | 12,810,000.00 USD | 12,810,000.00 USD | 82,550.00 USD | 20,630.00 USD | 33,010.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3622` | 2,040,000.00 USD | 2,040,000.00 USD | 10,370.00 USD | 5,910.00 USD | 10,940.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3623` | 325,390.00 USD | 325,390.00 USD | 290,290.00 USD | 23,000.00 USD | 8,250.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3623` | 12,960,000.00 USD | 12,960,000.00 USD | 81,760.00 USD | 32,570.00 USD | 36,370.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3627` | 2,080,000.00 USD | 2,080,000.00 USD | 18,920.00 USD | 20,120.00 USD | 9,130.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3627` | 13,100,000.00 USD | 13,100,000.00 USD | 77,830.00 USD | 18,040.00 USD | 36,410.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3629` | 545,730.00 USD | 545,730.00 USD | 19,670.00 USD | 3,440.00 USD | 197,220.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3631` | 13,220,000.00 USD | 13,220,000.00 USD | 76,220.00 USD | 25,590.00 USD | 26,610.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3632` | 2,110,000.00 USD | 2,110,000.00 USD | 7,160.00 USD | 6,450.00 USD | 12,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3635` | 562,060.00 USD | 562,060.00 USD | 195.85 USD | 6,360.00 USD | 9,780.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3635` | 13,290,000.00 USD | 13,290,000.00 USD | 44,400.00 USD | 16,220.00 USD | 6,560.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3637` | 2,120,000.00 USD | 2,120,000.00 USD | 2,380.00 USD | 3,750.00 USD | 2,840.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3639` | 13,330,000.00 USD | 13,330,000.00 USD | 24,690.00 USD | 2,960.00 USD | 9,300.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3642` | 2,170,000.00 USD | 2,170,000.00 USD | 25,410.00 USD | 8,570.00 USD | 12,500.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3641` | 604,770.00 USD | 604,770.00 USD | 26,520.00 USD | 8,280.00 USD | 7,910.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3643` | 13,450,000.00 USD | 13,450,000.00 USD | 89,900.00 USD | 9,390.00 USD | 22,010.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3645` | 376.53 USD | 38,190.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3647` | 2,340,000.00 USD | 2,340,000.00 USD | 134,910.00 USD | 15,050.00 USD | 26,690.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3647` | 790,620.00 USD | 790,620.00 USD | 136,030.00 USD | 17,770.00 USD | 32,050.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3647` | 13,570,000.00 USD | 13,570,000.00 USD | 91,260.00 USD | 11,120.00 USD | 19,200.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.3651` | 13,640,000.00 USD | 13,640,000.00 USD | 60,980.00 USD | 4,810.00 USD | 2,640.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3652` | 2,380,000.00 USD | 2,380,000.00 USD | 20,680.00 USD | 5,880.00 USD | 9,680.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3662` | 2,380,000.00 USD | 2,380,000.00 USD | 0.00 USD | 1,250.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3653` | 1,110,000.00 USD | 1,110,000.00 USD | 304,030.00 USD | 5,880.00 USD | 9,680.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3659` | 1,550,000.00 USD | 1,550,000.00 USD | 108,010.00 USD | 26,970.00 USD | 308,680.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3665` | 262.78 USD | 38,460.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3672` | 2,390,000.00 USD | 2,390,000.00 USD | 5,540.00 USD | 5,020.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3677` | 2,420,000.00 USD | 2,420,000.00 USD | 13,540.00 USD | 3,410.00 USD | 16,090.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3692` | 2,440,000.00 USD | 2,440,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3702` | 2,440,000.00 USD | 2,440,000.00 USD | 275.03 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3717` | 2,480,000.00 USD | 2,480,000.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3722` | 2,520,000.00 USD | 2,520,000.00 USD | 31,710.00 USD | 8,540.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3727` | 2,570,000.00 USD | 2,570,000.00 USD | 0.00 USD | 6,480.00 USD | 42,260.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3732` | 2,630,000.00 USD | 2,630,000.00 USD | 18,570.00 USD | 10,520.00 USD | 37,740.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3671` | 1,560,000.00 USD | 1,560,000.00 USD | 5,540.00 USD | 3,220.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3677` | 1,600,000.00 USD | 1,600,000.00 USD | 13,540.00 USD | 5,210.00 USD | 16,090.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3689` | 1,610,000.00 USD | 1,610,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3695` | 1,730,000.00 USD | 1,730,000.00 USD | 116,970.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3701` | 1,790,000.00 USD | 1,790,000.00 USD | 275.03 USD | 0.00 USD | 62,690.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3719` | 1,840,000.00 USD | 1,840,000.00 USD | 0.00 USD | 17,840.00 USD | 27,080.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3725` | 2,220,000.00 USD | 2,220,000.00 USD | 173,380.00 USD | 6,480.00 USD | 196,590.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3731` | 2,300,000.00 USD | 2,300,000.00 USD | 18,570.00 USD | 23,380.00 USD | 37,740.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3743` | 2,360,000.00 USD | 2,360,000.00 USD | 0.00 USD | 12,240.00 USD | 56,460.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3745` | 6,690.00 USD | 45,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3747` | 2,700,000.00 USD | 2,700,000.00 USD | 29,570.00 USD | 7,200.00 USD | 35,690.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3757` | 2,730,000.00 USD | 2,730,000.00 USD | 23,190.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3762` | 2,730,000.00 USD | 2,730,000.00 USD | 350.20 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3767` | 2,750,000.00 USD | 2,750,000.00 USD | 18,380.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3749` | 2,440,000.00 USD | 2,440,000.00 USD | 29,570.00 USD | 7,200.00 USD | 35,690.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3755` | 2,460,000.00 USD | 2,460,000.00 USD | 23,190.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3761` | 2,460,000.00 USD | 2,460,000.00 USD | 350.20 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3767` | 2,480,000.00 USD | 2,480,000.00 USD | 18,380.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3785` | 2,480,000.00 USD | 2,480,000.00 USD | 610.25 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3785` | 537.85 USD | 45,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3787` | 2,750,000.00 USD | 2,750,000.00 USD | 610.25 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3792` | 2,860,000.00 USD | 2,860,000.00 USD | 54,040.00 USD | 15,820.00 USD | 46,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3791` | 2,580,000.00 USD | 2,580,000.00 USD | 36,900.00 USD | 15,820.00 USD | 46,470.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3795` | 557,900.00 USD | 603,580.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3797` | 2,600,000.00 USD | 2,600,000.00 USD | 17,130.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3815` | 285.74 USD | 603,870.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.3822` | 2,870,000.00 USD | 2,870,000.00 USD | 0.00 USD | 3,950.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3827` | 2,890,000.00 USD | 2,890,000.00 USD | 0.00 USD | 0.00 USD | 21,520.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.3832` | 2,900,000.00 USD | 2,900,000.00 USD | 0.00 USD | 6,500.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3821` | 2,600,000.00 USD | 2,600,000.00 USD | 0.00 USD | 3,950.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3827` | 2,620,000.00 USD | 2,620,000.00 USD | 0.00 USD | 0.00 USD | 21,520.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3833` | 2,630,000.00 USD | 2,630,000.00 USD | 0.00 USD | 6,500.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3845` | 115.35 USD | 603,980.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3869` | 2,670,000.00 USD | 2,670,000.00 USD | 43,210.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3895` | 6,280.00 USD | 610,270.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.3905` | 4,770.00 USD | 615,040.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3911` | 2,720,000.00 USD | 2,720,000.00 USD | 46,790.00 USD | 0.00 USD | 0.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3915` | 487.42 USD | 615,520.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3941` | 2,840,000.00 USD | 2,840,000.00 USD | 56,670.00 USD | 0.00 USD | 61,740.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3945` | 1,490.00 USD | 617,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3947` | 2,840,000.00 USD | 2,840,000.00 USD | 365.41 USD | 0.00 USD | 2,030.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3953` | 2,850,000.00 USD | 2,850,000.00 USD | 4,580.00 USD | 2,530.00 USD | 2,680.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.3955` | 118,430.00 USD | 735,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.3959` | 2,860,000.00 USD | 2,860,000.00 USD | 6,460.00 USD | 1,280.00 USD | 5,810.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3965` | 2,870,000.00 USD | 2,870,000.00 USD | 97.94 USD | 1,470.00 USD | 3,360.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3971` | 2,880,000.00 USD | 2,880,000.00 USD | 5,530.00 USD | 1,630.00 USD | 2,970.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3977` | 2,930,000.00 USD | 2,930,000.00 USD | 33,930.00 USD | 4,760.00 USD | 11,840.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3983` | 2,950,000.00 USD | 2,950,000.00 USD | 22,180.00 USD | 3,250.00 USD | 1,970.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.3989` | 2,960,000.00 USD | 2,960,000.00 USD | 0.00 USD | 0.00 USD | 4,400.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.4007` | 2,960,000.00 USD | 2,960,000.00 USD | 0.00 USD | 2,510.00 USD | 0.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.4011` | 2,980,000.00 USD | 2,980,000.00 USD | 6,770.00 USD | 1,710.00 USD | 8,040.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.4105` | 4,380.00 USD | 739,810.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.4145` | 278.13 USD | 740,090.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.4185` | 167.40 USD | 740,260.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
@@ -729,223 +742,236 @@
 - **Exchange Multi-Horizon Liquidation Density Map Table (8_Exchange_Liquidation_Map_1D/7D.parquet)**:
 | Horizon | Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Binance (USD) | OKX (USD) | Bybit (USD) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1D` | `0.2957` | 8,280,000.00 USD | 0.00 USD | 8,280,000.00 USD | 916.45 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.2962` | 8,280,000.00 USD | 0.00 USD | 8,280,000.00 USD | 287.05 USD | 1,050.00 USD | 9,660.00 USD |
-| `1D` | `0.2967` | 8,270,000.00 USD | 0.00 USD | 8,270,000.00 USD | 29,160.00 USD | 8,730.00 USD | 10,410.00 USD |
-| `1D` | `0.2972` | 8,220,000.00 USD | 0.00 USD | 8,220,000.00 USD | 7,160.00 USD | 6,450.00 USD | 12,470.00 USD |
-| `1D` | `0.2977` | 8,200,000.00 USD | 0.00 USD | 8,200,000.00 USD | 17,630.00 USD | 5,900.00 USD | 5,580.00 USD |
+| `1D` | `0.2957` | 12,260,000.00 USD | 0.00 USD | 12,260,000.00 USD | 916.45 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.2963` | 12,260,000.00 USD | 0.00 USD | 12,260,000.00 USD | 2,730.00 USD | 2,200.00 USD | 10,450.00 USD |
+| `1D` | `0.2969` | 12,240,000.00 USD | 0.00 USD | 12,240,000.00 USD | 32,600.00 USD | 8,650.00 USD | 13,880.00 USD |
+| `1D` | `0.2975` | 12,190,000.00 USD | 0.00 USD | 12,190,000.00 USD | 2,420.00 USD | 8,790.00 USD | 10,560.00 USD |
 | `7D` | `0.2979` | 12,830,000.00 USD | 0.00 USD | 12,830,000.00 USD | 70,110.00 USD | 8,600.00 USD | 10,570.00 USD |
-| `1D` | `0.2982` | 8,170,000.00 USD | 0.00 USD | 8,170,000.00 USD | 47,710.00 USD | 13,860.00 USD | 26,580.00 USD |
+| `1D` | `0.2981` | 12,160,000.00 USD | 0.00 USD | 12,160,000.00 USD | 36,990.00 USD | 11,120.00 USD | 20,640.00 USD |
 | `7D` | `0.2983` | 12,740,000.00 USD | 0.00 USD | 12,740,000.00 USD | 117,250.00 USD | 10,950.00 USD | 36,400.00 USD |
-| `1D` | `0.2987` | 8,080,000.00 USD | 0.00 USD | 8,080,000.00 USD | 117,260.00 USD | 13,490.00 USD | 10,750.00 USD |
+| `1D` | `0.2987` | 12,090,000.00 USD | 0.00 USD | 12,090,000.00 USD | 143,230.00 USD | 18,380.00 USD | 19,440.00 USD |
 | `7D` | `0.2987` | 12,580,000.00 USD | 0.00 USD | 12,580,000.00 USD | 83,850.00 USD | 9,860.00 USD | 6,170.00 USD |
 | `7D` | `0.2991` | 12,480,000.00 USD | 0.00 USD | 12,480,000.00 USD | 23,720.00 USD | 6,910.00 USD | 3,870.00 USD |
-| `1D` | `0.2992` | 7,940,000.00 USD | 0.00 USD | 7,940,000.00 USD | 0.00 USD | 0.00 USD | 8,790.00 USD |
-| `1D` | `0.2997` | 7,930,000.00 USD | 0.00 USD | 7,930,000.00 USD | 0.00 USD | 1,250.00 USD | 0.00 USD |
-| `1D` | `0.3002` | 7,930,000.00 USD | 0.00 USD | 7,930,000.00 USD | 4,620.00 USD | 3,220.00 USD | 0.00 USD |
-| `1D` | `0.3007` | 7,920,000.00 USD | 0.00 USD | 7,920,000.00 USD | 13,540.00 USD | 5,210.00 USD | 16,090.00 USD |
-| `1D` | `0.3022` | 7,880,000.00 USD | 0.00 USD | 7,880,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD |
-| `1D` | `0.3027` | 7,870,000.00 USD | 0.00 USD | 7,870,000.00 USD | 275.03 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3042` | 7,870,000.00 USD | 0.00 USD | 7,870,000.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD |
-| `1D` | `0.3047` | 7,830,000.00 USD | 0.00 USD | 7,830,000.00 USD | 31,710.00 USD | 15,020.00 USD | 42,260.00 USD |
+| `1D` | `0.2993` | 11,910,000.00 USD | 0.00 USD | 11,910,000.00 USD | 0.00 USD | 1,250.00 USD | 8,790.00 USD |
+| `1D` | `0.3005` | 11,900,000.00 USD | 0.00 USD | 11,900,000.00 USD | 4,620.00 USD | 5,020.00 USD | 0.00 USD |
+| `1D` | `0.3011` | 11,890,000.00 USD | 0.00 USD | 11,890,000.00 USD | 13,540.00 USD | 3,410.00 USD | 16,090.00 USD |
+| `1D` | `0.3023` | 11,860,000.00 USD | 0.00 USD | 11,860,000.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD |
+| `1D` | `0.3029` | 11,840,000.00 USD | 0.00 USD | 11,840,000.00 USD | 275.03 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3041` | 11,840,000.00 USD | 0.00 USD | 11,840,000.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD |
+| `1D` | `0.3047` | 11,810,000.00 USD | 0.00 USD | 11,810,000.00 USD | 31,710.00 USD | 15,020.00 USD | 42,260.00 USD |
 | `7D` | `0.3051` | 12,440,000.00 USD | 0.00 USD | 12,440,000.00 USD | 380.73 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3052` | 7,740,000.00 USD | 0.00 USD | 7,740,000.00 USD | 18,570.00 USD | 10,520.00 USD | 0.00 USD |
+| `1D` | `0.3053` | 11,720,000.00 USD | 0.00 USD | 11,720,000.00 USD | 18,570.00 USD | 10,520.00 USD | 37,740.00 USD |
 | `7D` | `0.3055` | 12,440,000.00 USD | 0.00 USD | 12,440,000.00 USD | 1,380.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3057` | 7,710,000.00 USD | 0.00 USD | 7,710,000.00 USD | 0.00 USD | 0.00 USD | 37,740.00 USD |
 | `7D` | `0.3063` | 12,440,000.00 USD | 0.00 USD | 12,440,000.00 USD | 1,940.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3067` | 7,680,000.00 USD | 0.00 USD | 7,680,000.00 USD | 31,170.00 USD | 7,200.00 USD | 35,690.00 USD |
+| `1D` | `0.3065` | 11,650,000.00 USD | 0.00 USD | 11,650,000.00 USD | 29,570.00 USD | 19,440.00 USD | 92,160.00 USD |
 | `7D` | `0.3067` | 12,440,000.00 USD | 0.00 USD | 12,440,000.00 USD | 5,660.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3071` | 11,510,000.00 USD | 0.00 USD | 11,510,000.00 USD | 1,770.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3071` | 12,440,000.00 USD | 0.00 USD | 12,440,000.00 USD | 6,280.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3072` | 7,600,000.00 USD | 0.00 USD | 7,600,000.00 USD | 564.69 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3075` | 12,430,000.00 USD | 0.00 USD | 12,430,000.00 USD | 2,850.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3077` | 7,600,000.00 USD | 0.00 USD | 7,600,000.00 USD | 23,630.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3077` | 11,510,000.00 USD | 0.00 USD | 11,510,000.00 USD | 23,730.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3079` | 12,430,000.00 USD | 0.00 USD | 12,430,000.00 USD | 2,180.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3082` | 7,580,000.00 USD | 0.00 USD | 7,580,000.00 USD | 18,680.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3083` | 11,490,000.00 USD | 0.00 USD | 11,490,000.00 USD | 18,680.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3083` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 1,680.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3087` | 7,560,000.00 USD | 0.00 USD | 7,560,000.00 USD | 682.92 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3087` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 2,630.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3089` | 11,470,000.00 USD | 0.00 USD | 11,470,000.00 USD | 743.94 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3091` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 1,320.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3092` | 7,560,000.00 USD | 0.00 USD | 7,560,000.00 USD | 222.64 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3097` | 7,560,000.00 USD | 0.00 USD | 7,560,000.00 USD | 610.25 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3102` | 7,560,000.00 USD | 0.00 USD | 7,560,000.00 USD | 54,040.00 USD | 15,820.00 USD | 46,470.00 USD |
+| `1D` | `0.3095` | 11,470,000.00 USD | 0.00 USD | 11,470,000.00 USD | 161.62 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3101` | 11,470,000.00 USD | 0.00 USD | 11,470,000.00 USD | 37,510.00 USD | 15,820.00 USD | 46,470.00 USD |
+| `1D` | `0.3107` | 11,370,000.00 USD | 0.00 USD | 11,370,000.00 USD | 17,130.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3107` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 1,790.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3111` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 554.30 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3119` | 12,420,000.00 USD | 0.00 USD | 12,420,000.00 USD | 2,590.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3122` | 7,440,000.00 USD | 0.00 USD | 7,440,000.00 USD | 2,060.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3123` | 12,410,000.00 USD | 0.00 USD | 12,410,000.00 USD | 7,550.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3127` | 7,440,000.00 USD | 0.00 USD | 7,440,000.00 USD | 705.70 USD | 3,950.00 USD | 0.00 USD |
+| `1D` | `0.3125` | 11,350,000.00 USD | 0.00 USD | 11,350,000.00 USD | 2,160.00 USD | 3,950.00 USD | 0.00 USD |
 | `7D` | `0.3127` | 12,410,000.00 USD | 0.00 USD | 12,410,000.00 USD | 8,380.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3131` | 11,340,000.00 USD | 0.00 USD | 11,340,000.00 USD | 447.80 USD | 0.00 USD | 21,520.00 USD |
 | `7D` | `0.3131` | 12,400,000.00 USD | 0.00 USD | 12,400,000.00 USD | 3,800.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3132` | 7,430,000.00 USD | 0.00 USD | 7,430,000.00 USD | 252.10 USD | 0.00 USD | 21,520.00 USD |
 | `7D` | `0.3135` | 12,390,000.00 USD | 0.00 USD | 12,390,000.00 USD | 2,910.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3137` | 7,410,000.00 USD | 0.00 USD | 7,410,000.00 USD | 696.62 USD | 6,500.00 USD | 0.00 USD |
+| `1D` | `0.3137` | 11,320,000.00 USD | 0.00 USD | 11,320,000.00 USD | 696.62 USD | 6,500.00 USD | 0.00 USD |
 | `7D` | `0.3139` | 12,390,000.00 USD | 0.00 USD | 12,390,000.00 USD | 2,250.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3142` | 7,400,000.00 USD | 0.00 USD | 7,400,000.00 USD | 453.70 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3143` | 11,310,000.00 USD | 0.00 USD | 11,310,000.00 USD | 877.30 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3143` | 12,390,000.00 USD | 0.00 USD | 12,390,000.00 USD | 184,260.00 USD | 34,890.00 USD | 11,170.00 USD |
-| `1D` | `0.3147` | 7,400,000.00 USD | 0.00 USD | 7,400,000.00 USD | 852.30 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3147` | 12,160,000.00 USD | 0.00 USD | 12,160,000.00 USD | 101,940.00 USD | 16,380.00 USD | 10,680.00 USD |
+| `1D` | `0.3149` | 11,310,000.00 USD | 0.00 USD | 11,310,000.00 USD | 644.30 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3151` | 12,030,000.00 USD | 0.00 USD | 12,030,000.00 USD | 142,080.00 USD | 23,130.00 USD | 45,340.00 USD |
-| `1D` | `0.3152` | 7,400,000.00 USD | 0.00 USD | 7,400,000.00 USD | 215.60 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3155` | 11,820,000.00 USD | 0.00 USD | 11,820,000.00 USD | 149,140.00 USD | 37,570.00 USD | 17,280.00 USD |
-| `1D` | `0.3157` | 7,400,000.00 USD | 0.00 USD | 7,400,000.00 USD | 0.00 USD | 0.00 USD | 10,130.00 USD |
 | `7D` | `0.3159` | 11,610,000.00 USD | 0.00 USD | 11,610,000.00 USD | 334,950.00 USD | 101,710.00 USD | 112,500.00 USD |
-| `1D` | `0.3162` | 7,390,000.00 USD | 0.00 USD | 7,390,000.00 USD | 63,820.00 USD | 23,030.00 USD | 26,430.00 USD |
+| `1D` | `0.3161` | 11,310,000.00 USD | 0.00 USD | 11,310,000.00 USD | 33,690.00 USD | 16,860.00 USD | 29,820.00 USD |
 | `7D` | `0.3163` | 11,070,000.00 USD | 0.00 USD | 11,070,000.00 USD | 225,120.00 USD | 112,010.00 USD | 134,250.00 USD |
-| `1D` | `0.3167` | 7,280,000.00 USD | 0.00 USD | 7,280,000.00 USD | 59,910.00 USD | 11,700.00 USD | 34,110.00 USD |
+| `1D` | `0.3167` | 11,230,000.00 USD | 0.00 USD | 11,230,000.00 USD | 129,550.00 USD | 16,710.00 USD | 39,610.00 USD |
 | `7D` | `0.3167` | 10,590,000.00 USD | 0.00 USD | 10,590,000.00 USD | 328,930.00 USD | 75,090.00 USD | 95,630.00 USD |
 | `7D` | `0.3171` | 10,090,000.00 USD | 0.00 USD | 10,090,000.00 USD | 293,450.00 USD | 89,970.00 USD | 96,960.00 USD |
-| `1D` | `0.3172` | 7,170,000.00 USD | 0.00 USD | 7,170,000.00 USD | 11,370.00 USD | 20,390.00 USD | 24,450.00 USD |
+| `1D` | `0.3173` | 11,050,000.00 USD | 0.00 USD | 11,050,000.00 USD | 11,370.00 USD | 22,390.00 USD | 26,390.00 USD |
 | `7D` | `0.3175` | 9,610,000.00 USD | 0.00 USD | 9,610,000.00 USD | 28,570.00 USD | 12,370.00 USD | 39,210.00 USD |
-| `1D` | `0.3177` | 7,120,000.00 USD | 0.00 USD | 7,120,000.00 USD | 64,010.00 USD | 17,160.00 USD | 17,150.00 USD |
+| `1D` | `0.3179` | 10,990,000.00 USD | 0.00 USD | 10,990,000.00 USD | 89,610.00 USD | 31,340.00 USD | 34,710.00 USD |
 | `7D` | `0.3179` | 9,530,000.00 USD | 0.00 USD | 9,530,000.00 USD | 231,050.00 USD | 40,270.00 USD | 53,150.00 USD |
-| `1D` | `0.3182` | 7,020,000.00 USD | 0.00 USD | 7,020,000.00 USD | 444,410.00 USD | 66,580.00 USD | 99,600.00 USD |
 | `7D` | `0.3183` | 9,210,000.00 USD | 0.00 USD | 9,210,000.00 USD | 574,820.00 USD | 53,700.00 USD | 82,240.00 USD |
-| `1D` | `0.3187` | 6,410,000.00 USD | 0.00 USD | 6,410,000.00 USD | 65,570.00 USD | 15,380.00 USD | 24,560.00 USD |
+| `1D` | `0.3185` | 10,830,000.00 USD | 0.00 USD | 10,830,000.00 USD | 483,600.00 USD | 65,770.00 USD | 82,690.00 USD |
 | `7D` | `0.3187` | 8,500,000.00 USD | 0.00 USD | 8,500,000.00 USD | 117,850.00 USD | 29,330.00 USD | 11,120.00 USD |
+| `1D` | `0.3191` | 10,200,000.00 USD | 0.00 USD | 10,200,000.00 USD | 787.56 USD | 0.00 USD | 21,980.00 USD |
 | `7D` | `0.3191` | 8,340,000.00 USD | 0.00 USD | 8,340,000.00 USD | 59,160.00 USD | 13,950.00 USD | 11,780.00 USD |
-| `1D` | `0.3192` | 6,300,000.00 USD | 0.00 USD | 6,300,000.00 USD | 0.00 USD | 3,120.00 USD | 0.00 USD |
-| `1D` | `0.3197` | 6,300,000.00 USD | 0.00 USD | 6,300,000.00 USD | 825.10 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3202` | 6,300,000.00 USD | 0.00 USD | 6,300,000.00 USD | 24,400.00 USD | 8,050.00 USD | 23,180.00 USD |
-| `1D` | `0.3207` | 6,240,000.00 USD | 0.00 USD | 6,240,000.00 USD | 33,860.00 USD | 13,040.00 USD | 40,220.00 USD |
+| `1D` | `0.3197` | 10,180,000.00 USD | 0.00 USD | 10,180,000.00 USD | 47,610.00 USD | 3,120.00 USD | 0.00 USD |
+| `1D` | `0.3203` | 10,120,000.00 USD | 0.00 USD | 10,120,000.00 USD | 24,400.00 USD | 8,050.00 USD | 23,180.00 USD |
 | `7D` | `0.3207` | 8,260,000.00 USD | 0.00 USD | 8,260,000.00 USD | 158,770.00 USD | 34,380.00 USD | 7,770.00 USD |
+| `1D` | `0.3209` | 10,070,000.00 USD | 0.00 USD | 10,070,000.00 USD | 33,860.00 USD | 16,490.00 USD | 40,220.00 USD |
 | `7D` | `0.3211` | 8,050,000.00 USD | 0.00 USD | 8,050,000.00 USD | 403,080.00 USD | 68,150.00 USD | 35,920.00 USD |
-| `1D` | `0.3212` | 6,160,000.00 USD | 0.00 USD | 6,160,000.00 USD | 914.92 USD | 3,450.00 USD | 0.00 USD |
+| `1D` | `0.3215` | 9,980,000.00 USD | 0.00 USD | 9,980,000.00 USD | 914.92 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3215` | 7,550,000.00 USD | 0.00 USD | 7,550,000.00 USD | 184,080.00 USD | 34,690.00 USD | 73,480.00 USD |
 | `7D` | `0.3219` | 7,260,000.00 USD | 0.00 USD | 7,260,000.00 USD | 307,930.00 USD | 61,830.00 USD | 47,940.00 USD |
-| `1D` | `0.3222` | 6,150,000.00 USD | 0.00 USD | 6,150,000.00 USD | 0.00 USD | 0.00 USD | 41,470.00 USD |
+| `1D` | `0.3221` | 9,980,000.00 USD | 0.00 USD | 9,980,000.00 USD | 0.00 USD | 0.00 USD | 41,470.00 USD |
 | `7D` | `0.3223` | 6,840,000.00 USD | 0.00 USD | 6,840,000.00 USD | 435,620.00 USD | 137,210.00 USD | 89,860.00 USD |
-| `1D` | `0.3227` | 6,110,000.00 USD | 0.00 USD | 6,110,000.00 USD | 74,780.00 USD | 36,030.00 USD | 62,120.00 USD |
+| `1D` | `0.3227` | 9,940,000.00 USD | 0.00 USD | 9,940,000.00 USD | 124,040.00 USD | 33,720.00 USD | 121,380.00 USD |
 | `7D` | `0.3227` | 6,170,000.00 USD | 0.00 USD | 6,170,000.00 USD | 600,750.00 USD | 199,800.00 USD | 227,150.00 USD |
 | `7D` | `0.3231` | 5,150,000.00 USD | 0.00 USD | 5,150,000.00 USD | 589,500.00 USD | 180,670.00 USD | 295,130.00 USD |
-| `1D` | `0.3232` | 5,940,000.00 USD | 0.00 USD | 5,940,000.00 USD | 152,600.00 USD | 33,430.00 USD | 69,140.00 USD |
+| `1D` | `0.3233` | 9,660,000.00 USD | 0.00 USD | 9,660,000.00 USD | 172,680.00 USD | 33,430.00 USD | 79,210.00 USD |
 | `7D` | `0.3235` | 4,080,000.00 USD | 0.00 USD | 4,080,000.00 USD | 507,910.00 USD | 168,260.00 USD | 205,040.00 USD |
-| `1D` | `0.3237` | 5,680,000.00 USD | 0.00 USD | 5,680,000.00 USD | 35,500.00 USD | 34,210.00 USD | 48,660.00 USD |
+| `1D` | `0.3239` | 9,370,000.00 USD | 0.00 USD | 9,370,000.00 USD | 22,730.00 USD | 44,770.00 USD | 52,780.00 USD |
 | `7D` | `0.3239` | 3,200,000.00 USD | 0.00 USD | 3,200,000.00 USD | 354,650.00 USD | 119,100.00 USD | 114,090.00 USD |
-| `1D` | `0.3242` | 5,560,000.00 USD | 0.00 USD | 5,560,000.00 USD | 127,850.00 USD | 30,720.00 USD | 95,620.00 USD |
 | `7D` | `0.3243` | 2,610,000.00 USD | 0.00 USD | 2,610,000.00 USD | 265,190.00 USD | 39,180.00 USD | 42,580.00 USD |
-| `1D` | `0.3247` | 5,310,000.00 USD | 0.00 USD | 5,310,000.00 USD | 328,460.00 USD | 141,300.00 USD | 196,020.00 USD |
+| `1D` | `0.3245` | 9,250,000.00 USD | 0.00 USD | 9,250,000.00 USD | 210,360.00 USD | 85,930.00 USD | 137,110.00 USD |
 | `7D` | `0.3247` | 2,270,000.00 USD | 0.00 USD | 2,270,000.00 USD | 594,480.00 USD | 90,270.00 USD | 196,520.00 USD |
+| `1D` | `0.3251` | 8,820,000.00 USD | 0.00 USD | 8,820,000.00 USD | 992,770.00 USD | 169,100.00 USD | 309,860.00 USD |
 | `7D` | `0.3251` | 1,380,000.00 USD | 0.00 USD | 1,380,000.00 USD | 826,800.00 USD | 69,770.00 USD | 61,340.00 USD |
-| `1D` | `0.3252` | 4,640,000.00 USD | 0.00 USD | 4,640,000.00 USD | 807,840.00 USD | 93,570.00 USD | 169,520.00 USD |
 | `7D` | `0.3255` | 426,520.00 USD | 0.00 USD | 426,520.00 USD | 251,380.00 USD | 60,580.00 USD | 35,520.00 USD |
-| `1D` | `0.3257` | 3,570,000.00 USD | 0.00 USD | 3,570,000.00 USD | 46,420.00 USD | 26,300.00 USD | 138,320.00 USD |
+| `1D` | `0.3257` | 7,350,000.00 USD | 0.00 USD | 7,350,000.00 USD | 100,120.00 USD | 26,300.00 USD | 138,320.00 USD |
 | `7D` | `0.3259` | 79,040.00 USD | 0.00 USD | 79,040.00 USD | 51,940.00 USD | 16,810.00 USD | 10,280.00 USD |
-| `1D` | `0.3262` | 3,360,000.00 USD | 0.00 USD | 3,360,000.00 USD | 0.00 USD | 6,240.00 USD | 0.00 USD |
-| `1D` | `0.3272` | 3,360,000.00 USD | 0.00 USD | 3,360,000.00 USD | 123,940.00 USD | 43,110.00 USD | 135,590.00 USD |
-| `1D` | `0.3277` | 3,050,000.00 USD | 0.00 USD | 3,050,000.00 USD | 125,690.00 USD | 23,970.00 USD | 80,450.00 USD |
-| `1D` | `0.3287` | 2,820,000.00 USD | 0.00 USD | 2,820,000.00 USD | 45,960.00 USD | 0.00 USD | 115,570.00 USD |
-| `1D` | `0.3307` | 2,660,000.00 USD | 0.00 USD | 2,660,000.00 USD | 0.00 USD | 13,130.00 USD | 0.00 USD |
-| `1D` | `0.3312` | 2,650,000.00 USD | 0.00 USD | 2,650,000.00 USD | 195,280.00 USD | 78,490.00 USD | 251,580.00 USD |
+| `1D` | `0.3263` | 7,080,000.00 USD | 0.00 USD | 7,080,000.00 USD | 0.00 USD | 6,240.00 USD | 0.00 USD |
+| `1D` | `0.3269` | 7,080,000.00 USD | 0.00 USD | 7,080,000.00 USD | 123,940.00 USD | 64,710.00 USD | 276,750.00 USD |
+| `1D` | `0.3275` | 6,610,000.00 USD | 0.00 USD | 6,610,000.00 USD | 105,300.00 USD | 26,070.00 USD | 80,450.00 USD |
+| `1D` | `0.3281` | 6,400,000.00 USD | 0.00 USD | 6,400,000.00 USD | 57,970.00 USD | 6,900.00 USD | 0.00 USD |
+| `1D` | `0.3287` | 6,330,000.00 USD | 0.00 USD | 6,330,000.00 USD | 45,960.00 USD | 0.00 USD | 115,570.00 USD |
+| `1D` | `0.3293` | 6,170,000.00 USD | 0.00 USD | 6,170,000.00 USD | 38,710.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3311` | 6,130,000.00 USD | 0.00 USD | 6,130,000.00 USD | 234,580.00 USD | 91,620.00 USD | 251,580.00 USD |
 | `7D` | `0.3315` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3317` | 2,120,000.00 USD | 0.00 USD | 2,120,000.00 USD | 158,550.00 USD | 75,110.00 USD | 288,960.00 USD |
-| `1D` | `0.3322` | 1,600,000.00 USD | 0.00 USD | 1,600,000.00 USD | 92,840.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3327` | 1,510,000.00 USD | 0.00 USD | 1,510,000.00 USD | 0.00 USD | 52,610.00 USD | 188,720.00 USD |
-| `1D` | `0.3337` | 1,270,000.00 USD | 0.00 USD | 1,270,000.00 USD | 147,860.00 USD | 52,590.00 USD | 232,260.00 USD |
+| `1D` | `0.3317` | 5,560,000.00 USD | 0.00 USD | 5,560,000.00 USD | 158,550.00 USD | 75,110.00 USD | 288,960.00 USD |
+| `1D` | `0.3323` | 5,030,000.00 USD | 0.00 USD | 5,030,000.00 USD | 92,840.00 USD | 52,610.00 USD | 0.00 USD |
+| `1D` | `0.3329` | 4,890,000.00 USD | 0.00 USD | 4,890,000.00 USD | 0.00 USD | 0.00 USD | 188,720.00 USD |
+| `1D` | `0.3335` | 4,700,000.00 USD | 0.00 USD | 4,700,000.00 USD | 0.00 USD | 71,080.00 USD | 340,980.00 USD |
 | `7D` | `0.3339` | 455,400.00 USD | 455,400.00 USD | 0.00 USD | 363,280.00 USD | 69,780.00 USD | 22,330.00 USD |
+| `1D` | `0.3341` | 4,290,000.00 USD | 0.00 USD | 4,290,000.00 USD | 223,020.00 USD | 42,700.00 USD | 232,260.00 USD |
 | `7D` | `0.3343` | 708,090.00 USD | 708,090.00 USD | 0.00 USD | 198,570.00 USD | 32,750.00 USD | 21,370.00 USD |
-| `1D` | `0.3347` | 833,830.00 USD | 0.00 USD | 833,830.00 USD | 115,940.00 USD | 16,250.00 USD | 0.00 USD |
+| `1D` | `0.3347` | 3,790,000.00 USD | 0.00 USD | 3,790,000.00 USD | 156,670.00 USD | 16,250.00 USD | 0.00 USD |
 | `7D` | `0.3347` | 1,000,000.00 USD | 1,000,000.00 USD | 0.00 USD | 184,080.00 USD | 34,690.00 USD | 73,480.00 USD |
 | `7D` | `0.3351` | 1,420,000.00 USD | 1,420,000.00 USD | 0.00 USD | 307,930.00 USD | 61,830.00 USD | 47,940.00 USD |
+| `1D` | `0.3353` | 3,620,000.00 USD | 0.00 USD | 3,620,000.00 USD | 0.00 USD | 0.00 USD | 59,820.00 USD |
 | `7D` | `0.3355` | 2,080,000.00 USD | 2,080,000.00 USD | 0.00 USD | 435,620.00 USD | 137,210.00 USD | 89,860.00 USD |
-| `1D` | `0.3357` | 701,640.00 USD | 0.00 USD | 701,640.00 USD | 91,920.00 USD | 0.00 USD | 65,250.00 USD |
+| `1D` | `0.3359` | 3,560,000.00 USD | 0.00 USD | 3,560,000.00 USD | 169,350.00 USD | 0.00 USD | 65,250.00 USD |
 | `7D` | `0.3359` | 3,110,000.00 USD | 3,110,000.00 USD | 0.00 USD | 600,750.00 USD | 199,800.00 USD | 227,150.00 USD |
 | `7D` | `0.3363` | 4,170,000.00 USD | 4,170,000.00 USD | 0.00 USD | 589,500.00 USD | 180,670.00 USD | 295,130.00 USD |
-| `1D` | `0.3367` | 544,460.00 USD | 0.00 USD | 544,460.00 USD | 46,250.00 USD | 20,810.00 USD | 0.00 USD |
+| `1D` | `0.3365` | 3,320,000.00 USD | 0.00 USD | 3,320,000.00 USD | 38,540.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3367` | 5,050,000.00 USD | 5,050,000.00 USD | 0.00 USD | 507,910.00 USD | 168,260.00 USD | 205,040.00 USD |
+| `1D` | `0.3371` | 3,280,000.00 USD | 0.00 USD | 3,280,000.00 USD | 15,410.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3371` | 5,640,000.00 USD | 5,640,000.00 USD | 0.00 USD | 354,650.00 USD | 119,100.00 USD | 114,090.00 USD |
-| `1D` | `0.3372` | 477,400.00 USD | 0.00 USD | 477,400.00 USD | 7,700.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3375` | 5,990,000.00 USD | 5,990,000.00 USD | 0.00 USD | 265,190.00 USD | 39,180.00 USD | 42,580.00 USD |
-| `1D` | `0.3377` | 469,700.00 USD | 0.00 USD | 469,700.00 USD | 184,520.00 USD | 52,820.00 USD | 232,360.00 USD |
+| `1D` | `0.3377` | 3,270,000.00 USD | 0.00 USD | 3,270,000.00 USD | 292,530.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3379` | 6,870,000.00 USD | 6,870,000.00 USD | 0.00 USD | 594,480.00 USD | 90,270.00 USD | 196,520.00 USD |
+| `1D` | `0.3383` | 2,970,000.00 USD | 0.00 USD | 2,970,000.00 USD | 78,600.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3383` | 7,830,000.00 USD | 7,830,000.00 USD | 0.00 USD | 826,800.00 USD | 69,770.00 USD | 61,340.00 USD |
-| `1D` | `0.3384` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3387` | 8,180,000.00 USD | 8,180,000.00 USD | 0.00 USD | 251,380.00 USD | 60,580.00 USD | 35,520.00 USD |
 | `7D` | `0.3391` | 8,260,000.00 USD | 8,260,000.00 USD | 0.00 USD | 51,940.00 USD | 16,810.00 USD | 10,280.00 USD |
 | `7D` | `0.3403` | 8,360,000.00 USD | 8,360,000.00 USD | 0.00 USD | 79,380.00 USD | 17,190.00 USD | 3,890.00 USD |
+| `1D` | `0.3407` | 2,900,000.00 USD | 0.00 USD | 2,900,000.00 USD | 0.00 USD | 0.00 USD | 117,320.00 USD |
 | `7D` | `0.3407` | 8,570,000.00 USD | 8,570,000.00 USD | 0.00 USD | 162,870.00 USD | 34,080.00 USD | 13,980.00 USD |
 | `7D` | `0.3411` | 8,740,000.00 USD | 8,740,000.00 USD | 0.00 USD | 121,920.00 USD | 17,350.00 USD | 35,690.00 USD |
+| `1D` | `0.3413` | 2,780,000.00 USD | 0.00 USD | 2,780,000.00 USD | 116,970.00 USD | 0.00 USD | 62,690.00 USD |
 | `7D` | `0.3415` | 8,860,000.00 USD | 8,860,000.00 USD | 0.00 USD | 75,860.00 USD | 17,240.00 USD | 23,220.00 USD |
+| `1D` | `0.3419` | 2,600,000.00 USD | 0.00 USD | 2,600,000.00 USD | 81,460.00 USD | 0.00 USD | 119,640.00 USD |
 | `7D` | `0.3419` | 9,080,000.00 USD | 9,080,000.00 USD | 0.00 USD | 154,360.00 USD | 45,810.00 USD | 19,490.00 USD |
 | `7D` | `0.3423` | 9,570,000.00 USD | 9,570,000.00 USD | 0.00 USD | 312,710.00 USD | 82,020.00 USD | 100,690.00 USD |
 | `7D` | `0.3427` | 10,040,000.00 USD | 10,040,000.00 USD | 0.00 USD | 225,120.00 USD | 112,010.00 USD | 134,250.00 USD |
 | `7D` | `0.3431` | 10,540,000.00 USD | 10,540,000.00 USD | 0.00 USD | 328,930.00 USD | 75,090.00 USD | 95,630.00 USD |
 | `7D` | `0.3435` | 11,030,000.00 USD | 11,030,000.00 USD | 0.00 USD | 295,240.00 USD | 89,970.00 USD | 96,960.00 USD |
+| `1D` | `0.3437` | 2,400,000.00 USD | 0.00 USD | 2,400,000.00 USD | 141,670.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3439` | 11,110,000.00 USD | 11,110,000.00 USD | 0.00 USD | 29,120.00 USD | 12,370.00 USD | 39,210.00 USD |
+| `1D` | `0.3443` | 2,260,000.00 USD | 0.00 USD | 2,260,000.00 USD | 0.00 USD | 12,860.00 USD | 154,340.00 USD |
 | `7D` | `0.3443` | 11,430,000.00 USD | 11,430,000.00 USD | 0.00 USD | 231,050.00 USD | 40,270.00 USD | 53,150.00 USD |
 | `7D` | `0.3447` | 11,910,000.00 USD | 11,910,000.00 USD | 0.00 USD | 378,020.00 USD | 36,640.00 USD | 68,590.00 USD |
+| `1D` | `0.3449` | 2,090,000.00 USD | 0.00 USD | 2,090,000.00 USD | 216,030.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3451` | 12,240,000.00 USD | 12,240,000.00 USD | 0.00 USD | 274,980.00 USD | 26,900.00 USD | 20,240.00 USD |
 | `7D` | `0.3455` | 12,380,000.00 USD | 12,380,000.00 USD | 0.00 USD | 97,690.00 USD | 33,430.00 USD | 16,310.00 USD |
 | `7D` | `0.3459` | 12,410,000.00 USD | 12,410,000.00 USD | 0.00 USD | 22,340.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3463` | 12,410,000.00 USD | 12,410,000.00 USD | 0.00 USD | 3,330.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3467` | 12,410,000.00 USD | 12,410,000.00 USD | 0.00 USD | 1,130.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3471` | 12,410,000.00 USD | 12,410,000.00 USD | 0.00 USD | 2,140.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3473` | 1,870,000.00 USD | 0.00 USD | 1,870,000.00 USD | 0.00 USD | 61,200.00 USD | 0.00 USD |
 | `7D` | `0.3475` | 12,420,000.00 USD | 12,420,000.00 USD | 0.00 USD | 3,200.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3479` | 12,420,000.00 USD | 12,420,000.00 USD | 0.00 USD | 1,770.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3485` | 1,810,000.00 USD | 0.00 USD | 1,810,000.00 USD | 233,940.00 USD | 0.00 USD | 125,380.00 USD |
 | `7D` | `0.3491` | 12,420,000.00 USD | 12,420,000.00 USD | 0.00 USD | 1,340.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3495` | 12,420,000.00 USD | 12,420,000.00 USD | 0.00 USD | 415.52 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3503` | 12,420,000.00 USD | 12,420,000.00 USD | 0.00 USD | 1,940.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3507` | 1,600.00 USD | 1,600.00 USD | 0.00 USD | 1,600.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3507` | 12,430,000.00 USD | 12,430,000.00 USD | 0.00 USD | 5,660.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3509` | 1,450,000.00 USD | 0.00 USD | 1,450,000.00 USD | 284,960.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3511` | 12,430,000.00 USD | 12,430,000.00 USD | 0.00 USD | 4,590.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3512` | 99,790.00 USD | 99,790.00 USD | 0.00 USD | 30,490.00 USD | 0.00 USD | 67,700.00 USD |
+| `1D` | `0.3515` | 1,170,000.00 USD | 0.00 USD | 1,170,000.00 USD | 240.33 USD | 128,040.00 USD | 608,730.00 USD |
 | `7D` | `0.3515` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 3,690.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3517` | 776,300.00 USD | 776,300.00 USD | 0.00 USD | 270,450.00 USD | 134,860.00 USD | 271,200.00 USD |
 | `7D` | `0.3519` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 2,490.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3522` | 977,470.00 USD | 977,470.00 USD | 0.00 USD | 79,330.00 USD | 16,200.00 USD | 105,640.00 USD |
+| `1D` | `0.3521` | 430,240.00 USD | 0.00 USD | 430,240.00 USD | 153.89 USD | 48,730.00 USD | 144,480.00 USD |
 | `7D` | `0.3523` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 846.39 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3527` | 1,050,000.00 USD | 1,050,000.00 USD | 0.00 USD | 46,670.00 USD | 26,300.00 USD | 0.00 USD |
+| `1D` | `0.3527` | 236,880.00 USD | 0.00 USD | 236,880.00 USD | 243.85 USD | 26,300.00 USD | 0.00 USD |
 | `7D` | `0.3527` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 1,610.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3531` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 2,400.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3532` | 1,150,000.00 USD | 1,150,000.00 USD | 0.00 USD | 1,560.00 USD | 0.00 USD | 94,360.00 USD |
+| `1D` | `0.3533` | 210,330.00 USD | 0.00 USD | 210,330.00 USD | 1,560.00 USD | 0.00 USD | 94,360.00 USD |
 | `7D` | `0.3535` | 12,440,000.00 USD | 12,440,000.00 USD | 0.00 USD | 1,320.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3537` | 1,150,000.00 USD | 1,150,000.00 USD | 0.00 USD | 161.62 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3542` | 1,350,000.00 USD | 1,350,000.00 USD | 0.00 USD | 73,930.00 USD | 37,780.00 USD | 89,230.00 USD |
-| `1D` | `0.3547` | 1,470,000.00 USD | 1,470,000.00 USD | 0.00 USD | 0.00 USD | 13,370.00 USD | 107,590.00 USD |
-| `1D` | `0.3552` | 1,530,000.00 USD | 1,530,000.00 USD | 0.00 USD | 57,970.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3557` | 1,560,000.00 USD | 1,560,000.00 USD | 0.00 USD | 0.00 USD | 32,500.00 USD | 0.00 USD |
-| `1D` | `0.3562` | 1,640,000.00 USD | 1,640,000.00 USD | 0.00 USD | 45,960.00 USD | 0.00 USD | 32,630.00 USD |
-| `1D` | `0.3587` | 1,940,000.00 USD | 1,940,000.00 USD | 0.00 USD | 136,760.00 USD | 45,120.00 USD | 116,180.00 USD |
+| `1D` | `0.3539` | 114,410.00 USD | 0.00 USD | 114,410.00 USD | 161.62 USD | 30,600.00 USD | 0.00 USD |
+| `1D` | `0.3545` | 83,650.00 USD | 0.00 USD | 83,650.00 USD | 0.00 USD | 51,150.00 USD | 0.00 USD |
+| `1D` | `0.3557` | 32,500.00 USD | 0.00 USD | 32,500.00 USD | 0.00 USD | 32,500.00 USD | 0.00 USD |
+| `1D` | `0.3586` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3587` | 1,670.00 USD | 1,670.00 USD | 0.00 USD | 1,670.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3599` | 12,470,000.00 USD | 12,470,000.00 USD | 0.00 USD | 18,580.00 USD | 6,010.00 USD | 0.00 USD |
 | `7D` | `0.3603` | 12,530,000.00 USD | 12,530,000.00 USD | 0.00 USD | 48,320.00 USD | 6,290.00 USD | 2,910.00 USD |
 | `7D` | `0.3607` | 12,570,000.00 USD | 12,570,000.00 USD | 0.00 USD | 31,470.00 USD | 4,710.00 USD | 4,750.00 USD |
 | `7D` | `0.3611` | 12,600,000.00 USD | 12,600,000.00 USD | 0.00 USD | 24,060.00 USD | 2,960.00 USD | 10,110.00 USD |
-| `1D` | `0.3612` | 1,950,000.00 USD | 1,950,000.00 USD | 0.00 USD | 1,220.00 USD | 9,890.00 USD | 0.00 USD |
 | `7D` | `0.3615` | 12,680,000.00 USD | 12,680,000.00 USD | 0.00 USD | 61,190.00 USD | 8,080.00 USD | 1,960.00 USD |
-| `1D` | `0.3617` | 2,010,000.00 USD | 2,010,000.00 USD | 0.00 USD | 1,060.00 USD | 6,680.00 USD | 53,800.00 USD |
+| `1D` | `0.3617` | 3,840.00 USD | 3,840.00 USD | 0.00 USD | 2,180.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `0.3619` | 12,810,000.00 USD | 12,810,000.00 USD | 0.00 USD | 82,550.00 USD | 20,630.00 USD | 33,010.00 USD |
-| `1D` | `0.3622` | 2,040,000.00 USD | 2,040,000.00 USD | 0.00 USD | 10,370.00 USD | 5,910.00 USD | 10,940.00 USD |
+| `1D` | `0.3623` | 325,390.00 USD | 325,390.00 USD | 0.00 USD | 290,290.00 USD | 23,000.00 USD | 8,250.00 USD |
 | `7D` | `0.3623` | 12,960,000.00 USD | 12,960,000.00 USD | 0.00 USD | 81,760.00 USD | 32,570.00 USD | 36,370.00 USD |
-| `1D` | `0.3627` | 2,080,000.00 USD | 2,080,000.00 USD | 0.00 USD | 18,920.00 USD | 20,120.00 USD | 9,130.00 USD |
 | `7D` | `0.3627` | 13,100,000.00 USD | 13,100,000.00 USD | 0.00 USD | 77,830.00 USD | 18,040.00 USD | 36,410.00 USD |
+| `1D` | `0.3629` | 545,730.00 USD | 545,730.00 USD | 0.00 USD | 19,670.00 USD | 3,440.00 USD | 197,220.00 USD |
 | `7D` | `0.3631` | 13,220,000.00 USD | 13,220,000.00 USD | 0.00 USD | 76,220.00 USD | 25,590.00 USD | 26,610.00 USD |
-| `1D` | `0.3632` | 2,110,000.00 USD | 2,110,000.00 USD | 0.00 USD | 7,160.00 USD | 6,450.00 USD | 12,470.00 USD |
+| `1D` | `0.3635` | 562,060.00 USD | 562,060.00 USD | 0.00 USD | 195.85 USD | 6,360.00 USD | 9,780.00 USD |
 | `7D` | `0.3635` | 13,290,000.00 USD | 13,290,000.00 USD | 0.00 USD | 44,400.00 USD | 16,220.00 USD | 6,560.00 USD |
-| `1D` | `0.3637` | 2,120,000.00 USD | 2,120,000.00 USD | 0.00 USD | 2,380.00 USD | 3,750.00 USD | 2,840.00 USD |
 | `7D` | `0.3639` | 13,330,000.00 USD | 13,330,000.00 USD | 0.00 USD | 24,690.00 USD | 2,960.00 USD | 9,300.00 USD |
-| `1D` | `0.3642` | 2,170,000.00 USD | 2,170,000.00 USD | 0.00 USD | 25,410.00 USD | 8,570.00 USD | 12,500.00 USD |
+| `1D` | `0.3641` | 604,770.00 USD | 604,770.00 USD | 0.00 USD | 26,520.00 USD | 8,280.00 USD | 7,910.00 USD |
 | `7D` | `0.3643` | 13,450,000.00 USD | 13,450,000.00 USD | 0.00 USD | 89,900.00 USD | 9,390.00 USD | 22,010.00 USD |
-| `1D` | `0.3647` | 2,340,000.00 USD | 2,340,000.00 USD | 0.00 USD | 134,910.00 USD | 15,050.00 USD | 26,690.00 USD |
+| `1D` | `0.3647` | 790,620.00 USD | 790,620.00 USD | 0.00 USD | 136,030.00 USD | 17,770.00 USD | 32,050.00 USD |
 | `7D` | `0.3647` | 13,570,000.00 USD | 13,570,000.00 USD | 0.00 USD | 91,260.00 USD | 11,120.00 USD | 19,200.00 USD |
 | `7D` | `0.3651` | 13,640,000.00 USD | 13,640,000.00 USD | 0.00 USD | 60,980.00 USD | 4,810.00 USD | 2,640.00 USD |
-| `1D` | `0.3652` | 2,380,000.00 USD | 2,380,000.00 USD | 0.00 USD | 20,680.00 USD | 5,880.00 USD | 9,680.00 USD |
-| `1D` | `0.3662` | 2,380,000.00 USD | 2,380,000.00 USD | 0.00 USD | 0.00 USD | 1,250.00 USD | 0.00 USD |
-| `1D` | `0.3672` | 2,390,000.00 USD | 2,390,000.00 USD | 0.00 USD | 5,540.00 USD | 5,020.00 USD | 0.00 USD |
-| `1D` | `0.3677` | 2,420,000.00 USD | 2,420,000.00 USD | 0.00 USD | 13,540.00 USD | 3,410.00 USD | 16,090.00 USD |
-| `1D` | `0.3692` | 2,440,000.00 USD | 2,440,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD |
-| `1D` | `0.3702` | 2,440,000.00 USD | 2,440,000.00 USD | 0.00 USD | 275.03 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3717` | 2,480,000.00 USD | 2,480,000.00 USD | 0.00 USD | 0.00 USD | 9,300.00 USD | 27,080.00 USD |
-| `1D` | `0.3722` | 2,520,000.00 USD | 2,520,000.00 USD | 0.00 USD | 31,710.00 USD | 8,540.00 USD | 0.00 USD |
-| `1D` | `0.3727` | 2,570,000.00 USD | 2,570,000.00 USD | 0.00 USD | 0.00 USD | 6,480.00 USD | 42,260.00 USD |
-| `1D` | `0.3732` | 2,630,000.00 USD | 2,630,000.00 USD | 0.00 USD | 18,570.00 USD | 10,520.00 USD | 37,740.00 USD |
-| `1D` | `0.3747` | 2,700,000.00 USD | 2,700,000.00 USD | 0.00 USD | 29,570.00 USD | 7,200.00 USD | 35,690.00 USD |
-| `1D` | `0.3757` | 2,730,000.00 USD | 2,730,000.00 USD | 0.00 USD | 23,190.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3762` | 2,730,000.00 USD | 2,730,000.00 USD | 0.00 USD | 350.20 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3767` | 2,750,000.00 USD | 2,750,000.00 USD | 0.00 USD | 18,380.00 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3787` | 2,750,000.00 USD | 2,750,000.00 USD | 0.00 USD | 610.25 USD | 0.00 USD | 0.00 USD |
-| `1D` | `0.3792` | 2,860,000.00 USD | 2,860,000.00 USD | 0.00 USD | 54,040.00 USD | 15,820.00 USD | 46,470.00 USD |
-| `1D` | `0.3822` | 2,870,000.00 USD | 2,870,000.00 USD | 0.00 USD | 0.00 USD | 3,950.00 USD | 0.00 USD |
-| `1D` | `0.3827` | 2,890,000.00 USD | 2,890,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 21,520.00 USD |
-| `1D` | `0.3832` | 2,900,000.00 USD | 2,900,000.00 USD | 0.00 USD | 0.00 USD | 6,500.00 USD | 0.00 USD |
+| `1D` | `0.3653` | 1,110,000.00 USD | 1,110,000.00 USD | 0.00 USD | 304,030.00 USD | 5,880.00 USD | 9,680.00 USD |
+| `1D` | `0.3659` | 1,550,000.00 USD | 1,550,000.00 USD | 0.00 USD | 108,010.00 USD | 26,970.00 USD | 308,680.00 USD |
+| `1D` | `0.3671` | 1,560,000.00 USD | 1,560,000.00 USD | 0.00 USD | 5,540.00 USD | 3,220.00 USD | 0.00 USD |
+| `1D` | `0.3677` | 1,600,000.00 USD | 1,600,000.00 USD | 0.00 USD | 13,540.00 USD | 5,210.00 USD | 16,090.00 USD |
+| `1D` | `0.3689` | 1,610,000.00 USD | 1,610,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 16,590.00 USD |
+| `1D` | `0.3695` | 1,730,000.00 USD | 1,730,000.00 USD | 0.00 USD | 116,970.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3701` | 1,790,000.00 USD | 1,790,000.00 USD | 0.00 USD | 275.03 USD | 0.00 USD | 62,690.00 USD |
+| `1D` | `0.3719` | 1,840,000.00 USD | 1,840,000.00 USD | 0.00 USD | 0.00 USD | 17,840.00 USD | 27,080.00 USD |
+| `1D` | `0.3725` | 2,220,000.00 USD | 2,220,000.00 USD | 0.00 USD | 173,380.00 USD | 6,480.00 USD | 196,590.00 USD |
+| `1D` | `0.3731` | 2,300,000.00 USD | 2,300,000.00 USD | 0.00 USD | 18,570.00 USD | 23,380.00 USD | 37,740.00 USD |
+| `1D` | `0.3743` | 2,360,000.00 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 12,240.00 USD | 56,460.00 USD |
+| `1D` | `0.3749` | 2,440,000.00 USD | 2,440,000.00 USD | 0.00 USD | 29,570.00 USD | 7,200.00 USD | 35,690.00 USD |
+| `1D` | `0.3755` | 2,460,000.00 USD | 2,460,000.00 USD | 0.00 USD | 23,190.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3761` | 2,460,000.00 USD | 2,460,000.00 USD | 0.00 USD | 350.20 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3767` | 2,480,000.00 USD | 2,480,000.00 USD | 0.00 USD | 18,380.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3785` | 2,480,000.00 USD | 2,480,000.00 USD | 0.00 USD | 610.25 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3791` | 2,580,000.00 USD | 2,580,000.00 USD | 0.00 USD | 36,900.00 USD | 15,820.00 USD | 46,470.00 USD |
+| `1D` | `0.3797` | 2,600,000.00 USD | 2,600,000.00 USD | 0.00 USD | 17,130.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3821` | 2,600,000.00 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 3,950.00 USD | 0.00 USD |
+| `1D` | `0.3827` | 2,620,000.00 USD | 2,620,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 21,520.00 USD |
+| `1D` | `0.3833` | 2,630,000.00 USD | 2,630,000.00 USD | 0.00 USD | 0.00 USD | 6,500.00 USD | 0.00 USD |
+| `1D` | `0.3869` | 2,670,000.00 USD | 2,670,000.00 USD | 0.00 USD | 43,210.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3911` | 2,720,000.00 USD | 2,720,000.00 USD | 0.00 USD | 46,790.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `0.3941` | 2,840,000.00 USD | 2,840,000.00 USD | 0.00 USD | 56,670.00 USD | 0.00 USD | 61,740.00 USD |
+| `1D` | `0.3947` | 2,840,000.00 USD | 2,840,000.00 USD | 0.00 USD | 365.41 USD | 0.00 USD | 2,030.00 USD |
+| `1D` | `0.3953` | 2,850,000.00 USD | 2,850,000.00 USD | 0.00 USD | 4,580.00 USD | 2,530.00 USD | 2,680.00 USD |
+| `1D` | `0.3959` | 2,860,000.00 USD | 2,860,000.00 USD | 0.00 USD | 6,460.00 USD | 1,280.00 USD | 5,810.00 USD |
+| `1D` | `0.3965` | 2,870,000.00 USD | 2,870,000.00 USD | 0.00 USD | 97.94 USD | 1,470.00 USD | 3,360.00 USD |
+| `1D` | `0.3971` | 2,880,000.00 USD | 2,880,000.00 USD | 0.00 USD | 5,530.00 USD | 1,630.00 USD | 2,970.00 USD |
+| `1D` | `0.3977` | 2,930,000.00 USD | 2,930,000.00 USD | 0.00 USD | 33,930.00 USD | 4,760.00 USD | 11,840.00 USD |
+| `1D` | `0.3983` | 2,950,000.00 USD | 2,950,000.00 USD | 0.00 USD | 22,180.00 USD | 3,250.00 USD | 1,970.00 USD |
+| `1D` | `0.3989` | 2,960,000.00 USD | 2,960,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 4,400.00 USD |
+| `1D` | `0.4007` | 2,960,000.00 USD | 2,960,000.00 USD | 0.00 USD | 0.00 USD | 2,510.00 USD | 0.00 USD |
+| `1D` | `0.4011` | 2,980,000.00 USD | 2,980,000.00 USD | 0.00 USD | 6,770.00 USD | 1,710.00 USD | 8,040.00 USD |
 
 - **Multi-Timeframe Forced Liquidations Summary Table (22_Forced_Liquidations_MTF.parquet)**:
 | Timeframe | Dominant Side | Long Liq (USD) | Short Liq (USD) | Total Liq (USD) | Net Liq Delta (USD) | Orders Count | Window (UTC) |
@@ -975,81 +1001,81 @@
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| `15M` | `TRX` | `45.13%` | `54.87%` | `0.82` | 23,250,000.00 USD |
-| `15M` | `Binance` | `44.88%` | `55.12%` | `0.81` | 8,390,000.00 USD |
-| `15M` | `OKX` | `44.25%` | `55.75%` | `0.79` | 4,890,000.00 USD |
-| `15M` | `Bybit` | `48.97%` | `51.03%` | `0.96` | 1,860,000.00 USD |
-| `15M` | `KuCoin` | `70.78%` | `29.22%` | `2.42` | 173,450.00 USD |
-| `15M` | `Gate` | `44.78%` | `55.22%` | `0.81` | 2,650,000.00 USD |
-| `15M` | `Bitget` | `33.08%` | `66.92%` | `0.49` | 1,160,000.00 USD |
-| `15M` | `BingX` | `32.63%` | `67.37%` | `0.48` | 458,820.00 USD |
-| `15M` | `MEXC` | `44.7%` | `55.3%` | `0.81` | 1,560,000.00 USD |
-| `15M` | `Bitunix` | `42.54%` | `57.46%` | `0.74` | 586,100.00 USD |
-| `15M` | `Hyperliquid` | `63.44%` | `36.56%` | `1.74` | 151,820.00 USD |
+| `15M` | `TRX` | `48.19%` | `51.81%` | `0.93` | 104,950,000.00 USD |
+| `15M` | `Binance` | `49.82%` | `50.18%` | `0.99` | 40,410,000.00 USD |
+| `15M` | `OKX` | `49.14%` | `50.86%` | `0.97` | 10,640,000.00 USD |
+| `15M` | `Bybit` | `51.98%` | `48.02%` | `1.08` | 21,380,000.00 USD |
+| `15M` | `KuCoin` | `58.91%` | `41.09%` | `1.43` | 487,970.00 USD |
+| `15M` | `Gate` | `41.12%` | `58.88%` | `0.70` | 5,720,000.00 USD |
+| `15M` | `Bitget` | `47.57%` | `52.43%` | `0.91` | 3,590,000.00 USD |
+| `15M` | `BingX` | `48.76%` | `51.24%` | `0.95` | 896,200.00 USD |
+| `15M` | `MEXC` | `34.36%` | `65.64%` | `0.52` | 2,120,000.00 USD |
+| `15M` | `Bitunix` | `58.86%` | `41.14%` | `1.43` | 1,410,000.00 USD |
+| `15M` | `Hyperliquid` | `51.73%` | `48.27%` | `1.07` | 7,410,000.00 USD |
 | `15M` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `LBank` | `50.85%` | `49.15%` | `1.03` | 59,920.00 USD |
-| `15M` | `Crypto.com` | `53.41%` | `46.59%` | `1.15` | 37,890.00 USD |
-| `15M` | `WhiteBIT` | `74.25%` | `25.75%` | `2.88` | 129,350.00 USD |
-| `15M` | `HTX` | `81.62%` | `18.38%` | `4.44` | 533,000.00 USD |
+| `15M` | `LBank` | `64.98%` | `35.02%` | `1.86` | 2,310,000.00 USD |
+| `15M` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
+| `15M` | `WhiteBIT` | `23.82%` | `76.18%` | `0.31` | 7,330,000.00 USD |
+| `15M` | `HTX` | `48.95%` | `51.05%` | `0.96` | 258,510.00 USD |
 | `15M` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Kraken` | `55.03%` | `44.97%` | `1.22` | 210,990.00 USD |
-| `15M` | `Aster` | `15.44%` | `84.56%` | `0.18` | 390,220.00 USD |
+| `15M` | `Kraken` | `61.47%` | `38.53%` | `1.60` | 508,180.00 USD |
+| `15M` | `Aster` | `51.55%` | `48.45%` | `1.06` | 221,680.00 USD |
 | `15M` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Lighter` | `69.34%` | `30.66%` | `2.26` | 12,950.00 USD |
-| `15M` | `Whale Positions` | `44.88%` | `55.12%` | `0.81` | 8,390,000.00 USD |
-| `15M` | `Global Accounts` | `45.13%` | `54.87%` | `0.82` | 23,250,000.00 USD |
-| `1H` | `TRX` | `48.77%` | `51.23%` | `0.95` | 260,770,000.00 USD |
-| `1H` | `Binance` | `47.81%` | `52.19%` | `0.92` | 119,890,000.00 USD |
-| `1H` | `OKX` | `48.89%` | `51.11%` | `0.96` | 52,260,000.00 USD |
-| `1H` | `Bybit` | `53.01%` | `46.99%` | `1.13` | 27,670,000.00 USD |
-| `1H` | `KuCoin` | `43.63%` | `56.37%` | `0.77` | 2,610,000.00 USD |
-| `1H` | `Gate` | `49.83%` | `50.17%` | `0.99` | 14,810,000.00 USD |
-| `1H` | `Bitget` | `40.72%` | `59.28%` | `0.69` | 8,270,000.00 USD |
-| `1H` | `BingX` | `61.84%` | `38.16%` | `1.62` | 2,120,000.00 USD |
-| `1H` | `MEXC` | `53.3%` | `46.7%` | `1.14` | 13,040,000.00 USD |
-| `1H` | `Bitunix` | `47.68%` | `52.32%` | `0.91` | 6,600,000.00 USD |
-| `1H` | `Hyperliquid` | `53.76%` | `46.24%` | `1.16` | 2,570,000.00 USD |
+| `15M` | `Lighter` | `50.21%` | `49.79%` | `1.01` | 257,750.00 USD |
+| `15M` | `Whale Positions` | `49.82%` | `50.18%` | `0.99` | 40,410,000.00 USD |
+| `15M` | `Global Accounts` | `48.19%` | `51.81%` | `0.93` | 104,950,000.00 USD |
+| `1H` | `TRX` | `49.67%` | `50.33%` | `0.99` | 215,740,000.00 USD |
+| `1H` | `Binance` | `51.42%` | `48.58%` | `1.06` | 84,580,000.00 USD |
+| `1H` | `OKX` | `51.56%` | `48.44%` | `1.06` | 21,590,000.00 USD |
+| `1H` | `Bybit` | `51.32%` | `48.68%` | `1.05` | 41,210,000.00 USD |
+| `1H` | `KuCoin` | `62.1%` | `37.9%` | `1.64` | 1,070,000.00 USD |
+| `1H` | `Gate` | `44.2%` | `55.8%` | `0.79` | 10,810,000.00 USD |
+| `1H` | `Bitget` | `53.46%` | `46.54%` | `1.15` | 6,470,000.00 USD |
+| `1H` | `BingX` | `31.29%` | `68.71%` | `0.46` | 4,980,000.00 USD |
+| `1H` | `MEXC` | `37.76%` | `62.24%` | `0.61` | 3,290,000.00 USD |
+| `1H` | `Bitunix` | `58.87%` | `41.13%` | `1.43` | 3,720,000.00 USD |
+| `1H` | `Hyperliquid` | `53.44%` | `46.56%` | `1.15` | 12,290,000.00 USD |
 | `1H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `LBank` | `66.21%` | `33.79%` | `1.96` | 897,480.00 USD |
-| `1H` | `Crypto.com` | `52.03%` | `47.97%` | `1.08` | 285,840.00 USD |
-| `1H` | `WhiteBIT` | `28.57%` | `71.43%` | `0.40` | 2,230,000.00 USD |
-| `1H` | `HTX` | `48.37%` | `51.63%` | `0.94` | 2,480,000.00 USD |
+| `1H` | `LBank` | `55.77%` | `44.23%` | `1.26` | 5,900,000.00 USD |
+| `1H` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
+| `1H` | `WhiteBIT` | `34.36%` | `65.64%` | `0.52` | 16,850,000.00 USD |
+| `1H` | `HTX` | `50.07%` | `49.93%` | `1.00` | 678,370.00 USD |
 | `1H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `1H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `1H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `Kraken` | `49.9%` | `50.1%` | `1.00` | 1,170,000.00 USD |
-| `1H` | `Aster` | `45.96%` | `54.04%` | `0.85` | 3,770,000.00 USD |
+| `1H` | `Kraken` | `71.88%` | `28.12%` | `2.56` | 1,460,000.00 USD |
+| `1H` | `Aster` | `53.43%` | `46.57%` | `1.15` | 415,800.00 USD |
 | `1H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `Lighter` | `68.94%` | `31.06%` | `2.22` | 122,610.00 USD |
-| `1H` | `Whale Positions` | `47.81%` | `52.19%` | `0.92` | 119,890,000.00 USD |
-| `1H` | `Global Accounts` | `48.77%` | `51.23%` | `0.95` | 260,770,000.00 USD |
-| `4H` | `TRX` | `48.68%` | `51.32%` | `0.95` | 2,160,000,000.00 USD |
-| `4H` | `Binance` | `48.54%` | `51.46%` | `0.94` | 1,240,000,000.00 USD |
-| `4H` | `OKX` | `50.31%` | `49.69%` | `1.01` | 134,540,000.00 USD |
-| `4H` | `Bybit` | `48.69%` | `51.31%` | `0.95` | 243,970,000.00 USD |
-| `4H` | `KuCoin` | `45.58%` | `54.42%` | `0.84` | 12,930,000.00 USD |
-| `4H` | `Gate` | `48.94%` | `51.06%` | `0.96` | 51,080,000.00 USD |
-| `4H` | `Bitget` | `47.41%` | `52.59%` | `0.90` | 59,830,000.00 USD |
-| `4H` | `BingX` | `46.59%` | `53.41%` | `0.87` | 22,880,000.00 USD |
-| `4H` | `MEXC` | `49.28%` | `50.72%` | `0.97` | 29,280,000.00 USD |
-| `4H` | `Bitunix` | `48.17%` | `51.83%` | `0.93` | 51,330,000.00 USD |
-| `4H` | `Hyperliquid` | `49.02%` | `50.98%` | `0.96` | 215,690,000.00 USD |
+| `1H` | `Lighter` | `56.45%` | `43.55%` | `1.30` | 422,470.00 USD |
+| `1H` | `Whale Positions` | `51.42%` | `48.58%` | `1.06` | 84,580,000.00 USD |
+| `1H` | `Global Accounts` | `49.67%` | `50.33%` | `0.99` | 215,740,000.00 USD |
+| `4H` | `TRX` | `49.34%` | `50.66%` | `0.97` | 323,320,000.00 USD |
+| `4H` | `Binance` | `50.63%` | `49.37%` | `1.03` | 108,060,000.00 USD |
+| `4H` | `OKX` | `51.05%` | `48.95%` | `1.04` | 36,400,000.00 USD |
+| `4H` | `Bybit` | `52.04%` | `47.96%` | `1.09` | 33,760,000.00 USD |
+| `4H` | `KuCoin` | `58.31%` | `41.69%` | `1.40` | 2,550,000.00 USD |
+| `4H` | `Gate` | `44.44%` | `55.56%` | `0.80` | 15,350,000.00 USD |
+| `4H` | `Bitget` | `52.92%` | `47.08%` | `1.12` | 24,700,000.00 USD |
+| `4H` | `BingX` | `32.04%` | `67.96%` | `0.47` | 17,680,000.00 USD |
+| `4H` | `MEXC` | `40.8%` | `59.2%` | `0.69` | 19,760,000.00 USD |
+| `4H` | `Bitunix` | `57.55%` | `42.45%` | `1.36` | 7,510,000.00 USD |
+| `4H` | `Hyperliquid` | `54.79%` | `45.21%` | `1.21` | 4,420,000.00 USD |
 | `4H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `LBank` | `50.23%` | `49.77%` | `1.01` | 14,410,000.00 USD |
+| `4H` | `LBank` | `53.43%` | `46.57%` | `1.15` | 48,140,000.00 USD |
 | `4H` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `WhiteBIT` | `45.82%` | `54.18%` | `0.85` | 3,710,000.00 USD |
-| `4H` | `HTX` | `39.53%` | `60.47%` | `0.65` | 3,090,000.00 USD |
+| `4H` | `WhiteBIT` | `31.75%` | `68.25%` | `0.47` | 2,540,000.00 USD |
+| `4H` | `HTX` | `50.92%` | `49.08%` | `1.04` | 531,400.00 USD |
 | `4H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Kraken` | `43.28%` | `56.72%` | `0.76` | 6,910,000.00 USD |
-| `4H` | `Aster` | `49.75%` | `50.25%` | `0.99` | 45,240,000.00 USD |
+| `4H` | `Kraken` | `69.84%` | `30.16%` | `2.32` | 1,590,000.00 USD |
+| `4H` | `Aster` | `52.6%` | `47.4%` | `1.11` | 236,970.00 USD |
 | `4H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Lighter` | `50.83%` | `49.17%` | `1.03` | 23,830,000.00 USD |
-| `4H` | `Whale Positions` | `48.54%` | `51.46%` | `0.94` | 1,240,000,000.00 USD |
-| `4H` | `Global Accounts` | `48.68%` | `51.32%` | `0.95` | 2,160,000,000.00 USD |
+| `4H` | `Lighter` | `52.17%` | `47.83%` | `1.09` | 105,060.00 USD |
+| `4H` | `Whale Positions` | `50.63%` | `49.37%` | `1.03` | 108,060,000.00 USD |
+| `4H` | `Global Accounts` | `49.34%` | `50.66%` | `0.97` | 323,320,000.00 USD |
 
 
 ---
@@ -1059,7 +1085,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `0.3314` | `0.3314` | `0.3314` | `0.3315` | `0.3313` | 181,186.70 USD | 125,777.62 USD | 55,409.08 USD | 70,368.54 USD | `+38.84%` | `7B / 3S` |
 | `0:00 UTC` | `0.3316` | `0.3315` | `0.3316` | `0.3316` | `0.3313` | 274,455.87 USD | 151,943.78 USD | 122,512.08 USD | 29,431.70 USD | `+10.72%` | `6B / 8S` |
 | `5:00 UTC` | `0.3316` | `0.3315` | `0.3316` | `0.3316` | `0.3315` | 97,541.21 USD | 34,795.54 USD | 62,745.67 USD | -27,950.14 USD | `-28.65%` | `4B / 4S` |
 | `0:00 UTC` | `0.3311` | `0.3313` | `0.3311` | `0.3316` | `0.3310` | 747,180.14 USD | 373,024.41 USD | 374,155.73 USD | -1,131.33 USD | `-0.15%` | `16B / 17S` |
@@ -1068,7 +1093,8 @@
 | `5:00 UTC` | `0.3320` | `0.3319` | `0.3320` | `0.3363` | `0.3285` | 10,644,567.03 USD | 5,188,760.14 USD | 5,455,806.89 USD | -267,046.75 USD | `-2.51%` | `23B / 18S` |
 | `0:00 UTC` | `0.3310` | `0.3345` | `0.3310` | `0.3414` | `0.3283` | 12,234,359.27 USD | 6,873,169.39 USD | 5,361,189.88 USD | 1,511,979.51 USD | `+12.36%` | `29B / 4S` |
 | `5:00 UTC` | `0.3410` | `0.3437` | `0.3410` | `0.3496` | `0.3386` | 15,171,697.80 USD | 7,420,251.93 USD | 7,751,445.87 USD | -331,193.94 USD | `-2.18%` | `3B / 6S` |
-| `0:00 UTC` | `0.3377` | `0.3410` | `0.3377` | `0.3499` | `0.3361` | 18,969,198.82 USD | 10,397,317.83 USD | 8,571,881.00 USD | 1,825,436.83 USD | `+9.62%` | `14B / 11S` |
+| `0:00 UTC` | `0.3377` | `0.3416` | `0.3377` | `0.3499` | `0.3361` | 21,787,549.51 USD | 11,969,195.40 USD | 9,818,354.10 USD | 2,150,841.30 USD | `+9.87%` | `13B / 4S` |
+| `5:00 UTC` | `0.3600` | `0.3569` | `0.3600` | `0.3651` | `0.3467` | 23,003,689.07 USD | 11,484,730.89 USD | 11,518,958.18 USD | -34,227.29 USD | `-0.15%` | `10B / 6S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -1095,21 +1121,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -820,760.00 USD | 1,550,000.00 USD | **`ACCUMULATION`** |
-| `15m` | -2,310,000.00 USD | 1,940,000.00 USD | **`DISTRIBUTION`** |
-| `30m` | -1,550,000.00 USD | 2,950,000.00 USD | **`ACCUMULATION`** |
-| `1h` | 555,120.00 USD | 5,710,000.00 USD | **`ACCUMULATION`** |
-| `2h` | -2,390,000.00 USD | 4,020,000.00 USD | **`ACCUMULATION`** |
-| `4h` | -2,000,000.00 USD | 4,570,000.00 USD | **`ACCUMULATION`** |
-| `6h` | -1,660,000.00 USD | 4,460,000.00 USD | **`ACCUMULATION`** |
-| `8h` | -2,110,000.00 USD | 4,640,000.00 USD | **`ACCUMULATION`** |
-| `12h` | -1,980,000.00 USD | 4,560,000.00 USD | **`ACCUMULATION`** |
-| `24h` | 1,130,000.00 USD | 7,530,000.00 USD | **`ACCUMULATION`** |
-| `1w` | -6,270,000.00 USD | 4,320,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -25,340,000.00 USD | 7,210,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -132,170.00 USD | -2,450,000.00 USD | **`DISTRIBUTION`** |
+| `15m` | -962,000.00 USD | 1,060,000.00 USD | **`ACCUMULATION`** |
+| `30m` | -2,860,000.00 USD | 890,970.00 USD | **`DISTRIBUTION`** |
+| `1h` | 637,150.00 USD | 4,160,000.00 USD | **`ACCUMULATION`** |
+| `2h` | -1,850,000.00 USD | 3,590,000.00 USD | **`ACCUMULATION`** |
+| `4h` | -1,710,000.00 USD | 4,080,000.00 USD | **`ACCUMULATION`** |
+| `6h` | -1,420,000.00 USD | 3,950,000.00 USD | **`ACCUMULATION`** |
+| `8h` | -2,180,000.00 USD | 4,120,000.00 USD | **`ACCUMULATION`** |
+| `12h` | -2,240,000.00 USD | 4,150,000.00 USD | **`ACCUMULATION`** |
+| `24h` | 719,900.00 USD | 6,920,000.00 USD | **`ACCUMULATION`** |
+| `1w` | -6,350,000.00 USD | 4,540,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -25,650,000.00 USD | 7,420,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-820.76K` | 15m=`-2.31M` | 1h=`+555.12K` | 24h=`+1.13M`
-* Futures Capital Netflows: 5m=`+1.55M` | 15m=`+1.94M` | 1h=`+5.71M` | 24h=`+7.53M`
+* Spot Capital Netflows: 5m=`-132.17K` | 15m=`-962.00K` | 1h=`+637.15K` | 24h=`+719.90K`
+* Futures Capital Netflows: 5m=`-2.45M` | 15m=`+1.06M` | 1h=`+4.16M` | 24h=`+6.92M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -1140,21 +1166,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
@@ -1177,18 +1203,18 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.3362` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3283` (Risk Distance: `0.0079` pts)
-  * +2.5R Take Profit: `0.3560`
+  * Execution Entry: `0.3353` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.3224` (Risk Distance: `0.0129` pts)
+  * +2.5R Take Profit: `0.3675`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.3447` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.3526` (Risk Distance: `0.0079` pts)
-  * +2.5R Take Profit: `0.3249`
+  * Execution Entry: `0.3474` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.3603` (Risk Distance: `0.0129` pts)
+  * +2.5R Take Profit: `0.3152`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.3490`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.3624`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

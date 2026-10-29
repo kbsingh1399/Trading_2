@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 225.32 USD | **`ACCUMULATION`** |
-| `15m` | 0.00 USD | 225.32 USD | **`ACCUMULATION`** |
-| `30m` | 0.00 USD | 225.32 USD | **`ACCUMULATION`** |
-| `1h` | 0.00 USD | -312.73 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | -2,320.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -19,710.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -19,940.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | -18,110.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -19,240.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -23,700.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | 12,210.00 USD | **`ACCUMULATION`** |
-| `30d` | 0.00 USD | -15,390.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 142.03 USD | **`ACCUMULATION`** |
+| `15m` | 0.00 USD | 425.31 USD | **`ACCUMULATION`** |
+| `30m` | 0.00 USD | 425.31 USD | **`ACCUMULATION`** |
+| `1h` | 0.00 USD | 168.99 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | -2,120.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -18,420.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -20,130.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -17,910.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -19,040.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -23,500.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | 12,410.00 USD | **`ACCUMULATION`** |
+| `30d` | 0.00 USD | -15,190.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+225.32` | 15m=`+225.32` | 1h=`-312.73` | 24h=`-23.70K`
+* Futures Capital Netflows: 5m=`+142.03` | 15m=`+425.31` | 1h=`+168.99` | 24h=`-23.50K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 02:54:26 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:15:26 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:10:26 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:09:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:11:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:11:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:11:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:11:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:14 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:21:14 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:20:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:22:14 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:22:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:22:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:22:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
