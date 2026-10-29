@@ -14,11 +14,11 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,723.34 USD**
-- **Floating Equity**: **4,741.17 USD**
-- **Free Margin**: **4,474.50 USD**
+- **Floating Equity**: **4,741.22 USD**
+- **Free Margin**: **4,474.55 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 10:07:50 UTC`
+- **Last Updated**: `2026-10-29 10:07:55 UTC`
 
 ---
 
@@ -26,7 +26,7 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.972 | **157.764** | 158.05 | **+17.83 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.973 | **157.764** | 158.05 | **+17.88 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
