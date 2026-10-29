@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCHF
 **Canonical Key**: `USDCHF` | **Broker Instrument**: `USDCHF.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:23:15 IST` (`2026-10-29 18:53:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.8263` | **Live Ask Quote**: `0.8263` | **Mid Price**: `0.8263`
+- **Live Bid Quote**: `0.8263` | **Live Ask Quote**: `0.8264` | **Mid Price**: `0.8263`
 - **Spread Points**: `6.00` | **Spread BPS**: `0.73 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -46,13 +46,13 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.8291` (Distance: `-0.34%`)
   * Point of Control (POC) = `0.8281` (Distance: `-0.22%`)
-  * Value Area Low (VAL) = `0.8274` (Distance: `-0.13%`)
+  * Value Area Low (VAL) = `0.8273` (Distance: `-0.13%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8307` | POC=`0.8302` | VAL=`0.8286`
   * Prior Day Extremes: PDH=`0.8313` | PDL=`0.8275` | PDC=`0.8279`
   * Monday Range Blueprint: High=`0.8279` | Mid=`0.8255` | Low=`0.8232`
-  * Developing Weekly Value Area: Weekly VAH=`0.8303` | Weekly POC=`0.8285` | Weekly VAL=`0.8272`
+  * Developing Weekly Value Area: Weekly VAH=`0.8304` | Weekly POC=`0.8285` | Weekly VAL=`0.8272`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.8297` | Low=`0.8272`
   * London Session (08:00-16:00 UTC): High=`0.8295` | Low=`0.8273`
@@ -60,7 +60,7 @@
   * Initial Balance (First Hour): IB High=`0.8292` | IB Low=`0.8285`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.8230` - `0.8296`
-  * Optimal Trade Entry (OTE 0.705): `0.8279`
+  * Optimal Trade Entry (OTE 0.705): `0.8280`
   * Structural Invalidation Anchor (0.786): `0.8329`
 
 ---
@@ -267,8 +267,8 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.8274` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.8266` (Risk Distance: `0.000782` pts)
+  * Execution Entry: `0.8273` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.8265` (Risk Distance: `0.000782` pts)
   * +2.5R Take Profit: `0.8293`
   * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

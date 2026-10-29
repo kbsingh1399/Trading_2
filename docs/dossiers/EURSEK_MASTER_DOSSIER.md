@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSEK
 **Canonical Key**: `EURSEK` | **Broker Instrument**: `EURSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:23:16 IST` (`2026-10-29 18:53:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `11.01` | **Live Ask Quote**: `11.01` | **Mid Price**: `11.01`
-- **Spread Points**: `140.00` | **Spread BPS**: `1.27 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `190.00` | **Spread BPS**: `1.73 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,7 +32,7 @@
   * Upper +2.01σ Band: `11.05` | Lower -2.01σ Band: `10.96`
   * Upper +2.00σ Band: `11.05` | Lower -2.00σ Band: `10.96`
   * Upper +1.28σ Band: `11.04` | Lower -1.28σ Band: `10.98`
-  * Upper +1.00σ Band: `11.03` | Lower -1.00σ Band: `10.99`
+  * Upper +1.00σ Band: `11.03` | Lower -1.00σ Band: `10.98`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`11.01` | EMA-20=`11.01` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`11.01` (Slope: `+0.0000`) | EMA-100=`11.01`
@@ -52,16 +52,16 @@
   * Prior Day Value Area: VAH=`11.05` | POC=`11.01` | VAL=`10.96`
   * Prior Day Extremes: PDH=`11.07` | PDL=`10.94` | PDC=`11.01`
   * Monday Range Blueprint: High=`11.06` | Mid=`11.01` | Low=`10.95`
-  * Developing Weekly Value Area: Weekly VAH=`11.10` | Weekly POC=`11.01` | Weekly VAL=`10.92`
+  * Developing Weekly Value Area: Weekly VAH=`11.09` | Weekly POC=`11.01` | Weekly VAL=`10.92`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`11.03` | Low=`10.99`
+  * Asian Session (00:00-08:00 UTC): High=`11.03` | Low=`10.98`
   * London Session (08:00-16:00 UTC): High=`11.05` | Low=`10.96`
   * New York Session (13:00-21:00 UTC): High=`11.07` | Low=`10.94`
   * Initial Balance (First Hour): IB High=`11.04` | IB Low=`10.97`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `10.96` - `11.05`
   * Optimal Trade Entry (OTE 0.705): `11.03`
-  * Structural Invalidation Anchor (0.786): `11.10`
+  * Structural Invalidation Anchor (0.786): `11.09`
 
 ---
 
@@ -275,10 +275,10 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `11.04` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `12.24` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `8.04`
+  * +2.5R Take Profit: `8.03`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`11.10`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`11.09`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:23:15 IST` (`2026-10-29 18:53:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `9.93` | Lower -3.00σ Band: `9.79`
-  * Upper +2.51σ Band: `9.92` | Lower -2.51σ Band: `9.81`
+  * Upper +2.51σ Band: `9.91` | Lower -2.51σ Band: `9.81`
   * Upper +2.01σ Band: `9.90` | Lower -2.01σ Band: `9.82`
   * Upper +2.00σ Band: `9.90` | Lower -2.00σ Band: `9.82`
   * Upper +1.28σ Band: `9.89` | Lower -1.28σ Band: `9.83`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.89` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.09` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `6.89`
+  * +2.5R Take Profit: `6.88`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

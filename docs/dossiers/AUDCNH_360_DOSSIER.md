@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCNH
 **Canonical Key**: `AUDCNH` | **Broker Instrument**: `AUDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:23:16 IST` (`2026-10-29 18:53:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `4.68` | **Live Ask Quote**: `4.68` | **Mid Price**: `4.68`
-- **Spread Points**: `115.00` | **Spread BPS**: `2.46 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `121.00` | **Spread BPS**: `2.59 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `4.71` | Lower -3.00σ Band: `4.65`
-  * Upper +2.51σ Band: `4.70` | Lower -2.51σ Band: `4.65`
+  * Upper +2.51σ Band: `4.71` | Lower -2.51σ Band: `4.65`
   * Upper +2.01σ Band: `4.70` | Lower -2.01σ Band: `4.66`
   * Upper +2.00σ Band: `4.70` | Lower -2.00σ Band: `4.66`
   * Upper +1.28σ Band: `4.69` | Lower -1.28σ Band: `4.67`

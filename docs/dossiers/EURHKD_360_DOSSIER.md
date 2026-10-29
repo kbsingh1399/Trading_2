@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:23:15 IST` (`2026-10-29 18:53:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:26:17 IST` (`2026-10-29 18:56:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `8.82` | Lower -3.00σ Band: `8.70`
   * Upper +2.51σ Band: `8.81` | Lower -2.51σ Band: `8.71`
-  * Upper +2.01σ Band: `8.79` | Lower -2.01σ Band: `8.72`
+  * Upper +2.01σ Band: `8.80` | Lower -2.01σ Band: `8.72`
   * Upper +2.00σ Band: `8.79` | Lower -2.00σ Band: `8.72`
   * Upper +1.28σ Band: `8.78` | Lower -1.28σ Band: `8.73`
   * Upper +1.00σ Band: `8.78` | Lower -1.00σ Band: `8.74`
@@ -274,7 +274,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `8.78` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `9.98` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `9.99` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `5.78`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
