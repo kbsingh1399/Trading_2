@@ -47,7 +47,7 @@ You are bound by the SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER.
 Before evaluating ANY candidate asset, proposing ANY trade, or outputting ANY cycle verdict, you MUST systematically fetch, read, and enforce the full suite of canonical governance documents directly via their raw GitHub URLs:
 
 - **1. Standardized Trading Decision Chain**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md
-  *(Canonical 12-Step SOP, Section 0.8 Sovereign Final Boss authority, Candidate-by-Candidate 43-feed serialized thinking chain, Dynamic Capacity N_open + N_pending <= 3)*
+  *(Canonical 12-Step SOP, Section 0.2 Dynamic Capacity N_open + N_pending <= 3 under Drawdown Defense, Section 0.8 Sovereign Final Boss authority & 43-feed serialized candidate extraction)*
 - **2. Live Portfolio & Order Registry**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md
   *(Authoritative real-time state of live positions, ratchets, resting limit orders, and solvency metrics)*
 - **3. Tri-Council Collaborative Ledger**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md
