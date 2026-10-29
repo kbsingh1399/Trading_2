@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:01:08 IST` (`2026-10-29 17:31:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -266,8 +266,8 @@
 | `1D` | `1.47` | 16,910.00 USD | 16,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 19.11 USD |
 | `7D` | `1.47` | 45,310.00 USD | 45,310.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 31.50 USD |
 | `1D` | `1.47` | 16,950.00 USD | 16,950.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 44.12 USD |
-| `7D` | `1.47` | 45,450.00 USD | 45,450.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 139.54 USD |
 | `1D` | `1.47` | 16,960.00 USD | 16,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 6.45 USD |
+| `7D` | `1.47` | 45,450.00 USD | 45,450.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 139.54 USD |
 | `7D` | `1.47` | 45,470.00 USD | 45,470.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 17.37 USD |
 
 - **Multi-Timeframe Forced Liquidations Summary Table (22_Forced_Liquidations_MTF.parquet)**:

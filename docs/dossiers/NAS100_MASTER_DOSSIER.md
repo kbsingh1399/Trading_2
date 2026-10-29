@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:01:07 IST` (`2026-10-29 17:31:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -173,10 +173,10 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0028%` | **USDT OKX** | `0.0000%` |
-| **USDT Bybit** | `0.0047%` | **USDT KuCoin** | `0.0000%` |
-| **USDT MEXC** | `0.0027%` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0000%` | **USDT Bitget** | `0.0144%` |
+| **USDT Binance** | `0.0033%` | **USDT OKX** | `0.0000%` |
+| **USDT Bybit** | `0.0075%` | **USDT KuCoin** | `0.0000%` |
+| **USDT MEXC** | `0.0032%` | **USDT BingX** | `-` |
+| **USDT Gate** | `0.0000%` | **USDT Bitget** | `0.0147%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

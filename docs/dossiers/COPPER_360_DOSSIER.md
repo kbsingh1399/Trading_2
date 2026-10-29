@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: COPPER
 **Canonical Key**: `COPPER` | **Broker Instrument**: `COPPER.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:01:08 IST` (`2026-10-29 17:31:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -157,9 +157,9 @@
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0000%` | **USDT OKX** | `-` |
-| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0108%` |
+| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0102%` |
 | **USDT MEXC** | `0.0000%` | **USDT BingX** | `-` |
-| **USDT Gate** | `-` | **USDT Bitget** | `0.0168%` |
+| **USDT Gate** | `-` | **USDT Bitget** | `0.0157%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

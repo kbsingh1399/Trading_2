@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:55:04 IST` (`2026-10-29 17:25:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:01:08 IST` (`2026-10-29 17:31:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -266,14 +266,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-213.44` | Last 24h: `-4.06K` | Last 3d: `-3.32K` | Last 7d: `-6.03K`
+  * Current Rate: `-688.44` | Last 24h: `-4.06K` | Last 3d: `-3.32K` | Last 7d: `-6.03K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0006%` | **USDT OKX** | `-0.0016%` |
-| **USDT Bybit** | `-0.0031%` | **USDT KuCoin** | `0.0096%` |
-| **USDT MEXC** | `-0.0003%` | **USDT BingX** | `0.0069%` |
-| **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0073%` |
+| **USDT Binance** | `-0.0013%` | **USDT OKX** | `-0.0013%` |
+| **USDT Bybit** | `-0.0063%` | **USDT KuCoin** | `0.0085%` |
+| **USDT MEXC** | `-0.0009%` | **USDT BingX** | `0.0074%` |
+| **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0071%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -299,21 +299,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -8,820.00 USD | -4,980.00 USD | **`DISTRIBUTION`** |
-| `15m` | -28,970.00 USD | -27,860.00 USD | **`DISTRIBUTION`** |
-| `30m` | -17,250.00 USD | -26,330.00 USD | **`DISTRIBUTION`** |
-| `1h` | -3,440.00 USD | -155,690.00 USD | **`DISTRIBUTION`** |
-| `2h` | -31,410.00 USD | -341,270.00 USD | **`DISTRIBUTION`** |
-| `4h` | -42,410.00 USD | -433,330.00 USD | **`DISTRIBUTION`** |
-| `6h` | -24,300.00 USD | -419,570.00 USD | **`DISTRIBUTION`** |
-| `8h` | -11,080.00 USD | -235,510.00 USD | **`DISTRIBUTION`** |
-| `12h` | 32,600.00 USD | -152,900.00 USD | **`DISTRIBUTION`** |
-| `24h` | -3,710.00 USD | -331,960.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,270,000.00 USD | -2,200,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -11,830,000.00 USD | -18,970,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -11,280.00 USD | -3,290.00 USD | **`DISTRIBUTION`** |
+| `15m` | -23,410.00 USD | -34,320.00 USD | **`DISTRIBUTION`** |
+| `30m` | -44,490.00 USD | -63,390.00 USD | **`DISTRIBUTION`** |
+| `1h` | -22,150.00 USD | -93,830.00 USD | **`DISTRIBUTION`** |
+| `2h` | -33,070.00 USD | -377,350.00 USD | **`DISTRIBUTION`** |
+| `4h` | -61,750.00 USD | -460,710.00 USD | **`DISTRIBUTION`** |
+| `6h` | -52,170.00 USD | -432,770.00 USD | **`DISTRIBUTION`** |
+| `8h` | -30,200.00 USD | -276,870.00 USD | **`DISTRIBUTION`** |
+| `12h` | 17,280.00 USD | -198,690.00 USD | **`DISTRIBUTION`** |
+| `24h` | -22,460.00 USD | -359,690.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,310,000.00 USD | -2,240,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -11,740,000.00 USD | -19,000,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-8.82K` | 15m=`-28.97K` | 1h=`-3.44K` | 24h=`-3.71K`
-* Futures Capital Netflows: 5m=`-4.98K` | 15m=`-27.86K` | 1h=`-155.69K` | 24h=`-331.96K`
+* Spot Capital Netflows: 5m=`-11.28K` | 15m=`-23.41K` | 1h=`-22.15K` | 24h=`-22.46K`
+* Futures Capital Netflows: 5m=`-3.29K` | 15m=`-34.32K` | 1h=`-93.83K` | 24h=`-359.69K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
