@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UKBRENT
 **Canonical Key**: `UKBRENT` | **Broker Instrument**: `UKBRENT.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `115.00` | **Live Ask Quote**: `115.04` | **Mid Price**: `115.02`
-- **Spread Points**: `43.00` | **Spread BPS**: `3.74 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `115.32` | **Live Ask Quote**: `115.36` | **Mid Price**: `115.34`
+- **Spread Points**: `41.00` | **Spread BPS**: `3.55 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1,000.0` | Digits: `2` | Point: `0.01`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `115.43` (Distance: `-0.35%`)
-  * Point of Control (POC) = `114.91` (Distance: `+0.11%`)
-  * Value Area Low (VAL) = `114.51` (Distance: `+0.46%`)
+  * Value Area High (VAH) = `115.42` (Distance: `-0.06%`)
+  * Point of Control (POC) = `114.91` (Distance: `+0.39%`)
+  * Value Area Low (VAL) = `114.51` (Distance: `+0.74%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`116.72` | POC=`116.16` | VAL=`115.61`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`115.43` | Low=`113.71`
   * Initial Balance (First Hour): IB High=`114.95` | IB Low=`114.44`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `114.56` - `115.48`
-  * Optimal Trade Entry (OTE 0.705): `115.25`
-  * Structural Invalidation Anchor (0.786): `115.94`
+  * Golden Pocket Zone (0.618 - 0.650): `114.88` - `115.80`
+  * Optimal Trade Entry (OTE 0.705): `115.57`
+  * Structural Invalidation Anchor (0.786): `116.26`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `114.51` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `113.94` (Risk Distance: `0.5648` pts)
-  * +2.5R Take Profit: `115.92`
+  * Spread-Padded Stop Loss: `113.95` (Risk Distance: `0.5618` pts)
+  * +2.5R Take Profit: `115.91`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `115.43` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `116.00` (Risk Distance: `0.5648` pts)
+  * Execution Entry: `115.42` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `115.98` (Risk Distance: `0.5618` pts)
   * +2.5R Take Profit: `114.02`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`115.94`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`116.26`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

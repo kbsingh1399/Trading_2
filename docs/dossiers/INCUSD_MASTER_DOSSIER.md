@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: INCUSD
 **Canonical Key**: `INCUSD` | **Broker Instrument**: `INCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0872` | **Live Ask Quote**: `0.0900` | **Mid Price**: `0.0886`
-- **Spread Points**: `28.00` | **Spread BPS**: `316.03 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0871` | **Live Ask Quote**: `0.0900` | **Mid Price**: `0.0885`
+- **Spread Points**: `29.00` | **Spread BPS**: `327.50 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,18 +49,18 @@
   * Value Area Low (VAL) = `0.0849` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0890` | POC=`0.0886` | VAL=`0.0882`
-  * Prior Day Extremes: PDH=`0.0891` | PDL=`0.0881` | PDC=`0.0886`
-  * Monday Range Blueprint: High=`0.0890` | Mid=`0.0886` | Low=`0.0882`
-  * Developing Weekly Value Area: Weekly VAH=`0.0893` | Weekly POC=`0.0886` | Weekly VAL=`0.0879`
+  * Prior Day Value Area: VAH=`0.0889` | POC=`0.0885` | VAL=`0.0882`
+  * Prior Day Extremes: PDH=`0.0891` | PDL=`0.0880` | PDC=`0.0885`
+  * Monday Range Blueprint: High=`0.0890` | Mid=`0.0885` | Low=`0.0881`
+  * Developing Weekly Value Area: Weekly VAH=`0.0893` | Weekly POC=`0.0885` | Weekly VAL=`0.0878`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0888` | Low=`0.0884`
-  * London Session (08:00-16:00 UTC): High=`0.0890` | Low=`0.0882`
-  * New York Session (13:00-21:00 UTC): High=`0.0891` | Low=`0.0881`
-  * Initial Balance (First Hour): IB High=`0.0889` | IB Low=`0.0883`
+  * Asian Session (00:00-08:00 UTC): High=`0.0887` | Low=`0.0884`
+  * London Session (08:00-16:00 UTC): High=`0.0889` | Low=`0.0882`
+  * New York Session (13:00-21:00 UTC): High=`0.0891` | Low=`0.0880`
+  * Initial Balance (First Hour): IB High=`0.0888` | IB Low=`0.0883`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0882` - `0.0890`
-  * Optimal Trade Entry (OTE 0.705): `0.0888`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0882` - `0.0889`
+  * Optimal Trade Entry (OTE 0.705): `0.0887`
   * Structural Invalidation Anchor (0.786): `0.0893`
 
 ---
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0849` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.0802` (Risk Distance: `0.0056` pts)
-  * +2.5R Take Profit: `0.0989`
+  * Spread-Padded Stop Loss: `0.0801` (Risk Distance: `0.0058` pts)
+  * +2.5R Take Profit: `0.0994`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.0866` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0912` (Risk Distance: `0.0056` pts)
-  * +2.5R Take Profit: `0.0726`
+  * Spread-Padded Stop Loss: `0.0914` (Risk Distance: `0.0058` pts)
+  * +2.5R Take Profit: `0.0721`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

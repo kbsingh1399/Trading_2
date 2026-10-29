@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADJPY
 **Canonical Key**: `CADJPY` | **Broker Instrument**: `CADJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `113.05` | **Live Ask Quote**: `113.06` | **Mid Price**: `113.06`
+- **Live Bid Quote**: `113.03` | **Live Ask Quote**: `113.05` | **Mid Price**: `113.04`
 - **Spread Points**: `12.00` | **Spread BPS**: `1.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -44,24 +44,24 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `112.94` (Distance: `+0.11%`)
-  * Point of Control (POC) = `112.83` (Distance: `+0.20%`)
-  * Value Area Low (VAL) = `112.78` (Distance: `+0.25%`)
+  * Value Area High (VAH) = `112.94` (Distance: `+0.10%`)
+  * Point of Control (POC) = `112.83` (Distance: `+0.19%`)
+  * Value Area Low (VAL) = `112.78` (Distance: `+0.23%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`112.81` | POC=`112.71` | VAL=`112.32`
   * Prior Day Extremes: PDH=`112.90` | PDL=`112.13` | PDC=`112.76`
   * Monday Range Blueprint: High=`112.40` | Mid=`112.08` | Low=`111.76`
-  * Developing Weekly Value Area: Weekly VAH=`112.71` | Weekly POC=`112.52` | Weekly VAL=`111.90`
+  * Developing Weekly Value Area: Weekly VAH=`112.72` | Weekly POC=`112.52` | Weekly VAL=`111.90`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`112.98` | Low=`112.71`
   * London Session (08:00-16:00 UTC): High=`113.11` | Low=`112.74`
   * New York Session (13:00-21:00 UTC): High=`113.11` | Low=`112.58`
   * Initial Balance (First Hour): IB High=`112.90` | IB Low=`112.82`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `112.60` - `113.51`
-  * Optimal Trade Entry (OTE 0.705): `113.28`
-  * Structural Invalidation Anchor (0.786): `113.96`
+  * Golden Pocket Zone (0.618 - 0.650): `112.59` - `113.49`
+  * Optimal Trade Entry (OTE 0.705): `113.27`
+  * Structural Invalidation Anchor (0.786): `113.94`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`113.96`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`113.94`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

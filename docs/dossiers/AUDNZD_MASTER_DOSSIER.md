@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDNZD
 **Canonical Key**: `AUDNZD` | **Broker Instrument**: `AUDNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `1.25` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`1.26` | POC=`1.25` | VAL=`1.25`
+  * Prior Day Value Area: VAH=`1.25` | POC=`1.25` | VAL=`1.24`
   * Prior Day Extremes: PDH=`1.26` | PDL=`1.24` | PDC=`1.25`
   * Monday Range Blueprint: High=`1.26` | Mid=`1.25` | Low=`1.24`
   * Developing Weekly Value Area: Weekly VAH=`1.26` | Weekly POC=`1.25` | Weekly VAL=`1.24`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.25` | Low=`1.25`
-  * London Session (08:00-16:00 UTC): High=`1.26` | Low=`1.25`
+  * London Session (08:00-16:00 UTC): High=`1.25` | Low=`1.24`
   * New York Session (13:00-21:00 UTC): High=`1.26` | Low=`1.24`
   * Initial Balance (First Hour): IB High=`1.25` | IB Low=`1.25`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1.25` - `1.26`
+  * Golden Pocket Zone (0.618 - 0.650): `1.24` - `1.25`
   * Optimal Trade Entry (OTE 0.705): `1.25`
   * Structural Invalidation Anchor (0.786): `1.26`
 

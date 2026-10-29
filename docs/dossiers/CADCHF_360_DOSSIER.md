@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADCHF
 **Canonical Key**: `CADCHF` | **Broker Instrument**: `CADCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5914` | **Live Ask Quote**: `0.5915` | **Mid Price**: `0.5915`
-- **Spread Points**: `8.00` | **Spread BPS**: `1.35 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.5914` | **Live Ask Quote**: `0.5915` | **Mid Price**: `0.5914`
+- **Spread Points**: `9.00` | **Spread BPS**: `1.52 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -45,7 +45,7 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.5923` (Distance: `-0.14%`)
-  * Point of Control (POC) = `0.5922` (Distance: `-0.13%`)
+  * Point of Control (POC) = `0.5911` (Distance: `+0.05%`)
   * Value Area Low (VAL) = `0.5910` (Distance: `+0.07%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -60,7 +60,7 @@
   * Initial Balance (First Hour): IB High=`0.5928` | IB Low=`0.5925`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.5891` - `0.5938`
-  * Optimal Trade Entry (OTE 0.705): `0.5927`
+  * Optimal Trade Entry (OTE 0.705): `0.5926`
   * Structural Invalidation Anchor (0.786): `0.5962`
 
 ---

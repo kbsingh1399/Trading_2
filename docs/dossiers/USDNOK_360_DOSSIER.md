@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDNOK
 **Canonical Key**: `USDNOK` | **Broker Instrument**: `USDNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`9.26` | EMA-20=`9.26` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.26` (Slope: `+0.0000`) | EMA-100=`9.26`
   * Institutional Anchors: EMA-144=`9.26` | EMA-200=`9.26` (Slope: `+0.0000`) | EMA-233=`9.26`
-- **Range Boundaries**: 24H High=`9.36` | 24H Low=`9.17` | Weekly High=`9.45` | Weekly Low=`9.08`
+- **Range Boundaries**: 24H High=`9.35` | 24H Low=`9.17` | Weekly High=`9.45` | Weekly Low=`9.08`
 
 ---
 

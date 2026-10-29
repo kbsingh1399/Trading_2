@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:45:59 IST` (`2026-10-29 17:15:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `134.88` | **Live Ask Quote**: `135.22` | **Mid Price**: `135.05`
-- **Spread Points**: `34.00` | **Spread BPS**: `25.18 bps` (Charter Threshold: `25.00 bps`)
-- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
+- **Live Bid Quote**: `134.66` | **Live Ask Quote**: `134.96` | **Mid Price**: `134.81`
+- **Spread Points**: `30.00` | **Spread BPS**: `22.25 bps` (Charter Threshold: `25.00 bps`)
+- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `136.70` (Distance: `-1.23%`)
-  * Point of Control (POC) = `132.93` (Distance: `+1.57%`)
-  * Value Area Low (VAL) = `130.61` (Distance: `+3.38%`)
+  * Value Area High (VAH) = `136.70` (Distance: `-1.26%`)
+  * Point of Control (POC) = `132.93` (Distance: `+1.54%`)
+  * Value Area Low (VAL) = `130.61` (Distance: `+3.34%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`135.85` | POC=`134.70` | VAL=`132.04`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`137.67` | Low=`130.09`
   * Initial Balance (First Hour): IB High=`131.85` | IB Low=`129.90`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `134.51` - `135.59`
-  * Optimal Trade Entry (OTE 0.705): `135.32`
-  * Structural Invalidation Anchor (0.786): `136.13`
+  * Golden Pocket Zone (0.618 - 0.650): `134.27` - `135.35`
+  * Optimal Trade Entry (OTE 0.705): `135.08`
+  * Structural Invalidation Anchor (0.786): `135.89`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`135.05`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`134.81`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:34:53 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:44:58 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -531,21 +531,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 81,560.00 USD | 270,660.00 USD | **`ACCUMULATION`** |
-| `15m` | -349,930.00 USD | -102,580.00 USD | **`DISTRIBUTION`** |
-| `30m` | -322,930.00 USD | 117,070.00 USD | **`DISTRIBUTION`** |
-| `1h` | -610,810.00 USD | -1,090,000.00 USD | **`DISTRIBUTION`** |
-| `2h` | -110,270.00 USD | -680,420.00 USD | **`DISTRIBUTION`** |
-| `4h` | -722,680.00 USD | -868,500.00 USD | **`DISTRIBUTION`** |
-| `6h` | -612,360.00 USD | -1,300,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -348,390.00 USD | -11,280.00 USD | **`DISTRIBUTION`** |
-| `12h` | -269,480.00 USD | -265,480.00 USD | **`DISTRIBUTION`** |
-| `24h` | -2,460,000.00 USD | -1,230,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -23,500,000.00 USD | -37,080,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -112,050,000.00 USD | -98,420,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 145,580.00 USD | **`ACCUMULATION`** |
+| `15m` | 0.00 USD | 149,470.00 USD | **`ACCUMULATION`** |
+| `30m` | 0.00 USD | -296,940.00 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | -1,670,000.00 USD | **`DISTRIBUTION`** |
+| `2h` | 0.00 USD | -1,260,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -798,690.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -1,210,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -113,200.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -595,200.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -1,570,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -37,210,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -98,540,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+81.56K` | 15m=`-349.93K` | 1h=`-610.81K` | 24h=`-2.46M`
-* Futures Capital Netflows: 5m=`+270.66K` | 15m=`-102.58K` | 1h=`-1.09M` | 24h=`-1.23M`
+* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Futures Capital Netflows: 5m=`+145.58K` | 15m=`+149.47K` | 1h=`-1.67M` | 24h=`-1.57M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -614,17 +614,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `130.61` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `128.81` (Risk Distance: `1.80` pts)
-  * +2.5R Take Profit: `135.11`
-  * Mathematical Lot Sizing: **`5.55 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `128.87` (Risk Distance: `1.74` pts)
+  * +2.5R Take Profit: `134.96`
+  * Mathematical Lot Sizing: **`5.74 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `136.70` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `138.50` (Risk Distance: `1.80` pts)
-  * +2.5R Take Profit: `132.20`
-  * Mathematical Lot Sizing: **`5.55 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `138.44` (Risk Distance: `1.74` pts)
+  * +2.5R Take Profit: `132.35`
+  * Mathematical Lot Sizing: **`5.74 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`136.13`) or if 21:15 UTC rollover blackout begins.
+**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`135.89`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
