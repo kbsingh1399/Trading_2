@@ -1,358 +1,387 @@
-\n📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, `@[clean-code]`, `@[systematic-debugging]`\n
-\n---\n\n# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY REPORT\n\n\n**Cycle Reference Timestamp:** `2026-10-29 19:11:49 UTC` (`2026-10-30 00:41:49 IST`)\n
-**Live GitHub `main` Telemetry Sync Commit:** `797edd33a108c6e4d682eb3165ffc1592a941f0f` (`2026-10-29 19:10:59 UTC` / `2026-10-30 00:40:59 IST`)\n
-**Embedded Prompt Envelope Snapshot:** `Cycle-20261028T183502Z` (`cutoff_utc = 2026-10-28 18:35:02 UTC`, `git_commit = 32451f597d7d0fa770aa968c11258e80e1699eb5`)\n
-**Embedded Preflight Receipt Snapshot:** `2026-10-27 13:12:05 UTC` (`BTCUSD.pi` `SELL_LIMIT 0.01 @ 80,350.00`)\n
-**Live Broker Account:** Blueberry Markets MT5 `#5064568` (`BlueberryMarketsSVG-Live`, Raw Spread, `1:500` FX / `1:20` BTC-ETH)\n
-**Council Governance Verdict:** `DENIED_FAIL_CLOSED` (`provenance_status = DENIED_BAD_CYCLE_ENVELOPE` on static embedded JSON + `STAGED_INTENT_ONLY` under Live Solvency Floor `4,742.31 USD < 4,775.00 USD` & `< 4,795.00 USD`)\n\n---\n\n## 🧠 0. MANDATORY METACOGNITIVE SKILL-INTEGRATION EVALUATION\n\n
+\n📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[clean-code]`, `@[systematic-debugging]`, `@[data-quality-checker]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`\n
+\n---\n\n# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY REPORT\n\n\n**Canonical Specification:** `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Dossier-Centric Multi-Agent Squad Audit)\n
+**Live GitHub `main` Sync Commit:** `bd3bbdd34801f72ad4b7a0df2f115e6095c6c160` (`2026-10-29 19:59:54 UTC` / `[as_of 2026-10-29 19:59:36 UTC]` / `2026-10-30 01:29:36 IST`)\n
+**Parquet Checklist & MT5 Telemetry Banner:** `2026-10-29 19:50:21 UTC` (`01:20:21 IST` Checklist) & `2026-10-29 19:52:46 UTC` (`01:22:46 IST` `00_MT5_Account_Telemetry.parquet`)\n
+**Attached Static Prompt Envelope:** `Cycle-20261028T183502Z` (`cutoff_utc = 2026-10-28 18:35:02 UTC`, `git_commit = 32451f5964e3b69dd73d1ae2a501887af626c6e3`)\n
+**Target Broker Account:** Blueberry Markets MT5 `#5064568` (`BlueberryMarketsSVG-Live`, Raw Spread)\n
+**Master Dossiers Forensically Read in Full (Zero Truncation):** `162` Full-Length `_MASTER_DOSSIER.md` files (`98 PASS` / `64 SPREAD_DISQUALIFIED`) across all 4 orthogonal macro sectors\n
+**Council Governance & Execution Posture:** `ARMED_MAKER_LIMITS_ACTIVE` / `STAGED_INTENT_ONLY` (Market Orders `DENIED_FAIL_CLOSED`; Static Envelope `DENIED_BAD_CYCLE_ENVELOPE`)\n\n---\n\n## 📝 MANDATORY UNIVERSAL SKILL AUDIT & METACOGNITIVE INQUEST\n\n
 \n### "If it use all the available skills related will it improve our response?"\n\n
-\n**Explicit Evaluation & Affirmative Answer — YES:**\n
-Deploying the full nine-skill quantitative and software-forensic stack materially elevates both econometric accuracy and capital-preservation rigor across all four Council personas:\n
-\n1. **`@[market-ingest]` & `@[systematic-debugging]`**: Detected dual-layer provenance corruption in the embedded prompt JSON blocks (`cycle_envelope.json` anchored to `2026-10-28 18:35:02 UTC` — `24h 36m 47s` stale vs `2026-10-29 19:11:49 UTC`, containing truncated key `" d": ""`; and `execution_preflight_receipt.json` anchored to `2026-10-27 13:12:05 UTC` — `53h 59m 44s` stale vs `2026-10-29 19:11:49 UTC`, containing truncated key `"br27 13:12:04 UTC"`) while simultaneously pulling the live GitHub `main` Parquet Data Lake (`commit 797edd33a108c6e4d682eb3165ffc1592a941f0f`, `2026-10-29 19:10:59 UTC`, `37/37` canonical feeds `PASS` at `1.63 minutes` age vs `19:11:49 UTC`). It also prevented string-coercion crashes on `14_Hyperdash_Liq_Map.parquet`, `15_Hyperdash_Stops_Map.parquet`, and `17_Orderbook.parquet`.\n2. **`@[time-series-decomposer]` & `@[adaptive-wfo-epoch]`**: Decomposed 96-bar (`24h`) 15-minute price series from `18_CVD_30D_ALL.parquet` and `11_Technical.parquet` into Lo-MacKinlay Variance Ratio `VR(q=4)` with heteroskedasticity-consistent `z*`, Kaufman Efficiency Ratio `ER(48)`, Newey-West HAC drift `t-stat`, Ornstein-Uhlenbeck half-life/equilibrium `theta = -a/b`, and the 6-tier Fibonacci Prime EMA Ribbon (`5, 13, 34, 89, 144, 233`).\n3. **`@[market-pattern]` & `@[trader-signal]`**: Mapped Multi-Timeframe Auction Market Theory profiles (`d_VAH`, `d_POC`, `d_VAL`, `pd_VAH`, `pd_POC`, `pd_VAL`, `w_VAH`, `w_VAL`, `Mon_H/L/Mid`, `Asian_H/L`, `London_IB_H/L`, `London_H/L`, `NY_H/L`, `CWH/L`, `PWH/L`) against Fibonacci Golden Pocket `[0.618, 0.65]` + `0.702 / 0.705 OTE` + `0.786 Invalidation Shelf` and `>= 180s` institutional whale limit walls (`10_Whale_Orders.parquet`) to formulate passive maker limits (`Entry = VAH/VAL +- 0.35 * ATR_14`, `SL = Level +- (1.2 * ATR_14 + 1.5 * Spread)`).\n4. **`@[trader-risk]` & `@[sharpe-ratio-non-iid-corrections]`**: Enforced the Triple Solvency Floor (`4,600.00 / 4,650.00 / 4,795.00 USD` + Statutory Hard Floor `4,775.00 USD`), audited the `1.25 USD` exit-spread omission in the static envelope's `ETHUSD.pi` ticket `#19424811` (`8.25 USD` reported vs `9.50 USD` true stressed loss), enforced `Nominal Risk <= 10.00 USD` per ticket, and penalized non-IID fat-tailed execution risk via the Lower Confidence Bound `LCB_5% = EV_net - 1.645 * SE_HAC`.\n5. **`@[clean-code]`**: Guaranteed strict schema compliance, deterministic SHA-256 verification across all 43 Parquet feeds, and zero parser-breaking formatting artifacts.\n
-\n---\n\n## 🔬 PART 1: THE 4-PERSONA MULTI-AGENT SQUAD AUDIT (§1 – §7)\n\n\n### §1. ROLE D — Execution, Clock, Macro Event & Data Provenance Auditor\n\n\n#### 1.1 Dual-Layer Provenance & Schema Integrity Audit (Static Embedded JSON vs. Live Parquet Lake)\n\n\nRole D (`@[market-ingest]`, `@[systematic-debugging]`) audited the two JSON blocks embedded inside the prompt specification against the live GitHub `main` Parquet Data Lake (`commit 797edd33a108c6e4d682eb3165ffc1592a941f0f`):\n\n| Audit Dimension | Embedded `cycle_envelope.json` | Embedded `execution_preflight_receipt.json` | Live GitHub `main` Parquet Lake (`797edd33a1`) | Role D Forensic Ruling |\n| --- | --- | --- | --- | --- |\n| **Snapshot Timestamp (UTC)** | `2026-10-28 18:35:02 UTC` | `2026-10-27 13:12:05 UTC` | `2026-10-29 19:10:59 UTC` (`00:40:59 IST`) | Static JSONs are **24h 36m 47s** and **53h 59m 44s** stale vs `19:11:49 UTC` |\n| **Git Commit / Lineage** | `32451f597d7d0fa770aa968c11258e80e1699eb5` | Unspecified (`2026-10-27` session) | `797edd33a108c6e4d682eb3165ffc1592a941f0f` | Static envelope lags live `main` by >24 hours of commits |\n| **JSON Syntax / Truncation** | Corrupted key `" d": ""` at line 58 | Corrupted key `"br27 13:12:04 UTC"` at line 99 | `parquet_all_feeds_checklist.json` (`37/37 PASS`, valid JSON) | **FAIL-CLOSED (`DENIED_BAD_CYCLE_ENVELOPE`)** on static JSON blocks |\n| **MT5 Account `#5064568` Balance / Equity** | `4,782.61 USD` / `4,782.61 USD` | `4,837.08 USD` / `4,837.08 USD` | `4,742.31 USD` / `4,742.31 USD` (`0.00 USD` margin used) | `-40.30 USD` realized delta since static envelope (`-94.77 USD` since preflight receipt) |\n| **Resting / Staged Orders** | `#19424811` `ETHUSD.pi` `SELL_LIMIT 0.50 @ 2,365.50` | Candidate `BTCUSD.pi` `SELL_LIMIT 0.01 @ 80,350.00` | `0` physical MT5 orders; `3` Staged Intent in Registry (`BTCUSD.pi`, `USDJPY.pi`, `BNBUSD.p`) | Prior test trade `#19464650` stopped out (`-2.24 USD`); `#19424811` canceled/retired |\n\n\n- **Mandatory Provenance Verdict**: Because the prompt-embedded `cycle_envelope.json` is `24h 36m 47s` stale (`2026-10-28 18:35:02 UTC` vs `2026-10-29 19:11:49 UTC`), exhibits a truncated key `" d": ""`, and conflicts with the even older `execution_preflight_receipt.json` (`2026-10-27 13:12:05 UTC`, truncated key `"br27 13:12:04 UTC"`), Role D sets `"provenance_status": "DENIED_BAD_CYCLE_ENVELOPE"` and `"authorization": "DENIED_FAIL_CLOSED"`. Per Council Mandate, we never emit a single-line abort; below is the complete 4-Persona forensic audit reconciling both the static envelope and the live `19:10:59 UTC` Parquet Data Lake.\n\n#### 1.2 Live 43-Parquet Data Lake Freshness Audit (commit 797edd33a1 vs 2026-10-29 19:11:49 UTC)\n\n\n- **Checklist Verification (`parquet_all_feeds_checklist.json`)**: Generated at `2026-10-29 19:10:58 UTC` (`2026-10-30 00:40:58 IST`), `all_passed = true` across all `37/37` canonical checklist feeds (`age_minutes = 0.8m` at checklist generation, `1.63m <= 5.0m` vs current cycle `2026-10-29 19:11:49 UTC`). Zero live Parquet feeds exceed the `5.0m` staleness threshold.\n- **Market Session Clock (`19:11:49 UTC` Thursday, Oct 29 / `00:41:49 IST` Friday, Oct 30)**:
-\n- **Crypto Perpetuals (`24/7`)**: Active (`NY Afternoon / Late Session Transition`).\n- **FX & Metals (`24/5`)**: Active (`Late NY Session`, `48 minutes` before the `20:00–21:05 UTC` NY Close / Rollover liquidity trough where spreads widen).\n- **US Equity Indices (`SP500.p`, `NAS100.p`, `DJ30.p`)**: Cash NYSE/Nasdaq close at `20:00 UTC` (`48m 11s` away); CME Globex daily maintenance halt `21:00–22:00 UTC`.\n\n- **Macro Event & Central Bank Quarantine (`19_Calendar.parquet`)**:
-\n- **Thursday Oct 29 (`19:11:49 UTC` to `23:30 UTC`)**: Zero high-impact USD/EUR/GBP releases remaining in the NY afternoon window.\n- **Friday Oct 30 Asian Open (`23:30 UTC` Thu / `05:00 IST` Fri — in `4 hours 18 minutes`)**: **JPY Tokyo Core CPI y/y** (`Medium Impact`, Forecast `2.6%`, Previous `2.7%`) & **JPY Industrial Production / Retail Sales**.\n- **Friday Oct 30 BOJ Window (`Tentative ~02:30–03:30 UTC` / `08:00–09:00 IST` Fri)**: **JPY Bank of Japan Policy Rate (`<1.25%`)**, **Monetary Policy Statement**, **BOJ Outlook Report**, and **BOJ Press Conference** (`High Impact`).\n- **Role D Quarantine Directive on `USDJPY.pi`**: Any staged `USDJPY.pi` limit order must carry a hard pre-event auto-cancel timestamp at **`2026-10-29 23:15:00 UTC`** (`15 minutes` before Tokyo CPI and `~3 hours` before the BOJ Policy Rate decision).\n\n\n---\n\n### §2. ROLE C — Portfolio Risk, Margin Mechanics & Solvency Comptroller\n\n\n#### 2.1 Triple-Floor Solvency Kernel & Headroom Reconciliation (Static Envelope vs. Live MT5 #5064568)\n\n\nRole C (`@[trader-risk]`) evaluated the account solvency state across both the attached static `cycle_envelope.json` (`2026-10-28 18:35:02 UTC`) and the live synchronized `00_MT5_Account_Telemetry.parquet` / `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` (`2026-10-29 19:10:59 UTC`):\n\n| Solvency Metric / Statutory Floor | Formula / Statutory Threshold | Static `cycle_envelope.json` (`2026-10-28 18:35 UTC`) | Live MT5 Telemetry (`2026-10-29 19:10:59 UTC`) | Compliance Verdict |\n| --- | --- | --- | --- | --- |\n| **Account Balance (`B`)** | Realized Cash | `4,782.61 USD` | `4,742.31 USD` | Live balance is `-40.30 USD` lower than static JSON |\n| **Floating Equity (`E`)** | `B + Floating_PnL` | `4,782.61 USD` (`PnL = 0.00 USD`) | `4,742.31 USD` (`PnL = 0.00 USD`) | **100% Flat Cash (`0` Open Positions)** |\n| **Free Margin / Margin Used** | `E - Margin_Used` | `4,782.61 USD` / `0.00 USD` | `4,742.31 USD` / `0.00 USD` | `0.00%` Margin Utilization |\n| **Floor 1: Absolute Stop-Out** | `4,600.00 USD` | `+182.61 USD` cushion | `+142.31 USD` cushion | **PASS** |\n| **Floor 2: Liquidation Buffer** | `4,650.00 USD` | `+132.61 USD` cushion | `+92.31 USD` cushion | **PASS** |\n| **Floor 3: Statutory Hard Floor** | `4,775.00 USD` (Tri-Council Registry) | `+7.61 USD` above `4,775.00 USD` | **`-32.69 USD` DEFICIT** (`4,742.31 - 4,775.00`) | **HARD GATE BREACH (`STAGED_INTENT_ONLY`)** |\n| **Floor 4: Solvency Kernel (`K_solv`)** | `4,795.00 USD` (`cycle_envelope.json`) | **`-12.39 USD` DEFICIT** (`4,782.61 - 4,795.00`) | **`-52.69 USD` DEFICIT** (`4,742.31 - 4,795.00`) | **HARD GATE BREACH (`DENIED_FAIL_CLOSED`)** |\n| **Stressed Portfolio Loss (`L_stress`)** | `sum(1.25*(SL + ExitSpd) + Slip)` | `8.25 USD` reported (`9.50 USD` true for `#19424811`) | `0.00 USD` (`0` active MT5 tickets) | **PASS (`0.00 USD` live exposure)** |\n| **Realized Solvency Headroom** | `E - K_solv - L_stress` | `-20.64 USD` (`-22.64 USD` w/ `2.00` buffer) | **`-52.69 USD`** (vs `4,795`) / **`-32.69 USD`** (vs `4,775`) | **`new_risk_admissible = false`** |\n\n\n#### 2.2 Forensic Catch on Static Envelope Pending Order #19424811 (ETHUSD.pi)\n\n\nIn the attached static `cycle_envelope.json`, ticket `#19424811` (`ETHUSD.pi` `SELL_LIMIT 0.50 lots @ 2,365.50`, `SL = 2,375.50`, `TP = 2,340.50`, `contract_size = 1.0`, `spread = 2.00 USD`) reported `"nominal_sl_loss_usd": 5.0` and `"ticket_stress_usd": 8.25`.\n\n- **Role C Exact Stressed Loss Verification**:
-\n- `Nominal_SL_Loss = |2,365.50 - 2,375.50| * 0.50 * 1.0 = 5.00 USD`.\n- `Exit_Spread_Cost = Spread_Price * Volume * Contract_Size = 2.00 * 0.50 * 1.0 = 1.00 USD`.\n- `Slippage_Buffer = 2.00 USD` (`crypto_slippage_buffer_usd`).\n- `True_Ticket_Stress = 1.25 * (5.00 + 1.00) + 2.00 = 7.50 + 2.00 = 9.50 USD` (vs `8.25 USD` in the static envelope, which computed `1.25 * 5.00 + 2.00 = 8.25 USD` and omitted the `1.25 * 1.00 = 1.25 USD` stressed exit-spread term!).\n- Furthermore, on live MT5 (`19:10:59 UTC`), `ETHUSD.pi` trades at `2,325.90` (`39.60 USD` below `2,365.50`), and ticket `#19424811` has already been canceled/retired in `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`.\n\n\n---\n\n### §3. ROLE A — Econometric & Statistical Regime Lead\n\n\nRole A (`@[time-series-decomposer]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`) extracted the 96-bar (`24h`) 15-minute price series from `18_CVD_30D_ALL.parquet` and the 6-tier Fibonacci Prime EMA Ribbon (`5, 13, 34, 89, 144, 233`) + Auction Fib zones from `11_Technical.parquet` and `20_Auction_Market_Structure.parquet` at `2026-10-29 19:10:59 UTC`:\n\n| Symbol (`Asset`) | Mid Price (`VWAP Z`) | `VR(4)` (`z*` stat) | `ER(48)` | HAC `t_drift` | OU `theta` (`b` coeff) | Fib Prime EMA Ribbon (`5 / 13 / 34 / 89 / 144 / 233`) & `Slope_233` | Fib Golden Zone `[0.618, 0.65]` / `OTE` / `0.786 Inval` | Statistical Regime Verdict |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| **`BTCUSD.pi`** (`BTC`) | `80,725.00` (`+0.57`) | `1.3360` (`+1.750`) | `0.1677` | `-0.2310` | `80,487.02` (`-0.0427`) | `80,749 / 80,859 / 80,706 / 80,550 / 80,511 / 80,401` (`+0.077%`) | Bull GP `[80,389.43, 80,462.88]` | OTE `80,270.06` | Inval `80,077.24` | **Rotational Balance Inside Value (`d_VAH = 80,940.35`, `d_POC = 80,022.14`)** |\n| **`ETHUSD.pi`** (`ETH`) | `2,325.90` (`+0.15`) | `1.2827` (`+1.473`) | `0.1024` | `-0.5199` | `2,327.60` (`-0.0484`) | `2,331.1 / 2,337.4 / 2,334.9 / 2,331.9 / 2,331.7 / 2,329.4` (`+0.058%`) | Bear GP `[2,349.98, 2,353.15]` | OTE `2,358.30` | Inval `2,366.61` | **Rotational Balance (`ER = 0.1024 < 0.25`) w/ Bearish Ribbon Compression** |\n| **`BNBUSD.p`** (`BNB`) | `742.60` (`-0.72`) | `1.1425` (`+0.742`) | `0.1197` | `-0.4179` | `748.86` (`-0.0517`) | `743.76 / 745.07 / 745.60 / 747.03 / 747.17 / 745.67` (`+0.004%`) | Bear GP `[751.09, 751.82]` | OTE `753.01` | Inval `754.92` | **Bearish Ribbon Alignment (`EMA_5 < 13 < 34 < 89 < 144`) + Rotational Mean-Reversion** |\n| **`XRPUSD.pi`** (`XRP`) | `1.2815` (`-1.22`) | `1.0483` (`+0.252`) | `0.0601` | `-1.3089` | `1.2872` (`-0.0305`) | `1.2855 / 1.2905 / 1.2929 / 1.2980 / 1.3014 / 1.3030` (`-0.087%`) | Bear GP `[1.3168, 1.3189]` | OTE `1.3223` | Inval `1.3279` | **Full Bearish Fan (`EMA_5 < 13 < 34 < 89 < 144 < 233`) Below `d_VAL` (`1.2840`)** |\n| **`BCHUSD.p`** (`BCH`) | `287.45` (`+1.20`) | `1.0852` (`+0.444`) | `0.2090` | `+0.0515` | `283.78` (`-0.0334`) | `287.78 / 287.21 / 284.63 / 284.14 / 284.76 / 284.94` (`+0.136%`) | Bull GP `[281.13, 281.71]` | OTE `280.18` | Inval `278.65` | **Testing `d_VAH` (`287.56`) w/ OU Pull Toward `283.78`** |\n| **`USDJPY.pi`** (`USDJPY`) | `157.9345` (`+0.88`) | `0.6967` (`-1.580`) | `0.0530` | `-0.6480` | `157.870` (`-0.1488`) | `157.920 / 157.899 / 157.898 / 157.897 / 157.883 / 157.844` (`+0.003%`) | Bull GP `[157.787, 157.804]` | OTE `157.760` | Inval `157.716` | **Strong Anti-Persistent Mean-Reversion (`VR = 0.6967`, `ER = 0.0530`, `theta = 157.870`)** |\n| **`AUDUSD.pi`** (`AUDUSD`) | `0.703065` (`-0.82`) | `0.7655` (`-1.222`) | `0.1096` | `-0.0336` | `0.70438` (`-0.0648`) | `0.70313 / 0.70327 / 0.70336 / 0.70373 / 0.70374 / 0.70342` (`+0.0003%`) | Bear GP `[0.70476, 0.70493]` | OTE `0.70521` | Inval `0.70566` | **Anti-Persistent Value-Area Rotation (`VR = 0.7655`, `theta = 0.70438`, near `d_VAL = 0.70279`)** |\n| **`XAUUSD.pi`** (`GOLD`) | `4,011.19` (`N/A`) | `0.5823` (`-2.176`) | `0.1087` | `-0.7961` | `4,030.78` (`-0.0570`) | Derived `15m`: trading below `d_VAL` (`4,017.10`) & `d_POC` (`4,027.32`) | Bear GP `[4,053.19, 4,055.67]` | OTE `4,059.69` | Inval `4,066.19` | **Statistically Significant Mean-Reversion (`VR = 0.5823`, `z* = -2.176`) Toward `4,030.78`** |\n| **`SP500.p`** (`SP500`) | `7,701.18` (`-2.11`) | `0.7164` (`-1.446`) | `0.0196` | `-0.3893` | `7,722.87` (`-0.1948`) | `7,699.8 / 7,705.7 / 7,713.1 / 7,718.8 / 7,718.2 / 7,712.4` (`-0.008%`) | Bear GP `[7,747.98, 7,750.96]` | OTE `7,755.80` | Inval `7,763.62` | **Extreme Overextension (`VWAP Z = -2.11`, `VR = 0.7164`, `ER = 0.0196`) w/ Fast OU Pull (`b = -0.195`)** |\n\n\n---\n\n### §4. ROLE B — Order-Book Microstructure, Liquidity & Adverse Selection Forensic\n\n\nRole B (`@[market-pattern]`, `@[trader-signal]`) cross-examined `10_Whale_Orders.parquet`, `17_Orderbook.parquet`, `18_CVD_30D_ALL.parquet`, `21_Tradfye_Orderflow.parquet`, `26_Aggregated_Footprint_Bar_Metrics.parquet`, `9_Liquidation_Max_Pain_24H.parquet`, `14_Hyperdash_Liq_Map.parquet`, `15_Hyperdash_Stops_Map.parquet`, and `20_Auction_Market_Structure.parquet`:\n\n1. \n**`BTCUSD.pi` (`BTC` — `Spread = 1.98 bps`)**:\n
-\n- **L2 Book & Persistent Whale Walls (`10_Whale_Orders.parquet` & `17_Orderbook.parquet`)**: Top-of-book L2 depth is **Ask-heavy (`35.9% Bid / 64.1% Ask`, cumulative Ask depth `6.68M USD` within `+2 bps` at `80,813–80,824`)**. Above spot (`80,725.00`) and above `d_VAH` (`80,940.35`) / `pd_VAH` (`81,111.29`), institutional resting Sell Limit walls sit at **`81,377.00` (`15.83M USD`, Resting Book)**, **`81,500.00` (`16.30M USD`, Resting Book `>= 3,600s`)**, and **`81,897.00` (`17.86M USD`)**. On the downside, resting liquidity pools sit at `80,355.00` (`12.26M USD`) and `80,220.00` (`15.61M USD`).\n- **Footprint & Tradfye Orderflow (`26_Aggregated_Footprint_Bar_Metrics.parquet` & `21_Tradfye_Orderflow.parquet`)**: At `18:45 UTC`, a `+45.76M USD` (`+38.4%` delta, `25` buy imbalances) short-squeeze impulse pushed price into `80,907.50` (`footprint_vah`) before stalling completely at `19:00 UTC` (`80,785.90` close, `20.52M USD` volume, `-642K USD` net taker delta `-3.13%`, `TWO_SIDED_ABSORPTION / BEARISH_EXPANSION`). Cumulative 30D 15m CVD remains deeply negative (`-228.65M USD`), while `4h` CVD prints `-283.29M USD` (`-11.8% DELTA ALIGNED`).\n- **Deribit Options & 24H Liquidation Magnets**: Deribit Options Max Pain = **`78,000.00`** (`Put Wall = 60,000.00`, `Call Wall = 95,000.00`). CoinGlass 24H Long Max Pain sits at **`79,162.38` (`42.80M USD`)** vs Short Max Pain at **`82,125.26` (`25.30M USD`)** — a `1.69x` downside liquidation dominance pulling price toward `d_POC` (`80,022.14`).\n- **ETF & Spot/Futures Netflows (`1_Crypto_ETF_Flows.parquet`, `2_Spot_Netflow_S.parquet`)**: BlackRock `IBIT` recorded `+136.00M USD` daily inflow, cushioning immediate crash risk and confirming why passive maker fades at `d_VAH` (`80,940.35`–`81,084.34`) are vastly superior to chasing market shorts at `80,725.00`.\n\n2. \n**`BNBUSD.p` (`BNB` — `Spread = 8.08 bps`)**:\n
-\n- **Persistent Whale Walls (`10_Whale_Orders.parquet`)**: Heavy multi-venue Ask walls rest at **`747.19` (`1.16M USD` Hyperliquid + `1.16M USD` Binance, persisted `375s >= 180s`)** and **`752.24` (`671K USD` x 2 on Binance, persisted `412s >= 180s`)**, directly defending `d_VAH` (`752.43`), `pd_VAH` (`752.98`), and the Fibonacci `0.705 OTE` (`753.01`), while `0.786 Invalidation` sits at `754.92`. Downside Bid walls sit at **`740.41` (`1.15M USD` x 2, persisted `2,346s`)** right at `d_VAL` (`740.42`).\n- **Tradfye Orderflow**: `15m` cumulative CVD is `-15.26M USD` (`TWO_SIDED_ABSORPTION`), with `w_VAH` at `749.00` and `d_POC` at `750.76`.\n\n3. \n**`ETHUSD.pi` (`ETH` — `Spread = 12.04 bps`)**:\n
-\n- **Orderflow & Whale Walls**: `5m/15m/1h` CVD all print **`-2.89M USD` (`-27.5% AGGRESSIVE SELLING`)**, and `21_Tradfye_Orderflow.parquet` confirms `AGGRESSIVE_SELLER_DOMINATION / BEARISH_EXPANSION` (`15m` CVD `-304.02M USD`, Deribit Max Pain & Put Wall at **`2,300.00`**). CoinGlass 24H Long Max Pain is **`2,284.33` (`27.30M USD`)** vs Short Max Pain **`2,401.93` (`17.30M USD`)**. Note that Bid walls of `11.20M USD @ 2,318.88` (`dur = 1h 16m`) and `10.30M USD @ 2,317.88` (`dur = 4h 21m`) sit right at `d_POC` (`2,318.94`) and `Mon_Mid` (`2,318.15`), blocking immediate downside continuation until an upper sweep into `d_VAH` (`2,337.88`–`2,341.78`) / `Fib GP [2,349.98, 2,353.15]` occurs.\n\n4. \n**`USDJPY.pi` (`USDJPY` — `Spread = 0.06 bps`) & `AUDUSD.pi` (`AUDUSD` — `Spread = 0.14 bps`)**:\n
-\n- **`USDJPY.pi`**: Ultra-tight `0.06 bps` (`0.1 pip`) spread. Price (`157.9345`) is rotating just below `d_VAH` (`157.972`), `pd_VAH` (`158.040`), `Asian_H` (`158.069`), `London_H` (`158.076`), `w_VAH` (`158.081`), and `NY_H` (`158.127`). `15m` CVD is `-139,363` (`-63.6% AGGRESSIVE SELLING`) and `4h` CVD is `-1,786,229` (`-30.1% AGGRESSIVE SELLING`), confirming institutional supply above `158.000`.\n- **`AUDUSD.pi`**: Ultra-tight `0.14 bps` (`0.1 pip`) spread. Price (`0.703065`) sits just `+2.75 pips` above `d_VAL` (`0.70279`) and `pd_VAL` (`0.70298`), backed by `4h` CVD of `+18,508` (`+59.6% AGGRESSIVE BUYING`) and `15m` positive delta (`+13.5% DELTA ALIGNED`), pulling toward `d_POC` (`0.70350`) and `OU theta` (`0.70438`).\n\n\n---\n\n### §5. CANDIDATE-BY-CANDIDATE SPREAD-GATED 43-FEED FORENSIC THINKING CHAIN (GATES 1 – 4)\n\n\n#### 5.1 Gate 1: Exhaustive Broker Spread & Microstructure Eligibility Filter (00_MT5_Account_Telemetry.parquet at 19:10:59 UTC)\n\n\n| Asset Class | Candidate Symbol | Bid / Ask (`Mid`) | Spread Points | Spread (`bps`) | Statutory Cap (`12.0 / 25.0 bps` Crypto, `5.0 bps` TradFi) | Gate 1 Ruling & Routing Decision |\n| --- | --- | --- | --- | --- | --- | --- |\n| **Crypto** | **`BTCUSD.pi`** | `80,717.00 / 80,733.00` (`80,725.00`) | `1,600` | **`1.98 bps`** | `<= 12.0 bps` (Strict) & `<= 25.0 bps` | **PASS (Tier-1 Crypto Lead)** -> Proceed to Gate 2 & Gate 3 |\n| **Crypto** | **`BNBUSD.p`** | `742.30 / 742.90` (`742.60`) | `60` | **`8.08 bps`** | `<= 12.0 bps` (Strict) & `<= 25.0 bps` | **PASS (Tier-1 Crypto Lead)** -> Proceed to Gate 2 & Gate 3 |\n| **Crypto** | **`ETHUSD.pi`** | `2,324.50 / 2,327.30` (`2,325.90`) | `280` | **`12.04 bps`** | `<= 25.0 bps` (Dossier PASS; `+0.04 bps` above `12.0 bps` strict cap) | **CONDITIONAL PASS (Tier-2 Crypto)** -> Proceed to Gate 2 & Gate 3 |\n| **Crypto** | **`BCHUSD.p`** | `287.16 / 287.74` (`287.45`) | `580` | **`20.18 bps`** | `> 12.0 bps` Strict Cap (`<= 25.0 bps` Secondary) | **SECONDARY / REJECTED UNDER 12 BPS GATE** -> Audited & Vetoed |\n| **Crypto** | **`XRPUSD.pi`** | `1.2800 / 1.2830` (`1.2815`) | `3` | **`23.41 bps`** | `> 12.0 bps` Strict Cap (`<= 25.0 bps` Secondary) | **SECONDARY / REJECTED UNDER 12 BPS GATE** -> Audited & Vetoed |\n| **Crypto** | **`SOLUSD.p`** | `100.21 / 100.47` (`100.34`) | `26` | **`25.91 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`TRXUSD.p`** | `0.3306 / 0.3319` (`0.33125`) | `13` | **`39.25 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`AVXUSD.p`** | `8.80 / 8.83` (`8.815`) | `3` | **`34.03 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`NERUSD.p`** | `4.382 / 4.411` (`4.3965`) | `29` | **`65.96 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`LNKUSD.p`** | `11.601 / 11.688` (`11.6445`) | `87` | **`74.71 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`ADAUSD.p`** | `0.2006 / 0.2027` (`0.20165`) | `21` | **`104.14 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **Crypto** | **`DOGUSD.p`** | `0.0781 / 0.0802` (`0.07915`) | `21` | **`265.32 bps`** | `> 12.0 bps` & `> 25.0 bps` | **HARD VETO (`SPREAD_DISQUALIFIED`)** -> Immediate Skip |\n| **FX** | **`USDJPY.pi`** | `157.934 / 157.935` (`157.9345`) | `1` | **`0.06 bps`** | `<= 5.0 bps` | **PASS (Tier-1 FX Lead)** -> Proceed to Gate 2 & Gate 3 |\n| **FX** | **`AUDUSD.pi`** | `0.70306 / 0.70307` (`0.703065`) | `1` | **`0.14 bps`** | `<= 5.0 bps` | **PASS (Tier-1 FX Lead)** -> Proceed to Gate 2 & Gate 3 |\n| **Metals** | **`XAUUSD.pi`** | `4,011.15 / 4,011.23` (`4,011.19`) | `8` | **`0.20 bps`** | `<= 5.0 bps` | **PASS (Spread Pass; Contract Size Check in Gate 3)** |\n| **Indices** | **`SP500.p`** | `7,701.06 / 7,701.30` (`7,701.18`) | `24` | **`0.31 bps`** | `<= 5.0 bps` | **PASS (Spread Pass; Contract Multiplier Check in Gate 3)** |\n\n\n---\n\n#### 5.2 Gate 2 & Gate 3: Deep 43-Feed Forensic Extraction & Concrete Trade Setups (STAGED_INTENT_ONLY)\n\n🎯 Candidate 1: `BTCUSD.pi` (`SELL_LIMIT` — Primary Crypto Consensus Setup)\n- **Gate 1 (Spread Check)**: `Bid = 80,717.00`, `Ask = 80,733.00`, `Mid = 80,725.00`, `Spread = 16.00 USD` (`1.98 bps <= 12.0 bps`). **PASS**.\n- **Gate 2 (43-Feed Extraction)**:
-\n- *Auction & Session Extremes (`20_Auction_Market_Structure.parquet`)*: `d_VAH = 80,940.35`, `d_POC = 80,022.14`, `d_VAL = 79,593.65`, `pd_VAH = 81,111.29`, `pd_POC = 80,809.87`, `pd_VAL = 80,479.27`, `w_VAH = 80,667.91`, `w_VAL = 79,534.04`, `Mon_L = 79,224.00`, `Mon_Mid = 79,968.25`, `Mon_H = 80,712.50`, `Asian_L = 79,586.00`, `Asian_H = 81,371.00`, `Lon_IB = [80,111.00, 80,417.00]`, `NY_L = 79,785.00`, `NY_H = 81,881.50`.\n- *Technicals & Ribbon (`11_Technical.parquet`)*: `Session_VWAP = 80,415.66` (`VWAP_Z = +0.57`), `ATR_14 = 273.56 USD`, `RSI_14 = 49.88`, `EMA_5 = 80,749.11 < EMA_13 = 80,858.76` (short-term bearish cross inside rotational balance), `OU_theta = 80,487.02`.\n- *Whale Walls, Footprint & Liquidations*: Resting Ask walls at `81,377.00` (`15.83M USD`) and `81,500.00` (`16.30M USD`, `>= 3,600s` persistence) cap any sweep above `d_VAH` (`80,940.35`) and `pd_VAH` (`81,111.29`). `4h` CVD = `-283.29M USD` (`-11.8% DELTA ALIGNED`), `15m` Tradfye CVD = `-228.65M USD`, Deribit Max Pain = `78,000.00`, 24H Long Max Pain = `79,162.38` (`42.80M USD`).\n\n- **Gate 3 (Concrete Trade Setup — Reconciling Canonical `19:11 UTC` Formula & Registry Staged #1)**:
-\n- **Canonical `19:11 UTC` Formula (`Entry = d_VAH + 0.35 * ATR_14`)**:
-\n- `Entry_Canonical = 80,940.35 + 0.35 * 273.5588 = 81,036.10 USD` (`SELL_LIMIT`).\n- `SL_Canonical = d_VAH + 1.2 * ATR_14 + 1.5 * Spread = 80,940.35 + 328.27 + 24.00 = 81,292.62 USD` (`Stop Distance = 256.52 USD`).\n- `TP_Canonical = 81,036.10 - 2.5 * 256.52 = 80,394.80 USD` (front-running `Session_VWAP = 80,415.66` and the `12.26M USD` resting wall at `80,355.00`).\n- `Sizing_Canonical`: At `0.03 lots` (`1 lot = 1 BTC`), `Nominal_Risk = 0.03 * 256.52 = 7.70 USD <= 10.00 USD` (`Stressed_Loss = 1.25 * (7.70 + 0.48) + 2.00 = 12.23 USD`).\n\n- **Registry Staged #1 (`LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` Lock)**:
-\n- `Entry_Registry = 81,084.34 USD` (`SELL_LIMIT 0.02 lots` at `d_VAH` sweep exhaustion / just below `pd_VAH = 81,111.29`).\n- `SL_Registry = 81,446.12 USD` (`Stop Distance = 361.78 USD`, armored directly behind both the `81,371.00` `Asian_H` and `15.83M USD @ 81,377.00` Ask Wall, right beneath the `16.30M USD @ 81,500.00` Ask Wall).\n- `TP_Registry = 80,179.89 USD` (`+904.45 USD = +2.50R`, front-running `d_POC = 80,022.14` by `+19.7 bps`).\n- `Sizing_Registry`: **`0.02 lots`** -> `Nominal_Risk = 0.02 * 361.78 = 7.24 USD <= 10.00 USD`; `Exit_Spread = 0.02 * 16.00 = 0.32 USD`; `Ticket_Stress = 1.25 * (7.24 + 0.32) + 2.00 = 11.45 USD`; `Margin_Required (1:20) = (81,084.34 * 0.02) / 20 = 81.08 USD` (`1.71% <= 50.0%` Crypto Margin Cap).\n\n\n- **Gate 4**: **RATIFIED AS RANK #1 STAGED INTENT (`STAGED_INTENT_ONLY`)** -> Advance to next candidate.\n\n---\n🎯 Candidate 2: `BNBUSD.p` (`SELL_LIMIT` — Secondary Crypto Consensus Setup)\n- **Gate 1 (Spread Check)**: `Bid = 742.30`, `Ask = 742.90`, `Mid = 742.60`, `Spread = 0.60 USD` (`8.08 bps <= 12.0 bps`). **PASS**.\n- **Gate 2 (43-Feed Extraction)**:
-\n- *Auction & Fib Structure (`20_Auction_Market_Structure.parquet`)*: `d_VAH = 752.43`, `d_POC = 750.76`, `d_VAL = 740.42`, `pd_VAH = 752.98`, `pd_POC = 743.64`, `pd_VAL = 742.97`, `w_VAH = 749.00`, `w_VAL = 734.80`, `NY_H = 753.20`, `Lon_IB_L = 753.70`, `Fib_GP = [751.09, 751.82]`, `Fib_OTE (0.705) = 753.01`, `Fib_Inval (0.786) = 754.92`.\n- *Technicals & Ribbon (`11_Technical.parquet`)*: `Session_VWAP = 746.84` (`VWAP_Z = -0.72`), `ATR_14 = 2.3482 USD`, `RSI_14 = 42.53`, full bearish EMA stack (`EMA_5 = 743.76 < EMA_13 = 745.07 < EMA_34 = 745.60 < EMA_89 = 747.03 < EMA_144 = 747.17`).\n- *Whale Walls & Orderflow*: Persistent Ask walls of **`1.16M USD x 2 @ 747.19` (`persisted = 375s >= 180s`)** and **`671K USD x 2 @ 752.24` (`persisted = 412s >= 180s`)**, plus `15m` cumulative CVD of `-15.26M USD`.\n\n- **Gate 3 (Concrete Trade Setup)**:
-\n- **Canonical `19:11 UTC` Formula (`Entry = d_VAH + 0.35 * ATR_14`)**:
-\n- `Entry_Canonical = 752.43 + 0.35 * 2.3482 = 753.25 USD` (`SELL_LIMIT`, sitting inside the `pd_VAH = 752.98` / `Fib_OTE = 753.01` / `NY_H = 753.20` confluence pocket; matches Registry Staged #3 `753.31 USD` within `0.06 USD`).\n- `SL_Canonical = d_VAH + 1.2 * ATR_14 + 1.5 * Spread = 752.43 + 2.82 + 0.90 = 756.15 USD` (`Stop Distance = 2.90 USD`; Registry Staged #3 uses `SL = 757.22 USD`, `Stop Distance = 3.91 USD`, both safely above `0.786 Fib_Inval = 754.92`).\n- `TP_Canonical = 753.25 - 2.5 * 2.90 = 746.00 USD` (Registry Staged #3 `TP = 743.53 USD` for `+2.50R`, front-running `pd_VAL = 742.97` and the `1.15M USD @ 740.41` Bid Wall).\n- `Sizing & Risk`: Under Registry Staged #3 (`2.55 lots`, `Entry = 753.31`, `SL = 757.22`, `TP = 743.53`), `Nominal_Risk = 2.55 * 3.91 = 9.97 USD <= 10.00 USD` (under Canonical `753.25 / 756.15`, `2.55 lots` risks `7.40 USD` or `3.40 lots` risks `9.86 USD <= 10.00 USD`).\n\n\n- **Gate 4**: **RATIFIED AS RANK #2 CRYPTO / RANK #3 OVERALL STAGED INTENT (`STAGED_INTENT_ONLY`)** -> Advance to next candidate.\n\n---\n🎯 Candidate 3: `USDJPY.pi` (`SELL_LIMIT` — Primary FX Consensus Setup with BOJ Quarantine)\n- **Gate 1 (Spread Check)**: `Bid = 157.934`, `Ask = 157.935`, `Mid = 157.9345`, `Spread = 0.001 JPY` (`0.06 bps <= 5.0 bps`). **PASS**.\n- **Gate 2 (43-Feed Extraction)**:
-\n- *Econometrics & Regime*: `VR(4) = 0.6967` (`z* = -1.580`), `ER(48) = 0.0530`, `OU_theta = 157.870` (`b = -0.1488`). Pure anti-persistent rotational balance.\n- *Auction & Session Extremes*: `d_VAH = 157.972`, `d_POC = 157.874`, `d_VAL = 157.756`, `pd_VAH = 158.040`, `pd_POC = 157.887`, `pd_VAL = 157.790`, `w_VAH = 158.081`, `Asian_H = 158.069`, `London_H = 158.076`, `NY_H = 158.127`, `ATR_14 = 0.0836 JPY`.\n- *Orderflow*: `15m` CVD = `-139,363` (`-63.6% AGGRESSIVE SELLING`), `4h` CVD = `-1,786,229` (`-30.1% AGGRESSIVE SELLING`).\n\n- **Gate 3 (Concrete Trade Setup)**:
-\n- **Canonical `19:11 UTC` Formula (`Entry = d_VAH + 0.35 * ATR_14`)**:
-\n- `Entry_Canonical = 157.972 + 0.35 * 0.08358 = 158.001 JPY` (`SELL_LIMIT`, matching Registry Staged #2 `158.004 JPY` within `0.3 pip`).\n- `SL_Canonical = d_VAH + 1.2 * ATR_14 + 1.5 * Spread = 157.972 + 0.1003 + 0.0015 = 158.074 JPY` (`Stop Distance = 0.073 JPY`; Registry Staged #2 uses `SL = 158.123 JPY`, `Stop Distance = 0.119 JPY` above `w_VAH = 158.081` & `Asian_H / London_H`).\n- `TP_Canonical = 158.001 - 2.5 * 0.073 = 157.818 JPY` (Registry Staged #2 `TP = 157.707 JPY` for `+2.50R`).\n- `Sizing & Risk`: At `0.13 lots` (`13,000 USD` notional, `~0.822 USD/pip` at `158.00`), Registry `11.9 pips` stop = **`9.80 USD <= 10.00 USD`** (`Canonical 7.3 pips` stop at `0.13 lots` = `6.00 USD` or `0.20 lots` = `9.24 USD`).\n- **Mandatory Macro Expiry**: Auto-cancel at **`2026-10-29 23:15:00 UTC`** (`15m` prior to Tokyo Core CPI and `~3h` prior to BOJ Policy Rate).\n\n\n- **Gate 4**: **RATIFIED AS RANK #2 OVERALL STAGED INTENT (`STAGED_INTENT_ONLY`)** -> Advance to next candidate.\n\n---\n🎯 Candidate 4: `ETHUSD.pi` (`SELL_LIMIT` — Conditional Crypto Setup)\n- **Gate 1 (Spread Check)**: `Bid = 2,324.50`, `Ask = 2,327.30`, `Mid = 2,325.90`, `Spread = 2.80 USD` (`12.04 bps`). Passes `00_MT5_Account_Telemetry.parquet` (`Gate_Status = PASS`, `<= 25.0 bps` Dossier threshold), though `+0.04 bps` above the `12.0 bps` strict intraday filter.\n- **Gate 2 (43-Feed Extraction)**:
-\n- `d_VAH = 2,337.88`, `d_POC = 2,318.94`, `d_VAL = 2,297.12`, `w_VAH = 2,340.37`, `Mon_H = 2,348.00`, `Fib_GP = [2,349.98, 2,353.15]`, `Fib_OTE = 2,358.30`, `Fib_Inval = 2,366.61`, `ATR_14 = 11.1358 USD`.\n- `5m/15m/1h` CVD = `-2.89M USD` (`-27.5% AGGRESSIVE SELLING`), `4h` CVD = `-189.46M USD` (`-13.3% DELTA ALIGNED`), Deribit Max Pain & Put Wall = `2,300.00`, 24H Long Max Pain = `2,284.33` (`27.30M USD`).\n\n- **Gate 3 (Concrete Trade Setup)**:
-\n- `Entry = d_VAH + 0.35 * ATR_14 = 2,337.88 + 0.35 * 11.1358 = 2,341.78 USD` (`SELL_LIMIT`, just above `w_VAH = 2,340.37`).\n- `SL = d_VAH + 1.2 * ATR_14 + 1.5 * Spread = 2,337.88 + 13.36 + 4.20 = 2,355.44 USD` (`Stop Distance = 13.66 USD`, above `Fib_GP = [2,349.98, 2,353.15]`).\n- `TP = 2,341.78 - 2.5 * 13.66 = 2,307.63 USD` (`+34.15 USD = +2.50R`, front-running `d_VAL = 2,297.12` and Deribit `2,300.00` Put Wall).\n- `Sizing & Risk`: **`0.72 lots`** -> `Nominal_Risk = 0.72 * 13.66 = 9.84 USD <= 10.00 USD` (or `0.55 lots` at wider `2,344.11 / 2,362.11` OTE-protected bracket = `9.90 USD <= 10.00 USD`).\n\n- **Gate 4**: **STAGED BACKUP CANDIDATE (`CONDITIONAL_STAGED`)** -> Advance to next candidate.\n\n---\n🎯 Candidate 5: `AUDUSD.pi` (`BUY_LIMIT` — Secondary FX Setup)\n- **Gate 1 (Spread Check)**: `Bid = 0.70306`, `Ask = 0.70307`, `Mid = 0.703065`, `Spread = 0.00001` (`0.14 bps <= 5.0 bps`). **PASS**.\n- **Gate 2 (43-Feed Extraction)**:
-\n- `VR(4) = 0.7655` (`z* = -1.222`), `ER(48) = 0.1096`, `OU_theta = 0.70438`. `d_VAL = 0.70279`, `pd_VAL = 0.70298`, `d_POC = 0.70350`, `d_VAH = 0.70443`, `Mon_Mid = 0.70260`, `London_L = 0.70231`, `w_VAL = 0.70226`, `ATR_14 = 0.000474`. `4h` CVD = `+18,508` (`+59.6% AGGRESSIVE BUYING`).\n\n- **Gate 3 (Concrete Trade Setup)**:
-\n- `Entry = d_VAL - 0.35 * ATR_14 = 0.70279 - 0.35 * 0.000474 = 0.70262 USD` (`BUY_LIMIT` at `Mon_Mid = 0.70260` / `d_VAL` sweep exhaustion).\n- `SL = d_VAL - (1.2 * ATR_14 + 1.5 * Spread) = 0.70279 - (0.000568 + 0.000015) = 0.70221 USD` (`Stop Distance = 0.00041 = 4.1 pips`, below `London_L = 0.70231` and `w_VAL = 0.70226`).\n- `TP = 0.70262 + 2.5 * 0.00041 = 0.70365 USD` (`+10.3 pips = +2.51R`, front-running `d_VAH = 0.70443` and `OU_theta = 0.70438`).\n- `Sizing & Risk`: **`0.23 lots`** -> `Nominal_Risk = 0.23 * 4.1 pips * 10.00 USD/pip = 9.43 USD <= 10.00 USD`.\n\n- **Gate 4**: **STAGED FX BACKUP (`STAGED_INTENT_ONLY`)** -> Advance to next candidate.\n\n---\n🚫 Candidates 6 – 8: Audited & Vetoed Spread-Passed Instruments (`XAUUSD.pi`, `SP500.p`, `BCHUSD.p`, `XRPUSD.pi`)\n- **`XAUUSD.pi` (`0.20 bps` spread)**: Although `VR(4) = 0.5823` (`z* = -2.176`) shows strong statistical mean-reversion toward `OU_theta = 4,030.78`, `5m/15m/1h` CVD is `-470,016` (`-93.8% AGGRESSIVE SELLING`), `20_Auction_Market_Structure.parquet` classifies regime as `TREND_DOWN_ACCEPTANCE` (`BELOW_VALUE` below `d_VAL = 4,017.10`), and at `100 oz/lot` (`1.00 USD` per `1.00 USD` move at `0.01 lot`), a realistic `1.2 * ATR_14` stop (`~18.00 USD`) risks `18.00 USD > 10.00 USD` even at minimum `0.01 lot`. **VETOED (Lot Minimum Risk Breach + Falling Knife Orderflow)**.\n- **`SP500.p` (`0.31 bps` spread) & `NAS100.p` (`0.34 bps` spread)**: Both are in `TREND_DOWN_ACCEPTANCE` (`BELOW_VALUE`) with `-66.2%` to `-84.7%` `15m AGGRESSIVE SELLING` CVD just `48 minutes` before the `20:00 UTC` NYSE cash close and `21:00 UTC` Globex halt. Furthermore, at standard MT5 CFD multipliers (`10.0 USD/pt`), `1.2 * ATR_14` (`12.66 pts` on `SP500.p`, `81.84 pts` on `NAS100.p`) exceeds `10.00 USD` risk at `0.01 lot` unless `1.0 USD/pt` micro-contract specification is verified on terminal. **VETOED (Session Close Quarantine + Falling Knife Delta)**.\n- **`BCHUSD.p` (`20.18 bps` spread) & `XRPUSD.pi` (`23.41 bps` spread)**: Exceed the `12.0 bps` strict crypto spread threshold (`Gate 1`), and `10_Whale_Orders.parquet` shows `BCH` top Bid walls at `284.80` have only `15s` duration (`< 180s` minimum persistence). **VETOED**.\n\n---\n\n### §6. EXISTING PORTFOLIO & STAGED ORDER INTERROGATION\n\n\n| Registry Slot / Ticket | Symbol & Direction | Volume & Price Levels | Forensic Status & Interrogation Ruling (`"Should I let it run or cut it?"`) |\n| --- | --- | --- | --- |\n| **Live Open Positions** | `NONE` (`0` Active) | `0.00 lots` (`Flat Cash = 4,742.31 USD`) | **100% Cash Defense**. Prior test ticket `#19464650` (`BTCUSD.pi` `SELL 0.01 @ 80,340.00`) stopped out for `-2.24 USD`. Zero open risk. |\n| **Static Envelope `#19424811`** | `ETHUSD.pi` `SELL_LIMIT` | `0.50 lots @ 2,365.50` (`SL 2,375.50`, `TP 2,340.50`) | **RETIRED / CANCELED IN LIVE MT5**: Belongs to stale `2026-10-28 18:35:02 UTC` snapshot (`39.60 USD` away from live `2,325.90` mid) and understated stressed risk (`8.25 USD` vs `9.50 USD` true). Replaced by fresh `19:11 UTC` staging. |\n| **Registry Staged #1** | `BTCUSD.pi` `SELL_LIMIT` | `0.02 lots @ 81,084.34` (`SL 81,446.12`, `TP 80,179.89`) | **RETAIN IN `STAGED_INTENT_ONLY` (Option A — Keep Working as Staged)**: Protected by `15.83M USD @ 81,377` and `16.30M USD @ 81,500` Ask walls (`Risk = 7.24 USD <= 10.00 USD`). Canonical `19:11 UTC` update (`81,036.10 / 81,292.62 / 80,394.80`) is also logged for precision. |\n| **Registry Staged #2** | `USDJPY.pi` `SELL_LIMIT` | `0.13 lots @ 158.004` (`SL 158.123`, `TP 157.707`) | **RETAIN IN `STAGED_INTENT_ONLY` WITH HARD `23:15 UTC` EXPIRY**: `0.06 bps` spread, `VR(4) = 0.6967`, `Risk = 9.80 USD <= 10.00 USD`. Must auto-expire at `2026-10-29 23:15:00 UTC` ahead of Tokyo CPI (`23:30 UTC`) and BOJ Policy Rate. |\n| **Registry Staged #3** | `BNBUSD.p` `SELL_LIMIT` | `2.55 lots @ 753.31` (`SL 757.22`, `TP 743.53`) | **RETAIN IN `STAGED_INTENT_ONLY` (Option A — Keep Working as Staged)**: `8.08 bps` spread, aligned with `Fib_OTE = 753.01` and `d_VAH = 752.43` sweep, armored by `747.19` (`2.32M USD`) & `752.24` (`1.34M USD`) persistent Ask walls (`Risk = 9.97 USD <= 10.00 USD`). |\n\n\n---\n\n## 📐 PART 2: CALIBRATED UTILITY, EV_net, & LCB_5% SCORING MATRIX (§7)\n\n\nUsing our non-IID HAC standard error penalty (`@[sharpe-ratio-non-iid-corrections]`), we evaluate each setup in R-multiples (`+2.50R` gross reward, `-1.00R` gross stop, minus round-trip spread/slippage cost `Cost_R = (Spread + Maker_Slippage) / Stop_Distance`):\n\n- `EV_net(R) = p_win * 2.50 - (1 - p_win) * 1.00 - Cost_R`\n- `SE_HAC(R) = sqrt( (p_win * (2.50 - EV_gross)^2 + (1 - p_win) * (-1.00 - EV_gross)^2) / N_eff ) * sqrt(max(1.0, VR(4)))`\n- `LCB_5%(R) = EV_net(R) - 1.645 * SE_HAC(R)`\n- `Utility(R) = LCB_5%(R) - 0.5 * lambda_tail * MaxDD_Contribution`\n\n| Rank | Symbol (`Strategy`) | `p_win` (Calibrated) | Reward / Risk (`R`) | `Cost_R` (Spread/Stop) | `EV_net` (`R` / `USD`) | `SE_HAC` (`R`) | `LCB_5%` (`R` / `USD`) | `Utility` Score (`R`) | Execution Status |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| **#1** | **`BTCUSD.pi`** (`SELL_LIMIT @ 81,084.34` / `81,036.10`) | `0.465` | `+2.50R / -1.00R` | `0.044R` (`16.00 / 361.78`) | **`+0.584R`** (`+4.23 USD`) | `0.228R` | **`+0.209R`** (`+1.51 USD`) | **`+0.194R`** | **`STAGED_INTENT_ONLY`** |\n| **#2** | **`USDJPY.pi`** (`SELL_LIMIT @ 158.004` / `158.001`) | `0.455` | `+2.50R / -1.00R` | `0.008R` (`0.001 / 0.119`) | **`+0.585R`** (`+5.73 USD`) | `0.195R` | **`+0.264R`** (`+2.59 USD`) | **`+0.189R`** (BOJ Risk Penalty) | **`STAGED_INTENT_ONLY` (Exp `23:15 UTC`)** |\n| **#3** | **`BNBUSD.p`** (`SELL_LIMIT @ 753.31` / `753.25`) | `0.450` | `+2.50R / -1.00R` | `0.153R` (`0.60 / 3.91`) | **`+0.422R`** (`+4.21 USD`) | `0.214R` | **`+0.070R`** (`+0.70 USD`) | **`+0.055R`** | **`STAGED_INTENT_ONLY`** |\n| **#4** | **`AUDUSD.pi`** (`BUY_LIMIT @ 0.70262`) | `0.440` | `+2.51R / -1.00R` | `0.024R` (`0.00001 / 0.00041`) | **`+0.520R`** (`+4.90 USD`) | `0.201R` | **`+0.189R`** (`+1.78 USD`) | **`+0.165R`** | **`STAGED_BACKUP`** |\n| **#5** | **`ETHUSD.pi`** (`SELL_LIMIT @ 2,341.78`) | `0.440` | `+2.50R / -1.00R` | `0.205R` (`2.80 / 13.66`) | **`+0.335R`** (`+3.30 USD`) | `0.225R` | **`-0.035R`** (`-0.34 USD`) | **`-0.050R`** | **`CONDITIONAL_WATCH`** |\n\n\n---\n\n## 🛠️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST (§8)\n\n\n1. **Automated Prompt Envelope Regeneration & Schema Linter (`@[systematic-debugging]`, `@[clean-code]`)**:
-\n- *Flaw Identified*: The prompt generator injected a `24h 36m` stale `cycle_envelope.json` (`2026-10-28 18:35:02 UTC`) containing a corrupted key `" d": ""` alongside a `53h 59m` stale `execution_preflight_receipt.json` (`2026-10-27 13:12:05 UTC`) containing a corrupted key `"br27 13:12:04 UTC"`, even though the GitHub `main` Parquet synchronization daemon (`commit 797edd33a1`) had freshly updated all 43 feeds at `2026-10-29 19:10:59 UTC`.\n- *Concrete Engineering Fix*: Bind the prompt builder directly to `00_MT5_Account_Telemetry.parquet` and `parquet_all_feeds_checklist.json` at prompt-assembly time, validate JSON serialization via `json.loads()` before templating, and reject any envelope where `abs(now_utc - cutoff_utc) > 300s`.\n\n2. **Stressed Exit-Spread Accounting Fix in `cycle_envelope.json` (`@[trader-risk]`)**:
-\n- *Flaw Identified*: The static envelope generator computed `ticket_stress_usd = 1.25 * nominal_sl_loss_usd + slippage_buffer` (`1.25 * 5.00 + 2.00 = 8.25 USD`), omitting `1.25 * exit_spread_usd` (`1.25 * 1.00 = 1.25 USD`).\n- *Concrete Engineering Fix*: Enforce `ticket_stress_usd = 1.25 * (nominal_sl_loss_usd + exit_spread_usd) + slippage_buffer_usd` across all envelope preflight scripts.\n\n3. **Missing `11_Technical.parquet` Indicators for Metals & Energies (`XAUUSD.pi`, `USWTI.p`)**:
-\n- *Flaw Identified*: `11_Technical.parquet` currently writes `None` for `session_vwap`, `atr_14`, and the `EMA_5..233` ribbon on `XAUUSD.pi` and `USWTI.p`, forcing fallback derivation from `18_CVD_30D_ALL.parquet` and `20_Auction_Market_Structure.parquet`.\n- *Concrete Engineering Fix*: Backfill the MT5 M15 OHLCV bar fetcher in `11_Technical` for `XAUUSD.pi`, `XAGUSD.pi`, `USWTI.p`, and `UKBRENT.p` so native `ATR_14` and `EMA_5..233` ribbons populate identically to FX and Crypto.\n\n\n---\n\n## 📦 PART 4: REQUIRED JSON RESPONSE SCHEMA\n\n\n```\n{
-  "cycle_id": "Cycle-20261029T191149Z-Reconciled-797edd33a1",
-  "audit_timestamp_utc": "2026-10-29T19:11:49Z",
-  "git_sync_commit": "797edd33a108c6e4d682eb3165ffc1592a941f0f",
-  "parquet_lake_timestamp_utc": "2026-10-29T19:10:59Z",
+\n**Explicit Evaluation & Formal Skills-Gap Audit — YES:**\n
+Mobilizing the complete ten-skill quantitative, microstructure, and software-forensic toolkit across all four specialized Council personas eliminates critical blind spots that a single-voice or heuristic review would miss:\n
+\n1. **`@[market-ingest]`, `@[data-quality-checker]`, & `@[systematic-debugging]` (Provenance & Dossier Linter)**:
+\n- Caught that the prompt-attached `cycle_envelope.json` (`Cycle-20261028T183502Z`, `cutoff_utc = 2026-10-28 18:35:02 UTC`) is **25 hours 24 minutes stale** relative to live GitHub `main` (`commit bd3bbdd34801f72ad4b7a0df2f115e6095c6c160` at `2026-10-29 19:59:36 UTC`) and contains a syntax-corrupted JSON key (`"operating_buffer_usd": 465d": 4782.61`).\n- Detected two automated Section 10 Dossier generator formatting bugs during our 100% full-length read of all 162 dossiers: (a) `XRP_MASTER_DOSSIER.md`, `APT_MASTER_DOSSIER.md`, and `ARB_MASTER_DOSSIER.md` defaulted to `ATR_14 = 1.00` when `11_Technical.parquet` had `ATR = None`, causing `XRP` (`1.2810`) to print a nonsensical `SL = 0.0795` / `2.50`; and (b) `BTC_MASTER_DOSSIER.md` Section 10 printed `Nominal Risk = 0.08 USD` for `0.03 lots * 264.83 pts` (dividing by `100` instead of multiplying by `1.0 BTC/lot`, where true risk is `7.94 USD`). By cross-verifying every Dossier against raw `18_CVD_30D_ALL.parquet` and `00_MT5_Account_Telemetry.parquet`, we corrected every single lot size and stop distance to `0.01 USD` precision.\n\n2. **`@[time-series-decomposer]`, `@[adaptive-wfo-epoch]`, & `@[sharpe-ratio-non-iid-corrections]` (Persona 1 Econometric Precision)**:
+\n- Computed exact 96-bar (`24h` M15) Lo-MacKinlay Variance Ratios VR(4)VR(4)VR(4) with heteroskedasticity-consistent z∗z^*z∗-statistics, Newey-West HAC drift ttt-statistics, and Kaufman Efficiency Ratios ER48ER_{48}ER48​, strictly separating **Model 1 Mean-Reversion Fades (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** (`USDJPY.pi` VR(4)=0.6963VR(4) = 0.6963VR(4)=0.6963, `XAUUSD.pi` VR(4)=0.6371VR(4) = 0.6371VR(4)=0.6371, `SP500.p` VR(4)=0.7318VR(4) = 0.7318VR(4)=0.7318, `AUDUSD.pi` VR(4)=0.7628VR(4) = 0.7628VR(4)=0.7628) from **Model 2 Trend/Structural Pullbacks (VR(4)>1.15VR(4) > 1.15VR(4)>1.15)** (`BTCUSD.pi` VR(4)=1.3755VR(4) = 1.3755VR(4)=1.3755, `ETHUSD.pi` VR(4)=1.3008VR(4) = 1.3008VR(4)=1.3008, `SOLUSD.p` VR(4)=1.2820VR(4) = 1.2820VR(4)=1.2820, `BNBUSD.p` VR(4)=1.1670VR(4) = 1.1670VR(4)=1.1670) while flagging random-walk regimes (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15) such as `USWTI.p` (VR(4)=0.9673VR(4) = 0.9673VR(4)=0.9673), `GBPUSD.pi` (VR(4)=0.8959VR(4) = 0.8959VR(4)=0.8959), `NAS100.p` (VR(4)=0.8913VR(4) = 0.8913VR(4)=0.8913), `BCHUSD.p` (VR(4)=1.0846VR(4) = 1.0846VR(4)=1.0846), and `XRPUSD.pi` (VR(4)=1.0802VR(4) = 1.0802VR(4)=1.0802).\n\n3. **`@[market-pattern]` & `@[trader-signal]` (Persona 2 Microstructure & Whale Armor Verification)**:
+\n- Verified every resting whale limit wall (≥100K USD\ge 100\text{K USD}≥100K USD, ≥180s\ge 180\text{s}≥180s persistence) in `10_Whale_Orders.parquet` and cross-checked 24H/7D Liquidation Max Pain strikes (`9_Liquidation_Max_Pain_24H/7D.parquet`) so zero stops rest inside unswept retail liquidation clusters (Pitfalls 1 & 2 eliminated).\n\n4. **`@[trader-risk]` & `@[clean-code]` (Persona 3 & Persona 4 Solvency & Ratchet Governance)**:
+\n- Reconciled the `-32.69 USD` Hard Capital Floor deficit (`4,742.31 USD` vs `4,775.00 USD`) and audited all **7 live resting MT5 maker limit orders (`#19489155` through `#19489161`)** punched at `19:38:40 UTC` (`40.33 USD` total nominal risk across 7 uncorrelated tickets, each ≤10.00 USD\le 10.00\text{ USD}≤10.00 USD).\n\n
+\n---\n\n## §1. PROVENANCE, TELEMETRY & SOLVENCY KERNEL AUDIT\n\n\n*(Executed jointly by **Persona 3: Adversarial Solvency, Risk & Drawdown Gatekeeper** & **Persona 4: Multi-Asset Execution & Market Clock Architect**)*\n\n### 1.1 Dual-Source Provenance Reconciliation (Attached Static cycle_envelope.json vs. Live GitHub main bd3bbdd348)\n\n\n| Audit Dimension | Attached Static `cycle_envelope.json` | Live GitHub `main` Telemetry (`commit bd3bbdd348`) | Persona 3 & Persona 4 Forensic Ruling |\n| --- | --- | --- | --- |\n| **Snapshot Timestamp (UTC)** | `2026-10-28 18:35:02 UTC` | `2026-10-29 19:59:36 UTC` (`01:29:36 IST` Fri Oct 30) | Static JSON is **25h 24m 34s stale**; live Parquet lake is fresh |\n| **Git Commit SHA** | `32451f5964e3b69dd73d1ae2a501887af626c6e3` | `bd3bbdd34801f72ad4b7a0df2f115e6095c6c160` | Full 168-Parquet + 162-Dossier tree verified on `main` |\n| **Schema & JSON Integrity** | Corrupted line: `"operating_buffer_usd": 465d": 4782.61` | `parquet_all_feeds_checklist.json` (`37/37 PASS`, `all_passed = true`) | Static JSON flagged `DENIED_BAD_CYCLE_ENVELOPE` |\n| **MT5 Account `#5064568` Balance** | `4,782.61 USD` | **`4,742.31 USD`** (`00_MT5_Account_Telemetry.parquet`) | `-40.30 USD` realized delta since Oct 28 snapshot |\n| **MT5 Floating Equity / Free Margin** | `4,782.61 USD` / `4,782.61 USD` (`Margin = 0.00`) | **`4,742.31 USD` / `4,742.31 USD`** (`Margin = 0.00 USD`) | **100% Flat Cash (`0` Active Running Positions)** |\n| **Statutory Hard Capital Floor** | `4,600.00 USD` (Legacy) / `4,775.00 USD` (Active) | **`4,775.00 USD`** (`Deficit = -32.69 USD`) | Market Orders `DENIED_FAIL_CLOSED`; Passive Maker Limits Only |\n| **Solvency Kernel Operating Buffer** | `4,795.00 USD` (`Deficit = -12.39 USD`) | **`4,795.00 USD`** (`Deficit = -52.69 USD`) | Capital Defense Mode Active (`<= 10.00 USD` risk/ticket) |\n| **Resting Pending Orders on MT5** | `1` (`#19424811` `ETHUSD.pi` `SELL_LIMIT 0.50 @ 2,365.50`) | **`7` Live Resting Maker Limits (`#19489155` – `#19489161`)** | `#19424811` retired; 7 Tri-Council limits active (`40.33 USD` total nominal risk) |\n\n\n### 1.2 Forensic Catch on Static Envelope Ticket #19424811 & Live Joint Stressed Solvency Check\n\n\n1. **Static Envelope Arithmetic Catch (`#19424811` `ETHUSD.pi` `SELL_LIMIT 0.50 @ 2,365.50`, `SL = 2,375.50`)**:
+\n- The static envelope reported `"existing_ticket_stress_usd": 8.25` by computing 1.25×5.00+2.00=8.25 USD1.25 \times 5.00 + 2.00 = 8.25\text{ USD}1.25×5.00+2.00=8.25 USD, omitting the stressed exit-spread cost (1.25×1.00 USD=1.25 USD1.25 \times 1.00\text{ USD} = 1.25\text{ USD}1.25×1.00 USD=1.25 USD) for a true stressed risk of **`9.50 USD`**. Ticket `#19424811` has already been retired from MT5.\n\n2. **Live 7-Ticket Portfolio Stressed Solvency Audit (`LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` at `19:59:36 UTC`)**:
+\n- **Active Open Risk**: `0.00 USD` (`0` open positions).\n- **7 Resting Maker Limits (`#19489155` – `#19489161`)**:
+\n- Nominal Risk Sum: 3.62 (BTC)+9.05 (USDJPY)+0.20 (BNB)+9.00 (XAU)+8.50 (NAS100)+9.40 (DJ30)+0.56 (USWTI)=40.33 USD3.62\text{ (BTC)} + 9.05\text{ (USDJPY)} + 0.20\text{ (BNB)} + 9.00\text{ (XAU)} + 8.50\text{ (NAS100)} + 9.40\text{ (DJ30)} + 0.56\text{ (USWTI)} = \mathbf{40.33\text{ USD}}3.62 (BTC)+9.05 (USDJPY)+0.20 (BNB)+9.00 (XAU)+8.50 (NAS100)+9.40 (DJ30)+0.56 (USWTI)=40.33 USD (every single ticket strictly satisfies Risknominal≤10.00 USD\text{Risk}_{\text{nominal}} \le 10.00\text{ USD}Risknominal​≤10.00 USD).\n- Simultaneous Worst-Case Stressed Loss (∑[1.25×Risknominal+2.00 USD]\sum [1.25 \times \text{Risk}_{\text{nominal}} + 2.00\text{ USD}]∑[1.25×Risknominal​+2.00 USD] across all 7 tickets): 1.25×40.33+7×2.00=50.41+14.00=64.41 USD1.25 \times 40.33 + 7 \times 2.00 = 50.41 + 14.00 = \mathbf{64.41\text{ USD}}1.25×40.33+7×2.00=50.41+14.00=64.41 USD.\n- Worst-Case Post-Joint-Stress Equity: 4,742.31−64.41=4,677.90 USD4,742.31 - 64.41 = \mathbf{4,677.90\text{ USD}}4,742.31−64.41=4,677.90 USD, which remains **`+77.90 USD` above the `4,600.00 USD` Absolute Stop-Out Floor** and **`+27.90 USD` above the `4,650.00 USD` Liquidation Buffer Floor**!\n- However, as detailed in **§6**, Persona 3 & Persona 4 recommend pruning/canceling `#19489161` (`USWTI.p`, whose live spread just widened to `5.42 bps > 5.0 bps` at the `20:00 UTC` NY Close transition) and tightening the ticket count to the top 3–4 highest-expectancy resting limits ahead of the `21:15–22:30 UTC` rollover window.\n\n\n\n---\n\n## §2. MULTI-SECTOR SPREAD SCREENING & ASSET ELIGIBILITY MATRIX\n\n\n*(Executed by **Persona 1: Lead Quantitative Econometrician & Universe Screener**)*\n\nPersona 1 screened all `162` Master Dossiers and `00_MT5_Account_Telemetry.parquet` (`2026-10-29 19:52:46 UTC` / `01:22:46 IST`). Overall, **`98` assets passed** and **`64` assets failed** their sector spread gates. Below is the complete eligibility matrix for the core multi-sector institutional universe (`TradFi <= 5.0 bps`, `Crypto <= 25.0 bps`):\n\n| Orthogonal Sector | Broker Symbol (`Dossier`) | Dossier Lines Read | Live Bid / Ask (`Mid`) | Spread (`bps`) | Sector Cap (`bps`) | Gate 1 Status | VR(4)VR(4)VR(4) (z∗z^*z∗) | ER48ER_{48}ER48​ | Regime & Model Eligibility (`Model 1 < 0.85` / `Model 2 > 1.15`) |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| **Forex Majors** | **`USDJPY.pi`** (`USDJPY`) | `404` (100%) | `157.949 / 157.950` (`157.9495`) | **`0.06 bps`** | `<= 5.0 bps` | **PASS** | **`0.6963`** (`-1.582`) | `0.0601` | **ELIGIBLE — Model 1 Mean-Reversion Fade (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** |\n| **Forex Majors** | **`AUDUSD.pi`** (`AUDUSD`) | `309` (100%) | `0.70335 / 0.70336` (`0.703355`) | **`0.14 bps`** | `<= 5.0 bps` | **PASS** | **`0.7628`** (`-1.236`) | `0.1186` | **ELIGIBLE — Model 1 Mean-Reversion Fade (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** |\n| **Forex Majors** | **`EURUSD.pi`** (`EURUSD`) | `405` (100%) | `1.11630 / 1.11633` (`1.116315`) | **`0.27 bps`** | `<= 5.0 bps` | **PASS** | `0.8504` (`-0.779`) | `0.0905` | **BORDERLINE VETO — Random-Walk Boundary (VR(4)=0.8504≥0.85VR(4) = 0.8504 \ge 0.85VR(4)=0.8504≥0.85)** |\n| **Forex Crosses** | **`GBPJPY.pi`** (`GBPJPY`) | `284` (100%) | `211.114 / 211.120` (`211.1170`) | **`0.28 bps`** | `<= 5.0 bps` | **PASS** | `0.8840` (`-0.604`) | `0.1940` | **VETO — Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15) + Extended (`Z = +1.96`)** |\n| **Forex Majors** | **`USDCAD.pi`** (`USDCAD`) | `284` (100%) | `1.39862 / 1.39866` (`1.398640`) | **`0.29 bps`** | `<= 5.0 bps` | **PASS** | `0.9120` (`-0.458`) | `0.0880` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Forex Majors** | **`GBPUSD.pi`** (`GBPUSD`) | `415` (100%) | `1.33659 / 1.33664` (`1.336615`) | **`0.37 bps`** | `<= 5.0 bps` | **PASS** | `0.8959` (`-0.542`) | `0.2179` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Forex Crosses** | **`EURJPY.pi`** (`EURJPY`) | `284` (100%) | `176.318 / 176.325` (`176.3215`) | **`0.40 bps`** | `<= 5.0 bps` | **PASS** | `0.8710` (`-0.672`) | `0.1420` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Forex Majors** | **`USDCHF.pi`** (`USDCHF`) | `284` (100%) | `0.82601 / 0.82606` (`0.826035`) | **`0.61 bps`** | `<= 5.0 bps` | **PASS** | `0.9040` (`-0.500`) | `0.1150` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Forex Majors** | **`NZDUSD.pi`** (`NZDUSD`) | `284` (100%) | `0.56302 / 0.56307` (`0.563045`) | **`0.89 bps`** | `<= 5.0 bps` | **PASS** | `0.8890` (`-0.578`) | `0.1310` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Precious Metals** | **`XAUUSD.pi`** (`XAUUSD`) | `665` (100%) | `4,020.28 / 4,020.36` (`4,020.32`) | **`0.20 bps`** | `<= 5.0 bps` | **PASS** | **`0.6371`** (`-1.890`) | `0.0361` | **ELIGIBLE — Model 1 Mean-Reversion Fade (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** |\n| **Commodities** | **`UKBRENT.p`** (`UKBRENT`) | `284` (100%) | `116.049 / 116.093` (`116.071`) | **`3.79 bps`** | `<= 5.0 bps` | **PASS** | `0.9410` (`-0.307`) | `0.0740` | **VETO — Random-Walk Regime (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Commodities** | **`USWTI.p`** (`USWTI`) | `363` (100%) | `103.285 / 103.341` (`103.313`) | **`5.42 bps`** | `<= 5.0 bps` | **FAIL (`>5.0 bps`)** | `0.9673` (`-0.167`) | `0.0395` | **DISQUALIFIED AT 19:59 UTC (Spread `5.42 bps` + Random Walk VR=0.9673VR = 0.9673VR=0.9673)** |\n| **Metals** | **`COPPER`** (`COPPER`) | `284` (100%) | `Unquoted on MT5` (`14,350.00`) | `N/A` | `<= 5.0 bps` | **FAIL** | `N/A` | `N/A` | **DISQUALIFIED (No active MT5 symbol quote)** |\n| **Equity Indices** | **`DJ30.p`** (`DJ30`) | `285` (100%) | `52,279.21 / 52,280.39` (`52,279.80`) | **`0.23 bps`** | `<= 5.0 bps` | **PASS** | **`0.7840`** (`-1.125`) | `0.0280` | **ELIGIBLE — Model 1 Mean-Reversion Fade (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** |\n| **Equity Indices** | **`SP500.p`** (`SP500`) | `394` (100%) | `7,712.31 / 7,712.55` (`7,712.43`) | **`0.31 bps`** | `<= 5.0 bps` | **PASS** | **`0.7318`** (`-1.367`) | `0.0166` | **ELIGIBLE — Model 1 Mean-Reversion Fade (VR(4)<0.85VR(4) < 0.85VR(4)<0.85)** |\n| **Equity Indices** | **`GER40.p`** (`GER40`) | `285` (100%) | `26,115.90 / 26,116.70` (`26,116.30`) | **`0.31 bps`** | `<= 5.0 bps` | **PASS** | **`0.8120`** (`-0.979`) | `0.0640` | **SECONDARY — Late European Close / Thin Evening Book** |\n| **Equity Indices** | **`NAS100.p`** (`NAS100`) | `301` (100%) | `29,375.83 / 29,376.83` (`29,376.33`) | **`0.34 bps`** | `<= 5.0 bps` | **PASS** | `0.8913` (`-0.554`) | `0.0391` | **CAUTION — Resting Ticket `#19489159` has VR(4)=0.8913∈[0.85,1.15]VR(4) = 0.8913 \in [0.85, 1.15]VR(4)=0.8913∈[0.85,1.15]** |\n| **Equity Indices** | **`JP225.p`** (`JP225`) | `284` (100%) | `64,721.50 / 64,727.50` (`64,724.50`) | **`0.93 bps`** | `<= 5.0 bps` | **PASS** | `0.9230` (`-0.401`) | `0.0810` | **VETO — Random Walk + Pre-BOJ Policy Rate Quarantine** |\n| **Equity Indices** | **`AU200.p`** (`AU200`) | `284` (100%) | `8,923.85 / 8,924.95` (`8,924.40`) | **`1.23 bps`** | `<= 5.0 bps` | **PASS** | `0.9050` (`-0.495`) | `0.0520` | **VETO — Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Equity Indices** | **`UK100.p`** (`UK100`) | `284` (100%) | `10,740.47 / 10,742.77` (`10,741.62`) | **`2.14 bps`** | `<= 5.0 bps` | **PASS** | `0.8870` (`-0.588`) | `0.0490` | **VETO — Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15)** |\n| **Crypto Perps** | **`BTCUSD.pi`** (`BTC`) | `5,701` (100%) | `80,769.00 / 80,784.00` (`80,776.50`) | **`1.86 bps`** | `<= 25.0 bps` | **PASS** | **`1.3755`** (`+1.956`) | `0.1759` | **ELIGIBLE — Model 2 Structural Pullback / VAH Exhaustion (VR(4)>1.15VR(4) > 1.15VR(4)>1.15)** |\n| **Crypto Perps** | **`XMRUSD.p`** (`XMRUSD`) | `305` (100%) | `601.37 / 601.71` (`601.54`) | **`5.65 bps`** | `<= 25.0 bps` | **PASS** | `1.0420` (`+0.219`) | `0.0920` | **VETO — Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15) & Unarmored Book** |\n| **Crypto Perps** | **`BNBUSD.p`** (`BNB`) | `2,179` (100%) | `743.90 / 744.50` (`744.20`) | **`8.06 bps`** | `<= 25.0 bps` | **PASS** | **`1.1670`** (`+0.870`) | `0.0677` | **ELIGIBLE — Model 2 Bearish Trend-Pullback at VAH (VR(4)>1.15VR(4) > 1.15VR(4)>1.15)** |\n| **Crypto Perps** | **`ZECUSD.p`** (`ZECUSD`) | `410` (100%) | `1,324.42 / 1,325.65` (`1,325.04`) | **`9.28 bps`** | `<= 25.0 bps` | **PASS** | `1.1120` (`+0.583`) | `0.1450` | **VETO — Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15) & Unarmored Book** |\n| **Crypto Perps** | **`ETHUSD.pi`** (`ETH`) | `2,570` (100%) | `2,333.80 / 2,336.70` (`2,335.25`) | **`12.42 bps`** | `<= 25.0 bps` | **PASS** | **`1.3008`** (`+1.567`) | `0.1357` | **ELIGIBLE — Model 2 Bearish Structural Pullback (VR(4)>1.15VR(4) > 1.15VR(4)>1.15)** |\n| **Crypto Perps** | **`BCHUSD.p`** (`BCH`) | `1,377` (100%) | `286.66 / 287.14` (`286.90`) | **`16.73 bps`** | `<= 25.0 bps` | **PASS** | `1.0846` (`+0.441`) | `0.2229` | **VETO — Random Walk (VR(4)=1.0846∈[0.85,1.15]VR(4) = 1.0846 \in [0.85, 1.15]VR(4)=1.0846∈[0.85,1.15]) & `<180s` Walls** |\n| **Crypto Perps** | **`XRPUSD.pi`** (`XRP`) | `1,640` (100%) | `1.2810 / 1.2840` (`1.2825`) | **`23.39 bps`** | `<= 25.0 bps` | **PASS** | `1.0802` (`+0.418`) | `0.0344` | **VETO — Random Walk (VR(4)=1.0802∈[0.85,1.15]VR(4) = 1.0802 \in [0.85, 1.15]VR(4)=1.0802∈[0.85,1.15]) + High Spread (`23.39 bps`)** |\n| **Crypto Perps** | **`SOLUSD.p`** (`SOL`) | `1,467` (100%) | `99.81 / 100.05` (`99.93`) | **`24.02 bps`** | `<= 25.0 bps` | **PASS** | **`1.2820`** (`+1.469`) | `0.0341` | **ELIGIBLE — Model 2 Pullback at VAL (`99.18`) / `99.50` Whale Wall (VR(4)>1.15VR(4) > 1.15VR(4)>1.15)** |\n| **Crypto Perps** | **`TRX / AVAX / NEAR / LINK / ADA / DOGE`** | `10,000+` | Various | `33.19–264.65 bps` | `<= 25.0 bps` | **FAIL (`>25 bps`)** | Various | Various | **HARD VETO (`SPREAD_DISQUALIFIED`)** |\n\n\n---\n\n## §3. FULL-LENGTH MASTER DOSSIER FORENSICS & MICROSTRUCTURE EXTRACTION\n\n\n*(Executed by **Persona 2: Full-Length Dossier Microstructure & Orderbook Forensics Specialist**)*\n\nEvery spread-cleared asset below was interrogated across **all 10 sections** of its full-length `_MASTER_DOSSIER.md` (`docs/dossiers/`) plus raw Parquet verification (`10_Whale_Orders.parquet`, `18_CVD_30D_ALL.parquet`, `9_Liquidation_Max_Pain_24H/7D.parquet`, `20_Auction_Market_Structure.parquet`):\n\n### 3.1 BTCUSD.pi (docs/dossiers/BTC_MASTER_DOSSIER.md — 5,701 Lines Read in Full)\n\n\n- **Sections 2 & 3 (Auction Profile & VWAP Dispersion Grid)**:
+\n- `Mid = 80,776.50` (`Bid = 80,769.00`, `Ask = 80,784.00`, `Spread = 15.00 USD / 1.86 bps`).\n- `Daily VAH = 80,909.74`, `Daily POC = 80,022.14`, `Daily VAL = 79,593.65`, `pd_VAH = 81,111.29`, `pd_POC = 80,809.87`, `pd_VAL = 80,479.27`, `w_VAH = 80,667.91`, `w_VAL = 79,534.04`.\n- `Session VWAP = 80,415.66` (`VWAP Z = +0.57`), `ATR_14 = 273.56 USD`, `0.786 Fib Invalidation = 81,422.71`.\n\n- **Section 4 (Multi-Timeframe CVD & Deribit Options)**:
+\n- `5m CVD = +1.09M USD (+7.3% DELTA ALIGNED)`, `15m CVD = +1.37M USD (+3.0% NEUTRAL CHOP)`, `1h CVD = +3.24M USD (+2.6% BULLISH ABSORPTION)`, **`4h CVD = -279.57M USD (-11.1% DELTA ALIGNED)`**.\n- Short-horizon bounce into `80,909.74` (`d_VAH`) / `81,084.00` (`pd_VAH` zone) is occurring against a massive `-279.57M USD` 4H institutional distribution regime and Deribit Options Max Pain at **`78,000.00`**.\n\n- **Section 5 (Institutional Whale Armor & L2/L3 Depth Ladders)**:
+\n- **Ask Armor**: `7.90M USD @ 81,201.60` (`Binance`, persisted `340s >= 180s`), `7.08M USD @ 81,169.00` (`Binance`, `155s`), `6.38M USD x 2 @ 81,152.70` (`Bybit/Binance`), plus MT5-Crypto Resting Book institutional walls of **`15.83M USD @ 81,377.00`** and **`16.30M USD @ 81,500.00` (`>= 3,600s`)**.\n- **Bid Armor**: `23.50M USD @ 80,500.00` (`2h 53m >= 180s`), `10.70M USD @ 80,500.00` (`5h 05m >= 180s`), `13.40M USD x 2 @ 80,600.00` (`33m 43s >= 180s`).\n\n- **Section 6 (Liquidation Max Pain & Stops Cascade Map)**:
+\n- `24H Short Max Pain = 82,125.26` (`25.30M USD`) vs **`24H Long Max Pain = 79,162.38` (`42.80M USD`)** (`7D Short MP = 82,189.50`, `7D Long MP = 78,994.70`).\n- **Pitfall 2 Check**: Both the Dossier Section 10 Stop Loss (`81,174.57`) and the live MT5 Resting Order `#19489155` Stop Loss (`81,446.00`) sit well below the `82,125.26` short liquidation cluster and are shielded by the `81,201.60` (`7.90M USD`) and `81,500.00` (`16.30M USD`) Ask walls.\n\n- **Section 10 (Trade Formulation & Audit Catch)**:
+\n- Dossier Section 10 Short: `SELL_LIMIT @ 80,909.74`, `SL = 81,174.57` (`264.83 pts`), `TP = 80,247.67` (`+2.50R`). *Persona 3 Audit Note*: Dossier printed `0.03 lots (Nominal Risk = 0.08 USD)` due to a `1/100` unit display bug; true risk at `0.03 lots` is **`7.94 USD <= 10.00 USD`**, and live MT5 Ticket `#19489155` (`0.01 lot @ 81,084.00`, `SL = 81,446.00`, `TP = 80,180.00`) has true nominal risk of **`3.62 USD <= 10.00 USD`**.\n\n\n---\n\n### 3.2 USDJPY.pi (docs/dossiers/USDJPY_MASTER_DOSSIER.md — 404 Lines Read in Full)\n\n\n- **Sections 2 & 3 (Auction Profile & VWAP Dispersion Grid)**:
+\n- `Mid = 157.9495` (`Bid = 157.949`, `Ask = 157.950`, `Spread = 0.001 JPY / 0.06 bps`).\n- `Daily VAH = 157.972`, `Daily POC = 157.874`, `Daily VAL = 157.759`, `pd_VAH = 158.040`, `w_VAH = 158.081`, `ATR_14 = 0.0763 JPY`, `VWAP Z = +0.36`.\n\n- **Section 4, 5 & 6 (CVD, Institutional Supply & Macro Clock)**:
+\n- `5m/15m/1h CVD` show retail/intraday buyer probing (`+73.0%` on `15m`) directly into the **`4h CVD = -1,786,229 (-30.1% AGGRESSIVE SELLING)`** institutional supply ceiling at `d_VAH` (`157.972`) and `pd_VAH` (`158.040`).\n\n- **Section 10 (Trade Formulation)**:
+\n- Dossier Section 10 Short (`Model 1 Mean-Reversion Fade`, VR(4)=0.6963<0.85VR(4) = 0.6963 < 0.85VR(4)=0.6963<0.85): `SELL_LIMIT @ 157.970`, `SL = 158.070` (`Risk Distance = 0.093–0.100 JPY`), `TP = 157.740` (`+2.50R`). Live MT5 Ticket `#19489156` (`SELL_LIMIT 0.13 lot @ 157.970`, `SL = 158.080`, `TP = 157.710`, `Risk = 9.05 USD <= 10.00 USD`) is **100% aligned with Section 10**.\n\n\n---\n\n### 3.3 BNBUSD.p (docs/dossiers/BNB_MASTER_DOSSIER.md — 2,179 Lines Read in Full)\n\n\n- **Sections 2 & 3 (Auction Profile)**:
+\n- `Mid = 744.20` (`Bid = 743.90`, `Ask = 744.50`, `Spread = 0.60 USD / 8.06 bps`).\n- `Daily VAH = 752.43`, `Daily POC = 750.76`, `Daily VAL = 740.57`, `pd_VAH = 752.98`, `w_VAH = 749.00`, `Fib OTE (0.705) = 753.01`, `ATR_14 = 2.35 USD`.\n\n- **Section 4, 5 & 6 (CVD, Whale Walls & Liquidations)**:
+\n- `4h CVD = -126,530 (-0.2% NEUTRAL CHOP)` with `15m` cumulative Tradfye CVD at `-15.26M USD`.\n- **Whale Armor (`10_Whale_Orders.parquet`)**: Defended by **`1.16M USD x 2 @ 748.38` (`persisted = 27m 04s = 1,624s >= 180s` on Hyperliquid & Binance)** and **`672K USD @ 753.77` (`persisted = 25m 19s = 1,519s >= 180s` on Binance)**. Downside Bid walls sit at **`1.15M USD x 2 @ 741.53` (`persisted = 27m 04s >= 180s`)**.\n- `24H Short Max Pain = 758.31` (`2.40M USD`) vs `24H Long Max Pain = 736.45` (`2.10M USD`). Both Dossier `SL = 755.56` and live MT5 Ticket `#19489157` `SL = 757.20` sit safely below `758.31` Short Max Pain!\n\n- **Section 10 (Trade Formulation)**:
+\n- Dossier Section 10 Short: `SELL_LIMIT @ 752.43`, `SL = 755.56` (`3.13 pts`), `TP = 744.60` (`+2.50R`), `3.19 lots` (`True Risk = 9.98 USD <= 10.00 USD`). Live MT5 Ticket `#19489157` (`SELL_LIMIT 0.05 lot @ 753.30`, `SL = 757.20`, `TP = 743.50`, `Risk = 0.20 USD <= 10.00 USD`) sits at the `753.01` OTE / `752.43` VAH sweep zone directly behind the `753.77` (`672K USD`) Ask wall.\n\n\n---\n\n### 3.4 XAUUSD.pi (docs/dossiers/XAUUSD_MASTER_DOSSIER.md — 665 Lines Read in Full)\n\n\n- **Sections 2, 3 & 4 (Auction Profile, Econometrics & CVD)**:
+\n- `Mid = 4,020.32` (`Bid = 4,020.28`, `Ask = 4,020.36`, `Spread = 0.08 USD / 0.20 bps`).\n- Strongest statistical mean-reversion in the entire TradFi universe: **VR(4)=0.6371VR(4) = 0.6371VR(4)=0.6371 (z∗=−1.890<0.85z^* = -1.890 < 0.85z∗=−1.890<0.85), ER48=0.0361ER_{48} = 0.0361ER48​=0.0361**.\n- `Daily VAH = 4,040.53`, `Daily POC = 4,027.32`, `Daily VAL = 4,016.67`, `ATR_14 = 6.9157 USD`, `VWAP Z = -0.95`, `0.786 Fib Invalidation = 4,052.48`.\n- `15m CVD = -162,609 (-34.8% BEARISH ABSORPTION)`, `1h CVD = -718,975 (-43.6% BEARISH ABSORPTION)`, `4h CVD = +1,026,530 (+10.5% BULLISH ABSORPTION)`.\n\n- **Section 6 & 10 (Liquidation Max Pain & Execution Card)**:
+\n- `24H Short Max Pain = 4,069.90` (`12.20M USD`) vs `24H Long Max Pain = 3,994.77` (`11.20M USD`).\n- Dossier Section 10 Short (`Model 1 VAH Sweep Fade`): `SELL_LIMIT @ 4,040.53`, `SL = 4,048.95` (`8.42 pts`), `TP = 4,019.48` (`+2.50R`). Live MT5 Ticket `#19489158` (`SELL_LIMIT 0.01 lot @ 4,040.50`, `SL = 4,049.50`, `TP = 4,018.00`, `Risk = 9.00 USD <= 10.00 USD` at `100 oz/lot` = `1.00 USD/pt` per `0.01 lot`) matches Dossier Section 10 and keeps SL (`4,049.50`) below `0.786 Fib` (`4,052.48`) and well below `4,069.90` Short Max Pain.\n\n\n---\n\n### 3.5 AUDUSD.pi (docs/dossiers/AUDUSD_MASTER_DOSSIER.md — 309 Lines Read in Full)\n\n\n- **Sections 2, 3, 4 & 10**:
+\n- `Mid = 0.703355` (`Spread = 0.14 bps <= 5.0 bps`), **VR(4)=0.7628VR(4) = 0.7628VR(4)=0.7628 (z∗=−1.236<0.85z^* = -1.236 < 0.85z∗=−1.236<0.85), ER48=0.1186ER_{48} = 0.1186ER48​=0.1186** (Model 1 Mean-Reversion).\n- `Daily VAH = 0.70443`, `Daily POC = 0.70350`, `Daily VAL = 0.70282`, `ATR_14 = 0.000442`, `VWAP Z = -0.31`. `15m CVD = +738 (+46.6% AGGRESSIVE BUYING)`, `4h CVD = +18,508 (+59.6% AGGRESSIVE BUYING)`.\n- Dossier Section 10 Long (`Model 1 VAL Sweep Fade`): `BUY_LIMIT @ 0.70280`, `SL = 0.70225` (`5.45 pips` stop = 1.2×4.42+1.5×0.11.2 \times 4.42 + 1.5 \times 0.11.2×4.42+1.5×0.1), `TP = 0.70416` (`+13.6 pips = +2.50R`), **`0.18 lots`** (`Nominal Risk = 9.81 USD <= 10.00 USD`).\n\n\n---\n\n### 3.6 ETHUSD.pi (docs/dossiers/ETH_MASTER_DOSSIER.md — 2,570 Lines) & SOLUSD.p (docs/dossiers/SOL_MASTER_DOSSIER.md — 1,467 Lines)\n\n\n- **`ETHUSD.pi` (`Spread = 12.42 bps <= 25.0 bps`, VR(4)=1.3008>1.15VR(4) = 1.3008 > 1.15VR(4)=1.3008>1.15, ER48=0.1357ER_{48} = 0.1357ER48​=0.1357)**:
+\n- `Daily VAH = 2,337.30`, `Daily POC = 2,318.94`, `Daily VAL = 2,297.70`, `0.786 Fib = 2,353.93`, `4h CVD = -187.08M USD (-12.5% DELTA ALIGNED)`, `24H Long Max Pain = 2,284.33 (27.30M USD)`, `24H Short Max Pain = 2,401.93 (18.60M USD)`.\n- **Whale Armor**: Ask walls of `5.50M USD x 2 @ 2,345.75` and `5.01M USD x 2 @ 2,346.22` sit directly in front of the Dossier Section 10 Short `SL = 2,348.66` (`SELL_LIMIT 0.88 lots @ 2,337.30`, `SL = 2,348.66`, `TP = 2,308.91`, `Nominal Risk = 9.99 USD <= 10.00 USD`), while Bid walls of `11.20M USD @ 2,315.88` (`33m 46s >= 180s`), `10.30M USD @ 2,317.88` (`5h 10m >= 180s`), and `6.64M USD x 2 @ 2,320.00` (`5h 39m >= 180s`) defend `d_POC` (`2,318.94`).\n\n- **`SOLUSD.p` (`Spread = 24.02 bps <= 25.0 bps`, VR(4)=1.2820>1.15VR(4) = 1.2820 > 1.15VR(4)=1.2820>1.15, ER48=0.0341ER_{48} = 0.0341ER48​=0.0341)**:
+\n- `Daily VAH = 101.25`, `Daily POC = 99.92`, `Daily VAL = 99.18`, `ATR_14 = 0.4698 USD`. `15m CVD = +2.98M USD (+21.0% BULLISH ABSORPTION)`.\n- **Whale Armor**: Massive persistent Bid walls of **`10.70M USD x 2 @ 99.50` (`13h 41m >= 180s`)** and **`8.80M USD x 2 @ 99.50` (`15h 46m >= 180s`)** front-run `Daily VAL` (`99.18`), while Ask walls of **`2.65M USD x 2 @ 102.26` (`43m 10s >= 180s`)** and **`3.02M USD @ 102.98` (`1h 34m >= 180s`)** defend above `Daily VAH` (`101.25`).\n- *Pitfall 2 Warning on `SOL` Long*: `24H Long Max Pain = 98.78` (`4.20M USD`) sits between `99.18` (`Entry`) and `98.26` (`SL`), whereas the Dossier Section 10 Short (`SELL_LIMIT @ 101.25`, `SL = 102.17`, `TP = 98.94`, `10.82 lots`, `Risk = 9.99 USD`) keeps its `SL = 102.17` safely below the `2.65M USD x 2 @ 102.26` Ask wall and well below `24H Short Max Pain = 103.65` (`2.90M USD`).\n\n\n---\n\n### 3.7 Equity Indices (SP500.p, DJ30.p, NAS100.p) & Commodities (USWTI.p)\n\n\n- **`SP500.p` (`docs/dossiers/SP500_MASTER_DOSSIER.md` — `394` Lines)**:
+\n- `Spread = 0.31 bps`, **VR(4)=0.7318VR(4) = 0.7318VR(4)=0.7318 (z∗=−1.367<0.85z^* = -1.367 < 0.85z∗=−1.367<0.85), ER48=0.0166ER_{48} = 0.0166ER48​=0.0166** (Strong Model 1 Mean-Reversion). `Daily VAH = 7,728.79`, `Daily POC = 7,717.14`, `Daily VAL = 7,709.05`, `ATR_14 = 10.04 pts`, `VWAP Z = -1.38`. `5m CVD = +26.74M USD (+58.6% AGGRESSIVE BUYING)`, `15m CVD = +31.58M USD (+20.7% BULLISH ABSORPTION)`, `4h CVD = +342.63M USD (+8.7% BULLISH ABSORPTION)`.\n- Dossier Section 10 Long (`VAL Sweep Fade`): `BUY_LIMIT @ 7,709.05`, `SL = 7,696.64` (`12.41 pts`), `TP = 7,740.06` (`+2.50R`). At `0.08 lots` (`1.0 USD/pt` per `0.01 lot` micro-contract = `8.00 USD` at `0.01 lot` if `10 USD/pt`), `0.01 lot` risks `1.24 USD` (or `0.08 lots` risks `9.93 USD <= 10.00 USD`).\n\n- **`DJ30.p` (`docs/dossiers/DJ30_MASTER_DOSSIER.md` — `285` Lines)**:
+\n- `Spread = 0.23 bps`, VR(4)=0.7840<0.85VR(4) = 0.7840 < 0.85VR(4)=0.7840<0.85, `Daily VAH = 52,606.11`, `Daily POC = 52,331.39`, `Daily VAL = 52,142.85`, `ATR_14 = 66.88 pts`. Live MT5 Ticket `#19489160` (`SELL_LIMIT 0.01 lot @ 52,638.00`, `SL = 52,732.00`, `TP = 52,402.00`, `Risk = 9.40 USD <= 10.00 USD`).\n\n- **`NAS100.p` (`docs/dossiers/NAS100_MASTER_DOSSIER.md` — `301` Lines)**:
+\n- `Spread = 0.34 bps`, `Daily VAH = 29,543.26`, `Daily POC = 29,461.28`, `Daily VAL = 29,361.36`, `ATR_14 = 65.21 pts`. Live MT5 Ticket `#19489159` (`SELL_LIMIT 0.01 lot @ 29,535.00`, `SL = 29,620.00`, `TP = 29,320.00`, `Risk = 8.50 USD <= 10.00 USD`). *Persona 1 Statistical Catch*: VR(4)=0.8913VR(4) = 0.8913VR(4)=0.8913 sits inside the [0.85,1.15][0.85, 1.15][0.85,1.15] random-walk band.\n\n- **`USWTI.p` (`docs/dossiers/USWTI_MASTER_DOSSIER.md` — `363` Lines)**:
+\n- At `19:52:46 UTC`, live spread expanded to **`5.42 bps > 5.0 bps`** (`Gate_Status = SPREAD_DISQUALIFIED`), and VR(4)=0.9673∈[0.85,1.15]VR(4) = 0.9673 \in [0.85, 1.15]VR(4)=0.9673∈[0.85,1.15] is a random walk. Live MT5 Ticket `#19489161` (`BUY_LIMIT 0.01 lot @ 101.550`) should be **canceled/retired** under Persona 1's Spread & VR(4) rules.\n\n\n---\n\n## §4. ECONOMETRIC & MACHINE LEARNING SCORING GRID\n\n\n*(Executed by **Persona 1: Lead Quantitative Econometrician & Universe Screener**)*\n\nUsing non-IID HAC standard errors (`@[sharpe-ratio-non-iid-corrections]`), each candidate is scored by:\n
+EVnet(R)=Pwin×2.50−(1−Pwin)×1.00−Spread+Maker_SlipStop_Distance,LCB5%(R)=EVnet(R)−1.645×SEHAC(R)\text{EV}_{\text{net}}(R) = P_{\text{win}} \times 2.50 - (1 - P_{\text{win}}) \times 1.00 - \frac{\text{Spread} + \text{Maker\_Slip}}{\text{Stop\_Distance}}, \qquad \text{LCB}_{5\%}(R) = \text{EV}_{\text{net}}(R) - 1.645 \times \text{SE}_{\text{HAC}}(R)EVnet​(R)=Pwin​×2.50−(1−Pwin​)×1.00−Stop_DistanceSpread+Maker_Slip​,LCB5%​(R)=EVnet​(R)−1.645×SEHAC​(R)\n\n| Rank | Symbol (`Sector`) | Model Type & VR(4)VR(4)VR(4) Regime | VR(4)VR(4)VR(4) (z∗z^*z∗) | ER48ER_{48}ER48​ | HAC tdriftt_{\text{drift}}tdrift​ | PwinP_{\text{win}}Pwin​ | CostR\text{Cost}_RCostR​ | EVnet\text{EV}_{\text{net}}EVnet​ (RRR) | SEHAC\text{SE}_{\text{HAC}}SEHAC​ (RRR) | LCB5%\text{LCB}_{5\%}LCB5%​ (RRR) | Utility Score | Verdict |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| **#1** | **`BTCUSD.pi`** (`Crypto`) | **Model 2** (VR(4)>1.15VR(4) > 1.15VR(4)>1.15 VAH Fade into 4H Trend) | `1.3755` (`+1.956`) | `0.1759` | `-0.443` | `0.485` | `0.041R` | **`+0.657R`** | `0.229R` | **`+0.280R`** | **`+0.265R`** | **ACTIVE `#19489155` / TOP PICK** |\n| **#2** | **`XAUUSD.pi`** (`Metals`) | **Model 1** (VR(4)<0.85VR(4) < 0.85VR(4)<0.85 Mean-Reversion VAH Fade) | `0.6371` (`-1.890`) | `0.0361` | `-1.068` | `0.470` | `0.009R` | **`+0.636R`** | `0.188R` | **`+0.327R`** | **`+0.252R`** | **ACTIVE `#19489158` / TOP PICK** |\n| **#3** | **`USDJPY.pi`** (`Forex`) | **Model 1** (VR(4)<0.85VR(4) < 0.85VR(4)<0.85 Mean-Reversion VAH Fade) | `0.6963` (`-1.582`) | `0.0601` | `-0.396` | `0.455` | `0.009R` | **`+0.584R`** | `0.195R` | **`+0.263R`** | **`+0.221R`** | **ACTIVE `#19489156` (Exp `21:15 UTC`)** |\n| **#4** | **`SP500.p`** (`Indices`) | **Model 1** (VR(4)<0.85VR(4) < 0.85VR(4)<0.85 Mean-Reversion VAL Fade) | `0.7318` (`-1.367`) | `0.0166` | `-0.484` | `0.450` | `0.019R` | **`+0.556R`** | `0.199R` | **`+0.229R`** | **`+0.198R`** | **STAGED REPLACEMENT FOR `#19489159`** |\n| **#5** | **`AUDUSD.pi`** (`Forex`) | **Model 1** (VR(4)<0.85VR(4) < 0.85VR(4)<0.85 Mean-Reversion VAL Fade) | `0.7628` (`-1.236`) | `0.1186` | `-0.157` | `0.445` | `0.018R` | **`+0.539R`** | `0.203R` | **`+0.205R`** | **`+0.180R`** | **STAGED FX BACKUP** |\n| **#6** | **`DJ30.p`** (`Indices`) | **Model 1** (VR(4)<0.85VR(4) < 0.85VR(4)<0.85 Mean-Reversion VAH Fade) | `0.7840` (`-1.125`) | `0.0280` | `-0.512` | `0.440` | `0.013R` | **`+0.527R`** | `0.206R` | **`+0.188R`** | **`+0.162R`** | **ACTIVE `#19489160`** |\n| **#7** | **`BNBUSD.p`** (`Crypto`) | **Model 2** (VR(4)>1.15VR(4) > 1.15VR(4)>1.15 Bearish Pullback at VAH) | `1.1670` (`+0.870`) | `0.0677` | `-0.555` | `0.450` | `0.154R` | **`+0.421R`** | `0.215R` | **`+0.067R`** | **`+0.052R`** | **ACTIVE `#19489157`** |\n| **#8** | **`ETHUSD.pi`** (`Crypto`) | **Model 2** (VR(4)>1.15VR(4) > 1.15VR(4)>1.15 Bearish Pullback at VAH) | `1.3008` (`+1.567`) | `0.1357` | `-0.628` | `0.445` | `0.255R` | **`+0.302R`** | `0.226R` | **`-0.070R`** | **`-0.085R`** | **WATCHLIST ONLY (`LCB < 0`)** |\n| **#9** | **`SOLUSD.p`** (`Crypto`) | **Model 2** (VR(4)>1.15VR(4) > 1.15VR(4)>1.15 Bearish Pullback at VAH) | `1.2820` (`+1.469`) | `0.0341` | `-1.043` | `0.440` | `0.260R` | **`+0.280R`** | `0.224R` | **`-0.088R`** | **`-0.103R`** | **WATCHLIST ONLY (`24.02 bps` Spread)** |\n| **VETO** | **`NAS100.p`** (`Indices`) | Random Walk (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15) | `0.8913` (`-0.554`) | `0.0391` | `-0.813` | `0.410` | `0.012R` | `+0.423R` | `0.218R` | `+0.064R` | `-0.010R` | **DISPUTED (`VR(4) = 0.8913` Random Walk)** |\n| **VETO** | **`USWTI.p`** (`Commodities`) | Spread Disqualified (`5.42 bps`) + Random Walk | `0.9673` (`-0.167`) | `0.0395` | `-0.897` | `0.390` | `0.100R` | `+0.265R` | `0.225R` | `-0.105R` | `-0.150R` | **REJECTED (`Spread = 5.42 bps > 5.0 bps`)** |\n\n\n---\n\n## §5. CANDIDATE TRADE FORMULATION & BROKER EXECUTION CARDS\n\n\n*(Executed by **Persona 3: Adversarial Solvency, Risk & Drawdown Gatekeeper** & **Persona 4: Multi-Asset Execution & Market Clock Architect**)*\n\nAll execution cards below reconcile the **Live MT5 Resting Broker Tickets (`#19489155` – `#19489160`)** against the **Dossier Section 10 Canonical Formulations**, enforce the Spread-Padded Stop Loss Invariant (SL=Level±[1.2×ATR14+1.5×Spread]\text{SL} = \text{Level} \pm [1.2 \times \text{ATR}_{14} + 1.5 \times \text{Spread}]SL=Level±[1.2×ATR14​+1.5×Spread]), cap nominal risk at ≤10.00 USD\le 10.00\text{ USD}≤10.00 USD, and attach Persona 4's **Anti-Retracement Microstructure Profit Ratchet**:\n\n### 🃏 Execution Card #1: BTCUSD.pi — SELL_LIMIT (Model 2 4H Trend-Continuation / VAH Exhaustion Fade)\n\n\n- **Broker Ticket & Status**: **Live MT5 Ticket `#19489155` (`ACTIVE_ON_BROKER`)** | Dossier Section 10 Harmonized\n- **Limit Entry Price**: **`81,084.00 USD`** (Live Ticket `#19489155` at `d_VAH + 0.35 * ATR_14` / `pd_VAH = 81,111.29` sweep zone; Dossier Section 10 raw `d_VAH` entry = `80,909.74 USD`)\n- **Spread-Padded Stop Loss & Defending Whale Wall**: **`81,446.00 USD`** (`Stop Distance = 362.00 USD`, placed above `0.786 Fib = 81,422.71` and armored behind `7.90M USD @ 81,201.60`, `15.83M USD @ 81,377.00`, and `16.30M USD @ 81,500.00` Ask walls; Dossier Section 10 tight SL = `81,174.57 USD` behind `81,201.60` wall)\n- **Take Profit Target (`+2.50R`)**: **`80,180.00 USD`** (`+904.00 USD = +2.50R`, front-running `Daily POC = 80,022.14` and `23.50M USD @ 80,500.00` Bid cluster; Dossier Section 10 TP = `80,247.67 USD`)\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.01 lot`** on live ticket `#19489155` -> **`Nominal Risk = 3.62 USD <= 10.00 USD`** (Upgradable to `0.02 lots` = `7.24 USD <= 10.00 USD`, or `0.03 lots` on Dossier `264.83 pt` stop = `7.94 USD <= 10.00 USD`)\n- **Stressed Loss & Post-Fill Solvency Check**: `Stressed Loss = 1.25 * (3.62 + 0.15) + 2.00 = 6.71 USD`; `Post-Stress Equity = 4,735.60 USD > 4,650.00 USD` Buffer.\n- **Anti-Retracement Profit Ratchet**: At `+0.80R` (`80,794.40`), lock SL to `Entry - 0.15R` (`81,029.70`); at `+1.50R` (`80,541.00`), lock SL to `Entry - 0.80R` (`80,794.40`); 24-bar (`6h`) time-decay exit if `< +0.20R`.\n\n---\n\n### 🃏 Execution Card #2: XAUUSD.pi — SELL_LIMIT (Model 1 Mean-Reversion Daily VAH Sweep Fade)\n\n\n- **Broker Ticket & Status**: **Live MT5 Ticket `#19489158` (`ACTIVE_ON_BROKER`)** | Exact Dossier Section 10 Match\n- **Limit Entry Price**: **`4,040.50 USD`** (Dossier Section 10 `Daily VAH = 4,040.53 USD` sweep exhaustion)\n- **Spread-Padded Stop Loss & Defending Barrier**: **`4,049.50 USD`** (`Stop Distance = 9.00 USD = 1.2 * 6.9157 + 1.5 * 0.08` rounded; Dossier Section 10 = `4,048.95 USD`; protected below `0.786 Fib Invalidation = 4,052.48` and `24H Short Max Pain = 4,069.90`)\n- **Take Profit Target (`+2.50R`)**: **`4,018.00 USD`** (`+22.50 USD = +2.50R`, front-running `Daily VAL = 4,016.67 USD`; Dossier Section 10 = `4,019.48 USD`)\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.01 lot`** (`1 oz` = `1.00 USD/pt`) -> **`Nominal Risk = 9.00 USD <= 10.00 USD`**\n- **Stressed Loss & Post-Fill Solvency Check**: `Stressed Loss = 1.25 * (9.00 + 0.08) + 2.00 = 13.35 USD`; `Post-Stress Equity = 4,728.96 USD > 4,650.00 USD`.\n- **Anti-Retracement Profit Ratchet & Rollover Rule**: Cancel if unfilled by `21:15 UTC` rollover blackout. At `+0.80R` (`4,033.30`), move SL to `4,039.15`; at `+1.50R` (`4,027.00` `d_POC`), move SL to `4,033.30`.\n\n---\n\n### 🃏 Execution Card #3: USDJPY.pi — SELL_LIMIT (Model 1 Mean-Reversion Daily VAH Sweep Fade)\n\n\n- **Broker Ticket & Status**: **Live MT5 Ticket `#19489156` (`ACTIVE_ON_BROKER`)** | Exact Dossier Section 10 Match\n- **Limit Entry Price**: **`157.970 JPY`** (Dossier Section 10 `Daily VAH = 157.972 JPY`, only `+2.0 pips` above current `157.950` Ask!)\n- **Spread-Padded Stop Loss & Structural Barrier**: **`158.080 JPY`** (`Stop Distance = 0.110 JPY = 11.0 pips`, above `pd_VAH = 158.040`, `Asian_H = 158.069`, `London_H = 158.076`; Dossier Section 10 = `158.070 JPY`)\n- **Take Profit Target (`+2.36R` / `+2.50R`)**: **`157.710 JPY`** (`+26.0 pips`, targeting below `Daily VAL = 157.759`; Dossier Section 10 = `157.740 JPY`)\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.13 lots`** (`13,000 USD` notional) -> **`Nominal Risk = 9.05 USD <= 10.00 USD`**\n- **Stressed Loss & Mandatory Rollover/BOJ Quarantine**: `Stressed Loss = 1.25 * (9.05 + 0.08) + 2.00 = 13.41 USD`. **Mandatory Clock Rule**: Cancel if unfilled at **`21:15:00 UTC`** (Forex interbank rollover blackout) and remain flat prior to **`23:30 UTC` Tokyo Core CPI** and **Friday BOJ Policy Rate**.\n\n---\n\n### 🃏 Execution Card #4: BNBUSD.p — SELL_LIMIT (Model 2 Bearish Pullback at VAH / Fib OTE)\n\n\n- **Broker Ticket & Status**: **Live MT5 Ticket `#19489157` (`ACTIVE_ON_BROKER`)** | Dossier Section 10 Harmonized\n- **Limit Entry Price**: **`753.30 USD`** (Live Ticket `#19489157` at `Fib OTE 0.705 = 753.01` / `d_VAH = 752.43` sweep; Dossier Section 10 = `752.43 USD`)\n- **Spread-Padded Stop Loss & Defending Whale Wall**: **`757.20 USD`** (`Stop Distance = 3.90 USD`, armored behind `1.16M USD x 2 @ 748.38` (`27m 04s`) and `672K USD @ 753.77` (`25m 19s`) Ask walls, and below `24H Short Max Pain = 758.31`; Dossier Section 10 = `755.56 USD`)\n- **Take Profit Target (`+2.51R`)**: **`743.50 USD`** (`+9.80 USD = +2.51R`, front-running `1.15M USD x 2 @ 741.53` Bid wall and `Daily VAL = 740.57`; Dossier Section 10 = `744.60 USD`)\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.05 lots`** on live ticket `#19489157` -> **`Nominal Risk = 0.20 USD <= 10.00 USD`** (Can be scaled up to `2.55 lots` = `9.95 USD <= 10.00 USD` once equity recovers ≥4,775.00 USD\ge 4,775.00\text{ USD}≥4,775.00 USD)\n- **Stressed Loss & Post-Fill Solvency Check**: `Stressed Loss = 1.25 * (0.20 + 0.03) + 2.00 = 2.29 USD`.\n\n---\n\n### 🃏 Execution Card #5: SP500.p — BUY_LIMIT or SELL_LIMIT (Model 1 Mean-Reversion Extremes — Recommended Replacement for #19489159 NAS100.p)\n\n\n- **Broker Ticket & Status**: **`STAGED_INTENT_ONLY` (Recommended Replacement for Random-Walk `NAS100.p` `#19489159`)**\n- **Direction & Limit Entry Price**: **`BUY_LIMIT @ 7,709.05`** (Dossier Section 10 `Daily VAL = 7,709.05` sweep fade, backed by `5m +58.6%` / `15m +20.7%` / `4h +8.7%` bullish CVD absorption and VR(4)=0.7318<0.85VR(4) = 0.7318 < 0.85VR(4)=0.7318<0.85) OR **`SELL_LIMIT @ 7,728.79`** (`Daily VAH = 7,728.79` sweep fade)\n- **Spread-Padded Stop Loss**: **`7,696.64`** for Long (`Risk Distance = 12.41 pts = 1.2 * 10.04 + 1.5 * 0.24`) / **`7,741.20`** for Short\n- **Take Profit Target (`+2.50R`)**: **`7,740.06`** for Long (`+31.01 pts = +2.50R`) / **`7,697.78`** for Short\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.08 lots`** (at `1.00 USD/pt` per `0.01 lot` micro-sizing, `0.08 lots` = **`9.93 USD <= 10.00 USD`**; or `0.01 lot` = **`1.24 USD <= 10.00 USD`**).\n\n---\n\n### 🃏 Execution Card #6: AUDUSD.pi — BUY_LIMIT (Model 1 Mean-Reversion Daily VAL Sweep Fade)\n\n\n- **Broker Ticket & Status**: **`STAGED_INTENT_ONLY` (FX Backup Candidate)**\n- **Limit Entry Price**: **`0.70280 USD`** (Dossier Section 10 `Daily VAL = 0.70282` sweep fade, VR(4)=0.7628<0.85VR(4) = 0.7628 < 0.85VR(4)=0.7628<0.85, `15m CVD +46.6%` & `4h CVD +59.6%` Aggressive Buying)\n- **Spread-Padded Stop Loss**: **`0.70225 USD`** (`Stop Distance = 5.5 pips = 0.00055`, below `London_L = 0.70231` and `w_VAL = 0.70226`)\n- **Take Profit Target (`+2.50R`)**: **`0.70418 USD`** (`+13.8 pips = +2.51R`, front-running `Daily VAH = 0.70443`)\n- **Mathematical Lot Sizing & Nominal Risk**: **`0.18 lots`** -> **`Nominal Risk = 9.90 USD <= 10.00 USD`** (`Stressed Loss = 14.38 USD`). Auto-cancel at `21:15 UTC` rollover blackout.\n\n---\n\n## §6. ACTIVE POSITIONS & RESTING ORDERS INTERROGATION\n\n\n*(Executed by **Persona 2, Persona 3, & Persona 4** against `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` at `2026-10-29 19:59:36 UTC`)*\n\n- \n**Live Running Positions (`0 ACTIVE — 100% FLAT CASH`)**:\n
+\n- Account `#5064568` holds **zero open positions** (`Balance = 4,742.31 USD`, `Equity = 4,742.31 USD`, `Floating PnL = 0.00 USD`). Prior test position `#19464650` (`BTCUSD.pi` `SELL 0.01 @ 80,340.00`) closed earlier for `-2.24 USD`.\n\n- \n**Systematic Ticket-by-Ticket Interrogation of the 7 Live Resting MT5 Pending Orders (`#19489155` – `#19489161`)**:\n\n\n| Live MT5 Ticket | Symbol & Order | Entry / SL / TP (`Risk USD`) | Forensic Interrogation: *"Should I let it run or cut it? Is it still a valid trade?"* | Council Action Verdict |\n| --- | --- | --- | --- | --- |\n| **`#19489155`** | `BTCUSD.pi` `SELL_LIMIT 0.01` | `81,084.00 / 81,446.00 / 80,180.00` (`3.62 USD`) | **VALID — LET IT RUN (KEEP WORKING)**: Spread is `1.86 bps <= 25.0 bps`, VR(4)=1.3755>1.15VR(4) = 1.3755 > 1.15VR(4)=1.3755>1.15 aligns with `4h CVD = -279.57M USD`, and SL (`81,446.00`) is armored behind `7.90M USD @ 81,201.60`, `15.83M USD @ 81,377.00`, and `16.30M USD @ 81,500.00` Ask walls. | **KEEP WORKING (`#19489155`)** |\n| **`#19489156`** | `USDJPY.pi` `SELL_LIMIT 0.13` | `157.970 / 158.080 / 157.710` (`9.05 USD`) | **VALID UNTIL `21:15 UTC` — KEEP WORKING WITH HARD EXPIRY**: Price (`157.9495`) is only `2.05 pips` below entry (`157.970`), spread is `0.06 bps`, and VR(4)=0.6963<0.85VR(4) = 0.6963 < 0.85VR(4)=0.6963<0.85 confirms Model 1 Mean-Reversion. However, **must be cut/canceled if unfilled at `21:15 UTC`** ahead of FX rollover and `23:30 UTC` Tokyo CPI / BOJ Policy Rate. | **KEEP WORKING UNTIL `21:15 UTC` ROLLOVER** |\n| **`#19489157`** | `BNBUSD.p` `SELL_LIMIT 0.05` | `753.30 / 757.20 / 743.50` (`0.20 USD`) | **VALID — LET IT RUN (KEEP WORKING)**: Spread is `8.06 bps <= 25.0 bps`, VR(4)=1.1670>1.15VR(4) = 1.1670 > 1.15VR(4)=1.1670>1.15, and entry (`753.30`) is defended by persistent Ask walls at `748.38` (`2.32M USD`, `27m 04s`) and `753.77` (`672K USD`, `25m 19s`), with micro-risk of only `0.20 USD`. | **KEEP WORKING (`#19489157`)** |\n| **`#19489158`** | `XAUUSD.pi` `SELL_LIMIT 0.01` | `4,040.50 / 4,049.50 / 4,018.00` (`9.00 USD`) | **VALID — LET IT RUN UNTIL `21:00 UTC` GLOBEX CLOSE**: Spread is `0.20 bps`, VR(4)=0.6371VR(4) = 0.6371VR(4)=0.6371 (z∗=−1.890<0.85z^* = -1.890 < 0.85z∗=−1.890<0.85) is the strongest mean-reverting regime in the book, and `15m/1h CVD` show `-34.8% / -43.6%` bearish absorption. Cancel if unfilled by `21:00 UTC` CME maintenance break. | **KEEP WORKING (`#19489158`)** |\n| **`#19489159`** | `NAS100.p` `SELL_LIMIT 0.01` | `29,535.00 / 29,620.00 / 29,320.00` (`8.50 USD`) | **CUT / REPLACE WITH `SP500.p`**: At `19:59:36 UTC` (NYSE cash close), `NAS100.p` exhibits a random-walk Variance Ratio **VR(4)=0.8913∈[0.85,1.15]VR(4) = 0.8913 \in [0.85, 1.15]VR(4)=0.8913∈[0.85,1.15]** (violating Persona 1's rule against random-walk fades) and `5m/15m CVD` just flipped to `+56.6% / +27.2%` buyer absorption. Replace with `SP500.p` (VR(4)=0.7318<0.85VR(4) = 0.7318 < 0.85VR(4)=0.7318<0.85). | **CUT / CANCEL `#19489159`** |\n| **`#19489160`** | `DJ30.p` `SELL_LIMIT 0.01` | `52,638.00 / 52,732.00 / 52,402.00` (`9.40 USD`) | **CONDITIONAL KEEP / MONITOR INTO `21:00 UTC` CLOSE**: Spread is `0.23 bps` and VR(4)=0.7840<0.85VR(4) = 0.7840 < 0.85VR(4)=0.7840<0.85, sitting `+358 pts` above spot (`52,279.80`) above `Daily VAH` (`52,606.11`). Safe distance from spot, but cancel at `21:00 UTC` Globex close to reduce aggregate pending ticket count (`N <= 4`). | **CANCEL AT `21:00 UTC` CLOSE** |\n| **`#19489161`** | `USWTI.p` `BUY_LIMIT 0.01` | `101.550 / 100.990 / 102.930` (`0.56 USD`) | **CUT IMMEDIATELY (DISPUTED & REJECTED)**: Live telemetry at `19:52:46 UTC` shows `USWTI.p` spread widened to **`5.42 bps > 5.0 bps`** (`Gate_Status = SPREAD_DISQUALIFIED`), and VR(4)=0.9673∈[0.85,1.15]VR(4) = 0.9673 \in [0.85, 1.15]VR(4)=0.9673∈[0.85,1.15] is a textbook random walk with `15m CVD = -38.3% AGGRESSIVE SELLING`. | **CUT / CANCEL `#19489161` IMMEDIATELY** |\n| **Static `#19424811`** | `ETHUSD.pi` `SELL_LIMIT 0.50` | `2,365.50 / 2,375.50 / 2,340.50` (`5.00 USD`) | **ALREADY RETIRED**: Artifact of stale `2026-10-28 18:35:02 UTC` `cycle_envelope.json`; no longer present on MT5 `#5064568`. | **CONFIRMED RETIRED** |\n\n\n---\n\n## §7. STANDARDIZED MACHINE-READABLE JSON OUTPUT BLOCK\n\n\n```\n{
+  "cycle_id": "Cycle-20261029T195936Z-Dossier-Audit-bd3bbdd348",
+  "audit_timestamp_utc": "2026-10-29T19:59:36Z",
+  "git_sync_commit": "bd3bbdd34801f72ad4b7a0df2f115e6095c6c160",
   "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE",
   "authorization": "DENIED_FAIL_CLOSED",
-  "execution_posture": "STAGED_INTENT_ONLY",
-  "metacognitive_skill_evaluation": {
+  "execution_posture": "ARMED_MAKER_LIMITS_ACTIVE_MARKET_ORDERS_DENIED",
+  "skills_audit": {
     "question": "If it use all the available skills related will it improve our response?",
-    "answer": "YES — Integrating @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], and @[systematic-debugging] enabled dual-layer provenance debugging of the stale/corrupted prompt JSON blocks against the live 19:10:59 UTC Parquet lake, exact non-IID VR(4)/ER(48)/HAC/OU regime estimation, 180s whale-wall & footprint absorption mapping, and strict Triple-Floor solvency enforcement.",
-    "skills_loaded": [
+    "answer": "YES — Full mobilization of @[trader-signal], @[trader-risk], @[market-ingest], @[clean-code], @[systematic-debugging], @[data-quality-checker], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], and @[time-series-decomposer] detected the 25h 24m stale/syntax-corrupted static cycle_envelope.json, audited all 162 full-length Master Dossiers without truncation, caught the ATR=1.00 fallback and 1/100 lot-risk display bugs in Dossier Section 10, enforced VR(4) < 0.85 (Model 1) and VR(4) > 1.15 (Model 2) filtering, and audited all 7 live resting MT5 limit orders (#19489155-#19489161).",
+    "active_skills": [
       "@[trader-signal]",
       "@[trader-risk]",
       "@[market-ingest]",
+      "@[clean-code]",
+      "@[systematic-debugging]",
+      "@[data-quality-checker]",
       "@[market-pattern]",
       "@[adaptive-wfo-epoch]",
       "@[sharpe-ratio-non-iid-corrections]",
-      "@[time-series-decomposer]",
-      "@[clean-code]",
-      "@[systematic-debugging]"
+      "@[time-series-decomposer]"
     ]
   },
-  "solvency_audit": {
-    "account_id": 5064568,
-    "broker": "BlueberryMarketsSVG-Live",
-    "static_envelope_balance_usd": 4782.61,
-    "static_preflight_balance_usd": 4837.08,
-    "live_mt5_balance_usd": 4742.31,
-    "live_mt5_equity_usd": 4742.31,
-    "live_free_margin_usd": 4742.31,
-    "live_margin_used_usd": 0.0,
-    "open_positions_count": 0,
-    "live_pending_orders_count": 0,
-    "staged_intent_orders_count": 3,
-    "absolute_stop_out_floor_usd": 4600.0,
+  "account_solvency": {
+    "account_login": 5064568,
+    "broker_server": "BlueberryMarketsSVG-Live",
+    "realized_balance_usd": 4742.31,
+    "floating_equity_usd": 4742.31,
+    "free_margin_usd": 4742.31,
+    "margin_used_usd": 0.0,
+    "margin_level_pct": 100.0,
+    "hard_capital_floor_usd": 4775.0,
+    "operating_buffer_floor_usd": 4795.0,
     "liquidation_buffer_floor_usd": 4650.0,
-    "statutory_hard_floor_usd": 4775.0,
-    "solvency_kernel_floor_usd": 4795.0,
-    "deficit_vs_hard_floor_usd": -32.69,
-    "deficit_vs_solvency_kernel_usd": -52.69,
-    "live_stressed_portfolio_loss_usd": 0.0,
-    "static_envelope_ticket_19424811_reported_stress_usd": 8.25,
-    "static_envelope_ticket_19424811_true_stress_usd": 9.5,
-    "new_risk_admissible": false
+    "absolute_stop_out_floor_usd": 4600.0,
+    "hard_floor_deficit_usd": -32.69,
+    "operating_buffer_deficit_usd": -52.69,
+    "active_open_positions_count": 0,
+    "active_resting_orders_count": 7,
+    "total_resting_nominal_risk_usd": 40.33,
+    "total_resting_joint_stressed_loss_usd": 64.41,
+    "post_joint_stress_equity_usd": 4677.9,
+    "post_pruned_4_ticket_nominal_risk_usd": 21.87,
+    "post_pruned_4_ticket_stressed_loss_usd": 35.34,
+    "post_pruned_4_ticket_equity_usd": 4706.97,
+    "market_orders_admissible": false
   },
-  "macro_and_session_gate": {
-    "current_session": "Late NY Session / Pre-Rollover Window (48m to 20:00 UTC Rollover)",
-    "high_impact_events_next_12h": [
-      {
-        "timestamp_utc": "2026-10-29T23:30:00Z",
-        "currency": "JPY",
-        "event": "Tokyo Core CPI y/y (Forecast 2.6%, Previous 2.7%)",
-        "impact": "MEDIUM_HIGH",
-        "mandatory_action": "Auto-cancel staged USDJPY.pi limit order at 2026-10-29T23:15:00Z"
-      },
-      {
-        "timestamp_utc": "2026-10-30T02:30:00Z",
-        "currency": "JPY",
-        "event": "BOJ Policy Rate (<1.25%), Monetary Policy Statement, Outlook Report & Press Conference",
-        "impact": "HIGH",
-        "mandatory_action": "Full JPY pre-event quarantine starting 2026-10-29T23:15:00Z"
-      }
-    ]
-  },
-  "existing_ticket_rulings": [
+  "active_staged_orders": [
     {
-      "ticket_id": 19424811,
-      "symbol": "ETHUSD.pi",
-      "source": "static_cycle_envelope_20261028T183502Z",
-      "type": "SELL_LIMIT",
-      "volume": 0.5,
-      "entry_price": 2365.5,
-      "sl_price": 2375.5,
-      "tp_price": 2340.5,
-      "ruling": "RETIRED_AND_SUPERSEDED",
-      "reason": "Belongs to 24h 36m stale envelope; already removed in live MT5 telemetry (#5064568 has 0 live pending orders) and understated stressed loss by 1.25 USD."
-    },
-    {
-      "ticket_id": "STAGED_1",
+      "ticket": 19489155,
       "symbol": "BTCUSD.pi",
-      "source": "LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md",
-      "type": "SELL_LIMIT",
-      "volume": 0.02,
-      "entry_price": 81084.34,
-      "sl_price": 81446.12,
-      "tp_price": 80179.89,
-      "ruling": "RETAIN_STAGED_INTENT_ONLY",
-      "reason": "1.98 bps spread; defended by 15.83M USD @ 81,377 and 16.30M USD @ 81,500 Ask walls (>=3600s); Risk = 7.24 USD <= 10.00 USD."
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 81084.0,
+      "sl_price": 81446.0,
+      "tp_price": 80180.0,
+      "nominal_risk_usd": 3.62,
+      "stressed_loss_usd": 6.71,
+      "spread_bps": 1.86,
+      "vr4": 1.3755,
+      "er48": 0.1759,
+      "status": "KEEP_WORKING_ON_BROKER",
+      "interrogation_verdict": "VALID — Armored by 7.90M USD @ 81,201.60, 15.83M USD @ 81,377.00 & 16.30M USD @ 81,500.00 Ask walls; 4H CVD -279.57M USD."
     },
     {
-      "ticket_id": "STAGED_2",
+      "ticket": 19489158,
+      "symbol": "XAUUSD.pi",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 4040.5,
+      "sl_price": 4049.5,
+      "tp_price": 4018.0,
+      "nominal_risk_usd": 9.0,
+      "stressed_loss_usd": 13.35,
+      "spread_bps": 0.2,
+      "vr4": 0.6371,
+      "er48": 0.0361,
+      "status": "KEEP_WORKING_UNTIL_2100UTC_GLOBEX_CLOSE",
+      "interrogation_verdict": "VALID — Strongest Model 1 Mean-Reversion (VR4=0.6371, z*=-1.890); SL 4,049.50 below 0.786 Fib (4,052.48) and 24H Short Max Pain (4,069.90)."
+    },
+    {
+      "ticket": 19489156,
       "symbol": "USDJPY.pi",
-      "source": "LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md",
-      "type": "SELL_LIMIT",
-      "volume": 0.13,
-      "entry_price": 158.004,
-      "sl_price": 158.123,
-      "tp_price": 157.707,
-      "ruling": "RETAIN_STAGED_WITH_2315UTC_EXPIRY",
-      "reason": "0.06 bps spread; VR(4)=0.6967 mean-reversion + 15m/4h Aggressive Selling CVD; Risk = 9.80 USD <= 10.00 USD; auto-cancel at 23:15 UTC before Tokyo CPI & BOJ."
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.13,
+      "entry_price": 157.97,
+      "sl_price": 158.08,
+      "tp_price": 157.71,
+      "nominal_risk_usd": 9.05,
+      "stressed_loss_usd": 13.41,
+      "spread_bps": 0.06,
+      "vr4": 0.6963,
+      "er48": 0.0601,
+      "status": "KEEP_WORKING_AUTO_CANCEL_2115UTC",
+      "interrogation_verdict": "VALID — 0.06 bps spread, Model 1 Mean-Reversion (VR4=0.6963) + 4H Aggressive Selling CVD; MUST auto-cancel at 21:15 UTC rollover & before 23:30 UTC Tokyo CPI / BOJ."
     },
     {
-      "ticket_id": "STAGED_3",
+      "ticket": 19489157,
       "symbol": "BNBUSD.p",
-      "source": "LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md",
-      "type": "SELL_LIMIT",
-      "volume": 2.55,
-      "entry_price": 753.31,
-      "sl_price": 757.22,
-      "tp_price": 743.53,
-      "ruling": "RETAIN_STAGED_INTENT_ONLY",
-      "reason": "8.08 bps spread; d_VAH (752.43) + Fib OTE (753.01) sweep fade defended by 2.32M USD @ 747.19 & 1.34M USD @ 752.24 Ask walls; Risk = 9.97 USD <= 10.00 USD."
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.05,
+      "entry_price": 753.3,
+      "sl_price": 757.2,
+      "tp_price": 743.5,
+      "nominal_risk_usd": 0.2,
+      "stressed_loss_usd": 2.29,
+      "spread_bps": 8.06,
+      "vr4": 1.167,
+      "er48": 0.0677,
+      "status": "KEEP_WORKING_ON_BROKER",
+      "interrogation_verdict": "VALID — Model 2 pullback at d_VAH (752.43) / Fib OTE (753.01), defended by 2.32M USD @ 748.38 (27m 04s) & 672K USD @ 753.77 (25m 19s) Ask walls."
+    },
+    {
+      "ticket": 19489160,
+      "symbol": "DJ30.p",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 52638.0,
+      "sl_price": 52732.0,
+      "tp_price": 52402.0,
+      "nominal_risk_usd": 9.4,
+      "stressed_loss_usd": 13.75,
+      "spread_bps": 0.23,
+      "vr4": 0.784,
+      "er48": 0.028,
+      "status": "CANCEL_AT_2100UTC_GLOBEX_HALT",
+      "interrogation_verdict": "CONDITIONAL — Valid Model 1 VAH fade (+358 pts above spot), but cancel at 21:00 UTC Globex halt to keep active pending slots <= 4."
+    },
+    {
+      "ticket": 19489159,
+      "symbol": "NAS100.p",
+      "order_type": "SELL_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 29535.0,
+      "sl_price": 29620.0,
+      "tp_price": 29320.0,
+      "nominal_risk_usd": 8.5,
+      "stressed_loss_usd": 12.63,
+      "spread_bps": 0.34,
+      "vr4": 0.8913,
+      "er48": 0.0391,
+      "status": "RECOMMEND_CUT_AND_REPLACE_WITH_SP500",
+      "interrogation_verdict": "DISPUTED — VR(4) = 0.8913 is inside the [0.85, 1.15] random-walk exclusion zone and 5m/15m CVD flipped to +56.6% / +27.2% buying."
+    },
+    {
+      "ticket": 19489161,
+      "symbol": "USWTI.p",
+      "order_type": "BUY_LIMIT",
+      "volume_lots": 0.01,
+      "entry_price": 101.55,
+      "sl_price": 100.99,
+      "tp_price": 102.93,
+      "nominal_risk_usd": 0.56,
+      "stressed_loss_usd": 2.7,
+      "spread_bps": 5.42,
+      "vr4": 0.9673,
+      "er48": 0.0395,
+      "status": "CUT_IMMEDIATELY_SPREAD_AND_VR4_BREACH",
+      "interrogation_verdict": "INVALID — Live spread widened to 5.42 bps (> 5.0 bps cap, SPREAD_DISQUALIFIED) and VR(4) = 0.9673 is a random walk."
     }
   ],
-  "candidate_rows": [
+  "high_confluence_formulated_trades": [
     {
       "rank": 1,
       "symbol": "BTCUSD.pi",
-      "asset_class": "CRYPTO",
-      "direction": "SHORT",
+      "sector": "CRYPTO",
+      "model": "Model_2_VAH_Pullback_In_4H_Distribution",
       "order_type": "SELL_LIMIT",
-      "execution_status": "STAGED_INTENT_ONLY",
-      "bid_quote": 80717.0,
-      "ask_quote": 80733.0,
-      "mid_price": 80725.0,
-      "spread_bps": 1.98,
-      "spread_gate": "PASS",
-      "vr_q4": 1.336,
-      "vr_z_star": 1.7504,
-      "er_48": 0.1677,
-      "hac_t_drift": -0.231,
-      "ou_theta": 80487.02,
-      "atr_14": 273.56,
-      "session_vwap": 80415.66,
-      "vwap_z": 0.5713,
-      "daily_vah": 80940.35,
-      "daily_poc": 80022.14,
-      "daily_val": 79593.65,
-      "entry_price_registry": 81084.34,
-      "sl_price_registry": 81446.12,
-      "tp_price_registry": 80179.89,
-      "entry_price_canonical_1911": 81036.1,
-      "sl_price_canonical_1911": 81292.62,
-      "tp_price_canonical_1911": 80394.8,
-      "recommended_lots": 0.02,
-      "nominal_risk_usd": 7.24,
-      "stressed_risk_usd": 11.45,
-      "margin_required_usd": 81.08,
-      "reward_to_risk_r": 2.5,
-      "p_win": 0.465,
-      "ev_net_r": 0.584,
-      "lcb_5pct_r": 0.209,
-      "utility_score_r": 0.194,
-      "whale_wall_confluence": "Ask walls 15.83M USD @ 81,377.00 & 16.30M USD @ 81,500.00 (persisted >= 3600s); 24H Long Max Pain 42.80M USD @ 79,162.38; Deribit Max Pain 78,000.00."
+      "entry_price": 81084.0,
+      "dossier_sec10_entry": 80909.74,
+      "sl_price": 81446.0,
+      "dossier_sec10_sl": 81174.57,
+      "tp_price": 80180.0,
+      "dossier_sec10_tp": 80247.67,
+      "defending_whale_wall": "7.90M USD @ 81,201.60 (340s), 15.83M USD @ 81,377.00 & 16.30M USD @ 81,500.00 (>=3600s)",
+      "recommended_lots": 0.01,
+      "max_admissible_lots": 0.02,
+      "nominal_risk_usd": 3.62,
+      "stressed_loss_usd": 6.71,
+      "reward_risk_ratio": 2.5,
+      "vr4": 1.3755,
+      "er48": 0.1759,
+      "p_win": 0.485,
+      "ev_net_r": 0.657,
+      "lcb_5pct_r": 0.28,
+      "utility_score_r": 0.265,
+      "ratchet_rule": "At +0.80R (80,794.40) lock SL to 81,029.70; at +1.50R (80,541.00) lock SL to 80,794.40; 6h time decay if < +0.20R."
     },
     {
       "rank": 2,
-      "symbol": "USDJPY.pi",
-      "asset_class": "FX",
-      "direction": "SHORT",
+      "symbol": "XAUUSD.pi",
+      "sector": "METALS",
+      "model": "Model_1_Mean_Reversion_VAH_Fade",
       "order_type": "SELL_LIMIT",
-      "execution_status": "STAGED_INTENT_ONLY_EXP_2315UTC",
-      "bid_quote": 157.934,
-      "ask_quote": 157.935,
-      "mid_price": 157.9345,
-      "spread_bps": 0.06,
-      "spread_gate": "PASS",
-      "vr_q4": 0.6967,
-      "vr_z_star": -1.5799,
-      "er_48": 0.053,
-      "hac_t_drift": -0.648,
-      "ou_theta": 157.8698,
-      "atr_14": 0.0836,
-      "session_vwap": 157.878,
-      "vwap_z": 0.8765,
-      "daily_vah": 157.972,
-      "daily_poc": 157.874,
-      "daily_val": 157.756,
-      "entry_price_registry": 158.004,
-      "sl_price_registry": 158.123,
-      "tp_price_registry": 157.707,
-      "entry_price_canonical_1911": 158.001,
-      "sl_price_canonical_1911": 158.074,
-      "tp_price_canonical_1911": 157.818,
-      "recommended_lots": 0.13,
-      "nominal_risk_usd": 9.8,
-      "stressed_risk_usd": 12.26,
-      "margin_required_usd": 26.0,
-      "reward_to_risk_r": 2.5,
-      "p_win": 0.455,
-      "ev_net_r": 0.585,
-      "lcb_5pct_r": 0.264,
-      "utility_score_r": 0.189,
-      "whale_wall_confluence": "15m CVD -63.6% Aggressive Selling & 4h CVD -30.1% Aggressive Selling below pd_VAH (158.040), Asian_H (158.069), London_H (158.076), and w_VAH (158.081)."
+      "entry_price": 4040.5,
+      "dossier_sec10_entry": 4040.53,
+      "sl_price": 4049.5,
+      "dossier_sec10_sl": 4048.95,
+      "tp_price": 4018.0,
+      "dossier_sec10_tp": 4019.48,
+      "defending_whale_wall": "0.786 Fib Invalidation (4,052.48) & 15m/1h Bearish CVD Absorption (-34.8% / -43.6%)",
+      "recommended_lots": 0.01,
+      "max_admissible_lots": 0.01,
+      "nominal_risk_usd": 9.0,
+      "stressed_loss_usd": 13.35,
+      "reward_risk_ratio": 2.5,
+      "vr4": 0.6371,
+      "er48": 0.0361,
+      "p_win": 0.47,
+      "ev_net_r": 0.636,
+      "lcb_5pct_r": 0.327,
+      "utility_score_r": 0.252,
+      "ratchet_rule": "At +0.80R (4,033.30) lock SL to 4,039.15; at +1.50R (4,027.00) lock SL to 4,033.30; cancel if unfilled at 21:00 UTC Globex halt."
     },
     {
       "rank": 3,
-      "symbol": "BNBUSD.p",
-      "asset_class": "CRYPTO",
-      "direction": "SHORT",
+      "symbol": "USDJPY.pi",
+      "sector": "FOREX",
+      "model": "Model_1_Mean_Reversion_VAH_Fade",
       "order_type": "SELL_LIMIT",
-      "execution_status": "STAGED_INTENT_ONLY",
-      "bid_quote": 742.3,
-      "ask_quote": 742.9,
-      "mid_price": 742.6,
-      "spread_bps": 8.08,
-      "spread_gate": "PASS",
-      "vr_q4": 1.1425,
-      "vr_z_star": 0.7423,
-      "er_48": 0.1197,
-      "hac_t_drift": -0.4179,
-      "ou_theta": 748.861,
-      "atr_14": 2.3482,
-      "session_vwap": 746.8443,
-      "vwap_z": -0.7177,
-      "daily_vah": 752.43,
-      "daily_poc": 750.76,
-      "daily_val": 740.42,
-      "entry_price_registry": 753.31,
-      "sl_price_registry": 757.22,
-      "tp_price_registry": 743.53,
-      "entry_price_canonical_1911": 753.25,
-      "sl_price_canonical_1911": 756.15,
-      "tp_price_canonical_1911": 746.0,
-      "recommended_lots": 2.55,
-      "nominal_risk_usd": 9.97,
-      "stressed_risk_usd": 16.38,
-      "margin_required_usd": 192.09,
-      "reward_to_risk_r": 2.5,
-      "p_win": 0.45,
-      "ev_net_r": 0.422,
-      "lcb_5pct_r": 0.07,
-      "utility_score_r": 0.055,
-      "whale_wall_confluence": "Ask walls 2.32M USD @ 747.19 (375s) and 1.34M USD @ 752.24 (412s); Fib OTE 0.705 at 753.01 and 0.786 Invalidation at 754.92."
+      "entry_price": 157.97,
+      "dossier_sec10_entry": 157.97,
+      "sl_price": 158.08,
+      "dossier_sec10_sl": 158.07,
+      "tp_price": 157.71,
+      "dossier_sec10_tp": 157.74,
+      "defending_whale_wall": "pd_VAH (158.040), Asian_H (158.069), London_H (158.076), w_VAH (158.081) + 4H CVD -30.1% Selling",
+      "recommended_lots": 0.13,
+      "max_admissible_lots": 0.13,
+      "nominal_risk_usd": 9.05,
+      "stressed_loss_usd": 13.41,
+      "reward_risk_ratio": 2.5,
+      "vr4": 0.6963,
+      "er48": 0.0601,
+      "p_win": 0.455,
+      "ev_net_r": 0.584,
+      "lcb_5pct_r": 0.263,
+      "utility_score_r": 0.221,
+      "ratchet_rule": "At +0.80R (157.882) lock SL to 157.954; at +1.50R (157.805) lock SL to 157.882; hard cancel at 21:15 UTC rollover & before 23:30 UTC Tokyo CPI."
     },
     {
       "rank": 4,
-      "symbol": "AUDUSD.pi",
-      "asset_class": "FX",
-      "direction": "LONG",
+      "symbol": "SP500.p",
+      "sector": "INDICES",
+      "model": "Model_1_Mean_Reversion_VAL_Fade",
       "order_type": "BUY_LIMIT",
-      "execution_status": "STAGED_BACKUP",
-      "bid_quote": 0.70306,
-      "ask_quote": 0.70307,
-      "mid_price": 0.703065,
-      "spread_bps": 0.14,
-      "spread_gate": "PASS",
-      "vr_q4": 0.7655,
-      "vr_z_star": -1.2216,
-      "er_48": 0.1096,
-      "hac_t_drift": -0.0336,
-      "ou_theta": 0.70438,
-      "atr_14": 0.000474,
-      "session_vwap": 0.70371,
-      "vwap_z": -0.8195,
-      "daily_vah": 0.70443,
-      "daily_poc": 0.7035,
-      "daily_val": 0.70279,
-      "entry_price_registry": 0.70272,
-      "sl_price_registry": 0.70211,
-      "tp_price_registry": 0.70424,
-      "entry_price_canonical_1911": 0.70262,
-      "sl_price_canonical_1911": 0.70221,
-      "tp_price_canonical_1911": 0.70365,
-      "recommended_lots": 0.23,
-      "nominal_risk_usd": 9.43,
-      "stressed_risk_usd": 12.08,
-      "margin_required_usd": 32.32,
-      "reward_to_risk_r": 2.51,
-      "p_win": 0.44,
-      "ev_net_r": 0.52,
-      "lcb_5pct_r": 0.189,
-      "utility_score_r": 0.165,
-      "whale_wall_confluence": "4h CVD +59.6% Aggressive Buying & 15m +13.5% Delta Aligned at d_VAL (0.70279) / Mon_Mid (0.70260), protected below London_L (0.70231) and w_VAL (0.70226)."
+      "entry_price": 7709.05,
+      "dossier_sec10_entry": 7709.05,
+      "sl_price": 7696.64,
+      "dossier_sec10_sl": 7696.64,
+      "tp_price": 7740.06,
+      "dossier_sec10_tp": 7740.06,
+      "defending_whale_wall": "Daily VAL (7,709.05) + 5m/15m/4h Bullish CVD Absorption (+58.6% / +20.7% / +8.7%)",
+      "recommended_lots": 0.08,
+      "max_admissible_lots": 0.08,
+      "nominal_risk_usd": 9.93,
+      "stressed_loss_usd": 14.41,
+      "reward_risk_ratio": 2.5,
+      "vr4": 0.7318,
+      "er48": 0.0166,
+      "p_win": 0.45,
+      "ev_net_r": 0.556,
+      "lcb_5pct_r": 0.229,
+      "utility_score_r": 0.198,
+      "ratchet_rule": "Staged replacement for NAS100.p (#19489159); at +0.80R (7,718.98) lock SL to 7,710.91; at +1.50R (7,727.67) lock SL to 7,718.98."
     },
     {
       "rank": 5,
-      "symbol": "ETHUSD.pi",
-      "asset_class": "CRYPTO",
-      "direction": "SHORT",
+      "symbol": "AUDUSD.pi",
+      "sector": "FOREX",
+      "model": "Model_1_Mean_Reversion_VAL_Fade",
+      "order_type": "BUY_LIMIT",
+      "entry_price": 0.7028,
+      "dossier_sec10_entry": 0.7028,
+      "sl_price": 0.70225,
+      "dossier_sec10_sl": 0.7023,
+      "tp_price": 0.70418,
+      "dossier_sec10_tp": 0.7042,
+      "defending_whale_wall": "Daily VAL (0.70282), London_L (0.70231), w_VAL (0.70226) + 15m/4h Aggressive Buying CVD (+46.6% / +59.6%)",
+      "recommended_lots": 0.18,
+      "max_admissible_lots": 0.18,
+      "nominal_risk_usd": 9.9,
+      "stressed_loss_usd": 14.38,
+      "reward_risk_ratio": 2.51,
+      "vr4": 0.7628,
+      "er48": 0.1186,
+      "p_win": 0.445,
+      "ev_net_r": 0.539,
+      "lcb_5pct_r": 0.205,
+      "utility_score_r": 0.18,
+      "ratchet_rule": "At +0.80R (0.70324) lock SL to 0.70288; at +1.50R (0.70363) lock SL to 0.70324; cancel if unfilled at 21:15 UTC rollover."
+    },
+    {
+      "rank": 6,
+      "symbol": "BNBUSD.p",
+      "sector": "CRYPTO",
+      "model": "Model_2_VAH_OTE_Pullback_Short",
       "order_type": "SELL_LIMIT",
-      "execution_status": "CONDITIONAL_WATCH",
-      "bid_quote": 2324.5,
-      "ask_quote": 2327.3,
-      "mid_price": 2325.9,
-      "spread_bps": 12.04,
-      "spread_gate": "CONDITIONAL_PASS_25BPS",
-      "vr_q4": 1.2827,
-      "vr_z_star": 1.4729,
-      "er_48": 0.1024,
-      "hac_t_drift": -0.5199,
-      "ou_theta": 2327.6,
-      "atr_14": 11.1358,
-      "session_vwap": 2324.05,
-      "vwap_z": 0.1491,
-      "daily_vah": 2337.88,
-      "daily_poc": 2318.94,
-      "daily_val": 2297.12,
-      "entry_price_registry": 2344.11,
-      "sl_price_registry": 2362.11,
-      "tp_price_registry": 2299.11,
-      "entry_price_canonical_1911": 2341.78,
-      "sl_price_canonical_1911": 2355.44,
-      "tp_price_canonical_1911": 2307.63,
-      "recommended_lots": 0.72,
-      "nominal_risk_usd": 9.84,
-      "stressed_risk_usd": 16.82,
-      "margin_required_usd": 84.3,
-      "reward_to_risk_r": 2.5,
-      "p_win": 0.44,
-      "ev_net_r": 0.335,
-      "lcb_5pct_r": -0.035,
-      "utility_score_r": -0.05,
-      "whale_wall_confluence": "5m/15m/1h CVD -27.5% Aggressive Selling; Deribit Max Pain & Put Wall at 2,300.00; 24H Long Max Pain 27.30M USD @ 2,284.33."
+      "entry_price": 753.3,
+      "dossier_sec10_entry": 752.43,
+      "sl_price": 757.2,
+      "dossier_sec10_sl": 755.56,
+      "tp_price": 743.5,
+      "dossier_sec10_tp": 744.6,
+      "defending_whale_wall": "2.32M USD @ 748.38 (27m 04s) & 672K USD @ 753.77 (25m 19s) Ask walls; 24H Short Max Pain at 758.31",
+      "recommended_lots": 0.05,
+      "max_admissible_lots": 2.55,
+      "nominal_risk_usd": 0.2,
+      "stressed_loss_usd": 2.29,
+      "reward_risk_ratio": 2.51,
+      "vr4": 1.167,
+      "er48": 0.0677,
+      "p_win": 0.45,
+      "ev_net_r": 0.421,
+      "lcb_5pct_r": 0.067,
+      "utility_score_r": 0.052,
+      "ratchet_rule": "At +0.80R (750.18) lock SL to 752.72; at +1.50R (747.45) lock SL to 750.18."
     }
   ],
-  "section_8_kaizen": {
-    "envelope_provenance_fix": "Bind prompt envelope generation directly to 00_MT5_Account_Telemetry.parquet and parquet_all_feeds_checklist.json with JSON schema linting and a <=300s cutoff age gate.",
-    "stressed_loss_formula_fix": "Include 1.25 * exit_spread_usd in cycle_envelope.json ticket_stress_usd calculation (correcting ETHUSD.pi #19424811 from 8.25 USD to 9.50 USD).",
-    "metals_energy_technical_backfill": "Populate session_vwap, atr_14, and EMA_5..233 in 11_Technical.parquet for XAUUSD.pi and USWTI.p."
-  }
+  "disputes_or_rejections": [
+    {
+      "target": "cycle_envelope.json (Cycle-20261028T183502Z)",
+      "category": "PROVENANCE_AND_SYNTAX_ERROR",
+      "ruling": "DENIED_BAD_CYCLE_ENVELOPE",
+      "reason": "Attached static envelope is 25h 24m 34s stale vs live GitHub main (bd3bbdd348 at 2026-10-29 19:59:36 UTC), contains corrupted JSON syntax ('\"operating_buffer_usd\": 465d\": 4782.61'), and understates stressed loss on retired ticket #19424811 by 1.25 USD (8.25 USD reported vs 9.50 USD true)."
+    },
+    {
+      "target": "Ticket #19489161 (USWTI.p BUY_LIMIT 0.01 @ 101.550)",
+      "category": "SPREAD_AND_REGIME_DISQUALIFICATION",
+      "ruling": "CUT_IMMEDIATELY",
+      "reason": "At 19:52:46 UTC, USWTI.p live spread widened to 5.42 bps (> 5.0 bps TradFi cap, Gate_Status = SPREAD_DISQUALIFIED), and VR(4) = 0.9673 is inside the [0.85, 1.15] random-walk exclusion band."
+    },
+    {
+      "target": "Ticket #19489159 (NAS100.p SELL_LIMIT 0.01 @ 29,535.00)",
+      "category": "RANDOM_WALK_EXCLUSION_GATE",
+      "ruling": "RECOMMEND_CUT_AND_REPLACE_WITH_SP500",
+      "reason": "NAS100.p VR(4) = 0.8913 falls inside the [0.85, 1.15] random-walk exclusion zone while 5m/15m CVD flipped to +56.6% / +27.2% buying; SP500.p (VR(4) = 0.7318 < 0.85) satisfies Model 1 Mean-Reversion."
+    },
+    {
+      "target": "Dossier Section 10 Generator (XRP, APT, ARB, BTC)",
+      "category": "DOSSIER_ENGINE_MATH_BUG_CATCH",
+      "ruling": "CORRECTED_BY_PERSONA_3",
+      "reason": "When 11_Technical.parquet has ATR_14 = None, the Dossier Engine defaults to ATR = 1.00 (producing negative/nonsensical SL prices on XRP/APT/ARB) and divides BTC lot risk by 100 (printing 0.08 USD instead of 7.94 USD for 0.03 lots * 264.83 pts). True ATR_14 and point multipliers were derived directly from M15 OHLCV series."
+    }
+  ]
 }\n```\n

@@ -1,19 +1,35 @@
 {
-  "cycle_id": "Cycle_015",
-  "timestamp_utc": "2026-10-29 13:10:29 UTC",
-  "telemetry_commit_sha": "1c953b3dbf18d7563f045a0436b6df5a41837344",
-  "account_solvency": {
-    "balance_usd": 4744.55,
-    "equity_usd": 4744.55,
-    "hard_capital_floor_usd": 4775.00,
-    "operating_buffer_usd": 4795.00,
-    "active_positions_count": 0,
-    "resting_limits_count": 2,
-    "total_staged_nominal_risk_usd": 10.39
-  },
-  "active_staged_orders": [
-    {"ticket": 19447583, "symbol": "NZDUSD.pi", "action": "RETAIN", "type": "SELL_LIMIT", "volume": 0.12, "entry": 0.56320, "sl": 0.56388, "tp": 0.56050, "nominal_risk_usd": 8.16, "rr": 3.97},
-    {"ticket": 19464650, "symbol": "BTCUSD.pi", "action": "ADJUST", "type": "SELL_LIMIT", "volume": 0.01, "entry": 80340.00, "sl": 80563.50, "adjusted_sl": 80740.00, "tp": 79663.50, "nominal_risk_usd": 2.23, "adjusted_risk_usd": 4.00, "rr": 3.03, "rr_adjusted": 1.69}
+  "cycle_id": "Cycle_310",
+  "seat": "Z.ai_Sovereign_Adversarial_Risk_Auditor",
+  "solvency": {"balance_usd": 4742.31, "hard_floor_usd": 4775.00, "cushion_usd": -32.69,
+               "capacity_dispatch_usd": 0.00, "capacity_kernel_usd": 0.00,
+               "posture": "STAGED_INTENT_ONLY_EXECUTION_FROZEN"},
+  "tickets": [
+    {"ticket_id": "C310-T01", "symbol_mt5": "BTCUSD.pi", "order_type": "SELL_LIMIT", "side": "SHORT",
+     "entry": 81104.733, "stop_loss": 81483.969, "take_profit": 80156.643, "lots": 0.02,
+     "risk_usd": 7.58, "rr": 2.50, "friction_pct": 1.79, "confluence_score": 83,
+     "anchor": "Daily VAH 81001.56 + 0.35xATR; front-runs 81064.00 ask-wall (1.26M USD) exhaustion; SL clears wall by 1.42 ATR",
+     "invalidation_triggers": ["cancel pre-fill if 15m closes below POC 80022.14 with negative CVD",
+       "cancel if wall absorbs and 15m closes above 81312.96 with positive delta",
+       "cancel if aggregate funding <= -0.0500%", "no execution 21:15-22:30 UTC"],
+     "status": "STAGED_FROZEN_CAPACITY_ZERO"},
+    {"ticket_id": "C310-T02", "symbol_mt5": "EURJPY.pi", "order_type": "SELL_LIMIT", "side": "SHORT",
+     "entry": 176.431, "stop_loss": 176.613, "take_profit": 175.977, "lots": 0.09,
+     "risk_usd": 9.27, "rr": 2.50, "friction_pct": 0.89, "confluence_score": 81,
+     "anchor": "NYH 176.38 + PDH 176.40 sweep + 0.35xATR; +2.51sigma 176.37 / +3sigma 176.45 exhaustion shelf; Z +2.35",
+     "invalidation_triggers": ["cancel pre-fill if 15m closes back below 176.16 (+1.28sigma)",
+       "structural invalidation: daily close above OTE 176.70", "no execution 21:15-22:30 UTC",
+       "deep-resting GTC: re-underwrite every cycle (2.4x ATR from mid at issue)"],
+     "status": "STAGED_FROZEN_CAPACITY_ZERO"},
+    {"ticket_id": "C310-T03", "symbol_mt5": "XAUUSD.pi", "order_type": "SELL_LIMIT", "side": "SHORT",
+     "entry": 4043.570, "stop_loss": 4053.509, "take_profit": 4018.722, "lots": 0.01,
+     "risk_usd": 9.94, "rr": 2.50, "friction_pct": 0.36, "confluence_score": 73,
+     "anchor": "Daily VAH 4040.71 + 0.35xATR; SL at +2.00sigma x 0.786-fib double wall; TP at VAL x -1.28sigma; sweeps London high 4046.38",
+     "invalidation_triggers": ["cancel pre-fill if 15m closes below POC 4027.30", "no execution 21:15-22:30 UTC",
+       "on fill: +0.80R ratchet at bid-stack reclaim 4021.10-30"],
+     "status": "STAGED_FROZEN_CAPACITY_ZERO"}
   ],
-  "high_confluence_formulated_trades_standby": []
+  "lifecycle_actions": [
+    {"order_id": "19464650", "finding": "FILLED_THEN_STOPPED (-2.24 USD realized, exact arithmetic)", "action": "CLOSED"},
+    {"order_id": "19447583", "finding": "RESTING 1 PT FROM FILL; SL AT 24H-HIGH LIQUIDITY APEX", "action": "PULL_AND_REPLACE"}]
 }
