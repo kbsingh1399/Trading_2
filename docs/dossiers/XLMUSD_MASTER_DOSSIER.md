@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:48:52 IST` (`2026-10-29 21:18:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-2.55K` | Last 24h: `1.48K` | Last 3d: `22.42K` | Last 7d: `50.96K`
+  * Current Rate: `-2.66K` | Last 24h: `1.48K` | Last 3d: `22.42K` | Last 7d: `50.96K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0020%` | **USDT OKX** | `0.0100%` |
-| **USDT Bybit** | `-0.0089%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `-0.0018%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `-0.0107%` | **USDT Bitget** | `0.0041%` |
+| **USDT Binance** | `-0.0038%` | **USDT OKX** | `0.0100%` |
+| **USDT Bybit** | `-0.0074%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `-0.0034%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `-0.0086%` | **USDT Bitget** | `0.0038%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 142,080.00 USD | 81,420.00 USD | **`ACCUMULATION`** |
-| `15m` | -93,960.00 USD | 586,170.00 USD | **`ACCUMULATION`** |
-| `30m` | -1,560,000.00 USD | -1,970,000.00 USD | **`DISTRIBUTION`** |
-| `1h` | -2,270,000.00 USD | -1,830,000.00 USD | **`DISTRIBUTION`** |
-| `2h` | -2,950,000.00 USD | -2,070,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | -3,290,000.00 USD | -2,490,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -3,620,000.00 USD | -3,340,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -3,460,000.00 USD | -3,180,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -3,020,000.00 USD | -3,390,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -5,110,000.00 USD | -5,860,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | 1,220,000.00 USD | -6,260,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -26,330,000.00 USD | -86,770,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 112,980.00 USD | 141,740.00 USD | **`ACCUMULATION`** |
+| `15m` | 240,480.00 USD | 563,120.00 USD | **`ACCUMULATION`** |
+| `30m` | -645,430.00 USD | 349,410.00 USD | **`DISTRIBUTION`** |
+| `1h` | -2,160,000.00 USD | -1,490,000.00 USD | **`DISTRIBUTION`** |
+| `2h` | -2,920,000.00 USD | -1,560,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | -3,220,000.00 USD | -1,930,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -3,540,000.00 USD | -2,940,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -3,530,000.00 USD | -2,720,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -3,040,000.00 USD | -3,040,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -5,020,000.00 USD | -5,640,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | 1,240,000.00 USD | -5,790,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -26,340,000.00 USD | -86,300,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+142.08K` | 15m=`-93.96K` | 1h=`-2.27M` | 24h=`-5.11M`
-* Futures Capital Netflows: 5m=`+81.42K` | 15m=`+586.17K` | 1h=`-1.83M` | 24h=`-5.86M`
+* Spot Capital Netflows: 5m=`+112.98K` | 15m=`+240.48K` | 1h=`-2.16M` | 24h=`-5.02M`
+* Futures Capital Netflows: 5m=`+141.74K` | 15m=`+563.12K` | 1h=`-1.49M` | 24h=`-5.64M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

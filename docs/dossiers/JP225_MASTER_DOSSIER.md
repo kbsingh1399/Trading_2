@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:48:52 IST` (`2026-10-29 21:18:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -186,12 +186,12 @@
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
 | `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | -256.32 USD | **`DISTRIBUTION`** |
-| `30m` | 0.00 USD | -1,330.00 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -2,070.00 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `30m` | 0.00 USD | -531.62 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | -2,080.00 USD | **`DISTRIBUTION`** |
 | `2h` | 0.00 USD | -2,540.00 USD | **`DISTRIBUTION`** |
 | `4h` | 0.00 USD | -20,180.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -18,290.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -18,730.00 USD | **`DISTRIBUTION`** |
 | `8h` | 0.00 USD | -18,750.00 USD | **`DISTRIBUTION`** |
 | `12h` | 0.00 USD | -19,470.00 USD | **`DISTRIBUTION`** |
 | `24h` | 0.00 USD | -23,910.00 USD | **`DISTRIBUTION`** |
@@ -199,7 +199,7 @@
 | `30d` | 0.00 USD | -15,620.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+0.00` | 15m=`-256.32` | 1h=`-2.07K` | 24h=`-23.91K`
+* Futures Capital Netflows: 5m=`+0.00` | 15m=`+0.00` | 1h=`-2.08K` | 24h=`-23.91K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

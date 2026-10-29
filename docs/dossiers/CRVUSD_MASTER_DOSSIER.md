@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:48:52 IST` (`2026-10-29 21:18:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -458,14 +458,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-488.19` | Last 24h: `14.14K` | Last 3d: `34.03K` | Last 7d: `51.20K`
+  * Current Rate: `265.21` | Last 24h: `14.14K` | Last 3d: `34.03K` | Last 7d: `51.20K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0016%` | **USDT OKX** | `0.0100%` |
-| **USDT Bybit** | `-0.0038%` | **USDT KuCoin** | `0.0100%` |
+| **USDT Binance** | `-0.0003%` | **USDT OKX** | `0.0100%` |
+| **USDT Bybit** | `-0.0016%` | **USDT KuCoin** | `0.0100%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `-0.0021%` | **USDT Bitget** | `0.0100%` |
+| **USDT Gate** | `0.0008%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -491,21 +491,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -21,350.00 USD | 20,410.00 USD | **`DISTRIBUTION`** |
-| `15m` | -39,460.00 USD | 349,560.00 USD | **`ACCUMULATION`** |
-| `30m` | -163,850.00 USD | -1,460,000.00 USD | **`DISTRIBUTION`** |
-| `1h` | -156,050.00 USD | -2,250,000.00 USD | **`DISTRIBUTION`** |
-| `2h` | -280,840.00 USD | -2,200,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | -527,790.00 USD | -3,350,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -518,270.00 USD | -4,540,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -355,000.00 USD | -4,740,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -562,780.00 USD | -5,260,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -623,730.00 USD | -7,030,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,960,000.00 USD | -17,770,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -15,490,000.00 USD | -59,870,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -29,930.00 USD | -79,720.00 USD | **`DISTRIBUTION`** |
+| `15m` | -7,490.00 USD | 165,330.00 USD | **`ACCUMULATION`** |
+| `30m` | -57,870.00 USD | -90,090.00 USD | **`DISTRIBUTION`** |
+| `1h` | -140,710.00 USD | -1,440,000.00 USD | **`DISTRIBUTION`** |
+| `2h` | -295,160.00 USD | -2,010,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | -534,420.00 USD | -3,100,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -535,330.00 USD | -4,540,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -369,080.00 USD | -4,630,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -525,700.00 USD | -5,060,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -626,420.00 USD | -6,930,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,970,000.00 USD | -17,680,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -15,430,000.00 USD | -59,780,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-21.35K` | 15m=`-39.46K` | 1h=`-156.05K` | 24h=`-623.73K`
-* Futures Capital Netflows: 5m=`+20.41K` | 15m=`+349.56K` | 1h=`-2.25M` | 24h=`-7.03M`
+* Spot Capital Netflows: 5m=`-29.93K` | 15m=`-7.49K` | 1h=`-140.71K` | 24h=`-626.42K`
+* Futures Capital Netflows: 5m=`-79.72K` | 15m=`+165.33K` | 1h=`-1.44M` | 24h=`-6.93M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

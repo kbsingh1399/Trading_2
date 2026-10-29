@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:48:52 IST` (`2026-10-29 21:18:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,10 +116,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `218` | `0x0911...129a` | `LONG` | 9,947,179.13 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -275,563.29 USD | `-2.77%` | `20X Isolated` |
-| `1140` | `0xe03b...ed11` | `SHORT` | 1,947,048.98 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 46,154.34 USD | `+2.37%` | `50X Isolated` |
-| `1712` | `0x3f31...a3d7` | `SHORT` | 1,203,648.18 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -3,716.73 USD | `-0.31%` | `50X Isolated` |
-| `1814` | `0x9df2...c665` | `SHORT` | 1,117,929.68 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,640.16 USD | `+0.24%` | `5X Isolated` |
+| `218` | `0x0911...129a` | `LONG` | 9,948,069.02 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -274,673.40 USD | `-2.76%` | `20X Isolated` |
+| `1160` | `0xe03b...ed11` | `SHORT` | 1,947,223.17 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 45,980.15 USD | `+2.36%` | `50X Isolated` |
+| `1748` | `0x3f31...a3d7` | `SHORT` | 1,203,432.88 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -3,501.43 USD | `-0.29%` | `50X Isolated` |
+| `1845` | `0x9df2...c665` | `SHORT` | 1,117,829.68 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 2,740.15 USD | `+0.25%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |

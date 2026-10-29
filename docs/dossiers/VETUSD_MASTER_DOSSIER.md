@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: VETUSD
 **Canonical Key**: `VETUSD` | **Broker Instrument**: `VETUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:48:52 IST` (`2026-10-29 21:18:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,12 +152,12 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `375.40` | Last 24h: `877.17` | Last 3d: `2.79K` | Last 7d: `9.16K`
+  * Current Rate: `373.74` | Last 24h: `877.17` | Last 3d: `2.79K` | Last 7d: `9.16K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0100%` | **USDT OKX** | `-` |
-| **USDT Bybit** | `-0.0006%` | **USDT KuCoin** | `0.0084%` |
+| **USDT Bybit** | `-0.0002%` | **USDT KuCoin** | `0.0061%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 7,040.00 USD | 23,690.00 USD | **`ACCUMULATION`** |
-| `15m` | 6,400.00 USD | 105,910.00 USD | **`ACCUMULATION`** |
-| `30m` | -57,770.00 USD | -376,000.00 USD | **`DISTRIBUTION`** |
-| `1h` | -97,010.00 USD | -368,630.00 USD | **`DISTRIBUTION`** |
-| `2h` | -112,500.00 USD | -416,570.00 USD | **`DISTRIBUTION`** |
-| `4h` | -121,700.00 USD | -515,490.00 USD | **`DISTRIBUTION`** |
-| `6h` | -94,570.00 USD | -559,500.00 USD | **`DISTRIBUTION`** |
-| `8h` | -53,430.00 USD | -540,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -26,490.00 USD | -481,060.00 USD | **`DISTRIBUTION`** |
-| `24h` | -151,160.00 USD | -787,590.00 USD | **`DISTRIBUTION`** |
-| `1w` | -369,320.00 USD | -1,560,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | 1,890,000.00 USD | -5,240,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 7,270.00 USD | 5,600.00 USD | **`ACCUMULATION`** |
+| `15m` | 3,740.00 USD | -6,500.00 USD | **`DISTRIBUTION`** |
+| `30m` | -23,700.00 USD | -97,500.00 USD | **`DISTRIBUTION`** |
+| `1h` | -84,890.00 USD | -390,900.00 USD | **`DISTRIBUTION`** |
+| `2h` | -110,730.00 USD | -438,880.00 USD | **`DISTRIBUTION`** |
+| `4h` | -121,190.00 USD | -524,780.00 USD | **`DISTRIBUTION`** |
+| `6h` | -110,480.00 USD | -589,450.00 USD | **`DISTRIBUTION`** |
+| `8h` | -56,580.00 USD | -566,920.00 USD | **`DISTRIBUTION`** |
+| `12h` | -34,220.00 USD | -550,570.00 USD | **`DISTRIBUTION`** |
+| `24h` | -153,490.00 USD | -823,750.00 USD | **`DISTRIBUTION`** |
+| `1w` | -379,700.00 USD | -1,590,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | 1,890,000.00 USD | -5,270,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+7.04K` | 15m=`+6.40K` | 1h=`-97.01K` | 24h=`-151.16K`
-* Futures Capital Netflows: 5m=`+23.69K` | 15m=`+105.91K` | 1h=`-368.63K` | 24h=`-787.59K`
+* Spot Capital Netflows: 5m=`+7.27K` | 15m=`+3.74K` | 1h=`-84.89K` | 24h=`-153.49K`
+* Futures Capital Netflows: 5m=`+5.60K` | 15m=`-6.50K` | 1h=`-390.90K` | 24h=`-823.75K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
