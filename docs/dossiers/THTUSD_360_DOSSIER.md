@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: THTUSD
 **Canonical Key**: `THTUSD` | **Broker Instrument**: `THTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:25:56 IST` (`2026-10-29 22:55:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:28:57 IST` (`2026-10-29 22:58:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
