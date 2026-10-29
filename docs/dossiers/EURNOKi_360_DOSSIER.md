@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNOK
 **Canonical Key**: `EURNOK` | **Broker Instrument**: `EURNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:03:23 IST` (`2026-10-29 20:33:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:06:25 IST` (`2026-10-29 20:36:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.33` | **Live Ask Quote**: `10.33` | **Mid Price**: `10.33`
-- **Spread Points**: `272.00` | **Spread BPS**: `2.63 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `240.00` | **Spread BPS**: `2.32 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`10.37` | POC=`10.33` | VAL=`10.29`
-  * Prior Day Extremes: PDH=`10.39` | PDL=`10.27` | PDC=`10.33`
-  * Monday Range Blueprint: High=`10.38` | Mid=`10.33` | Low=`10.28`
+  * Prior Day Extremes: PDH=`10.40` | PDL=`10.27` | PDC=`10.33`
+  * Monday Range Blueprint: High=`10.39` | Mid=`10.33` | Low=`10.28`
   * Developing Weekly Value Area: Weekly VAH=`10.42` | Weekly POC=`10.33` | Weekly VAL=`10.25`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`10.35` | Low=`10.31`
   * London Session (08:00-16:00 UTC): High=`10.37` | Low=`10.29`
-  * New York Session (13:00-21:00 UTC): High=`10.39` | Low=`10.27`
+  * New York Session (13:00-21:00 UTC): High=`10.40` | Low=`10.27`
   * Initial Balance (First Hour): IB High=`10.36` | IB Low=`10.30`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `10.29` - `10.37`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `10.36` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.57` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `7.35`
+  * +2.5R Take Profit: `7.36`
   * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

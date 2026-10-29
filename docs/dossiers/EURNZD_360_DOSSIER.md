@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNZD
 **Canonical Key**: `EURNZD` | **Broker Instrument**: `EURNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:03:23 IST` (`2026-10-29 20:33:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:06:25 IST` (`2026-10-29 20:36:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.98` | VWAP Z-Score: `+0.49` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `1.98` | VWAP Z-Score: `+0.72` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `52.19` (State: `NEUTRAL`)
+  * 14-Period RSI: `53.87` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.99` | Lower -3.00σ Band: `1.98`
   * Upper +2.51σ Band: `1.99` | Lower -2.51σ Band: `1.98`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.98` | EMA-20=`1.98` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.98` (Slope: `+0.0000`) | EMA-100=`1.98`
-  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0362`) | EMA-233=`1.98`
+  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0361`) | EMA-233=`1.98`
 - **Range Boundaries**: 24H High=`1.99` | 24H Low=`1.98` | Weekly High=`1.99` | Weekly Low=`1.95`
 
 ---

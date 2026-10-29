@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCAD
 **Canonical Key**: `EURCAD` | **Broker Instrument**: `EURCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:03:23 IST` (`2026-10-29 20:33:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:06:25 IST` (`2026-10-29 20:36:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.56` | VWAP Z-Score: `+2.70` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000850` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `69.18` (State: `OVERBOUGHT`)
+  * Session VWAP: `1.56` | VWAP Z-Score: `+3.00` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000845` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `72.00` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.56` | Lower -3.00σ Band: `1.56`
   * Upper +2.51σ Band: `1.56` | Lower -2.51σ Band: `1.56`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.56` | EMA-20=`1.56` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.56` (Slope: `+0.0000`) | EMA-100=`1.56`
-  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `-0.0021`) | EMA-233=`1.56`
+  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `-0.0002`) | EMA-233=`1.56`
 - **Range Boundaries**: 24H High=`1.56` | 24H Low=`1.56` | Weekly High=`1.57` | Weekly Low=`1.56`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.56` (Distance: `+0.17%`)
-  * Point of Control (POC) = `1.56` (Distance: `+0.29%`)
-  * Value Area Low (VAL) = `1.56` (Distance: `+0.36%`)
+  * Value Area High (VAH) = `1.56` (Distance: `+0.21%`)
+  * Point of Control (POC) = `1.56` (Distance: `+0.33%`)
+  * Value Area Low (VAL) = `1.56` (Distance: `+0.40%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.56` | POC=`1.56` | VAL=`1.56`
