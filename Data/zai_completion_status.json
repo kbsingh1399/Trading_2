@@ -1,11 +1,11 @@
 {
-  "completed_at_utc": "2026-10-29 14:52:39 UTC",
-  "completed_at_epoch": 1793285559.2626796,
-  "prose_count": 6,
-  "text_length": 523,
-  "workspace_file_name": "",
+  "completed_at_utc": "2026-10-29 16:46:58 UTC",
+  "completed_at_epoch": 1793292418.9475427,
+  "prose_count": 5,
+  "text_length": 10559,
+  "workspace_file_name": "Sovereign_Dossier_Engine_v3.1_Adversarial_Review.md",
   "workspace_file_length": 303,
-  "text_hash": "1775639d22fc4307",
+  "text_hash": "ddc7e3243c9a7359",
   "is_generating": false,
   "latest_raw_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_RAW.md",
   "latest_attachment_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_ATTACHMENT.md"
