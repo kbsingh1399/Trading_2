@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NETH25
 **Canonical Key**: `NETH25` | **Broker Instrument**: `NETH25.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:45:09 IST` (`2026-10-29 20:15:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:48:13 IST` (`2026-10-29 20:18:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -157,7 +157,7 @@
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0000%` |
-| **USDT Bybit** | `0.0000%` | **USDT KuCoin** | `0.0000%` |
+| **USDT Bybit** | `-0.0005%` | **USDT KuCoin** | `0.0000%` |
 | **USDT MEXC** | `0.0000%` | **USDT BingX** | `-` |
 | **USDT Gate** | `0.0000%` | **USDT Bitget** | `0.0000%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
