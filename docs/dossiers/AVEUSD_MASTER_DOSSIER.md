@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:49:01 IST` (`2026-10-29 17:19:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`134.81`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -127,10 +127,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`133.91` (Vol: 206,000.00 USD, Dist: `+0.21%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.68%`)
-  * 48H Horizon: Short MP=`133.91` (Vol: 206,000.00 USD, Dist: `+0.21%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.68%`)
-  * 3D Horizon: Short MP=`133.91` (Vol: 206,000.00 USD, Dist: `+0.21%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.68%`)
-  * 7D Horizon: Short MP=`139.76` (Vol: 320,000.00 USD, Dist: `+4.58%`) | Long MP=`127.18` (Vol: 326,000.00 USD, Dist: `--4.83%`)
+  * 24H Horizon: Short MP=`138.85` (Vol: 128,600.00 USD, Dist: `+3.10%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--4.43%`)
+  * 48H Horizon: Short MP=`140.15` (Vol: 183,800.00 USD, Dist: `+4.06%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--4.43%`)
+  * 3D Horizon: Short MP=`140.15` (Vol: 159,300.00 USD, Dist: `+4.06%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--4.43%`)
+  * 7D Horizon: Short MP=`140.55` (Vol: 267,100.00 USD, Dist: `+4.36%`) | Long MP=`127.34` (Vol: 265,000.00 USD, Dist: `--5.45%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -485,7 +485,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `135.36` | `134.90` | `135.36` | `135.69` | `134.19` | 1,643,969.98 USD | 713,479.07 USD | 930,490.91 USD | -217,011.84 USD | `-13.20%` | `14B / 41S` |
 | `0:00 UTC` | `135.81` | `135.11` | `135.81` | `135.97` | `134.12` | 1,651,999.36 USD | 836,590.75 USD | 815,408.61 USD | 21,182.13 USD | `+1.28%` | `41B / 22S` |
 | `5:00 UTC` | `135.80` | `135.69` | `135.80` | `136.03` | `135.32` | 1,251,302.78 USD | 483,395.43 USD | 767,907.35 USD | -284,511.93 USD | `-22.74%` | `8B / 18S` |
 | `0:00 UTC` | `136.50` | `136.45` | `136.50` | `136.91` | `135.53` | 2,672,463.66 USD | 1,636,609.16 USD | 1,035,854.51 USD | 600,754.65 USD | `+22.48%` | `41B / 16S` |
@@ -494,7 +493,8 @@
 | `5:00 UTC` | `136.36` | `136.58` | `136.36` | `137.31` | `136.01` | 2,016,544.71 USD | 820,255.37 USD | 1,196,289.34 USD | -376,033.97 USD | `-18.65%` | `6B / 45S` |
 | `0:00 UTC` | `136.31` | `135.82` | `136.31` | `136.41` | `135.25` | 1,856,319.84 USD | 851,137.54 USD | 1,005,182.30 USD | -154,044.76 USD | `-8.30%` | `11B / 26S` |
 | `5:00 UTC` | `136.19` | `136.08` | `136.19` | `136.38` | `135.78` | 1,030,013.81 USD | 443,410.64 USD | 586,603.17 USD | -143,192.54 USD | `-13.90%` | `6B / 15S` |
-| `0:00 UTC` | `135.20` | `135.19` | `135.20` | `135.91` | `134.72` | 2,147,077.59 USD | 1,184,718.32 USD | 962,359.27 USD | 222,359.04 USD | `+10.36%` | `11B / 33S` |
+| `0:00 UTC` | `135.20` | `135.14` | `135.20` | `135.91` | `134.62` | 2,622,608.21 USD | 1,514,994.17 USD | 1,107,614.04 USD | 407,380.13 USD | `+15.53%` | `12B / 29S` |
+| `5:00 UTC` | `134.62` | `134.66` | `134.62` | `135.06` | `134.44` | 592,327.86 USD | 323,137.38 USD | 269,190.49 USD | 53,946.89 USD | `+9.11%` | `11B / 5S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -576,21 +576,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 22:05:54 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [dol.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [bea.gov] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:06:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [dol.gov] - (Sentiment: `Neutral`)
 
 
 ---
@@ -625,6 +625,6 @@
   * Mathematical Lot Sizing: **`5.74 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
 - Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`135.89`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

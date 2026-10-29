@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-29 22:49:01 IST` (`2026-10-29 17:19:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -170,10 +170,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`103.96` (Vol: 6,300,000.00 USD, Dist: `+3.00%`) | Long MP=`99.15` (Vol: 4,000,000.00 USD, Dist: `--1.77%`)
-  * 48H Horizon: Short MP=`0.000000` (Vol: 0.00 USD, Dist: `+0.00%`) | Long MP=`99.25` (Vol: 11,700,000.00 USD, Dist: `--1.66%`)
-  * 3D Horizon: Short MP=`103.95` (Vol: 7,900,000.00 USD, Dist: `+3.00%`) | Long MP=`99.25` (Vol: 9,800,000.00 USD, Dist: `--1.66%`)
-  * 7D Horizon: Short MP=`104.02` (Vol: 12,400,000.00 USD, Dist: `+3.06%`) | Long MP=`99.18` (Vol: 15,700,000.00 USD, Dist: `--1.74%`)
+  * 24H Horizon: Short MP=`103.97` (Vol: 6,300,000.00 USD, Dist: `+2.30%`) | Long MP=`99.19` (Vol: 6,700,000.00 USD, Dist: `--2.40%`)
+  * 48H Horizon: Short MP=`104.04` (Vol: 5,700,000.00 USD, Dist: `+2.37%`) | Long MP=`99.17` (Vol: 4,000,000.00 USD, Dist: `--2.42%`)
+  * 3D Horizon: Short MP=`103.95` (Vol: 6,600,000.00 USD, Dist: `+2.29%`) | Long MP=`99.25` (Vol: 9,800,000.00 USD, Dist: `--2.34%`)
+  * 7D Horizon: Short MP=`103.98` (Vol: 10,300,000.00 USD, Dist: `+2.31%`) | Long MP=`99.25` (Vol: 12,300,000.00 USD, Dist: `--2.34%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -233,17 +233,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `16:30:00` | `100.71` | `100.71` | `100.71` | `101.15` | `100.70` | 96,379.47 USD | 5,190.50 USD | 91,188.97 USD | -85,998.46 USD | `-89.23%` | `0B / 1S` |
-| `16:35:00` | `100.64` | `100.64` | `100.64` | `100.93` | `100.57` | 96,216.62 USD | 30,810.94 USD | 65,405.68 USD | -34,594.74 USD | `-35.96%` | `0B / 1S` |
 | `16:40:00` | `100.72` | `100.72` | `100.72` | `100.83` | `100.55` | 80,376.16 USD | 51,271.98 USD | 29,104.18 USD | 22,167.80 USD | `+27.58%` | `1B / 0S` |
 | `16:45:00` | `100.54` | `100.54` | `100.54` | `100.75` | `100.49` | 81,534.70 USD | 14,033.38 USD | 67,501.32 USD | -53,467.94 USD | `-65.58%` | `0B / 1S` |
 | `16:45:00` | `101.17` | `101.17` | `101.17` | `101.19` | `100.46` | 248,769.65 USD | 221,677.62 USD | 27,092.04 USD | 194,585.58 USD | `+78.22%` | `1B / 0S` |
 | `16:50:00` | `101.02` | `101.02` | `101.02` | `101.09` | `100.46` | 92,024.66 USD | 81,046.92 USD | 10,977.75 USD | 70,069.17 USD | `+76.14%` | `1B / 0S` |
 | `16:55:00` | `101.17` | `101.17` | `101.17` | `101.19` | `100.92` | 74,560.08 USD | 64,105.16 USD | 10,454.92 USD | 53,650.24 USD | `+71.96%` | `1B / 0S` |
-| `17:00:00` | `101.56` | `101.56` | `101.56` | `101.59` | `101.15` | 88,049.92 USD | 83,242.60 USD | 4,807.32 USD | 78,435.27 USD | `+89.08%` | `1B / 0S` |
-| `17:00:00` | `100.95` | `100.95` | `100.95` | `101.85` | `100.81` | 903,080.81 USD | 238,665.11 USD | 664,415.70 USD | -425,750.58 USD | `-47.14%` | `0B / 1S` |
 | `17:00:00` | `101.71` | `101.71` | `101.71` | `101.85` | `101.15` | 242,975.63 USD | 205,567.87 USD | 37,407.76 USD | 168,160.12 USD | `+69.21%` | `1B / 0S` |
-| `5:00 UTC` | `100.45` | `100.42` | `100.45` | `100.68` | `100.25` | 32,348,399.76 USD | 15,646,740.15 USD | 16,701,659.60 USD | -1,054,919.45 USD | `-3.26%` | `4B / 10S` |
+| `17:00:00` | `100.95` | `100.95` | `100.95` | `101.85` | `100.81` | 903,080.81 USD | 238,665.11 USD | 664,415.70 USD | -425,750.58 USD | `-47.14%` | `0B / 1S` |
+| `17:00:00` | `101.56` | `101.56` | `101.56` | `101.59` | `101.15` | 88,049.92 USD | 83,242.60 USD | 4,807.32 USD | 78,435.27 USD | `+89.08%` | `1B / 0S` |
+| `17:05:00` | `101.56` | `101.56` | `101.56` | `101.65` | `101.44` | 68,957.20 USD | 36,847.98 USD | 32,109.22 USD | 4,738.77 USD | `+6.87%` | `1B / 0S` |
+| `17:10:00` | `101.71` | `101.71` | `101.71` | `101.85` | `101.55` | 85,738.16 USD | 55,158.21 USD | 30,579.94 USD | 24,578.27 USD | `+28.67%` | `1B / 0S` |
 | `0:00 UTC` | `100.13` | `100.30` | `100.13` | `100.56` | `100.12` | 18,899,637.14 USD | 10,932,396.67 USD | 7,967,240.47 USD | 2,965,156.20 USD | `+15.69%` | `6B / 6S` |
 | `5:00 UTC` | `100.31` | `100.29` | `100.31` | `100.41` | `100.20` | 9,748,527.75 USD | 5,287,867.77 USD | 4,460,659.98 USD | 827,207.79 USD | `+8.49%` | `1B / 2S` |
 | `0:00 UTC` | `100.31` | `100.37` | `100.31` | `100.57` | `100.18` | 15,813,133.46 USD | 8,656,891.75 USD | 7,156,241.72 USD | 1,500,650.03 USD | `+9.49%` | `10B / 4S` |
@@ -252,7 +251,8 @@
 | `5:00 UTC` | `101.00` | `101.01` | `101.00` | `101.28` | `100.85` | 14,129,778.63 USD | 7,872,450.16 USD | 6,257,328.47 USD | 1,615,121.68 USD | `+11.43%` | `13B / 2S` |
 | `0:00 UTC` | `101.13` | `101.14` | `101.13` | `101.27` | `100.97` | 14,591,088.89 USD | 5,760,823.82 USD | 8,830,265.07 USD | -3,069,441.25 USD | `-21.04%` | `3B / 3S` |
 | `5:00 UTC` | `101.12` | `101.21` | `101.12` | `101.41` | `101.05` | 8,287,817.82 USD | 4,949,702.76 USD | 3,338,115.06 USD | 1,611,587.69 USD | `+19.45%` | `9B / 2S` |
-| `0:00 UTC` | `101.80` | `101.65` | `101.80` | `101.88` | `101.28` | 16,734,870.87 USD | 8,275,346.32 USD | 8,459,524.56 USD | -184,178.24 USD | `-1.10%` | `14B / 7S` |
+| `0:00 UTC` | `101.80` | `101.69` | `101.80` | `101.95` | `101.28` | 21,400,336.48 USD | 10,768,028.88 USD | 10,632,307.61 USD | 135,721.27 USD | `+0.63%` | `15B / 6S` |
+| `5:00 UTC` | `101.60` | `101.67` | `101.60` | `101.91` | `101.43` | 5,783,046.65 USD | 1,688,450.49 USD | 4,094,596.16 USD | -2,406,145.68 USD | `-41.61%` | `3B / 15S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -310,21 +310,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 22:05:54 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [dol.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [bea.gov] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:06:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [dol.gov] - (Sentiment: `Neutral`)
 
 
 ---

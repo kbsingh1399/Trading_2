@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:49:01 IST` (`2026-10-29 17:19:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:52:02 IST` (`2026-10-29 17:22:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`7.32`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -154,10 +154,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`7.43` (Vol: 470,100.00 USD, Dist: `+2.56%`) | Long MP=`6.91` (Vol: 353,400.00 USD, Dist: `--4.62%`)
-  * 48H Horizon: Short MP=`7.43` (Vol: 404,800.00 USD, Dist: `+2.56%`) | Long MP=`6.91` (Vol: 378,300.00 USD, Dist: `--4.62%`)
-  * 3D Horizon: Short MP=`7.35` (Vol: 437,300.00 USD, Dist: `+1.48%`) | Long MP=`6.91` (Vol: 643,300.00 USD, Dist: `--4.62%`)
-  * 7D Horizon: Short MP=`7.43` (Vol: 619,800.00 USD, Dist: `+2.58%`) | Long MP=`6.91` (Vol: 661,400.00 USD, Dist: `--4.58%`)
+  * 24H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+3.63%`) | Long MP=`7.28` (Vol: 435,300.00 USD, Dist: `--0.46%`)
+  * 48H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+3.63%`) | Long MP=`7.28` (Vol: 435,300.00 USD, Dist: `--0.46%`)
+  * 3D Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+3.63%`) | Long MP=`6.91` (Vol: 537,300.00 USD, Dist: `--5.55%`)
+  * 7D Horizon: Short MP=`7.61` (Vol: 392,700.00 USD, Dist: `+4.03%`) | Long MP=`6.90` (Vol: 565,900.00 USD, Dist: `--5.72%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -216,7 +216,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `7.28` | `7.30` | `7.28` | `7.33` | `7.26` | 2,958,524.45 USD | 1,500,754.88 USD | 1,457,769.57 USD | 42,985.31 USD | `+1.45%` | `10B / 5S` |
 | `0:00 UTC` | `7.36` | `7.33` | `7.36` | `7.39` | `7.26` | 3,643,534.57 USD | 1,978,385.00 USD | 1,665,149.56 USD | 313,235.44 USD | `+8.60%` | `35B / 16S` |
 | `5:00 UTC` | `7.37` | `7.36` | `7.37` | `7.39` | `7.34` | 3,735,951.80 USD | 1,862,529.96 USD | 1,873,421.84 USD | -10,891.88 USD | `-0.29%` | `4B / 5S` |
 | `0:00 UTC` | `7.39` | `7.39` | `7.39` | `7.42` | `7.35` | 4,002,802.67 USD | 1,789,628.72 USD | 2,213,173.96 USD | -423,545.24 USD | `-10.58%` | `6B / 7S` |
@@ -225,7 +224,8 @@
 | `5:00 UTC` | `7.45` | `7.44` | `7.45` | `7.48` | `7.41` | 4,064,958.66 USD | 1,436,607.98 USD | 2,628,350.68 USD | -1,191,742.70 USD | `-29.32%` | `7B / 15S` |
 | `0:00 UTC` | `7.42` | `7.39` | `7.42` | `7.43` | `7.35` | 3,574,044.16 USD | 1,480,242.42 USD | 2,093,801.73 USD | -613,559.31 USD | `-17.17%` | `4B / 16S` |
 | `5:00 UTC` | `7.38` | `7.38` | `7.38` | `7.39` | `7.35` | 1,324,026.23 USD | 564,857.55 USD | 759,168.68 USD | -194,311.13 USD | `-14.68%` | `2B / 13S` |
-| `0:00 UTC` | `7.34` | `7.35` | `7.34` | `7.38` | `7.34` | 1,488,934.04 USD | 555,349.97 USD | 933,584.07 USD | -378,234.10 USD | `-25.40%` | `1B / 9S` |
+| `0:00 UTC` | `7.32` | `7.34` | `7.32` | `7.38` | `7.31` | 2,591,397.44 USD | 868,020.88 USD | 1,723,376.56 USD | -855,355.67 USD | `-33.01%` | `1B / 26S` |
+| `5:00 UTC` | `7.31` | `7.31` | `7.31` | `7.32` | `7.30` | 1,117,448.73 USD | 447,607.91 USD | 669,840.82 USD | -222,232.91 USD | `-19.89%` | `2B / 5S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -306,21 +306,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 22:05:54 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:39:54 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:38:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:54 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [dol.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 18:40:54 IST`: [bea.gov] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:06:14 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:50:14 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:49:14 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:51:14 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:51:14 IST`: [dol.gov] - (Sentiment: `Neutral`)
 
 
 ---
