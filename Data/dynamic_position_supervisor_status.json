@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-29 10:04:22 UTC",
+  "timestamp_utc": "2026-10-29 10:06:38 UTC",
   "balance_usd": 4723.34,
-  "equity_usd": 4740.86,
-  "free_margin_usd": 4474.19,
+  "equity_usd": 4740.71,
+  "free_margin_usd": 4474.04,
   "max_filled_positions": 15,
   "filled_positions_count": 1,
   "filled_slots_free": 14,
-  "resting_limits_count": 7,
+  "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,12 @@
       "type": "BUY",
       "volume": 0.08,
       "price_open": 157.62,
-      "price_current": 157.966,
+      "price_current": 157.963,
       "sl": 157.764,
       "tp": 158.05,
-      "gain_r": 1.922,
+      "gain_r": 1.906,
       "ratchet_stage": 2,
-      "profit_usd": 17.52,
+      "profit_usd": 17.37,
       "decision": "LET_IT_RUN",
       "is_valid_trade": true,
       "audit_verdict": "VALID_DEVELOPING"
@@ -46,51 +46,6 @@
       "price": 0.5632,
       "sl": 0.56388,
       "tp": 0.5605
-    },
-    {
-      "ticket": 19448978,
-      "symbol": "USDCAD.pi",
-      "type": "BUY_LIMIT",
-      "volume": 0.1,
-      "price": 1.3972,
-      "sl": 1.3961999999999999,
-      "tp": 1.3992
-    },
-    {
-      "ticket": 19448979,
-      "symbol": "BNBUSD.p",
-      "type": "SELL_LIMIT",
-      "volume": 0.7,
-      "price": 762.5,
-      "sl": 772.5,
-      "tp": 747.0
-    },
-    {
-      "ticket": 19457311,
-      "symbol": "XAUUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.01,
-      "price": 4064.5,
-      "sl": 4102.5,
-      "tp": 3995.0
-    },
-    {
-      "ticket": 19457516,
-      "symbol": "NAS100.p",
-      "type": "SELL_LIMIT",
-      "volume": 0.01,
-      "price": 29740.0,
-      "sl": 30025.0,
-      "tp": 29230.0
-    },
-    {
-      "ticket": 19457518,
-      "symbol": "GBPUSD.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.08,
-      "price": 1.3348,
-      "sl": 1.3364,
-      "tp": 1.3312
     }
   ]
 }
