@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:04:03 IST` (`2026-10-29 21:34:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:07:05 IST` (`2026-10-29 21:37:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.77` | **Live Ask Quote**: `8.77` | **Mid Price**: `8.77`
-- **Spread Points**: `500.00` | **Spread BPS**: `5.70 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `560.00` | **Spread BPS**: `6.39 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `8.83` | Lower -3.00σ Band: `8.71`
   * Upper +2.51σ Band: `8.82` | Lower -2.51σ Band: `8.72`
-  * Upper +2.01σ Band: `8.80` | Lower -2.01σ Band: `8.73`
+  * Upper +2.01σ Band: `8.81` | Lower -2.01σ Band: `8.73`
   * Upper +2.00σ Band: `8.80` | Lower -2.00σ Band: `8.73`
   * Upper +1.28σ Band: `8.79` | Lower -1.28σ Band: `8.74`
   * Upper +1.00σ Band: `8.79` | Lower -1.00σ Band: `8.75`
@@ -270,13 +270,13 @@
   * Execution Entry: `8.74` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `7.53` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `11.76`
-  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `8.79` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `10.00` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `5.78`
-  * Mathematical Lot Sizing: **`8.28 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `5.77`
+  * Mathematical Lot Sizing: **`8.27 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

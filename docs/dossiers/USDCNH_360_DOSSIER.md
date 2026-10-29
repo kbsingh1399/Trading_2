@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:04:03 IST` (`2026-10-29 21:34:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:07:05 IST` (`2026-10-29 21:37:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `6.66` | VWAP Z-Score: `-1.85` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000575` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `42.93` (State: `NEUTRAL`)
+  * Session VWAP: `6.66` | VWAP Z-Score: `-1.83` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000553` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `43.30` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.66`
   * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.66`
@@ -45,7 +45,7 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `6.66` (Distance: `+0.01%`)
-  * Point of Control (POC) = `6.66` (Distance: `+0.02%`)
+  * Point of Control (POC) = `6.66` (Distance: `+0.01%`)
   * Value Area Low (VAL) = `6.66` (Distance: `+0.02%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:

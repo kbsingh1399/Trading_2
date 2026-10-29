@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 03:04:03 IST` (`2026-10-29 21:34:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:07:05 IST` (`2026-10-29 21:37:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `23.68` | **Live Ask Quote**: `23.70` | **Mid Price**: `23.69`
-- **Spread Points**: `20.00` | **Spread BPS**: `8.44 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `19.00` | **Spread BPS**: `8.02 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`23.69` | EMA-20=`23.69` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`23.69` (Slope: `+0.0000`) | EMA-100=`23.69`
   * Institutional Anchors: EMA-144=`23.69` | EMA-200=`23.69` (Slope: `+0.0000`) | EMA-233=`23.69`
-- **Range Boundaries**: 24H High=`23.93` | 24H Low=`23.46` | Weekly High=`24.17` | Weekly Low=`23.22`
+- **Range Boundaries**: 24H High=`23.93` | 24H Low=`23.45` | Weekly High=`24.17` | Weekly Low=`23.22`
 
 ---
 
@@ -269,14 +269,14 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `23.62` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `22.39` (Risk Distance: `1.23` pts)
-  * +2.5R Take Profit: `26.70`
-  * Mathematical Lot Sizing: **`8.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `26.69`
+  * Mathematical Lot Sizing: **`8.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `23.76` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `24.99` (Risk Distance: `1.23` pts)
   * +2.5R Take Profit: `20.69`
-  * Mathematical Lot Sizing: **`8.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
