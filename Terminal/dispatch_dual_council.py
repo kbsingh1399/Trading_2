@@ -60,9 +60,10 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
     # Cycle auto-detection
     if cycle_id == "AUTO":
         import glob, re
-        existing = glob.glob(str(ROOT / "docs" / "prompts" / "ARENA_CYCLE_*_REDTEAM_PROMPT.txt"))
-        nums = [int(m.group(1)) for f in existing if (m := re.search(r"ARENA_CYCLE_(\d+)_REDTEAM", f))]
-        cycle_id = str(max(nums) + 1 if nums else 296)
+        existing = glob.glob(str(ROOT / "docs" / "trade_plans" / "Cycle_*_DISPATCH_PROMPT.txt"))
+        nums = [int(m.group(1)) for f in existing if (m := re.search(r"Cycle_(\d+)_DISPATCH", f))]
+        next_num = max(nums) + 1 if nums else 9
+        cycle_id = f"Cycle_{next_num:03d}"
 
     cush_fl = eq - 4600.00
     cush_buf = eq - 4650.00
