@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-29 21:00:40 UTC",
+  "timestamp_utc": "2026-10-29 21:03:42 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -88,7 +88,7 @@
       "mid_price": 96.54499999999999,
       "spread_bps": 34.18,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 98.94,
@@ -140,7 +140,7 @@
       "mid_price": 698.2,
       "spread_bps": 11.46,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 738.6,
@@ -166,7 +166,7 @@
       "mid_price": 0.07565,
       "spread_bps": 277.59,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.0765,
@@ -192,7 +192,7 @@
       "mid_price": 0.19190000000000002,
       "spread_bps": 114.64,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.1953,
@@ -218,7 +218,7 @@
       "mid_price": 0.33030000000000004,
       "spread_bps": 48.44,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.3294,
@@ -244,7 +244,7 @@
       "mid_price": 11.093499999999999,
       "spread_bps": 80.23,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 11.416,
@@ -270,7 +270,7 @@
       "mid_price": 8.39,
       "spread_bps": 47.68,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 8.55,
@@ -296,7 +296,7 @@
       "mid_price": 0.910091,
       "spread_bps": 1.9998000199981703,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.907360727,
@@ -348,7 +348,7 @@
       "mid_price": 0.9155,
       "spread_bps": 229.38,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.9546,
@@ -374,7 +374,7 @@
       "mid_price": 55.215,
       "spread_bps": 54.33,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 56.83,
@@ -426,7 +426,7 @@
       "mid_price": 0.6900689999999999,
       "spread_bps": 1.999800019997587,
       "gate_status": "PASS",
-      "confluence_score": 95,
+      "confluence_score": 87,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.6879987929999999,
