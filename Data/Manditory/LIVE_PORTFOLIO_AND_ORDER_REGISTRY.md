@@ -13,30 +13,27 @@
 
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
-- **Account Balance**: **4,697.67 USD**
-- **Floating Equity**: **4,731.10 USD**
-- **Free Margin**: **4,200.67 USD**
+- **Account Balance**: **4,718.94 USD**
+- **Floating Equity**: **4,730.44 USD**
+- **Free Margin**: **4,463.77 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 08:33:10 UTC`
+- **Last Updated**: `2026-10-29 09:04:16 UTC`
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (3 ACTIVE)
+## 🚀 2. LIVE RUNNING POSITIONS (1 ACTIVE)
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437063** | `AUDUSD.pi` | SELL | 0.10 | 0.70586 | 0.70388 | **0.70506** | 0.70368 | **+19.80 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.886 | **157.764** | 158.05 | **+13.48 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2845.02 | **2858.0** | 2822.0 | **+0.15 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.847 | **157.764** | 158.05 | **+11.50 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (9 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (8 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
-| **#19439188** | `EURGBP.pi` | SELL_LIMIT | 0.10 | **0.8381** | **0.8388** | 0.8368 | Resting passive maker order |
 | **#19444900** | `SP500.p` | BUY_LIMIT | 0.02 | **7705.5** | **7695.5** | 7728.5 | Resting passive maker order |
 | **#19445579** | `UKBRENT.p` | BUY_LIMIT | 0.10 | **114.45** | **113.9** | 115.8 | Resting passive maker order |
 | **#19447583** | `NZDUSD.pi` | SELL_LIMIT | 0.12 | **0.5632** | **0.56388** | 0.5605 | Resting passive maker order |

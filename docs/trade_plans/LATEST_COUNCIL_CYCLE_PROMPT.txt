@@ -1,7 +1,7 @@
-# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_004]
+# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_005]
 **Authority**: Antigravity Sovereign Coordinator (MetaTrader 5 Account #5064568)
 **Execution Protocol**: SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER
-**Timestamp**: 2026-10-29 08:02:21 UTC
+**Timestamp**: 2026-10-29 08:41:05 UTC
 
 ---
 
@@ -58,26 +58,25 @@ Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
 
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
-- **Account Balance**: **4,697.67 USD**
-- **Floating Equity**: **4,719.80 USD**
-- **Free Margin**: **4,189.37 USD**
+- **Account Balance**: **4,718.77 USD**
+- **Floating Equity**: **4,732.39 USD**
+- **Free Margin**: **4,437.25 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 08:02:19 UTC`
+- **Last Updated**: `2026-10-29 08:41:01 UTC`
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (3 ACTIVE)
+## 🚀 2. LIVE RUNNING POSITIONS (2 ACTIVE)
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437063** | `AUDUSD.pi` | SELL | 0.10 | 0.70586 | 0.70457 | **0.70506** | 0.70368 | **+12.90 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.796 | **157.764** | 158.05 | **+8.92 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2843.4 | **2858.0** | 2822.0 | **+0.31 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.879 | **157.764** | 158.05 | **+13.12 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2841.49 | **2858.0** | 2822.0 | **+0.50 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (6 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (9 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
@@ -87,6 +86,9 @@ Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
 | **#19447583** | `NZDUSD.pi` | SELL_LIMIT | 0.12 | **0.5632** | **0.56388** | 0.5605 | Resting passive maker order |
 | **#19448978** | `USDCAD.pi` | BUY_LIMIT | 0.10 | **1.3972** | **1.3961999999999999** | 1.3992 | Resting passive maker order |
 | **#19448979** | `BNBUSD.p` | SELL_LIMIT | 0.70 | **762.5** | **772.5** | 747.0 | Resting passive maker order |
+| **#19457311** | `XAUUSD.pi` | SELL_LIMIT | 0.01 | **4064.5** | **4088.5** | 3995.0 | Resting passive maker order |
+| **#19457516** | `NAS100.p` | SELL_LIMIT | 0.01 | **29740.0** | **30025.0** | 29230.0 | Resting passive maker order |
+| **#19457518** | `GBPUSD.pi` | SELL_LIMIT | 0.08 | **1.3348** | **1.3364** | 1.3312 | Resting passive maker order |
 ```
 
 ### Mandatory Trade Lifecycle Interrogation:
@@ -95,7 +97,19 @@ For each live position and resting order, systematically interrogate:
 - **AUDUSD.pi** (Ticket #19437063): SELL 0.10 @ 0.70586 | Live SL: 0.70506 (+8.0 pips profit lock) | TP: 0.70368
 - **USDJPY.pi** (Ticket #19437494): BUY 0.08 @ 157.620 | Live SL: 157.764 (+14.4 pips profit lock) | TP: 158.050
 - **US2000.p** (Ticket #19437498): SELL 0.01 @ 2846.50 | Live SL: 2858.00 (Max nominal risk: 1.15 USD) | TP: 2822.00
-- **6 Resting Limit Orders**: EURGBP (0.83810), SP500 (7705.50), UKBRENT (114.45), NZDUSD (0.56320), USDCAD (1.39720), BNBUSD (762.50)
+- **All 9 Active Resting Limit Orders**:
+  1. `EURGBP.pi` (#19439188): SELL_LIMIT 0.10 @ 0.83810 | SL: 0.83880 | TP: 0.83680
+  2. `SP500.p` (#19444900): BUY_LIMIT 0.02 @ 7705.50 | SL: 7695.50 | TP: 7728.50
+  3. `UKBRENT.p` (#19445579): BUY_LIMIT 0.10 @ 114.45 | SL: 113.90 | TP: 115.80
+  4. `NZDUSD.pi` (#19447583): SELL_LIMIT 0.12 @ 0.56320 | SL: 0.56388 | TP: 0.56050
+  5. `USDCAD.pi` (#19448978): BUY_LIMIT 0.10 @ 1.39720 | SL: 1.39620 | TP: 1.39920
+  6. `BNBUSD.p` (#19448979): SELL_LIMIT 0.70 @ 762.50 | SL: 772.50 | TP: 747.00
+  7. `XAUUSD.pi` (#19457311): SELL_LIMIT 0.01 @ 4064.50 | SL: 4088.50 | TP: 3995.00
+  8. `NAS100.p` (#19457516): SELL_LIMIT 0.01 @ 29740.00 | SL: 30025.00 | TP: 29230.00
+  9. `GBPUSD.pi` (#19457518): SELL_LIMIT 0.08 @ 1.33480 | SL: 1.33640 | TP: 1.33120
+
+### Mandatory Candidate Discovery Intent:
+You MUST search the entire 156-asset universe to propose MORE potential high-confluence maker limit orders. The core operator intent is **NEVER TO MISS ANY TRADING OPPORTUNITY** across Metals, Indices, FX, and Crypto, while strictly leaning against resting whale armor.
 
 ---
 
@@ -114,9 +128,9 @@ For each live position and resting order, systematically interrogate:
 ## 📋 4. MANDATORY OUTPUT FORMAT
 Return your response structured as follows:
 
-# [COUNCIL REPORT - CYCLE_ID: Cycle_004]
+# [COUNCIL REPORT - CYCLE_ID: Cycle_005]
 **Council Seat**: [Arena.ai (Lead Quant) / Z.ai (Adversarial Sentry)]
-**Timestamp**: 2026-10-29 08:02:21 UTC
+**Timestamp**: 2026-10-29 08:41:05 UTC
 
 ### 📚 Mandatory Pre-Cycle Reading Gate Confirmation
 ✅ All 7 Mandatory Governance Documents Fetched, Read & Enforced via GitHub:
@@ -132,9 +146,19 @@ Return your response structured as follows:
 - Position 1 (AUDUSD): [HOLD / CUT] - Detailed justification
 - Position 2 (USDJPY): [HOLD / CUT] - Detailed justification
 - Position 3 (US2000): [HOLD / CUT] - Detailed justification
-- Resting Limits: [RETAIN / PURGE] - Detailed justification
+- Resting Limits (Order-by-Order Forensic Audit of All 9 Limits):
+  * EURGBP (#19439188): [RETAIN / PURGE / ADJUST] - Whale order & orderbook persistence
+  * SP500 (#19444900): [RETAIN / PURGE / ADJUST] - Value area & auction structure
+  * UKBRENT (#19445579): [RETAIN / PURGE / ADJUST] - Energy support & liquidation band
+  * NZDUSD (#19447583): [RETAIN / PURGE / ADJUST] - Resistance sweep & CVD delta
+  * USDCAD (#19448978): [RETAIN / PURGE / ADJUST] - Support liquidity & spread check
+  * BNBUSD (#19448979): [RETAIN / PURGE / ADJUST] - Perp liquidation & funding check
+  * XAUUSD (#19457311): [RETAIN / PURGE / ADJUST] - Gold Value Area High sweep at 4064.50
+  * NAS100 (#19457516): [RETAIN / PURGE / ADJUST] - Tech index resistance sweep at 29,740.00
+  * GBPUSD (#19457518): [RETAIN / PURGE / ADJUST] - Cable London sweep at 1.33480
 
-## 2. Spread-Gated Candidate Screening & 43-Feed Forensics
+## 2. Spread-Gated Candidate Screening & 43-Feed Forensics (NEW LIMIT OPPORTUNITIES)
+*Search full 156 assets across Metals, Indices, FX, Crypto to propose MORE potential limit orders so the desk never misses an opportunity.*
 ### Candidate A: [Symbol]
 - Spread Audit: [Pass / Fail] (X.X bps)
 - 43-Feed Forensic Synthesis: (Whale Orders, Liquidations, CVD, Auction Value Area)
@@ -147,4 +171,4 @@ Return your response structured as follows:
 - Capital Floor Defense: Hard Floor $4,775.00 USD | Operating Buffer $4,795.00 USD
 - Stressed Loss Verification: Stressed portfolio drawdown strictly within budget.
 
-# [END OF REPORT - CYCLE_ID: Cycle_004]
+# [END OF REPORT - CYCLE_ID: Cycle_005]

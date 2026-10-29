@@ -89,7 +89,19 @@ For each live position and resting order, systematically interrogate:
 - **AUDUSD.pi** (Ticket #19437063): SELL 0.10 @ 0.70586 | Live SL: 0.70506 (+8.0 pips profit lock) | TP: 0.70368
 - **USDJPY.pi** (Ticket #19437494): BUY 0.08 @ 157.620 | Live SL: 157.764 (+14.4 pips profit lock) | TP: 158.050
 - **US2000.p** (Ticket #19437498): SELL 0.01 @ 2846.50 | Live SL: 2858.00 (Max nominal risk: 1.15 USD) | TP: 2822.00
-- **6 Resting Limit Orders**: EURGBP (0.83810), SP500 (7705.50), UKBRENT (114.45), NZDUSD (0.56320), USDCAD (1.39720), BNBUSD (762.50)
+- **All 9 Active Resting Limit Orders**:
+  1. `EURGBP.pi` (#19439188): SELL_LIMIT 0.10 @ 0.83810 | SL: 0.83880 | TP: 0.83680
+  2. `SP500.p` (#19444900): BUY_LIMIT 0.02 @ 7705.50 | SL: 7695.50 | TP: 7728.50
+  3. `UKBRENT.p` (#19445579): BUY_LIMIT 0.10 @ 114.45 | SL: 113.90 | TP: 115.80
+  4. `NZDUSD.pi` (#19447583): SELL_LIMIT 0.12 @ 0.56320 | SL: 0.56388 | TP: 0.56050
+  5. `USDCAD.pi` (#19448978): BUY_LIMIT 0.10 @ 1.39720 | SL: 1.39620 | TP: 1.39920
+  6. `BNBUSD.p` (#19448979): SELL_LIMIT 0.70 @ 762.50 | SL: 772.50 | TP: 747.00
+  7. `XAUUSD.pi` (#19457311): SELL_LIMIT 0.01 @ 4064.50 | SL: 4088.50 | TP: 3995.00
+  8. `NAS100.p` (#19457516): SELL_LIMIT 0.01 @ 29740.00 | SL: 30025.00 | TP: 29230.00
+  9. `GBPUSD.pi` (#19457518): SELL_LIMIT 0.08 @ 1.33480 | SL: 1.33640 | TP: 1.33120
+
+### Mandatory Candidate Discovery Intent:
+You MUST search the entire 156-asset universe to propose MORE potential high-confluence maker limit orders. The core operator intent is **NEVER TO MISS ANY TRADING OPPORTUNITY** across Metals, Indices, FX, and Crypto, while strictly leaning against resting whale armor.
 
 ---
 
@@ -126,9 +138,19 @@ Return your response structured as follows:
 - Position 1 (AUDUSD): [HOLD / CUT] - Detailed justification
 - Position 2 (USDJPY): [HOLD / CUT] - Detailed justification
 - Position 3 (US2000): [HOLD / CUT] - Detailed justification
-- Resting Limits: [RETAIN / PURGE] - Detailed justification
+- Resting Limits (Order-by-Order Forensic Audit of All 9 Limits):
+  * EURGBP (#19439188): [RETAIN / PURGE / ADJUST] - Whale order & orderbook persistence
+  * SP500 (#19444900): [RETAIN / PURGE / ADJUST] - Value area & auction structure
+  * UKBRENT (#19445579): [RETAIN / PURGE / ADJUST] - Energy support & liquidation band
+  * NZDUSD (#19447583): [RETAIN / PURGE / ADJUST] - Resistance sweep & CVD delta
+  * USDCAD (#19448978): [RETAIN / PURGE / ADJUST] - Support liquidity & spread check
+  * BNBUSD (#19448979): [RETAIN / PURGE / ADJUST] - Perp liquidation & funding check
+  * XAUUSD (#19457311): [RETAIN / PURGE / ADJUST] - Gold Value Area High sweep at 4064.50
+  * NAS100 (#19457516): [RETAIN / PURGE / ADJUST] - Tech index resistance sweep at 29,740.00
+  * GBPUSD (#19457518): [RETAIN / PURGE / ADJUST] - Cable London sweep at 1.33480
 
-## 2. Spread-Gated Candidate Screening & 43-Feed Forensics
+## 2. Spread-Gated Candidate Screening & 43-Feed Forensics (NEW LIMIT OPPORTUNITIES)
+*Search full 156 assets across Metals, Indices, FX, Crypto to propose MORE potential limit orders so the desk never misses an opportunity.*
 ### Candidate A: [Symbol]
 - Spread Audit: [Pass / Fail] (X.X bps)
 - 43-Feed Forensic Synthesis: (Whale Orders, Liquidations, CVD, Auction Value Area)
