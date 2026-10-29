@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GER30
 **Canonical Key**: `GER30` | **Broker Instrument**: `GER30.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 00:32:20 IST` (`2026-10-29 19:02:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:21 IST` (`2026-10-29 19:05:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `26035.79` (Distance: `+0.19%`)
-  * Point of Control (POC) = `25720.27` (Distance: `+1.42%`)
-  * Value Area Low (VAL) = `25667.16` (Distance: `+1.63%`)
+  * Value Area High (VAH) = `26035.79` (Distance: `+0.22%`)
+  * Point of Control (POC) = `25720.27` (Distance: `+1.45%`)
+  * Value Area Low (VAL) = `25667.16` (Distance: `+1.66%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`25700.17` | POC=`25542.50` | VAL=`25510.97`
   * Prior Day Extremes: PDH=`25916.60` | PDL=`25486.60` | PDC=`25726.45`
   * Monday Range Blueprint: High=`25515.05` | Mid=`25312.85` | Low=`25110.65`
-  * Developing Weekly Value Area: Weekly VAH=`25803.25` | Weekly POC=`25414.30` | Weekly VAL=`25332.42`
+  * Developing Weekly Value Area: Weekly VAH=`25810.08` | Weekly POC=`25414.30` | Weekly VAL=`25332.42`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`25764.25` | Low=`25684.95`
   * London Session (08:00-16:00 UTC): High=`26029.85` | Low=`25665.60`

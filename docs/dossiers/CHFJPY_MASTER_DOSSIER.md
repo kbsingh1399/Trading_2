@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:32:19 IST` (`2026-10-29 19:02:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:21 IST` (`2026-10-29 19:05:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `191.14` | **Live Ask Quote**: `191.15` | **Mid Price**: `191.15`
-- **Spread Points**: `5.00` | **Spread BPS**: `0.26 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `12.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `190.69` | VWAP Z-Score: `+2.08` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.0999` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `63.54` (State: `NEUTRAL`)
+  * Session VWAP: `190.69` | VWAP Z-Score: `+2.13` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.0956` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `64.84` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `191.32` | Lower -3.00σ Band: `190.06`
-  * Upper +2.51σ Band: `191.22` | Lower -2.51σ Band: `190.16`
-  * Upper +2.01σ Band: `191.11` | Lower -2.01σ Band: `190.27`
-  * Upper +2.00σ Band: `191.11` | Lower -2.00σ Band: `190.27`
-  * Upper +1.28σ Band: `190.96` | Lower -1.28σ Band: `190.42`
-  * Upper +1.00σ Band: `190.90` | Lower -1.00σ Band: `190.48`
+  * Upper +3.00σ Band: `191.34` | Lower -3.00σ Band: `190.05`
+  * Upper +2.51σ Band: `191.23` | Lower -2.51σ Band: `190.16`
+  * Upper +2.01σ Band: `191.12` | Lower -2.01σ Band: `190.27`
+  * Upper +2.00σ Band: `191.12` | Lower -2.00σ Band: `190.27`
+  * Upper +1.28σ Band: `190.97` | Lower -1.28σ Band: `190.42`
+  * Upper +1.00σ Band: `190.91` | Lower -1.00σ Band: `190.48`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`191.11` | EMA-20=`191.01` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`190.84` (Slope: `+0.0000`) | EMA-100=`190.71`
-  * Institutional Anchors: EMA-144=`190.64` | EMA-200=`190.59` (Slope: `+0.0335`) | EMA-233=`190.56`
+  * Fast EMA Array: EMA-9=`191.11` | EMA-20=`191.02` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`190.85` (Slope: `+0.0000`) | EMA-100=`190.71`
+  * Institutional Anchors: EMA-144=`190.65` | EMA-200=`190.60` (Slope: `+0.0344`) | EMA-233=`190.57`
 - **Range Boundaries**: 24H High=`191.21` | 24H Low=`190.33` | Weekly High=`191.21` | Weekly Low=`189.87`
 
 ---
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `190.42` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `190.29` (Risk Distance: `0.1274` pts)
-  * +2.5R Take Profit: `190.73`
+  * Spread-Padded Stop Loss: `190.28` (Risk Distance: `0.1327` pts)
+  * +2.5R Take Profit: `190.75`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `190.79` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `190.91` (Risk Distance: `0.1274` pts)
-  * +2.5R Take Profit: `190.47`
+  * Spread-Padded Stop Loss: `190.92` (Risk Distance: `0.1327` pts)
+  * +2.5R Take Profit: `190.45`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

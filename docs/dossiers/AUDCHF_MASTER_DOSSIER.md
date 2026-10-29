@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCHF
 **Canonical Key**: `AUDCHF` | **Broker Instrument**: `AUDCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:32:19 IST` (`2026-10-29 19:02:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:21 IST` (`2026-10-29 19:05:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5810` | **Live Ask Quote**: `0.5810` | **Mid Price**: `0.5810`
-- **Spread Points**: `2.00` | **Spread BPS**: `0.34 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.5809` | **Live Ask Quote**: `0.5809` | **Mid Price**: `0.5809`
+- **Spread Points**: `3.00` | **Spread BPS**: `0.52 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.5827` | VWAP Z-Score: `-1.56` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000364` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `32.95` (State: `OVERSOLD`)
+  * Session VWAP: `0.5827` | VWAP Z-Score: `-1.40` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000360` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `37.87` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.5864` | Lower -3.00σ Band: `0.5790`
-  * Upper +2.51σ Band: `0.5858` | Lower -2.51σ Band: `0.5796`
+  * Upper +3.00σ Band: `0.5864` | Lower -3.00σ Band: `0.5789`
+  * Upper +2.51σ Band: `0.5858` | Lower -2.51σ Band: `0.5795`
   * Upper +2.01σ Band: `0.5852` | Lower -2.01σ Band: `0.5802`
   * Upper +2.00σ Band: `0.5852` | Lower -2.00σ Band: `0.5802`
   * Upper +1.28σ Band: `0.5843` | Lower -1.28σ Band: `0.5811`
   * Upper +1.00σ Band: `0.5839` | Lower -1.00σ Band: `0.5814`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.5810` | EMA-20=`0.5813` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.5821` (Slope: `+0.0000`) | EMA-100=`0.5827`
-  * Institutional Anchors: EMA-144=`0.5828` | EMA-200=`0.5827` (Slope: `-0.0328`) | EMA-233=`0.5826`
+  * Core Structural Array: EMA-50=`0.5820` (Slope: `+0.0000`) | EMA-100=`0.5826`
+  * Institutional Anchors: EMA-144=`0.5828` | EMA-200=`0.5827` (Slope: `-0.0341`) | EMA-233=`0.5826`
 - **Range Boundaries**: 24H High=`0.5852` | 24H Low=`0.5807` | Weekly High=`0.5852` | Weekly Low=`0.5794`
 
 ---
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`0.5831` | Low=`0.5807`
   * Initial Balance (First Hour): IB High=`0.5849` | IB Low=`0.5841`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.5786` - `0.5833`
+  * Golden Pocket Zone (0.618 - 0.650): `0.5786` - `0.5832`
   * Optimal Trade Entry (OTE 0.705): `0.5821`
   * Structural Invalidation Anchor (0.786): `0.5856`
 

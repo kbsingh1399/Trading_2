@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ETH
 **Canonical Key**: `ETH` | **Broker Instrument**: `ETHUSD.pi` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-30 00:32:19 IST` (`2026-10-29 19:02:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:20 IST` (`2026-10-29 19:05:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2328.80` | **Live Ask Quote**: `2331.80` | **Mid Price**: `2330.30`
-- **Spread Points**: `300.00` | **Spread BPS**: `12.87 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `2324.50` | **Live Ask Quote**: `2327.30` | **Mid Price**: `2325.90`
+- **Spread Points**: `280.00` | **Spread BPS**: `12.04 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `2` | Point: `0.01`
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2324.03` | VWAP Z-Score: `+0.05` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `11.25` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `40.28` (State: `NEUTRAL`)
+  * Session VWAP: `2324.05` | VWAP Z-Score: `+0.15` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `11.14` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `41.96` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `2379.57` | Lower -3.00σ Band: `2268.48`
-  * Upper +2.51σ Band: `2370.50` | Lower -2.51σ Band: `2277.56`
-  * Upper +2.01σ Band: `2361.24` | Lower -2.01σ Band: `2286.81`
-  * Upper +2.00σ Band: `2361.06` | Lower -2.00σ Band: `2287.00`
-  * Upper +1.28σ Band: `2347.73` | Lower -1.28σ Band: `2300.33`
-  * Upper +1.00σ Band: `2342.54` | Lower -1.00σ Band: `2305.51`
+  * Upper +3.00σ Band: `2379.30` | Lower -3.00σ Band: `2268.81`
+  * Upper +2.51σ Band: `2370.27` | Lower -2.51σ Band: `2277.83`
+  * Upper +2.01σ Band: `2361.07` | Lower -2.01σ Band: `2287.04`
+  * Upper +2.00σ Band: `2360.88` | Lower -2.00σ Band: `2287.23`
+  * Upper +1.28σ Band: `2347.62` | Lower -1.28σ Band: `2300.48`
+  * Upper +1.00σ Band: `2342.47` | Lower -1.00σ Band: `2305.64`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`2337.63` | EMA-20=`2338.75` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`2333.02` (Slope: `+0.0000`) | EMA-100=`2332.07`
-  * Institutional Anchors: EMA-144=`2331.75` | EMA-200=`2330.54` (Slope: `+0.0789`) | EMA-233=`2329.30`
+  * Fast EMA Array: EMA-9=`2335.46` | EMA-20=`2337.61` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`2332.78` (Slope: `+0.0000`) | EMA-100=`2331.96`
+  * Institutional Anchors: EMA-144=`2331.66` | EMA-200=`2330.49` (Slope: `+0.0620`) | EMA-233=`2329.39`
 - **Range Boundaries**: 24H High=`2387.80` | 24H Low=`2288.80` | Weekly High=`2387.80` | Weekly Low=`2288.80`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2338.45` (Distance: `-0.36%`)
-  * Point of Control (POC) = `2318.94` (Distance: `+0.48%`)
-  * Value Area Low (VAL) = `2297.12` (Distance: `+1.43%`)
+  * Value Area High (VAH) = `2337.88` (Distance: `-0.53%`)
+  * Point of Control (POC) = `2318.94` (Distance: `+0.29%`)
+  * Value Area Low (VAL) = `2297.12` (Distance: `+1.24%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2367.21` | POC=`2350.17` | VAL=`2335.02`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`2374.90` | Low=`2307.50`
   * Initial Balance (First Hour): IB High=`2331.00` | IB Low=`2299.30`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2320.98` - `2339.62`
-  * Optimal Trade Entry (OTE 0.705): `2334.96`
-  * Structural Invalidation Anchor (0.786): `2348.94`
+  * Golden Pocket Zone (0.618 - 0.650): `2316.60` - `2335.20`
+  * Optimal Trade Entry (OTE 0.705): `2330.55`
+  * Structural Invalidation Anchor (0.786): `2344.51`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `2325.01` | `2328.00` | `2323.01` | `2328.00` | `12,279` | 28,548,726.33 USD | -4,180,983.34 USD | `-14.65%` | -364,441,552.60 USD | `+0.06` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `5m` | `2328.00` | `2328.96` | `2325.53` | `2327.67` | `5,225` | 12,158,196.18 USD | -329,579.58 USD | `-2.71%` | -364,771,132.18 USD | `+0.33` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `5m` | `2327.68` | `2332.73` | `2327.67` | `2331.61` | `8,944` | 20,845,405.39 USD | 10,161,446.62 USD | `+48.75%` | -354,609,685.56 USD | `+1.08` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `2339.94` | `2342.29` | `2333.60` | `2334.21` | `18,730` | 43,794,873.23 USD | 4,231,127.51 USD | `+9.66%` | -293,481,649.73 USD | `+0.22` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `15m` | `2334.21` | `2335.00` | `2323.01` | `2328.00` | `83,971` | 195,411,305.09 USD | -66,364,998.40 USD | `-33.96%` | -359,846,648.12 USD | `-1.88` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `2328.00` | `2332.73` | `2325.53` | `2331.60` | `14,168` | 33,000,351.31 USD | 9,828,616.78 USD | `+29.78%` | -350,018,031.35 USD | `+0.45` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `1h` | `2368.02` | `2378.69` | `2350.25` | `2352.18` | `255,135` | 602,581,670.57 USD | -105,228,527.95 USD | `-17.46%` | -260,746,003.15 USD | `-2.06` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `1h` | `2352.18` | `2353.79` | `2330.81` | `2340.62` | `199,552` | 467,616,004.62 USD | -38,816,598.96 USD | `-8.30%` | -299,562,602.11 USD | `-0.52` | **`BEARISH`** | `DELTA ALIGNED` |
-| `1h` | `2340.61` | `2342.29` | `2323.01` | `2331.69` | `137,465` | 320,375,945.92 USD | -50,322,715.09 USD | `-15.71%` | -349,885,317.20 USD | `-0.71` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `2327.68` | `2332.73` | `2327.67` | `2331.61` | `9,388` | 21,879,927.19 USD | 10,630,504.97 USD | `+48.59%` | -353,198,764.18 USD | `+1.11` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `2331.61` | `2334.45` | `2330.22` | `2330.23` | `8,220` | 19,175,267.91 USD | 7,377,332.75 USD | `+38.47%` | -345,821,431.42 USD | `+0.80` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `5m` | `2330.22` | `2331.00` | `2326.60` | `2327.58` | `4,511` | 10,503,205.26 USD | -2,886,197.84 USD | `-27.48%` | -348,707,629.26 USD | `+0.03` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2334.21` | `2335.00` | `2323.01` | `2328.00` | `83,971` | 195,411,305.09 USD | -66,364,998.40 USD | `-33.96%` | -358,083,415.07 USD | `-1.88` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `2328.00` | `2334.45` | `2325.53` | `2330.23` | `22,833` | 53,213,391.28 USD | 17,678,258.14 USD | `+33.22%` | -340,405,156.93 USD | `+0.68` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `2330.22` | `2331.00` | `2326.60` | `2327.58` | `4,513` | 10,508,684.41 USD | -2,881,635.76 USD | `-27.42%` | -343,286,792.69 USD | `+0.07` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `1h` | `2352.18` | `2353.79` | `2330.81` | `2340.62` | `199,552` | 467,616,004.62 USD | -38,816,598.96 USD | `-8.30%` | -317,086,135.71 USD | `-0.52` | **`BEARISH`** | `DELTA ALIGNED` |
+| `1h` | `2340.61` | `2342.29` | `2323.01` | `2330.23` | `146,197` | 340,744,443.34 USD | -42,605,787.87 USD | `-12.50%` | -359,691,923.58 USD | `-0.55` | **`BEARISH`** | `DELTA ALIGNED` |
+| `1h` | `2330.22` | `2331.00` | `2326.60` | `2327.58` | `4,511` | 10,502,721.13 USD | -2,885,713.70 USD | `-27.48%` | -362,577,637.29 USD | `+0.33` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `2309.10` | `2330.05` | `2308.88` | `2324.26` | `409,016` | 949,400,649.22 USD | -49,162,247.72 USD | `-5.18%` | -277,081,181.03 USD | `+0.30` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `2324.26` | `2372.42` | `2312.25` | `2368.02` | `990,448` | 2,320,004,350.90 USD | 104,040,172.24 USD | `+4.48%` | -173,041,008.80 USD | `+1.51` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `4h` | `2368.02` | `2378.69` | `2323.01` | `2331.61` | `592,220` | 1,390,732,492.04 USD | -194,497,142.68 USD | `-13.99%` | -367,538,151.47 USD | `-1.29` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `2368.02` | `2378.69` | `2323.01` | `2327.83` | `605,361` | 1,421,364,912.23 USD | -189,459,131.32 USD | `-13.33%` | -362,500,140.11 USD | `-1.27` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2358.56` | `2360.38` | `2292.20` | `2308.04` | `812,683` | 1,883,052,517.85 USD | -183,572,583.45 USD | `-9.75%` | -193,002,187.18 USD | `-1.00` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2308.03` | `2334.83` | `2303.75` | `2309.10` | `525,175` | 1,216,920,375.04 USD | -34,916,746.14 USD | `-2.87%` | -227,918,933.31 USD | `+0.53` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `2309.10` | `2330.05` | `2308.88` | `2324.26` | `409,016` | 949,400,649.22 USD | -49,162,247.72 USD | `-5.18%` | -277,081,181.03 USD | `+0.30` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `2324.26` | `2372.42` | `2312.25` | `2368.02` | `990,448` | 2,320,004,350.90 USD | 104,040,172.24 USD | `+4.48%` | -173,041,008.80 USD | `+1.51` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `4h` | `2368.02` | `2378.69` | `2323.01` | `2331.61` | `592,220` | 1,390,732,492.04 USD | -194,497,142.68 USD | `-13.99%` | -367,538,151.47 USD | `-1.29` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `2368.02` | `2378.69` | `2323.01` | `2327.83` | `605,361` | 1,421,364,912.23 USD | -189,459,131.32 USD | `-13.33%` | -362,500,140.11 USD | `-1.27` | **`BEARISH`** | `DELTA ALIGNED` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -101,123 +101,123 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`2330.30`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`2325.90`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID` | `2329.70` | `337.4732` | 786,211.31 USD | 9,184,715.07 USD | `23 orders` | `-0.08%` | `-` |
-| `BID` | `2329.80` | `304.9568` | 710,488.35 USD | 8,398,503.76 USD | `17 orders` | `-0.08%` | `-` |
-| `BID` | `2329.90` | `145.8470` | 339,808.93 USD | 7,688,015.41 USD | `17 orders` | `-0.08%` | `-` |
-| `BID` | `2330.00` | `404.8340` | 943,263.22 USD | 7,348,206.48 USD | `24 orders` | `-0.07%` | `-` |
-| `BID` | `2330.10` | `265.3183` | 618,218.17 USD | 6,404,943.26 USD | `20 orders` | `-0.07%` | `-` |
-| `BID` | `2330.20` | `79.2443` | 184,655.07 USD | 5,786,725.09 USD | `17 orders` | `-0.06%` | `-` |
-| `BID` | `2330.30` | `456.4986` | 1,063,778.69 USD | 5,602,070.02 USD | `13 orders` | `-0.06%` | `-` |
-| `BID` | `2330.40` | `242.6041` | 565,364.59 USD | 4,538,291.34 USD | `18 orders` | `-0.05%` | `-` |
-| `BID` | `2330.50` | `217.1605` | 506,092.55 USD | 3,972,926.74 USD | `17 orders` | `-0.05%` | `-` |
-| `BID` | `2330.60` | `354.4599` | 826,104.24 USD | 3,466,834.20 USD | `21 orders` | `-0.05%` | `-` |
-| `BID` | `2330.70` | `181.5588` | 423,159.10 USD | 2,640,729.95 USD | `13 orders` | `-0.04%` | `-` |
-| `BID` | `2330.80` | `179.8384` | 419,167.34 USD | 2,217,570.86 USD | `9 orders` | `-0.04%` | `-` |
-| `BID` | `2330.90` | `207.4598` | 483,568.05 USD | 1,798,403.52 USD | `19 orders` | `-0.03%` | `-` |
-| `BID` | `2331.00` | `105.2627` | 245,367.35 USD | 1,314,835.47 USD | `15 orders` | `-0.03%` | `-` |
-| `BID` | `2331.10` | `173.0184` | 403,323.19 USD | 1,069,468.11 USD | `17 orders` | `-0.02%` | `-` |
-| `BID` | `2331.20` | `68.3602` | 159,361.30 USD | 666,144.92 USD | `8 orders` | `-0.02%` | `-` |
-| `BID` | `2331.30` | `66.1112` | 154,125.04 USD | 506,783.62 USD | `12 orders` | `-0.02%` | `-` |
-| `BID` | `2331.40` | `36.9913` | 86,241.52 USD | 352,658.58 USD | `8 orders` | `-0.01%` | `-` |
-| `BID` | `2331.50` | `88.0404` | 205,266.19 USD | 266,417.07 USD | `6 orders` | `-0.01%` | `-` |
-| `BID` | `2331.60` | `26.2270` | 61,150.87 USD | 61,150.87 USD | `6 orders` | `-0.00%` | `-` |
-| `MID_SPREAD` | `2331.65` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 2,331.65` | `0.00%` | `-` |
-| `ASK` | `2331.70` | `622.8380` | 1,452,271.36 USD | 1,452,271.36 USD | `50 orders` | `+0.00%` | `-` |
-| `ASK` | `2331.80` | `133.5195` | 311,340.77 USD | 1,763,612.13 USD | `13 orders` | `+0.01%` | `-` |
-| `ASK` | `2331.90` | `291.8515` | 680,568.51 USD | 2,444,180.65 USD | `16 orders` | `+0.01%` | `-` |
-| `ASK` | `2332.00` | `173.8870` | 405,504.48 USD | 2,849,685.13 USD | `15 orders` | `+0.02%` | `-` |
-| `ASK` | `2332.10` | `360.9287` | 841,721.82 USD | 3,691,406.95 USD | `15 orders` | `+0.02%` | `-` |
-| `ASK` | `2332.20` | `217.0359` | 506,171.13 USD | 4,197,578.08 USD | `20 orders` | `+0.02%` | `-` |
-| `ASK` | `2332.30` | `275.6029` | 642,788.64 USD | 4,840,366.72 USD | `20 orders` | `+0.03%` | `-` |
-| `ASK` | `2332.40` | `394.6957` | 920,588.25 USD | 5,760,954.97 USD | `23 orders` | `+0.03%` | `-` |
-| `ASK` | `2332.50` | `227.3052` | 530,189.38 USD | 6,291,144.35 USD | `22 orders` | `+0.04%` | `-` |
-| `ASK` | `2332.60` | `227.4615` | 530,576.69 USD | 6,821,721.05 USD | `22 orders` | `+0.04%` | `-` |
-| `ASK` | `2332.70` | `459.2264` | 1,071,237.42 USD | 7,892,958.47 USD | `24 orders` | `+0.05%` | `-` |
-| `ASK` | `2332.80` | `395.3020` | 922,160.51 USD | 8,815,118.98 USD | `20 orders` | `+0.05%` | `-` |
-| `ASK` | `2332.90` | `168.8384` | 393,883.10 USD | 9,209,002.08 USD | `16 orders` | `+0.05%` | `-` |
-| `ASK` | `2333.00` | `262.6994` | 612,877.70 USD | 9,821,879.78 USD | `16 orders` | `+0.06%` | `-` |
-| `ASK` | `2333.10` | `126.3399` | 294,763.62 USD | 10,116,643.40 USD | `16 orders` | `+0.06%` | `-` |
-| `ASK` | `2333.20` | `519.5276` | 1,212,161.80 USD | 11,328,805.20 USD | `15 orders` | `+0.07%` | `-` |
-| `ASK` | `2333.30` | `137.0135` | 319,693.60 USD | 11,648,498.80 USD | `16 orders` | `+0.07%` | `-` |
-| `ASK` | `2333.40` | `222.3028` | 518,721.35 USD | 12,167,220.15 USD | `15 orders` | `+0.08%` | `-` |
-| `ASK` | `2333.50` | `248.5440` | 579,977.42 USD | 12,747,197.57 USD | `13 orders` | `+0.08%` | `-` |
-| `ASK` | `2333.60` | `572.4834` | 1,335,947.26 USD | 14,083,144.84 USD | `15 orders` | `+0.08%` | `-` |
+| `BID` | `2325.70` | `651.9690` | 1,516,284.30 USD | 10,432,420.35 USD | `19 orders` | `-0.08%` | `-` |
+| `BID` | `2325.80` | `588.4132` | 1,368,531.42 USD | 8,916,136.04 USD | `13 orders` | `-0.08%` | `-` |
+| `BID` | `2325.90` | `101.4897` | 236,054.89 USD | 7,547,604.62 USD | `11 orders` | `-0.08%` | `-` |
+| `BID` | `2326.00` | `140.1720` | 326,040.07 USD | 7,311,549.73 USD | `16 orders` | `-0.07%` | `-` |
+| `BID` | `2326.10` | `350.7819` | 815,953.78 USD | 6,985,509.66 USD | `20 orders` | `-0.07%` | `-` |
+| `BID` | `2326.20` | `106.8267` | 248,500.27 USD | 6,169,555.88 USD | `19 orders` | `-0.06%` | `-` |
+| `BID` | `2326.30` | `402.5278` | 936,400.42 USD | 5,921,055.61 USD | `12 orders` | `-0.06%` | `-` |
+| `BID` | `2326.40` | `255.5888` | 594,601.78 USD | 4,984,655.19 USD | `20 orders` | `-0.05%` | `-` |
+| `BID` | `2326.50` | `321.4849` | 747,934.62 USD | 4,390,053.41 USD | `11 orders` | `-0.05%` | `-` |
+| `BID` | `2326.60` | `237.1493` | 551,751.56 USD | 3,642,118.79 USD | `24 orders` | `-0.05%` | `-` |
+| `BID` | `2326.70` | `145.2693` | 337,998.08 USD | 3,090,367.23 USD | `14 orders` | `-0.04%` | `-` |
+| `BID` | `2326.80` | `216.7170` | 504,257.12 USD | 2,752,369.15 USD | `17 orders` | `-0.04%` | `-` |
+| `BID` | `2326.90` | `226.1720` | 526,279.63 USD | 2,248,112.03 USD | `19 orders` | `-0.03%` | `-` |
+| `BID` | `2327.00` | `225.2375` | 524,127.66 USD | 1,721,832.40 USD | `18 orders` | `-0.03%` | `-` |
+| `BID` | `2327.10` | `110.7877` | 257,814.06 USD | 1,197,704.74 USD | `24 orders` | `-0.02%` | `-` |
+| `BID` | `2327.20` | `122.7665` | 285,702.20 USD | 939,890.68 USD | `15 orders` | `-0.02%` | `-` |
+| `BID` | `2327.30` | `83.8233` | 195,081.97 USD | 654,188.48 USD | `13 orders` | `-0.02%` | `-` |
+| `BID` | `2327.40` | `57.5072` | 133,842.26 USD | 459,106.52 USD | `11 orders` | `-0.01%` | `-` |
+| `BID` | `2327.50` | `87.6110` | 203,914.60 USD | 325,264.26 USD | `5 orders` | `-0.01%` | `-` |
+| `BID` | `2327.60` | `52.1351` | 121,349.66 USD | 121,349.66 USD | `8 orders` | `-0.00%` | `-` |
+| `MID_SPREAD` | `2327.65` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 2,327.65` | `0.00%` | `-` |
+| `ASK` | `2327.70` | `543.8855` | 1,266,002.28 USD | 1,266,002.28 USD | `43 orders` | `+0.00%` | `-` |
+| `ASK` | `2327.80` | `201.8579` | 469,884.82 USD | 1,735,887.10 USD | `13 orders` | `+0.01%` | `-` |
+| `ASK` | `2327.90` | `121.0179` | 281,717.57 USD | 2,017,604.67 USD | `12 orders` | `+0.01%` | `-` |
+| `ASK` | `2328.00` | `242.0933` | 563,593.20 USD | 2,581,197.87 USD | `16 orders` | `+0.02%` | `-` |
+| `ASK` | `2328.10` | `162.1116` | 377,412.02 USD | 2,958,609.89 USD | `21 orders` | `+0.02%` | `-` |
+| `ASK` | `2328.20` | `390.6375` | 909,482.23 USD | 3,868,092.11 USD | `24 orders` | `+0.02%` | `-` |
+| `ASK` | `2328.30` | `417.7986` | 972,760.48 USD | 4,840,852.59 USD | `19 orders` | `+0.03%` | `-` |
+| `ASK` | `2328.40` | `149.7058` | 348,574.98 USD | 5,189,427.58 USD | `18 orders` | `+0.03%` | `-` |
+| `ASK` | `2328.50` | `204.2883` | 475,685.31 USD | 5,665,112.88 USD | `14 orders` | `+0.04%` | `-` |
+| `ASK` | `2328.60` | `394.5385` | 918,722.35 USD | 6,583,835.24 USD | `19 orders` | `+0.04%` | `-` |
+| `ASK` | `2328.70` | `191.6482` | 446,291.16 USD | 7,030,126.40 USD | `14 orders` | `+0.05%` | `-` |
+| `ASK` | `2328.80` | `671.3318` | 1,563,397.50 USD | 8,593,523.90 USD | `27 orders` | `+0.05%` | `-` |
+| `ASK` | `2328.90` | `166.8577` | 388,594.90 USD | 8,982,118.79 USD | `15 orders` | `+0.05%` | `-` |
+| `ASK` | `2329.00` | `203.1564` | 473,151.26 USD | 9,455,270.05 USD | `16 orders` | `+0.06%` | `-` |
+| `ASK` | `2329.10` | `272.1645` | 633,898.34 USD | 10,089,168.39 USD | `21 orders` | `+0.06%` | `-` |
+| `ASK` | `2329.20` | `171.2998` | 398,991.49 USD | 10,488,159.88 USD | `15 orders` | `+0.07%` | `-` |
+| `ASK` | `2329.30` | `149.3461` | 347,871.87 USD | 10,836,031.75 USD | `13 orders` | `+0.07%` | `-` |
+| `ASK` | `2329.40` | `149.1982` | 347,542.29 USD | 11,183,574.04 USD | `14 orders` | `+0.08%` | `-` |
+| `ASK` | `2329.50` | `160.0162` | 372,757.74 USD | 11,556,331.78 USD | `14 orders` | `+0.08%` | `-` |
+| `ASK` | `2329.60` | `977.4768` | 2,277,129.95 USD | 13,833,461.73 USD | `16 orders` | `+0.08%` | `-` |
 
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `1871.10` | `9,700.00` | 18,149,670.00 USD | `TRIGGER_STOP` | `0xaeaab54bbf` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `1918.00` | `4,184.01` | 8,024,935.59 USD | `TRIGGER_STOP` | `0x6ea486a342` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1918.99` | `8,092.45` | 15,529,329.85 USD | `AT_RISK_LIQ` | `0x9eec98d048` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `1926.10` | `8,500.00` | 16,371,850.00 USD | `TRIGGER_STOP` | `0xb37f083bad` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2040.68` | `7,964.66` | 16,253,321.14 USD | `AT_RISK_LIQ` | `0x5f912dbde4` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2115.20` | `7,500.00` | 15,864,017.53 USD | `AT_RISK_LIQ` | `0x524ed67d71` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2171.14` | `48,499.51` | 105,299,308.58 USD | `AT_RISK_LIQ` | `0x77ddcc4b64` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2180.20` | `44,734.81` | 97,531,035.84 USD | `AT_RISK_LIQ` | `0x0392a716db` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `SELL_STOP` | `2250.00` | `6,500.00` | 14,625,000.00 USD | `TRIGGER_STOP` | `0x6eae4120a8` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2291.20` | `2,057.98` | 4,715,242.40 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `SELL_STOP` | `2292.00` | `2,500.00` | 5,730,000.00 USD | `TRIGGER_STOP` | `0x934de82f50` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2295.30` | `5,287.01` | 12,135,262.58 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2300.00` | `502.36` | 1,155,425.70 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xa5d0a11e20` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2303.00` | `908.97` | 2,093,354.23 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x0c4a3a7ac7` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2303.10` | `1,391.86` | 3,205,596.45 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2307.10` | `346.80` | 800,091.44 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2307.10` | `332.67` | 767,507.80 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `2307.20` | `599,999.99` | 1,384,319,976.93 USD | `TRIGGER_STOP` | `0x069604ebfb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2308.90` | `605.80` | 1,398,743.16 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2310.30` | `2,726.98` | 6,300,145.36 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2312.00` | `976.72` | 2,258,183.81 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2313.70` | `437.53` | 1,012,320.10 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2314.70` | `1,015.35` | 2,350,222.78 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x674982e841` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2314.80` | `606.41` | 1,403,713.24 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2316.70` | `1,296.40` | 3,003,365.01 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `SELL_STOP` | `2319.00` | `2,500.00` | 5,797,500.00 USD | `TRIGGER_STOP` | `0x524ed67d71` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2319.50` | `669.58` | 1,553,079.44 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2319.80` | `1,726.29` | 4,004,649.17 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2320.90` | `1,390.78` | 3,227,865.94 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2321.10` | `605.77` | 1,406,045.78 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2324.10` | `861.53` | 2,002,285.59 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2324.60` | `452.10` | 1,050,963.05 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2325.00` | `436.92` | 1,015,845.97 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2326.70` | `645.42` | 1,501,710.35 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2327.80` | `430.08` | 1,001,138.83 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2328.00` | `397.05` | 924,332.63 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x76bf72092b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2328.40` | `403.66` | 939,884.27 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2332.10` | `428.80` | 999,999.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x823ecdcdfc` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2335.00` | `428.76` | 1,001,158.80 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2335.40` | `403.68` | 942,754.27 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2335.80` | `328.84` | 768,115.22 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2336.10` | `395.69` | 924,370.01 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x76bf72092b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2336.60` | `1,392.46` | 3,253,626.94 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2336.60` | `642.69` | 1,501,717.40 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2337.70` | `437.17` | 1,021,981.66 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2338.20` | `856.35` | 2,002,310.56 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2338.20` | `470.80` | 1,100,813.34 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2339.20` | `606.03` | 1,417,637.07 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2340.30` | `1,283.37` | 3,003,480.41 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2342.40` | `327.95` | 768,180.48 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2343.00` | `437.40` | 1,024,832.89 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2343.20` | `1,709.03` | 4,004,603.55 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2343.90` | `659.67` | 1,546,202.15 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2344.40` | `2,726.98` | 6,393,135.43 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2345.10` | `605.49` | 1,419,936.94 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2348.70` | `923.44` | 2,168,874.13 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2349.10` | `606.30` | 1,424,259.33 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2354.20` | `339.86` | 800,091.35 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2355.00` | `325.91` | 767,507.69 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2357.90` | `1,415.55` | 3,337,729.59 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2359.40` | `5,287.01` | 12,474,159.60 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:25:14 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2369.70` | `1,952.90` | 4,627,787.84 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:25:14 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `2440.00` | `4,002.10` | 9,765,127.17 USD | `TRIGGER_STOP` | `0xfb941d2344` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2585.90` | `6,224.05` | 16,094,776.27 USD | `AT_RISK_LIQ` | `0x08bf75d170` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2658.65` | `9,700.00` | 25,788,913.40 USD | `AT_RISK_LIQ` | `0xaeaab54bbf` | `2026-10-30 00:25:14 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2709.00` | `8,500.00` | 23,026,520.04 USD | `AT_RISK_LIQ` | `0xb37f083bad` | `2026-10-30 00:25:14 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `1871.10` | `9,700.00` | 18,149,670.00 USD | `TRIGGER_STOP` | `0xaeaab54bbf` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `1918.00` | `4,184.01` | 8,024,935.59 USD | `TRIGGER_STOP` | `0x6ea486a342` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1919.63` | `8,092.45` | 15,534,510.75 USD | `AT_RISK_LIQ` | `0x9eec98d048` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `1926.10` | `8,500.00` | 16,371,850.00 USD | `TRIGGER_STOP` | `0xb37f083bad` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2040.71` | `7,964.66` | 16,253,558.97 USD | `AT_RISK_LIQ` | `0x5f912dbde4` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2115.23` | `7,500.00` | 15,864,241.49 USD | `AT_RISK_LIQ` | `0x524ed67d71` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2171.17` | `48,499.51` | 105,300,776.77 USD | `AT_RISK_LIQ` | `0x77ddcc4b64` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2180.23` | `44,734.81` | 97,532,371.64 USD | `AT_RISK_LIQ` | `0x0392a716db` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `SELL_STOP` | `2250.00` | `6,500.00` | 14,625,000.00 USD | `TRIGGER_STOP` | `0x6eae4120a8` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2290.70` | `1,959.66` | 4,488,989.04 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `SELL_STOP` | `2292.00` | `2,500.00` | 5,730,000.00 USD | `TRIGGER_STOP` | `0x934de82f50` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2295.30` | `5,287.01` | 12,135,262.58 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2300.00` | `502.36` | 1,155,425.70 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xa5d0a11e20` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2301.60` | `1,390.29` | 3,199,887.78 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2303.00` | `908.97` | 2,093,354.23 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x0c4a3a7ac7` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2307.10` | `346.80` | 800,091.44 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2307.10` | `332.67` | 767,507.80 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `2307.20` | `599,999.99` | 1,384,319,976.93 USD | `TRIGGER_STOP` | `0x069604ebfb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2309.10` | `605.65` | 1,398,511.03 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2310.30` | `1,011.76` | 2,337,476.98 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2314.20` | `1,015.35` | 2,349,715.10 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x674982e841` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2315.30` | `606.21` | 1,403,551.07 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2316.10` | `437.01` | 1,012,156.54 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2316.80` | `2,722.68` | 6,307,904.33 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2317.10` | `1,728.28` | 4,004,600.14 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2318.30` | `605.91` | 1,404,674.20 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2318.80` | `1,295.31` | 3,003,565.99 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2319.00` | `683.25` | 1,584,464.87 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `SELL_STOP` | `2319.00` | `2,500.00` | 5,797,500.00 USD | `TRIGGER_STOP` | `0x524ed67d71` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2319.40` | `1,391.31` | 3,227,000.24 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2321.00` | `862.70` | 2,002,337.61 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2321.20` | `437.17` | 1,014,761.33 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2322.20` | `467.16` | 1,084,845.69 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2322.90` | `646.50` | 1,501,764.14 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2323.80` | `403.95` | 938,689.71 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2324.70` | `430.62` | 1,001,055.80 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2325.00` | `394.51` | 917,235.98 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x76bf72092b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2331.90` | `429.34` | 1,001,172.12 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2331.90` | `404.12` | 942,374.42 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2332.40` | `328.67` | 766,597.37 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2332.60` | `393.24` | 917,259.96 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x76bf72092b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2334.00` | `643.43` | 1,501,773.79 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2334.60` | `437.37` | 1,021,074.66 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2335.30` | `459.94` | 1,074,103.95 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2336.40` | `857.03` | 2,002,355.08 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2336.80` | `606.23` | 1,416,628.92 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2337.50` | `1,284.92` | 3,003,495.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2337.80` | `1,391.31` | 3,252,600.31 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2339.80` | `1,711.57` | 4,004,723.53 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2340.00` | `672.20` | 1,572,954.08 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2340.50` | `327.62` | 766,794.84 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2342.10` | `437.36` | 1,024,338.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2342.90` | `605.67` | 1,419,035.96 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2345.60` | `2,726.96` | 6,396,366.76 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2346.50` | `948.16` | 2,224,867.53 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2348.30` | `326.84` | 767,507.80 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2349.70` | `606.06` | 1,424,061.53 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2354.20` | `339.86` | 800,091.35 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2356.60` | `1,365.41` | 3,217,732.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2359.30` | `617.51` | 1,456,901.72 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x7b7f72a28f` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2359.40` | `5,287.01` | 12,474,159.60 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 00:34:35 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2367.60` | `2,014.19` | 4,768,794.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 00:34:35 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `2440.00` | `4,002.10` | 9,765,127.17 USD | `TRIGGER_STOP` | `0xfb941d2344` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2585.93` | `6,224.05` | 16,094,954.84 USD | `AT_RISK_LIQ` | `0x08bf75d170` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2658.68` | `9,700.00` | 25,789,198.84 USD | `AT_RISK_LIQ` | `0xaeaab54bbf` | `2026-10-30 00:34:35 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2709.03` | `8,500.00` | 23,026,771.56 USD | `AT_RISK_LIQ` | `0xb37f083bad` | `2026-10-30 00:34:35 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -1223,755 +1223,748 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `475.00` | 873,970,000.00 USD | 0.00 USD | 7,100.00 USD | `-79.71%` | `14.94` |
-| `Live` | `Long` | `485.00` | 873,970,000.00 USD | 0.00 USD | 65,780.00 USD | `-79.28%` | `135.63` |
-| `Live` | `Long` | `495.00` | 873,900,000.00 USD | 0.00 USD | 14,280.00 USD | `-78.86%` | `28.85` |
-| `Live` | `Long` | `505.00` | 873,890,000.00 USD | 0.00 USD | 12,510.00 USD | `-78.43%` | `24.77` |
-| `Live` | `Long` | `515.00` | 873,870,000.00 USD | 0.00 USD | 5,560.00 USD | `-78.00%` | `10.79` |
-| `Live` | `Long` | `525.00` | 873,870,000.00 USD | 0.00 USD | 6,230.00 USD | `-77.57%` | `11.86` |
-| `Live` | `Long` | `535.00` | 873,860,000.00 USD | 0.00 USD | 10,400.00 USD | `-77.15%` | `19.44` |
-| `Live` | `Long` | `545.00` | 873,850,000.00 USD | 0.00 USD | 68,610.00 USD | `-76.72%` | `125.89` |
-| `Live` | `Long` | `555.00` | 873,780,000.00 USD | 0.00 USD | 143,270.00 USD | `-76.29%` | `258.14` |
-| `Live` | `Long` | `565.00` | 873,640,000.00 USD | 0.00 USD | 14,660.00 USD | `-75.87%` | `25.94` |
-| `Live` | `Long` | `575.00` | 873,630,000.00 USD | 0.00 USD | 397,980.00 USD | `-75.44%` | `692.14` |
-| `Live` | `Long` | `585.00` | 873,230,000.00 USD | 0.00 USD | 23,700.00 USD | `-75.01%` | `40.51` |
-| `Live` | `Long` | `595.00` | 873,200,000.00 USD | 0.00 USD | 8,970.00 USD | `-74.58%` | `15.08` |
-| `Live` | `Long` | `605.00` | 873,200,000.00 USD | 0.00 USD | 47,100.00 USD | `-74.16%` | `77.85` |
-| `Live` | `Long` | `615.00` | 873,150,000.00 USD | 0.00 USD | 69,280.00 USD | `-73.73%` | `112.65` |
-| `Live` | `Long` | `625.00` | 873,080,000.00 USD | 0.00 USD | 36,410.00 USD | `-73.30%` | `58.25` |
-| `Live` | `Long` | `635.00` | 873,040,000.00 USD | 0.00 USD | 51,290.00 USD | `-72.87%` | `80.77` |
-| `Live` | `Long` | `645.00` | 872,990,000.00 USD | 0.00 USD | 27,830.00 USD | `-72.45%` | `43.15` |
-| `Live` | `Long` | `655.00` | 872,960,000.00 USD | 0.00 USD | 135,660.00 USD | `-72.02%` | `207.12` |
-| `Live` | `Long` | `665.00` | 872,830,000.00 USD | 0.00 USD | 30,410.00 USD | `-71.59%` | `45.73` |
-| `Live` | `Long` | `675.00` | 872,800,000.00 USD | 0.00 USD | 30,650.00 USD | `-71.17%` | `45.40` |
-| `Live` | `Long` | `685.00` | 872,770,000.00 USD | 0.00 USD | 124,480.00 USD | `-70.74%` | `181.72` |
-| `Live` | `Long` | `695.00` | 872,640,000.00 USD | 0.00 USD | 2,010.00 USD | `-70.31%` | `2.90` |
-| `Live` | `Long` | `705.00` | 872,640,000.00 USD | 0.00 USD | 6,260.00 USD | `-69.88%` | `8.87` |
-| `Live` | `Long` | `715.00` | 872,630,000.00 USD | 0.00 USD | 1,620.00 USD | `-69.46%` | `2.26` |
-| `Live` | `Long` | `725.00` | 872,630,000.00 USD | 0.00 USD | 383,190.00 USD | `-69.03%` | `528.54` |
-| `Live` | `Long` | `735.00` | 872,250,000.00 USD | 0.00 USD | 42,360.00 USD | `-68.60%` | `57.63` |
-| `Live` | `Long` | `745.00` | 872,210,000.00 USD | 0.00 USD | 23,330.00 USD | `-68.18%` | `31.32` |
-| `Live` | `Long` | `755.00` | 872,180,000.00 USD | 0.00 USD | 27,030.00 USD | `-67.75%` | `35.80` |
-| `Live` | `Long` | `765.00` | 872,160,000.00 USD | 0.00 USD | 76,850.00 USD | `-67.32%` | `100.46` |
-| `Live` | `Long` | `775.00` | 872,080,000.00 USD | 0.00 USD | 1,750,000.00 USD | `-66.89%` | `2,251.79` |
-| `Live` | `Long` | `785.00` | 870,330,000.00 USD | 0.00 USD | 16,520.00 USD | `-66.47%` | `21.05` |
-| `Live` | `Long` | `795.00` | 870,320,000.00 USD | 0.00 USD | 24,890.00 USD | `-66.04%` | `31.31` |
-| `Live` | `Long` | `805.00` | 870,290,000.00 USD | 0.00 USD | 250,090.00 USD | `-65.61%` | `310.67` |
-| `Live` | `Long` | `815.00` | 870,040,000.00 USD | 0.00 USD | 373,250.00 USD | `-65.19%` | `457.97` |
-| `Live` | `Long` | `825.00` | 869,670,000.00 USD | 0.00 USD | 144,310.00 USD | `-64.76%` | `174.93` |
-| `Live` | `Long` | `835.00` | 869,530,000.00 USD | 0.00 USD | 20,760.00 USD | `-64.33%` | `24.87` |
-| `Live` | `Long` | `845.00` | 869,500,000.00 USD | 0.00 USD | 7,110.00 USD | `-63.90%` | `8.41` |
-| `Live` | `Long` | `855.00` | 869,500,000.00 USD | 0.00 USD | 6,250.00 USD | `-63.48%` | `7.30` |
-| `Live` | `Long` | `865.00` | 869,490,000.00 USD | 0.00 USD | 59,400.00 USD | `-63.05%` | `68.67` |
-| `Live` | `Long` | `875.00` | 869,430,000.00 USD | 0.00 USD | 32,500.00 USD | `-62.62%` | `37.14` |
-| `Live` | `Long` | `885.00` | 869,400,000.00 USD | 0.00 USD | 418,200.00 USD | `-62.20%` | `472.55` |
-| `Live` | `Long` | `895.00` | 868,980,000.00 USD | 0.00 USD | 29,870.00 USD | `-61.77%` | `33.38` |
-| `Live` | `Long` | `905.00` | 868,950,000.00 USD | 0.00 USD | 93,070.00 USD | `-61.34%` | `102.84` |
-| `Live` | `Long` | `915.00` | 868,860,000.00 USD | 0.00 USD | 160,780.00 USD | `-60.91%` | `175.71` |
-| `Live` | `Long` | `925.00` | 868,700,000.00 USD | 0.00 USD | 130,820.00 USD | `-60.49%` | `141.43` |
-| `Live` | `Long` | `935.00` | 868,570,000.00 USD | 0.00 USD | 4,110,000.00 USD | `-60.06%` | `4,400.41` |
-| `Live` | `Long` | `945.00` | 864,450,000.00 USD | 0.00 USD | 77,190.00 USD | `-59.63%` | `81.68` |
-| `Live` | `Long` | `955.00` | 864,380,000.00 USD | 0.00 USD | 1,130,000.00 USD | `-59.21%` | `1,186.88` |
-| `Live` | `Long` | `965.00` | 863,240,000.00 USD | 0.00 USD | 27,170.00 USD | `-58.78%` | `28.16` |
-| `Live` | `Long` | `975.00` | 863,210,000.00 USD | 0.00 USD | 67,650.00 USD | `-58.35%` | `69.38` |
-| `Live` | `Long` | `985.00` | 863,150,000.00 USD | 0.00 USD | 30,850.00 USD | `-57.92%` | `31.32` |
-| `Live` | `Long` | `995.00` | 863,120,000.00 USD | 0.00 USD | 226,950.00 USD | `-57.50%` | `228.09` |
-| `Live` | `Long` | `1005.00` | 862,890,000.00 USD | 0.00 USD | 7,090,000.00 USD | `-57.07%` | `7,052.71` |
-| `Live` | `Long` | `1015.00` | 855,800,000.00 USD | 0.00 USD | 23,200.00 USD | `-56.64%` | `22.85` |
-| `Live` | `Long` | `1025.00` | 855,780,000.00 USD | 0.00 USD | 173,670.00 USD | `-56.22%` | `169.43` |
-| `Live` | `Long` | `1035.00` | 855,600,000.00 USD | 0.00 USD | 41,110.00 USD | `-55.79%` | `39.72` |
-| `Live` | `Long` | `1045.00` | 855,560,000.00 USD | 0.00 USD | 3,170,000.00 USD | `-55.36%` | `3,029.55` |
-| `Live` | `Long` | `1055.00` | 852,400,000.00 USD | 0.00 USD | 34,380.00 USD | `-54.93%` | `32.59` |
-| `Live` | `Long` | `1065.00` | 852,360,000.00 USD | 0.00 USD | 153,900.00 USD | `-54.51%` | `144.51` |
-| `Live` | `Long` | `1075.00` | 852,210,000.00 USD | 0.00 USD | 675,850.00 USD | `-54.08%` | `628.69` |
-| `Live` | `Long` | `1085.00` | 851,530,000.00 USD | 0.00 USD | 78,450.00 USD | `-53.65%` | `72.30` |
-| `Live` | `Long` | `1095.00` | 851,450,000.00 USD | 0.00 USD | 1,770,000.00 USD | `-53.23%` | `1,616.76` |
-| `Live` | `Long` | `1105.00` | 849,680,000.00 USD | 0.00 USD | 143,580.00 USD | `-52.80%` | `129.94` |
-| `Live` | `Long` | `1115.00` | 849,540,000.00 USD | 0.00 USD | 88,800.00 USD | `-52.37%` | `79.64` |
-| `Live` | `Long` | `1125.00` | 849,450,000.00 USD | 0.00 USD | 491,080.00 USD | `-51.94%` | `436.52` |
-| `Live` | `Long` | `1135.00` | 848,960,000.00 USD | 0.00 USD | 134,860.00 USD | `-51.52%` | `118.82` |
-| `Live` | `Long` | `1145.00` | 848,830,000.00 USD | 0.00 USD | 27,690.00 USD | `-51.09%` | `24.18` |
-| `Live` | `Long` | `1155.00` | 848,800,000.00 USD | 0.00 USD | 351,020.00 USD | `-50.66%` | `303.92` |
-| `Live` | `Long` | `1165.00` | 848,450,000.00 USD | 0.00 USD | 11,000.00 USD | `-50.23%` | `9.44` |
-| `Live` | `Long` | `1175.00` | 848,440,000.00 USD | 0.00 USD | 300,400.00 USD | `-49.81%` | `255.66` |
-| `Live` | `Long` | `1185.00` | 848,140,000.00 USD | 0.00 USD | 186,300.00 USD | `-49.38%` | `157.22` |
-| `Live` | `Long` | `1195.00` | 847,950,000.00 USD | 0.00 USD | 368,940.00 USD | `-48.95%` | `308.74` |
-| `Live` | `Long` | `1205.00` | 847,580,000.00 USD | 0.00 USD | 1,110,000.00 USD | `-48.53%` | `918.08` |
-| `Live` | `Long` | `1215.00` | 846,470,000.00 USD | 0.00 USD | 11,090,000.00 USD | `-48.10%` | `9,124.44` |
-| `Live` | `Long` | `1225.00` | 835,390,000.00 USD | 0.00 USD | 1,470,000.00 USD | `-47.67%` | `1,198.39` |
-| `Live` | `Long` | `1235.00` | 833,920,000.00 USD | 0.00 USD | 183,930.00 USD | `-47.24%` | `148.93` |
-| `Live` | `Long` | `1245.00` | 833,740,000.00 USD | 0.00 USD | 424,530.00 USD | `-46.82%` | `340.99` |
-| `Live` | `Long` | `1255.00` | 833,310,000.00 USD | 0.00 USD | 385,620.00 USD | `-46.39%` | `307.27` |
-| `Live` | `Long` | `1265.00` | 832,930,000.00 USD | 0.00 USD | 821,130.00 USD | `-45.96%` | `649.11` |
-| `Live` | `Long` | `1275.00` | 832,110,000.00 USD | 0.00 USD | 207,090.00 USD | `-45.54%` | `162.42` |
-| `Live` | `Long` | `1285.00` | 831,900,000.00 USD | 0.00 USD | 15,590,000.00 USD | `-45.11%` | `12,131.93` |
-| `Live` | `Long` | `1295.00` | 816,310,000.00 USD | 0.00 USD | 135,220.00 USD | `-44.68%` | `104.42` |
-| `Live` | `Long` | `1305.00` | 816,170,000.00 USD | 0.00 USD | 173,350.00 USD | `-44.25%` | `132.84` |
-| `Live` | `Long` | `1315.00` | 816,000,000.00 USD | 0.00 USD | 502,710.00 USD | `-43.83%` | `382.29` |
-| `Live` | `Long` | `1325.00` | 815,500,000.00 USD | 0.00 USD | 703,060.00 USD | `-43.40%` | `530.61` |
-| `Live` | `Long` | `1335.00` | 814,790,000.00 USD | 0.00 USD | 289,550.00 USD | `-42.97%` | `216.89` |
-| `Live` | `Long` | `1345.00` | 814,500,000.00 USD | 0.00 USD | 548,280.00 USD | `-42.55%` | `407.64` |
-| `Live` | `Long` | `1355.00` | 813,960,000.00 USD | 0.00 USD | 6,750,000.00 USD | `-42.12%` | `4,981.70` |
-| `Live` | `Long` | `1365.00` | 807,210,000.00 USD | 0.00 USD | 1,120,000.00 USD | `-41.69%` | `824.02` |
-| `Live` | `Long` | `1375.00` | 806,080,000.00 USD | 0.00 USD | 241,210.00 USD | `-41.26%` | `175.42` |
-| `Live` | `Long` | `1385.00` | 805,840,000.00 USD | 0.00 USD | 153,390.00 USD | `-40.84%` | `110.75` |
-| `Live` | `Long` | `1395.00` | 805,690,000.00 USD | 0.00 USD | 15,500,000.00 USD | `-40.41%` | `11,111.71` |
-| `Live` | `Long` | `1405.00` | 790,190,000.00 USD | 0.00 USD | 16,810,000.00 USD | `-39.98%` | `11,962.02` |
-| `Live` | `Long` | `1415.00` | 773,380,000.00 USD | 0.00 USD | 135,850.00 USD | `-39.56%` | `96.01` |
-| `Live` | `Long` | `1425.00` | 773,240,000.00 USD | 0.00 USD | 1,540,000.00 USD | `-39.13%` | `1,083.34` |
-| `Live` | `Long` | `1435.00` | 771,700,000.00 USD | 0.00 USD | 291,120.00 USD | `-38.70%` | `202.87` |
-| `Live` | `Long` | `1445.00` | 771,410,000.00 USD | 0.00 USD | 359,980.00 USD | `-38.27%` | `249.12` |
-| `Live` | `Long` | `1455.00` | 771,050,000.00 USD | 0.00 USD | 14,630,000.00 USD | `-37.85%` | `10,054.07` |
-| `Live` | `Long` | `1465.00` | 756,420,000.00 USD | 0.00 USD | 530,740.00 USD | `-37.42%` | `362.28` |
-| `Live` | `Long` | `1475.00` | 755,890,000.00 USD | 0.00 USD | 2,400,000.00 USD | `-36.99%` | `1,630.48` |
-| `Live` | `Long` | `1485.00` | 753,480,000.00 USD | 0.00 USD | 328,080.00 USD | `-36.57%` | `220.93` |
-| `Live` | `Long` | `1495.00` | 753,160,000.00 USD | 0.00 USD | 5,000,000.00 USD | `-36.14%` | `3,345.68` |
-| `Live` | `Long` | `1505.00` | 748,150,000.00 USD | 0.00 USD | 150,430.00 USD | `-35.71%` | `99.95` |
-| `Live` | `Long` | `1515.00` | 748,000,000.00 USD | 0.00 USD | 369,220.00 USD | `-35.28%` | `243.71` |
-| `Live` | `Long` | `1525.00` | 747,630,000.00 USD | 0.00 USD | 18,690,000.00 USD | `-34.86%` | `12,253.57` |
-| `Live` | `Long` | `1535.00` | 728,950,000.00 USD | 0.00 USD | 608,550.00 USD | `-34.43%` | `396.45` |
-| `Live` | `Long` | `1545.00` | 728,340,000.00 USD | 0.00 USD | 2,860,000.00 USD | `-34.00%` | `1,850.21` |
-| `Live` | `Long` | `1555.00` | 725,480,000.00 USD | 0.00 USD | 25,730,000.00 USD | `-33.58%` | `16,544.61` |
-| `Live` | `Long` | `1565.00` | 699,750,000.00 USD | 0.00 USD | 185,480.00 USD | `-33.15%` | `118.52` |
-| `Live` | `Long` | `1575.00` | 699,570,000.00 USD | 0.00 USD | 251,000.00 USD | `-32.72%` | `159.37` |
-| `Live` | `Long` | `1585.00` | 699,320,000.00 USD | 0.00 USD | 218,590.00 USD | `-32.29%` | `137.91` |
-| `Live` | `Long` | `1595.00` | 699,100,000.00 USD | 0.00 USD | 7,590,000.00 USD | `-31.87%` | `4,758.47` |
-| `Live` | `Long` | `1605.00` | 691,510,000.00 USD | 0.00 USD | 20,850,000.00 USD | `-31.44%` | `12,992.70` |
-| `Live` | `Long` | `1615.00` | 670,660,000.00 USD | 0.00 USD | 119,070.00 USD | `-31.01%` | `73.73` |
-| `Live` | `Long` | `1625.00` | 670,540,000.00 USD | 0.00 USD | 620,560.00 USD | `-30.59%` | `381.88` |
-| `Live` | `Long` | `1635.00` | 669,920,000.00 USD | 0.00 USD | 18,320,000.00 USD | `-30.16%` | `11,206.97` |
-| `Live` | `Long` | `1645.00` | 651,590,000.00 USD | 0.00 USD | 59,700,000.00 USD | `-29.73%` | `36,293.43` |
-| `Live` | `Long` | `1655.00` | 591,890,000.00 USD | 0.00 USD | 602,670.00 USD | `-29.30%` | `364.15` |
-| `Live` | `Long` | `1665.00` | 591,290,000.00 USD | 0.00 USD | 1,110,000.00 USD | `-28.88%` | `665.90` |
-| `Live` | `Long` | `1675.00` | 590,180,000.00 USD | 0.00 USD | 12,040,000.00 USD | `-28.45%` | `7,189.86` |
-| `Live` | `Long` | `1685.00` | 578,140,000.00 USD | 0.00 USD | 1,390,000.00 USD | `-28.02%` | `823.20` |
-| `Live` | `Long` | `1695.00` | 576,750,000.00 USD | 0.00 USD | 460,530.00 USD | `-27.60%` | `271.70` |
-| `Live` | `Long` | `1705.00` | 576,290,000.00 USD | 0.00 USD | 1,510,000.00 USD | `-27.17%` | `887.69` |
-| `Live` | `Long` | `1715.00` | 574,770,000.00 USD | 0.00 USD | 12,670,000.00 USD | `-26.74%` | `7,389.03` |
-| `Live` | `Long` | `1725.00` | 562,100,000.00 USD | 0.00 USD | 17,850,000.00 USD | `-26.31%` | `10,345.09` |
-| `Live` | `Long` | `1735.00` | 544,260,000.00 USD | 0.00 USD | 17,950,000.00 USD | `-25.89%` | `10,346.03` |
-| `Live` | `Long` | `1745.00` | 526,310,000.00 USD | 0.00 USD | 1,150,000.00 USD | `-25.46%` | `659.78` |
-| `Live` | `Long` | `1755.00` | 525,160,000.00 USD | 0.00 USD | 1,400,000.00 USD | `-25.03%` | `796.69` |
-| `Live` | `Long` | `1765.00` | 523,760,000.00 USD | 0.00 USD | 874,200.00 USD | `-24.60%` | `495.30` |
-| `Live` | `Long` | `1775.00` | 522,880,000.00 USD | 0.00 USD | 14,290,000.00 USD | `-24.18%` | `8,051.70` |
-| `Live` | `Long` | `1785.00` | 508,590,000.00 USD | 0.00 USD | 54,540,000.00 USD | `-23.75%` | `30,554.96` |
-| `Live` | `Long` | `1795.00` | 454,050,000.00 USD | 0.00 USD | 3,520,000.00 USD | `-23.32%` | `1,962.35` |
-| `Live` | `Long` | `1805.00` | 450,530,000.00 USD | 0.00 USD | 1,640,000.00 USD | `-22.90%` | `906.23` |
-| `Live` | `Long` | `1815.00` | 448,890,000.00 USD | 0.00 USD | 331,980.00 USD | `-22.47%` | `182.91` |
-| `Live` | `Long` | `1825.00` | 448,560,000.00 USD | 0.00 USD | 1,940,000.00 USD | `-22.04%` | `1,064.38` |
-| `Live` | `Long` | `1835.00` | 446,620,000.00 USD | 0.00 USD | 847,330.00 USD | `-21.61%` | `461.76` |
-| `Live` | `Long` | `1845.00` | 445,770,000.00 USD | 0.00 USD | 8,960,000.00 USD | `-21.19%` | `4,856.89` |
-| `Live` | `Long` | `1855.00` | 436,810,000.00 USD | 0.00 USD | 2,850,000.00 USD | `-20.76%` | `1,535.00` |
-| `Live` | `Long` | `1865.00` | 433,960,000.00 USD | 0.00 USD | 5,430,000.00 USD | `-20.33%` | `2,910.91` |
-| `Live` | `Long` | `1875.00` | 428,530,000.00 USD | 0.00 USD | 5,660,000.00 USD | `-19.91%` | `3,017.75` |
-| `Live` | `Long` | `1885.00` | 422,880,000.00 USD | 0.00 USD | 2,680,000.00 USD | `-19.48%` | `1,421.91` |
-| `Live` | `Long` | `1895.00` | 420,190,000.00 USD | 0.00 USD | 5,390,000.00 USD | `-19.05%` | `2,842.25` |
-| `Live` | `Long` | `1905.00` | 414,810,000.00 USD | 0.00 USD | 1,570,000.00 USD | `-18.62%` | `824.77` |
-| `Live` | `Long` | `1915.00` | 413,240,000.00 USD | 0.00 USD | 28,410,000.00 USD | `-18.20%` | `14,833.49` |
-| `Live` | `Long` | `1925.00` | 384,830,000.00 USD | 0.00 USD | 3,380,000.00 USD | `-17.77%` | `1,757.28` |
-| `Live` | `Long` | `1935.00` | 381,450,000.00 USD | 0.00 USD | 2,270,000.00 USD | `-17.34%` | `1,170.98` |
-| `Live` | `Long` | `1945.00` | 379,180,000.00 USD | 0.00 USD | 635,200.00 USD | `-16.92%` | `326.58` |
-| `Live` | `Long` | `1955.00` | 378,550,000.00 USD | 0.00 USD | 2,610,000.00 USD | `-16.49%` | `1,335.71` |
-| `Live` | `Long` | `1965.00` | 375,940,000.00 USD | 0.00 USD | 1,200,000.00 USD | `-16.06%` | `608.94` |
-| `Live` | `Long` | `1975.00` | 374,740,000.00 USD | 0.00 USD | 6,040,000.00 USD | `-15.63%` | `3,060.72` |
-| `Live` | `Long` | `1985.00` | 368,690,000.00 USD | 0.00 USD | 4,410,000.00 USD | `-15.21%` | `2,220.98` |
-| `Live` | `Long` | `1995.00` | 364,290,000.00 USD | 0.00 USD | 658,250.00 USD | `-14.78%` | `329.95` |
-| `Live` | `Long` | `2005.00` | 363,630,000.00 USD | 0.00 USD | 3,690,000.00 USD | `-14.35%` | `1,841.13` |
-| `Live` | `Long` | `2015.00` | 359,940,000.00 USD | 0.00 USD | 2,570,000.00 USD | `-13.93%` | `1,275.65` |
-| `Live` | `Long` | `2025.00` | 357,370,000.00 USD | 0.00 USD | 1,100,000.00 USD | `-13.50%` | `541.06` |
-| `Live` | `Long` | `2035.00` | 356,270,000.00 USD | 0.00 USD | 5,320,000.00 USD | `-13.07%` | `2,613.04` |
-| `Live` | `Long` | `2045.00` | 350,950,000.00 USD | 0.00 USD | 17,040,000.00 USD | `-12.64%` | `8,330.82` |
-| `Live` | `Long` | `2055.00` | 333,920,000.00 USD | 0.00 USD | 4,070,000.00 USD | `-12.22%` | `1,982.24` |
-| `Live` | `Long` | `2065.00` | 329,840,000.00 USD | 0.00 USD | 1,310,000.00 USD | `-11.79%` | `636.55` |
-| `Live` | `Long` | `2075.00` | 328,530,000.00 USD | 0.00 USD | 599,560.00 USD | `-11.36%` | `288.94` |
-| `Live` | `Long` | `2085.00` | 327,930,000.00 USD | 0.00 USD | 2,870,000.00 USD | `-10.94%` | `1,377.40` |
-| `Live` | `Long` | `2095.00` | 325,060,000.00 USD | 0.00 USD | 5,740,000.00 USD | `-10.51%` | `2,742.10` |
-| `Live` | `Long` | `2105.00` | 319,310,000.00 USD | 0.00 USD | 1,420,000.00 USD | `-10.08%` | `672.35` |
-| `Live` | `Long` | `2115.00` | 317,900,000.00 USD | 0.00 USD | 17,610,000.00 USD | `-9.65%` | `8,326.54` |
-| `Live` | `Long` | `2125.00` | 300,290,000.00 USD | 0.00 USD | 1,030,000.00 USD | `-9.23%` | `485.03` |
-| `Live` | `Long` | `2135.00` | 299,260,000.00 USD | 0.00 USD | 2,720,000.00 USD | `-8.80%` | `1,272.21` |
-| `Live` | `Long` | `2145.00` | 296,540,000.00 USD | 0.00 USD | 9,660,000.00 USD | `-8.37%` | `4,504.10` |
-| `Live` | `Long` | `2155.00` | 286,880,000.00 USD | 0.00 USD | 23,300,000.00 USD | `-7.95%` | `10,810.79` |
-| `Live` | `Long` | `2165.00` | 263,580,000.00 USD | 0.00 USD | 857,510.00 USD | `-7.52%` | `396.08` |
-| `Live` | `Long` | `2175.00` | 262,720,000.00 USD | 0.00 USD | 108,630,000.00 USD | `-7.09%` | `49,946.09` |
-| `Live` | `Long` | `2185.00` | 154,090,000.00 USD | 0.00 USD | 111,630,000.00 USD | `-6.66%` | `51,087.81` |
-| `Live` | `Long` | `2195.00` | 42,460,000.00 USD | 0.00 USD | 1,510,000.00 USD | `-6.24%` | `688.75` |
-| `Live` | `Long` | `2205.00` | 40,950,000.00 USD | 0.00 USD | 1,240,000.00 USD | `-5.81%` | `564.60` |
-| `Live` | `Long` | `2215.00` | 39,710,000.00 USD | 0.00 USD | 1,970,000.00 USD | `-5.38%` | `889.65` |
-| `Live` | `Long` | `2225.00` | 37,740,000.00 USD | 0.00 USD | 2,130,000.00 USD | `-4.96%` | `956.10` |
-| `Live` | `Long` | `2235.00` | 35,610,000.00 USD | 0.00 USD | 671,070.00 USD | `-4.53%` | `300.26` |
-| `Live` | `Long` | `2245.00` | 34,940,000.00 USD | 0.00 USD | 4,720,000.00 USD | `-4.10%` | `2,103.32` |
-| `Live` | `Long` | `2255.00` | 30,220,000.00 USD | 0.00 USD | 11,410,000.00 USD | `-3.67%` | `5,059.48` |
-| `Live` | `Long` | `2265.00` | 18,810,000.00 USD | 0.00 USD | 5,260,000.00 USD | `-3.25%` | `2,321.38` |
-| `Live` | `Long` | `2275.00` | 13,550,000.00 USD | 0.00 USD | 3,330,000.00 USD | `-2.82%` | `1,463.09` |
-| `Live` | `Long` | `2285.00` | 10,220,000.00 USD | 0.00 USD | 5,830,000.00 USD | `-2.39%` | `2,550.86` |
-| `Live` | `Long` | `2295.00` | 4,390,000.00 USD | 0.00 USD | 1,910,000.00 USD | `-1.96%` | `831.77` |
-| `Live` | `Long` | `2305.00` | 2,480,000.00 USD | 0.00 USD | 1,080,000.00 USD | `-1.54%` | `469.60` |
-| `Live` | `Short` | `2315.00` | 657,320.00 USD | 657,320.00 USD | 0.00 USD | `-1.11%` | `283.94` |
-| `Live` | `Long` | `2325.00` | 1,400,000.00 USD | 0.00 USD | 1,400,000.00 USD | `-0.68%` | `601.87` |
-| `Live` | `Long` | `2335.00` | 1,060.00 USD | 0.00 USD | 1,060.00 USD | `-0.26%` | `0.45` |
-| `Live` | `Short` | `2345.00` | 662,460.00 USD | 5,140.00 USD | 0.00 USD | `+0.17%` | `2.19` |
-| `Live` | `Short` | `2355.00` | 735,980.00 USD | 73,520.00 USD | 0.00 USD | `+0.60%` | `31.22` |
-| `Live` | `Short` | `2365.00` | 738,870.00 USD | 2,900.00 USD | 0.00 USD | `+1.03%` | `1.23` |
-| `Live` | `Short` | `2375.00` | 755,550.00 USD | 16,680.00 USD | 0.00 USD | `+1.45%` | `7.02` |
-| `Live` | `Short` | `2385.00` | 4,080,000.00 USD | 3,320,000.00 USD | 0.00 USD | `+1.88%` | `1,392.95` |
-| `Live` | `Short` | `2395.00` | 4,170,000.00 USD | 91,230.00 USD | 0.00 USD | `+2.31%` | `38.09` |
-| `Live` | `Short` | `2405.00` | 17,460,000.00 USD | 13,290,000.00 USD | 0.00 USD | `+2.73%` | `5,526.12` |
-| `Live` | `Short` | `2415.00` | 17,820,000.00 USD | 362,060.00 USD | 0.00 USD | `+3.16%` | `149.92` |
-| `Live` | `Short` | `2425.00` | 18,710,000.00 USD | 890,120.00 USD | 0.00 USD | `+3.59%` | `367.06` |
-| `Live` | `Short` | `2435.00` | 26,480,000.00 USD | 7,770,000.00 USD | 0.00 USD | `+4.02%` | `3,191.53` |
-| `Live` | `Short` | `2445.00` | 26,630,000.00 USD | 149,300.00 USD | 0.00 USD | `+4.44%` | `61.06` |
-| `Live` | `Short` | `2455.00` | 26,920,000.00 USD | 288,140.00 USD | 0.00 USD | `+4.87%` | `117.37` |
-| `Live` | `Short` | `2465.00` | 27,100,000.00 USD | 180,420.00 USD | 0.00 USD | `+5.30%` | `73.19` |
-| `Live` | `Short` | `2475.00` | 27,130,000.00 USD | 32,880.00 USD | 0.00 USD | `+5.72%` | `13.28` |
-| `Live` | `Short` | `2485.00` | 27,720,000.00 USD | 589,540.00 USD | 0.00 USD | `+6.15%` | `237.24` |
-| `Live` | `Short` | `2495.00` | 30,070,000.00 USD | 2,340,000.00 USD | 0.00 USD | `+6.58%` | `939.33` |
-| `Live` | `Short` | `2505.00` | 30,310,000.00 USD | 244,330.00 USD | 0.00 USD | `+7.01%` | `97.54` |
-| `Live` | `Short` | `2515.00` | 30,430,000.00 USD | 118,730.00 USD | 0.00 USD | `+7.43%` | `47.21` |
-| `Live` | `Short` | `2525.00` | 31,510,000.00 USD | 1,080,000.00 USD | 0.00 USD | `+7.86%` | `428.42` |
-| `Live` | `Short` | `2535.00` | 33,020,000.00 USD | 1,510,000.00 USD | 0.00 USD | `+8.29%` | `596.33` |
-| `Live` | `Short` | `2545.00` | 39,170,000.00 USD | 6,150,000.00 USD | 0.00 USD | `+8.71%` | `2,414.90` |
-| `Live` | `Short` | `2555.00` | 40,110,000.00 USD | 943,640.00 USD | 0.00 USD | `+9.14%` | `369.33` |
-| `Live` | `Short` | `2565.00` | 42,150,000.00 USD | 2,030,000.00 USD | 0.00 USD | `+9.57%` | `793.33` |
-| `Live` | `Short` | `2575.00` | 54,030,000.00 USD | 11,890,000.00 USD | 0.00 USD | `+10.00%` | `4,615.55` |
-| `Live` | `Short` | `2585.00` | 90,070,000.00 USD | 36,040,000.00 USD | 0.00 USD | `+10.42%` | `13,940.66` |
-| `Live` | `Short` | `2595.00` | 90,400,000.00 USD | 332,910.00 USD | 0.00 USD | `+10.85%` | `128.29` |
-| `Live` | `Short` | `2605.00` | 90,940,000.00 USD | 533,700.00 USD | 0.00 USD | `+11.28%` | `204.87` |
-| `Live` | `Short` | `2615.00` | 92,120,000.00 USD | 1,190,000.00 USD | 0.00 USD | `+11.70%` | `454.20` |
-| `Live` | `Short` | `2625.00` | 92,510,000.00 USD | 390,230.00 USD | 0.00 USD | `+12.13%` | `148.66` |
-| `Live` | `Short` | `2635.00` | 92,690,000.00 USD | 174,490.00 USD | 0.00 USD | `+12.56%` | `66.22` |
-| `Live` | `Short` | `2645.00` | 93,440,000.00 USD | 749,350.00 USD | 0.00 USD | `+12.99%` | `283.31` |
-| `Live` | `Short` | `2655.00` | 123,810,000.00 USD | 30,370,000.00 USD | 0.00 USD | `+13.41%` | `11,438.73` |
-| `Live` | `Short` | `2665.00` | 128,830,000.00 USD | 5,020,000.00 USD | 0.00 USD | `+13.84%` | `1,884.58` |
-| `Live` | `Short` | `2675.00` | 128,960,000.00 USD | 125,980.00 USD | 0.00 USD | `+14.27%` | `47.09` |
-| `Live` | `Short` | `2685.00` | 130,010,000.00 USD | 1,050,000.00 USD | 0.00 USD | `+14.69%` | `391.96` |
-| `Live` | `Short` | `2695.00` | 130,180,000.00 USD | 174,230.00 USD | 0.00 USD | `+15.12%` | `64.65` |
-| `Live` | `Short` | `2705.00` | 179,680,000.00 USD | 49,500,000.00 USD | 0.00 USD | `+15.55%` | `18,299.48` |
-| `Live` | `Short` | `2715.00` | 182,460,000.00 USD | 2,780,000.00 USD | 0.00 USD | `+15.98%` | `1,023.56` |
-| `Live` | `Short` | `2725.00` | 182,800,000.00 USD | 341,060.00 USD | 0.00 USD | `+16.40%` | `125.16` |
-| `Live` | `Short` | `2735.00` | 186,400,000.00 USD | 3,600,000.00 USD | 0.00 USD | `+16.83%` | `1,316.74` |
-| `Live` | `Short` | `2745.00` | 187,160,000.00 USD | 751,410.00 USD | 0.00 USD | `+17.26%` | `273.74` |
-| `Live` | `Short` | `2755.00` | 187,760,000.00 USD | 606,850.00 USD | 0.00 USD | `+17.68%` | `220.27` |
-| `Live` | `Short` | `2765.00` | 187,920,000.00 USD | 161,760.00 USD | 0.00 USD | `+18.11%` | `58.50` |
-| `Live` | `Short` | `2775.00` | 188,300,000.00 USD | 373,700.00 USD | 0.00 USD | `+18.54%` | `134.67` |
-| `Live` | `Short` | `2785.00` | 195,210,000.00 USD | 6,910,000.00 USD | 0.00 USD | `+18.97%` | `2,480.21` |
-| `Live` | `Short` | `2795.00` | 195,270,000.00 USD | 68,140.00 USD | 0.00 USD | `+19.39%` | `24.38` |
-| `Live` | `Short` | `2805.00` | 196,000,000.00 USD | 726,690.00 USD | 0.00 USD | `+19.82%` | `259.07` |
-| `Live` | `Short` | `2815.00` | 196,350,000.00 USD | 351,810.00 USD | 0.00 USD | `+20.25%` | `124.98` |
-| `Live` | `Short` | `2825.00` | 196,410,000.00 USD | 60,240.00 USD | 0.00 USD | `+20.67%` | `21.33` |
-| `Live` | `Short` | `2835.00` | 199,840,000.00 USD | 3,430,000.00 USD | 0.00 USD | `+21.10%` | `1,209.85` |
-| `Live` | `Short` | `2845.00` | 202,260,000.00 USD | 2,410,000.00 USD | 0.00 USD | `+21.53%` | `848.29` |
-| `Live` | `Short` | `2855.00` | 202,390,000.00 USD | 137,220.00 USD | 0.00 USD | `+21.96%` | `48.06` |
-| `Live` | `Short` | `2865.00` | 216,900,000.00 USD | 14,510,000.00 USD | 0.00 USD | `+22.38%` | `5,065.29` |
-| `Live` | `Short` | `2875.00` | 240,040,000.00 USD | 23,130,000.00 USD | 0.00 USD | `+22.81%` | `8,045.70` |
-| `Live` | `Short` | `2885.00` | 275,390,000.00 USD | 35,350,000.00 USD | 0.00 USD | `+23.24%` | `12,254.51` |
-| `Live` | `Short` | `2895.00` | 276,040,000.00 USD | 647,590.00 USD | 0.00 USD | `+23.67%` | `223.69` |
-| `Live` | `Short` | `2905.00` | 276,500,000.00 USD | 459,030.00 USD | 0.00 USD | `+24.09%` | `158.01` |
-| `Live` | `Short` | `2915.00` | 303,450,000.00 USD | 26,950,000.00 USD | 0.00 USD | `+24.52%` | `9,245.32` |
-| `Live` | `Short` | `2925.00` | 303,500,000.00 USD | 48,700.00 USD | 0.00 USD | `+24.95%` | `16.65` |
-| `Live` | `Short` | `2935.00` | 303,520,000.00 USD | 25,710.00 USD | 0.00 USD | `+25.37%` | `8.76` |
-| `Live` | `Short` | `2945.00` | 311,070,000.00 USD | 7,540,000.00 USD | 0.00 USD | `+25.80%` | `2,561.88` |
-| `Live` | `Short` | `2955.00` | 332,230,000.00 USD | 21,160,000.00 USD | 0.00 USD | `+26.23%` | `7,162.10` |
-| `Live` | `Short` | `2965.00` | 333,100,000.00 USD | 874,540.00 USD | 0.00 USD | `+26.66%` | `294.95` |
-| `Live` | `Short` | `2975.00` | 333,390,000.00 USD | 282,890.00 USD | 0.00 USD | `+27.08%` | `95.09` |
-| `Live` | `Short` | `2985.00` | 334,180,000.00 USD | 797,000.00 USD | 0.00 USD | `+27.51%` | `267.00` |
-| `Live` | `Short` | `2995.00` | 338,140,000.00 USD | 3,960,000.00 USD | 0.00 USD | `+27.94%` | `1,321.59` |
-| `Live` | `Short` | `3005.00` | 340,210,000.00 USD | 2,070,000.00 USD | 0.00 USD | `+28.36%` | `689.58` |
-| `Live` | `Short` | `3015.00` | 342,430,000.00 USD | 2,210,000.00 USD | 0.00 USD | `+28.79%` | `733.21` |
-| `Live` | `Short` | `3025.00` | 348,930,000.00 USD | 6,500,000.00 USD | 0.00 USD | `+29.22%` | `2,149.89` |
-| `Live` | `Short` | `3035.00` | 352,670,000.00 USD | 3,740,000.00 USD | 0.00 USD | `+29.65%` | `1,233.72` |
-| `Live` | `Short` | `3045.00` | 365,650,000.00 USD | 12,970,000.00 USD | 0.00 USD | `+30.07%` | `4,260.37` |
-| `Live` | `Short` | `3055.00` | 370,920,000.00 USD | 5,280,000.00 USD | 0.00 USD | `+30.50%` | `1,727.18` |
-| `Live` | `Short` | `3065.00` | 371,280,000.00 USD | 352,560.00 USD | 0.00 USD | `+30.93%` | `115.03` |
-| `Live` | `Short` | `3075.00` | 375,320,000.00 USD | 4,040,000.00 USD | 0.00 USD | `+31.35%` | `1,314.90` |
-| `Live` | `Short` | `3085.00` | 376,690,000.00 USD | 1,370,000.00 USD | 0.00 USD | `+31.78%` | `443.84` |
-| `Live` | `Short` | `3095.00` | 377,520,000.00 USD | 831,610.00 USD | 0.00 USD | `+32.21%` | `268.69` |
-| `Live` | `Short` | `3105.00` | 377,690,000.00 USD | 167,380.00 USD | 0.00 USD | `+32.64%` | `53.91` |
-| `Live` | `Short` | `3115.00` | 377,700,000.00 USD | 14,130.00 USD | 0.00 USD | `+33.06%` | `4.54` |
-| `Live` | `Short` | `3125.00` | 377,850,000.00 USD | 150,120.00 USD | 0.00 USD | `+33.49%` | `48.04` |
-| `Live` | `Short` | `3135.00` | 378,040,000.00 USD | 188,170.00 USD | 0.00 USD | `+33.92%` | `60.02` |
-| `Live` | `Short` | `3145.00` | 378,320,000.00 USD | 278,620.00 USD | 0.00 USD | `+34.34%` | `88.59` |
-| `Live` | `Short` | `3155.00` | 384,520,000.00 USD | 6,210,000.00 USD | 0.00 USD | `+34.77%` | `1,967.08` |
-| `Live` | `Short` | `3165.00` | 384,590,000.00 USD | 70,120.00 USD | 0.00 USD | `+35.20%` | `22.16` |
-| `Live` | `Short` | `3175.00` | 386,930,000.00 USD | 2,340,000.00 USD | 0.00 USD | `+35.63%` | `737.16` |
-| `Live` | `Short` | `3185.00` | 387,710,000.00 USD | 772,400.00 USD | 0.00 USD | `+36.05%` | `242.51` |
-| `Live` | `Short` | `3195.00` | 391,770,000.00 USD | 4,070,000.00 USD | 0.00 USD | `+36.48%` | `1,272.55` |
-| `Live` | `Short` | `3205.00` | 391,820,000.00 USD | 50,020.00 USD | 0.00 USD | `+36.91%` | `15.61` |
-| `Live` | `Short` | `3215.00` | 392,600,000.00 USD | 775,140.00 USD | 0.00 USD | `+37.33%` | `241.10` |
-| `Live` | `Short` | `3225.00` | 397,580,000.00 USD | 4,980,000.00 USD | 0.00 USD | `+37.76%` | `1,545.18` |
-| `Live` | `Short` | `3235.00` | 406,260,000.00 USD | 8,680,000.00 USD | 0.00 USD | `+38.19%` | `2,682.59` |
-| `Live` | `Short` | `3245.00` | 406,260,000.00 USD | 3,440.00 USD | 0.00 USD | `+38.62%` | `1.06` |
-| `Live` | `Short` | `3255.00` | 406,370,000.00 USD | 108,390.00 USD | 0.00 USD | `+39.04%` | `33.30` |
-| `Live` | `Short` | `3265.00` | 406,730,000.00 USD | 355,140.00 USD | 0.00 USD | `+39.47%` | `108.77` |
-| `Live` | `Short` | `3275.00` | 406,800,000.00 USD | 77,930.00 USD | 0.00 USD | `+39.90%` | `23.80` |
-| `Live` | `Short` | `3285.00` | 415,460,000.00 USD | 8,660,000.00 USD | 0.00 USD | `+40.32%` | `2,635.24` |
-| `Live` | `Short` | `3295.00` | 416,720,000.00 USD | 1,260,000.00 USD | 0.00 USD | `+40.75%` | `383.35` |
-| `Live` | `Short` | `3305.00` | 427,660,000.00 USD | 10,930,000.00 USD | 0.00 USD | `+41.18%` | `3,308.58` |
-| `Live` | `Short` | `3315.00` | 428,350,000.00 USD | 689,770.00 USD | 0.00 USD | `+41.61%` | `208.08` |
-| `Live` | `Short` | `3325.00` | 428,380,000.00 USD | 31,050.00 USD | 0.00 USD | `+42.03%` | `9.34` |
-| `Live` | `Short` | `3335.00` | 428,650,000.00 USD | 267,950.00 USD | 0.00 USD | `+42.46%` | `80.34` |
-| `Live` | `Short` | `3345.00` | 429,210,000.00 USD | 564,690.00 USD | 0.00 USD | `+42.89%` | `168.82` |
-| `Live` | `Short` | `3355.00` | 491,940,000.00 USD | 62,730,000.00 USD | 0.00 USD | `+43.31%` | `18,696.41` |
-| `Live` | `Short` | `3365.00` | 492,410,000.00 USD | 475,760.00 USD | 0.00 USD | `+43.74%` | `141.38` |
-| `Live` | `Short` | `3375.00` | 493,020,000.00 USD | 606,020.00 USD | 0.00 USD | `+44.17%` | `179.56` |
-| `Live` | `Short` | `3385.00` | 493,500,000.00 USD | 481,580.00 USD | 0.00 USD | `+44.60%` | `142.27` |
-| `Live` | `Short` | `3395.00` | 493,850,000.00 USD | 342,730.00 USD | 0.00 USD | `+45.02%` | `100.95` |
-| `Live` | `Short` | `3405.00` | 493,960,000.00 USD | 118,360.00 USD | 0.00 USD | `+45.45%` | `34.76` |
-| `Live` | `Short` | `3415.00` | 494,000,000.00 USD | 39,050.00 USD | 0.00 USD | `+45.88%` | `11.44` |
-| `Live` | `Short` | `3425.00` | 509,110,000.00 USD | 15,110,000.00 USD | 0.00 USD | `+46.30%` | `4,411.99` |
-| `Live` | `Short` | `3435.00` | 511,710,000.00 USD | 2,590,000.00 USD | 0.00 USD | `+46.73%` | `755.15` |
-| `Live` | `Short` | `3445.00` | 512,170,000.00 USD | 458,460.00 USD | 0.00 USD | `+47.16%` | `133.08` |
-| `Live` | `Short` | `3455.00` | 517,520,000.00 USD | 5,350,000.00 USD | 0.00 USD | `+47.59%` | `1,549.00` |
-| `Live` | `Short` | `3465.00` | 518,650,000.00 USD | 1,140,000.00 USD | 0.00 USD | `+48.01%` | `328.14` |
-| `Live` | `Short` | `3475.00` | 518,960,000.00 USD | 304,420.00 USD | 0.00 USD | `+48.44%` | `87.60` |
-| `Live` | `Short` | `3485.00` | 518,980,000.00 USD | 25,650.00 USD | 0.00 USD | `+48.87%` | `7.36` |
-| `Live` | `Short` | `3495.00` | 520,260,000.00 USD | 1,280,000.00 USD | 0.00 USD | `+49.30%` | `364.98` |
-| `Live` | `Short` | `3505.00` | 520,680,000.00 USD | 417,980.00 USD | 0.00 USD | `+49.72%` | `119.25` |
-| `Live` | `Short` | `3515.00` | 520,730,000.00 USD | 49,720.00 USD | 0.00 USD | `+50.15%` | `14.15` |
-| `Live` | `Short` | `3525.00` | 527,860,000.00 USD | 7,130,000.00 USD | 0.00 USD | `+50.58%` | `2,023.32` |
-| `Live` | `Short` | `3535.00` | 527,880,000.00 USD | 21,730.00 USD | 0.00 USD | `+51.00%` | `6.15` |
-| `Live` | `Short` | `3545.00` | 527,910,000.00 USD | 32,590.00 USD | 0.00 USD | `+51.43%` | `9.19` |
-| `Live` | `Short` | `3555.00` | 528,210,000.00 USD | 294,180.00 USD | 0.00 USD | `+51.86%` | `82.75` |
-| `Live` | `Short` | `3565.00` | 528,250,000.00 USD | 42,990.00 USD | 0.00 USD | `+52.29%` | `12.06` |
-| `Live` | `Short` | `3575.00` | 528,600,000.00 USD | 346,170.00 USD | 0.00 USD | `+52.71%` | `96.83` |
-| `Live` | `Short` | `3585.00` | 529,070,000.00 USD | 474,410.00 USD | 0.00 USD | `+53.14%` | `132.33` |
-| `Live` | `Short` | `3595.00` | 529,380,000.00 USD | 303,870.00 USD | 0.00 USD | `+53.57%` | `84.53` |
-| `Live` | `Short` | `3605.00` | 529,450,000.00 USD | 74,080.00 USD | 0.00 USD | `+53.99%` | `20.55` |
-| `Live` | `Short` | `3615.00` | 534,360,000.00 USD | 4,910,000.00 USD | 0.00 USD | `+54.42%` | `1,357.25` |
-| `Live` | `Short` | `3625.00` | 537,060,000.00 USD | 2,710,000.00 USD | 0.00 USD | `+54.85%` | `746.23` |
-| `Live` | `Short` | `3635.00` | 543,560,000.00 USD | 6,500,000.00 USD | 0.00 USD | `+55.28%` | `1,788.44` |
-| `Live` | `Short` | `3645.00` | 545,250,000.00 USD | 1,680,000.00 USD | 0.00 USD | `+55.70%` | `462.20` |
-| `Live` | `Short` | `3655.00` | 545,590,000.00 USD | 340,180.00 USD | 0.00 USD | `+56.13%` | `93.07` |
-| `Live` | `Short` | `3665.00` | 553,900,000.00 USD | 8,310,000.00 USD | 0.00 USD | `+56.56%` | `2,268.26` |
-| `Live` | `Short` | `3675.00` | 554,530,000.00 USD | 625,550.00 USD | 0.00 USD | `+56.98%` | `170.22` |
-| `Live` | `Short` | `3685.00` | 554,750,000.00 USD | 219,210.00 USD | 0.00 USD | `+57.41%` | `59.49` |
-| `Live` | `Short` | `3695.00` | 555,570,000.00 USD | 826,470.00 USD | 0.00 USD | `+57.84%` | `223.67` |
-| `Live` | `Short` | `3705.00` | 659,980,000.00 USD | 104,400,000.00 USD | 0.00 USD | `+58.27%` | `28,179.37` |
-| `Live` | `Short` | `3715.00` | 660,180,000.00 USD | 198,940.00 USD | 0.00 USD | `+58.69%` | `53.55` |
-| `Live` | `Short` | `3725.00` | 694,940,000.00 USD | 34,760,000.00 USD | 0.00 USD | `+59.12%` | `9,332.45` |
-| `Live` | `Short` | `3735.00` | 695,070,000.00 USD | 135,200.00 USD | 0.00 USD | `+59.55%` | `36.20` |
-| `Live` | `Short` | `3745.00` | 696,010,000.00 USD | 937,810.00 USD | 0.00 USD | `+59.97%` | `250.42` |
-| `Live` | `Short` | `3755.00` | 709,600,000.00 USD | 13,580,000.00 USD | 0.00 USD | `+60.40%` | `3,617.83` |
-| `Live` | `Short` | `3765.00` | 709,660,000.00 USD | 60,370.00 USD | 0.00 USD | `+60.83%` | `16.03` |
-| `Live` | `Short` | `3775.00` | 710,040,000.00 USD | 379,790.00 USD | 0.00 USD | `+61.26%` | `100.61` |
-| `Live` | `Short` | `3785.00` | 710,040,000.00 USD | 5,780.00 USD | 0.00 USD | `+61.68%` | `1.53` |
-| `Live` | `Short` | `3795.00` | 710,390,000.00 USD | 348,180.00 USD | 0.00 USD | `+62.11%` | `91.75` |
-| `Live` | `Short` | `3805.00` | 710,700,000.00 USD | 307,620.00 USD | 0.00 USD | `+62.54%` | `80.85` |
-| `Live` | `Short` | `3815.00` | 1,120,000,000.00 USD | 406,060,000.00 USD | 0.00 USD | `+62.96%` | `106,438.44` |
-| `Live` | `Short` | `3825.00` | 1,120,000,000.00 USD | 233,440.00 USD | 0.00 USD | `+63.39%` | `61.03` |
-| `Live` | `Short` | `3835.00` | 1,120,000,000.00 USD | 282,180.00 USD | 0.00 USD | `+63.82%` | `73.58` |
-| `Live` | `Short` | `3845.00` | 1,130,000,000.00 USD | 16,950,000.00 USD | 0.00 USD | `+64.25%` | `4,408.00` |
-| `Live` | `Short` | `3855.00` | 1,140,000,000.00 USD | 1,150,000.00 USD | 0.00 USD | `+64.67%` | `297.48` |
-| `Live` | `Short` | `3865.00` | 1,140,000,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+65.10%` | `261.42` |
-| `Live` | `Short` | `3875.00` | 1,140,000,000.00 USD | 58,040.00 USD | 0.00 USD | `+65.53%` | `14.98` |
-| `Live` | `Short` | `3885.00` | 1,140,000,000.00 USD | 1,410,000.00 USD | 0.00 USD | `+65.95%` | `363.97` |
-| `Live` | `Short` | `3895.00` | 1,140,000,000.00 USD | 76,850.00 USD | 0.00 USD | `+66.38%` | `19.73` |
-| `Live` | `Short` | `3905.00` | 1,140,000,000.00 USD | 812,040.00 USD | 0.00 USD | `+66.81%` | `207.95` |
-| `Live` | `Short` | `3915.00` | 1,140,000,000.00 USD | 2,360,000.00 USD | 0.00 USD | `+67.24%` | `601.88` |
-| `Live` | `Short` | `3925.00` | 1,140,000,000.00 USD | 413,140.00 USD | 0.00 USD | `+67.66%` | `105.26` |
-| `Live` | `Short` | `3935.00` | 1,150,000,000.00 USD | 5,010,000.00 USD | 0.00 USD | `+68.09%` | `1,274.19` |
-| `Live` | `Short` | `3945.00` | 1,150,000,000.00 USD | 49,500.00 USD | 0.00 USD | `+68.52%` | `12.55` |
-| `Live` | `Short` | `3955.00` | 1,150,000,000.00 USD | 213,550.00 USD | 0.00 USD | `+68.94%` | `53.99` |
-| `Live` | `Short` | `3965.00` | 1,240,000,000.00 USD | 90,380,000.00 USD | 0.00 USD | `+69.37%` | `22,793.28` |
-| `Live` | `Short` | `3975.00` | 1,240,000,000.00 USD | 158,970.00 USD | 0.00 USD | `+69.80%` | `39.99` |
-| `Live` | `Short` | `3985.00` | 1,270,000,000.00 USD | 30,500,000.00 USD | 0.00 USD | `+70.23%` | `7,652.71` |
-| `Live` | `Short` | `3995.00` | 1,270,000,000.00 USD | 103,380.00 USD | 0.00 USD | `+70.65%` | `25.88` |
-| `Live` | `Short` | `4005.00` | 1,270,000,000.00 USD | 110,190.00 USD | 0.00 USD | `+71.08%` | `27.51` |
-| `Live` | `Short` | `4015.00` | 1,270,000,000.00 USD | 210,020.00 USD | 0.00 USD | `+71.51%` | `52.31` |
-| `Live` | `Short` | `4025.00` | 1,340,000,000.00 USD | 68,130,000.00 USD | 0.00 USD | `+71.94%` | `16,927.06` |
-| `Live` | `Short` | `4035.00` | 1,340,000,000.00 USD | 97,400.00 USD | 0.00 USD | `+72.36%` | `24.14` |
-| `Live` | `Short` | `4045.00` | 1,340,000,000.00 USD | 1,990,000.00 USD | 0.00 USD | `+72.79%` | `492.23` |
-| `Live` | `Short` | `4055.00` | 1,340,000,000.00 USD | 1,250,000.00 USD | 0.00 USD | `+73.22%` | `308.30` |
-| `Live` | `Short` | `4065.00` | 1,340,000,000.00 USD | 2,460,000.00 USD | 0.00 USD | `+73.64%` | `605.36` |
-| `Live` | `Short` | `4075.00` | 1,340,000,000.00 USD | 2,820,000.00 USD | 0.00 USD | `+74.07%` | `691.30` |
-| `Live` | `Short` | `4085.00` | 1,350,000,000.00 USD | 21,510.00 USD | 0.00 USD | `+74.50%` | `5.27` |
-| `Live` | `Short` | `4095.00` | 1,350,000,000.00 USD | 850,980.00 USD | 0.00 USD | `+74.93%` | `207.81` |
-| `Live` | `Short` | `4105.00` | 1,350,000,000.00 USD | 97,360.00 USD | 0.00 USD | `+75.35%` | `23.72` |
-| `Live` | `Short` | `4115.00` | 1,350,000,000.00 USD | 913.53 USD | 0.00 USD | `+75.78%` | `0.22` |
-| `Live` | `Short` | `4125.00` | 1,350,000,000.00 USD | 827,880.00 USD | 0.00 USD | `+76.21%` | `200.70` |
-| `Live` | `Short` | `4135.00` | 1,350,000,000.00 USD | 70,460.00 USD | 0.00 USD | `+76.63%` | `17.04` |
-| `Live` | `Short` | `4145.00` | 1,350,000,000.00 USD | 4,480.00 USD | 0.00 USD | `+77.06%` | `1.08` |
-| `Live` | `Short` | `4155.00` | 1,350,000,000.00 USD | 691,950.00 USD | 0.00 USD | `+77.49%` | `166.53` |
-| `Live` | `Short` | `4165.00` | 1,350,000,000.00 USD | 243,490.00 USD | 0.00 USD | `+77.92%` | `58.46` |
-| `Live` | `Short` | `4175.00` | 1,350,000,000.00 USD | 1,040.00 USD | 0.00 USD | `+78.34%` | `0.25` |
-| `Live` | `Short` | `4185.00` | 1,350,000,000.00 USD | 47,650.00 USD | 0.00 USD | `+78.77%` | `11.39` |
-| `Live` | `Short` | `4195.00` | 1,370,000,000.00 USD | 22,570,000.00 USD | 0.00 USD | `+79.20%` | `5,379.56` |
-| `Live` | `Short` | `4205.00` | 1,370,000,000.00 USD | 50,590.00 USD | 0.00 USD | `+79.62%` | `12.03` |
-| `Live` | `Short` | `4215.00` | 1,370,000,000.00 USD | 40,700.00 USD | 0.00 USD | `+80.05%` | `9.66` |
-| `Live` | `Short` | `4225.00` | 1,370,000,000.00 USD | 1,610.00 USD | 0.00 USD | `+80.48%` | `0.38` |
-| `Live` | `Short` | `4235.00` | 1,370,000,000.00 USD | 1,650.00 USD | 0.00 USD | `+80.91%` | `0.39` |
-| `Live` | `Short` | `4245.00` | 1,370,000,000.00 USD | 89,170.00 USD | 0.00 USD | `+81.33%` | `21.01` |
-| `Live` | `Short` | `4255.00` | 1,370,000,000.00 USD | 109,220.00 USD | 0.00 USD | `+81.76%` | `25.67` |
-| `Live` | `Short` | `4265.00` | 1,370,000,000.00 USD | 86,860.00 USD | 0.00 USD | `+82.19%` | `20.36` |
-| `Live` | `Short` | `4275.00` | 1,370,000,000.00 USD | 2,090,000.00 USD | 0.00 USD | `+82.61%` | `489.83` |
-| `Live` | `Short` | `4285.00` | 1,370,000,000.00 USD | 236,310.00 USD | 0.00 USD | `+83.04%` | `55.15` |
-| `Live` | `Short` | `4305.00` | 1,390,000,000.00 USD | 17,890,000.00 USD | 0.00 USD | `+83.90%` | `4,156.68` |
-| `Live` | `Short` | `4315.00` | 1,390,000,000.00 USD | 278,830.00 USD | 0.00 USD | `+84.32%` | `64.62` |
-| `Live` | `Short` | `4325.00` | 1,390,000,000.00 USD | 1,030.00 USD | 0.00 USD | `+84.75%` | `0.24` |
-| `Live` | `Short` | `4335.00` | 1,390,000,000.00 USD | 19,070.00 USD | 0.00 USD | `+85.18%` | `4.40` |
-| `Live` | `Short` | `4345.00` | 1,390,000,000.00 USD | 16,920.00 USD | 0.00 USD | `+85.60%` | `3.89` |
-| `Live` | `Short` | `4355.00` | 1,390,000,000.00 USD | 63,350.00 USD | 0.00 USD | `+86.03%` | `14.55` |
-| `Live` | `Short` | `4365.00` | 1,680,000,000.00 USD | 285,190,000.00 USD | 0.00 USD | `+86.46%` | `65,334.91` |
-| `Live` | `Short` | `4375.00` | 1,680,000,000.00 USD | 1,440,000.00 USD | 0.00 USD | `+86.89%` | `330.27` |
-| `Live` | `Short` | `4385.00` | 1,680,000,000.00 USD | 61,640.00 USD | 0.00 USD | `+87.31%` | `14.06` |
-| `Live` | `Short` | `4395.00` | 1,680,000,000.00 USD | 1,920,000.00 USD | 0.00 USD | `+87.74%` | `436.59` |
-| `Live` | `Short` | `4405.00` | 1,680,000,000.00 USD | 23,280.00 USD | 0.00 USD | `+88.17%` | `5.28` |
-| `Live` | `Short` | `4415.00` | 1,680,000,000.00 USD | 693,140.00 USD | 0.00 USD | `+88.59%` | `157.00` |
-| `Live` | `Short` | `4425.00` | 1,680,000,000.00 USD | 584.54 USD | 0.00 USD | `+89.02%` | `0.13` |
-| `Live` | `Short` | `4435.00` | 1,680,000,000.00 USD | 3,280,000.00 USD | 0.00 USD | `+89.45%` | `739.23` |
-| `Live` | `Short` | `4445.00` | 1,680,000,000.00 USD | 675,540.00 USD | 0.00 USD | `+89.88%` | `151.98` |
-| `Live` | `Short` | `4455.00` | 1,680,000,000.00 USD | 13,720.00 USD | 0.00 USD | `+90.30%` | `3.08` |
-| `Live` | `Short` | `4465.00` | 1,680,000,000.00 USD | 89,320.00 USD | 0.00 USD | `+90.73%` | `20.00` |
-| `Live` | `Short` | `4475.00` | 1,680,000,000.00 USD | 33,360.00 USD | 0.00 USD | `+91.16%` | `7.45` |
-| `Live` | `Short` | `4485.00` | 1,680,000,000.00 USD | 25,450.00 USD | 0.00 USD | `+91.58%` | `5.67` |
-| `Live` | `Short` | `4495.00` | 1,680,000,000.00 USD | 12,800.00 USD | 0.00 USD | `+92.01%` | `2.85` |
-| `Live` | `Short` | `4505.00` | 1,680,000,000.00 USD | 1,540.00 USD | 0.00 USD | `+92.44%` | `0.34` |
-| `Live` | `Short` | `4515.00` | 1,690,000,000.00 USD | 1,610,000.00 USD | 0.00 USD | `+92.87%` | `356.45` |
-| `Live` | `Short` | `4525.00` | 1,690,000,000.00 USD | 1,400.00 USD | 0.00 USD | `+93.29%` | `0.31` |
-| `Live` | `Short` | `4535.00` | 1,690,000,000.00 USD | 1,150,000.00 USD | 0.00 USD | `+93.72%` | `252.94` |
-| `Live` | `Short` | `4545.00` | 1,690,000,000.00 USD | 99,530.00 USD | 0.00 USD | `+94.15%` | `21.90` |
-| `Live` | `Short` | `4555.00` | 1,690,000,000.00 USD | 222,250.00 USD | 0.00 USD | `+94.57%` | `48.79` |
-| `Live` | `Short` | `4565.00` | 1,690,000,000.00 USD | 175,020.00 USD | 0.00 USD | `+95.00%` | `38.34` |
-| `Live` | `Short` | `4575.00` | 1,690,000,000.00 USD | 195,540.00 USD | 0.00 USD | `+95.43%` | `42.74` |
-| `Live` | `Short` | `4585.00` | 1,690,000,000.00 USD | 951,120.00 USD | 0.00 USD | `+95.86%` | `207.44` |
-| `Live` | `Short` | `4595.00` | 1,690,000,000.00 USD | 184,920.00 USD | 0.00 USD | `+96.28%` | `40.24` |
-| `Live` | `Short` | `4605.00` | 1,690,000,000.00 USD | 107,870.00 USD | 0.00 USD | `+96.71%` | `23.42` |
-| `Live` | `Short` | `4615.00` | 1,690,000,000.00 USD | 53,500.00 USD | 0.00 USD | `+97.14%` | `11.59` |
-| `Live` | `Short` | `4625.00` | 1,690,000,000.00 USD | 486,100.00 USD | 0.00 USD | `+97.57%` | `105.10` |
-| `Live` | `Short` | `4635.00` | 1,690,000,000.00 USD | 24,980.00 USD | 0.00 USD | `+97.99%` | `5.39` |
-| `Live` | `Short` | `4645.00` | 1,690,000,000.00 USD | 112,490.00 USD | 0.00 USD | `+98.42%` | `24.22` |
-| `Live` | `Short` | `4655.00` | 1,690,000,000.00 USD | 424,480.00 USD | 0.00 USD | `+98.85%` | `91.19` |
-| `Live` | `Short` | `4665.00` | 1,690,000,000.00 USD | 49,460.00 USD | 0.00 USD | `+99.27%` | `10.60` |
-| `Live` | `Short` | `4675.00` | 1,690,000,000.00 USD | 1,880.00 USD | 0.00 USD | `+99.70%` | `0.40` |
-| `Live` | `Short` | `4685.00` | 1,690,000,000.00 USD | 4,370.00 USD | 0.00 USD | `+100.13%` | `0.93` |
+| `Live` | `Long` | `475.00` | 872,180,000.00 USD | 0.00 USD | 38,510.00 USD | `-79.62%` | `81.07` |
+| `Live` | `Long` | `485.00` | 872,140,000.00 USD | 0.00 USD | 16,660.00 USD | `-79.19%` | `34.36` |
+| `Live` | `Long` | `495.00` | 872,120,000.00 USD | 0.00 USD | 3,730.00 USD | `-78.76%` | `7.53` |
+| `Live` | `Long` | `505.00` | 872,120,000.00 USD | 0.00 USD | 1,420.00 USD | `-78.33%` | `2.81` |
+| `Live` | `Long` | `515.00` | 872,120,000.00 USD | 0.00 USD | 8,360.00 USD | `-77.90%` | `16.23` |
+| `Live` | `Long` | `525.00` | 872,110,000.00 USD | 0.00 USD | 7,830.00 USD | `-77.48%` | `14.91` |
+| `Live` | `Long` | `535.00` | 872,100,000.00 USD | 0.00 USD | 7,800.00 USD | `-77.05%` | `14.58` |
+| `Live` | `Long` | `545.00` | 872,090,000.00 USD | 0.00 USD | 183,350.00 USD | `-76.62%` | `336.42` |
+| `Live` | `Long` | `555.00` | 871,910,000.00 USD | 0.00 USD | 23,730.00 USD | `-76.19%` | `42.76` |
+| `Live` | `Long` | `565.00` | 871,890,000.00 USD | 0.00 USD | 77,720.00 USD | `-75.76%` | `137.57` |
+| `Live` | `Long` | `575.00` | 871,810,000.00 USD | 0.00 USD | 8,530.00 USD | `-75.33%` | `14.84` |
+| `Live` | `Long` | `585.00` | 871,800,000.00 USD | 0.00 USD | 461,390.00 USD | `-74.90%` | `788.71` |
+| `Live` | `Long` | `595.00` | 871,340,000.00 USD | 0.00 USD | 868.52 USD | `-74.47%` | `1.46` |
+| `Live` | `Long` | `605.00` | 871,340,000.00 USD | 0.00 USD | 17,020.00 USD | `-74.04%` | `28.14` |
+| `Live` | `Long` | `615.00` | 871,320,000.00 USD | 0.00 USD | 34,040.00 USD | `-73.61%` | `55.35` |
+| `Live` | `Long` | `625.00` | 871,290,000.00 USD | 0.00 USD | 101,730.00 USD | `-73.19%` | `162.78` |
+| `Live` | `Long` | `635.00` | 871,190,000.00 USD | 0.00 USD | 4,650.00 USD | `-72.76%` | `7.32` |
+| `Live` | `Long` | `645.00` | 871,180,000.00 USD | 0.00 USD | 1,310.00 USD | `-72.33%` | `2.04` |
+| `Live` | `Long` | `655.00` | 871,180,000.00 USD | 0.00 USD | 37,950.00 USD | `-71.90%` | `57.93` |
+| `Live` | `Long` | `665.00` | 871,140,000.00 USD | 0.00 USD | 55,130.00 USD | `-71.47%` | `82.91` |
+| `Live` | `Long` | `675.00` | 871,090,000.00 USD | 0.00 USD | 106,820.00 USD | `-71.04%` | `158.26` |
+| `Live` | `Long` | `685.00` | 870,980,000.00 USD | 0.00 USD | 25,510.00 USD | `-70.61%` | `37.24` |
+| `Live` | `Long` | `695.00` | 870,950,000.00 USD | 0.00 USD | 16,540.00 USD | `-70.18%` | `23.80` |
+| `Live` | `Long` | `705.00` | 870,940,000.00 USD | 0.00 USD | 111,270.00 USD | `-69.75%` | `157.83` |
+| `Live` | `Long` | `715.00` | 870,830,000.00 USD | 0.00 USD | 2,070.00 USD | `-69.32%` | `2.90` |
+| `Live` | `Long` | `725.00` | 870,820,000.00 USD | 0.00 USD | 396,310.00 USD | `-68.89%` | `546.64` |
+| `Live` | `Long` | `735.00` | 870,430,000.00 USD | 0.00 USD | 47,970.00 USD | `-68.47%` | `65.27` |
+| `Live` | `Long` | `745.00` | 870,380,000.00 USD | 0.00 USD | 7,620.00 USD | `-68.04%` | `10.22` |
+| `Live` | `Long` | `755.00` | 870,370,000.00 USD | 0.00 USD | 26,430.00 USD | `-67.61%` | `35.00` |
+| `Live` | `Long` | `765.00` | 870,350,000.00 USD | 0.00 USD | 30,660.00 USD | `-67.18%` | `40.08` |
+| `Live` | `Long` | `775.00` | 870,320,000.00 USD | 0.00 USD | 1,740,000.00 USD | `-66.75%` | `2,250.86` |
+| `Live` | `Long` | `785.00` | 868,570,000.00 USD | 0.00 USD | 40,690.00 USD | `-66.32%` | `51.84` |
+| `Live` | `Long` | `795.00` | 868,530,000.00 USD | 0.00 USD | 58,880.00 USD | `-65.89%` | `74.06` |
+| `Live` | `Long` | `805.00` | 868,470,000.00 USD | 0.00 USD | 231,460.00 USD | `-65.46%` | `287.53` |
+| `Live` | `Long` | `815.00` | 868,240,000.00 USD | 0.00 USD | 51,830.00 USD | `-65.03%` | `63.59` |
+| `Live` | `Long` | `825.00` | 868,190,000.00 USD | 0.00 USD | 382,270.00 USD | `-64.60%` | `463.35` |
+| `Live` | `Long` | `835.00` | 867,810,000.00 USD | 0.00 USD | 129,920.00 USD | `-64.18%` | `155.59` |
+| `Live` | `Long` | `845.00` | 867,680,000.00 USD | 0.00 USD | 7,240.00 USD | `-63.75%` | `8.56` |
+| `Live` | `Long` | `855.00` | 867,670,000.00 USD | 0.00 USD | 2,900.00 USD | `-63.32%` | `3.39` |
+| `Live` | `Long` | `865.00` | 867,670,000.00 USD | 0.00 USD | 3,780,000.00 USD | `-62.89%` | `4,371.81` |
+| `Live` | `Long` | `875.00` | 863,880,000.00 USD | 0.00 USD | 44,640.00 USD | `-62.46%` | `51.01` |
+| `Live` | `Long` | `885.00` | 863,840,000.00 USD | 0.00 USD | 7,390.00 USD | `-62.03%` | `8.35` |
+| `Live` | `Long` | `895.00` | 863,830,000.00 USD | 0.00 USD | 407,820.00 USD | `-61.60%` | `455.67` |
+| `Live` | `Long` | `905.00` | 863,420,000.00 USD | 0.00 USD | 80,220.00 USD | `-61.17%` | `88.64` |
+| `Live` | `Long` | `915.00` | 863,340,000.00 USD | 0.00 USD | 740,670.00 USD | `-60.74%` | `809.48` |
+| `Live` | `Long` | `925.00` | 862,600,000.00 USD | 0.00 USD | 151,670.00 USD | `-60.31%` | `163.97` |
+| `Live` | `Long` | `935.00` | 862,450,000.00 USD | 0.00 USD | 1,010,000.00 USD | `-59.89%` | `1,084.12` |
+| `Live` | `Long` | `945.00` | 861,440,000.00 USD | 0.00 USD | 8,990.00 USD | `-59.46%` | `9.51` |
+| `Live` | `Long` | `955.00` | 861,430,000.00 USD | 0.00 USD | 179,010.00 USD | `-59.03%` | `187.45` |
+| `Live` | `Long` | `965.00` | 861,250,000.00 USD | 0.00 USD | 81,690.00 USD | `-58.60%` | `84.65` |
+| `Live` | `Long` | `975.00` | 861,170,000.00 USD | 0.00 USD | 73,410.00 USD | `-58.17%` | `75.29` |
+| `Live` | `Long` | `985.00` | 861,090,000.00 USD | 0.00 USD | 19,550.00 USD | `-57.74%` | `19.85` |
+| `Live` | `Long` | `995.00` | 861,080,000.00 USD | 0.00 USD | 199,260.00 USD | `-57.31%` | `200.26` |
+| `Live` | `Long` | `1005.00` | 860,880,000.00 USD | 0.00 USD | 44,810.00 USD | `-56.88%` | `44.59` |
+| `Live` | `Long` | `1015.00` | 860,830,000.00 USD | 0.00 USD | 7,140,000.00 USD | `-56.45%` | `7,038.37` |
+| `Live` | `Long` | `1025.00` | 853,690,000.00 USD | 0.00 USD | 117,290.00 USD | `-56.02%` | `114.43` |
+| `Live` | `Long` | `1035.00` | 853,570,000.00 USD | 0.00 USD | 1,530,000.00 USD | `-55.59%` | `1,481.74` |
+| `Live` | `Long` | `1045.00` | 852,040,000.00 USD | 0.00 USD | 419,240.00 USD | `-55.17%` | `401.18` |
+| `Live` | `Long` | `1055.00` | 851,620,000.00 USD | 0.00 USD | 1,310,000.00 USD | `-54.74%` | `1,243.78` |
+| `Live` | `Long` | `1065.00` | 850,310,000.00 USD | 0.00 USD | 184,790.00 USD | `-54.31%` | `173.51` |
+| `Live` | `Long` | `1075.00` | 850,120,000.00 USD | 0.00 USD | 670,040.00 USD | `-53.88%` | `623.30` |
+| `Live` | `Long` | `1085.00` | 849,450,000.00 USD | 0.00 USD | 33,280.00 USD | `-53.45%` | `30.67` |
+| `Live` | `Long` | `1095.00` | 849,420,000.00 USD | 0.00 USD | 1,700,000.00 USD | `-53.02%` | `1,556.96` |
+| `Live` | `Long` | `1105.00` | 847,710,000.00 USD | 0.00 USD | 220,280.00 USD | `-52.59%` | `199.35` |
+| `Live` | `Long` | `1115.00` | 847,490,000.00 USD | 0.00 USD | 102,200.00 USD | `-52.16%` | `91.66` |
+| `Live` | `Long` | `1125.00` | 847,390,000.00 USD | 0.00 USD | 75,690.00 USD | `-51.73%` | `67.28` |
+| `Live` | `Long` | `1135.00` | 847,310,000.00 USD | 0.00 USD | 252,620.00 USD | `-51.30%` | `222.57` |
+| `Live` | `Long` | `1145.00` | 847,060,000.00 USD | 0.00 USD | 287,050.00 USD | `-50.88%` | `250.70` |
+| `Live` | `Long` | `1155.00` | 846,770,000.00 USD | 0.00 USD | 471,300.00 USD | `-50.45%` | `408.05` |
+| `Live` | `Long` | `1165.00` | 846,300,000.00 USD | 0.00 USD | 14,090.00 USD | `-50.02%` | `12.09` |
+| `Live` | `Long` | `1175.00` | 846,290,000.00 USD | 0.00 USD | 212,590.00 USD | `-49.59%` | `180.93` |
+| `Live` | `Long` | `1185.00` | 846,080,000.00 USD | 0.00 USD | 270,070.00 USD | `-49.16%` | `227.90` |
+| `Live` | `Long` | `1195.00` | 845,810,000.00 USD | 0.00 USD | 346,720.00 USD | `-48.73%` | `290.14` |
+| `Live` | `Long` | `1205.00` | 845,460,000.00 USD | 0.00 USD | 908,570.00 USD | `-48.30%` | `754.00` |
+| `Live` | `Long` | `1215.00` | 844,550,000.00 USD | 0.00 USD | 180,900.00 USD | `-47.87%` | `148.89` |
+| `Live` | `Long` | `1225.00` | 844,370,000.00 USD | 0.00 USD | 11,270,000.00 USD | `-47.44%` | `9,200.63` |
+| `Live` | `Long` | `1235.00` | 833,100,000.00 USD | 0.00 USD | 195,730.00 USD | `-47.01%` | `158.49` |
+| `Live` | `Long` | `1245.00` | 832,900,000.00 USD | 0.00 USD | 313,430.00 USD | `-46.58%` | `251.75` |
+| `Live` | `Long` | `1255.00` | 832,590,000.00 USD | 0.00 USD | 667,560.00 USD | `-46.16%` | `531.92` |
+| `Live` | `Long` | `1265.00` | 831,920,000.00 USD | 0.00 USD | 1,580,000.00 USD | `-45.73%` | `1,245.95` |
+| `Live` | `Long` | `1275.00` | 830,350,000.00 USD | 0.00 USD | 66,370.00 USD | `-45.30%` | `52.06` |
+| `Live` | `Long` | `1285.00` | 830,280,000.00 USD | 0.00 USD | 16,150,000.00 USD | `-44.87%` | `12,569.48` |
+| `Live` | `Long` | `1295.00` | 814,130,000.00 USD | 0.00 USD | 398,630.00 USD | `-44.44%` | `307.83` |
+| `Live` | `Long` | `1305.00` | 813,730,000.00 USD | 0.00 USD | 198,210.00 USD | `-44.01%` | `151.89` |
+| `Live` | `Long` | `1315.00` | 813,530,000.00 USD | 0.00 USD | 504,350.00 USD | `-43.58%` | `383.54` |
+| `Live` | `Long` | `1325.00` | 813,030,000.00 USD | 0.00 USD | 562,110.00 USD | `-43.15%` | `424.24` |
+| `Live` | `Long` | `1335.00` | 812,460,000.00 USD | 0.00 USD | 373,490.00 USD | `-42.72%` | `279.77` |
+| `Live` | `Long` | `1345.00` | 812,090,000.00 USD | 0.00 USD | 644,470.00 USD | `-42.29%` | `479.16` |
+| `Live` | `Long` | `1355.00` | 811,450,000.00 USD | 0.00 USD | 61,580.00 USD | `-41.87%` | `45.44` |
+| `Live` | `Long` | `1365.00` | 811,390,000.00 USD | 0.00 USD | 7,930,000.00 USD | `-41.44%` | `5,812.03` |
+| `Live` | `Long` | `1375.00` | 803,450,000.00 USD | 0.00 USD | 245,580.00 USD | `-41.01%` | `178.60` |
+| `Live` | `Long` | `1385.00` | 803,210,000.00 USD | 0.00 USD | 171,880.00 USD | `-40.58%` | `124.10` |
+| `Live` | `Long` | `1395.00` | 803,030,000.00 USD | 0.00 USD | 302,930.00 USD | `-40.15%` | `217.15` |
+| `Live` | `Long` | `1405.00` | 802,730,000.00 USD | 0.00 USD | 10,010,000.00 USD | `-39.72%` | `7,122.90` |
+| `Live` | `Long` | `1415.00` | 792,720,000.00 USD | 0.00 USD | 22,360,000.00 USD | `-39.29%` | `15,802.49` |
+| `Live` | `Long` | `1425.00` | 770,360,000.00 USD | 0.00 USD | 1,430,000.00 USD | `-38.86%` | `1,002.87` |
+| `Live` | `Long` | `1435.00` | 768,930,000.00 USD | 0.00 USD | 451,460.00 USD | `-38.43%` | `314.60` |
+| `Live` | `Long` | `1445.00` | 768,480,000.00 USD | 0.00 USD | 57,490.00 USD | `-38.00%` | `39.78` |
+| `Live` | `Long` | `1455.00` | 768,430,000.00 USD | 0.00 USD | 14,630,000.00 USD | `-37.58%` | `10,055.67` |
+| `Live` | `Long` | `1465.00` | 753,790,000.00 USD | 0.00 USD | 390,720.00 USD | `-37.15%` | `266.71` |
+| `Live` | `Long` | `1475.00` | 753,400,000.00 USD | 0.00 USD | 2,310,000.00 USD | `-36.72%` | `1,567.94` |
+| `Live` | `Long` | `1485.00` | 751,090,000.00 USD | 0.00 USD | 4,640,000.00 USD | `-36.29%` | `3,122.42` |
+| `Live` | `Long` | `1495.00` | 746,450,000.00 USD | 0.00 USD | 345,390.00 USD | `-35.86%` | `231.03` |
+| `Live` | `Long` | `1505.00` | 746,110,000.00 USD | 0.00 USD | 389,670.00 USD | `-35.43%` | `258.92` |
+| `Live` | `Long` | `1515.00` | 745,720,000.00 USD | 0.00 USD | 415,830.00 USD | `-35.00%` | `274.48` |
+| `Live` | `Long` | `1525.00` | 745,300,000.00 USD | 0.00 USD | 18,520,000.00 USD | `-34.57%` | `12,144.91` |
+| `Live` | `Long` | `1535.00` | 726,780,000.00 USD | 0.00 USD | 1,030,000.00 USD | `-34.14%` | `672.43` |
+| `Live` | `Long` | `1545.00` | 725,750,000.00 USD | 0.00 USD | 22,690,000.00 USD | `-33.71%` | `14,687.30` |
+| `Live` | `Long` | `1555.00` | 703,060,000.00 USD | 0.00 USD | 507,200.00 USD | `-33.28%` | `326.17` |
+| `Live` | `Long` | `1565.00` | 702,550,000.00 USD | 0.00 USD | 25,200,000.00 USD | `-32.86%` | `16,099.21` |
+| `Live` | `Long` | `1575.00` | 677,360,000.00 USD | 0.00 USD | 277,870.00 USD | `-32.43%` | `176.43` |
+| `Live` | `Long` | `1585.00` | 677,080,000.00 USD | 0.00 USD | 252,400.00 USD | `-32.00%` | `159.24` |
+| `Live` | `Long` | `1595.00` | 676,830,000.00 USD | 0.00 USD | 7,530,000.00 USD | `-31.57%` | `4,722.05` |
+| `Live` | `Long` | `1605.00` | 669,290,000.00 USD | 0.00 USD | 18,470,000.00 USD | `-31.14%` | `11,507.47` |
+| `Live` | `Long` | `1615.00` | 650,820,000.00 USD | 0.00 USD | 266,450.00 USD | `-30.71%` | `164.98` |
+| `Live` | `Long` | `1625.00` | 650,560,000.00 USD | 0.00 USD | 170,470.00 USD | `-30.28%` | `104.91` |
+| `Live` | `Long` | `1635.00` | 650,390,000.00 USD | 0.00 USD | 21,150,000.00 USD | `-29.85%` | `12,935.60` |
+| `Live` | `Long` | `1645.00` | 629,240,000.00 USD | 0.00 USD | 36,490,000.00 USD | `-29.42%` | `22,181.13` |
+| `Live` | `Long` | `1655.00` | 592,750,000.00 USD | 0.00 USD | 965,970.00 USD | `-28.99%` | `583.67` |
+| `Live` | `Long` | `1665.00` | 591,780,000.00 USD | 0.00 USD | 773,230.00 USD | `-28.57%` | `464.40` |
+| `Live` | `Long` | `1675.00` | 591,010,000.00 USD | 0.00 USD | 11,590,000.00 USD | `-28.14%` | `6,920.35` |
+| `Live` | `Long` | `1685.00` | 579,420,000.00 USD | 0.00 USD | 1,390,000.00 USD | `-27.71%` | `827.62` |
+| `Live` | `Long` | `1695.00` | 578,020,000.00 USD | 0.00 USD | 596,490.00 USD | `-27.28%` | `351.91` |
+| `Live` | `Long` | `1705.00` | 577,430,000.00 USD | 0.00 USD | 1,510,000.00 USD | `-26.85%` | `885.52` |
+| `Live` | `Long` | `1715.00` | 575,920,000.00 USD | 0.00 USD | 461,590.00 USD | `-26.42%` | `269.15` |
+| `Live` | `Long` | `1725.00` | 575,460,000.00 USD | 0.00 USD | 29,000,000.00 USD | `-25.99%` | `16,813.82` |
+| `Live` | `Long` | `1735.00` | 546,450,000.00 USD | 0.00 USD | 18,850,000.00 USD | `-25.56%` | `10,864.50` |
+| `Live` | `Long` | `1745.00` | 527,600,000.00 USD | 0.00 USD | 1,460,000.00 USD | `-25.13%` | `835.05` |
+| `Live` | `Long` | `1755.00` | 526,150,000.00 USD | 0.00 USD | 1,100,000.00 USD | `-24.70%` | `628.36` |
+| `Live` | `Long` | `1765.00` | 525,040,000.00 USD | 0.00 USD | 1,230,000.00 USD | `-24.27%` | `697.92` |
+| `Live` | `Long` | `1775.00` | 523,810,000.00 USD | 0.00 USD | 1,440,000.00 USD | `-23.85%` | `811.30` |
+| `Live` | `Long` | `1785.00` | 522,370,000.00 USD | 0.00 USD | 54,240,000.00 USD | `-23.42%` | `30,384.44` |
+| `Live` | `Long` | `1795.00` | 468,130,000.00 USD | 0.00 USD | 16,770,000.00 USD | `-22.99%` | `9,344.14` |
+| `Live` | `Long` | `1805.00` | 451,360,000.00 USD | 0.00 USD | 1,860,000.00 USD | `-22.56%` | `1,029.36` |
+| `Live` | `Long` | `1815.00` | 449,500,000.00 USD | 0.00 USD | 712,350.00 USD | `-22.13%` | `392.48` |
+| `Live` | `Long` | `1825.00` | 448,790,000.00 USD | 0.00 USD | 620,950.00 USD | `-21.70%` | `340.25` |
+| `Live` | `Long` | `1835.00` | 448,170,000.00 USD | 0.00 USD | 1,690,000.00 USD | `-21.27%` | `921.64` |
+| `Live` | `Long` | `1845.00` | 446,480,000.00 USD | 0.00 USD | 1,260,000.00 USD | `-20.84%` | `684.33` |
+| `Live` | `Long` | `1855.00` | 445,220,000.00 USD | 0.00 USD | 13,970,000.00 USD | `-20.41%` | `7,533.18` |
+| `Live` | `Long` | `1865.00` | 431,240,000.00 USD | 0.00 USD | 2,030,000.00 USD | `-19.98%` | `1,088.91` |
+| `Live` | `Long` | `1875.00` | 429,210,000.00 USD | 0.00 USD | 5,580,000.00 USD | `-19.56%` | `2,974.53` |
+| `Live` | `Long` | `1885.00` | 423,630,000.00 USD | 0.00 USD | 2,740,000.00 USD | `-19.13%` | `1,452.97` |
+| `Live` | `Long` | `1895.00` | 420,900,000.00 USD | 0.00 USD | 5,240,000.00 USD | `-18.70%` | `2,764.93` |
+| `Live` | `Long` | `1905.00` | 415,660,000.00 USD | 0.00 USD | 1,510,000.00 USD | `-18.27%` | `793.34` |
+| `Live` | `Long` | `1915.00` | 414,140,000.00 USD | 0.00 USD | 28,440,000.00 USD | `-17.84%` | `14,850.07` |
+| `Live` | `Long` | `1925.00` | 385,710,000.00 USD | 0.00 USD | 4,070,000.00 USD | `-17.41%` | `2,112.81` |
+| `Live` | `Long` | `1935.00` | 381,640,000.00 USD | 0.00 USD | 1,130,000.00 USD | `-16.98%` | `584.51` |
+| `Live` | `Long` | `1945.00` | 380,510,000.00 USD | 0.00 USD | 657,850.00 USD | `-16.55%` | `338.23` |
+| `Live` | `Long` | `1955.00` | 379,850,000.00 USD | 0.00 USD | 3,580,000.00 USD | `-16.12%` | `1,832.18` |
+| `Live` | `Long` | `1965.00` | 376,270,000.00 USD | 0.00 USD | 751,430.00 USD | `-15.69%` | `382.41` |
+| `Live` | `Long` | `1975.00` | 375,520,000.00 USD | 0.00 USD | 6,100,000.00 USD | `-15.27%` | `3,086.76` |
+| `Live` | `Long` | `1985.00` | 369,420,000.00 USD | 0.00 USD | 5,230,000.00 USD | `-14.84%` | `2,635.89` |
+| `Live` | `Long` | `1995.00` | 364,190,000.00 USD | 0.00 USD | 576,630.00 USD | `-14.41%` | `289.04` |
+| `Live` | `Long` | `2005.00` | 363,610,000.00 USD | 0.00 USD | 2,810,000.00 USD | `-13.98%` | `1,403.02` |
+| `Live` | `Long` | `2015.00` | 360,800,000.00 USD | 0.00 USD | 3,250,000.00 USD | `-13.55%` | `1,610.57` |
+| `Live` | `Long` | `2025.00` | 357,550,000.00 USD | 0.00 USD | 1,130,000.00 USD | `-13.12%` | `557.23` |
+| `Live` | `Long` | `2035.00` | 356,430,000.00 USD | 0.00 USD | 1,050,000.00 USD | `-12.69%` | `514.68` |
+| `Live` | `Long` | `2045.00` | 355,380,000.00 USD | 0.00 USD | 20,160,000.00 USD | `-12.26%` | `9,859.28` |
+| `Live` | `Long` | `2055.00` | 335,220,000.00 USD | 0.00 USD | 4,750,000.00 USD | `-11.83%` | `2,310.38` |
+| `Live` | `Long` | `2065.00` | 330,470,000.00 USD | 0.00 USD | 1,260,000.00 USD | `-11.40%` | `610.96` |
+| `Live` | `Long` | `2075.00` | 329,210,000.00 USD | 0.00 USD | 1,330,000.00 USD | `-10.97%` | `642.74` |
+| `Live` | `Long` | `2085.00` | 327,870,000.00 USD | 0.00 USD | 2,380,000.00 USD | `-10.55%` | `1,139.12` |
+| `Live` | `Long` | `2095.00` | 325,500,000.00 USD | 0.00 USD | 1,200,000.00 USD | `-10.12%` | `573.80` |
+| `Live` | `Long` | `2105.00` | 324,300,000.00 USD | 0.00 USD | 1,690,000.00 USD | `-9.69%` | `800.85` |
+| `Live` | `Long` | `2115.00` | 322,610,000.00 USD | 0.00 USD | 20,530,000.00 USD | `-9.26%` | `9,705.11` |
+| `Live` | `Long` | `2125.00` | 302,080,000.00 USD | 0.00 USD | 1,010,000.00 USD | `-8.83%` | `477.25` |
+| `Live` | `Long` | `2135.00` | 301,070,000.00 USD | 0.00 USD | 3,270,000.00 USD | `-8.40%` | `1,532.05` |
+| `Live` | `Long` | `2145.00` | 297,800,000.00 USD | 0.00 USD | 9,500,000.00 USD | `-7.97%` | `4,429.12` |
+| `Live` | `Long` | `2155.00` | 288,300,000.00 USD | 0.00 USD | 17,990,000.00 USD | `-7.54%` | `8,348.92` |
+| `Live` | `Long` | `2165.00` | 270,310,000.00 USD | 0.00 USD | 6,290,000.00 USD | `-7.11%` | `2,907.59` |
+| `Live` | `Long` | `2175.00` | 264,010,000.00 USD | 0.00 USD | 108,810,000.00 USD | `-6.68%` | `50,027.23` |
+| `Live` | `Long` | `2185.00` | 155,200,000.00 USD | 0.00 USD | 111,820,000.00 USD | `-6.26%` | `51,178.44` |
+| `Live` | `Long` | `2195.00` | 43,380,000.00 USD | 0.00 USD | 1,260,000.00 USD | `-5.83%` | `574.40` |
+| `Live` | `Long` | `2205.00` | 42,120,000.00 USD | 0.00 USD | 1,290,000.00 USD | `-5.40%` | `585.97` |
+| `Live` | `Long` | `2215.00` | 40,820,000.00 USD | 0.00 USD | 1,710,000.00 USD | `-4.97%` | `770.25` |
+| `Live` | `Long` | `2225.00` | 39,120,000.00 USD | 0.00 USD | 2,840,000.00 USD | `-4.54%` | `1,274.92` |
+| `Live` | `Long` | `2235.00` | 36,280,000.00 USD | 0.00 USD | 1,030,000.00 USD | `-4.11%` | `462.53` |
+| `Live` | `Long` | `2245.00` | 35,250,000.00 USD | 0.00 USD | 4,620,000.00 USD | `-3.68%` | `2,059.94` |
+| `Live` | `Long` | `2255.00` | 30,620,000.00 USD | 0.00 USD | 11,260,000.00 USD | `-3.25%` | `4,993.11` |
+| `Live` | `Long` | `2265.00` | 19,360,000.00 USD | 0.00 USD | 4,930,000.00 USD | `-2.82%` | `2,176.83` |
+| `Live` | `Long` | `2275.00` | 14,430,000.00 USD | 0.00 USD | 4,720,000.00 USD | `-2.39%` | `2,074.64` |
+| `Live` | `Long` | `2285.00` | 9,710,000.00 USD | 0.00 USD | 3,920,000.00 USD | `-1.96%` | `1,716.51` |
+| `Live` | `Long` | `2295.00` | 5,790,000.00 USD | 0.00 USD | 3,480,000.00 USD | `-1.54%` | `1,515.59` |
+| `Live` | `Long` | `2305.00` | 2,310,000.00 USD | 0.00 USD | 1,030,000.00 USD | `-1.11%` | `446.65` |
+| `Live` | `Long` | `2315.00` | 1,280,000.00 USD | 0.00 USD | 938,780.00 USD | `-0.68%` | `405.52` |
+| `Live` | `Long` | `2325.00` | 344,610.00 USD | 0.00 USD | 344,610.00 USD | `-0.25%` | `148.22` |
+| `Live` | `Short` | `2335.00` | 735.29 USD | 735.29 USD | 0.00 USD | `+0.18%` | `0.31` |
+| `Live` | `Short` | `2365.00` | 1,340.00 USD | 602.37 USD | 0.00 USD | `+1.47%` | `0.25` |
+| `Live` | `Short` | `2375.00` | 490,000.00 USD | 488,660.00 USD | 0.00 USD | `+1.90%` | `205.75` |
+| `Live` | `Short` | `2385.00` | 4,410,000.00 USD | 3,920,000.00 USD | 0.00 USD | `+2.33%` | `1,642.26` |
+| `Live` | `Short` | `2395.00` | 8,670,000.00 USD | 4,260,000.00 USD | 0.00 USD | `+2.75%` | `1,778.65` |
+| `Live` | `Short` | `2405.00` | 17,730,000.00 USD | 9,070,000.00 USD | 0.00 USD | `+3.18%` | `3,770.50` |
+| `Live` | `Short` | `2415.00` | 17,990,000.00 USD | 255,650.00 USD | 0.00 USD | `+3.61%` | `105.86` |
+| `Live` | `Short` | `2425.00` | 18,810,000.00 USD | 815,490.00 USD | 0.00 USD | `+4.04%` | `336.28` |
+| `Live` | `Short` | `2435.00` | 26,730,000.00 USD | 7,920,000.00 USD | 0.00 USD | `+4.47%` | `3,253.00` |
+| `Live` | `Short` | `2445.00` | 26,890,000.00 USD | 158,630.00 USD | 0.00 USD | `+4.90%` | `64.88` |
+| `Live` | `Short` | `2455.00` | 26,980,000.00 USD | 98,850.00 USD | 0.00 USD | `+5.33%` | `40.26` |
+| `Live` | `Short` | `2465.00` | 27,060,000.00 USD | 79,760.00 USD | 0.00 USD | `+5.76%` | `32.36` |
+| `Live` | `Short` | `2475.00` | 27,900,000.00 USD | 836,210.00 USD | 0.00 USD | `+6.19%` | `337.86` |
+| `Live` | `Short` | `2485.00` | 29,900,000.00 USD | 2,000,000.00 USD | 0.00 USD | `+6.62%` | `804.51` |
+| `Live` | `Short` | `2495.00` | 30,790,000.00 USD | 886,080.00 USD | 0.00 USD | `+7.04%` | `355.14` |
+| `Live` | `Short` | `2505.00` | 30,910,000.00 USD | 120,200.00 USD | 0.00 USD | `+7.47%` | `47.98` |
+| `Live` | `Short` | `2515.00` | 31,050,000.00 USD | 142,620.00 USD | 0.00 USD | `+7.90%` | `56.71` |
+| `Live` | `Short` | `2525.00` | 32,120,000.00 USD | 1,070,000.00 USD | 0.00 USD | `+8.33%` | `422.78` |
+| `Live` | `Short` | `2535.00` | 33,420,000.00 USD | 1,310,000.00 USD | 0.00 USD | `+8.76%` | `515.01` |
+| `Live` | `Short` | `2545.00` | 39,550,000.00 USD | 6,130,000.00 USD | 0.00 USD | `+9.19%` | `2,409.85` |
+| `Live` | `Short` | `2555.00` | 40,480,000.00 USD | 924,540.00 USD | 0.00 USD | `+9.62%` | `361.86` |
+| `Live` | `Short` | `2565.00` | 43,900,000.00 USD | 3,420,000.00 USD | 0.00 USD | `+10.05%` | `1,333.61` |
+| `Live` | `Short` | `2575.00` | 56,010,000.00 USD | 12,110,000.00 USD | 0.00 USD | `+10.48%` | `4,701.73` |
+| `Live` | `Short` | `2585.00` | 82,490,000.00 USD | 26,480,000.00 USD | 0.00 USD | `+10.91%` | `10,245.03` |
+| `Live` | `Short` | `2595.00` | 90,790,000.00 USD | 8,300,000.00 USD | 0.00 USD | `+11.34%` | `3,199.18` |
+| `Live` | `Short` | `2605.00` | 91,330,000.00 USD | 534,220.00 USD | 0.00 USD | `+11.76%` | `205.07` |
+| `Live` | `Short` | `2615.00` | 92,250,000.00 USD | 926,240.00 USD | 0.00 USD | `+12.19%` | `354.20` |
+| `Live` | `Short` | `2625.00` | 92,890,000.00 USD | 637,700.00 USD | 0.00 USD | `+12.62%` | `242.93` |
+| `Live` | `Short` | `2635.00` | 92,990,000.00 USD | 99,330.00 USD | 0.00 USD | `+13.05%` | `37.70` |
+| `Live` | `Short` | `2645.00` | 93,670,000.00 USD | 681,840.00 USD | 0.00 USD | `+13.48%` | `257.79` |
+| `Live` | `Short` | `2655.00` | 128,890,000.00 USD | 35,210,000.00 USD | 0.00 USD | `+13.91%` | `13,263.45` |
+| `Live` | `Short` | `2665.00` | 128,950,000.00 USD | 62,560.00 USD | 0.00 USD | `+14.34%` | `23.47` |
+| `Live` | `Short` | `2675.00` | 129,260,000.00 USD | 310,460.00 USD | 0.00 USD | `+14.77%` | `116.06` |
+| `Live` | `Short` | `2685.00` | 136,580,000.00 USD | 7,320,000.00 USD | 0.00 USD | `+15.20%` | `2,727.83` |
+| `Live` | `Short` | `2695.00` | 136,980,000.00 USD | 395,990.00 USD | 0.00 USD | `+15.63%` | `146.94` |
+| `Live` | `Short` | `2705.00` | 166,530,000.00 USD | 29,550,000.00 USD | 0.00 USD | `+16.05%` | `10,925.64` |
+| `Live` | `Short` | `2715.00` | 182,550,000.00 USD | 16,020,000.00 USD | 0.00 USD | `+16.48%` | `5,898.72` |
+| `Live` | `Short` | `2725.00` | 183,000,000.00 USD | 454,310.00 USD | 0.00 USD | `+16.91%` | `166.72` |
+| `Live` | `Short` | `2735.00` | 186,610,000.00 USD | 3,610,000.00 USD | 0.00 USD | `+17.34%` | `1,319.26` |
+| `Live` | `Short` | `2745.00` | 187,620,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+17.77%` | `366.27` |
+| `Live` | `Short` | `2755.00` | 188,350,000.00 USD | 735,710.00 USD | 0.00 USD | `+18.20%` | `267.05` |
+| `Live` | `Short` | `2765.00` | 188,500,000.00 USD | 149,020.00 USD | 0.00 USD | `+18.63%` | `53.89` |
+| `Live` | `Short` | `2775.00` | 188,840,000.00 USD | 334,480.00 USD | 0.00 USD | `+19.06%` | `120.53` |
+| `Live` | `Short` | `2785.00` | 195,790,000.00 USD | 6,950,000.00 USD | 0.00 USD | `+19.49%` | `2,497.20` |
+| `Live` | `Short` | `2795.00` | 196,020,000.00 USD | 228,090.00 USD | 0.00 USD | `+19.92%` | `81.61` |
+| `Live` | `Short` | `2805.00` | 196,610,000.00 USD | 595,820.00 USD | 0.00 USD | `+20.34%` | `212.41` |
+| `Live` | `Short` | `2815.00` | 196,900,000.00 USD | 286,110.00 USD | 0.00 USD | `+20.77%` | `101.64` |
+| `Live` | `Short` | `2825.00` | 196,960,000.00 USD | 58,720.00 USD | 0.00 USD | `+21.20%` | `20.78` |
+| `Live` | `Short` | `2835.00` | 200,310,000.00 USD | 3,350,000.00 USD | 0.00 USD | `+21.63%` | `1,180.49` |
+| `Live` | `Short` | `2845.00` | 202,600,000.00 USD | 2,290,000.00 USD | 0.00 USD | `+22.06%` | `805.66` |
+| `Live` | `Short` | `2855.00` | 202,850,000.00 USD | 253,200.00 USD | 0.00 USD | `+22.49%` | `88.69` |
+| `Live` | `Short` | `2865.00` | 234,140,000.00 USD | 31,290,000.00 USD | 0.00 USD | `+22.92%` | `10,920.16` |
+| `Live` | `Short` | `2875.00` | 270,970,000.00 USD | 36,840,000.00 USD | 0.00 USD | `+23.35%` | `12,813.13` |
+| `Live` | `Short` | `2885.00` | 275,620,000.00 USD | 4,650,000.00 USD | 0.00 USD | `+23.78%` | `1,611.30` |
+| `Live` | `Short` | `2895.00` | 276,270,000.00 USD | 645,080.00 USD | 0.00 USD | `+24.21%` | `222.83` |
+| `Live` | `Short` | `2905.00` | 277,000,000.00 USD | 736,740.00 USD | 0.00 USD | `+24.64%` | `253.61` |
+| `Live` | `Short` | `2915.00` | 277,190,000.00 USD | 183,180.00 USD | 0.00 USD | `+25.06%` | `62.84` |
+| `Live` | `Short` | `2925.00` | 303,810,000.00 USD | 26,630,000.00 USD | 0.00 USD | `+25.49%` | `9,102.89` |
+| `Live` | `Short` | `2935.00` | 303,840,000.00 USD | 27,250.00 USD | 0.00 USD | `+25.92%` | `9.29` |
+| `Live` | `Short` | `2945.00` | 304,760,000.00 USD | 919,870.00 USD | 0.00 USD | `+26.35%` | `312.35` |
+| `Live` | `Short` | `2955.00` | 312,570,000.00 USD | 7,810,000.00 USD | 0.00 USD | `+26.78%` | `2,641.54` |
+| `Live` | `Short` | `2965.00` | 333,410,000.00 USD | 20,840,000.00 USD | 0.00 USD | `+27.21%` | `7,028.13` |
+| `Live` | `Short` | `2975.00` | 334,740,000.00 USD | 1,330,000.00 USD | 0.00 USD | `+27.64%` | `448.62` |
+| `Live` | `Short` | `2985.00` | 335,700,000.00 USD | 955,840.00 USD | 0.00 USD | `+28.07%` | `320.22` |
+| `Live` | `Short` | `2995.00` | 336,690,000.00 USD | 989,880.00 USD | 0.00 USD | `+28.50%` | `330.51` |
+| `Live` | `Short` | `3005.00` | 338,910,000.00 USD | 2,230,000.00 USD | 0.00 USD | `+28.93%` | `740.94` |
+| `Live` | `Short` | `3015.00` | 341,310,000.00 USD | 2,400,000.00 USD | 0.00 USD | `+29.35%` | `795.27` |
+| `Live` | `Short` | `3025.00` | 343,750,000.00 USD | 2,440,000.00 USD | 0.00 USD | `+29.78%` | `808.08` |
+| `Live` | `Short` | `3035.00` | 352,880,000.00 USD | 9,130,000.00 USD | 0.00 USD | `+30.21%` | `3,007.16` |
+| `Live` | `Short` | `3045.00` | 367,860,000.00 USD | 14,980,000.00 USD | 0.00 USD | `+30.64%` | `4,918.60` |
+| `Live` | `Short` | `3055.00` | 371,860,000.00 USD | 4,010,000.00 USD | 0.00 USD | `+31.07%` | `1,311.11` |
+| `Live` | `Short` | `3065.00` | 372,190,000.00 USD | 329,030.00 USD | 0.00 USD | `+31.50%` | `107.35` |
+| `Live` | `Short` | `3075.00` | 376,200,000.00 USD | 4,010,000.00 USD | 0.00 USD | `+31.93%` | `1,304.44` |
+| `Live` | `Short` | `3085.00` | 377,680,000.00 USD | 1,470,000.00 USD | 0.00 USD | `+32.36%` | `477.80` |
+| `Live` | `Short` | `3095.00` | 378,230,000.00 USD | 548,480.00 USD | 0.00 USD | `+32.79%` | `177.22` |
+| `Live` | `Short` | `3105.00` | 378,330,000.00 USD | 102,180.00 USD | 0.00 USD | `+33.22%` | `32.91` |
+| `Live` | `Short` | `3115.00` | 378,720,000.00 USD | 390,660.00 USD | 0.00 USD | `+33.65%` | `125.41` |
+| `Live` | `Short` | `3125.00` | 378,870,000.00 USD | 150,120.00 USD | 0.00 USD | `+34.07%` | `48.04` |
+| `Live` | `Short` | `3135.00` | 380,590,000.00 USD | 1,720,000.00 USD | 0.00 USD | `+34.50%` | `549.87` |
+| `Live` | `Short` | `3145.00` | 380,880,000.00 USD | 284,010.00 USD | 0.00 USD | `+34.93%` | `90.30` |
+| `Live` | `Short` | `3155.00` | 387,030,000.00 USD | 6,160,000.00 USD | 0.00 USD | `+35.36%` | `1,951.33` |
+| `Live` | `Short` | `3165.00` | 387,060,000.00 USD | 28,620.00 USD | 0.00 USD | `+35.79%` | `9.04` |
+| `Live` | `Short` | `3175.00` | 387,720,000.00 USD | 659,480.00 USD | 0.00 USD | `+36.22%` | `207.71` |
+| `Live` | `Short` | `3185.00` | 388,520,000.00 USD | 800,040.00 USD | 0.00 USD | `+36.65%` | `251.19` |
+| `Live` | `Short` | `3195.00` | 392,320,000.00 USD | 3,800,000.00 USD | 0.00 USD | `+37.08%` | `1,189.53` |
+| `Live` | `Short` | `3205.00` | 392,380,000.00 USD | 57,210.00 USD | 0.00 USD | `+37.51%` | `17.85` |
+| `Live` | `Short` | `3215.00` | 398,070,000.00 USD | 5,690,000.00 USD | 0.00 USD | `+37.94%` | `1,769.85` |
+| `Live` | `Short` | `3225.00` | 398,300,000.00 USD | 231,490.00 USD | 0.00 USD | `+38.36%` | `71.78` |
+| `Live` | `Short` | `3235.00` | 406,890,000.00 USD | 8,580,000.00 USD | 0.00 USD | `+38.79%` | `2,653.52` |
+| `Live` | `Short` | `3245.00` | 407,080,000.00 USD | 192,580.00 USD | 0.00 USD | `+39.22%` | `59.35` |
+| `Live` | `Short` | `3255.00` | 407,440,000.00 USD | 362,380.00 USD | 0.00 USD | `+39.65%` | `111.33` |
+| `Live` | `Short` | `3265.00` | 407,450,000.00 USD | 6,720.00 USD | 0.00 USD | `+40.08%` | `2.06` |
+| `Live` | `Short` | `3275.00` | 407,490,000.00 USD | 39,320.00 USD | 0.00 USD | `+40.51%` | `12.01` |
+| `Live` | `Short` | `3285.00` | 416,060,000.00 USD | 8,570,000.00 USD | 0.00 USD | `+40.94%` | `2,608.84` |
+| `Live` | `Short` | `3295.00` | 417,390,000.00 USD | 1,340,000.00 USD | 0.00 USD | `+41.37%` | `405.73` |
+| `Live` | `Short` | `3305.00` | 417,400,000.00 USD | 10,180.00 USD | 0.00 USD | `+41.80%` | `3.08` |
+| `Live` | `Short` | `3315.00` | 429,050,000.00 USD | 11,650,000.00 USD | 0.00 USD | `+42.23%` | `3,513.67` |
+| `Live` | `Short` | `3325.00` | 429,080,000.00 USD | 31,050.00 USD | 0.00 USD | `+42.65%` | `9.34` |
+| `Live` | `Short` | `3335.00` | 429,140,000.00 USD | 55,420.00 USD | 0.00 USD | `+43.08%` | `16.62` |
+| `Live` | `Short` | `3345.00` | 429,930,000.00 USD | 790,070.00 USD | 0.00 USD | `+43.51%` | `236.19` |
+| `Live` | `Short` | `3355.00` | 495,080,000.00 USD | 65,150,000.00 USD | 0.00 USD | `+43.94%` | `19,418.91` |
+| `Live` | `Short` | `3365.00` | 495,620,000.00 USD | 542,970.00 USD | 0.00 USD | `+44.37%` | `161.36` |
+| `Live` | `Short` | `3375.00` | 496,220,000.00 USD | 602,790.00 USD | 0.00 USD | `+44.80%` | `178.60` |
+| `Live` | `Short` | `3385.00` | 496,380,000.00 USD | 156,030.00 USD | 0.00 USD | `+45.23%` | `46.10` |
+| `Live` | `Short` | `3395.00` | 496,620,000.00 USD | 240,880.00 USD | 0.00 USD | `+45.66%` | `70.95` |
+| `Live` | `Short` | `3405.00` | 496,730,000.00 USD | 106,090.00 USD | 0.00 USD | `+46.09%` | `31.16` |
+| `Live` | `Short` | `3415.00` | 496,760,000.00 USD | 34,350.00 USD | 0.00 USD | `+46.52%` | `10.06` |
+| `Live` | `Short` | `3425.00` | 511,910,000.00 USD | 15,150,000.00 USD | 0.00 USD | `+46.95%` | `4,423.26` |
+| `Live` | `Short` | `3435.00` | 512,070,000.00 USD | 158,730.00 USD | 0.00 USD | `+47.37%` | `46.21` |
+| `Live` | `Short` | `3445.00` | 517,270,000.00 USD | 5,200,000.00 USD | 0.00 USD | `+47.80%` | `1,509.58` |
+| `Live` | `Short` | `3455.00` | 517,960,000.00 USD | 685,470.00 USD | 0.00 USD | `+48.23%` | `198.40` |
+| `Live` | `Short` | `3465.00` | 518,330,000.00 USD | 377,080.00 USD | 0.00 USD | `+48.66%` | `108.82` |
+| `Live` | `Short` | `3475.00` | 519,600,000.00 USD | 1,260,000.00 USD | 0.00 USD | `+49.09%` | `363.38` |
+| `Live` | `Short` | `3485.00` | 519,600,000.00 USD | 8,230.00 USD | 0.00 USD | `+49.52%` | `2.36` |
+| `Live` | `Short` | `3495.00` | 520,720,000.00 USD | 1,120,000.00 USD | 0.00 USD | `+49.95%` | `319.98` |
+| `Live` | `Short` | `3505.00` | 520,930,000.00 USD | 206,250.00 USD | 0.00 USD | `+50.38%` | `58.84` |
+| `Live` | `Short` | `3515.00` | 520,960,000.00 USD | 35,780.00 USD | 0.00 USD | `+50.81%` | `10.18` |
+| `Live` | `Short` | `3525.00` | 521,090,000.00 USD | 128,540.00 USD | 0.00 USD | `+51.24%` | `36.47` |
+| `Live` | `Short` | `3535.00` | 521,110,000.00 USD | 22,000.00 USD | 0.00 USD | `+51.66%` | `6.22` |
+| `Live` | `Short` | `3545.00` | 528,270,000.00 USD | 7,150,000.00 USD | 0.00 USD | `+52.09%` | `2,018.21` |
+| `Live` | `Short` | `3555.00` | 528,410,000.00 USD | 143,930.00 USD | 0.00 USD | `+52.52%` | `40.49` |
+| `Live` | `Short` | `3565.00` | 528,460,000.00 USD | 42,110.00 USD | 0.00 USD | `+52.95%` | `11.81` |
+| `Live` | `Short` | `3575.00` | 528,550,000.00 USD | 95,920.00 USD | 0.00 USD | `+53.38%` | `26.83` |
+| `Live` | `Short` | `3585.00` | 529,040,000.00 USD | 490,870.00 USD | 0.00 USD | `+53.81%` | `136.92` |
+| `Live` | `Short` | `3595.00` | 529,590,000.00 USD | 550,480.00 USD | 0.00 USD | `+54.24%` | `153.12` |
+| `Live` | `Short` | `3605.00` | 529,680,000.00 USD | 90,010.00 USD | 0.00 USD | `+54.67%` | `24.97` |
+| `Live` | `Short` | `3615.00` | 533,680,000.00 USD | 4,000,000.00 USD | 0.00 USD | `+55.10%` | `1,105.77` |
+| `Live` | `Short` | `3625.00` | 642,630,000.00 USD | 108,950,000.00 USD | 0.00 USD | `+55.53%` | `30,055.84` |
+| `Live` | `Short` | `3635.00` | 644,950,000.00 USD | 2,320,000.00 USD | 0.00 USD | `+55.96%` | `637.25` |
+| `Live` | `Short` | `3645.00` | 645,170,000.00 USD | 218,570.00 USD | 0.00 USD | `+56.38%` | `59.96` |
+| `Live` | `Short` | `3655.00` | 645,290,000.00 USD | 117,810.00 USD | 0.00 USD | `+56.81%` | `32.23` |
+| `Live` | `Short` | `3665.00` | 645,500,000.00 USD | 216,740.00 USD | 0.00 USD | `+57.24%` | `59.14` |
+| `Live` | `Short` | `3675.00` | 646,370,000.00 USD | 872,350.00 USD | 0.00 USD | `+57.67%` | `237.37` |
+| `Live` | `Short` | `3685.00` | 654,580,000.00 USD | 8,200,000.00 USD | 0.00 USD | `+58.10%` | `2,225.82` |
+| `Live` | `Short` | `3695.00` | 656,300,000.00 USD | 1,720,000.00 USD | 0.00 USD | `+58.53%` | `465.76` |
+| `Live` | `Short` | `3705.00` | 657,030,000.00 USD | 731,540.00 USD | 0.00 USD | `+58.96%` | `197.45` |
+| `Live` | `Short` | `3715.00` | 657,490,000.00 USD | 459,630.00 USD | 0.00 USD | `+59.39%` | `123.72` |
+| `Live` | `Short` | `3725.00` | 657,750,000.00 USD | 259,140.00 USD | 0.00 USD | `+59.82%` | `69.57` |
+| `Live` | `Short` | `3735.00` | 692,510,000.00 USD | 34,760,000.00 USD | 0.00 USD | `+60.25%` | `9,306.31` |
+| `Live` | `Short` | `3745.00` | 693,370,000.00 USD | 863,120.00 USD | 0.00 USD | `+60.67%` | `230.47` |
+| `Live` | `Short` | `3755.00` | 706,840,000.00 USD | 13,470,000.00 USD | 0.00 USD | `+61.10%` | `3,586.22` |
+| `Live` | `Short` | `3765.00` | 706,900,000.00 USD | 66,550.00 USD | 0.00 USD | `+61.53%` | `17.68` |
+| `Live` | `Short` | `3775.00` | 707,270,000.00 USD | 367,220.00 USD | 0.00 USD | `+61.96%` | `97.28` |
+| `Live` | `Short` | `3785.00` | 707,310,000.00 USD | 39,580.00 USD | 0.00 USD | `+62.39%` | `10.46` |
+| `Live` | `Short` | `3795.00` | 707,390,000.00 USD | 81,940.00 USD | 0.00 USD | `+62.82%` | `21.59` |
+| `Live` | `Short` | `3805.00` | 707,860,000.00 USD | 472,390.00 USD | 0.00 USD | `+63.25%` | `124.15` |
+| `Live` | `Short` | `3815.00` | 707,870,000.00 USD | 2,690.00 USD | 0.00 USD | `+63.68%` | `0.71` |
+| `Live` | `Short` | `3825.00` | 708,200,000.00 USD | 328,880.00 USD | 0.00 USD | `+64.11%` | `85.98` |
+| `Live` | `Short` | `3835.00` | 1,120,000,000.00 USD | 408,860,000.00 USD | 0.00 USD | `+64.54%` | `106,612.52` |
+| `Live` | `Short` | `3845.00` | 1,120,000,000.00 USD | 2,160,000.00 USD | 0.00 USD | `+64.96%` | `561.05` |
+| `Live` | `Short` | `3855.00` | 1,120,000,000.00 USD | 176,530.00 USD | 0.00 USD | `+65.39%` | `45.79` |
+| `Live` | `Short` | `3865.00` | 1,120,000,000.00 USD | 1,030,000.00 USD | 0.00 USD | `+65.82%` | `266.48` |
+| `Live` | `Short` | `3875.00` | 1,120,000,000.00 USD | 12,320.00 USD | 0.00 USD | `+66.25%` | `3.18` |
+| `Live` | `Short` | `3885.00` | 1,140,000,000.00 USD | 17,110,000.00 USD | 0.00 USD | `+66.68%` | `4,404.93` |
+| `Live` | `Short` | `3895.00` | 1,140,000,000.00 USD | 100,530.00 USD | 0.00 USD | `+67.11%` | `25.81` |
+| `Live` | `Short` | `3905.00` | 1,140,000,000.00 USD | 616,790.00 USD | 0.00 USD | `+67.54%` | `157.95` |
+| `Live` | `Short` | `3915.00` | 1,140,000,000.00 USD | 567,550.00 USD | 0.00 USD | `+67.97%` | `144.97` |
+| `Live` | `Short` | `3925.00` | 1,140,000,000.00 USD | 355,780.00 USD | 0.00 USD | `+68.40%` | `90.65` |
+| `Live` | `Short` | `3935.00` | 1,140,000,000.00 USD | 57,480.00 USD | 0.00 USD | `+68.83%` | `14.61` |
+| `Live` | `Short` | `3945.00` | 1,140,000,000.00 USD | 246,510.00 USD | 0.00 USD | `+69.26%` | `62.49` |
+| `Live` | `Short` | `3955.00` | 1,140,000,000.00 USD | 3,410,000.00 USD | 0.00 USD | `+69.68%` | `863.16` |
+| `Live` | `Short` | `3965.00` | 1,140,000,000.00 USD | 566,950.00 USD | 0.00 USD | `+70.11%` | `142.99` |
+| `Live` | `Short` | `3975.00` | 1,240,000,000.00 USD | 93,670,000.00 USD | 0.00 USD | `+70.54%` | `23,564.45` |
+| `Live` | `Short` | `3985.00` | 1,240,000,000.00 USD | 123,680.00 USD | 0.00 USD | `+70.97%` | `31.04` |
+| `Live` | `Short` | `3995.00` | 1,270,000,000.00 USD | 30,680,000.00 USD | 0.00 USD | `+71.40%` | `7,680.68` |
+| `Live` | `Short` | `4005.00` | 1,270,000,000.00 USD | 106,160.00 USD | 0.00 USD | `+71.83%` | `26.51` |
+| `Live` | `Short` | `4015.00` | 1,270,000,000.00 USD | 146,060.00 USD | 0.00 USD | `+72.26%` | `36.38` |
+| `Live` | `Short` | `4025.00` | 1,270,000,000.00 USD | 247,410.00 USD | 0.00 USD | `+72.69%` | `61.47` |
+| `Live` | `Short` | `4035.00` | 1,270,000,000.00 USD | 660,940.00 USD | 0.00 USD | `+73.12%` | `163.80` |
+| `Live` | `Short` | `4045.00` | 1,340,000,000.00 USD | 70,130,000.00 USD | 0.00 USD | `+73.55%` | `17,337.87` |
+| `Live` | `Short` | `4055.00` | 1,340,000,000.00 USD | 538,130.00 USD | 0.00 USD | `+73.97%` | `132.71` |
+| `Live` | `Short` | `4065.00` | 1,340,000,000.00 USD | 2,770,000.00 USD | 0.00 USD | `+74.40%` | `681.59` |
+| `Live` | `Short` | `4075.00` | 1,350,000,000.00 USD | 3,490,000.00 USD | 0.00 USD | `+74.83%` | `855.76` |
+| `Live` | `Short` | `4085.00` | 1,350,000,000.00 USD | 40,820.00 USD | 0.00 USD | `+75.26%` | `9.99` |
+| `Live` | `Short` | `4095.00` | 1,350,000,000.00 USD | 81,900.00 USD | 0.00 USD | `+75.69%` | `20.00` |
+| `Live` | `Short` | `4105.00` | 1,350,000,000.00 USD | 93,840.00 USD | 0.00 USD | `+76.12%` | `22.86` |
+| `Live` | `Short` | `4115.00` | 1,350,000,000.00 USD | 1,250.00 USD | 0.00 USD | `+76.55%` | `0.30` |
+| `Live` | `Short` | `4135.00` | 1,350,000,000.00 USD | 984,160.00 USD | 0.00 USD | `+77.41%` | `238.01` |
+| `Live` | `Short` | `4145.00` | 1,350,000,000.00 USD | 401,910.00 USD | 0.00 USD | `+77.84%` | `96.96` |
+| `Live` | `Short` | `4155.00` | 1,350,000,000.00 USD | 531,930.00 USD | 0.00 USD | `+78.26%` | `128.02` |
+| `Live` | `Short` | `4165.00` | 1,350,000,000.00 USD | 257,470.00 USD | 0.00 USD | `+78.69%` | `61.82` |
+| `Live` | `Short` | `4185.00` | 1,350,000,000.00 USD | 41,230.00 USD | 0.00 USD | `+79.55%` | `9.85` |
+| `Live` | `Short` | `4195.00` | 1,350,000,000.00 USD | 4,060,000.00 USD | 0.00 USD | `+79.98%` | `967.23` |
+| `Live` | `Short` | `4205.00` | 1,350,000,000.00 USD | 44,500.00 USD | 0.00 USD | `+80.41%` | `10.58` |
+| `Live` | `Short` | `4215.00` | 1,350,000,000.00 USD | 12,850.00 USD | 0.00 USD | `+80.84%` | `3.05` |
+| `Live` | `Short` | `4225.00` | 1,350,000,000.00 USD | 93,870.00 USD | 0.00 USD | `+81.27%` | `22.22` |
+| `Live` | `Short` | `4235.00` | 1,370,000,000.00 USD | 18,650,000.00 USD | 0.00 USD | `+81.70%` | `4,402.92` |
+| `Live` | `Short` | `4245.00` | 1,370,000,000.00 USD | 155,690.00 USD | 0.00 USD | `+82.13%` | `36.68` |
+| `Live` | `Short` | `4255.00` | 1,370,000,000.00 USD | 121,540.00 USD | 0.00 USD | `+82.56%` | `28.56` |
+| `Live` | `Short` | `4265.00` | 1,370,000,000.00 USD | 68,000.00 USD | 0.00 USD | `+82.98%` | `15.94` |
+| `Live` | `Short` | `4275.00` | 1,370,000,000.00 USD | 1,070.00 USD | 0.00 USD | `+83.41%` | `0.25` |
+| `Live` | `Short` | `4285.00` | 1,390,000,000.00 USD | 17,280,000.00 USD | 0.00 USD | `+83.84%` | `4,033.32` |
+| `Live` | `Short` | `4295.00` | 1,390,000,000.00 USD | 63,150.00 USD | 0.00 USD | `+84.27%` | `14.70` |
+| `Live` | `Short` | `4305.00` | 1,390,000,000.00 USD | 200,540.00 USD | 0.00 USD | `+84.70%` | `46.58` |
+| `Live` | `Short` | `4315.00` | 1,390,000,000.00 USD | 6,590.00 USD | 0.00 USD | `+85.13%` | `1.53` |
+| `Live` | `Short` | `4325.00` | 1,390,000,000.00 USD | 5,830.00 USD | 0.00 USD | `+85.56%` | `1.35` |
+| `Live` | `Short` | `4335.00` | 1,390,000,000.00 USD | 114,010.00 USD | 0.00 USD | `+85.99%` | `26.30` |
+| `Live` | `Short` | `4355.00` | 1,390,000,000.00 USD | 22,600.00 USD | 0.00 USD | `+86.85%` | `5.19` |
+| `Live` | `Short` | `4365.00` | 1,390,000,000.00 USD | 591,120.00 USD | 0.00 USD | `+87.27%` | `135.42` |
+| `Live` | `Short` | `4375.00` | 1,390,000,000.00 USD | 2,160,000.00 USD | 0.00 USD | `+87.70%` | `492.79` |
+| `Live` | `Short` | `4385.00` | 1,390,000,000.00 USD | 849,910.00 USD | 0.00 USD | `+88.13%` | `193.82` |
+| `Live` | `Short` | `4395.00` | 1,680,000,000.00 USD | 286,590,000.00 USD | 0.00 USD | `+88.56%` | `65,209.03` |
+| `Live` | `Short` | `4405.00` | 1,680,000,000.00 USD | 102,320.00 USD | 0.00 USD | `+88.99%` | `23.23` |
+| `Live` | `Short` | `4415.00` | 1,680,000,000.00 USD | 471,100.00 USD | 0.00 USD | `+89.42%` | `106.71` |
+| `Live` | `Short` | `4425.00` | 1,680,000,000.00 USD | 259,220.00 USD | 0.00 USD | `+89.85%` | `58.58` |
+| `Live` | `Short` | `4435.00` | 1,680,000,000.00 USD | 1,940,000.00 USD | 0.00 USD | `+90.28%` | `436.40` |
+| `Live` | `Short` | `4445.00` | 1,680,000,000.00 USD | 446,190.00 USD | 0.00 USD | `+90.71%` | `100.38` |
+| `Live` | `Short` | `4455.00` | 1,680,000,000.00 USD | 1,380,000.00 USD | 0.00 USD | `+91.14%` | `309.78` |
+| `Live` | `Short` | `4465.00` | 1,680,000,000.00 USD | 319,690.00 USD | 0.00 USD | `+91.57%` | `71.60` |
+| `Live` | `Short` | `4475.00` | 1,680,000,000.00 USD | 33,190.00 USD | 0.00 USD | `+91.99%` | `7.42` |
+| `Live` | `Short` | `4485.00` | 1,680,000,000.00 USD | 30,710.00 USD | 0.00 USD | `+92.42%` | `6.85` |
+| `Live` | `Short` | `4495.00` | 1,680,000,000.00 USD | 24,840.00 USD | 0.00 USD | `+92.85%` | `5.53` |
+| `Live` | `Short` | `4505.00` | 1,680,000,000.00 USD | 99,370.00 USD | 0.00 USD | `+93.28%` | `22.06` |
+| `Live` | `Short` | `4515.00` | 1,690,000,000.00 USD | 404,790.00 USD | 0.00 USD | `+93.71%` | `89.66` |
+| `Live` | `Short` | `4525.00` | 1,690,000,000.00 USD | 1,080,000.00 USD | 0.00 USD | `+94.14%` | `238.54` |
+| `Live` | `Short` | `4535.00` | 1,690,000,000.00 USD | 3,360,000.00 USD | 0.00 USD | `+94.57%` | `741.36` |
+| `Live` | `Short` | `4545.00` | 1,690,000,000.00 USD | 17,760.00 USD | 0.00 USD | `+95.00%` | `3.91` |
+| `Live` | `Short` | `4555.00` | 1,690,000,000.00 USD | 1,030,000.00 USD | 0.00 USD | `+95.43%` | `226.48` |
+| `Live` | `Short` | `4565.00` | 1,690,000,000.00 USD | 95,220.00 USD | 0.00 USD | `+95.86%` | `20.86` |
+| `Live` | `Short` | `4575.00` | 1,690,000,000.00 USD | 41,230.00 USD | 0.00 USD | `+96.28%` | `9.01` |
+| `Live` | `Short` | `4585.00` | 1,690,000,000.00 USD | 1,160,000.00 USD | 0.00 USD | `+96.71%` | `252.89` |
+| `Live` | `Short` | `4595.00` | 1,690,000,000.00 USD | 187,730.00 USD | 0.00 USD | `+97.14%` | `40.86` |
+| `Live` | `Short` | `4605.00` | 1,690,000,000.00 USD | 37,010.00 USD | 0.00 USD | `+97.57%` | `8.04` |
+| `Live` | `Short` | `4615.00` | 1,690,000,000.00 USD | 100,540.00 USD | 0.00 USD | `+98.00%` | `21.79` |
+| `Live` | `Short` | `4625.00` | 1,690,000,000.00 USD | 412,820.00 USD | 0.00 USD | `+98.43%` | `89.26` |
+| `Live` | `Short` | `4635.00` | 1,690,000,000.00 USD | 236,720.00 USD | 0.00 USD | `+98.86%` | `51.07` |
+| `Live` | `Short` | `4645.00` | 1,690,000,000.00 USD | 170,520.00 USD | 0.00 USD | `+99.29%` | `36.71` |
+| `Live` | `Short` | `4655.00` | 1,690,000,000.00 USD | 445,590.00 USD | 0.00 USD | `+99.72%` | `95.72` |
+| `Live` | `Short` | `4665.00` | 1,690,000,000.00 USD | 29,990.00 USD | 0.00 USD | `+100.15%` | `6.43` |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Sell Stop` | `505.00` | 1,500,000,000.00 USD | 0.00 USD | 16,940.00 USD | `-78.43%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `555.00` | 1,500,000,000.00 USD | 0.00 USD | 563.16 USD | `-76.29%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `705.00` | 1,500,000,000.00 USD | 0.00 USD | 383.31 USD | `-69.88%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `755.00` | 1,500,000,000.00 USD | 0.00 USD | 177.27 USD | `-67.75%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `795.00` | 1,500,000,000.00 USD | 0.00 USD | 104.22 USD | `-66.04%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `805.00` | 1,500,000,000.00 USD | 0.00 USD | 2,090.00 USD | `-65.61%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `835.00` | 1,500,000,000.00 USD | 0.00 USD | 1,670.00 USD | `-64.33%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `865.00` | 1,500,000,000.00 USD | 0.00 USD | 139,280.00 USD | `-63.05%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `885.00` | 1,500,000,000.00 USD | 0.00 USD | 3,130.00 USD | `-62.20%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `905.00` | 1,500,000,000.00 USD | 0.00 USD | 2,780.00 USD | `-61.34%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `985.00` | 1,500,000,000.00 USD | 0.00 USD | 516.34 USD | `-57.92%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `995.00` | 1,500,000,000.00 USD | 0.00 USD | 100.50 USD | `-57.50%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1005.00` | 1,500,000,000.00 USD | 0.00 USD | 222,040.00 USD | `-57.07%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1025.00` | 1,500,000,000.00 USD | 0.00 USD | 112.03 USD | `-56.22%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1065.00` | 1,500,000,000.00 USD | 0.00 USD | 1,060.00 USD | `-54.51%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1075.00` | 1,500,000,000.00 USD | 0.00 USD | 995.34 USD | `-54.08%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1105.00` | 1,500,000,000.00 USD | 0.00 USD | 1,610.00 USD | `-52.80%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1115.00` | 1,500,000,000.00 USD | 0.00 USD | 11,050.00 USD | `-52.37%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1125.00` | 1,500,000,000.00 USD | 0.00 USD | 1,320.00 USD | `-51.94%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1155.00` | 1,500,000,000.00 USD | 0.00 USD | 1,000.00 USD | `-50.66%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1175.00` | 1,500,000,000.00 USD | 0.00 USD | 203.98 USD | `-49.81%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1185.00` | 1,500,000,000.00 USD | 0.00 USD | 228.47 USD | `-49.38%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1205.00` | 1,500,000,000.00 USD | 0.00 USD | 27,760.00 USD | `-48.53%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1225.00` | 1,500,000,000.00 USD | 0.00 USD | 995.93 USD | `-47.67%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1245.00` | 1,500,000,000.00 USD | 0.00 USD | 951.93 USD | `-46.82%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1255.00` | 1,500,000,000.00 USD | 0.00 USD | 6,810.00 USD | `-46.39%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1285.00` | 1,500,000,000.00 USD | 0.00 USD | 9,050.00 USD | `-45.11%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1295.00` | 1,500,000,000.00 USD | 0.00 USD | 7,030.00 USD | `-44.68%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1305.00` | 1,500,000,000.00 USD | 0.00 USD | 23,030.00 USD | `-44.25%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1315.00` | 1,500,000,000.00 USD | 0.00 USD | 1,440.00 USD | `-43.83%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1345.00` | 1,500,000,000.00 USD | 0.00 USD | 141,950.00 USD | `-42.55%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1355.00` | 1,500,000,000.00 USD | 0.00 USD | 128.86 USD | `-42.12%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1375.00` | 1,500,000,000.00 USD | 0.00 USD | 4,160.00 USD | `-41.26%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1395.00` | 1,500,000,000.00 USD | 0.00 USD | 535,600.00 USD | `-40.41%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1405.00` | 1,500,000,000.00 USD | 0.00 USD | 20,270.00 USD | `-39.98%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1425.00` | 1,500,000,000.00 USD | 0.00 USD | 6,450.00 USD | `-39.13%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1435.00` | 1,500,000,000.00 USD | 0.00 USD | 852.10 USD | `-38.70%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1445.00` | 1,500,000,000.00 USD | 0.00 USD | 1,490.00 USD | `-38.27%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1455.00` | 1,500,000,000.00 USD | 0.00 USD | 5,680.00 USD | `-37.85%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1465.00` | 1,500,000,000.00 USD | 0.00 USD | 19,350.00 USD | `-37.42%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1475.00` | 1,500,000,000.00 USD | 0.00 USD | 2,600.00 USD | `-36.99%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1485.00` | 1,500,000,000.00 USD | 0.00 USD | 18,710.00 USD | `-36.57%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1495.00` | 1,500,000,000.00 USD | 0.00 USD | 11,460.00 USD | `-36.14%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1505.00` | 1,500,000,000.00 USD | 0.00 USD | 78,910.00 USD | `-35.71%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1515.00` | 1,500,000,000.00 USD | 0.00 USD | 11,140.00 USD | `-35.28%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1525.00` | 1,500,000,000.00 USD | 0.00 USD | 32,310.00 USD | `-34.86%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1535.00` | 1,500,000,000.00 USD | 0.00 USD | 983.78 USD | `-34.43%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1545.00` | 1,500,000,000.00 USD | 0.00 USD | 17,470.00 USD | `-34.00%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1555.00` | 1,500,000,000.00 USD | 0.00 USD | 4,210.00 USD | `-33.58%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1565.00` | 1,500,000,000.00 USD | 0.00 USD | 6,260.00 USD | `-33.15%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1575.00` | 1,500,000,000.00 USD | 0.00 USD | 190,890.00 USD | `-32.72%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1585.00` | 1,500,000,000.00 USD | 0.00 USD | 3,390.00 USD | `-32.29%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1595.00` | 1,500,000,000.00 USD | 0.00 USD | 4,040.00 USD | `-31.87%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1605.00` | 1,500,000,000.00 USD | 0.00 USD | 435,900.00 USD | `-31.44%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1615.00` | 1,500,000,000.00 USD | 0.00 USD | 25,840.00 USD | `-31.01%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1625.00` | 1,500,000,000.00 USD | 0.00 USD | 13,590.00 USD | `-30.59%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1635.00` | 1,500,000,000.00 USD | 0.00 USD | 5,510.00 USD | `-30.16%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1645.00` | 1,500,000,000.00 USD | 0.00 USD | 328,140.00 USD | `-29.73%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1655.00` | 1,500,000,000.00 USD | 0.00 USD | 22,220.00 USD | `-29.30%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1665.00` | 1,500,000,000.00 USD | 0.00 USD | 3,110.00 USD | `-28.88%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1675.00` | 1,500,000,000.00 USD | 0.00 USD | 3,440.00 USD | `-28.45%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1685.00` | 1,500,000,000.00 USD | 0.00 USD | 58,890.00 USD | `-28.02%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1695.00` | 1,500,000,000.00 USD | 0.00 USD | 6,800.00 USD | `-27.60%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1705.00` | 1,500,000,000.00 USD | 0.00 USD | 81,190.00 USD | `-27.17%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1715.00` | 1,500,000,000.00 USD | 0.00 USD | 28,180.00 USD | `-26.74%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1725.00` | 1,500,000,000.00 USD | 0.00 USD | 47,500.00 USD | `-26.31%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1735.00` | 1,500,000,000.00 USD | 0.00 USD | 28,150.00 USD | `-25.89%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1745.00` | 1,500,000,000.00 USD | 0.00 USD | 3,180.00 USD | `-25.46%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1755.00` | 1,500,000,000.00 USD | 0.00 USD | 498,120.00 USD | `-25.03%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1765.00` | 1,500,000,000.00 USD | 0.00 USD | 75,630.00 USD | `-24.60%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1775.00` | 1,500,000,000.00 USD | 0.00 USD | 3,090.00 USD | `-24.18%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1785.00` | 1,500,000,000.00 USD | 0.00 USD | 4,930.00 USD | `-23.75%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1795.00` | 1,500,000,000.00 USD | 0.00 USD | 184,330.00 USD | `-23.32%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1805.00` | 1,500,000,000.00 USD | 0.00 USD | 238,740.00 USD | `-22.90%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1815.00` | 1,500,000,000.00 USD | 0.00 USD | 114,830.00 USD | `-22.47%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1825.00` | 1,500,000,000.00 USD | 0.00 USD | 26,790.00 USD | `-22.04%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1835.00` | 1,500,000,000.00 USD | 0.00 USD | 2,500.00 USD | `-21.61%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1845.00` | 1,500,000,000.00 USD | 0.00 USD | 9,040.00 USD | `-21.19%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1855.00` | 1,500,000,000.00 USD | 0.00 USD | 467,010.00 USD | `-20.76%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1865.00` | 1,500,000,000.00 USD | 0.00 USD | 32,910.00 USD | `-20.33%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1875.00` | 1,500,000,000.00 USD | 0.00 USD | 18,210,000.00 USD | `-19.91%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `1885.00` | 1,480,000,000.00 USD | 0.00 USD | 2,390.00 USD | `-19.48%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1895.00` | 1,480,000,000.00 USD | 0.00 USD | 61,700.00 USD | `-19.05%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1905.00` | 1,480,000,000.00 USD | 0.00 USD | 162,190.00 USD | `-18.62%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1915.00` | 1,480,000,000.00 USD | 0.00 USD | 8,110,000.00 USD | `-18.20%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `1925.00` | 1,470,000,000.00 USD | 0.00 USD | 16,410,000.00 USD | `-17.77%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `1935.00` | 1,460,000,000.00 USD | 0.00 USD | 79,950.00 USD | `-17.34%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1945.00` | 1,460,000,000.00 USD | 0.00 USD | 44,850.00 USD | `-16.92%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1955.00` | 1,460,000,000.00 USD | 0.00 USD | 52,220.00 USD | `-16.49%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1965.00` | 1,460,000,000.00 USD | 0.00 USD | 510.51 USD | `-16.06%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1975.00` | 1,460,000,000.00 USD | 0.00 USD | 59,770.00 USD | `-15.63%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1985.00` | 1,460,000,000.00 USD | 0.00 USD | 95,270.00 USD | `-15.21%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `1995.00` | 1,460,000,000.00 USD | 0.00 USD | 164,110.00 USD | `-14.78%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2005.00` | 1,460,000,000.00 USD | 0.00 USD | 1,320,000.00 USD | `-14.35%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2015.00` | 1,450,000,000.00 USD | 0.00 USD | 69,640.00 USD | `-13.93%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2025.00` | 1,450,000,000.00 USD | 0.00 USD | 5,040.00 USD | `-13.50%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2035.00` | 1,450,000,000.00 USD | 0.00 USD | 103,890.00 USD | `-13.07%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2045.00` | 1,450,000,000.00 USD | 0.00 USD | 15,220.00 USD | `-12.64%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2055.00` | 1,450,000,000.00 USD | 0.00 USD | 140,840.00 USD | `-12.22%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2065.00` | 1,450,000,000.00 USD | 0.00 USD | 47,480.00 USD | `-11.79%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2075.00` | 1,450,000,000.00 USD | 0.00 USD | 76,450.00 USD | `-11.36%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2085.00` | 1,450,000,000.00 USD | 0.00 USD | 52,030.00 USD | `-10.94%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2095.00` | 1,450,000,000.00 USD | 0.00 USD | 29,710.00 USD | `-10.51%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2105.00` | 1,450,000,000.00 USD | 0.00 USD | 330,470.00 USD | `-10.08%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2115.00` | 1,450,000,000.00 USD | 0.00 USD | 119,630.00 USD | `-9.65%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2125.00` | 1,450,000,000.00 USD | 0.00 USD | 81,460.00 USD | `-9.23%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2135.00` | 1,450,000,000.00 USD | 0.00 USD | 19,470.00 USD | `-8.80%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2145.00` | 1,450,000,000.00 USD | 0.00 USD | 217,830.00 USD | `-8.37%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2155.00` | 1,450,000,000.00 USD | 0.00 USD | 104,580.00 USD | `-7.95%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2165.00` | 1,450,000,000.00 USD | 0.00 USD | 871,350.00 USD | `-7.52%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2175.00` | 1,450,000,000.00 USD | 0.00 USD | 1,360,000.00 USD | `-7.09%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2185.00` | 1,450,000,000.00 USD | 0.00 USD | 92,000.00 USD | `-6.66%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2195.00` | 1,450,000,000.00 USD | 0.00 USD | 438,560.00 USD | `-6.24%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2205.00` | 1,450,000,000.00 USD | 0.00 USD | 2,140,000.00 USD | `-5.81%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2215.00` | 1,450,000,000.00 USD | 0.00 USD | 1,020,000.00 USD | `-5.38%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2225.00` | 1,450,000,000.00 USD | 0.00 USD | 992,450.00 USD | `-4.96%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2235.00` | 1,450,000,000.00 USD | 0.00 USD | 125,690.00 USD | `-4.53%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2245.00` | 1,450,000,000.00 USD | 0.00 USD | 1,590,000.00 USD | `-4.10%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2255.00` | 1,440,000,000.00 USD | 0.00 USD | 23,250,000.00 USD | `-3.67%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `2265.00` | 1,420,000,000.00 USD | 0.00 USD | 653,600.00 USD | `-3.25%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2275.00` | 1,420,000,000.00 USD | 0.00 USD | 4,680,000.00 USD | `-2.82%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2285.00` | 1,420,000,000.00 USD | 0.00 USD | 4,200,000.00 USD | `-2.39%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2295.00` | 1,410,000,000.00 USD | 0.00 USD | 10,550,000.00 USD | `-1.96%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `2305.00` | 1,400,000,000.00 USD | 0.00 USD | 1,390,000,000.00 USD | `-1.54%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `2315.00` | 14,970,000.00 USD | 0.00 USD | 11,460,000.00 USD | `-1.11%` | `HIGH (Cascade Hazard)` |
-| `Sell Stop` | `2325.00` | 3,510,000.00 USD | 0.00 USD | 1,610,000.00 USD | `-0.68%` | `TACTICAL (Retail Cluster)` |
-| `Sell Stop` | `2335.00` | 1,900,000.00 USD | 0.00 USD | 1,900,000.00 USD | `-0.26%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2345.00` | 1,010,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+0.17%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2355.00` | 2,030,000.00 USD | 1,020,000.00 USD | 0.00 USD | `+0.60%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2365.00` | 2,130,000.00 USD | 102,380.00 USD | 0.00 USD | `+1.03%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2375.00` | 3,200,000.00 USD | 1,070,000.00 USD | 0.00 USD | `+1.45%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2385.00` | 5,210,000.00 USD | 2,000,000.00 USD | 0.00 USD | `+1.88%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2395.00` | 16,080,000.00 USD | 10,880,000.00 USD | 0.00 USD | `+2.31%` | `HIGH (Cascade Hazard)` |
-| `Buy Stop` | `2405.00` | 18,410,000.00 USD | 2,320,000.00 USD | 0.00 USD | `+2.73%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2415.00` | 19,570,000.00 USD | 1,160,000.00 USD | 0.00 USD | `+3.16%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2425.00` | 23,070,000.00 USD | 3,510,000.00 USD | 0.00 USD | `+3.59%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2435.00` | 23,560,000.00 USD | 482,650.00 USD | 0.00 USD | `+4.02%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2445.00` | 34,070,000.00 USD | 10,520,000.00 USD | 0.00 USD | `+4.44%` | `HIGH (Cascade Hazard)` |
-| `Buy Stop` | `2455.00` | 34,310,000.00 USD | 233,060.00 USD | 0.00 USD | `+4.87%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2465.00` | 36,480,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+5.30%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2475.00` | 36,810,000.00 USD | 327,070.00 USD | 0.00 USD | `+5.72%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2485.00` | 38,960,000.00 USD | 2,150,000.00 USD | 0.00 USD | `+6.15%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2495.00` | 39,450,000.00 USD | 486,690.00 USD | 0.00 USD | `+6.58%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2505.00` | 44,750,000.00 USD | 5,300,000.00 USD | 0.00 USD | `+7.01%` | `HIGH (Cascade Hazard)` |
-| `Buy Stop` | `2515.00` | 52,530,000.00 USD | 7,780,000.00 USD | 0.00 USD | `+7.43%` | `HIGH (Cascade Hazard)` |
-| `Buy Stop` | `2525.00` | 55,730,000.00 USD | 3,200,000.00 USD | 0.00 USD | `+7.86%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2535.00` | 55,800,000.00 USD | 72,580.00 USD | 0.00 USD | `+8.29%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2545.00` | 57,970,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+8.71%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2555.00` | 58,310,000.00 USD | 332,460.00 USD | 0.00 USD | `+9.14%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2565.00` | 60,640,000.00 USD | 2,330,000.00 USD | 0.00 USD | `+9.57%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2575.00` | 60,800,000.00 USD | 154,870.00 USD | 0.00 USD | `+10.00%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2585.00` | 63,250,000.00 USD | 2,450,000.00 USD | 0.00 USD | `+10.42%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2595.00` | 63,260,000.00 USD | 14,590.00 USD | 0.00 USD | `+10.85%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2605.00` | 66,370,000.00 USD | 3,100,000.00 USD | 0.00 USD | `+11.28%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2615.00` | 66,580,000.00 USD | 218,380.00 USD | 0.00 USD | `+11.70%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2625.00` | 68,770,000.00 USD | 2,190,000.00 USD | 0.00 USD | `+12.13%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2635.00` | 69,080,000.00 USD | 303,700.00 USD | 0.00 USD | `+12.56%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2645.00` | 71,250,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+12.99%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2655.00` | 71,530,000.00 USD | 285,850.00 USD | 0.00 USD | `+13.41%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2665.00` | 73,690,000.00 USD | 2,160,000.00 USD | 0.00 USD | `+13.84%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2675.00` | 74,080,000.00 USD | 393,350.00 USD | 0.00 USD | `+14.27%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2685.00` | 76,270,000.00 USD | 2,190,000.00 USD | 0.00 USD | `+14.69%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2695.00` | 76,440,000.00 USD | 175,980.00 USD | 0.00 USD | `+15.12%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2705.00` | 81,070,000.00 USD | 4,630,000.00 USD | 0.00 USD | `+15.55%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2715.00` | 81,150,000.00 USD | 76,900.00 USD | 0.00 USD | `+15.98%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2725.00` | 83,620,000.00 USD | 2,470,000.00 USD | 0.00 USD | `+16.40%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2735.00` | 83,670,000.00 USD | 55,720.00 USD | 0.00 USD | `+16.83%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2745.00` | 85,980,000.00 USD | 2,300,000.00 USD | 0.00 USD | `+17.26%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2755.00` | 87,490,000.00 USD | 1,510,000.00 USD | 0.00 USD | `+17.68%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2765.00` | 89,870,000.00 USD | 2,380,000.00 USD | 0.00 USD | `+18.11%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2775.00` | 90,490,000.00 USD | 620,300.00 USD | 0.00 USD | `+18.54%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2785.00` | 92,790,000.00 USD | 2,300,000.00 USD | 0.00 USD | `+18.97%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2795.00` | 92,830,000.00 USD | 36,990.00 USD | 0.00 USD | `+19.39%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2805.00` | 95,970,000.00 USD | 3,140,000.00 USD | 0.00 USD | `+19.82%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2815.00` | 96,020,000.00 USD | 53,260.00 USD | 0.00 USD | `+20.25%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2825.00` | 96,090,000.00 USD | 62,020.00 USD | 0.00 USD | `+20.67%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2835.00` | 96,380,000.00 USD | 289,110.00 USD | 0.00 USD | `+21.10%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2845.00` | 97,390,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+21.53%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2855.00` | 98,670,000.00 USD | 1,280,000.00 USD | 0.00 USD | `+21.96%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2865.00` | 98,680,000.00 USD | 10,290.00 USD | 0.00 USD | `+22.38%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2875.00` | 98,680,000.00 USD | 3,630.00 USD | 0.00 USD | `+22.81%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2885.00` | 98,970,000.00 USD | 290,880.00 USD | 0.00 USD | `+23.24%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2895.00` | 99,000,000.00 USD | 23,020.00 USD | 0.00 USD | `+23.67%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2905.00` | 100,950,000.00 USD | 1,960,000.00 USD | 0.00 USD | `+24.09%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2915.00` | 100,960,000.00 USD | 10,340.00 USD | 0.00 USD | `+24.52%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2925.00` | 100,960,000.00 USD | 3,040.00 USD | 0.00 USD | `+24.95%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2935.00` | 101,020,000.00 USD | 54,540.00 USD | 0.00 USD | `+25.37%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2945.00` | 101,050,000.00 USD | 34,650.00 USD | 0.00 USD | `+25.80%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2955.00` | 101,130,000.00 USD | 74,770.00 USD | 0.00 USD | `+26.23%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2965.00` | 101,240,000.00 USD | 111,790.00 USD | 0.00 USD | `+26.66%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2975.00` | 101,390,000.00 USD | 148,070.00 USD | 0.00 USD | `+27.08%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2985.00` | 105,480,000.00 USD | 4,090,000.00 USD | 0.00 USD | `+27.51%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `2995.00` | 107,400,000.00 USD | 1,920,000.00 USD | 0.00 USD | `+27.94%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3005.00` | 109,390,000.00 USD | 1,990,000.00 USD | 0.00 USD | `+28.36%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3015.00` | 109,390,000.00 USD | 6,950.00 USD | 0.00 USD | `+28.79%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3025.00` | 109,430,000.00 USD | 37,410.00 USD | 0.00 USD | `+29.22%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3035.00` | 109,500,000.00 USD | 70,360.00 USD | 0.00 USD | `+29.65%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3045.00` | 109,520,000.00 USD | 22,460.00 USD | 0.00 USD | `+30.07%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3055.00` | 110,310,000.00 USD | 786,100.00 USD | 0.00 USD | `+30.50%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3065.00` | 110,310,000.00 USD | 3,080.00 USD | 0.00 USD | `+30.93%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3075.00` | 110,360,000.00 USD | 50,370.00 USD | 0.00 USD | `+31.35%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3085.00` | 110,380,000.00 USD | 19,860.00 USD | 0.00 USD | `+31.78%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3095.00` | 110,420,000.00 USD | 34,020.00 USD | 0.00 USD | `+32.21%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3105.00` | 123,830,000.00 USD | 13,410,000.00 USD | 0.00 USD | `+32.64%` | `HIGH (Cascade Hazard)` |
-| `Buy Stop` | `3115.00` | 123,940,000.00 USD | 118,040.00 USD | 0.00 USD | `+33.06%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3125.00` | 124,300,000.00 USD | 352,160.00 USD | 0.00 USD | `+33.49%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3145.00` | 124,300,000.00 USD | 1,860.00 USD | 0.00 USD | `+34.34%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3155.00` | 124,370,000.00 USD | 68,940.00 USD | 0.00 USD | `+34.77%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3165.00` | 124,380,000.00 USD | 9,860.00 USD | 0.00 USD | `+35.20%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3175.00` | 124,390,000.00 USD | 16,410.00 USD | 0.00 USD | `+35.63%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3185.00` | 124,390,000.00 USD | 1,330.00 USD | 0.00 USD | `+36.05%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3195.00` | 124,420,000.00 USD | 29,580.00 USD | 0.00 USD | `+36.48%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3205.00` | 125,330,000.00 USD | 910,780.00 USD | 0.00 USD | `+36.91%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3215.00` | 125,340,000.00 USD | 1,290.00 USD | 0.00 USD | `+37.33%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3225.00` | 125,340,000.00 USD | 3,740.00 USD | 0.00 USD | `+37.76%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3235.00` | 125,370,000.00 USD | 31,330.00 USD | 0.00 USD | `+38.19%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3245.00` | 125,430,000.00 USD | 56,110.00 USD | 0.00 USD | `+38.62%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3255.00` | 125,630,000.00 USD | 204,030.00 USD | 0.00 USD | `+39.04%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3265.00` | 125,650,000.00 USD | 15,710.00 USD | 0.00 USD | `+39.47%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3275.00` | 125,650,000.00 USD | 1,630.00 USD | 0.00 USD | `+39.90%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3285.00` | 125,790,000.00 USD | 142,210.00 USD | 0.00 USD | `+40.32%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3295.00` | 125,810,000.00 USD | 16,780.00 USD | 0.00 USD | `+40.75%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3305.00` | 127,080,000.00 USD | 1,270,000.00 USD | 0.00 USD | `+41.18%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3315.00` | 127,460,000.00 USD | 385,510.00 USD | 0.00 USD | `+41.61%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3325.00` | 127,480,000.00 USD | 18,270.00 USD | 0.00 USD | `+42.03%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3335.00` | 127,500,000.00 USD | 14,190.00 USD | 0.00 USD | `+42.46%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3345.00` | 127,500,000.00 USD | 617.15 USD | 0.00 USD | `+42.89%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3355.00` | 127,500,000.00 USD | 334.49 USD | 0.00 USD | `+43.31%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3365.00` | 127,500,000.00 USD | 597.29 USD | 0.00 USD | `+43.74%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3375.00` | 127,520,000.00 USD | 23,460.00 USD | 0.00 USD | `+44.17%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3385.00` | 127,580,000.00 USD | 58,010.00 USD | 0.00 USD | `+44.60%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3395.00` | 127,930,000.00 USD | 355,050.00 USD | 0.00 USD | `+45.02%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3405.00` | 129,530,000.00 USD | 1,600,000.00 USD | 0.00 USD | `+45.45%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3415.00` | 129,540,000.00 USD | 3,510.00 USD | 0.00 USD | `+45.88%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3425.00` | 129,550,000.00 USD | 16,310.00 USD | 0.00 USD | `+46.30%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3445.00` | 129,570,000.00 USD | 15,030.00 USD | 0.00 USD | `+47.16%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3455.00` | 129,590,000.00 USD | 18,600.00 USD | 0.00 USD | `+47.59%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3465.00` | 129,900,000.00 USD | 311,800.00 USD | 0.00 USD | `+48.01%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3475.00` | 129,900,000.00 USD | 2,980.00 USD | 0.00 USD | `+48.44%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3485.00` | 129,950,000.00 USD | 43,610.00 USD | 0.00 USD | `+48.87%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3495.00` | 129,950,000.00 USD | 158.32 USD | 0.00 USD | `+49.30%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3505.00` | 130,500,000.00 USD | 550,300.00 USD | 0.00 USD | `+49.72%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3515.00` | 130,540,000.00 USD | 43,200.00 USD | 0.00 USD | `+50.15%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3525.00` | 130,540,000.00 USD | 3,690.00 USD | 0.00 USD | `+50.58%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3535.00` | 130,550,000.00 USD | 9,810.00 USD | 0.00 USD | `+51.00%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3545.00` | 130,550,000.00 USD | 179.38 USD | 0.00 USD | `+51.43%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3555.00` | 130,640,000.00 USD | 90,810.00 USD | 0.00 USD | `+51.86%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3565.00` | 130,650,000.00 USD | 2,300.00 USD | 0.00 USD | `+52.29%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3585.00` | 130,650,000.00 USD | 354.92 USD | 0.00 USD | `+53.14%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3595.00` | 130,660,000.00 USD | 13,160.00 USD | 0.00 USD | `+53.57%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3605.00` | 130,770,000.00 USD | 105,860.00 USD | 0.00 USD | `+53.99%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3625.00` | 130,780,000.00 USD | 10,210.00 USD | 0.00 USD | `+54.85%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3635.00` | 130,780,000.00 USD | 7,790.00 USD | 0.00 USD | `+55.28%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3645.00` | 130,790,000.00 USD | 3,860.00 USD | 0.00 USD | `+55.70%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3655.00` | 130,800,000.00 USD | 7,740.00 USD | 0.00 USD | `+56.13%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3665.00` | 130,800,000.00 USD | 8,130.00 USD | 0.00 USD | `+56.56%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3675.00` | 130,860,000.00 USD | 55,120.00 USD | 0.00 USD | `+56.98%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3685.00` | 130,860,000.00 USD | 3,550.00 USD | 0.00 USD | `+57.41%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3705.00` | 130,860,000.00 USD | 819.92 USD | 0.00 USD | `+58.27%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3715.00` | 130,860,000.00 USD | 323.58 USD | 0.00 USD | `+58.69%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3725.00` | 130,870,000.00 USD | 1,400.00 USD | 0.00 USD | `+59.12%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3735.00` | 130,870,000.00 USD | 6,490.00 USD | 0.00 USD | `+59.55%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3755.00` | 130,870,000.00 USD | 751.00 USD | 0.00 USD | `+60.40%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3785.00` | 130,870,000.00 USD | 286.90 USD | 0.00 USD | `+61.68%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3795.00` | 130,870,000.00 USD | 1,560.00 USD | 0.00 USD | `+62.11%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3805.00` | 131,610,000.00 USD | 734,090.00 USD | 0.00 USD | `+62.54%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3815.00` | 131,630,000.00 USD | 20,930.00 USD | 0.00 USD | `+62.96%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3825.00` | 131,640,000.00 USD | 8,380.00 USD | 0.00 USD | `+63.39%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3835.00` | 131,640,000.00 USD | 711.78 USD | 0.00 USD | `+63.82%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3845.00` | 131,640,000.00 USD | 932.03 USD | 0.00 USD | `+64.25%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3855.00` | 131,840,000.00 USD | 203,880.00 USD | 0.00 USD | `+64.67%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3875.00` | 131,880,000.00 USD | 41,200.00 USD | 0.00 USD | `+65.53%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3885.00` | 131,910,000.00 USD | 21,210.00 USD | 0.00 USD | `+65.95%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3905.00` | 132,090,000.00 USD | 180,010.00 USD | 0.00 USD | `+66.81%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3915.00` | 132,730,000.00 USD | 646,840.00 USD | 0.00 USD | `+67.24%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3925.00` | 132,740,000.00 USD | 3,260.00 USD | 0.00 USD | `+67.66%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3935.00` | 132,780,000.00 USD | 42,570.00 USD | 0.00 USD | `+68.09%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3945.00` | 132,800,000.00 USD | 19,730.00 USD | 0.00 USD | `+68.52%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3955.00` | 132,800,000.00 USD | 1,380.00 USD | 0.00 USD | `+68.94%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3965.00` | 132,800,000.00 USD | 323.54 USD | 0.00 USD | `+69.37%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3975.00` | 132,810,000.00 USD | 6,960.00 USD | 0.00 USD | `+69.80%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3985.00` | 132,820,000.00 USD | 14,610.00 USD | 0.00 USD | `+70.23%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `3995.00` | 132,830,000.00 USD | 4,280.00 USD | 0.00 USD | `+70.65%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4005.00` | 135,500,000.00 USD | 2,680,000.00 USD | 0.00 USD | `+71.08%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4035.00` | 135,500,000.00 USD | 898.59 USD | 0.00 USD | `+72.36%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4055.00` | 135,510,000.00 USD | 811.00 USD | 0.00 USD | `+73.22%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4075.00` | 135,510,000.00 USD | 4,310.00 USD | 0.00 USD | `+74.07%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4085.00` | 135,510,000.00 USD | 2,800.00 USD | 0.00 USD | `+74.50%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4095.00` | 135,520,000.00 USD | 2,750.00 USD | 0.00 USD | `+74.93%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4105.00` | 135,560,000.00 USD | 43,660.00 USD | 0.00 USD | `+75.35%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4115.00` | 135,570,000.00 USD | 5,990.00 USD | 0.00 USD | `+75.78%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4125.00` | 135,570,000.00 USD | 372.90 USD | 0.00 USD | `+76.21%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4145.00` | 135,570,000.00 USD | 395.43 USD | 0.00 USD | `+77.06%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4175.00` | 135,570,000.00 USD | 2,890.00 USD | 0.00 USD | `+78.34%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4185.00` | 135,570,000.00 USD | 376.65 USD | 0.00 USD | `+78.77%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4205.00` | 135,600,000.00 USD | 28,760.00 USD | 0.00 USD | `+79.62%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4215.00` | 135,600,000.00 USD | 460.70 USD | 0.00 USD | `+80.05%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4225.00` | 135,600,000.00 USD | 1,270.00 USD | 0.00 USD | `+80.48%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4255.00` | 135,600,000.00 USD | 4,300.00 USD | 0.00 USD | `+81.76%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4265.00` | 135,610,000.00 USD | 4,010.00 USD | 0.00 USD | `+82.19%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4275.00` | 135,670,000.00 USD | 64,550.00 USD | 0.00 USD | `+82.61%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4285.00` | 135,670,000.00 USD | 1,610.00 USD | 0.00 USD | `+83.04%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4305.00` | 135,770,000.00 USD | 97,670.00 USD | 0.00 USD | `+83.90%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4315.00` | 135,770,000.00 USD | 1,070.00 USD | 0.00 USD | `+84.32%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4345.00` | 135,780,000.00 USD | 11,270.00 USD | 0.00 USD | `+85.60%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4355.00` | 135,790,000.00 USD | 3,250.00 USD | 0.00 USD | `+86.03%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4375.00` | 135,830,000.00 USD | 43,750.00 USD | 0.00 USD | `+86.89%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4385.00` | 135,900,000.00 USD | 64,570.00 USD | 0.00 USD | `+87.31%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4395.00` | 135,900,000.00 USD | 1,050.00 USD | 0.00 USD | `+87.74%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4405.00` | 137,120,000.00 USD | 1,230,000.00 USD | 0.00 USD | `+88.17%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4415.00` | 137,130,000.00 USD | 11,480.00 USD | 0.00 USD | `+88.59%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4425.00` | 137,140,000.00 USD | 2,510.00 USD | 0.00 USD | `+89.02%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4435.00` | 137,310,000.00 USD | 177,400.00 USD | 0.00 USD | `+89.45%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4455.00` | 137,320,000.00 USD | 641.97 USD | 0.00 USD | `+90.30%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4505.00` | 137,660,000.00 USD | 343,680.00 USD | 0.00 USD | `+92.44%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4515.00` | 137,660,000.00 USD | 2,280.00 USD | 0.00 USD | `+92.87%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4525.00` | 137,670,000.00 USD | 6,560.00 USD | 0.00 USD | `+93.29%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4545.00` | 137,870,000.00 USD | 197,950.00 USD | 0.00 USD | `+94.15%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4565.00` | 137,960,000.00 USD | 97,750.00 USD | 0.00 USD | `+95.00%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4585.00` | 137,960,000.00 USD | 1,420.00 USD | 0.00 USD | `+95.86%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4595.00` | 137,970,000.00 USD | 2,610.00 USD | 0.00 USD | `+96.28%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4605.00` | 138,030,000.00 USD | 64,120.00 USD | 0.00 USD | `+96.71%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4645.00` | 138,060,000.00 USD | 27,410.00 USD | 0.00 USD | `+98.42%` | `TACTICAL (Retail Cluster)` |
-| `Buy Stop` | `4655.00` | 138,230,000.00 USD | 174,790.00 USD | 0.00 USD | `+98.85%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `505.00` | 1,500,000,000.00 USD | 0.00 USD | 16,940.00 USD | `-78.33%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `555.00` | 1,500,000,000.00 USD | 0.00 USD | 563.16 USD | `-76.19%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `705.00` | 1,500,000,000.00 USD | 0.00 USD | 383.31 USD | `-69.75%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `755.00` | 1,500,000,000.00 USD | 0.00 USD | 177.27 USD | `-67.61%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `795.00` | 1,500,000,000.00 USD | 0.00 USD | 104.22 USD | `-65.89%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `805.00` | 1,500,000,000.00 USD | 0.00 USD | 2,090.00 USD | `-65.46%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `835.00` | 1,500,000,000.00 USD | 0.00 USD | 1,670.00 USD | `-64.18%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `865.00` | 1,500,000,000.00 USD | 0.00 USD | 139,280.00 USD | `-62.89%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `885.00` | 1,500,000,000.00 USD | 0.00 USD | 3,130.00 USD | `-62.03%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `905.00` | 1,500,000,000.00 USD | 0.00 USD | 2,780.00 USD | `-61.17%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `985.00` | 1,500,000,000.00 USD | 0.00 USD | 516.34 USD | `-57.74%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `995.00` | 1,500,000,000.00 USD | 0.00 USD | 100.50 USD | `-57.31%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1005.00` | 1,500,000,000.00 USD | 0.00 USD | 222,040.00 USD | `-56.88%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1025.00` | 1,500,000,000.00 USD | 0.00 USD | 112.03 USD | `-56.02%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1065.00` | 1,500,000,000.00 USD | 0.00 USD | 1,060.00 USD | `-54.31%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1075.00` | 1,500,000,000.00 USD | 0.00 USD | 995.34 USD | `-53.88%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1105.00` | 1,500,000,000.00 USD | 0.00 USD | 1,610.00 USD | `-52.59%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1115.00` | 1,500,000,000.00 USD | 0.00 USD | 11,050.00 USD | `-52.16%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1125.00` | 1,500,000,000.00 USD | 0.00 USD | 1,320.00 USD | `-51.73%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1155.00` | 1,500,000,000.00 USD | 0.00 USD | 1,000.00 USD | `-50.45%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1175.00` | 1,500,000,000.00 USD | 0.00 USD | 203.98 USD | `-49.59%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1185.00` | 1,500,000,000.00 USD | 0.00 USD | 228.47 USD | `-49.16%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1205.00` | 1,500,000,000.00 USD | 0.00 USD | 27,760.00 USD | `-48.30%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1225.00` | 1,500,000,000.00 USD | 0.00 USD | 995.93 USD | `-47.44%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1245.00` | 1,500,000,000.00 USD | 0.00 USD | 951.93 USD | `-46.58%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1255.00` | 1,500,000,000.00 USD | 0.00 USD | 6,810.00 USD | `-46.16%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1285.00` | 1,500,000,000.00 USD | 0.00 USD | 9,050.00 USD | `-44.87%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1295.00` | 1,500,000,000.00 USD | 0.00 USD | 7,030.00 USD | `-44.44%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1305.00` | 1,500,000,000.00 USD | 0.00 USD | 23,030.00 USD | `-44.01%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1315.00` | 1,500,000,000.00 USD | 0.00 USD | 1,440.00 USD | `-43.58%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1345.00` | 1,500,000,000.00 USD | 0.00 USD | 141,950.00 USD | `-42.29%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1355.00` | 1,500,000,000.00 USD | 0.00 USD | 128.86 USD | `-41.87%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1375.00` | 1,500,000,000.00 USD | 0.00 USD | 4,160.00 USD | `-41.01%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1395.00` | 1,500,000,000.00 USD | 0.00 USD | 535,600.00 USD | `-40.15%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1405.00` | 1,500,000,000.00 USD | 0.00 USD | 20,270.00 USD | `-39.72%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1425.00` | 1,500,000,000.00 USD | 0.00 USD | 6,450.00 USD | `-38.86%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1435.00` | 1,500,000,000.00 USD | 0.00 USD | 852.10 USD | `-38.43%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1445.00` | 1,500,000,000.00 USD | 0.00 USD | 1,490.00 USD | `-38.00%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1455.00` | 1,500,000,000.00 USD | 0.00 USD | 5,680.00 USD | `-37.58%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1465.00` | 1,500,000,000.00 USD | 0.00 USD | 19,350.00 USD | `-37.15%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1475.00` | 1,500,000,000.00 USD | 0.00 USD | 2,600.00 USD | `-36.72%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1485.00` | 1,500,000,000.00 USD | 0.00 USD | 18,710.00 USD | `-36.29%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1495.00` | 1,500,000,000.00 USD | 0.00 USD | 11,460.00 USD | `-35.86%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1505.00` | 1,500,000,000.00 USD | 0.00 USD | 78,910.00 USD | `-35.43%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1515.00` | 1,500,000,000.00 USD | 0.00 USD | 11,140.00 USD | `-35.00%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1525.00` | 1,500,000,000.00 USD | 0.00 USD | 32,310.00 USD | `-34.57%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1535.00` | 1,500,000,000.00 USD | 0.00 USD | 983.78 USD | `-34.14%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1545.00` | 1,500,000,000.00 USD | 0.00 USD | 17,470.00 USD | `-33.71%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1555.00` | 1,500,000,000.00 USD | 0.00 USD | 4,210.00 USD | `-33.28%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1565.00` | 1,500,000,000.00 USD | 0.00 USD | 6,260.00 USD | `-32.86%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1575.00` | 1,500,000,000.00 USD | 0.00 USD | 190,890.00 USD | `-32.43%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1585.00` | 1,500,000,000.00 USD | 0.00 USD | 3,390.00 USD | `-32.00%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1595.00` | 1,500,000,000.00 USD | 0.00 USD | 4,040.00 USD | `-31.57%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1605.00` | 1,500,000,000.00 USD | 0.00 USD | 435,900.00 USD | `-31.14%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1615.00` | 1,500,000,000.00 USD | 0.00 USD | 25,840.00 USD | `-30.71%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1625.00` | 1,500,000,000.00 USD | 0.00 USD | 13,590.00 USD | `-30.28%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1635.00` | 1,500,000,000.00 USD | 0.00 USD | 5,510.00 USD | `-29.85%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1645.00` | 1,500,000,000.00 USD | 0.00 USD | 328,140.00 USD | `-29.42%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1655.00` | 1,500,000,000.00 USD | 0.00 USD | 22,220.00 USD | `-28.99%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1665.00` | 1,500,000,000.00 USD | 0.00 USD | 3,110.00 USD | `-28.57%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1675.00` | 1,500,000,000.00 USD | 0.00 USD | 3,440.00 USD | `-28.14%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1685.00` | 1,500,000,000.00 USD | 0.00 USD | 58,890.00 USD | `-27.71%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1695.00` | 1,500,000,000.00 USD | 0.00 USD | 6,800.00 USD | `-27.28%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1705.00` | 1,500,000,000.00 USD | 0.00 USD | 81,190.00 USD | `-26.85%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1715.00` | 1,500,000,000.00 USD | 0.00 USD | 28,180.00 USD | `-26.42%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1725.00` | 1,500,000,000.00 USD | 0.00 USD | 47,500.00 USD | `-25.99%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1735.00` | 1,500,000,000.00 USD | 0.00 USD | 28,150.00 USD | `-25.56%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1745.00` | 1,500,000,000.00 USD | 0.00 USD | 3,180.00 USD | `-25.13%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1755.00` | 1,500,000,000.00 USD | 0.00 USD | 498,120.00 USD | `-24.70%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1765.00` | 1,500,000,000.00 USD | 0.00 USD | 75,630.00 USD | `-24.27%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1775.00` | 1,500,000,000.00 USD | 0.00 USD | 3,090.00 USD | `-23.85%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1785.00` | 1,500,000,000.00 USD | 0.00 USD | 4,930.00 USD | `-23.42%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1795.00` | 1,500,000,000.00 USD | 0.00 USD | 184,330.00 USD | `-22.99%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1805.00` | 1,500,000,000.00 USD | 0.00 USD | 238,740.00 USD | `-22.56%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1815.00` | 1,500,000,000.00 USD | 0.00 USD | 114,830.00 USD | `-22.13%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1825.00` | 1,500,000,000.00 USD | 0.00 USD | 26,790.00 USD | `-21.70%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1835.00` | 1,500,000,000.00 USD | 0.00 USD | 2,500.00 USD | `-21.27%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1845.00` | 1,500,000,000.00 USD | 0.00 USD | 9,040.00 USD | `-20.84%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1855.00` | 1,500,000,000.00 USD | 0.00 USD | 467,010.00 USD | `-20.41%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1865.00` | 1,500,000,000.00 USD | 0.00 USD | 32,910.00 USD | `-19.98%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1875.00` | 1,500,000,000.00 USD | 0.00 USD | 18,210,000.00 USD | `-19.56%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `1885.00` | 1,480,000,000.00 USD | 0.00 USD | 2,390.00 USD | `-19.13%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1895.00` | 1,480,000,000.00 USD | 0.00 USD | 61,700.00 USD | `-18.70%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1905.00` | 1,480,000,000.00 USD | 0.00 USD | 162,190.00 USD | `-18.27%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1915.00` | 1,480,000,000.00 USD | 0.00 USD | 8,110,000.00 USD | `-17.84%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `1925.00` | 1,470,000,000.00 USD | 0.00 USD | 16,410,000.00 USD | `-17.41%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `1935.00` | 1,450,000,000.00 USD | 0.00 USD | 79,950.00 USD | `-16.98%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1945.00` | 1,450,000,000.00 USD | 0.00 USD | 44,850.00 USD | `-16.55%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1955.00` | 1,450,000,000.00 USD | 0.00 USD | 52,220.00 USD | `-16.12%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1965.00` | 1,450,000,000.00 USD | 0.00 USD | 510.51 USD | `-15.69%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1975.00` | 1,450,000,000.00 USD | 0.00 USD | 59,770.00 USD | `-15.27%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1985.00` | 1,450,000,000.00 USD | 0.00 USD | 95,270.00 USD | `-14.84%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `1995.00` | 1,450,000,000.00 USD | 0.00 USD | 164,110.00 USD | `-14.41%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2005.00` | 1,450,000,000.00 USD | 0.00 USD | 1,320,000.00 USD | `-13.98%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2015.00` | 1,450,000,000.00 USD | 0.00 USD | 69,640.00 USD | `-13.55%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2025.00` | 1,450,000,000.00 USD | 0.00 USD | 5,040.00 USD | `-13.12%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2035.00` | 1,450,000,000.00 USD | 0.00 USD | 103,890.00 USD | `-12.69%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2045.00` | 1,450,000,000.00 USD | 0.00 USD | 15,220.00 USD | `-12.26%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2055.00` | 1,450,000,000.00 USD | 0.00 USD | 140,840.00 USD | `-11.83%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2065.00` | 1,450,000,000.00 USD | 0.00 USD | 47,480.00 USD | `-11.40%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2075.00` | 1,450,000,000.00 USD | 0.00 USD | 76,450.00 USD | `-10.97%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2085.00` | 1,450,000,000.00 USD | 0.00 USD | 52,030.00 USD | `-10.55%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2095.00` | 1,450,000,000.00 USD | 0.00 USD | 29,710.00 USD | `-10.12%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2105.00` | 1,450,000,000.00 USD | 0.00 USD | 330,470.00 USD | `-9.69%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2115.00` | 1,450,000,000.00 USD | 0.00 USD | 119,630.00 USD | `-9.26%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2125.00` | 1,450,000,000.00 USD | 0.00 USD | 81,460.00 USD | `-8.83%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2135.00` | 1,450,000,000.00 USD | 0.00 USD | 19,470.00 USD | `-8.40%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2145.00` | 1,450,000,000.00 USD | 0.00 USD | 217,830.00 USD | `-7.97%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2155.00` | 1,450,000,000.00 USD | 0.00 USD | 104,580.00 USD | `-7.54%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2165.00` | 1,450,000,000.00 USD | 0.00 USD | 871,350.00 USD | `-7.11%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2175.00` | 1,450,000,000.00 USD | 0.00 USD | 1,360,000.00 USD | `-6.68%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2185.00` | 1,450,000,000.00 USD | 0.00 USD | 92,000.00 USD | `-6.26%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2195.00` | 1,450,000,000.00 USD | 0.00 USD | 438,560.00 USD | `-5.83%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2205.00` | 1,450,000,000.00 USD | 0.00 USD | 2,140,000.00 USD | `-5.40%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2215.00` | 1,450,000,000.00 USD | 0.00 USD | 1,020,000.00 USD | `-4.97%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2225.00` | 1,440,000,000.00 USD | 0.00 USD | 992,450.00 USD | `-4.54%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2235.00` | 1,440,000,000.00 USD | 0.00 USD | 125,690.00 USD | `-4.11%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2245.00` | 1,440,000,000.00 USD | 0.00 USD | 1,590,000.00 USD | `-3.68%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2255.00` | 1,440,000,000.00 USD | 0.00 USD | 23,250,000.00 USD | `-3.25%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `2265.00` | 1,420,000,000.00 USD | 0.00 USD | 653,600.00 USD | `-2.82%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2275.00` | 1,420,000,000.00 USD | 0.00 USD | 4,680,000.00 USD | `-2.39%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2285.00` | 1,410,000,000.00 USD | 0.00 USD | 4,200,000.00 USD | `-1.96%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `2295.00` | 1,410,000,000.00 USD | 0.00 USD | 10,550,000.00 USD | `-1.54%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `2305.00` | 1,400,000,000.00 USD | 0.00 USD | 1,390,000,000.00 USD | `-1.11%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `2315.00` | 13,080,000.00 USD | 0.00 USD | 11,460,000.00 USD | `-0.68%` | `HIGH (Cascade Hazard)` |
+| `Sell Stop` | `2325.00` | 1,610,000.00 USD | 0.00 USD | 1,610,000.00 USD | `-0.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2335.00` | 1,900,000.00 USD | 1,900,000.00 USD | 0.00 USD | `+0.18%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2345.00` | 2,910,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+0.61%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2355.00` | 3,930,000.00 USD | 1,020,000.00 USD | 0.00 USD | `+1.04%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2365.00` | 4,030,000.00 USD | 102,380.00 USD | 0.00 USD | `+1.47%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2375.00` | 5,100,000.00 USD | 1,070,000.00 USD | 0.00 USD | `+1.90%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2385.00` | 7,100,000.00 USD | 2,000,000.00 USD | 0.00 USD | `+2.33%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2395.00` | 17,980,000.00 USD | 10,880,000.00 USD | 0.00 USD | `+2.75%` | `HIGH (Cascade Hazard)` |
+| `Buy Stop` | `2405.00` | 20,300,000.00 USD | 2,320,000.00 USD | 0.00 USD | `+3.18%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2415.00` | 21,460,000.00 USD | 1,160,000.00 USD | 0.00 USD | `+3.61%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2425.00` | 24,970,000.00 USD | 3,510,000.00 USD | 0.00 USD | `+4.04%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2435.00` | 25,450,000.00 USD | 482,650.00 USD | 0.00 USD | `+4.47%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2445.00` | 35,970,000.00 USD | 10,520,000.00 USD | 0.00 USD | `+4.90%` | `HIGH (Cascade Hazard)` |
+| `Buy Stop` | `2455.00` | 36,200,000.00 USD | 233,060.00 USD | 0.00 USD | `+5.33%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2465.00` | 38,380,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+5.76%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2475.00` | 38,700,000.00 USD | 327,070.00 USD | 0.00 USD | `+6.19%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2485.00` | 40,850,000.00 USD | 2,150,000.00 USD | 0.00 USD | `+6.62%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2495.00` | 41,340,000.00 USD | 486,690.00 USD | 0.00 USD | `+7.04%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2505.00` | 46,650,000.00 USD | 5,300,000.00 USD | 0.00 USD | `+7.47%` | `HIGH (Cascade Hazard)` |
+| `Buy Stop` | `2515.00` | 54,420,000.00 USD | 7,780,000.00 USD | 0.00 USD | `+7.90%` | `HIGH (Cascade Hazard)` |
+| `Buy Stop` | `2525.00` | 57,630,000.00 USD | 3,200,000.00 USD | 0.00 USD | `+8.33%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2535.00` | 57,700,000.00 USD | 72,580.00 USD | 0.00 USD | `+8.76%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2545.00` | 59,870,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+9.19%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2555.00` | 60,200,000.00 USD | 332,460.00 USD | 0.00 USD | `+9.62%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2565.00` | 62,540,000.00 USD | 2,330,000.00 USD | 0.00 USD | `+10.05%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2575.00` | 62,690,000.00 USD | 154,870.00 USD | 0.00 USD | `+10.48%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2585.00` | 65,140,000.00 USD | 2,450,000.00 USD | 0.00 USD | `+10.91%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2595.00` | 65,160,000.00 USD | 14,590.00 USD | 0.00 USD | `+11.34%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2605.00` | 68,260,000.00 USD | 3,100,000.00 USD | 0.00 USD | `+11.76%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2615.00` | 68,480,000.00 USD | 218,380.00 USD | 0.00 USD | `+12.19%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2625.00` | 70,670,000.00 USD | 2,190,000.00 USD | 0.00 USD | `+12.62%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2635.00` | 70,970,000.00 USD | 303,700.00 USD | 0.00 USD | `+13.05%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2645.00` | 73,140,000.00 USD | 2,170,000.00 USD | 0.00 USD | `+13.48%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2655.00` | 73,430,000.00 USD | 285,850.00 USD | 0.00 USD | `+13.91%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2665.00` | 75,580,000.00 USD | 2,160,000.00 USD | 0.00 USD | `+14.34%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2675.00` | 75,980,000.00 USD | 393,350.00 USD | 0.00 USD | `+14.77%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2685.00` | 78,160,000.00 USD | 2,190,000.00 USD | 0.00 USD | `+15.20%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2695.00` | 78,340,000.00 USD | 175,980.00 USD | 0.00 USD | `+15.63%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2705.00` | 82,970,000.00 USD | 4,630,000.00 USD | 0.00 USD | `+16.05%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2715.00` | 83,050,000.00 USD | 76,900.00 USD | 0.00 USD | `+16.48%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2725.00` | 85,510,000.00 USD | 2,470,000.00 USD | 0.00 USD | `+16.91%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2735.00` | 85,570,000.00 USD | 55,720.00 USD | 0.00 USD | `+17.34%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2745.00` | 87,870,000.00 USD | 2,300,000.00 USD | 0.00 USD | `+17.77%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2755.00` | 89,380,000.00 USD | 1,510,000.00 USD | 0.00 USD | `+18.20%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2765.00` | 91,770,000.00 USD | 2,380,000.00 USD | 0.00 USD | `+18.63%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2775.00` | 92,390,000.00 USD | 620,300.00 USD | 0.00 USD | `+19.06%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2785.00` | 94,680,000.00 USD | 2,300,000.00 USD | 0.00 USD | `+19.49%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2795.00` | 94,720,000.00 USD | 36,990.00 USD | 0.00 USD | `+19.92%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2805.00` | 97,870,000.00 USD | 3,140,000.00 USD | 0.00 USD | `+20.34%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2815.00` | 97,920,000.00 USD | 53,260.00 USD | 0.00 USD | `+20.77%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2825.00` | 97,980,000.00 USD | 62,020.00 USD | 0.00 USD | `+21.20%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2835.00` | 98,270,000.00 USD | 289,110.00 USD | 0.00 USD | `+21.63%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2845.00` | 99,280,000.00 USD | 1,010,000.00 USD | 0.00 USD | `+22.06%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2855.00` | 100,560,000.00 USD | 1,280,000.00 USD | 0.00 USD | `+22.49%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2865.00` | 100,570,000.00 USD | 10,290.00 USD | 0.00 USD | `+22.92%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2875.00` | 100,580,000.00 USD | 3,630.00 USD | 0.00 USD | `+23.35%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2885.00` | 100,870,000.00 USD | 290,880.00 USD | 0.00 USD | `+23.78%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2895.00` | 100,890,000.00 USD | 23,020.00 USD | 0.00 USD | `+24.21%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2905.00` | 102,850,000.00 USD | 1,960,000.00 USD | 0.00 USD | `+24.64%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2915.00` | 102,860,000.00 USD | 10,340.00 USD | 0.00 USD | `+25.06%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2925.00` | 102,860,000.00 USD | 3,040.00 USD | 0.00 USD | `+25.49%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2935.00` | 102,910,000.00 USD | 54,540.00 USD | 0.00 USD | `+25.92%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2945.00` | 102,950,000.00 USD | 34,650.00 USD | 0.00 USD | `+26.35%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2955.00` | 103,020,000.00 USD | 74,770.00 USD | 0.00 USD | `+26.78%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2965.00` | 103,140,000.00 USD | 111,790.00 USD | 0.00 USD | `+27.21%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2975.00` | 103,280,000.00 USD | 148,070.00 USD | 0.00 USD | `+27.64%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2985.00` | 107,370,000.00 USD | 4,090,000.00 USD | 0.00 USD | `+28.07%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `2995.00` | 109,290,000.00 USD | 1,920,000.00 USD | 0.00 USD | `+28.50%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3005.00` | 111,280,000.00 USD | 1,990,000.00 USD | 0.00 USD | `+28.93%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3015.00` | 111,290,000.00 USD | 6,950.00 USD | 0.00 USD | `+29.35%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3025.00` | 111,330,000.00 USD | 37,410.00 USD | 0.00 USD | `+29.78%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3035.00` | 111,400,000.00 USD | 70,360.00 USD | 0.00 USD | `+30.21%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3045.00` | 111,420,000.00 USD | 22,460.00 USD | 0.00 USD | `+30.64%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3055.00` | 112,210,000.00 USD | 786,100.00 USD | 0.00 USD | `+31.07%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3065.00` | 112,210,000.00 USD | 3,080.00 USD | 0.00 USD | `+31.50%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3075.00` | 112,260,000.00 USD | 50,370.00 USD | 0.00 USD | `+31.93%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3085.00` | 112,280,000.00 USD | 19,860.00 USD | 0.00 USD | `+32.36%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3095.00` | 112,310,000.00 USD | 34,020.00 USD | 0.00 USD | `+32.79%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3105.00` | 125,720,000.00 USD | 13,410,000.00 USD | 0.00 USD | `+33.22%` | `HIGH (Cascade Hazard)` |
+| `Buy Stop` | `3115.00` | 125,840,000.00 USD | 118,040.00 USD | 0.00 USD | `+33.65%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3125.00` | 126,190,000.00 USD | 352,160.00 USD | 0.00 USD | `+34.07%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3145.00` | 126,190,000.00 USD | 1,860.00 USD | 0.00 USD | `+34.93%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3155.00` | 126,260,000.00 USD | 68,940.00 USD | 0.00 USD | `+35.36%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3165.00` | 126,270,000.00 USD | 9,860.00 USD | 0.00 USD | `+35.79%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3175.00` | 126,290,000.00 USD | 16,410.00 USD | 0.00 USD | `+36.22%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3185.00` | 126,290,000.00 USD | 1,330.00 USD | 0.00 USD | `+36.65%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3195.00` | 126,320,000.00 USD | 29,580.00 USD | 0.00 USD | `+37.08%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3205.00` | 127,230,000.00 USD | 910,780.00 USD | 0.00 USD | `+37.51%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3215.00` | 127,230,000.00 USD | 1,290.00 USD | 0.00 USD | `+37.94%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3225.00` | 127,240,000.00 USD | 3,740.00 USD | 0.00 USD | `+38.36%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3235.00` | 127,270,000.00 USD | 31,330.00 USD | 0.00 USD | `+38.79%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3245.00` | 127,320,000.00 USD | 56,110.00 USD | 0.00 USD | `+39.22%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3255.00` | 127,530,000.00 USD | 204,030.00 USD | 0.00 USD | `+39.65%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3265.00` | 127,540,000.00 USD | 15,710.00 USD | 0.00 USD | `+40.08%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3275.00` | 127,540,000.00 USD | 1,630.00 USD | 0.00 USD | `+40.51%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3285.00` | 127,690,000.00 USD | 142,210.00 USD | 0.00 USD | `+40.94%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3295.00` | 127,700,000.00 USD | 16,780.00 USD | 0.00 USD | `+41.37%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3305.00` | 128,970,000.00 USD | 1,270,000.00 USD | 0.00 USD | `+41.80%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3315.00` | 129,360,000.00 USD | 385,510.00 USD | 0.00 USD | `+42.23%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3325.00` | 129,380,000.00 USD | 18,270.00 USD | 0.00 USD | `+42.65%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3335.00` | 129,390,000.00 USD | 14,190.00 USD | 0.00 USD | `+43.08%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3345.00` | 129,390,000.00 USD | 617.15 USD | 0.00 USD | `+43.51%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3355.00` | 129,390,000.00 USD | 334.49 USD | 0.00 USD | `+43.94%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3365.00` | 129,390,000.00 USD | 597.29 USD | 0.00 USD | `+44.37%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3375.00` | 129,420,000.00 USD | 23,460.00 USD | 0.00 USD | `+44.80%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3385.00` | 129,470,000.00 USD | 58,010.00 USD | 0.00 USD | `+45.23%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3395.00` | 129,830,000.00 USD | 355,050.00 USD | 0.00 USD | `+45.66%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3405.00` | 131,430,000.00 USD | 1,600,000.00 USD | 0.00 USD | `+46.09%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3415.00` | 131,430,000.00 USD | 3,510.00 USD | 0.00 USD | `+46.52%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3425.00` | 131,450,000.00 USD | 16,310.00 USD | 0.00 USD | `+46.95%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3445.00` | 131,460,000.00 USD | 15,030.00 USD | 0.00 USD | `+47.80%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3455.00` | 131,480,000.00 USD | 18,600.00 USD | 0.00 USD | `+48.23%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3465.00` | 131,800,000.00 USD | 311,800.00 USD | 0.00 USD | `+48.66%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3475.00` | 131,800,000.00 USD | 2,980.00 USD | 0.00 USD | `+49.09%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3485.00` | 131,840,000.00 USD | 43,610.00 USD | 0.00 USD | `+49.52%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3495.00` | 131,840,000.00 USD | 158.32 USD | 0.00 USD | `+49.95%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3505.00` | 132,390,000.00 USD | 550,300.00 USD | 0.00 USD | `+50.38%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3515.00` | 132,440,000.00 USD | 43,200.00 USD | 0.00 USD | `+50.81%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3525.00` | 132,440,000.00 USD | 3,690.00 USD | 0.00 USD | `+51.24%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3535.00` | 132,450,000.00 USD | 9,810.00 USD | 0.00 USD | `+51.66%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3545.00` | 132,450,000.00 USD | 179.38 USD | 0.00 USD | `+52.09%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3555.00` | 132,540,000.00 USD | 90,810.00 USD | 0.00 USD | `+52.52%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3565.00` | 132,540,000.00 USD | 2,300.00 USD | 0.00 USD | `+52.95%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3585.00` | 132,540,000.00 USD | 354.92 USD | 0.00 USD | `+53.81%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3595.00` | 132,560,000.00 USD | 13,160.00 USD | 0.00 USD | `+54.24%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3605.00` | 132,660,000.00 USD | 105,860.00 USD | 0.00 USD | `+54.67%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3625.00` | 132,670,000.00 USD | 10,210.00 USD | 0.00 USD | `+55.53%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3635.00` | 132,680,000.00 USD | 7,790.00 USD | 0.00 USD | `+55.96%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3645.00` | 132,680,000.00 USD | 3,860.00 USD | 0.00 USD | `+56.38%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3655.00` | 132,690,000.00 USD | 7,740.00 USD | 0.00 USD | `+56.81%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3665.00` | 132,700,000.00 USD | 8,130.00 USD | 0.00 USD | `+57.24%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3675.00` | 132,750,000.00 USD | 55,120.00 USD | 0.00 USD | `+57.67%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3685.00` | 132,760,000.00 USD | 3,550.00 USD | 0.00 USD | `+58.10%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3705.00` | 132,760,000.00 USD | 819.92 USD | 0.00 USD | `+58.96%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3715.00` | 132,760,000.00 USD | 323.58 USD | 0.00 USD | `+59.39%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3725.00` | 132,760,000.00 USD | 1,400.00 USD | 0.00 USD | `+59.82%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3735.00` | 132,770,000.00 USD | 6,490.00 USD | 0.00 USD | `+60.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3755.00` | 132,770,000.00 USD | 751.00 USD | 0.00 USD | `+61.10%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3785.00` | 132,770,000.00 USD | 286.90 USD | 0.00 USD | `+62.39%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3795.00` | 132,770,000.00 USD | 1,560.00 USD | 0.00 USD | `+62.82%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3805.00` | 133,500,000.00 USD | 734,090.00 USD | 0.00 USD | `+63.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3815.00` | 133,520,000.00 USD | 20,930.00 USD | 0.00 USD | `+63.68%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3825.00` | 133,530,000.00 USD | 8,380.00 USD | 0.00 USD | `+64.11%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3835.00` | 133,530,000.00 USD | 711.78 USD | 0.00 USD | `+64.54%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3845.00` | 133,530,000.00 USD | 932.03 USD | 0.00 USD | `+64.96%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3855.00` | 133,740,000.00 USD | 203,880.00 USD | 0.00 USD | `+65.39%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3875.00` | 133,780,000.00 USD | 41,200.00 USD | 0.00 USD | `+66.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3885.00` | 133,800,000.00 USD | 21,210.00 USD | 0.00 USD | `+66.68%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3905.00` | 133,980,000.00 USD | 180,010.00 USD | 0.00 USD | `+67.54%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3915.00` | 134,630,000.00 USD | 646,840.00 USD | 0.00 USD | `+67.97%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3925.00` | 134,630,000.00 USD | 3,260.00 USD | 0.00 USD | `+68.40%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3935.00` | 134,670,000.00 USD | 42,570.00 USD | 0.00 USD | `+68.83%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3945.00` | 134,690,000.00 USD | 19,730.00 USD | 0.00 USD | `+69.26%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3955.00` | 134,690,000.00 USD | 1,380.00 USD | 0.00 USD | `+69.68%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3965.00` | 134,700,000.00 USD | 323.54 USD | 0.00 USD | `+70.11%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3975.00` | 134,700,000.00 USD | 6,960.00 USD | 0.00 USD | `+70.54%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3985.00` | 134,720,000.00 USD | 14,610.00 USD | 0.00 USD | `+70.97%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `3995.00` | 134,720,000.00 USD | 4,280.00 USD | 0.00 USD | `+71.40%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4005.00` | 137,400,000.00 USD | 2,680,000.00 USD | 0.00 USD | `+71.83%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4035.00` | 137,400,000.00 USD | 898.59 USD | 0.00 USD | `+73.12%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4055.00` | 137,400,000.00 USD | 811.00 USD | 0.00 USD | `+73.97%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4075.00` | 137,410,000.00 USD | 4,310.00 USD | 0.00 USD | `+74.83%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4085.00` | 137,410,000.00 USD | 2,800.00 USD | 0.00 USD | `+75.26%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4095.00` | 137,410,000.00 USD | 2,750.00 USD | 0.00 USD | `+75.69%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4105.00` | 137,450,000.00 USD | 43,660.00 USD | 0.00 USD | `+76.12%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4115.00` | 137,460,000.00 USD | 5,990.00 USD | 0.00 USD | `+76.55%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4125.00` | 137,460,000.00 USD | 372.90 USD | 0.00 USD | `+76.98%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4145.00` | 137,460,000.00 USD | 395.43 USD | 0.00 USD | `+77.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4175.00` | 137,460,000.00 USD | 2,890.00 USD | 0.00 USD | `+79.12%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4185.00` | 137,460,000.00 USD | 376.65 USD | 0.00 USD | `+79.55%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4205.00` | 137,490,000.00 USD | 28,760.00 USD | 0.00 USD | `+80.41%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4215.00` | 137,490,000.00 USD | 460.70 USD | 0.00 USD | `+80.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4225.00` | 137,500,000.00 USD | 1,270.00 USD | 0.00 USD | `+81.27%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4255.00` | 137,500,000.00 USD | 4,300.00 USD | 0.00 USD | `+82.56%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4265.00` | 137,500,000.00 USD | 4,010.00 USD | 0.00 USD | `+82.98%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4275.00` | 137,570,000.00 USD | 64,550.00 USD | 0.00 USD | `+83.41%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4285.00` | 137,570,000.00 USD | 1,610.00 USD | 0.00 USD | `+83.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4305.00` | 137,670,000.00 USD | 97,670.00 USD | 0.00 USD | `+84.70%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4315.00` | 137,670,000.00 USD | 1,070.00 USD | 0.00 USD | `+85.13%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4345.00` | 137,680,000.00 USD | 11,270.00 USD | 0.00 USD | `+86.42%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4355.00` | 137,680,000.00 USD | 3,250.00 USD | 0.00 USD | `+86.85%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4375.00` | 137,730,000.00 USD | 43,750.00 USD | 0.00 USD | `+87.70%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4385.00` | 137,790,000.00 USD | 64,570.00 USD | 0.00 USD | `+88.13%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4395.00` | 137,790,000.00 USD | 1,050.00 USD | 0.00 USD | `+88.56%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4405.00` | 139,020,000.00 USD | 1,230,000.00 USD | 0.00 USD | `+88.99%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4415.00` | 139,030,000.00 USD | 11,480.00 USD | 0.00 USD | `+89.42%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4425.00` | 139,030,000.00 USD | 2,510.00 USD | 0.00 USD | `+89.85%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4435.00` | 139,210,000.00 USD | 177,400.00 USD | 0.00 USD | `+90.28%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4455.00` | 139,210,000.00 USD | 641.97 USD | 0.00 USD | `+91.14%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4505.00` | 139,550,000.00 USD | 343,680.00 USD | 0.00 USD | `+93.28%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4515.00` | 139,560,000.00 USD | 2,280.00 USD | 0.00 USD | `+93.71%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4525.00` | 139,560,000.00 USD | 6,560.00 USD | 0.00 USD | `+94.14%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4565.00` | 139,660,000.00 USD | 97,750.00 USD | 0.00 USD | `+95.86%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4585.00` | 139,660,000.00 USD | 1,420.00 USD | 0.00 USD | `+96.71%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4595.00` | 139,660,000.00 USD | 2,610.00 USD | 0.00 USD | `+97.14%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4605.00` | 139,730,000.00 USD | 64,120.00 USD | 0.00 USD | `+97.57%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4645.00` | 139,760,000.00 USD | 27,410.00 USD | 0.00 USD | `+99.29%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `4655.00` | 139,930,000.00 USD | 174,790.00 USD | 0.00 USD | `+99.72%` | `TACTICAL (Retail Cluster)` |
 
 - **Exchange Multi-Horizon Liquidation Density Map Table (8_Exchange_Liquidation_Map_1D/7D.parquet)**:
 | Horizon | Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Binance (USD) | OKX (USD) | Bybit (USD) |
@@ -2464,21 +2457,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 2,920,000.00 USD | 25,310,000.00 USD | **`ACCUMULATION`** |
-| `15m` | 5,500,000.00 USD | 27,350,000.00 USD | **`ACCUMULATION`** |
-| `30m` | -1,940,000.00 USD | -111,170,000.00 USD | **`DISTRIBUTION`** |
-| `1h` | 3,130,000.00 USD | -71,920,000.00 USD | **`DISTRIBUTION`** |
-| `2h` | -3,420,000.00 USD | -248,670,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | 12,250,000.00 USD | -257,230,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | 21,670,000.00 USD | -81,810,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | 14,010,000.00 USD | -140,040,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | 34,060,000.00 USD | -126,140,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -19,110,000.00 USD | -506,620,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -10,920,000.00 USD | -1,090,000,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -3,010,000,000.00 USD | -8,290,000,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -1,560,000.00 USD | -6,340,000.00 USD | **`DISTRIBUTION`** |
+| `15m` | 2,190,000.00 USD | 42,430,000.00 USD | **`ACCUMULATION`** |
+| `30m` | 3,550,000.00 USD | 19,690,000.00 USD | **`ACCUMULATION`** |
+| `1h` | 3,790,000.00 USD | -84,190,000.00 USD | **`DISTRIBUTION`** |
+| `2h` | -3,990,000.00 USD | -214,110,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | 13,460,000.00 USD | -254,090,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | 20,600,000.00 USD | -64,000,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | 15,580,000.00 USD | -124,870,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | 32,580,000.00 USD | -121,230,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -22,190,000.00 USD | -485,140,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -10,690,000.00 USD | -1,110,000,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -3,020,000,000.00 USD | -8,200,000,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+2.92M` | 15m=`+5.50M` | 1h=`+3.13M` | 24h=`-19.11M`
-* Futures Capital Netflows: 5m=`+25.31M` | 15m=`+27.35M` | 1h=`-71.92M` | 24h=`-506.62M`
+* Spot Capital Netflows: 5m=`-1.56M` | 15m=`+2.19M` | 1h=`+3.79M` | 24h=`-22.19M`
+* Futures Capital Netflows: 5m=`-6.34M` | 15m=`+42.43M` | 1h=`-84.19M` | 24h=`-485.14M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -2547,17 +2540,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `2297.12` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2279.12` (Risk Distance: `18.00` pts)
-  * +2.5R Take Profit: `2342.13`
-  * Mathematical Lot Sizing: **`0.55 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `2279.56` (Risk Distance: `17.56` pts)
+  * +2.5R Take Profit: `2341.03`
+  * Mathematical Lot Sizing: **`0.56 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `2338.45` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2356.45` (Risk Distance: `18.00` pts)
-  * +2.5R Take Profit: `2293.44`
-  * Mathematical Lot Sizing: **`0.55 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Execution Entry: `2337.88` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `2355.44` (Risk Distance: `17.56` pts)
+  * +2.5R Take Profit: `2293.97`
+  * Mathematical Lot Sizing: **`0.56 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`2348.94`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`2344.51`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

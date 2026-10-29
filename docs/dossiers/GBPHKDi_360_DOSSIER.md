@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPHKD
 **Canonical Key**: `GBPHKD` | **Broker Instrument**: `GBPHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:32:19 IST` (`2026-10-29 19:02:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:21 IST` (`2026-10-29 19:05:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.48` | **Live Ask Quote**: `10.48` | **Mid Price**: `10.48`
-- **Spread Points**: `16.00` | **Spread BPS**: `0.15 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `14.00` | **Spread BPS**: `0.13 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -31,13 +31,13 @@
   * Upper +2.51σ Band: `10.54` | Lower -2.51σ Band: `10.43`
   * Upper +2.01σ Band: `10.53` | Lower -2.01σ Band: `10.44`
   * Upper +2.00σ Band: `10.53` | Lower -2.00σ Band: `10.44`
-  * Upper +1.28σ Band: `10.51` | Lower -1.28σ Band: `10.45`
+  * Upper +1.28σ Band: `10.51` | Lower -1.28σ Band: `10.46`
   * Upper +1.00σ Band: `10.51` | Lower -1.00σ Band: `10.46`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`10.48` | EMA-20=`10.48` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`10.48` (Slope: `+0.0000`) | EMA-100=`10.48`
   * Institutional Anchors: EMA-144=`10.48` | EMA-200=`10.48` (Slope: `+0.0000`) | EMA-233=`10.48`
-- **Range Boundaries**: 24H High=`10.59` | 24H Low=`10.38` | Weekly High=`10.69` | Weekly Low=`10.27`
+- **Range Boundaries**: 24H High=`10.59` | 24H Low=`10.38` | Weekly High=`10.69` | Weekly Low=`10.28`
 
 ---
 

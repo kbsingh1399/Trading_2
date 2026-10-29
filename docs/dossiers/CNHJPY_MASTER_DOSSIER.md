@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:32:19 IST` (`2026-10-29 19:02:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:35:21 IST` (`2026-10-29 19:05:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -46,18 +46,18 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `23.80` (Distance: `+0.00%`)
   * Point of Control (POC) = `23.73` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `23.66` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `23.65` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`23.82` | POC=`23.73` | VAL=`23.63`
-  * Prior Day Extremes: PDH=`23.87` | PDL=`23.59` | PDC=`23.73`
-  * Monday Range Blueprint: High=`23.85` | Mid=`23.73` | Low=`23.61`
+  * Prior Day Extremes: PDH=`23.87` | PDL=`23.58` | PDC=`23.73`
+  * Monday Range Blueprint: High=`23.84` | Mid=`23.73` | Low=`23.61`
   * Developing Weekly Value Area: Weekly VAH=`23.92` | Weekly POC=`23.73` | Weekly VAL=`23.54`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`23.77` | Low=`23.68`
   * London Session (08:00-16:00 UTC): High=`23.82` | Low=`23.63`
-  * New York Session (13:00-21:00 UTC): High=`23.87` | Low=`23.59`
-  * Initial Balance (First Hour): IB High=`23.80` | IB Low=`23.66`
+  * New York Session (13:00-21:00 UTC): High=`23.87` | Low=`23.58`
+  * Initial Balance (First Hour): IB High=`23.80` | IB Low=`23.65`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `23.63` - `23.82`
   * Optimal Trade Entry (OTE 0.705): `23.77`
@@ -267,7 +267,7 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `23.66` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `23.65` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `22.45` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `26.66`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
