@@ -1,0 +1,820 @@
+{
+  "timestamp_utc": "2026-10-29 08:09:25 UTC",
+  "total_feeds": 43,
+  "loaded_feeds": 43,
+  "feed_summary": [
+    {
+      "feed": "00_MT5_Account_Telemetry.parquet",
+      "rows": 165,
+      "cols": 13,
+      "columns_sample": [
+        "Category",
+        "Broker_Symbol",
+        "Bid_Quote",
+        "Ask_Quote",
+        "Mid_Price"
+      ]
+    },
+    {
+      "feed": "1_Crypto_ETF_Flows.parquet",
+      "rows": 41,
+      "cols": 16,
+      "columns_sample": [
+        "#",
+        "Ticker",
+        "ETF_Name",
+        "Price",
+        "Price_Change"
+      ]
+    },
+    {
+      "feed": "2_Spot_Netflow_S.parquet",
+      "rows": 164,
+      "cols": 16,
+      "columns_sample": [
+        "Symbol",
+        "5_minute",
+        "15_minute",
+        "30_minute",
+        "1_hour"
+      ]
+    },
+    {
+      "feed": "2_Future_Netflow.parquet",
+      "rows": 162,
+      "cols": 16,
+      "columns_sample": [
+        "Symbol",
+        "5_minute",
+        "15_minute",
+        "30_minute",
+        "1_hour"
+      ]
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_15M.parquet",
+      "rows": 500,
+      "cols": 11,
+      "columns_sample": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ]
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_1H.parquet",
+      "rows": 500,
+      "cols": 11,
+      "columns_sample": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ]
+    },
+    {
+      "feed": "3_Exchanges_LS_Ratio_4H.parquet",
+      "rows": 500,
+      "cols": 11,
+      "columns_sample": [
+        "Asset",
+        "#",
+        "Exchange",
+        "Long_%",
+        "Short_%"
+      ]
+    },
+    {
+      "feed": "4_Hyperliquid_Analysis.parquet",
+      "rows": 1957,
+      "cols": 20,
+      "columns_sample": [
+        "rank",
+        "user_display",
+        "wallet_address",
+        "asset",
+        "side"
+      ]
+    },
+    {
+      "feed": "5_OI.parquet",
+      "rows": 20,
+      "cols": 20,
+      "columns_sample": [
+        "Asset",
+        "Total_OI_USD",
+        "Binance",
+        "Bybit",
+        "OKX"
+      ]
+    },
+    {
+      "feed": "5_Funding_Rate.parquet",
+      "rows": 578,
+      "cols": 17,
+      "columns_sample": [
+        "Symbol",
+        "USDT_Binance",
+        "USDT_OKX",
+        "USDT_Bybit",
+        "USDT_KuCoin"
+      ]
+    },
+    {
+      "feed": "6_Funding_Fee_Settlement.parquet",
+      "rows": 940,
+      "cols": 10,
+      "columns_sample": [
+        "rank",
+        "symbol",
+        "price",
+        "price_24h_pct",
+        "open_interest"
+      ]
+    },
+    {
+      "feed": "7_Liq_Heapmap.parquet",
+      "rows": 81,
+      "cols": 7,
+      "columns_sample": [
+        "rank",
+        "asset",
+        "tf_1h",
+        "tf_4h",
+        "tf_12h"
+      ]
+    },
+    {
+      "feed": "7_Live_Liq.parquet",
+      "rows": 27,
+      "cols": 8,
+      "columns_sample": [
+        "idx",
+        "coin",
+        "side",
+        "price",
+        "amount"
+      ]
+    },
+    {
+      "feed": "8_Exchange_Liquidation_Map_1D.parquet",
+      "rows": 2515,
+      "cols": 13,
+      "columns_sample": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price"
+      ]
+    },
+    {
+      "feed": "8_Exchange_Liquidation_Map_7D.parquet",
+      "rows": 2950,
+      "cols": 13,
+      "columns_sample": [
+        "Sr.No",
+        "Asset",
+        "Time",
+        "Timestamp_IST",
+        "Price"
+      ]
+    },
+    {
+      "feed": "9_Liquidation_Max_Pain_24H.parquet",
+      "rows": 751,
+      "cols": 12,
+      "columns_sample": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ]
+    },
+    {
+      "feed": "9_Liquidation_Max_Pain_48H.parquet",
+      "rows": 751,
+      "cols": 12,
+      "columns_sample": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ]
+    },
+    {
+      "feed": "9_Liquidation_Max_Pain_3D.parquet",
+      "rows": 751,
+      "cols": 12,
+      "columns_sample": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ]
+    },
+    {
+      "feed": "9_Liquidation_Max_Pain_7D.parquet",
+      "rows": 751,
+      "cols": 12,
+      "columns_sample": [
+        "ranking",
+        "symbol",
+        "price",
+        "short_max_pain_price",
+        "short_max_pain_vol"
+      ]
+    },
+    {
+      "feed": "10_Whale_Orders.parquet",
+      "rows": 3594,
+      "cols": 17,
+      "columns_sample": [
+        "sr_no",
+        "exchange",
+        "symbol",
+        "type",
+        "side"
+      ]
+    },
+    {
+      "feed": "11_Technical.parquet",
+      "rows": 104,
+      "cols": 55,
+      "columns_sample": [
+        "asset",
+        "category",
+        "symbol",
+        "last_price",
+        "change_24h_pct"
+      ]
+    },
+    {
+      "feed": "11_Technical_BTC_Ribbon.parquet",
+      "rows": 100,
+      "cols": 31,
+      "columns_sample": [
+        "bar_time_utc",
+        "open",
+        "high",
+        "low",
+        "close"
+      ]
+    },
+    {
+      "feed": "12_Hyperdash.parquet",
+      "rows": 299,
+      "cols": 9,
+      "columns_sample": [
+        "Section",
+        "Asset",
+        "Type_or_Side",
+        "Price",
+        "Size"
+      ]
+    },
+    {
+      "feed": "13_Hyperliquid.parquet",
+      "rows": 235,
+      "cols": 9,
+      "columns_sample": [
+        "Section",
+        "Asset",
+        "Price",
+        "Change_24h",
+        "Volume_24h_USD"
+      ]
+    },
+    {
+      "feed": "14_Hyperdash_Liq_Map.parquet",
+      "rows": 7553,
+      "cols": 12,
+      "columns_sample": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price"
+      ]
+    },
+    {
+      "feed": "14_Liquidation_Matrix.parquet",
+      "rows": 11895,
+      "cols": 14,
+      "columns_sample": [
+        "timestamp_ist",
+        "symbol",
+        "asset_class",
+        "venue_tier",
+        "venue_name"
+      ]
+    },
+    {
+      "feed": "15_Hyperdash_Stops_Map.parquet",
+      "rows": 5038,
+      "cols": 12,
+      "columns_sample": [
+        "sr_no",
+        "asset",
+        "time_window",
+        "timestamp_ist",
+        "mark_price"
+      ]
+    },
+    {
+      "feed": "16_Hyperdash_telegram_Intel.parquet",
+      "rows": 1000,
+      "cols": 15,
+      "columns_sample": [
+        "category",
+        "event_type",
+        "asset",
+        "side",
+        "notional_usd"
+      ]
+    },
+    {
+      "feed": "17_Orderbook.parquet",
+      "rows": 615,
+      "cols": 14,
+      "columns_sample": [
+        "sr_no",
+        "data_layer",
+        "asset_class",
+        "asset",
+        "side"
+      ]
+    },
+    {
+      "feed": "18_CVD.parquet",
+      "rows": 1500,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "18_CVD_30D_5m.parquet",
+      "rows": 8004,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "18_CVD_30D_15m.parquet",
+      "rows": 2668,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "18_CVD_30D_1h.parquet",
+      "rows": 667,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "18_CVD_30D_4h.parquet",
+      "rows": 168,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "18_CVD_30D_ALL.parquet",
+      "rows": 11507,
+      "cols": 25,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "category",
+        "symbol"
+      ]
+    },
+    {
+      "feed": "19_Calendar.parquet",
+      "rows": 43,
+      "cols": 10,
+      "columns_sample": [
+        "date",
+        "time",
+        "currency",
+        "impact",
+        "event"
+      ]
+    },
+    {
+      "feed": "19_News.parquet",
+      "rows": 35,
+      "cols": 12,
+      "columns_sample": [
+        "title",
+        "url",
+        "source",
+        "time_ago",
+        "timestamp_utc"
+      ]
+    },
+    {
+      "feed": "20_Auction_Market_Structure.parquet",
+      "rows": 84,
+      "cols": 61,
+      "columns_sample": [
+        "timestamp",
+        "sr_no",
+        "asset",
+        "symbol",
+        "category"
+      ]
+    },
+    {
+      "feed": "21_Tradfye_Orderflow.parquet",
+      "rows": 6912,
+      "cols": 24,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "asset",
+        "market_pair",
+        "timeframe"
+      ]
+    },
+    {
+      "feed": "22_Forced_Liquidations_MTF.parquet",
+      "rows": 80,
+      "cols": 13,
+      "columns_sample": [
+        "symbol",
+        "timeframe",
+        "candle_start_epoch",
+        "candle_start_ist",
+        "candle_end_ist"
+      ]
+    },
+    {
+      "feed": "23_Master_Pipeline_Telemetry.parquet",
+      "rows": 33,
+      "cols": 4,
+      "columns_sample": [
+        "feed_id",
+        "feed_name",
+        "status",
+        "tier"
+      ]
+    },
+    {
+      "feed": "25_CoinGlass_Footprint_Signals.parquet",
+      "rows": 606,
+      "cols": 17,
+      "columns_sample": [
+        "timestamp_ist",
+        "signal_time",
+        "symbol",
+        "base_asset",
+        "timeframe"
+      ]
+    },
+    {
+      "feed": "26_Aggregated_Footprint_Bar_Metrics.parquet",
+      "rows": 310,
+      "cols": 27,
+      "columns_sample": [
+        "timestamp_ist",
+        "timestamp_utc",
+        "timestamp_ms",
+        "symbol",
+        "base_asset"
+      ]
+    }
+  ],
+  "candidate_forensics": {
+    "AUDUSD.pi": {
+      "matched_feed_count": 16,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          12
+        ],
+        [
+          "5_Funding_Rate.parquet",
+          1
+        ],
+        [
+          "11_Technical.parquet",
+          8
+        ],
+        [
+          "11_Technical_BTC_Ribbon.parquet",
+          "GLOBAL_MACRO"
+        ],
+        [
+          "18_CVD.parquet",
+          414
+        ],
+        [
+          "18_CVD_30D_5m.parquet",
+          288
+        ],
+        [
+          "18_CVD_30D_15m.parquet",
+          96
+        ],
+        [
+          "18_CVD_30D_1h.parquet",
+          24
+        ]
+      ]
+    },
+    "USDJPY.pi": {
+      "matched_feed_count": 21,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          12
+        ],
+        [
+          "4_Hyperliquid_Analysis.parquet",
+          6
+        ],
+        [
+          "5_Funding_Rate.parquet",
+          1
+        ],
+        [
+          "6_Funding_Fee_Settlement.parquet",
+          1
+        ],
+        [
+          "8_Exchange_Liquidation_Map_1D.parquet",
+          35
+        ],
+        [
+          "8_Exchange_Liquidation_Map_7D.parquet",
+          79
+        ],
+        [
+          "11_Technical.parquet",
+          6
+        ],
+        [
+          "11_Technical_BTC_Ribbon.parquet",
+          "GLOBAL_MACRO"
+        ]
+      ]
+    },
+    "US2000.p": {
+      "matched_feed_count": 12,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          2
+        ],
+        [
+          "11_Technical.parquet",
+          1
+        ],
+        [
+          "11_Technical_BTC_Ribbon.parquet",
+          "GLOBAL_MACRO"
+        ],
+        [
+          "18_CVD_30D_5m.parquet",
+          276
+        ],
+        [
+          "18_CVD_30D_15m.parquet",
+          92
+        ],
+        [
+          "18_CVD_30D_1h.parquet",
+          23
+        ],
+        [
+          "18_CVD_30D_4h.parquet",
+          6
+        ],
+        [
+          "18_CVD_30D_ALL.parquet",
+          397
+        ]
+      ]
+    },
+    "XAUUSD.pi": {
+      "matched_feed_count": 22,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          6
+        ],
+        [
+          "2_Spot_Netflow_S.parquet",
+          1
+        ],
+        [
+          "3_Exchanges_LS_Ratio_15M.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_1H.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_4H.parquet",
+          25
+        ],
+        [
+          "5_OI.parquet",
+          1
+        ],
+        [
+          "5_Funding_Rate.parquet",
+          2
+        ],
+        [
+          "6_Funding_Fee_Settlement.parquet",
+          2
+        ]
+      ]
+    },
+    "EURUSD.pi": {
+      "matched_feed_count": 20,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          17
+        ],
+        [
+          "4_Hyperliquid_Analysis.parquet",
+          4
+        ],
+        [
+          "5_Funding_Rate.parquet",
+          2
+        ],
+        [
+          "6_Funding_Fee_Settlement.parquet",
+          1
+        ],
+        [
+          "8_Exchange_Liquidation_Map_1D.parquet",
+          35
+        ],
+        [
+          "8_Exchange_Liquidation_Map_7D.parquet",
+          65
+        ],
+        [
+          "11_Technical.parquet",
+          7
+        ],
+        [
+          "11_Technical_BTC_Ribbon.parquet",
+          "GLOBAL_MACRO"
+        ]
+      ]
+    },
+    "SP500.p": {
+      "matched_feed_count": 19,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          1
+        ],
+        [
+          "4_Hyperliquid_Analysis.parquet",
+          54
+        ],
+        [
+          "5_Funding_Rate.parquet",
+          1
+        ],
+        [
+          "7_Liq_Heapmap.parquet",
+          1
+        ],
+        [
+          "10_Whale_Orders.parquet",
+          14
+        ],
+        [
+          "11_Technical.parquet",
+          1
+        ],
+        [
+          "11_Technical_BTC_Ribbon.parquet",
+          "GLOBAL_MACRO"
+        ],
+        [
+          "12_Hyperdash.parquet",
+          1
+        ]
+      ]
+    },
+    "BNBUSD.p": {
+      "matched_feed_count": 39,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          1
+        ],
+        [
+          "2_Spot_Netflow_S.parquet",
+          1
+        ],
+        [
+          "2_Future_Netflow.parquet",
+          1
+        ],
+        [
+          "3_Exchanges_LS_Ratio_15M.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_1H.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_4H.parquet",
+          25
+        ],
+        [
+          "4_Hyperliquid_Analysis.parquet",
+          9
+        ],
+        [
+          "5_OI.parquet",
+          1
+        ]
+      ]
+    },
+    "BTCUSD.pi": {
+      "matched_feed_count": 40,
+      "matched_feeds": [
+        [
+          "00_MT5_Account_Telemetry.parquet",
+          1
+        ],
+        [
+          "1_Crypto_ETF_Flows.parquet",
+          19
+        ],
+        [
+          "2_Spot_Netflow_S.parquet",
+          3
+        ],
+        [
+          "2_Future_Netflow.parquet",
+          1
+        ],
+        [
+          "3_Exchanges_LS_Ratio_15M.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_1H.parquet",
+          25
+        ],
+        [
+          "3_Exchanges_LS_Ratio_4H.parquet",
+          25
+        ],
+        [
+          "4_Hyperliquid_Analysis.parquet",
+          336
+        ]
+      ]
+    }
+  }
+}
