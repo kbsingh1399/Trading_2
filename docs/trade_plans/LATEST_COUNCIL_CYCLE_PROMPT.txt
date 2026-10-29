@@ -1,103 +1,9 @@
-
-
-### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (`cycle_envelope.json`):
-```json
-{
-  "schema_version": "1.1.0",
-  "cycle_id": "Cycle-20261028T183502Z",
-  "uuid": "f7c1f709-21d2-4e99-8eae-e020d95267a4",
-  "dispatch_nonce": "2966b2c8-2122-4878-b48a-919080f422ab",
-  "cutoff_utc": "2026-10-28 18:35:02 UTC",
-  "provenance": {
-    "git_commit": "32451f5964e3b69dd73d1ae2a501887af626c6e3",
-    "git_tree": "d2c6088623644c1af2cbbdceffd039213cfe8c4f",
-    "prompt_sha256": "e50c7d1e40d23fbf94ff283f1fe82c37c17a141d580fe238df71c356cf85b29b",
-    "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
-    "evidence_manifest_sha256": "6b25a427c9a53cf4f5b1fb71ed910e8208c1b042647eccf79959ee9e6df11009",
-    "parquet_freshness_verified": true,
-    "parquet_audit_scorecard_fresh": true
-  },
-  "inventory": {
-    "account_login": 5064568,
-    "server": "BlueberryMarketsSVG-Live",
-    "currency": "USD",
-    "balance": 4782.61,
-    "equity": 4782.61,
-    "margin_used": 0.0,
-    "margin_free": 4782.61,
-    "margin_level": 0.0,
-    "active_positions_count": 0,
-    "pending_orders_count": 1,
-    "active_positions": [],
-    "pending_orders": [
-      {
-        "ticket": 19424811,
-        "time_setup": 1793216128,
-        "time_setup_msc": 1793216128736,
-        "time_done": 0,
-        "time_done_msc": 0,
-        "time_expiration": 0,
-        "type": 3,
-        "type_time": 0,
-        "type_filling": 2,
-        "state": 1,
-        "magic": 108002,
-        "position_id": 0,
-        "position_by_id": 0,
-        "reason": 3,
-        "volume_initial": 0.5,
-        "volume_current": 0.5,
-        "price_open": 2365.5,
-        "sl": 2375.5,
-        "tp": 2340.5,
-        "price_current": 2345.5,
-        "price_stoplimit": 0.0,
-        "symbol": "ETHUSD.pi",
-        "comment": "HighConf_ETH_Limit",
-        "external_id": ""
-      }
-    ]
-  },
-  "solvency": {
-    "hard_floor_usd": 4600.0,
-    "operating_buffer_usd": 4650.0,
-    "solvency_kernel_usd": 4795.0,
-    "base_capital_usd": 4782.61,
-    "hard_floor_cushion_usd": 182.61,
-    "operating_buffer_cushion_usd": 132.61,
-    "kernel_cushion_usd": -12.39,
-    "global_contingency_reserve_usd": 2.0,
-    "existing_ticket_stress_usd": 8.25,
-    "realized_headroom_usd": -22.64,
-    "post_joint_stress_equity_usd": 4772.36,
-    "capital_mode": "TIER_0_DEFENSIVE",
-    "risk_min_usd": 10.0,
-    "risk_max_usd": 10.0,
-    "nominal_risk_capacity_usd": 0.0,
-    "max_concurrent_tickets": 4,
-    "new_risk_admissible": false,
-    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
-  },
-  "market_clocks": {
-    "broker_clock_open": true,
-    "native_market_open": true,
-    "calendar_verified": true,
-    "day_of_week": "Wednesday",
-    "market_regime": "FULL_MARKET_OPEN",
-    "tradfi_markets_open": true,
-    "crypto_perpetuals_open": true,
-    "rollover_embargo_active": false,
-    "rollover_window": "21:15-22:30 UTC"
-  },
-  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
-  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
-}
-```
-
-# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION
+# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION — [Cycle_014]
 ## Dossier-Centric Multi-Agent Squad Audit & Full-Length Forensic Candidate Discovery Specification
 
 > **Document Status**: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
+> **Active Execution Cycle**: **Cycle_014** (Cutoff Timestamp: 2026-10-29 20:52:07 UTC)  
+> **Mandatory Cycle Stamping**: Every prompt, deliberation section, and JSON response MUST be explicitly stamped with this exact Cycle Number: **Cycle_014**.  
 > **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md` & `docs/specs/Arena_GLM_Standard_Prompt.md`)  
 > **Council Architecture**:  
 >   1. **Antigravity Executive Desk**: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents (Seat #1 — Final Boss).  
@@ -122,6 +28,298 @@
 
 ---
 
+### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE & TELEMETRY RECEIPT:
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle_014",
+  "uuid": "0c6cf0fb-b4f4-477e-8d41-12d28c060ae1",
+  "dispatch_nonce": "21cc823f-0dbf-4d40-8249-6c7d1ce2c3e4",
+  "cutoff_utc": "2026-10-29 20:51:43 UTC",
+  "provenance": {
+    "git_commit": "8e102263808e890c00c8750cdee331c9ac697b1f",
+    "git_tree": "0d5d2e65076f2be186e2a77893c7b9010fd235c4",
+    "prompt_sha256": "562f65b31a40ac9ef9bdc03731e450e52c8b49f7d0122c701bd010afed3a0b37",
+    "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
+    "evidence_manifest_sha256": "e87e06fcaf8c12ce1ff39467f3b374b057fac3b8a2927798bd0770df015447f2",
+    "parquet_freshness_verified": true,
+    "parquet_audit_scorecard_fresh": true
+  },
+  "inventory": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "currency": "USD",
+    "balance": 4762.83,
+    "equity": 4762.83,
+    "margin_used": 0.0,
+    "margin_free": 4762.83,
+    "margin_level": 0.0,
+    "active_positions_count": 0,
+    "pending_orders_count": 6,
+    "active_positions": [],
+    "pending_orders": [
+      {
+        "ticket": 19489155,
+        "time_setup": 1793313519,
+        "time_setup_msc": 1793313519559,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.01,
+        "volume_current": 0.01,
+        "price_open": 81084.0,
+        "sl": 81680.0,
+        "tp": 80180.0,
+        "price_current": 79236.0,
+        "price_stoplimit": 0.0,
+        "symbol": "BTCUSD.pi",
+        "comment": "TC_BTC_VAH_Fade",
+        "external_id": ""
+      },
+      {
+        "ticket": 19489157,
+        "time_setup": 1793313519,
+        "time_setup_msc": 1793313519904,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.05,
+        "volume_current": 0.05,
+        "price_open": 753.3,
+        "sl": 761.5,
+        "tp": 743.5,
+        "price_current": 701.4,
+        "price_stoplimit": 0.0,
+        "symbol": "BNBUSD.p",
+        "comment": "TC_BNB_Wall_Fade",
+        "external_id": ""
+      },
+      {
+        "ticket": 19489158,
+        "time_setup": 1793313520,
+        "time_setup_msc": 1793313520072,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.01,
+        "volume_current": 0.01,
+        "price_open": 4040.5,
+        "sl": 4049.5,
+        "tp": 4018.0,
+        "price_current": 4019.91,
+        "price_stoplimit": 0.0,
+        "symbol": "XAUUSD.pi",
+        "comment": "TC_XAU_VAH_Fade",
+        "external_id": ""
+      },
+      {
+        "ticket": 19489159,
+        "time_setup": 1793313520,
+        "time_setup_msc": 1793313520245,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.01,
+        "volume_current": 0.01,
+        "price_open": 29535.0,
+        "sl": 29620.0,
+        "tp": 29320.0,
+        "price_current": 29052.11,
+        "price_stoplimit": 0.0,
+        "symbol": "NAS100.p",
+        "comment": "TC_NAS_VAH_Fade",
+        "external_id": ""
+      },
+      {
+        "ticket": 19489160,
+        "time_setup": 1793313520,
+        "time_setup_msc": 1793313520413,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.01,
+        "volume_current": 0.01,
+        "price_open": 52638.0,
+        "sl": 52732.0,
+        "tp": 52402.0,
+        "price_current": 52320.06,
+        "price_stoplimit": 0.0,
+        "symbol": "DJ30.p",
+        "comment": "TC_DJ_VAH_Fade",
+        "external_id": ""
+      },
+      {
+        "ticket": 19490051,
+        "time_setup": 1793315615,
+        "time_setup_msc": 1793315615339,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 2,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 20261030,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.08,
+        "volume_current": 0.08,
+        "price_open": 0.7027,
+        "sl": 0.7015,
+        "tp": 0.7057,
+        "price_current": 0.70277,
+        "price_stoplimit": 0.0,
+        "symbol": "AUDUSD.pi",
+        "comment": "TriCouncil C11 AUDUSD",
+        "external_id": ""
+      }
+    ]
+  },
+  "solvency": {
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "solvency_kernel_usd": 4795.0,
+    "base_capital_usd": 4762.83,
+    "hard_floor_cushion_usd": 162.83,
+    "operating_buffer_cushion_usd": 112.83,
+    "kernel_cushion_usd": -32.17,
+    "global_contingency_reserve_usd": 2.0,
+    "existing_ticket_stress_usd": 65.5875,
+    "realized_headroom_usd": -99.76,
+    "post_joint_stress_equity_usd": 4695.24,
+    "capital_mode": "TIER_0_DEFENSIVE",
+    "risk_min_usd": 10.0,
+    "risk_max_usd": 10.0,
+    "nominal_risk_capacity_usd": 0.0,
+    "max_concurrent_tickets": 4,
+    "new_risk_admissible": false,
+    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
+  },
+  "market_clocks": {
+    "broker_clock_open": true,
+    "native_market_open": true,
+    "calendar_verified": true,
+    "day_of_week": "Thursday",
+    "market_regime": "FULL_MARKET_OPEN",
+    "tradfi_markets_open": true,
+    "crypto_perpetuals_open": true,
+    "rollover_embargo_active": false,
+    "rollover_window": "21:15-22:30 UTC"
+  },
+  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
+  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
+}
+
+### ⚡ VERIFIED LIVE EXECUTION PREFLIGHT RECEIPT (`execution_preflight_receipt.json`):
+```json
+{
+  "schema_version": "1.0.0",
+  "dispatch_nonce": "21cc823f-0dbf-4d40-8249-6c7d1ce2c3e4",
+  "observed_at_utc": "2026-10-27 13:12:05 UTC",
+  "account": {
+    "login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "balance": 4837.08,
+    "equity": 4837.08,
+    "margin_free": 4837.08
+  },
+  "candidate": {
+    "symbol": "BTCUSD.pi",
+    "action": "SELL_LIMIT",
+    "volume": 0.01,
+    "price": 80350.0,
+    "sl": 80473.74,
+    "tp": 79604.18
+  },
+  "broker_tick": {
+    "bid": 80110.0,
+    "ask": 80126.0,
+    "mid": 80118.0,
+    "spread_raw": 16.0,
+    "spread_bps": 2.0,
+    "spread_cost_usd": 0.16,
+    "broker_server_time_raw": 1793117524,
+    "broker_server_offset_seconds": 10800.0,
+    "tick_time_utc": "2026-10-27 13:12:04 UTC",
+    "tick_age_seconds": 1.0,
+    "clock_skew_seconds": -3.19,
+    "quote_fresh": true
+  },
+  "broker_spec": {
+    "digits": 2,
+    "point": 0.01,
+    "trade_mode": 4,
+    "trade_mode_desc": "FULL",
+    "volume_min": 0.01,
+    "volume_step": 0.01,
+    "volume_max": 100.0,
+    "stops_level": 0,
+    "contract_size": 1.0
+  },
+  "broker_valuation": {
+    "profit_at_sl_usd": -1.24,
+    "profit_at_tp_usd": 7.46,
+    "margin_required_usd": 401.75,
+    "base_nominal_risk_usd": 1.24,
+    "exit_spread_cost_usd": 0.16,
+    "total_nominal_risk_usd": 1.4,
+    "ticket_stress_usd": 3.75,
+    "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
+  },
+  "order_check": {
+    "pass": true,
+    "retcode": 0,
+    "comment": "Done",
+    "margin_level_post_order": 1204.0,
+    "margin_free_post_order": 4435.33
+  },
+  "preflight_verdict": "PREFLIGHT_PASS",
+  "receipt_sha256": "5cd08d81be44c8475322ac70670e27c5b26450121c1413846738f1f3649f56cf"
+}
+```
+
+---
+
 ## 🛑 CANONICAL OPERATOR MANDATE: FULL-LENGTH DOSSIER FORENSICS ONLY
 
 > **STRICT PROHIBITION ON TRUNCATION, SUMMARIES, OR SELECTIVE READING**:
@@ -132,6 +330,9 @@
 >    - All entry levels, stop losses, and take profits must be extracted and verified directly against the asset's Value Area auction boundaries (VAH, VAL, POC), resting institutional whale armor (> 100K USD, > 180s persistence), multi-timeframe CVD delta absorption, and liquidation cascade zones.
 > 3. **Autonomous Multi-Agent Squad Mobilization**:
 >    - You MUST mobilize deep cognitive reasoning and orchestrate a complete **Autonomous Multi-Agent Quantitative Squad** deploying 4 exhaustive, specialized personas.
+> 4. **Mandatory Cycle Identifier Stamping (Strict Non-Negotiable Mandate)**:
+>    - Every prompt, deliberation section, persona output, and final broker execution block MUST explicitly state and be stamped with the active Cycle ID: **Cycle_014**.
+>    - Responses omitting or citing an inconsistent Cycle ID are strictly rejected fail-closed as non-compliant and non-verifiable.
 
 ---
 
@@ -163,9 +364,9 @@ You are FORBIDDEN from generating an unstructured or single-voice output. Your d
 - **Mandate**: Protect account solvency, prevent catastrophic ruin, and enforce capital defense invariants.
 - **Key Protocols**:
   * Enforce the **Triple Capital Floor Defense**:
-    - Current Realized Balance: **4,742.31 USD**
-    - Hard Capital Floor: **4,775.00 USD** (Statutory Drawdown Floor | Deficit: -32.69 USD)
-    - Operating Buffer: **4,795.00 USD** (Solvency Kernel Floor | Deficit: -52.69 USD)
+    - Current Realized Balance: **4,762.83 USD**
+    - Hard Capital Floor: **4,775.00 USD** (Statutory Drawdown Floor | Deficit: -12.17 USD)
+    - Operating Buffer: **4,795.00 USD** (Solvency Kernel Floor | Deficit: -32.17 USD)
   * Sizing & Capacity Policy:
     - Nominal risk per single ticket strictly capped at **<= 10.00 USD** ($0.20\%$ base risk).
     - True contract point multipliers on MT5 verified (e.g. 1.0 USD/pt on Indices/Metals vs lot size).
@@ -206,6 +407,7 @@ Conduct a formal skills-gap audit demonstrating how specialized toolkits sharpen
 Your response must strictly adhere to the following 7-section structure:
 
 ### §1. Provenance, Telemetry & Solvency Kernel Audit
+- Explicitly declare and verify the active Cycle Identifier: **Cycle_014** (Cutoff: 2026-10-29 20:52:07 UTC).
 - Reconcile live MT5 balance, equity, margin level, and capital floor distance.
 - Confirm feed timestamps and verify parity across git main and local state.
 
@@ -237,4 +439,4 @@ Your response must strictly adhere to the following 7-section structure:
 - Evaluate structural validity, whale wall persistence, and time decay.
 
 ### §7. Standardized Machine-Readable JSON Output Block
-- Return the standardized JSON payload containing `cycle_id`, `account_solvency`, `active_staged_orders`, `high_confluence_formulated_trades`, and `disputes_or_rejections`.
+- Return the standardized JSON payload explicitly bound with `"cycle_id": "Cycle_014"`, `account_solvency`, `active_staged_orders`, `high_confluence_formulated_trades`, and `disputes_or_rejections`.

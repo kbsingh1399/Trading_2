@@ -142,36 +142,38 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 
 ---
 
-### ⏳ Cycle_014 Scorecard: PRE-INITIALIZED & ARMED
-**Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
+### ⏳ Cycle_014 Scorecard: DISPATCHED & MONITORED BY WATCHDOG
+**Dispatched At**: `2026-10-30 02:22:15 IST` (`2026-10-29 20:52:15 UTC`) | **Watchdog Task**: `task-161567` | **Target Interval**: `20 Minutes`
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`.
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`.
 
-- [ ] **Step 1: Identify Eligible Assets**
-  - [ ] Live MT5 account telemetry interrogated (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Spread thresholds validated: TradFi <= 5.0 bps, Crypto <= 25.0 bps.
+- [x] **Step 1: Identify Eligible Assets**
+  - [x] Live MT5 account telemetry interrogated (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Spread thresholds validated: TradFi <= 5.0 bps, Crypto <= 25.0 bps (85 assets eligible).
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics**
-  - [ ] Full-length master dossier examination executed across all 4 macro sectors:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics**
+  - [x] Full-length master dossier examination executed across all 4 macro sectors:
     * Crypto: `docs/dossiers/BTC_MASTER_DOSSIER.md` (Sections 1-10 read).
-    * Precious Metals: `docs/dossiers/XAUUSD_MASTER_DOSSIER.md` (1,011 lines read to EOF).
-    * Global Indices: `docs/dossiers/NAS100_MASTER_DOSSIER.md` & `docs/dossiers/DJ30_MASTER_DOSSIER.md`.
-    * FX Majors: `docs/dossiers/AUDUSD_MASTER_DOSSIER.md`.
-  - [ ] SL immunity against short max pain & liquidation cascades verified.
+    * Precious Metals: `docs/dossiers/XAUUSD_MASTER_DOSSIER.md` (100% lines 1-661 read to EOF).
+    * Global Indices: `docs/dossiers/NAS100_MASTER_DOSSIER.md` (100% 301 lines read to EOF) & `docs/dossiers/DJ30_MASTER_DOSSIER.md` (100% 285 lines read to EOF).
+    * FX Majors: `docs/dossiers/AUDUSD_MASTER_DOSSIER.md` (100% 309 lines read to EOF).
+  - [x] SL immunity against short max pain & liquidation cascades verified.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry**
-  - [ ] `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` synchronized with live MT5 tickets.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry**
+  - [x] `cycle_envelope.json` generated for `Cycle_014` with balance 4,762.83 USD and 6 pending maker orders.
+  - [x] `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` synchronized with live MT5 tickets.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai**
-  - [ ] Explicitly stamp and embed the active Cycle ID (`Cycle_014`) in the prompt header, metadata block, and JSON schema.
-  - [ ] Dispatch Cycle_014 prompt to Arena.ai, Z.ai (GLM-5.3-Flash), and Web2API.
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai**
+  - [x] Explicitly stamped and embedded the active Cycle ID (`Cycle_014`) in the prompt header, metadata block, and JSON schema.
+  - [x] Dispatched Cycle_014 prompt to Arena.ai, Z.ai (GLM-5.3-Flash), and Web2API.
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_014 --timeout 1200` to monitor Arena.ai and Z.ai completion status.
+  - [x] Launched `rock_hard_dual_watchdog.py --cycle Cycle_014 --timeout 1200` (`task-161567`) to monitor Arena.ai and Z.ai completion status.
+  - [ ] Awaiting watchdog completion and council output harvest (`ARENA_LATEST_RAW.md` & `ZAI_LATEST_RAW.md`).
 
 - [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades**
   - [ ] Conduct Tri-Council deliberation comparison, interrogate live orders ('Should I let it run or cut it?'), punch consensus limit orders, and trail stops.
