@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: TRX
 **Canonical Key**: `TRX` | **Broker Instrument**: `TRXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-29 23:04:09 IST` (`2026-10-29 17:34:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:07:12 IST` (`2026-10-29 17:37:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.3306` | **Live Ask Quote**: `0.3317` | **Mid Price**: `0.3311`
-- **Spread Points**: `11.00` | **Spread BPS**: `33.22 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.3307` | **Live Ask Quote**: `0.3317` | **Mid Price**: `0.3312`
+- **Spread Points**: `10.00` | **Spread BPS**: `30.19 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.3302` | VWAP Z-Score: `+0.26` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000362` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `42.60` (State: `NEUTRAL`)
+  * Session VWAP: `0.3302` | VWAP Z-Score: `+0.38` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000365` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `45.33` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.3326` | Lower -3.00σ Band: `0.3278`
-  * Upper +2.51σ Band: `0.3322` | Lower -2.51σ Band: `0.3282`
+  * Upper +3.00σ Band: `0.3325` | Lower -3.00σ Band: `0.3279`
+  * Upper +2.51σ Band: `0.3322` | Lower -2.51σ Band: `0.3283`
   * Upper +2.01σ Band: `0.3318` | Lower -2.01σ Band: `0.3286`
-  * Upper +2.00σ Band: `0.3318` | Lower -2.00σ Band: `0.3286`
+  * Upper +2.00σ Band: `0.3318` | Lower -2.00σ Band: `0.3287`
   * Upper +1.28σ Band: `0.3312` | Lower -1.28σ Band: `0.3292`
   * Upper +1.00σ Band: `0.3310` | Lower -1.00σ Band: `0.3294`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.3306` | EMA-20=`0.3307` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.3306` (Slope: `+0.0000`) | EMA-100=`0.3304`
-  * Institutional Anchors: EMA-144=`0.3302` | EMA-200=`0.3299` (Slope: `+0.0285`) | EMA-233=`0.3299`
+  * Institutional Anchors: EMA-144=`0.3302` | EMA-200=`0.3299` (Slope: `+0.0274`) | EMA-233=`0.3299`
 - **Range Boundaries**: 24H High=`0.3313` | 24H Low=`0.3285` | Weekly High=`0.3319` | Weekly Low=`0.3266`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.3312` (Distance: `-0.02%`)
-  * Point of Control (POC) = `0.3307` (Distance: `+0.14%`)
-  * Value Area Low (VAL) = `0.3293` (Distance: `+0.57%`)
+  * Value Area High (VAH) = `0.3312` (Distance: `-0.00%`)
+  * Point of Control (POC) = `0.3307` (Distance: `+0.15%`)
+  * Value Area Low (VAL) = `0.3293` (Distance: `+0.58%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.3314` | POC=`0.3309` | VAL=`0.3304`
@@ -59,8 +59,8 @@
   * New York Session (13:00-21:00 UTC): High=`0.3313` | Low=`0.3301`
   * Initial Balance (First Hour): IB High=`0.3311` | IB Low=`0.3303`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.3298` - `0.3325`
-  * Optimal Trade Entry (OTE 0.705): `0.3318`
+  * Golden Pocket Zone (0.618 - 0.650): `0.3299` - `0.3325`
+  * Optimal Trade Entry (OTE 0.705): `0.3319`
   * Structural Invalidation Anchor (0.786): `0.3338`
 
 ---
@@ -101,7 +101,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`0.3311`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`0.3312`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:54:46 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 23:06:38 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -121,10 +121,8 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.3301` | 8,066.50 USD | `-` | `NEWS_INTEL` | `-` | #TRX Whale SELL: 8.07K USD at 0.3301 USD [API] | `2026-10-27 20:00:26` |
-| `ANNOUNCEMENT` | `INFO` | `0.3314` | 5,097.11 USD | `-` | `NEWS_INTEL` | `-` | #TRX Whale SELL: 5.10K USD at 0.3314 USD [API] | `2026-10-27 20:57:45` |
-| `ANNOUNCEMENT` | `INFO` | `0.3314` | 8,099.73 USD | `-` | `NEWS_INTEL` | `-` | #TRX Whale SELL: 8.10K USD at 0.3314 USD [API] | `2026-10-27 20:58:48` |
 | `ANNOUNCEMENT` | `INFO` | `0.3315` | 8,100.46 USD | `-` | `NEWS_INTEL` | `-` | #TRX Whale SELL: 8.10K USD at 0.3315 USD [API] | `2026-10-27 21:38:06` |
+| `ANNOUNCEMENT` | `INFO` | `0.3312` | 6,465.75 USD | `-` | `NEWS_INTEL` | `-` | #TRX Whale SELL: 6.47K USD at 0.3312 USD [API] | `2026-10-27 22:40:07` |
 
 
 ---
@@ -1095,14 +1093,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.3293` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3272` (Risk Distance: `0.0022` pts)
-  * +2.5R Take Profit: `0.3348`
+  * Spread-Padded Stop Loss: `0.3274` (Risk Distance: `0.0020` pts)
+  * +2.5R Take Profit: `0.3343`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.3312` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.3333` (Risk Distance: `0.0022` pts)
-  * +2.5R Take Profit: `0.3257`
+  * Spread-Padded Stop Loss: `0.3331` (Risk Distance: `0.0020` pts)
+  * +2.5R Take Profit: `0.3262`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NEAR
 **Canonical Key**: `NEAR` | **Broker Instrument**: `NERUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-29 23:04:10 IST` (`2026-10-29 17:34:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:07:12 IST` (`2026-10-29 17:37:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `4.54` | **Live Ask Quote**: `4.57` | **Mid Price**: `4.56`
-- **Spread Points**: `29.00` | **Spread BPS**: `63.66 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `4.54` | **Live Ask Quote**: `4.56` | **Mid Price**: `4.55`
+- **Spread Points**: `29.00` | **Spread BPS**: `63.73 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,12 +23,12 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `4.47` | VWAP Z-Score: `+0.80` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0496` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `56.75` (State: `NEUTRAL`)
+  * Session VWAP: `4.47` | VWAP Z-Score: `+0.81` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0478` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `57.01` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `4.77` | Lower -3.00σ Band: `4.17`
-  * Upper +2.51σ Band: `4.72` | Lower -2.51σ Band: `4.21`
+  * Upper +2.51σ Band: `4.72` | Lower -2.51σ Band: `4.22`
   * Upper +2.01σ Band: `4.67` | Lower -2.01σ Band: `4.27`
   * Upper +2.00σ Band: `4.67` | Lower -2.00σ Band: `4.27`
   * Upper +1.28σ Band: `4.60` | Lower -1.28σ Band: `4.34`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`4.57` | EMA-20=`4.53` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`4.49` (Slope: `+0.0000`) | EMA-100=`4.51`
-  * Institutional Anchors: EMA-144=`4.52` | EMA-200=`4.52` (Slope: `+0.1290`) | EMA-233=`4.52`
+  * Institutional Anchors: EMA-144=`4.52` | EMA-200=`4.52` (Slope: `+0.1550`) | EMA-233=`4.52`
 - **Range Boundaries**: 24H High=`4.80` | 24H Low=`4.27` | Weekly High=`4.80` | Weekly Low=`4.27`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `4.65` (Distance: `-1.97%`)
-  * Point of Control (POC) = `4.41` (Distance: `+3.34%`)
-  * Value Area Low (VAL) = `4.38` (Distance: `+3.95%`)
+  * Value Area High (VAH) = `4.64` (Distance: `-2.03%`)
+  * Point of Control (POC) = `4.41` (Distance: `+3.20%`)
+  * Value Area Low (VAL) = `4.38` (Distance: `+3.81%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`4.73` | POC=`4.68` | VAL=`4.61`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`4.67` | Low=`4.34`
   * Initial Balance (First Hour): IB High=`4.50` | IB Low=`4.43`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `4.54` - `4.57`
+  * Golden Pocket Zone (0.618 - 0.650): `4.53` - `4.57`
   * Optimal Trade Entry (OTE 0.705): `4.56`
   * Structural Invalidation Anchor (0.786): `4.59`
 
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:54:46 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 23:06:38 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -156,12 +156,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `4.63` | 5,887.58 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale BUY: 5.89K USD at 4.6337 USD [API] | `2026-10-27 19:29:16` |
-| `ANNOUNCEMENT` | `INFO` | `4.66` | 7,199.68 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale BUY: 7.20K USD at 4.6624 USD [API] | `2026-10-27 19:45:07` |
-| `ANNOUNCEMENT` | `INFO` | `4.62` | 5,953.81 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale BUY: 5.95K USD at 4.6236 USD [API] | `2026-10-27 20:39:38` |
-| `ANNOUNCEMENT` | `INFO` | `4.63` | 5,532.85 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale BUY: 5.53K USD at 4.6331 USD [API] | `2026-10-27 20:47:56` |
-| `ANNOUNCEMENT` | `INFO` | `4.63` | 19.00 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 0.02K USD at 4.6336 USD [API] | `2026-10-27 16:31:27` |
-| `ANNOUNCEMENT` | `INFO` | `4.63` | 470.31 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 0.47K USD at 4.6336 USD [API] | `2026-10-27 16:31:27` |
 | `ANNOUNCEMENT` | `INFO` | `4.73` | 8,803.46 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale SELL: 8.80K USD at 4.7333 USD [API] | `2026-10-27 21:35:14` |
 | `ANNOUNCEMENT` | `INFO` | `4.79` | 1,192.73 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 1.19K USD at 4.7901 USD [API] | `2026-10-27 21:36:29` |
 | `ANNOUNCEMENT` | `INFO` | `4.80` | 1,045.02 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 1.05K USD at 4.8025 USD [API] | `2026-10-27 21:38:12` |
@@ -184,6 +178,9 @@
 | `ANNOUNCEMENT` | `INFO` | `4.68` | 8,970.50 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale SELL: 8.97K USD at 4.6814 USD [API] | `2026-10-27 21:58:24` |
 | `ANNOUNCEMENT` | `INFO` | `4.80` | 8,264.72 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 8.26K USD at 4.8020 USD [API] | `2026-10-27 21:38:12` |
 | `ANNOUNCEMENT` | `INFO` | `4.80` | 9,012.08 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Liquidated Long: 9.01K USD at 4.7957 USD [API] | `2026-10-27 21:36:32` |
+| `ANNOUNCEMENT` | `INFO` | `4.68` | 5,008.79 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale BUY: 5.01K USD at 4.6798 USD [API] | `2026-10-27 22:04:55` |
+| `ANNOUNCEMENT` | `INFO` | `4.66` | 7,438.81 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale SELL: 7.44K USD at 4.6577 USD [API] | `2026-10-27 22:09:24` |
+| `ANNOUNCEMENT` | `INFO` | `4.66` | 5,026.59 USD | `-` | `NEWS_INTEL` | `-` | #NEAR Whale SELL: 5.03K USD at 4.6577 USD [API] | `2026-10-27 22:09:23` |
 
 
 ---
@@ -2469,13 +2466,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `4.38` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `4.28` (Risk Distance: `0.1030` pts)
+  * Spread-Padded Stop Loss: `4.28` (Risk Distance: `0.1009` pts)
   * +2.5R Take Profit: `4.64`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `4.65` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `4.75` (Risk Distance: `0.1030` pts)
+  * Execution Entry: `4.64` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `4.75` (Risk Distance: `0.1009` pts)
   * +2.5R Take Profit: `4.39`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

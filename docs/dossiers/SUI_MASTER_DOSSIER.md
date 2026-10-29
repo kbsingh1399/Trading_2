@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SUI
 **Canonical Key**: `SUI` | **Broker Instrument**: `SUIUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-29 23:04:10 IST` (`2026-10-29 17:34:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:07:12 IST` (`2026-10-29 17:37:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -106,52 +106,52 @@
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID` | `0.9431` | `500.0000` | 471.57 USD | 34,433.58 USD | `1 orders` | `-0.04%` | `-` |
-| `BID` | `0.9431` | `2544.5000` | 2,399.79 USD | 36,833.37 USD | `1 orders` | `-0.04%` | `-` |
-| `BID` | `0.9431` | `500.0000` | 471.55 USD | 37,304.92 USD | `1 orders` | `-0.05%` | `-` |
-| `BID` | `0.9431` | `2210.7000` | 2,084.89 USD | 39,389.81 USD | `1 orders` | `-0.05%` | `-` |
-| `BID` | `0.9431` | `17684.3000` | 16,677.71 USD | 56,067.52 USD | `1 orders` | `-0.05%` | `-` |
-| `BID` | `0.9431` | `5307.5000` | 5,005.34 USD | 61,072.87 USD | `1 orders` | `-0.05%` | `-` |
-| `BID` | `0.9432` | `8684.4000` | 8,191.47 USD | 23,652.81 USD | `2 orders` | `-0.03%` | `-` |
-| `BID` | `0.9432` | `2120.3000` | 1,999.93 USD | 25,652.74 USD | `1 orders` | `-0.03%` | `-` |
-| `BID` | `0.9432` | `2210.6000` | 2,084.99 USD | 27,737.74 USD | `1 orders` | `-0.04%` | `-` |
-| `BID` | `0.9432` | `2210.7000` | 2,085.07 USD | 29,822.80 USD | `1 orders` | `-0.04%` | `-` |
-| `BID` | `0.9432` | `500.0000` | 471.58 USD | 30,294.38 USD | `1 orders` | `-0.04%` | `-` |
-| `BID` | `0.9432` | `3888.7000` | 3,667.63 USD | 33,962.01 USD | `2 orders` | `-0.04%` | `-` |
-| `BID` | `0.9433` | `2210.6000` | 2,085.35 USD | 8,956.25 USD | `1 orders` | `-0.02%` | `-` |
-| `BID` | `0.9433` | `2210.7000` | 2,085.42 USD | 11,041.66 USD | `1 orders` | `-0.02%` | `-` |
-| `BID` | `0.9433` | `2474.7000` | 2,334.41 USD | 13,376.07 USD | `2 orders` | `-0.02%` | `-` |
-| `BID` | `0.9433` | `2210.7000` | 2,085.26 USD | 15,461.34 USD | `1 orders` | `-0.03%` | `-` |
-| `BID` | `0.9434` | `2672.7000` | 2,521.48 USD | 3,522.49 USD | `2 orders` | `-0.01%` | `-` |
-| `BID` | `0.9434` | `1061.1000` | 1,001.02 USD | 4,523.51 USD | `1 orders` | `-0.02%` | `-` |
-| `BID` | `0.9434` | `2488.3000` | 2,347.39 USD | 6,870.90 USD | `1 orders` | `-0.02%` | `-` |
-| `MID_SPREAD` | `0.9435` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 0.94` | `0.00%` | `-` |
-| `BID` | `0.9435` | `1061.0000` | 1,001.01 USD | 1,001.01 USD | `1 orders` | `-0.01%` | `-` |
-| `ASK` | `0.9436` | `400.0000` | 377.46 USD | 388.50 USD | `1 orders` | `+0.01%` | `-` |
-| `ASK` | `0.9436` | `11.7000` | 11.04 USD | 11.04 USD | `1 orders` | `+0.01%` | `-` |
-| `ASK` | `0.9437` | `400.0000` | 377.49 USD | 3,453.58 USD | `1 orders` | `+0.02%` | `-` |
-| `ASK` | `0.9437` | `1401.0000` | 1,322.11 USD | 3,076.09 USD | `2 orders` | `+0.02%` | `-` |
-| `ASK` | `0.9437` | `386.2000` | 364.45 USD | 1,753.98 USD | `2 orders` | `+0.02%` | `-` |
-| `ASK` | `0.9437` | `1060.8000` | 1,001.03 USD | 1,389.53 USD | `1 orders` | `+0.01%` | `-` |
-| `ASK` | `0.9438` | `447.7000` | 422.56 USD | 9,088.96 USD | `1 orders` | `+0.03%` | `-` |
-| `ASK` | `0.9438` | `2119.0000` | 1,999.98 USD | 8,666.41 USD | `1 orders` | `+0.03%` | `-` |
-| `ASK` | `0.9438` | `3404.2000` | 3,212.85 USD | 6,666.43 USD | `2 orders` | `+0.03%` | `-` |
-| `ASK` | `0.9439` | `5802.7000` | 5,477.46 USD | 34,863.51 USD | `2 orders` | `+0.05%` | `-` |
-| `ASK` | `0.9439` | `1562.8000` | 1,475.19 USD | 29,386.05 USD | `2 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `52.9000` | 49.93 USD | 27,910.86 USD | `1 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `7513.5000` | 7,092.14 USD | 27,860.92 USD | `2 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `2079.4000` | 1,962.75 USD | 20,768.78 USD | `2 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `2210.7000` | 2,086.66 USD | 18,806.04 USD | `1 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `6113.2000` | 5,770.07 USD | 16,719.38 USD | `3 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9439` | `1971.0000` | 1,860.35 USD | 10,949.31 USD | `1 orders` | `+0.04%` | `-` |
-| `ASK` | `0.9440` | `2210.7000` | 2,086.88 USD | 42,190.86 USD | `1 orders` | `+0.05%` | `-` |
-| `ASK` | `0.9440` | `4237.5000` | 4,000.12 USD | 40,103.99 USD | `1 orders` | `+0.05%` | `-` |
-| `ASK` | `0.9440` | `1314.0000` | 1,240.36 USD | 36,103.87 USD | `1 orders` | `+0.05%` | `-` |
+| `BID` | `0.9418` | `2273.8000` | 2,141.58 USD | 51,180.65 USD | `1 orders` | `-0.06%` | `-` |
+| `BID` | `0.9418` | `3321.5000` | 3,128.32 USD | 54,308.97 USD | `2 orders` | `-0.06%` | `-` |
+| `BID` | `0.9418` | `5296.1000` | 4,988.03 USD | 59,296.99 USD | `2 orders` | `-0.06%` | `-` |
+| `BID` | `0.9418` | `79.6000` | 74.97 USD | 59,371.96 USD | `1 orders` | `-0.06%` | `-` |
+| `BID` | `0.9419` | `20458.1000` | 19,270.30 USD | 39,642.85 USD | `3 orders` | `-0.05%` | `-` |
+| `BID` | `0.9419` | `5314.0000` | 5,005.42 USD | 44,648.27 USD | `1 orders` | `-0.05%` | `-` |
+| `BID` | `0.9419` | `355.4000` | 334.76 USD | 44,983.03 USD | `2 orders` | `-0.05%` | `-` |
+| `BID` | `0.9419` | `3048.2000` | 2,871.13 USD | 47,854.16 USD | `1 orders` | `-0.05%` | `-` |
+| `BID` | `0.9419` | `1258.0000` | 1,184.91 USD | 49,039.07 USD | `2 orders` | `-0.05%` | `-` |
+| `BID` | `0.9420` | `500.0000` | 471.02 USD | 13,682.29 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9420` | `500.0000` | 471.01 USD | 14,153.30 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9420` | `2273.8000` | 2,141.94 USD | 16,295.24 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9420` | `500.0000` | 471.00 USD | 16,766.24 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9420` | `1705.3000` | 1,606.34 USD | 18,372.58 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9420` | `2123.2000` | 1,999.97 USD | 20,372.55 USD | `1 orders` | `-0.04%` | `-` |
+| `BID` | `0.9421` | `2273.7000` | 2,142.03 USD | 8,205.96 USD | `1 orders` | `-0.03%` | `-` |
+| `BID` | `0.9421` | `5313.1000` | 5,005.31 USD | 13,211.27 USD | `1 orders` | `-0.03%` | `-` |
+| `BID` | `0.9422` | `2546.5000` | 2,399.24 USD | 6,063.93 USD | `1 orders` | `-0.02%` | `-` |
+| `BID` | `0.9423` | `1062.3000` | 1,001.05 USD | 1,001.05 USD | `1 orders` | `-0.00%` | `-` |
+| `BID` | `0.9423` | `2826.9000` | 2,663.65 USD | 3,664.69 USD | `2 orders` | `-0.01%` | `-` |
+| `ASK` | `0.9424` | `672.3000` | 633.59 USD | 633.59 USD | `1 orders` | `+0.00%` | `-` |
+| `MID_SPREAD` | `0.9424` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 0.94` | `0.00%` | `-` |
+| `ASK` | `0.9425` | `2273.7000` | 2,143.03 USD | 8,884.64 USD | `1 orders` | `+0.02%` | `-` |
+| `ASK` | `0.9425` | `2274.0000` | 2,143.24 USD | 6,741.61 USD | `1 orders` | `+0.01%` | `-` |
+| `ASK` | `0.9425` | `1155.1000` | 1,088.67 USD | 4,598.36 USD | `2 orders` | `+0.01%` | `-` |
+| `ASK` | `0.9425` | `3051.7000` | 2,876.11 USD | 3,509.69 USD | `1 orders` | `+0.01%` | `-` |
+| `ASK` | `0.9426` | `1077.8000` | 1,015.99 USD | 22,699.70 USD | `1 orders` | `+0.03%` | `-` |
+| `ASK` | `0.9426` | `2273.6000` | 2,143.19 USD | 21,683.71 USD | `1 orders` | `+0.03%` | `-` |
+| `ASK` | `0.9426` | `5431.8000` | 5,120.18 USD | 19,540.53 USD | `2 orders` | `+0.03%` | `-` |
+| `ASK` | `0.9426` | `447.0000` | 421.35 USD | 14,420.35 USD | `1 orders` | `+0.02%` | `-` |
+| `ASK` | `0.9426` | `2459.3000` | 2,318.11 USD | 13,999.00 USD | `2 orders` | `+0.02%` | `-` |
+| `ASK` | `0.9426` | `2124.1000` | 2,002.13 USD | 11,680.89 USD | `1 orders` | `+0.02%` | `-` |
+| `ASK` | `0.9426` | `842.5000` | 794.12 USD | 9,678.76 USD | `1 orders` | `+0.02%` | `-` |
+| `ASK` | `0.9427` | `1296.0000` | 1,221.80 USD | 32,911.41 USD | `1 orders` | `+0.04%` | `-` |
+| `ASK` | `0.9427` | `3327.4000` | 3,136.81 USD | 31,689.61 USD | `2 orders` | `+0.04%` | `-` |
+| `ASK` | `0.9427` | `5309.6000` | 5,005.36 USD | 28,552.80 USD | `1 orders` | `+0.03%` | `-` |
+| `ASK` | `0.9427` | `899.3000` | 847.74 USD | 23,547.44 USD | `1 orders` | `+0.03%` | `-` |
+| `ASK` | `0.9428` | `1931.0000` | 1,820.62 USD | 55,951.94 USD | `1 orders` | `+0.05%` | `-` |
+| `ASK` | `0.9428` | `17750.2000` | 16,735.07 USD | 54,131.32 USD | `2 orders` | `+0.05%` | `-` |
+| `ASK` | `0.9428` | `1705.3000` | 1,607.76 USD | 37,396.25 USD | `1 orders` | `+0.04%` | `-` |
+| `ASK` | `0.9428` | `3051.7000` | 2,877.08 USD | 35,788.49 USD | `1 orders` | `+0.04%` | `-` |
 
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 22:54:46 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 23:06:38 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -165,14 +165,16 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.9265` | 5,006.50 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.01K USD at 0.9265 USD [API] | `2026-10-27 19:39:00` |
-| `ANNOUNCEMENT` | `INFO` | `0.9288` | 5,006.32 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.01K USD at 0.9288 USD [API] | `2026-10-27 19:45:33` |
-| `ANNOUNCEMENT` | `INFO` | `0.9283` | 15,178.96 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 15.18K USD at 0.9283 USD [API] | `2026-10-27 19:47:34` |
 | `ANNOUNCEMENT` | `INFO` | `0.9297` | 5,006.90 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 5.01K USD at 0.9297 USD [API] | `2026-10-27 21:45:02` |
 | `ANNOUNCEMENT` | `INFO` | `0.9297` | 12,732.19 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 12.73K USD at 0.9297 USD [API] | `2026-10-27 21:45:02` |
 | `ANNOUNCEMENT` | `INFO` | `0.9310` | 7,756.86 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 7.76K USD at 0.9310 USD [API] | `2026-10-27 21:46:21` |
 | `ANNOUNCEMENT` | `INFO` | `0.9292` | 10,211.91 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 10.21K USD at 0.9292 USD [API] | `2026-10-27 21:53:25` |
 | `ANNOUNCEMENT` | `INFO` | `0.9292` | 10,211.91 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 10.21K USD at 0.9292 USD [API] | `2026-10-27 21:53:25` |
+| `ANNOUNCEMENT` | `INFO` | `0.9297` | 5,807.03 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale BUY: 5.81K USD at 0.9297 USD [API] | `2026-10-27 22:04:53` |
+| `ANNOUNCEMENT` | `INFO` | `0.9297` | 10,217.29 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale BUY: 10.22K USD at 0.9297 USD [API] | `2026-10-27 22:04:53` |
+| `ANNOUNCEMENT` | `INFO` | `0.9275` | 9,715.98 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 9.72K USD at 0.9275 USD [API] | `2026-10-27 22:12:18` |
+| `ANNOUNCEMENT` | `INFO` | `0.9276` | 6,289.06 USD | `-` | `NEWS_INTEL` | `-` | #SUI Whale SELL: 6.29K USD at 0.9276 USD [API] | `2026-10-27 22:27:01` |
+| `ANNOUNCEMENT` | `INFO` | `0.9138` | 7,972.82 USD | `-` | `NEWS_INTEL` | `-` | #SUI Liquidated Long: 7.97K USD at 0.9138 USD [API] | `2026-10-24 14:16:53` |
 
 
 ---

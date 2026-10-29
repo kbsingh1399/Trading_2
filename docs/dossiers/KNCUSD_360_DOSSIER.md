@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KNCUSD
 **Canonical Key**: `KNCUSD` | **Broker Instrument**: `KNCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:04:11 IST` (`2026-10-29 17:34:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:07:13 IST` (`2026-10-29 17:37:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1069` | VWAP Z-Score: `+1.46` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000654` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.1070` | VWAP Z-Score: `+1.43` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000608` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `60.40` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.1112` | Lower -3.00σ Band: `0.1027`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `0.1088` | Lower -1.28σ Band: `0.1051`
   * Upper +1.00σ Band: `0.1084` | Lower -1.00σ Band: `0.1055`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1091` | EMA-20=`0.1083` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1075` (Slope: `+0.0000`) | EMA-100=`0.1077`
-  * Institutional Anchors: EMA-144=`0.1079` | EMA-200=`0.1082` (Slope: `+0.0823`) | EMA-233=`0.1083`
+  * Fast EMA Array: EMA-9=`0.1091` | EMA-20=`0.1084` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1076` (Slope: `+0.0000`) | EMA-100=`0.1077`
+  * Institutional Anchors: EMA-144=`0.1079` | EMA-200=`0.1082` (Slope: `+0.0999`) | EMA-233=`0.1083`
 - **Range Boundaries**: 24H High=`0.1110` | 24H Low=`0.1050` | Weekly High=`0.1110` | Weekly Low=`0.1050`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1072` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.1075` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.1060` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `0.1050` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1050` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.0742` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.0743` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.2050`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.1072` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1380` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.0072`
+  * Execution Entry: `0.1075` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.1382` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.0075`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

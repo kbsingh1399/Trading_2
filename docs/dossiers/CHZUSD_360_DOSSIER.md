@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 23:04:11 IST` (`2026-10-29 17:34:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:07:13 IST` (`2026-10-29 17:37:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.53` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000071` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `62.63` (State: `NEUTRAL`)
+  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.55` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000068` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `63.36` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0131` | Lower -3.00σ Band: `0.0120`
   * Upper +2.51σ Band: `0.0130` | Lower -2.51σ Band: `0.0121`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `0.0128` | Lower -1.28σ Band: `0.0123`
   * Upper +1.00σ Band: `0.0127` | Lower -1.00σ Band: `0.0124`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0128` | EMA-20=`0.0127` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0128` | EMA-20=`0.0128` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0126` (Slope: `+0.0000`) | EMA-100=`0.0126`
-  * Institutional Anchors: EMA-144=`0.0126` | EMA-200=`0.0126` (Slope: `+0.1758`) | EMA-233=`0.0126`
+  * Institutional Anchors: EMA-144=`0.0126` | EMA-200=`0.0126` (Slope: `+0.1936`) | EMA-233=`0.0126`
 - **Range Boundaries**: 24H High=`0.0130` | 24H Low=`0.0123` | Weekly High=`0.0130` | Weekly Low=`0.0123`
 
 ---
