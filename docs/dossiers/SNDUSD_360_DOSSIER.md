@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNDUSD
 **Canonical Key**: `SNDUSD` | **Broker Instrument**: `SNDUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:02:38 IST` (`2026-10-29 19:32:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:05:41 IST` (`2026-10-29 19:35:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0461` | VWAP Z-Score: `+0.66` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000356` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `45.25` (State: `NEUTRAL`)
+  * Session VWAP: `0.0461` | VWAP Z-Score: `+0.56` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000345` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `43.60` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0492` | Lower -3.00σ Band: `0.0431`
   * Upper +2.51σ Band: `0.0487` | Lower -2.51σ Band: `0.0436`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `0.0474` | Lower -1.28σ Band: `0.0448`
   * Upper +1.00σ Band: `0.0471` | Lower -1.00σ Band: `0.0451`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0472` | EMA-20=`0.0472` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0471` | EMA-20=`0.0471` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0467` (Slope: `+0.0000`) | EMA-100=`0.0465`
-  * Institutional Anchors: EMA-144=`0.0464` | EMA-200=`0.0464` (Slope: `+0.2533`) | EMA-233=`0.0465`
+  * Institutional Anchors: EMA-144=`0.0464` | EMA-200=`0.0464` (Slope: `+0.2288`) | EMA-233=`0.0465`
 - **Range Boundaries**: 24H High=`0.0481` | 24H Low=`0.0445` | Weekly High=`0.0481` | Weekly Low=`0.0445`
 
 ---
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0479` (Distance: `-0.04%`)
-  * Point of Control (POC) = `0.0467` (Distance: `+2.58%`)
-  * Value Area Low (VAL) = `0.0454` (Distance: `+5.51%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `0.0479` (Distance: `+0.17%`)
+  * Point of Control (POC) = `0.0467` (Distance: `+2.79%`)
+  * Value Area Low (VAL) = `0.0454` (Distance: `+5.73%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0475` | POC=`0.0469` | VAL=`0.0465`
   * Prior Day Extremes: PDH=`0.0479` | PDL=`0.0457` | PDC=`0.0467`

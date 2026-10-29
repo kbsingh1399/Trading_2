@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:02:38 IST` (`2026-10-29 19:32:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:05:41 IST` (`2026-10-29 19:35:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -24,19 +24,19 @@
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
   * Session VWAP: `0.8306` | VWAP Z-Score: `-0.05` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0049` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period ATR: `0.0045` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `38.89` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.8662` | Lower -3.00σ Band: `0.7950`
-  * Upper +2.51σ Band: `0.8604` | Lower -2.51σ Band: `0.8008`
-  * Upper +2.01σ Band: `0.8545` | Lower -2.01σ Band: `0.8067`
-  * Upper +2.00σ Band: `0.8543` | Lower -2.00σ Band: `0.8069`
-  * Upper +1.28σ Band: `0.8458` | Lower -1.28σ Band: `0.8154`
-  * Upper +1.00σ Band: `0.8425` | Lower -1.00σ Band: `0.8187`
+  * Upper +3.00σ Band: `0.8660` | Lower -3.00σ Band: `0.7952`
+  * Upper +2.51σ Band: `0.8602` | Lower -2.51σ Band: `0.8009`
+  * Upper +2.01σ Band: `0.8543` | Lower -2.01σ Band: `0.8069`
+  * Upper +2.00σ Band: `0.8542` | Lower -2.00σ Band: `0.8070`
+  * Upper +1.28σ Band: `0.8457` | Lower -1.28σ Band: `0.8155`
+  * Upper +1.00σ Band: `0.8424` | Lower -1.00σ Band: `0.8188`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.8350` | EMA-20=`0.8369` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.8351` (Slope: `+0.0000`) | EMA-100=`0.8371`
-  * Institutional Anchors: EMA-144=`0.8390` | EMA-200=`0.8409` (Slope: `-0.0304`) | EMA-233=`0.8417`
+  * Fast EMA Array: EMA-9=`0.8340` | EMA-20=`0.8362` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.8349` (Slope: `+0.0000`) | EMA-100=`0.8369`
+  * Institutional Anchors: EMA-144=`0.8389` | EMA-200=`0.8408` (Slope: `-0.0538`) | EMA-233=`0.8417`
 - **Range Boundaries**: 24H High=`0.8800` | 24H Low=`0.8100` | Weekly High=`0.8800` | Weekly Low=`0.8100`
 
 ---
@@ -45,7 +45,7 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.8400` (Distance: `+10.32%`)
-  * Point of Control (POC) = `0.8200` (Distance: `+13.44%`)
+  * Point of Control (POC) = `0.8300` (Distance: `+12.08%`)
   * Value Area Low (VAL) = `0.8100` (Distance: `+14.79%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -215,21 +215,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 604.34 USD | 3,840.00 USD | **`ACCUMULATION`** |
-| `15m` | 577.05 USD | 4,750.00 USD | **`ACCUMULATION`** |
-| `30m` | 5,260.00 USD | 21,340.00 USD | **`ACCUMULATION`** |
-| `1h` | 3,350.00 USD | 34,900.00 USD | **`ACCUMULATION`** |
-| `2h` | -2,280.00 USD | 39,150.00 USD | **`ACCUMULATION`** |
-| `4h` | -16,140.00 USD | 2,130.00 USD | **`DISTRIBUTION`** |
-| `6h` | -3,350.00 USD | -25,430.00 USD | **`DISTRIBUTION`** |
-| `8h` | 5,670.00 USD | -115,580.00 USD | **`DISTRIBUTION`** |
-| `12h` | 59,020.00 USD | -99,200.00 USD | **`DISTRIBUTION`** |
-| `24h` | -219,150.00 USD | -586,480.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,660,000.00 USD | -2,800,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -26,310,000.00 USD | -25,380,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 147.11 USD | 4,270.00 USD | **`ACCUMULATION`** |
+| `15m` | -759.87 USD | 11,730.00 USD | **`ACCUMULATION`** |
+| `30m` | 116.41 USD | 22,010.00 USD | **`ACCUMULATION`** |
+| `1h` | 13,070.00 USD | 46,290.00 USD | **`ACCUMULATION`** |
+| `2h` | -2,040.00 USD | 56,120.00 USD | **`ACCUMULATION`** |
+| `4h` | -5,600.00 USD | 46,620.00 USD | **`ACCUMULATION`** |
+| `6h` | 16,210.00 USD | 1,300.00 USD | **`ACCUMULATION`** |
+| `8h` | -12,180.00 USD | -102,060.00 USD | **`DISTRIBUTION`** |
+| `12h` | 49,990.00 USD | -103,700.00 USD | **`DISTRIBUTION`** |
+| `24h` | -217,690.00 USD | -581,780.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,670,000.00 USD | -2,780,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -26,310,000.00 USD | -25,370,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+604.34` | 15m=`+577.05` | 1h=`+3.35K` | 24h=`-219.15K`
-* Futures Capital Netflows: 5m=`+3.84K` | 15m=`+4.75K` | 1h=`+34.90K` | 24h=`-586.48K`
+* Spot Capital Netflows: 5m=`+147.11` | 15m=`-759.87` | 1h=`+13.07K` | 24h=`-217.69K`
+* Futures Capital Netflows: 5m=`+4.27K` | 15m=`+11.73K` | 1h=`+46.29K` | 24h=`-581.78K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -298,7 +298,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.8100` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5042` (Risk Distance: `0.4000` pts)
+  * Spread-Padded Stop Loss: `0.5046` (Risk Distance: `0.4000` pts)
   * +2.5R Take Profit: `1.81`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

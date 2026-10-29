@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KAVUSD
 **Canonical Key**: `KAVUSD` | **Broker Instrument**: `KAVUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:02:38 IST` (`2026-10-29 19:32:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:05:41 IST` (`2026-10-29 19:35:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,7 +23,7 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0681` | VWAP Z-Score: `+0.74` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.0682` | VWAP Z-Score: `+0.73` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.000100` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `48.01` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0685` | EMA-20=`0.0685` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0683` (Slope: `+0.0000`) | EMA-100=`0.0682`
-  * Institutional Anchors: EMA-144=`0.0682` | EMA-200=`0.0683` (Slope: `+0.0421`) | EMA-233=`0.0683`
+  * Institutional Anchors: EMA-144=`0.0682` | EMA-200=`0.0683` (Slope: `+0.0387`) | EMA-233=`0.0683`
 - **Range Boundaries**: 24H High=`0.0688` | 24H Low=`0.0675` | Weekly High=`0.0693` | Weekly Low=`0.0673`
 
 ---
