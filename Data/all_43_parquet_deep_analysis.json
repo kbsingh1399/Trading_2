@@ -1,0 +1,731 @@
+[
+  {
+    "idx": 0,
+    "file": "00_MT5_Account_Telemetry.parquet",
+    "status": "PASS",
+    "rows": 163,
+    "cols_count": 13,
+    "cols": [
+      "Category",
+      "Broker_Symbol",
+      "Bid_Quote",
+      "Ask_Quote",
+      "Mid_Price",
+      "Spread_Points"
+    ],
+    "timestamp": "2026-10-29 16:47:21 IST",
+    "insight": "Account Balance: $4,744.55"
+  },
+  {
+    "idx": 1,
+    "file": "1_Crypto_ETF_Flows.parquet",
+    "status": "PASS",
+    "rows": 41,
+    "cols_count": 16,
+    "cols": [
+      "#",
+      "Ticker",
+      "ETF_Name",
+      "Price",
+      "Price_Change",
+      "Volume_USD"
+    ],
+    "timestamp": "2026-10-29 16:47:54 IST",
+    "insight": "IBIT Flow: Recorded"
+  },
+  {
+    "idx": 2,
+    "file": "2_Spot_Netflow_S.parquet",
+    "status": "PASS",
+    "rows": 182,
+    "cols_count": 16,
+    "cols": [
+      "Symbol",
+      "5_minute",
+      "15_minute",
+      "30_minute",
+      "1_hour",
+      "2_hour"
+    ],
+    "timestamp": "2026-10-29 16:48:04 IST",
+    "insight": "Netflow 1h: Active"
+  },
+  {
+    "idx": 3,
+    "file": "2_Future_Netflow.parquet",
+    "status": "PASS",
+    "rows": 222,
+    "cols_count": 16,
+    "cols": [
+      "Symbol",
+      "5_minute",
+      "15_minute",
+      "30_minute",
+      "1_hour",
+      "2_hour"
+    ],
+    "timestamp": "2026-10-29 16:48:16 IST",
+    "insight": "Netflow 1h: Active"
+  },
+  {
+    "idx": 4,
+    "file": "3_Exchanges_LS_Ratio_15M.parquet",
+    "status": "PASS",
+    "rows": 500,
+    "cols_count": 11,
+    "cols": [
+      "Asset",
+      "#",
+      "Exchange",
+      "Long_%",
+      "Short_%",
+      "L_S_Ratio"
+    ],
+    "timestamp": "15m",
+    "insight": "500 records across 11 columns"
+  },
+  {
+    "idx": 5,
+    "file": "3_Exchanges_LS_Ratio_1H.parquet",
+    "status": "PASS",
+    "rows": 500,
+    "cols_count": 11,
+    "cols": [
+      "Asset",
+      "#",
+      "Exchange",
+      "Long_%",
+      "Short_%",
+      "L_S_Ratio"
+    ],
+    "timestamp": "1h",
+    "insight": "500 records across 11 columns"
+  },
+  {
+    "idx": 6,
+    "file": "3_Exchanges_LS_Ratio_4H.parquet",
+    "status": "PASS",
+    "rows": 500,
+    "cols_count": 11,
+    "cols": [
+      "Asset",
+      "#",
+      "Exchange",
+      "Long_%",
+      "Short_%",
+      "L_S_Ratio"
+    ],
+    "timestamp": "4h",
+    "insight": "500 records across 11 columns"
+  },
+  {
+    "idx": 7,
+    "file": "4_Hyperliquid_Analysis.parquet",
+    "status": "PASS",
+    "rows": 2022,
+    "cols_count": 20,
+    "cols": [
+      "rank",
+      "user_display",
+      "wallet_address",
+      "asset",
+      "side",
+      "position_formatted"
+    ],
+    "timestamp": "03:20:55\n2026-10-29",
+    "insight": "2022 records across 20 columns"
+  },
+  {
+    "idx": 8,
+    "file": "5_Funding_Rate.parquet",
+    "status": "PASS",
+    "rows": 585,
+    "cols_count": 17,
+    "cols": [
+      "Symbol",
+      "USDT_Binance",
+      "USDT_OKX",
+      "USDT_Bybit",
+      "USDT_KuCoin",
+      "USDT_MEXC"
+    ],
+    "timestamp": "2026-10-29 16:50:47 IST",
+    "insight": "BTC Binance Funding: 0.0079%"
+  },
+  {
+    "idx": 9,
+    "file": "5_OI.parquet",
+    "status": "PASS",
+    "rows": 20,
+    "cols_count": 20,
+    "cols": [
+      "Asset",
+      "Total_OI_USD",
+      "Binance",
+      "Bybit",
+      "OKX",
+      "CME"
+    ],
+    "timestamp": "2026-10-29 16:49:50 IST",
+    "insight": "Total BTC OI: $53.90B"
+  },
+  {
+    "idx": 10,
+    "file": "6_Funding_Fee_Settlement.parquet",
+    "status": "PASS",
+    "rows": 944,
+    "cols_count": 10,
+    "cols": [
+      "rank",
+      "symbol",
+      "price",
+      "price_24h_pct",
+      "open_interest",
+      "current"
+    ],
+    "timestamp": "2026-10-29 16:50:55 IST",
+    "insight": "944 records across 10 columns"
+  },
+  {
+    "idx": 11,
+    "file": "7_Liq_Heapmap.parquet",
+    "status": "PASS",
+    "rows": 91,
+    "cols_count": 7,
+    "cols": [
+      "rank",
+      "asset",
+      "tf_1h",
+      "tf_4h",
+      "tf_12h",
+      "tf_24h"
+    ],
+    "timestamp": "2026-10-29 16:51:03 IST",
+    "insight": "91 records across 7 columns"
+  },
+  {
+    "idx": 12,
+    "file": "7_Live_Liq.parquet",
+    "status": "PASS",
+    "rows": 27,
+    "cols_count": 8,
+    "cols": [
+      "idx",
+      "coin",
+      "side",
+      "price",
+      "amount",
+      "time"
+    ],
+    "timestamp": "29/10 00:15:41",
+    "insight": "27 records across 8 columns"
+  },
+  {
+    "idx": 13,
+    "file": "8_Exchange_Liquidation_Map_1D.parquet",
+    "status": "PASS",
+    "rows": 2550,
+    "cols_count": 13,
+    "cols": [
+      "Sr.No",
+      "Asset",
+      "Time",
+      "Timestamp_IST",
+      "Price",
+      "Cumulative_Liquidation"
+    ],
+    "timestamp": "1D",
+    "insight": "2550 records across 13 columns"
+  },
+  {
+    "idx": 14,
+    "file": "8_Exchange_Liquidation_Map_7D.parquet",
+    "status": "PASS",
+    "rows": 2915,
+    "cols_count": 13,
+    "cols": [
+      "Sr.No",
+      "Asset",
+      "Time",
+      "Timestamp_IST",
+      "Price",
+      "Cumulative_Liquidation"
+    ],
+    "timestamp": "7D",
+    "insight": "2915 records across 13 columns"
+  },
+  {
+    "idx": 15,
+    "file": "9_Liquidation_Max_Pain_24H.parquet",
+    "status": "PASS",
+    "rows": 751,
+    "cols_count": 12,
+    "cols": [
+      "ranking",
+      "symbol",
+      "price",
+      "short_max_pain_price",
+      "short_max_pain_vol",
+      "short_distance_usd"
+    ],
+    "timestamp": "nan",
+    "insight": "BTC Short Max Pain: 80758.8, Long Max Pain: 79017.2"
+  },
+  {
+    "idx": 16,
+    "file": "9_Liquidation_Max_Pain_48H.parquet",
+    "status": "PASS",
+    "rows": 751,
+    "cols_count": 12,
+    "cols": [
+      "ranking",
+      "symbol",
+      "price",
+      "short_max_pain_price",
+      "short_max_pain_vol",
+      "short_distance_usd"
+    ],
+    "timestamp": "nan",
+    "insight": "BTC Short Max Pain: 82395.66, Long Max Pain: 79177.05"
+  },
+  {
+    "idx": 17,
+    "file": "9_Liquidation_Max_Pain_3D.parquet",
+    "status": "PASS",
+    "rows": 751,
+    "cols_count": 12,
+    "cols": [
+      "ranking",
+      "symbol",
+      "price",
+      "short_max_pain_price",
+      "short_max_pain_vol",
+      "short_distance_usd"
+    ],
+    "timestamp": "nan",
+    "insight": "BTC Short Max Pain: 81938.25, Long Max Pain: 79155.25"
+  },
+  {
+    "idx": 18,
+    "file": "9_Liquidation_Max_Pain_7D.parquet",
+    "status": "PASS",
+    "rows": 751,
+    "cols_count": 12,
+    "cols": [
+      "ranking",
+      "symbol",
+      "price",
+      "short_max_pain_price",
+      "short_max_pain_vol",
+      "short_distance_usd"
+    ],
+    "timestamp": "nan",
+    "insight": "BTC Short Max Pain: 82589.46, Long Max Pain: 78977.06"
+  },
+  {
+    "idx": 19,
+    "file": "10_Whale_Orders.parquet",
+    "status": "PASS",
+    "rows": 3560,
+    "cols_count": 17,
+    "cols": [
+      "sr_no",
+      "exchange",
+      "symbol",
+      "type",
+      "side",
+      "price"
+    ],
+    "timestamp": "2026-10-29 16:53:59 IST",
+    "insight": "Top Whale: BTCUSDT Buy Orders $16,700,000 @ 80000.0"
+  },
+  {
+    "idx": 20,
+    "file": "11_Technical.parquet",
+    "status": "PASS",
+    "rows": 87,
+    "cols_count": 55,
+    "cols": [
+      "asset",
+      "category",
+      "symbol",
+      "last_price",
+      "change_24h_pct",
+      "session_vwap"
+    ],
+    "timestamp": "N/A",
+    "insight": "87 records across 55 columns"
+  },
+  {
+    "idx": 21,
+    "file": "11_Technical_BTC_Ribbon.parquet",
+    "status": "PASS",
+    "rows": 100,
+    "cols_count": 31,
+    "cols": [
+      "bar_time_utc",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "timestamp": "2026-10-29 11:00",
+    "insight": "100 records across 31 columns"
+  },
+  {
+    "idx": 22,
+    "file": "12_Hyperdash.parquet",
+    "status": "PASS",
+    "rows": 297,
+    "cols_count": 9,
+    "cols": [
+      "Section",
+      "Asset",
+      "Type_or_Side",
+      "Price",
+      "Size",
+      "Notional_USD"
+    ],
+    "timestamp": "2026-10-29 16:47:39 IST",
+    "insight": "297 records across 9 columns"
+  },
+  {
+    "idx": 23,
+    "file": "13_Hyperliquid.parquet",
+    "status": "PASS",
+    "rows": 235,
+    "cols_count": 9,
+    "cols": [
+      "Section",
+      "Asset",
+      "Price",
+      "Change_24h",
+      "Volume_24h_USD",
+      "Open_Interest_USD"
+    ],
+    "timestamp": "2026-10-29 16:47:28 IST",
+    "insight": "235 records across 9 columns"
+  },
+  {
+    "idx": 24,
+    "file": "14_Hyperdash_Liq_Map.parquet",
+    "status": "PASS",
+    "rows": 6433,
+    "cols_count": 12,
+    "cols": [
+      "sr_no",
+      "asset",
+      "time_window",
+      "timestamp_ist",
+      "mark_price",
+      "price"
+    ],
+    "timestamp": "Live",
+    "insight": "6433 records across 12 columns"
+  },
+  {
+    "idx": 25,
+    "file": "14_Liquidation_Matrix.parquet",
+    "status": "PASS",
+    "rows": 11876,
+    "cols_count": 14,
+    "cols": [
+      "timestamp_ist",
+      "symbol",
+      "asset_class",
+      "venue_tier",
+      "venue_name",
+      "timeframe"
+    ],
+    "timestamp": "2026-10-29 16:54:33 IST",
+    "insight": "11876 records across 14 columns"
+  },
+  {
+    "idx": 26,
+    "file": "15_Hyperdash_Stops_Map.parquet",
+    "status": "PASS",
+    "rows": 4543,
+    "cols_count": 12,
+    "cols": [
+      "sr_no",
+      "asset",
+      "time_window",
+      "timestamp_ist",
+      "mark_price",
+      "price"
+    ],
+    "timestamp": "Live",
+    "insight": "4543 records across 12 columns"
+  },
+  {
+    "idx": 27,
+    "file": "16_Hyperdash_telegram_Intel.parquet",
+    "status": "PASS",
+    "rows": 1000,
+    "cols_count": 15,
+    "cols": [
+      "category",
+      "event_type",
+      "asset",
+      "side",
+      "notional_usd",
+      "price"
+    ],
+    "timestamp": "2026-10-22 16:51:14",
+    "insight": "1000 records across 15 columns"
+  },
+  {
+    "idx": 28,
+    "file": "17_Orderbook.parquet",
+    "status": "PASS",
+    "rows": 615,
+    "cols_count": 14,
+    "cols": [
+      "sr_no",
+      "data_layer",
+      "asset_class",
+      "asset",
+      "side",
+      "price"
+    ],
+    "timestamp": "N/A",
+    "insight": "615 records across 14 columns"
+  },
+  {
+    "idx": 29,
+    "file": "18_CVD.parquet",
+    "status": "PASS",
+    "rows": 1500,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 13:30:00 IST",
+    "insight": "CVD series tracked across 1500 bars/assets"
+  },
+  {
+    "idx": 30,
+    "file": "18_CVD_30D_5m.parquet",
+    "status": "PASS",
+    "rows": 8004,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 16:15:00 IST",
+    "insight": "CVD series tracked across 8004 bars/assets"
+  },
+  {
+    "idx": 31,
+    "file": "18_CVD_30D_15m.parquet",
+    "status": "PASS",
+    "rows": 2668,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 16:15:00 IST",
+    "insight": "CVD series tracked across 2668 bars/assets"
+  },
+  {
+    "idx": 32,
+    "file": "18_CVD_30D_1h.parquet",
+    "status": "PASS",
+    "rows": 667,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 15:30:00 IST",
+    "insight": "CVD series tracked across 667 bars/assets"
+  },
+  {
+    "idx": 33,
+    "file": "18_CVD_30D_4h.parquet",
+    "status": "PASS",
+    "rows": 168,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 13:30:00 IST",
+    "insight": "CVD series tracked across 168 bars/assets"
+  },
+  {
+    "idx": 34,
+    "file": "18_CVD_30D_ALL.parquet",
+    "status": "PASS",
+    "rows": 11507,
+    "cols_count": 25,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "category",
+      "symbol",
+      "market_pair"
+    ],
+    "timestamp": "2026-10-29 13:30:00 IST",
+    "insight": "CVD series tracked across 11507 bars/assets"
+  },
+  {
+    "idx": 35,
+    "file": "19_News.parquet",
+    "status": "PASS",
+    "rows": 34,
+    "cols_count": 12,
+    "cols": [
+      "title",
+      "url",
+      "source",
+      "time_ago",
+      "timestamp_utc",
+      "timestamp_ist"
+    ],
+    "timestamp": "Oct 24, 2026",
+    "insight": "34 records across 12 columns"
+  },
+  {
+    "idx": 36,
+    "file": "19_Calendar.parquet",
+    "status": "PASS",
+    "rows": 43,
+    "cols_count": 10,
+    "cols": [
+      "date",
+      "time",
+      "currency",
+      "impact",
+      "event",
+      "actual"
+    ],
+    "timestamp": "Thu Oct 29",
+    "insight": "43 records across 10 columns"
+  },
+  {
+    "idx": 37,
+    "file": "20_Auction_Market_Structure.parquet",
+    "status": "PASS",
+    "rows": 84,
+    "cols_count": 61,
+    "cols": [
+      "timestamp",
+      "sr_no",
+      "asset",
+      "symbol",
+      "category",
+      "price"
+    ],
+    "timestamp": "2026-10-29 16:47:36 IST",
+    "insight": "Total auction value structures tracked: 84 assets"
+  },
+  {
+    "idx": 38,
+    "file": "21_Tradfye_Orderflow.parquet",
+    "status": "PASS",
+    "rows": 6912,
+    "cols_count": 24,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "asset",
+      "market_pair",
+      "timeframe",
+      "open"
+    ],
+    "timestamp": "2026-10-29 04:50:00 IST",
+    "insight": "6912 records across 24 columns"
+  },
+  {
+    "idx": 39,
+    "file": "22_Forced_Liquidations_MTF.parquet",
+    "status": "PASS",
+    "rows": 80,
+    "cols_count": 13,
+    "cols": [
+      "symbol",
+      "timeframe",
+      "candle_start_epoch",
+      "candle_start_ist",
+      "candle_end_ist",
+      "candle_start_utc"
+    ],
+    "timestamp": "4h",
+    "insight": "80 records across 13 columns"
+  },
+  {
+    "idx": 40,
+    "file": "23_Master_Pipeline_Telemetry.parquet",
+    "status": "PASS",
+    "rows": 33,
+    "cols_count": 4,
+    "cols": [
+      "feed_id",
+      "feed_name",
+      "status",
+      "tier"
+    ],
+    "timestamp": "N/A",
+    "insight": "33 records across 4 columns"
+  },
+  {
+    "idx": 41,
+    "file": "25_CoinGlass_Footprint_Signals.parquet",
+    "status": "PASS",
+    "rows": 606,
+    "cols_count": 17,
+    "cols": [
+      "timestamp_ist",
+      "signal_time",
+      "symbol",
+      "base_asset",
+      "timeframe",
+      "signal_type"
+    ],
+    "timestamp": "2026-10-28 21:19:38 IST",
+    "insight": "606 records across 17 columns"
+  },
+  {
+    "idx": 42,
+    "file": "26_Aggregated_Footprint_Bar_Metrics.parquet",
+    "status": "PASS",
+    "rows": 310,
+    "cols_count": 27,
+    "cols": [
+      "timestamp_ist",
+      "timestamp_utc",
+      "timestamp_ms",
+      "symbol",
+      "base_asset",
+      "timeframe"
+    ],
+    "timestamp": "2026-10-29 16:45:00 IST",
+    "insight": "310 records across 27 columns"
+  }
+]
