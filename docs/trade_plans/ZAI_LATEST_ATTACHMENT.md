@@ -1,92 +1,32 @@
 {
-  "schema_version": "1.1.0",
-  "cycle_id": "Cycle-20261027T071649Z",
-  "cutoff_utc": "2026-10-27T07:16:49Z",
-  "evidence_manifest_sha256": "a641f5024cd6a3fb7d722c4f656c86bd3a3b2370f3fbf166874ea1935e1a21fe",
-  "prompt_sha256": "b7f88189e1e144fb1ab900d41d41afd1dba141c2d98883b554d804136fc6dbb3",
-  "dispatch_nonce": "6dee9d53-011c-4b55-9729-ea7366f617e1",
-  "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE",
-  "inventory_status": "ECONOMIC_SUBSTANCE_VERIFIED_CLOCK_CONTRACT_BREACHED",
-  "hard_gate_results": {
-    "envelope_digest_format": "PASS (4/4 fields 64-hex; content digests not independently recomputable)",
-    "cutoff_causality": "FAIL - 4/4 inventory epochs = true UTC + 10800s exactly (server-clock relabeling); root-caused, repairable",
-    "orderflow_verification": "FAIL - live DENIED_UNVERIFIED_ORDERFLOW (gen 13676f59, 07:49Z) contradicts envelope parquet_freshness_verified=true",
-    "margin_collateralization": "FAIL - ML 179.54% < 200%; utilization 55.66% > 50%",
-    "capacity_joint_fill": "FAIL - 4/4 HARD_ADMISSION_FREEZE",
-    "realized_headroom": "FAIL - canonical H_net -0.555 < 0",
-    "kernel_stress_floor": "PASS_WITH_NOTICE - post_joint_stop 4796.445 >= 4795 (+1.445) under corrected canonical stress; envelope 4788.83 was stress-formula artifact",
-    "probability_calibration": "FAIL - n=17 Clopper-Pearson LCB 0.4197, uncalibrated, min n=100",
-    "fomc_blackout": "PASS - outside window; purge deadline 2026-10-28T17:25Z armed, runway 33.68h",
-    "rollover_embargo": "PASS",
-    "macro_calendar_freshness": "FAIL - verified_at 28.8h stale vs <900s"
+  "council": "Z_AI",
+  "canonical_docs_verified": true,
+  "own_candidate_nomination": {
+    "symbol": "EURUSD.pi",
+    "side": "SELL_LIMIT",
+    "entry_price": 1.12240,
+    "sl_price": 1.12360,
+    "tp_price": 1.11960,
+    "volume_lots": 0.036,
+    "nominal_risk_usd": 4.32,
+    "stressed_risk_usd": 7.40,
+    "spread_bps": 2.8,
+    "model_type": "MODEL_1A",
+    "primary_catalyst": "3-day PDH sweep-fade 1.12271 + hawkish-hold USD support; SL 1.5x ATR beyond sweep-wick zone",
+    "activation_status": "GATED_RADAR_NOT_PUNCHABLE_AT_1910Z",
+    "activation_gates": ["fresh VR(4)<0.85 on post-rollover broker ticks", "live spread <= 5.0 bps", "orderflow re-authorization (6th-cycle denial standing)", "equity >= 4,797.00 per 32-SHEET, or explicit operator downgrade to floor-only", "Kaizen throughput gate P(fill) x EV > 1.50 (currently ~0.21 - disclosed)"]
   },
-  "universe_coverage": {
-    "total_assets": 156,
-    "tradfi_98": "OPEN per envelope, WATCHLIST_ONLY pre-FOMC (-33.7h); prior fails: SILVER 6.71bps, USDJPY R:R 0.47, GER40 unverifiable, SP500 geometry falsified",
-    "crypto_58": "OPEN 24/7; quoted 4 (BNB/BTC/ETH/SOL); prior spread-fails DOGE/ADA/DOT/LINK/LTC/NEAR/AVAX; TRX min-lot risk 16.00; rest unmeasured -> non-admissible",
-    "admissible_this_cycle": 0
+  "evaluation_of_antigravity_candidates": {
+    "preferred_antigravity_pick": "NONE_ALL_FIVE_FAIL",
+    "rationale": "3 of 5 are marketable-limit masquerades at live prices (GBP -6.3 bps below market for a SELL_LIMIT, EUR -9.8, USDCAD +6.8 for a BUY_LIMIT = Pitfall 11 instant spread-crossing); NAS100 level 45% stale vs live NDX 29,733 (catastrophic accident vector); ETH fade zone swept-and-rejected within the last hour with $12.3M armor persistence UNVERIFIED (rate-limited) and ETH longs banned at 76.56% crowd; ALL FIVE breach the 4,775 floor under the canonical 1.25R+2.00 stress at $5.00 nominal (max floor-safe = 4.488). My own candidate is superior because its geometry was computed from fresh public-exchange data with floor-safe sizing and an explicit activation checklist."
   },
-  "account_tier_and_contingent_capacity": {
-    "tier": "TIER_1_STANDARD",
-    "tier2_unlock_4850": "LOCKED (realized 4846.32 < 4850; floating zero credit)",
-    "new_ticket_capacity_now": 0,
-    "contingent_capacity_post_cleanup": "1 ticket <= 12.00 risk (stress <= 17.00 vs H_net +41.77) CONDITIONAL on provenance repair + orderflow verification"
-  },
-  "global_contingency_usd": 2.0,
-  "existing_ticket_actions": [
-    {"ticket": 19329907, "symbol": "BNBUSD.p", "action": "CLOSE_AT_MARKET", "urgency": "HIGH", "live_ref": "734.40, P/L -5.55, R -0.51 (07:49Z)",
-     "reasons": ["I1 live-fail: SL 732.65 = 0.199 ATR above bunker 733.0, over [731,732] 24.7K + liq [729,730]", "4th cycle of non-executed close ruling", "undisclosed TP rewrite 746.80->740.00 vs ratchet_state PHASE_0_PENDING", "restores ML 179.54% -> ~304%, frees 1104.38 margin"],
-     "fallback": "hold SL 732.65; never widen (729.5 => 20.25 > cap); never tighten into sweep zone",
-     "post_close_balance_usd": 4840.77},
-    {"ticket": 19343851, "symbol": "BTCUSD.pi", "action": "HOLD_MANAGE_EXISTING", "urgency": "ROUTINE", "live_ref": "79617.5, P/L +8.82, R 5.65, PHASE_1_PROFIT_LOCKED (07:49Z)",
-     "verified": ["SL 79838 - 0.15x260 = 79799 EXACT (+0.80R0 ratchet executed)", "TP reward 20.80 = (79838-79318)x0.04 EXACT"],
-     "armed_instruction": "if bid <= 79448 (+1.50R0) -> SL 79630 (locks +8.32); keep TP 79318"},
-    {"ticket": 19330613, "symbol": "ETHUSD.pi", "action": "CANCEL_PENDING", "urgency": "HIGH",
-     "reasons": ["margin-on-fill +580.125 -> ML 147.87% < 200% (decisive)", "capacity 4/4 freeze", "I3 walls 800.3K@2319.60 / 804.2K@2329.00 unverifiable under DENIED_UNVERIFIED_ORDERFLOW", "4th consecutive cancel cycle"],
-     "note": "geometry 2.00R-legal; re-stage eligible post-repair"},
-    {"ticket": 19343853, "symbol": "SOLUSD.p", "action": "CANCEL_PENDING", "urgency": "HIGH",
-     "reasons": ["margin-on-fill +1003.80 -> ML 130.97% < 200%", "I1 fail: 0.56/1.68 = 0.333 ATR < 0.35", "TP 99.20 only 0.15 above live mid 99.35", "spread 23.01 bps marginal (carried)"]}
-  ],
-  "candidate_rows": [
-    {"candidate_id": "MGT-BNB-19329907", "symbol": "BNBUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T07:49:03Z(live)", "evidence_availability_timestamps": "07:49:03Z", "evidence_max_age_seconds": 1934, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "FUTURE_STAMPED_ARTIFACT_CORRECTED", "authorization_expiry_utc": null, "side": "BUY", "order_type": "POSITION_MANAGEMENT", "entry": 736.25, "stop": 732.65, "target": 740.0, "volume": 3.0, "broker_risk_usd": 10.80, "broker_reward_usd": 11.25, "rr": 1.04, "spread_cost_usd": 1.80, "stressed_loss_usd": 15.50, "post_joint_stop_balance": 4835.52, "p_fill": 1.0, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["canonical_stress=1.25x nominal+2.00", "I1 bunker 733.0 carry-forward"], "calibration_diagnostics": "n=17 CP-95 LCB 0.4197", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": "SL -10.80 / close-now ~-5.55 / TP +11.25 / timeout mark-dependent", "cost_ledger_and_conditioning": "exit spread 0.60x3.0=1.80 + fee 2.00", "wait_cost_usd": 0.0, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": 0, "utility": null, "uncertainty_method": "NONE - no series in envelope", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19329907", "GT-POS-0749"], "verdict": "CLOSE_AT_MARKET", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "LEGACY_TICKET"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": "bunker 733.0 live-tested", "value_area_status": "SL below VAL 730.90 carry-forward"}, "rejection_reasons": ["I1 live-fail", "margin restoration", "4x non-executed ruling", "TP mutation incoherence"]},
-    {"candidate_id": "MGT-BTC-19343851", "symbol": "BTCUSD.pi", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T07:49:03Z(live)", "evidence_availability_timestamps": "07:49:03Z", "evidence_max_age_seconds": 1934, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "FUTURE_STAMPED_ARTIFACT_CORRECTED", "authorization_expiry_utc": null, "side": "SELL", "order_type": "POSITION_MANAGEMENT", "entry": 79838.0, "stop": 79799.0, "target": 79318.0, "volume": 0.04, "broker_risk_usd": 0.0, "broker_reward_usd": 20.80, "rr": null, "spread_cost_usd": 0.61, "stressed_loss_usd": 2.0, "post_joint_stop_balance": 4847.88, "p_fill": 1.0, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["ratchet ladder +0.80R0->SL=entry-0.15R0 VERIFIED", "next +1.50R0 trigger 79448->SL 79630"], "calibration_diagnostics": "n=17 CP-95 LCB 0.4197", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": "SL +1.56 locked / TP +20.80 / ratchet-step +8.32 / timeout mark-dependent", "cost_ledger_and_conditioning": "exit spread ~15.31pts x0.04 = 0.61 + fee 2.00", "wait_cost_usd": 0.0, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE - no series in envelope", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19343851", "GT-POS-0749"], "verdict": "HOLD_MANAGE_EXISTING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "LEGACY_TICKET_STOP_IN_PROFIT"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null}, "rejection_reasons": []},
-    {"candidate_id": "PND-ETH-19330613", "symbol": "ETHUSD.pi", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T07:16:49Z", "evidence_availability_timestamps": "07:49:03Z", "evidence_max_age_seconds": 1934, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "PRE_CUTOFF_AFTER_CORRECTION", "authorization_expiry_utc": null, "side": "SELL", "order_type": "SELL_LIMIT", "entry": 2320.5, "stop": 2343.5, "target": 2274.5, "volume": 0.5, "broker_risk_usd": 11.5, "broker_reward_usd": 23.0, "rr": 2.0, "spread_cost_usd": null, "stressed_loss_usd": 16.375, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["margin_on_fill 580.125 telemetry-EXACT"], "calibration_diagnostics": "fill requires +23pt rally through unverified walls", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19330613", "GT-PND-0749"], "verdict": "CANCEL_PENDING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "WALL_ADJACENT_UNVERIFIED"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": "SL above 804.2K@2329.00 shelf (unverified)", "value_area_status": null}, "rejection_reasons": ["margin-on-fill 147.87%<200%", "capacity 4/4", "I3 unverifiable", "4x cancel cycle"]},
-    {"candidate_id": "PND-SOL-19343853", "symbol": "SOLUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": "2026-10-27T07:16:49Z", "evidence_availability_timestamps": "07:49:03Z", "evidence_max_age_seconds": 1934, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "PRE_CUTOFF_AFTER_CORRECTION", "authorization_expiry_utc": null, "side": "SELL", "order_type": "SELL_LIMIT", "entry": 100.38, "stop": 100.94, "target": 99.2, "volume": 0.2, "broker_risk_usd": 11.2, "broker_reward_usd": 23.6, "rr": 2.107, "spread_cost_usd": null, "stressed_loss_usd": 16.0, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["I1 = 0.56/1.68 = 0.333 ATR < 0.35 FAIL (carried ATR)"], "calibration_diagnostics": "fill requires +1.04 rally then full retrace", "effective_sample_size": 17, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["CE-INV-19343853", "GT-PND-0749"], "verdict": "CANCEL_PENDING", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "I1_FAILED"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null}, "rejection_reasons": ["margin-on-fill 130.97%<200%", "I1 0.333<0.35", "TP 0.15 above live mid", "capacity 4/4"]},
-    {"candidate_id": "WTL-ETH-RESTAGE-01", "symbol": "ETHUSD.pi", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": null, "evidence_availability_timestamps": null, "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "PENDING_REPAIR", "authorization_expiry_utc": "2026-10-28T17:25:00Z", "side": "SELL", "order_type": "SELL_LIMIT", "entry": 2318.0, "stop": 2341.0, "target": 2272.0, "volume": 0.5, "broker_risk_usd": 11.5, "broker_reward_usd": 23.0, "rr": 2.0, "spread_cost_usd": null, "stressed_loss_usd": 16.375, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": ["wall-protected SL above 2329.00 shelf", "golden-zone retest geometry"], "calibration_diagnostics": "requires fresh walls + VR/ER/OU once series shipped", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": ["COUNCIL-ENGINEERED"], "verdict": "HOLD", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": "SL 2341 = shelf+0.40ATR approx", "entry_status": "CONDITIONAL"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": "SL wall-protected (unverified)", "value_area_status": null}, "rejection_reasons": ["provenance repair required", "orderflow verification required", "H_net < 0 pre-cleanup"]},
-    {"candidate_id": "WTL-XRP-PLACEHOLDER", "symbol": "XRPUSD.p", "native_market": true, "clock_status": "OPEN_247", "quote_timestamp": null, "evidence_availability_timestamps": null, "evidence_max_age_seconds": null, "evidence_age_at_cutoff_seconds": null, "row_causality_status": "NO_QUOTE_IN_ENVELOPE", "authorization_expiry_utc": "2026-10-28T17:25:00Z", "side": null, "order_type": null, "entry": null, "stop": null, "target": null, "volume": null, "broker_risk_usd": null, "broker_reward_usd": null, "rr": null, "spread_cost_usd": null, "stressed_loss_usd": null, "post_joint_stop_balance": null, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED", "estimator_references": [], "calibration_diagnostics": "never dynamically spread-measured; prior Z -1.68 < 2.0", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": null, "cost_ledger_and_conditioning": null, "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null, "uncertainty_method": "NONE", "adverse_selection_usd": null, "evidence_ids": [], "verdict": "HOLD", "fib_prime_ema_alignment": null, "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "NO_DATA"}, "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null}, "rejection_reasons": ["no quote/bid-ask in envelope", "Z threshold unmet at last measurement"]}
-  ],
-  "arithmetic_validation": {
-    "equity_triangle": "4846.32 - 7.65 + 13.70 = 4852.37 EXACT",
-    "margin_sum": "3.0x736.25x0.5 + 0.04x79838x0.5 = 1104.375 + 1596.76 = 2701.135 -> 2701.14 EXACT",
-    "margin_level": "4852.37/2701.14 = 179.6416% EXACT",
-    "margins_free": "4852.37 - 2701.14 = 2151.23 EXACT",
-    "cushions": "246.32 / 196.32 / 51.32 EXACT",
-    "h_net_formula": "4846.32 - 2.00 - 4795.00 - 55.4875 = -6.17 internally consistent with envelope stress input",
-    "post_joint_stress": "4846.32 - 57.4875 = 4788.83 EXACT given envelope stress input",
-    "stress_input_dispute": "envelope 55.4875 vs canonical 49.875 (telemetry EXACT 15.50+2.00+16.375+16.00); defect = +13.00 stale pre-ratchet BTC SL, -8.00 omitted 2.00/ticket fees, +0.6125 unexplained; corrected H_net -0.555 (DENIED stands), corrected post_joint_stop 4796.445 >= 4795 (+1.445, kernel INTACT)"
-  },
-  "disputes": [
-    "D1: all 4 inventory epochs = true UTC + 10800s EXACTLY (server UTC+3 relabeled) -> cutoff-causality contract breach, root-caused vs calibrated telemetry, zero residual",
-    "D2: envelope time==time_update for BNB (MT5 impossible post-modification) -> field-collapsing writer",
-    "D3: BNB TP 746.80 -> 740.00 undisclosed rewrite (confirmed vs 04:53Z book and 07:49Z telemetry) with ratchet_state PHASE_0_PENDING incoherence",
-    "D4: BTC #19343851 + SOL #19343853 magic 0 / empty comments vs C356 EA fingerprint -> second placement path in book",
-    "D5: envelope parquet_freshness_verified=true contradicted by live trade_authorization DENIED_UNVERIFIED_ORDERFLOW",
-    "D6: ruling enforcement selective 4th cycle (BNB close ignored; BTC ratchet executed); macro_calendar verified_at 28.8h stale; prompt boilerplate H_net +68.07 stale (envelope supersedes)"
-  ],
-  "unknowns": [
-    "L2/CVD/footprint/funding unverifiable from council seat; workbook digests not recomputable",
-    "bid/ask absent from envelope -> spread gate carried forward (BNB 8.15, SOL 23.01)",
-    "VR(4)/ER(48)/NW-HAC t_drift/OU theta not computable - no series shipped; regime UNDEFINED",
-    "p_fill/p_win uncalibrated (n=17) -> all EV/utility null",
-    "local file mtimes uninspectable; alerts issued on internal-clock evidence",
-    "response_sha256 null (self-reference); dispatcher computes over canonical bytes"
-  ],
-  "methodology_critique_and_improvements": "Forensic skills produced both material catches (+10800s root cause; stress-formula decomposition); estimator skills had zero computable inputs. Envelope must ship bid/ask, >=240x1m closes, ATR, depth, funding; align envelope stress generator to canonical risk block; add monotonic-clock validator; install ruling-enforcement hook with broker-receipt echo.",
-  "section_8_kaizen": {
-    "skills_and_methodology_optimization": "Binding constraints are infrastructural (clock, orderflow verification, enforcement), not estimator breadth; mobilize trader-signal/market-pattern only once series ship in-envelope",
-    "omitted_risk_dimensions": "Funding 08:00Z settlement; BNB/BTC correlation flips to outright short after BNB close into possible pre-FOMC bounce; 3.0-lot BNB stop slippage on thin alt book; type_filling=2 partial-fill tail; macro_calendar stale pre-FOMC",
-    "algorithmic_alternatives": "Server-tz epoch validator; Hawkes sweep-intensity; Kalman spread; GARCH vol cones pre-FOMC sizing; isotonic calibration at n>=100"
-  },
-  "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": null
+  "solvency_clearance": {
+    "equity_usd": 4782.61,
+    "post_loss_equity_usd": 4775.21,
+    "hard_floor_usd": 4775.00,
+    "floor_cushion_remaining_usd": 0.21,
+    "stress_model": "canonical 1.25xNominal+2.00 (Pitfall 10/Gateway 2) - dispatch template branch (4777.61/+2.61) omits stress and is REJECTED as non-canonical",
+    "operator_action_required": "32-SHEET gate demands post-loss >= 4,795.00 -> unsatisfiable at current equity; either stay flat until equity >= 4,797.00 or issue explicit floor-only downgrade",
+    "verdict": "RATIFIED_CAPITAL_PRESERVATION_MODE__STAGING_DENIED_FAIL_CLOSED_ALL_RISK_UNTIL_EQUITY_GE_4797_OR_OPERATOR_DOWNGRADE"
+  }
 }

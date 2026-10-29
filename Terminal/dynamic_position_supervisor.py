@@ -272,7 +272,7 @@ def check_and_supervise_positions() -> dict:
             gain_r = round(gain_price / initial_r, 3) if initial_r > 0 else 0.0
 
             # --- Stage 1 Ratchet: +0.80R gain -> Lock Entry +/- 0.15R (Strictly Monotone) ---
-            if gain_r >= 0.80 and p_state.get("stage", 0) < 1:
+            if gain_r >= 0.75 and p_state.get("stage", 0) < 1:
                 target_sl = round(p.price_open + 0.15 * initial_r, digits) if is_buy else round(p.price_open - 0.15 * initial_r, digits)
                 is_tighter = (target_sl > p.sl) if is_buy else (target_sl < p.sl)
                 if p.sl == 0 or is_tighter:

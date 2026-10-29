@@ -533,8 +533,12 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
     return 1
 
 
-async def run_persistent_daemon(poll_interval: float = 3.0) -> None:
-    print("[ArenaDaemon] Persistent Quad-Council (Arena 1 + Arena 2 Fable) Completion Watcher Daemon started.", flush=True)
+async def run_persistent_daemon(poll_interval: float = 3.0, refresh_limit_s: float = 300.0) -> None:
+    print(f"[ArenaDaemon] Persistent Tri-Council Completion Watcher Daemon started (Auto-refresh watchdog: {refresh_limit_s}s / 5m).", flush=True)
+    arena_gen_start: float = 0.0
+    arena_last_refresh: float = 0.0
+    zai_gen_start: float = 0.0
+    zai_last_refresh: float = 0.0
     last_recorded_hash = ""
     if STATUS_FILE.exists():
         try:
@@ -564,31 +568,45 @@ async def run_persistent_daemon(poll_interval: float = 3.0) -> None:
     zai_candidate_hash = ""
 
     while True:
-        # 1. Check Arena 1 Primary
+        now = time.time()
+
+        # 1. Check Arena 1 Primary & Auto-Refresh Watchdog
         state = await probe_arena_state("arena1")
-        if state.get("connected") and not state.get("isGenerating"):
-            curr_hash = state.get("textHash", "")
-            has_copy = state.get("hasCopyButton", False)
-            has_yes_no = state.get("hasYesNoBanner", False)
-            has_footer = state.get("hasDurationFooter", False)
-
-            if curr_hash and curr_hash != last_recorded_hash and (has_copy or has_yes_no or has_footer) and state.get("lastLen", 0) > 200:
-                if curr_hash == candidate_hash:
-                    stable_ticks += 1
-                else:
-                    candidate_hash = curr_hash
-                    stable_ticks = 1
-
-                if stable_ticks >= 2:
-                    save_completion_artifacts(state)
-                    last_recorded_hash = state.get("textHash", curr_hash)
-                    print(
-                        f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] "
-                        f"🔔 Arena 1 Primary completion detected (len={state.get('lastLen')}, hash={last_recorded_hash}) -> saved {LATEST_RAW_FILE.name}",
-                        flush=True,
-                    )
-            else:
+        if state.get("connected"):
+            if state.get("isGenerating"):
+                if arena_gen_start == 0.0:
+                    arena_gen_start = now
                 stable_ticks = 0
+                gen_duration = now - arena_gen_start
+                if gen_duration >= refresh_limit_s and (now - arena_last_refresh) >= refresh_limit_s:
+                    print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] ⚠️ Arena has been generating for {int(gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
+                    await reload_arena_tab("arena1")
+                    arena_last_refresh = now
+                    arena_gen_start = now
+            else:
+                arena_gen_start = 0.0
+                curr_hash = state.get("textHash", "")
+                has_copy = state.get("hasCopyButton", False)
+                has_yes_no = state.get("hasYesNoBanner", False)
+                has_footer = state.get("hasDurationFooter", False)
+
+                if curr_hash and curr_hash != last_recorded_hash and (has_copy or has_yes_no or has_footer) and state.get("lastLen", 0) > 200:
+                    if curr_hash == candidate_hash:
+                        stable_ticks += 1
+                    else:
+                        candidate_hash = curr_hash
+                        stable_ticks = 1
+
+                    if stable_ticks >= 2:
+                        save_completion_artifacts(state)
+                        last_recorded_hash = state.get("textHash", curr_hash)
+                        print(
+                            f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] "
+                            f"🔔 Arena 1 Primary completion detected (len={state.get('lastLen')}, hash={last_recorded_hash}) -> saved {LATEST_RAW_FILE.name}",
+                            flush=True,
+                        )
+                else:
+                    stable_ticks = 0
         else:
             stable_ticks = 0
 
@@ -620,25 +638,38 @@ async def run_persistent_daemon(poll_interval: float = 3.0) -> None:
         else:
             fable_stable_ticks = 0
 
+        # 3. Check Z.ai Chat & Auto-Refresh Watchdog
         zstate = await probe_zai_state()
-        if zstate.get("connected") and not zstate.get("isGenerating"):
-            z_hash = zstate.get("textHash", "")
-            if z_hash and z_hash != last_recorded_zai_hash and zstate.get("lastLen", 0) > 200:
-                if z_hash == zai_candidate_hash:
-                    zai_stable_ticks += 1
-                else:
-                    zai_candidate_hash = z_hash
-                    zai_stable_ticks = 1
-                if zai_stable_ticks >= 3:
-                    save_zai_completion_artifacts(zstate)
-                    last_recorded_zai_hash = z_hash
-                    print(
-                        f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] "
-                        f"🔔 Z.ai Chat completion detected (len={zstate.get('lastLen')}, hash={z_hash}) -> saved {ZAI_LATEST_RAW_FILE.name}",
-                        flush=True,
-                    )
-            else:
+        if zstate.get("connected"):
+            if zstate.get("isGenerating"):
+                if zai_gen_start == 0.0:
+                    zai_gen_start = now
                 zai_stable_ticks = 0
+                z_gen_duration = now - zai_gen_start
+                if z_gen_duration >= refresh_limit_s and (now - zai_last_refresh) >= refresh_limit_s:
+                    print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] ⚠️ Z.ai has been generating for {int(z_gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
+                    await reload_zai_tab()
+                    zai_last_refresh = now
+                    zai_gen_start = now
+            else:
+                zai_gen_start = 0.0
+                z_hash = zstate.get("textHash", "")
+                if z_hash and z_hash != last_recorded_zai_hash and zstate.get("lastLen", 0) > 200:
+                    if z_hash == zai_candidate_hash:
+                        zai_stable_ticks += 1
+                    else:
+                        zai_candidate_hash = z_hash
+                        zai_stable_ticks = 1
+                    if zai_stable_ticks >= 3:
+                        save_zai_completion_artifacts(zstate)
+                        last_recorded_zai_hash = z_hash
+                        print(
+                            f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] "
+                            f"🔔 Z.ai Chat completion detected (len={zstate.get('lastLen')}, hash={z_hash}) -> saved {ZAI_LATEST_RAW_FILE.name}",
+                            flush=True,
+                        )
+                else:
+                    zai_stable_ticks = 0
         else:
             zai_stable_ticks = 0
 
@@ -655,7 +686,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.daemon:
-        asyncio.run(run_persistent_daemon(poll_interval=args.poll_interval))
+        asyncio.run(run_persistent_daemon(poll_interval=args.poll_interval, refresh_limit_s=args.refresh_limit))
     else:
         rc = asyncio.run(run_wait_for_completion(poll_interval=args.poll_interval, timeout_s=args.timeout, refresh_limit_s=args.refresh_limit))
         sys.exit(rc)

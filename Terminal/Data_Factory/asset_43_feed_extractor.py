@@ -110,21 +110,27 @@ def analyze_asset_43_feeds(symbol_query: str) -> dict:
             m_c = df_c[df_c[col].str.contains(sq, case=False, na=False)]
             if len(m_c) > 0:
                 last_row = m_c.iloc[-1]
-                val = last_row.get('cvd', last_row.get('delta', 0))
+                val = last_row.get('cumulative_cvd', last_row.get('candle_delta', last_row.get('cvd', 0)))
                 res['cvd_multi_timeframe'][tf] = float(val) if val is not None else 0.0
 
     # 6. Auction Market Structure
     p_ams = FEEDS_DIR / "20_Auction_Market_Structure.parquet"
     if p_ams.exists():
         df_ams = pd.read_parquet(p_ams)
-        m_ams = df_ams[df_ams['symbol'].str.contains(sq, case=False, na=False)]
+        m_ams = df_ams[df_ams['symbol'].str.contains(sq, case=False, na=False) | df_ams['asset'].str.contains(sq, case=False, na=False)]
         if len(m_ams) > 0:
             r = m_ams.iloc[0]
             res['footprint_and_auction'] = {
-                'poc': float(r.get('poc', 0)),
-                'vah': float(r.get('vah', 0)),
-                'val': float(r.get('val', 0)),
-                'value_area_width': float(r.get('value_area_width', 0))
+                'poc': float(r.get('daily_poc', r.get('poc', 0))),
+                'vah': float(r.get('daily_vah', r.get('vah', 0))),
+                'val': float(r.get('daily_val', r.get('val', 0))),
+                'value_area_width': float(r.get('daily_vah', 0)) - float(r.get('daily_val', 0)),
+                'auction_regime': str(r.get('auction_regime', 'UNKNOWN')),
+                'session_bias': str(r.get('session_bias', 'UNKNOWN')),
+                'r1': float(r.get('r1', 0)),
+                'r2': float(r.get('r2', 0)),
+                's1': float(r.get('s1', 0)),
+                's2': float(r.get('s2', 0))
             }
 
     # 7. Derivatives Positioning
