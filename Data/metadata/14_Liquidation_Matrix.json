@@ -21,8 +21,8 @@
     "is_synthetic"
   ],
   "byte_size": 270496,
-  "timestamp_ist": "2026-10-29 15:19:06 IST",
-  "timestamp_utc": "2026-10-29 09:49:06 UTC",
-  "epoch_utc": 1793267346.192923,
+  "timestamp_ist": "2026-10-29 15:21:04 IST",
+  "timestamp_utc": "2026-10-29 09:51:04 UTC",
+  "epoch_utc": 1793267464.71107,
   "write_duration_ms": 326.48
 }

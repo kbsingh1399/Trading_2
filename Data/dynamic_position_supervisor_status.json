@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-29 09:49:06 UTC",
+  "timestamp_utc": "2026-10-29 09:51:02 UTC",
   "balance_usd": 4718.94,
-  "equity_usd": 4742.96,
-  "free_margin_usd": 4361.84,
+  "equity_usd": 4743.57,
+  "free_margin_usd": 4362.45,
   "max_filled_positions": 15,
   "filled_positions_count": 2,
   "filled_slots_free": 13,
@@ -17,12 +17,12 @@
       "type": "BUY",
       "volume": 0.08,
       "price_open": 157.62,
-      "price_current": 157.941,
+      "price_current": 157.953,
       "sl": 157.764,
       "tp": 158.05,
-      "gain_r": 1.783,
+      "gain_r": 1.85,
       "ratchet_stage": 2,
-      "profit_usd": 16.26,
+      "profit_usd": 16.87,
       "decision": "LET_IT_RUN",
       "is_valid_trade": true,
       "audit_verdict": "VALID_DEVELOPING"
@@ -87,7 +87,7 @@
       "type": "SELL_LIMIT",
       "volume": 0.01,
       "price": 4064.5,
-      "sl": 4088.5,
+      "sl": 4102.5,
       "tp": 3995.0
     },
     {
