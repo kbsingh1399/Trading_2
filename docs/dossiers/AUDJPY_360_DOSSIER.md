@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDJPY
 **Canonical Key**: `AUDJPY` | **Broker Instrument**: `AUDJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-29 23:10:17 IST` (`2026-10-29 17:40:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:13:20 IST` (`2026-10-29 17:43:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
