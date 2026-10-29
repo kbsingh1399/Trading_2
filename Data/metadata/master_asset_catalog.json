@@ -1,44 +1,2451 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-10-26T13:10:00Z",
+  "updated_at": "2026-10-29T13:10:04Z",
+  "total_tradable_assets": 162,
   "assets": {
-    "BTC": { "canonical": "BTC", "display_name": "Bitcoin", "tier": "Tier 1", "category": "Crypto Major", "coinglass_slug": "BTC", "title_tokens": ["Bitcoin", "BTC"], "binance_symbol": "BTCUSDT", "hl_symbol": "BTC", "mt5_symbol": "BTCUSD.pi", "fallback_price": 80200.0 },
-    "ETH": { "canonical": "ETH", "display_name": "Ethereum", "tier": "Tier 1", "category": "Crypto Major", "coinglass_slug": "ETH", "title_tokens": ["Ethereum", "ETH"], "binance_symbol": "ETHUSDT", "hl_symbol": "ETH", "mt5_symbol": "ETHUSD.pi", "fallback_price": 2325.0 },
-    "SOL": { "canonical": "SOL", "display_name": "Solana", "tier": "Tier 1", "category": "Crypto Major", "coinglass_slug": "SOL", "title_tokens": ["Solana", "SOL"], "binance_symbol": "SOLUSDT", "hl_symbol": "SOL", "mt5_symbol": "SOLUSD.p", "fallback_price": 101.5 },
-    "XRP": { "canonical": "XRP", "display_name": "Ripple", "tier": "Tier 1", "category": "Crypto Major", "coinglass_slug": "XRP", "title_tokens": ["XRP", "Ripple"], "binance_symbol": "XRPUSDT", "hl_symbol": "XRP", "mt5_symbol": "XRPUSD.pi", "fallback_price": 1.29 },
-    "BNB": { "canonical": "BNB", "display_name": "BNB", "tier": "Tier 1", "category": "Crypto Major", "coinglass_slug": "BNB", "title_tokens": ["BNB"], "binance_symbol": "BNBUSDT", "hl_symbol": "BNB", "mt5_symbol": "BNBUSD.p", "fallback_price": 740.0 },
-    "DOGE": { "canonical": "DOGE", "display_name": "Dogecoin", "tier": "Tier 1", "category": "Crypto Meme", "coinglass_slug": "DOGE", "title_tokens": ["Dogecoin", "DOGE"], "binance_symbol": "DOGEUSDT", "hl_symbol": "DOGE", "mt5_symbol": "DOGUSD.p", "fallback_price": 0.082 },
-    "ADA": { "canonical": "ADA", "display_name": "Cardano", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "ADA", "title_tokens": ["Cardano", "ADA"], "binance_symbol": "ADAUSDT", "hl_symbol": "ADA", "mt5_symbol": "ADAUSD.p", "fallback_price": 0.20 },
-    "TRX": { "canonical": "TRX", "display_name": "TRON", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "TRX", "title_tokens": ["TRON", "TRX"], "binance_symbol": "TRXUSDT", "hl_symbol": "TRX", "mt5_symbol": "TRXUSD.p", "fallback_price": 0.33 },
-    "LINK": { "canonical": "LINK", "display_name": "Chainlink", "tier": "Tier 1", "category": "Crypto DeFi", "coinglass_slug": "LINK", "title_tokens": ["Chainlink", "LINK"], "binance_symbol": "LINKUSDT", "hl_symbol": "LINK", "mt5_symbol": "LNKUSD.p", "fallback_price": 11.4 },
-    "AVAX": { "canonical": "AVAX", "display_name": "Avalanche", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "AVAX", "title_tokens": ["Avalanche", "AVAX"], "binance_symbol": "AVAXUSDT", "hl_symbol": "AVAX", "mt5_symbol": "AVXUSD.p", "fallback_price": 8.85 },
-    "SUI": { "canonical": "SUI", "display_name": "Sui", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "SUI", "title_tokens": ["Sui", "SUI"], "binance_symbol": "SUIUSDT", "hl_symbol": "SUI", "mt5_symbol": "SUIUSD.p", "fallback_price": 0.91 },
-    "NEAR": { "canonical": "NEAR", "display_name": "Near Protocol", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "NEAR", "title_tokens": ["NEAR Protocol", "NEAR"], "binance_symbol": "NEARUSDT", "hl_symbol": "NEAR", "mt5_symbol": "NERUSD.p", "fallback_price": 4.50 },
-    "DOT": { "canonical": "DOT", "display_name": "Polkadot", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "DOT", "title_tokens": ["Polkadot", "DOT"], "binance_symbol": "DOTUSDT", "hl_symbol": "DOT", "mt5_symbol": "DOTUSD.pi", "fallback_price": 1.01 },
-    "LTC": { "canonical": "LTC", "display_name": "Litecoin", "tier": "Tier 1", "category": "Crypto PoW", "coinglass_slug": "LTC", "title_tokens": ["Litecoin", "LTC"], "binance_symbol": "LTCUSDT", "hl_symbol": "LTC", "mt5_symbol": "LTCUSD.pi", "fallback_price": 56.6 },
-    "BCH": { "canonical": "BCH", "display_name": "Bitcoin Cash", "tier": "Tier 1", "category": "Crypto PoW", "coinglass_slug": "BCH", "title_tokens": ["Bitcoin Cash", "BCH"], "binance_symbol": "BCHUSDT", "hl_symbol": "BCH", "mt5_symbol": "BCHUSD.p", "fallback_price": 279.0 },
-    "APT": { "canonical": "APT", "display_name": "Aptos", "tier": "Tier 1", "category": "Crypto Alt L1", "coinglass_slug": "APT", "title_tokens": ["Aptos", "APT"], "binance_symbol": "APTUSDT", "hl_symbol": "APT", "mt5_symbol": "APTUSD.p", "fallback_price": 0.69 },
-    "OP": { "canonical": "OP", "display_name": "Optimism", "tier": "Tier 1", "category": "Crypto Alt L2", "coinglass_slug": "OP", "title_tokens": ["Optimism", "OP"], "binance_symbol": "OPUSDT", "hl_symbol": "OP", "mt5_symbol": "OPUSD.p", "fallback_price": 0.11 },
-    "ARB": { "canonical": "ARB", "display_name": "Arbitrum", "tier": "Tier 1", "category": "Crypto Alt L2", "coinglass_slug": "ARB", "title_tokens": ["Arbitrum", "ARB"], "binance_symbol": "ARBUSDT", "hl_symbol": "ARB", "mt5_symbol": "ARBUSD.p", "fallback_price": 0.17 },
-    "XAUT": { "canonical": "XAUT", "display_name": "Tether Gold", "tier": "Tier 2", "category": "Tokenized Metal", "coinglass_slug": "XAUT", "title_tokens": ["XAUT", "Tether Gold", "Gold"], "binance_symbol": null, "hl_symbol": "xyz:GOLD", "mt5_symbol": "XAUUSD.pi", "fallback_price": 4006.8 },
-    "PAXG": { "canonical": "PAXG", "display_name": "Paxos Gold", "tier": "Tier 2", "category": "Tokenized Metal", "coinglass_slug": "PAXG", "title_tokens": ["PAXG", "Paxos Gold", "Gold"], "binance_symbol": "PAXGUSDT", "hl_symbol": "xyz:GOLD", "mt5_symbol": "XAUUSD.pi", "fallback_price": 4005.0 },
-    "XAUUSD": { "canonical": "XAUUSD", "display_name": "Gold Spot", "tier": "Tier 2", "category": "Precious Metal", "coinglass_slug": "XAU", "title_tokens": ["Gold", "XAU", "XAUUSD"], "binance_symbol": null, "hl_symbol": "xyz:GOLD", "mt5_symbol": "XAUUSD.pi", "fallback_price": 2735.0 },
-    "XAGUSD": { "canonical": "XAGUSD", "display_name": "Silver Spot", "tier": "Tier 2", "category": "Precious Metal", "coinglass_slug": "XAG", "title_tokens": ["Silver", "XAG", "XAGUSD"], "binance_symbol": null, "hl_symbol": "xyz:SILVER", "mt5_symbol": "XAGUSD.pi", "fallback_price": 33.5 },
-    "USWTI": { "canonical": "USWTI", "display_name": "WTI Crude Oil", "tier": "Tier 2", "category": "Energy Commodity", "coinglass_slug": "CL", "title_tokens": ["Crude Oil", "WTI", "CL"], "binance_symbol": null, "hl_symbol": "xyz:CL", "mt5_symbol": "USWTI.p", "fallback_price": 71.5 },
-    "UKBRENT": { "canonical": "UKBRENT", "display_name": "Brent Crude Oil", "tier": "Tier 2", "category": "Energy Commodity", "coinglass_slug": "BRENT", "title_tokens": ["Brent", "UKBRENT"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "UKBRENT.p", "fallback_price": 75.5 },
-    "EURUSD": { "canonical": "EURUSD", "display_name": "Euro / US Dollar", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "EURUSD", "title_tokens": ["EURUSD", "EUR/USD", "Euro"], "binance_symbol": null, "hl_symbol": "xyz:EUR", "mt5_symbol": "EURUSD.pi", "fallback_price": 1.123 },
-    "GBPUSD": { "canonical": "GBPUSD", "display_name": "British Pound / US Dollar", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "GBPUSD", "title_tokens": ["GBPUSD", "GBP/USD", "Pound"], "binance_symbol": null, "hl_symbol": "xyz:GBP", "mt5_symbol": "GBPUSD.pi", "fallback_price": 1.337 },
-    "USDJPY": { "canonical": "USDJPY", "display_name": "US Dollar / Japanese Yen", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "USDJPY", "title_tokens": ["USDJPY", "USD/JPY", "Yen"], "binance_symbol": null, "hl_symbol": "xyz:JPY", "mt5_symbol": "USDJPY.pi", "fallback_price": 157.0 },
-    "AUDUSD": { "canonical": "AUDUSD", "display_name": "Australian Dollar / US Dollar", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "AUDUSD", "title_tokens": ["AUDUSD", "AUD/USD", "Aussie"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "AUDUSD.pi", "fallback_price": 0.702 },
-    "USDCAD": { "canonical": "USDCAD", "display_name": "US Dollar / Canadian Dollar", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "USDCAD", "title_tokens": ["USDCAD", "USD/CAD", "Loonie"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "USDCAD.pi", "fallback_price": 1.402 },
-    "USDCHF": { "canonical": "USDCHF", "display_name": "US Dollar / Swiss Franc", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "USDCHF", "title_tokens": ["USDCHF", "USD/CHF", "Swissie"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "USDCHF.pi", "fallback_price": 0.885 },
-    "NZDUSD": { "canonical": "NZDUSD", "display_name": "New Zealand Dollar / US Dollar", "tier": "Tier 3", "category": "FX Major", "coinglass_slug": "NZDUSD", "title_tokens": ["NZDUSD", "NZD/USD", "Kiwi"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "NZDUSD.pi", "fallback_price": 0.605 },
-    "EURGBP": { "canonical": "EURGBP", "display_name": "Euro / British Pound", "tier": "Tier 3", "category": "FX Cross", "coinglass_slug": "EURGBP", "title_tokens": ["EURGBP", "EUR/GBP"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "EURGBP.pi", "fallback_price": 0.8385 },
-    "EURJPY": { "canonical": "EURJPY", "display_name": "Euro / Japanese Yen", "tier": "Tier 3", "category": "FX Cross", "coinglass_slug": "EURJPY", "title_tokens": ["EURJPY", "EUR/JPY"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "EURJPY.pi", "fallback_price": 176.0 },
-    "GBPJPY": { "canonical": "GBPJPY", "display_name": "British Pound / Japanese Yen", "tier": "Tier 3", "category": "FX Cross", "coinglass_slug": "GBPJPY", "title_tokens": ["GBPJPY", "GBP/JPY"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "GBPJPY.pi", "fallback_price": 210.0 },
-    "SP500": { "canonical": "SP500", "display_name": "S&P 500 Index", "tier": "Tier 4", "category": "Equity Index US", "coinglass_slug": "SP500", "title_tokens": ["S&P 500", "SP500", "SPCX"], "binance_symbol": null, "hl_symbol": "xyz:SP500", "mt5_symbol": "SP500.p", "fallback_price": 5850.0 },
-    "NAS100": { "canonical": "NAS100", "display_name": "Nasdaq 100 Index", "tier": "Tier 4", "category": "Equity Index US", "coinglass_slug": "NAS100", "title_tokens": ["Nasdaq", "NAS100", "QQQ"], "binance_symbol": null, "hl_symbol": "xyz:QQQ", "mt5_symbol": "NAS100.p", "fallback_price": 20450.0 },
-    "DJ30": { "canonical": "DJ30", "display_name": "Dow Jones 30", "tier": "Tier 4", "category": "Equity Index US", "coinglass_slug": "DJ30", "title_tokens": ["Dow Jones", "DJ30", "US30"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "DJ30.p", "fallback_price": 42800.0 },
-    "GER40": { "canonical": "GER40", "display_name": "DAX 40 Germany", "tier": "Tier 4", "category": "Equity Index EU", "coinglass_slug": "GER40", "title_tokens": ["DAX 40", "GER40"], "binance_symbol": null, "hl_symbol": null, "mt5_symbol": "GER40.p", "fallback_price": 19450.0 }
+    "BTC": {
+      "canonical": "BTC",
+      "display_name": "Bitcoin",
+      "tier": "Tier 1",
+      "category": "Crypto Major",
+      "coinglass_slug": "BTC",
+      "title_tokens": [
+        "Bitcoin",
+        "BTC"
+      ],
+      "binance_symbol": "BTCUSDT",
+      "hl_symbol": "BTC",
+      "mt5_symbol": "BTCUSD.pi",
+      "fallback_price": 80038.0
+    },
+    "ETH": {
+      "canonical": "ETH",
+      "display_name": "Ethereum",
+      "tier": "Tier 1",
+      "category": "Crypto Major",
+      "coinglass_slug": "ETH",
+      "title_tokens": [
+        "Ethereum",
+        "ETH"
+      ],
+      "binance_symbol": "ETHUSDT",
+      "hl_symbol": "ETH",
+      "mt5_symbol": "ETHUSD.pi",
+      "fallback_price": 2323.2
+    },
+    "SOL": {
+      "canonical": "SOL",
+      "display_name": "Solana",
+      "tier": "Tier 1",
+      "category": "Crypto Major",
+      "coinglass_slug": "SOL",
+      "title_tokens": [
+        "Solana",
+        "SOL"
+      ],
+      "binance_symbol": "SOLUSDT",
+      "hl_symbol": "SOL",
+      "mt5_symbol": "SOLUSD.p",
+      "fallback_price": 100.57
+    },
+    "XRP": {
+      "canonical": "XRP",
+      "display_name": "Ripple",
+      "tier": "Tier 1",
+      "category": "Crypto Major",
+      "coinglass_slug": "XRP",
+      "title_tokens": [
+        "XRP",
+        "Ripple"
+      ],
+      "binance_symbol": "XRPUSDT",
+      "hl_symbol": "XRP",
+      "mt5_symbol": "XRPUSD.pi",
+      "fallback_price": 1.292
+    },
+    "BNB": {
+      "canonical": "BNB",
+      "display_name": "BNB",
+      "tier": "Tier 1",
+      "category": "Crypto Major",
+      "coinglass_slug": "BNB",
+      "title_tokens": [
+        "BNB"
+      ],
+      "binance_symbol": "BNBUSDT",
+      "hl_symbol": "BNB",
+      "mt5_symbol": "BNBUSD.p",
+      "fallback_price": 741.0
+    },
+    "DOGE": {
+      "canonical": "DOGE",
+      "display_name": "Dogecoin",
+      "tier": "Tier 1",
+      "category": "Crypto Meme",
+      "coinglass_slug": "DOGE",
+      "title_tokens": [
+        "Dogecoin",
+        "DOGE"
+      ],
+      "binance_symbol": "DOGEUSDT",
+      "hl_symbol": "DOGE",
+      "mt5_symbol": "DOGUSD.p",
+      "fallback_price": 0.07915
+    },
+    "ADA": {
+      "canonical": "ADA",
+      "display_name": "Cardano",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "ADA",
+      "title_tokens": [
+        "Cardano",
+        "ADA"
+      ],
+      "binance_symbol": "ADAUSDT",
+      "hl_symbol": "ADA",
+      "mt5_symbol": "ADAUSD.p",
+      "fallback_price": 0.20135
+    },
+    "TRX": {
+      "canonical": "TRX",
+      "display_name": "TRON",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "TRX",
+      "title_tokens": [
+        "TRON",
+        "TRX"
+      ],
+      "binance_symbol": "TRXUSDT",
+      "hl_symbol": "TRX",
+      "mt5_symbol": "TRXUSD.p",
+      "fallback_price": 0.33140000000000003
+    },
+    "LINK": {
+      "canonical": "LINK",
+      "display_name": "Chainlink",
+      "tier": "Tier 1",
+      "category": "Crypto DeFi",
+      "coinglass_slug": "LINK",
+      "title_tokens": [
+        "Chainlink",
+        "LINK"
+      ],
+      "binance_symbol": "LINKUSDT",
+      "hl_symbol": "LINK",
+      "mt5_symbol": "LNKUSD.p",
+      "fallback_price": 11.645
+    },
+    "AVAX": {
+      "canonical": "AVAX",
+      "display_name": "Avalanche",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "AVAX",
+      "title_tokens": [
+        "Avalanche",
+        "AVAX"
+      ],
+      "binance_symbol": "AVAXUSDT",
+      "hl_symbol": "AVAX",
+      "mt5_symbol": "AVXUSD.p",
+      "fallback_price": 8.8
+    },
+    "SUI": {
+      "canonical": "SUI",
+      "display_name": "Sui",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "SUI",
+      "title_tokens": [
+        "Sui",
+        "SUI"
+      ],
+      "binance_symbol": "SUIUSDT",
+      "hl_symbol": "SUI",
+      "mt5_symbol": "SUIUSD.p",
+      "fallback_price": 0.91
+    },
+    "NEAR": {
+      "canonical": "NEAR",
+      "display_name": "Near Protocol",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "NEAR",
+      "title_tokens": [
+        "NEAR Protocol",
+        "NEAR"
+      ],
+      "binance_symbol": "NEARUSDT",
+      "hl_symbol": "NEAR",
+      "mt5_symbol": "NERUSD.p",
+      "fallback_price": 4.49
+    },
+    "DOT": {
+      "canonical": "DOT",
+      "display_name": "Polkadot",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "DOT",
+      "title_tokens": [
+        "Polkadot",
+        "DOT"
+      ],
+      "binance_symbol": "DOTUSDT",
+      "hl_symbol": "DOT",
+      "mt5_symbol": "DOTUSD.pi",
+      "fallback_price": 0.9935
+    },
+    "LTC": {
+      "canonical": "LTC",
+      "display_name": "Litecoin",
+      "tier": "Tier 1",
+      "category": "Crypto PoW",
+      "coinglass_slug": "LTC",
+      "title_tokens": [
+        "Litecoin",
+        "LTC"
+      ],
+      "binance_symbol": "LTCUSDT",
+      "hl_symbol": "LTC",
+      "mt5_symbol": "LTCUSD.pi",
+      "fallback_price": 58.09
+    },
+    "BCH": {
+      "canonical": "BCH",
+      "display_name": "Bitcoin Cash",
+      "tier": "Tier 1",
+      "category": "Crypto PoW",
+      "coinglass_slug": "BCH",
+      "title_tokens": [
+        "Bitcoin Cash",
+        "BCH"
+      ],
+      "binance_symbol": "BCHUSDT",
+      "hl_symbol": "BCH",
+      "mt5_symbol": "BCHUSD.p",
+      "fallback_price": 279.65
+    },
+    "APT": {
+      "canonical": "APT",
+      "display_name": "Aptos",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L1",
+      "coinglass_slug": "APT",
+      "title_tokens": [
+        "Aptos",
+        "APT"
+      ],
+      "binance_symbol": "APTUSDT",
+      "hl_symbol": "APT",
+      "mt5_symbol": "APTUSD.p",
+      "fallback_price": 0.69
+    },
+    "OP": {
+      "canonical": "OP",
+      "display_name": "Optimism",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L2",
+      "coinglass_slug": "OP",
+      "title_tokens": [
+        "Optimism",
+        "OP"
+      ],
+      "binance_symbol": "OPUSDT",
+      "hl_symbol": "OP",
+      "mt5_symbol": "OPUSD.p",
+      "fallback_price": 0.11
+    },
+    "ARB": {
+      "canonical": "ARB",
+      "display_name": "Arbitrum",
+      "tier": "Tier 1",
+      "category": "Crypto Alt L2",
+      "coinglass_slug": "ARB",
+      "title_tokens": [
+        "Arbitrum",
+        "ARB"
+      ],
+      "binance_symbol": "ARBUSDT",
+      "hl_symbol": "ARB",
+      "mt5_symbol": "ARBUSD.p",
+      "fallback_price": 0.17
+    },
+    "XAUT": {
+      "canonical": "XAUT",
+      "display_name": "Tether Gold",
+      "tier": "Tier 2",
+      "category": "Tokenized Metal",
+      "coinglass_slug": "XAUT",
+      "title_tokens": [
+        "XAUT",
+        "Tether Gold",
+        "Gold"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:GOLD",
+      "mt5_symbol": "XAUUSD.pi",
+      "fallback_price": 4006.8
+    },
+    "PAXG": {
+      "canonical": "PAXG",
+      "display_name": "Paxos Gold",
+      "tier": "Tier 2",
+      "category": "Tokenized Metal",
+      "coinglass_slug": "PAXG",
+      "title_tokens": [
+        "PAXG",
+        "Paxos Gold",
+        "Gold"
+      ],
+      "binance_symbol": "PAXGUSDT",
+      "hl_symbol": "xyz:GOLD",
+      "mt5_symbol": "XAUUSD.pi",
+      "fallback_price": 4005.0
+    },
+    "XAUUSD": {
+      "canonical": "XAUUSD",
+      "display_name": "Gold Spot",
+      "tier": "Tier 2",
+      "category": "Precious Metal",
+      "coinglass_slug": "XAU",
+      "title_tokens": [
+        "Gold",
+        "XAU",
+        "XAUUSD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:GOLD",
+      "mt5_symbol": "XAUUSD.pi",
+      "fallback_price": 4024.99
+    },
+    "XAGUSD": {
+      "canonical": "XAGUSD",
+      "display_name": "Silver Spot",
+      "tier": "Tier 2",
+      "category": "Precious Metal",
+      "coinglass_slug": "XAG",
+      "title_tokens": [
+        "Silver",
+        "XAG",
+        "XAGUSD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:SILVER",
+      "mt5_symbol": "XAGUSD.pi",
+      "fallback_price": 52.492
+    },
+    "USWTI": {
+      "canonical": "USWTI",
+      "display_name": "WTI Crude Oil",
+      "tier": "Tier 2",
+      "category": "Energy Commodity",
+      "coinglass_slug": "CL",
+      "title_tokens": [
+        "Crude Oil",
+        "WTI",
+        "CL"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:CL",
+      "mt5_symbol": "USWTI.p",
+      "fallback_price": 101.35300000000001
+    },
+    "UKBRENT": {
+      "canonical": "UKBRENT",
+      "display_name": "Brent Crude Oil",
+      "tier": "Tier 2",
+      "category": "Energy Commodity",
+      "coinglass_slug": "BRENT",
+      "title_tokens": [
+        "Brent",
+        "UKBRENT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "UKBRENT.p",
+      "fallback_price": 114.411
+    },
+    "EURUSD": {
+      "canonical": "EURUSD",
+      "display_name": "Euro / US Dollar",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "EURUSD",
+      "title_tokens": [
+        "EURUSD",
+        "EUR/USD",
+        "Euro"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:EUR",
+      "mt5_symbol": "EURUSD.pi",
+      "fallback_price": 1.112935
+    },
+    "GBPUSD": {
+      "canonical": "GBPUSD",
+      "display_name": "British Pound / US Dollar",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "GBPUSD",
+      "title_tokens": [
+        "GBPUSD",
+        "GBP/USD",
+        "Pound"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:GBP",
+      "mt5_symbol": "GBPUSD.pi",
+      "fallback_price": 1.331885
+    },
+    "USDJPY": {
+      "canonical": "USDJPY",
+      "display_name": "US Dollar / Japanese Yen",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "USDJPY",
+      "title_tokens": [
+        "USDJPY",
+        "USD/JPY",
+        "Yen"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:JPY",
+      "mt5_symbol": "USDJPY.pi",
+      "fallback_price": 158.0435
+    },
+    "AUDUSD": {
+      "canonical": "AUDUSD",
+      "display_name": "Australian Dollar / US Dollar",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "AUDUSD",
+      "title_tokens": [
+        "AUDUSD",
+        "AUD/USD",
+        "Aussie"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDUSD.pi",
+      "fallback_price": 0.702745
+    },
+    "USDCAD": {
+      "canonical": "USDCAD",
+      "display_name": "US Dollar / Canadian Dollar",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "USDCAD",
+      "title_tokens": [
+        "USDCAD",
+        "USD/CAD",
+        "Loonie"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDCAD.pi",
+      "fallback_price": 1.399375
+    },
+    "USDCHF": {
+      "canonical": "USDCHF",
+      "display_name": "US Dollar / Swiss Franc",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "USDCHF",
+      "title_tokens": [
+        "USDCHF",
+        "USD/CHF",
+        "Swissie"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDCHF.pi",
+      "fallback_price": 0.82858
+    },
+    "NZDUSD": {
+      "canonical": "NZDUSD",
+      "display_name": "New Zealand Dollar / US Dollar",
+      "tier": "Tier 3",
+      "category": "FX Major",
+      "coinglass_slug": "NZDUSD",
+      "title_tokens": [
+        "NZDUSD",
+        "NZD/USD",
+        "Kiwi"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDUSD.pi",
+      "fallback_price": 0.561695
+    },
+    "EURGBP": {
+      "canonical": "EURGBP",
+      "display_name": "Euro / British Pound",
+      "tier": "Tier 3",
+      "category": "FX Cross",
+      "coinglass_slug": "EURGBP",
+      "title_tokens": [
+        "EURGBP",
+        "EUR/GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURGBP.pi",
+      "fallback_price": 0.835615
+    },
+    "EURJPY": {
+      "canonical": "EURJPY",
+      "display_name": "Euro / Japanese Yen",
+      "tier": "Tier 3",
+      "category": "FX Cross",
+      "coinglass_slug": "EURJPY",
+      "title_tokens": [
+        "EURJPY",
+        "EUR/JPY"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURJPY.pi",
+      "fallback_price": 175.89100000000002
+    },
+    "GBPJPY": {
+      "canonical": "GBPJPY",
+      "display_name": "British Pound / Japanese Yen",
+      "tier": "Tier 3",
+      "category": "FX Cross",
+      "coinglass_slug": "GBPJPY",
+      "title_tokens": [
+        "GBPJPY",
+        "GBP/JPY"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPJPY.pi",
+      "fallback_price": 210.494
+    },
+    "SP500": {
+      "canonical": "SP500",
+      "display_name": "S&P 500 Index",
+      "tier": "Tier 4",
+      "category": "Equity Index US",
+      "coinglass_slug": "SP500",
+      "title_tokens": [
+        "S&P 500",
+        "SP500",
+        "SPCX"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:SP500",
+      "mt5_symbol": "SP500.p",
+      "fallback_price": 7726.9400000000005
+    },
+    "NAS100": {
+      "canonical": "NAS100",
+      "display_name": "Nasdaq 100 Index",
+      "tier": "Tier 4",
+      "category": "Equity Index US",
+      "coinglass_slug": "NAS100",
+      "title_tokens": [
+        "Nasdaq",
+        "NAS100",
+        "QQQ"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": "xyz:QQQ",
+      "mt5_symbol": "NAS100.p",
+      "fallback_price": 29540.989999999998
+    },
+    "DJ30": {
+      "canonical": "DJ30",
+      "display_name": "Dow Jones 30",
+      "tier": "Tier 4",
+      "category": "Equity Index US",
+      "coinglass_slug": "DJ30",
+      "title_tokens": [
+        "Dow Jones",
+        "DJ30",
+        "US30"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "DJ30.p",
+      "fallback_price": 52401.55
+    },
+    "GER40": {
+      "canonical": "GER40",
+      "display_name": "DAX 40 Germany",
+      "tier": "Tier 4",
+      "category": "Equity Index EU",
+      "coinglass_slug": "GER40",
+      "title_tokens": [
+        "DAX 40",
+        "GER40"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GER40.p",
+      "fallback_price": 26053.300000000003
+    },
+    "USDHKD": {
+      "canonical": "USDHKD",
+      "display_name": "USD/HKD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDHKD",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDHKD.pi",
+      "fallback_price": 7.846325
+    },
+    "USDCNH": {
+      "canonical": "USDCNH",
+      "display_name": "USD/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDCNH",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDCNH.pi",
+      "fallback_price": 6.65883
+    },
+    "GBPHKD": {
+      "canonical": "GBPHKD",
+      "display_name": "GBP/HKD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPHKD",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPHKD.pi",
+      "fallback_price": 10.450410000000002
+    },
+    "EURHKD": {
+      "canonical": "EURHKD",
+      "display_name": "EUR/HKD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURHKD",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURHKD.pi",
+      "fallback_price": 8.7325
+    },
+    "USDSGD": {
+      "canonical": "USDSGD",
+      "display_name": "USD/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDSGD",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDSGD.pi",
+      "fallback_price": 1.281625
+    },
+    "AUDJPY": {
+      "canonical": "AUDJPY",
+      "display_name": "AUD/JPY",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDJPY",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDJPY.pi",
+      "fallback_price": 111.063
+    },
+    "AUDCAD": {
+      "canonical": "AUDCAD",
+      "display_name": "AUD/CAD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDCAD",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDCAD.pi",
+      "fallback_price": 0.9832799999999999
+    },
+    "GBPCNH": {
+      "canonical": "GBPCNH",
+      "display_name": "GBP/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPCNH",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPCNH.pi",
+      "fallback_price": 8.8688
+    },
+    "GBPAUD": {
+      "canonical": "GBPAUD",
+      "display_name": "GBP/AUD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPAUD",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPAUD.pi",
+      "fallback_price": 1.89526
+    },
+    "CNHJPY": {
+      "canonical": "CNHJPY",
+      "display_name": "CNH/JPY",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CNHJPY",
+        "CNH"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CNHJPY.pi",
+      "fallback_price": 23.7345
+    },
+    "EURAUD": {
+      "canonical": "EURAUD",
+      "display_name": "EUR/AUD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURAUD",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURAUD.pi",
+      "fallback_price": 1.583695
+    },
+    "GBPNZD": {
+      "canonical": "GBPNZD",
+      "display_name": "GBP/NZD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPNZD",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPNZD.pi",
+      "fallback_price": 2.3711450000000003
+    },
+    "CHFJPY": {
+      "canonical": "CHFJPY",
+      "display_name": "CHF/JPY",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CHFJPY",
+        "CHF"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CHFJPY.pi",
+      "fallback_price": 190.7415
+    },
+    "GBPCAD": {
+      "canonical": "GBPCAD",
+      "display_name": "GBP/CAD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPCAD",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPCAD.pi",
+      "fallback_price": 1.863565
+    },
+    "EURCAD": {
+      "canonical": "EURCAD",
+      "display_name": "EUR/CAD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURCAD",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURCAD.pi",
+      "fallback_price": 1.55721
+    },
+    "AUDCHF": {
+      "canonical": "AUDCHF",
+      "display_name": "AUD/CHF",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDCHF",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDCHF.pi",
+      "fallback_price": 0.582275
+    },
+    "NZDCNH": {
+      "canonical": "NZDCNH",
+      "display_name": "NZD/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NZDCNH",
+        "NZD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDCNH.pi",
+      "fallback_price": 3.7403
+    },
+    "AUDSGD": {
+      "canonical": "AUDSGD",
+      "display_name": "AUD/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDSGD",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDSGD.pi",
+      "fallback_price": 0.900655
+    },
+    "NZDJPY": {
+      "canonical": "NZDJPY",
+      "display_name": "NZD/JPY",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NZDJPY",
+        "NZD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDJPY.pi",
+      "fallback_price": 88.7735
+    },
+    "GAUUSD": {
+      "canonical": "GAUUSD",
+      "display_name": "GAU/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GAUUSD",
+        "GAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GAUUSD.pi",
+      "fallback_price": 129.40755
+    },
+    "NZDCHF": {
+      "canonical": "NZDCHF",
+      "display_name": "NZD/CHF",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NZDCHF",
+        "NZD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDCHF.pi",
+      "fallback_price": 0.465415
+    },
+    "XAUGBP": {
+      "canonical": "XAUGBP",
+      "display_name": "XAU/GBP",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAUGBP",
+        "XAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAUGBP.pi",
+      "fallback_price": 3022.005
+    },
+    "EURSGD": {
+      "canonical": "EURSGD",
+      "display_name": "EUR/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURSGD",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURSGD.pi",
+      "fallback_price": 1.42637
+    },
+    "CADJPY": {
+      "canonical": "CADJPY",
+      "display_name": "CAD/JPY",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CADJPY",
+        "CAD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CADJPY.pi",
+      "fallback_price": 112.953
+    },
+    "CHFSGD": {
+      "canonical": "CHFSGD",
+      "display_name": "CHF/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CHFSGD",
+        "CHF"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CHFSGD.pi",
+      "fallback_price": 1.546795
+    },
+    "AUDNZD": {
+      "canonical": "AUDNZD",
+      "display_name": "AUD/NZD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDNZD",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDNZD.pi",
+      "fallback_price": 1.251115
+    },
+    "USDSEK": {
+      "canonical": "USDSEK",
+      "display_name": "USD/SEK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDSEK",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDSEK.pi",
+      "fallback_price": 9.879100000000001
+    },
+    "XAUAUD": {
+      "canonical": "XAUAUD",
+      "display_name": "XAU/AUD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAUAUD",
+        "XAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAUAUD.pi",
+      "fallback_price": 5727.455
+    },
+    "XAUEUR": {
+      "canonical": "XAUEUR",
+      "display_name": "XAU/EUR",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAUEUR",
+        "XAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAUEUR.pi",
+      "fallback_price": 3616.5150000000003
+    },
+    "EURNZD": {
+      "canonical": "EURNZD",
+      "display_name": "EUR/NZD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURNZD",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURNZD.pi",
+      "fallback_price": 1.981355
+    },
+    "EURCNH": {
+      "canonical": "EURCNH",
+      "display_name": "EUR/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURCNH",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURCNH.pi",
+      "fallback_price": 7.4108
+    },
+    "XAUCNH": {
+      "canonical": "XAUCNH",
+      "display_name": "XAU/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAUCNH",
+        "XAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAUCNH.pi",
+      "fallback_price": 26801.435
+    },
+    "SGDJPY": {
+      "canonical": "SGDJPY",
+      "display_name": "SGD/JPY",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SGDJPY",
+        "SGD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SGDJPY.pi",
+      "fallback_price": 123.314
+    },
+    "NZDSGD": {
+      "canonical": "NZDSGD",
+      "display_name": "NZD/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NZDSGD",
+        "NZD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDSGD.pi",
+      "fallback_price": 0.7199
+    },
+    "CADCHF": {
+      "canonical": "CADCHF",
+      "display_name": "CAD/CHF",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CADCHF",
+        "CAD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CADCHF.pi",
+      "fallback_price": 0.5921749999999999
+    },
+    "JP225": {
+      "canonical": "JP225",
+      "display_name": "Nikkei 225 Index",
+      "tier": "Tier 1",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "JP225",
+        "Nikkei 225 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "JP225.p",
+      "fallback_price": 64792.0
+    },
+    "GBPSGD": {
+      "canonical": "GBPSGD",
+      "display_name": "GBP/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPSGD",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPSGD.pi",
+      "fallback_price": 1.70697
+    },
+    "XAUSGD": {
+      "canonical": "XAUSGD",
+      "display_name": "XAU/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAUSGD",
+        "XAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAUSGD.pi",
+      "fallback_price": 5158.615
+    },
+    "GBPCHF": {
+      "canonical": "GBPCHF",
+      "display_name": "GBP/CHF",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPCHF",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPCHF.pi",
+      "fallback_price": 1.1035650000000001
+    },
+    "NZDCAD": {
+      "canonical": "NZDCAD",
+      "display_name": "NZD/CAD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NZDCAD",
+        "NZD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NZDCAD.pi",
+      "fallback_price": 0.78592
+    },
+    "GBPSEK": {
+      "canonical": "GBPSEK",
+      "display_name": "GBP/SEK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPSEK",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPSEK.pi",
+      "fallback_price": 13.157725
+    },
+    "US2000": {
+      "canonical": "US2000",
+      "display_name": "Russell 2000 Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "US2000",
+        "Russell 2000 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "US2000.p",
+      "fallback_price": 2839.81
+    },
+    "EURSEK": {
+      "canonical": "EURSEK",
+      "display_name": "EUR/SEK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURSEK",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURSEK.pi",
+      "fallback_price": 10.994645
+    },
+    "AU200": {
+      "canonical": "AU200",
+      "display_name": "ASX 200 Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AU200",
+        "ASX 200 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AU200.p",
+      "fallback_price": 8930.0
+    },
+    "EURCHF": {
+      "canonical": "EURCHF",
+      "display_name": "EUR/CHF",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURCHF",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURCHF.pi",
+      "fallback_price": 0.9221600000000001
+    },
+    "UK100": {
+      "canonical": "UK100",
+      "display_name": "FTSE 100 Index",
+      "tier": "Tier 1",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "UK100",
+        "FTSE 100 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "UK100.p",
+      "fallback_price": 10763.9
+    },
+    "FR40": {
+      "canonical": "FR40",
+      "display_name": "CAC 40 Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "FR40",
+        "CAC 40 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "FR40.p",
+      "fallback_price": 7982.85
+    },
+    "USDNOK": {
+      "canonical": "USDNOK",
+      "display_name": "USD/NOK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDNOK",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDNOK.pi",
+      "fallback_price": 9.279029999999999
+    },
+    "EURNOK": {
+      "canonical": "EURNOK",
+      "display_name": "EUR/NOK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURNOK",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURNOK.pi",
+      "fallback_price": 10.327020000000001
+    },
+    "USDMXN": {
+      "canonical": "USDMXN",
+      "display_name": "USD/MXN",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDMXN",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDMXN.pi",
+      "fallback_price": 18.7548
+    },
+    "USDZAR": {
+      "canonical": "USDZAR",
+      "display_name": "USD/ZAR",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDZAR",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDZAR.pi",
+      "fallback_price": 16.63944
+    },
+    "GBPNOK": {
+      "canonical": "GBPNOK",
+      "display_name": "GBP/NOK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GBPNOK",
+        "GBP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GBPNOK.pi",
+      "fallback_price": 12.35905
+    },
+    "EURZAR": {
+      "canonical": "EURZAR",
+      "display_name": "EUR/ZAR",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURZAR",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURZAR.pi",
+      "fallback_price": 18.518034999999998
+    },
+    "EURMXN": {
+      "canonical": "EURMXN",
+      "display_name": "EUR/MXN",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURMXN",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURMXN.pi",
+      "fallback_price": 20.873829999999998
+    },
+    "STOXX50": {
+      "canonical": "STOXX50",
+      "display_name": "Euro Stoxx 50 Index",
+      "tier": "Tier 1",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "STOXX50",
+        "Euro Stoxx 50 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "STOXX50.p",
+      "fallback_price": 6209.1
+    },
+    "NETH25": {
+      "canonical": "NETH25",
+      "display_name": "NET/H25",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NETH25",
+        "NET"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NETH25.p",
+      "fallback_price": 1146.25
+    },
+    "AUDCNH": {
+      "canonical": "AUDCNH",
+      "display_name": "AUD/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "AUDCNH",
+        "AUD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "AUDCNH.pi",
+      "fallback_price": 4.679465
+    },
+    "SWISS20": {
+      "canonical": "SWISS20",
+      "display_name": "Swiss Market Index 20",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SWISS20",
+        "Swiss Market Index 20"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SWISS20.p",
+      "fallback_price": 14820.5
+    },
+    "NOKSEK": {
+      "canonical": "NOKSEK",
+      "display_name": "NOK/SEK",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NOKSEK",
+        "NOK"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NOKSEK.pi",
+      "fallback_price": 1.0647099999999998
+    },
+    "HK50": {
+      "canonical": "HK50",
+      "display_name": "Hang Seng 50 Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "HK50",
+        "Hang Seng 50 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "HK50.p",
+      "fallback_price": 23078.300000000003
+    },
+    "GAUCNH": {
+      "canonical": "GAUCNH",
+      "display_name": "GAU/CNH",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GAUCNH",
+        "GAU"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GAUCNH.pi",
+      "fallback_price": 861.6965
+    },
+    "XAGSGD": {
+      "canonical": "XAGSGD",
+      "display_name": "XAG/SGD",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAGSGD",
+        "XAG"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAGSGD.pi",
+      "fallback_price": 67.27449999999999
+    },
+    "USDHUF": {
+      "canonical": "USDHUF",
+      "display_name": "USD/HUF",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDHUF",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDHUF.pi",
+      "fallback_price": 328.679
+    },
+    "ZARJPY": {
+      "canonical": "ZARJPY",
+      "display_name": "ZAR/JPY",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ZARJPY",
+        "ZAR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ZARJPY.pi",
+      "fallback_price": 9.497865000000001
+    },
+    "GER30": {
+      "canonical": "GER30",
+      "display_name": "German DAX Index",
+      "tier": "Tier 1",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GER30",
+        "German DAX Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GER30.p",
+      "fallback_price": 19372.85
+    },
+    "COPPER": {
+      "canonical": "COPPER",
+      "display_name": "High Grade Copper",
+      "tier": "Tier 2",
+      "category": "Base Metal",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "COPPER",
+        "High Grade Copper"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "COPPER.p",
+      "fallback_price": 14362.325
+    },
+    "XMRUSD": {
+      "canonical": "XMRUSD",
+      "display_name": "Monero / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "XMRUSD",
+      "title_tokens": [
+        "XMRUSD",
+        "Monero"
+      ],
+      "binance_symbol": "XMRUSDT",
+      "hl_symbol": "XMR",
+      "mt5_symbol": "XMRUSD.p",
+      "fallback_price": 601.245
+    },
+    "USDTHB": {
+      "canonical": "USDTHB",
+      "display_name": "USD/THB",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "USDTHB",
+        "USD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "USDTHB.pi",
+      "fallback_price": 33.751999999999995
+    },
+    "ZECUSD": {
+      "canonical": "ZECUSD",
+      "display_name": "Zcash / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "ZECUSD",
+      "title_tokens": [
+        "ZECUSD",
+        "Zcash"
+      ],
+      "binance_symbol": "ZECUSDT",
+      "hl_symbol": "ZEC",
+      "mt5_symbol": "ZECUSD.p",
+      "fallback_price": 1284.635
+    },
+    "DSHUSD": {
+      "canonical": "DSHUSD",
+      "display_name": "DSH/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "DSHUSD",
+        "DSH"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "DSHUSD.p",
+      "fallback_price": 50.43000000000001
+    },
+    "YFIUSD": {
+      "canonical": "YFIUSD",
+      "display_name": "Yearn Finance / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "YFIUSD",
+      "title_tokens": [
+        "YFIUSD",
+        "Yearn Finance"
+      ],
+      "binance_symbol": "YFIUSDT",
+      "hl_symbol": "YFI",
+      "mt5_symbol": "YFIUSD.p",
+      "fallback_price": 2067.5
+    },
+    "XLMUSD": {
+      "canonical": "XLMUSD",
+      "display_name": "Stellar / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "XLMUSD",
+      "title_tokens": [
+        "XLMUSD",
+        "Stellar"
+      ],
+      "binance_symbol": "XLMUSDT",
+      "hl_symbol": "XLM",
+      "mt5_symbol": "XLMUSD.p",
+      "fallback_price": 0.17116
+    },
+    "AVEUSD": {
+      "canonical": "AVEUSD",
+      "display_name": "Aave / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "AVEUSD",
+      "title_tokens": [
+        "AVEUSD",
+        "Aave"
+      ],
+      "binance_symbol": "AAVEUSDT",
+      "hl_symbol": "AAVE",
+      "mt5_symbol": "AVEUSD.p",
+      "fallback_price": 133.16000000000003
+    },
+    "NOKJPY": {
+      "canonical": "NOKJPY",
+      "display_name": "NOK/JPY",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NOKJPY",
+        "NOK"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NOKJPY.pi",
+      "fallback_price": 17.0325
+    },
+    "ZINC": {
+      "canonical": "ZINC",
+      "display_name": "Zinc",
+      "tier": "Tier 2",
+      "category": "Base Metal",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ZINC",
+        "Zinc"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ZINC.p",
+      "fallback_price": 3877.8
+    },
+    "ALUMINIUM": {
+      "canonical": "ALUMINIUM",
+      "display_name": "Aluminium",
+      "tier": "Tier 2",
+      "category": "Base Metal",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ALUMINIUM",
+        "Aluminium"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ALUMINIUM.p",
+      "fallback_price": 3071.2
+    },
+    "XAGAUD": {
+      "canonical": "XAGAUD",
+      "display_name": "XAG/AUD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAGAUD",
+        "XAG"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAGAUD.pi",
+      "fallback_price": 74.68950000000001
+    },
+    "CHINA50": {
+      "canonical": "CHINA50",
+      "display_name": "China A50 Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CHINA50",
+        "China A50 Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CHINA50.p",
+      "fallback_price": 12891.5
+    },
+    "XAGEUR": {
+      "canonical": "XAGEUR",
+      "display_name": "XAG/EUR",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XAGEUR",
+        "XAG"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XAGEUR.pi",
+      "fallback_price": 47.161500000000004
+    },
+    "XPTUSD": {
+      "canonical": "XPTUSD",
+      "display_name": "XPT/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XPTUSD",
+        "XPT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XPTUSD.pi",
+      "fallback_price": 1487.47
+    },
+    "EURHUF": {
+      "canonical": "EURHUF",
+      "display_name": "EUR/HUF",
+      "tier": "Tier 3",
+      "category": "Forex Exotic",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "EURHUF",
+        "EUR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "EURHUF.pi",
+      "fallback_price": 365.796
+    },
+    "NICKEL": {
+      "canonical": "NICKEL",
+      "display_name": "Nickel",
+      "tier": "Tier 2",
+      "category": "Base Metal",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NICKEL",
+        "Nickel"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NICKEL.p",
+      "fallback_price": 15535.25
+    },
+    "LEAD": {
+      "canonical": "LEAD",
+      "display_name": "Lead",
+      "tier": "Tier 2",
+      "category": "Base Metal",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "LEAD",
+        "Lead"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "LEAD.p",
+      "fallback_price": 1910.4250000000002
+    },
+    "CHINAH": {
+      "canonical": "CHINAH",
+      "display_name": "Hang Seng China Enterprises Index",
+      "tier": "Tier 2",
+      "category": "Equity Index",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CHINAH",
+        "Hang Seng China Enterprises Index"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CHINAH.p",
+      "fallback_price": 7791.49
+    },
+    "BARUSD": {
+      "canonical": "BARUSD",
+      "display_name": "FC Barcelona / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "BARUSD",
+      "title_tokens": [
+        "BARUSD",
+        "FC Barcelona"
+      ],
+      "binance_symbol": "BARUSDT",
+      "hl_symbol": "BAR",
+      "mt5_symbol": "BARUSD.p",
+      "fallback_price": 0.07431499999999999
+    },
+    "UNIUSD": {
+      "canonical": "UNIUSD",
+      "display_name": "Uniswap / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "UNIUSD",
+      "title_tokens": [
+        "UNIUSD",
+        "Uniswap"
+      ],
+      "binance_symbol": "UNIUSDT",
+      "hl_symbol": "UNI",
+      "mt5_symbol": "UNIUSD.p",
+      "fallback_price": 7.242
+    },
+    "XPDUSD": {
+      "canonical": "XPDUSD",
+      "display_name": "XPD/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XPDUSD",
+        "XPD"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XPDUSD.pi",
+      "fallback_price": 1007.8399999999999
+    },
+    "VETUSD": {
+      "canonical": "VETUSD",
+      "display_name": "VET/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "VETUSD",
+        "VET"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "VETUSD.p",
+      "fallback_price": 0.006225
+    },
+    "ARWUSD": {
+      "canonical": "ARWUSD",
+      "display_name": "Arweave / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "ARWUSD",
+      "title_tokens": [
+        "ARWUSD",
+        "Arweave"
+      ],
+      "binance_symbol": "ARWUSDT",
+      "hl_symbol": "ARW",
+      "mt5_symbol": "ARWUSD.p",
+      "fallback_price": 3.482
+    },
+    "GAS": {
+      "canonical": "GAS",
+      "display_name": "Natural Gas",
+      "tier": "Tier 2",
+      "category": "Energy / Commodity",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GAS",
+        "Natural Gas"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GAS.p",
+      "fallback_price": 2.6420000000000003
+    },
+    "GRTUSD": {
+      "canonical": "GRTUSD",
+      "display_name": "GRT/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "GRTUSD",
+        "GRT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "GRTUSD.p",
+      "fallback_price": 0.02203
+    },
+    "NEOUSD": {
+      "canonical": "NEOUSD",
+      "display_name": "NEO/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "NEOUSD",
+        "NEO"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "NEOUSD.p",
+      "fallback_price": 2.1144999999999996
+    },
+    "COMUSD": {
+      "canonical": "COMUSD",
+      "display_name": "COM/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "COMUSD",
+        "COM"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "COMUSD.p",
+      "fallback_price": 21.57
+    },
+    "ATMUSD": {
+      "canonical": "ATMUSD",
+      "display_name": "Atletico Madrid / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "ATMUSD",
+      "title_tokens": [
+        "ATMUSD",
+        "Atletico Madrid"
+      ],
+      "binance_symbol": "ATMUSDT",
+      "hl_symbol": "ATM",
+      "mt5_symbol": "ATMUSD.p",
+      "fallback_price": 1.6245
+    },
+    "THTUSD": {
+      "canonical": "THTUSD",
+      "display_name": "THT/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "THTUSD",
+        "THT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "THTUSD.p",
+      "fallback_price": 0.1744
+    },
+    "BATUSD": {
+      "canonical": "BATUSD",
+      "display_name": "Basic Attention Token / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "BATUSD",
+      "title_tokens": [
+        "BATUSD",
+        "Basic Attention Token"
+      ],
+      "binance_symbol": "BATUSDT",
+      "hl_symbol": "BAT",
+      "mt5_symbol": "BATUSD.p",
+      "fallback_price": 0.13935
+    },
+    "XTZUSD": {
+      "canonical": "XTZUSD",
+      "display_name": "XTZ/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XTZUSD",
+        "XTZ"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XTZUSD.p",
+      "fallback_price": 0.2773
+    },
+    "ZRXUSD": {
+      "canonical": "ZRXUSD",
+      "display_name": "ZRX/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ZRXUSD",
+        "ZRX"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ZRXUSD.p",
+      "fallback_price": 0.10195
+    },
+    "ALGUSD": {
+      "canonical": "ALGUSD",
+      "display_name": "Algorand / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "ALGUSD",
+      "title_tokens": [
+        "ALGUSD",
+        "Algorand"
+      ],
+      "binance_symbol": "ALGOUSDT",
+      "hl_symbol": "ALGO",
+      "mt5_symbol": "ALGUSD.p",
+      "fallback_price": 0.10095
+    },
+    "QTMUSD": {
+      "canonical": "QTMUSD",
+      "display_name": "QTM/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "QTMUSD",
+        "QTM"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "QTMUSD.p",
+      "fallback_price": 0.8245
+    },
+    "MANUSD": {
+      "canonical": "MANUSD",
+      "display_name": "Decentraland / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "MANUSD",
+      "title_tokens": [
+        "MANUSD",
+        "Decentraland"
+      ],
+      "binance_symbol": "MANAUSDT",
+      "hl_symbol": "MANA",
+      "mt5_symbol": "MANUSD.p",
+      "fallback_price": 0.0776
+    },
+    "KAVUSD": {
+      "canonical": "KAVUSD",
+      "display_name": "KAV/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "KAVUSD",
+        "KAV"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "KAVUSD.p",
+      "fallback_price": 0.0692
+    },
+    "CHZUSD": {
+      "canonical": "CHZUSD",
+      "display_name": "Chiliz / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "CHZUSD",
+      "title_tokens": [
+        "CHZUSD",
+        "Chiliz"
+      ],
+      "binance_symbol": "CHZUSDT",
+      "hl_symbol": "CHZ",
+      "mt5_symbol": "CHZUSD.p",
+      "fallback_price": 0.012865
+    },
+    "INCUSD": {
+      "canonical": "INCUSD",
+      "display_name": "INC/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "INCUSD",
+        "INC"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "INCUSD.p",
+      "fallback_price": 0.0878
+    },
+    "SXPUSD": {
+      "canonical": "SXPUSD",
+      "display_name": "SXP/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SXPUSD",
+        "SXP"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SXPUSD.p",
+      "fallback_price": 0.05065
+    },
+    "ONTUSD": {
+      "canonical": "ONTUSD",
+      "display_name": "ONT/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ONTUSD",
+        "ONT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ONTUSD.p",
+      "fallback_price": 0.04915
+    },
+    "FILUSD": {
+      "canonical": "FILUSD",
+      "display_name": "Filecoin / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "FILUSD",
+      "title_tokens": [
+        "FILUSD",
+        "Filecoin"
+      ],
+      "binance_symbol": "FILUSDT",
+      "hl_symbol": "FIL",
+      "mt5_symbol": "FILUSD.p",
+      "fallback_price": 0.914
+    },
+    "SNDUSD": {
+      "canonical": "SNDUSD",
+      "display_name": "SND/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SNDUSD",
+        "SND"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SNDUSD.p",
+      "fallback_price": 0.048
+    },
+    "SKLUSD": {
+      "canonical": "SKLUSD",
+      "display_name": "SKL/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SKLUSD",
+        "SKL"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SKLUSD.p",
+      "fallback_price": 0.004030000000000001
+    },
+    "KSMUSD": {
+      "canonical": "KSMUSD",
+      "display_name": "KSM/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "KSMUSD",
+        "KSM"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "KSMUSD.p",
+      "fallback_price": 3.73
+    },
+    "IOTUSD": {
+      "canonical": "IOTUSD",
+      "display_name": "IOT/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "IOTUSD",
+        "IOT"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "IOTUSD.p",
+      "fallback_price": 0.040499999999999994
+    },
+    "EGLUSD": {
+      "canonical": "EGLUSD",
+      "display_name": "MultiversX / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "EGLUSD",
+      "title_tokens": [
+        "EGLUSD",
+        "MultiversX"
+      ],
+      "binance_symbol": "EGLUSDT",
+      "hl_symbol": "EGL",
+      "mt5_symbol": "EGLUSD.p",
+      "fallback_price": 3.4699999999999998
+    },
+    "STOUSD": {
+      "canonical": "STOUSD",
+      "display_name": "STO/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "STOUSD",
+        "STO"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "STOUSD.p",
+      "fallback_price": 0.0398
+    },
+    "CRVUSD": {
+      "canonical": "CRVUSD",
+      "display_name": "Curve DAO / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "CRVUSD",
+      "title_tokens": [
+        "CRVUSD",
+        "Curve DAO"
+      ],
+      "binance_symbol": "CRVUSDT",
+      "hl_symbol": "CRV",
+      "mt5_symbol": "CRVUSD.p",
+      "fallback_price": 0.3275
+    },
+    "ENJUSD": {
+      "canonical": "ENJUSD",
+      "display_name": "ENJ/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ENJUSD",
+        "ENJ"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ENJUSD.p",
+      "fallback_price": 0.0252
+    },
+    "LRCUSD": {
+      "canonical": "LRCUSD",
+      "display_name": "LRC/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "LRCUSD",
+        "LRC"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "LRCUSD.p",
+      "fallback_price": 0.02305
+    },
+    "SNXUSD": {
+      "canonical": "SNXUSD",
+      "display_name": "SNX/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "SNXUSD",
+        "SNX"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "SNXUSD.p",
+      "fallback_price": 0.2
+    },
+    "ZILUSD": {
+      "canonical": "ZILUSD",
+      "display_name": "ZIL/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "ZILUSD",
+        "ZIL"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "ZILUSD.p",
+      "fallback_price": 0.002005
+    },
+    "XSIUSD": {
+      "canonical": "XSIUSD",
+      "display_name": "XSI/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "XSIUSD",
+        "XSI"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "XSIUSD.p",
+      "fallback_price": 0.20400000000000001
+    },
+    "CHRUSD": {
+      "canonical": "CHRUSD",
+      "display_name": "CHR/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "CHRUSD",
+        "CHR"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "CHRUSD.p",
+      "fallback_price": 0.0175
+    },
+    "CELUSD": {
+      "canonical": "CELUSD",
+      "display_name": "Celsius / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "CELUSD",
+      "title_tokens": [
+        "CELUSD",
+        "Celsius"
+      ],
+      "binance_symbol": "CELUSDT",
+      "hl_symbol": "CEL",
+      "mt5_symbol": "CELUSD.p",
+      "fallback_price": 0.00157
+    },
+    "KNCUSD": {
+      "canonical": "KNCUSD",
+      "display_name": "KNC/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "KNCUSD",
+        "KNC"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "KNCUSD.p",
+      "fallback_price": 0.11699999999999999
+    },
+    "AXSUSD": {
+      "canonical": "AXSUSD",
+      "display_name": "Axie Infinity / USD",
+      "tier": "Tier 2",
+      "category": "Crypto Altcoin",
+      "coinglass_slug": "AXSUSD",
+      "title_tokens": [
+        "AXSUSD",
+        "Axie Infinity"
+      ],
+      "binance_symbol": "AXSUSDT",
+      "hl_symbol": "AXS",
+      "mt5_symbol": "AXSUSD.p",
+      "fallback_price": 0.94
+    },
+    "FLWUSD": {
+      "canonical": "FLWUSD",
+      "display_name": "FLW/USD",
+      "tier": "Tier 2",
+      "category": "Forex Cross",
+      "coinglass_slug": null,
+      "title_tokens": [
+        "FLWUSD",
+        "FLW"
+      ],
+      "binance_symbol": null,
+      "hl_symbol": null,
+      "mt5_symbol": "FLWUSD.p",
+      "fallback_price": 0.026
+    }
   }
 }
