@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDSGD
 **Canonical Key**: `AUDSGD` | **Broker Instrument**: `AUDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.9014` | VWAP Z-Score: `-0.59` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000393` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `49.79` (State: `NEUTRAL`)
+  * Session VWAP: `0.9013` | VWAP Z-Score: `-1.20` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000437` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `37.09` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.9054` | Lower -3.00σ Band: `0.8973`
-  * Upper +2.51σ Band: `0.9048` | Lower -2.51σ Band: `0.8980`
+  * Upper +2.51σ Band: `0.9047` | Lower -2.51σ Band: `0.8979`
   * Upper +2.01σ Band: `0.9041` | Lower -2.01σ Band: `0.8986`
-  * Upper +2.00σ Band: `0.9041` | Lower -2.00σ Band: `0.8987`
+  * Upper +2.00σ Band: `0.9040` | Lower -2.00σ Band: `0.8986`
   * Upper +1.28σ Band: `0.9031` | Lower -1.28σ Band: `0.8996`
   * Upper +1.00σ Band: `0.9027` | Lower -1.00σ Band: `0.9000`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.9004` | EMA-20=`0.9005` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.9003` | EMA-20=`0.9004` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.9009` (Slope: `+0.0000`) | EMA-100=`0.9014`
-  * Institutional Anchors: EMA-144=`0.9015` | EMA-200=`0.9013` (Slope: `-0.0122`) | EMA-233=`0.9011`
+  * Institutional Anchors: EMA-144=`0.9014` | EMA-200=`0.9013` (Slope: `-0.0130`) | EMA-233=`0.9011`
 - **Range Boundaries**: 24H High=`0.9050` | 24H Low=`0.8989` | Weekly High=`0.9050` | Weekly Low=`0.8973`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.9023` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.9022` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.9011` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `0.8996` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.9023` (Daily VAH sweep / Bearish OTE)
+  * Execution Entry: `0.9022` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `0.9028` (Risk Distance: `0.0010` pts)
-  * +2.5R Take Profit: `0.8998`
+  * +2.5R Take Profit: `0.8997`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

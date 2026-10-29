@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDNZD
 **Canonical Key**: `AUDNZD` | **Broker Instrument**: `AUDNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.25` | VWAP Z-Score: `-1.43` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000536` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `40.33` (State: `NEUTRAL`)
+  * Session VWAP: `1.25` | VWAP Z-Score: `-2.02` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000631` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `28.50` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.26` | Lower -3.00σ Band: `1.25`
   * Upper +2.51σ Band: `1.26` | Lower -2.51σ Band: `1.25`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.25` | EMA-20=`1.25` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.25` (Slope: `+0.0000`) | EMA-100=`1.25`
-  * Institutional Anchors: EMA-144=`1.25` | EMA-200=`1.25` (Slope: `+0.0105`) | EMA-233=`1.25`
+  * Institutional Anchors: EMA-144=`1.25` | EMA-200=`1.25` (Slope: `+0.0089`) | EMA-233=`1.25`
 - **Range Boundaries**: 24H High=`1.26` | 24H Low=`1.25` | Weekly High=`1.26` | Weekly Low=`1.23`
 
 ---

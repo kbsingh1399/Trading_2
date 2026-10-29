@@ -21,9 +21,9 @@
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit narrowed to: **-32.17 USD**)
 - **Active Running Positions**: **0 ACTIVE (100% Flat Cash)**
 - **Active Resting Pending Orders**: **6 LIVE PENDING MAKER LIMIT ORDERS**
-- **Total Contingent Downside Risk**: **40.32 USD** (Max per-ticket risk capped at <= 10.00 USD)
+- **Total Contingent Downside Risk**: **42.87 USD** (Max per-ticket risk capped at <= 10.00 USD)
 - **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-29 20:14:00 UTC` (`2026-10-30 01:44:00 IST`)
+- **Last Synchronized (UTC)**: `2026-10-29 20:26:00 UTC` (`2026-10-30 01:56:00 IST`)
 
 ---
 
@@ -37,14 +37,14 @@
 
 ## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (6 LIVE BROKER TICKETS EXECUTED)
 
-| Priority | Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Live Status & Forensic Armor |
+| Priority | Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Live Status & Forensic Liquidation Armor |
 |---|---|---|---|---|---|---|---|---|---|
-| **Resting #1** | `#19489155` | `BTCUSD.pi` | SELL_LIMIT | 0.01 lot | 81,084.00 | 81,446.00 | 80,180.00 | 3.62 USD | **LIVE_RESTING_PENDING** (Armored by 16.3M USD wall @ 81,500 & 9.65M @ 81,264) |
-| **Resting #2** | `#19489157` | `BNBUSD.p` | SELL_LIMIT | 0.05 lot | 753.30 | 757.20 | 743.50 | 0.20 USD | **LIVE_RESTING_PENDING** (Armored by 1.04M USD wall @ 749.03 & 672K @ 753.71) |
-| **Resting #3** | `#19489158` | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | 4040.50 | 4049.50 | 4018.00 | 9.00 USD | **LIVE_RESTING_PENDING** (Gold 0.20 bps spread, VAH sweep exhaustion) |
-| **Resting #4** | `#19489159` | `NAS100.p` | SELL_LIMIT | 0.01 lot | 29,535.00 | 29,620.00 | 29,320.00 | 8.50 USD | **LIVE_RESTING_PENDING** (Nasdaq 0.34 bps spread, VAH fade) |
-| **Resting #5** | `#19489160` | `DJ30.p` | SELL_LIMIT | 0.01 lot | 52,638.00 | 52,732.00 | 52,402.00 | 9.40 USD | **LIVE_RESTING_PENDING** (Dow 30 0.23 bps spread, VAH fade) |
-| **Resting #6** | `#19490051` | `AUDUSD.pi` | BUY_LIMIT | 0.08 lot | 0.70270 | 0.70150 | 0.70570 | 9.60 USD | **LIVE_RESTING_PENDING** (0.14 bps spread, Model 1 VAL sweep fade, Tri-Council Consensus) |
+| **Resting #1** | `#19489155` | `BTCUSD.pi` | SELL_LIMIT | 0.01 lot | 81,084.00 | **81,680.00** | 80,180.00 | 5.96 USD | **LIVE_RESTING_PENDING** (SL placed +185 pts above 24H Short Max Pain 81,494.86 & +127 pts above 81,553 liq band) |
+| **Resting #2** | `#19489157` | `BNBUSD.p` | SELL_LIMIT | 0.05 lot | 753.30 | **761.50** | 743.50 | 0.41 USD | **LIVE_RESTING_PENDING** (SL placed +3.19 pts above 24H Short Max Pain 758.31 & +1.60 pts above 759.90 liq band) |
+| **Resting #3** | `#19489158` | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | 4040.50 | 4049.50 | 4018.00 | 9.00 USD | **LIVE_RESTING_PENDING** (Gold 0.20 bps spread, SL +3.12 pts clear of London High 4046.38 sweep zone) |
+| **Resting #4** | `#19489159` | `NAS100.p` | SELL_LIMIT | 0.01 lot | 29,535.00 | 29,620.00 | 29,320.00 | 8.50 USD | **LIVE_RESTING_PENDING** (Nasdaq 0.34 bps spread, SL +13.51 pts beyond London High 29,606.49 sweep peak) |
+| **Resting #5** | `#19489160` | `DJ30.p` | SELL_LIMIT | 0.01 lot | 52,638.00 | 52,732.00 | 52,402.00 | 9.40 USD | **LIVE_RESTING_PENDING** (Dow 30 0.23 bps spread, SL +136.66 pts above VAH, low-volume node rejection) |
+| **Resting #6** | `#19490051` | `AUDUSD.pi` | BUY_LIMIT | 0.08 lot | 0.70270 | 0.70150 | 0.70570 | 9.60 USD | **LIVE_RESTING_PENDING** (0.14 bps spread, SL -3.0 pips below Asian Low 0.70180 retail sweep pocket) |
 
 ---
 

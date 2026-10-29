@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: THTUSD
 **Canonical Key**: `THTUSD` | **Broker Instrument**: `THTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,28 +23,28 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1728` | VWAP Z-Score: `-0.12` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000958` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `40.31` (State: `NEUTRAL`)
+  * Session VWAP: `0.1728` | VWAP Z-Score: `-0.93` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `31.47` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1788` | Lower -3.00σ Band: `0.1668`
-  * Upper +2.51σ Band: `0.1779` | Lower -2.51σ Band: `0.1678`
-  * Upper +2.01σ Band: `0.1769` | Lower -2.01σ Band: `0.1688`
-  * Upper +2.00σ Band: `0.1768` | Lower -2.00σ Band: `0.1688`
-  * Upper +1.28σ Band: `0.1754` | Lower -1.28σ Band: `0.1703`
-  * Upper +1.00σ Band: `0.1748` | Lower -1.00σ Band: `0.1708`
+  * Upper +3.00σ Band: `0.1787` | Lower -3.00σ Band: `0.1668`
+  * Upper +2.51σ Band: `0.1777` | Lower -2.51σ Band: `0.1678`
+  * Upper +2.01σ Band: `0.1768` | Lower -2.01σ Band: `0.1688`
+  * Upper +2.00σ Band: `0.1767` | Lower -2.00σ Band: `0.1688`
+  * Upper +1.28σ Band: `0.1753` | Lower -1.28σ Band: `0.1702`
+  * Upper +1.00σ Band: `0.1747` | Lower -1.00σ Band: `0.1708`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1733` | EMA-20=`0.1738` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1736` (Slope: `+0.0000`) | EMA-100=`0.1739`
-  * Institutional Anchors: EMA-144=`0.1743` | EMA-200=`0.1750` (Slope: `-0.0973`) | EMA-233=`0.1754`
-- **Range Boundaries**: 24H High=`0.1802` | 24H Low=`0.1693` | Weekly High=`0.1816` | Weekly Low=`0.1693`
+  * Fast EMA Array: EMA-9=`0.1728` | EMA-20=`0.1735` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1735` (Slope: `+0.0000`) | EMA-100=`0.1738`
+  * Institutional Anchors: EMA-144=`0.1743` | EMA-200=`0.1749` (Slope: `-0.1210`) | EMA-233=`0.1753`
+- **Range Boundaries**: 24H High=`0.1785` | 24H Low=`0.1693` | Weekly High=`0.1816` | Weekly Low=`0.1693`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1739` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.1737` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.1729` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `0.1697` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1697` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.1648` (Risk Distance: `0.0050` pts)
-  * +2.5R Take Profit: `0.1822`
+  * Spread-Padded Stop Loss: `0.1646` (Risk Distance: `0.0051` pts)
+  * +2.5R Take Profit: `0.1825`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.1739` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1788` (Risk Distance: `0.0050` pts)
-  * +2.5R Take Profit: `0.1614`
+  * Execution Entry: `0.1737` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.1788` (Risk Distance: `0.0051` pts)
+  * +2.5R Take Profit: `0.1609`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

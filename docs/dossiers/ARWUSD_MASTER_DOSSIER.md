@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ARWUSD
 **Canonical Key**: `ARWUSD` | **Broker Instrument**: `ARWUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.45` | VWAP Z-Score: `-0.10` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0254` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `41.08` (State: `NEUTRAL`)
+  * Session VWAP: `3.44` | VWAP Z-Score: `-1.05` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0307` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `30.21` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `3.61` | Lower -3.00σ Band: `3.28`
+  * Upper +3.00σ Band: `3.60` | Lower -3.00σ Band: `3.28`
   * Upper +2.51σ Band: `3.58` | Lower -2.51σ Band: `3.31`
   * Upper +2.01σ Band: `3.55` | Lower -2.01σ Band: `3.34`
   * Upper +2.00σ Band: `3.55` | Lower -2.00σ Band: `3.34`
-  * Upper +1.28σ Band: `3.51` | Lower -1.28σ Band: `3.38`
+  * Upper +1.28σ Band: `3.51` | Lower -1.28σ Band: `3.37`
   * Upper +1.00σ Band: `3.50` | Lower -1.00σ Band: `3.39`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3.45` | EMA-20=`3.47` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`3.44` | EMA-20=`3.46` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`3.46` (Slope: `+0.0000`) | EMA-100=`3.46`
-  * Institutional Anchors: EMA-144=`3.46` | EMA-200=`3.45` (Slope: `+0.0359`) | EMA-233=`3.45`
-- **Range Boundaries**: 24H High=`3.62` | 24H Low=`3.34` | Weekly High=`3.62` | Weekly Low=`3.32`
+  * Institutional Anchors: EMA-144=`3.46` | EMA-200=`3.45` (Slope: `+0.0041`) | EMA-233=`3.45`
+- **Range Boundaries**: 24H High=`3.59` | 24H Low=`3.34` | Weekly High=`3.62` | Weekly Low=`3.32`
 
 ---
 
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `3.36` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `3.30` (Risk Distance: `0.0634` pts)
-  * +2.5R Take Profit: `3.52`
+  * Spread-Padded Stop Loss: `3.29` (Risk Distance: `0.0698` pts)
+  * +2.5R Take Profit: `3.54`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `3.48` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `3.55` (Risk Distance: `0.0634` pts)
-  * +2.5R Take Profit: `3.32`
+  * Spread-Padded Stop Loss: `3.55` (Risk Distance: `0.0698` pts)
+  * +2.5R Take Profit: `3.31`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

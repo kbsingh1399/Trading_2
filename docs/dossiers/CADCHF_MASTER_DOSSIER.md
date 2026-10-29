@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADCHF
 **Canonical Key**: `CADCHF` | **Broker Instrument**: `CADCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.5916` | VWAP Z-Score: `-1.84` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000327` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `33.75` (State: `OVERSOLD`)
+  * Session VWAP: `0.5916` | VWAP Z-Score: `-3.67` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000388` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `21.29` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.5932` | Lower -3.00σ Band: `0.5900`
+  * Upper +3.00σ Band: `0.5933` | Lower -3.00σ Band: `0.5899`
   * Upper +2.51σ Band: `0.5930` | Lower -2.51σ Band: `0.5902`
   * Upper +2.01σ Band: `0.5927` | Lower -2.01σ Band: `0.5905`
   * Upper +2.00σ Band: `0.5927` | Lower -2.00σ Band: `0.5905`
   * Upper +1.28σ Band: `0.5923` | Lower -1.28σ Band: `0.5909`
   * Upper +1.00σ Band: `0.5921` | Lower -1.00σ Band: `0.5910`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.5909` | EMA-20=`0.5911` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.5906` | EMA-20=`0.5909` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.5914` (Slope: `+0.0000`) | EMA-100=`0.5915`
-  * Institutional Anchors: EMA-144=`0.5914` | EMA-200=`0.5913` (Slope: `-0.0070`) | EMA-233=`0.5911`
-- **Range Boundaries**: 24H High=`0.5930` | 24H Low=`0.5905` | Weekly High=`0.5930` | Weekly Low=`0.5893`
+  * Institutional Anchors: EMA-144=`0.5914` | EMA-200=`0.5913` (Slope: `-0.0099`) | EMA-233=`0.5911`
+- **Range Boundaries**: 24H High=`0.5930` | 24H Low=`0.5894` | Weekly High=`0.5930` | Weekly Low=`0.5893`
 
 ---
 
@@ -45,7 +45,7 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.5920` (Distance: `-0.40%`)
-  * Point of Control (POC) = `0.5911` (Distance: `-0.26%`)
+  * Point of Control (POC) = `0.5911` (Distance: `-0.25%`)
   * Value Area Low (VAL) = `0.5908` (Distance: `-0.20%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -274,7 +274,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.5920` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.5925` (Risk Distance: `0.0010` pts)
+  * Spread-Padded Stop Loss: `0.5926` (Risk Distance: `0.0010` pts)
   * +2.5R Take Profit: `0.5895`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

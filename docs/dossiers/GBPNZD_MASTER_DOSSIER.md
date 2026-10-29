@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNZD
 **Canonical Key**: `GBPNZD` | **Broker Instrument**: `GBPNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.37` | VWAP Z-Score: `+0.74` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `2.37` | VWAP Z-Score: `+1.24` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0013` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `49.45` (State: `NEUTRAL`)
+  * 14-Period RSI: `56.27` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.38` | Lower -3.00σ Band: `2.36`
   * Upper +2.51σ Band: `2.38` | Lower -2.51σ Band: `2.37`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.37` | EMA-20=`2.37` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`2.37` (Slope: `+0.0000`) | EMA-100=`2.37`
-  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.36` (Slope: `+0.0532`) | EMA-233=`2.36`
+  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.36` (Slope: `+0.0528`) | EMA-233=`2.36`
 - **Range Boundaries**: 24H High=`2.38` | 24H Low=`2.37` | Weekly High=`2.38` | Weekly Low=`2.34`
 
 ---

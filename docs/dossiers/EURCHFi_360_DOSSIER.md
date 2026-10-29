@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCHF
 **Canonical Key**: `EURCHF` | **Broker Instrument**: `EURCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,31 +23,31 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.9226` | VWAP Z-Score: `-0.92` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000386` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.22` (State: `NEUTRAL`)
+  * Session VWAP: `0.9226` | VWAP Z-Score: `-2.72` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000446` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `28.75` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.9241` | Lower -3.00σ Band: `0.9211`
-  * Upper +2.51σ Band: `0.9239` | Lower -2.51σ Band: `0.9214`
-  * Upper +2.01σ Band: `0.9236` | Lower -2.01σ Band: `0.9216`
-  * Upper +2.00σ Band: `0.9236` | Lower -2.00σ Band: `0.9216`
-  * Upper +1.28σ Band: `0.9233` | Lower -1.28σ Band: `0.9220`
+  * Upper +3.00σ Band: `0.9242` | Lower -3.00σ Band: `0.9211`
+  * Upper +2.51σ Band: `0.9239` | Lower -2.51σ Band: `0.9213`
+  * Upper +2.01σ Band: `0.9237` | Lower -2.01σ Band: `0.9216`
+  * Upper +2.00σ Band: `0.9237` | Lower -2.00σ Band: `0.9216`
+  * Upper +1.28σ Band: `0.9233` | Lower -1.28σ Band: `0.9219`
   * Upper +1.00σ Band: `0.9231` | Lower -1.00σ Band: `0.9221`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.9223` | EMA-20=`0.9224` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.9226` (Slope: `+0.0000`) | EMA-100=`0.9229`
-  * Institutional Anchors: EMA-144=`0.9230` | EMA-200=`0.9231` (Slope: `-0.0107`) | EMA-233=`0.9232`
-- **Range Boundaries**: 24H High=`0.9242` | 24H Low=`0.9208` | Weekly High=`0.9255` | Weekly Low=`0.9208`
+  * Fast EMA Array: EMA-9=`0.9221` | EMA-20=`0.9223` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.9225` (Slope: `+0.0000`) | EMA-100=`0.9228`
+  * Institutional Anchors: EMA-144=`0.9230` | EMA-200=`0.9231` (Slope: `-0.0120`) | EMA-233=`0.9232`
+- **Range Boundaries**: 24H High=`0.9240` | 24H Low=`0.9208` | Weekly High=`0.9254` | Weekly Low=`0.9208`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.9232` (Distance: `-0.22%`)
-  * Point of Control (POC) = `0.9224` (Distance: `-0.12%`)
-  * Value Area Low (VAL) = `0.9222` (Distance: `-0.10%`)
-  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
+  * Value Area High (VAH) = `0.9233` (Distance: `-0.20%`)
+  * Point of Control (POC) = `0.9224` (Distance: `-0.10%`)
+  * Value Area Low (VAL) = `0.9222` (Distance: `-0.08%`)
+  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.9245` | POC=`0.9241` | VAL=`0.9234`
   * Prior Day Extremes: PDH=`0.9250` | PDL=`0.9214` | PDC=`0.9233`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.9232` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.9239` (Risk Distance: `0.0010` pts)
-  * +2.5R Take Profit: `0.9207`
+  * Execution Entry: `0.9233` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.9240` (Risk Distance: `0.0010` pts)
+  * +2.5R Take Profit: `0.9208`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

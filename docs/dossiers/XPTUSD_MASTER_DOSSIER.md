@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPTUSD
 **Canonical Key**: `XPTUSD` | **Broker Instrument**: `XPTUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1502.96` | VWAP Z-Score: `-0.65` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `4.90` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `58.50` (State: `NEUTRAL`)
+  * Session VWAP: `1502.55` | VWAP Z-Score: `-0.64` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `4.79` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `58.12` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1565.91` | Lower -3.00σ Band: `1440.00`
-  * Upper +2.51σ Band: `1555.63` | Lower -2.51σ Band: `1450.29`
-  * Upper +2.01σ Band: `1545.14` | Lower -2.01σ Band: `1460.78`
-  * Upper +2.00σ Band: `1544.93` | Lower -2.00σ Band: `1460.99`
-  * Upper +1.28σ Band: `1529.82` | Lower -1.28σ Band: `1476.10`
-  * Upper +1.00σ Band: `1523.94` | Lower -1.00σ Band: `1481.97`
+  * Upper +3.00σ Band: `1564.97` | Lower -3.00σ Band: `1440.12`
+  * Upper +2.51σ Band: `1554.78` | Lower -2.51σ Band: `1450.32`
+  * Upper +2.01σ Band: `1544.37` | Lower -2.01σ Band: `1460.72`
+  * Upper +2.00σ Band: `1544.16` | Lower -2.00σ Band: `1460.93`
+  * Upper +1.28σ Band: `1529.18` | Lower -1.28σ Band: `1475.91`
+  * Upper +1.00σ Band: `1523.36` | Lower -1.00σ Band: `1481.74`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1483.68` | EMA-20=`1483.53` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1490.90` (Slope: `+0.0000`) | EMA-100=`1502.95`
-  * Institutional Anchors: EMA-144=`1508.86` | EMA-200=`1512.68` (Slope: `-0.2592`) | EMA-233=`1514.17`
+  * Fast EMA Array: EMA-9=`1484.77` | EMA-20=`1484.06` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1490.83` (Slope: `+0.0000`) | EMA-100=`1502.68`
+  * Institutional Anchors: EMA-144=`1508.59` | EMA-200=`1512.46` (Slope: `-0.2529`) | EMA-233=`1514.00`
 - **Range Boundaries**: 24H High=`1553.41` | 24H Low=`1475.49` | Weekly High=`1556.70` | Weekly Low=`1475.49`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1521.17` (Distance: `-2.05%`)
-  * Point of Control (POC) = `1482.15` (Distance: `+0.53%`)
-  * Value Area Low (VAL) = `1475.72` (Distance: `+0.96%`)
+  * Value Area High (VAH) = `1521.17` (Distance: `-2.09%`)
+  * Point of Control (POC) = `1482.15` (Distance: `+0.49%`)
+  * Value Area Low (VAL) = `1475.72` (Distance: `+0.93%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1544.14` | POC=`1538.53` | VAL=`1530.44`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1475.72` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1467.59` (Risk Distance: `8.13` pts)
-  * +2.5R Take Profit: `1496.04`
-  * Mathematical Lot Sizing: **`1.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1467.73` (Risk Distance: `7.99` pts)
+  * +2.5R Take Profit: `1495.70`
+  * Mathematical Lot Sizing: **`1.25 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1521.17` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1529.30` (Risk Distance: `8.13` pts)
-  * +2.5R Take Profit: `1500.85`
-  * Mathematical Lot Sizing: **`1.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1529.16` (Risk Distance: `7.99` pts)
+  * +2.5R Take Profit: `1501.19`
+  * Mathematical Lot Sizing: **`1.25 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

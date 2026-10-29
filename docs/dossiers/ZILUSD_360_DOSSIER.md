@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0019` | VWAP Z-Score: `+0.10` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000019` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `38.99` (State: `NEUTRAL`)
+  * Session VWAP: `0.0019` | VWAP Z-Score: `-0.35` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000021` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `34.37` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0020` | Lower -3.00σ Band: `0.0018`
   * Upper +2.51σ Band: `0.0020` | Lower -2.51σ Band: `0.0018`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0019` | EMA-20=`0.0019` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0019` (Slope: `+0.0000`) | EMA-100=`0.0019`
-  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `+0.2838`) | EMA-233=`0.0019`
+  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `+0.2291`) | EMA-233=`0.0019`
 - **Range Boundaries**: 24H High=`0.0020` | 24H Low=`0.0018` | Weekly High=`0.0020` | Weekly Low=`0.0018`
 
 ---

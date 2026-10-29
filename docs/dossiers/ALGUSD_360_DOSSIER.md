@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:57:19 IST` (`2026-10-29 20:27:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0993` | VWAP Z-Score: `-0.81` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000664` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `38.32` (State: `NEUTRAL`)
+  * Session VWAP: `0.0992` | VWAP Z-Score: `-1.63` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000766` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `29.53` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1033` | Lower -3.00σ Band: `0.0952`
-  * Upper +2.51σ Band: `0.1027` | Lower -2.51σ Band: `0.0959`
-  * Upper +2.01σ Band: `0.1020` | Lower -2.01σ Band: `0.0966`
-  * Upper +2.00σ Band: `0.1020` | Lower -2.00σ Band: `0.0966`
-  * Upper +1.28σ Band: `0.1010` | Lower -1.28σ Band: `0.0976`
-  * Upper +1.00σ Band: `0.1006` | Lower -1.00σ Band: `0.0979`
+  * Upper +3.00σ Band: `0.1034` | Lower -3.00σ Band: `0.0950`
+  * Upper +2.51σ Band: `0.1027` | Lower -2.51σ Band: `0.0957`
+  * Upper +2.01σ Band: `0.1020` | Lower -2.01σ Band: `0.0964`
+  * Upper +2.00σ Band: `0.1020` | Lower -2.00σ Band: `0.0964`
+  * Upper +1.28σ Band: `0.1010` | Lower -1.28σ Band: `0.0974`
+  * Upper +1.00σ Band: `0.1006` | Lower -1.00σ Band: `0.0978`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0986` | EMA-20=`0.0991` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0994` (Slope: `+0.0000`) | EMA-100=`0.0998`
-  * Institutional Anchors: EMA-144=`0.1002` | EMA-200=`0.1006` (Slope: `-0.2280`) | EMA-233=`0.1008`
-- **Range Boundaries**: 24H High=`0.1048` | 24H Low=`0.0972` | Weekly High=`0.1051` | Weekly Low=`0.0972`
+  * Fast EMA Array: EMA-9=`0.0982` | EMA-20=`0.0989` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0993` (Slope: `+0.0000`) | EMA-100=`0.0997`
+  * Institutional Anchors: EMA-144=`0.1001` | EMA-200=`0.1006` (Slope: `-0.2571`) | EMA-233=`0.1008`
+- **Range Boundaries**: 24H High=`0.1037` | 24H Low=`0.0961` | Weekly High=`0.1051` | Weekly Low=`0.0961`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1005` (Distance: `-2.52%`)
-  * Point of Control (POC) = `0.0981` (Distance: `-0.15%`)
-  * Value Area Low (VAL) = `0.0974` (Distance: `+0.57%`)
+  * Value Area High (VAH) = `0.1005` (Distance: `-2.37%`)
+  * Point of Control (POC) = `0.0981` (Distance: `+0.05%`)
+  * Value Area Low (VAL) = `0.0974` (Distance: `+0.78%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1038` | POC=`0.1023` | VAL=`0.1011`
@@ -397,21 +397,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 3,110.00 USD | 22,770.00 USD | **`ACCUMULATION`** |
-| `15m` | -103,360.00 USD | -48,910.00 USD | **`DISTRIBUTION`** |
-| `30m` | -86,630.00 USD | -32,250.00 USD | **`DISTRIBUTION`** |
-| `1h` | -73,950.00 USD | 1,570.00 USD | **`DISTRIBUTION`** |
-| `2h` | -107,980.00 USD | -26,230.00 USD | **`DISTRIBUTION`** |
-| `4h` | -172,800.00 USD | -300,490.00 USD | **`DISTRIBUTION`** |
-| `6h` | -161,260.00 USD | -471,340.00 USD | **`DISTRIBUTION`** |
-| `8h` | -192,660.00 USD | -610,760.00 USD | **`DISTRIBUTION`** |
-| `12h` | -140,590.00 USD | -427,140.00 USD | **`DISTRIBUTION`** |
-| `24h` | -307,770.00 USD | -809,970.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,490,000.00 USD | -2,450,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -12,800,000.00 USD | -19,990,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -10,970.00 USD | -30,000.00 USD | **`DISTRIBUTION`** |
+| `15m` | -9,060.00 USD | 37,570.00 USD | **`ACCUMULATION`** |
+| `30m` | -108,470.00 USD | -29,300.00 USD | **`DISTRIBUTION`** |
+| `1h` | -75,150.00 USD | -992.56 USD | **`DISTRIBUTION`** |
+| `2h` | -124,030.00 USD | -4,790.00 USD | **`DISTRIBUTION`** |
+| `4h` | -177,050.00 USD | -213,520.00 USD | **`DISTRIBUTION`** |
+| `6h` | -168,070.00 USD | -416,590.00 USD | **`DISTRIBUTION`** |
+| `8h` | -201,690.00 USD | -574,530.00 USD | **`DISTRIBUTION`** |
+| `12h` | -162,200.00 USD | -451,360.00 USD | **`DISTRIBUTION`** |
+| `24h` | -294,950.00 USD | -771,980.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,510,000.00 USD | -2,450,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -12,850,000.00 USD | -19,980,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+3.11K` | 15m=`-103.36K` | 1h=`-73.95K` | 24h=`-307.77K`
-* Futures Capital Netflows: 5m=`+22.77K` | 15m=`-48.91K` | 1h=`+1.57K` | 24h=`-809.97K`
+* Spot Capital Netflows: 5m=`-10.97K` | 15m=`-9.06K` | 1h=`-75.15K` | 24h=`-294.95K`
+* Futures Capital Netflows: 5m=`-30.00K` | 15m=`+37.57K` | 1h=`-992.56` | 24h=`-771.98K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -480,13 +480,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0974` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.0932` (Risk Distance: `0.0046` pts)
+  * Spread-Padded Stop Loss: `0.0930` (Risk Distance: `0.0046` pts)
   * +2.5R Take Profit: `0.1089`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1005` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1047` (Risk Distance: `0.0046` pts)
+  * Spread-Padded Stop Loss: `0.1049` (Risk Distance: `0.0046` pts)
   * +2.5R Take Profit: `0.0890`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
