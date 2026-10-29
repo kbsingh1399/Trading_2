@@ -38,8 +38,8 @@
     "macd_hist"
   ],
   "byte_size": 34706,
-  "timestamp_ist": "2026-10-30 00:43:09 IST",
-  "timestamp_utc": "2026-10-29 19:13:09 UTC",
-  "epoch_utc": 1793301189.818603,
-  "write_duration_ms": 5.88
+  "timestamp_ist": "2026-10-30 00:45:07 IST",
+  "timestamp_utc": "2026-10-29 19:15:07 UTC",
+  "epoch_utc": 1793301307.043865,
+  "write_duration_ms": 9.38
 }
