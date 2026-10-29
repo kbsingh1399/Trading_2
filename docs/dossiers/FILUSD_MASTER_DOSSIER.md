@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FILUSD
 **Canonical Key**: `FILUSD` | **Broker Instrument**: `FILUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:31:21 IST` (`2026-10-29 22:01:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-1.48K` | Last 24h: `4.92K` | Last 3d: `12.47K` | Last 7d: `4.07K`
+  * Current Rate: `-2.18K` | Last 24h: `4.92K` | Last 3d: `12.47K` | Last 7d: `4.07K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0034%` | **USDT OKX** | `0.0006%` |
-| **USDT Bybit** | `-0.0112%` | **USDT KuCoin** | `0.0039%` |
-| **USDT MEXC** | `-` | **USDT BingX** | `0.0082%` |
-| **USDT Gate** | `-0.0043%` | **USDT Bitget** | `0.0072%` |
+| **USDT Binance** | `-0.0038%` | **USDT OKX** | `0.0002%` |
+| **USDT Bybit** | `-0.0125%` | **USDT KuCoin** | `0.0023%` |
+| **USDT MEXC** | `-` | **USDT BingX** | `0.0055%` |
+| **USDT Gate** | `-0.0071%` | **USDT Bitget** | `0.0052%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

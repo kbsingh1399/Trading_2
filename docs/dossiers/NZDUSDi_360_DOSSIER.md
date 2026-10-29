@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 03:28:18 IST` (`2026-10-29 21:58:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:31:21 IST` (`2026-10-29 22:01:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 

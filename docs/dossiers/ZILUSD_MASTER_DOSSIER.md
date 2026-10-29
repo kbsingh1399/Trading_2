@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:31:21 IST` (`2026-10-29 22:01:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,13 +152,13 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `255.51` | Last 24h: `782.71` | Last 3d: `-3.40K` | Last 7d: `-31.24K`
+  * Current Rate: `251.34` | Last 24h: `782.71` | Last 3d: `-3.40K` | Last 7d: `-31.24K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0034%` | **USDT OKX** | `0.0050%` |
+| **USDT Binance** | `0.0033%` | **USDT OKX** | `0.0050%` |
 | **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `0.0050%` |
-| **USDT MEXC** | `0.0034%` | **USDT BingX** | `0.0013%` |
+| **USDT MEXC** | `0.0033%` | **USDT BingX** | `0.0011%` |
 | **USDT Gate** | `0.0050%` | **USDT Bitget** | `0.0050%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 

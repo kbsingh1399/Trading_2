@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 03:28:19 IST` (`2026-10-29 21:58:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:31:21 IST` (`2026-10-29 22:01:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -170,15 +170,15 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-12.60K` | Last 24h: `66.11K` | Last 3d: `148.58K` | Last 7d: `245.37K`
+  * Current Rate: `-13.52K` | Last 24h: `66.11K` | Last 3d: `148.58K` | Last 7d: `245.37K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0029%` | **USDT OKX** | `-0.0038%` |
-| **USDT Bybit** | `-0.0154%` | **USDT KuCoin** | `-0.0076%` |
-| **USDT MEXC** | `-0.0029%` | **USDT BingX** | `-0.0021%` |
-| **USDT Gate** | `-0.0046%` | **USDT Bitget** | `-0.0063%` |
-| **CoinM Binance** | `0.0036%` | **CoinM OKX** | `0.0076%` |
+| **USDT Binance** | `-0.0037%` | **USDT OKX** | `-0.0032%` |
+| **USDT Bybit** | `-0.0148%` | **USDT KuCoin** | `-0.0082%` |
+| **USDT MEXC** | `-0.0037%` | **USDT BingX** | `-0.0024%` |
+| **USDT Gate** | `-0.0053%` | **USDT Bitget** | `-0.0069%` |
+| **CoinM Binance** | `0.0048%` | **CoinM OKX** | `0.0077%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |
