@@ -205,14 +205,40 @@ Return your response structured as follows:
   * GBPUSD (#19457518): [RETAIN / PURGE / ADJUST] - Cable London sweep at 1.33480
 
 ## 2. Spread-Gated Candidate Screening & 43-Feed Forensics (NEW LIMIT OPPORTUNITIES)
-*Search full 156 assets across Metals, Indices, FX, Crypto to propose MORE potential limit orders so the desk never misses an opportunity.*
-### Candidate A: [Symbol]
-- Spread Audit: [Pass / Fail] (X.X bps)
-- 43-Feed Forensic Synthesis: (Whale Orders, Liquidations, CVD, Auction Value Area)
-- Formulated Trade: [BUY_LIMIT / SELL_LIMIT] @ Price | SL: Price | TP: Price | Risk: $X.XX
+*Search full 156 assets across Metals, Indices, FX, Crypto (specifically including deep studies of Crypto Majors BNB, BTC, ETH, SOL, Equity Indices DJ30, SP500, NAS100, Precious Metals XAU, XAG, and FX Majors EUR, GBP, JPY) to propose high-confluence maker limit orders so the desk never misses an opportunity.*
 
-### Candidate B: [Symbol]
-- ... (Same serialized structure)
+For EACH screened candidate, you MUST output this exact 7-Pillar Forensic Breakdown directly referencing the 43 Parquet Feeds:
+
+### Candidate [Symbol] (e.g., BTCUSD.pi / BNBUSD.p / DJ30.p / XAUUSD.pi)
+- **1. Spread & MT5 Telemetry Gate (`00_MT5_Account_Telemetry`)**: 
+  * Live Bid / Ask / Mid quotes, Spread Points & Spread (bps) (Crypto <= 12.0 bps, TradFi <= 5.0 bps).
+  * Broker Contract Size, Minimum Lot, Tick Value, and Spread Friction % (`Spread / TP_distance <= 15.0%`).
+- **2. Auction Market Structure (`20_Auction_Market_Structure`)**:
+  * Daily & Weekly VAH, VAL, POC, Session Bias (Bullish/Bearish/Neutral).
+  * Fibonacci Retracement Anchor: Swing High / Low, Golden Pocket [0.618-0.650], 0.702 OTE, 0.786 Invalidation.
+  * Auction Regime: Rotational Balance vs Trend Expansion.
+- **3. Liquidation Cascades & Max Pain Magnet (`9_Liquidation_Max_Pain 24H/48H/3D/7D`, `8_Exchange_Liquidation_Map 1D/7D`, `14_Hyperdash_Liq_Map`, `14_Liquidation_Matrix`)**:
+  * Exact Short Max Pain Price & Volume vs Long Max Pain Price & Volume.
+  * Major 1D/7D liquidation cascade pools and magnetic sweep zones to avoid placing stops inside.
+- **4. Institutional Whale Armor & Depth Skew (`10_Whale_Orders`, `17_Orderbook`)**:
+  * Exact resting whale walls (> $100K USD, duration >= 180s persistence, exact exchange Bybit/Binance/OKX, price, side, notional).
+  * Top 20 Orderbook Bid/Ask cumulative depth balance (B/A ratio) and defending armor levels.
+- **5. Multi-Timeframe CVD Delta & Footprint Absorption (`18_CVD_30D 5m/15m/1h/4h/ALL`, `25_CoinGlass_Footprint_Signals`, `26_Aggregated_Footprint_Bar_Metrics`)**:
+  * Cumulative Taker CVD Delta across 5m, 15m, 1h, 4h and orderflow classification (`BEARISH ABSORPTION`, `AGGRESSIVE BUYING`, `DELTA DIVERGENCE`).
+  * Footprint Imbalance counts and institutional absorption price levels.
+- **6. Derivatives Skew & Macro Netflows (`5_Funding_Rate`, `5_OI`, `3_Exchanges_LS_Ratio 15M/1H/4H`, `1_Crypto_ETF_Flows`, `2_Spot_Netflow_S`, `2_Future_Netflow`)**:
+  * Funding Rate across Binance/OKX/Bybit, Total Open Interest and 1h/4h change.
+  * Retail Long/Short ratio skew; Spot vs Futures netflow divergence (e.g. Spot buying + Futures selling).
+- **7. Exact Algorithmic Trade Formulation**:
+  * Model Selection: Model 1 Extreme Mean Reversion (Sweep Fade) vs Model 2 Fibonacci Prime Trend Pullback.
+  * Order Type: Passive Maker `BUY_LIMIT` or `SELL_LIMIT`.
+  * Limit Entry Price: Mathematical Sweep Exhaustion Zone (`VAH + 0.35 * ATR_14` or Golden Pocket shelf).
+  * Spread-Padded Stop Loss: `Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price` (strictly outside retail sweep pockets and behind defending whale armor).
+  * Take Profit Target: Opposing Value Area boundary (VAL/VAH), POC, or Max Pain liquidation cascade.
+  * Lot Size & Sizing Math: Sized with exact MT5 tick multiplier so nominal risk is strictly `<= $10.00 USD` (stressed `<= $14.00 USD`).
+  * Risk/Reward Ratio: Mathematical R:R (Target: `>= 2.0:1`).
+
+Advance sequentially across all candidates using this exact 7-pillar forensic framework!
 
 ## 3. Solvency & Risk Vetting
 - Capital Floor Defense: Hard Floor $4,775.00 USD | Operating Buffer $4,795.00 USD
