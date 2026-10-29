@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ONTUSD
 **Canonical Key**: `ONTUSD` | **Broker Instrument**: `ONTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:06:25 IST` (`2026-10-29 20:36:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:09:27 IST` (`2026-10-29 20:39:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,11 +152,11 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `70.82` | Last 24h: `-277.60` | Last 3d: `792.06` | Last 7d: `1.68K`
+  * Current Rate: `69.93` | Last 24h: `-277.60` | Last 3d: `792.06` | Last 7d: `1.68K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0050%` | **USDT OKX** | `-0.0103%` |
+| **USDT Binance** | `0.0050%` | **USDT OKX** | `-0.0105%` |
 | **USDT Bybit** | `0.0050%` | **USDT KuCoin** | `0.0050%` |
 | **USDT MEXC** | `0.0050%` | **USDT BingX** | `0.0050%` |
 | **USDT Gate** | `0.0050%` | **USDT Bitget** | `0.0050%` |
