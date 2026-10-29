@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 22:39:56 IST` (`2026-10-29 17:09:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:42:57 IST` (`2026-10-29 17:12:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
+| --- | **`135.05`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -485,16 +485,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `133.00` | `133.31` | `133.00` | `133.87` | `132.88` | 1,394,606.15 USD | 574,363.62 USD | 820,242.53 USD | -245,878.91 USD | `-17.63%` | `23B / 21S` |
-| `0:00 UTC` | `132.70` | `132.70` | `132.70` | `133.16` | `132.43` | 1,163,967.46 USD | 517,621.76 USD | 646,345.69 USD | -128,723.93 USD | `-11.06%` | `9B / 18S` |
-| `5:00 UTC` | `132.72` | `132.82` | `132.72` | `133.16` | `132.50` | 689,662.85 USD | 385,039.87 USD | 304,622.98 USD | 80,416.90 USD | `+11.66%` | `16B / 11S` |
-| `0:00 UTC` | `132.70` | `132.87` | `132.70` | `133.68` | `132.50` | 2,567,158.24 USD | 1,839,735.69 USD | 727,422.55 USD | 1,112,313.15 USD | `+43.33%` | `33B / 23S` |
-| `5:00 UTC` | `133.03` | `132.93` | `133.03` | `133.25` | `132.59` | 568,772.83 USD | 230,823.42 USD | 337,949.41 USD | -107,125.99 USD | `-18.83%` | `7B / 30S` |
-| `0:00 UTC` | `133.47` | `133.21` | `133.47` | `133.69` | `132.75` | 923,039.28 USD | 377,871.88 USD | 545,167.39 USD | -167,295.51 USD | `-18.12%` | `15B / 22S` |
-| `5:00 UTC` | `132.88` | `132.95` | `132.88` | `133.53` | `132.61` | 809,326.65 USD | 463,393.77 USD | 345,932.87 USD | 117,460.90 USD | `+14.51%` | `19B / 20S` |
-| `0:00 UTC` | `131.86` | `132.33` | `131.86` | `133.11` | `131.81` | 1,471,215.69 USD | 656,271.37 USD | 814,944.32 USD | -158,672.95 USD | `-10.79%` | `19B / 38S` |
-| `5:00 UTC` | `132.53` | `132.73` | `132.53` | `133.53` | `132.00` | 1,448,788.15 USD | 848,288.39 USD | 600,499.76 USD | 247,788.63 USD | `+17.10%` | `53B / 21S` |
-| `0:00 UTC` | `132.80` | `132.97` | `132.80` | `133.34` | `132.62` | 927,178.60 USD | 448,934.81 USD | 478,243.79 USD | -29,308.98 USD | `-3.16%` | `15B / 13S` |
+| `5:00 UTC` | `135.36` | `134.90` | `135.36` | `135.69` | `134.19` | 1,643,969.98 USD | 713,479.07 USD | 930,490.91 USD | -217,011.84 USD | `-13.20%` | `14B / 41S` |
+| `0:00 UTC` | `135.81` | `135.11` | `135.81` | `135.97` | `134.12` | 1,651,999.36 USD | 836,590.75 USD | 815,408.61 USD | 21,182.13 USD | `+1.28%` | `41B / 22S` |
+| `5:00 UTC` | `135.80` | `135.69` | `135.80` | `136.03` | `135.32` | 1,251,302.78 USD | 483,395.43 USD | 767,907.35 USD | -284,511.93 USD | `-22.74%` | `8B / 18S` |
+| `0:00 UTC` | `136.50` | `136.45` | `136.50` | `136.91` | `135.53` | 2,672,463.66 USD | 1,636,609.16 USD | 1,035,854.51 USD | 600,754.65 USD | `+22.48%` | `41B / 16S` |
+| `5:00 UTC` | `137.00` | `136.75` | `137.00` | `137.11` | `136.31` | 1,755,992.28 USD | 798,369.60 USD | 957,622.69 USD | -159,253.09 USD | `-9.07%` | `15B / 15S` |
+| `0:00 UTC` | `136.91` | `137.14` | `136.91` | `137.94` | `136.38` | 2,268,812.62 USD | 1,173,914.80 USD | 1,094,897.82 USD | 79,016.99 USD | `+3.48%` | `32B / 27S` |
+| `5:00 UTC` | `136.36` | `136.58` | `136.36` | `137.31` | `136.01` | 2,016,544.71 USD | 820,255.37 USD | 1,196,289.34 USD | -376,033.97 USD | `-18.65%` | `6B / 45S` |
+| `0:00 UTC` | `136.31` | `135.82` | `136.31` | `136.41` | `135.25` | 1,856,319.84 USD | 851,137.54 USD | 1,005,182.30 USD | -154,044.76 USD | `-8.30%` | `11B / 26S` |
+| `5:00 UTC` | `136.19` | `136.08` | `136.19` | `136.38` | `135.78` | 1,030,013.81 USD | 443,410.64 USD | 586,603.17 USD | -143,192.54 USD | `-13.90%` | `6B / 15S` |
+| `0:00 UTC` | `135.20` | `135.19` | `135.20` | `135.91` | `134.72` | 2,147,077.59 USD | 1,184,718.32 USD | 962,359.27 USD | 222,359.04 USD | `+10.36%` | `11B / 33S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -576,21 +576,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 19:41:49 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:40:49 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:20:49 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:09:49 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:49:49 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:49:49 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:49:49 IST`: [dol.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:49:49 IST`: [bea.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:49:49 IST`: [bea.gov] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:48:49 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:48:49 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 16:50:49 IST`: [marctomarket.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 15:50:49 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-29 15:50:49 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 15:50:49 IST`: [bankofengland.co.uk] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:05:54 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:39:54 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:39:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:39:54 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:39:54 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:38:54 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:38:54 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:38:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:40:54 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:40:54 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:40:54 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:40:54 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:40:54 IST`: [zerohedge.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:40:54 IST`: [dol.gov] - (Sentiment: `Neutral`)
+  * `2026-10-29 18:40:54 IST`: [bea.gov] - (Sentiment: `Neutral`)
 
 
 ---
