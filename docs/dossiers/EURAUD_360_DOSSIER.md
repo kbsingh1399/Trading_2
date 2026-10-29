@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURAUD
 **Canonical Key**: `EURAUD` | **Broker Instrument**: `EURAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:16:49 IST` (`2026-10-29 22:46:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.58` | VWAP Z-Score: `+2.50` (Regime: `STRETCH_EXTREME`)
+  * Session VWAP: `1.58` | VWAP Z-Score: `+2.65` (Regime: `STRETCH_EXTREME`)
   * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `69.73` (State: `OVERBOUGHT`)
+  * 14-Period RSI: `71.50` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.59` | Lower -3.00σ Band: `1.57`
   * Upper +2.51σ Band: `1.59` | Lower -2.51σ Band: `1.58`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.59` | EMA-20=`1.59` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.59` (Slope: `+0.0000`) | EMA-100=`1.59`
-  * Institutional Anchors: EMA-144=`1.58` | EMA-200=`1.58` (Slope: `+0.0377`) | EMA-233=`1.59`
+  * Institutional Anchors: EMA-144=`1.58` | EMA-200=`1.58` (Slope: `+0.0404`) | EMA-233=`1.59`
 - **Range Boundaries**: 24H High=`1.59` | 24H Low=`1.58` | Weekly High=`1.59` | Weekly Low=`1.58`
 
 ---
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.59` (Distance: `-0.00%`)
-  * Point of Control (POC) = `1.59` (Distance: `+0.01%`)
-  * Value Area Low (VAL) = `1.59` (Distance: `+0.14%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `1.59` (Distance: `+0.00%`)
+  * Point of Control (POC) = `1.59` (Distance: `+0.08%`)
+  * Value Area Low (VAL) = `1.59` (Distance: `+0.17%`)
+  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.59` | POC=`1.58` | VAL=`1.58`
   * Prior Day Extremes: PDH=`1.59` | PDL=`1.58` | PDC=`1.59`
@@ -60,8 +60,8 @@
   * Initial Balance (First Hour): IB High=`1.60` | IB Low=`1.59`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.59` - `1.60`
-  * Optimal Trade Entry (OTE 0.705): `1.59`
-  * Structural Invalidation Anchor (0.786): `1.60`
+  * Optimal Trade Entry (OTE 0.705): `1.60`
+  * Structural Invalidation Anchor (0.786): `1.61`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.60`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.61`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

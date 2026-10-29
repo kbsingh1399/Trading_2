@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:16:49 IST` (`2026-10-29 22:46:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,28 +23,28 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `6.66` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `6.66` | VWAP Z-Score: `-1.27` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000641` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `53.93` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `6.70` | Lower -3.00σ Band: `6.61`
-  * Upper +2.51σ Band: `6.69` | Lower -2.51σ Band: `6.62`
-  * Upper +2.01σ Band: `6.69` | Lower -2.01σ Band: `6.63`
-  * Upper +2.00σ Band: `6.68` | Lower -2.00σ Band: `6.63`
-  * Upper +1.28σ Band: `6.68` | Lower -1.28σ Band: `6.64`
-  * Upper +1.00σ Band: `6.67` | Lower -1.00σ Band: `6.64`
+  * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.66`
+  * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.66`
+  * Upper +2.01σ Band: `6.66` | Lower -2.01σ Band: `6.66`
+  * Upper +2.00σ Band: `6.66` | Lower -2.00σ Band: `6.66`
+  * Upper +1.28σ Band: `6.66` | Lower -1.28σ Band: `6.66`
+  * Upper +1.00σ Band: `6.66` | Lower -1.00σ Band: `6.66`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`6.66` | EMA-20=`6.66` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`6.66` (Slope: `+0.0000`) | EMA-100=`6.66`
-  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `+0.0000`) | EMA-233=`6.66`
-- **Range Boundaries**: 24H High=`6.72` | 24H Low=`6.59` | Weekly High=`6.79` | Weekly Low=`6.52`
+  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `-0.0082`) | EMA-233=`6.66`
+- **Range Boundaries**: 24H High=`6.66` | 24H Low=`6.66` | Weekly High=`6.67` | Weekly Low=`6.66`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.66` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `6.66` (Distance: `+0.01%`)
   * Point of Control (POC) = `6.66` (Distance: `+0.01%`)
   * Value Area Low (VAL) = `6.66` (Distance: `+0.02%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `6.66` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `5.46` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `9.66`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `6.65` (Risk Distance: `0.0016` pts)
+  * +2.5R Take Profit: `6.66`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `6.66` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `7.86` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `3.65`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `6.66` (Risk Distance: `0.0016` pts)
+  * +2.5R Take Profit: `6.65`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

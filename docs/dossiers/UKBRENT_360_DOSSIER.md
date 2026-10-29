@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UKBRENT
 **Canonical Key**: `UKBRENT` | **Broker Instrument**: `UKBRENT.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:16:49 IST` (`2026-10-29 22:46:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `116.22` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `114.99` | VWAP Z-Score: `+2.57` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.3570` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `66.17` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `117.03` | Lower -3.00σ Band: `115.41`
-  * Upper +2.51σ Band: `116.86` | Lower -2.51σ Band: `115.58`
-  * Upper +2.01σ Band: `116.71` | Lower -2.01σ Band: `115.73`
-  * Upper +2.00σ Band: `116.69` | Lower -2.00σ Band: `115.76`
-  * Upper +1.28σ Band: `116.55` | Lower -1.28σ Band: `115.90`
-  * Upper +1.00σ Band: `116.45` | Lower -1.00σ Band: `115.99`
+  * Upper +3.00σ Band: `116.43` | Lower -3.00σ Band: `113.55`
+  * Upper +2.51σ Band: `116.20` | Lower -2.51σ Band: `113.78`
+  * Upper +2.01σ Band: `115.95` | Lower -2.01σ Band: `114.02`
+  * Upper +2.00σ Band: `115.95` | Lower -2.00σ Band: `114.03`
+  * Upper +1.28σ Band: `115.60` | Lower -1.28σ Band: `114.37`
+  * Upper +1.00σ Band: `115.47` | Lower -1.00σ Band: `114.51`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`116.22` | EMA-20=`116.22` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`116.22` (Slope: `+0.0000`) | EMA-100=`116.22`
-  * Institutional Anchors: EMA-144=`116.22` | EMA-200=`116.22` (Slope: `+0.0000`) | EMA-233=`116.22`
-- **Range Boundaries**: 24H High=`117.38` | 24H Low=`115.06` | Weekly High=`118.55` | Weekly Low=`113.90`
+  * Fast EMA Array: EMA-9=`115.98` | EMA-20=`115.59` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`115.28` (Slope: `+0.0000`) | EMA-100=`115.30`
+  * Institutional Anchors: EMA-144=`115.36` | EMA-200=`115.34` (Slope: `+0.0511`) | EMA-233=`115.36`
+- **Range Boundaries**: 24H High=`116.98` | 24H Low=`113.71` | Weekly High=`117.62` | Weekly Low=`113.71`
 
 ---
 
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `114.53` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `113.29` (Risk Distance: `1.25` pts)
-  * +2.5R Take Profit: `117.65`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `1.25 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `114.06` (Risk Distance: `0.4764` pts)
+  * +2.5R Take Profit: `115.72`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.48 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `115.53` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `116.78` (Risk Distance: `1.25` pts)
-  * +2.5R Take Profit: `112.41`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `1.25 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `116.01` (Risk Distance: `0.4764` pts)
+  * +2.5R Take Profit: `114.34`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.48 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

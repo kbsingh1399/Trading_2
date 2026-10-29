@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EGLUSD
 **Canonical Key**: `EGLUSD` | **Broker Instrument**: `EGLUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:16:49 IST` (`2026-10-29 22:46:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.29` | VWAP Z-Score: `-1.57` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0399` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `26.50` (State: `OVERSOLD`)
+  * Session VWAP: `3.29` | VWAP Z-Score: `-1.42` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0385` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `29.39` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `3.55` | Lower -3.00σ Band: `3.04`
   * Upper +2.51σ Band: `3.51` | Lower -2.51σ Band: `3.08`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `3.40` | Lower -1.28σ Band: `3.18`
   * Upper +1.00σ Band: `3.38` | Lower -1.00σ Band: `3.21`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3.20` | EMA-20=`3.25` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`3.19` | EMA-20=`3.25` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`3.30` (Slope: `+0.0000`) | EMA-100=`3.30`
-  * Institutional Anchors: EMA-144=`3.29` | EMA-200=`3.28` (Slope: `-0.2286`) | EMA-233=`3.27`
+  * Institutional Anchors: EMA-144=`3.29` | EMA-200=`3.28` (Slope: `-0.2775`) | EMA-233=`3.27`
 - **Range Boundaries**: 24H High=`3.47` | 24H Low=`3.07` | Weekly High=`3.47` | Weekly Low=`3.07`
 
 ---

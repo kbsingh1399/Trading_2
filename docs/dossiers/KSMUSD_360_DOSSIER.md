@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KSMUSD
 **Canonical Key**: `KSMUSD` | **Broker Instrument**: `KSMUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:13:48 IST` (`2026-10-29 22:43:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:16:49 IST` (`2026-10-29 22:46:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.55` | VWAP Z-Score: `-1.39` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0425` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `3.55` | VWAP Z-Score: `-1.36` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0409` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `28.05` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `3.82` | Lower -3.00σ Band: `3.29`
+  * Upper +3.00σ Band: `3.82` | Lower -3.00σ Band: `3.28`
   * Upper +2.51σ Band: `3.78` | Lower -2.51σ Band: `3.33`
-  * Upper +2.01σ Band: `3.74` | Lower -2.01σ Band: `3.37`
-  * Upper +2.00σ Band: `3.73` | Lower -2.00σ Band: `3.38`
+  * Upper +2.01σ Band: `3.73` | Lower -2.01σ Band: `3.37`
+  * Upper +2.00σ Band: `3.73` | Lower -2.00σ Band: `3.37`
   * Upper +1.28σ Band: `3.67` | Lower -1.28σ Band: `3.44`
   * Upper +1.00σ Band: `3.64` | Lower -1.00σ Band: `3.46`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3.46` | EMA-20=`3.52` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`3.57` (Slope: `+0.0000`) | EMA-100=`3.60`
-  * Institutional Anchors: EMA-144=`3.61` | EMA-200=`3.63` (Slope: `-0.4916`) | EMA-233=`3.64`
+  * Fast EMA Array: EMA-9=`3.46` | EMA-20=`3.51` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`3.57` (Slope: `+0.0000`) | EMA-100=`3.59`
+  * Institutional Anchors: EMA-144=`3.61` | EMA-200=`3.63` (Slope: `-0.5416`) | EMA-233=`3.64`
 - **Range Boundaries**: 24H High=`3.74` | 24H Low=`3.32` | Weekly High=`3.78` | Weekly Low=`3.32`
 
 ---
