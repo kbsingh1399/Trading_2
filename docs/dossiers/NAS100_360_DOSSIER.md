@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-29 23:59:02 IST` (`2026-10-29 18:29:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:02:04 IST` (`2026-10-29 18:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -173,9 +173,9 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0057%` | **USDT OKX** | `0.0000%` |
-| **USDT Bybit** | `0.0120%` | **USDT KuCoin** | `0.0000%` |
-| **USDT MEXC** | `0.0056%` | **USDT BingX** | `-` |
+| **USDT Binance** | `0.0062%` | **USDT OKX** | `0.0006%` |
+| **USDT Bybit** | `0.0127%` | **USDT KuCoin** | `0.0000%` |
+| **USDT MEXC** | `0.0061%` | **USDT BingX** | `-` |
 | **USDT Gate** | `0.0000%` | **USDT Bitget** | `0.0154%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
