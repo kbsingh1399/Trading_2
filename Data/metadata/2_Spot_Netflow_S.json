@@ -23,8 +23,8 @@
     "Timestamp_IST"
   ],
   "byte_size": 32484,
-  "timestamp_ist": "2026-10-29 15:21:04 IST",
-  "timestamp_utc": "2026-10-29 09:51:04 UTC",
-  "epoch_utc": 1793267464.71107,
+  "timestamp_ist": "2026-10-29 15:23:04 IST",
+  "timestamp_utc": "2026-10-29 09:53:04 UTC",
+  "epoch_utc": 1793267584.723914,
   "write_duration_ms": 525.71
 }
