@@ -1,7 +1,7 @@
-# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_005]
+# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_006]
 **Authority**: Antigravity Sovereign Coordinator (MetaTrader 5 Account #5064568)
 **Execution Protocol**: SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER
-**Timestamp**: 2026-10-29 08:41:05 UTC
+**Timestamp**: 2026-10-29 09:43:57 UTC
 
 ---
 
@@ -58,12 +58,12 @@ Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
 
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
-- **Account Balance**: **4,718.77 USD**
-- **Floating Equity**: **4,732.39 USD**
-- **Free Margin**: **4,437.25 USD**
+- **Account Balance**: **4,718.94 USD**
+- **Floating Equity**: **4,743.31 USD**
+- **Free Margin**: **4,362.19 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 08:41:01 UTC`
+- **Last Updated**: `2026-10-29 09:43:56 UTC`
 
 ---
 
@@ -71,18 +71,16 @@ Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.879 | **157.764** | 158.05 | **+13.12 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
-| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2841.49 | **2858.0** | 2822.0 | **+0.50 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.947 | **157.764** | 158.05 | **+16.56 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19445579** | `UKBRENT.p` | BUY | 0.10 | 114.45 | 115.231 | **114.89** | 115.8 | **+7.81 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (9 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (7 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
-| **#19439188** | `EURGBP.pi` | SELL_LIMIT | 0.10 | **0.8381** | **0.8388** | 0.8368 | Resting passive maker order |
 | **#19444900** | `SP500.p` | BUY_LIMIT | 0.02 | **7705.5** | **7695.5** | 7728.5 | Resting passive maker order |
-| **#19445579** | `UKBRENT.p` | BUY_LIMIT | 0.10 | **114.45** | **113.9** | 115.8 | Resting passive maker order |
 | **#19447583** | `NZDUSD.pi` | SELL_LIMIT | 0.12 | **0.5632** | **0.56388** | 0.5605 | Resting passive maker order |
 | **#19448978** | `USDCAD.pi` | BUY_LIMIT | 0.10 | **1.3972** | **1.3961999999999999** | 1.3992 | Resting passive maker order |
 | **#19448979** | `BNBUSD.p` | SELL_LIMIT | 0.70 | **762.5** | **772.5** | 747.0 | Resting passive maker order |
@@ -92,21 +90,18 @@ Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
 ```
 
 ### Mandatory Trade Lifecycle Interrogation:
-For each live position and resting order, systematically interrogate:
+For each live position and resting order listed in the authoritative registry above, systematically interrogate:
 **"Should I let it run or cut it? Is it still a valid trade?"**
-- **AUDUSD.pi** (Ticket #19437063): SELL 0.10 @ 0.70586 | Live SL: 0.70506 (+8.0 pips profit lock) | TP: 0.70368
 - **USDJPY.pi** (Ticket #19437494): BUY 0.08 @ 157.620 | Live SL: 157.764 (+14.4 pips profit lock) | TP: 158.050
-- **US2000.p** (Ticket #19437498): SELL 0.01 @ 2846.50 | Live SL: 2858.00 (Max nominal risk: 1.15 USD) | TP: 2822.00
-- **All 9 Active Resting Limit Orders**:
-  1. `EURGBP.pi` (#19439188): SELL_LIMIT 0.10 @ 0.83810 | SL: 0.83880 | TP: 0.83680
-  2. `SP500.p` (#19444900): BUY_LIMIT 0.02 @ 7705.50 | SL: 7695.50 | TP: 7728.50
-  3. `UKBRENT.p` (#19445579): BUY_LIMIT 0.10 @ 114.45 | SL: 113.90 | TP: 115.80
-  4. `NZDUSD.pi` (#19447583): SELL_LIMIT 0.12 @ 0.56320 | SL: 0.56388 | TP: 0.56050
-  5. `USDCAD.pi` (#19448978): BUY_LIMIT 0.10 @ 1.39720 | SL: 1.39620 | TP: 1.39920
-  6. `BNBUSD.p` (#19448979): SELL_LIMIT 0.70 @ 762.50 | SL: 772.50 | TP: 747.00
-  7. `XAUUSD.pi` (#19457311): SELL_LIMIT 0.01 @ 4064.50 | SL: 4088.50 | TP: 3995.00
-  8. `NAS100.p` (#19457516): SELL_LIMIT 0.01 @ 29740.00 | SL: 30025.00 | TP: 29230.00
-  9. `GBPUSD.pi` (#19457518): SELL_LIMIT 0.08 @ 1.33480 | SL: 1.33640 | TP: 1.33120
+- **UKBRENT.p** (Ticket #19445579): BUY 0.10 @ 114.450 | Live SL: 114.890 (+44.0 cents profit lock) | TP: 115.800
+- **All 7 Active Resting Limit Orders**:
+  1. `SP500.p` (#19444900): BUY_LIMIT 0.02 @ 7705.50 | SL: 7695.50 | TP: 7728.50
+  2. `NZDUSD.pi` (#19447583): SELL_LIMIT 0.12 @ 0.56320 | SL: 0.56388 | TP: 0.56050
+  3. `USDCAD.pi` (#19448978): BUY_LIMIT 0.10 @ 1.39720 | SL: 1.39620 | TP: 1.39920
+  4. `BNBUSD.p` (#19448979): SELL_LIMIT 0.70 @ 762.50 | SL: 772.50 | TP: 747.00
+  5. `XAUUSD.pi` (#19457311): SELL_LIMIT 0.01 @ 4064.50 | SL: 4088.50 | TP: 3995.00
+  6. `NAS100.p` (#19457516): SELL_LIMIT 0.01 @ 29740.00 | SL: 30025.00 | TP: 29230.00
+  7. `GBPUSD.pi` (#19457518): SELL_LIMIT 0.08 @ 1.33480 | SL: 1.33640 | TP: 1.33120
 
 ### Mandatory Candidate Discovery Intent:
 You MUST search the entire 156-asset universe to propose MORE potential high-confluence maker limit orders. The core operator intent is **NEVER TO MISS ANY TRADING OPPORTUNITY** across Metals, Indices, FX, and Crypto, while strictly leaning against resting whale armor.
@@ -114,6 +109,64 @@ You MUST search the entire 156-asset universe to propose MORE potential high-con
 ---
 
 ## 🔬 3. SPREAD-GATED SCAN & SERIALIZED 43-FEED FORENSICS (CANDIDATE-BY-CANDIDATE)
+
+```mermaid
+flowchart TD
+    subgraph S1["Universal Scope (156 Tradeable Assets across 4 Macro Clusters)"]
+        A1["Crypto Perpetuals & CFDs (18 Binance + MT5 pairs)"]
+        A2["Forex Majors & Liquid Crosses (7 Majors + Crosses)"]
+        A3["Precious Metals (XAUUSD.pi, XAGUSD.pi)"]
+        A4["Equity & Energy Indices (US30.p, SP500.p, NAS100.p, GER40.p, UKBRENT.p)"]
+    end
+
+    subgraph S2["Gate 1: Spread & Execution Friction Filter"]
+        G1Asset X Cleared Spread Gate?<br/>Crypto <= 12.0 bps | TradFi <= 5.0 bps<br/>Friction (Spread / TP) <= 15.0%
+        R1["FAIL-CLOSED: Reject Candidate / Stand Aside"]
+    end
+
+    S1 --> G1
+    G1 -- "NO (Friction Violation)" --> R1
+    G1 -- "YES (Passed Gate 1)" --> S3
+
+    subgraph S3["Gate 2: Sequential 43-Feed Forensic Deep Extraction for Asset X"]
+        direction TB
+        F1["Pillar 1: Tape & Telemetry<br/>00_MT5_Account_Telemetry (Spread, Mid, Bid/Ask)<br/>23_Master_Pipeline_Telemetry (Freshness < 5m)"]
+        F2["Pillar 2: Institutional Capital Flows<br/>1_Crypto_ETF_Flows, 2_Spot_Netflow_S, 2_Future_Netflow"]
+        F3["Pillar 3: Leverage, Sentiment & Funding<br/>3_Exchanges_LS_Ratio (15m/1h/4h), 5_OI, 5_Funding_Rate"]
+        F4["Pillar 4: Liquidation Cascades & Max Pain<br/>7_Liq_Heapmap, 8_Exchange_Liquidation_Map (1D/7D)<br/>9_Liquidation_Max_Pain, 14_Hyperdash_Liq_Map, 14_Matrix"]
+        F5["Pillar 5: Whale Defense & Orderbook Depth<br/>10_Whale_Orders (Size > 100K USD, Persist >= 180s)<br/>17_Orderbook (Top 20 Bids/Asks depth balance)"]
+        F6["Pillar 6: CVD Delta & Auction Value Areas<br/>18_CVD (1m/5m/15m/1h/4h absorption), 20_Auction (VAH/VAL/POC)<br/>25_CoinGlass_Footprint_Signals, 26_Aggregated_Metrics"]
+        F1 --> F2 --> F3 --> F4 --> F5 --> F6
+    end
+
+    subgraph S4["Gate 3: Algorithmic Verification & Trade Formulation"]
+        T1Confluence Stack Verified?<br/>1. Whale Wall Armor Verified (>100K, >180s)?<br/>2. CVD Absorption Confirmed (No knife catch)?<br/>3. Auction Value Area Boundary Exhaustion?<br/>4. Zero Stop Hunt Trap (Beyond 1D/7D Liq)?
+        R2["FAIL-CLOSED: Reject Trade Setup"]
+        P1["Formulate Concrete Maker Limit Parameters:<br/>• Model: Model 1 Sweep Fade vs Model 2 Fib Pullback<br/>• Limit Entry: Sweep Exhaustion Zone (e.g. VAH + 0.35 ATR)<br/>• Spread-Padded SL: Resistance + 1.2 ATR + 1.5 Spread<br/>• Target TP: Opposing Value Area / Max Pain Magnet<br/>• Sizing: Nominal Risk <= $10.00 USD (Stressed <= $12.50)"]
+    end
+
+    S3 --> T1
+    T1 -- "NO (Pitfall 1-10 Violation)" --> R2
+    T1 -- "YES (High Confluence)" --> P1
+
+    subgraph S5["Gate 4: Stage Maker Limit Order & Advance Sequentially"]
+        E1["Stage Passive Limit into Broker (MT5 #5064568)"]
+        N1["Advance Sequentially to Asset Y across 156-Asset Universe"]
+    end
+
+    P1 --> E1
+    E1 --> N1
+    R1 --> N1
+    R2 --> N1
+
+    subgraph S6["Dual Track: Parallel Audit of Resting Limit Orders"]
+        L1["Live Resting Orders Audit (SP500, NZDUSD, USDCAD, BNB, XAU, NAS, GBP)"]
+        L2Interrogate: Should I let it run or cut it?<br/>1. Whale wall armor persisting (> 180s)?<br/>2. Spread widened > 5/12 bps?<br/>3. Price past sweep exhaustion point?
+        O1["RETAIN / ADJUST / PURGE Order"]
+        L1 --> L2 --> O1
+    end
+```
+
 1. **Spread Gating**: Evaluate 156 assets across 4 clusters. Cap: <= 12.0 bps for Crypto, <= 5.0 bps for TradFi. Reject any failing asset.
 2. **Sequential Forensic Deep Dive**: For EVERY spread-qualified candidate, sequentially extract metrics across ALL 43 Parquet feeds:
    - Orderbook depth & defending whale walls (> 100K USD, > 180s persistence).
@@ -128,9 +181,9 @@ You MUST search the entire 156-asset universe to propose MORE potential high-con
 ## 📋 4. MANDATORY OUTPUT FORMAT
 Return your response structured as follows:
 
-# [COUNCIL REPORT - CYCLE_ID: Cycle_005]
+# [COUNCIL REPORT - CYCLE_ID: Cycle_006]
 **Council Seat**: [Arena.ai (Lead Quant) / Z.ai (Adversarial Sentry)]
-**Timestamp**: 2026-10-29 08:41:05 UTC
+**Timestamp**: 2026-10-29 09:43:57 UTC
 
 ### 📚 Mandatory Pre-Cycle Reading Gate Confirmation
 ✅ All 7 Mandatory Governance Documents Fetched, Read & Enforced via GitHub:
@@ -171,4 +224,4 @@ Return your response structured as follows:
 - Capital Floor Defense: Hard Floor $4,775.00 USD | Operating Buffer $4,795.00 USD
 - Stressed Loss Verification: Stressed portfolio drawdown strictly within budget.
 
-# [END OF REPORT - CYCLE_ID: Cycle_005]
+# [END OF REPORT - CYCLE_ID: Cycle_006]
