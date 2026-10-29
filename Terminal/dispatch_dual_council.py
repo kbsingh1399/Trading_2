@@ -57,13 +57,21 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
     fm = float(acc.get("margin_free_usd", acc.get("margin_free", 4818.51)))
     utc_now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    # Cycle auto-detection
+    # Cycle auto-detection: Prioritize canonical ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md
     if cycle_id == "AUTO":
-        import glob, re
-        existing = glob.glob(str(ROOT / "docs" / "trade_plans" / "Cycle_*_DISPATCH_PROMPT.txt"))
-        nums = [int(m.group(1)) for f in existing if (m := re.search(r"Cycle_(\d+)_DISPATCH", f))]
-        next_num = max(nums) + 1 if nums else 9
-        cycle_id = f"Cycle_{next_num:03d}"
+        checklist_path = ROOT / "Data" / "Manditory" / "ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md"
+        if checklist_path.exists():
+            import re
+            c_text = checklist_path.read_text(encoding="utf-8")
+            m_check = re.search(r"### ⏳ (Cycle_\d+) Scorecard", c_text)
+            if m_check:
+                cycle_id = m_check.group(1)
+        if cycle_id == "AUTO":
+            import glob, re
+            existing = glob.glob(str(ROOT / "docs" / "trade_plans" / "Cycle_*_DISPATCH_PROMPT.txt"))
+            nums = [int(m.group(1)) for f in existing if (m := re.search(r"Cycle_(\d+)_DISPATCH", f))]
+            next_num = max(nums) + 1 if nums else 13
+            cycle_id = f"Cycle_{next_num:03d}"
 
     cush_fl = eq - 4600.00
     cush_buf = eq - 4650.00
