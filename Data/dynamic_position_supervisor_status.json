@@ -1,33 +1,16 @@
 {
-  "timestamp_utc": "2026-10-29 10:35:40 UTC",
-  "balance_usd": 4723.34,
-  "equity_usd": 4744.65,
-  "free_margin_usd": 4477.98,
+  "timestamp_utc": "2026-10-29 10:37:30 UTC",
+  "balance_usd": 4744.55,
+  "equity_usd": 4744.55,
+  "free_margin_usd": 4744.55,
   "max_filled_positions": 15,
-  "filled_positions_count": 1,
-  "filled_slots_free": 14,
+  "filled_positions_count": 0,
+  "filled_slots_free": 15,
   "resting_limits_count": 2,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [
-    {
-      "ticket": 19437494,
-      "symbol": "USDJPY.pi",
-      "type": "BUY",
-      "volume": 0.08,
-      "price_open": 157.62,
-      "price_current": 158.041,
-      "sl": 157.764,
-      "tp": 158.05,
-      "gain_r": 2.339,
-      "ratchet_stage": 2,
-      "profit_usd": 21.31,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
-    }
-  ],
+  "active_positions": [],
   "resting_orders": [
     {
       "ticket": 19444900,
