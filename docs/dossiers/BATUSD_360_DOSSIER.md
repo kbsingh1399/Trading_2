@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BATUSD
 **Canonical Key**: `BATUSD` | **Broker Instrument**: `BATUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:39:06 IST` (`2026-10-29 20:09:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-668.12` | Last 24h: `629.37` | Last 3d: `4.58K` | Last 7d: `9.29K`
+  * Current Rate: `-709.52` | Last 24h: `629.37` | Last 3d: `4.58K` | Last 7d: `9.29K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0100%` | **USDT OKX** | `0.0028%` |
-| **USDT Bybit** | `-0.0041%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `0.0028%` | **USDT BingX** | `0.0032%` |
-| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0198%` |
+| **USDT Binance** | `-0.0098%` | **USDT OKX** | `0.0018%` |
+| **USDT Bybit** | `-0.0071%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `0.0017%` | **USDT BingX** | `0.0018%` |
+| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0199%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

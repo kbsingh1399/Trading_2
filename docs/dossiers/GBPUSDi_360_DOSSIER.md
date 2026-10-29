@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 01:36:03 IST` (`2026-10-29 20:06:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:39:05 IST` (`2026-10-29 20:09:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -201,8 +201,8 @@
 | `1D` | `1.33` | 537.40 USD | 0.00 USD | 537.40 USD | 0.00 USD | 0.00 USD | 537.40 USD |
 | `7D` | `1.33` | 947.24 USD | 0.00 USD | 947.24 USD | 0.00 USD | 0.00 USD | 647.69 USD |
 | `7D` | `1.33` | 299.55 USD | 0.00 USD | 299.55 USD | 0.00 USD | 0.00 USD | 299.55 USD |
-| `1D` | `1.34` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `1.34` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
+| `1D` | `1.34` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `1.34` | 3,400.00 USD | 3,400.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 3,400.00 USD |
 | `7D` | `1.35` | 4,100.00 USD | 4,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 694.76 USD |
 | `1D` | `1.35` | 298.99 USD | 298.99 USD | 0.00 USD | 0.00 USD | 0.00 USD | 298.99 USD |
@@ -256,7 +256,7 @@
 | `7D` | `1.47` | 45,170.00 USD | 45,170.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 105.64 USD |
 | `1D` | `1.47` | 15,600.00 USD | 15,600.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 5.29 USD |
 | `7D` | `1.47` | 45,220.00 USD | 45,220.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 44.42 USD |
-| `1D` | `1.47` | 15,650.00 USD | 15,650.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 44.74 USD |
+| `1D` | `1.47` | 15,650.00 USD | 15,650.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 51.19 USD |
 | `7D` | `1.47` | 45,360.00 USD | 45,360.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 144.47 USD |
 | `7D` | `1.47` | 45,370.00 USD | 45,370.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 4.53 USD |
 
