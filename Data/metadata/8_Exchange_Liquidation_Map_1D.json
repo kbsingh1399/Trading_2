@@ -2,7 +2,7 @@
   "feed_name": "8_Exchange_Liquidation_Map_1D",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 2629,
+  "row_count": 2616,
   "column_count": 13,
   "columns": [
     "Sr.No",
@@ -19,9 +19,9 @@
     "OKX",
     "Bybit"
   ],
-  "byte_size": 133225,
-  "timestamp_ist": "2026-10-30 00:17:38 IST",
-  "timestamp_utc": "2026-10-29 18:47:38 UTC",
-  "epoch_utc": 1793299658.063036,
-  "write_duration_ms": 441.82
+  "byte_size": 132139,
+  "timestamp_ist": "2026-10-30 00:19:44 IST",
+  "timestamp_utc": "2026-10-29 18:49:44 UTC",
+  "epoch_utc": 1793299784.693079,
+  "write_duration_ms": 616.31
 }
