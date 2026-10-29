@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 04:01:40 IST` (`2026-10-29 22:31:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -307,16 +307,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `21:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 316.66 USD | 71.25 USD | 245.41 USD | -174.16 USD | `-55.00%` | `0B / 1S` |
-| `21:50:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 436.96 USD | 405.10 USD | 31.86 USD | 373.24 USD | `+85.42%` | `1B / 0S` |
 | `21:55:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 360.75 USD | 49.76 USD | 310.99 USD | -261.23 USD | `-72.41%` | `0B / 1S` |
 | `22:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 4,191.36 USD | 2,253.84 USD | 1,937.51 USD | 316.33 USD | `+7.55%` | `1B / 0S` |
 | `22:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 375.50 USD | 356.73 USD | 18.78 USD | 337.95 USD | `+90.00%` | `1B / 0S` |
 | `22:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,121.17 USD | 715.49 USD | 405.69 USD | 309.80 USD | `+27.63%` | `1B / 0S` |
 | `22:05:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 350.11 USD | 131.29 USD | 218.82 USD | -87.53 USD | `-25.00%` | `0B / 1S` |
 | `22:10:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 395.55 USD | 209.41 USD | 186.14 USD | 23.27 USD | `+5.88%` | `1B / 0S` |
-| `22:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 334.11 USD | 203.81 USD | 130.30 USD | 73.50 USD | `+22.00%` | `1B / 0S` |
 | `22:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 998.66 USD | 948.72 USD | 49.93 USD | 898.79 USD | `+90.00%` | `1B / 0S` |
+| `22:15:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 334.11 USD | 203.81 USD | 130.30 USD | 73.50 USD | `+22.00%` | `1B / 0S` |
+| `22:20:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 316.78 USD | 277.18 USD | 39.60 USD | 237.59 USD | `+75.00%` | `1B / 0S` |
+| `22:25:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 347.59 USD | 326.62 USD | 20.98 USD | 305.64 USD | `+87.93%` | `1B / 0S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |

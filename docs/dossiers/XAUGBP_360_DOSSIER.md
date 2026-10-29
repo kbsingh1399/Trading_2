@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUGBP
 **Canonical Key**: `XAUGBP` | **Broker Instrument**: `XAUGBP.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:01:40 IST` (`2026-10-29 22:31:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -527,7 +527,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `0:00 UTC` | `4036.05` | `4033.96` | `4036.05` | `4039.35` | `4027.95` | 35,619,288.58 USD | 16,236,367.43 USD | 19,382,921.15 USD | -3,146,553.72 USD | `-8.83%` | `3B / 3S` |
 | `5:00 UTC` | `4033.05` | `4032.94` | `4033.05` | `4034.85` | `4030.95` | 10,349,985.63 USD | 4,839,786.31 USD | 5,510,199.31 USD | -670,413.00 USD | `-6.48%` | `1B / 3S` |
 | `0:00 UTC` | `4034.25` | `4032.78` | `4034.25` | `4035.75` | `4029.15` | 20,678,719.43 USD | 6,048,411.49 USD | 14,630,307.94 USD | -8,581,896.45 USD | `-41.50%` | `0B / 10S` |
 | `5:00 UTC` | `4027.05` | `4027.95` | `4027.05` | `4030.95` | `4025.85` | 20,652,312.18 USD | 9,057,345.58 USD | 11,594,966.60 USD | -2,537,621.02 USD | `-12.29%` | `0B / 4S` |
@@ -536,7 +535,8 @@
 | `0:00 UTC` | `4028.55` | `4028.32` | `4028.55` | `4029.45` | `4026.75` | 4,446,639.42 USD | 3,302,435.87 USD | 1,144,203.55 USD | 2,158,232.32 USD | `+48.54%` | `7B / 0S` |
 | `5:00 UTC` | `4027.05` | `4026.44` | `4027.05` | `4028.55` | `4024.65` | 2,877,135.19 USD | 891,261.53 USD | 1,985,873.66 USD | -1,094,612.13 USD | `-38.05%` | `0B / 8S` |
 | `0:00 UTC` | `4029.45` | `4029.28` | `4029.45` | `4032.45` | `4024.35` | 21,236,940.50 USD | 10,861,231.68 USD | 10,375,708.82 USD | 485,522.86 USD | `+2.29%` | `6B / 2S` |
-| `5:00 UTC` | `4027.95` | `4028.71` | `4027.95` | `4030.35` | `4027.95` | 8,688,832.54 USD | 5,836,043.25 USD | 2,852,789.29 USD | 2,983,253.96 USD | `+34.33%` | `1B / 4S` |
+| `5:00 UTC` | `4027.95` | `4027.86` | `4027.95` | `4030.35` | `4025.85` | 14,108,709.52 USD | 8,835,489.72 USD | 5,273,219.80 USD | 3,562,269.92 USD | `+25.25%` | `1B / 5S` |
+| `0:00 UTC` | `4026.75` | `4026.71` | `4026.75` | `4027.65` | `4025.85` | 1,572,029.02 USD | 1,122,919.12 USD | 449,109.90 USD | 673,809.22 USD | `+42.86%` | `3B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
