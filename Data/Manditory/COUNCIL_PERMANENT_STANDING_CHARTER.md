@@ -50,6 +50,63 @@ Every council report MUST begin with this explicit confirmation:
 
 ## 🔄 3. CANONICAL CYCLE EXECUTION SEQUENCE (ON EVERY DISPATCH)
 
+```mermaid
+flowchart TD
+    subgraph S1["Universal Scope (156 Tradeable Assets across 4 Macro Clusters)"]
+        A1["Crypto Perpetuals & CFDs (18 Binance + MT5 pairs)"]
+        A2["Forex Majors & Liquid Crosses (7 Majors + Crosses)"]
+        A3["Precious Metals (XAUUSD.pi, XAGUSD.pi)"]
+        A4["Equity & Energy Indices (US30.p, SP500.p, NAS100.p, GER40.p, UKBRENT.p)"]
+    end
+
+    subgraph S2["Gate 1: Spread & Execution Friction Filter"]
+        G1{"Asset X Cleared Spread Gate?<br/>Crypto <= 12.0 bps | TradFi <= 5.0 bps<br/>Friction (Spread / TP) <= 15.0%"}
+        R1["FAIL-CLOSED: Reject Candidate / Stand Aside"]
+    end
+
+    S1 --> G1
+    G1 -- "NO (Friction Violation)" --> R1
+    G1 -- "YES (Passed Gate 1)" --> S3
+
+    subgraph S3["Gate 2: Sequential 43-Feed Forensic Deep Extraction for Asset X"]
+        direction TB
+        F1["Pillar 1: Tape & Telemetry<br/>00_MT5_Account_Telemetry (Spread, Mid, Bid/Ask)<br/>23_Master_Pipeline_Telemetry (Freshness < 5m)"]
+        F2["Pillar 2: Institutional Capital Flows<br/>1_Crypto_ETF_Flows, 2_Spot_Netflow_S, 2_Future_Netflow"]
+        F3["Pillar 3: Leverage, Sentiment & Funding<br/>3_Exchanges_LS_Ratio (15m/1h/4h), 5_OI, 5_Funding_Rate"]
+        F4["Pillar 4: Liquidation Cascades & Max Pain<br/>7_Liq_Heapmap, 8_Exchange_Liquidation_Map (1D/7D)<br/>9_Liquidation_Max_Pain, 14_Hyperdash_Liq_Map, 14_Matrix"]
+        F5["Pillar 5: Whale Defense & Orderbook Depth<br/>10_Whale_Orders (Size > 100K USD, Persist >= 180s)<br/>17_Orderbook (Top 20 Bids/Asks depth balance)"]
+        F6["Pillar 6: CVD Delta & Auction Value Areas<br/>18_CVD (1m/5m/15m/1h/4h absorption), 20_Auction (VAH/VAL/POC)<br/>25_CoinGlass_Footprint_Signals, 26_Aggregated_Metrics"]
+        F1 --> F2 --> F3 --> F4 --> F5 --> F6
+    end
+
+    subgraph S4["Gate 3: Algorithmic Verification & Trade Formulation"]
+        T1{"Confluence Stack Verified?<br/>1. Whale Wall Armor Verified (>100K, >180s)?<br/>2. CVD Absorption Confirmed (No knife catch)?<br/>3. Auction Value Area Boundary Exhaustion?<br/>4. Zero Stop Hunt Trap (Beyond 1D/7D Liq)?"}
+        R2["FAIL-CLOSED: Reject Trade Setup"]
+        P1["Formulate Concrete Maker Limit Parameters:<br/>• Model: Model 1 Sweep Fade vs Model 2 Fib Pullback<br/>• Limit Entry: Sweep Exhaustion Zone (e.g. VAH + 0.35 ATR)<br/>• Spread-Padded SL: Resistance + 1.2 ATR + 1.5 Spread<br/>• Target TP: Opposing Value Area / Max Pain Magnet<br/>• Sizing: Nominal Risk <= $10.00 USD (Stressed <= $12.50)"]
+    end
+
+    S3 --> T1
+    T1 -- "NO (Pitfall 1-10 Violation)" --> R2
+    T1 -- "YES (High Confluence)" --> P1
+
+    subgraph S5["Gate 4: Stage Maker Limit Order & Advance Sequentially"]
+        E1["Stage Passive Limit into Broker (MT5 #5064568)"]
+        N1["Advance Sequentially to Asset Y across 156-Asset Universe"]
+    end
+
+    P1 --> E1
+    E1 --> N1
+    R1 --> N1
+    R2 --> N1
+
+    subgraph S6["Dual Track: Parallel Audit of Resting Limit Orders"]
+        L1["Live Resting Orders Audit (SP500, NZDUSD, USDCAD, BNB, XAU, NAS, GBP)"]
+        L2{"Interrogate: Should I let it run or cut it?<br/>1. Whale wall armor persisting (> 180s)?<br/>2. Spread widened > 5/12 bps?<br/>3. Price past sweep exhaustion point?"}
+        O1["RETAIN / ADJUST / PURGE Order"]
+        L1 --> L2 --> O1
+    end
+```
+
 Whenever you receive a dispatch prompt `[SOVEREIGN CYCLE DISPATCH: Cycle_N]`, you MUST execute the following 4 phases in your thinking chain and output:
 
 ### PHASE 1: Mandatory Live Position & Resting Order Interrogation
