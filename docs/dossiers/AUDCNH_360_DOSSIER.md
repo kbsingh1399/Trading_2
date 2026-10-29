@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCNH
 **Canonical Key**: `AUDCNH` | **Broker Instrument**: `AUDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 23:13:20 IST` (`2026-10-29 17:43:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:37:49 IST` (`2026-10-29 18:07:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,17 +27,17 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `4.72` | Lower -3.00σ Band: `4.65`
+  * Upper +3.00σ Band: `4.71` | Lower -3.00σ Band: `4.65`
   * Upper +2.51σ Band: `4.71` | Lower -2.51σ Band: `4.66`
   * Upper +2.01σ Band: `4.70` | Lower -2.01σ Band: `4.66`
   * Upper +2.00σ Band: `4.70` | Lower -2.00σ Band: `4.66`
-  * Upper +1.28σ Band: `4.70` | Lower -1.28σ Band: `4.67`
+  * Upper +1.28σ Band: `4.69` | Lower -1.28σ Band: `4.67`
   * Upper +1.00σ Band: `4.69` | Lower -1.00σ Band: `4.67`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`4.68` | EMA-20=`4.68` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`4.68` (Slope: `+0.0000`) | EMA-100=`4.68`
   * Institutional Anchors: EMA-144=`4.68` | EMA-200=`4.68` (Slope: `+0.0000`) | EMA-233=`4.68`
-- **Range Boundaries**: 24H High=`4.73` | 24H Low=`4.64` | Weekly High=`4.78` | Weekly Low=`4.59`
+- **Range Boundaries**: 24H High=`4.73` | 24H Low=`4.63` | Weekly High=`4.77` | Weekly Low=`4.59`
 
 ---
 
@@ -51,8 +51,8 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`4.70` | POC=`4.68` | VAL=`4.66`
   * Prior Day Extremes: PDH=`4.71` | PDL=`4.65` | PDC=`4.68`
-  * Monday Range Blueprint: High=`4.71` | Mid=`4.68` | Low=`4.66`
-  * Developing Weekly Value Area: Weekly VAH=`4.72` | Weekly POC=`4.68` | Weekly VAL=`4.65`
+  * Monday Range Blueprint: High=`4.70` | Mid=`4.68` | Low=`4.66`
+  * Developing Weekly Value Area: Weekly VAH=`4.72` | Weekly POC=`4.68` | Weekly VAL=`4.64`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`4.69` | Low=`4.67`
   * London Session (08:00-16:00 UTC): High=`4.70` | Low=`4.66`
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:01:06 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:06 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:06 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:06:06 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:02:06 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

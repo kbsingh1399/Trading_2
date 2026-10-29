@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-29 23:13:20 IST` (`2026-10-29 17:43:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:37:49 IST` (`2026-10-29 18:07:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.1000` | **Live Ask Quote**: `0.1023` | **Mid Price**: `0.1012`
-- **Spread Points**: `23.00` | **Spread BPS**: `227.39 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0993` | **Live Ask Quote**: `0.1016` | **Mid Price**: `0.1004`
+- **Spread Points**: `23.00` | **Spread BPS**: `228.97 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,31 +23,31 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1012` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `0.0994` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000743` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `44.99` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1019` | Lower -3.00σ Band: `0.1004`
-  * Upper +2.51σ Band: `0.1017` | Lower -2.51σ Band: `0.1006`
-  * Upper +2.01σ Band: `0.1016` | Lower -2.01σ Band: `0.1007`
-  * Upper +2.00σ Band: `0.1016` | Lower -2.00σ Band: `0.1007`
-  * Upper +1.28σ Band: `0.1014` | Lower -1.28σ Band: `0.1009`
-  * Upper +1.00σ Band: `0.1014` | Lower -1.00σ Band: `0.1009`
+  * Upper +3.00σ Band: `0.1036` | Lower -3.00σ Band: `0.0952`
+  * Upper +2.51σ Band: `0.1029` | Lower -2.51σ Band: `0.0959`
+  * Upper +2.01σ Band: `0.1022` | Lower -2.01σ Band: `0.0966`
+  * Upper +2.00σ Band: `0.1022` | Lower -2.00σ Band: `0.0966`
+  * Upper +1.28σ Band: `0.1012` | Lower -1.28σ Band: `0.0976`
+  * Upper +1.00σ Band: `0.1008` | Lower -1.00σ Band: `0.0980`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1012` | EMA-20=`0.1012` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1012` (Slope: `+0.0000`) | EMA-100=`0.1012`
-  * Institutional Anchors: EMA-144=`0.1012` | EMA-200=`0.1012` (Slope: `+0.0000`) | EMA-233=`0.1012`
-- **Range Boundaries**: 24H High=`0.1022` | 24H Low=`0.1001` | Weekly High=`0.1032` | Weekly Low=`0.0991`
+  * Fast EMA Array: EMA-9=`0.1002` | EMA-20=`0.1001` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0997` (Slope: `+0.0000`) | EMA-100=`0.1000`
+  * Institutional Anchors: EMA-144=`0.1004` | EMA-200=`0.1008` (Slope: `-0.0175`) | EMA-233=`0.1010`
+- **Range Boundaries**: 24H High=`0.1048` | 24H Low=`0.0972` | Weekly High=`0.1051` | Weekly Low=`0.0972`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1006` (Distance: `+0.50%`)
-  * Point of Control (POC) = `0.0981` (Distance: `+3.12%`)
-  * Value Area Low (VAL) = `0.0974` (Distance: `+3.86%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `0.1006` (Distance: `-0.05%`)
+  * Point of Control (POC) = `0.0995` (Distance: `+1.04%`)
+  * Value Area Low (VAL) = `0.0974` (Distance: `+3.24%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1038` | POC=`0.1023` | VAL=`0.1011`
   * Prior Day Extremes: PDH=`0.1048` | PDL=`0.0994` | PDC=`0.1031`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.1024` | Low=`0.0978`
   * Initial Balance (First Hour): IB High=`0.0999` | IB Low=`0.0987`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.1007` - `0.1016`
-  * Optimal Trade Entry (OTE 0.705): `0.1014`
-  * Structural Invalidation Anchor (0.786): `0.1020`
+  * Golden Pocket Zone (0.618 - 0.650): `0.1000` - `0.1009`
+  * Optimal Trade Entry (OTE 0.705): `0.1007`
+  * Structural Invalidation Anchor (0.786): `0.1013`
 
 ---
 
@@ -182,64 +182,64 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `0.0205` | 252,910.00 USD | 0.00 USD | 3,810.00 USD | `-79.88%` | `186,064.00` |
-| `Live` | `Long` | `0.0215` | 249,100.00 USD | 0.00 USD | 899.84 USD | `-78.90%` | `41,853.00` |
-| `Live` | `Long` | `0.0225` | 248,200.00 USD | 0.00 USD | 130.23 USD | `-77.92%` | `5,788.00` |
-| `Live` | `Long` | `0.0235` | 248,070.00 USD | 0.00 USD | 329.70 USD | `-76.94%` | `14,030.00` |
-| `Live` | `Long` | `0.0245` | 247,740.00 USD | 0.00 USD | 291.11 USD | `-75.96%` | `11,882.00` |
-| `Live` | `Long` | `0.0265` | 247,450.00 USD | 0.00 USD | 9,410.00 USD | `-74.00%` | `355,228.00` |
-| `Live` | `Long` | `0.0305` | 238,030.00 USD | 0.00 USD | 297.99 USD | `-70.07%` | `9,770.00` |
-| `Live` | `Long` | `0.0355` | 237,740.00 USD | 0.00 USD | 8,680.00 USD | `-65.17%` | `244,544.00` |
-| `Live` | `Long` | `0.0385` | 229,060.00 USD | 0.00 USD | 22,130.00 USD | `-62.22%` | `574,860.00` |
-| `Live` | `Long` | `0.0395` | 206,920.00 USD | 0.00 USD | 1,950.00 USD | `-61.24%` | `49,368.00` |
-| `Live` | `Long` | `0.0415` | 204,970.00 USD | 0.00 USD | 5,140.00 USD | `-59.28%` | `123,747.00` |
-| `Live` | `Long` | `0.0425` | 199,840.00 USD | 0.00 USD | 3,710.00 USD | `-58.30%` | `87,382.00` |
-| `Live` | `Long` | `0.0495` | 196,120.00 USD | 0.00 USD | 410.16 USD | `-51.43%` | `8,286.00` |
-| `Live` | `Long` | `0.0505` | 195,710.00 USD | 0.00 USD | 504.09 USD | `-50.45%` | `9,982.00` |
-| `Live` | `Long` | `0.0545` | 195,210.00 USD | 0.00 USD | 5,770.00 USD | `-46.52%` | `105,852.00` |
-| `Live` | `Long` | `0.0555` | 189,440.00 USD | 0.00 USD | 5,870.00 USD | `-45.54%` | `105,702.00` |
-| `Live` | `Long` | `0.0585` | 183,570.00 USD | 0.00 USD | 111.09 USD | `-42.60%` | `1,899.00` |
-| `Live` | `Long` | `0.0595` | 183,460.00 USD | 0.00 USD | 438.75 USD | `-41.62%` | `7,374.00` |
-| `Live` | `Long` | `0.0605` | 183,020.00 USD | 0.00 USD | 328.21 USD | `-40.63%` | `5,425.00` |
-| `Live` | `Long` | `0.0625` | 182,700.00 USD | 0.00 USD | 442.69 USD | `-38.67%` | `7,083.00` |
-| `Live` | `Long` | `0.0635` | 182,250.00 USD | 0.00 USD | 2,050.00 USD | `-37.69%` | `32,225.00` |
-| `Live` | `Long` | `0.0655` | 180,210.00 USD | 0.00 USD | 17,350.00 USD | `-35.73%` | `264,927.00` |
-| `Live` | `Long` | `0.0675` | 162,850.00 USD | 0.00 USD | 12,940.00 USD | `-33.77%` | `191,757.00` |
-| `Live` | `Long` | `0.0685` | 149,910.00 USD | 0.00 USD | 5,060.00 USD | `-32.78%` | `73,856.00` |
-| `Live` | `Long` | `0.0695` | 144,850.00 USD | 0.00 USD | 1,080.00 USD | `-31.80%` | `15,502.00` |
-| `Live` | `Long` | `0.0715` | 143,770.00 USD | 0.00 USD | 7,290.00 USD | `-29.84%` | `101,931.00` |
-| `Live` | `Long` | `0.0725` | 136,490.00 USD | 0.00 USD | 2,220.00 USD | `-28.86%` | `30,574.00` |
-| `Live` | `Long` | `0.0735` | 134,270.00 USD | 0.00 USD | 2,480.00 USD | `-27.88%` | `33,731.00` |
-| `Live` | `Long` | `0.0745` | 131,790.00 USD | 0.00 USD | 919.93 USD | `-26.90%` | `12,348.00` |
-| `Live` | `Long` | `0.0755` | 130,870.00 USD | 0.00 USD | 14,050.00 USD | `-25.92%` | `186,042.00` |
-| `Live` | `Long` | `0.0765` | 116,820.00 USD | 0.00 USD | 8,100.00 USD | `-24.93%` | `105,922.00` |
-| `Live` | `Long` | `0.0775` | 108,720.00 USD | 0.00 USD | 929.46 USD | `-23.95%` | `11,993.00` |
-| `Live` | `Long` | `0.0785` | 107,790.00 USD | 0.00 USD | 441.01 USD | `-22.97%` | `5,618.00` |
-| `Live` | `Long` | `0.0795` | 107,350.00 USD | 0.00 USD | 310.05 USD | `-21.99%` | `3,900.00` |
-| `Live` | `Long` | `0.0805` | 107,040.00 USD | 0.00 USD | 6,630.00 USD | `-21.01%` | `82,369.00` |
-| `Live` | `Long` | `0.0815` | 100,410.00 USD | 0.00 USD | 2,220.00 USD | `-20.03%` | `27,260.00` |
-| `Live` | `Long` | `0.0825` | 98,190.00 USD | 0.00 USD | 1,650.00 USD | `-19.05%` | `20,000.00` |
-| `Live` | `Long` | `0.0835` | 96,540.00 USD | 0.00 USD | 9,430.00 USD | `-18.06%` | `112,949.00` |
-| `Live` | `Long` | `0.0845` | 87,110.00 USD | 0.00 USD | 24,950.00 USD | `-17.08%` | `295,245.00` |
-| `Live` | `Long` | `0.0855` | 62,160.00 USD | 0.00 USD | 2,140.00 USD | `-16.10%` | `25,000.00` |
-| `Live` | `Long` | `0.0865` | 60,020.00 USD | 0.00 USD | 1,450.00 USD | `-15.12%` | `16,779.00` |
-| `Live` | `Long` | `0.0875` | 58,570.00 USD | 0.00 USD | 7,040.00 USD | `-14.14%` | `80,402.00` |
-| `Live` | `Long` | `0.0885` | 51,540.00 USD | 0.00 USD | 1,180.00 USD | `-13.16%` | `13,304.00` |
-| `Live` | `Long` | `0.0895` | 50,360.00 USD | 0.00 USD | 1,540.00 USD | `-12.18%` | `17,219.00` |
-| `Live` | `Long` | `0.0905` | 48,820.00 USD | 0.00 USD | 530.69 USD | `-11.20%` | `5,864.00` |
-| `Live` | `Long` | `0.0915` | 48,290.00 USD | 0.00 USD | 6,880.00 USD | `-10.21%` | `75,183.00` |
-| `Live` | `Long` | `0.0925` | 41,410.00 USD | 0.00 USD | 6,220.00 USD | `-9.23%` | `67,209.00` |
-| `Live` | `Long` | `0.0935` | 35,190.00 USD | 0.00 USD | 4,580.00 USD | `-8.25%` | `48,972.00` |
-| `Live` | `Long` | `0.0945` | 30,610.00 USD | 0.00 USD | 1,500.00 USD | `-7.27%` | `15,879.00` |
-| `Live` | `Long` | `0.0965` | 29,110.00 USD | 0.00 USD | 23,260.00 USD | `-5.31%` | `241,013.00` |
-| `Live` | `Long` | `0.0975` | 5,850.00 USD | 0.00 USD | 5,850.00 USD | `-4.33%` | `60,028.00` |
-| `Live` | `Short` | `0.1105` | 216.25 USD | 216.25 USD | 0.00 USD | `+8.43%` | `1,957.00` |
-| `Live` | `Short` | `0.1125` | 504.36 USD | 288.11 USD | 0.00 USD | `+10.39%` | `2,561.00` |
-| `Live` | `Short` | `0.1245` | 2,680.00 USD | 2,180.00 USD | 0.00 USD | `+22.17%` | `17,482.00` |
-| `Live` | `Short` | `0.1265` | 4,860.00 USD | 2,180.00 USD | 0.00 USD | `+24.13%` | `17,254.00` |
-| `Live` | `Short` | `0.1425` | 7,420.00 USD | 2,550.00 USD | 0.00 USD | `+39.83%` | `17,912.00` |
-| `Live` | `Short` | `0.1475` | 7,710.00 USD | 289.25 USD | 0.00 USD | `+44.74%` | `1,961.00` |
-| `Live` | `Short` | `0.1905` | 7,810.00 USD | 102.49 USD | 0.00 USD | `+86.93%` | `538.00` |
+| `Live` | `Long` | `0.0205` | 264,140.00 USD | 0.00 USD | 3,650.00 USD | `-79.62%` | `177,866.00` |
+| `Live` | `Long` | `0.0235` | 260,490.00 USD | 0.00 USD | 329.70 USD | `-76.63%` | `14,030.00` |
+| `Live` | `Long` | `0.0245` | 260,160.00 USD | 0.00 USD | 1,030.00 USD | `-75.64%` | `41,853.00` |
+| `Live` | `Long` | `0.0255` | 259,130.00 USD | 0.00 USD | 209.05 USD | `-74.64%` | `8,198.00` |
+| `Live` | `Long` | `0.0305` | 258,920.00 USD | 0.00 USD | 10,830.00 USD | `-69.67%` | `355,228.00` |
+| `Live` | `Long` | `0.0385` | 248,090.00 USD | 0.00 USD | 376.14 USD | `-61.72%` | `9,770.00` |
+| `Live` | `Long` | `0.0395` | 247,710.00 USD | 0.00 USD | 9,660.00 USD | `-60.72%` | `244,544.00` |
+| `Live` | `Long` | `0.0405` | 238,050.00 USD | 0.00 USD | 23,280.00 USD | `-59.73%` | `574,860.00` |
+| `Live` | `Long` | `0.0415` | 214,770.00 USD | 0.00 USD | 2,050.00 USD | `-58.74%` | `49,368.00` |
+| `Live` | `Long` | `0.0425` | 212,720.00 USD | 0.00 USD | 3,710.00 USD | `-57.74%` | `87,382.00` |
+| `Live` | `Long` | `0.0435` | 209,010.00 USD | 0.00 USD | 5,380.00 USD | `-56.75%` | `123,747.00` |
+| `Live` | `Long` | `0.0455` | 203,630.00 USD | 0.00 USD | 540.63 USD | `-54.76%` | `11,882.00` |
+| `Live` | `Long` | `0.0495` | 203,090.00 USD | 0.00 USD | 410.16 USD | `-50.78%` | `8,286.00` |
+| `Live` | `Long` | `0.0505` | 202,680.00 USD | 0.00 USD | 504.09 USD | `-49.79%` | `9,982.00` |
+| `Live` | `Long` | `0.0545` | 202,170.00 USD | 0.00 USD | 318.93 USD | `-45.81%` | `5,852.00` |
+| `Live` | `Long` | `0.0555` | 201,850.00 USD | 0.00 USD | 5,870.00 USD | `-44.81%` | `105,702.00` |
+| `Live` | `Long` | `0.0575` | 195,990.00 USD | 0.00 USD | 514.39 USD | `-42.83%` | `8,946.00` |
+| `Live` | `Long` | `0.0585` | 195,470.00 USD | 0.00 USD | 111.09 USD | `-41.83%` | `1,899.00` |
+| `Live` | `Long` | `0.0595` | 195,360.00 USD | 0.00 USD | 6,390.00 USD | `-40.84%` | `107,374.00` |
+| `Live` | `Long` | `0.0605` | 188,970.00 USD | 0.00 USD | 328.21 USD | `-39.84%` | `5,425.00` |
+| `Live` | `Long` | `0.0625` | 188,640.00 USD | 0.00 USD | 442.69 USD | `-37.85%` | `7,083.00` |
+| `Live` | `Long` | `0.0635` | 188,200.00 USD | 0.00 USD | 2,050.00 USD | `-36.86%` | `32,225.00` |
+| `Live` | `Long` | `0.0655` | 186,160.00 USD | 0.00 USD | 17,350.00 USD | `-34.87%` | `264,927.00` |
+| `Live` | `Long` | `0.0675` | 168,800.00 USD | 0.00 USD | 18,260.00 USD | `-32.88%` | `270,519.00` |
+| `Live` | `Long` | `0.0685` | 150,540.00 USD | 0.00 USD | 5,060.00 USD | `-31.89%` | `73,856.00` |
+| `Live` | `Long` | `0.0695` | 145,480.00 USD | 0.00 USD | 1,080.00 USD | `-30.89%` | `15,502.00` |
+| `Live` | `Long` | `0.0715` | 144,410.00 USD | 0.00 USD | 7,290.00 USD | `-28.91%` | `101,931.00` |
+| `Live` | `Long` | `0.0725` | 137,120.00 USD | 0.00 USD | 2,220.00 USD | `-27.91%` | `30,574.00` |
+| `Live` | `Long` | `0.0735` | 134,900.00 USD | 0.00 USD | 2,480.00 USD | `-26.92%` | `33,731.00` |
+| `Live` | `Long` | `0.0745` | 132,420.00 USD | 0.00 USD | 919.93 USD | `-25.92%` | `12,348.00` |
+| `Live` | `Long` | `0.0755` | 131,500.00 USD | 0.00 USD | 10,240.00 USD | `-24.93%` | `135,635.00` |
+| `Live` | `Long` | `0.0765` | 121,260.00 USD | 0.00 USD | 12,170.00 USD | `-23.93%` | `159,033.00` |
+| `Live` | `Long` | `0.0775` | 109,100.00 USD | 0.00 USD | 929.46 USD | `-22.94%` | `11,993.00` |
+| `Live` | `Long` | `0.0785` | 108,170.00 USD | 0.00 USD | 441.01 USD | `-21.94%` | `5,618.00` |
+| `Live` | `Long` | `0.0795` | 107,730.00 USD | 0.00 USD | 310.05 USD | `-20.95%` | `3,900.00` |
+| `Live` | `Long` | `0.0805` | 107,420.00 USD | 0.00 USD | 6,630.00 USD | `-19.96%` | `82,369.00` |
+| `Live` | `Long` | `0.0815` | 100,780.00 USD | 0.00 USD | 2,220.00 USD | `-18.96%` | `27,260.00` |
+| `Live` | `Long` | `0.0825` | 98,560.00 USD | 0.00 USD | 1,650.00 USD | `-17.97%` | `20,000.00` |
+| `Live` | `Long` | `0.0835` | 96,910.00 USD | 0.00 USD | 9,430.00 USD | `-16.97%` | `112,949.00` |
+| `Live` | `Long` | `0.0845` | 87,480.00 USD | 0.00 USD | 24,950.00 USD | `-15.98%` | `295,245.00` |
+| `Live` | `Long` | `0.0855` | 62,530.00 USD | 0.00 USD | 2,140.00 USD | `-14.98%` | `25,000.00` |
+| `Live` | `Long` | `0.0865` | 60,400.00 USD | 0.00 USD | 1,450.00 USD | `-13.99%` | `16,779.00` |
+| `Live` | `Long` | `0.0875` | 58,940.00 USD | 0.00 USD | 7,040.00 USD | `-13.00%` | `80,402.00` |
+| `Live` | `Long` | `0.0885` | 51,910.00 USD | 0.00 USD | 1,180.00 USD | `-12.00%` | `13,304.00` |
+| `Live` | `Long` | `0.0895` | 50,730.00 USD | 0.00 USD | 1,540.00 USD | `-11.01%` | `17,219.00` |
+| `Live` | `Long` | `0.0905` | 49,190.00 USD | 0.00 USD | 559.29 USD | `-10.01%` | `6,180.00` |
+| `Live` | `Long` | `0.0915` | 48,630.00 USD | 0.00 USD | 6,880.00 USD | `-9.02%` | `75,183.00` |
+| `Live` | `Long` | `0.0925` | 41,750.00 USD | 0.00 USD | 6,560.00 USD | `-8.02%` | `70,947.00` |
+| `Live` | `Long` | `0.0935` | 35,190.00 USD | 0.00 USD | 4,580.00 USD | `-7.03%` | `48,972.00` |
+| `Live` | `Long` | `0.0945` | 30,610.00 USD | 0.00 USD | 1,500.00 USD | `-6.04%` | `15,879.00` |
+| `Live` | `Long` | `0.0965` | 29,110.00 USD | 0.00 USD | 23,260.00 USD | `-4.05%` | `241,013.00` |
+| `Live` | `Long` | `0.0975` | 5,850.00 USD | 0.00 USD | 5,850.00 USD | `-3.05%` | `60,028.00` |
+| `Live` | `Short` | `0.1105` | 216.25 USD | 216.25 USD | 0.00 USD | `+9.87%` | `1,957.00` |
+| `Live` | `Short` | `0.1125` | 504.36 USD | 288.11 USD | 0.00 USD | `+11.86%` | `2,561.00` |
+| `Live` | `Short` | `0.1265` | 2,690.00 USD | 2,180.00 USD | 0.00 USD | `+25.78%` | `17,254.00` |
+| `Live` | `Short` | `0.1415` | 5,220.00 USD | 2,530.00 USD | 0.00 USD | `+40.70%` | `17,912.00` |
+| `Live` | `Short` | `0.1475` | 5,510.00 USD | 289.25 USD | 0.00 USD | `+46.66%` | `1,961.00` |
+| `Live` | `Short` | `0.1905` | 5,610.00 USD | 102.49 USD | 0.00 USD | `+89.42%` | `538.00` |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
@@ -270,10 +270,10 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0015%` | **USDT OKX** | `-0.0018%` |
-| **USDT Bybit** | `-0.0043%` | **USDT KuCoin** | `0.0081%` |
-| **USDT MEXC** | `-0.0015%` | **USDT BingX** | `0.0072%` |
-| **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0075%` |
+| **USDT Binance** | `-0.0021%` | **USDT OKX** | `-0.0023%` |
+| **USDT Bybit** | `-0.0072%` | **USDT KuCoin** | `0.0066%` |
+| **USDT MEXC** | `-0.0023%` | **USDT BingX** | `0.0080%` |
+| **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0083%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -299,21 +299,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -1,170.00 USD | 4,080.00 USD | **`ACCUMULATION`** |
-| `15m` | -1,290.00 USD | 490.85 USD | **`DISTRIBUTION`** |
-| `30m` | -26,150.00 USD | -41,430.00 USD | **`DISTRIBUTION`** |
-| `1h` | -13,540.00 USD | -64,010.00 USD | **`DISTRIBUTION`** |
-| `2h` | -46,350.00 USD | -376,150.00 USD | **`DISTRIBUTION`** |
-| `4h` | -50,740.00 USD | -443,240.00 USD | **`DISTRIBUTION`** |
-| `6h` | -49,630.00 USD | -444,370.00 USD | **`DISTRIBUTION`** |
-| `8h` | -20,580.00 USD | -301,480.00 USD | **`DISTRIBUTION`** |
-| `12h` | 4,150.00 USD | -221,510.00 USD | **`DISTRIBUTION`** |
-| `24h` | -15,600.00 USD | -368,070.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,310,000.00 USD | -2,230,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -11,900,000.00 USD | -19,000,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 718.87 USD | 5,700.00 USD | **`ACCUMULATION`** |
+| `15m` | -10,800.00 USD | -4,460.00 USD | **`DISTRIBUTION`** |
+| `30m` | -37,430.00 USD | -75,200.00 USD | **`DISTRIBUTION`** |
+| `1h` | -69,440.00 USD | -112,110.00 USD | **`DISTRIBUTION`** |
+| `2h` | -50,170.00 USD | -280,160.00 USD | **`DISTRIBUTION`** |
+| `4h` | -49,270.00 USD | -503,200.00 USD | **`DISTRIBUTION`** |
+| `6h` | -69,220.00 USD | -507,560.00 USD | **`DISTRIBUTION`** |
+| `8h` | -66,110.00 USD | -446,480.00 USD | **`DISTRIBUTION`** |
+| `12h` | -8,740.00 USD | -295,250.00 USD | **`DISTRIBUTION`** |
+| `24h` | -161,070.00 USD | -501,020.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,370,000.00 USD | -2,380,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -11,860,000.00 USD | -19,940,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-1.17K` | 15m=`-1.29K` | 1h=`-13.54K` | 24h=`-15.60K`
-* Futures Capital Netflows: 5m=`+4.08K` | 15m=`+490.85` | 1h=`-64.01K` | 24h=`-368.07K`
+* Spot Capital Netflows: 5m=`+718.87` | 15m=`-10.80K` | 1h=`-69.44K` | 24h=`-161.07K`
+* Futures Capital Netflows: 5m=`+5.70K` | 15m=`-4.46K` | 1h=`-112.11K` | 24h=`-501.02K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -344,21 +344,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:01:06 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:06 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:06 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:06:06 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:02:06 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
@@ -382,17 +382,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0974` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-1.11` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `3.11`
-  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.0931` (Risk Distance: `0.0046` pts)
+  * +2.5R Take Profit: `0.1089`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1006` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.30` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `-2.91`
-  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.1049` (Risk Distance: `0.0046` pts)
+  * +2.5R Take Profit: `0.0891`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.1020`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.1013`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

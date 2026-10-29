@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURGBP
 **Canonical Key**: `EURGBP` | **Broker Instrument**: `EURGBP.pi` | **Asset Class**: `FX Cross`
-**Timestamp**: `2026-10-29 23:13:20 IST` (`2026-10-29 17:43:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:37:49 IST` (`2026-10-29 18:07:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.8360` | VWAP Z-Score: `-0.79` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000403` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `49.33` (State: `NEUTRAL`)
+  * Session VWAP: `0.8360` | VWAP Z-Score: `-0.76` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000378` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `49.39` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.8381` | Lower -3.00σ Band: `0.8340`
+  * Upper +3.00σ Band: `0.8380` | Lower -3.00σ Band: `0.8340`
   * Upper +2.51σ Band: `0.8377` | Lower -2.51σ Band: `0.8343`
   * Upper +2.01σ Band: `0.8374` | Lower -2.01σ Band: `0.8346`
   * Upper +2.00σ Band: `0.8374` | Lower -2.00σ Band: `0.8347`
   * Upper +1.28σ Band: `0.8369` | Lower -1.28σ Band: `0.8351`
   * Upper +1.00σ Band: `0.8367` | Lower -1.00σ Band: `0.8353`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.8352` | EMA-20=`0.8354` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.8359` (Slope: `+0.0000`) | EMA-100=`0.8363`
-  * Institutional Anchors: EMA-144=`0.8365` | EMA-200=`0.8366` (Slope: `-0.0220`) | EMA-233=`0.8366`
+  * Fast EMA Array: EMA-9=`0.8353` | EMA-20=`0.8354` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.8358` (Slope: `+0.0000`) | EMA-100=`0.8362`
+  * Institutional Anchors: EMA-144=`0.8364` | EMA-200=`0.8366` (Slope: `-0.0215`) | EMA-233=`0.8366`
 - **Range Boundaries**: 24H High=`0.8375` | 24H Low=`0.8345` | Weekly High=`0.8383` | Weekly Low=`0.8345`
 
 ---
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8372` (Distance: `-0.19%`)
+  * Value Area High (VAH) = `0.8372` (Distance: `-0.20%`)
   * Point of Control (POC) = `0.8366` (Distance: `-0.13%`)
-  * Value Area Low (VAL) = `0.8356` (Distance: `+0.00%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area Low (VAL) = `0.8356` (Distance: `-0.00%`)
+  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8377` | POC=`0.8373` | VAL=`0.8370`
   * Prior Day Extremes: PDH=`0.8381` | PDL=`0.8356` | PDC=`0.8368`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`0.8368` | Low=`0.8345`
   * Initial Balance (First Hour): IB High=`0.8367` | IB Low=`0.8365`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.8322` - `0.8389`
+  * Golden Pocket Zone (0.618 - 0.650): `0.8322` - `0.8388`
   * Optimal Trade Entry (OTE 0.705): `0.8372`
   * Structural Invalidation Anchor (0.786): `0.8422`
 
@@ -158,7 +158,7 @@
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `0.0073%` | **USDT BingX** | `-` |
+| **USDT MEXC** | `0.0066%` | **USDT BingX** | `-` |
 | **USDT Gate** | `-` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:01:06 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:06 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:06 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:06:06 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:06 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:00:06 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:02:06 IST`: [youtube.com/ecbeuro] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:02:06 IST`: [ecb.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.8356` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.8351` (Risk Distance: `0.000498` pts)
-  * +2.5R Take Profit: `0.8368`
-  * Mathematical Lot Sizing: **`0.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.8351` (Risk Distance: `0.000468` pts)
+  * +2.5R Take Profit: `0.8367`
+  * Mathematical Lot Sizing: **`0.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.8372` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.8377` (Risk Distance: `0.000498` pts)
+  * Spread-Padded Stop Loss: `0.8377` (Risk Distance: `0.000468` pts)
   * +2.5R Take Profit: `0.8360`
-  * Mathematical Lot Sizing: **`0.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
