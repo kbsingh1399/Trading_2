@@ -18,9 +18,9 @@
     "category",
     "preview"
   ],
-  "byte_size": 9473,
-  "timestamp_ist": "2026-10-29 08:55:03 IST",
-  "timestamp_utc": "2026-10-29 03:25:03 UTC",
-  "epoch_utc": 1793244303.506085,
-  "write_duration_ms": 429.24
+  "byte_size": 9469,
+  "timestamp_ist": "2026-10-29 08:57:14 IST",
+  "timestamp_utc": "2026-10-29 03:27:14 UTC",
+  "epoch_utc": 1793244434.319618,
+  "write_duration_ms": 448.42
 }
