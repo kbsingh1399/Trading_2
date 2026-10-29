@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XMRUSD
 **Canonical Key**: `XMRUSD` | **Broker Instrument**: `XMRUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `600.00` | **Live Ask Quote**: `600.42` | **Mid Price**: `600.21`
-- **Spread Points**: `42.00` | **Spread BPS**: `7.00 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `600.04` | **Live Ask Quote**: `600.47` | **Mid Price**: `600.25`
+- **Spread Points**: `43.00` | **Spread BPS**: `7.16 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`617.68` | Low=`596.96`
   * Initial Balance (First Hour): IB High=`592.17` | IB Low=`588.63`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `597.81` - `602.61`
-  * Optimal Trade Entry (OTE 0.705): `601.41`
-  * Structural Invalidation Anchor (0.786): `605.01`
+  * Golden Pocket Zone (0.618 - 0.650): `597.85` - `602.66`
+  * Optimal Trade Entry (OTE 0.705): `601.46`
+  * Structural Invalidation Anchor (0.786): `605.06`
 
 ---
 
@@ -316,17 +316,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `594.93` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `589.53` (Risk Distance: `5.40` pts)
-  * +2.5R Take Profit: `608.43`
-  * Mathematical Lot Sizing: **`1.85 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `589.52` (Risk Distance: `5.41` pts)
+  * +2.5R Take Profit: `608.47`
+  * Mathematical Lot Sizing: **`1.84 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `608.65` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `614.05` (Risk Distance: `5.40` pts)
-  * +2.5R Take Profit: `595.15`
-  * Mathematical Lot Sizing: **`1.85 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `614.06` (Risk Distance: `5.41` pts)
+  * +2.5R Take Profit: `595.11`
+  * Mathematical Lot Sizing: **`1.84 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`605.01`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`605.06`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

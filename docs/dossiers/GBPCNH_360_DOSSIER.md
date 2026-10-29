@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCNH
 **Canonical Key**: `GBPCNH` | **Broker Instrument**: `GBPCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.91` | **Live Ask Quote**: `8.91` | **Mid Price**: `8.91`
-- **Spread Points**: `31.00` | **Spread BPS**: `0.35 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `26.00` | **Spread BPS**: `0.29 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `8.97` | Lower -3.00σ Band: `8.84`
-  * Upper +2.51σ Band: `8.95` | Lower -2.51σ Band: `8.86`
+  * Upper +2.51σ Band: `8.96` | Lower -2.51σ Band: `8.86`
   * Upper +2.01σ Band: `8.94` | Lower -2.01σ Band: `8.87`
   * Upper +2.00σ Band: `8.94` | Lower -2.00σ Band: `8.87`
   * Upper +1.28σ Band: `8.93` | Lower -1.28σ Band: `8.88`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`8.91` | EMA-20=`8.91` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.91` (Slope: `+0.0000`) | EMA-100=`8.91`
   * Institutional Anchors: EMA-144=`8.91` | EMA-200=`8.91` (Slope: `+0.0000`) | EMA-233=`8.91`
-- **Range Boundaries**: 24H High=`8.99` | 24H Low=`8.82` | Weekly High=`9.08` | Weekly Low=`8.73`
+- **Range Boundaries**: 24H High=`9.00` | 24H Low=`8.82` | Weekly High=`9.08` | Weekly Low=`8.73`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`8.94` | POC=`8.91` | VAL=`8.87`
   * Prior Day Extremes: PDH=`8.96` | PDL=`8.85` | PDC=`8.91`
   * Monday Range Blueprint: High=`8.95` | Mid=`8.91` | Low=`8.86`
-  * Developing Weekly Value Area: Weekly VAH=`8.98` | Weekly POC=`8.91` | Weekly VAL=`8.83`
+  * Developing Weekly Value Area: Weekly VAH=`8.98` | Weekly POC=`8.91` | Weekly VAL=`8.84`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.92` | Low=`8.89`
   * London Session (08:00-16:00 UTC): High=`8.94` | Low=`8.87`

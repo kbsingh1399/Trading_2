@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUUSD
 **Canonical Key**: `XAUUSD` | **Broker Instrument**: `XAUUSD.pi` | **Asset Class**: `Precious Metal`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `4026.66` | **Live Ask Quote**: `4026.74` | **Mid Price**: `4026.70`
+- **Live Bid Quote**: `4025.49` | **Live Ask Quote**: `4025.57` | **Mid Price**: `4025.53`
 - **Spread Points**: `8.00` | **Spread BPS**: `0.20 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`4039.31` | Low=`4010.16`
   * Initial Balance (First Hour): IB High=`4046.38` | IB Low=`4022.15`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `4010.59` - `4042.81`
-  * Optimal Trade Entry (OTE 0.705): `4034.75`
-  * Structural Invalidation Anchor (0.786): `4058.91`
+  * Golden Pocket Zone (0.618 - 0.650): `4009.43` - `4041.63`
+  * Optimal Trade Entry (OTE 0.705): `4033.58`
+  * Structural Invalidation Anchor (0.786): `4057.73`
 
 ---
 
@@ -534,7 +534,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `4015.95` | `4017.50` | `4015.95` | `4022.25` | `4014.15` | 24,683,510.31 USD | 9,933,103.50 USD | 14,750,406.80 USD | -4,817,303.30 USD | `-19.52%` | `1B / 6S` |
 | `0:00 UTC` | `4015.05` | `4016.49` | `4015.05` | `4018.95` | `4014.45` | 14,085,583.69 USD | 7,273,313.97 USD | 6,812,269.73 USD | 461,044.24 USD | `+3.27%` | `1B / 1S` |
 | `5:00 UTC` | `4015.95` | `4015.70` | `4015.95` | `4018.95` | `4013.55` | 13,405,013.83 USD | 4,667,069.40 USD | 8,737,944.43 USD | -4,070,875.03 USD | `-30.37%` | `0B / 8S` |
 | `0:00 UTC` | `4016.25` | `4015.09` | `4016.25` | `4017.15` | `4012.95` | 11,069,583.99 USD | 5,073,905.23 USD | 5,995,678.75 USD | -921,773.52 USD | `-8.33%` | `1B / 0S` |
@@ -543,7 +542,8 @@
 | `5:00 UTC` | `4023.15` | `4021.35` | `4023.15` | `4024.65` | `4017.45` | 6,445,259.27 USD | 3,466,207.92 USD | 2,979,051.36 USD | 487,156.56 USD | `+7.56%` | `8B / 2S` |
 | `0:00 UTC` | `4026.15` | `4025.44` | `4026.15` | `4027.05` | `4022.85` | 9,144,271.05 USD | 4,882,647.78 USD | 4,261,623.27 USD | 621,024.51 USD | `+6.79%` | `3B / 0S` |
 | `5:00 UTC` | `4027.95` | `4028.04` | `4027.95` | `4030.05` | `4025.55` | 9,968,155.30 USD | 4,171,077.53 USD | 5,797,077.77 USD | -1,626,000.23 USD | `-16.31%` | `1B / 2S` |
-| `0:00 UTC` | `4036.05` | `4033.74` | `4036.05` | `4039.35` | `4027.95` | 31,196,441.61 USD | 14,214,468.66 USD | 16,981,972.95 USD | -2,767,504.29 USD | `-8.87%` | `4B / 4S` |
+| `0:00 UTC` | `4036.05` | `4033.96` | `4036.05` | `4039.35` | `4027.95` | 35,619,288.58 USD | 16,236,367.43 USD | 19,382,921.15 USD | -3,146,553.72 USD | `-8.83%` | `3B / 3S` |
+| `5:00 UTC` | `4034.55` | `4032.99` | `4034.55` | `4034.85` | `4030.95` | 5,061,831.29 USD | 1,979,462.15 USD | 3,082,369.14 USD | -1,102,906.99 USD | `-21.79%` | `1B / 3S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -657,5 +657,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`4058.91`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`4057.73`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

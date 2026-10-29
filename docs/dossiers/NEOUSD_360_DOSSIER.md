@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NEOUSD
 **Canonical Key**: `NEOUSD` | **Broker Instrument**: `NEOUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2.07` | **Live Ask Quote**: `2.10` | **Mid Price**: `2.08`
-- **Spread Points**: `240.00` | **Spread BPS**: `115.22 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `2.08` | **Live Ask Quote**: `2.10` | **Mid Price**: `2.09`
+- **Spread Points**: `250.00` | **Spread BPS**: `119.76 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`2.16` | Low=`2.06`
   * Initial Balance (First Hour): IB High=`2.08` | IB Low=`2.06`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2.07` - `2.09`
+  * Golden Pocket Zone (0.618 - 0.650): `2.08` - `2.10`
   * Optimal Trade Entry (OTE 0.705): `2.09`
   * Structural Invalidation Anchor (0.786): `2.10`
 
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `2.07` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2.02` (Risk Distance: `0.0502` pts)
+  * Spread-Padded Stop Loss: `2.02` (Risk Distance: `0.0517` pts)
   * +2.5R Take Profit: `2.20`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `2.14` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2.19` (Risk Distance: `0.0502` pts)
+  * Spread-Padded Stop Loss: `2.19` (Risk Distance: `0.0517` pts)
   * +2.5R Take Profit: `2.01`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

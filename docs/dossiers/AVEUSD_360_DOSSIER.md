@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `131.24` | **Live Ask Quote**: `131.55` | **Mid Price**: `131.40`
-- **Spread Points**: `31.00` | **Spread BPS**: `23.59 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `131.69` | **Live Ask Quote**: `131.98` | **Mid Price**: `131.83`
+- **Spread Points**: `29.00` | **Spread BPS**: `22.00 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`137.67` | Low=`130.09`
   * Initial Balance (First Hour): IB High=`131.85` | IB Low=`129.90`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `130.87` - `131.92`
-  * Optimal Trade Entry (OTE 0.705): `131.66`
-  * Structural Invalidation Anchor (0.786): `132.45`
+  * Golden Pocket Zone (0.618 - 0.650): `131.31` - `132.36`
+  * Optimal Trade Entry (OTE 0.705): `132.10`
+  * Structural Invalidation Anchor (0.786): `132.89`
 
 ---
 
@@ -459,7 +459,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5:00 UTC` | `133.19` | `133.34` | `133.19` | `134.06` | `132.89` | 1,323,282.70 USD | 549,454.30 USD | 773,828.40 USD | -224,374.10 USD | `-16.96%` | `12B / 26S` |
 | `0:00 UTC` | `133.56` | `133.83` | `133.56` | `134.20` | `133.47` | 796,111.43 USD | 359,258.65 USD | 436,852.78 USD | -77,594.12 USD | `-9.75%` | `11B / 15S` |
 | `5:00 UTC` | `133.20` | `133.55` | `133.20` | `134.30` | `133.09` | 867,640.21 USD | 417,158.29 USD | 450,481.92 USD | -33,323.63 USD | `-3.84%` | `18B / 33S` |
 | `0:00 UTC` | `132.41` | `132.56` | `132.41` | `133.26` | `132.25` | 1,157,375.29 USD | 569,704.83 USD | 587,670.46 USD | -17,965.63 USD | `-1.55%` | `10B / 20S` |
@@ -468,7 +467,8 @@
 | `5:00 UTC` | `133.47` | `133.44` | `133.47` | `133.81` | `133.05` | 660,168.83 USD | 435,970.69 USD | 224,198.14 USD | 211,772.54 USD | `+32.08%` | `21B / 10S` |
 | `0:00 UTC` | `134.05` | `133.79` | `134.05` | `134.09` | `133.39` | 579,547.95 USD | 318,932.27 USD | 260,615.68 USD | 58,316.59 USD | `+10.06%` | `9B / 8S` |
 | `5:00 UTC` | `133.55` | `133.56` | `133.55` | `133.86` | `133.31` | 433,946.57 USD | 185,142.03 USD | 248,804.53 USD | -63,662.50 USD | `-14.67%` | `3B / 10S` |
-| `0:00 UTC` | `131.00` | `131.60` | `131.00` | `133.52` | `130.52` | 3,061,004.10 USD | 1,469,294.60 USD | 1,591,709.50 USD | -122,414.89 USD | `-4.00%` | `14B / 32S` |
+| `0:00 UTC` | `131.00` | `131.60` | `131.00` | `133.52` | `130.52` | 3,297,985.22 USD | 1,608,197.36 USD | 1,689,787.86 USD | -81,590.50 USD | `-2.47%` | `14B / 29S` |
+| `5:00 UTC` | `131.94` | `131.98` | `131.94` | `132.34` | `131.49` | 798,361.79 USD | 631,599.35 USD | 166,762.44 USD | 464,836.91 USD | `+58.22%` | `43B / 7S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -588,17 +588,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `130.61` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `128.95` (Risk Distance: `1.66` pts)
-  * +2.5R Take Profit: `134.75`
-  * Mathematical Lot Sizing: **`6.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `128.98` (Risk Distance: `1.63` pts)
+  * +2.5R Take Profit: `134.68`
+  * Mathematical Lot Sizing: **`6.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `135.82` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `137.48` (Risk Distance: `1.66` pts)
-  * +2.5R Take Profit: `131.68`
-  * Mathematical Lot Sizing: **`6.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `137.45` (Risk Distance: `1.63` pts)
+  * +2.5R Take Profit: `131.75`
+  * Mathematical Lot Sizing: **`6.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`132.45`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`132.89`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

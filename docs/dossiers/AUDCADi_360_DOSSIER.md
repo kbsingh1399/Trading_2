@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCAD
 **Canonical Key**: `AUDCAD` | **Broker Instrument**: `AUDCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.9829` | **Live Ask Quote**: `0.9830` | **Mid Price**: `0.9829`
-- **Spread Points**: `4.00` | **Spread BPS**: `0.41 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.9831` | **Live Ask Quote**: `0.9832` | **Mid Price**: `0.9832`
+- **Spread Points**: `3.00` | **Spread BPS**: `0.31 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.9842` | Low=`0.9821`
   * Initial Balance (First Hour): IB High=`0.9868` | IB Low=`0.9856`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.9790` - `0.9869`
-  * Optimal Trade Entry (OTE 0.705): `0.9849`
-  * Structural Invalidation Anchor (0.786): `0.9908`
+  * Golden Pocket Zone (0.618 - 0.650): `0.9792` - `0.9871`
+  * Optimal Trade Entry (OTE 0.705): `0.9851`
+  * Structural Invalidation Anchor (0.786): `0.9910`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.9908`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.9910`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

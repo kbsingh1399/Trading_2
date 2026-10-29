@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `157.72` | **Live Ask Quote**: `157.73` | **Mid Price**: `157.73`
-- **Spread Points**: `2.00` | **Spread BPS**: `0.13 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `157.69` | **Live Ask Quote**: `157.69` | **Mid Price**: `157.69`
+- **Spread Points**: `1.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `3` | Point: `0.001`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`158.13` | Low=`157.71`
   * Initial Balance (First Hour): IB High=`157.91` | IB Low=`157.80`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `157.10` - `158.36`
-  * Optimal Trade Entry (OTE 0.705): `158.04`
-  * Structural Invalidation Anchor (0.786): `158.99`
+  * Golden Pocket Zone (0.618 - 0.650): `157.06` - `158.32`
+  * Optimal Trade Entry (OTE 0.705): `158.01`
+  * Structural Invalidation Anchor (0.786): `158.95`
 
 ---
 
@@ -285,16 +285,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `19:35:00` | `157.82` | `157.82` | `157.82` | `157.87` | `157.82` | 42,297.10 USD | 4,137.76 USD | 38,159.34 USD | -34,021.58 USD | `-80.43%` | `0B / 1S` |
-| `19:40:00` | `157.88` | `157.88` | `157.88` | `157.88` | `157.82` | 44,207.24 USD | 41,996.88 USD | 2,210.36 USD | 39,786.52 USD | `+90.00%` | `1B / 0S` |
-| `19:45:00` | `157.89` | `157.89` | `157.89` | `157.90` | `157.87` | 57,473.05 USD | 43,600.25 USD | 13,872.81 USD | 29,727.44 USD | `+51.72%` | `1B / 0S` |
 | `19:45:00` | `157.88` | `157.88` | `157.88` | `157.93` | `157.87` | 181,250.83 USD | 69,889.09 USD | 111,361.74 USD | -41,472.65 USD | `-22.88%` | `0B / 1S` |
+| `19:45:00` | `157.89` | `157.89` | `157.89` | `157.90` | `157.87` | 57,473.05 USD | 43,600.25 USD | 13,872.81 USD | 29,727.44 USD | `+51.72%` | `1B / 0S` |
 | `19:50:00` | `157.93` | `157.93` | `157.93` | `157.93` | `157.87` | 59,222.25 USD | 51,689.60 USD | 7,532.65 USD | 44,156.94 USD | `+74.56%` | `1B / 0S` |
 | `19:55:00` | `157.88` | `157.88` | `157.88` | `157.93` | `157.87` | 64,574.56 USD | 9,496.26 USD | 55,078.30 USD | -45,582.04 USD | `-70.59%` | `0B / 1S` |
-| `20:00:00` | `157.86` | `157.86` | `157.86` | `157.98` | `157.84` | 2,266,826.52 USD | 609,403.70 USD | 1,657,422.82 USD | -1,048,019.11 USD | `-46.23%` | `0B / 1S` |
 | `20:00:00` | `157.90` | `157.90` | `157.90` | `157.94` | `157.85` | 746,885.92 USD | 444,953.31 USD | 301,932.61 USD | 143,020.71 USD | `+19.15%` | `1B / 0S` |
-| `20:00:00` | `157.94` | `157.94` | `157.94` | `157.94` | `157.88` | 69,333.90 USD | 61,980.31 USD | 7,353.60 USD | 54,626.71 USD | `+78.79%` | `1B / 0S` |
 | `20:00:00` | `157.93` | `157.93` | `157.93` | `157.94` | `157.87` | 207,050.16 USD | 175,572.94 USD | 31,477.22 USD | 144,095.72 USD | `+69.59%` | `1B / 0S` |
+| `20:00:00` | `157.94` | `157.94` | `157.94` | `157.94` | `157.88` | 69,333.90 USD | 61,980.31 USD | 7,353.60 USD | 54,626.71 USD | `+78.79%` | `1B / 0S` |
+| `20:00:00` | `157.71` | `157.71` | `157.71` | `157.98` | `157.67` | 2,695,579.32 USD | 452,161.69 USD | 2,243,417.63 USD | -1,791,255.94 USD | `-66.45%` | `0B / 1S` |
+| `20:05:00` | `157.89` | `157.89` | `157.89` | `157.94` | `157.88` | 71,523.26 USD | 6,587.67 USD | 64,935.59 USD | -58,347.93 USD | `-81.58%` | `0B / 1S` |
+| `20:10:00` | `157.93` | `157.93` | `157.93` | `157.93` | `157.87` | 66,173.93 USD | 60,829.11 USD | 5,344.82 USD | 55,484.29 USD | `+83.85%` | `1B / 0S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -387,17 +387,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `157.77` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `157.67` (Risk Distance: `0.0955` pts)
+  * Spread-Padded Stop Loss: `157.68` (Risk Distance: `0.0940` pts)
   * +2.5R Take Profit: `158.01`
-  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.09 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `157.99` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `158.08` (Risk Distance: `0.0955` pts)
+  * Spread-Padded Stop Loss: `158.08` (Risk Distance: `0.0940` pts)
   * +2.5R Take Profit: `157.75`
-  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.09 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.99`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.95`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

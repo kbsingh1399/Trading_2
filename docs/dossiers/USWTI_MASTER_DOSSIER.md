@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `103.54` | **Live Ask Quote**: `103.59` | **Mid Price**: `103.56`
+- **Live Bid Quote**: `103.58` | **Live Ask Quote**: `103.63` | **Mid Price**: `103.61`
 - **Spread Points**: `46.00` | **Spread BPS**: `4.44 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`102.75` | Low=`100.46`
   * Initial Balance (First Hour): IB High=`102.04` | IB Low=`101.67`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `103.15` - `103.98`
-  * Optimal Trade Entry (OTE 0.705): `103.77`
-  * Structural Invalidation Anchor (0.786): `104.39`
+  * Golden Pocket Zone (0.618 - 0.650): `103.19` - `104.02`
+  * Optimal Trade Entry (OTE 0.705): `103.82`
+  * Structural Invalidation Anchor (0.786): `104.44`
 
 ---
 
@@ -232,17 +232,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `19:35:00` | `101.72` | `101.72` | `101.72` | `101.86` | `101.69` | 44,349.05 USD | 9,130.69 USD | 35,218.36 USD | -26,087.68 USD | `-58.82%` | `0B / 1S` |
-| `19:40:00` | `101.70` | `101.70` | `101.70` | `101.75` | `101.58` | 44,848.82 USD | 27,041.20 USD | 17,807.62 USD | 9,233.58 USD | `+20.59%` | `1B / 0S` |
 | `19:45:00` | `101.72` | `101.72` | `101.72` | `101.78` | `101.64` | 41,602.66 USD | 23,883.01 USD | 17,719.65 USD | 6,163.36 USD | `+14.81%` | `1B / 0S` |
 | `19:45:00` | `101.98` | `101.98` | `101.98` | `102.01` | `101.64` | 112,889.65 USD | 101,066.74 USD | 11,822.90 USD | 89,243.84 USD | `+79.05%` | `1B / 0S` |
 | `19:50:00` | `101.86` | `101.86` | `101.86` | `101.87` | `101.68` | 31,066.69 USD | 28,000.90 USD | 3,065.79 USD | 24,935.11 USD | `+80.26%` | `1B / 0S` |
 | `19:55:00` | `101.98` | `101.98` | `101.98` | `102.01` | `101.83` | 40,077.35 USD | 32,562.85 USD | 7,514.50 USD | 25,048.35 USD | `+62.50%` | `1B / 0S` |
-| `20:00:00` | `102.56` | `102.56` | `102.56` | `102.88` | `101.90` | 593,913.38 USD | 438,748.19 USD | 155,165.19 USD | 283,583.00 USD | `+47.75%` | `1B / 0S` |
-| `20:00:00` | `103.48` | `103.48` | `103.48` | `103.55` | `101.90` | 1,438,855.44 USD | 1,366,912.67 USD | 71,942.77 USD | 1,294,969.90 USD | `+90.00%` | `1B / 0S` |
-| `20:00:00` | `102.22` | `102.22` | `102.22` | `102.23` | `101.90` | 46,920.36 USD | 43,898.97 USD | 3,021.39 USD | 40,877.58 USD | `+87.12%` | `1B / 0S` |
 | `20:00:00` | `102.50` | `102.50` | `102.50` | `102.55` | `101.90` | 155,284.47 USD | 142,145.01 USD | 13,139.46 USD | 129,005.56 USD | `+83.08%` | `1B / 0S` |
-| `5:00 UTC` | `102.02` | `102.01` | `102.02` | `102.13` | `101.85` | 13,174,401.35 USD | 6,982,040.79 USD | 6,192,360.55 USD | 789,680.24 USD | `+5.99%` | `1B / 6S` |
+| `20:00:00` | `102.56` | `102.56` | `102.56` | `102.88` | `101.90` | 593,913.38 USD | 438,748.19 USD | 155,165.19 USD | 283,583.00 USD | `+47.75%` | `1B / 0S` |
+| `20:00:00` | `103.52` | `103.52` | `103.52` | `103.63` | `101.90` | 1,526,195.36 USD | 1,438,077.84 USD | 88,117.52 USD | 1,349,960.33 USD | `+88.45%` | `1B / 0S` |
+| `20:00:00` | `102.22` | `102.22` | `102.22` | `102.23` | `101.90` | 46,920.36 USD | 43,898.97 USD | 3,021.39 USD | 40,877.58 USD | `+87.12%` | `1B / 0S` |
+| `20:05:00` | `102.43` | `102.43` | `102.43` | `102.48` | `102.21` | 56,540.26 USD | 47,640.40 USD | 8,899.86 USD | 38,740.55 USD | `+68.52%` | `1B / 0S` |
+| `20:10:00` | `102.50` | `102.50` | `102.50` | `102.55` | `102.33` | 51,658.99 USD | 37,242.53 USD | 14,416.46 USD | 22,826.07 USD | `+44.19%` | `1B / 0S` |
 | `0:00 UTC` | `101.95` | `101.91` | `101.95` | `102.02` | `101.77` | 7,849,002.75 USD | 3,456,195.71 USD | 4,392,807.03 USD | -936,611.32 USD | `-11.93%` | `2B / 3S` |
 | `5:00 UTC` | `102.00` | `102.03` | `102.00` | `102.18` | `101.80` | 13,778,364.28 USD | 6,276,241.74 USD | 7,502,122.54 USD | -1,225,880.80 USD | `-8.90%` | `6B / 5S` |
 | `0:00 UTC` | `102.25` | `102.23` | `102.25` | `102.41` | `102.00` | 12,832,227.15 USD | 6,368,450.04 USD | 6,463,777.11 USD | -95,327.07 USD | `-0.74%` | `9B / 6S` |
@@ -251,7 +250,8 @@
 | `5:00 UTC` | `102.37` | `102.38` | `102.37` | `102.44` | `102.30` | 4,333,204.12 USD | 1,824,676.12 USD | 2,508,528.00 USD | -683,851.88 USD | `-15.78%` | `1B / 3S` |
 | `0:00 UTC` | `102.43` | `102.38` | `102.43` | `102.48` | `102.30` | 3,151,223.23 USD | 1,856,912.02 USD | 1,294,311.21 USD | 562,600.81 USD | `+17.85%` | `8B / 4S` |
 | `5:00 UTC` | `102.81` | `102.73` | `102.81` | `102.97` | `102.35` | 32,224,554.20 USD | 17,495,336.21 USD | 14,729,217.99 USD | 2,766,118.21 USD | `+8.58%` | `13B / 7S` |
-| `0:00 UTC` | `103.00` | `102.95` | `103.00` | `103.06` | `102.81` | 18,287,244.24 USD | 9,393,193.66 USD | 8,894,050.58 USD | 499,143.08 USD | `+2.73%` | `3B / 5S` |
+| `0:00 UTC` | `103.00` | `102.95` | `103.00` | `103.06` | `102.81` | 19,638,941.63 USD | 9,830,854.95 USD | 9,808,086.67 USD | 22,768.28 USD | `+0.12%` | `2B / 4S` |
+| `5:00 UTC` | `102.88` | `102.88` | `102.88` | `102.94` | `102.82` | 2,997,907.34 USD | 577,782.08 USD | 2,420,125.27 USD | -1,842,343.19 USD | `-61.45%` | `2B / 9S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -359,5 +359,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`104.39`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`104.44`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

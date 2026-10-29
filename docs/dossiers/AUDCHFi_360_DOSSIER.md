@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCHF
 **Canonical Key**: `AUDCHF` | **Broker Instrument**: `AUDCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5796` | **Live Ask Quote**: `0.5796` | **Mid Price**: `0.5796`
-- **Spread Points**: `4.00` | **Spread BPS**: `0.69 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.5797` | **Live Ask Quote**: `0.5797` | **Mid Price**: `0.5797`
+- **Spread Points**: `3.00` | **Spread BPS**: `0.52 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,8 +59,8 @@
   * New York Session (13:00-21:00 UTC): High=`0.5831` | Low=`0.5807`
   * Initial Balance (First Hour): IB High=`0.5849` | IB Low=`0.5841`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.5773` - `0.5819`
-  * Optimal Trade Entry (OTE 0.705): `0.5808`
+  * Golden Pocket Zone (0.618 - 0.650): `0.5774` - `0.5820`
+  * Optimal Trade Entry (OTE 0.705): `0.5809`
   * Structural Invalidation Anchor (0.786): `0.5843`
 
 ---

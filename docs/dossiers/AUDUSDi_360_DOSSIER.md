@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDUSD
 **Canonical Key**: `AUDUSD` | **Broker Instrument**: `AUDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:54:17 IST` (`2026-10-29 20:24:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.7029` | **Live Ask Quote**: `0.7029` | **Mid Price**: `0.7029`
+- **Live Bid Quote**: `0.7031` | **Live Ask Quote**: `0.7031` | **Mid Price**: `0.7031`
 - **Spread Points**: `1.00` | **Spread BPS**: `0.14 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.7042` | Low=`0.7015`
   * Initial Balance (First Hour): IB High=`0.7056` | IB Low=`0.7046`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.7001` - `0.7057`
-  * Optimal Trade Entry (OTE 0.705): `0.7043`
-  * Structural Invalidation Anchor (0.786): `0.7085`
+  * Golden Pocket Zone (0.618 - 0.650): `0.7003` - `0.7059`
+  * Optimal Trade Entry (OTE 0.705): `0.7045`
+  * Structural Invalidation Anchor (0.786): `0.7088`
 
 ---
 
@@ -191,16 +191,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `19:35:00` | `0.7037` | `0.7037` | `0.7037` | `0.7037` | `0.7035` | 528.48 USD | 467.50 USD | 60.98 USD | 406.52 USD | `+76.92%` | `1B / 0S` |
-| `19:40:00` | `0.7037` | `0.7037` | `0.7037` | `0.7037` | `0.7036` | 477.10 USD | 230.60 USD | 246.50 USD | -15.90 USD | `-3.33%` | `0B / 1S` |
-| `19:45:00` | `0.7036` | `0.7036` | `0.7036` | `0.7037` | `0.7035` | 655.03 USD | 145.56 USD | 509.47 USD | -363.91 USD | `-55.56%` | `0B / 1S` |
 | `19:45:00` | `0.7038` | `0.7038` | `0.7038` | `0.7038` | `0.7034` | 2,061.34 USD | 1,559.57 USD | 501.77 USD | 1,057.79 USD | `+51.32%` | `1B / 0S` |
+| `19:45:00` | `0.7036` | `0.7036` | `0.7036` | `0.7037` | `0.7035` | 655.03 USD | 145.56 USD | 509.47 USD | -363.91 USD | `-55.56%` | `0B / 1S` |
 | `19:50:00` | `0.7035` | `0.7035` | `0.7035` | `0.7037` | `0.7034` | 672.53 USD | 175.14 USD | 497.39 USD | -322.25 USD | `-47.92%` | `0B / 1S` |
 | `19:55:00` | `0.7038` | `0.7038` | `0.7038` | `0.7038` | `0.7035` | 733.33 USD | 672.22 USD | 61.11 USD | 611.11 USD | `+83.33%` | `1B / 0S` |
-| `20:00:00` | `0.7032` | `0.7032` | `0.7032` | `0.7040` | `0.7028` | 20,678.48 USD | 6,863.86 USD | 13,814.61 USD | -6,950.75 USD | `-33.61%` | `0B / 1S` |
 | `20:00:00` | `0.7034` | `0.7034` | `0.7034` | `0.7040` | `0.7032` | 11,126.29 USD | 2,133.81 USD | 8,992.48 USD | -6,858.67 USD | `-61.64%` | `0B / 1S` |
-| `20:00:00` | `0.7038` | `0.7038` | `0.7038` | `0.7040` | `0.7037` | 924.74 USD | 351.06 USD | 573.68 USD | -222.62 USD | `-24.07%` | `0B / 1S` |
 | `20:00:00` | `0.7035` | `0.7035` | `0.7035` | `0.7040` | `0.7035` | 2,695.81 USD | 431.33 USD | 2,264.48 USD | -1,833.15 USD | `-68.00%` | `0B / 1S` |
+| `20:00:00` | `0.7038` | `0.7038` | `0.7038` | `0.7040` | `0.7037` | 924.74 USD | 351.06 USD | 573.68 USD | -222.62 USD | `-24.07%` | `0B / 1S` |
+| `20:00:00` | `0.7030` | `0.7030` | `0.7030` | `0.7040` | `0.7028` | 21,548.84 USD | 3,621.65 USD | 17,927.19 USD | -14,305.53 USD | `-66.39%` | `0B / 1S` |
+| `20:05:00` | `0.7038` | `0.7038` | `0.7038` | `0.7039` | `0.7037` | 964.91 USD | 551.38 USD | 413.53 USD | 137.84 USD | `+14.29%` | `1B / 0S` |
+| `20:10:00` | `0.7035` | `0.7035` | `0.7035` | `0.7039` | `0.7035` | 806.91 USD | 115.89 USD | 691.03 USD | -575.14 USD | `-71.28%` | `0B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -305,5 +305,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.7085`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.7088`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
