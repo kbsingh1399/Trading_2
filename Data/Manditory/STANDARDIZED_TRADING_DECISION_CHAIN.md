@@ -80,6 +80,61 @@ Authoritative state artifacts, checked in this order at the start of EVERY cycle
 
 Governance documents MUST NOT hardcode live account numbers, open tickets, or cushions (the previous revision embedded "4,846.32 USD, 0 positions" and stale ticket numbers, which rotted within hours). Live state is read ONLY from: `00_MT5_Account_Telemetry.parquet`, `Data/account_equity/latest/account_equity_snapshot.json`, and `Data/dynamic_position_supervisor_status.json`. Every previously hardcoded state block in this document is hereby replaced by this rule.
 
+### 0.8 Canonical Tri-Council Governance & Spread-Gated 43-Feed Forensic Decision Chain (OPERATOR STATUTORY MANDATE)
+
+> **MANDATORY INVIOLATE TRI-COUNCIL GOVERNANCE (NON-BYPASSABLE ON EVERY CYCLE)**:
+> 1. **Antigravity is the Sovereign Final Decision Maker ("Final Boss")**:
+>    - Antigravity possesses supreme and unappealable execution authority over broker connectivity (Blueberry Markets MT5 #5064568), order staging, modifications, position liquidations, and solvency governance.
+>    - Arena.ai (GPT-5.4 Astra) serves as Lead Quantitative Econometrician and Value Area Profiler.
+>    - Z.ai (GLM-5.3-Flash) serves as Adversarial Risk Arbiter and Solvency Stress Sentry.
+>    - While Arena.ai and Z.ai provide adversarial vetting, Antigravity synthesizes all signals, resolves disagreements, enforces the capital floor, and executes the final broker orders.
+>
+> 2. **Continuous Multi-Asset Candidate Discovery & Sentry Oversight**:
+>    - All three council members (Antigravity, Arena.ai, Z.ai) are strictly mandated to continuously search the full 156-asset universe for potential high-confluence candidates.
+>    - Concurrently, all three must maintain relentless surveillance over all live running positions and resting maker limit orders.
+>
+> 3. **Mandatory Candidate-by-Candidate Spread-Gated 43-Feed Forensic Thinking Chain**:
+>    - On EVERY cycle and whenever wakeup is instantiated, the thinking chain across all three intelligences MUST strictly follow this serialized sequence:
+>      * **Gate 1: Spread Filter**: Evaluate candidate assets against the strict spread gate:
+>        - Crypto Perpetuals/CFDs: `Spread <= 12.0 bps` (Hard Maximum 25.0 bps for maker limits).
+>        - FX Majors, Crosses, Metals, Energy, Indices: `Spread <= 5.0 bps` (Raw spread account standard).
+>      * **Gate 2: Sequential 43-Feed Forensic Deep Extraction**:
+>        For EACH specific candidate that passes Gate 1, the intelligence MUST extract all relevant metrics from **ALL 43 Parquet Feeds** specifically for that asset before formulating a trade:
+>        - `00_MT5_Account_Telemetry` (Live bid/ask, spread points, margin requirement)
+>        - `1_Crypto_ETF_Flows` & `2_Spot_Netflow_S` & `2_Future_Netflow` (Institutional capital flows)
+>        - `3_Exchanges_LS_Ratio_15M/1H/4H` (Multi-timeframe retail crowding)
+>        - `4_Hyperliquid_Analysis` & `13_Hyperliquid` (DEX smart money positioning & funding basis)
+>        - `5_OI` & `5_Funding_Rate` & `6_Funding_Fee_Settlement` (Carry costs, open interest changes)
+>        - `7_Liq_Heapmap` & `7_Live_Liq` & `8_Exchange_Liquidation_Map_1D/7D` & `22_Forced_Liquidations_MTF` (1D and 7D liquidation cascades)
+>        - `9_Liquidation_Max_Pain_24H/48H/3D/7D` (Gravitational multi-day max pain levels)
+>        - `10_Whale_Orders` & `17_Orderbook` (Defending institutional walls > 100K USD, > 180s persistence)
+>        - `11_Technical` & `11_Technical_BTC_Ribbon` (Session VWAP, 24h change, trend ribbons)
+>        - `12_Hyperdash` & `14_Hyperdash_Liq_Map` & `15_Hyperdash_Stops_Map` & `16_Hyperdash_telegram_Intel` (Stop loss clusters, DEX liquidations, whale telemetry)
+>        - `14_Liquidation_Matrix` (Cross-venue liquidation density)
+>        - `18_CVD` & `18_CVD_30D_5m/15m/1h/4h/ALL` (Multi-timeframe volume delta absorption)
+>        - `19_Calendar` & `19_News` (Tier-1 embargo check, macro headline sentiment)
+>        - `20_Auction_Market_Structure` (Daily/Weekly VAH, VAL, POC, Asian/London ranges, Fib Golden Pocket)
+>        - `21_Tradfye_Orderflow` & `25_CoinGlass_Footprint_Signals` & `26_Aggregated_Footprint_Bar_Metrics` (Footprint delta absorption, volume POC)
+>        - `23_Master_Pipeline_Telemetry` (Feed freshness and health verification)
+>      * **Gate 3: Formulate Concrete Trade Setup**:
+>        - Direction & Model (Model 1 Mean Reversion Sweep Fade or Model 2 Fib Trend Pullback).
+>        - Maker Limit Entry Level placed at the **Sweep Exhaustion Zone** (e.g. `VAH + 0.35 * ATR_14`).
+>        - Spread-Padded Stop Loss: `SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price` (placed safely beyond LVN, behind defending whale armor, and outside retail stop sweep pockets).
+>        - Take Profit (targeting opposing Value Area boundary or Max Pain magnet).
+>        - Exact Lot Size strictly capped at `<= 10.00 USD` nominal risk (Stressed risk `<= 12.50 USD`).
+>      * **Gate 4: Move to the Next Passed Candidate**:
+>        - Only after the candidate setup is completely formulated and validated against all 43 feeds does the desk advance to the next spread-qualified candidate in identical fashion.
+>
+> 4. **Mandatory Trade Lifecycle Interrogation ("Should I let it run or cut it? Is it still valid?")**:
+>    - On EVERY single turn and cycle, all three intelligences MUST explicitly interrogate every live filled position and resting order:
+>      - **"Should I let it run or cut it? Is it still a valid trade?"**
+>      - Interrogate orderflow delta, defending whale wall persistence, time decay, and structure.
+>      - Winning positions with locked risk-free stops (`USDJPY.pi`, `AUDUSD.pi`) MUST be allowed to run to statistical targets. Invalidated setups must be cut immediately.
+>
+> 5. **Anti-Silo Shared Memory via GitHub**:
+>    - All three council members sync state and verdicts via `Data/Manditory/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`.
+>    - Pushed automatically to GitHub main (`https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`).
+
 ---
 
 ## SECTION 1: MANDATORY SKILLS ENSEMBLE FOUNDATION & 4-SUBAGENT SWARM
