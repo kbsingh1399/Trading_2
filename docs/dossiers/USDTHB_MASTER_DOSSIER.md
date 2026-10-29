@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDTHB
 **Canonical Key**: `USDTHB` | **Broker Instrument**: `USDTHB.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:14:11 IST` (`2026-10-29 18:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:17:13 IST` (`2026-10-29 18:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `33.73` | **Live Ask Quote**: `33.74` | **Mid Price**: `33.73`
-- **Spread Points**: `1400.00` | **Spread BPS**: `4.15 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `33.72` | **Live Ask Quote**: `33.74` | **Mid Price**: `33.73`
+- **Spread Points**: `1300.00` | **Spread BPS**: `3.85 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,11 +27,11 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `33.97` | Lower -3.00σ Band: `33.50`
-  * Upper +2.51σ Band: `33.92` | Lower -2.51σ Band: `33.55`
+  * Upper +3.00σ Band: `33.97` | Lower -3.00σ Band: `33.49`
+  * Upper +2.51σ Band: `33.92` | Lower -2.51σ Band: `33.54`
   * Upper +2.01σ Band: `33.87` | Lower -2.01σ Band: `33.59`
   * Upper +2.00σ Band: `33.87` | Lower -2.00σ Band: `33.60`
-  * Upper +1.28σ Band: `33.83` | Lower -1.28σ Band: `33.64`
+  * Upper +1.28σ Band: `33.82` | Lower -1.28σ Band: `33.64`
   * Upper +1.00σ Band: `33.80` | Lower -1.00σ Band: `33.66`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`33.73` | EMA-20=`33.73` (Slope: `+0.0000`)
@@ -270,13 +270,13 @@
   * Execution Entry: `33.63` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `32.41` (Risk Distance: `1.22` pts)
   * +2.5R Take Profit: `36.68`
-  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `33.83` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `35.05` (Risk Distance: `1.22` pts)
   * +2.5R Take Profit: `30.78`
-  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

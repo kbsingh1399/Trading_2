@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCNH
 **Canonical Key**: `GBPCNH` | **Broker Instrument**: `GBPCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:14:11 IST` (`2026-10-29 18:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:17:13 IST` (`2026-10-29 18:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `8.89` | **Live Ask Quote**: `8.89` | **Mid Price**: `8.89`
-- **Spread Points**: `82.00` | **Spread BPS**: `0.92 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `8.90` | **Live Ask Quote**: `8.90` | **Mid Price**: `8.90`
+- **Spread Points**: `35.00` | **Spread BPS**: `0.39 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,7 +23,7 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `8.89` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `8.90` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `8.92` | Lower -1.28σ Band: `8.87`
   * Upper +1.00σ Band: `8.91` | Lower -1.00σ Band: `8.88`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`8.89` | EMA-20=`8.89` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`8.89` (Slope: `+0.0000`) | EMA-100=`8.89`
-  * Institutional Anchors: EMA-144=`8.89` | EMA-200=`8.89` (Slope: `+0.0000`) | EMA-233=`8.89`
+  * Fast EMA Array: EMA-9=`8.90` | EMA-20=`8.90` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`8.90` (Slope: `+0.0000`) | EMA-100=`8.90`
+  * Institutional Anchors: EMA-144=`8.90` | EMA-200=`8.90` (Slope: `+0.0000`) | EMA-233=`8.90`
 - **Range Boundaries**: 24H High=`8.98` | 24H Low=`8.81` | Weekly High=`9.07` | Weekly Low=`8.72`
 
 ---
@@ -45,14 +45,14 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `8.92` (Distance: `+0.00%`)
-  * Point of Control (POC) = `8.89` (Distance: `+0.00%`)
+  * Point of Control (POC) = `8.90` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `8.87` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`8.93` | POC=`8.89` | VAL=`8.86`
-  * Prior Day Extremes: PDH=`8.95` | PDL=`8.84` | PDC=`8.89`
-  * Monday Range Blueprint: High=`8.94` | Mid=`8.89` | Low=`8.85`
-  * Developing Weekly Value Area: Weekly VAH=`8.97` | Weekly POC=`8.89` | Weekly VAL=`8.82`
+  * Prior Day Value Area: VAH=`8.93` | POC=`8.90` | VAL=`8.86`
+  * Prior Day Extremes: PDH=`8.95` | PDL=`8.84` | PDC=`8.90`
+  * Monday Range Blueprint: High=`8.94` | Mid=`8.90` | Low=`8.85`
+  * Developing Weekly Value Area: Weekly VAH=`8.97` | Weekly POC=`8.90` | Weekly VAL=`8.82`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.91` | Low=`8.88`
   * London Session (08:00-16:00 UTC): High=`8.93` | Low=`8.86`

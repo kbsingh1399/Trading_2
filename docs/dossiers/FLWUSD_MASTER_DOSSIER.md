@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:14:11 IST` (`2026-10-29 18:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:17:13 IST` (`2026-10-29 18:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0155` | VWAP Z-Score: `-1.18` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000181` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0155` | VWAP Z-Score: `-1.16` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000168` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `16.84` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0168` | Lower -3.00σ Band: `0.0142`
   * Upper +2.51σ Band: `0.0166` | Lower -2.51σ Band: `0.0144`
-  * Upper +2.01σ Band: `0.0164` | Lower -2.01σ Band: `0.0146`
-  * Upper +2.00σ Band: `0.0163` | Lower -2.00σ Band: `0.0147`
+  * Upper +2.01σ Band: `0.0163` | Lower -2.01σ Band: `0.0146`
+  * Upper +2.00σ Band: `0.0163` | Lower -2.00σ Band: `0.0146`
   * Upper +1.28σ Band: `0.0160` | Lower -1.28σ Band: `0.0150`
   * Upper +1.00σ Band: `0.0159` | Lower -1.00σ Band: `0.0151`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0158` | EMA-20=`0.0158` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0157` (Slope: `+0.0000`) | EMA-100=`0.0157`
-  * Institutional Anchors: EMA-144=`0.0157` | EMA-200=`0.0158` (Slope: `+0.1032`) | EMA-233=`0.0158`
+  * Fast EMA Array: EMA-9=`0.0156` | EMA-20=`0.0157` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0156` (Slope: `+0.0000`) | EMA-100=`0.0157`
+  * Institutional Anchors: EMA-144=`0.0157` | EMA-200=`0.0158` (Slope: `+0.0388`) | EMA-233=`0.0158`
 - **Range Boundaries**: 24H High=`0.0170` | 24H Low=`0.0150` | Weekly High=`0.0170` | Weekly Low=`0.0150`
 
 ---

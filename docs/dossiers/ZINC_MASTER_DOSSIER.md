@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZINC
 **Canonical Key**: `ZINC` | **Broker Instrument**: `ZINC.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 00:14:11 IST` (`2026-10-29 18:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:17:13 IST` (`2026-10-29 18:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `3872.34` | **Live Ask Quote**: `3875.81` | **Mid Price**: `3874.07`
+- **Live Bid Quote**: `3872.59` | **Live Ask Quote**: `3876.06` | **Mid Price**: `3874.32`
 - **Spread Points**: `3470.00` | **Spread BPS**: `8.96 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3874.07` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `3874.32` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `9.69` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `3901.19` | Lower -3.00σ Band: `3846.96`
-  * Upper +2.51σ Band: `3895.38` | Lower -2.51σ Band: `3852.77`
-  * Upper +2.01σ Band: `3890.35` | Lower -2.01σ Band: `3857.80`
-  * Upper +2.00σ Band: `3889.57` | Lower -2.00σ Band: `3858.58`
-  * Upper +1.28σ Band: `3884.92` | Lower -1.28σ Band: `3863.23`
-  * Upper +1.00σ Band: `3881.82` | Lower -1.00σ Band: `3866.33`
+  * Upper +3.00σ Band: `3901.45` | Lower -3.00σ Band: `3847.20`
+  * Upper +2.51σ Band: `3895.63` | Lower -2.51σ Band: `3853.02`
+  * Upper +2.01σ Band: `3890.60` | Lower -2.01σ Band: `3858.05`
+  * Upper +2.00σ Band: `3889.82` | Lower -2.00σ Band: `3858.83`
+  * Upper +1.28σ Band: `3885.17` | Lower -1.28σ Band: `3863.48`
+  * Upper +1.00σ Band: `3882.07` | Lower -1.00σ Band: `3866.58`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3874.07` | EMA-20=`3874.07` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`3874.07` (Slope: `+0.0000`) | EMA-100=`3874.07`
-  * Institutional Anchors: EMA-144=`3874.07` | EMA-200=`3874.07` (Slope: `+0.0000`) | EMA-233=`3874.07`
-- **Range Boundaries**: 24H High=`3912.82` | 24H Low=`3835.33` | Weekly High=`3951.56` | Weekly Low=`3796.59`
+  * Fast EMA Array: EMA-9=`3874.32` | EMA-20=`3874.32` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`3874.32` (Slope: `+0.0000`) | EMA-100=`3874.32`
+  * Institutional Anchors: EMA-144=`3874.32` | EMA-200=`3874.32` (Slope: `+0.0000`) | EMA-233=`3874.32`
+- **Range Boundaries**: 24H High=`3913.07` | 24H Low=`3835.58` | Weekly High=`3951.81` | Weekly Low=`3796.84`
 
 ---
 
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`3899.04` | Low=`3859.69`
   * Initial Balance (First Hour): IB High=`3879.59` | IB Low=`3858.59`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `3858.58` - `3889.57`
-  * Optimal Trade Entry (OTE 0.705): `3881.82`
-  * Structural Invalidation Anchor (0.786): `3905.07`
+  * Golden Pocket Zone (0.618 - 0.650): `3858.83` - `3889.82`
+  * Optimal Trade Entry (OTE 0.705): `3882.07`
+  * Structural Invalidation Anchor (0.786): `3905.32`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`3905.07`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`3905.32`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

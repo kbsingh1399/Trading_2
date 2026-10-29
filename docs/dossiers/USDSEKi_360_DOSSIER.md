@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:14:11 IST` (`2026-10-29 18:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:17:13 IST` (`2026-10-29 18:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.86` | **Live Ask Quote**: `9.86` | **Mid Price**: `9.86`
-- **Spread Points**: `108.00` | **Spread BPS**: `1.10 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `132.00` | **Spread BPS**: `1.34 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`9.86` | EMA-20=`9.86` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.86` (Slope: `+0.0000`) | EMA-100=`9.86`
   * Institutional Anchors: EMA-144=`9.86` | EMA-200=`9.86` (Slope: `+0.0000`) | EMA-233=`9.86`
-- **Range Boundaries**: 24H High=`9.96` | 24H Low=`9.76` | Weekly High=`10.06` | Weekly Low=`9.67`
+- **Range Boundaries**: 24H High=`9.96` | 24H Low=`9.76` | Weekly High=`10.06` | Weekly Low=`9.66`
 
 ---
 
@@ -270,13 +270,13 @@
   * Execution Entry: `9.83` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `8.63` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `12.84`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.89` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.09` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `6.89`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
