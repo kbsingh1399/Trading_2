@@ -260,6 +260,37 @@ Saved to download/Council_Response_Cycle-20261029T044654Z.json (response_sha256 
 
 json
 {
+    "consecutive_winners_required_no_losses": 69, "prob_if_p_win_0.55": "1.22e-18",
+    "verdict": "STRUCTURALLY_INFEASIBLE — renegotiation or explicit operator override required"},
+  "candidate_rows": [
+    {"candidate_id": "ZAI-C376-01", "symbol": "BTCUSD.pi", "native_market": true, "clock_status": "OPEN_24_7",
+     "quote_timestamp": "2026-10-29 04:52:37Z (OKX)", "row_causality_status": "CAUSAL_FRESH_COUNCIL_CHANNEL",
+     "authorization_expiry_utc": "2026-10-29 07:00:00 UTC",
+     "side": "SELL_LIMIT", "order_type": "LIMIT", "entry": 80175.0, "stop": 80283.0, "target": 80078.0,
+     "target_2r_corridor": 79959.0, "volume": 0.04, "broker_risk_usd": 4.32, "broker_reward_usd": 3.88,
+     "rr": 0.898, "stressed_loss_usd": 7.40, "post_joint_stop_balance": 4775.21,
+     "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED_n17_FROZEN",
+     "estimator_references": ["OKX VR4 15m 0.2716 z=-11.661 n=299", "Yahoo VR4 0.2584 z=-13.8", "ER48 0.0615"],
+     "effective_sample_size": 17, "probability_confidence_intervals": null,
+     "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null,
+     "uncertainty_method": "NOT_COMPUTED_UNCALIBRATED", "adverse_selection_usd": null, "wait_cost_usd": 0.0,
+     "evidence_ids": ["OKX-BOOK-045237Z", "OKX-POLLB-045302Z", "YAHOO-BTC-15M"],
+     "verdict": "BLOCKED_NO_2R_CORRIDOR__HOLD",
+     "fib_golden_zone_confluence": {"invalidation_shelf_0786": "SL = wall_top 80219 + 0.40xATR160; 2R TP behind $19.1M bid lattice", "entry_status": "INSIDE_WALL_CLUSTER_FRONT"},
+     "auction_extreme_interaction": {"monday_ib_relation": "below post-FOMC low 80658", "session_extreme_sweep": "breakdown, no reclaim", "macro_shelf_relation": "new $15.97M ask lattice 80160-80219"},
+     "rejection_reasons": ["RR 0.898 < 2.0 at wall-front", "2R corridor through $19.1M lattice", "kernel/32-sheet fail", "uncalibrated p", "no sweep-reclaim"]},
+    {"candidate_id": "ZAI-C376-02", "symbol": "EURUSD.pi", "native_market": true, "clock_status": "OPEN_ASIAN_SESSION",
+     "quote_timestamp": "2026-10-29 04:51:44Z (Yahoo 1m)", "row_causality_status": "CAUSAL_FRESH_COUNCIL_CHANNEL",
+     "authorization_expiry_utc": "2026-10-29 07:00:00 UTC",
+     "side": "SELL_LIMIT", "order_type": "LIMIT", "entry": 1.11611, "stop": 1.11707, "target": 1.11375,
+     "volume": 0.046, "broker_risk_usd": 4.42, "broker_reward_usd": 10.87, "rr": 2.46,
+     "stressed_loss_usd": 7.53, "post_joint_stop_balance": 4775.08,
+     "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED_n17_FROZEN",
+     "estimator_references": ["Yahoo VR4 15m 0.1977 z=-14.818 n=398", "ER48 0.0241", "SL=1.5xATR canon 9.7p"],
+     "effective_sample_size": 17, "probability_confidence_intervals": null,
+     "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null,
+     "uncertainty_method": "NOT_COMPUTED_UNCALIBRATED", "adverse_selection_usd": null, "wait_cost_usd": 0.0,
+     "evidence_ids": ["YAHOO-EURUSD-1M", "YAHOO-EURUSD-15M-VR", "ASIAN-IB-0000-0450Z"],
      "verdict": "GATED_RADAR__HOLD",
      "fib_golden_zone_confluence": {"invalidation_shelf_0786": "SL = Asian_H 1.11620 + 1.5xATR(5.5p) + half-spread = 1.11707 (1.76x hedged ATR)", "entry_status": "TP 1.11375 fronts Asian_L 1.11371 by 0.4p"},
      "auction_extreme_interaction": {"monday_ib_relation": "Asian_IB anchored 00:00-04:50Z", "session_extreme_sweep": "sweep-reclaim NOT confirmed - gate open", "macro_shelf_relation": "hawkish-hold USD bid; EUR -21bps since 19:10Z"},
@@ -318,6 +349,13 @@ json
 Bottom line: the envelope's arithmetic is internally exact but the snapshot is 10.2 hours old, carries a floor-regime conflict, and describes a book that no longer exists — provenance_status: DENIED_BAD_CYCLE_ENVELOPE, overall authorization: DENIED_FAIL_CLOSED, effective capacity 0. Fresh side-channel evidence (OKX/Bybit/Yahoo, Binance banned) confirms deep mean-reversion everywhere but fresh breakdowns in both BTC and ETH — my two own-nominated radar rows are re-derived and margin-legal yet correctly HOLD/BLOCKED (corridor infeasibility, unconfirmed sweep-reclaim, frozen calibration). The +717.39 Friday target needs 69 consecutive error-free winners — formally infeasible under the risk canon.
 
 Suggested next steps for the desk: (1) reconcile the −60.95 drift with the broker statement before any re-arming; (2) re-mint the envelope with a stamped floor epoch; (3) bring the London-open re-score at 07:00Z for the EUR radar (sweep-reclaim gate) and re-validate BTC depth after the Binance ban lifts ~11:59Z; (4) decide explicitly on the Friday target — renegotiate or sign a documented floor-breach override.
+
+All files in task
+2
+Council_Response_Cycle-20261029T044654Z
+· json
+cycle_375_council_response
+· json
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (18224 chars)
