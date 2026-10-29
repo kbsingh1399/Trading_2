@@ -1,0 +1,585 @@
+{
+  "timestamp_ist": "2026-10-29 05:46:49 IST",
+  "feeds": [
+    {
+      "idx": "00",
+      "name": "00_MT5_Account_Telemetry",
+      "tier": "High Velocity",
+      "rows": 164,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "01",
+      "name": "1_Crypto_ETF_Flows",
+      "tier": "Macro",
+      "rows": 41,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "02",
+      "name": "2_Spot_Netflow_S",
+      "tier": "Macro",
+      "rows": 144,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "03",
+      "name": "3_Exchanges_LS_Ratio_15M",
+      "tier": "Tactical",
+      "rows": 500,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "04",
+      "name": "3_Exchanges_LS_Ratio_1H",
+      "tier": "Tactical",
+      "rows": 500,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "05",
+      "name": "3_Exchanges_LS_Ratio_4H",
+      "tier": "Tactical",
+      "rows": 500,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "06",
+      "name": "4_Hyperliquid_Analysis",
+      "tier": "Tactical",
+      "rows": 2052,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "07",
+      "name": "5_OI",
+      "tier": "Tactical",
+      "rows": 20,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "08",
+      "name": "5_Funding_Rate",
+      "tier": "Tactical",
+      "rows": 593,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "09",
+      "name": "6_Funding_Fee_Settlement",
+      "tier": "Tactical",
+      "rows": 940,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "10",
+      "name": "7_Liq_Heapmap",
+      "tier": "Tactical",
+      "rows": 101,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "11",
+      "name": "7_Live_Liq",
+      "tier": "High Velocity",
+      "rows": 27,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "12",
+      "name": "8_Exchange_Liquidation_Map_1D",
+      "tier": "Tactical",
+      "rows": 2453,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "13",
+      "name": "8_Exchange_Liquidation_Map_7D",
+      "tier": "Tactical",
+      "rows": 3060,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "14",
+      "name": "9_Liquidation_Max_Pain_24H",
+      "tier": "Tactical",
+      "rows": 751,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "15",
+      "name": "9_Liquidation_Max_Pain_48H",
+      "tier": "Tactical",
+      "rows": 751,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "16",
+      "name": "9_Liquidation_Max_Pain_3D",
+      "tier": "Tactical",
+      "rows": 751,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "17",
+      "name": "9_Liquidation_Max_Pain_7D",
+      "tier": "Tactical",
+      "rows": 751,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "18",
+      "name": "10_Whale_Orders",
+      "tier": "Tactical",
+      "rows": 3109,
+      "banner": "",
+      "age": 0.7,
+      "status": "PASS"
+    },
+    {
+      "idx": "19",
+      "name": "11_Technical",
+      "tier": "Tactical",
+      "rows": 114,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "20",
+      "name": "12_Hyperdash",
+      "tier": "Tactical",
+      "rows": 295,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "21",
+      "name": "13_Hyperliquid",
+      "tier": "Tactical",
+      "rows": 235,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "22",
+      "name": "14_Hyperdash_Liq_Map",
+      "tier": "Tactical",
+      "rows": 4834,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "23",
+      "name": "15_Hyperdash_Stops_Map",
+      "tier": "Tactical",
+      "rows": 4355,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "24",
+      "name": "16_Hyperdash_telegram_Intel",
+      "tier": "Tactical",
+      "rows": 1000,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "25",
+      "name": "17_Orderbook",
+      "tier": "High Velocity",
+      "rows": 615,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "26",
+      "name": "18_CVD",
+      "tier": "High Velocity",
+      "rows": 1500,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "27",
+      "name": "19_News",
+      "tier": "Macro",
+      "rows": 37,
+      "banner": "",
+      "age": 0.6,
+      "status": "PASS"
+    },
+    {
+      "idx": "28",
+      "name": "19_Calendar",
+      "tier": "Macro",
+      "rows": 43,
+      "banner": "",
+      "age": 0.5,
+      "status": "PASS"
+    },
+    {
+      "idx": "29",
+      "name": "20_Auction_Market_Structure",
+      "tier": "Tactical",
+      "rows": 84,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "30",
+      "name": "21_Tradfye_Orderflow",
+      "tier": "Tactical",
+      "rows": 6912,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "31",
+      "name": "22_Forced_Liquidations_MTF",
+      "tier": "High Velocity",
+      "rows": 80,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "32",
+      "name": "23_Master_Pipeline_Telemetry",
+      "tier": "High Velocity",
+      "rows": 33,
+      "banner": "",
+      "age": 0.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "33",
+      "name": "25_CoinGlass_Footprint_Signals",
+      "tier": "Tactical",
+      "rows": 606,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "34",
+      "name": "26_Aggregated_Footprint_Bar_Metrics",
+      "tier": "Tactical",
+      "rows": 310,
+      "banner": "",
+      "age": 0.1,
+      "status": "PASS"
+    },
+    {
+      "idx": "35",
+      "name": "14_Liquidation_Matrix",
+      "tier": "Tactical",
+      "rows": 10320,
+      "banner": "",
+      "age": 0.0,
+      "status": "PASS"
+    },
+    {
+      "idx": "36",
+      "name": "2_Future_Netflow",
+      "tier": "Macro",
+      "rows": 163,
+      "banner": "",
+      "age": 2.0,
+      "status": "PASS"
+    }
+  ],
+  "account": {
+    "login": 5064568,
+    "balance": 4741.68,
+    "equity": 4747.24,
+    "margin": 1123.33,
+    "margin_free": 3623.91
+  },
+  "positions": [
+    {
+      "ticket": 19437060,
+      "symbol": "USDCAD.pi",
+      "type": "BUY",
+      "volume": 0.09,
+      "price_open": 1.3993,
+      "price_current": 1.39944,
+      "sl": 1.3978,
+      "tp": 1.4027,
+      "profit": 0.9
+    },
+    {
+      "ticket": 19437065,
+      "symbol": "DJ30.p",
+      "type": "SELL",
+      "volume": 0.01,
+      "price_open": 52608.0,
+      "price_current": 52554.34,
+      "sl": 52585.68,
+      "tp": 52298.0,
+      "profit": 5.37
+    },
+    {
+      "ticket": 19437500,
+      "symbol": "EURCAD.pi",
+      "type": "BUY",
+      "volume": 0.08,
+      "price_open": 1.5594000000000001,
+      "price_current": 1.5591599999999999,
+      "sl": 1.5577999999999999,
+      "tp": 1.5645,
+      "profit": -1.37
+    }
+  ],
+  "orders_count": 15,
+  "orders": [
+    {
+      "ticket": 19437057,
+      "symbol": "ETHUSD.pi",
+      "type": 3,
+      "volume": 0.05,
+      "price_open": 2388.8,
+      "sl": 2412.2,
+      "tp": 2322.75,
+      "comment": "Auto43_ETH"
+    },
+    {
+      "ticket": 19437058,
+      "symbol": "BTCUSD.pi",
+      "type": 3,
+      "volume": 0.01,
+      "price_open": 81869.5,
+      "sl": 82549.0,
+      "tp": 79954.6,
+      "comment": "Auto43_BTC"
+    },
+    {
+      "ticket": 19437059,
+      "symbol": "XAUUSD.pi",
+      "type": 3,
+      "volume": 0.01,
+      "price_open": 4087.5,
+      "sl": 4115.5,
+      "tp": 4035.0,
+      "comment": "Auto43_XAU"
+    },
+    {
+      "ticket": 19437063,
+      "symbol": "AUDUSD.pi",
+      "type": 3,
+      "volume": 0.1,
+      "price_open": 0.70586,
+      "sl": 0.70686,
+      "tp": 0.70368,
+      "comment": "Auto43_AUD"
+    },
+    {
+      "ticket": 19437066,
+      "symbol": "GER40.p",
+      "type": 3,
+      "volume": 0.01,
+      "price_open": 25803.4,
+      "sl": 25876.2,
+      "tp": 25652.0,
+      "comment": "Auto43_GER40"
+    },
+    {
+      "ticket": 19437494,
+      "symbol": "USDJPY.pi",
+      "type": 2,
+      "volume": 0.08,
+      "price_open": 157.62,
+      "sl": 157.44,
+      "tp": 158.05,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437495,
+      "symbol": "GBPUSD.pi",
+      "type": 3,
+      "volume": 0.08,
+      "price_open": 1.3348,
+      "sl": 1.3364,
+      "tp": 1.3312,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437496,
+      "symbol": "EURUSD.pi",
+      "type": 3,
+      "volume": 0.1,
+      "price_open": 1.1172,
+      "sl": 1.1186,
+      "tp": 1.114,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437497,
+      "symbol": "USDCHF.pi",
+      "type": 2,
+      "volume": 0.1,
+      "price_open": 0.8268,
+      "sl": 0.8256,
+      "tp": 0.8295,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437498,
+      "symbol": "US2000.p",
+      "type": 3,
+      "volume": 0.01,
+      "price_open": 2846.5,
+      "sl": 2858.0,
+      "tp": 2822.0,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437501,
+      "symbol": "UKBRENT.p",
+      "type": 2,
+      "volume": 0.01,
+      "price_open": 114.8,
+      "sl": 113.9,
+      "tp": 117.2,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437659,
+      "symbol": "SOLUSD.p",
+      "type": 3,
+      "volume": 0.01,
+      "price_open": 103.2,
+      "sl": 104.25,
+      "tp": 100.6,
+      "comment": "AlphaMakerScan"
+    },
+    {
+      "ticket": 19437677,
+      "symbol": "BCHUSD.p",
+      "type": 3,
+      "volume": 0.1,
+      "price_open": 292.5,
+      "sl": 295.6,
+      "tp": 288.6,
+      "comment": "Alpha_BCH_Whale"
+    },
+    {
+      "ticket": 19439187,
+      "symbol": "NAS100.p",
+      "type": 2,
+      "volume": 0.01,
+      "price_open": 29460.0,
+      "sl": 29380.0,
+      "tp": 29650.0,
+      "comment": "AlphaMaker_NAS100"
+    },
+    {
+      "ticket": 19439188,
+      "symbol": "EURGBP.pi",
+      "type": 3,
+      "volume": 0.1,
+      "price_open": 0.8381,
+      "sl": 0.8388,
+      "tp": 0.8368,
+      "comment": "AlphaMaker_EURGBP"
+    }
+  ],
+  "recent_deals": [
+    {
+      "ticket": 17609904,
+      "order": 19436001,
+      "symbol": "ETHUSD.pi",
+      "type": 1,
+      "volume": 1.0,
+      "price": 2366.0,
+      "profit": 0.0,
+      "comment": "TriCouncil_ETH_1Lot"
+    },
+    {
+      "ticket": 17610373,
+      "order": 19436450,
+      "symbol": "ETHUSD.pi",
+      "type": 0,
+      "volume": 1.0,
+      "price": 2391.0,
+      "profit": -25.0,
+      "comment": "[sl 2391.00]"
+    },
+    {
+      "ticket": 17611078,
+      "order": 19437065,
+      "symbol": "DJ30.p",
+      "type": 1,
+      "volume": 0.01,
+      "price": 52608.0,
+      "profit": 0.0,
+      "comment": "Auto43_DJ30"
+    },
+    {
+      "ticket": 17611241,
+      "order": 19437060,
+      "symbol": "USDCAD.pi",
+      "type": 0,
+      "volume": 0.09,
+      "price": 1.3993,
+      "profit": 0.0,
+      "comment": "Auto43_CAD"
+    },
+    {
+      "ticket": 17611429,
+      "order": 19437168,
+      "symbol": "SOLUSD.p",
+      "type": 1,
+      "volume": 0.2,
+      "price": 102.5,
+      "profit": 0.0,
+      "comment": "Desk_SOL_43Feed"
+    }
+  ]
+}
