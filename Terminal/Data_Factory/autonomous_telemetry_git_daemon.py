@@ -265,7 +265,7 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
 
     # Protect Data/feeds: never allow git daemon to stage feed removals
     run_cmd(["git", "add", "--ignore-removal", "Data/feeds", "Data/metadata"])
-    run_cmd(["git", "add", "docs/telemetry", "docs/trade_plans", "docs/prompts", "Data/*.json", "Data/cycle_envelope.json", "Terminal/*.py"])
+    run_cmd(["git", "add", "Data/Manditory", "docs/telemetry", "docs/trade_plans", "docs/prompts", "Data/*.json", "Data/cycle_envelope.json", "Terminal/*.py"])
 
     code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
     if modified_output:
