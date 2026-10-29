@@ -2,7 +2,7 @@
   "feed_name": "15_Hyperdash_Stops_Map",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 4378,
+  "row_count": 4980,
   "column_count": 12,
   "columns": [
     "sr_no",
@@ -18,9 +18,9 @@
     "sell_stops",
     "size_coins"
   ],
-  "byte_size": 163068,
-  "timestamp_ist": "2026-10-29 07:34:27 IST",
-  "timestamp_utc": "2026-10-29 02:04:27 UTC",
-  "epoch_utc": 1793239467.909802,
-  "write_duration_ms": 512.5
+  "byte_size": 184755,
+  "timestamp_ist": "2026-10-29 07:37:25 IST",
+  "timestamp_utc": "2026-10-29 02:07:25 UTC",
+  "epoch_utc": 1793239645.201519,
+  "write_duration_ms": 435.93
 }
