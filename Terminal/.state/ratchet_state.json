@@ -1,1 +1,13 @@
-{}
+{
+  "19464650": {
+    "ticket": 19464650,
+    "symbol": "BTCUSD.pi",
+    "type": "SELL",
+    "price_open": 80340.0,
+    "initial_sl": 80563.5,
+    "initial_tp": 79663.5,
+    "initial_r": 223.5,
+    "stage": 0,
+    "open_time": 1793294013
+  }
+}

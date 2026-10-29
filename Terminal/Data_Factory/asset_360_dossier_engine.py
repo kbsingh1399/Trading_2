@@ -407,34 +407,16 @@ def generate_markdown_report(dossier: Dict[str, Any], out_path: Path):
         f.write("\n".join(lines))
 
 def run_auto_cycle_dossiers() -> List[str]:
-    """Automatically build/update dossiers for all active positions and prime candidates."""
-    # Active open positions from MT5 if available
-    active_symbols = ["BTC", "USDJPY", "XAUUSD", "EURUSD", "USDCAD", "UKBRENT", "US2000"]
+    """Automatically build/update dossiers for all active positions and prime candidates using Sovereign Dossier Engine v3.1."""
     try:
-        import MetaTrader5 as mt5
-        if mt5.initialize():
-            positions = mt5.positions_get()
-            if positions:
-                for p in positions:
-                    base = p.symbol.split(".")[0].replace("USD", "").replace("pi", "").replace("p", "")
-                    if base and base not in active_symbols:
-                        active_symbols.append(base)
-            mt5.shutdown()
-    except Exception:
-        pass
-
-    # Pre-load in-memory cache once
-    DataLakeMemoryStore.pre_load_all(force=True)
-    
-    updated = []
-    for asset in active_symbols:
-        try:
-            build_asset_360_dossier(asset, use_memory_cache=True)
-            updated.append(asset)
-        except Exception as e:
-            print(f"Error building dossier for {asset}: {e}")
-            
-    return updated
+        import sys
+        sys.path.insert(0, str(Path(".").resolve()))
+        from scripts.sovereign_dossier_engine import run_pipeline
+        run_pipeline()
+        return ["ALL_162_CATALOGUED_ASSETS"]
+    except Exception as e:
+        print(f"Error executing sovereign dossier engine: {e}")
+        return []
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Asset 360° Data Lake Dossier Engine")
