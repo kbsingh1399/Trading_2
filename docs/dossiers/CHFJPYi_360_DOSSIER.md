@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -45,8 +45,8 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `191.24` (Distance: `+0.05%`)
-  * Point of Control (POC) = `191.24` (Distance: `+0.05%`)
-  * Value Area Low (VAL) = `191.24` (Distance: `+0.05%`)
+  * Point of Control (POC) = `191.23` (Distance: `+0.05%`)
+  * Value Area Low (VAL) = `191.23` (Distance: `+0.05%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`190.84` | POC=`190.58` | VAL=`190.38`
@@ -54,9 +54,9 @@
   * Monday Range Blueprint: High=`190.79` | Mid=`190.42` | Low=`190.05`
   * Developing Weekly Value Area: Weekly VAH=`190.65` | Weekly POC=`190.46` | Weekly VAL=`190.29`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`191.24` | Low=`191.24`
+  * Asian Session (00:00-08:00 UTC): High=`191.24` | Low=`191.23`
   * London Session (08:00-16:00 UTC): High=`192.10` | Low=`190.57`
-  * New York Session (13:00-21:00 UTC): High=`192.48` | Low=`190.19`
+  * New York Session (13:00-21:00 UTC): High=`192.49` | Low=`190.19`
   * Initial Balance (First Hour): IB High=`191.91` | IB Low=`190.76`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `190.57` - `192.10`
@@ -267,7 +267,7 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `191.24` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `191.23` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `190.84` (Risk Distance: `0.3937` pts)
   * +2.5R Take Profit: `192.22`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `191.24` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `191.63` (Risk Distance: `0.3937` pts)
-  * +2.5R Take Profit: `190.25`
+  * +2.5R Take Profit: `190.26`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

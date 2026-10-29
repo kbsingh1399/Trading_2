@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SGDJPY
 **Canonical Key**: `SGDJPY` | **Broker Instrument**: `SGDJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,7 +27,7 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `124.03` | Lower -3.00σ Band: `122.30`
+  * Upper +3.00σ Band: `124.02` | Lower -3.00σ Band: `122.30`
   * Upper +2.51σ Band: `123.84` | Lower -2.51σ Band: `122.49`
   * Upper +2.01σ Band: `123.68` | Lower -2.01σ Band: `122.65`
   * Upper +2.00σ Band: `123.66` | Lower -2.00σ Band: `122.67`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`123.16` | EMA-20=`123.16` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`123.16` (Slope: `+0.0000`) | EMA-100=`123.16`
   * Institutional Anchors: EMA-144=`123.16` | EMA-200=`123.16` (Slope: `+0.0000`) | EMA-233=`123.16`
-- **Range Boundaries**: 24H High=`124.40` | 24H Low=`121.93` | Weekly High=`125.63` | Weekly Low=`120.70`
+- **Range Boundaries**: 24H High=`124.39` | 24H Low=`121.93` | Weekly High=`125.63` | Weekly Low=`120.70`
 
 ---
 

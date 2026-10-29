@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0155` | VWAP Z-Score: `-3.35` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000363` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `24.43` (State: `OVERSOLD`)
+  * Session VWAP: `0.0154` | VWAP Z-Score: `-4.38` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000446` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `17.78` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0168` | Lower -3.00σ Band: `0.0142`
-  * Upper +2.51σ Band: `0.0166` | Lower -2.51σ Band: `0.0144`
-  * Upper +2.01σ Band: `0.0163` | Lower -2.01σ Band: `0.0146`
-  * Upper +2.00σ Band: `0.0163` | Lower -2.00σ Band: `0.0146`
-  * Upper +1.28σ Band: `0.0160` | Lower -1.28σ Band: `0.0149`
-  * Upper +1.00σ Band: `0.0159` | Lower -1.00σ Band: `0.0150`
+  * Upper +3.00σ Band: `0.0171` | Lower -3.00σ Band: `0.0138`
+  * Upper +2.51σ Band: `0.0168` | Lower -2.51σ Band: `0.0140`
+  * Upper +2.01σ Band: `0.0165` | Lower -2.01σ Band: `0.0143`
+  * Upper +2.00σ Band: `0.0165` | Lower -2.00σ Band: `0.0143`
+  * Upper +1.28σ Band: `0.0161` | Lower -1.28σ Band: `0.0147`
+  * Upper +1.00σ Band: `0.0160` | Lower -1.00σ Band: `0.0149`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0149` | EMA-20=`0.0153` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0155` (Slope: `+0.0000`) | EMA-100=`0.0156`
-  * Institutional Anchors: EMA-144=`0.0156` | EMA-200=`0.0157` (Slope: `-0.4575`) | EMA-233=`0.0158`
-- **Range Boundaries**: 24H High=`0.0170` | 24H Low=`0.0140` | Weekly High=`0.0170` | Weekly Low=`0.0140`
+  * Fast EMA Array: EMA-9=`0.0142` | EMA-20=`0.0149` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0153` (Slope: `+0.0000`) | EMA-100=`0.0155`
+  * Institutional Anchors: EMA-144=`0.0156` | EMA-200=`0.0157` (Slope: `-0.8250`) | EMA-233=`0.0157`
+- **Range Boundaries**: 24H High=`0.0170` | 24H Low=`0.0120` | Weekly High=`0.0170` | Weekly Low=`0.0120`
 
 ---
 
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.0160` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.0160` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.0150` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `0.0151` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0231` | POC=`0.0230` | VAL=`0.0229`
@@ -267,14 +267,14 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.0150` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.0154` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.1150`
+  * Execution Entry: `0.0151` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `-0.0155` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.1151`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.0160` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0464` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.0465` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `-0.0840`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDNOK
 **Canonical Key**: `USDNOK` | **Broker Instrument**: `USDNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.23` | **Live Ask Quote**: `9.26` | **Mid Price**: `9.25`
-- **Spread Points**: `2610.00` | **Spread BPS**: `28.23 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `2910.00` | **Spread BPS**: `31.47 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,7 +32,7 @@
   * Upper +2.01σ Band: `9.29` | Lower -2.01σ Band: `9.21`
   * Upper +2.00σ Band: `9.28` | Lower -2.00σ Band: `9.21`
   * Upper +1.28σ Band: `9.27` | Lower -1.28σ Band: `9.22`
-  * Upper +1.00σ Band: `9.27` | Lower -1.00σ Band: `9.23`
+  * Upper +1.00σ Band: `9.26` | Lower -1.00σ Band: `9.23`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.25` | EMA-20=`9.25` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.25` (Slope: `+0.0000`) | EMA-100=`9.25`
@@ -54,13 +54,13 @@
   * Monday Range Blueprint: High=`9.29` | Mid=`9.25` | Low=`9.20`
   * Developing Weekly Value Area: Weekly VAH=`9.32` | Weekly POC=`9.25` | Weekly VAL=`9.17`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`9.27` | Low=`9.23`
+  * Asian Session (00:00-08:00 UTC): High=`9.26` | Low=`9.23`
   * London Session (08:00-16:00 UTC): High=`9.28` | Low=`9.21`
   * New York Session (13:00-21:00 UTC): High=`9.30` | Low=`9.19`
   * Initial Balance (First Hour): IB High=`9.27` | IB Low=`9.22`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.21` - `9.28`
-  * Optimal Trade Entry (OTE 0.705): `9.27`
+  * Optimal Trade Entry (OTE 0.705): `9.26`
   * Structural Invalidation Anchor (0.786): `9.32`
 
 ---
@@ -269,14 +269,14 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `9.22` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `7.98` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `12.32`
-  * Mathematical Lot Sizing: **`8.07 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `12.33`
+  * Mathematical Lot Sizing: **`8.04 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.27` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `10.51` (Risk Distance: `1.24` pts)
-  * +2.5R Take Profit: `6.18`
-  * Mathematical Lot Sizing: **`8.07 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `10.52` (Risk Distance: `1.24` pts)
+  * +2.5R Take Profit: `6.17`
+  * Mathematical Lot Sizing: **`8.04 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

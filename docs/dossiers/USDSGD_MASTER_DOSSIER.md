@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSGD
 **Canonical Key**: `USDSGD` | **Broker Instrument**: `USDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.28` | **Live Ask Quote**: `1.28` | **Mid Price**: `1.28`
-- **Spread Points**: `197.00` | **Spread BPS**: `15.39 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `142.00` | **Spread BPS**: `11.09 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.28` | VWAP Z-Score: `-2.67` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000341` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `29.46` (State: `OVERSOLD`)
+  * Session VWAP: `1.28` | VWAP Z-Score: `-2.11` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000384` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `37.68` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.28` | Lower -3.00σ Band: `1.28`
   * Upper +2.51σ Band: `1.28` | Lower -2.51σ Band: `1.28`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.28` | EMA-20=`1.28` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.28` (Slope: `+0.0000`) | EMA-100=`1.28`
-  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0080`) | EMA-233=`1.28`
+  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0083`) | EMA-233=`1.28`
 - **Range Boundaries**: 24H High=`1.28` | 24H Low=`1.28` | Weekly High=`1.28` | Weekly Low=`1.28`
 
 ---
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.28` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.28` (Risk Distance: `0.0039` pts)
+  * Spread-Padded Stop Loss: `1.28` (Risk Distance: `0.0028` pts)
   * +2.5R Take Profit: `1.29`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.28` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.28` (Risk Distance: `0.0039` pts)
+  * Spread-Padded Stop Loss: `1.28` (Risk Distance: `0.0028` pts)
   * +2.5R Take Profit: `1.27`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

@@ -22,9 +22,9 @@
     "Daily_Net_Inflow",
     "Timestamp_IST"
   ],
-  "byte_size": 8931,
-  "timestamp_ist": "2026-10-30 02:45:23 IST",
-  "timestamp_utc": "2026-10-29 21:15:23 UTC",
-  "epoch_utc": 1793308523.861746,
-  "write_duration_ms": 370.36
+  "byte_size": 8930,
+  "timestamp_ist": "2026-10-30 02:47:24 IST",
+  "timestamp_utc": "2026-10-29 21:17:24 UTC",
+  "epoch_utc": 1793308644.743153,
+  "write_duration_ms": 572.04
 }

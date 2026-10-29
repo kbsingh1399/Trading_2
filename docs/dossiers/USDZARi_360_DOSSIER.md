@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDZAR
 **Canonical Key**: `USDZAR` | **Broker Instrument**: `USDZAR.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:42:48 IST` (`2026-10-29 21:12:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:45:50 IST` (`2026-10-29 21:15:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `16.61` | **Live Ask Quote**: `16.64` | **Mid Price**: `16.63`
-- **Spread Points**: `2790.00` | **Spread BPS**: `16.78 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `2716.00` | **Spread BPS**: `16.34 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `16.74` | Lower -3.00σ Band: `16.51`
-  * Upper +2.51σ Band: `16.72` | Lower -2.51σ Band: `16.54`
+  * Upper +2.51σ Band: `16.72` | Lower -2.51σ Band: `16.53`
   * Upper +2.01σ Band: `16.70` | Lower -2.01σ Band: `16.56`
   * Upper +2.00σ Band: `16.69` | Lower -2.00σ Band: `16.56`
   * Upper +1.28σ Band: `16.67` | Lower -1.28σ Band: `16.58`
