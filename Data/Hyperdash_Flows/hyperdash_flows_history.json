@@ -1,26 +1,6 @@
 [
   {
     "type": "WHALE_TRADE",
-    "coin": "BTC",
-    "side": "SELL",
-    "market_impact": "SELL_PRESSURE",
-    "notional_usd": 53810.83,
-    "distance_pct": null,
-    "duration_hours": null,
-    "rate_usd_per_min": null,
-    "price": 80711.0,
-    "wallet_address": "0x92cbb22a9b9fc01da9914c9b39ed904dd61b859c",
-    "asset_slug": "BTC",
-    "raw_text": "#BTC Whale SELL: 53.81K USD at 80711.0000 USD [API]",
-    "msg_id": "HL_TRADE_BTC_612350187482849",
-    "timestamp_epoch": 1793136588,
-    "time_label": "21:29",
-    "date_heading": "October 27",
-    "source": "HYPERLIQUID_L1_NATIVE_API",
-    "identity_basis": "NATIVE_TID"
-  },
-  {
-    "type": "WHALE_TRADE",
     "coin": "XRP",
     "side": "SELL",
     "market_impact": "SELL_PRESSURE",
@@ -199996,6 +199976,26 @@
     "timestamp_epoch": 1791380344,
     "time_label": "13:39",
     "date_heading": "October 07",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "BTC",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 45471.54,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 81079.0,
+    "wallet_address": "0xefe4c06b6d310978bead596e1798a4fc1d9d194b",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Whale BUY: 45.47K USD at 81079.0000 USD [API]",
+    "msg_id": "HL_TRADE_BTC_805926838976525",
+    "timestamp_epoch": 1793295358,
+    "time_label": "17:35",
+    "date_heading": "October 29",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
   }
