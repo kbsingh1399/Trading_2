@@ -14,24 +14,24 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,744.55 USD**
-- **Floating Equity**: **4,744.55 USD**
-- **Free Margin**: **4,744.55 USD**
+- **Floating Equity**: **4,744.61 USD**
+- **Free Margin**: **4,342.91 USD**
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
-- **Last Updated**: `2026-10-29 14:12:18 UTC`
+- **Last Updated**: `2026-10-29 14:14:53 UTC`
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (0 ACTIVE)
+## 🚀 2. LIVE RUNNING POSITIONS (1 ACTIVE)
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| - | NONE | - | - | - | - | - | - | 0.00 USD | Flat | No open positions. Capital 100% defended. |
+| **#19464650** | `BTCUSD.pi` | SELL | 0.01 | 80340.0 | 80334.0 | **80563.5** | 79663.5 | **+0.06 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (1 STAGED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 STAGED)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
 |---|---|---|---|---|---|---|---|
-| **#19464650** | `BTCUSD.pi` | SELL_LIMIT | 0.01 | **80340.0** | **80563.5** | 79663.5 | Resting passive maker order |
+| - | NONE | - | - | - | - | - | No resting limit orders. |

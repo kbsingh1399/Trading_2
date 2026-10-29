@@ -1,25 +1,32 @@
 {
-  "timestamp_utc": "2026-10-29 14:12:18 UTC",
+  "timestamp_utc": "2026-10-29 14:14:53 UTC",
   "balance_usd": 4744.55,
-  "equity_usd": 4744.55,
-  "free_margin_usd": 4744.55,
+  "equity_usd": 4744.61,
+  "free_margin_usd": 4342.91,
   "max_filled_positions": 15,
-  "filled_positions_count": 0,
-  "filled_slots_free": 15,
-  "resting_limits_count": 1,
+  "filled_positions_count": 1,
+  "filled_slots_free": 14,
+  "resting_limits_count": 0,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
-  "active_positions": [],
-  "resting_orders": [
+  "active_positions": [
     {
       "ticket": 19464650,
       "symbol": "BTCUSD.pi",
-      "type": "SELL_LIMIT",
+      "type": "SELL",
       "volume": 0.01,
-      "price": 80340.0,
+      "price_open": 80340.0,
+      "price_current": 80334.0,
       "sl": 80563.5,
-      "tp": 79663.5
+      "tp": 79663.5,
+      "gain_r": 0.027,
+      "ratchet_stage": 0,
+      "profit_usd": 0.06,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
     }
-  ]
+  ],
+  "resting_orders": []
 }
