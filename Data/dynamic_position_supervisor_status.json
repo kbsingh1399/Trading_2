@@ -1,8 +1,8 @@
 {
-  "timestamp_utc": "2026-10-29 00:31:02 UTC",
+  "timestamp_utc": "2026-10-29 00:34:24 UTC",
   "balance_usd": 4741.68,
-  "equity_usd": 4743.31,
-  "free_margin_usd": 3619.98,
+  "equity_usd": 4740.93,
+  "free_margin_usd": 3617.6,
   "max_filled_positions": 15,
   "filled_positions_count": 3,
   "filled_slots_free": 12,
@@ -17,15 +17,12 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 1.3993,
-      "price_current": 1.3997600000000001,
+      "price_current": 1.39962,
       "sl": 1.3978,
       "tp": 1.4027,
-      "gain_r": 0.307,
+      "gain_r": 0.213,
       "ratchet_stage": 0,
-      "profit_usd": 2.96,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 2.06
     },
     {
       "ticket": 19437065,
@@ -33,15 +30,12 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52575.34,
+      "price_current": 52583.84,
       "sl": 52585.68,
       "tp": 52298.0,
-      "gain_r": 0.22,
+      "gain_r": 0.162,
       "ratchet_stage": 0,
-      "profit_usd": 3.27,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": 2.42
     },
     {
       "ticket": 19437500,
@@ -49,15 +43,12 @@
       "type": "BUY",
       "volume": 0.08,
       "price_open": 1.5594000000000001,
-      "price_current": 1.5584799999999999,
+      "price_current": 1.55837,
       "sl": 1.5577999999999999,
       "tp": 1.5645,
-      "gain_r": -0.575,
+      "gain_r": -0.644,
       "ratchet_stage": 0,
-      "profit_usd": -5.26,
-      "decision": "LET_IT_RUN",
-      "is_valid_trade": true,
-      "audit_verdict": "VALID_DEVELOPING"
+      "profit_usd": -5.89
     }
   ],
   "resting_orders": [
@@ -181,6 +172,23 @@
     {
       "ticket": 19439187,
       "symbol": "NAS100.p",
+      "type": "BUY_LIMIT",
+      "volume": 0.01,
+      "price": 29460.0,
+      "sl": 29380.0,
+      "tp": 29650.0
+    },
+    {
+      "ticket": 19439188,
+      "symbol": "EURGBP.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.1,
+      "price": 0.8381,
+      "sl": 0.8388,
+      "tp": 0.8368
+    }
+  ]
+}",
       "type": "BUY_LIMIT",
       "volume": 0.01,
       "price": 29460.0,
