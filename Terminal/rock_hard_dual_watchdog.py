@@ -155,9 +155,25 @@ async def probe_zai() -> dict:
         const thinkingBtn = Array.from(document.querySelectorAll('button, div, span')).find(b => (b.innerText || '').trim().startsWith('Thinking'));
         const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn || Boolean(thinkingBtn);
         
-        const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
-        const lastProse = allChatMsgs.length > 0 ? allChatMsgs[allChatMsgs.length - 1] : null;
-        const chatText = lastProse ? (lastProse.innerText || '').trim() : '';
+        const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose, div.prose, .chat-assistant'));
+        let chatText = '';
+        for (let i = allChatMsgs.length - 1; i >= 0; i--) {
+            const t = (allChatMsgs[i].innerText || '').trim();
+            if (t.includes('Cycle_005') || t.includes('COUNCIL REPORT')) {
+                chatText = t;
+                break;
+            }
+        }
+        if (!chatText || chatText.length < 200) {
+            const body = document.body.innerText;
+            const rIdx = body.lastIndexOf('# [COUNCIL REPORT');
+            if (rIdx !== -1) {
+                chatText = body.substring(rIdx);
+            } else {
+                const cIdx = body.lastIndexOf('Cycle_005');
+                if (cIdx !== -1) chatText = body.substring(cIdx);
+            }
+        }
 
         let workspaceFileName = '';
         let workspaceFileText = '';
@@ -333,10 +349,11 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
         # Operator Mandate: Auto-refresh both tabs after 5 minutes if still waiting
         if (now - last_reload_time) >= RELOAD_INTERVAL_SEC:
             last_reload_time = now
-            print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing both tabs to prevent frontend DOM freeze...")
-            if not arena_done:
+            if not arena_done and not a_stat == "GENERATING":
+                print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing Arena tab...", flush=True)
                 await reload_cdp_tab("arena.ai")
-            if not zai_done:
+            if not zai_done and not z_stat == "GENERATING":
+                print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing Z.ai tab...", flush=True)
                 await reload_cdp_tab("chat.z.ai")
             await asyncio.sleep(2.0)
 
@@ -363,7 +380,7 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--cycle", required=True, help="Expected unique cycle ID")
-    parser.add_argument("--timeout", type=float, default=600.0)
+    parser.add_argument("--timeout", type=float, default=1800.0)
     parser.add_argument("--interval", type=float, default=2.0)
     args = parser.parse_args()
     
