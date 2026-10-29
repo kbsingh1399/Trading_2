@@ -14,42 +14,41 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,762.83 USD**
-- **Floating Equity**: **4,762.83 USD**
-- **Free Margin**: **4,762.83 USD**
-- **Margin Used**: **0.00 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit narrowed to: **-12.17 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit narrowed to: **-32.17 USD**)
-- **Active Running Positions**: **0 ACTIVE (100% Flat Cash)**
-- **Active Resting Pending Orders**: **6 LIVE PENDING MAKER LIMIT ORDERS**
+- **Floating Equity**: **4,760.27 USD**
+- **Free Margin**: **4,737.79 USD**
+- **Margin Used**: **22.48 USD**
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-14.73 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-34.73 USD**)
+- **Active Running Positions**: **1 ACTIVE (AUDUSD.pi Long)**
+- **Active Resting Pending Orders**: **5 LIVE PENDING MAKER LIMIT ORDERS**
 - **Total Contingent Downside Risk**: **42.87 USD** (Max per-ticket risk capped at <= 10.00 USD)
 - **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-29 20:52:00 UTC` (`2026-10-30 02:22:00 IST`)
+- **Last Synchronized (UTC)**: `2026-10-29 22:50:00 UTC` (`2026-10-30 04:20:00 IST`)
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (0 ACTIVE — 100% FLAT CASH)
+## 🚀 2. LIVE RUNNING POSITIONS (1 ACTIVE — TIER 0 DEFENSIVE)
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| - | NONE | - | - | - | - | - | - | 0.00 USD | Flat | **Book is 100% Cash Defense. Zero open risk.** |
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70238` | `0.70150` | `0.70570` | `-2.56 USD` | Initial Stop (-2.51σ Band) | **LET RUN. Sits at Asian Range Low / VAL support. Strong 5m CVD buying absorption (+83% delta) active.** |
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (6 LIVE BROKER TICKETS EXECUTED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (5 LIVE BROKER TICKETS EXECUTED)
 
 | Priority | Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Live Status & Forensic Liquidation Armor |
 |---|---|---|---|---|---|---|---|---|---|
-| **Resting #1** | `#19489155` | `BTCUSD.pi` | SELL_LIMIT | 0.01 lot | 81,084.00 | **81,680.00** | 80,180.00 | 5.96 USD | **LIVE_RESTING_PENDING** (SL placed +185 pts above 24H Short Max Pain 81,494.86 & +127 pts above 81,553 liq band) |
-| **Resting #2** | `#19489157` | `BNBUSD.p` | SELL_LIMIT | 0.05 lot | 753.30 | **761.50** | 743.50 | 0.41 USD | **LIVE_RESTING_PENDING** (SL placed +3.19 pts above 24H Short Max Pain 758.31 & +1.60 pts above 759.90 liq band) |
-| **Resting #3** | `#19489158` | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | 4040.50 | 4049.50 | 4018.00 | 9.00 USD | **LIVE_RESTING_PENDING** (Gold 0.20 bps spread, SL +3.12 pts clear of London High 4046.38 sweep zone) |
-| **Resting #4** | `#19489159` | `NAS100.p` | SELL_LIMIT | 0.01 lot | 29,535.00 | 29,620.00 | 29,320.00 | 8.50 USD | **LIVE_RESTING_PENDING** (Nasdaq 0.34 bps spread, SL +13.51 pts beyond London High 29,606.49 sweep peak) |
-| **Resting #5** | `#19489160` | `DJ30.p` | SELL_LIMIT | 0.01 lot | 52,638.00 | 52,732.00 | 52,402.00 | 9.40 USD | **LIVE_RESTING_PENDING** (Dow 30 0.23 bps spread, SL +136.66 pts above VAH, low-volume node rejection) |
-| **Resting #6** | `#19490051` | `AUDUSD.pi` | BUY_LIMIT | 0.08 lot | 0.70270 | 0.70150 | 0.70570 | 9.60 USD | **LIVE_RESTING_PENDING** (0.14 bps spread, SL -3.0 pips below Asian Low 0.70180 retail sweep pocket) |
+| **Resting #1** | `#19489155` | `BTCUSD.pi` | SELL_LIMIT | 0.01 lot | 81,084.00 | **81,680.00** | 80,180.00 | 5.96 USD | **LIVE_RESTING_PENDING** (SL placed +185 pts above 24H Short Max Pain 81,494.86 & +127 pts above 81,553 48H peak. Leans against PD_VAH 81,003.11) |
+| **Resting #2** | `#19489157` | `BNBUSD.p` | SELL_LIMIT | 0.05 lot | 753.30 | **761.50** | 743.50 | 0.41 USD | **LIVE_RESTING_PENDING** (SL placed +3.01 pts above 24H Short Max Pain 758.49. Aligned with Weekly VAH 751.13 and PD_VAH 754.57) |
+| **Resting #3** | `#19489158` | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | 4,040.50 | **4,049.50** | 4,018.00 | 9.00 USD | **LIVE_RESTING_PENDING** (SL leans against 4,050.00 institutional ask wall. Fades PD_VAH 4,039.67 sweep exhaustion. Purged to raw +2.5R target) |
+| **Resting #4** | `#19489159` | `NAS100.p` | SELL_LIMIT | 0.01 lot | 29,535.00 | **29,620.00** | 29,320.00 | 8.50 USD | **LIVE_RESTING_PENDING** (SL padded by 85 index points. Leans against Low Volume Node above PD_VAH 29,520.00. Risk strictly <= 10.00 USD) |
+| **Resting #5** | `#19489160` | `DJ30.p` | SELL_LIMIT | 0.01 lot | 52,638.00 | **52,732.00** | 52,402.00 | 9.40 USD | **LIVE_RESTING_PENDING** (SL padded by 94 index points. Leans against exhaustion node above PD_VAH 52,579.18. Risk strictly <= 10.00 USD) |
 
 ---
 
-## 📈 4. RECENT CLOSED TRADES & SESSION EQUITY LOG
-- **Ticket #19489156 (`USDJPY.pi` SELL 0.13 lot @ 157.970)**: Filled at VAH sweep (157.970) and **HIT TAKE PROFIT at 157.710 (+26.0 pips)** on `2026-10-29 20:10 UTC` for **+21.43 USD net profit** (+2.50R statistical win)!
-- **Ticket #19489161 (`USWTI.p` BUY_LIMIT 0.01 lot @ 101.550)**: Cancelled and purged from MT5 on `2026-10-29 20:13 UTC` per unanimous Tri-Council finding (spread widened to 5.42 bps > 5.0 bps cap; VR(4) = 0.9673 random walk).
-- **Ticket #19464650 (`BTCUSD.pi` SELL 0.01 @ 80,340.00, SL 80,563.50)**: Closed for -2.24 USD.
-- **Account Solvency Summary**: Realized Balance: **4,762.83 USD** | Floating Equity: **4,762.83 USD** | Operating Buffer Deficit narrowed by +20.52 USD!
+## 🛡️ 4. ANTI-RETRACEMENT PROFIT RATCHET PROTOCOL
+- **Tier 1 (BE Lock)**: At `+0.80R` gain ($0.70366$ on AUDUSD.pi), move Stop Loss to Entry `+0.15R` ($0.70288$).
+- **Tier 2 (Profit Lock)**: At `+1.50R` gain ($0.70450$ on AUDUSD.pi), move Stop Loss to Entry `+0.80R` ($0.70366$).
+- **Tier 3 (Terminal Exit)**: At `+2.50R` target ($0.70570$ on AUDUSD.pi), close position for full statistical profit extraction.
+- **Time Decay Rule**: If trade produces `< +0.20R` within 24 bars (6 hours), close at market.
