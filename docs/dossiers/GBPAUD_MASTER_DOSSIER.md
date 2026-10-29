@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPAUD
 **Canonical Key**: `GBPAUD` | **Broker Instrument**: `GBPAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:22:53 IST` (`2026-10-29 22:52:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:25:55 IST` (`2026-10-29 22:55:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.91` | **Live Ask Quote**: `1.91` | **Mid Price**: `1.91`
-- **Spread Points**: `10.00` | **Spread BPS**: `0.52 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `11.00` | **Spread BPS**: `0.58 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.91` (Distance: `+0.02%`)
-  * Point of Control (POC) = `1.90` (Distance: `+0.06%`)
-  * Value Area Low (VAL) = `1.90` (Distance: `+0.13%`)
+  * Value Area High (VAH) = `1.91` (Distance: `+0.06%`)
+  * Point of Control (POC) = `1.90` (Distance: `+0.14%`)
+  * Value Area Low (VAL) = `1.90` (Distance: `+0.22%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.90` | POC=`1.90` | VAL=`1.89`
@@ -56,7 +56,7 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.91` | Low=`1.90`
   * London Session (08:00-16:00 UTC): High=`1.91` | Low=`1.90`
-  * New York Session (13:00-21:00 UTC): High=`1.92` | Low=`1.89`
+  * New York Session (13:00-21:00 UTC): High=`1.92` | Low=`1.90`
   * Initial Balance (First Hour): IB High=`1.91` | IB Low=`1.90`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.90` - `1.91`

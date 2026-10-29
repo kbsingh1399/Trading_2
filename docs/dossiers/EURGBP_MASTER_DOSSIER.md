@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURGBP
 **Canonical Key**: `EURGBP` | **Broker Instrument**: `EURGBP.pi` | **Asset Class**: `FX Cross`
-**Timestamp**: `2026-10-30 04:22:53 IST` (`2026-10-29 22:52:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:25:55 IST` (`2026-10-29 22:55:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8357` (Distance: `+0.01%`)
+  * Value Area High (VAH) = `0.8357` (Distance: `+0.02%`)
   * Point of Control (POC) = `0.8356` (Distance: `+0.03%`)
-  * Value Area Low (VAL) = `0.8352` (Distance: `+0.08%`)
+  * Value Area Low (VAL) = `0.8351` (Distance: `+0.09%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8372` | POC=`0.8366` | VAL=`0.8355`
@@ -54,9 +54,9 @@
   * Monday Range Blueprint: High=`0.8402` | Mid=`0.8387` | Low=`0.8373`
   * Developing Weekly Value Area: Weekly VAH=`0.8384` | Weekly POC=`0.8367` | Weekly VAL=`0.8361`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.8358` | Low=`0.8349`
+  * Asian Session (00:00-08:00 UTC): High=`0.8359` | Low=`0.8349`
   * London Session (08:00-16:00 UTC): High=`0.8392` | Low=`0.8325`
-  * New York Session (13:00-21:00 UTC): High=`0.8409` | Low=`0.8308`
+  * New York Session (13:00-21:00 UTC): High=`0.8408` | Low=`0.8308`
   * Initial Balance (First Hour): IB High=`0.8383` | IB Low=`0.8333`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.8325` - `0.8392`
@@ -267,8 +267,8 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.8352` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.8348` (Risk Distance: `0.000406` pts)
+  * Execution Entry: `0.8351` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.8347` (Risk Distance: `0.000406` pts)
   * +2.5R Take Profit: `0.8362`
   * Mathematical Lot Sizing: **`0.24 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

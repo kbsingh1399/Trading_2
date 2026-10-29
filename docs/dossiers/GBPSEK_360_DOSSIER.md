@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPSEK
 **Canonical Key**: `GBPSEK` | **Broker Instrument**: `GBPSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:22:53 IST` (`2026-10-29 22:52:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:25:55 IST` (`2026-10-29 22:55:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `13.17` | **Live Ask Quote**: `13.18` | **Mid Price**: `13.17`
-- **Spread Points**: `795.00` | **Spread BPS**: `6.04 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `785.00` | **Spread BPS**: `5.96 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`13.17` | EMA-20=`13.17` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`13.17` (Slope: `+0.0000`) | EMA-100=`13.17`
   * Institutional Anchors: EMA-144=`13.17` | EMA-200=`13.17` (Slope: `+0.0000`) | EMA-233=`13.17`
-- **Range Boundaries**: 24H High=`13.30` | 24H Low=`13.04` | Weekly High=`13.44` | Weekly Low=`12.91`
+- **Range Boundaries**: 24H High=`13.30` | 24H Low=`13.04` | Weekly High=`13.43` | Weekly Low=`12.91`
 
 ---
 

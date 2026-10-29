@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAUCNH
 **Canonical Key**: `GAUCNH` | **Broker Instrument**: `GAUCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:22:53 IST` (`2026-10-29 22:52:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:25:55 IST` (`2026-10-29 22:55:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `860.53` | **Live Ask Quote**: `860.87` | **Mid Price**: `860.70`
-- **Spread Points**: `340.00` | **Spread BPS**: `3.95 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `861.32` | **Live Ask Quote**: `861.68` | **Mid Price**: `861.50`
+- **Spread Points**: `358.00` | **Spread BPS**: `4.16 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `859.80` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`864.14` | POC=`860.70` | VAL=`857.25`
-  * Prior Day Extremes: PDH=`865.86` | PDL=`855.53` | PDC=`860.70`
-  * Monday Range Blueprint: High=`865.00` | Mid=`860.70` | Low=`856.39`
-  * Developing Weekly Value Area: Weekly VAH=`867.58` | Weekly POC=`860.70` | Weekly VAL=`853.81`
+  * Prior Day Value Area: VAH=`864.95` | POC=`861.50` | VAL=`858.06`
+  * Prior Day Extremes: PDH=`866.67` | PDL=`856.33` | PDC=`861.50`
+  * Monday Range Blueprint: High=`865.81` | Mid=`861.50` | Low=`857.20`
+  * Developing Weekly Value Area: Weekly VAH=`868.40` | Weekly POC=`861.50` | Weekly VAL=`854.61`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`862.42` | Low=`858.97`
-  * London Session (08:00-16:00 UTC): High=`864.14` | Low=`857.25`
-  * New York Session (13:00-21:00 UTC): High=`865.86` | Low=`855.53`
-  * Initial Balance (First Hour): IB High=`863.28` | IB Low=`858.11`
+  * Asian Session (00:00-08:00 UTC): High=`863.23` | Low=`859.78`
+  * London Session (08:00-16:00 UTC): High=`864.95` | Low=`858.06`
+  * New York Session (13:00-21:00 UTC): High=`866.67` | Low=`856.33`
+  * Initial Balance (First Hour): IB High=`864.09` | IB Low=`858.92`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `857.25` - `864.14`
-  * Optimal Trade Entry (OTE 0.705): `862.42`
-  * Structural Invalidation Anchor (0.786): `867.58`
+  * Golden Pocket Zone (0.618 - 0.650): `858.06` - `864.95`
+  * Optimal Trade Entry (OTE 0.705): `863.23`
+  * Structural Invalidation Anchor (0.786): `868.40`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `859.80` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `857.64` (Risk Distance: `2.16` pts)
-  * +2.5R Take Profit: `865.20`
-  * Mathematical Lot Sizing: **`4.62 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `857.61` (Risk Distance: `2.19` pts)
+  * +2.5R Take Profit: `865.27`
+  * Mathematical Lot Sizing: **`4.57 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `864.24` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `866.40` (Risk Distance: `2.16` pts)
-  * +2.5R Take Profit: `858.84`
-  * Mathematical Lot Sizing: **`4.62 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `866.43` (Risk Distance: `2.19` pts)
+  * +2.5R Take Profit: `858.77`
+  * Mathematical Lot Sizing: **`4.57 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`867.58`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`868.40`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
