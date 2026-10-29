@@ -2,7 +2,7 @@
   "feed_name": "17_Orderbook",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 615,
+  "row_count": 410,
   "column_count": 14,
   "columns": [
     "sr_no",
@@ -20,9 +20,9 @@
     "wallet_address",
     "explorer_url"
   ],
-  "byte_size": 31110,
-  "timestamp_ist": "2026-10-29 06:09:38 IST",
-  "timestamp_utc": "2026-10-29 00:39:38 UTC",
-  "epoch_utc": 1793234378.910814,
-  "write_duration_ms": 379.77
+  "byte_size": 22463,
+  "timestamp_ist": "2026-10-29 06:13:27 IST",
+  "timestamp_utc": "2026-10-29 00:43:27 UTC",
+  "epoch_utc": 1793234607.990087,
+  "write_duration_ms": 392.32
 }

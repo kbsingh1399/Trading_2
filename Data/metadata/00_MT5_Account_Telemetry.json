@@ -2,7 +2,7 @@
   "feed_name": "00_MT5_Account_Telemetry",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 165,
+  "row_count": 127,
   "column_count": 13,
   "columns": [
     "Category",
@@ -19,9 +19,9 @@
     "Pillar_1_Clearance",
     "Timestamp_IST"
   ],
-  "byte_size": 11902,
-  "timestamp_ist": "2026-10-29 06:09:38 IST",
-  "timestamp_utc": "2026-10-29 00:39:38 UTC",
-  "epoch_utc": 1793234378.910814,
-  "write_duration_ms": 541.78
+  "byte_size": 9996,
+  "timestamp_ist": "2026-10-29 06:13:27 IST",
+  "timestamp_utc": "2026-10-29 00:43:27 UTC",
+  "epoch_utc": 1793234607.990087,
+  "write_duration_ms": 997.83
 }
