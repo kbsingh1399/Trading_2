@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:05:06 IST` (`2026-10-29 18:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:08:08 IST` (`2026-10-29 18:38:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0020` | **Live Ask Quote**: `0.0021` | **Mid Price**: `0.0020`
-- **Spread Points**: `11.00` | **Spread BPS**: `545.91 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0019` | **Live Ask Quote**: `0.0021` | **Mid Price**: `0.0020`
+- **Spread Points**: `11.00` | **Spread BPS**: `548.63 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`0.0020` | EMA-20=`0.0020` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0020` (Slope: `+0.0000`) | EMA-100=`0.0020`
   * Institutional Anchors: EMA-144=`0.0020` | EMA-200=`0.0020` (Slope: `+0.0000`) | EMA-233=`0.0020`
-- **Range Boundaries**: 24H High=`0.0020` | 24H Low=`0.0020` | Weekly High=`0.0021` | Weekly Low=`0.0020`
+- **Range Boundaries**: 24H High=`0.0020` | 24H Low=`0.0020` | Weekly High=`0.0020` | Weekly Low=`0.0020`
 
 ---
 

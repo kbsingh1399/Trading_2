@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZARJPY
 **Canonical Key**: `ZARJPY` | **Broker Instrument**: `ZARJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:05:06 IST` (`2026-10-29 18:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:08:08 IST` (`2026-10-29 18:38:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `9.49` | **Live Ask Quote**: `9.50` | **Mid Price**: `9.49`
-- **Spread Points**: `365.00` | **Spread BPS**: `3.84 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `9.49` | **Live Ask Quote**: `9.50` | **Mid Price**: `9.50`
+- **Spread Points**: `371.00` | **Spread BPS**: `3.91 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `9.49` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `9.50` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `9.56` | Lower -3.00σ Band: `9.43`
   * Upper +2.51σ Band: `9.55` | Lower -2.51σ Band: `9.44`
-  * Upper +2.01σ Band: `9.53` | Lower -2.01σ Band: `9.45`
+  * Upper +2.01σ Band: `9.54` | Lower -2.01σ Band: `9.46`
   * Upper +2.00σ Band: `9.53` | Lower -2.00σ Band: `9.46`
   * Upper +1.28σ Band: `9.52` | Lower -1.28σ Band: `9.47`
   * Upper +1.00σ Band: `9.51` | Lower -1.00σ Band: `9.48`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`9.49` | EMA-20=`9.49` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`9.49` (Slope: `+0.0000`) | EMA-100=`9.49`
-  * Institutional Anchors: EMA-144=`9.49` | EMA-200=`9.49` (Slope: `+0.0000`) | EMA-233=`9.49`
-- **Range Boundaries**: 24H High=`9.59` | 24H Low=`9.40` | Weekly High=`9.68` | Weekly Low=`9.30`
+  * Fast EMA Array: EMA-9=`9.50` | EMA-20=`9.50` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`9.50` (Slope: `+0.0000`) | EMA-100=`9.50`
+  * Institutional Anchors: EMA-144=`9.50` | EMA-200=`9.50` (Slope: `+0.0000`) | EMA-233=`9.50`
+- **Range Boundaries**: 24H High=`9.59` | 24H Low=`9.40` | Weekly High=`9.69` | Weekly Low=`9.31`
 
 ---
 
@@ -45,14 +45,14 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `9.52` (Distance: `+0.00%`)
-  * Point of Control (POC) = `9.49` (Distance: `+0.00%`)
+  * Point of Control (POC) = `9.50` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `9.47` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`9.53` | POC=`9.49` | VAL=`9.46`
-  * Prior Day Extremes: PDH=`9.55` | PDL=`9.44` | PDC=`9.49`
-  * Monday Range Blueprint: High=`9.54` | Mid=`9.49` | Low=`9.45`
-  * Developing Weekly Value Area: Weekly VAH=`9.57` | Weekly POC=`9.49` | Weekly VAL=`9.42`
+  * Prior Day Value Area: VAH=`9.53` | POC=`9.50` | VAL=`9.46`
+  * Prior Day Extremes: PDH=`9.55` | PDL=`9.44` | PDC=`9.50`
+  * Monday Range Blueprint: High=`9.54` | Mid=`9.50` | Low=`9.45`
+  * Developing Weekly Value Area: Weekly VAH=`9.57` | Weekly POC=`9.50` | Weekly VAL=`9.42`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.51` | Low=`9.48`
   * London Session (08:00-16:00 UTC): High=`9.53` | Low=`9.46`

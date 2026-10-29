@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: TRX
 **Canonical Key**: `TRX` | **Broker Instrument**: `TRXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 00:05:05 IST` (`2026-10-29 18:35:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:08:07 IST` (`2026-10-29 18:38:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.3307` | **Live Ask Quote**: `0.3319` | **Mid Price**: `0.3313`
-- **Spread Points**: `12.00` | **Spread BPS**: `36.22 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.3306` | **Live Ask Quote**: `0.3318` | **Mid Price**: `0.3312`
+- **Spread Points**: `12.00` | **Spread BPS**: `36.23 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,31 +23,31 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.3302` | VWAP Z-Score: `+0.50` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000365` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `47.83` (State: `NEUTRAL`)
+  * Session VWAP: `0.3312` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.3325` | Lower -3.00σ Band: `0.3279`
-  * Upper +2.51σ Band: `0.3321` | Lower -2.51σ Band: `0.3283`
-  * Upper +2.01σ Band: `0.3318` | Lower -2.01σ Band: `0.3287`
-  * Upper +2.00σ Band: `0.3317` | Lower -2.00σ Band: `0.3287`
-  * Upper +1.28σ Band: `0.3312` | Lower -1.28σ Band: `0.3292`
-  * Upper +1.00σ Band: `0.3310` | Lower -1.00σ Band: `0.3295`
+  * Upper +3.00σ Band: `0.3335` | Lower -3.00σ Band: `0.3289`
+  * Upper +2.51σ Band: `0.3330` | Lower -2.51σ Band: `0.3294`
+  * Upper +2.01σ Band: `0.3326` | Lower -2.01σ Band: `0.3298`
+  * Upper +2.00σ Band: `0.3325` | Lower -2.00σ Band: `0.3299`
+  * Upper +1.28σ Band: `0.3321` | Lower -1.28σ Band: `0.3303`
+  * Upper +1.00σ Band: `0.3319` | Lower -1.00σ Band: `0.3305`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.3306` | EMA-20=`0.3307` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.3306` (Slope: `+0.0000`) | EMA-100=`0.3304`
-  * Institutional Anchors: EMA-144=`0.3302` | EMA-200=`0.3299` (Slope: `+0.0265`) | EMA-233=`0.3299`
-- **Range Boundaries**: 24H High=`0.3313` | 24H Low=`0.3285` | Weekly High=`0.3319` | Weekly Low=`0.3266`
+  * Fast EMA Array: EMA-9=`0.3312` | EMA-20=`0.3312` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.3312` (Slope: `+0.0000`) | EMA-100=`0.3312`
+  * Institutional Anchors: EMA-144=`0.3312` | EMA-200=`0.3312` (Slope: `+0.0000`) | EMA-233=`0.3312`
+- **Range Boundaries**: 24H High=`0.3345` | 24H Low=`0.3279` | Weekly High=`0.3378` | Weekly Low=`0.3246`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.3312` (Distance: `+0.03%`)
-  * Point of Control (POC) = `0.3307` (Distance: `+0.18%`)
-  * Value Area Low (VAL) = `0.3294` (Distance: `+0.58%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `0.3312` (Distance: `-0.02%`)
+  * Point of Control (POC) = `0.3307` (Distance: `+0.14%`)
+  * Value Area Low (VAL) = `0.3294` (Distance: `+0.53%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.3314` | POC=`0.3309` | VAL=`0.3304`
   * Prior Day Extremes: PDH=`0.3319` | PDL=`0.3288` | PDC=`0.3289`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.3313` | Low=`0.3301`
   * Initial Balance (First Hour): IB High=`0.3311` | IB Low=`0.3303`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.3300` - `0.3326`
-  * Optimal Trade Entry (OTE 0.705): `0.3320`
-  * Structural Invalidation Anchor (0.786): `0.3340`
+  * Golden Pocket Zone (0.618 - 0.650): `0.3299` - `0.3325`
+  * Optimal Trade Entry (OTE 0.705): `0.3319`
+  * Structural Invalidation Anchor (0.786): `0.3338`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.3312` | `0.3314` | `0.3312` | `0.3312` | `327,836` | 108,603.96 USD | 49,824.44 USD | `+45.88%` | 2,112,933.19 USD | `+1.36` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `0.3312` | `0.3313` | `0.3312` | `0.3313` | `348,122` | 115,312.89 USD | 56,030.30 USD | `+48.59%` | 2,168,963.49 USD | `+1.36` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `0.3313` | `0.3313` | `0.3313` | `0.3313` | `9,720` | 3,220.50 USD | 1,221.31 USD | `+37.92%` | 2,170,184.80 USD | `+0.01` | **`BULLISH`** | `DELTA ALIGNED` |
-| `15m` | `0.3313` | `0.3313` | `0.3311` | `0.3312` | `777,819` | 257,613.17 USD | 1,993.62 USD | `+0.77%` | 2,087,903.29 USD | `-0.04` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `15m` | `0.3312` | `0.3312` | `0.3311` | `0.3312` | `461,221` | 152,723.77 USD | -24,794.54 USD | `-16.23%` | 2,063,108.75 USD | `-0.23` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.3312` | `0.3314` | `0.3312` | `0.3313` | `685,966` | 227,232.77 USD | 107,171.47 USD | `+47.16%` | 2,170,280.23 USD | `+0.87` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `0.3313` | `0.3313` | `0.3313` | `0.3313` | `53,738` | 17,803.10 USD | -8,480.85 USD | `-47.64%` | 2,111,616.52 USD | `-0.21` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.3313` | `0.3314` | `0.3312` | `0.3313` | `652,092` | 216,068.43 USD | 107,124.03 USD | `+49.58%` | 2,218,740.55 USD | `+2.13` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `0.3313` | `0.3313` | `0.3312` | `0.3312` | `29,641` | 9,819.36 USD | -7,099.41 USD | `-72.30%` | 2,211,641.14 USD | `-0.29` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `0.3312` | `0.3312` | `0.3311` | `0.3312` | `461,221` | 152,723.77 USD | -24,794.54 USD | `-16.23%` | 1,952,324.44 USD | `-0.23` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `0.3312` | `0.3314` | `0.3312` | `0.3313` | `729,696` | 241,719.94 USD | 97,373.89 USD | `+40.28%` | 2,049,698.33 USD | `+0.80` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.3313` | `0.3314` | `0.3312` | `0.3312` | `681,733` | 225,887.79 USD | 100,024.62 USD | `+44.28%` | 2,149,722.95 USD | `+0.83` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `1h` | `0.3314` | `0.3316` | `0.3311` | `0.3311` | `3,106,966` | 1,029,390.94 USD | -31,067.74 USD | `-3.02%` | 2,031,724.83 USD | `-0.64` | **`BEARISH`** | `NEUTRAL CHOP` |
 | `1h` | `0.3311` | `0.3313` | `0.3310` | `0.3312` | `3,301,362` | 1,093,342.85 USD | -39,208.85 USD | `-3.59%` | 1,992,515.98 USD | `-0.63` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `1h` | `0.3312` | `0.3314` | `0.3311` | `0.3313` | `1,146,899` | 379,861.11 USD | 82,281.51 USD | `+21.66%` | 2,074,797.49 USD | `-0.04` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `1h` | `0.3312` | `0.3314` | `0.3311` | `0.3312` | `1,872,650` | 620,331.50 USD | 172,603.97 USD | `+27.82%` | 2,165,119.95 USD | `+0.35` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.3311` | `0.3316` | `0.3311` | `0.3315` | `11,939,433` | 3,956,492.73 USD | 16,254.19 USD | `+0.41%` | 2,010,591.01 USD | `-1.70` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.3315` | `0.3318` | `0.3306` | `0.3314` | `23,511,075` | 7,789,850.35 USD | 369,308.17 USD | `+4.74%` | 2,379,899.18 USD | `-0.41` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3313` | `7,555,227` | 2,502,594.90 USD | 12,004.92 USD | `+0.48%` | 2,391,904.10 USD | `-1.31` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3312` | `8,280,875` | 2,743,031.17 USD | 102,361.50 USD | `+3.73%` | 2,482,260.68 USD | `-1.13` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `4h` | `0.3296` | `0.3308` | `0.3290` | `0.3307` | `23,140,787` | 7,631,473.08 USD | 600,887.06 USD | `+7.87%` | 1,347,651.40 USD | `-1.00` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `0.3307` | `0.3316` | `0.3306` | `0.3311` | `18,393,472` | 6,092,518.66 USD | 646,685.42 USD | `+10.61%` | 1,994,336.82 USD | `-0.30` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `0.3311` | `0.3316` | `0.3311` | `0.3315` | `11,939,433` | 3,956,492.73 USD | 16,254.19 USD | `+0.41%` | 2,010,591.01 USD | `-1.70` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.3315` | `0.3318` | `0.3306` | `0.3314` | `23,511,075` | 7,789,850.35 USD | 369,308.17 USD | `+4.74%` | 2,379,899.18 USD | `-0.41` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3313` | `7,555,227` | 2,502,594.90 USD | 12,004.92 USD | `+0.48%` | 2,391,904.10 USD | `-1.31` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `4h` | `0.3314` | `0.3316` | `0.3310` | `0.3312` | `8,280,875` | 2,743,031.17 USD | 102,361.50 USD | `+3.73%` | 2,482,260.68 USD | `-1.13` | **`BULLISH`** | `BULLISH ABSORPTION` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -101,7 +101,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`0.3313`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`0.3312`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -111,12 +111,12 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-29 23:55:43 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 00:05:55 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1645` | `0xeadc...9d55` | `LONG` | 1,325,560.00 USD | `4,000,000.00` | `0.3421` | `0.3314` | `0.000000` | -42,918.09 USD | `-3.24%` | `10X Cross` |
+| `1643` | `0xeadc...9d55` | `LONG` | 1,325,480.00 USD | `4,000,000.00` | `0.3421` | `0.3314` | `0.000000` | -42,998.09 USD | `-3.24%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -898,81 +898,81 @@
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| `15M` | `TRX` | `58.33%` | `41.67%` | `1.40` | 798,940.00 USD |
-| `15M` | `Binance` | `75.79%` | `24.21%` | `3.13` | 295,270.00 USD |
-| `15M` | `OKX` | `64.51%` | `35.49%` | `1.82` | 46,920.00 USD |
-| `15M` | `Bybit` | `78.12%` | `21.88%` | `3.57` | 22,500.00 USD |
-| `15M` | `KuCoin` | `53.92%` | `46.08%` | `1.17` | 18,180.00 USD |
-| `15M` | `Gate` | `59.01%` | `40.99%` | `1.44` | 18,760.00 USD |
-| `15M` | `Bitget` | `96.5%` | `3.5%` | `27.57` | 27,170.00 USD |
-| `15M` | `BingX` | `51.18%` | `48.82%` | `1.05` | 34,210.00 USD |
-| `15M` | `MEXC` | `34.33%` | `65.67%` | `0.52` | 6,720.00 USD |
-| `15M` | `Bitunix` | `74.49%` | `25.51%` | `2.92` | 13,830.00 USD |
-| `15M` | `Hyperliquid` | `88.37%` | `11.63%` | `7.60` | 2,200.00 USD |
+| `15M` | `TRX` | `61.10%` | `38.90%` | `1.57` | 8,820,000.00 USD |
+| `15M` | `Binance` | `72.4%` | `27.6%` | `2.62` | 2,820,000.00 USD |
+| `15M` | `OKX` | `60.89%` | `39.11%` | `1.56` | 714,600.00 USD |
+| `15M` | `Bybit` | `81.54%` | `18.46%` | `4.42` | 629,550.00 USD |
+| `15M` | `KuCoin` | `49.07%` | `50.93%` | `0.96` | 85,570.00 USD |
+| `15M` | `Gate` | `54.37%` | `45.63%` | `1.19` | 401,630.00 USD |
+| `15M` | `Bitget` | `90.16%` | `9.84%` | `9.16` | 404,480.00 USD |
+| `15M` | `BingX` | `51.3%` | `48.7%` | `1.05` | 492,010.00 USD |
+| `15M` | `MEXC` | `52.35%` | `47.65%` | `1.10` | 1,290,000.00 USD |
+| `15M` | `Bitunix` | `70.72%` | `29.28%` | `2.42` | 222,820.00 USD |
+| `15M` | `Hyperliquid` | `85.04%` | `14.96%` | `5.68` | 222,510.00 USD |
 | `15M` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `LBank` | `50.14%` | `49.86%` | `1.01` | 175,770.00 USD |
+| `15M` | `LBank` | `49.86%` | `50.14%` | `0.99` | 1,330,000.00 USD |
 | `15M` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `WhiteBIT` | `16.94%` | `83.06%` | `0.20` | 120,970.00 USD |
-| `15M` | `HTX` | `43.58%` | `56.42%` | `0.77` | 14,730.00 USD |
+| `15M` | `WhiteBIT` | `20.51%` | `79.49%` | `0.26` | 115,100.00 USD |
+| `15M` | `HTX` | `56.75%` | `43.25%` | `1.31` | 21,210.00 USD |
 | `15M` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Kraken` | `0%` | `100%` | `0.00` | 574.60 USD |
-| `15M` | `Aster` | `19.74%` | `80.26%` | `0.25` | 996.79 USD |
+| `15M` | `Kraken` | `14.59%` | `85.41%` | `0.17` | 52,950.00 USD |
+| `15M` | `Aster` | `44.33%` | `55.67%` | `0.80` | 162.84 USD |
 | `15M` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Lighter` | `0%` | `100%` | `0.00` | 148.39 USD |
-| `15M` | `Whale Positions` | `75.79%` | `24.21%` | `3.13` | 295,270.00 USD |
-| `15M` | `Global Accounts` | `58.33%` | `41.67%` | `1.40` | 798,940.00 USD |
-| `1H` | `TRX` | `47.55%` | `52.45%` | `0.91` | 2,710,000.00 USD |
-| `1H` | `Binance` | `57.2%` | `42.8%` | `1.34` | 990,650.00 USD |
-| `1H` | `OKX` | `53.4%` | `46.6%` | `1.15` | 148,120.00 USD |
-| `1H` | `Bybit` | `68.34%` | `31.66%` | `2.16` | 90,330.00 USD |
-| `1H` | `KuCoin` | `52.5%` | `47.5%` | `1.11` | 65,680.00 USD |
-| `1H` | `Gate` | `51.29%` | `48.71%` | `1.05` | 72,030.00 USD |
-| `1H` | `Bitget` | `62.95%` | `37.05%` | `1.70` | 60,110.00 USD |
-| `1H` | `BingX` | `51.91%` | `48.09%` | `1.08` | 127,040.00 USD |
-| `1H` | `MEXC` | `35.74%` | `64.26%` | `0.56` | 24,060.00 USD |
-| `1H` | `Bitunix` | `54.52%` | `45.48%` | `1.20` | 31,990.00 USD |
-| `1H` | `Hyperliquid` | `34.4%` | `65.6%` | `0.52` | 58,470.00 USD |
+| `15M` | `Lighter` | `0%` | `100%` | `0.00` | 3,160.00 USD |
+| `15M` | `Whale Positions` | `72.4%` | `27.6%` | `2.62` | 2,820,000.00 USD |
+| `15M` | `Global Accounts` | `61.10%` | `38.90%` | `1.57` | 8,820,000.00 USD |
+| `1H` | `TRX` | `49.37%` | `50.63%` | `0.98` | 2,960,000.00 USD |
+| `1H` | `Binance` | `58.9%` | `41.1%` | `1.43` | 1,140,000.00 USD |
+| `1H` | `OKX` | `54.37%` | `45.63%` | `1.19` | 169,570.00 USD |
+| `1H` | `Bybit` | `71.52%` | `28.48%` | `2.51` | 142,650.00 USD |
+| `1H` | `KuCoin` | `53.96%` | `46.04%` | `1.17` | 61,510.00 USD |
+| `1H` | `Gate` | `47.03%` | `52.97%` | `0.89` | 68,890.00 USD |
+| `1H` | `Bitget` | `58.82%` | `41.18%` | `1.43` | 59,550.00 USD |
+| `1H` | `BingX` | `51.31%` | `48.69%` | `1.05` | 126,930.00 USD |
+| `1H` | `MEXC` | `41.54%` | `58.46%` | `0.71` | 18,390.00 USD |
+| `1H` | `Bitunix` | `56.2%` | `43.8%` | `1.28` | 35,110.00 USD |
+| `1H` | `Hyperliquid` | `35.58%` | `64.42%` | `0.55` | 62,120.00 USD |
 | `1H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `LBank` | `50.11%` | `49.89%` | `1.00` | 575,440.00 USD |
+| `1H` | `LBank` | `50.04%` | `49.96%` | `1.00` | 599,060.00 USD |
 | `1H` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `WhiteBIT` | `5.04%` | `94.96%` | `0.05` | 388,860.00 USD |
-| `1H` | `HTX` | `51.22%` | `48.78%` | `1.05` | 47,190.00 USD |
+| `1H` | `WhiteBIT` | `6.28%` | `93.72%` | `0.07` | 393,050.00 USD |
+| `1H` | `HTX` | `55.88%` | `44.12%` | `1.27` | 46,430.00 USD |
 | `1H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `1H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `1H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `Kraken` | `84.58%` | `15.42%` | `5.49` | 18,950.00 USD |
-| `1H` | `Aster` | `22.54%` | `77.46%` | `0.29` | 1,520.00 USD |
+| `1H` | `Kraken` | `82.53%` | `17.47%` | `4.72` | 17,520.00 USD |
+| `1H` | `Aster` | `25.07%` | `74.93%` | `0.33` | 1,910.00 USD |
 | `1H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `1H` | `Lighter` | `93.27%` | `6.73%` | `13.86` | 15,100.00 USD |
-| `1H` | `Whale Positions` | `57.2%` | `42.8%` | `1.34` | 990,650.00 USD |
-| `1H` | `Global Accounts` | `47.55%` | `52.45%` | `0.91` | 2,710,000.00 USD |
-| `4H` | `TRX` | `46.00%` | `54.00%` | `0.85` | 13,370,000.00 USD |
-| `4H` | `Binance` | `51.82%` | `48.18%` | `1.08` | 4,960,000.00 USD |
-| `4H` | `OKX` | `47.31%` | `52.69%` | `0.90` | 844,640.00 USD |
-| `4H` | `Bybit` | `46.11%` | `53.89%` | `0.86` | 645,610.00 USD |
-| `4H` | `KuCoin` | `48.95%` | `51.05%` | `0.96` | 276,620.00 USD |
-| `4H` | `Gate` | `60.11%` | `39.89%` | `1.51` | 331,270.00 USD |
-| `4H` | `Bitget` | `50.57%` | `49.43%` | `1.02` | 205,850.00 USD |
-| `4H` | `BingX` | `24.93%` | `75.07%` | `0.33` | 1,080,000.00 USD |
-| `4H` | `MEXC` | `71.57%` | `28.43%` | `2.52` | 219,690.00 USD |
-| `4H` | `Bitunix` | `49.57%` | `50.43%` | `0.98` | 147,160.00 USD |
-| `4H` | `Hyperliquid` | `76.97%` | `23.03%` | `3.34` | 496,300.00 USD |
+| `1H` | `Lighter` | `92.94%` | `7.06%` | `13.16` | 15,150.00 USD |
+| `1H` | `Whale Positions` | `58.9%` | `41.1%` | `1.43` | 1,140,000.00 USD |
+| `1H` | `Global Accounts` | `49.37%` | `50.63%` | `0.98` | 2,960,000.00 USD |
+| `4H` | `TRX` | `47.89%` | `52.11%` | `0.92` | 137,760,000.00 USD |
+| `4H` | `Binance` | `49.89%` | `50.11%` | `1.00` | 49,000,000.00 USD |
+| `4H` | `OKX` | `44.63%` | `55.37%` | `0.81` | 12,210,000.00 USD |
+| `4H` | `Bybit` | `46.57%` | `53.43%` | `0.87` | 10,900,000.00 USD |
+| `4H` | `KuCoin` | `38.05%` | `61.95%` | `0.61` | 1,060,000.00 USD |
+| `4H` | `Gate` | `48.33%` | `51.67%` | `0.94` | 8,070,000.00 USD |
+| `4H` | `Bitget` | `42.88%` | `57.12%` | `0.75` | 5,760,000.00 USD |
+| `4H` | `BingX` | `39.1%` | `60.9%` | `0.64` | 7,160,000.00 USD |
+| `4H` | `MEXC` | `48.24%` | `51.76%` | `0.93` | 12,580,000.00 USD |
+| `4H` | `Bitunix` | `59.34%` | `40.66%` | `1.46` | 3,440,000.00 USD |
+| `4H` | `Hyperliquid` | `51.26%` | `48.74%` | `1.05` | 1,480,000.00 USD |
 | `4H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `LBank` | `50.01%` | `49.99%` | `1.00` | 2,240,000.00 USD |
+| `4H` | `LBank` | `51.23%` | `48.77%` | `1.05` | 23,350,000.00 USD |
 | `4H` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `WhiteBIT` | `13.94%` | `86.06%` | `0.16` | 1,500,000.00 USD |
-| `4H` | `HTX` | `51.88%` | `48.12%` | `1.08` | 202,340.00 USD |
+| `4H` | `WhiteBIT` | `4.38%` | `95.62%` | `0.05` | 1,700,000.00 USD |
+| `4H` | `HTX` | `46.53%` | `53.47%` | `0.87` | 454,430.00 USD |
 | `4H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Kraken` | `72.22%` | `27.78%` | `2.60` | 156,740.00 USD |
-| `4H` | `Aster` | `35.13%` | `64.87%` | `0.54` | 10,790.00 USD |
+| `4H` | `Kraken` | `53.54%` | `46.46%` | `1.15` | 511,150.00 USD |
+| `4H` | `Aster` | `60.27%` | `39.73%` | `1.52` | 38,830.00 USD |
 | `4H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Lighter` | `28.38%` | `71.62%` | `0.40` | 65,680.00 USD |
-| `4H` | `Whale Positions` | `51.82%` | `48.18%` | `1.08` | 4,960,000.00 USD |
-| `4H` | `Global Accounts` | `46.00%` | `54.00%` | `0.85` | 13,370,000.00 USD |
+| `4H` | `Lighter` | `35.62%` | `64.38%` | `0.55` | 47,360.00 USD |
+| `4H` | `Whale Positions` | `49.89%` | `50.11%` | `1.00` | 49,000,000.00 USD |
+| `4H` | `Global Accounts` | `47.89%` | `52.11%` | `0.92` | 137,760,000.00 USD |
 
 
 ---
@@ -1018,21 +1018,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 10,800.00 USD | -709.31 USD | **`ACCUMULATION`** |
-| `15m` | 42,380.00 USD | 92,930.00 USD | **`ACCUMULATION`** |
-| `30m` | -60,770.00 USD | 57,050.00 USD | **`DISTRIBUTION`** |
-| `1h` | -28,500.00 USD | 125,650.00 USD | **`ACCUMULATION`** |
-| `2h` | 13,600.00 USD | -140,870.00 USD | **`DISTRIBUTION`** |
-| `4h` | 402,100.00 USD | 241,990.00 USD | **`ACCUMULATION`** |
-| `6h` | 60,190.00 USD | 105,600.00 USD | **`ACCUMULATION`** |
-| `8h` | -54,070.00 USD | 67,980.00 USD | **`ACCUMULATION`** |
-| `12h` | 263,100.00 USD | 701,610.00 USD | **`ACCUMULATION`** |
-| `24h` | 3,540,000.00 USD | 3,090,000.00 USD | **`ACCUMULATION`** |
-| `1w` | -5,100,000.00 USD | 1,720,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -23,020,000.00 USD | 3,050,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 29,370.00 USD | 304.30 USD | **`ACCUMULATION`** |
+| `15m` | 61,720.00 USD | 67,650.00 USD | **`ACCUMULATION`** |
+| `30m` | 37,800.00 USD | 92,420.00 USD | **`ACCUMULATION`** |
+| `1h` | -46,840.00 USD | 178,360.00 USD | **`ACCUMULATION`** |
+| `2h` | 32,000.00 USD | -45,460.00 USD | **`DISTRIBUTION`** |
+| `4h` | 532,920.00 USD | 57,160.00 USD | **`ACCUMULATION`** |
+| `6h` | 48,300.00 USD | 150,080.00 USD | **`ACCUMULATION`** |
+| `8h` | 225,470.00 USD | 266,570.00 USD | **`ACCUMULATION`** |
+| `12h` | 465,420.00 USD | 851,620.00 USD | **`ACCUMULATION`** |
+| `24h` | 3,950,000.00 USD | 3,220,000.00 USD | **`ACCUMULATION`** |
+| `1w` | -5,020,000.00 USD | 1,820,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -22,920,000.00 USD | 3,150,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+10.80K` | 15m=`+42.38K` | 1h=`-28.50K` | 24h=`+3.54M`
-* Futures Capital Netflows: 5m=`-709.31` | 15m=`+92.93K` | 1h=`+125.65K` | 24h=`+3.09M`
+* Spot Capital Netflows: 5m=`+29.37K` | 15m=`+61.72K` | 1h=`-46.84K` | 24h=`+3.95M`
+* Futures Capital Netflows: 5m=`+304.30` | 15m=`+67.65K` | 1h=`+178.36K` | 24h=`+3.22M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -1101,17 +1101,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.3294` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3272` (Risk Distance: `0.0024` pts)
-  * +2.5R Take Profit: `0.3354`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `-0.8724` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `3.33`
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.3312` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.3334` (Risk Distance: `0.0024` pts)
-  * +2.5R Take Profit: `0.3252`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.53` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `-2.67`
+  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.3340`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.3338`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
