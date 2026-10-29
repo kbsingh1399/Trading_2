@@ -19,9 +19,9 @@
     "OKX",
     "Bybit"
   ],
-  "byte_size": 158855,
-  "timestamp_ist": "2026-10-29 09:26:26 IST",
-  "timestamp_utc": "2026-10-29 03:56:26 UTC",
-  "epoch_utc": 1793246186.929463,
-  "write_duration_ms": 477.7
+  "byte_size": 159434,
+  "timestamp_ist": "2026-10-29 09:29:04 IST",
+  "timestamp_utc": "2026-10-29 03:59:04 UTC",
+  "epoch_utc": 1793246344.968367,
+  "write_duration_ms": 561.97
 }
