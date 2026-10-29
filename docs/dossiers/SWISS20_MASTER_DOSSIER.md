@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SWISS20
 **Canonical Key**: `SWISS20` | **Broker Instrument**: `SWISS20.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 01:42:07 IST` (`2026-10-29 20:12:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:45:09 IST` (`2026-10-29 20:15:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `14771.00` | **Live Ask Quote**: `14775.00` | **Mid Price**: `14773.00`
-- **Spread Points**: `400.00` | **Spread BPS**: `2.71 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `14790.50` | **Live Ask Quote**: `14794.50` | **Mid Price**: `14792.50`
+- **Spread Points**: `400.00` | **Spread BPS**: `2.70 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `14845.68` (Distance: `-0.45%`)
-  * Point of Control (POC) = `14778.13` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `14726.48` (Distance: `+0.35%`)
+  * Value Area High (VAH) = `14841.71` (Distance: `-0.30%`)
+  * Point of Control (POC) = `14778.13` (Distance: `+0.13%`)
+  * Value Area Low (VAL) = `14726.48` (Distance: `+0.48%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`14619.83` | POC=`14600.95` | VAL=`14555.44`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`14872.50` | Low=`14738.00`
   * Initial Balance (First Hour): IB High=`14633.50` | IB Low=`14606.50`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `14713.91` - `14832.09`
-  * Optimal Trade Entry (OTE 0.705): `14802.55`
-  * Structural Invalidation Anchor (0.786): `14891.18`
+  * Golden Pocket Zone (0.618 - 0.650): `14733.33` - `14851.67`
+  * Optimal Trade Entry (OTE 0.705): `14822.08`
+  * Structural Invalidation Anchor (0.786): `14910.84`
 
 ---
 
@@ -273,12 +273,12 @@
   * Mathematical Lot Sizing: **`0.37 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `14845.68` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `14872.05` (Risk Distance: `26.37` pts)
-  * +2.5R Take Profit: `14779.75`
+  * Execution Entry: `14841.71` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `14868.08` (Risk Distance: `26.37` pts)
+  * +2.5R Take Profit: `14775.78`
   * Mathematical Lot Sizing: **`0.37 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14891.18`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14910.84`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

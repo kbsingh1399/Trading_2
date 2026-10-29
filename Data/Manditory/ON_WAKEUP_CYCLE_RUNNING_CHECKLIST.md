@@ -122,15 +122,31 @@ Every cycle must systematically evaluate and document completion of the followin
 
 ---
 
-### ⏳ Cycle_011 Audit (DISPATCHED & WATCHDOG ARMED)
-- **Status**: `DUAL_COUNCIL_IN_PROGRESS`
-- **Dispatched At**: `2026-10-30 01:28:30 IST`
+### ✅ Cycle_011 Audit (COMPLETED & EXECUTED)
+- **Status**: `COMPLETED`
+- **Completed At**: `2026-10-30 01:44:00 IST` (`2026-10-29 20:14:00 UTC`)
 - **Execution Log**:
   * **Step 0 (Governance Read Gate & Active Order Interrogation)**: `PASSED` — Studied 4 canonical documents. Verified MT5 account: Equity = `4,742.31 USD`, 7 pending limit orders active, 0 filled positions, 0.00 margin used.
   * **Step 1 (Spread Qualification Screen)**: `PASSED` — Screened live MT5 universe: 85 eligible assets within spread limits (USDJPY: 0.06 bps, GBPUSD: 0.07 bps, XAUUSD: 0.20 bps, DJ30: 0.23 bps, EURUSD: 0.27 bps, NAS100: 0.34 bps, BTCUSD: 1.98 bps, BNBUSD: 8.06 bps).
   * **Step 2 (Full-Length Dossier Forensics)**: `PASSED` — Read 100% full-length master dossiers for eligible candidates without line clamping (`USDJPY_MASTER_DOSSIER.md` [404 lines], `XAUUSD_MASTER_DOSSIER.md` [665 lines]). Zero `#L1-90` or `#L1-100` truncation.
   * **Step 3 (Registry & Ledger Sync)**: `PASSED` — Live orders `#19489155`–`#19489161` synced.
   * **Step 4 (Dual Council Dispatch)**: `PASSED` — Dispatched 14,684-character comprehensive prompt to Z.ai (GLM-5.3-Flash) and Arena.ai via `Terminal/dispatch_dual_council.py`.
-  * **Step 5 (AutoWake Hard-Rock Watchdog)**: `ACTIVE` — `Terminal/rock_hard_dual_watchdog.py --cycle Cycle_011 --timeout 1800` running in background (`task-161034`).
-  * **Step 6 (Tri-Council Deliberation & Order Execution)**: `PENDING_WATCHDOG_COMPLETION` — Awaiting dual model harvest to compare setups, interrogate active resting orders, and punch agreed candidates.
-  * **Step 7 (20-Min AutoWake)**: `ARMED` — 20-minute cycle interval timer active (`task-161036`).
+  * **Step 5 (AutoWake Hard-Rock Watchdog)**: `PASSED` — Both models completed full outputs: Arena.ai (60,764 chars) and Z.ai GLM-5.3-Flash (29,596 chars) harvested.
+  * **Step 6 (Tri-Council Deliberation, Trade Interrogation & Execution)**: `PASSED`
+    * **WIN TAKE PROFIT**: `#19489156` (`USDJPY.pi` SELL 0.13 lot @ 157.970) filled and **HIT TAKE PROFIT at 157.710 (+26.0 pips)** for **`+21.43 USD` profit**! Account equity increased to **`4,762.83 USD`**!
+    * **PURGE / CANCEL**: `#19489161` (`USWTI.p` BUY_LIMIT 101.550) canceled per unanimous Tri-Council finding (spread widened to 5.42 bps > 5.0 bps cap; VR(4) = 0.9673 random walk).
+    * **STAGED NEW CANDIDATE**: `#19490051` (`AUDUSD.pi` BUY_LIMIT 0.08 lot @ 0.70270 | SL 0.70150 | TP 0.70570 | Risk: `9.60 USD`) punched autonomously onto MT5.
+    * **MAINTAINED RESTING**: `#19489155` (`BTCUSD.pi`), `#19489157` (`BNBUSD.p`), `#19489158` (`XAUUSD.pi`), `#19489159` (`NAS100.p`), and `#19489160` (`DJ30.p`) confirmed active and resting behind verified armor.
+  * **Step 7 (20-Min AutoWake)**: `ARMED` — Cycle heartbeat timer active (`task-161063`) for Cycle_012 wakeup.
+
+---
+
+### ⏳ Cycle_012 Audit (ARMED & SCHEDULED)
+- **Status**: `AWAITING_WAKEUP`
+- **Wakeup Target**: `01:48:47 IST` (`20:18:47 UTC`)
+- **Standing Directives on Wakeup**:
+  0. **Governance Read Gate**: Physically read `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`, `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`, and `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
+  1. **Interrogate Resting Orders & Live Positions**: "Should I let it run or cut it?" (Cancel XAUUSD before 21:00 UTC close; evaluate AUDUSD, BTC, BNB, NAS100, DJ30).
+  2. **Screen 156-Asset Universe**: Spread verification in `00_MT5_Account_Telemetry.parquet`.
+  3. **Full-Length Dossier Reads**: Zero line clamping.
+  4. **Dual Dispatch & Watchdog Loop**: Arena.ai and Z.ai council execution.

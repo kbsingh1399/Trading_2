@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSGD
 **Canonical Key**: `USDSGD` | **Broker Instrument**: `USDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 01:42:07 IST` (`2026-10-29 20:12:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:45:09 IST` (`2026-10-29 20:15:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.28` | **Live Ask Quote**: `1.28` | **Mid Price**: `1.28`
-- **Spread Points**: `6.00` | **Spread BPS**: `0.47 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `9.00` | **Spread BPS**: `0.70 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `1.28` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`1.29` | POC=`1.28` | VAL=`1.28`
+  * Prior Day Value Area: VAH=`1.29` | POC=`1.28` | VAL=`1.27`
   * Prior Day Extremes: PDH=`1.29` | PDL=`1.27` | PDC=`1.28`
   * Monday Range Blueprint: High=`1.29` | Mid=`1.28` | Low=`1.27`
   * Developing Weekly Value Area: Weekly VAH=`1.29` | Weekly POC=`1.28` | Weekly VAL=`1.27`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.28` | Low=`1.28`
-  * London Session (08:00-16:00 UTC): High=`1.29` | Low=`1.28`
+  * London Session (08:00-16:00 UTC): High=`1.29` | Low=`1.27`
   * New York Session (13:00-21:00 UTC): High=`1.29` | Low=`1.27`
   * Initial Balance (First Hour): IB High=`1.28` | IB Low=`1.28`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1.28` - `1.29`
+  * Golden Pocket Zone (0.618 - 0.650): `1.27` - `1.29`
   * Optimal Trade Entry (OTE 0.705): `1.28`
   * Structural Invalidation Anchor (0.786): `1.29`
 
