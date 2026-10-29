@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:30:50 IST` (`2026-10-29 17:00:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:33:52 IST` (`2026-10-29 17:03:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `6.66` | **Live Ask Quote**: `6.66` | **Mid Price**: `6.66`
-- **Spread Points**: `7.00` | **Spread BPS**: `0.11 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `9.00` | **Spread BPS**: `0.14 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `6.66` | VWAP Z-Score: `-1.05` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000705` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `41.68` (State: `NEUTRAL`)
+  * Session VWAP: `6.66` | VWAP Z-Score: `-1.03` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000714` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `42.69` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.66`
   * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.66`
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.66` (Distance: `-0.01%`)
-  * Point of Control (POC) = `6.66` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `6.66` (Distance: `+0.01%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `6.66` (Distance: `-0.04%`)
+  * Point of Control (POC) = `6.66` (Distance: `-0.02%`)
+  * Value Area Low (VAL) = `6.66` (Distance: `-0.01%`)
+  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`6.67` | POC=`6.66` | VAL=`6.66`
   * Prior Day Extremes: PDH=`6.67` | PDL=`6.66` | PDC=`6.66`
@@ -59,7 +59,7 @@
   * New York Session (13:00-21:00 UTC): High=`6.66` | Low=`6.66`
   * Initial Balance (First Hour): IB High=`6.66` | IB Low=`6.66`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `6.63` - `6.69`
+  * Golden Pocket Zone (0.618 - 0.650): `6.63` - `6.68`
   * Optimal Trade Entry (OTE 0.705): `6.67`
   * Structural Invalidation Anchor (0.786): `6.71`
 

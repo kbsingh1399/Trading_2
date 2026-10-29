@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSGD
 **Canonical Key**: `USDSGD` | **Broker Instrument**: `USDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:30:50 IST` (`2026-10-29 17:00:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:33:52 IST` (`2026-10-29 17:03:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.28` | **Live Ask Quote**: `1.28` | **Mid Price**: `1.28`
-- **Spread Points**: `5.00` | **Spread BPS**: `0.39 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `6.00` | **Spread BPS**: `0.47 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.28` | VWAP Z-Score: `+0.28` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000428` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `48.45` (State: `NEUTRAL`)
+  * Session VWAP: `1.28` | VWAP Z-Score: `-0.55` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000447` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `40.48` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.28` | Lower -3.00σ Band: `1.28`
   * Upper +2.51σ Band: `1.28` | Lower -2.51σ Band: `1.28`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.28` | EMA-20=`1.28` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.28` (Slope: `+0.0000`) | EMA-100=`1.28`
-  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `+0.0020`) | EMA-233=`1.28`
+  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `+0.0019`) | EMA-233=`1.28`
 - **Range Boundaries**: 24H High=`1.28` | 24H Low=`1.28` | Weekly High=`1.28` | Weekly Low=`1.28`
 
 ---
@@ -57,7 +57,7 @@
   * Asian Session (00:00-08:00 UTC): High=`1.28` | Low=`1.28`
   * London Session (08:00-16:00 UTC): High=`1.29` | Low=`1.28`
   * New York Session (13:00-21:00 UTC): High=`1.29` | Low=`1.27`
-  * Initial Balance (First Hour): IB High=`1.29` | IB Low=`1.28`
+  * Initial Balance (First Hour): IB High=`1.28` | IB Low=`1.28`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.28` - `1.29`
   * Optimal Trade Entry (OTE 0.705): `1.28`

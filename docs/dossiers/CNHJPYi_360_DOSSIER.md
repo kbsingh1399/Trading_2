@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-29 22:30:50 IST` (`2026-10-29 17:00:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 22:33:52 IST` (`2026-10-29 17:03:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `23.71` | **Live Ask Quote**: `23.72` | **Mid Price**: `23.72`
+- **Live Bid Quote**: `23.72` | **Live Ask Quote**: `23.72` | **Mid Price**: `23.72`
 - **Spread Points**: `1.00` | **Spread BPS**: `0.42 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -46,18 +46,18 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `23.79` (Distance: `+0.00%`)
   * Point of Control (POC) = `23.72` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `23.64` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `23.65` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`23.81` | POC=`23.72` | VAL=`23.62`
-  * Prior Day Extremes: PDH=`23.86` | PDL=`23.57` | PDC=`23.72`
-  * Monday Range Blueprint: High=`23.83` | Mid=`23.72` | Low=`23.60`
+  * Prior Day Extremes: PDH=`23.86` | PDL=`23.58` | PDC=`23.72`
+  * Monday Range Blueprint: High=`23.84` | Mid=`23.72` | Low=`23.60`
   * Developing Weekly Value Area: Weekly VAH=`23.91` | Weekly POC=`23.72` | Weekly VAL=`23.53`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`23.76` | Low=`23.67`
   * London Session (08:00-16:00 UTC): High=`23.81` | Low=`23.62`
-  * New York Session (13:00-21:00 UTC): High=`23.86` | Low=`23.57`
-  * Initial Balance (First Hour): IB High=`23.79` | IB Low=`23.64`
+  * New York Session (13:00-21:00 UTC): High=`23.86` | Low=`23.58`
+  * Initial Balance (First Hour): IB High=`23.79` | IB Low=`23.65`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `23.62` - `23.81`
   * Optimal Trade Entry (OTE 0.705): `23.76`
@@ -267,7 +267,7 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `23.64` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `23.65` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `22.44` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `26.65`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
