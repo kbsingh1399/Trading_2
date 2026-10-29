@@ -128,3 +128,19 @@ Cross-seat discrepancies logged (Causal Continuity rule — Seats #1/#2 must rem
 Verdict: DENIED_FAIL_CLOSED__LOCKDOWN_ENFORCED. The desk's own canon is the correct one — it is now being enforced against the desk's own book.
 
 [END OF REPORT - CYCLE_ID: Cycle_004]
+All files in task
+2
+Council_Response_Cycle_004
+· json
+Council_Response_Cycle-20261029T044654Z
+· json
+
+================================================================================
+Z.AI ATTACHED OUTPUT FILE:  (821 chars)
+================================================================================
+
+[ALERT] TELEMETRY STALE WARNING: Embedded cycle envelope is 10.20h stale (cutoff 2026-10-28 18:35:02Z vs declared cycle 2026-10-29 04:46:54Z; age 36,712s >> 5.0m)
+[ALERT] TELEMETRY STALE WARNING: execution_preflight_receipt.json is 39.58h stale (observed 2026-10-27 13:12:05Z), wrong equity epoch (4,837.08 ≠ 4,782.61), wrong symbol (BTCUSD.pi vs envelope ETH pending)
+[ALERT] TELEMETRY STALE WARNING: Data/feeds/*.parquet not mounted in council sandbox — feed-level freshness unverifiable this cycle
+[ALERT] TELEMETRY STALE WARNING: Binance fapi IP-banned until ~11:59Z (rate-limit residue from C375 polls) — depth telemetry re-routed via OKX/Bybit side-channels
+[ALERT] STANDING: macro_calendar >37.6h stale · orderflow DENIED_UNVERIFIED_ORDERFLOW 6th cycle · calibration n=17 frozen · −60.95 balance drift unreconciled

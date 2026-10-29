@@ -236,6 +236,23 @@ def save_zai_output(state: dict):
     ZAI_STATUS_FILE.write_text(json.dumps(status, indent=2), encoding="utf-8")
 
 
+
+async def reload_cdp_tab(match_keyword: str) -> bool:
+    try:
+        raw = urllib.request.urlopen(CDP_URL, timeout=5).read().decode("utf-8")
+        tabs = json.loads(raw)
+        for t in tabs:
+            if match_keyword in t.get("url", "") and t.get("webSocketDebuggerUrl"):
+                ws_url = t["webSocketDebuggerUrl"]
+                async with websockets.connect(ws_url, max_size=50_000_000, open_timeout=5, close_timeout=3) as ws:
+                    print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via Page.reload...")
+                    await ws.send(json.dumps({"id": 9999, "method": "Page.reload"}))
+                    await asyncio.sleep(3.5)
+                    return True
+    except Exception as e:
+        print(f"[RockHardWatchdog] Warning: failed to reload tab for '{match_keyword}': {e}", file=sys.stderr)
+    return False
+
 async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0, poll_interval: float = 2.0) -> int:
     print(f"[RockHardWatchdog] Starting surveillance for cycle: '{expected_cycle}' (timeout={timeout_s}s, poll={poll_interval}s)")
     start_ts = time.time()
@@ -256,6 +273,8 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
     last_z_hash = z_initial_hash
     
     last_print = 0.0
+    last_reload_time = time.time()
+    RELOAD_INTERVAL_SEC = 300.0  # 5 minutes exact operator mandate
 
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
@@ -311,6 +330,16 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                     stable_z_ticks = 0
                     last_z_hash = cur_hash
         
+        # Operator Mandate: Auto-refresh both tabs after 5 minutes if still waiting
+        if (now - last_reload_time) >= RELOAD_INTERVAL_SEC:
+            last_reload_time = now
+            print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing both tabs to prevent frontend DOM freeze...")
+            if not arena_done:
+                await reload_cdp_tab("arena.ai")
+            if not zai_done:
+                await reload_cdp_tab("chat.z.ai")
+            await asyncio.sleep(2.0)
+
         # Periodic log every 6 seconds
         if now - last_print >= 6.0:
             last_print = now
