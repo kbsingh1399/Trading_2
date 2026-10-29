@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 03:16:11 IST` (`2026-10-29 21:46:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:19:13 IST` (`2026-10-29 21:49:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-3.69K` | Last 24h: `1.48K` | Last 3d: `22.42K` | Last 7d: `50.96K`
+  * Current Rate: `-4.62K` | Last 24h: `1.48K` | Last 3d: `22.42K` | Last 7d: `50.96K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0071%` | **USDT OKX** | `0.0100%` |
-| **USDT Bybit** | `-0.0070%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `-0.0068%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `-0.0109%` | **USDT Bitget** | `0.0035%` |
+| **USDT Binance** | `-0.0096%` | **USDT OKX** | `0.0079%` |
+| **USDT Bybit** | `-0.0069%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `-0.0094%` | **USDT BingX** | `0.0091%` |
+| **USDT Gate** | `-0.0124%` | **USDT Bitget** | `0.0029%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -44,780.00 USD | 269,500.00 USD | **`ACCUMULATION`** |
-| `15m` | 80,120.00 USD | 338,350.00 USD | **`ACCUMULATION`** |
-| `30m` | 166,400.00 USD | 977,250.00 USD | **`ACCUMULATION`** |
-| `1h` | -544,830.00 USD | -969,390.00 USD | **`DISTRIBUTION`** |
-| `2h` | -2,680,000.00 USD | -1,060,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | -3,270,000.00 USD | -1,780,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -3,270,000.00 USD | -2,420,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -3,380,000.00 USD | -2,340,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -2,920,000.00 USD | -2,450,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -4,980,000.00 USD | -5,330,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | 1,380,000.00 USD | -5,260,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -26,100,000.00 USD | -85,770,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -44,780.00 USD | 77,250.00 USD | **`ACCUMULATION`** |
+| `15m` | 80,120.00 USD | 580,920.00 USD | **`ACCUMULATION`** |
+| `30m` | 166,400.00 USD | 881,720.00 USD | **`ACCUMULATION`** |
+| `1h` | -544,830.00 USD | 1,330,000.00 USD | **`ACCUMULATION`** |
+| `2h` | -2,680,000.00 USD | -735,720.00 USD | **`DISTRIBUTION`** |
+| `4h` | -3,270,000.00 USD | -1,350,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -3,270,000.00 USD | -1,930,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -3,380,000.00 USD | -2,050,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -2,920,000.00 USD | -2,120,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -4,980,000.00 USD | -5,080,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | 1,380,000.00 USD | -4,960,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -26,100,000.00 USD | -85,470,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-44.78K` | 15m=`+80.12K` | 1h=`-544.83K` | 24h=`-4.98M`
-* Futures Capital Netflows: 5m=`+269.50K` | 15m=`+338.35K` | 1h=`-969.39K` | 24h=`-5.33M`
+* Futures Capital Netflows: 5m=`+77.25K` | 15m=`+580.92K` | 1h=`+1.33M` | 24h=`-5.08M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
