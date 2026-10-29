@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZARJPY
 **Canonical Key**: `ZARJPY` | **Broker Instrument**: `ZARJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `9.48` | **Live Ask Quote**: `9.49` | **Mid Price**: `9.49`
-- **Spread Points**: `791.00` | **Spread BPS**: `8.34 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `9.49` | **Live Ask Quote**: `9.49` | **Mid Price**: `9.49`
+- **Spread Points**: `754.00` | **Spread BPS**: `7.94 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`9.49` | EMA-20=`9.49` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.49` (Slope: `+0.0000`) | EMA-100=`9.49`
   * Institutional Anchors: EMA-144=`9.49` | EMA-200=`9.49` (Slope: `+0.0000`) | EMA-233=`9.49`
-- **Range Boundaries**: 24H High=`9.58` | 24H Low=`9.39` | Weekly High=`9.68` | Weekly Low=`9.30`
+- **Range Boundaries**: 24H High=`9.59` | 24H Low=`9.40` | Weekly High=`9.68` | Weekly Low=`9.30`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`9.53` | POC=`9.49` | VAL=`9.45`
   * Prior Day Extremes: PDH=`9.55` | PDL=`9.43` | PDC=`9.49`
   * Monday Range Blueprint: High=`9.54` | Mid=`9.49` | Low=`9.44`
-  * Developing Weekly Value Area: Weekly VAH=`9.56` | Weekly POC=`9.49` | Weekly VAL=`9.41`
+  * Developing Weekly Value Area: Weekly VAH=`9.57` | Weekly POC=`9.49` | Weekly VAL=`9.41`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.51` | Low=`9.47`
   * London Session (08:00-16:00 UTC): High=`9.53` | Low=`9.45`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.45` - `9.53`
   * Optimal Trade Entry (OTE 0.705): `9.51`
-  * Structural Invalidation Anchor (0.786): `9.56`
+  * Structural Invalidation Anchor (0.786): `9.57`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.56`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.57`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

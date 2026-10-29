@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHINAH
 **Canonical Key**: `CHINAH` | **Broker Instrument**: `CHINAH.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:39 IST` (`2026-10-29 20:57:39 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `7793.72` | VWAP Z-Score: `+0.32` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `9.93` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `49.02` (State: `NEUTRAL`)
+  * Session VWAP: `7797.30` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `19.49` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `7848.36` | Lower -3.00σ Band: `7739.09`
-  * Upper +2.51σ Band: `7839.43` | Lower -2.51σ Band: `7748.01`
-  * Upper +2.01σ Band: `7830.33` | Lower -2.01σ Band: `7757.12`
-  * Upper +2.00σ Band: `7830.15` | Lower -2.00σ Band: `7757.30`
-  * Upper +1.28σ Band: `7817.03` | Lower -1.28σ Band: `7770.41`
-  * Upper +1.00σ Band: `7811.93` | Lower -1.00σ Band: `7775.51`
+  * Upper +3.00σ Band: `7851.88` | Lower -3.00σ Band: `7742.72`
+  * Upper +2.51σ Band: `7840.19` | Lower -2.51σ Band: `7754.41`
+  * Upper +2.01σ Band: `7830.05` | Lower -2.01σ Band: `7764.55`
+  * Upper +2.00σ Band: `7828.49` | Lower -2.00σ Band: `7766.11`
+  * Upper +1.28σ Band: `7819.13` | Lower -1.28σ Band: `7775.47`
+  * Upper +1.00σ Band: `7812.89` | Lower -1.00σ Band: `7781.71`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`7803.67` | EMA-20=`7802.81` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`7795.12` (Slope: `+0.0000`) | EMA-100=`7788.05`
-  * Institutional Anchors: EMA-144=`7784.49` | EMA-200=`7781.04` (Slope: `+0.0411`) | EMA-233=`7779.03`
-- **Range Boundaries**: 24H High=`7833.50` | 24H Low=`7729.49` | Weekly High=`7833.50` | Weekly Low=`7710.45`
+  * Fast EMA Array: EMA-9=`7797.30` | EMA-20=`7797.30` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`7797.30` (Slope: `+0.0000`) | EMA-100=`7797.30`
+  * Institutional Anchors: EMA-144=`7797.30` | EMA-200=`7797.30` (Slope: `+0.0000`) | EMA-233=`7797.30`
+- **Range Boundaries**: 24H High=`7875.27` | 24H Low=`7719.33` | Weekly High=`7953.25` | Weekly Low=`7641.35`
 
 ---
 
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `7776.99` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7735.07` (Risk Distance: `41.92` pts)
-  * +2.5R Take Profit: `7881.79`
-  * Mathematical Lot Sizing: **`0.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `7723.60` (Risk Distance: `53.39` pts)
+  * +2.5R Take Profit: `7910.47`
+  * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `7818.59` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `7860.51` (Risk Distance: `41.92` pts)
-  * +2.5R Take Profit: `7713.79`
-  * Mathematical Lot Sizing: **`0.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `7871.98` (Risk Distance: `53.39` pts)
+  * +2.5R Take Profit: `7685.11`
+  * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

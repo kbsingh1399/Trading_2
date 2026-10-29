@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFSGD
 **Canonical Key**: `CHFSGD` | **Broker Instrument**: `CHFSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -51,8 +51,8 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.56` | POC=`1.55` | VAL=`1.55`
   * Prior Day Extremes: PDH=`1.56` | PDL=`1.54` | PDC=`1.55`
-  * Monday Range Blueprint: High=`1.56` | Mid=`1.55` | Low=`1.54`
-  * Developing Weekly Value Area: Weekly VAH=`1.56` | Weekly POC=`1.55` | Weekly VAL=`1.54`
+  * Monday Range Blueprint: High=`1.56` | Mid=`1.55` | Low=`1.55`
+  * Developing Weekly Value Area: Weekly VAH=`1.57` | Weekly POC=`1.55` | Weekly VAL=`1.54`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.56` | Low=`1.55`
   * London Session (08:00-16:00 UTC): High=`1.56` | Low=`1.55`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.55` - `1.56`
   * Optimal Trade Entry (OTE 0.705): `1.56`
-  * Structural Invalidation Anchor (0.786): `1.56`
+  * Structural Invalidation Anchor (0.786): `1.57`
 
 ---
 
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.55` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3473` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.3477` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.55`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.56`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.57`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

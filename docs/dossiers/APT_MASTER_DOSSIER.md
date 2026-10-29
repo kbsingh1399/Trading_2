@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: APT
 **Canonical Key**: `APT` | **Broker Instrument**: `APTUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.6617` | `0.6640` | `0.6468` | `0.6539` | `3,103,019` | 2,027,197.50 USD | -246,687.75 USD | `-12.17%` | -4,035,144.20 USD | `-1.78` | **`BEARISH`** | `DELTA ALIGNED` |
-| `5m` | `0.6539` | `0.6548` | `0.6462` | `0.6494` | `1,800,768` | 1,170,599.39 USD | -122,513.88 USD | `-10.47%` | -4,157,658.08 USD | `-0.73` | **`BEARISH`** | `DELTA ALIGNED` |
-| `5m` | `0.6493` | `0.6495` | `0.6134` | `0.6232` | `9,435,689` | 5,933,525.40 USD | -2,042,223.43 USD | `-34.42%` | -6,199,881.52 USD | `-4.19` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.6721` | `0.6728` | `0.6545` | `0.6633` | `4,707,296` | 3,111,032.57 USD | -531,591.72 USD | `-17.09%` | -3,854,517.52 USD | `-2.44` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.6633` | `0.6663` | `0.6600` | `0.6617` | `1,568,931` | 1,040,684.48 USD | 66,061.07 USD | `+6.35%` | -3,788,456.45 USD | `+0.84` | **`BULLISH`** | `BULLISH ABSORPTION` |
-| `15m` | `0.6617` | `0.6640` | `0.6134` | `0.6244` | `14,264,158` | 9,084,331.15 USD | -2,404,328.81 USD | `-26.47%` | -6,192,785.26 USD | `-4.11` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.6217` | `0.6249` | `0.6003` | `0.6175` | `6,000,751` | 3,682,480.56 USD | -191,977.80 USD | `-5.21%` | -6,606,391.39 USD | `-0.08` | **`BEARISH`** | `DELTA ALIGNED` |
+| `5m` | `0.6174` | `0.6291` | `0.6174` | `0.6217` | `2,141,340` | 1,336,761.70 USD | -73,425.44 USD | `-5.49%` | -6,679,816.83 USD | `+0.18` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `0.6217` | `0.6233` | `0.6212` | `0.6231` | `168,694` | 104,987.92 USD | -9,701.06 USD | `-9.24%` | -6,689,517.89 USD | `+0.31` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `0.6633` | `0.6663` | `0.6600` | `0.6617` | `1,568,931` | 1,040,684.48 USD | 66,061.07 USD | `+6.35%` | -3,883,650.51 USD | `+0.84` | **`BULLISH`** | `BULLISH ABSORPTION` |
+| `15m` | `0.6617` | `0.6640` | `0.6134` | `0.6218` | `15,937,422` | 10,130,057.36 USD | -2,530,763.08 USD | `-24.98%` | -6,414,413.59 USD | `-4.13` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `0.6217` | `0.6291` | `0.6003` | `0.6227` | `8,293,922` | 5,113,729.11 USD | -277,431.18 USD | `-5.43%` | -6,691,844.76 USD | `-0.07` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `0.6796` | `0.6804` | `0.6673` | `0.6699` | `4,032,719` | 2,714,496.22 USD | -416,792.27 USD | `-15.35%` | -3,627,547.27 USD | `-0.90` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `0.6700` | `0.6740` | `0.6665` | `0.6721` | `2,120,904` | 1,422,528.11 USD | 209,427.40 USD | `+14.72%` | -3,418,119.86 USD | `+1.29` | **`BULLISH`** | `DELTA ALIGNED` |
-| `1h` | `0.6721` | `0.6728` | `0.6134` | `0.6246` | `20,527,916` | 13,228,264.58 USD | -2,869,490.92 USD | `-21.69%` | -6,287,610.78 USD | `-3.93` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `1h` | `0.6721` | `0.6728` | `0.6003` | `0.6223` | `30,511,998` | 19,398,260.33 USD | -3,275,731.71 USD | `-16.89%` | -6,693,851.57 USD | `-4.03` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `0.6713` | `0.7047` | `0.6676` | `0.7036` | `13,569,736` | 9,297,285.20 USD | -148,086.76 USD | `-1.59%` | -1,678,888.13 USD | `+0.66` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.7037` | `0.7077` | `0.6665` | `0.6721` | `16,607,110` | 11,368,753.45 USD | -1,468,928.13 USD | `-12.92%` | -3,147,816.26 USD | `-1.51` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.6721` | `0.6728` | `0.6134` | `0.6249` | `20,553,829` | 13,244,449.04 USD | -2,868,991.18 USD | `-21.66%` | -6,016,807.44 USD | `-1.91` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `4h` | `0.6721` | `0.6728` | `0.6003` | `0.6231` | `30,524,433` | 19,406,004.58 USD | -3,271,398.03 USD | `-16.86%` | -6,419,214.29 USD | `-1.99` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `0.6611` | `0.6759` | `0.6485` | `0.6561` | `10,656,422` | 7,044,804.33 USD | -366,898.68 USD | `-5.21%` | -1,470,659.97 USD | `+1.00` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.6561` | `0.6774` | `0.6549` | `0.6712` | `7,448,343` | 4,965,296.85 USD | -60,141.40 USD | `-1.21%` | -1,530,801.38 USD | `+1.03` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.6713` | `0.7047` | `0.6676` | `0.7036` | `13,569,736` | 9,297,285.20 USD | -148,086.76 USD | `-1.59%` | -1,678,888.13 USD | `+0.66` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.7037` | `0.7077` | `0.6665` | `0.6721` | `16,607,110` | 11,368,753.45 USD | -1,468,928.13 USD | `-12.92%` | -3,147,816.26 USD | `-1.51` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.6721` | `0.6728` | `0.6134` | `0.6249` | `20,553,829` | 13,244,449.04 USD | -2,868,991.18 USD | `-21.66%` | -6,016,807.44 USD | `-1.91` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `4h` | `0.6721` | `0.6728` | `0.6003` | `0.6231` | `30,524,433` | 19,406,004.58 USD | -3,271,398.03 USD | `-16.86%` | -6,419,214.29 USD | `-1.99` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 02:14:34 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 02:26:17 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -121,10 +121,11 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.6971` | 5,803.06 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale BUY: 5.80K USD at 0.6971 USD [API] | `2026-10-28 01:20:10` |
 | `ANNOUNCEMENT` | `INFO` | `0.7002` | 8,527.41 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale BUY: 8.53K USD at 0.7002 USD [API] | `2026-10-28 01:55:53` |
 | `ANNOUNCEMENT` | `INFO` | `0.7021` | 10,246.45 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale BUY: 10.25K USD at 0.7021 USD [API] | `2026-10-28 03:31:19` |
 | `ANNOUNCEMENT` | `INFO` | `0.7021` | 10,246.45 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale BUY: 10.25K USD at 0.7021 USD [API] | `2026-10-28 03:31:19` |
+| `ANNOUNCEMENT` | `INFO` | `0.6953` | 10,147.22 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale SELL: 10.15K USD at 0.6953 USD [API] | `2026-10-28 08:39:58` |
+| `ANNOUNCEMENT` | `INFO` | `0.6918` | 5,841.73 USD | `-` | `NEWS_INTEL` | `-` | #APT Whale SELL: 5.84K USD at 0.6918 USD [API] | `2026-10-28 09:11:19` |
 
 
 ---
@@ -557,7 +558,148 @@
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Stops | Clear | - | - | - | 0.00% | SAFE (No Un-Swept Clusters) |
+| `Sell Stop` | `0.3505` | 116,630.00 USD | 0.00 USD | 340.19 USD | `-47.87%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.4635` | 116,280.00 USD | 0.00 USD | 104.57 USD | `-31.07%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.4805` | 116,180.00 USD | 0.00 USD | 14,740.00 USD | `-28.54%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5005` | 101,440.00 USD | 0.00 USD | 604.46 USD | `-25.57%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5125` | 100,840.00 USD | 0.00 USD | 5,380.00 USD | `-23.78%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5205` | 95,460.00 USD | 0.00 USD | 228.77 USD | `-22.59%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5305` | 95,230.00 USD | 0.00 USD | 770.19 USD | `-21.10%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5445` | 94,460.00 USD | 0.00 USD | 8,750.00 USD | `-19.02%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5455` | 85,700.00 USD | 0.00 USD | 8,150.00 USD | `-18.87%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5485` | 77,550.00 USD | 0.00 USD | 4,500.00 USD | `-18.43%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5515` | 73,060.00 USD | 0.00 USD | 126.71 USD | `-17.98%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5525` | 72,930.00 USD | 0.00 USD | 126.90 USD | `-17.83%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5555` | 72,800.00 USD | 0.00 USD | 33,000.00 USD | `-17.39%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5565` | 39,800.00 USD | 0.00 USD | 300.09 USD | `-17.24%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5595` | 39,500.00 USD | 0.00 USD | 127.61 USD | `-16.79%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5605` | 39,380.00 USD | 0.00 USD | 339.84 USD | `-16.64%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5625` | 39,040.00 USD | 0.00 USD | 126.55 USD | `-16.34%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5655` | 38,910.00 USD | 0.00 USD | 127.62 USD | `-15.90%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5695` | 38,780.00 USD | 0.00 USD | 127.30 USD | `-15.30%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5715` | 38,660.00 USD | 0.00 USD | 127.63 USD | `-15.01%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5755` | 38,530.00 USD | 0.00 USD | 127.29 USD | `-14.41%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5785` | 38,400.00 USD | 0.00 USD | 127.36 USD | `-13.96%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5815` | 38,270.00 USD | 0.00 USD | 127.27 USD | `-13.52%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5835` | 38,150.00 USD | 0.00 USD | 178.88 USD | `-13.22%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5845` | 37,970.00 USD | 0.00 USD | 127.33 USD | `-13.07%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5865` | 37,840.00 USD | 0.00 USD | 128.36 USD | `-12.78%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5875` | 37,710.00 USD | 0.00 USD | 128.34 USD | `-12.63%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5895` | 37,580.00 USD | 0.00 USD | 128.45 USD | `-12.33%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5905` | 37,450.00 USD | 0.00 USD | 127.30 USD | `-12.18%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5925` | 37,330.00 USD | 0.00 USD | 128.33 USD | `-11.88%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.5975` | 37,200.00 USD | 0.00 USD | 597.80 USD | `-11.14%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6005` | 36,600.00 USD | 0.00 USD | 3,510.00 USD | `-10.69%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6055` | 33,090.00 USD | 0.00 USD | 1,510.00 USD | `-9.95%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6065` | 31,590.00 USD | 0.00 USD | 1,910.00 USD | `-9.80%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6085` | 29,680.00 USD | 0.00 USD | 301.32 USD | `-9.50%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6175` | 29,380.00 USD | 0.00 USD | 699.67 USD | `-8.16%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6185` | 28,680.00 USD | 0.00 USD | 177.58 USD | `-8.02%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6205` | 28,500.00 USD | 0.00 USD | 541.40 USD | `-7.72%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6275` | 27,960.00 USD | 0.00 USD | 433.11 USD | `-6.68%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6285` | 27,530.00 USD | 0.00 USD | 469.94 USD | `-6.53%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6305` | 27,060.00 USD | 0.00 USD | 4,430.00 USD | `-6.23%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6315` | 22,630.00 USD | 0.00 USD | 160.16 USD | `-6.08%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6335` | 22,470.00 USD | 0.00 USD | 8,390.00 USD | `-5.79%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6345` | 14,070.00 USD | 0.00 USD | 276.40 USD | `-5.64%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6395` | 13,800.00 USD | 0.00 USD | 1,200.00 USD | `-4.89%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6405` | 12,600.00 USD | 0.00 USD | 145.91 USD | `-4.74%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6445` | 12,450.00 USD | 0.00 USD | 121.42 USD | `-4.15%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6485` | 12,330.00 USD | 0.00 USD | 447.03 USD | `-3.55%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6505` | 11,880.00 USD | 0.00 USD | 567.58 USD | `-3.26%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6525` | 11,320.00 USD | 0.00 USD | 111.92 USD | `-2.96%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6535` | 11,210.00 USD | 0.00 USD | 349.76 USD | `-2.81%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6555` | 10,860.00 USD | 0.00 USD | 4,080.00 USD | `-2.51%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6565` | 6,780.00 USD | 0.00 USD | 284.88 USD | `-2.36%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6585` | 6,490.00 USD | 0.00 USD | 1,440.00 USD | `-2.07%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6595` | 5,050.00 USD | 0.00 USD | 746.46 USD | `-1.92%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6605` | 4,310.00 USD | 0.00 USD | 580.23 USD | `-1.77%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6645` | 3,730.00 USD | 0.00 USD | 124.55 USD | `-1.17%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6655` | 3,600.00 USD | 0.00 USD | 1,110.00 USD | `-1.03%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6675` | 2,490.00 USD | 0.00 USD | 290.78 USD | `-0.73%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6685` | 2,200.00 USD | 0.00 USD | 170.95 USD | `-0.58%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6695` | 2,030.00 USD | 0.00 USD | 1,670.00 USD | `-0.43%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6705` | 365.54 USD | 0.00 USD | 162.91 USD | `-0.28%` | `TACTICAL (Retail Cluster)` |
+| `Sell Stop` | `0.6715` | 202.63 USD | 0.00 USD | 202.63 USD | `-0.13%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6725` | 1,670.00 USD | 1,670.00 USD | 0.00 USD | `+0.01%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6745` | 2,270.00 USD | 598.31 USD | 0.00 USD | `+0.31%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6755` | 2,630.00 USD | 361.53 USD | 0.00 USD | `+0.46%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6765` | 4,760.00 USD | 2,130.00 USD | 0.00 USD | `+0.61%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6805` | 4,980.00 USD | 214.20 USD | 0.00 USD | `+1.20%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6815` | 15,540.00 USD | 10,560.00 USD | 0.00 USD | `+1.35%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6825` | 15,650.00 USD | 112.49 USD | 0.00 USD | `+1.50%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6835` | 15,760.00 USD | 108.41 USD | 0.00 USD | `+1.65%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6855` | 15,870.00 USD | 112.98 USD | 0.00 USD | `+1.95%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6865` | 16,160.00 USD | 292.33 USD | 0.00 USD | `+2.10%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6875` | 16,300.00 USD | 140.41 USD | 0.00 USD | `+2.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6885` | 16,820.00 USD | 514.80 USD | 0.00 USD | `+2.39%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6895` | 17,010.00 USD | 194.09 USD | 0.00 USD | `+2.54%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6915` | 17,110.00 USD | 101.96 USD | 0.00 USD | `+2.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6925` | 18,140.00 USD | 1,020.00 USD | 0.00 USD | `+2.99%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6945` | 18,750.00 USD | 610.10 USD | 0.00 USD | `+3.29%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6955` | 18,850.00 USD | 101.38 USD | 0.00 USD | `+3.44%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6965` | 19,640.00 USD | 789.18 USD | 0.00 USD | `+3.58%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.6985` | 19,740.00 USD | 102.99 USD | 0.00 USD | `+3.88%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7005` | 19,880.00 USD | 137.19 USD | 0.00 USD | `+4.18%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7015` | 20,440.00 USD | 561.40 USD | 0.00 USD | `+4.33%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7085` | 21,390.00 USD | 947.29 USD | 0.00 USD | `+5.37%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7095` | 21,520.00 USD | 132.99 USD | 0.00 USD | `+5.52%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7115` | 21,640.00 USD | 122.04 USD | 0.00 USD | `+5.81%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7135` | 21,950.00 USD | 307.58 USD | 0.00 USD | `+6.11%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7165` | 23,780.00 USD | 1,830.00 USD | 0.00 USD | `+6.56%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7195` | 24,160.00 USD | 373.99 USD | 0.00 USD | `+7.00%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7205` | 24,300.00 USD | 147.15 USD | 0.00 USD | `+7.15%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7215` | 27,570.00 USD | 3,260.00 USD | 0.00 USD | `+7.30%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7225` | 27,720.00 USD | 150.08 USD | 0.00 USD | `+7.45%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7265` | 34,130.00 USD | 6,410.00 USD | 0.00 USD | `+8.05%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7325` | 34,300.00 USD | 165.17 USD | 0.00 USD | `+8.94%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7345` | 35,330.00 USD | 1,030.00 USD | 0.00 USD | `+9.24%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7375` | 35,430.00 USD | 106.75 USD | 0.00 USD | `+9.68%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7395` | 35,640.00 USD | 208.16 USD | 0.00 USD | `+9.98%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7405` | 36,370.00 USD | 733.09 USD | 0.00 USD | `+10.13%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7415` | 36,530.00 USD | 156.98 USD | 0.00 USD | `+10.28%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7425` | 36,660.00 USD | 132.95 USD | 0.00 USD | `+10.43%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7445` | 37,420.00 USD | 757.16 USD | 0.00 USD | `+10.72%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7455` | 39,590.00 USD | 2,170.00 USD | 0.00 USD | `+10.87%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7475` | 39,910.00 USD | 318.43 USD | 0.00 USD | `+11.17%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7505` | 40,050.00 USD | 141.39 USD | 0.00 USD | `+11.62%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7525` | 40,180.00 USD | 134.74 USD | 0.00 USD | `+11.91%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7565` | 44,300.00 USD | 4,120.00 USD | 0.00 USD | `+12.51%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7575` | 44,810.00 USD | 511.82 USD | 0.00 USD | `+12.66%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7585` | 44,940.00 USD | 135.82 USD | 0.00 USD | `+12.80%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7615` | 45,820.00 USD | 875.23 USD | 0.00 USD | `+13.25%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7635` | 45,920.00 USD | 103.35 USD | 0.00 USD | `+13.55%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7665` | 46,050.00 USD | 127.48 USD | 0.00 USD | `+13.99%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7675` | 46,150.00 USD | 101.61 USD | 0.00 USD | `+14.14%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7695` | 46,340.00 USD | 186.97 USD | 0.00 USD | `+14.44%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7705` | 46,450.00 USD | 109.43 USD | 0.00 USD | `+14.59%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7775` | 46,620.00 USD | 166.70 USD | 0.00 USD | `+15.63%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7815` | 47,750.00 USD | 1,140.00 USD | 0.00 USD | `+16.23%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.7865` | 54,070.00 USD | 6,310.00 USD | 0.00 USD | `+16.97%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8095` | 54,200.00 USD | 133.42 USD | 0.00 USD | `+20.39%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8125` | 66,270.00 USD | 12,070.00 USD | 0.00 USD | `+20.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8335` | 67,200.00 USD | 929.08 USD | 0.00 USD | `+23.96%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8475` | 107,790.00 USD | 40,590.00 USD | 0.00 USD | `+26.04%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8505` | 124,530.00 USD | 16,740.00 USD | 0.00 USD | `+26.49%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8515` | 137,250.00 USD | 12,720.00 USD | 0.00 USD | `+26.64%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8525` | 149,030.00 USD | 11,780.00 USD | 0.00 USD | `+26.78%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8705` | 150,310.00 USD | 1,280.00 USD | 0.00 USD | `+29.46%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.8725` | 150,470.00 USD | 159.86 USD | 0.00 USD | `+29.76%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.9085` | 150,660.00 USD | 193.62 USD | 0.00 USD | `+35.11%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.9505` | 151,000.00 USD | 340.54 USD | 0.00 USD | `+41.36%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.9715` | 151,150.00 USD | 145.72 USD | 0.00 USD | `+44.48%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `0.9875` | 152,140.00 USD | 987.50 USD | 0.00 USD | `+46.86%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.00` | 152,270.00 USD | 136.10 USD | 0.00 USD | `+48.80%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.00` | 152,820.00 USD | 550.48 USD | 0.00 USD | `+48.94%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.03` | 153,140.00 USD | 314.99 USD | 0.00 USD | `+52.81%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.05` | 153,740.00 USD | 602.17 USD | 0.00 USD | `+56.23%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.06` | 154,100.00 USD | 360.61 USD | 0.00 USD | `+57.72%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.08` | 155,040.00 USD | 942.77 USD | 0.00 USD | `+60.69%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.08` | 155,380.00 USD | 337.31 USD | 0.00 USD | `+60.84%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.10` | 155,780.00 USD | 397.19 USD | 0.00 USD | `+63.67%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.25` | 168,910.00 USD | 13,130.00 USD | 0.00 USD | `+85.98%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.26` | 170,230.00 USD | 1,320.00 USD | 0.00 USD | `+87.46%` | `TACTICAL (Retail Cluster)` |
+| `Buy Stop` | `1.30` | 207,080.00 USD | 36,850.00 USD | 0.00 USD | `+92.67%` | `TACTICAL (Retail Cluster)` |
 
 - **Exchange Multi-Horizon Liquidation Density Map Table (8_Exchange_Liquidation_Map_1D/7D.parquet)**:
 | Horizon | Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Binance (USD) | OKX (USD) | Bybit (USD) |
@@ -792,31 +934,31 @@
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| `15M` | `APT` | `37.16%` | `62.84%` | `0.59` | 25,810,000.00 USD |
-| `15M` | `Binance` | `38.59%` | `61.41%` | `0.63` | 11,400,000.00 USD |
-| `15M` | `OKX` | `44.19%` | `55.81%` | `0.79` | 2,860,000.00 USD |
-| `15M` | `Bybit` | `40.34%` | `59.66%` | `0.68` | 4,390,000.00 USD |
-| `15M` | `KuCoin` | `41.9%` | `58.1%` | `0.72` | 388,460.00 USD |
-| `15M` | `Gate` | `41.74%` | `58.26%` | `0.72` | 415,520.00 USD |
-| `15M` | `Bitget` | `39.17%` | `60.83%` | `0.64` | 1,150,000.00 USD |
-| `15M` | `BingX` | `9.19%` | `90.81%` | `0.10` | 2,010,000.00 USD |
-| `15M` | `MEXC` | `28.13%` | `71.87%` | `0.39` | 1,330,000.00 USD |
-| `15M` | `Bitunix` | `41.31%` | `58.69%` | `0.70` | 397,720.00 USD |
-| `15M` | `Hyperliquid` | `39.57%` | `60.43%` | `0.65` | 654,000.00 USD |
+| `15M` | `APT` | `41.34%` | `58.66%` | `0.70` | 28,320,000.00 USD |
+| `15M` | `Binance` | `40.34%` | `59.66%` | `0.68` | 11,450,000.00 USD |
+| `15M` | `OKX` | `48.06%` | `51.94%` | `0.93` | 3,950,000.00 USD |
+| `15M` | `Bybit` | `46.54%` | `53.46%` | `0.87` | 5,310,000.00 USD |
+| `15M` | `KuCoin` | `43.17%` | `56.83%` | `0.76` | 431,760.00 USD |
+| `15M` | `Gate` | `48.29%` | `51.71%` | `0.93` | 416,000.00 USD |
+| `15M` | `Bitget` | `44.36%` | `55.64%` | `0.80` | 1,300,000.00 USD |
+| `15M` | `BingX` | `14.54%` | `85.46%` | `0.17` | 2,010,000.00 USD |
+| `15M` | `MEXC` | `36.37%` | `63.63%` | `0.57` | 1,290,000.00 USD |
+| `15M` | `Bitunix` | `44.11%` | `55.89%` | `0.79` | 415,170.00 USD |
+| `15M` | `Hyperliquid` | `49.58%` | `50.42%` | `0.98` | 858,380.00 USD |
 | `15M` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `LBank` | `29.65%` | `70.35%` | `0.42` | 148,340.00 USD |
+| `15M` | `LBank` | `51.19%` | `48.81%` | `1.05` | 64,640.00 USD |
 | `15M` | `Crypto.com` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `WhiteBIT` | `55.5%` | `44.5%` | `1.25` | 495,960.00 USD |
-| `15M` | `HTX` | `55.26%` | `44.74%` | `1.24` | 51,920.00 USD |
+| `15M` | `WhiteBIT` | `40.82%` | `59.18%` | `0.69` | 594,240.00 USD |
+| `15M` | `HTX` | `53.8%` | `46.2%` | `1.16` | 66,530.00 USD |
 | `15M` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `15M` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Kraken` | `54.66%` | `45.34%` | `1.21` | 38,180.00 USD |
-| `15M` | `Aster` | `38.21%` | `61.79%` | `0.62` | 40,260.00 USD |
+| `15M` | `Kraken` | `66.34%` | `33.66%` | `1.97` | 71,230.00 USD |
+| `15M` | `Aster` | `53.03%` | `46.97%` | `1.13` | 40,580.00 USD |
 | `15M` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `15M` | `Lighter` | `8.64%` | `91.36%` | `0.09` | 31,350.00 USD |
-| `15M` | `Whale Positions` | `38.59%` | `61.41%` | `0.63` | 11,400,000.00 USD |
-| `15M` | `Global Accounts` | `37.16%` | `62.84%` | `0.59` | 25,810,000.00 USD |
+| `15M` | `Lighter` | `4.84%` | `95.16%` | `0.05` | 36,420.00 USD |
+| `15M` | `Whale Positions` | `40.34%` | `59.66%` | `0.68` | 11,450,000.00 USD |
+| `15M` | `Global Accounts` | `41.34%` | `58.66%` | `0.70` | 28,320,000.00 USD |
 | `1H` | `APT` | `37.71%` | `62.29%` | `0.61` | 36,360,000.00 USD |
 | `1H` | `Binance` | `40.32%` | `59.68%` | `0.68` | 15,250,000.00 USD |
 | `1H` | `OKX` | `44.76%` | `55.24%` | `0.81` | 3,780,000.00 USD |
@@ -945,21 +1087,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -282,780.00 USD | -2,510,000.00 USD | **`DISTRIBUTION`** |
-| `15m` | -460,230.00 USD | -3,350,000.00 USD | **`DISTRIBUTION`** |
-| `30m` | -436,260.00 USD | -3,160,000.00 USD | **`DISTRIBUTION`** |
-| `1h` | -311,980.00 USD | -3,970,000.00 USD | **`DISTRIBUTION`** |
-| `2h` | -493,970.00 USD | -3,430,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | -731,450.00 USD | -5,260,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -408,510.00 USD | -5,880,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -224,430.00 USD | -6,500,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -289,330.00 USD | -6,680,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -1,660,000.00 USD | -9,950,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -5,250,000.00 USD | -23,670,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -29,040,000.00 USD | -104,350,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -11,930.00 USD | 319,900.00 USD | **`ACCUMULATION`** |
+| `15m` | -224,050.00 USD | -3,020,000.00 USD | **`DISTRIBUTION`** |
+| `30m` | -405,980.00 USD | -3,860,000.00 USD | **`DISTRIBUTION`** |
+| `1h` | -475,820.00 USD | -4,510,000.00 USD | **`DISTRIBUTION`** |
+| `2h` | -455,830.00 USD | -4,080,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | -693,390.00 USD | -5,790,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -369,110.00 USD | -6,210,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -247,360.00 USD | -6,990,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -257,040.00 USD | -7,170,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -1,650,000.00 USD | -10,540,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -5,210,000.00 USD | -24,730,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -28,940,000.00 USD | -105,410,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-282.78K` | 15m=`-460.23K` | 1h=`-311.98K` | 24h=`-1.66M`
-* Futures Capital Netflows: 5m=`-2.51M` | 15m=`-3.35M` | 1h=`-3.97M` | 24h=`-9.95M`
+* Spot Capital Netflows: 5m=`-11.93K` | 15m=`-224.05K` | 1h=`-475.82K` | 24h=`-1.65M`
+* Futures Capital Netflows: 5m=`+319.90K` | 15m=`-3.02M` | 1h=`-4.51M` | 24h=`-10.54M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

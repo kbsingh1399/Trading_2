@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNZD
 **Canonical Key**: `EURNZD` | **Broker Instrument**: `EURNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.98` | VWAP Z-Score: `+0.72` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `1.98` | VWAP Z-Score: `+1.59` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `53.87` (State: `NEUTRAL`)
+  * 14-Period RSI: `59.70` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.99` | Lower -3.00σ Band: `1.98`
   * Upper +2.51σ Band: `1.99` | Lower -2.51σ Band: `1.98`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.98` | EMA-20=`1.98` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.98` (Slope: `+0.0000`) | EMA-100=`1.98`
-  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0361`) | EMA-233=`1.98`
+  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0364`) | EMA-233=`1.98`
 - **Range Boundaries**: 24H High=`1.99` | 24H Low=`1.98` | Weekly High=`1.99` | Weekly Low=`1.95`
 
 ---
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.99` | POC=`1.98` | VAL=`1.98`
   * Prior Day Extremes: PDH=`2.00` | PDL=`1.97` | PDC=`1.98`
-  * Monday Range Blueprint: High=`1.99` | Mid=`1.98` | Low=`1.97`
+  * Monday Range Blueprint: High=`1.99` | Mid=`1.98` | Low=`1.98`
   * Developing Weekly Value Area: Weekly VAH=`2.00` | Weekly POC=`1.98` | Weekly VAL=`1.97`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.99` | Low=`1.98`

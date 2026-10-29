@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCNH
 **Canonical Key**: `AUDCNH` | **Broker Instrument**: `AUDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 02:24:37 IST` (`2026-10-29 20:54:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 02:27:38 IST` (`2026-10-29 20:57:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `4.68` | **Live Ask Quote**: `4.68` | **Mid Price**: `4.68`
-- **Spread Points**: `166.00` | **Spread BPS**: `3.55 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `170.00` | **Spread BPS**: `3.63 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`4.68` | EMA-20=`4.68` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`4.68` (Slope: `+0.0000`) | EMA-100=`4.68`
   * Institutional Anchors: EMA-144=`4.68` | EMA-200=`4.68` (Slope: `+0.0000`) | EMA-233=`4.68`
-- **Range Boundaries**: 24H High=`4.73` | 24H Low=`4.63` | Weekly High=`4.77` | Weekly Low=`4.58`
+- **Range Boundaries**: 24H High=`4.73` | 24H Low=`4.63` | Weekly High=`4.77` | Weekly Low=`4.59`
 
 ---
 
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`4.70` | POC=`4.68` | VAL=`4.66`
   * Prior Day Extremes: PDH=`4.71` | PDL=`4.65` | PDC=`4.68`
-  * Monday Range Blueprint: High=`4.70` | Mid=`4.68` | Low=`4.65`
+  * Monday Range Blueprint: High=`4.70` | Mid=`4.68` | Low=`4.66`
   * Developing Weekly Value Area: Weekly VAH=`4.72` | Weekly POC=`4.68` | Weekly VAL=`4.64`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`4.69` | Low=`4.67`
@@ -274,7 +274,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `4.69` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `5.89` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `5.90` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `1.69`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
