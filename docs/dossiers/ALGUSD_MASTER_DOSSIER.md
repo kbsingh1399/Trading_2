@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 03:58:37 IST` (`2026-10-29 22:28:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:01:40 IST` (`2026-10-29 22:31:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -342,14 +342,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-384.29` | Last 24h: `-4.06K` | Last 3d: `-3.32K` | Last 7d: `-6.03K`
+  * Current Rate: `-265.37` | Last 24h: `-4.06K` | Last 3d: `-3.32K` | Last 7d: `-6.03K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0083%` | **USDT OKX** | `-0.0141%` |
-| **USDT Bybit** | `0.0090%` | **USDT KuCoin** | `0.0016%` |
-| **USDT MEXC** | `-0.0082%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `-0.0004%` | **USDT Bitget** | `0.0100%` |
+| **USDT Binance** | `-0.0077%` | **USDT OKX** | `-0.0139%` |
+| **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `0.0032%` |
+| **USDT MEXC** | `-0.0079%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `0.0015%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -420,21 +420,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 03:30:02 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:54:02 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:51:02 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:50:02 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:50:02 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:52:02 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:52:02 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:52:02 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:52:02 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:52:02 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:52:02 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:52:02 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:52:02 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:52:02 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:52:02 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:29:36 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:00:36 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:00:36 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:59:36 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:01:36 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:01:36 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:01:36 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:36 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:36 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:36 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:36 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:36 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:36 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:36 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:01:36 IST`: [ForexFactory] - (Sentiment: `Neutral`)
 
 
 ---
