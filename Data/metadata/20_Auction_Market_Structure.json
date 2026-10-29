@@ -68,8 +68,8 @@
     "session_bias"
   ],
   "byte_size": 55052,
-  "timestamp_ist": "2026-10-29 18:00:06 IST",
-  "timestamp_utc": "2026-10-29 12:30:06 UTC",
-  "epoch_utc": 1793277006.091067,
+  "timestamp_ist": "2026-10-29 18:02:14 IST",
+  "timestamp_utc": "2026-10-29 12:32:14 UTC",
+  "epoch_utc": 1793277134.418213,
   "write_duration_ms": 8.89
 }
