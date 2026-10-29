@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:02:04 IST` (`2026-10-29 18:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:05:06 IST` (`2026-10-29 18:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`133.32`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -489,7 +489,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `0:00 UTC` | `136.91` | `137.14` | `136.91` | `137.94` | `136.38` | 2,268,812.62 USD | 1,173,914.80 USD | 1,094,897.82 USD | 79,016.99 USD | `+3.48%` | `32B / 27S` |
 | `5:00 UTC` | `136.36` | `136.58` | `136.36` | `137.31` | `136.01` | 2,016,544.71 USD | 820,255.37 USD | 1,196,289.34 USD | -376,033.97 USD | `-18.65%` | `6B / 45S` |
 | `0:00 UTC` | `136.31` | `135.82` | `136.31` | `136.41` | `135.25` | 1,856,319.84 USD | 851,137.54 USD | 1,005,182.30 USD | -154,044.76 USD | `-8.30%` | `11B / 26S` |
 | `5:00 UTC` | `136.19` | `136.08` | `136.19` | `136.38` | `135.78` | 1,030,013.81 USD | 443,410.64 USD | 586,603.17 USD | -143,192.54 USD | `-13.90%` | `6B / 15S` |
@@ -498,7 +497,8 @@
 | `0:00 UTC` | `134.09` | `134.61` | `134.09` | `135.59` | `133.75` | 1,172,719.65 USD | 442,820.23 USD | 729,899.42 USD | -287,079.19 USD | `-24.48%` | `18B / 51S` |
 | `5:00 UTC` | `133.19` | `133.34` | `133.19` | `134.06` | `132.89` | 1,323,282.70 USD | 549,454.30 USD | 773,828.40 USD | -224,374.10 USD | `-16.96%` | `12B / 26S` |
 | `0:00 UTC` | `133.56` | `133.83` | `133.56` | `134.20` | `133.47` | 796,111.43 USD | 359,258.65 USD | 436,852.78 USD | -77,594.12 USD | `-9.75%` | `11B / 15S` |
-| `5:00 UTC` | `134.03` | `133.95` | `134.03` | `134.30` | `133.66` | 367,142.34 USD | 205,418.29 USD | 161,724.04 USD | 43,694.25 USD | `+11.90%` | `8B / 21S` |
+| `5:00 UTC` | `133.20` | `133.55` | `133.20` | `134.30` | `133.09` | 867,640.21 USD | 417,158.29 USD | 450,481.92 USD | -33,323.63 USD | `-3.84%` | `18B / 33S` |
+| `0:00 UTC` | `132.50` | `132.62` | `132.50` | `133.26` | `132.25` | 339,950.59 USD | 127,512.37 USD | 212,438.22 USD | -84,925.85 USD | `-24.98%` | `10B / 24S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -580,21 +580,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:31:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:26:26 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:03:26 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:26 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:26 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:51:26 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:51:26 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:50:26 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:50:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:50:26 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:52:26 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:52:26 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:52:26 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:52:26 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 19:52:26 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:31:27 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:26:27 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:27 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:27 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:27 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:27 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:01:27 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:00:27 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:00:27 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:00:27 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:02:27 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:02:27 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:02:27 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:02:27 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:02:27 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---
@@ -629,6 +629,6 @@
   * Mathematical Lot Sizing: **`5.80 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
 - Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`134.39`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
