@@ -347,25 +347,26 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                     stable_z_ticks = 0
                     last_z_hash = cur_hash
         
-        # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed
-        if not arena_done and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
+        a_gen_flag = astate.get("isGenerating", False) if ('astate' in locals() and isinstance(astate, dict)) else False
+        z_gen_flag = zstate.get("isGenerating", False) if ('zstate' in locals() and isinstance(zstate, dict)) else False
+
+        # Auto-refresh tab every 5 minutes ONLY IF NOT GENERATING (stuck/idle guardrail)
+        if not arena_done and not a_gen_flag and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
             arena_last_reload = now
-            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Arena completion. Auto-refreshing Arena.ai tab via CDP Page.reload...", flush=True)
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Arena completion (idle/stuck). Auto-refreshing Arena.ai tab via CDP Page.reload...", flush=True)
             await reload_cdp_tab("arena.ai")
             await asyncio.sleep(2.0)
 
-        # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed
-        if not zai_done and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
+        # Auto-refresh tab every 5 minutes ONLY IF NOT GENERATING (stuck/idle guardrail)
+        if not zai_done and not z_gen_flag and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
             zai_last_reload = now
-            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Z.ai completion. Auto-refreshing Z.ai tab via CDP Page.reload...", flush=True)
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Z.ai completion (idle/stuck). Auto-refreshing Z.ai tab via CDP Page.reload...", flush=True)
             await reload_cdp_tab("chat.z.ai")
             await asyncio.sleep(2.0)
 
         # Periodic log every 6 seconds
         if now - last_print >= 6.0:
             last_print = now
-            a_gen_flag = astate.get("isGenerating", False) if ('astate' in locals() and isinstance(astate, dict)) else False
-            z_gen_flag = zstate.get("isGenerating", False) if ('zstate' in locals() and isinstance(zstate, dict)) else False
             a_stat = "DONE" if arena_done else ("GENERATING" if a_gen_flag else "AWAITING_CYCLE")
             z_stat = "DONE" if zai_done else ("GENERATING" if z_gen_flag else "AWAITING_CYCLE")
             a_rem = int(max(0, RELOAD_INTERVAL_SEC - (now - arena_last_reload))) if not arena_done else 0

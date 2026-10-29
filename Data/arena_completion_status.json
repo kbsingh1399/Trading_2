@@ -1,11 +1,11 @@
 {
-  "completed_at_utc": "2026-10-29 18:27:59 UTC",
-  "completed_at_epoch": 1793298479.9630308,
-  "prose_count": 21,
-  "text_length": 47203,
-  "text_hash": "f26e3de40769cd87",
+  "completed_at_utc": "2026-10-29 19:21:35 UTC",
+  "completed_at_epoch": 1793301695.5350041,
+  "prose_count": 22,
+  "text_length": 53753,
+  "text_hash": "879ea27a2dece11c",
   "has_copy_button": true,
-  "has_yes_no_banner": false,
+  "has_yes_no_banner": true,
   "has_duration_footer": false,
   "is_generating": false,
   "latest_raw_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ARENA_LATEST_RAW.md"
