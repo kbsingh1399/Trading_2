@@ -1,0 +1,150 @@
+# 👑 [SOVEREIGN CYCLE DISPATCH: Cycle_004]
+**Authority**: Antigravity Sovereign Coordinator (MetaTrader 5 Account #5064568)
+**Execution Protocol**: SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER
+**Timestamp**: 2026-10-29 08:02:21 UTC
+
+---
+
+## 📚 1. MANDATORY GOVERNANCE INGESTION GATE
+You are bound by the SOVEREIGN TRI-COUNCIL PERMANENT STANDING CHARTER.
+Before evaluating ANY candidate asset, proposing ANY trade, or outputting ANY cycle verdict, you MUST systematically fetch, read, and enforce the full suite of canonical governance documents directly via their raw GitHub URLs:
+
+- **1. Standardized Trading Decision Chain**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md
+  *(Canonical 12-Step SOP, Section 0.8 Sovereign Final Boss authority, Candidate-by-Candidate 43-feed serialized thinking chain, Dynamic Capacity N_open + N_pending <= 3)*
+- **2. Live Portfolio & Order Registry**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md
+  *(Authoritative real-time state of live positions, ratchets, resting limit orders, and solvency metrics)*
+- **3. Tri-Council Collaborative Ledger**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md
+  *(Shared cycle memory eliminating silos, cross-referencing peer verdicts)*
+- **4. Top 10 Execution Pitfalls & Autopsy**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md
+  *(Elimination of 10 lethal traps: ghost walls, sub-ATR stops inside sweep pockets, unabsorbed CVD waterfalls, random-walk fades, spread friction, rollover traps)*
+- **5. 32-Sheet Pitfall Avoidance Questions**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md
+  *(Exhaustive 35-feed row-by-row interrogation across all 4 strategic groups)*
+- **6. Autonomous Wakeup Checklist**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md
+  *(156-asset zero-omission screening across 4 macro clusters: Crypto, FX Majors/Crosses, Metals, Indices)*
+- **7. Continuous Kaizen Self-Improvement**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md
+  *(Zero context amnesia, self-critique loop, zero regression)*
+
+**Mandatory Pre-Cycle Reading Confirmation Header**:
+You MUST begin your report with this exact block:
+```markdown
+### 📚 Mandatory Pre-Cycle Reading Gate Confirmation
+✅ All 7 Mandatory Governance Documents Fetched, Read & Enforced via GitHub:
+- [x] STANDARDIZED_TRADING_DECISION_CHAIN.md
+- [x] LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md
+- [x] TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md
+- [x] TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md
+- [x] 32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md
+- [x] AUTONOMOUS_WAKEUP_CHECKLIST.md
+- [x] CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md
+```
+
+---
+
+## 🏛️ 2. LIVE PORTFOLIO & RESTING ORDERS TELEMETRY
+Current snapshot from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`:
+```markdown
+# 📊 LIVE PORTFOLIO & ORDER REGISTRY
+**Authoritative Real-Time Position, Order & Solvency Registry**
+*Maintained Continuously by Antigravity Autonomous Position Supervisor*
+
+> **GOVERNANCE PURPOSE**:
+> This registry serves as the single source of truth for all live running positions, resting pending maker limit orders, locked-in profit ratchets, and banked session profits.
+> It is automatically updated by the dynamic position supervisor daemon and pushed to GitHub main every 60 seconds (`https://github.com/kbsingh1399/Trading_2.git`).
+> 
+> **RAW GITHUB FETCH URL FOR ARENA.AI & Z.AI**:
+> `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`
+
+---
+
+## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
+- **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
+- **Account Balance**: **4,697.67 USD**
+- **Floating Equity**: **4,719.80 USD**
+- **Free Margin**: **4,189.37 USD**
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor)
+- **Last Updated**: `2026-10-29 08:02:19 UTC`
+
+---
+
+## 🚀 2. LIVE RUNNING POSITIONS (3 ACTIVE)
+
+| Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **#19437063** | `AUDUSD.pi` | SELL | 0.10 | 0.70586 | 0.70457 | **0.70506** | 0.70368 | **+12.90 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437494** | `USDJPY.pi` | BUY | 0.08 | 157.62 | 157.796 | **157.764** | 158.05 | **+8.92 USD** | Stage 2 (+0.80R Profit Lock) | **LET IT RUN. Developing toward target; risk locked.** |
+| **#19437498** | `US2000.p` | SELL | 0.01 | 2846.5 | 2843.4 | **2858.0** | 2822.0 | **+0.31 USD** | Stage 0 | **LET IT RUN. Developing toward target; risk locked.** |
+
+---
+
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (6 STAGED)
+
+| Ticket | Symbol | Order Type | Volume | Limit Entry | Live SL | Take Profit | Staged Status |
+|---|---|---|---|---|---|---|---|
+| **#19439188** | `EURGBP.pi` | SELL_LIMIT | 0.10 | **0.8381** | **0.8388** | 0.8368 | Resting passive maker order |
+| **#19444900** | `SP500.p` | BUY_LIMIT | 0.02 | **7705.5** | **7695.5** | 7728.5 | Resting passive maker order |
+| **#19445579** | `UKBRENT.p` | BUY_LIMIT | 0.10 | **114.45** | **113.9** | 115.8 | Resting passive maker order |
+| **#19447583** | `NZDUSD.pi` | SELL_LIMIT | 0.12 | **0.5632** | **0.56388** | 0.5605 | Resting passive maker order |
+| **#19448978** | `USDCAD.pi` | BUY_LIMIT | 0.10 | **1.3972** | **1.3961999999999999** | 1.3992 | Resting passive maker order |
+| **#19448979** | `BNBUSD.p` | SELL_LIMIT | 0.70 | **762.5** | **772.5** | 747.0 | Resting passive maker order |
+```
+
+### Mandatory Trade Lifecycle Interrogation:
+For each live position and resting order, systematically interrogate:
+**"Should I let it run or cut it? Is it still a valid trade?"**
+- **AUDUSD.pi** (Ticket #19437063): SELL 0.10 @ 0.70586 | Live SL: 0.70506 (+8.0 pips profit lock) | TP: 0.70368
+- **USDJPY.pi** (Ticket #19437494): BUY 0.08 @ 157.620 | Live SL: 157.764 (+14.4 pips profit lock) | TP: 158.050
+- **US2000.p** (Ticket #19437498): SELL 0.01 @ 2846.50 | Live SL: 2858.00 (Max nominal risk: 1.15 USD) | TP: 2822.00
+- **6 Resting Limit Orders**: EURGBP (0.83810), SP500 (7705.50), UKBRENT (114.45), NZDUSD (0.56320), USDCAD (1.39720), BNBUSD (762.50)
+
+---
+
+## 🔬 3. SPREAD-GATED SCAN & SERIALIZED 43-FEED FORENSICS (CANDIDATE-BY-CANDIDATE)
+1. **Spread Gating**: Evaluate 156 assets across 4 clusters. Cap: <= 12.0 bps for Crypto, <= 5.0 bps for TradFi. Reject any failing asset.
+2. **Sequential Forensic Deep Dive**: For EVERY spread-qualified candidate, sequentially extract metrics across ALL 43 Parquet feeds:
+   - Orderbook depth & defending whale walls (> 100K USD, > 180s persistence).
+   - Liquidation cascades (1D/7D maps, Max Pain 24H/48H/3D/7D, Hyperdash Stops).
+   - Multi-timeframe CVD delta absorption (5m, 15m, 1h, 4h).
+   - Auction Value Area boundaries (VAH, VAL, POC, Asian/London sweep levels).
+3. **Formulate Trade Parameters**: Entry at Sweep Exhaustion Zone (`VAH + 0.35 * ATR_14` or VAL sweep), Spread-Padded Stop Loss (`SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`), Take Profit, and Lot Size strictly bounded by <= 10.00 USD risk.
+4. **Advance to the next candidate in identical serialized fashion.**
+
+---
+
+## 📋 4. MANDATORY OUTPUT FORMAT
+Return your response structured as follows:
+
+# [COUNCIL REPORT - CYCLE_ID: Cycle_004]
+**Council Seat**: [Arena.ai (Lead Quant) / Z.ai (Adversarial Sentry)]
+**Timestamp**: 2026-10-29 08:02:21 UTC
+
+### 📚 Mandatory Pre-Cycle Reading Gate Confirmation
+✅ All 7 Mandatory Governance Documents Fetched, Read & Enforced via GitHub:
+- [x] STANDARDIZED_TRADING_DECISION_CHAIN.md
+- [x] LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md
+- [x] TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md
+- [x] TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md
+- [x] 32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md
+- [x] AUTONOMOUS_WAKEUP_CHECKLIST.md
+- [x] CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md
+
+## 1. Trade Lifecycle Interrogation ("Should I let it run or cut it?")
+- Position 1 (AUDUSD): [HOLD / CUT] - Detailed justification
+- Position 2 (USDJPY): [HOLD / CUT] - Detailed justification
+- Position 3 (US2000): [HOLD / CUT] - Detailed justification
+- Resting Limits: [RETAIN / PURGE] - Detailed justification
+
+## 2. Spread-Gated Candidate Screening & 43-Feed Forensics
+### Candidate A: [Symbol]
+- Spread Audit: [Pass / Fail] (X.X bps)
+- 43-Feed Forensic Synthesis: (Whale Orders, Liquidations, CVD, Auction Value Area)
+- Formulated Trade: [BUY_LIMIT / SELL_LIMIT] @ Price | SL: Price | TP: Price | Risk: $X.XX
+
+### Candidate B: [Symbol]
+- ... (Same serialized structure)
+
+## 3. Solvency & Risk Vetting
+- Capital Floor Defense: Hard Floor $4,775.00 USD | Operating Buffer $4,795.00 USD
+- Stressed Loss Verification: Stressed portfolio drawdown strictly within budget.
+
+# [END OF REPORT - CYCLE_ID: Cycle_004]
