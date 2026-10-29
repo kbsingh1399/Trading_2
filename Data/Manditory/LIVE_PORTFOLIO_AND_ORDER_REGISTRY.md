@@ -35,10 +35,14 @@
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 EXECUTED / 3 STAGED INTENT)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 EXECUTED / 7 STAGED INTENT)
 
-| Priority | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Staged Status |
+| Priority | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Risk USD | Staged Status & Forensic Armor |
 |---|---|---|---|---|---|---|---|---|
-| **Staged #1** | `BTCUSD.pi` | SELL_LIMIT | 0.02 | 81,084.34 | 81,446.12 | 80,179.89 | 7.24 USD | **STAGED_INTENT_ONLY** (Protected by 16.3M USD wall @ 81,500) |
-| **Staged #2** | `USDJPY.pi` | SELL_LIMIT | 0.13 | 158.004 | 158.123 | 157.707 | 9.80 USD | **STAGED_INTENT_ONLY** (0.06 bps spread, VAH sweep fade) |
-| **Staged #3** | `BNBUSD.p` | SELL_LIMIT | 2.55 | 753.31 | 757.22 | 743.53 | 9.97 USD | **STAGED_INTENT_ONLY** (Protected by 1.04M USD wall @ 749.03 & 672K wall @ 753.71) |
+| **Staged #1** | BTCUSD.pi | SELL_LIMIT | 0.02 | 81,084.34 | 81,446.12 | 80,179.89 | 7.24 USD | **STAGED_INTENT_ONLY** (Protected by 16.3M USD wall @ 81,500 & 9.65M wall @ 81,264) |
+| **Staged #2** | USDJPY.pi | SELL_LIMIT | 0.13 | 158.004 | 158.123 | 157.707 | 9.80 USD | **STAGED_INTENT_ONLY** (0.06 bps spread, VAH sweep fade) |
+| **Staged #3** | BNBUSD.p | SELL_LIMIT | 2.55 | 753.31 | 757.22 | 743.53 | 9.97 USD | **STAGED_INTENT_ONLY** (Armored by 1.04M USD wall @ 749.03 & 672K wall @ 753.71) |
+| **Staged #4** | XAUUSD.pi | SELL_LIMIT | 0.01 | 4040.53 | 4049.55 | 4017.98 | 0.09 USD | **STAGED_INTENT_ONLY** (Gold 0.20 bps spread, VAH sweep exhaustion) |
+| **Staged #5** | NAS100.p | SELL_LIMIT | 0.10 | 29,535.58 | 29,620.66 | 29,322.88 | 8.51 USD | **STAGED_INTENT_ONLY** (Nasdaq 0.34 bps spread, VAH fade) |
+| **Staged #6** | DJ30.p | SELL_LIMIT | 0.10 | 52,638.43 | 52,732.98 | 52,402.05 | 8.92 USD | **STAGED_INTENT_ONLY** (Dow 30 0.23 bps spread, VAH fade) |
+| **Staged #7** | USWTI.p | BUY_LIMIT | 0.10 | 101.55 | 100.99 | 102.93 | 0.55 USD | **STAGED_INTENT_ONLY** (WTI Crude 4.48 bps spread, VAL fade) |
