@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:48:13 IST` (`2026-10-29 20:18:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -153,10 +153,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+5.59%`) | Long MP=`7.04` (Vol: 235,800.00 USD, Dist: `--1.93%`)
-  * 48H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+5.59%`) | Long MP=`6.91` (Vol: 378,300.00 USD, Dist: `--3.76%`)
-  * 3D Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+5.59%`) | Long MP=`6.91` (Vol: 537,300.00 USD, Dist: `--3.76%`)
-  * 7D Horizon: Short MP=`7.61` (Vol: 392,700.00 USD, Dist: `+6.00%`) | Long MP=`6.90` (Vol: 565,900.00 USD, Dist: `--3.93%`)
+  * 24H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+7.21%`) | Long MP=`6.89` (Vol: 228,900.00 USD, Dist: `--2.50%`)
+  * 48H Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+7.21%`) | Long MP=`6.91` (Vol: 378,300.00 USD, Dist: `--2.29%`)
+  * 3D Horizon: Short MP=`7.58` (Vol: 435,300.00 USD, Dist: `+7.21%`) | Long MP=`6.91` (Vol: 537,300.00 USD, Dist: `--2.29%`)
+  * 7D Horizon: Short MP=`7.61` (Vol: 392,700.00 USD, Dist: `+7.62%`) | Long MP=`6.90` (Vol: 565,900.00 USD, Dist: `--2.46%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -305,21 +305,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:36:17 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:58:17 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:48:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:40:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:41:17 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:36:09 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:58:09 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:50:09 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:50:09 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:51:09 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:51:09 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:51:09 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 01:48:13 IST` (`2026-10-29 20:18:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 01:51:15 IST` (`2026-10-29 20:21:15 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`131.40`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -127,10 +127,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`138.85` (Vol: 128,600.00 USD, Dist: `+3.88%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.70%`)
-  * 48H Horizon: Short MP=`140.15` (Vol: 183,800.00 USD, Dist: `+4.86%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.70%`)
-  * 3D Horizon: Short MP=`140.15` (Vol: 159,300.00 USD, Dist: `+4.86%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--3.70%`)
-  * 7D Horizon: Short MP=`140.55` (Vol: 267,100.00 USD, Dist: `+5.15%`) | Long MP=`127.34` (Vol: 265,000.00 USD, Dist: `--4.73%`)
+  * 24H Horizon: Short MP=`138.79` (Vol: 138,600.00 USD, Dist: `+5.34%`) | Long MP=`128.68` (Vol: 206,000.00 USD, Dist: `--2.34%`)
+  * 48H Horizon: Short MP=`140.15` (Vol: 183,800.00 USD, Dist: `+6.37%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--2.31%`)
+  * 3D Horizon: Short MP=`140.15` (Vol: 159,300.00 USD, Dist: `+6.37%`) | Long MP=`128.71` (Vol: 206,000.00 USD, Dist: `--2.31%`)
+  * 7D Horizon: Short MP=`140.55` (Vol: 267,100.00 USD, Dist: `+6.67%`) | Long MP=`127.34` (Vol: 265,000.00 USD, Dist: `--3.36%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -550,21 +550,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 01:36:17 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:58:17 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:48:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:40:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:17 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:41:17 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:17 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:36:09 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:58:09 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:50:09 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:50:09 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:49:09 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:51:09 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:51:09 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:51:09 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:51:09 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -599,6 +599,6 @@
   * Mathematical Lot Sizing: **`6.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
 - Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`132.45`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
