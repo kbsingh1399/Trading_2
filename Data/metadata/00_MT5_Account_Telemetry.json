@@ -19,9 +19,9 @@
     "Pillar_1_Clearance",
     "Timestamp_IST"
   ],
-  "byte_size": 11849,
-  "timestamp_ist": "2026-10-30 01:29:58 IST",
-  "timestamp_utc": "2026-10-29 19:59:58 UTC",
-  "epoch_utc": 1793303998.356236,
-  "write_duration_ms": 608.85
+  "byte_size": 11886,
+  "timestamp_ist": "2026-10-30 01:32:51 IST",
+  "timestamp_utc": "2026-10-29 20:02:51 UTC",
+  "epoch_utc": 1793304171.955978,
+  "write_duration_ms": 809.45
 }
