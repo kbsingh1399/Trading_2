@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZECUSD
 **Canonical Key**: `ZECUSD` | **Broker Instrument**: `ZECUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 04:41:04 IST` (`2026-10-29 23:11:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:44:06 IST` (`2026-10-29 23:14:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -329,7 +329,7 @@
 | `5:00 UTC` | `1259.85` | `1254.56` | `1259.85` | `1263.15` | `1242.15` | 22,141,749.31 USD | 11,943,317.16 USD | 10,198,432.15 USD | 1,744,885.01 USD | `+7.88%` | `3B / 3S` |
 | `0:00 UTC` | `1257.15` | `1255.20` | `1257.15` | `1264.35` | `1245.45` | 28,871,970.63 USD | 12,578,804.66 USD | 16,293,165.97 USD | -3,714,361.32 USD | `-12.86%` | `7B / 2S` |
 | `5:00 UTC` | `1241.25` | `1245.94` | `1241.25` | `1254.45` | `1236.15` | 26,347,049.74 USD | 11,469,285.37 USD | 14,877,764.37 USD | -3,408,478.99 USD | `-12.94%` | `1B / 6S` |
-| `0:00 UTC` | `1240.05` | `1237.72` | `1240.05` | `1243.65` | `1232.25` | 8,272,932.35 USD | 3,060,794.54 USD | 5,212,137.81 USD | -2,151,343.27 USD | `-26.00%` | `1B / 6S` |
+| `0:00 UTC` | `1224.15` | `1230.51` | `1224.15` | `1243.65` | `1222.05` | 36,854,164.51 USD | 16,245,634.04 USD | 20,608,530.47 USD | -4,362,896.43 USD | `-11.84%` | `1B / 6S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -396,21 +396,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 04:14:42 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:31:42 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:31:42 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:30:42 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:30:42 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:32:42 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:32:42 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:32:42 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:32:42 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:32:42 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:15:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:41:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:41:34 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:40:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:42:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:42:34 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:42:34 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:42:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:42:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:42:34 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
 
 
 ---

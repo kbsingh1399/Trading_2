@@ -14,16 +14,16 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,762.83 USD**
-- **Floating Equity**: **4,760.27 USD**
-- **Free Margin**: **4,737.79 USD**
-- **Margin Used**: **22.48 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-14.73 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-34.73 USD**)
+- **Floating Equity**: **4,757.15 USD**
+- **Free Margin**: **4,569.76 USD**
+- **Margin Used**: **187.39 USD**
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-17.85 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-37.85 USD**)
 - **Active Running Positions**: **1 ACTIVE (AUDUSD.pi Long)**
 - **Active Resting Pending Orders**: **5 LIVE PENDING MAKER LIMIT ORDERS**
 - **Total Contingent Downside Risk**: **42.87 USD** (Max per-ticket risk capped at <= 10.00 USD)
 - **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-29 22:50:00 UTC` (`2026-10-30 04:20:00 IST`)
+- **Last Synchronized (UTC)**: `2026-10-29 23:14:00 UTC` (`2026-10-30 04:44:00 IST`)
 
 ---
 
@@ -31,7 +31,7 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70238` | `0.70150` | `0.70570` | `-2.56 USD` | Initial Stop (-2.51σ Band) | **LET RUN. Sits at Asian Range Low / VAL support. Strong 5m CVD buying absorption (+83% delta) active.** |
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70199` | `0.70150` | `0.70570` | `-5.68 USD` | Initial Stop (-2.51σ Band) | **LET RUN. Sits at Asian Range Low / VAL support. Price bouncing (+2.0 pips off low); 5m CVD buying (+83% delta) defending.** |
 
 ---
 
