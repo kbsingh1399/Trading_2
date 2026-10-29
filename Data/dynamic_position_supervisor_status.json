@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-29 11:10:11 UTC",
+  "timestamp_utc": "2026-10-29 11:12:32 UTC",
   "balance_usd": 4744.55,
   "equity_usd": 4744.55,
   "free_margin_usd": 4744.55,
   "max_filled_positions": 15,
   "filled_positions_count": 0,
   "filled_slots_free": 15,
-  "resting_limits_count": 2,
+  "resting_limits_count": 3,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -29,6 +29,15 @@
       "price": 0.5632,
       "sl": 0.56388,
       "tp": 0.5605
+    },
+    {
+      "ticket": 19464650,
+      "symbol": "BTCUSD.pi",
+      "type": "SELL_LIMIT",
+      "volume": 0.01,
+      "price": 80340.0,
+      "sl": 80563.5,
+      "tp": 79663.5
     }
   ]
 }
