@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-29 18:50:14 UTC",
+  "timestamp_utc": "2026-10-29 18:53:16 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -28,7 +28,8 @@
     "XAUEUR",
     "XAUSGD",
     "US2000",
-    "XAGSGD"
+    "XAGSGD",
+    "AVEUSD"
   ],
   "assets": {
     "BTC": {
@@ -298,7 +299,7 @@
       "mid_price": 0.910091,
       "spread_bps": 1.9998000199981703,
       "gate_status": "PASS",
-      "confluence_score": 95,
+      "confluence_score": 87,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.907360727,
@@ -324,7 +325,7 @@
       "mid_price": 4.4125,
       "spread_bps": 65.72,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
+      "confluence_score": 77,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 4.384,
@@ -480,7 +481,7 @@
       "mid_price": 0.17001700000000003,
       "spread_bps": 1.9998000199983672,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.16950694900000002,
@@ -2898,8 +2899,8 @@
       "mid_price": 132.74,
       "spread_bps": 21.09,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
+      "confluence_score": 90,
+      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 130.86,
         "sl": 129.24,
@@ -3236,7 +3237,7 @@
       "mid_price": 7.1739999999999995,
       "spread_bps": 33.45,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
+      "confluence_score": 80,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 7.037,
