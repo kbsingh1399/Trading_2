@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNDUSD
 **Canonical Key**: `SNDUSD` | **Broker Instrument**: `SNDUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0456` | VWAP Z-Score: `-1.76` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000639` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `24.58` (State: `OVERSOLD`)
+  * Session VWAP: `0.0456` | VWAP Z-Score: `-1.54` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000636` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `27.90` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0495` | Lower -3.00σ Band: `0.0418`
-  * Upper +2.51σ Band: `0.0488` | Lower -2.51σ Band: `0.0424`
-  * Upper +2.01σ Band: `0.0482` | Lower -2.01σ Band: `0.0431`
-  * Upper +2.00σ Band: `0.0482` | Lower -2.00σ Band: `0.0431`
-  * Upper +1.28σ Band: `0.0473` | Lower -1.28σ Band: `0.0440`
-  * Upper +1.00σ Band: `0.0469` | Lower -1.00σ Band: `0.0444`
+  * Upper +3.00σ Band: `0.0495` | Lower -3.00σ Band: `0.0417`
+  * Upper +2.51σ Band: `0.0488` | Lower -2.51σ Band: `0.0423`
+  * Upper +2.01σ Band: `0.0482` | Lower -2.01σ Band: `0.0430`
+  * Upper +2.00σ Band: `0.0482` | Lower -2.00σ Band: `0.0430`
+  * Upper +1.28σ Band: `0.0473` | Lower -1.28σ Band: `0.0439`
+  * Upper +1.00σ Band: `0.0469` | Lower -1.00σ Band: `0.0443`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0443` | EMA-20=`0.0453` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0460` (Slope: `+0.0000`) | EMA-100=`0.0461`
-  * Institutional Anchors: EMA-144=`0.0462` | EMA-200=`0.0463` (Slope: `-0.3820`) | EMA-233=`0.0464`
+  * Fast EMA Array: EMA-9=`0.0442` | EMA-20=`0.0451` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0459` (Slope: `+0.0000`) | EMA-100=`0.0461`
+  * Institutional Anchors: EMA-144=`0.0462` | EMA-200=`0.0462` (Slope: `-0.4444`) | EMA-233=`0.0463`
 - **Range Boundaries**: 24H High=`0.0481` | 24H Low=`0.0429` | Weekly High=`0.0481` | Weekly Low=`0.0429`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0443` (Distance: `+1.44%`)
+  * Value Area High (VAH) = `0.0442` (Distance: `+1.55%`)
   * Point of Control (POC) = `0.0435` (Distance: `+3.23%`)
   * Value Area Low (VAL) = `0.0432` (Distance: `+3.95%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.0443` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0484` (Risk Distance: `0.0044` pts)
-  * +2.5R Take Profit: `0.0333`
+  * Execution Entry: `0.0442` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.0483` (Risk Distance: `0.0044` pts)
+  * +2.5R Take Profit: `0.0332`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPSEK
 **Canonical Key**: `GBPSEK` | **Broker Instrument**: `GBPSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `13.17` | **Live Ask Quote**: `13.18` | **Mid Price**: `13.17`
-- **Spread Points**: `991.00` | **Spread BPS**: `7.52 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `897.00` | **Spread BPS**: `6.81 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -270,13 +270,13 @@
   * Execution Entry: `13.13` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `11.92` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `16.17`
-  * Mathematical Lot Sizing: **`8.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.24 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `13.21` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `14.43` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `10.18`
-  * Mathematical Lot Sizing: **`8.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.24 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

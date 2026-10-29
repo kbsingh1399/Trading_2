@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.45` | **Live Ask Quote**: `7.45` | **Mid Price**: `7.45`
-- **Spread Points**: `90.00` | **Spread BPS**: `1.21 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `81.00` | **Spread BPS**: `1.09 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.50` | Lower -3.00σ Band: `7.39`
   * Upper +2.51σ Band: `7.49` | Lower -2.51σ Band: `7.41`
-  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.42`
+  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.41`
   * Upper +2.00σ Band: `7.48` | Lower -2.00σ Band: `7.42`
   * Upper +1.28σ Band: `7.47` | Lower -1.28σ Band: `7.43`
   * Upper +1.00σ Band: `7.46` | Lower -1.00σ Band: `7.43`

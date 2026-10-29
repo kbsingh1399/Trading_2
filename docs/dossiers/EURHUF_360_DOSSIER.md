@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHUF
 **Canonical Key**: `EURHUF` | **Broker Instrument**: `EURHUF.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `365.31` | **Live Ask Quote**: `365.79` | **Mid Price**: `365.55`
-- **Spread Points**: `482.00` | **Spread BPS**: `13.19 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `365.33` | **Live Ask Quote**: `365.77` | **Mid Price**: `365.55`
+- **Spread Points**: `440.00` | **Spread BPS**: `12.04 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `364.45` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `362.53` (Risk Distance: `1.92` pts)
-  * +2.5R Take Profit: `369.26`
-  * Mathematical Lot Sizing: **`5.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `362.59` (Risk Distance: `1.86` pts)
+  * +2.5R Take Profit: `369.10`
+  * Mathematical Lot Sizing: **`5.37 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `366.65` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `368.57` (Risk Distance: `1.92` pts)
-  * +2.5R Take Profit: `361.84`
-  * Mathematical Lot Sizing: **`5.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `368.51` (Risk Distance: `1.86` pts)
+  * +2.5R Take Profit: `362.00`
+  * Mathematical Lot Sizing: **`5.37 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

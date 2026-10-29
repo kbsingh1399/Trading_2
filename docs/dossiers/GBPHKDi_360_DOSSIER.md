@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPHKD
 **Canonical Key**: `GBPHKD` | **Broker Instrument**: `GBPHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`10.54` | POC=`10.50` | VAL=`10.46`
-  * Prior Day Extremes: PDH=`10.57` | PDL=`10.44` | PDC=`10.50`
+  * Prior Day Extremes: PDH=`10.56` | PDL=`10.44` | PDC=`10.50`
   * Monday Range Blueprint: High=`10.55` | Mid=`10.50` | Low=`10.45`
   * Developing Weekly Value Area: Weekly VAH=`10.59` | Weekly POC=`10.50` | Weekly VAL=`10.42`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`10.52` | Low=`10.48`
   * London Session (08:00-16:00 UTC): High=`10.54` | Low=`10.46`
-  * New York Session (13:00-21:00 UTC): High=`10.57` | Low=`10.44`
+  * New York Session (13:00-21:00 UTC): High=`10.56` | Low=`10.44`
   * Initial Balance (First Hour): IB High=`10.53` | IB Low=`10.47`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `10.46` - `10.54`

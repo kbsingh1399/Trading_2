@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZINC
 **Canonical Key**: `ZINC` | **Broker Instrument**: `ZINC.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3871.88` | VWAP Z-Score: `+0.06` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `7.48` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `45.56` (State: `NEUTRAL`)
+  * Session VWAP: `3875.62` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `9.69` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `3906.07` | Lower -3.00σ Band: `3837.68`
-  * Upper +2.51σ Band: `3900.49` | Lower -2.51σ Band: `3843.26`
-  * Upper +2.01σ Band: `3894.79` | Lower -2.01σ Band: `3848.96`
-  * Upper +2.00σ Band: `3894.67` | Lower -2.00σ Band: `3849.08`
-  * Upper +1.28σ Band: `3886.47` | Lower -1.28σ Band: `3857.29`
-  * Upper +1.00σ Band: `3883.28` | Lower -1.00σ Band: `3860.48`
+  * Upper +3.00σ Band: `3902.75` | Lower -3.00σ Band: `3848.50`
+  * Upper +2.51σ Band: `3896.94` | Lower -2.51σ Band: `3854.31`
+  * Upper +2.01σ Band: `3891.90` | Lower -2.01σ Band: `3859.35`
+  * Upper +2.00σ Band: `3891.13` | Lower -2.00σ Band: `3860.12`
+  * Upper +1.28σ Band: `3886.48` | Lower -1.28σ Band: `3864.77`
+  * Upper +1.00σ Band: `3883.38` | Lower -1.00σ Band: `3867.87`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3875.75` | EMA-20=`3877.47` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`3876.05` (Slope: `+0.0000`) | EMA-100=`3869.26`
-  * Institutional Anchors: EMA-144=`3861.38` | EMA-200=`3850.05` (Slope: `+0.0921`) | EMA-233=`3843.91`
-- **Range Boundaries**: 24H High=`3899.04` | 24H Low=`3836.84` | Weekly High=`3899.04` | Weekly Low=`3737.34`
+  * Fast EMA Array: EMA-9=`3875.62` | EMA-20=`3875.62` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`3875.62` (Slope: `+0.0000`) | EMA-100=`3875.62`
+  * Institutional Anchors: EMA-144=`3875.62` | EMA-200=`3875.62` (Slope: `+0.0000`) | EMA-233=`3875.62`
+- **Range Boundaries**: 24H High=`3914.38` | 24H Low=`3836.87` | Weekly High=`3953.14` | Weekly Low=`3798.11`
 
 ---
 
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `3855.82` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `3773.39` (Risk Distance: `97.94` pts)
+  * Spread-Padded Stop Loss: `3770.74` (Risk Distance: `97.94` pts)
   * +2.5R Take Profit: `4100.67`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `3882.81` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `3965.24` (Risk Distance: `97.94` pts)
+  * Spread-Padded Stop Loss: `3967.89` (Risk Distance: `97.94` pts)
   * +2.5R Take Profit: `3637.96`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

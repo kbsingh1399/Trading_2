@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ENJUSD
 **Canonical Key**: `ENJUSD` | **Broker Instrument**: `ENJUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0238` | VWAP Z-Score: `-1.84` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000293` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0238` | VWAP Z-Score: `-1.77` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000286` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `25.57` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0256` | Lower -3.00σ Band: `0.0220`
-  * Upper +2.51σ Band: `0.0253` | Lower -2.51σ Band: `0.0223`
+  * Upper +3.00σ Band: `0.0256` | Lower -3.00σ Band: `0.0219`
+  * Upper +2.51σ Band: `0.0253` | Lower -2.51σ Band: `0.0222`
   * Upper +2.01σ Band: `0.0250` | Lower -2.01σ Band: `0.0226`
   * Upper +2.00σ Band: `0.0250` | Lower -2.00σ Band: `0.0226`
   * Upper +1.28σ Band: `0.0246` | Lower -1.28σ Band: `0.0230`
   * Upper +1.00σ Band: `0.0244` | Lower -1.00σ Band: `0.0232`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0230` | EMA-20=`0.0235` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0230` | EMA-20=`0.0234` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0238` (Slope: `+0.0000`) | EMA-100=`0.0240`
-  * Institutional Anchors: EMA-144=`0.0241` | EMA-200=`0.0241` (Slope: `-0.4666`) | EMA-233=`0.0242`
+  * Institutional Anchors: EMA-144=`0.0241` | EMA-200=`0.0241` (Slope: `-0.5195`) | EMA-233=`0.0242`
 - **Range Boundaries**: 24H High=`0.0249` | 24H Low=`0.0222` | Weekly High=`0.0249` | Weekly Low=`0.0222`
 
 ---

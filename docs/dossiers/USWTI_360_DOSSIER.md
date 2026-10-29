@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 04:04:42 IST` (`2026-10-29 22:34:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:07:44 IST` (`2026-10-29 22:37:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `103.47` (Distance: `+0.05%`)
-  * Point of Control (POC) = `103.28` (Distance: `+0.23%`)
-  * Value Area Low (VAL) = `103.28` (Distance: `+0.23%`)
+  * Value Area High (VAH) = `103.50` (Distance: `+0.01%`)
+  * Point of Control (POC) = `103.45` (Distance: `+0.06%`)
+  * Value Area Low (VAL) = `103.32` (Distance: `+0.19%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`102.76` | POC=`102.02` | VAL=`101.40`
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`103.88` | Mid=`102.48` | Low=`101.08`
   * Developing Weekly Value Area: Weekly VAH=`103.08` | Weekly POC=`102.03` | Weekly VAL=`101.46`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`103.50` | Low=`103.22`
+  * Asian Session (00:00-08:00 UTC): High=`103.54` | Low=`103.22`
   * London Session (08:00-16:00 UTC): High=`103.93` | Low=`103.10`
   * New York Session (13:00-21:00 UTC): High=`104.13` | Low=`102.89`
   * Initial Balance (First Hour): IB High=`103.82` | IB Low=`103.20`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `102.93` | `103.03` | `102.87` | `102.94` | `313` | 32,221.78 USD | 805.54 USD | `+2.50%` | 127,889.07 USD | `+0.02` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `5m` | `102.95` | `102.98` | `102.91` | `102.97` | `188` | 19,357.42 USD | 7,604.70 USD | `+39.29%` | 135,493.77 USD | `+0.32` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `102.96` | `103.02` | `102.94` | `102.97` | `203` | 20,902.91 USD | 0.00 USD | `+0.00%` | 135,493.77 USD | `-0.07` | **`NEUTRAL`** | `NEUTRAL CHOP` |
-| `15m` | `102.91` | `103.03` | `102.70` | `102.79` | `707` | 72,674.65 USD | -28,078.84 USD | `-38.64%` | 308,880.12 USD | `-0.61` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `102.79` | `103.02` | `102.73` | `102.93` | `689` | 70,921.53 USD | 32,281.52 USD | `+45.52%` | 341,161.64 USD | `+0.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `102.93` | `103.03` | `102.87` | `102.97` | `704` | 72,490.88 USD | 18,802.32 USD | `+25.94%` | 359,963.96 USD | `-0.06` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `102.95` | `102.98` | `102.91` | `102.97` | `188` | 19,357.42 USD | 7,604.70 USD | `+39.29%` | 137,536.60 USD | `+0.32` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `102.96` | `103.02` | `102.94` | `102.97` | `203` | 20,902.91 USD | 0.00 USD | `+0.00%` | 137,536.60 USD | `-0.07` | **`NEUTRAL`** | `NEUTRAL CHOP` |
+| `5m` | `102.97` | `102.97` | `102.86` | `102.87` | `158` | 16,253.46 USD | -13,205.94 USD | `-81.25%` | 124,330.66 USD | `-0.97` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `102.79` | `103.02` | `102.73` | `102.93` | `689` | 70,921.53 USD | 32,281.52 USD | `+45.52%` | 420,538.83 USD | `+0.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `102.93` | `103.03` | `102.87` | `102.97` | `704` | 72,490.88 USD | 18,802.32 USD | `+25.94%` | 439,341.15 USD | `-0.06` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `102.97` | `103.05` | `102.86` | `102.94` | `491` | 50,543.54 USD | -7,775.93 USD | `-15.38%` | 431,565.22 USD | `-0.66` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `101.97` | `102.88` | `101.90` | `102.56` | `5,791` | 593,913.38 USD | 283,583.00 USD | `+47.75%` | -39,922.68 USD | `+1.05` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `102.57` | `103.03` | `102.37` | `102.79` | `4,695` | 482,613.14 USD | 151,046.86 USD | `+31.30%` | 111,124.18 USD | `+0.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `102.79` | `103.55` | `102.73` | `103.41` | `3,131` | 323,776.71 USD | 231,808.23 USD | `+71.60%` | 342,932.41 USD | `+0.78` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 03:55:39 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 04:05:52 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -347,15 +347,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `103.28` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `102.01` (Risk Distance: `1.27` pts)
-  * +2.5R Take Profit: `106.45`
+  * Execution Entry: `103.32` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `102.05` (Risk Distance: `1.27` pts)
+  * +2.5R Take Profit: `106.49`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `1.27 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `103.47` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `104.73` (Risk Distance: `1.27` pts)
-  * +2.5R Take Profit: `100.29`
+  * Execution Entry: `103.50` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `104.77` (Risk Distance: `1.27` pts)
+  * +2.5R Take Profit: `100.33`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `1.27 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
