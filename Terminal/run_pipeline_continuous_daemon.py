@@ -103,7 +103,7 @@ def push_cycle_to_github(cycle_num: int):
         
         # 1. Stage all data, metadata, and trade plans (NEVER delete parquet feeds)
         subprocess.run(["git", "add", "--ignore-removal", "Data/feeds", "Data/metadata"], cwd=str(ROOT_DIR), check=False)
-        subprocess.run(["git", "add", "Data/cycle_envelope.json", "docs/trade_plans", "docs/telemetry", "Data/*.json"], cwd=str(ROOT_DIR), check=False)
+        subprocess.run(["git", "add", "Data/cycle_envelope.json", "docs/trade_plans", "docs/telemetry", "docs/dossiers", "Data/*.json"], cwd=str(ROOT_DIR), check=False)
         
         # 2. Check if there are staged changes
         status_proc = subprocess.run(["git", "diff", "--staged", "--quiet"], cwd=str(ROOT_DIR), check=False)
