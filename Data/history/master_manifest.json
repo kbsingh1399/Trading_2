@@ -1,12 +1,12 @@
 {
-  "last_updated_utc": "2026-10-29T23:06:15Z",
+  "last_updated_utc": "2026-10-29T23:08:34Z",
   "streams": {
     "telemetry": {
-      "total_snapshots": 3500,
+      "total_snapshots": 3502,
       "first_recorded_utc": "2026-10-26T07:07:44Z",
-      "latest_recorded_utc": "2026-10-29T23:06:15Z",
-      "latest_epoch": 1793315175.579384,
-      "latest_file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_230615.json.gz",
+      "latest_recorded_utc": "2026-10-29T23:08:34Z",
+      "latest_epoch": 1793315314.287694,
+      "latest_file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_230834.json.gz",
       "dates_present": [
         "2026-10-26",
         "2026-10-27",
@@ -14,22 +14,6 @@
         "2026-10-29"
       ],
       "recent_history": [
-        {
-          "utc": "2026-10-29T17:26:51Z",
-          "epoch": 1793294811.282133,
-          "file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_172651.json.gz",
-          "gap_detected": false,
-          "gap_duration_minutes": 0.0,
-          "records": 24
-        },
-        {
-          "utc": "2026-10-29T17:26:51Z",
-          "epoch": 1793294811.741564,
-          "file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_172651.json.gz",
-          "gap_detected": false,
-          "gap_duration_minutes": 0.0,
-          "records": 24
-        },
         {
           "utc": "2026-10-29T17:32:09Z",
           "epoch": 1793295129.684546,
@@ -2317,15 +2301,31 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 24
+        },
+        {
+          "utc": "2026-10-29T23:08:33Z",
+          "epoch": 1793315313.796851,
+          "file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_230833.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
+        },
+        {
+          "utc": "2026-10-29T23:08:34Z",
+          "epoch": 1793315314.287694,
+          "file": "Data\\history\\telemetry\\2026-10-29\\telemetry_20261029_230834.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
         }
       ]
     },
     "account_equity": {
-      "total_snapshots": 1747,
+      "total_snapshots": 1748,
       "first_recorded_utc": "2026-10-26T07:07:45Z",
-      "latest_recorded_utc": "2026-10-29T23:06:15Z",
-      "latest_epoch": 1793315175.879771,
-      "latest_file": "Data\\history\\account_equity\\2026-10-29\\account_equity_20261029_230615.json.gz",
+      "latest_recorded_utc": "2026-10-29T23:08:34Z",
+      "latest_epoch": 1793315314.614791,
+      "latest_file": "Data\\history\\account_equity\\2026-10-29\\account_equity_20261029_230834.json.gz",
       "dates_present": [
         "2026-10-26",
         "2026-10-27",
@@ -2333,14 +2333,6 @@
         "2026-10-29"
       ],
       "recent_history": [
-        {
-          "utc": "2026-10-29T08:26:46Z",
-          "epoch": 1793262406.586367,
-          "file": "Data\\history\\account_equity\\2026-10-29\\account_equity_20261029_082646.json.gz",
-          "gap_detected": false,
-          "gap_duration_minutes": 0.0,
-          "records": 1
-        },
         {
           "utc": "2026-10-29T08:33:09Z",
           "epoch": 1793262789.131145,
@@ -4633,6 +4625,14 @@
           "utc": "2026-10-29T23:06:15Z",
           "epoch": 1793315175.879771,
           "file": "Data\\history\\account_equity\\2026-10-29\\account_equity_20261029_230615.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 1
+        },
+        {
+          "utc": "2026-10-29T23:08:34Z",
+          "epoch": 1793315314.614791,
+          "file": "Data\\history\\account_equity\\2026-10-29\\account_equity_20261029_230834.json.gz",
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 1
