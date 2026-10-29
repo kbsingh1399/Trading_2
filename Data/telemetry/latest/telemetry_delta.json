@@ -1,9 +1,88 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-29T21:23:25Z",
-  "prev_timestamp_utc": "2026-10-29T21:23:24Z",
+  "curr_timestamp_utc": "2026-10-29T21:25:28Z",
+  "prev_timestamp_utc": "2026-10-29T21:23:25Z",
   "time_gap_minutes": 0.0,
   "changes": {
-    "symbol_shifts": {}
+    "symbol_shifts": {
+      "BTC": {
+        "price_diff": 97.0,
+        "z_score_diff": 0.14,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "ETH": {
+        "price_diff": -1.7,
+        "z_score_diff": -0.07,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "SOL": {
+        "price_diff": -0.03,
+        "z_score_diff": -0.06,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "BNB": {
+        "price_diff": -2.0,
+        "z_score_diff": -0.08,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "XRP": {
+        "price_diff": 0.002,
+        "z_score_diff": 0.11,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "ADA": {
+        "price_diff": 0.0002,
+        "z_score_diff": 0.05,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "TRX": {
+        "price_diff": 0.0021,
+        "z_score_diff": 0.86,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "LINK": {
+        "price_diff": 0.004,
+        "z_score_diff": 0.03,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "BCH": {
+        "price_diff": 0.801,
+        "z_score_diff": 0.16,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "LTC": {
+        "price_diff": 0.055,
+        "z_score_diff": 0.05,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "NEAR": {
+        "price_diff": -0.003,
+        "z_score_diff": -0.03,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      },
+      "GBPUSD": {
+        "price_diff": -0.0001,
+        "z_score_diff": -0.04,
+        "regime_prev": "BULLISH",
+        "regime_curr": "BULLISH"
+      },
+      "USDJPY": {
+        "price_diff": -0.001,
+        "z_score_diff": 0.0,
+        "regime_prev": "BEARISH",
+        "regime_curr": "BEARISH"
+      }
+    }
   }
 }

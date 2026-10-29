@@ -112349,8 +112349,8 @@
   },
   "_temporal_meta": {
     "stream": "telemetry",
-    "recorded_at_utc": "2026-10-29T21:23:24Z",
-    "recorded_at_epoch": 1793309004.936269,
+    "recorded_at_utc": "2026-10-29T21:23:25Z",
+    "recorded_at_epoch": 1793309005.412124,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
