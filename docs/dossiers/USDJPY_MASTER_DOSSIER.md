@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:40:50 IST` (`2026-10-29 18:10:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -291,16 +291,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `17:15:00` | `157.85` | `157.85` | `157.85` | `157.94` | `157.82` | 451,760.98 USD | 110,068.88 USD | 341,692.09 USD | -231,623.21 USD | `-51.27%` | `0B / 1S` |
-| `17:15:00` | `157.91` | `157.91` | `157.91` | `157.94` | `157.89` | 156,332.88 USD | 78,166.44 USD | 78,166.44 USD | 0.00 USD | `+0.00%` | `0B / 0S` |
-| `17:20:00` | `157.91` | `157.91` | `157.91` | `157.93` | `157.87` | 138,014.21 USD | 76,482.88 USD | 61,531.34 USD | 14,951.54 USD | `+10.83%` | `1B / 0S` |
-| `17:25:00` | `157.85` | `157.85` | `157.85` | `157.92` | `157.82` | 157,532.30 USD | 39,015.01 USD | 118,517.29 USD | -79,502.28 USD | `-50.47%` | `0B / 1S` |
-| `17:30:00` | `157.88` | `157.88` | `157.88` | `158.01` | `157.85` | 393,446.93 USD | 164,328.88 USD | 229,118.05 USD | -64,789.16 USD | `-16.47%` | `0B / 1S` |
-| `17:30:00` | `157.95` | `157.95` | `157.95` | `157.96` | `157.85` | 144,211.09 USD | 137,000.53 USD | 7,210.55 USD | 129,789.98 USD | `+90.00%` | `1B / 0S` |
 | `17:35:00` | `157.97` | `157.97` | `157.97` | `158.01` | `157.94` | 139,329.54 USD | 72,873.02 USD | 66,456.52 USD | 6,416.49 USD | `+4.61%` | `1B / 0S` |
 | `17:40:00` | `157.88` | `157.88` | `157.88` | `157.99` | `157.88` | 110,045.15 USD | 5,502.26 USD | 104,542.89 USD | -99,040.63 USD | `-90.00%` | `0B / 1S` |
-| `17:45:00` | `157.82` | `157.82` | `157.82` | `157.88` | `157.81` | 105,423.09 USD | 8,303.87 USD | 97,119.22 USD | -88,815.34 USD | `-84.25%` | `0B / 1S` |
 | `17:45:00` | `157.86` | `157.86` | `157.86` | `157.88` | `157.81` | 300,559.73 USD | 141,016.04 USD | 159,543.69 USD | -18,527.65 USD | `-6.16%` | `0B / 1S` |
+| `17:45:00` | `157.82` | `157.82` | `157.82` | `157.88` | `157.81` | 105,423.09 USD | 8,303.87 USD | 97,119.22 USD | -88,815.34 USD | `-84.25%` | `0B / 1S` |
+| `17:50:00` | `157.83` | `157.83` | `157.83` | `157.86` | `157.81` | 99,905.76 USD | 46,035.01 USD | 53,870.75 USD | -7,835.75 USD | `-7.84%` | `0B / 1S` |
+| `17:55:00` | `157.86` | `157.86` | `157.86` | `157.88` | `157.82` | 95,187.77 USD | 65,929.23 USD | 29,258.54 USD | 36,670.70 USD | `+38.52%` | `1B / 0S` |
+| `18:00:00` | `157.82` | `157.82` | `157.82` | `157.91` | `157.77` | 1,106,791.66 USD | 392,666.89 USD | 714,124.77 USD | -321,457.87 USD | `-29.04%` | `0B / 1S` |
+| `18:00:00` | `157.87` | `157.87` | `157.87` | `157.90` | `157.85` | 105,774.91 USD | 57,214.61 USD | 48,560.30 USD | 8,654.31 USD | `+8.18%` | `1B / 0S` |
+| `18:00:00` | `157.83` | `157.83` | `157.83` | `157.90` | `157.82` | 277,626.49 USD | 73,395.51 USD | 204,230.98 USD | -130,835.47 USD | `-47.13%` | `0B / 1S` |
+| `18:05:00` | `157.83` | `157.83` | `157.83` | `157.88` | `157.82` | 104,480.81 USD | 10,539.73 USD | 93,941.08 USD | -83,401.35 USD | `-79.82%` | `0B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -355,21 +355,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:59 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:59 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:59 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:54:59 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:44:59 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:40:59 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

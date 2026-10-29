@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ADA
 **Canonical Key**: `ADA` | **Broker Instrument**: `ADAUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-29 23:40:50 IST` (`2026-10-29 18:10:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -101,7 +101,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
+| --- | **`0.2034`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -153,260 +153,255 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long Liquidation` | `0.0475` | 427.50 USD | 2,610,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0515` | 5,410.00 USD | 2,610,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0525` | 2,070.00 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0575` | 898.61 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0615` | 647.35 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0625` | 532.25 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0665` | 124,600.00 USD | 2,600,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0675` | 172.87 USD | 2,470,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0805` | 140.39 USD | 2,470,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0815` | 284.84 USD | 2,470,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0855` | 855.00 USD | 2,470,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0865` | 96,080.00 USD | 2,470,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0875` | 344.75 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0885` | 1,150.00 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0905` | 12,670.00 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0435` | 36,680.00 USD | 2,550,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0485` | 436.50 USD | 2,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0525` | 5,510.00 USD | 2,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0545` | 139.57 USD | 2,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0635` | 992.38 USD | 2,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0645` | 2,540.00 USD | 2,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0705` | 132,100.00 USD | 2,500,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0725` | 763.14 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0815` | 284.84 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0825` | 143.88 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0845` | 11,830.00 USD | 2,370,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0865` | 967.50 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0875` | 1,090.00 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.0885` | 1,150.00 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.0925` | 165.11 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.0945` | 327.54 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.0995` | 102.58 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1025` | 4,100.00 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1035` | 1,050.00 USD | 2,360,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1065` | 781.18 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1035` | 1,050.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1055` | 108.77 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1065` | 1,120.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1085` | 942.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1095` | 2,550.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1125` | 356.40 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1135` | 691.56 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1145` | 862.64 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1155` | 2,830.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1165` | 13,360.00 USD | 2,350,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1165` | 13,360.00 USD | 2,340,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1175` | 931.42 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1205` | 3,610.00 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1215` | 1,050.00 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1235` | 125.97 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1245` | 404.62 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1255` | 1,980.00 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1205` | 1,560.00 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1215` | 4,030.00 USD | 2,330,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1245` | 404.62 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1255` | 2,140.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1265` | 314.61 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1275` | 1,260.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1285` | 300.95 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1295` | 2,540.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1305` | 290.36 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1315` | 687.35 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1325` | 6,960.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1285` | 2,970.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1295` | 2,680.00 USD | 2,320,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1305` | 290.36 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1315` | 687.35 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1325` | 6,960.00 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1335` | 3,600.00 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1345` | 710.03 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1355` | 784.14 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1385` | 3,200.00 USD | 2,310,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1345` | 710.03 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1355` | 106.64 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1385` | 692.50 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1395` | 2,120.00 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1405` | 565.51 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1415` | 9,870.00 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1415` | 9,740.00 USD | 2,300,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1435` | 13,970.00 USD | 2,290,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1445` | 2,500.00 USD | 2,280,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1455` | 6,890.00 USD | 2,270,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1455` | 5,720.00 USD | 2,270,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Long Liquidation` | `0.1465` | 4,580.00 USD | 2,270,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1475` | 1,180.00 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1485` | 163.65 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1495` | 599.05 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1505` | 508,550.00 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1515` | 38,550.00 USD | 1,750,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1525` | 1,100.00 USD | 1,710,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1535` | 42,640.00 USD | 1,710,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1545` | 721.05 USD | 1,670,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1555` | 11,090.00 USD | 1,670,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1565` | 1,580.00 USD | 1,660,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1585` | 6,690.00 USD | 1,660,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1595` | 1,430.00 USD | 1,650,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1605` | 60,810.00 USD | 1,650,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1615` | 5,740.00 USD | 1,590,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1625` | 2,470.00 USD | 1,580,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1635` | 1,040.00 USD | 1,580,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1645` | 10,540.00 USD | 1,580,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1655` | 587.19 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1665` | 1,820.00 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1675` | 35,510.00 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1685` | 1,750.00 USD | 1,530,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1695` | 1,280.00 USD | 1,530,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1705` | 619,740.00 USD | 1,530,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1715` | 252,110.00 USD | 907,160.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1725` | 2,720.00 USD | 655,060.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1735` | 1,830.00 USD | 652,340.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1745` | 1,320.00 USD | 650,510.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1755` | 4,720.00 USD | 649,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1765` | 7,730.00 USD | 644,480.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Long Liquidation` | `0.1775` | 15,750.00 USD | 636,750.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1475` | 1,800.00 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1485` | 3,600.00 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1495` | 138.14 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1505` | 608.32 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1515` | 33,400.00 USD | 2,260,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1525` | 516,140.00 USD | 2,220,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1535` | 47,860.00 USD | 1,710,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1545` | 721.05 USD | 1,660,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1555` | 11,580.00 USD | 1,660,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1565` | 1,580.00 USD | 1,650,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1575` | 811.91 USD | 1,650,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1585` | 6,000.00 USD | 1,640,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1595` | 1,740.00 USD | 1,640,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1605` | 59,350.00 USD | 1,640,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1615` | 5,900.00 USD | 1,580,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1625` | 2,630.00 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1635` | 2,710.00 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1645` | 10,540.00 USD | 1,570,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1655` | 518.51 USD | 1,560,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1665` | 35,280.00 USD | 1,550,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1675` | 864.13 USD | 1,520,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1685` | 3,310.00 USD | 1,520,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1695` | 1,280.00 USD | 1,520,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1705` | 622,890.00 USD | 1,510,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1715` | 252,110.00 USD | 891,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1725` | 3,000.00 USD | 639,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1735` | 1,830.00 USD | 636,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1745` | 1,320.00 USD | 634,280.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1755` | 4,720.00 USD | 632,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1765` | 4,750.00 USD | 628,240.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1775` | 15,750.00 USD | 623,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Long Liquidation` | `0.1780` | 13,700,000.00 USD | 13,700,000.00 USD | 69,630.00 USD | 11,560.00 USD | 62,840.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1785` | 15,790.00 USD | 620,990.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1785` | 15,790.00 USD | 607,740.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Long Liquidation` | `0.1790` | 13,550,000.00 USD | 13,550,000.00 USD | 4,660.00 USD | 14,110.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1795` | 12,760.00 USD | 605,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1795` | 12,760.00 USD | 591,940.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Long Liquidation` | `0.1800` | 13,540,000.00 USD | 13,540,000.00 USD | 0.00 USD | 7,250.00 USD | 26,080.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1805` | 134,610.00 USD | 592,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Long Liquidation` | `0.1805` | 134,610.00 USD | 579,180.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `7D` | `Long Liquidation` | `0.1810` | 13,500,000.00 USD | 13,500,000.00 USD | 114,070.00 USD | 28,500.00 USD | 32,110.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1815` | 7,670.00 USD | 457,820.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1820` | 10,230,000.00 USD | 10,230,000.00 USD | 78,360.00 USD | 26,540.00 USD | 61,100.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1815` | 7,670.00 USD | 444,560.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1820` | 10,220,000.00 USD | 10,220,000.00 USD | 77,820.00 USD | 25,410.00 USD | 56,180.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1820` | 13,330,000.00 USD | 13,330,000.00 USD | 106,790.00 USD | 51,580.00 USD | 118,390.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1825` | 18,250.00 USD | 450,160.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1830` | 10,060,000.00 USD | 10,060,000.00 USD | 44,650.00 USD | 9,450.00 USD | 12,720.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1825` | 18,430.00 USD | 436,900.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1830` | 10,060,000.00 USD | 10,060,000.00 USD | 33,820.00 USD | 9,450.00 USD | 11,620.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1830` | 13,050,000.00 USD | 13,050,000.00 USD | 87,420.00 USD | 37,700.00 USD | 60,460.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1835` | 367.00 USD | 431,910.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1840` | 10,000,000.00 USD | 10,000,000.00 USD | 98,680.00 USD | 26,720.00 USD | 31,410.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1835` | 367.00 USD | 418,470.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1840` | 10,010,000.00 USD | 10,010,000.00 USD | 98,680.00 USD | 25,520.00 USD | 30,850.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1840` | 12,870,000.00 USD | 12,870,000.00 USD | 240,220.00 USD | 58,820.00 USD | 191,110.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1845` | 956.45 USD | 431,540.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1850` | 9,840,000.00 USD | 9,840,000.00 USD | 170,650.00 USD | 58,710.00 USD | 98,260.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1845` | 956.45 USD | 418,100.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1850` | 9,850,000.00 USD | 9,850,000.00 USD | 170,650.00 USD | 58,710.00 USD | 98,820.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1850` | 12,380,000.00 USD | 12,380,000.00 USD | 453,420.00 USD | 130,740.00 USD | 423,420.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1855` | 6,190.00 USD | 430,580.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1860` | 9,510,000.00 USD | 9,510,000.00 USD | 35,280.00 USD | 8,700.00 USD | 12,970.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1855` | 4,100.00 USD | 417,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1860` | 9,520,000.00 USD | 9,520,000.00 USD | 35,280.00 USD | 8,700.00 USD | 14,030.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1860` | 11,370,000.00 USD | 11,370,000.00 USD | 118,460.00 USD | 56,980.00 USD | 208,320.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1865` | 2,900.00 USD | 424,390.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1870` | 9,460,000.00 USD | 9,460,000.00 USD | 78,720.00 USD | 14,920.00 USD | 16,220.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1865` | 5,180.00 USD | 413,040.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1870` | 9,470,000.00 USD | 9,470,000.00 USD | 78,720.00 USD | 14,920.00 USD | 15,170.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1870` | 10,980,000.00 USD | 10,980,000.00 USD | 125,060.00 USD | 37,510.00 USD | 91,240.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1875` | 4,120.00 USD | 421,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1880` | 9,350,000.00 USD | 9,350,000.00 USD | 216,920.00 USD | 32,200.00 USD | 33,870.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1875` | 4,120.00 USD | 407,860.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1880` | 9,360,000.00 USD | 9,360,000.00 USD | 216,110.00 USD | 32,000.00 USD | 34,840.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1880` | 10,730,000.00 USD | 10,730,000.00 USD | 172,850.00 USD | 43,830.00 USD | 42,250.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1885` | 9,670.00 USD | 417,370.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1890` | 9,060,000.00 USD | 9,060,000.00 USD | 100,790.00 USD | 72,900.00 USD | 183,960.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1885` | 9,670.00 USD | 403,740.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1890` | 9,070,000.00 USD | 9,070,000.00 USD | 99,900.00 USD | 72,900.00 USD | 183,110.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1890` | 10,470,000.00 USD | 10,470,000.00 USD | 251,030.00 USD | 53,780.00 USD | 139,790.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1895` | 10,260.00 USD | 407,700.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1900` | 8,710,000.00 USD | 8,710,000.00 USD | 250,420.00 USD | 106,080.00 USD | 203,200.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1895` | 10,260.00 USD | 394,070.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1900` | 8,720,000.00 USD | 8,720,000.00 USD | 250,420.00 USD | 106,080.00 USD | 202,770.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1900` | 10,030,000.00 USD | 10,030,000.00 USD | 252,200.00 USD | 60,410.00 USD | 230,090.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1905` | 13,110.00 USD | 397,450.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1910` | 8,150,000.00 USD | 8,150,000.00 USD | 230,540.00 USD | 82,400.00 USD | 91,380.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1905` | 13,110.00 USD | 383,820.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1910` | 8,160,000.00 USD | 8,160,000.00 USD | 230,540.00 USD | 82,400.00 USD | 90,970.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1910` | 9,480,000.00 USD | 9,480,000.00 USD | 250,530.00 USD | 90,380.00 USD | 16,510.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1915` | 27,820.00 USD | 384,340.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1920` | 7,740,000.00 USD | 7,740,000.00 USD | 485,770.00 USD | 114,100.00 USD | 182,570.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1915` | 27,820.00 USD | 370,710.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1920` | 7,760,000.00 USD | 7,760,000.00 USD | 484,690.00 USD | 113,830.00 USD | 185,370.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1920` | 9,130,000.00 USD | 9,130,000.00 USD | 279,260.00 USD | 74,890.00 USD | 77,590.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1925` | 50,480.00 USD | 356,520.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1930` | 6,960,000.00 USD | 6,960,000.00 USD | 276,250.00 USD | 195,560.00 USD | 463,590.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1925` | 45,730.00 USD | 342,890.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1930` | 6,970,000.00 USD | 6,970,000.00 USD | 275,060.00 USD | 195,560.00 USD | 462,380.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1930` | 8,690,000.00 USD | 8,690,000.00 USD | 747,900.00 USD | 173,570.00 USD | 325,790.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1935` | 290,550.00 USD | 306,040.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1940` | 6,020,000.00 USD | 6,020,000.00 USD | 610,470.00 USD | 247,140.00 USD | 513,540.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1935` | 290,650.00 USD | 297,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1940` | 6,040,000.00 USD | 6,040,000.00 USD | 610,470.00 USD | 243,030.00 USD | 499,910.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1940` | 7,450,000.00 USD | 7,450,000.00 USD | 721,210.00 USD | 271,400.00 USD | 825,170.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1945` | 6,000.00 USD | 15,480.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1950` | 4,650,000.00 USD | 4,650,000.00 USD | 534,120.00 USD | 184,470.00 USD | 231,480.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1945` | 4,640.00 USD | 6,510.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1950` | 4,690,000.00 USD | 4,690,000.00 USD | 508,050.00 USD | 187,320.00 USD | 231,970.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1950` | 5,630,000.00 USD | 5,630,000.00 USD | 651,390.00 USD | 297,900.00 USD | 389,660.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1955` | 8,500.00 USD | 9,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1960` | 3,700,000.00 USD | 3,700,000.00 USD | 472,120.00 USD | 150,290.00 USD | 323,670.00 USD | `Tier 1 CEX` |
+| `Live` | `Long Liquidation` | `0.1955` | 1,870.00 USD | 1,870.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Long Liquidation` | `0.1960` | 3,760,000.00 USD | 3,760,000.00 USD | 472,120.00 USD | 150,290.00 USD | 324,410.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1960` | 4,290,000.00 USD | 4,290,000.00 USD | 134,940.00 USD | 9,990.00 USD | 730,170.00 USD | `Tier 1 CEX` |
-| `Live` | `Long Liquidation` | `0.1965` | 982.50 USD | 982.50 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Long Liquidation` | `0.1970` | 2,760,000.00 USD | 2,760,000.00 USD | 341,720.00 USD | 152,780.00 USD | 264,870.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.1970` | 2,810,000.00 USD | 2,810,000.00 USD | 341,720.00 USD | 152,780.00 USD | 270,770.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1970` | 3,420,000.00 USD | 3,420,000.00 USD | 242,270.00 USD | 136,410.00 USD | 260,640.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.1980` | 2,000,000.00 USD | 2,000,000.00 USD | 299,150.00 USD | 92,080.00 USD | 131,320.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.1980` | 2,050,000.00 USD | 2,050,000.00 USD | 299,150.00 USD | 92,080.00 USD | 129,870.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1980` | 2,780,000.00 USD | 2,780,000.00 USD | 118,660.00 USD | 47,220.00 USD | 23,890.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.1990` | 1,470,000.00 USD | 1,470,000.00 USD | 123,760.00 USD | 27,280.00 USD | 57,990.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.1990` | 1,520,000.00 USD | 1,520,000.00 USD | 123,760.00 USD | 32,970.00 USD | 86,100.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.1990` | 2,590,000.00 USD | 2,590,000.00 USD | 48,580.00 USD | 16,090.00 USD | 1,210,000.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2000` | 1,270,000.00 USD | 1,270,000.00 USD | 151,770.00 USD | 74,440.00 USD | 151,400.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2000` | 1,280,000.00 USD | 1,280,000.00 USD | 151,770.00 USD | 74,440.00 USD | 146,420.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2000` | 1,310,000.00 USD | 1,310,000.00 USD | 51,800.00 USD | 25,400.00 USD | 112,610.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2010` | 888,360.00 USD | 888,360.00 USD | 312,990.00 USD | 86,290.00 USD | 172,300.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2010` | 909,140.00 USD | 909,140.00 USD | 312,990.00 USD | 86,290.00 USD | 167,700.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2010` | 1,120,000.00 USD | 1,120,000.00 USD | 252,260.00 USD | 112,400.00 USD | 246,270.00 USD | `Tier 1 CEX` |
-| `1D` | `Long Liquidation` | `0.2020` | 316,770.00 USD | 316,770.00 USD | 211,750.00 USD | 53,220.00 USD | 51,800.00 USD | `Tier 1 CEX` |
+| `1D` | `Long Liquidation` | `0.2020` | 342,160.00 USD | 342,160.00 USD | 211,750.00 USD | 53,220.00 USD | 77,190.00 USD | `Tier 1 CEX` |
 | `7D` | `Long Liquidation` | `0.2020` | 510,450.00 USD | 510,450.00 USD | 94,610.00 USD | 16,410.00 USD | 399,440.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2030` | 291,790.00 USD | 291,790.00 USD | 0.00 USD | 0.00 USD | 291,790.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2030` | 583,580.00 USD | 583,580.00 USD | 0.00 USD | 0.00 USD | 291,790.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2030` | 282,600.00 USD | 282,600.00 USD | 0.00 USD | 0.00 USD | 282,600.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2030` | 565,210.00 USD | 565,210.00 USD | 0.00 USD | 0.00 USD | 282,600.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2030` | 70,990.00 USD | 70,990.00 USD | 0.00 USD | 0.00 USD | 70,990.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2030` | 141,970.00 USD | 141,970.00 USD | 0.00 USD | 0.00 USD | 70,990.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2040` | 873,610.00 USD | 873,610.00 USD | 0.00 USD | 203,670.00 USD | 86,360.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2040` | 852,650.00 USD | 852,650.00 USD | 0.00 USD | 203,670.00 USD | 83,780.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2040` | 195,660.00 USD | 195,660.00 USD | 0.00 USD | 53,690.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2050` | 882,190.00 USD | 882,190.00 USD | 0.00 USD | 0.00 USD | 8,580.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2060` | 891,370.00 USD | 891,370.00 USD | 0.00 USD | 1,350.00 USD | 7,830.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2060` | 861,470.00 USD | 861,470.00 USD | 0.00 USD | 1,350.00 USD | 7,470.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2060` | 204,270.00 USD | 204,270.00 USD | 0.00 USD | 1,020.00 USD | 7,590.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2070` | 1,660,000.00 USD | 1,660,000.00 USD | 445,060.00 USD | 133,650.00 USD | 188,100.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2070` | 1,580,000.00 USD | 1,580,000.00 USD | 392,920.00 USD | 139,340.00 USD | 191,020.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2070` | 691,080.00 USD | 691,080.00 USD | 390,170.00 USD | 96,630.00 USD | 0.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2080` | 2,320,000.00 USD | 2,320,000.00 USD | 492,770.00 USD | 156,970.00 USD | 12,030.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2080` | 2,250,000.00 USD | 2,250,000.00 USD | 492,770.00 USD | 156,970.00 USD | 16,220.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2080` | 1,330,000.00 USD | 1,330,000.00 USD | 592,060.00 USD | 44,630.00 USD | 4,610.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2090` | 3,380,000.00 USD | 3,380,000.00 USD | 576,980.00 USD | 197,120.00 USD | 281,980.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2090` | 3,310,000.00 USD | 3,310,000.00 USD | 576,980.00 USD | 197,120.00 USD | 285,880.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2090` | 4,220,000.00 USD | 4,220,000.00 USD | 2,270,000.00 USD | 211,920.00 USD | 403,720.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2100` | 4,750,000.00 USD | 4,750,000.00 USD | 637,140.00 USD | 241,780.00 USD | 490,190.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2100` | 4,670,000.00 USD | 4,670,000.00 USD | 637,140.00 USD | 237,680.00 USD | 483,070.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2100` | 8,210,000.00 USD | 8,210,000.00 USD | 1,690,000.00 USD | 687,470.00 USD | 1,610,000.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2110` | 5,240,000.00 USD | 5,240,000.00 USD | 275,170.00 USD | 65,590.00 USD | 157,760.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2110` | 5,150,000.00 USD | 5,150,000.00 USD | 249,100.00 USD | 68,430.00 USD | 164,320.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2110` | 11,310,000.00 USD | 11,310,000.00 USD | 1,060,000.00 USD | 510,780.00 USD | 1,530,000.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2120` | 5,850,000.00 USD | 5,850,000.00 USD | 302,770.00 USD | 114,650.00 USD | 191,800.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2120` | 5,750,000.00 USD | 5,750,000.00 USD | 301,680.00 USD | 111,390.00 USD | 185,600.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2120` | 14,300,000.00 USD | 14,300,000.00 USD | 1,160,000.00 USD | 463,080.00 USD | 1,370,000.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2130` | 6,540,000.00 USD | 6,540,000.00 USD | 356,400.00 USD | 107,470.00 USD | 218,410.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2130` | 6,430,000.00 USD | 6,430,000.00 USD | 355,210.00 USD | 107,470.00 USD | 216,960.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2130` | 17,090,000.00 USD | 17,090,000.00 USD | 1,220,000.00 USD | 346,970.00 USD | 1,220,000.00 USD | `Tier 1 CEX` |
 | `Live` | `Short Liquidation` | `0.2135` | 715.44 USD | 715.44 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2140` | 7,150,000.00 USD | 7,150,000.00 USD | 317,260.00 USD | 103,830.00 USD | 191,520.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2140` | 7,040,000.00 USD | 7,040,000.00 USD | 317,260.00 USD | 103,830.00 USD | 194,350.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2140` | 19,210,000.00 USD | 19,210,000.00 USD | 878,140.00 USD | 392,290.00 USD | 850,440.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2150` | 7,300,000.00 USD | 7,300,000.00 USD | 78,160.00 USD | 19,010.00 USD | 54,520.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2145` | 331.83 USD | 1,050.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2150` | 7,200,000.00 USD | 7,200,000.00 USD | 78,160.00 USD | 19,010.00 USD | 57,150.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2150` | 21,460,000.00 USD | 21,460,000.00 USD | 924,080.00 USD | 318,370.00 USD | 1,010,000.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2155` | 4,300.00 USD | 5,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2160` | 7,490,000.00 USD | 7,490,000.00 USD | 116,860.00 USD | 35,270.00 USD | 41,810.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2155` | 4,300.00 USD | 5,340.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2160` | 7,390,000.00 USD | 7,390,000.00 USD | 116,050.00 USD | 35,070.00 USD | 39,560.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2160` | 22,490,000.00 USD | 22,490,000.00 USD | 467,380.00 USD | 164,960.00 USD | 397,620.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2170` | 7,710,000.00 USD | 7,710,000.00 USD | 75,270.00 USD | 29,120.00 USD | 115,120.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2170` | 7,610,000.00 USD | 7,610,000.00 USD | 74,380.00 USD | 29,120.00 USD | 114,780.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2170` | 23,130,000.00 USD | 23,130,000.00 USD | 309,430.00 USD | 96,120.00 USD | 232,930.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2175` | 104.40 USD | 5,120.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2180` | 7,900,000.00 USD | 7,900,000.00 USD | 89,140.00 USD | 31,250.00 USD | 63,110.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2180` | 7,790,000.00 USD | 7,790,000.00 USD | 89,140.00 USD | 31,250.00 USD | 62,940.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2180` | 23,660,000.00 USD | 23,660,000.00 USD | 271,760.00 USD | 104,030.00 USD | 153,380.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2185` | 18,910.00 USD | 24,020.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2190` | 8,040,000.00 USD | 8,040,000.00 USD | 85,150.00 USD | 28,270.00 USD | 33,840.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2185` | 18,910.00 USD | 24,250.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2190` | 7,940,000.00 USD | 7,940,000.00 USD | 85,150.00 USD | 28,270.00 USD | 33,670.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2190` | 24,820,000.00 USD | 24,820,000.00 USD | 636,690.00 USD | 143,650.00 USD | 379,400.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2200` | 8,200,000.00 USD | 8,200,000.00 USD | 85,310.00 USD | 24,670.00 USD | 41,470.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2200` | 8,090,000.00 USD | 8,090,000.00 USD | 85,310.00 USD | 24,670.00 USD | 41,810.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2200` | 26,060,000.00 USD | 26,060,000.00 USD | 521,790.00 USD | 219,450.00 USD | 493,190.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2210` | 8,280,000.00 USD | 8,280,000.00 USD | 40,900.00 USD | 17,440.00 USD | 27,900.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2210` | 8,180,000.00 USD | 8,180,000.00 USD | 40,900.00 USD | 17,440.00 USD | 28,100.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2210` | 27,100,000.00 USD | 27,100,000.00 USD | 540,140.00 USD | 85,690.00 USD | 417,540.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2215` | 1,640.00 USD | 25,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2220` | 8,380,000.00 USD | 8,380,000.00 USD | 50,970.00 USD | 9,970.00 USD | 33,190.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2215` | 1,640.00 USD | 25,890.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2220` | 8,260,000.00 USD | 8,260,000.00 USD | 50,430.00 USD | 8,850.00 USD | 28,080.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2220` | 27,580,000.00 USD | 27,580,000.00 USD | 198,110.00 USD | 90,610.00 USD | 196,280.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2230` | 8,440,000.00 USD | 8,440,000.00 USD | 41,750.00 USD | 8,880.00 USD | 12,720.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2230` | 8,310,000.00 USD | 8,310,000.00 USD | 30,930.00 USD | 8,880.00 USD | 11,620.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2230` | 27,860,000.00 USD | 27,860,000.00 USD | 139,620.00 USD | 53,210.00 USD | 85,630.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2235` | 200.48 USD | 25,870.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2240` | 8,550,000.00 USD | 8,550,000.00 USD | 59,000.00 USD | 23,520.00 USD | 31,410.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2235` | 200.48 USD | 26,090.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2240` | 8,430,000.00 USD | 8,430,000.00 USD | 59,000.00 USD | 22,330.00 USD | 30,850.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2240` | 28,600,000.00 USD | 28,600,000.00 USD | 378,190.00 USD | 82,090.00 USD | 277,380.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2250` | 29,100,000.00 USD | 29,100,000.00 USD | 186,370.00 USD | 100,930.00 USD | 212,920.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2260` | 8,690,000.00 USD | 8,690,000.00 USD | 78,060.00 USD | 27,610.00 USD | 28,550.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2260` | 8,560,000.00 USD | 8,560,000.00 USD | 78,060.00 USD | 27,610.00 USD | 27,970.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2260` | 30,100,000.00 USD | 30,100,000.00 USD | 441,450.00 USD | 105,500.00 USD | 452,530.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2270` | 8,850,000.00 USD | 8,850,000.00 USD | 61,490.00 USD | 29,170.00 USD | 69,720.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2270` | 8,720,000.00 USD | 8,720,000.00 USD | 61,490.00 USD | 29,170.00 USD | 70,850.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2270` | 30,570,000.00 USD | 30,570,000.00 USD | 230,310.00 USD | 64,760.00 USD | 175,420.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2275` | 2,160.00 USD | 28,030.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2280` | 8,880,000.00 USD | 8,880,000.00 USD | 12,350.00 USD | 5,470.00 USD | 12,970.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2275` | 2,160.00 USD | 28,260.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2280` | 8,750,000.00 USD | 8,750,000.00 USD | 12,350.00 USD | 5,470.00 USD | 14,030.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2280` | 30,940,000.00 USD | 30,940,000.00 USD | 105,300.00 USD | 59,020.00 USD | 208,320.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2285` | 9,240.00 USD | 37,270.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `1D` | `Short Liquidation` | `0.2290` | 8,910,000.00 USD | 8,910,000.00 USD | 8,350.00 USD | 8,950.00 USD | 16,220.00 USD | `Tier 1 CEX` |
+| `Live` | `Short Liquidation` | `0.2285` | 9,240.00 USD | 37,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `1D` | `Short Liquidation` | `0.2290` | 8,790,000.00 USD | 8,790,000.00 USD | 8,350.00 USD | 8,950.00 USD | 15,170.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2290` | 31,140,000.00 USD | 31,140,000.00 USD | 74,100.00 USD | 32,530.00 USD | 91,240.00 USD | `Tier 1 CEX` |
-| `1D` | `Short Liquidation` | `0.2300` | 8,950,000.00 USD | 8,950,000.00 USD | 12,650.00 USD | 5,690.00 USD | 19,370.00 USD | `Tier 1 CEX` |
+| `1D` | `Short Liquidation` | `0.2300` | 8,820,000.00 USD | 8,820,000.00 USD | 11,760.00 USD | 0.00 USD | 19,370.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2300` | 31,250,000.00 USD | 31,250,000.00 USD | 54,070.00 USD | 16,650.00 USD | 39,410.00 USD | `Tier 1 CEX` |
 | `7D` | `Short Liquidation` | `0.2310` | 31,310,000.00 USD | 31,310,000.00 USD | 11,140.00 USD | 13,670.00 USD | 29,340.00 USD | `Tier 1 CEX` |
-| `Live` | `Short Liquidation` | `0.2325` | 1,980.00 USD | 39,250.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2335` | 7,640.00 USD | 46,880.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2355` | 10,470.00 USD | 57,350.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2395` | 511.57 USD | 57,860.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2405` | 1,470.00 USD | 59,330.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2415` | 743.58 USD | 60,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2525` | 28,370.00 USD | 88,440.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2585` | 380.25 USD | 88,820.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2615` | 1,400.00 USD | 90,220.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2765` | 14,060.00 USD | 104,280.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2775` | 520.31 USD | 104,800.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2845` | 2,170.00 USD | 106,970.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2895` | 411.09 USD | 107,380.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2915` | 3,260.00 USD | 110,650.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2935` | 519.79 USD | 111,170.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.2955` | 7,990.00 USD | 119,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3005` | 146.34 USD | 119,300.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3055` | 408.15 USD | 119,710.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3105` | 96,880.00 USD | 216,590.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3115` | 114.32 USD | 216,710.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3175` | 301.62 USD | 217,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3295` | 2,380.00 USD | 219,390.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3345` | 239.50 USD | 219,630.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3385` | 1,060.00 USD | 220,690.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3395` | 2,550.00 USD | 223,240.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3415` | 4,610.00 USD | 227,850.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3465` | 6,020.00 USD | 233,870.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3495` | 90,120.00 USD | 323,990.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3505` | 1,490.00 USD | 325,480.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3575` | 26,440.00 USD | 351,920.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3585` | 575.03 USD | 352,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3715` | 9,320.00 USD | 361,810.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3745` | 3,140.00 USD | 364,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3845` | 2,310,000.00 USD | 2,670,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2325` | 282.02 USD | 37,780.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2335` | 7,640.00 USD | 45,410.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2345` | 259.83 USD | 45,670.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2395` | 511.57 USD | 46,180.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2405` | 1,470.00 USD | 47,650.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2415` | 743.58 USD | 48,400.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2525` | 28,370.00 USD | 76,770.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2585` | 380.25 USD | 77,150.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2615` | 2,030.00 USD | 79,180.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2765` | 13,830.00 USD | 93,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2775` | 379.62 USD | 93,380.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2845` | 2,170.00 USD | 95,550.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2895` | 411.09 USD | 95,960.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2915` | 3,260.00 USD | 99,230.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2935` | 519.79 USD | 99,750.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2955` | 7,990.00 USD | 107,730.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.2965` | 199.54 USD | 107,930.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3005` | 146.34 USD | 108,080.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3055` | 408.15 USD | 108,490.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3075` | 155.90 USD | 108,640.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3105` | 97,380.00 USD | 206,020.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3115` | 114.32 USD | 206,140.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3295` | 2,380.00 USD | 208,520.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3315` | 4,480.00 USD | 212,990.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3335` | 1,420.00 USD | 214,410.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3355` | 87,600.00 USD | 302,010.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3385` | 753.16 USD | 302,760.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3395` | 2,870.00 USD | 305,640.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3405` | 243.80 USD | 305,880.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3455` | 316.13 USD | 306,200.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3485` | 2,370.00 USD | 308,570.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3625` | 26,810.00 USD | 335,380.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3685` | 147.77 USD | 335,530.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3715` | 9,170.00 USD | 344,700.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3745` | 3,140.00 USD | 347,840.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3875` | 2,320,000.00 USD | 2,670,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.3915` | 788.87 USD | 2,670,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.3925` | 26,120.00 USD | 2,700,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 | `Live` | `Short Liquidation` | `0.3935` | 280.17 USD | 2,700,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.3995` | 1,030.00 USD | 2,700,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.4045` | 6,820.00 USD | 2,710,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.4075` | 293,710.00 USD | 3,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.4085` | 2,060.00 USD | 3,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
-| `Live` | `Short Liquidation` | `0.4095` | 1,040.00 USD | 3,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3985` | 287,220.00 USD | 2,990,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.3995` | 534.53 USD | 2,990,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.4015` | 1,020.00 USD | 2,990,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
+| `Live` | `Short Liquidation` | `0.4025` | 6,790.00 USD | 3,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 2 DEX` |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -939,7 +934,7 @@
 | `5:00 UTC` | `0.2044` | `0.2044` | `0.2044` | `0.2047` | `0.2041` | 1,406,635.22 USD | 616,800.46 USD | 789,834.77 USD | -173,034.31 USD | `-12.30%` | `0B / 0S` |
 | `0:00 UTC` | `0.2049` | `0.2041` | `0.2049` | `0.2051` | `0.2030` | 2,865,852.90 USD | 1,183,037.36 USD | 1,682,815.54 USD | -499,778.19 USD | `-17.44%` | `0B / 2S` |
 | `5:00 UTC` | `0.2029` | `0.2028` | `0.2029` | `0.2036` | `0.2021` | 3,754,661.38 USD | 1,656,303.06 USD | 2,098,358.32 USD | -442,055.26 USD | `-11.77%` | `2B / 1S` |
-| `0:00 UTC` | `0.2032` | `0.2034` | `0.2032` | `0.2037` | `0.2031` | 444,271.69 USD | 263,481.66 USD | 180,790.03 USD | 82,691.63 USD | `+18.61%` | `2B / 1S` |
+| `0:00 UTC` | `0.2032` | `0.2034` | `0.2032` | `0.2037` | `0.2031` | 1,039,927.73 USD | 591,766.18 USD | 448,161.55 USD | 143,604.64 USD | `+13.81%` | `1B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -1004,21 +999,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:59 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:59 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:59 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:54:59 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:44:59 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:40:59 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

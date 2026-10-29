@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-29 23:40:50 IST` (`2026-10-29 18:10:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-29 23:43:52 IST` (`2026-10-29 18:13:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -304,16 +304,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `17:15:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,521.41 USD | 1,256.65 USD | 264.76 USD | 991.90 USD | `+65.20%` | `1B / 0S` |
-| `17:15:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 4,810.08 USD | 4,143.98 USD | 666.10 USD | 3,477.88 USD | `+72.30%` | `1B / 0S` |
-| `17:20:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,607.46 USD | 1,087.19 USD | 520.27 USD | 566.92 USD | `+35.27%` | `1B / 0S` |
-| `17:25:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,679.86 USD | 1,320.86 USD | 359.00 USD | 961.85 USD | `+57.26%` | `1B / 0S` |
-| `17:30:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 3,796.43 USD | 3,127.59 USD | 668.83 USD | 2,458.76 USD | `+64.77%` | `1B / 0S` |
-| `17:30:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,385.69 USD | 106.98 USD | 1,278.71 USD | -1,171.73 USD | `-84.56%` | `0B / 1S` |
 | `17:35:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,167.13 USD | 881.83 USD | 285.30 USD | 596.53 USD | `+51.11%` | `1B / 0S` |
 | `17:40:00` | `1.33` | `1.33` | `1.33` | `1.33` | `1.33` | 1,241.45 USD | 1,150.16 USD | 91.28 USD | 1,058.88 USD | `+85.29%` | `1B / 0S` |
 | `17:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 1,064.19 USD | 873.65 USD | 190.55 USD | 683.10 USD | `+64.19%` | `1B / 0S` |
 | `17:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 3,150.66 USD | 2,417.11 USD | 733.55 USD | 1,683.56 USD | `+53.44%` | `1B / 0S` |
+| `17:50:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.33` | 1,051.27 USD | 918.35 USD | 132.92 USD | 785.44 USD | `+74.71%` | `1B / 0S` |
+| `17:55:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,035.08 USD | 425.44 USD | 609.65 USD | -184.21 USD | `-17.80%` | `0B / 1S` |
+| `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,868.34 USD | 2,721.75 USD | 146.59 USD | 2,575.16 USD | `+89.78%` | `1B / 0S` |
+| `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 12,279.59 USD | 10,373.28 USD | 1,906.31 USD | 8,466.97 USD | `+68.95%` | `1B / 0S` |
+| `18:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,034.07 USD | 864.55 USD | 169.52 USD | 695.03 USD | `+67.21%` | `1B / 0S` |
+| `18:05:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 872.87 USD | 788.31 USD | 84.56 USD | 703.75 USD | `+80.63%` | `1B / 0S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -368,21 +368,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-29 23:31:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:25:35 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:03:35 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:01:35 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:55:35 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:45:35 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:31:35 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [ForexFactory] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:30:35 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-29 20:32:35 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:30:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:25:59 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:03:59 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:01:59 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:54:59 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:44:59 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:40:59 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [youtube.com/bankofcanadaofficial] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:39:59 IST`: [notayesmanseconomics.wordpress.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 20:41:59 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-29 19:41:59 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
 
 
 ---

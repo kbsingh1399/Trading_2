@@ -159,7 +159,7 @@ async def probe_zai() -> dict:
         let chatText = '';
         for (let i = allChatMsgs.length - 1; i >= 0; i--) {
             const t = (allChatMsgs[i].innerText || '').trim();
-            if (t.includes('Cycle_005') || t.includes('COUNCIL REPORT')) {
+            if (t.includes('Cycle_') || t.includes('COUNCIL REPORT')) {
                 chatText = t;
                 break;
             }
@@ -170,7 +170,7 @@ async def probe_zai() -> dict:
             if (rIdx !== -1) {
                 chatText = body.substring(rIdx);
             } else {
-                const cIdx = body.lastIndexOf('Cycle_005');
+                const cIdx = body.lastIndexOf('Cycle_');
                 if (cIdx !== -1) chatText = body.substring(cIdx);
             }
         }
