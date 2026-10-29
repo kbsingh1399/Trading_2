@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFJPY
 **Canonical Key**: `CHFJPY` | **Broker Instrument**: `CHFJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 03:49:32 IST` (`2026-10-29 22:19:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 03:52:33 IST` (`2026-10-29 22:22:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 03:29:57 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:53:57 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:40:57 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:57 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:57 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:57 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:41:57 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:41:57 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 22:41:57 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
-  * `2026-10-29 21:41:57 IST`: [ForexFactory] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:30:02 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:54:02 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:51:02 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:50:02 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:50:02 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:52:02 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 00:52:02 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:52:02 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:52:02 IST`: [@DeItaone] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:52:02 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:52:02 IST`: [snb.ch] - (Sentiment: `Neutral`)
+  * `2026-10-29 23:52:02 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:52:02 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 22:52:02 IST`: [fxstreet.com] - (Sentiment: `Neutral`)
+  * `2026-10-29 21:52:02 IST`: [ForexFactory] - (Sentiment: `Neutral`)
 
 
 ---
