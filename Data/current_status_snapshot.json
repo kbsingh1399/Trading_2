@@ -1,5 +1,5 @@
 {
-  "timestamp_ist": "2026-10-29 06:52:40 IST",
+  "timestamp_ist": "2026-10-29 07:12:28 IST",
   "feeds": [
     {
       "idx": "00",
@@ -7,7 +7,7 @@
       "tier": "High Velocity",
       "rows": 165,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -16,16 +16,16 @@
       "tier": "Macro",
       "rows": 41,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "02",
       "name": "2_Spot_Netflow_S",
       "tier": "Macro",
-      "rows": 162,
+      "rows": 186,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -34,7 +34,7 @@
       "tier": "Tactical",
       "rows": 500,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -43,7 +43,7 @@
       "tier": "Tactical",
       "rows": 500,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -52,16 +52,16 @@
       "tier": "Tactical",
       "rows": 500,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "06",
       "name": "4_Hyperliquid_Analysis",
       "tier": "Tactical",
-      "rows": 2031,
+      "rows": 2025,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -70,16 +70,16 @@
       "tier": "Tactical",
       "rows": 20,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "08",
       "name": "5_Funding_Rate",
       "tier": "Tactical",
-      "rows": 590,
+      "rows": 588,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -88,16 +88,16 @@
       "tier": "Tactical",
       "rows": 940,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "10",
       "name": "7_Liq_Heapmap",
       "tier": "Tactical",
-      "rows": 80,
+      "rows": 75,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -106,25 +106,25 @@
       "tier": "High Velocity",
       "rows": 27,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "12",
       "name": "8_Exchange_Liquidation_Map_1D",
       "tier": "Tactical",
-      "rows": 2388,
+      "rows": 2387,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "13",
       "name": "8_Exchange_Liquidation_Map_7D",
       "tier": "Tactical",
-      "rows": 2998,
+      "rows": 3007,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -133,7 +133,7 @@
       "tier": "Tactical",
       "rows": 751,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -142,7 +142,7 @@
       "tier": "Tactical",
       "rows": 751,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -151,7 +151,7 @@
       "tier": "Tactical",
       "rows": 751,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -160,25 +160,25 @@
       "tier": "Tactical",
       "rows": 751,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "18",
       "name": "10_Whale_Orders",
       "tier": "Tactical",
-      "rows": 3485,
+      "rows": 3063,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "19",
       "name": "11_Technical",
       "tier": "Tactical",
-      "rows": 113,
+      "rows": 111,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -187,7 +187,7 @@
       "tier": "Tactical",
       "rows": 300,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -196,16 +196,16 @@
       "tier": "Tactical",
       "rows": 235,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
       "idx": "22",
       "name": "14_Hyperdash_Liq_Map",
       "tier": "Tactical",
-      "rows": 6483,
+      "rows": 6406,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -214,7 +214,7 @@
       "tier": "Tactical",
       "rows": 4378,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -223,7 +223,7 @@
       "tier": "Tactical",
       "rows": 1000,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -232,7 +232,7 @@
       "tier": "High Velocity",
       "rows": 615,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -241,7 +241,7 @@
       "tier": "High Velocity",
       "rows": 1500,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -250,7 +250,7 @@
       "tier": "Macro",
       "rows": 36,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -259,7 +259,7 @@
       "tier": "Macro",
       "rows": 43,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -268,7 +268,7 @@
       "tier": "Tactical",
       "rows": 84,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -277,7 +277,7 @@
       "tier": "Tactical",
       "rows": 6912,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -286,7 +286,7 @@
       "tier": "High Velocity",
       "rows": 80,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -304,7 +304,7 @@
       "tier": "Tactical",
       "rows": 606,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     },
     {
@@ -320,7 +320,7 @@
       "idx": "35",
       "name": "14_Liquidation_Matrix",
       "tier": "Tactical",
-      "rows": 11845,
+      "rows": 11776,
       "banner": "",
       "age": 0.0,
       "status": "PASS"
@@ -329,18 +329,18 @@
       "idx": "36",
       "name": "2_Future_Netflow",
       "tier": "Macro",
-      "rows": 160,
+      "rows": 182,
       "banner": "",
-      "age": 0.4,
+      "age": 0.3,
       "status": "PASS"
     }
   ],
   "account": {
     "login": 5064568,
     "balance": 4724.57,
-    "equity": 4715.36,
+    "equity": 4726.15,
     "margin": 790.01,
-    "margin_free": 3925.35
+    "margin_free": 3936.14
   },
   "positions": [
     {
@@ -349,10 +349,10 @@
       "type": "SELL",
       "volume": 0.1,
       "price_open": 0.70586,
-      "price_current": 0.70637,
+      "price_current": 0.70555,
       "sl": 0.70686,
       "tp": 0.70368,
-      "profit": -5.1
+      "profit": 3.1
     },
     {
       "ticket": 19437498,
@@ -360,10 +360,10 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 2846.5,
-      "price_current": 2850.28,
+      "price_current": 2846.36,
       "sl": 2858.0,
       "tp": 2822.0,
-      "profit": -0.38
+      "profit": 0.01
     },
     {
       "ticket": 19440308,
@@ -371,10 +371,10 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52625.0,
-      "price_current": 52662.34,
+      "price_current": 52640.34,
       "sl": 52725.0,
       "tp": 52480.0,
-      "profit": -3.73
+      "profit": -1.53
     }
   ],
   "orders_count": 12,
@@ -501,16 +501,6 @@
     }
   ],
   "recent_deals": [
-    {
-      "ticket": 17611078,
-      "order": 19437065,
-      "symbol": "DJ30.p",
-      "type": 1,
-      "volume": 0.01,
-      "price": 52608.0,
-      "profit": 0.0,
-      "comment": "Auto43_DJ30"
-    },
     {
       "ticket": 17611241,
       "order": 19437060,
