@@ -1,12 +1,12 @@
 {
-  "timestamp_utc": "2026-10-29 00:10:22 UTC",
+  "timestamp_utc": "2026-10-29 00:12:29 UTC",
   "balance_usd": 4741.68,
-  "equity_usd": 4746.37,
-  "free_margin_usd": 3920.29,
+  "equity_usd": 4747.06,
+  "free_margin_usd": 3623.73,
   "max_filled_positions": 15,
-  "filled_positions_count": 2,
-  "filled_slots_free": 13,
-  "resting_limits_count": 16,
+  "filled_positions_count": 3,
+  "filled_slots_free": 12,
+  "resting_limits_count": 15,
   "is_position_capped": false,
   "auto_pull_executed": false,
   "pulled_orders": [],
@@ -17,12 +17,12 @@
       "type": "BUY",
       "volume": 0.09,
       "price_open": 1.3993,
-      "price_current": 1.39906,
+      "price_current": 1.3992499999999999,
       "sl": 1.3978,
       "tp": 1.4027,
-      "gain_r": -0.16,
+      "gain_r": -0.033,
       "ratchet_stage": 0,
-      "profit_usd": -1.54,
+      "profit_usd": -0.32,
       "decision": "LET_IT_RUN",
       "is_valid_trade": true,
       "audit_verdict": "VALID_DEVELOPING"
@@ -33,12 +33,28 @@
       "type": "SELL",
       "volume": 0.01,
       "price_open": 52608.0,
-      "price_current": 52552.34,
+      "price_current": 52547.34,
       "sl": 52585.68,
       "tp": 52298.0,
-      "gain_r": 0.374,
+      "gain_r": 0.408,
       "ratchet_stage": 1,
-      "profit_usd": 5.57,
+      "profit_usd": 6.07,
+      "decision": "LET_IT_RUN",
+      "is_valid_trade": true,
+      "audit_verdict": "VALID_DEVELOPING"
+    },
+    {
+      "ticket": 19437500,
+      "symbol": "EURCAD.pi",
+      "type": "BUY",
+      "volume": 0.08,
+      "price_open": 1.5594000000000001,
+      "price_current": 1.55922,
+      "sl": 1.5577999999999999,
+      "tp": 1.5645,
+      "gain_r": -0.113,
+      "ratchet_stage": 0,
+      "profit_usd": -1.03,
       "decision": "LET_IT_RUN",
       "is_valid_trade": true,
       "audit_verdict": "VALID_DEVELOPING"
@@ -136,15 +152,6 @@
       "tp": 2822.0
     },
     {
-      "ticket": 19437500,
-      "symbol": "EURCAD.pi",
-      "type": "BUY_LIMIT",
-      "volume": 0.08,
-      "price": 1.5594000000000001,
-      "sl": 1.5577999999999999,
-      "tp": 1.5645
-    },
-    {
       "ticket": 19437501,
       "symbol": "UKBRENT.p",
       "type": "BUY_LIMIT",
@@ -173,21 +180,4 @@
     },
     {
       "ticket": 19439187,
-      "symbol": "NAS100.p",
-      "type": "BUY_LIMIT",
-      "volume": 0.01,
-      "price": 29460.0,
-      "sl": 29380.0,
-      "tp": 29650.0
-    },
-    {
-      "ticket": 19439188,
-      "symbol": "EURGBP.pi",
-      "type": "SELL_LIMIT",
-      "volume": 0.1,
-      "price": 0.8381,
-      "sl": 0.8388,
-      "tp": 0.8368
-    }
-  ]
-}
+      "symbol": "NAS100.p
