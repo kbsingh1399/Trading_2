@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 04:44:06 IST` (`2026-10-29 23:14:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:47:08 IST` (`2026-10-29 23:17:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `102.02` | VWAP Z-Score: `+2.17` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.3023` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `65.11` (State: `OVERBOUGHT`)
+  * Session VWAP: `102.02` | VWAP Z-Score: `+2.06` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.2936` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `62.93` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `103.99` | Lower -3.00σ Band: `100.04`
-  * Upper +2.51σ Band: `103.67` | Lower -2.51σ Band: `100.36`
-  * Upper +2.01σ Band: `103.34` | Lower -2.01σ Band: `100.69`
+  * Upper +3.00σ Band: `104.00` | Lower -3.00σ Band: `100.04`
+  * Upper +2.51σ Band: `103.68` | Lower -2.51σ Band: `100.36`
+  * Upper +2.01σ Band: `103.35` | Lower -2.01σ Band: `100.69`
   * Upper +2.00σ Band: `103.34` | Lower -2.00σ Band: `100.70`
   * Upper +1.28σ Band: `102.86` | Lower -1.28σ Band: `101.17`
   * Upper +1.00σ Band: `102.68` | Lower -1.00σ Band: `101.36`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`103.35` | EMA-20=`103.01` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`102.55` (Slope: `+0.0000`) | EMA-100=`102.39`
-  * Institutional Anchors: EMA-144=`102.35` | EMA-200=`102.22` (Slope: `+0.1390`) | EMA-233=`102.19`
+  * Fast EMA Array: EMA-9=`103.36` | EMA-20=`103.05` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`102.58` (Slope: `+0.0000`) | EMA-100=`102.41`
+  * Institutional Anchors: EMA-144=`102.36` | EMA-200=`102.23` (Slope: `+0.1424`) | EMA-233=`102.20`
 - **Range Boundaries**: 24H High=`103.64` | 24H Low=`100.46` | Weekly High=`104.23` | Weekly Low=`100.17`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `103.51` (Distance: `-0.11%`)
-  * Point of Control (POC) = `103.45` (Distance: `-0.05%`)
-  * Value Area Low (VAL) = `103.34` (Distance: `+0.05%`)
+  * Value Area High (VAH) = `103.50` (Distance: `-0.06%`)
+  * Point of Control (POC) = `103.45` (Distance: `-0.01%`)
+  * Value Area Low (VAL) = `103.33` (Distance: `+0.11%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`102.76` | POC=`102.02` | VAL=`101.40`
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `103.39` | `103.55` | `103.26` | `103.41` | `527` | 54,497.07 USD | 3,824.36 USD | `+7.02%` | 248,761.43 USD | `-0.03` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `103.41` | `103.63` | `103.39` | `103.61` | `440` | 45,587.96 USD | 37,865.92 USD | `+83.06%` | 286,627.35 USD | `+1.77` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `103.60` | `103.60` | `103.39` | `103.50` | `433` | 44,817.23 USD | -9,603.69 USD | `-21.43%` | 277,023.65 USD | `-0.88` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `102.97` | `103.05` | `102.86` | `102.94` | `491` | 50,543.54 USD | -7,775.93 USD | `-15.38%` | 410,780.33 USD | `-0.66` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `102.94` | `103.55` | `102.92` | `103.41` | `1,247` | 128,952.27 USD | 85,624.31 USD | `+66.40%` | 496,404.64 USD | `+0.77` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `103.41` | `103.63` | `103.39` | `103.47` | `1,184` | 122,514.40 USD | 1,250.15 USD | `+1.02%` | 497,654.78 USD | `-0.63` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `5m` | `103.60` | `103.60` | `103.39` | `103.50` | `433` | 44,817.23 USD | -9,603.69 USD | `-21.43%` | 270,160.16 USD | `-0.88` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `103.51` | `103.63` | `103.47` | `103.47` | `311` | 32,180.72 USD | -19,642.78 USD | `-61.04%` | 250,517.38 USD | `-1.33` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `103.48` | `103.53` | `103.42` | `103.43` | `282` | 29,167.26 USD | -20,417.08 USD | `-70.00%` | 230,100.30 USD | `-1.32` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `102.94` | `103.55` | `102.92` | `103.41` | `1,247` | 128,952.27 USD | 85,624.31 USD | `+66.40%` | 449,299.21 USD | `+0.77` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `103.41` | `103.63` | `103.39` | `103.47` | `1,184` | 122,514.40 USD | 1,250.15 USD | `+1.02%` | 450,549.35 USD | `-0.63` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `15m` | `103.48` | `103.64` | `103.42` | `103.56` | `847` | 87,719.55 USD | 31,189.18 USD | `+35.56%` | 481,738.53 USD | `-0.17` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `102.57` | `103.03` | `102.37` | `102.79` | `4,695` | 482,613.14 USD | 151,046.86 USD | `+31.30%` | -143,180.00 USD | `+0.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `102.79` | `103.55` | `102.73` | `103.41` | `3,131` | 323,776.71 USD | 231,808.23 USD | `+71.60%` | 88,628.23 USD | `+0.78` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `103.41` | `103.64` | `103.39` | `103.54` | `3,425` | 354,634.78 USD | 138,377.10 USD | `+39.02%` | 227,005.33 USD | `+0.42` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 04:36:18 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 04:46:31 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -346,16 +346,16 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `103.34` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `102.91` (Risk Distance: `0.4318` pts)
-  * +2.5R Take Profit: `104.42`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.43 USD <= 10.00 USD`)
+  * Execution Entry: `103.33` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `102.91` (Risk Distance: `0.4213` pts)
+  * +2.5R Take Profit: `104.39`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.42 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `103.51` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `103.94` (Risk Distance: `0.4318` pts)
-  * +2.5R Take Profit: `102.43`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.43 USD <= 10.00 USD`)
+  * Execution Entry: `103.50` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `103.93` (Risk Distance: `0.4213` pts)
+  * +2.5R Take Profit: `102.45`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.42 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**

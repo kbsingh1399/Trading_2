@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDTHB
 **Canonical Key**: `USDTHB` | **Broker Instrument**: `USDTHB.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 04:44:06 IST` (`2026-10-29 23:14:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:47:08 IST` (`2026-10-29 23:17:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,17 +27,17 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `33.97` | Lower -3.00σ Band: `33.50`
-  * Upper +2.51σ Band: `33.92` | Lower -2.51σ Band: `33.55`
+  * Upper +3.00σ Band: `33.98` | Lower -3.00σ Band: `33.51`
+  * Upper +2.51σ Band: `33.93` | Lower -2.51σ Band: `33.56`
   * Upper +2.01σ Band: `33.88` | Lower -2.01σ Band: `33.60`
-  * Upper +2.00σ Band: `33.87` | Lower -2.00σ Band: `33.60`
-  * Upper +1.28σ Band: `33.83` | Lower -1.28σ Band: `33.64`
+  * Upper +2.00σ Band: `33.88` | Lower -2.00σ Band: `33.61`
+  * Upper +1.28σ Band: `33.84` | Lower -1.28σ Band: `33.65`
   * Upper +1.00σ Band: `33.81` | Lower -1.00σ Band: `33.67`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`33.74` | EMA-20=`33.74` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`33.74` (Slope: `+0.0000`) | EMA-100=`33.74`
   * Institutional Anchors: EMA-144=`33.74` | EMA-200=`33.74` (Slope: `+0.0000`) | EMA-233=`33.74`
-- **Range Boundaries**: 24H High=`34.08` | 24H Low=`33.40` | Weekly High=`34.41` | Weekly Low=`33.06`
+- **Range Boundaries**: 24H High=`34.08` | 24H Low=`33.40` | Weekly High=`34.42` | Weekly Low=`33.07`
 
 ---
 
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `33.64` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`33.87` | POC=`33.74` | VAL=`33.60`
+  * Prior Day Value Area: VAH=`33.88` | POC=`33.74` | VAL=`33.61`
   * Prior Day Extremes: PDH=`33.94` | PDL=`33.54` | PDC=`33.74`
   * Monday Range Blueprint: High=`33.91` | Mid=`33.74` | Low=`33.57`
   * Developing Weekly Value Area: Weekly VAH=`34.01` | Weekly POC=`33.74` | Weekly VAL=`33.47`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`33.81` | Low=`33.67`
-  * London Session (08:00-16:00 UTC): High=`33.87` | Low=`33.60`
+  * London Session (08:00-16:00 UTC): High=`33.88` | Low=`33.61`
   * New York Session (13:00-21:00 UTC): High=`33.94` | Low=`33.54`
   * Initial Balance (First Hour): IB High=`33.84` | IB Low=`33.64`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `33.60` - `33.87`
+  * Golden Pocket Zone (0.618 - 0.650): `33.61` - `33.88`
   * Optimal Trade Entry (OTE 0.705): `33.81`
   * Structural Invalidation Anchor (0.786): `34.01`
 

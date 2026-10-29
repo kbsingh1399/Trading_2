@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHRUSD
 **Canonical Key**: `CHRUSD` | **Broker Instrument**: `CHRUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 04:44:07 IST` (`2026-10-29 23:14:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 04:47:08 IST` (`2026-10-29 23:17:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0162` | VWAP Z-Score: `-2.46` (Regime: `STRETCH_EXTREME`)
+  * Session VWAP: `0.0161` | VWAP Z-Score: `-2.16` (Regime: `STRETCH_EXTREME`)
   * 14-Period ATR: `0.000199` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `20.56` (State: `OVERSOLD`)
+  * 14-Period RSI: `25.84` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0177` | Lower -3.00σ Band: `0.0146`
-  * Upper +2.51σ Band: `0.0174` | Lower -2.51σ Band: `0.0149`
+  * Upper +2.51σ Band: `0.0175` | Lower -2.51σ Band: `0.0148`
   * Upper +2.01σ Band: `0.0172` | Lower -2.01σ Band: `0.0151`
   * Upper +2.00σ Band: `0.0172` | Lower -2.00σ Band: `0.0151`
   * Upper +1.28σ Band: `0.0168` | Lower -1.28σ Band: `0.0155`
   * Upper +1.00σ Band: `0.0167` | Lower -1.00σ Band: `0.0156`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0152` | EMA-20=`0.0156` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0151` | EMA-20=`0.0155` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0160` (Slope: `+0.0000`) | EMA-100=`0.0162`
-  * Institutional Anchors: EMA-144=`0.0163` | EMA-200=`0.0163` (Slope: `-0.8324`) | EMA-233=`0.0163`
+  * Institutional Anchors: EMA-144=`0.0163` | EMA-200=`0.0163` (Slope: `-0.8852`) | EMA-233=`0.0163`
 - **Range Boundaries**: 24H High=`0.0170` | 24H Low=`0.0147` | Weekly High=`0.0174` | Weekly Low=`0.0147`
 
 ---
@@ -274,7 +274,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.0167` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0199` (Risk Distance: `0.0040` pts)
+  * Spread-Padded Stop Loss: `0.0200` (Risk Distance: `0.0040` pts)
   * +2.5R Take Profit: `0.0067`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
