@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.3170` | VWAP Z-Score: `-1.30` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.3169` | VWAP Z-Score: `-1.54` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0025` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `31.88` (State: `OVERSOLD`)
+  * 14-Period RSI: `30.00` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.3285` | Lower -3.00σ Band: `0.3055`
-  * Upper +2.51σ Band: `0.3266` | Lower -2.51σ Band: `0.3074`
-  * Upper +2.01σ Band: `0.3247` | Lower -2.01σ Band: `0.3093`
-  * Upper +2.00σ Band: `0.3247` | Lower -2.00σ Band: `0.3093`
-  * Upper +1.28σ Band: `0.3219` | Lower -1.28σ Band: `0.3121`
-  * Upper +1.00σ Band: `0.3208` | Lower -1.00σ Band: `0.3132`
+  * Upper +3.00σ Band: `0.3285` | Lower -3.00σ Band: `0.3054`
+  * Upper +2.51σ Band: `0.3266` | Lower -2.51σ Band: `0.3073`
+  * Upper +2.01σ Band: `0.3247` | Lower -2.01σ Band: `0.3092`
+  * Upper +2.00σ Band: `0.3246` | Lower -2.00σ Band: `0.3092`
+  * Upper +1.28σ Band: `0.3219` | Lower -1.28σ Band: `0.3120`
+  * Upper +1.00σ Band: `0.3208` | Lower -1.00σ Band: `0.3131`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.3159` | EMA-20=`0.3176` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.3180` (Slope: `+0.0000`) | EMA-100=`0.3193`
-  * Institutional Anchors: EMA-144=`0.3204` | EMA-200=`0.3216` (Slope: `-0.1336`) | EMA-233=`0.3221`
+  * Fast EMA Array: EMA-9=`0.3149` | EMA-20=`0.3170` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.3177` (Slope: `+0.0000`) | EMA-100=`0.3191`
+  * Institutional Anchors: EMA-144=`0.3202` | EMA-200=`0.3215` (Slope: `-0.1720`) | EMA-233=`0.3220`
 - **Range Boundaries**: 24H High=`0.3340` | 24H Low=`0.3090` | Weekly High=`0.3380` | Weekly Low=`0.3090`
 
 ---

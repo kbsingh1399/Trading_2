@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCAD
 **Canonical Key**: `EURCAD` | **Broker Instrument**: `EURCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.56` | VWAP Z-Score: `+1.59` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000937` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `57.60` (State: `NEUTRAL`)
+  * Session VWAP: `1.56` | VWAP Z-Score: `+1.75` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000898` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `59.26` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.56` | Lower -3.00σ Band: `1.56`
   * Upper +2.51σ Band: `1.56` | Lower -2.51σ Band: `1.56`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.56` | EMA-20=`1.56` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.56` (Slope: `+0.0000`) | EMA-100=`1.56`
-  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `-0.0064`) | EMA-233=`1.56`
+  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `-0.0063`) | EMA-233=`1.56`
 - **Range Boundaries**: 24H High=`1.56` | 24H Low=`1.56` | Weekly High=`1.57` | Weekly Low=`1.56`
 
 ---

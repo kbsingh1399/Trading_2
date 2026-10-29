@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.34` | **Live Ask Quote**: `1.34` | **Mid Price**: `1.34`
-- **Spread Points**: `7.00` | **Spread BPS**: `0.52 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `1.00` | **Spread BPS**: `0.07 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -23,11 +23,11 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.33` | VWAP Z-Score: `+1.32` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000838` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `56.35` (State: `NEUTRAL`)
+  * Session VWAP: `1.34` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0033` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.34` | Lower -3.00σ Band: `1.33`
+  * Upper +3.00σ Band: `1.35` | Lower -3.00σ Band: `1.33`
   * Upper +2.51σ Band: `1.34` | Lower -2.51σ Band: `1.33`
   * Upper +2.01σ Band: `1.34` | Lower -2.01σ Band: `1.33`
   * Upper +2.00σ Band: `1.34` | Lower -2.00σ Band: `1.33`
@@ -35,9 +35,9 @@
   * Upper +1.00σ Band: `1.34` | Lower -1.00σ Band: `1.33`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.34` | EMA-20=`1.34` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1.33` (Slope: `+0.0000`) | EMA-100=`1.33`
-  * Institutional Anchors: EMA-144=`1.33` | EMA-200=`1.33` (Slope: `+0.0392`) | EMA-233=`1.33`
-- **Range Boundaries**: 24H High=`1.34` | 24H Low=`1.33` | Weekly High=`1.34` | Weekly Low=`1.33`
+  * Core Structural Array: EMA-50=`1.34` (Slope: `+0.0000`) | EMA-100=`1.34`
+  * Institutional Anchors: EMA-144=`1.34` | EMA-200=`1.34` (Slope: `+0.0000`) | EMA-233=`1.34`
+- **Range Boundaries**: 24H High=`1.35` | 24H Low=`1.32` | Weekly High=`1.36` | Weekly Low=`1.31`
 
 ---
 
@@ -298,16 +298,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `18:30:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,172.11 USD | 203.85 USD | 968.27 USD | -764.42 USD | `-65.22%` | `0B / 1S` |
-| `18:35:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 993.38 USD | 856.61 USD | 136.77 USD | 719.84 USD | `+72.46%` | `1B / 0S` |
 | `18:40:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,045.60 USD | 519.12 USD | 526.48 USD | -7.36 USD | `-0.70%` | `0B / 1S` |
-| `18:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,080.03 USD | 171.53 USD | 908.50 USD | -736.96 USD | `-68.24%` | `0B / 1S` |
 | `18:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 3,136.44 USD | 2,040.99 USD | 1,095.45 USD | 945.54 USD | `+30.15%` | `1B / 0S` |
+| `18:45:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,080.03 USD | 171.53 USD | 908.50 USD | -736.96 USD | `-68.24%` | `0B / 1S` |
 | `18:50:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,003.11 USD | 716.24 USD | 286.87 USD | 429.36 USD | `+42.80%` | `1B / 0S` |
 | `18:55:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,052.61 USD | 717.09 USD | 335.52 USD | 381.57 USD | `+36.25%` | `1B / 0S` |
 | `19:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 8,769.34 USD | 2,783.08 USD | 5,986.26 USD | -3,203.17 USD | `-36.53%` | `0B / 1S` |
 | `19:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 1,004.24 USD | 239.65 USD | 764.59 USD | -524.94 USD | `-52.27%` | `0B / 1S` |
 | `19:00:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 2,569.86 USD | 1,966.57 USD | 603.29 USD | 1,363.28 USD | `+53.05%` | `1B / 0S` |
+| `19:05:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 830.64 USD | 722.48 USD | 108.16 USD | 614.33 USD | `+73.96%` | `1B / 0S` |
+| `19:10:00` | `1.34` | `1.34` | `1.34` | `1.34` | `1.34` | 734.44 USD | 527.14 USD | 207.30 USD | 319.83 USD | `+43.55%` | `1B / 0S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -400,15 +400,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.33` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0011` pts)
-  * +2.5R Take Profit: `1.33`
-  * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0040` pts)
+  * +2.5R Take Profit: `1.34`
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.33` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.33` (Risk Distance: `0.0011` pts)
-  * +2.5R Take Profit: `1.33`
-  * Mathematical Lot Sizing: **`0.09 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.0040` pts)
+  * +2.5R Take Profit: `1.32`
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**

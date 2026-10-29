@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NOKJPY
 **Canonical Key**: `NOKJPY` | **Broker Instrument**: `NOKJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,9 +29,9 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `17.17` | Lower -3.00σ Band: `16.93`
   * Upper +2.51σ Band: `17.15` | Lower -2.51σ Band: `16.96`
-  * Upper +2.01σ Band: `17.12` | Lower -2.01σ Band: `16.98`
-  * Upper +2.00σ Band: `17.12` | Lower -2.00σ Band: `16.98`
-  * Upper +1.28σ Band: `17.10` | Lower -1.28σ Band: `17.00`
+  * Upper +2.01σ Band: `17.13` | Lower -2.01σ Band: `16.98`
+  * Upper +2.00σ Band: `17.12` | Lower -2.00σ Band: `16.99`
+  * Upper +1.28σ Band: `17.10` | Lower -1.28σ Band: `17.01`
   * Upper +1.00σ Band: `17.09` | Lower -1.00σ Band: `17.02`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`17.05` | EMA-20=`17.05` (Slope: `+0.0000`)
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `17.00` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`17.12` | POC=`17.05` | VAL=`16.98`
-  * Prior Day Extremes: PDH=`17.15` | PDL=`16.95` | PDC=`17.05`
+  * Prior Day Value Area: VAH=`17.12` | POC=`17.05` | VAL=`16.99`
+  * Prior Day Extremes: PDH=`17.16` | PDL=`16.95` | PDC=`17.05`
   * Monday Range Blueprint: High=`17.14` | Mid=`17.05` | Low=`16.97`
   * Developing Weekly Value Area: Weekly VAH=`17.19` | Weekly POC=`17.05` | Weekly VAL=`16.92`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`17.09` | Low=`17.02`
-  * London Session (08:00-16:00 UTC): High=`17.12` | Low=`16.98`
-  * New York Session (13:00-21:00 UTC): High=`17.15` | Low=`16.95`
+  * London Session (08:00-16:00 UTC): High=`17.12` | Low=`16.99`
+  * New York Session (13:00-21:00 UTC): High=`17.16` | Low=`16.95`
   * Initial Balance (First Hour): IB High=`17.10` | IB Low=`17.00`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `16.98` - `17.12`
+  * Golden Pocket Zone (0.618 - 0.650): `16.99` - `17.12`
   * Optimal Trade Entry (OTE 0.705): `17.09`
   * Structural Invalidation Anchor (0.786): `17.19`
 
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `17.10` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `18.32` (Risk Distance: `1.22` pts)
-  * +2.5R Take Profit: `14.05`
+  * +2.5R Take Profit: `14.06`
   * Mathematical Lot Sizing: **`8.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `102.88` | **Live Ask Quote**: `102.92` | **Mid Price**: `102.90`
+- **Live Bid Quote**: `102.92` | **Live Ask Quote**: `102.97` | **Mid Price**: `102.95`
 - **Spread Points**: `46.00` | **Spread BPS**: `4.47 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `101.91` | VWAP Z-Score: `+1.56` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.4179` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `62.65` (State: `NEUTRAL`)
+  * Session VWAP: `101.92` | VWAP Z-Score: `+1.78` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.4087` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `64.44` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `103.61` | Lower -3.00σ Band: `100.22`
-  * Upper +2.51σ Band: `103.33` | Lower -2.51σ Band: `100.49`
-  * Upper +2.01σ Band: `103.05` | Lower -2.01σ Band: `100.78`
-  * Upper +2.00σ Band: `103.04` | Lower -2.00σ Band: `100.78`
-  * Upper +1.28σ Band: `102.64` | Lower -1.28σ Band: `101.19`
-  * Upper +1.00σ Band: `102.48` | Lower -1.00σ Band: `101.35`
+  * Upper +3.00σ Band: `103.63` | Lower -3.00σ Band: `100.21`
+  * Upper +2.51σ Band: `103.35` | Lower -2.51σ Band: `100.49`
+  * Upper +2.01σ Band: `103.07` | Lower -2.01σ Band: `100.77`
+  * Upper +2.00σ Band: `103.06` | Lower -2.00σ Band: `100.78`
+  * Upper +1.28σ Band: `102.65` | Lower -1.28σ Band: `101.19`
+  * Upper +1.00σ Band: `102.49` | Lower -1.00σ Band: `101.35`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`102.49` | EMA-20=`102.16` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`102.05` (Slope: `+0.0000`) | EMA-100=`102.13`
-  * Institutional Anchors: EMA-144=`102.17` | EMA-200=`102.12` (Slope: `+0.0290`) | EMA-233=`102.07`
+  * Fast EMA Array: EMA-9=`102.58` | EMA-20=`102.24` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`102.08` (Slope: `+0.0000`) | EMA-100=`102.15`
+  * Institutional Anchors: EMA-144=`102.18` | EMA-200=`102.12` (Slope: `+0.0430`) | EMA-233=`102.08`
 - **Range Boundaries**: 24H High=`103.78` | 24H Low=`100.46` | Weekly High=`104.23` | Weekly Low=`100.17`
 
 ---
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`102.75` | Low=`100.46`
   * Initial Balance (First Hour): IB High=`102.04` | IB Low=`101.67`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `102.49` - `103.31`
-  * Optimal Trade Entry (OTE 0.705): `103.10`
-  * Structural Invalidation Anchor (0.786): `103.72`
+  * Golden Pocket Zone (0.618 - 0.650): `102.54` - `103.36`
+  * Optimal Trade Entry (OTE 0.705): `103.15`
+  * Structural Invalidation Anchor (0.786): `103.77`
 
 ---
 
@@ -177,7 +177,8 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Matrix | Interbank Flow | - | - | - | - | - | - | Interbank Tier |
+| `Envelope` | `Long Liquidation` | `101.75` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Short Liquidation` | `103.84` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -232,8 +233,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `18:30:00` | `100.88` | `100.88` | `100.88` | `100.98` | `100.77` | 64,057.53 USD | 30,856.98 USD | 33,200.55 USD | -2,343.57 USD | `-3.66%` | `0B / 1S` |
-| `18:35:00` | `101.02` | `101.02` | `101.02` | `101.06` | `100.85` | 64,452.04 USD | 54,600.95 USD | 9,851.08 USD | 44,749.87 USD | `+69.43%` | `1B / 0S` |
 | `18:40:00` | `101.06` | `101.06` | `101.06` | `101.16` | `101.00` | 58,919.73 USD | 30,524.68 USD | 28,395.05 USD | 2,129.63 USD | `+3.61%` | `1B / 0S` |
 | `18:45:00` | `101.17` | `101.17` | `101.17` | `101.37` | `101.02` | 99,045.43 USD | 53,732.86 USD | 45,312.57 USD | 8,420.29 USD | `+8.50%` | `1B / 0S` |
 | `18:45:00` | `101.35` | `101.35` | `101.35` | `101.53` | `101.02` | 213,753.48 USD | 154,495.09 USD | 59,258.39 USD | 95,236.70 USD | `+44.55%` | `1B / 0S` |
@@ -242,7 +241,8 @@
 | `19:00:00` | `101.98` | `101.98` | `101.98` | `102.01` | `101.32` | 590,044.71 USD | 559,268.99 USD | 30,775.71 USD | 528,493.28 USD | `+89.57%` | `1B / 0S` |
 | `19:00:00` | `101.61` | `101.61` | `101.61` | `101.63` | `101.32` | 67,368.76 USD | 62,587.75 USD | 4,781.01 USD | 57,806.74 USD | `+85.81%` | `1B / 0S` |
 | `19:00:00` | `101.52` | `101.52` | `101.52` | `101.69` | `101.32` | 169,441.89 USD | 108,190.93 USD | 61,250.95 USD | 46,939.98 USD | `+27.70%` | `1B / 0S` |
-| `5:00 UTC` | `101.12` | `101.21` | `101.12` | `101.41` | `101.05` | 8,287,817.82 USD | 4,949,702.76 USD | 3,338,115.06 USD | 1,611,587.69 USD | `+19.45%` | `9B / 2S` |
+| `19:05:00` | `101.60` | `101.60` | `101.60` | `101.69` | `101.47` | 52,729.36 USD | 28,521.79 USD | 24,207.57 USD | 4,314.22 USD | `+8.18%` | `1B / 0S` |
+| `19:10:00` | `101.52` | `101.52` | `101.52` | `101.61` | `101.39` | 49,441.70 USD | 23,878.09 USD | 25,563.61 USD | -1,685.51 USD | `-3.41%` | `0B / 1S` |
 | `0:00 UTC` | `101.80` | `101.69` | `101.80` | `101.95` | `101.28` | 21,400,336.48 USD | 10,768,028.88 USD | 10,632,307.61 USD | 135,721.27 USD | `+0.63%` | `15B / 6S` |
 | `5:00 UTC` | `101.68` | `101.64` | `101.68` | `101.91` | `101.38` | 9,829,156.63 USD | 4,338,777.97 USD | 5,490,378.67 USD | -1,151,600.70 USD | `-11.72%` | `10B / 10S` |
 | `0:00 UTC` | `102.41` | `102.23` | `102.41` | `102.50` | `101.82` | 76,189,579.98 USD | 39,225,207.15 USD | 36,964,372.83 USD | 2,260,834.33 USD | `+2.97%` | `20B / 3S` |
@@ -251,7 +251,8 @@
 | `5:00 UTC` | `102.00` | `102.03` | `102.00` | `102.18` | `101.80` | 13,778,364.28 USD | 6,276,241.74 USD | 7,502,122.54 USD | -1,225,880.80 USD | `-8.90%` | `6B / 5S` |
 | `0:00 UTC` | `102.25` | `102.23` | `102.25` | `102.41` | `102.00` | 12,832,227.15 USD | 6,368,450.04 USD | 6,463,777.11 USD | -95,327.07 USD | `-0.74%` | `9B / 6S` |
 | `5:00 UTC` | `102.22` | `102.29` | `102.22` | `102.44` | `102.12` | 5,679,150.43 USD | 2,485,492.20 USD | 3,193,658.23 USD | -708,166.03 USD | `-12.47%` | `5B / 11S` |
-| `0:00 UTC` | `102.19` | `102.22` | `102.19` | `102.30` | `102.16` | 2,029,859.55 USD | 1,021,017.18 USD | 1,008,842.37 USD | 12,174.81 USD | `+0.60%` | `3B / 0S` |
+| `0:00 UTC` | `102.37` | `102.32` | `102.37` | `102.44` | `102.16` | 7,394,503.21 USD | 3,870,700.86 USD | 3,523,802.35 USD | 346,898.52 USD | `+4.69%` | `5B / 3S` |
+| `5:00 UTC` | `102.43` | `102.38` | `102.43` | `102.44` | `102.30` | 1,644,563.15 USD | 762,235.88 USD | 882,327.27 USD | -120,091.38 USD | `-7.30%` | `2B / 2S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -347,17 +348,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `101.53` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `100.96` (Risk Distance: `0.5704` pts)
-  * +2.5R Take Profit: `102.95`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.57 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `100.97` (Risk Distance: `0.5595` pts)
+  * +2.5R Take Profit: `102.93`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `102.76` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `103.33` (Risk Distance: `0.5704` pts)
-  * +2.5R Take Profit: `101.34`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.57 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `103.32` (Risk Distance: `0.5595` pts)
+  * +2.5R Take Profit: `101.36`
+  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`103.72`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`103.77`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

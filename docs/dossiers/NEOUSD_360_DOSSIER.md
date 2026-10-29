@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NEOUSD
 **Canonical Key**: `NEOUSD` | **Broker Instrument**: `NEOUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `2.09` | **Live Ask Quote**: `2.12` | **Mid Price**: `2.10`
-- **Spread Points**: `240.00` | **Spread BPS**: `114.01 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `250.00` | **Spread BPS**: `118.79 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.09` | VWAP Z-Score: `+0.13` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0129` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.11` (State: `NEUTRAL`)
+  * Session VWAP: `2.10` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `2.18` | Lower -3.00σ Band: `2.01`
-  * Upper +2.51σ Band: `2.17` | Lower -2.51σ Band: `2.02`
-  * Upper +2.01σ Band: `2.15` | Lower -2.01σ Band: `2.03`
-  * Upper +2.00σ Band: `2.15` | Lower -2.00σ Band: `2.03`
-  * Upper +1.28σ Band: `2.13` | Lower -1.28σ Band: `2.05`
-  * Upper +1.00σ Band: `2.12` | Lower -1.00σ Band: `2.06`
+  * Upper +3.00σ Band: `2.12` | Lower -3.00σ Band: `2.09`
+  * Upper +2.51σ Band: `2.12` | Lower -2.51σ Band: `2.09`
+  * Upper +2.01σ Band: `2.11` | Lower -2.01σ Band: `2.10`
+  * Upper +2.00σ Band: `2.11` | Lower -2.00σ Band: `2.10`
+  * Upper +1.28σ Band: `2.11` | Lower -1.28σ Band: `2.10`
+  * Upper +1.00σ Band: `2.11` | Lower -1.00σ Band: `2.10`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`2.11` | EMA-20=`2.11` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`2.10` (Slope: `+0.0000`) | EMA-100=`2.09`
-  * Institutional Anchors: EMA-144=`2.09` | EMA-200=`2.09` (Slope: `+0.1898`) | EMA-233=`2.08`
-- **Range Boundaries**: 24H High=`2.16` | 24H Low=`2.04` | Weekly High=`2.16` | Weekly Low=`2.02`
+  * Fast EMA Array: EMA-9=`2.10` | EMA-20=`2.10` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`2.10` (Slope: `+0.0000`) | EMA-100=`2.10`
+  * Institutional Anchors: EMA-144=`2.10` | EMA-200=`2.10` (Slope: `+0.0000`) | EMA-233=`2.10`
+- **Range Boundaries**: 24H High=`2.13` | 24H Low=`2.08` | Weekly High=`2.15` | Weekly Low=`2.06`
 
 ---
 
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `2.07` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2.02` (Risk Distance: `0.0515` pts)
-  * +2.5R Take Profit: `2.20`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.8325` (Risk Distance: `1.24` pts)
+  * +2.5R Take Profit: `5.16`
+  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `2.14` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2.19` (Risk Distance: `0.0515` pts)
-  * +2.5R Take Profit: `2.01`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `3.38` (Risk Distance: `1.24` pts)
+  * +2.5R Take Profit: `-0.9537`
+  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

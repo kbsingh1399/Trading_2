@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNXUSD
 **Canonical Key**: `SNXUSD` | **Broker Instrument**: `SNXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,16 +27,16 @@
   * 14-Period ATR: `0.0012` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `39.29` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1960` | Lower -3.00σ Band: `0.1809`
-  * Upper +2.51σ Band: `0.1947` | Lower -2.51σ Band: `0.1821`
+  * Upper +3.00σ Band: `0.1959` | Lower -3.00σ Band: `0.1809`
+  * Upper +2.51σ Band: `0.1947` | Lower -2.51σ Band: `0.1822`
   * Upper +2.01σ Band: `0.1935` | Lower -2.01σ Band: `0.1834`
-  * Upper +2.00σ Band: `0.1935` | Lower -2.00σ Band: `0.1834`
+  * Upper +2.00σ Band: `0.1934` | Lower -2.00σ Band: `0.1834`
   * Upper +1.28σ Band: `0.1916` | Lower -1.28σ Band: `0.1852`
   * Upper +1.00σ Band: `0.1909` | Lower -1.00σ Band: `0.1859`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1902` | EMA-20=`0.1905` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.1899` | EMA-20=`0.1903` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.1897` (Slope: `+0.0000`) | EMA-100=`0.1893`
-  * Institutional Anchors: EMA-144=`0.1891` | EMA-200=`0.1888` (Slope: `+0.1476`) | EMA-233=`0.1885`
+  * Institutional Anchors: EMA-144=`0.1891` | EMA-200=`0.1888` (Slope: `+0.1249`) | EMA-233=`0.1885`
 - **Range Boundaries**: 24H High=`0.1960` | 24H Low=`0.1840` | Weekly High=`0.1960` | Weekly Low=`0.1830`
 
 ---

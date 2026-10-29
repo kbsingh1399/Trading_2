@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KAVUSD
 **Canonical Key**: `KAVUSD` | **Broker Instrument**: `KAVUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0685` | EMA-20=`0.0685` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0683` (Slope: `+0.0000`) | EMA-100=`0.0682`
-  * Institutional Anchors: EMA-144=`0.0682` | EMA-200=`0.0683` (Slope: `+0.0469`) | EMA-233=`0.0683`
+  * Institutional Anchors: EMA-144=`0.0682` | EMA-200=`0.0683` (Slope: `+0.0421`) | EMA-233=`0.0683`
 - **Range Boundaries**: 24H High=`0.0688` | 24H Low=`0.0675` | Weekly High=`0.0693` | Weekly Low=`0.0673`
 
 ---

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -24,19 +24,19 @@
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
   * Session VWAP: `0.8306` | VWAP Z-Score: `-0.05` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0052` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period ATR: `0.0049` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `38.89` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.8664` | Lower -3.00σ Band: `0.7948`
-  * Upper +2.51σ Band: `0.8605` | Lower -2.51σ Band: `0.8007`
-  * Upper +2.01σ Band: `0.8546` | Lower -2.01σ Band: `0.8066`
-  * Upper +2.00σ Band: `0.8545` | Lower -2.00σ Band: `0.8067`
-  * Upper +1.28σ Band: `0.8459` | Lower -1.28σ Band: `0.8153`
+  * Upper +3.00σ Band: `0.8662` | Lower -3.00σ Band: `0.7950`
+  * Upper +2.51σ Band: `0.8604` | Lower -2.51σ Band: `0.8008`
+  * Upper +2.01σ Band: `0.8545` | Lower -2.01σ Band: `0.8067`
+  * Upper +2.00σ Band: `0.8543` | Lower -2.00σ Band: `0.8069`
+  * Upper +1.28σ Band: `0.8458` | Lower -1.28σ Band: `0.8154`
   * Upper +1.00σ Band: `0.8425` | Lower -1.00σ Band: `0.8187`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.8362` | EMA-20=`0.8376` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.8353` (Slope: `+0.0000`) | EMA-100=`0.8372`
-  * Institutional Anchors: EMA-144=`0.8392` | EMA-200=`0.8410` (Slope: `-0.0068`) | EMA-233=`0.8418`
+  * Fast EMA Array: EMA-9=`0.8350` | EMA-20=`0.8369` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.8351` (Slope: `+0.0000`) | EMA-100=`0.8371`
+  * Institutional Anchors: EMA-144=`0.8390` | EMA-200=`0.8409` (Slope: `-0.0304`) | EMA-233=`0.8417`
 - **Range Boundaries**: 24H High=`0.8800` | 24H Low=`0.8100` | Weekly High=`0.8800` | Weekly Low=`0.8100`
 
 ---
@@ -298,7 +298,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.8100` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5037` (Risk Distance: `0.4000` pts)
+  * Spread-Padded Stop Loss: `0.5042` (Risk Distance: `0.4000` pts)
   * +2.5R Take Profit: `1.81`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

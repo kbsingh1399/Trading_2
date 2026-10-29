@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 00:50:30 IST` (`2026-10-29 19:20:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 00:53:32 IST` (`2026-10-29 19:23:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0126` | **Live Ask Quote**: `0.0130` | **Mid Price**: `0.0128`
-- **Spread Points**: `41.00` | **Spread BPS**: `319.44 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0126` | **Live Ask Quote**: `0.0131` | **Mid Price**: `0.0128`
+- **Spread Points**: `42.00` | **Spread BPS**: `327.10 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0126` | VWAP Z-Score: `+0.51` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000074` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `45.96` (State: `NEUTRAL`)
+  * Session VWAP: `0.0126` | VWAP Z-Score: `+0.16` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000073` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `40.69` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0131` | Lower -3.00σ Band: `0.0121`
   * Upper +2.51σ Band: `0.0130` | Lower -2.51σ Band: `0.0122`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0127` | EMA-20=`0.0127` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0127` (Slope: `+0.0000`) | EMA-100=`0.0126`
-  * Institutional Anchors: EMA-144=`0.0126` | EMA-200=`0.0126` (Slope: `+0.1347`) | EMA-233=`0.0126`
+  * Institutional Anchors: EMA-144=`0.0126` | EMA-200=`0.0126` (Slope: `+0.1103`) | EMA-233=`0.0126`
 - **Range Boundaries**: 24H High=`0.0130` | 24H Low=`0.0123` | Weekly High=`0.0130` | Weekly Low=`0.0123`
 
 ---
