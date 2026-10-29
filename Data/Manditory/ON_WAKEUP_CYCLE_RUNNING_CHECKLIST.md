@@ -122,18 +122,15 @@ Every cycle must systematically evaluate and document completion of the followin
 
 ---
 
-### ⏳ Cycle_011 Audit (SCHEDULED & ARMED)
-- **Status**: `AWAITING_WAKEUP`
-- **Wakeup Target**: `01:25:34 IST` (`19:55:34 UTC`)
-- **Next Actions on Wakeup**:
-  0. **Study Governance Gate**: Line-by-line verification of the 4 canonical documents (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`, `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`, and `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`).
-  1. **Screen Universe**: Evaluate all 156 assets for live spread tolerance in `00_MT5_Account_Telemetry.parquet`.
-  2. **Dossier Forensics**: Full-length reading of eligible master dossiers without truncation.
-  3. **Sync Registries**: Synchronize portfolio registry and collaborative ledger.
-  4. **Dual Dispatch**: Dispatch dossier-focused prompts to Arena.ai and Z.ai.
-  5. **AutoWake Watchdog**: Launch watchdog to monitor dual convergence.
-  6. **Compare, Manage & Execute**:
-     - Interrogate active resting limits (`#19489155`–`#19489161`): If any defending wall pulled or adverse sweep occurs, purge immediately.
-     - Interrogate any filled positions: Cut early at small loss (-0.2R to -0.4R) if thesis breaks; ratchet SL to BE at +0.80R / trail stop / extend TP if runaway momentum.
-     - Punch new qualified candidates.
-  7. **Reset Timer**: Re-arm 20-minute timer for Cycle_012.
+### ⏳ Cycle_011 Audit (DISPATCHED & WATCHDOG ARMED)
+- **Status**: `DUAL_COUNCIL_IN_PROGRESS`
+- **Dispatched At**: `2026-10-30 01:28:30 IST`
+- **Execution Log**:
+  * **Step 0 (Governance Read Gate & Active Order Interrogation)**: `PASSED` — Studied 4 canonical documents. Verified MT5 account: Equity = `4,742.31 USD`, 7 pending limit orders active, 0 filled positions, 0.00 margin used.
+  * **Step 1 (Spread Qualification Screen)**: `PASSED` — Screened live MT5 universe: 85 eligible assets within spread limits (USDJPY: 0.06 bps, GBPUSD: 0.07 bps, XAUUSD: 0.20 bps, DJ30: 0.23 bps, EURUSD: 0.27 bps, NAS100: 0.34 bps, BTCUSD: 1.98 bps, BNBUSD: 8.06 bps).
+  * **Step 2 (Full-Length Dossier Forensics)**: `PASSED` — Read 100% full-length master dossiers for eligible candidates without line clamping (`USDJPY_MASTER_DOSSIER.md` [404 lines], `XAUUSD_MASTER_DOSSIER.md` [665 lines]). Zero `#L1-90` or `#L1-100` truncation.
+  * **Step 3 (Registry & Ledger Sync)**: `PASSED` — Live orders `#19489155`–`#19489161` synced.
+  * **Step 4 (Dual Council Dispatch)**: `PASSED` — Dispatched 14,684-character comprehensive prompt to Z.ai (GLM-5.3-Flash) and Arena.ai via `Terminal/dispatch_dual_council.py`.
+  * **Step 5 (AutoWake Hard-Rock Watchdog)**: `ACTIVE` — `Terminal/rock_hard_dual_watchdog.py --cycle Cycle_011 --timeout 1800` running in background (`task-161034`).
+  * **Step 6 (Tri-Council Deliberation & Order Execution)**: `PENDING_WATCHDOG_COMPLETION` — Awaiting dual model harvest to compare setups, interrogate active resting orders, and punch agreed candidates.
+  * **Step 7 (20-Min AutoWake)**: `ARMED` — 20-minute cycle interval timer active (`task-161036`).
