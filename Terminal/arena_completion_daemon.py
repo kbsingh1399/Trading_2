@@ -446,13 +446,8 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                     arena_done = False  # NEVER done while actively generating!
                     stable_arena_ticks = 0
                     
-                    # 5-MINUTE AUTO-REFRESH GATE: If generating for >= refresh_limit_s (300s)
-                    gen_duration = now - arena_gen_start
-                    if gen_duration >= refresh_limit_s and (now - arena_last_refresh) >= refresh_limit_s:
-                        print(f"[DualCouncilWatcher] ⚠️ Arena has been generating for {int(gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
-                        await reload_arena_tab("arena1")
-                        arena_last_refresh = now
-                        arena_gen_start = now  # Reset timer post-refresh
+                    # Generation ongoing
+                    pass
                 else:
                     arena_gen_start = 0.0
                     has_copy = astate.get("hasCopyButton", False)
@@ -473,6 +468,13 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                     else:
                         stable_arena_ticks = 0
 
+            # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed
+            if not arena_done and (now - arena_last_refresh) >= refresh_limit_s:
+                print(f"[DualCouncilWatcher] ⏱️ 5-Minute milestone reached without Arena completion -> Triggering CDP Page.reload refresh!", flush=True)
+                await reload_arena_tab("arena1")
+                arena_last_refresh = now
+                arena_gen_start = now
+
         # -------------------------------------------------------------
         # 2. EVALUATE Z.AI
         # -------------------------------------------------------------
@@ -489,13 +491,8 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                     zai_done = False  # NEVER done while actively generating!
                     stable_zai_ticks = 0
                     
-                    # 5-MINUTE AUTO-REFRESH GATE: If generating for >= refresh_limit_s (300s)
-                    z_gen_duration = now - zai_gen_start
-                    if z_gen_duration >= refresh_limit_s and (now - zai_last_refresh) >= refresh_limit_s:
-                        print(f"[DualCouncilWatcher] ⚠️ Z.ai has been generating for {int(z_gen_duration)}s (>= 5m) -> Triggering CDP Page.reload refresh!", flush=True)
-                        await reload_zai_tab()
-                        zai_last_refresh = now
-                        zai_gen_start = now  # Reset timer post-refresh
+                    # Generation ongoing
+                    pass
                 else:
                     zai_gen_start = 0.0
                     if z_len > 100:
@@ -510,6 +507,13 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                             zai_done = True
                     else:
                         stable_zai_ticks = 0
+
+            # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed
+            if not zai_done and (now - zai_last_refresh) >= refresh_limit_s:
+                print(f"[DualCouncilWatcher] ⏱️ 5-Minute milestone reached without Z.ai completion -> Triggering CDP Page.reload refresh!", flush=True)
+                await reload_zai_tab()
+                zai_last_refresh = now
+                zai_gen_start = now
 
         # Periodic status logging every 10 seconds
         if now - last_log_ts >= 10.0:

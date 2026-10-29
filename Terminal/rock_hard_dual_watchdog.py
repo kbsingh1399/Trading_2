@@ -289,8 +289,9 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
     last_z_hash = z_initial_hash
     
     last_print = 0.0
-    last_reload_time = time.time()
-    RELOAD_INTERVAL_SEC = 300.0  # 5 minutes exact operator mandate
+    RELOAD_INTERVAL_SEC = 300.0  # 5 minutes exact operator mandate: refresh each uncompleted tab every 5m
+    arena_last_reload = time.time()
+    zai_last_reload = time.time()
 
     while (time.time() - start_ts) < timeout_s:
         await asyncio.sleep(poll_interval)
@@ -346,23 +347,30 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                     stable_z_ticks = 0
                     last_z_hash = cur_hash
         
-        # Operator Mandate: Auto-refresh both tabs after 5 minutes if still waiting
-        if (now - last_reload_time) >= RELOAD_INTERVAL_SEC:
-            last_reload_time = now
-            if not arena_done and not a_stat == "GENERATING":
-                print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing Arena tab...", flush=True)
-                await reload_cdp_tab("arena.ai")
-            if not zai_done and not z_stat == "GENERATING":
-                print(f"\n[RockHardWatchdog t={elapsed}s] 5-Minute interval reached. Refreshing Z.ai tab...", flush=True)
-                await reload_cdp_tab("chat.z.ai")
+        # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed
+        if not arena_done and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
+            arena_last_reload = now
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Arena completion. Auto-refreshing Arena.ai tab via CDP Page.reload...", flush=True)
+            await reload_cdp_tab("arena.ai")
+            await asyncio.sleep(2.0)
+
+        # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed
+        if not zai_done and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
+            zai_last_reload = now
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Z.ai completion. Auto-refreshing Z.ai tab via CDP Page.reload...", flush=True)
+            await reload_cdp_tab("chat.z.ai")
             await asyncio.sleep(2.0)
 
         # Periodic log every 6 seconds
         if now - last_print >= 6.0:
             last_print = now
-            a_stat = "DONE" if arena_done else ("GENERATING" if init_a.get("isGenerating") else "AWAITING_CYCLE")
-            z_stat = "DONE" if zai_done else ("GENERATING" if init_z.get("isGenerating") else "AWAITING_CYCLE")
-            print(f"[RockHardWatchdog t={elapsed}s] Arena.ai: {a_stat} | Z.ai: {z_stat}")
+            a_gen_flag = astate.get("isGenerating", False) if ('astate' in locals() and isinstance(astate, dict)) else False
+            z_gen_flag = zstate.get("isGenerating", False) if ('zstate' in locals() and isinstance(zstate, dict)) else False
+            a_stat = "DONE" if arena_done else ("GENERATING" if a_gen_flag else "AWAITING_CYCLE")
+            z_stat = "DONE" if zai_done else ("GENERATING" if z_gen_flag else "AWAITING_CYCLE")
+            a_rem = int(max(0, RELOAD_INTERVAL_SEC - (now - arena_last_reload))) if not arena_done else 0
+            z_rem = int(max(0, RELOAD_INTERVAL_SEC - (now - zai_last_reload))) if not zai_done else 0
+            print(f"[RockHardWatchdog t={elapsed}s] Arena.ai: {a_stat} (refresh in {a_rem}s) | Z.ai: {z_stat} (refresh in {z_rem}s)")
 
         # 3. CONVERGENCE: BOTH ARE DONE AND CONFIRMED
         if arena_done and zai_done:

@@ -166,6 +166,9 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
     zai_done = False
     saw_arena_generating = False
     saw_zai_generating = False
+    RELOAD_INTERVAL_SEC = 300.0  # 5 minutes exact operator mandate: refresh each tab every 5m until completed
+    arena_last_reload = time.time()
+    zai_last_reload = time.time()
 
     # Check if Arena is already in finished state
     if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
@@ -195,6 +198,9 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
         arena_tab = next((t for t in tabs if "arena.ai" in t.get("url", "")), None)
         zai_tab = next((t for t in tabs if "chat.z.ai" in t.get("url", "")), None)
 
+        now = time.time()
+        elapsed = int(now - start_ts)
+
         # Check Arena
         if arena_tab and not arena_done:
             ws_url = arena_tab.get("webSocketDebuggerUrl")
@@ -208,6 +214,14 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
                     ARENA_RAW_FILE.write_text(astate.get("text", ""), encoding="utf-8")
                     arena_done = True
                     print(f"[{time.strftime('%H:%M:%S')}] 🔔 Arena.ai response complete ({t_len:,} chars) -> saved ARENA_LATEST_RAW.md", flush=True)
+            
+            # Operator Mandate: Auto-refresh Arena tab every 5 minutes until completed
+            if not arena_done and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
+                arena_last_reload = now
+                print(f"[{time.strftime('%H:%M:%S')}] ⏱️ 5-Minute interval reached without Arena completion. Refreshing Arena.ai tab...", flush=True)
+                if arena_tab and arena_tab.get("webSocketDebuggerUrl"):
+                    await reload_tab(arena_tab.get("webSocketDebuggerUrl"))
+                    await asyncio.sleep(2.0)
 
         # Check Z.ai
         if zai_tab and not zai_done:
@@ -222,6 +236,14 @@ async def run_dual_watcher(timeout_s: float = 900.0, poll_interval: float = 2.5)
                     ZAI_RAW_FILE.write_text(zstate.get("text", ""), encoding="utf-8")
                     zai_done = True
                     print(f"[{time.strftime('%H:%M:%S')}] 🔔 Z.ai response complete ({t_len:,} chars) -> saved ZAI_LATEST_RAW.md", flush=True)
+            
+            # Operator Mandate: Auto-refresh Z.ai tab every 5 minutes until completed
+            if not zai_done and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
+                zai_last_reload = now
+                print(f"[{time.strftime('%H:%M:%S')}] ⏱️ 5-Minute interval reached without Z.ai completion. Refreshing Z.ai tab...", flush=True)
+                if zai_tab and zai_tab.get("webSocketDebuggerUrl"):
+                    await reload_tab(zai_tab.get("webSocketDebuggerUrl"))
+                    await asyncio.sleep(2.0)
 
         if arena_done and zai_done:
             print("\n🎉 BOTH ARENA.AI AND Z.AI RESPONSES COMPLETE! Triggering unified wakeup.", flush=True)
