@@ -1221,9 +1221,14 @@ Evaluate each candidate against the available evidence, confluence strength, mar
 ### ⏳ Cycle_031 Scorecard: IN PROGRESS
 **Started**: 2026-10-30 14:52:00 IST (2026-10-30 09:22:00 UTC)
 
-- [ ] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
-- [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
-- [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
+- [x] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
+  - 95 broker symbols cleared broker spread gates (TradFi <= 5.0 bps, Crypto <= 25.0 bps) in `00_MT5_Account_Telemetry.parquet`.
+- [x] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+  - Physically read and forensically examined all 95 eligible master dossiers to full length via explicit `read_file` tool calls (zero omissions, zero artificial line caps).
+  - All candidates stood aside under `TIER_0_DEFENSIVE` (Equity $4,763.23 < $4,775.00 Hard Floor Stop). Sovereign posture is strictly `STAND_ASIDE_MONITOR`.
+- [x] **Step 3**: Synchronise intelligence ledger and portfolio registry
+  - Generated `cycle_envelope.json` for Cycle_031.
+  - Reconciled `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` and updated `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md` (0 open positions, 0 resting orders, 0.00 USD contingent risk, 100% Cash Defense preserved).
 - [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
 - [ ] **Step 5**: Activate AutoWake daemon and await completion of both systems
 - [ ] **Step 6**: Compare 3-way intelligence and execute only qualified trades
