@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDJPY
 **Canonical Key**: `NZDJPY` | **Broker Instrument**: `NZDJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:15:03 IST` (`2026-10-30 09:45:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:18:04 IST` (`2026-10-30 09:48:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 14:41:27 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:38:27 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:33:27 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:33:27 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:09:27 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:06:27 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:05:27 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:05:27 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:05:27 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:12:05 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:41:05 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:38:05 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:34:05 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:33:05 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:16:05 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:15:05 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:15:05 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
 
 
 ---
