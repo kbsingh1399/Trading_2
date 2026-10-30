@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUUSD
 **Canonical Key**: `XAUUSD` | **Broker Instrument**: `XAUUSD.pi` | **Asset Class**: `Precious Metal`
-**Timestamp**: `2026-10-30 08:45:54 IST` (`2026-10-30 03:15:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:48:56 IST` (`2026-10-30 03:18:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -559,10 +559,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`4118.75` (Vol: 171,400.00 USD, Dist: `+2.65%`) | Long MP=`3953.05` (Vol: 152,200.00 USD, Dist: `--1.48%`)
-  * 48H Horizon: Short MP=`4118.09` (Vol: 350,900.00 USD, Dist: `+2.63%`) | Long MP=`3957.22` (Vol: 390,800.00 USD, Dist: `--1.38%`)
-  * 3D Horizon: Short MP=`4110.46` (Vol: 300,700.00 USD, Dist: `+2.44%`) | Long MP=`3959.21` (Vol: 388,300.00 USD, Dist: `--1.33%`)
-  * 7D Horizon: Short MP=`4082.49` (Vol: 552,000.00 USD, Dist: `+1.75%`) | Long MP=`3921.81` (Vol: 617,500.00 USD, Dist: `--2.26%`)
+  * 24H Horizon: Short MP=`4091.67` (Vol: 135,400.00 USD, Dist: `+2.51%`) | Long MP=`3947.57` (Vol: 99,900.00 USD, Dist: `--1.10%`)
+  * 48H Horizon: Short MP=`4110.38` (Vol: 300,700.00 USD, Dist: `+2.98%`) | Long MP=`3959.13` (Vol: 388,300.00 USD, Dist: `--0.81%`)
+  * 3D Horizon: Short MP=`4110.38` (Vol: 300,700.00 USD, Dist: `+2.98%`) | Long MP=`3959.13` (Vol: 388,300.00 USD, Dist: `--0.81%`)
+  * 7D Horizon: Short MP=`4082.49` (Vol: 552,000.00 USD, Dist: `+2.28%`) | Long MP=`3921.81` (Vol: 617,500.00 USD, Dist: `--1.75%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
