@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UKBRENT
 **Canonical Key**: `UKBRENT` | **Broker Instrument**: `UKBRENT.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 08:18:39 IST` (`2026-10-30 02:48:39 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:21:40 IST` (`2026-10-30 02:51:40 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
