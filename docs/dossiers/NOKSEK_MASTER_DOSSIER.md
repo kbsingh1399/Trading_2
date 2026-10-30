@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NOKSEK
 **Canonical Key**: `NOKSEK` | **Broker Instrument**: `NOKSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 

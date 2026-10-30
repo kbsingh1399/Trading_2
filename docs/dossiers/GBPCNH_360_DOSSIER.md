@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCNH
 **Canonical Key**: `GBPCNH` | **Broker Instrument**: `GBPCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,12 +27,12 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `9.00` | Lower -3.00σ Band: `8.87`
+  * Upper +3.00σ Band: `8.99` | Lower -3.00σ Band: `8.87`
   * Upper +2.51σ Band: `8.98` | Lower -2.51σ Band: `8.88`
-  * Upper +2.01σ Band: `8.97` | Lower -2.01σ Band: `8.90`
+  * Upper +2.01σ Band: `8.97` | Lower -2.01σ Band: `8.89`
   * Upper +2.00σ Band: `8.97` | Lower -2.00σ Band: `8.90`
   * Upper +1.28σ Band: `8.96` | Lower -1.28σ Band: `8.91`
-  * Upper +1.00σ Band: `8.95` | Lower -1.00σ Band: `8.92`
+  * Upper +1.00σ Band: `8.95` | Lower -1.00σ Band: `8.91`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`8.93` | EMA-20=`8.93` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.93` (Slope: `+0.0000`) | EMA-100=`8.93`
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`8.98` | Mid=`8.93` | Low=`8.89`
   * Developing Weekly Value Area: Weekly VAH=`9.00` | Weekly POC=`8.93` | Weekly VAL=`8.86`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`8.95` | Low=`8.92`
+  * Asian Session (00:00-08:00 UTC): High=`8.95` | Low=`8.91`
   * London Session (08:00-16:00 UTC): High=`8.97` | Low=`8.90`
   * New York Session (13:00-21:00 UTC): High=`8.99` | Low=`8.88`
   * Initial Balance (First Hour): IB High=`8.96` | IB Low=`8.91`
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `8.91` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7.71` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `7.70` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `11.91`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

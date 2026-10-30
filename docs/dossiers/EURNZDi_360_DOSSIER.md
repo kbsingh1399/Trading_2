@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNZD
 **Canonical Key**: `EURNZD` | **Broker Instrument**: `EURNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1.99` | **Live Ask Quote**: `1.99` | **Mid Price**: `1.99`
-- **Spread Points**: `18.00` | **Spread BPS**: `0.91 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `1.98` | **Live Ask Quote**: `1.99` | **Mid Price**: `1.99`
+- **Spread Points**: `16.00` | **Spread BPS**: `0.81 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.99` | VWAP Z-Score: `-0.69` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0013` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `48.01` (State: `NEUTRAL`)
+  * Session VWAP: `1.99` | VWAP Z-Score: `+0.01` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0014` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `55.91` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.99` | Lower -3.00σ Band: `1.98`
   * Upper +2.51σ Band: `1.99` | Lower -2.51σ Band: `1.98`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.98` | EMA-20=`1.98` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.98` (Slope: `+0.0000`) | EMA-100=`1.98`
-  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0229`) | EMA-233=`1.98`
+  * Institutional Anchors: EMA-144=`1.98` | EMA-200=`1.98` (Slope: `+0.0231`) | EMA-233=`1.98`
 - **Range Boundaries**: 24H High=`1.99` | 24H Low=`1.98` | Weekly High=`1.99` | Weekly Low=`1.95`
 
 ---
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.99` | POC=`1.99` | VAL=`1.98`
   * Prior Day Extremes: PDH=`2.00` | PDL=`1.97` | PDC=`1.99`
-  * Monday Range Blueprint: High=`2.00` | Mid=`1.99` | Low=`1.98`
+  * Monday Range Blueprint: High=`1.99` | Mid=`1.99` | Low=`1.98`
   * Developing Weekly Value Area: Weekly VAH=`2.00` | Weekly POC=`1.99` | Weekly VAL=`1.97`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.99` | Low=`1.98`

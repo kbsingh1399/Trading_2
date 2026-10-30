@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,10 +29,10 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `8.85` | Lower -3.00σ Band: `8.73`
   * Upper +2.51σ Band: `8.84` | Lower -2.51σ Band: `8.74`
-  * Upper +2.01σ Band: `8.83` | Lower -2.01σ Band: `8.75`
+  * Upper +2.01σ Band: `8.82` | Lower -2.01σ Band: `8.75`
   * Upper +2.00σ Band: `8.82` | Lower -2.00σ Band: `8.75`
   * Upper +1.28σ Band: `8.81` | Lower -1.28σ Band: `8.76`
-  * Upper +1.00σ Band: `8.81` | Lower -1.00σ Band: `8.77`
+  * Upper +1.00σ Band: `8.80` | Lower -1.00σ Band: `8.77`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`8.79` | EMA-20=`8.79` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.79` (Slope: `+0.0000`) | EMA-100=`8.79`
@@ -50,17 +50,17 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`8.82` | POC=`8.79` | VAL=`8.75`
-  * Prior Day Extremes: PDH=`8.84` | PDL=`8.74` | PDC=`8.79`
+  * Prior Day Extremes: PDH=`8.84` | PDL=`8.73` | PDC=`8.79`
   * Monday Range Blueprint: High=`8.83` | Mid=`8.79` | Low=`8.74`
   * Developing Weekly Value Area: Weekly VAH=`8.86` | Weekly POC=`8.79` | Weekly VAL=`8.72`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`8.81` | Low=`8.77`
+  * Asian Session (00:00-08:00 UTC): High=`8.80` | Low=`8.77`
   * London Session (08:00-16:00 UTC): High=`8.82` | Low=`8.75`
-  * New York Session (13:00-21:00 UTC): High=`8.84` | Low=`8.74`
+  * New York Session (13:00-21:00 UTC): High=`8.84` | Low=`8.73`
   * Initial Balance (First Hour): IB High=`8.81` | IB Low=`8.76`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `8.75` - `8.82`
-  * Optimal Trade Entry (OTE 0.705): `8.81`
+  * Optimal Trade Entry (OTE 0.705): `8.80`
   * Structural Invalidation Anchor (0.786): `8.86`
 
 ---

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: IOTUSD
 **Canonical Key**: `IOTUSD` | **Broker Instrument**: `IOTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0367` | VWAP Z-Score: `+1.41` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000275` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0367` | VWAP Z-Score: `+1.39` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000270` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `61.91` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0391` | Lower -3.00σ Band: `0.0343`
-  * Upper +2.51σ Band: `0.0387` | Lower -2.51σ Band: `0.0346`
+  * Upper +2.51σ Band: `0.0387` | Lower -2.51σ Band: `0.0347`
   * Upper +2.01σ Band: `0.0383` | Lower -2.01σ Band: `0.0351`
   * Upper +2.00σ Band: `0.0383` | Lower -2.00σ Band: `0.0351`
   * Upper +1.28σ Band: `0.0377` | Lower -1.28σ Band: `0.0356`
   * Upper +1.00σ Band: `0.0375` | Lower -1.00σ Band: `0.0359`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0377` | EMA-20=`0.0375` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0374` (Slope: `+0.0000`) | EMA-100=`0.0379`
-  * Institutional Anchors: EMA-144=`0.0383` | EMA-200=`0.0388` (Slope: `-0.3696`) | EMA-233=`0.0391`
+  * Core Structural Array: EMA-50=`0.0375` (Slope: `+0.0000`) | EMA-100=`0.0379`
+  * Institutional Anchors: EMA-144=`0.0383` | EMA-200=`0.0388` (Slope: `-0.3592`) | EMA-233=`0.0390`
 - **Range Boundaries**: 24H High=`0.0404` | 24H Low=`0.0348` | Weekly High=`0.0418` | Weekly Low=`0.0348`
 
 ---

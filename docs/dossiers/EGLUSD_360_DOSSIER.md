@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EGLUSD
 **Canonical Key**: `EGLUSD` | **Broker Instrument**: `EGLUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.09` | VWAP Z-Score: `+1.10` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0265` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `54.16` (State: `NEUTRAL`)
+  * Session VWAP: `3.09` | VWAP Z-Score: `+0.94` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0260` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.84` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `3.29` | Lower -3.00σ Band: `2.88`
   * Upper +2.51σ Band: `3.26` | Lower -2.51σ Band: `2.92`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `3.17` | Lower -1.28σ Band: `3.00`
   * Upper +1.00σ Band: `3.15` | Lower -1.00σ Band: `3.02`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3.17` | EMA-20=`3.15` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`3.16` | EMA-20=`3.15` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`3.16` (Slope: `+0.0000`) | EMA-100=`3.19`
-  * Institutional Anchors: EMA-144=`3.21` | EMA-200=`3.22` (Slope: `-0.1969`) | EMA-233=`3.22`
+  * Institutional Anchors: EMA-144=`3.21` | EMA-200=`3.22` (Slope: `-0.2014`) | EMA-233=`3.22`
 - **Range Boundaries**: 24H High=`3.47` | 24H Low=`2.94` | Weekly High=`3.47` | Weekly Low=`2.94`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `3.20` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `3.19` (Distance: `+0.00%`)
   * Point of Control (POC) = `3.17` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `3.05` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `3.20` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `3.53` (Risk Distance: `0.4000` pts)
-  * +2.5R Take Profit: `2.20`
+  * Execution Entry: `3.19` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `3.52` (Risk Distance: `0.4000` pts)
+  * +2.5R Take Profit: `2.19`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

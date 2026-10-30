@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ONTUSD
 **Canonical Key**: `ONTUSD` | **Broker Instrument**: `ONTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0442` | VWAP Z-Score: `+1.72` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000299` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0443` | VWAP Z-Score: `+1.64` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000292` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `57.60` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0457` | Lower -3.00σ Band: `0.0427`
+  * Upper +3.00σ Band: `0.0458` | Lower -3.00σ Band: `0.0427`
   * Upper +2.51σ Band: `0.0455` | Lower -2.51σ Band: `0.0430`
-  * Upper +2.01σ Band: `0.0452` | Lower -2.01σ Band: `0.0432`
-  * Upper +2.00σ Band: `0.0452` | Lower -2.00σ Band: `0.0432`
+  * Upper +2.01σ Band: `0.0453` | Lower -2.01σ Band: `0.0432`
+  * Upper +2.00σ Band: `0.0453` | Lower -2.00σ Band: `0.0432`
   * Upper +1.28σ Band: `0.0449` | Lower -1.28σ Band: `0.0436`
-  * Upper +1.00σ Band: `0.0447` | Lower -1.00σ Band: `0.0437`
+  * Upper +1.00σ Band: `0.0448` | Lower -1.00σ Band: `0.0437`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0450` | EMA-20=`0.0448` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0451` (Slope: `+0.0000`) | EMA-100=`0.0458`
-  * Institutional Anchors: EMA-144=`0.0462` | EMA-200=`0.0466` (Slope: `-0.4503`) | EMA-233=`0.0467`
+  * Institutional Anchors: EMA-144=`0.0462` | EMA-200=`0.0466` (Slope: `-0.4400`) | EMA-233=`0.0467`
 - **Range Boundaries**: 24H High=`0.0493` | 24H Low=`0.0429` | Weekly High=`0.0493` | Weekly Low=`0.0429`
 
 ---

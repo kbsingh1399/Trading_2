@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KSMUSD
 **Canonical Key**: `KSMUSD` | **Broker Instrument**: `KSMUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.35` | VWAP Z-Score: `+0.87` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0222` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `3.35` | VWAP Z-Score: `+0.85` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0214` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `48.55` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `3.49` | Lower -3.00σ Band: `3.21`
@@ -35,8 +35,8 @@
   * Upper +1.00σ Band: `3.40` | Lower -1.00σ Band: `3.30`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`3.39` | EMA-20=`3.39` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`3.41` (Slope: `+0.0000`) | EMA-100=`3.47`
-  * Institutional Anchors: EMA-144=`3.50` | EMA-200=`3.54` (Slope: `-0.5222`) | EMA-233=`3.56`
+  * Core Structural Array: EMA-50=`3.41` (Slope: `+0.0000`) | EMA-100=`3.46`
+  * Institutional Anchors: EMA-144=`3.50` | EMA-200=`3.54` (Slope: `-0.5235`) | EMA-233=`3.56`
 - **Range Boundaries**: 24H High=`3.74` | 24H Low=`3.22` | Weekly High=`3.78` | Weekly Low=`3.22`
 
 ---
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `3.32` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2.99` (Risk Distance: `0.4000` pts)
+  * Spread-Padded Stop Loss: `3.00` (Risk Distance: `0.4000` pts)
   * +2.5R Take Profit: `4.32`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURAUD
 **Canonical Key**: `EURAUD` | **Broker Instrument**: `EURAUD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.59` | **Live Ask Quote**: `1.59` | **Mid Price**: `1.59`
-- **Spread Points**: `10.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `9.00` | **Spread BPS**: `0.56 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.59` | VWAP Z-Score: `+0.48` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0012` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `55.48` (State: `NEUTRAL`)
+  * Session VWAP: `1.59` | VWAP Z-Score: `+0.86` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0011` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `58.50` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.60` | Lower -3.00σ Band: `1.59`
   * Upper +2.51σ Band: `1.60` | Lower -2.51σ Band: `1.59`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.59` | EMA-20=`1.59` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.59` (Slope: `+0.0000`) | EMA-100=`1.59`
-  * Institutional Anchors: EMA-144=`1.59` | EMA-200=`1.59` (Slope: `+0.0445`) | EMA-233=`1.59`
+  * Institutional Anchors: EMA-144=`1.59` | EMA-200=`1.59` (Slope: `+0.0457`) | EMA-233=`1.59`
 - **Range Boundaries**: 24H High=`1.60` | 24H Low=`1.58` | Weekly High=`1.60` | Weekly Low=`1.58`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `1.59` (Distance: `-0.06%`)
   * Point of Control (POC) = `1.59` (Distance: `+0.07%`)
-  * Value Area Low (VAL) = `1.59` (Distance: `+0.17%`)
+  * Value Area Low (VAL) = `1.59` (Distance: `+0.16%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.59` | POC=`1.58` | VAL=`1.58`
