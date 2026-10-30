@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 11:38:27 IST` (`2026-10-30 06:08:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -203,7 +203,7 @@
 | `5:00 UTC` | `6.86` | `6.86` | `6.86` | `6.88` | `6.84` | 2,495,833.60 USD | 958,712.37 USD | 1,537,121.24 USD | -578,408.87 USD | `-23.17%` | `0B / 6S` |
 | `0:00 UTC` | `6.83` | `6.83` | `6.83` | `6.86` | `6.81` | 2,040,748.31 USD | 908,116.94 USD | 1,132,631.37 USD | -224,514.43 USD | `-11.00%` | `8B / 6S` |
 | `5:00 UTC` | `6.79` | `6.79` | `6.79` | `6.84` | `6.75` | 3,139,376.25 USD | 1,306,141.86 USD | 1,833,234.39 USD | -527,092.53 USD | `-16.79%` | `7B / 28S` |
-| `0:00 UTC` | `6.76` | `6.76` | `6.76` | `6.76` | `6.75` | 36,994.80 USD | 23,975.02 USD | 13,019.78 USD | 10,955.24 USD | `+29.61%` | `2B / 1S` |
+| `0:00 UTC` | `6.77` | `6.76` | `6.77` | `6.79` | `6.73` | 1,463,312.96 USD | 798,505.62 USD | 664,807.34 USD | 133,698.28 USD | `+9.14%` | `5B / 7S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -284,21 +284,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 11:03:56 IST`: [kitco.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 11:28:56 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 11:27:56 IST`: [forex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 11:27:56 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 11:27:56 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:29:56 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:29:56 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:29:56 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:29:56 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:29:56 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:29:56 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:29:56 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:29:56 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:29:56 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:29:56 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 11:03:46 IST`: [kitco.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 11:38:46 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 11:37:46 IST`: [forex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:39:46 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:39:46 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:39:46 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:39:46 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:39:46 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:39:46 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:39:46 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:39:46 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:39:46 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:39:46 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:39:46 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:39:46 IST`: [@financialjuice] - (Sentiment: `Neutral`)
 
 
 ---
