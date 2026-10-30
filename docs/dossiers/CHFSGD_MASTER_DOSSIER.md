@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHFSGD
 **Canonical Key**: `CHFSGD` | **Broker Instrument**: `CHFSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1.55` | **Live Ask Quote**: `1.56` | **Mid Price**: `1.56`
-- **Spread Points**: `8.00` | **Spread BPS**: `0.51 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `1.56` | **Live Ask Quote**: `1.56` | **Mid Price**: `1.56`
+- **Spread Points**: `13.00` | **Spread BPS**: `0.84 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.55` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.3502` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.3503` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.55`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

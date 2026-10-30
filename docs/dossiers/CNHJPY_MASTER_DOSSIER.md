@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -32,12 +32,12 @@
   * Upper +2.01σ Band: `23.75` | Lower -2.01σ Band: `23.55`
   * Upper +2.00σ Band: `23.75` | Lower -2.00σ Band: `23.56`
   * Upper +1.28σ Band: `23.72` | Lower -1.28σ Band: `23.59`
-  * Upper +1.00σ Band: `23.70` | Lower -1.00σ Band: `23.60`
+  * Upper +1.00σ Band: `23.70` | Lower -1.00σ Band: `23.61`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`23.65` | EMA-20=`23.65` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`23.65` (Slope: `+0.0000`) | EMA-100=`23.65`
   * Institutional Anchors: EMA-144=`23.65` | EMA-200=`23.65` (Slope: `+0.0000`) | EMA-233=`23.65`
-- **Range Boundaries**: 24H High=`23.89` | 24H Low=`23.41` | Weekly High=`24.12` | Weekly Low=`23.18`
+- **Range Boundaries**: 24H High=`23.89` | 24H Low=`23.42` | Weekly High=`24.13` | Weekly Low=`23.18`
 
 ---
 
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`23.77` | Mid=`23.65` | Low=`23.53`
   * Developing Weekly Value Area: Weekly VAH=`23.84` | Weekly POC=`23.65` | Weekly VAL=`23.46`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`23.70` | Low=`23.60`
+  * Asian Session (00:00-08:00 UTC): High=`23.70` | Low=`23.61`
   * London Session (08:00-16:00 UTC): High=`23.75` | Low=`23.56`
   * New York Session (13:00-21:00 UTC): High=`23.79` | Low=`23.51`
   * Initial Balance (First Hour): IB High=`23.72` | IB Low=`23.58`
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `23.58` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `22.38` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `26.58`
+  * +2.5R Take Profit: `26.59`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

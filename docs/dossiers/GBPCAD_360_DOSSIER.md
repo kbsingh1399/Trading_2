@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCAD
 **Canonical Key**: `GBPCAD` | **Broker Instrument**: `GBPCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.87` | **Live Ask Quote**: `1.87` | **Mid Price**: `1.87`
-- **Spread Points**: `11.00` | **Spread BPS**: `0.59 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `12.00` | **Spread BPS**: `0.64 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,11 +23,11 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.87` | VWAP Z-Score: `+2.78` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000831` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `73.65` (State: `OVERBOUGHT`)
+  * Session VWAP: `1.87` | VWAP Z-Score: `+2.48` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000813` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `72.63` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.87` | Lower -3.00σ Band: `1.87`
+  * Upper +3.00σ Band: `1.88` | Lower -3.00σ Band: `1.87`
   * Upper +2.51σ Band: `1.87` | Lower -2.51σ Band: `1.87`
   * Upper +2.01σ Band: `1.87` | Lower -2.01σ Band: `1.87`
   * Upper +2.00σ Band: `1.87` | Lower -2.00σ Band: `1.87`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.87` | EMA-20=`1.87` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.87` (Slope: `+0.0000`) | EMA-100=`1.87`
-  * Institutional Anchors: EMA-144=`1.87` | EMA-200=`1.87` (Slope: `+0.0282`) | EMA-233=`1.87`
+  * Institutional Anchors: EMA-144=`1.87` | EMA-200=`1.87` (Slope: `+0.0294`) | EMA-233=`1.87`
 - **Range Boundaries**: 24H High=`1.87` | 24H Low=`1.86` | Weekly High=`1.87` | Weekly Low=`1.86`
 
 ---
@@ -44,19 +44,19 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.87` (Distance: `+0.13%`)
-  * Point of Control (POC) = `1.87` (Distance: `+0.17%`)
-  * Value Area Low (VAL) = `1.87` (Distance: `+0.23%`)
+  * Value Area High (VAH) = `1.87` (Distance: `+0.15%`)
+  * Point of Control (POC) = `1.87` (Distance: `+0.19%`)
+  * Value Area Low (VAL) = `1.87` (Distance: `+0.25%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.87` | POC=`1.86` | VAL=`1.86`
   * Prior Day Extremes: PDH=`1.87` | PDL=`1.86` | PDC=`1.87`
   * Monday Range Blueprint: High=`1.88` | Mid=`1.87` | Low=`1.87`
-  * Developing Weekly Value Area: Weekly VAH=`1.87` | Weekly POC=`1.87` | Weekly VAL=`1.87`
+  * Developing Weekly Value Area: Weekly VAH=`1.87` | Weekly POC=`1.87` | Weekly VAL=`1.86`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.87` | Low=`1.87`
   * London Session (08:00-16:00 UTC): High=`1.87` | Low=`1.87`
-  * New York Session (13:00-21:00 UTC): High=`1.89` | Low=`1.86`
+  * New York Session (13:00-21:00 UTC): High=`1.87` | Low=`1.87`
   * Initial Balance (First Hour): IB High=`1.87` | IB Low=`1.87`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.87` - `1.88`

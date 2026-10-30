@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPSGD
 **Canonical Key**: `GBPSGD` | **Broker Instrument**: `GBPSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1.71` | **Live Ask Quote**: `1.72` | **Mid Price**: `1.72`
-- **Spread Points**: `9.00` | **Spread BPS**: `0.52 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `1.72` | **Live Ask Quote**: `1.72` | **Mid Price**: `1.72`
+- **Spread Points**: `12.00` | **Spread BPS**: `0.70 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.72` | POC=`1.72` | VAL=`1.71`
-  * Prior Day Extremes: PDH=`1.73` | PDL=`1.70` | PDC=`1.72`
+  * Prior Day Extremes: PDH=`1.73` | PDL=`1.71` | PDC=`1.72`
   * Monday Range Blueprint: High=`1.72` | Mid=`1.72` | Low=`1.71`
   * Developing Weekly Value Area: Weekly VAH=`1.73` | Weekly POC=`1.72` | Weekly VAL=`1.70`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.72` | Low=`1.71`
   * London Session (08:00-16:00 UTC): High=`1.72` | Low=`1.71`
-  * New York Session (13:00-21:00 UTC): High=`1.73` | Low=`1.70`
+  * New York Session (13:00-21:00 UTC): High=`1.73` | Low=`1.71`
   * Initial Balance (First Hour): IB High=`1.72` | IB Low=`1.71`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.71` - `1.72`
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.71` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5098` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.5100` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.71`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

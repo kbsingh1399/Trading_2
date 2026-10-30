@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KAVUSD
 **Canonical Key**: `KAVUSD` | **Broker Instrument**: `KAVUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,11 +23,11 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0671` | VWAP Z-Score: `+1.59` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000149` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0672` | VWAP Z-Score: `+1.55` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000146` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `70.55` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0693` | Lower -3.00σ Band: `0.0650`
+  * Upper +3.00σ Band: `0.0694` | Lower -3.00σ Band: `0.0650`
   * Upper +2.51σ Band: `0.0690` | Lower -2.51σ Band: `0.0653`
   * Upper +2.01σ Band: `0.0686` | Lower -2.01σ Band: `0.0657`
   * Upper +2.00σ Band: `0.0686` | Lower -2.00σ Band: `0.0657`
@@ -35,8 +35,8 @@
   * Upper +1.00σ Band: `0.0679` | Lower -1.00σ Band: `0.0664`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0682` | EMA-20=`0.0680` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0678` (Slope: `+0.0000`) | EMA-100=`0.0678`
-  * Institutional Anchors: EMA-144=`0.0679` | EMA-200=`0.0680` (Slope: `+0.0335`) | EMA-233=`0.0680`
+  * Core Structural Array: EMA-50=`0.0678` (Slope: `+0.0000`) | EMA-100=`0.0679`
+  * Institutional Anchors: EMA-144=`0.0679` | EMA-200=`0.0680` (Slope: `+0.0374`) | EMA-233=`0.0680`
 - **Range Boundaries**: 24H High=`0.0688` | 24H Low=`0.0647` | Weekly High=`0.0693` | Weekly Low=`0.0647`
 
 ---

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCAD
 **Canonical Key**: `EURCAD` | **Broker Instrument**: `EURCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.56` | VWAP Z-Score: `-0.80` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000684` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `46.98` (State: `NEUTRAL`)
+  * Session VWAP: `1.56` | VWAP Z-Score: `-0.36` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000673` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `51.23` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.57` | Lower -3.00σ Band: `1.56`
   * Upper +2.51σ Band: `1.57` | Lower -2.51σ Band: `1.56`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.56` | EMA-20=`1.56` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.56` (Slope: `+0.0000`) | EMA-100=`1.56`
-  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `+0.0051`) | EMA-233=`1.56`
+  * Institutional Anchors: EMA-144=`1.56` | EMA-200=`1.56` (Slope: `+0.0057`) | EMA-233=`1.56`
 - **Range Boundaries**: 24H High=`1.57` | 24H Low=`1.56` | Weekly High=`1.57` | Weekly Low=`1.56`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.56` (Distance: `-0.06%`)
-  * Point of Control (POC) = `1.56` (Distance: `-0.00%`)
-  * Value Area Low (VAL) = `1.56` (Distance: `+0.03%`)
+  * Value Area High (VAH) = `1.56` (Distance: `-0.03%`)
+  * Point of Control (POC) = `1.56` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `1.56` (Distance: `+0.06%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.56` | POC=`1.56` | VAL=`1.56`
@@ -56,7 +56,7 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.57` | Low=`1.56`
   * London Session (08:00-16:00 UTC): High=`1.56` | Low=`1.56`
-  * New York Session (13:00-21:00 UTC): High=`1.57` | Low=`1.55`
+  * New York Session (13:00-21:00 UTC): High=`1.56` | Low=`1.56`
   * Initial Balance (First Hour): IB High=`1.56` | IB Low=`1.56`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.56` - `1.57`

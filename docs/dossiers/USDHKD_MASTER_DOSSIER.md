@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDHKD
 **Canonical Key**: `USDHKD` | **Broker Instrument**: `USDHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.85` | **Live Ask Quote**: `7.85` | **Mid Price**: `7.85`
-- **Spread Points**: `8.00` | **Spread BPS**: `0.10 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `5.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `7.84` | VWAP Z-Score: `+0.66` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000633` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `49.36` (State: `NEUTRAL`)
+  * Session VWAP: `7.84` | VWAP Z-Score: `+0.31` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000630` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `46.75` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.85` | Lower -3.00σ Band: `7.84`
   * Upper +2.51σ Band: `7.85` | Lower -2.51σ Band: `7.84`
