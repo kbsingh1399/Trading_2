@@ -1,0 +1,289 @@
+# 🏛️ AUTONOMOUS TRI-COUNCIL AUDIT & TRADE COLLABORATION: Cycle_038
+**Seat #1: Antigravity Autonomous Lead & Broker Desk | Seat #2: Arena.ai Lead Strategist | Seat #3: Z.ai Solvency Arbiter**
+**Timestamp**: 2026-10-30 21:13:39 IST (2026-10-30 15:43:39 UTC) | **Cycle ID**: `Cycle_038`
+**Live Portfolio Registry**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`
+**Canonical Checklist**: `Data/Manditory/ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`
+
+> ⚠️ **CRITICAL OPERATOR MANDATE & OUTPUT CONSTRAINTS**:
+> 1. **EXPLICIT INTENT: ACTIVE HUNT FOR NEW HIGH-CONFLUENCE TRADING OPPORTUNITIES**: Our unambiguous objective is to discover, analyze, and execute NEW prime trading opportunities across the 92 spread-cleared assets. We are actively trading with real buying power ($4,755.23 USD), low contingent exposure ($14.10 USD / 0.29%), and an open execution slot (Capacity N <= 3). We do NOT accept passive inaction or blanket "stand aside" defaults. Dig deep into the 15 quantitative pillars of each asset to formulate actionable, high-probability trades.
+> 2. **NO ARTIFICIAL HARD FLOOR RESTRICTION**: Per explicit operator directive ("no hard floor... keep punching and trading"), active high-confluence maker limit trading is authorized (Capacity N <= 3, Risk <= $10.00 USD, R:R >= 2.50R).
+> 3. **PRINT INLINE ALL-IN-ONE**: PRINT YOUR COMPLETE EVALUATION, AUDIT FINDINGS, CANDIDATE SETUPS, AND VERDICTS DIRECTLY INLINE. DO NOT REFERENCE EXTERNAL ATTACHMENTS OR SIDECARS.
+> 4. **GRAVITAS SCIENTIFIC RIGOR**: Zero hallucinations, zero ungrounded assertions. Every statement must be physically rooted in the master dossier JSONs or Parquet feeds.
+
+---
+
+## 🏛️ 1. ACCOUNT SOLVENCY & LIVE MT5 ORDER INVENTORY
+- **MT5 Account**: #5064568 (Blueberry Markets, Live Raw Spread)
+- **Balance & Floating Equity**: **4,755.23 USD**
+- **Margin Used**: **3527.05 USD** | **Free Margin**: **1,254.67 USD**
+- **Capital Posture**: `ACTIVE_HIGH_CONFLUENCE_EXPANSION` (Intent: Aggressively seek and deploy new high-confluence setups)
+- **Active Open Positions**: **2** (100% Cash Defense Preserved)
+- **Active Resting Pending Orders**: **3 ACTIVE** (3/3 slots deployed):
+1. **Ticket #19532055**: `BTCUSD.pi` BUY_LIMIT 0.01 lot @ `76,350.00` | SL `75,850.00` | TP `76,568.95` | **0.44R** | Risk: **$5.00 USD**
+2. **Ticket #19532058**: `AVEUSD.p` BUY_LIMIT 0.07 lot @ `122.50` | SL `121.20` | TP `127.83` | **4.10R** | Risk: **$9.10 USD**
+3. **Ticket #19538626**: `ETHUSD.pi` BUY_LIMIT 0.1 lot @ `2,170.00` | SL `2,130.00` | TP `2,270.00` | **2.50R** | Risk: **$4.00 USD**
+- **Total Contingent Downside Risk**: **18.10 USD** (0.38% of account equity)
+- **Execution Capacity Remaining**: **0 Available Slot(s)** (Ready for immediate new candidate deployment)
+
+---
+
+## 🔍 2. UNIVERSE FORENSICS & SPREAD-CLEARED ASSET POOL (88 ASSETS)
+### 🌐 PHYSICAL DOSSIER REPOSITORY REGISTRY (88 Eligible Assets)
+Every eligible asset below has passed broker spread clearance. You are provided with the **EXACT Raw GitHub URL** for each asset's sovereign JSON Master Dossier.
+
+> ⚠️ **MANDATORY COUNCIL DIRECTIVE (Seat #2 & Seat #3)**:
+> **PRIMARY INTENT & MISSION: ACTIVELY DISCOVER & FORMULATE NEW HIGH-CONFLUENCE TRADING OPPORTUNITIES**.
+> The desk's explicit objective is to find new, prime high-confluence trades across this universe. We are NOT in a passive or frozen stance.
+> You MUST fetch each candidate's raw JSON file directly (via HTTP/curl or web access) and conduct an exhaustive deep forensic examination across all 15 quantitative pillars to formulate and justify new high-confluence trade opportunities:
+> 1. **ETF Spot & Future Netflows** (Institutional inflow/outflow trajectory)
+> 2. **Spot & Futures Capital Netflows** (24h/MTF net spot vs derivatives volume delta)
+> 3. **Multi-Exchange Long/Short Ratios** (Binance, OKX, Bybit positioning across MTF)
+> 4. **12-Venue Funding Rates & Settlement** (Crowded trade skew and basis yield)
+> 5. **Multi-Venue Open Interest Dynamics** (OI build vs liquidation cascade indicators)
+> 6. **Liquidation Bands & Max Pain Pools** (Multi-horizon Short Pain & Long Pain magnets)
+> 7. **Institutional Whale Armor** (L2/L3 block orders > $100K defending key price nodes)
+> 8. **Technical Profile & Multi-Timeframe VWAP** (Session VWAP, 20 EMA, RSI momentum)
+> 9. **Hyperdash Intel & Stop Loss Clusters** (Exact retail liquidation liquidity maps)
+> 10. **L2 Orderbook Depth & Bid/Ask Liquidity** (Top-of-book depth & limit order walls)
+> 11. **Multi-Timeframe CVD** (5m, 15m, 1h, 4h Cumulative Volume Delta divergences)
+> 12. **Auction Market Value Areas & POC** (VAH, VAL, and Point of Control distribution)
+> 13. **Tradfye Institutional Orderflow** (Hyperliquid tape & institutional prints)
+> 14. **CoinGlass Footprint Signals & Tape Metrics** (Aggressive market taker absorption)
+> 15. **MT5 Live Broker Specifications** (Contract size, min lot, digits, spread bps)
+
+#### Exact Raw GitHub URLs by Asset Class:
+
+**Core Institutional Crypto (3 assets):**
+- `BTCUSD.pi` (BTC_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/BTC_MASTER_DOSSIER.json
+- `ETHUSD.pi` (ETH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/ETH_MASTER_DOSSIER.json
+- `NETH25.p` (NETH25_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NETH25_MASTER_DOSSIER.json
+
+**Altcoin Derivatives (3 assets):**
+- `BCHUSD.p` (BCH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/BCH_MASTER_DOSSIER.json
+- `XMRUSD.p` (XMRUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XMRUSD_MASTER_DOSSIER.json
+- `ZECUSD.p` (ZECUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/ZECUSD_MASTER_DOSSIER.json
+
+**FX / TradFi (61 assets):**
+- `AUDCAD.pi` (AUDCAD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDCAD_MASTER_DOSSIER.json
+- `AUDCHF.pi` (AUDCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDCHF_MASTER_DOSSIER.json
+- `AUDJPY.pi` (AUDJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDJPY_MASTER_DOSSIER.json
+- `AUDUSD.pi` (AUDUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDUSD_MASTER_DOSSIER.json
+- `CADCHF.pi` (CADCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/CADCHF_MASTER_DOSSIER.json
+- `CADJPY.pi` (CADJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/CADJPY_MASTER_DOSSIER.json
+- `CHFJPY.pi` (CHFJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/CHFJPY_MASTER_DOSSIER.json
+- `EURAUD.pi` (EURAUD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURAUD_MASTER_DOSSIER.json
+- `EURCAD.pi` (EURCAD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURCAD_MASTER_DOSSIER.json
+- `EURCHF.pi` (EURCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURCHF_MASTER_DOSSIER.json
+- `EURGBP.pi` (EURGBP_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURGBP_MASTER_DOSSIER.json
+- `EURJPY.pi` (EURJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURJPY_MASTER_DOSSIER.json
+- `EURUSD.pi` (EURUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURUSD_MASTER_DOSSIER.json
+- `GBPAUD.pi` (GBPAUD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPAUD_MASTER_DOSSIER.json
+- `GBPCAD.pi` (GBPCAD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPCAD_MASTER_DOSSIER.json
+- `GBPCHF.pi` (GBPCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPCHF_MASTER_DOSSIER.json
+- `GBPJPY.pi` (GBPJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPJPY_MASTER_DOSSIER.json
+- `GBPUSD.pi` (GBPUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPUSD_MASTER_DOSSIER.json
+- `USDCAD.pi` (USDCAD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDCAD_MASTER_DOSSIER.json
+- `USDCHF.pi` (USDCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDCHF_MASTER_DOSSIER.json
+- `USDJPY.pi` (USDJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDJPY_MASTER_DOSSIER.json
+- `AUDCNH.pi` (AUDCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDCNH_MASTER_DOSSIER.json
+- `AUDNZD.pi` (AUDNZD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDNZD_MASTER_DOSSIER.json
+- `AUDSGD.pi` (AUDSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AUDSGD_MASTER_DOSSIER.json
+- `CHFSGD.pi` (CHFSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/CHFSGD_MASTER_DOSSIER.json
+- `CNHJPY.pi` (CNHJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/CNHJPY_MASTER_DOSSIER.json
+- `EURCNH.pi` (EURCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURCNH_MASTER_DOSSIER.json
+- `EURHKD.pi` (EURHKD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURHKD_MASTER_DOSSIER.json
+- `EURMXN.pi` (EURMXN_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURMXN_MASTER_DOSSIER.json
+- `EURNOK.pi` (EURNOK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURNOK_MASTER_DOSSIER.json
+- `EURNZD.pi` (EURNZD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURNZD_MASTER_DOSSIER.json
+- `EURSEK.pi` (EURSEK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURSEK_MASTER_DOSSIER.json
+- `EURSGD.pi` (EURSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURSGD_MASTER_DOSSIER.json
+- `EURZAR.pi` (EURZAR_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/EURZAR_MASTER_DOSSIER.json
+- `GBPCNH.pi` (GBPCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPCNH_MASTER_DOSSIER.json
+- `GBPHKD.pi` (GBPHKD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPHKD_MASTER_DOSSIER.json
+- `GBPNOK.pi` (GBPNOK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPNOK_MASTER_DOSSIER.json
+- `GBPNZD.pi` (GBPNZD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPNZD_MASTER_DOSSIER.json
+- `GBPSEK.pi` (GBPSEK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPSEK_MASTER_DOSSIER.json
+- `GBPSGD.pi` (GBPSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GBPSGD_MASTER_DOSSIER.json
+- `NOKSEK.pi` (NOKSEK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NOKSEK_MASTER_DOSSIER.json
+- `NZDCAD.pi` (NZDCAD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDCAD_MASTER_DOSSIER.json
+- `NZDCHF.pi` (NZDCHF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDCHF_MASTER_DOSSIER.json
+- `NZDCNH.pi` (NZDCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDCNH_MASTER_DOSSIER.json
+- `NZDJPY.pi` (NZDJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDJPY_MASTER_DOSSIER.json
+- `NZDSGD.pi` (NZDSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDSGD_MASTER_DOSSIER.json
+- `NZDUSD.pi` (NZDUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NZDUSD_MASTER_DOSSIER.json
+- `SGDJPY.pi` (SGDJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/SGDJPY_MASTER_DOSSIER.json
+- `USDCNH.pi` (USDCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDCNH_MASTER_DOSSIER.json
+- `USDHKD.pi` (USDHKD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDHKD_MASTER_DOSSIER.json
+- `USDHUF.pi` (USDHUF_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDHUF_MASTER_DOSSIER.json
+- `USDMXN.pi` (USDMXN_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDMXN_MASTER_DOSSIER.json
+- `USDNOK.pi` (USDNOK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDNOK_MASTER_DOSSIER.json
+- `USDSEK.pi` (USDSEK_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDSEK_MASTER_DOSSIER.json
+- `USDSGD.pi` (USDSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDSGD_MASTER_DOSSIER.json
+- `USDTHB.pi` (USDTHB_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDTHB_MASTER_DOSSIER.json
+- `USDZAR.pi` (USDZAR_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USDZAR_MASTER_DOSSIER.json
+- `ZARJPY.pi` (ZARJPY_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/ZARJPY_MASTER_DOSSIER.json
+- `GER30.p` (GER30_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GER30_MASTER_DOSSIER.json
+- `STOXX50.p` (STOXX50_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/STOXX50_MASTER_DOSSIER.json
+- `SWISS20.p` (SWISS20_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/SWISS20_MASTER_DOSSIER.json
+
+**Global Equity Indices (10 assets):**
+- `AU200.p` (AU200_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/AU200_MASTER_DOSSIER.json
+- `DJ30.p` (DJ30_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/DJ30_MASTER_DOSSIER.json
+- `FR40.p` (FR40_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/FR40_MASTER_DOSSIER.json
+- `JP225.p` (JP225_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/JP225_MASTER_DOSSIER.json
+- `NAS100.p` (NAS100_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/NAS100_MASTER_DOSSIER.json
+- `SP500.p` (SP500_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/SP500_MASTER_DOSSIER.json
+- `UK100.p` (UK100_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/UK100_MASTER_DOSSIER.json
+- `HK50.p` (HK50_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/HK50_MASTER_DOSSIER.json
+- `US2000.p` (US2000_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/US2000_MASTER_DOSSIER.json
+- `GER40.p` (GER40_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GER40_MASTER_DOSSIER.json
+
+**Metals & Commodities (11 assets):**
+- `XAGSGD.pi` (XAGSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAGSGD_MASTER_DOSSIER.json
+- `XAUAUD.pi` (XAUAUD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUAUD_MASTER_DOSSIER.json
+- `XAUCNH.pi` (XAUCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUCNH_MASTER_DOSSIER.json
+- `XAUEUR.pi` (XAUEUR_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUEUR_MASTER_DOSSIER.json
+- `XAUGBP.pi` (XAUGBP_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUGBP_MASTER_DOSSIER.json
+- `XAUSGD.pi` (XAUSGD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUSGD_MASTER_DOSSIER.json
+- `XAUUSD.pi` (XAUUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/XAUUSD_MASTER_DOSSIER.json
+- `GAUCNH.pi` (GAUCNH_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GAUCNH_MASTER_DOSSIER.json
+- `GAUUSD.pi` (GAUUSD_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/GAUUSD_MASTER_DOSSIER.json
+- `UKBRENT.p` (UKBRENT_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/UKBRENT_MASTER_DOSSIER.json
+- `USWTI.p` (USWTI_MASTER_DOSSIER.json): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/dossiers/USWTI_MASTER_DOSSIER.json
+
+### 15-Pillar Mechanical Dossier Forensics Certificate:
+- **Certificate**: `docs/trade_plans/CYCLE_038_MULTI_FEED_EXAMINATION_CERTIFICATE.json`
+- **Certificate SHA256**: `9504ee6f487f6bba00584cb3d50d2e65e582d53a0e90aa324d7e6d4ce96b0db9` | **Verdict**: `APPROVED_FOR_BROKER_EXECUTION`
+
+---
+
+## 🎯 3. ANTIGRAVITY'S EXHAUSTIVE 15-PILLAR CANDIDATE FINDINGS & TRADE CARDS
+Below are Antigravity's concrete, physically extracted 15-pillar quantitative metrics directly from the master JSON dossiers for our top candidate setups:
+
+#### Setup #1: `BTCUSD.pi` (BTCUSD) — Action: `BUY_LIMIT`
+- **Trade Card**: Action: **`BUY_LIMIT`** | Entry: **`76350.0`** | SL: **`75850.0`** | TP: **`77600.0`** | R:R: **2.5R** | Risk: **$5.0 USD** | CS: **1.0** | Spread: **2.2 bps**
+- **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
+  * **1. ETF Flows**: iShares Bitcoin Trust AUM: $66.17B
+  * **2. Netflows**: 24h Spot: -$918.26M | 24h Futures: -$2.87B
+  * **3. 12-Venue Funding**: Binance: `0.0100%` | Bybit: `0.0100%`
+  * **4. Open Interest**: Total OI: `$53.33B` (Binance: $10.78B, CME: $8.56B)
+  * **5. Liquidation Max Pain**: Short Pain: **`79,868.95`** | Long Pain: **`76,045.48`**
+  * **6. Whale Armor**: **212 Whale Block Orders** defending depth
+  * **7. Technicals & VWAP**: VWAP: **`77,492.23`** | RSI-14: **`53.05`** | ATR-14: **`363.81`**
+  * **8. Hyperdash Stops**: **934 Retail Stop Loss Clusters**
+  * **9. L2 Orderbook**: **41 Depth Levels**
+  * **10. Multi-Timeframe CVD**: Regime: **`AGGRESSIVE SELLING`** | Bias: **`BEARISH`**
+  * **11. Auction Market Structure**: POC: **`77,135.44`** | VAL: **`76,616.56`** | VAH: **`78,331.12`** | Regime: **`ROTATIONAL_BALANCE`**
+  * **12. Tradfye Orderflow**: Hyperliquid: 1 depth rows | Footprint: 10 rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **28 Signals Recorded** (Bullish Absorptions: 3 | Bearish Absorptions: 3 | Trapped Longs: 2 | Trapped Shorts: 3):
+      - [10-30 20:48] Range 200 · **Absorption** (BEARISH) @ **`78,081.30`** — *Buying absorbed at the high*
+      - [10-30 20:02] Range 200 · **Bull div** (BULLISH) @ **`76,640.00`** | Absorbed: 1,300 — *Lower low, higher Cumulative Delta*
+      - [10-30 19:59] Range 200 · **Divergence** (BULLISH) @ **`76,730.00`** — *Drop without taker selling*
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`2.2 bps`** | Contract Size: **`1.0`** | Point: **`0.01`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`76,045.48`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`79,868.95`).
+
+#### Setup #2: `AVEUSD.p` (AVEUSD) — Action: `BUY_LIMIT`
+- **Trade Card**: Action: **`BUY_LIMIT`** | Entry: **`122.5`** | SL: **`121.2`** | TP: **`125.75`** | R:R: **2.5R** | Risk: **$9.1 USD** | CS: **1.0** | Spread: **22.3 bps**
+- **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
+  * **1. ETF Flows**: iShares Bitcoin Trust AUM: $66.17B
+  * **2. Netflows**: 24h Spot: -$6.62M | 24h Futures: -$5.98M
+  * **3. 12-Venue Funding**: Binance: `-0.0101%` | Bybit: `-0.0168%`
+  * **4. Open Interest**: Total OI: `None` (Binance: None, CME: None)
+  * **5. Liquidation Max Pain**: Short Pain: **`128.80`** | Long Pain: **`116.52`**
+  * **6. Whale Armor**: **190 Whale Block Orders** defending depth
+  * **7. Technicals & VWAP**: VWAP: **`123.12`** | RSI-14: **`54.50`** | ATR-14: **`1.20`**
+  * **8. Hyperdash Stops**: **0 Retail Stop Loss Clusters**
+  * **9. L2 Orderbook**: **0 Depth Levels**
+  * **10. Multi-Timeframe CVD**: Regime: **`N/A`** | Bias: **`N/A`**
+  * **11. Auction Market Structure**: POC: **`124.70`** | VAL: **`121.15`** | VAH: **`127.30`** | Regime: **`ROTATIONAL_BALANCE`**
+  * **12. Tradfye Orderflow**: Hyperliquid: 1 depth rows | Footprint: 10 rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **59 Signals Recorded** (Bullish Absorptions: 3 | Bearish Absorptions: 3 | Trapped Longs: 3 | Trapped Shorts: 3):
+      - [10-30 20:48] Range 0.5 · **Absorption** (BEARISH) @ **`128.02`** | Absorbed: 2,200 — *Buying absorbed at the high*
+      - [10-30 20:48] Range 0.5 · **Trapped longs** (BEARISH) @ **`128.02`** | Absorbed: 2,200 — *Failed breakout*
+      - [10-30 20:33] Range 0.5 · **Divergence** (BULLISH) @ **`126.56`** — *Drop without taker selling*
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`22.3 bps`** | Contract Size: **`1.0`** | Point: **`0.0001`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`116.52`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`128.80`).
+
+#### Setup #3: `ETHUSD.pi` (ETHUSD) — Action: `BUY_LIMIT`
+- **Trade Card**: Action: **`BUY_LIMIT`** | Entry: **`2170.0`** | SL: **`2130.0`** | TP: **`2270.0`** | R:R: **2.5R** | Risk: **$4.0 USD** | CS: **1.0** | Spread: **13.9 bps**
+- **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
+  * **1. ETF Flows**: iShares Bitcoin Trust AUM: $66.17B
+  * **2. Netflows**: 24h Spot: -$127.08M | 24h Futures: -$2.20B
+  * **3. 12-Venue Funding**: Binance: `-0.0036%` | Bybit: `-0.0050%`
+  * **4. Open Interest**: Total OI: `$28.31B` (Binance: $8.48B, CME: $2.96B)
+  * **5. Liquidation Max Pain**: Short Pain: **`2,275.30`** | Long Pain: **`2,174.37`**
+  * **6. Whale Armor**: **420 Whale Block Orders** defending depth
+  * **7. Technicals & VWAP**: VWAP: **`2,222.59`** | RSI-14: **`52.99`** | ATR-14: **`14.28`**
+  * **8. Hyperdash Stops**: **332 Retail Stop Loss Clusters**
+  * **9. L2 Orderbook**: **391 Depth Levels**
+  * **10. Multi-Timeframe CVD**: Regime: **`AGGRESSIVE SELLING`** | Bias: **`BEARISH`**
+  * **11. Auction Market Structure**: POC: **`2,224.76`** | VAL: **`2,202.91`** | VAH: **`2,247.42`** | Regime: **`ROTATIONAL_BALANCE`**
+  * **12. Tradfye Orderflow**: Hyperliquid: 1 depth rows | Footprint: 10 rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **13 Signals Recorded** (Bullish Absorptions: 3 | Bearish Absorptions: 2 | Trapped Longs: 0 | Trapped Shorts: 0):
+      - [10-30 20:40] Range 10 · **Absorption** (BULLISH) @ **`2,248.20`** | Absorbed: 20,000 — *Selling absorbed at the low*
+      - [10-30 19:03] Volume 100K ETH · **Exhaustion** (BULLISH) @ **`2,215.00`** — *Seller exhaustion*
+      - [10-30 16:16] Volume 100K ETH · **Absorption** (BULLISH) @ **`2,240.20`** | Absorbed: 21,000 — *Selling absorbed at the low*
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`13.9 bps`** | Contract Size: **`1.0`** | Point: **`0.01`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`2,174.37`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`2,275.30`).
+
+#### Setup #4: `SOLUSD.p` (SOLUSD) — Action: `STANDBY_MONITOR`
+- **Trade Card**: Action: **`STANDBY_MONITOR`** | Entry: **`None`** | SL: **`None`** | TP: **`None`** | R:R: **NoneR** | Risk: **$0.0 USD** | CS: **1.0** | Spread: **25.41 bps**
+- **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
+  * **1. ETF Flows**: iShares Bitcoin Trust AUM: $66.17B
+  * **2. Netflows**: 24h Spot: -$77.34M | 24h Futures: -$325.59M
+  * **3. 12-Venue Funding**: Binance: `0.0100%` | Bybit: `0.0028%`
+  * **4. Open Interest**: Total OI: `$5.59B` (Binance: $1.03B, CME: $606.86M)
+  * **5. Liquidation Max Pain**: Short Pain: **`98.17`** | Long Pain: **`93.70`**
+  * **6. Whale Armor**: **283 Whale Block Orders** defending depth
+  * **7. Technicals & VWAP**: VWAP: **`95.67`** | RSI-14: **`39.68`** | ATR-14: **`0.75`**
+  * **8. Hyperdash Stops**: **725 Retail Stop Loss Clusters**
+  * **9. L2 Orderbook**: **391 Depth Levels**
+  * **10. Multi-Timeframe CVD**: Regime: **`AGGRESSIVE SELLING`** | Bias: **`BEARISH`**
+  * **11. Auction Market Structure**: POC: **`96.55`** | VAL: **`94.96`** | VAH: **`97.96`** | Regime: **`TREND_DOWN_ACCEPTANCE`**
+  * **12. Tradfye Orderflow**: Hyperliquid: 1 depth rows | Footprint: 10 rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **51 Signals Recorded** (Bullish Absorptions: 3 | Bearish Absorptions: 3 | Trapped Longs: 1 | Trapped Shorts: 3):
+      - [10-30 20:40] Range 0.25 · **Exhaustion** (BEARISH) @ **`95.48`** — *Buyer exhaustion*
+      - [10-30 20:39] Range 0.25 · **Absorption** (BULLISH) @ **`95.11`** | Absorbed: 14,000 — *Selling absorbed at the low*
+      - [10-30 20:22] Volume 500K SOL · **Divergence** (BULLISH) @ **`94.27`** — *Drop without taker selling*
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`25.41 bps`** | Contract Size: **`1.0`** | Point: **`0.01`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`93.70`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`98.17`).
+
+#### Setup #5: `XAUUSD.pi` (XAUUSD) — Action: `STANDBY_MONITOR`
+- **Trade Card**: Action: **`STANDBY_MONITOR`** | Entry: **`None`** | SL: **`None`** | TP: **`None`** | R:R: **NoneR** | Risk: **$0.0 USD** | CS: **100.0** | Spread: **0.23 bps**
+- **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
+  * **1. ETF Flows**: iShares Bitcoin Trust AUM: $66.17B
+  * **2. Netflows**: 24h Spot: -$23.18M | 24h Futures: None
+  * **3. 12-Venue Funding**: Binance: `0.0118%` | Bybit: `0.0207%`
+  * **4. Open Interest**: Total OI: `$851.10M` (Binance: $63.84M, CME: -)
+  * **5. Liquidation Max Pain**: Short Pain: **`4,043.22`** | Long Pain: **`3,864.25`**
+  * **6. Whale Armor**: **0 Whale Block Orders** defending depth
+  * **7. Technicals & VWAP**: VWAP: **`3,968.08`** | RSI-14: **`21.99`** | ATR-14: **`11.48`**
+  * **8. Hyperdash Stops**: **0 Retail Stop Loss Clusters**
+  * **9. L2 Orderbook**: **391 Depth Levels**
+  * **10. Multi-Timeframe CVD**: Regime: **`AGGRESSIVE BUYING`** | Bias: **`BULLISH`**
+  * **11. Auction Market Structure**: POC: **`3,990.88`** | VAL: **`3,952.34`** | VAH: **`4,024.83`** | Regime: **`TREND_DOWN_ACCEPTANCE`**
+  * **12. Tradfye Orderflow**: Hyperliquid: 0 depth rows | Footprint: 10 rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **13 Signals Recorded** (Bullish Absorptions: 3 | Bearish Absorptions: 0 | Trapped Longs: 0 | Trapped Shorts: 0):
+      - [10-30 18:35] Range 10 · **Exhaustion** (BULLISH) @ **`3,947.40`** — *Seller exhaustion*
+      - [10-30 17:45] Volume 20K XAU · **Exhaustion** (BULLISH) @ **`3,969.10`** — *Seller exhaustion*
+      - [10-30 17:17] Range 10 · **Exhaustion** (BULLISH) @ **`3,969.10`** — *Seller exhaustion*
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`0.23 bps`** | Contract Size: **`100.0`** | Point: **`0.01`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`3,864.25`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`4,043.22`).
+
+---
+
+## ⚖️ 4. MANDATORY TRI-COUNCIL DELIVERABLES (OPPORTUNITY DISCOVERY & FOOTPRINT STANDARD)
+Arena.ai (Seat #2) and Z.ai (Seat #3) are commanded to deliver:
+1. **PRIMARY OBJECTIVE: Nominate NEW High-Confluence Trade Opportunities**: 
+   - Our clear intent is to FIND NEW TRADES. Fetch and inspect individual JSON dossiers across the 92 spread-cleared assets via the exact raw GitHub URLs provided.
+   - Propose 1 to 3 concrete NEW candidate setups for deployment (or to upgrade/replace resting tickets if higher quality).
+   - For every nominated trade, specify exact numeric levels: Asset Symbol, Action (BUY_LIMIT / SELL_LIMIT), Limit Entry Price, Stop Loss, Take Profit, Reward-to-Risk ratio (>= 2.50R), Nominal Dollar Risk (<= $10.00 USD), and the 15-pillar physical confluence evidence (POC/VAL/VAH, Max Pain sweep, Whale Armor, CVD regime).
+2. **Audit of 3 Active Resting Limit Orders**: Validate tickets #19532055 (BTC), #19532058 (AVE), and #19538626 (ETH). Should these remain resting as placed, or are there adverse orderflow/liquidation shifts warranting replacement?
+3. **MANDATORY COINGLASS FOOTPRINT SIGNALS AUDIT (Institutional Standard)**:
+   - Every candidate and audited ticket MUST be cross-referenced against CoinGlass Footprint Signals (`footprint_and_macro.signals` in dossier or Section 8 Table 2).
+   - Long setups require confirmed Bullish Absorption (sellers absorbed at lows), Trapped Shorts, Seller Exhaustion, or Bullish Delta Divergence at/near entry.
+   - Short setups require confirmed Bearish Absorption (buyers absorbed at highs), Trapped Longs, Buyer Exhaustion, or Bearish Delta Divergence at/near entry.
+   - Reject any setup where an unmitigated opposing footprint absorption wall or trapped trader cluster blocks the path to Take Profit.
+4. **Execution Ruling**: Deliver your clear, actionable verdict on whether to HOLD active limit orders, stage your new high-confluence candidate, or modify.
+
+> ⚠️ **REMINDER**: PRINT YOUR COMPLETE VERDICT, ANALYSIS, AND CANDIDATE SETUPS INLINE HERE ALL-IN-ONE.

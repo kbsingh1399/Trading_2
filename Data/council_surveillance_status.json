@@ -1,16 +1,16 @@
 {
-  "cycle_id": "Cycle_037",
+  "cycle_id": "Cycle_038",
   "iteration": 1,
-  "timestamp_ist": "2026-10-30 21:07:55 IST",
-  "timestamp_utc": "2026-10-30 15:37:55 UTC",
-  "both_finished": true,
+  "timestamp_ist": "2026-10-30 21:14:09 IST",
+  "timestamp_utc": "2026-10-30 15:44:09 UTC",
+  "both_finished": false,
   "any_generating": false,
   "arena": {
     "connected": true,
     "is_generating": false,
-    "finished": true,
-    "char_count": 10478,
-    "snippet": "Cycle_037 \u2014 inline audit and ruling\n\nSource cut: GitHub main at cd95960ba566e59c4e3fd88b2e727f433a10c447 (committed 14:56:30 UTC), using the 92 indivi",
+    "finished": false,
+    "char_count": 1,
+    "snippet": "\n",
     "error": null
   },
   "zai": {
