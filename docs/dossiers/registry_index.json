@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-30 09:08:47 UTC",
+  "timestamp_utc": "2026-10-30 09:11:48 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -28,7 +28,8 @@
     "XAUCNH",
     "XAUSGD",
     "US2000",
-    "XAGSGD"
+    "XAGSGD",
+    "AVEUSD"
   ],
   "assets": {
     "BTC": {
@@ -350,7 +351,7 @@
       "mid_price": 0.935,
       "spread_bps": 213.9,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
+      "confluence_score": 77,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.8986,
@@ -2898,8 +2899,8 @@
       "mid_price": 125.10499999999999,
       "spread_bps": 23.18,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
+      "confluence_score": 90,
+      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 117.73,
         "sl": 115.99684300219668,
@@ -3236,7 +3237,7 @@
       "mid_price": 6.7330000000000005,
       "spread_bps": 38.62,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
+      "confluence_score": 80,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 6.247,
