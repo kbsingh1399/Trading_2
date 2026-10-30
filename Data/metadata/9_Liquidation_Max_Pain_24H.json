@@ -18,9 +18,9 @@
     "long_distance_pct",
     "timestamp_ist"
   ],
-  "byte_size": 70307,
-  "timestamp_ist": "2026-10-30 18:08:26 IST",
-  "timestamp_utc": "2026-10-30 12:38:26 UTC",
-  "epoch_utc": 1793363906.991041,
-  "write_duration_ms": 771.76
+  "byte_size": 70208,
+  "timestamp_ist": "2026-10-30 18:18:39 IST",
+  "timestamp_utc": "2026-10-30 12:48:39 UTC",
+  "epoch_utc": 1793364519.170878,
+  "write_duration_ms": 337.97
 }
