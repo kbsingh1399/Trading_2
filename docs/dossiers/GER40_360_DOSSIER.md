@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GER40
 **Canonical Key**: `GER40` | **Broker Instrument**: `GER40.p` | **Asset Class**: `Equity Index EU`
-**Timestamp**: `2026-10-30 09:19:10 IST` (`2026-10-30 03:49:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:22:12 IST` (`2026-10-30 03:52:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `26062.97` (Distance: `-0.30%`)
-  * Point of Control (POC) = `25980.18` (Distance: `+0.02%`)
-  * Value Area Low (VAL) = `25951.94` (Distance: `+0.13%`)
+  * Value Area High (VAH) = `26061.03` (Distance: `-0.26%`)
+  * Point of Control (POC) = `25980.18` (Distance: `+0.05%`)
+  * Value Area Low (VAL) = `25951.94` (Distance: `+0.16%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`26052.09` | POC=`25717.66` | VAL=`25667.18`
@@ -274,9 +274,9 @@
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `26062.97` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `26100.27` (Risk Distance: `37.30` pts)
-  * +2.5R Take Profit: `25969.72`
+  * Execution Entry: `26061.03` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `26098.33` (Risk Distance: `37.30` pts)
+  * +2.5R Take Profit: `25967.78`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSEK
 **Canonical Key**: `EURSEK` | **Broker Instrument**: `EURSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 09:19:10 IST` (`2026-10-30 03:49:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:22:12 IST` (`2026-10-30 03:52:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.99` | **Live Ask Quote**: `11.00` | **Mid Price**: `11.00`
-- **Spread Points**: `315.00` | **Spread BPS**: `2.86 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `251.00` | **Spread BPS**: `2.28 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `11.07` | Lower -3.00σ Band: `10.92`
-  * Upper +2.51σ Band: `11.06` | Lower -2.51σ Band: `10.93`
+  * Upper +2.51σ Band: `11.06` | Lower -2.51σ Band: `10.94`
   * Upper +2.01σ Band: `11.04` | Lower -2.01σ Band: `10.95`
   * Upper +2.00σ Band: `11.04` | Lower -2.00σ Band: `10.95`
   * Upper +1.28σ Band: `11.03` | Lower -1.28σ Band: `10.96`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`11.00` | EMA-20=`11.00` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`11.00` (Slope: `+0.0000`) | EMA-100=`11.00`
   * Institutional Anchors: EMA-144=`11.00` | EMA-200=`11.00` (Slope: `+0.0000`) | EMA-233=`11.00`
-- **Range Boundaries**: 24H High=`11.11` | 24H Low=`10.89` | Weekly High=`11.21` | Weekly Low=`10.78`
+- **Range Boundaries**: 24H High=`11.11` | 24H Low=`10.89` | Weekly High=`11.22` | Weekly Low=`10.78`
 
 ---
 
