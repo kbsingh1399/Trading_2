@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: JP225
 **Canonical Key**: `JP225` | **Broker Instrument**: `JP225.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:33:14 IST` (`2026-10-30 10:03:14 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | -201.98 USD | **`DISTRIBUTION`** |
-| `15m` | 0.00 USD | -189.34 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `15m` | 0.00 USD | -201.98 USD | **`DISTRIBUTION`** |
 | `30m` | 0.00 USD | -891.24 USD | **`DISTRIBUTION`** |
 | `1h` | 0.00 USD | 333.00 USD | **`ACCUMULATION`** |
 | `2h` | 0.00 USD | 339.38 USD | **`ACCUMULATION`** |
-| `4h` | 0.00 USD | 3,670.00 USD | **`ACCUMULATION`** |
+| `4h` | 0.00 USD | 3,680.00 USD | **`ACCUMULATION`** |
 | `6h` | 0.00 USD | 2,930.00 USD | **`ACCUMULATION`** |
-| `8h` | 0.00 USD | -13,220.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -15,030.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -12,920.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -15,290.00 USD | **`DISTRIBUTION`** |
 | `24h` | 0.00 USD | -34,160.00 USD | **`DISTRIBUTION`** |
 | `1w` | 0.00 USD | -41,660.00 USD | **`DISTRIBUTION`** |
 | `30d` | 0.00 USD | -20,660.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-201.98` | 15m=`-189.34` | 1h=`+333.00` | 24h=`-34.16K`
+* Futures Capital Netflows: 5m=`+0.00` | 15m=`-201.98` | 1h=`+333.00` | 24h=`-34.16K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
