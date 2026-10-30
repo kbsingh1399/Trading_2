@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNOK
 **Canonical Key**: `GBPNOK` | **Broker Instrument**: `GBPNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 09:01:01 IST` (`2026-10-30 03:31:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:10:06 IST` (`2026-10-30 03:40:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `12.35` | **Live Ask Quote**: `12.35` | **Mid Price**: `12.35`
-- **Spread Points**: `376.00` | **Spread BPS**: `3.04 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `337.00` | **Spread BPS**: `2.73 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -31,8 +31,8 @@
   * Upper +2.51σ Band: `12.42` | Lower -2.51σ Band: `12.28`
   * Upper +2.01σ Band: `12.40` | Lower -2.01σ Band: `12.30`
   * Upper +2.00σ Band: `12.40` | Lower -2.00σ Band: `12.30`
-  * Upper +1.28σ Band: `12.38` | Lower -1.28σ Band: `12.32`
-  * Upper +1.00σ Band: `12.37` | Lower -1.00σ Band: `12.33`
+  * Upper +1.28σ Band: `12.39` | Lower -1.28σ Band: `12.32`
+  * Upper +1.00σ Band: `12.38` | Lower -1.00σ Band: `12.33`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`12.35` | EMA-20=`12.35` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`12.35` (Slope: `+0.0000`) | EMA-100=`12.35`
@@ -50,17 +50,17 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`12.40` | POC=`12.35` | VAL=`12.30`
-  * Prior Day Extremes: PDH=`12.42` | PDL=`12.28` | PDC=`12.35`
+  * Prior Day Extremes: PDH=`12.43` | PDL=`12.28` | PDC=`12.35`
   * Monday Range Blueprint: High=`12.41` | Mid=`12.35` | Low=`12.29`
   * Developing Weekly Value Area: Weekly VAH=`12.45` | Weekly POC=`12.35` | Weekly VAL=`12.25`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`12.37` | Low=`12.33`
+  * Asian Session (00:00-08:00 UTC): High=`12.38` | Low=`12.33`
   * London Session (08:00-16:00 UTC): High=`12.40` | Low=`12.30`
-  * New York Session (13:00-21:00 UTC): High=`12.42` | Low=`12.28`
+  * New York Session (13:00-21:00 UTC): High=`12.43` | Low=`12.28`
   * Initial Balance (First Hour): IB High=`12.39` | IB Low=`12.31`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `12.30` - `12.40`
-  * Optimal Trade Entry (OTE 0.705): `12.37`
+  * Optimal Trade Entry (OTE 0.705): `12.38`
   * Structural Invalidation Anchor (0.786): `12.45`
 
 ---
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 08:33:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:32:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:00:58 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:48:58 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:49:58 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:49:58 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:34:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:32:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:01:50 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:03:50 IST`: [investinglive.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `12.39` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `13.59` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `9.37`
+  * +2.5R Take Profit: `9.38`
   * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

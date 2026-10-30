@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNXUSD
 **Canonical Key**: `SNXUSD` | **Broker Instrument**: `SNXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 09:01:01 IST` (`2026-10-30 03:31:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:10:06 IST` (`2026-10-30 03:40:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1665` | VWAP Z-Score: `+0.70` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0025` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `37.50` (State: `NEUTRAL`)
+  * Session VWAP: `0.1790` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1731` | Lower -3.00σ Band: `0.1599`
-  * Upper +2.51σ Band: `0.1720` | Lower -2.51σ Band: `0.1610`
-  * Upper +2.01σ Band: `0.1709` | Lower -2.01σ Band: `0.1621`
-  * Upper +2.00σ Band: `0.1709` | Lower -2.00σ Band: `0.1621`
-  * Upper +1.28σ Band: `0.1693` | Lower -1.28σ Band: `0.1637`
-  * Upper +1.00σ Band: `0.1687` | Lower -1.00σ Band: `0.1643`
+  * Upper +3.00σ Band: `0.1803` | Lower -3.00σ Band: `0.1777`
+  * Upper +2.51σ Band: `0.1800` | Lower -2.51σ Band: `0.1780`
+  * Upper +2.01σ Band: `0.1798` | Lower -2.01σ Band: `0.1782`
+  * Upper +2.00σ Band: `0.1797` | Lower -2.00σ Band: `0.1783`
+  * Upper +1.28σ Band: `0.1795` | Lower -1.28σ Band: `0.1785`
+  * Upper +1.00σ Band: `0.1794` | Lower -1.00σ Band: `0.1786`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1681` | EMA-20=`0.1704` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1768` (Slope: `+0.0000`) | EMA-100=`0.1815`
-  * Institutional Anchors: EMA-144=`0.1834` | EMA-200=`0.1846` (Slope: `-1.2037`) | EMA-233=`0.1853`
-- **Range Boundaries**: 24H High=`0.1950` | 24H Low=`0.1590` | Weekly High=`0.1960` | Weekly Low=`0.1590`
+  * Fast EMA Array: EMA-9=`0.1790` | EMA-20=`0.1790` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1790` (Slope: `+0.0000`) | EMA-100=`0.1790`
+  * Institutional Anchors: EMA-144=`0.1790` | EMA-200=`0.1790` (Slope: `+0.0000`) | EMA-233=`0.1790`
+- **Range Boundaries**: 24H High=`0.1808` | 24H Low=`0.1772` | Weekly High=`0.1826` | Weekly Low=`0.1754`
 
 ---
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `2h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `4h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `6h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `8h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `12h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `24h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1w` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30d` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `5m` | 0.00 USD | -9,520.00 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | -9,320.00 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | -7,040.00 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | 34,170.00 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | 39,990.00 USD | **`ACCUMULATION`** |
+| `4h` | 0.00 USD | 110,710.00 USD | **`ACCUMULATION`** |
+| `6h` | 0.00 USD | 81,530.00 USD | **`ACCUMULATION`** |
+| `8h` | 0.00 USD | -28,800.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -45,520.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -135,890.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -970,890.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -4,870,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Futures Capital Netflows: 5m=`-9.52K` | 15m=`-9.32K` | 1h=`+34.17K` | 24h=`-135.89K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 08:33:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:32:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:00:58 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:48:58 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:49:58 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:49:58 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:34:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:32:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:01:50 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:03:50 IST`: [investinglive.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1600` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.1270` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.2600`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `-1.07` (Risk Distance: `1.23` pts)
+  * +2.5R Take Profit: `3.24`
+  * Mathematical Lot Sizing: **`8.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1730` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.2060` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.0730`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.40` (Risk Distance: `1.23` pts)
+  * +2.5R Take Profit: `-2.90`
+  * Mathematical Lot Sizing: **`8.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

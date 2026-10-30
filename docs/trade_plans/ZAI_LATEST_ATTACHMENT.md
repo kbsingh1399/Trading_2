@@ -1,11 +1,23 @@
-AUTHORIZATION : DENIED_FAIL_CLOSED
-POSTURE       : STAGED_INTENT_ONLY — zero new risk, zero arming
-CAPITAL_MODE  : TIER_0_DEFENSIVE
-GOVERNING FLOORS : 4,775.00 / 4,795.00 / 4,795.00 USD (strict variant per K8)
-REASON CHAIN  : (1) capital gate FAIL — realized equity 4,742.31 is 32.69 BELOW the
-                statutory hard floor; kernel cushion −52.69; capacity 0 tickets
-                (2) whale-wall gate FAIL universe-wide — 22/22 dossiers None/Unarmored (D15)
-                (3) econometric gate FAIL — VR(4) uncomputable for 19/22 assets (D16, D10)
-                (4) spread gate FAIL for ETH 12.77 / BCH 16.52 bps vs council 12 bps cap (D5)
-                (5) data-integrity gate FAIL — Dossier §10 risk math corrupted (D13), GER40
-                scale rupture (D14)
+{
+  "cycle_id": "Cycle_014",
+  "final_authorization": {
+    "new_market_orders": "DENIED_FAIL_CLOSED",
+    "resting_book": "CONDITIONAL_MAINTENANCE (cancel 19489155/19489157/19489160; restage 19489158/19489159; keep 19490051)",
+    "cycle_verdict": "DENIED_FAIL_CLOSED"
+  },
+  "account_solvency": {
+    "balance_usd": 4762.83, "equity_usd": 4762.83,
+    "floors_strict": {"hard": 4775.0, "op_buffer": 4795.0},
+    "deficit_vs_strict_hard_floor_usd": -12.17,
+    "post_joint_stress_equity_reproduced_usd": 4695.2425,
+    "realized_headroom_reproduced_usd": -99.7575,
+    "nominal_risk_capacity_clamped_usd": 0.0,
+    "capital_mode": "TIER_0_DEFENSIVE", "new_risk_admissible": false
+  },
+  "disputes_or_rejections": ["D1 Floor desync (recurring)", "D2 Cutoff stamp 24s", "D3 CRITICAL receipt temporal paradox (55.66h stale, nonce-carried)",
+    "D4 Unregistered resting orders (6 tickets, zero ledger trace)", "D5 CRITICAL RR breaches BTC 1.52R / BNB 1.20R",
+    "D6 SL invariant breaches XAU -9.45% / NAS -12.03% / DJ -7.24%", "D7 Stale-level staging (drift BTC -2.164%, BNB -6.117%)",
+    "D8 VR(4)/ER(48) null account-wide", "D9 Max-Pain/FX liquidation holes", "D10 Dossier engine x100 nominal-risk + GER40 corruption",
+    "D11 Stress decomposition residual -0.755", "D12 Min-lot violations NAS/DJ", "D13 Whale-armor absence account-wide",
+    "D14 Ledger false solvency assertion + 12h46m staleness"]
+}

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KNCUSD
 **Canonical Key**: `KNCUSD` | **Broker Instrument**: `KNCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 09:01:01 IST` (`2026-10-30 03:31:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:10:06 IST` (`2026-10-30 03:40:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0994` | VWAP Z-Score: `+1.45` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000950` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0995` | VWAP Z-Score: `+1.36` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000882` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `44.36` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1027` | Lower -3.00σ Band: `0.0962`
-  * Upper +2.51σ Band: `0.1021` | Lower -2.51σ Band: `0.0967`
-  * Upper +2.01σ Band: `0.1016` | Lower -2.01σ Band: `0.0973`
-  * Upper +2.00σ Band: `0.1016` | Lower -2.00σ Band: `0.0973`
-  * Upper +1.28σ Band: `0.1008` | Lower -1.28σ Band: `0.0980`
-  * Upper +1.00σ Band: `0.1005` | Lower -1.00σ Band: `0.0983`
+  * Upper +3.00σ Band: `0.1028` | Lower -3.00σ Band: `0.0962`
+  * Upper +2.51σ Band: `0.1023` | Lower -2.51σ Band: `0.0967`
+  * Upper +2.01σ Band: `0.1017` | Lower -2.01σ Band: `0.0973`
+  * Upper +2.00σ Band: `0.1017` | Lower -2.00σ Band: `0.0973`
+  * Upper +1.28σ Band: `0.1009` | Lower -1.28σ Band: `0.0981`
+  * Upper +1.00σ Band: `0.1006` | Lower -1.00σ Band: `0.0984`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1006` | EMA-20=`0.1012` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1032` (Slope: `+0.0000`) | EMA-100=`0.1049`
-  * Institutional Anchors: EMA-144=`0.1058` | EMA-200=`0.1065` (Slope: `-0.7762`) | EMA-233=`0.1070`
+  * Fast EMA Array: EMA-9=`0.1007` | EMA-20=`0.1011` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1031` (Slope: `+0.0000`) | EMA-100=`0.1048`
+  * Institutional Anchors: EMA-144=`0.1057` | EMA-200=`0.1064` (Slope: `-0.7329`) | EMA-233=`0.1069`
 - **Range Boundaries**: 24H High=`0.1110` | 24H Low=`0.0960` | Weekly High=`0.1110` | Weekly Low=`0.0960`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.1010` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.1010` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.0991` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `0.0992` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1114` | POC=`0.1110` | VAL=`0.1106`
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 08:33:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:32:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:00:58 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:48:58 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:47:58 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:49:58 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:49:58 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:49:58 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:34:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:32:50 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:02:50 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:01:50 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:03:50 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:03:50 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:03:50 IST`: [investinglive.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -267,14 +267,14 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.0991` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.0680` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.1991`
+  * Execution Entry: `0.0992` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.0681` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.1992`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1010` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1321` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.1320` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.000975`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
