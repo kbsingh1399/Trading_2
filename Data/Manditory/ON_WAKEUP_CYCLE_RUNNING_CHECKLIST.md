@@ -1376,3 +1376,38 @@ Evaluate each candidate against the available evidence, confluence strength, mar
   - Updated `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`, `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`, and `Data/cycle_envelope.json`.
   - Pushed verified state to GitHub origin/main.
   - Re-armed dynamic 20-minute cycle timer. Ready for `Cycle_035`.
+
+
+---
+
+### ⏳ Cycle_035 Scorecard: IN PROGRESS
+**Timestamp**: 2026-10-30 19:12:00 IST (2026-10-30 13:42:00 UTC)
+**Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
+
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - Physically opened, read, and cross-referenced all 4 canonical risk specifications:
+    * `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (SHA: 20c099bb3dcc9ae2)
+    * `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (SHA: 8835d3cc2785148f)
+    * `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (SHA: 8e03a2b36be4142f)
+    * `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (SHA: d97077bdbe0d3566)
+  - Inviolable Gravitas Standard enforced: Zero ungrounded assertions. 100% ground-truth provenance.
+- [x] **Step 1: Identify eligible assets (spread screening across all 4 macro classes)**
+  - Interrogated `00_MT5_Account_Telemetry.parquet`: **93 tradeable broker symbols cleared spread gates** (`Gate_Status == 'PASS'`).
+  - Saved to `scripts/cycle_035_eligible_dossiers.txt`.
+- [x] **Step 2: 100% Mechanical Forensics & Complete Data Point Physical Examination**
+  - Executed `scripts/mechanical_asset_forensics_examiner.py Cycle_035`:
+    * Physically opened, read, and verified 10/10 structural sections across **93 / 93 eligible assets** directly from disk (8,048,277 bytes loaded).
+    * Zero missing attributes or empty placeholders across any of the 10 structural dimensions.
+    * **Physical Examination Certificate Generated**: `docs/trade_plans/CYCLE_035_PHYSICAL_EXAMINATION_CERTIFICATE.json`
+    * Certificate SHA256: `06b2f39bb00d331d2ba518174542618841da928221808ea019a32c2a0d7830cb` | Verdict: `APPROVED_FOR_TICKMARK`
+    * Full universe database compiled to `docs/trade_plans/CYCLE_035_FULL_SCALE_UNIVERSE_DATABASE.json`.
+- [x] **Step 3: Synchronise intelligence ledger and portfolio registry**
+  - Generated `Data/cycle_envelope.json` for Cycle_035 (Balance: $4,763.23 USD | Equity: $4,763.23 USD | 0 positions | 0 resting orders).
+  - Synchronized `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` and appended Cycle_035 baseline to `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`.
+- [x] **Step 4: Dispatch independent analysis to Arena.ai and Z.ai**
+  - Dispatched comprehensive prompt (`4,920 chars`) with the all-in-one inline mandate to Arena.ai (Chrome CDP Tab 1) and Z.ai (Chrome CDP Tab 2, GLM-5.3-Flash).
+  - Both dispatches confirmed: `{'arena': True, 'zai': True}`.
+- [ ] **Step 5: Activate AutoWake daemon and await completion of both systems**
+  - AutoWake Hard-Rock Dual Watchdog (`task-166849`) active on Chrome CDP port 9222.
+- [ ] **Step 6: Compare 3-way intelligence and execute only qualified trades**
+- [ ] **Step 7: Update records and restart 20-minute AutoWake cycle**

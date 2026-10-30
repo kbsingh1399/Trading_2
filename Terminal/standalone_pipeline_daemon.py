@@ -42,6 +42,47 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 STATUS_FILE = ROOT_DIR / "Data" / "pipeline_daemon_status.json"
 LOG_FILE = LOG_DIR / "standalone_pipeline_daemon.log"
+LOCK_FILE = ROOT_DIR / "Data" / "standalone_pipeline_daemon.pid"
+
+def acquire_singleton_lock() -> bool:
+    """Guarantees only one instance of the pipeline daemon runs at a time."""
+    if LOCK_FILE.exists():
+        try:
+            pid = int(LOCK_FILE.read_text().strip())
+            import ctypes
+            kernel32 = ctypes.windll.kernel32
+            SYNCHRONIZE = 0x00100000
+            process = kernel32.OpenProcess(SYNCHRONIZE, False, pid)
+            if process != 0:
+                kernel32.CloseHandle(process)
+                log.warning(f"Standalone pipeline daemon already running with PID {pid}. Exiting duplicate daemon.")
+                return False
+        except Exception:
+            pass
+    try:
+        LOCK_FILE.write_text(str(os.getpid()), encoding="utf-8")
+        return True
+    except Exception:
+        return True
+
+def sweep_ephemeral_cdp_tabs():
+    """Sweeps and closes all ephemeral CoinGlass/recaptcha tabs on port 9222, preserving Arena.ai and Z.ai."""
+    try:
+        import urllib.request
+        with urllib.request.urlopen("http://127.0.0.1:9222/json", timeout=3) as resp:
+            tabs = json.loads(resp.read().decode("utf-8"))
+        for t in tabs:
+            url = t.get("url", "").lower()
+            tid = t.get("id")
+            if any(k in url for k in ["arena.ai", "z.ai"]):
+                continue  # Never close AI Council tabs
+            if any(k in url for k in ["coinglass", "recaptcha"]) or url in ["edge://newtab/", "about:blank"]:
+                try:
+                    urllib.request.urlopen(f"http://127.0.0.1:9222/json/close/{tid}", timeout=3)
+                except Exception:
+                    pass
+    except Exception:
+        pass
 
 logging.basicConfig(
     level=logging.INFO,
@@ -149,6 +190,7 @@ def execute_pipeline_cycle(cycle_id: int, api_only: bool = False) -> dict:
 
     # Phase 2: Browser CDP Collectors
     if not api_only:
+        sweep_ephemeral_cdp_tabs()  # Clean up any stale tabs before running
         browser_dir = ROOT_DIR / "Collectors" / "Browser"
         browser_scripts = [browser_dir / s for s in BROWSER_COLLECTORS if (browser_dir / s).exists()]
         log.info(f">> Phase 2: Executing {len(browser_scripts)} Browser Collectors...")
@@ -161,6 +203,7 @@ def execute_pipeline_cycle(cycle_id: int, api_only: bool = False) -> dict:
             else:
                 failed += 1
                 log.warning(f"   [BROWSER] {name:<35} FAIL/WARN ({dt:.2f}s) - {err[:120]}")
+        sweep_ephemeral_cdp_tabs()  # Immediately clean up any leaked tabs after running
 
     # Phase 3: Telemetry & Parquet Audit
     auditor_script = ROOT_DIR / "Terminal" / "parquet_checklist_auditor.py"
@@ -207,6 +250,9 @@ def execute_pipeline_cycle(cycle_id: int, api_only: bool = False) -> dict:
     return status_data
 
 def main():
+    if not acquire_singleton_lock():
+        sys.exit(0)
+
     parser = argparse.ArgumentParser(description="Standalone Pure-Parquet Pipeline Daemon")
     parser.add_argument("--once", action="store_true", help="Execute single cycle and exit")
     parser.add_argument("--api-only", action="store_true", help="Execute only high-speed pure-API collectors")
