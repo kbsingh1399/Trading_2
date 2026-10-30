@@ -44,50 +44,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer  
 **Dispatched At**: `YYYY-MM-DD HH:MM:SS IST` (`YYYY-MM-DD HH:MM:SS UTC`) | **Watchdog Task**: `task-XXXXXX`
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_XXX --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -915,53 +915,54 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 
 ---
 
-### ⏳ Cycle_025 Scorecard: PRE-INITIALIZED & ARMED
+### ⏳ Cycle_025 Scorecard: IN PROGRESS
+**Timestamp**: 2026-10-30 10:07:00 IST (2026-10-30 04:37:00 UTC)
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_025 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -981,50 +982,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_026 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_026 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1044,50 +1045,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_027 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_027 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1107,50 +1108,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_028 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_028 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1170,50 +1171,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_029 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_029 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1233,50 +1234,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_030 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_030 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1296,50 +1297,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_031 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_031 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1359,50 +1360,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_032 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_032 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1422,50 +1423,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_033 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_033 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1485,50 +1486,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_034 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_034 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1548,50 +1549,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_035 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_035 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1611,50 +1612,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_036 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_036 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1674,50 +1675,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_037 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_037 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1737,50 +1738,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_038 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_038 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1800,50 +1801,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_039 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_039 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1863,50 +1864,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_040 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_040 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1926,50 +1927,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_041 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_041 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -1989,50 +1990,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_042 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_042 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2052,50 +2053,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_043 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_043 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2115,50 +2116,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_044 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_044 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2178,50 +2179,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_045 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_045 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2241,50 +2242,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_046 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_046 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2304,50 +2305,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_047 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_047 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2367,50 +2368,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_048 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_048 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2430,50 +2431,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_049 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_049 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2493,50 +2494,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_050 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_050 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2556,50 +2557,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_051 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_051 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2619,50 +2620,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_052 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_052 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2682,50 +2683,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_053 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_053 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2745,50 +2746,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_054 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_054 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2808,50 +2809,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_055 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_055 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2871,50 +2872,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_056 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_056 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2934,50 +2935,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_057 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_057 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -2997,50 +2998,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_058 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_058 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3060,50 +3061,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_059 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_059 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3123,50 +3124,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_060 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_060 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3186,50 +3187,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_061 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_061 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3249,50 +3250,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_062 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_062 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3312,50 +3313,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_063 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_063 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3375,50 +3376,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_064 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_064 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3438,50 +3439,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_065 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_065 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3501,50 +3502,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_066 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_066 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3564,50 +3565,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_067 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_067 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3627,50 +3628,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_068 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_068 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3690,50 +3691,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_069 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_069 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3753,50 +3754,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_070 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_070 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3816,50 +3817,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_071 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_071 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3879,50 +3880,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_072 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_072 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -3942,50 +3943,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_073 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_073 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4005,50 +4006,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_074 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_074 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4068,50 +4069,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_075 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_075 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4131,50 +4132,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_076 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_076 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4194,50 +4195,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_077 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_077 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4257,50 +4258,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_078 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_078 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4320,50 +4321,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_079 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_079 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4383,50 +4384,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_080 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_080 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4446,50 +4447,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_081 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_081 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4509,50 +4510,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_082 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_082 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4572,50 +4573,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_083 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_083 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4635,50 +4636,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_084 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_084 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4698,50 +4699,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_085 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_085 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4761,50 +4762,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_086 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_086 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4824,50 +4825,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_087 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_087 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4887,50 +4888,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_088 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_088 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -4950,50 +4951,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_089 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_089 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5013,50 +5014,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_090 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_090 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5076,50 +5077,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_091 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_091 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5139,50 +5140,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_092 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_092 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5202,50 +5203,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_093 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_093 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5265,50 +5266,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_094 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_094 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5328,50 +5329,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_095 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_095 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5391,50 +5392,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_096 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_096 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5454,50 +5455,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_097 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_097 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5517,50 +5518,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_098 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_098 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5580,50 +5581,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_099 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_099 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
@@ -5643,50 +5644,50 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 ### ⏳ Cycle_100 Scorecard: PRE-INITIALIZED & ARMED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_100 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
