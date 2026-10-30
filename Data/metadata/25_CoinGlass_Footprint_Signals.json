@@ -2,7 +2,7 @@
   "feed_name": "25_CoinGlass_Footprint_Signals",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 1609,
+  "row_count": 1795,
   "column_count": 17,
   "columns": [
     "timestamp_ist",
@@ -23,9 +23,9 @@
     "latest_signal_kpi",
     "latest_signal_bias"
   ],
-  "byte_size": 56101,
-  "timestamp_ist": "2026-10-30 19:33:21 IST",
-  "timestamp_utc": "2026-10-30 14:03:21 UTC",
-  "epoch_utc": 1793369001.705481,
-  "write_duration_ms": 11.79
+  "byte_size": 62094,
+  "timestamp_ist": "2026-10-30 19:43:57 IST",
+  "timestamp_utc": "2026-10-30 14:13:57 UTC",
+  "epoch_utc": 1793369637.479493,
+  "write_duration_ms": 12.05
 }

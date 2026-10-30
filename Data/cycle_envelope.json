@@ -1,17 +1,17 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle_035",
-  "uuid": "d05ecf04-b79e-4a7b-a1b6-94907bf2a715",
-  "dispatch_nonce": "9f199693-d9a1-4b7b-beec-77bb9393a433",
-  "cutoff_utc": "2026-10-30 13:52:30 UTC",
+  "cycle_id": "Cycle_036",
+  "uuid": "cce23021-7bf0-4c7d-bdbc-9e5fc2e19b1c",
+  "dispatch_nonce": "d51f52a2-0e4d-4cca-87f6-acc41593ae06",
+  "cutoff_utc": "2026-10-30 14:12:17 UTC",
   "provenance": {
     "git_commit": "b41aee68bd5d3ec2edb8c354f83eafca6a2403e1",
     "git_tree": "5ffac3541022ccfe2420e4537baea0a5ad98fdf0",
     "prompt_sha256": "35c6c1e562819293257a410102cd92ef2b54da6a2d845f7250ebe84bec5e4e46",
     "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
     "evidence_manifest_sha256": "44fd601203169dc3f0d6a3dc2f1b2ff9925c5af5c293c5883d480c2a73aa6d65",
-    "multi_feed_certificate_sha256": "edcbe029ad5353f7f185ef4e1e8312e75e533c3757fa9fe69ceea665d506ad69",
-    "physical_examination_certificate_sha256": "06b2f39bb00d331d2ba518174542618841da928221808ea019a32c2a0d7830cb",
+    "multi_feed_certificate_sha256": "a1ebac008d05949153227db476b937847a7bad07e0cd94a54b6aae398ce66291",
+    "physical_examination_certificate_sha256": "382a5dd8aed53bfae68b377b51b746fbdbd7023363363076ff7a0f4a86adbf84",
     "parquet_freshness_verified": true,
     "parquet_audit_scorecard_fresh": true
   },
@@ -37,7 +37,7 @@
         "sl": 75850.0,
         "tp": 77600.0,
         "risk_usd": 5.0,
-        "rr_ratio": 2.50
+        "rr_ratio": 2.5
       },
       {
         "ticket": 19532057,
@@ -48,7 +48,7 @@
         "sl": 577.5,
         "tp": 605.5,
         "risk_usd": 8.0,
-        "rr_ratio": 2.50
+        "rr_ratio": 2.5
       },
       {
         "ticket": 19532058,
@@ -59,7 +59,7 @@
         "sl": 121.2,
         "tp": 125.75,
         "risk_usd": 9.1,
-        "rr_ratio": 2.50
+        "rr_ratio": 2.5
       }
     ]
   },
@@ -69,7 +69,7 @@
     "solvency_kernel_usd": 0.0,
     "base_capital_usd": 4763.23,
     "operator_floor_override": "MANDATE_NO_HARD_FLOOR_ACTIVE_TRADING",
-    "total_contingent_risk_usd": 22.10,
+    "total_contingent_risk_usd": 22.1,
     "post_joint_stress_equity_usd": 4741.13,
     "capital_mode": "ACTIVE_HIGH_CONFLUENCE_OPERATION",
     "risk_min_usd": 1.0,

@@ -1424,3 +1424,19 @@ Evaluate each candidate against the available evidence, confluence strength, mar
   - Synced `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`, `Data/cycle_envelope.json`, and `CYCLE_035_EXECUTION_RECEIPTS.json`.
   - Pushed git telemetry snapshot to `origin/main`.
   - AutoWake timer set for 20 minutes (1200 seconds). Ready for Cycle_036.
+
+
+---
+
+### ⏳ Cycle_036 Scorecard: IN PROGRESS
+- **Cycle ID**: `Cycle_036`
+- **Wakeup Timestamp**: `2026-10-30 19:40:25 IST` (`2026-10-30 14:10:25 UTC`)
+- **Operator Mandate**: "start next cycle." Active high-confluence trading authorized ($R:R \ge 2.50R$, nominal risk $\le \$10.00$ USD, capacity $N \le 3$, Pitfall 24 immune).
+- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+- [ ] **Step 1: Identify eligible assets (spread screening across all 4 macro classes)**
+- [ ] **Step 2: 100% Mechanical Forensics & Complete 15-Feed Physical Examination**
+- [ ] **Step 3: Synchronise intelligence ledger and portfolio registry**
+- [ ] **Step 4: Dispatch independent analysis to Arena.ai and Z.ai**
+- [ ] **Step 5: Activate AutoWake daemon and await completion of both systems**
+- [ ] **Step 6: Tri-Council Triangulation & Broker Desk Execution**
+- [ ] **Step 7: Update records and restart 20-minute AutoWake cycle**
