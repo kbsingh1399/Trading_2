@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURMXN
 **Canonical Key**: `EURMXN` | **Broker Instrument**: `EURMXN.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `21.11` | **Live Ask Quote**: `21.12` | **Mid Price**: `21.11`
-- **Spread Points**: `280.00` | **Spread BPS**: `1.33 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `21.11` | **Live Ask Quote**: `21.11` | **Mid Price**: `21.11`
+- **Spread Points**: `286.00` | **Spread BPS**: `1.35 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `21.26` | Lower -3.00σ Band: `20.97`
   * Upper +2.51σ Band: `21.23` | Lower -2.51σ Band: `21.00`
-  * Upper +2.01σ Band: `21.20` | Lower -2.01σ Band: `21.03`
+  * Upper +2.01σ Band: `21.20` | Lower -2.01σ Band: `21.02`
   * Upper +2.00σ Band: `21.20` | Lower -2.00σ Band: `21.03`
   * Upper +1.28σ Band: `21.17` | Lower -1.28σ Band: `21.05`
   * Upper +1.00σ Band: `21.16` | Lower -1.00σ Band: `21.07`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`21.11` | EMA-20=`21.11` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`21.11` (Slope: `+0.0000`) | EMA-100=`21.11`
   * Institutional Anchors: EMA-144=`21.11` | EMA-200=`21.11` (Slope: `+0.0000`) | EMA-233=`21.11`
-- **Range Boundaries**: 24H High=`21.33` | 24H Low=`20.90` | Weekly High=`21.54` | Weekly Low=`20.69`
+- **Range Boundaries**: 24H High=`21.32` | 24H Low=`20.90` | Weekly High=`21.54` | Weekly Low=`20.69`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`21.20` | POC=`21.11` | VAL=`21.03`
   * Prior Day Extremes: PDH=`21.24` | PDL=`20.99` | PDC=`21.11`
   * Monday Range Blueprint: High=`21.22` | Mid=`21.11` | Low=`21.01`
-  * Developing Weekly Value Area: Weekly VAH=`21.28` | Weekly POC=`21.11` | Weekly VAL=`20.95`
+  * Developing Weekly Value Area: Weekly VAH=`21.28` | Weekly POC=`21.11` | Weekly VAL=`20.94`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`21.16` | Low=`21.07`
   * London Session (08:00-16:00 UTC): High=`21.20` | Low=`21.03`

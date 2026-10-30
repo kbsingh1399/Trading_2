@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDJPY
 **Canonical Key**: `AUDJPY` | **Broker Instrument**: `AUDJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `110.61` | **Live Ask Quote**: `110.62` | **Mid Price**: `110.62`
-- **Spread Points**: `9.00` | **Spread BPS**: `0.81 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `110.62` | **Live Ask Quote**: `110.62` | **Mid Price**: `110.62`
+- **Spread Points**: `5.00` | **Spread BPS**: `0.45 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `110.62` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `110.71` | VWAP Z-Score: `-0.68` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.1186` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `45.79` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `111.39` | Lower -3.00σ Band: `109.84`
-  * Upper +2.51σ Band: `111.23` | Lower -2.51σ Band: `110.01`
-  * Upper +2.01σ Band: `111.08` | Lower -2.01σ Band: `110.15`
-  * Upper +2.00σ Band: `111.06` | Lower -2.00σ Band: `110.18`
-  * Upper +1.28σ Band: `110.93` | Lower -1.28σ Band: `110.31`
-  * Upper +1.00σ Band: `110.84` | Lower -1.00σ Band: `110.40`
+  * Upper +3.00σ Band: `111.06` | Lower -3.00σ Band: `110.35`
+  * Upper +2.51σ Band: `111.00` | Lower -2.51σ Band: `110.41`
+  * Upper +2.01σ Band: `110.94` | Lower -2.01σ Band: `110.47`
+  * Upper +2.00σ Band: `110.94` | Lower -2.00σ Band: `110.47`
+  * Upper +1.28σ Band: `110.86` | Lower -1.28σ Band: `110.56`
+  * Upper +1.00σ Band: `110.82` | Lower -1.00σ Band: `110.59`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`110.62` | EMA-20=`110.62` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`110.62` (Slope: `+0.0000`) | EMA-100=`110.62`
-  * Institutional Anchors: EMA-144=`110.62` | EMA-200=`110.62` (Slope: `+0.0000`) | EMA-233=`110.62`
-- **Range Boundaries**: 24H High=`111.72` | 24H Low=`109.51` | Weekly High=`112.83` | Weekly Low=`108.41`
+  * Fast EMA Array: EMA-9=`110.62` | EMA-20=`110.67` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`110.76` (Slope: `+0.0000`) | EMA-100=`110.86`
+  * Institutional Anchors: EMA-144=`110.91` | EMA-200=`110.94` (Slope: `-0.0342`) | EMA-233=`110.96`
+- **Range Boundaries**: 24H High=`111.23` | 24H Low=`110.37` | Weekly High=`111.56` | Weekly Low=`110.37`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `110.87` (Distance: `-0.23%`)
-  * Point of Control (POC) = `110.79` (Distance: `-0.16%`)
-  * Value Area Low (VAL) = `110.64` (Distance: `-0.02%`)
+  * Value Area High (VAH) = `110.87` (Distance: `-0.22%`)
+  * Point of Control (POC) = `110.79` (Distance: `-0.15%`)
+  * Value Area Low (VAL) = `110.64` (Distance: `-0.01%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`111.33` | POC=`111.07` | VAL=`110.98`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `110.64` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `109.43` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `113.67`
-  * Mathematical Lot Sizing: **`8.24 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `110.49` (Risk Distance: `0.1498` pts)
+  * +2.5R Take Profit: `111.01`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `110.87` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `112.09` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `107.84`
-  * Mathematical Lot Sizing: **`8.24 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `111.02` (Risk Distance: `0.1498` pts)
+  * +2.5R Take Profit: `110.49`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

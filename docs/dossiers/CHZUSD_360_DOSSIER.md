@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0117` | VWAP Z-Score: `+1.41` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000099` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `55.36` (State: `NEUTRAL`)
+  * Session VWAP: `0.0117` | VWAP Z-Score: `+1.36` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000098` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `54.58` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0125` | Lower -3.00σ Band: `0.0109`
   * Upper +2.51σ Band: `0.0124` | Lower -2.51σ Band: `0.0110`
   * Upper +2.01σ Band: `0.0123` | Lower -2.01σ Band: `0.0112`
-  * Upper +2.00σ Band: `0.0122` | Lower -2.00σ Band: `0.0112`
+  * Upper +2.00σ Band: `0.0123` | Lower -2.00σ Band: `0.0112`
   * Upper +1.28σ Band: `0.0121` | Lower -1.28σ Band: `0.0114`
   * Upper +1.00σ Band: `0.0120` | Lower -1.00σ Band: `0.0114`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0121` | EMA-20=`0.0120` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0120` (Slope: `+0.0000`) | EMA-100=`0.0122`
-  * Institutional Anchors: EMA-144=`0.0123` | EMA-200=`0.0124` (Slope: `-0.2953`) | EMA-233=`0.0124`
+  * Institutional Anchors: EMA-144=`0.0123` | EMA-200=`0.0124` (Slope: `-0.2948`) | EMA-233=`0.0124`
 - **Range Boundaries**: 24H High=`0.0130` | 24H Low=`0.0111` | Weekly High=`0.0130` | Weekly Low=`0.0111`
 
 ---
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -1,090.00 USD | 4,390.00 USD | **`ACCUMULATION`** |
-| `15m` | 7,150.00 USD | 35,990.00 USD | **`ACCUMULATION`** |
-| `30m` | 11,020.00 USD | 64,510.00 USD | **`ACCUMULATION`** |
-| `1h` | 3,050.00 USD | 69,380.00 USD | **`ACCUMULATION`** |
-| `2h` | 25,540.00 USD | 142,150.00 USD | **`ACCUMULATION`** |
-| `4h` | 40,170.00 USD | 118,370.00 USD | **`ACCUMULATION`** |
-| `6h` | 123,170.00 USD | 123,860.00 USD | **`ACCUMULATION`** |
-| `8h` | 41,540.00 USD | -309,710.00 USD | **`DISTRIBUTION`** |
-| `12h` | -29,630.00 USD | -412,270.00 USD | **`DISTRIBUTION`** |
-| `24h` | 3,950.00 USD | -15,830.00 USD | **`DISTRIBUTION`** |
-| `1w` | -940,710.00 USD | -847,760.00 USD | **`DISTRIBUTION`** |
+| `5m` | 1,390.00 USD | 6,810.00 USD | **`ACCUMULATION`** |
+| `15m` | 5,500.00 USD | 9,480.00 USD | **`ACCUMULATION`** |
+| `30m` | 19,340.00 USD | 59,740.00 USD | **`ACCUMULATION`** |
+| `1h` | 16,500.00 USD | 53,640.00 USD | **`ACCUMULATION`** |
+| `2h` | 27,150.00 USD | 139,130.00 USD | **`ACCUMULATION`** |
+| `4h` | 31,080.00 USD | 113,130.00 USD | **`ACCUMULATION`** |
+| `6h` | 117,970.00 USD | 124,490.00 USD | **`ACCUMULATION`** |
+| `8h` | 81,870.00 USD | -320,190.00 USD | **`DISTRIBUTION`** |
+| `12h` | -22,550.00 USD | -395,790.00 USD | **`DISTRIBUTION`** |
+| `24h` | 11,780.00 USD | -19,600.00 USD | **`DISTRIBUTION`** |
+| `1w` | -928,000.00 USD | -847,990.00 USD | **`DISTRIBUTION`** |
 | `30d` | -7,010,000.00 USD | -11,160,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-1.09K` | 15m=`+7.15K` | 1h=`+3.05K` | 24h=`+3.95K`
-* Futures Capital Netflows: 5m=`+4.39K` | 15m=`+35.99K` | 1h=`+69.38K` | 24h=`-15.83K`
+* Spot Capital Netflows: 5m=`+1.39K` | 15m=`+5.50K` | 1h=`+16.50K` | 24h=`+11.78K`
+* Futures Capital Netflows: 5m=`+6.81K` | 15m=`+9.48K` | 1h=`+53.64K` | 24h=`-19.60K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

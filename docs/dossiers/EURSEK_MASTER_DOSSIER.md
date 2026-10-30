@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSEK
 **Canonical Key**: `EURSEK` | **Broker Instrument**: `EURSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `10.98` | **Live Ask Quote**: `10.99` | **Mid Price**: `10.99`
-- **Spread Points**: `107.00` | **Spread BPS**: `0.97 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `10.99` | **Live Ask Quote**: `10.99` | **Mid Price**: `10.99`
+- **Spread Points**: `108.00` | **Spread BPS**: `0.98 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -31,8 +31,8 @@
   * Upper +2.51σ Band: `11.05` | Lower -2.51σ Band: `10.93`
   * Upper +2.01σ Band: `11.03` | Lower -2.01σ Band: `10.94`
   * Upper +2.00σ Band: `11.03` | Lower -2.00σ Band: `10.94`
-  * Upper +1.28σ Band: `11.02` | Lower -1.28σ Band: `10.95`
-  * Upper +1.00σ Band: `11.01` | Lower -1.00σ Band: `10.96`
+  * Upper +1.28σ Band: `11.02` | Lower -1.28σ Band: `10.96`
+  * Upper +1.00σ Band: `11.01` | Lower -1.00σ Band: `10.97`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`10.99` | EMA-20=`10.99` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`10.99` (Slope: `+0.0000`) | EMA-100=`10.99`
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`11.04` | Mid=`10.99` | Low=`10.93`
   * Developing Weekly Value Area: Weekly VAH=`11.07` | Weekly POC=`10.99` | Weekly VAL=`10.90`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`11.01` | Low=`10.96`
+  * Asian Session (00:00-08:00 UTC): High=`11.01` | Low=`10.97`
   * London Session (08:00-16:00 UTC): High=`11.03` | Low=`10.94`
   * New York Session (13:00-21:00 UTC): High=`11.05` | Low=`10.92`
   * Initial Balance (First Hour): IB High=`11.02` | IB Low=`10.95`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `11.02` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `12.22` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `8.01`
+  * +2.5R Take Profit: `8.02`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

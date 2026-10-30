@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCNH
 **Canonical Key**: `AUDCNH` | **Broker Instrument**: `AUDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `4.71` | Lower -3.00σ Band: `4.64`
   * Upper +2.51σ Band: `4.70` | Lower -2.51σ Band: `4.65`
-  * Upper +2.01σ Band: `4.69` | Lower -2.01σ Band: `4.66`
+  * Upper +2.01σ Band: `4.69` | Lower -2.01σ Band: `4.65`
   * Upper +2.00σ Band: `4.69` | Lower -2.00σ Band: `4.66`
   * Upper +1.28σ Band: `4.69` | Lower -1.28σ Band: `4.66`
   * Upper +1.00σ Band: `4.68` | Lower -1.00σ Band: `4.67`

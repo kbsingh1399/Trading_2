@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `9.81` | **Live Ask Quote**: `9.81` | **Mid Price**: `9.81`
+- **Live Bid Quote**: `9.82` | **Live Ask Quote**: `9.82` | **Mid Price**: `9.82`
 - **Spread Points**: `74.00` | **Spread BPS**: `0.75 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -23,44 +23,44 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `9.81` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `9.82` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `9.88` | Lower -3.00σ Band: `9.74`
+  * Upper +3.00σ Band: `9.88` | Lower -3.00σ Band: `9.75`
   * Upper +2.51σ Band: `9.87` | Lower -2.51σ Band: `9.76`
-  * Upper +2.01σ Band: `9.85` | Lower -2.01σ Band: `9.77`
-  * Upper +2.00σ Band: `9.85` | Lower -2.00σ Band: `9.77`
-  * Upper +1.28σ Band: `9.84` | Lower -1.28σ Band: `9.78`
-  * Upper +1.00σ Band: `9.83` | Lower -1.00σ Band: `9.79`
+  * Upper +2.01σ Band: `9.86` | Lower -2.01σ Band: `9.78`
+  * Upper +2.00σ Band: `9.86` | Lower -2.00σ Band: `9.78`
+  * Upper +1.28σ Band: `9.84` | Lower -1.28σ Band: `9.79`
+  * Upper +1.00σ Band: `9.84` | Lower -1.00σ Band: `9.80`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`9.81` | EMA-20=`9.81` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`9.81` (Slope: `+0.0000`) | EMA-100=`9.81`
-  * Institutional Anchors: EMA-144=`9.81` | EMA-200=`9.81` (Slope: `+0.0000`) | EMA-233=`9.81`
-- **Range Boundaries**: 24H High=`9.91` | 24H Low=`9.71` | Weekly High=`10.01` | Weekly Low=`9.62`
+  * Fast EMA Array: EMA-9=`9.82` | EMA-20=`9.82` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`9.82` (Slope: `+0.0000`) | EMA-100=`9.82`
+  * Institutional Anchors: EMA-144=`9.82` | EMA-200=`9.82` (Slope: `+0.0000`) | EMA-233=`9.82`
+- **Range Boundaries**: 24H High=`9.91` | 24H Low=`9.72` | Weekly High=`10.01` | Weekly Low=`9.62`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `9.84` (Distance: `+0.00%`)
-  * Point of Control (POC) = `9.81` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `9.78` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `9.85` (Distance: `+0.00%`)
+  * Point of Control (POC) = `9.82` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `9.79` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`9.85` | POC=`9.81` | VAL=`9.77`
-  * Prior Day Extremes: PDH=`9.87` | PDL=`9.75` | PDC=`9.81`
-  * Monday Range Blueprint: High=`9.86` | Mid=`9.81` | Low=`9.76`
-  * Developing Weekly Value Area: Weekly VAH=`9.89` | Weekly POC=`9.81` | Weekly VAL=`9.73`
+  * Prior Day Value Area: VAH=`9.86` | POC=`9.82` | VAL=`9.78`
+  * Prior Day Extremes: PDH=`9.88` | PDL=`9.76` | PDC=`9.82`
+  * Monday Range Blueprint: High=`9.87` | Mid=`9.82` | Low=`9.77`
+  * Developing Weekly Value Area: Weekly VAH=`9.89` | Weekly POC=`9.82` | Weekly VAL=`9.74`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`9.83` | Low=`9.79`
-  * London Session (08:00-16:00 UTC): High=`9.85` | Low=`9.77`
-  * New York Session (13:00-21:00 UTC): High=`9.87` | Low=`9.75`
-  * Initial Balance (First Hour): IB High=`9.84` | IB Low=`9.78`
+  * Asian Session (00:00-08:00 UTC): High=`9.84` | Low=`9.80`
+  * London Session (08:00-16:00 UTC): High=`9.86` | Low=`9.78`
+  * New York Session (13:00-21:00 UTC): High=`9.88` | Low=`9.76`
+  * Initial Balance (First Hour): IB High=`9.85` | IB Low=`9.79`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `9.77` - `9.85`
-  * Optimal Trade Entry (OTE 0.705): `9.83`
+  * Golden Pocket Zone (0.618 - 0.650): `9.78` - `9.86`
+  * Optimal Trade Entry (OTE 0.705): `9.84`
   * Structural Invalidation Anchor (0.786): `9.89`
 
 ---
@@ -267,14 +267,14 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `9.78` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `8.58` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `12.78`
+  * Execution Entry: `9.79` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `8.59` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `12.79`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `9.84` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `11.04` (Risk Distance: `1.20` pts)
+  * Execution Entry: `9.85` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `11.05` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `6.84`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

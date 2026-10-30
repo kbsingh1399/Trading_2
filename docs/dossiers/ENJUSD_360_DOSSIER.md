@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ENJUSD
 **Canonical Key**: `ENJUSD` | **Broker Instrument**: `ENJUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:02:58 IST` (`2026-10-30 09:32:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,12 +23,12 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0217` | VWAP Z-Score: `+1.25` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000252` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0217` | VWAP Z-Score: `+1.22` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000248` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `58.16` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0227` | Lower -3.00σ Band: `0.0206`
-  * Upper +2.51σ Band: `0.0225` | Lower -2.51σ Band: `0.0208`
+  * Upper +2.51σ Band: `0.0226` | Lower -2.51σ Band: `0.0208`
   * Upper +2.01σ Band: `0.0224` | Lower -2.01σ Band: `0.0210`
   * Upper +2.00σ Band: `0.0224` | Lower -2.00σ Band: `0.0210`
   * Upper +1.28σ Band: `0.0221` | Lower -1.28σ Band: `0.0212`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0219` | EMA-20=`0.0218` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0221` (Slope: `+0.0000`) | EMA-100=`0.0227`
-  * Institutional Anchors: EMA-144=`0.0231` | EMA-200=`0.0234` (Slope: `-0.8690`) | EMA-233=`0.0235`
+  * Institutional Anchors: EMA-144=`0.0230` | EMA-200=`0.0233` (Slope: `-0.8323`) | EMA-233=`0.0235`
 - **Range Boundaries**: 24H High=`0.0249` | 24H Low=`0.0207` | Weekly High=`0.0249` | Weekly Low=`0.0207`
 
 ---
