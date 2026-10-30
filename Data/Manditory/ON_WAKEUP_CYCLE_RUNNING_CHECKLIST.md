@@ -28,6 +28,7 @@ Establish a continuous, evidence-driven, multi-agent trading intelligence loop t
 6. **Continuous operation**: Repeat the complete workflow every 20 minutes after each cycle finishes.
 7. **Failure handling**: If a system, daemon, or data source fails, report the failure, preserve the current state, and avoid treating incomplete work as completed.
 8. **Mandatory Exclusive Dossier Use**: ALL analysis MUST use ONLY the comprehensive 360° master dossier files (`docs/dossiers/<ASSET>_MASTER_DOSSIER.md`). Isolated indicators or un-cross-referenced columns are strictly forbidden.
+9. **Mandatory 10-Section Full-Scale Examination Gate**: Every asset dossier consists of 10 structural sections. Reading surface parameters (e.g. VAH/VAL/POC only) while ignoring orderflow, whale depth, or liquidation max pain is STRICTLY FORBIDDEN. All 10 sections must be physically examined and verified to EOF via programmatic AST/file extraction and recorded in `CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json` before any trade setup is formulated.
 
 ---
 
@@ -40,11 +41,21 @@ On every wakeup, execute these 7 steps in order. Do NOT check a step until the w
 - Read `00_MT5_Account_Telemetry.parquet` and filter against broker spread thresholds (TradFi ≤ 5.0 bps, Crypto ≤ 25.0 bps).
 - Establish the complete list of eligible candidates (across Crypto, Forex, Indices, and Metals) before proceeding.
 
-### Step 2: Conduct Comprehensive Asset-Level Forensics
+### Step 2: Conduct Comprehensive Asset-Level Forensics & Mandatory 10-Section Audit
 - **Read, analyse, and perform forensic examination of every individual dossier FULL LENGTH document** belonging to every eligible asset across CRYPTO, FOREX, INDICES and METALS.
-- Every `.md` file associated with each eligible asset must be examined individually. Skipping, summarising without inspection, or selectively reviewing documents is strictly prohibited.
-- Based on this comprehensive review, formulate high-confluence trade setups supported by evidence, market conditions, and the available intelligence.
-- This requirement is mandatory and applies equally to Antigravity, Arena.ai, and Z.ai. Each system must independently perform its own analysis using all relevant dossier documents and available capabilities.
+- **Physical Examination Execution Mandate**: Every single `.md` dossier file associated with each eligible asset must be physically opened and parsed to EOF. Surface-only inspection (skipping sections or only checking Value Area boundaries) is strictly prohibited.
+- **Mandatory 10-Section Audit Gate per Asset Dossier**:
+  1. *Section 1: MT5 Live Broker Telemetry & True Contract Specifications* (Bid, Ask, Spread BPS, Contract Size, Margin).
+  2. *Section 2: Technical Profile, VWAP Dispersion Grid & ATR-14* (VWAP Mid, ±1.0σ to ±3.0σ dispersion, ATR).
+  3. *Section 3: Auction Market Structure & Volume Profile Framework* (Developing VAH, VAL, POC, Session High/Low, LVN shelves).
+  4. *Section 4: Multi-Timeframe Cumulative Volume Delta (CVD) & Options Surface* (5m, 15m, 1h, 4h Delta, CVD Z-Score, Absorption vs. Aggressive flow).
+  5. *Section 5: Institutional Whale Armor, Hyperdash Intel & L2 Depth Ladders* (Top defending Bid/Ask walls, depth in USD, persistence > 180s, orders ≥ $100K).
+  6. *Section 6: Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map* (24H, 48H, 7D Short & Long Max Pain strikes, liquidation clusters; mandatory Pitfall 24 immunity check).
+  7. *Section 7: Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates* (Funding rate baseline, long/short ratio skew).
+  8. *Section 8: Microstructure Footprint Bars, Tape Imbalances & Macro Capital Netflows* (Stacked imbalances, delta divergence).
+  9. *Section 9: TradFi & Interbank Market Mechanics* (Rollover spread buffer, session open/close boundaries).
+  10. *Section 10: Quantitative Trade Formulation & Autonomous Broker Execution Card* (Stated postured action, Candidate Long/Short Cards, exact Entry/SL/TP, R:R ≥ 2.5R, nominal risk ≤ $10.00 USD).
+- **Verification Evidence Artifact**: All 10 extracted section attributes must be programmatically compiled and saved to `docs/trade_plans/CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json` with zero missing fields before marking this step complete.
 
 ### Step 3: Synchronise the Intelligence Ledger and Portfolio Registry
 - Review and update `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md` using the latest information from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`.
