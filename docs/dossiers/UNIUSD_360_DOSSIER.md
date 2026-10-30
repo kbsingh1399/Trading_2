@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:01:31 IST` (`2026-10-30 04:31:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:04:33 IST` (`2026-10-30 04:34:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -100,26 +100,26 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `334` | `0x5396...8b79` | `LONG` | 6,751,298.65 USD | `999,999.80` | `6.88` | `6.76` | `5.66` | -129,399.67 USD | `-1.92%` | `5X Cross` |
-| `750` | `0x9df2...c665` | `SHORT` | 3,041,325.00 USD | `450,000.00` | `4.49` | `6.76` | `73.52` | -1,020,324.87 USD | `-33.55%` | `10X Cross` |
-| `815` | `0xecb6...2b00` | `SHORT` | 2,787,853.54 USD | `412,495.90` | `6.63` | `6.76` | `70.96` | -52,620.01 USD | `-1.89%` | `10X Cross` |
-| `833` | `0xbf6d...ecc0` | `LONG` | 2,731,345.05 USD | `404,134.80` | `7.42` | `6.76` | `5.18` | -268,078.54 USD | `-9.81%` | `10X Cross` |
-| `878` | `0xcd21...9826` | `LONG` | 2,583,578.66 USD | `382,990.70` | `7.52` | `6.76` | `5.39` | -296,101.45 USD | `-11.46%` | `10X Cross` |
-| `995` | `0xdd53...2b13` | `SHORT` | 2,238,117.15 USD | `331,155.90` | `7.28` | `6.76` | `186.76` | 172,489.15 USD | `+7.71%` | `3X Cross` |
-| `1050` | `0x60a8...85f6` | `SHORT` | 2,072,696.09 USD | `306,870.60` | `6.48` | `6.76` | `60.61` | -83,496.07 USD | `-4.03%` | `10X Cross` |
-| `1081` | `0xb46b...538e` | `SHORT` | 2,026,290.00 USD | `300,000.00` | `8.20` | `6.76` | `21.28` | 433,494.42 USD | `+21.39%` | `10X Cross` |
-| `1242` | `0xf21d...3b2d` | `LONG` | 1,792,381.47 USD | `265,479.00` | `4.32` | `6.76` | `4.10` | 646,122.45 USD | `+36.05%` | `10X Isolated` |
-| `1336` | `0xf472...5d8b` | `LONG` | 1,629,830.34 USD | `241,374.10` | `4.44` | `6.76` | `0.000000` | 557,187.06 USD | `+34.19%` | `5X Cross` |
-| `1466` | `0xb5b3...7a08` | `LONG` | 1,485,770.00 USD | `220,000.00` | `7.36` | `6.76` | `1.75` | -134,440.15 USD | `-9.05%` | `10X Cross` |
-| `1518` | `0x265e...7f70` | `LONG` | 1,422,603.05 USD | `210,665.50` | `7.39` | `6.76` | `0.000000` | -134,730.14 USD | `-9.47%` | `3X Cross` |
-| `1582` | `0xcac1...26b3` | `SHORT` | 1,351,251.68 USD | `200,336.80` | `7.76` | `6.76` | `49.51` | 202,596.29 USD | `+14.99%` | `10X Cross` |
-| `1662` | `0x9aa5...58af` | `SHORT` | 1,269,097.29 USD | `187,897.50` | `7.34` | `6.76` | `54.15` | 110,168.74 USD | `+8.68%` | `10X Cross` |
-| `1717` | `0x12d2...f97f` | `LONG` | 1,221,134.96 USD | `180,697.40` | `8.85` | `6.76` | `0.000000` | -378,784.94 USD | `-31.02%` | `10X Cross` |
-| `1720` | `0x7cee...fc93` | `SHORT` | 1,219,267.87 USD | `180,405.10` | `6.84` | `6.76` | `21.51` | 14,548.72 USD | `+1.19%` | `5X Cross` |
-| `1775` | `0x645b...87b8` | `SHORT` | 1,172,734.24 USD | `173,519.90` | `8.57` | `6.76` | `127.03` | 314,784.55 USD | `+26.84%` | `10X Cross` |
-| `1811` | `0x51f6...2b39` | `SHORT` | 1,145,465.72 USD | `169,485.20` | `7.30` | `6.76` | `13.82` | 91,201.49 USD | `+7.96%` | `10X Cross` |
-| `1819` | `0xb83d...6e36` | `SHORT` | 1,140,419.07 USD | `168,971.00` | `7.45` | `6.76` | `760.79` | 117,683.15 USD | `+10.32%` | `3X Cross` |
-| `1931` | `0xdf95...7d72` | `SHORT` | 1,044,986.12 USD | `154,714.20` | `6.56` | `6.76` | `245.26` | -29,388.66 USD | `-2.81%` | `10X Cross` |
+| `335` | `0x5396...8b79` | `LONG` | 6,760,098.65 USD | `999,999.80` | `6.88` | `6.77` | `5.66` | -120,599.68 USD | `-1.78%` | `5X Cross` |
+| `755` | `0x9df2...c665` | `SHORT` | 3,032,820.00 USD | `450,000.00` | `4.49` | `6.77` | `73.64` | -1,011,819.87 USD | `-33.36%` | `10X Cross` |
+| `813` | `0xecb6...2b00` | `SHORT` | 2,794,230.13 USD | `412,615.20` | `6.63` | `6.77` | `70.77` | -58,162.22 USD | `-2.08%` | `10X Cross` |
+| `834` | `0xbf6d...ecc0` | `LONG` | 2,723,383.59 USD | `404,134.80` | `7.42` | `6.77` | `5.18` | -276,039.99 USD | `-10.14%` | `10X Cross` |
+| `876` | `0xcd21...9826` | `LONG` | 2,584,497.84 USD | `382,990.70` | `7.52` | `6.77` | `5.40` | -295,182.28 USD | `-11.42%` | `10X Cross` |
+| `992` | `0xdd53...2b13` | `SHORT` | 2,242,355.95 USD | `331,155.90` | `7.28` | `6.77` | `186.78` | 168,250.35 USD | `+7.50%` | `3X Cross` |
+| `1050` | `0x60a8...85f6` | `SHORT` | 2,072,948.48 USD | `306,105.80` | `6.48` | `6.77` | `60.79` | -88,706.05 USD | `-4.28%` | `10X Cross` |
+| `1075` | `0xb46b...538e` | `SHORT` | 2,031,390.00 USD | `300,000.00` | `8.20` | `6.77` | `21.22` | 428,394.42 USD | `+21.09%` | `10X Cross` |
+| `1243` | `0xf21d...3b2d` | `LONG` | 1,788,903.69 USD | `265,479.00` | `4.32` | `6.77` | `4.10` | 642,644.67 USD | `+35.92%` | `10X Isolated` |
+| `1342` | `0xf472...5d8b` | `LONG` | 1,626,764.88 USD | `241,374.10` | `4.44` | `6.77` | `0.000000` | 554,121.61 USD | `+34.06%` | `5X Cross` |
+| `1470` | `0xb5b3...7a08` | `LONG` | 1,482,764.80 USD | `220,000.00` | `7.36` | `6.77` | `1.74` | -137,445.35 USD | `-9.27%` | `10X Cross` |
+| `1523` | `0x265e...7f70` | `LONG` | 1,420,243.60 USD | `210,665.50` | `7.39` | `6.77` | `0.000000` | -137,089.59 USD | `-9.65%` | `3X Cross` |
+| `1588` | `0xcac1...26b3` | `SHORT` | 1,350,029.63 USD | `200,336.80` | `7.76` | `6.77` | `49.42` | 203,818.35 USD | `+15.10%` | `10X Cross` |
+| `1676` | `0x9aa5...58af` | `SHORT` | 1,263,574.69 USD | `186,607.40` | `7.34` | `6.77` | `54.58` | 106,221.34 USD | `+8.41%` | `10X Cross` |
+| `1724` | `0x7cee...fc93` | `SHORT` | 1,217,409.70 USD | `180,405.10` | `6.84` | `6.77` | `21.61` | 16,406.89 USD | `+1.35%` | `5X Cross` |
+| `1727` | `0x12d2...f97f` | `LONG` | 1,216,075.43 USD | `180,697.40` | `8.85` | `6.77` | `0.000000` | -383,844.46 USD | `-31.56%` | `10X Cross` |
+| `1775` | `0x645b...87b8` | `SHORT` | 1,174,955.30 USD | `173,519.90` | `8.57` | `6.77` | `126.91` | 312,563.49 USD | `+26.60%` | `10X Cross` |
+| `1814` | `0x51f6...2b39` | `SHORT` | 1,147,635.13 USD | `169,485.20` | `7.30` | `6.77` | `13.88` | 89,032.07 USD | `+7.76%` | `10X Cross` |
+| `1833` | `0xb83d...6e36` | `SHORT` | 1,137,157.93 USD | `168,971.00` | `7.45` | `6.77` | `759.24` | 120,944.29 USD | `+10.64%` | `3X Cross` |
+| `1936` | `0xdf95...7d72` | `SHORT` | 1,047,724.56 USD | `154,714.20` | `6.56` | `6.77` | `244.76` | -32,127.10 USD | `-3.07%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -171,14 +171,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `1.97K` | Last 24h: `53.98K` | Last 3d: `142.71K` | Last 7d: `259.96K`
+  * Current Rate: `2.05K` | Last 24h: `53.98K` | Last 3d: `142.71K` | Last 7d: `259.96K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0100%` | **USDT OKX** | `-0.0007%` |
-| **USDT Bybit** | `-0.0229%` | **USDT KuCoin** | `0.0100%` |
+| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0002%` |
+| **USDT Bybit** | `-0.0224%` | **USDT KuCoin** | `0.0100%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0054%` | **USDT Bitget** | `0.0100%` |
+| **USDT Gate** | `0.0060%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -239,21 +239,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 18,310.00 USD | 48,040.00 USD | **`ACCUMULATION`** |
-| `15m` | 150,290.00 USD | 30,300.00 USD | **`ACCUMULATION`** |
-| `30m` | -91,240.00 USD | -887,320.00 USD | **`DISTRIBUTION`** |
-| `1h` | 270,380.00 USD | -92,930.00 USD | **`ACCUMULATION`** |
-| `2h` | -1,980,000.00 USD | -1,240,000.00 USD | **`DISTRIBUTION`** |
-| `4h` | -4,400,000.00 USD | -4,090,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -8,560,000.00 USD | -14,030,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -12,730,000.00 USD | -38,720,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -14,500,000.00 USD | -44,780,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -12,920,000.00 USD | -44,030,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -19,460,000.00 USD | -87,000,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -53,500,000.00 USD | -503,560,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 18,310.00 USD | 42,160.00 USD | **`ACCUMULATION`** |
+| `15m` | 150,290.00 USD | 4,200.00 USD | **`ACCUMULATION`** |
+| `30m` | -91,240.00 USD | -838,480.00 USD | **`DISTRIBUTION`** |
+| `1h` | 270,380.00 USD | -387,370.00 USD | **`DISTRIBUTION`** |
+| `2h` | -1,980,000.00 USD | -1,660,000.00 USD | **`DISTRIBUTION`** |
+| `4h` | -4,400,000.00 USD | 1,040,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -8,560,000.00 USD | -9,740,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -12,730,000.00 USD | -39,050,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -14,500,000.00 USD | -43,360,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -12,920,000.00 USD | -44,060,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -19,460,000.00 USD | -87,120,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -53,500,000.00 USD | -503,670,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`+18.31K` | 15m=`+150.29K` | 1h=`+270.38K` | 24h=`-12.92M`
-* Futures Capital Netflows: 5m=`+48.04K` | 15m=`+30.30K` | 1h=`-92.93K` | 24h=`-44.03M`
+* Futures Capital Netflows: 5m=`+42.16K` | 15m=`+4.20K` | 1h=`-387.37K` | 24h=`-44.06M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
