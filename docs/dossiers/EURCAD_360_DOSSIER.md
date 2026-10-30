@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCAD
 **Canonical Key**: `EURCAD` | **Broker Instrument**: `EURCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.56` (Distance: `-0.02%`)
+  * Value Area High (VAH) = `1.56` (Distance: `-0.04%`)
   * Point of Control (POC) = `1.56` (Distance: `+0.01%`)
-  * Value Area Low (VAL) = `1.56` (Distance: `+0.07%`)
+  * Value Area Low (VAL) = `1.56` (Distance: `+0.05%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.56` | POC=`1.56` | VAL=`1.56`

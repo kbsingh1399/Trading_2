@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDCAD
 **Canonical Key**: `NZDCAD` | **Broker Instrument**: `NZDCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.7876` | **Live Ask Quote**: `0.7877` | **Mid Price**: `0.7876`
-- **Spread Points**: `6.00` | **Spread BPS**: `0.76 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.7875` | **Live Ask Quote**: `0.7876` | **Mid Price**: `0.7876`
+- **Spread Points**: `9.00` | **Spread BPS**: `1.14 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `0.7869` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.7908` | POC=`0.7876` | VAL=`0.7845`
-  * Prior Day Extremes: PDH=`0.7924` | PDL=`0.7829` | PDC=`0.7876`
-  * Monday Range Blueprint: High=`0.7916` | Mid=`0.7876` | Low=`0.7837`
+  * Prior Day Value Area: VAH=`0.7907` | POC=`0.7876` | VAL=`0.7844`
+  * Prior Day Extremes: PDH=`0.7923` | PDL=`0.7828` | PDC=`0.7876`
+  * Monday Range Blueprint: High=`0.7915` | Mid=`0.7876` | Low=`0.7836`
   * Developing Weekly Value Area: Weekly VAH=`0.7939` | Weekly POC=`0.7876` | Weekly VAL=`0.7813`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.7892` | Low=`0.7861`
-  * London Session (08:00-16:00 UTC): High=`0.7908` | Low=`0.7845`
-  * New York Session (13:00-21:00 UTC): High=`0.7924` | Low=`0.7829`
-  * Initial Balance (First Hour): IB High=`0.7900` | IB Low=`0.7853`
+  * Asian Session (00:00-08:00 UTC): High=`0.7892` | Low=`0.7860`
+  * London Session (08:00-16:00 UTC): High=`0.7907` | Low=`0.7844`
+  * New York Session (13:00-21:00 UTC): High=`0.7923` | Low=`0.7828`
+  * Initial Balance (First Hour): IB High=`0.7899` | IB Low=`0.7852`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.7845` - `0.7908`
+  * Golden Pocket Zone (0.618 - 0.650): `0.7844` - `0.7907`
   * Optimal Trade Entry (OTE 0.705): `0.7892`
   * Structural Invalidation Anchor (0.786): `0.7939`
 
@@ -274,7 +274,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.7883` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.7890` (Risk Distance: `0.0010` pts)
+  * Spread-Padded Stop Loss: `0.7891` (Risk Distance: `0.0010` pts)
   * +2.5R Take Profit: `0.7858`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5643` | **Live Ask Quote**: `0.5643` | **Mid Price**: `0.5643`
-- **Spread Points**: `2.00` | **Spread BPS**: `0.35 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.5643` | **Live Ask Quote**: `0.5644` | **Mid Price**: `0.5644`
+- **Spread Points**: `4.00` | **Spread BPS**: `0.71 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5644` (Distance: `-0.02%`)
+  * Value Area High (VAH) = `0.5644` (Distance: `-0.01%`)
   * Point of Control (POC) = `0.5636` (Distance: `+0.13%`)
-  * Value Area Low (VAL) = `0.5631` (Distance: `+0.21%`)
+  * Value Area Low (VAL) = `0.5631` (Distance: `+0.22%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.5626` | POC=`0.5621` | VAL=`0.5611`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.5644` | Low=`0.5641`
   * Initial Balance (First Hour): IB High=`0.5642` | IB Low=`0.5634`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.5620` - `0.5666`
-  * Optimal Trade Entry (OTE 0.705): `0.5654`
-  * Structural Invalidation Anchor (0.786): `0.5688`
+  * Golden Pocket Zone (0.618 - 0.650): `0.5621` - `0.5666`
+  * Optimal Trade Entry (OTE 0.705): `0.5655`
+  * Structural Invalidation Anchor (0.786): `0.5689`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.5631` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5626` (Risk Distance: `0.000520` pts)
-  * +2.5R Take Profit: `0.5644`
-  * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.5626` (Risk Distance: `0.000550` pts)
+  * +2.5R Take Profit: `0.5645`
+  * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.5644` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.5650` (Risk Distance: `0.000520` pts)
+  * Spread-Padded Stop Loss: `0.5650` (Risk Distance: `0.000550` pts)
   * +2.5R Take Profit: `0.5631`
-  * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.5688`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.5689`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

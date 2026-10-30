@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NICKEL
 **Canonical Key**: `NICKEL` | **Broker Instrument**: `NICKEL.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `15544.78` | **Live Ask Quote**: `15562.47` | **Mid Price**: `15553.62`
-- **Spread Points**: `17690.00` | **Spread BPS**: `11.37 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `15552.78` | **Live Ask Quote**: `15570.72` | **Mid Price**: `15561.75`
+- **Spread Points**: `17940.00` | **Spread BPS**: `11.53 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `15526.19` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`15615.84` | POC=`15553.62` | VAL=`15491.41`
-  * Prior Day Extremes: PDH=`15646.95` | PDL=`15460.30` | PDC=`15553.62`
-  * Monday Range Blueprint: High=`15631.39` | Mid=`15553.62` | Low=`15475.86`
-  * Developing Weekly Value Area: Weekly VAH=`15678.05` | Weekly POC=`15553.62` | Weekly VAL=`15429.20`
+  * Prior Day Value Area: VAH=`15624.00` | POC=`15561.75` | VAL=`15499.50`
+  * Prior Day Extremes: PDH=`15655.12` | PDL=`15468.38` | PDC=`15561.75`
+  * Monday Range Blueprint: High=`15639.56` | Mid=`15561.75` | Low=`15483.94`
+  * Developing Weekly Value Area: Weekly VAH=`15686.24` | Weekly POC=`15561.75` | Weekly VAL=`15437.26`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`15584.73` | Low=`15522.52`
-  * London Session (08:00-16:00 UTC): High=`15615.84` | Low=`15491.41`
-  * New York Session (13:00-21:00 UTC): High=`15646.95` | Low=`15460.30`
-  * Initial Balance (First Hour): IB High=`15600.29` | IB Low=`15506.96`
+  * Asian Session (00:00-08:00 UTC): High=`15592.87` | Low=`15530.63`
+  * London Session (08:00-16:00 UTC): High=`15624.00` | Low=`15499.50`
+  * New York Session (13:00-21:00 UTC): High=`15655.12` | Low=`15468.38`
+  * Initial Balance (First Hour): IB High=`15608.44` | IB Low=`15515.06`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `15491.41` - `15615.84`
-  * Optimal Trade Entry (OTE 0.705): `15584.73`
-  * Structural Invalidation Anchor (0.786): `15678.05`
+  * Golden Pocket Zone (0.618 - 0.650): `15499.50` - `15624.00`
+  * Optimal Trade Entry (OTE 0.705): `15592.87`
+  * Structural Invalidation Anchor (0.786): `15686.24`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `15526.19` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `15458.70` (Risk Distance: `67.48` pts)
-  * +2.5R Take Profit: `15694.90`
+  * Spread-Padded Stop Loss: `15458.33` (Risk Distance: `67.86` pts)
+  * +2.5R Take Profit: `15695.83`
   * Mathematical Lot Sizing: **`0.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `15669.62` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `15737.11` (Risk Distance: `67.48` pts)
-  * +2.5R Take Profit: `15500.91`
+  * Spread-Padded Stop Loss: `15737.48` (Risk Distance: `67.86` pts)
+  * +2.5R Take Profit: `15499.98`
   * Mathematical Lot Sizing: **`0.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`15678.05`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`15686.24`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

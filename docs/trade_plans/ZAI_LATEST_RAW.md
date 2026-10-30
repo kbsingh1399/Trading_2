@@ -95,15 +95,6 @@ TIER_0_DEFENSIVE — 100% CASH DEFENSE MANDATORY. Capacity 0.00. Admissions 0. A
 
 Seal manifest: cycle_029_seat3_math.py 56/56 · cycle_030_seat3_math.py 63/63 · cycle_031_seat3_math.py 50/50 · sha256 7948f0f3…07afebd39 (C31); sidecars Cycle_029/030/031_seat3_sidecar.json in download/, chained to the C28 seal.
 
-All files in task
-3
-Cycle_031_seat3_sidecar
-· json
-Cycle_029_seat3_sidecar
-· json
-Cycle_030_seat3_sidecar
-· json
-
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (4544 chars)
 ================================================================================

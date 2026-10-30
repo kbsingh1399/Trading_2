@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GER40
 **Canonical Key**: `GER40` | **Broker Instrument**: `GER40.p` | **Asset Class**: `Equity Index EU`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `26028.04` (Distance: `-0.55%`)
-  * Point of Control (POC) = `25991.46` (Distance: `-0.41%`)
-  * Value Area Low (VAL) = `25928.53` (Distance: `-0.17%`)
+  * Value Area High (VAH) = `26028.56` (Distance: `-0.57%`)
+  * Point of Control (POC) = `25991.47` (Distance: `-0.42%`)
+  * Value Area Low (VAL) = `25924.70` (Distance: `-0.17%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`26052.09` | POC=`25717.66` | VAL=`25667.18`
@@ -55,8 +55,8 @@
   * Developing Weekly Value Area: Weekly VAH=`25964.06` | Weekly POC=`25724.14` | Weekly VAL=`25326.57`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`26097.55` | Low=`25951.45`
-  * London Session (08:00-16:00 UTC): High=`26043.30` | Low=`25878.05`
-  * New York Session (13:00-21:00 UTC): High=`25928.00` | Low=`25878.05`
+  * London Session (08:00-16:00 UTC): High=`26043.30` | Low=`25875.00`
+  * New York Session (13:00-21:00 UTC): High=`25928.00` | Low=`25875.00`
   * Initial Balance (First Hour): IB High=`26013.50` | IB Low=`25985.05`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `19295.36` - `19450.34`
@@ -268,15 +268,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `25928.53` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `25891.23` (Risk Distance: `37.30` pts)
-  * +2.5R Take Profit: `26021.78`
+  * Execution Entry: `25924.70` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `25887.40` (Risk Distance: `37.30` pts)
+  * +2.5R Take Profit: `26017.95`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `26028.04` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `26065.34` (Risk Distance: `37.30` pts)
-  * +2.5R Take Profit: `25934.79`
+  * Execution Entry: `26028.56` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `26065.86` (Risk Distance: `37.30` pts)
+  * +2.5R Take Profit: `25935.31`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

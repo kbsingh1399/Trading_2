@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: IOTUSD
 **Canonical Key**: `IOTUSD` | **Broker Instrument**: `IOTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0390` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `0.0367` | VWAP Z-Score: `+1.36` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000265` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `61.91` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0393` | Lower -3.00σ Band: `0.0387`
-  * Upper +2.51σ Band: `0.0392` | Lower -2.51σ Band: `0.0388`
-  * Upper +2.01σ Band: `0.0392` | Lower -2.01σ Band: `0.0388`
-  * Upper +2.00σ Band: `0.0392` | Lower -2.00σ Band: `0.0388`
-  * Upper +1.28σ Band: `0.0391` | Lower -1.28σ Band: `0.0389`
-  * Upper +1.00σ Band: `0.0391` | Lower -1.00σ Band: `0.0389`
+  * Upper +3.00σ Band: `0.0391` | Lower -3.00σ Band: `0.0343`
+  * Upper +2.51σ Band: `0.0387` | Lower -2.51σ Band: `0.0347`
+  * Upper +2.01σ Band: `0.0383` | Lower -2.01σ Band: `0.0351`
+  * Upper +2.00σ Band: `0.0383` | Lower -2.00σ Band: `0.0351`
+  * Upper +1.28σ Band: `0.0377` | Lower -1.28σ Band: `0.0357`
+  * Upper +1.00σ Band: `0.0375` | Lower -1.00σ Band: `0.0359`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0390` | EMA-20=`0.0390` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0390` (Slope: `+0.0000`) | EMA-100=`0.0390`
-  * Institutional Anchors: EMA-144=`0.0390` | EMA-200=`0.0390` (Slope: `+0.0000`) | EMA-233=`0.0390`
-- **Range Boundaries**: 24H High=`0.0394` | 24H Low=`0.0386` | Weekly High=`0.0398` | Weekly Low=`0.0382`
+  * Fast EMA Array: EMA-9=`0.0378` | EMA-20=`0.0376` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0375` (Slope: `+0.0000`) | EMA-100=`0.0379`
+  * Institutional Anchors: EMA-144=`0.0383` | EMA-200=`0.0388` (Slope: `-0.3488`) | EMA-233=`0.0390`
+- **Range Boundaries**: 24H High=`0.0404` | 24H Low=`0.0348` | Weekly High=`0.0418` | Weekly Low=`0.0348`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0391` (Distance: `+0.00%`)
-  * Point of Control (POC) = `0.0390` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.0389` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.0374` (Distance: `+0.00%`)
+  * Point of Control (POC) = `0.0362` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `0.0351` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0392` | POC=`0.0390` | VAL=`0.0388`
@@ -267,16 +267,16 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.0389` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-1.16` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `3.05`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `0.0351` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.0315` (Risk Distance: `0.0044` pts)
+  * +2.5R Take Profit: `0.0461`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.0391` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.24` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `-2.97`
-  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `0.0374` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.0410` (Risk Distance: `0.0044` pts)
+  * +2.5R Take Profit: `0.0264`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

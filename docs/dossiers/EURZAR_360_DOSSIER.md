@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURZAR
 **Canonical Key**: `EURZAR` | **Broker Instrument**: `EURZAR.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `18.64` | **Live Ask Quote**: `18.65` | **Mid Price**: `18.65`
-- **Spread Points**: `414.00` | **Spread BPS**: `2.22 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `382.00` | **Spread BPS**: `2.05 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `18.59` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `17.38` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `21.61`
+  * +2.5R Take Profit: `21.60`
   * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

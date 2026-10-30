@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:09:32 IST` (`2026-10-30 10:39:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`8.82` | POC=`8.79` | VAL=`8.75`
   * Prior Day Extremes: PDH=`8.84` | PDL=`8.74` | PDC=`8.79`
-  * Monday Range Blueprint: High=`8.83` | Mid=`8.79` | Low=`8.75`
+  * Monday Range Blueprint: High=`8.83` | Mid=`8.79` | Low=`8.74`
   * Developing Weekly Value Area: Weekly VAH=`8.86` | Weekly POC=`8.79` | Weekly VAL=`8.72`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.81` | Low=`8.77`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `8.82` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `10.02` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `5.82`
+  * +2.5R Take Profit: `5.81`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
