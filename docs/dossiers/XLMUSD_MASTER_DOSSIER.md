@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:45:20 IST` (`2026-10-30 10:15:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:48:21 IST` (`2026-10-30 10:18:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -113,10 +113,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`0.1705` (Vol: 71,500.00 USD, Dist: `+3.33%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.65%`)
-  * 48H Horizon: Short MP=`0.1765` (Vol: 114,500.00 USD, Dist: `+6.99%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.67%`)
-  * 3D Horizon: Short MP=`0.1761` (Vol: 121,600.00 USD, Dist: `+6.77%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.67%`)
-  * 7D Horizon: Short MP=`0.1761` (Vol: 172,600.00 USD, Dist: `+6.77%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.64%`)
+  * 24H Horizon: Short MP=`0.1705` (Vol: 71,500.00 USD, Dist: `+3.81%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.21%`)
+  * 48H Horizon: Short MP=`0.1765` (Vol: 114,500.00 USD, Dist: `+7.49%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.23%`)
+  * 3D Horizon: Short MP=`0.1761` (Vol: 121,600.00 USD, Dist: `+7.26%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.23%`)
+  * 7D Horizon: Short MP=`0.1761` (Vol: 172,600.00 USD, Dist: `+7.26%`) | Long MP=`0.1573` (Vol: 71,500.00 USD, Dist: `--4.20%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 15:33:00 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:32:00 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:19:00 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:12:00 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:41:00 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:38:00 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:36:00 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:36:00 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:36:00 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:36:00 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:36:00 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:35:00 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:35:00 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:35:00 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:35:00 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:33:17 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:32:17 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:18:17 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:12:17 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:46:17 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:45:17 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:45:17 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:45:17 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:45:17 IST`: [insee.fr] - (Sentiment: `Neutral`)
 
 
 ---

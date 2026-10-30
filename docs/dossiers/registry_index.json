@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-30 10:15:20 UTC",
+  "timestamp_utc": "2026-10-30 10:18:22 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -427,7 +427,7 @@
       "mid_price": 0.6900689999999999,
       "spread_bps": 1.999800019997587,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.6879987929999999,
@@ -453,7 +453,7 @@
       "mid_price": 0.110011,
       "spread_bps": 1.9998000199974773,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.109680967,
@@ -479,7 +479,7 @@
       "mid_price": 0.17001700000000003,
       "spread_bps": 1.9998000199983672,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.16950694900000002,
@@ -2897,7 +2897,7 @@
       "mid_price": 124.47,
       "spread_bps": 25.71,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 80,
+      "confluence_score": 72,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 119.7,
@@ -3235,7 +3235,7 @@
       "mid_price": 6.761,
       "spread_bps": 41.41,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 80,
+      "confluence_score": 72,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 6.247,
