@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 09:49:26 IST` (`2026-10-30 04:19:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:52:28 IST` (`2026-10-30 04:22:28 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `203` | `0x0911...129a` | `SHORT` | 10,414,260.43 USD | `66,223.20` | `156.58` | `157.24` | `167.72` | -45,240.20 USD | `-0.43%` | `20X Isolated` |
-| `1018` | `0x9dea...d617` | `LONG` | 2,133,543.27 USD | `13,566.98` | `157.66` | `157.24` | `149.22` | -5,470.47 USD | `-0.26%` | `50X Isolated` |
-| `1101` | `0xec0b...b078` | `SHORT` | 1,984,731.18 USD | `12,617.49` | `158.22` | `157.24` | `162.95` | 11,634.50 USD | `+0.59%` | `20X Isolated` |
-| `1134` | `0xc966...f6b6` | `SHORT` | 1,940,652.88 USD | `12,340.41` | `157.61` | `157.24` | `215.27` | 4,263.15 USD | `+0.22%` | `5X Isolated` |
-| `1184` | `0xbef1...d2e5` | `LONG` | 1,859,016.07 USD | `11,821.29` | `157.63` | `157.24` | `155.50` | -4,344.54 USD | `-0.23%` | `50X Isolated` |
-| `1873` | `0x3d89...eb14` | `LONG` | 1,085,094.00 USD | `6,900.00` | `158.17` | `157.24` | `127.35` | -6,295.60 USD | `-0.58%` | `5X Isolated` |
+| `204` | `0x0911...129a` | `SHORT` | 10,413,598.20 USD | `66,223.20` | `156.58` | `157.25` | `167.72` | -44,577.97 USD | `-0.43%` | `20X Isolated` |
+| `1024` | `0x9dea...d617` | `LONG` | 2,133,407.60 USD | `13,566.98` | `157.66` | `157.25` | `149.22` | -5,606.14 USD | `-0.26%` | `50X Isolated` |
+| `1108` | `0xec0b...b078` | `SHORT` | 1,983,974.13 USD | `12,617.49` | `158.22` | `157.25` | `162.95` | 12,391.55 USD | `+0.62%` | `20X Isolated` |
+| `1146` | `0xc966...f6b6` | `SHORT` | 1,940,406.07 USD | `12,340.41` | `157.61` | `157.25` | `215.27` | 4,509.96 USD | `+0.23%` | `5X Isolated` |
+| `1189` | `0xbef1...d2e5` | `LONG` | 1,859,134.28 USD | `11,821.29` | `157.63` | `157.25` | `155.50` | -4,226.33 USD | `-0.23%` | `50X Isolated` |
+| `1878` | `0x3d89...eb14` | `LONG` | 1,084,956.00 USD | `6,900.00` | `158.17` | `157.25` | `127.35` | -6,433.60 USD | `-0.59%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -263,7 +263,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-9.73` | Last 24h: `-624.43` | Last 3d: `-912.05` | Last 7d: `-912.05`
+  * Current Rate: `-2.58` | Last 24h: `-624.43` | Last 3d: `-912.05` | Last 7d: `-912.05`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
