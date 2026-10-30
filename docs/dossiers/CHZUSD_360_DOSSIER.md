@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:42:19 IST` (`2026-10-30 10:12:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:45:20 IST` (`2026-10-30 10:15:20 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -156,10 +156,10 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0080%` | **USDT OKX** | `-0.0519%` |
-| **USDT Bybit** | `-0.0183%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `-0.0078%` | **USDT BingX** | `-0.0006%` |
-| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0006%` |
+| **USDT Binance** | `-0.0092%` | **USDT OKX** | `-0.0529%` |
+| **USDT Bybit** | `-0.0169%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `-0.0090%` | **USDT BingX** | `-0.0013%` |
+| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0023%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
