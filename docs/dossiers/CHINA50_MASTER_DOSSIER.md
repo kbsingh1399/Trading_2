@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHINA50
 **Canonical Key**: `CHINA50` | **Broker Instrument**: `CHINA50.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 15:09:01 IST` (`2026-10-30 09:39:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:12:02 IST` (`2026-10-30 09:42:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `12796.56` | **Live Ask Quote**: `12806.44` | **Mid Price**: `12801.50`
-- **Spread Points**: `988.00` | **Spread BPS**: `7.72 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `12804.56` | **Live Ask Quote**: `12814.44` | **Mid Price**: `12809.50`
+- **Spread Points**: `988.00` | **Spread BPS**: `7.71 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `12876.87` (Distance: `-0.59%`)
-  * Point of Control (POC) = `12813.98` (Distance: `-0.11%`)
-  * Value Area Low (VAL) = `12768.09` (Distance: `+0.25%`)
+  * Value Area High (VAH) = `12876.87` (Distance: `-0.53%`)
+  * Point of Control (POC) = `12813.98` (Distance: `-0.04%`)
+  * Value Area Low (VAL) = `12769.79` (Distance: `+0.30%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`12942.35` | POC=`12887.35` | VAL=`12856.55`
@@ -56,12 +56,12 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`12921.50` | Low=`12697.56`
   * London Session (08:00-16:00 UTC): High=`12952.50` | Low=`12770.00`
-  * New York Session (13:00-21:00 UTC): High=`12878.31` | Low=`12724.69`
+  * New York Session (13:00-21:00 UTC): High=`12886.36` | Low=`12732.64`
   * Initial Balance (First Hour): IB High=`12952.50` | IB Low=`12855.50`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `12750.29` - `12852.71`
-  * Optimal Trade Entry (OTE 0.705): `12827.10`
-  * Structural Invalidation Anchor (0.786): `12903.91`
+  * Golden Pocket Zone (0.618 - 0.650): `12758.26` - `12860.74`
+  * Optimal Trade Entry (OTE 0.705): `12835.12`
+  * Structural Invalidation Anchor (0.786): `12911.98`
 
 ---
 
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `12768.09` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `12720.68` (Risk Distance: `47.41` pts)
-  * +2.5R Take Profit: `12886.61`
+  * Execution Entry: `12769.79` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `12722.38` (Risk Distance: `47.41` pts)
+  * +2.5R Take Profit: `12888.31`
   * Mathematical Lot Sizing: **`0.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`12903.91`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`12911.98`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

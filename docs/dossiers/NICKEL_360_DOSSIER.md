@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NICKEL
 **Canonical Key**: `NICKEL` | **Broker Instrument**: `NICKEL.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 15:09:01 IST` (`2026-10-30 09:39:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:12:02 IST` (`2026-10-30 09:42:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `15520.78` | **Live Ask Quote**: `15538.72` | **Mid Price**: `15529.75`
-- **Spread Points**: `17940.00` | **Spread BPS**: `11.55 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `15544.28` | **Live Ask Quote**: `15562.22` | **Mid Price**: `15553.25`
+- **Spread Points**: `17940.00` | **Spread BPS**: `11.53 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `15526.19` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`15591.87` | POC=`15529.75` | VAL=`15467.63`
-  * Prior Day Extremes: PDH=`15622.93` | PDL=`15436.57` | PDC=`15529.75`
-  * Monday Range Blueprint: High=`15607.40` | Mid=`15529.75` | Low=`15452.10`
-  * Developing Weekly Value Area: Weekly VAH=`15653.99` | Weekly POC=`15529.75` | Weekly VAL=`15405.51`
+  * Prior Day Value Area: VAH=`15615.46` | POC=`15553.25` | VAL=`15491.04`
+  * Prior Day Extremes: PDH=`15646.57` | PDL=`15459.93` | PDC=`15553.25`
+  * Monday Range Blueprint: High=`15631.02` | Mid=`15553.25` | Low=`15475.48`
+  * Developing Weekly Value Area: Weekly VAH=`15677.68` | Weekly POC=`15553.25` | Weekly VAL=`15428.82`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`15560.81` | Low=`15498.69`
-  * London Session (08:00-16:00 UTC): High=`15591.87` | Low=`15467.63`
-  * New York Session (13:00-21:00 UTC): High=`15622.93` | Low=`15436.57`
-  * Initial Balance (First Hour): IB High=`15576.34` | IB Low=`15483.16`
+  * Asian Session (00:00-08:00 UTC): High=`15584.36` | Low=`15522.14`
+  * London Session (08:00-16:00 UTC): High=`15615.46` | Low=`15491.04`
+  * New York Session (13:00-21:00 UTC): High=`15646.57` | Low=`15459.93`
+  * Initial Balance (First Hour): IB High=`15599.91` | IB Low=`15506.59`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `15467.63` - `15591.87`
-  * Optimal Trade Entry (OTE 0.705): `15560.81`
-  * Structural Invalidation Anchor (0.786): `15653.99`
+  * Golden Pocket Zone (0.618 - 0.650): `15491.04` - `15615.46`
+  * Optimal Trade Entry (OTE 0.705): `15584.36`
+  * Structural Invalidation Anchor (0.786): `15677.68`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`15653.99`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`15677.68`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

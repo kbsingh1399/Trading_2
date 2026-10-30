@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDCHF
 **Canonical Key**: `NZDCHF` | **Broker Instrument**: `NZDCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:09:00 IST` (`2026-10-30 09:39:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:12:02 IST` (`2026-10-30 09:42:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.4636` | **Live Ask Quote**: `0.4636` | **Mid Price**: `0.4636`
-- **Spread Points**: `3.00` | **Spread BPS**: `0.65 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `0.4637` | **Live Ask Quote**: `0.4637` | **Mid Price**: `0.4637`
+- **Spread Points**: `2.00` | **Spread BPS**: `0.43 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `0.4629` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.4654` | POC=`0.4636` | VAL=`0.4617`
-  * Prior Day Extremes: PDH=`0.4664` | PDL=`0.4608` | PDC=`0.4636`
-  * Monday Range Blueprint: High=`0.4659` | Mid=`0.4636` | Low=`0.4613`
-  * Developing Weekly Value Area: Weekly VAH=`0.4673` | Weekly POC=`0.4636` | Weekly VAL=`0.4599`
+  * Prior Day Value Area: VAH=`0.4656` | POC=`0.4637` | VAL=`0.4619`
+  * Prior Day Extremes: PDH=`0.4665` | PDL=`0.4609` | PDC=`0.4637`
+  * Monday Range Blueprint: High=`0.4660` | Mid=`0.4637` | Low=`0.4614`
+  * Developing Weekly Value Area: Weekly VAH=`0.4674` | Weekly POC=`0.4637` | Weekly VAL=`0.4600`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.4645` | Low=`0.4627`
-  * London Session (08:00-16:00 UTC): High=`0.4654` | Low=`0.4617`
-  * New York Session (13:00-21:00 UTC): High=`0.4664` | Low=`0.4608`
-  * Initial Balance (First Hour): IB High=`0.4650` | IB Low=`0.4622`
+  * Asian Session (00:00-08:00 UTC): High=`0.4647` | Low=`0.4628`
+  * London Session (08:00-16:00 UTC): High=`0.4656` | Low=`0.4619`
+  * New York Session (13:00-21:00 UTC): High=`0.4665` | Low=`0.4609`
+  * Initial Balance (First Hour): IB High=`0.4651` | IB Low=`0.4623`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.4617` - `0.4654`
-  * Optimal Trade Entry (OTE 0.705): `0.4645`
-  * Structural Invalidation Anchor (0.786): `0.4673`
+  * Golden Pocket Zone (0.618 - 0.650): `0.4619` - `0.4656`
+  * Optimal Trade Entry (OTE 0.705): `0.4647`
+  * Structural Invalidation Anchor (0.786): `0.4674`
 
 ---
 
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.4629` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.4623` (Risk Distance: `0.0010` pts)
+  * Spread-Padded Stop Loss: `0.4624` (Risk Distance: `0.0010` pts)
   * +2.5R Take Profit: `0.4654`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.4673`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.4674`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

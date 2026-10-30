@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPUSD
 **Canonical Key**: `GBPUSD` | **Broker Instrument**: `GBPUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 15:09:00 IST` (`2026-10-30 09:39:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:12:02 IST` (`2026-10-30 09:42:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.34` | **Live Ask Quote**: `1.34` | **Mid Price**: `1.34`
-- **Spread Points**: `4.00` | **Spread BPS**: `0.30 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `1.00` | **Spread BPS**: `0.07 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.34` (Distance: `+0.10%`)
-  * Point of Control (POC) = `1.34` (Distance: `+0.23%`)
-  * Value Area Low (VAL) = `1.34` (Distance: `+0.27%`)
+  * Value Area High (VAH) = `1.34` (Distance: `+0.14%`)
+  * Point of Control (POC) = `1.34` (Distance: `+0.25%`)
+  * Value Area Low (VAL) = `1.34` (Distance: `+0.31%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.33` | POC=`1.33` | VAL=`1.33`
@@ -60,7 +60,7 @@
   * Initial Balance (First Hour): IB High=`1.34` | IB Low=`1.34`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.34` - `1.35`
-  * Optimal Trade Entry (OTE 0.705): `1.34`
+  * Optimal Trade Entry (OTE 0.705): `1.35`
   * Structural Invalidation Anchor (0.786): `1.35`
 
 ---
@@ -70,9 +70,9 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `319` | 427.33 USD | -246.54 USD | `-57.69%` | 5,215.26 USD | `-1.32` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `569` | 762.50 USD | 539.01 USD | `+70.69%` | 5,754.27 USD | `+1.96` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `632` | 846.58 USD | -572.02 USD | `-67.57%` | 5,182.25 USD | `-2.22` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `632` | 846.58 USD | -572.02 USD | `-67.57%` | 5,174.17 USD | `-2.22` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `457` | 612.01 USD | -437.15 USD | `-71.43%` | 4,737.02 USD | `-1.64` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.34` | `1.34` | `1.34` | `1.34` | `435` | 582.62 USD | 454.44 USD | `+78.00%` | 5,191.47 USD | `+1.33` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,023` | 1,370.03 USD | 68.50 USD | `+5.00%` | 16,471.03 USD | `+0.20` | **`BULLISH`** | `NEUTRAL CHOP` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,225` | 1,641.59 USD | 1,295.57 USD | `+78.92%` | 17,766.60 USD | `+1.16` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `15m` | `1.34` | `1.34` | `1.34` | `1.34` | `1,524` | 2,041.17 USD | -1,260.72 USD | `-61.76%` | 16,505.87 USD | `-1.40` | **`BEARISH`** | `AGGRESSIVE SELLING` |
@@ -412,15 +412,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.34` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.000929` pts)
+  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.000884` pts)
   * +2.5R Take Profit: `1.34`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.34` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.000929` pts)
+  * Spread-Padded Stop Loss: `1.34` (Risk Distance: `0.000884` pts)
   * +2.5R Take Profit: `1.34`
-  * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**

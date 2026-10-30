@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCHF
 **Canonical Key**: `GBPCHF` | **Broker Instrument**: `GBPCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:09:00 IST` (`2026-10-30 09:39:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:12:02 IST` (`2026-10-30 09:42:02 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.10` | **Live Ask Quote**: `1.10` | **Mid Price**: `1.10`
-- **Spread Points**: `12.00` | **Spread BPS**: `1.09 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `10.00` | **Spread BPS**: `0.91 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.10` (Distance: `+0.06%`)
-  * Point of Control (POC) = `1.10` (Distance: `+0.09%`)
-  * Value Area Low (VAL) = `1.10` (Distance: `+0.27%`)
+  * Value Area High (VAH) = `1.10` (Distance: `+0.08%`)
+  * Point of Control (POC) = `1.10` (Distance: `+0.11%`)
+  * Value Area Low (VAL) = `1.10` (Distance: `+0.30%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.10` | POC=`1.10` | VAL=`1.10`
@@ -60,7 +60,7 @@
   * Initial Balance (First Hour): IB High=`1.10` | IB Low=`1.10`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.10` - `1.11`
-  * Optimal Trade Entry (OTE 0.705): `1.10`
+  * Optimal Trade Entry (OTE 0.705): `1.11`
   * Structural Invalidation Anchor (0.786): `1.11`
 
 ---
