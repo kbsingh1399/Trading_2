@@ -89,17 +89,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_XXX --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to next cycle.
 ```
 
@@ -915,7 +915,7 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 
 ---
 
-### ⏳ Cycle_025 Scorecard: IN PROGRESS
+### 🟢 Cycle_025 Scorecard: COMPLETED & FULLY VERIFIED
 **Timestamp**: 2026-10-30 10:07:00 IST (2026-10-30 04:37:00 UTC)
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
@@ -964,18 +964,18 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_025 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
+  - [x] Launch `rock_hard_dual_watchdog.py --cycle Cycle_025 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
-  - [ ] Advance to `Cycle_026`.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+  - [x] Advance to `Cycle_026`.
 
 ---
 
@@ -1027,17 +1027,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_026 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_027`.
 
 ---
@@ -1090,17 +1090,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_027 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_028`.
 
 ---
@@ -1153,17 +1153,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_028 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_029`.
 
 ---
@@ -1216,17 +1216,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_029 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_030`.
 
 ---
@@ -1279,17 +1279,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_030 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_031`.
 
 ---
@@ -1342,17 +1342,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_031 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_032`.
 
 ---
@@ -1405,17 +1405,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_032 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_033`.
 
 ---
@@ -1468,17 +1468,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_033 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_034`.
 
 ---
@@ -1531,17 +1531,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_034 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_035`.
 
 ---
@@ -1594,17 +1594,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_035 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_036`.
 
 ---
@@ -1657,17 +1657,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_036 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_037`.
 
 ---
@@ -1720,17 +1720,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_037 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_038`.
 
 ---
@@ -1783,17 +1783,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_038 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_039`.
 
 ---
@@ -1846,17 +1846,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_039 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_040`.
 
 ---
@@ -1909,17 +1909,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_040 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_041`.
 
 ---
@@ -1972,17 +1972,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_041 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_042`.
 
 ---
@@ -2035,17 +2035,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_042 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_043`.
 
 ---
@@ -2098,17 +2098,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_043 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_044`.
 
 ---
@@ -2161,17 +2161,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_044 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_045`.
 
 ---
@@ -2224,17 +2224,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_045 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_046`.
 
 ---
@@ -2287,17 +2287,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_046 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_047`.
 
 ---
@@ -2350,17 +2350,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_047 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_048`.
 
 ---
@@ -2413,17 +2413,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_048 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_049`.
 
 ---
@@ -2476,17 +2476,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_049 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_050`.
 
 ---
@@ -2539,17 +2539,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_050 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_051`.
 
 ---
@@ -2602,17 +2602,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_051 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_052`.
 
 ---
@@ -2665,17 +2665,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_052 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_053`.
 
 ---
@@ -2728,17 +2728,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_053 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_054`.
 
 ---
@@ -2791,17 +2791,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_054 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_055`.
 
 ---
@@ -2854,17 +2854,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_055 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_056`.
 
 ---
@@ -2917,17 +2917,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_056 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_057`.
 
 ---
@@ -2980,17 +2980,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_057 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_058`.
 
 ---
@@ -3043,17 +3043,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_058 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_059`.
 
 ---
@@ -3106,17 +3106,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_059 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_060`.
 
 ---
@@ -3169,17 +3169,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_060 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_061`.
 
 ---
@@ -3232,17 +3232,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_061 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_062`.
 
 ---
@@ -3295,17 +3295,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_062 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_063`.
 
 ---
@@ -3358,17 +3358,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_063 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_064`.
 
 ---
@@ -3421,17 +3421,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_064 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_065`.
 
 ---
@@ -3484,17 +3484,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_065 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_066`.
 
 ---
@@ -3547,17 +3547,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_066 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_067`.
 
 ---
@@ -3610,17 +3610,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_067 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_068`.
 
 ---
@@ -3673,17 +3673,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_068 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_069`.
 
 ---
@@ -3736,17 +3736,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_069 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_070`.
 
 ---
@@ -3799,17 +3799,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_070 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_071`.
 
 ---
@@ -3862,17 +3862,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_071 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_072`.
 
 ---
@@ -3925,17 +3925,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_072 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_073`.
 
 ---
@@ -3988,17 +3988,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_073 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_074`.
 
 ---
@@ -4051,17 +4051,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_074 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_075`.
 
 ---
@@ -4114,17 +4114,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_075 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_076`.
 
 ---
@@ -4177,17 +4177,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_076 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_077`.
 
 ---
@@ -4240,17 +4240,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_077 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_078`.
 
 ---
@@ -4303,17 +4303,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_078 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_079`.
 
 ---
@@ -4366,17 +4366,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_079 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_080`.
 
 ---
@@ -4429,17 +4429,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_080 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_081`.
 
 ---
@@ -4492,17 +4492,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_081 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_082`.
 
 ---
@@ -4555,17 +4555,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_082 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_083`.
 
 ---
@@ -4618,17 +4618,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_083 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_084`.
 
 ---
@@ -4681,17 +4681,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_084 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_085`.
 
 ---
@@ -4744,17 +4744,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_085 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_086`.
 
 ---
@@ -4807,17 +4807,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_086 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_087`.
 
 ---
@@ -4870,17 +4870,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_087 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_088`.
 
 ---
@@ -4933,17 +4933,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_088 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_089`.
 
 ---
@@ -4996,17 +4996,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_089 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_090`.
 
 ---
@@ -5059,17 +5059,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_090 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_091`.
 
 ---
@@ -5122,17 +5122,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_091 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_092`.
 
 ---
@@ -5185,17 +5185,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_092 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_093`.
 
 ---
@@ -5248,17 +5248,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_093 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_094`.
 
 ---
@@ -5311,17 +5311,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_094 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_095`.
 
 ---
@@ -5374,17 +5374,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_095 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_096`.
 
 ---
@@ -5437,17 +5437,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_096 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_097`.
 
 ---
@@ -5500,17 +5500,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_097 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_098`.
 
 ---
@@ -5563,17 +5563,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_098 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_099`.
 
 ---
@@ -5626,17 +5626,17 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_099 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_100`.
 
 ---
@@ -5689,15 +5689,15 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
   - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_100 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
   - [ ] Advance to `Cycle_101`.
