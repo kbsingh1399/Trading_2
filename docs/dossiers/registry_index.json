@@ -1,8 +1,8 @@
 {
   "schema_version": "2.0.0",
   "format": "JSON_STANDALONE",
-  "timestamp_utc": "2026-10-30 14:49:07 UTC",
-  "timestamp_ist": "2026-10-30 20:19:07 IST",
+  "timestamp_utc": "2026-10-30 14:55:12 UTC",
+  "timestamp_ist": "2026-10-30 20:25:12 IST",
   "total_assets": 162,
   "assets": [
     {
@@ -1112,7 +1112,7 @@
       "broker_symbol": "AVEUSD.p",
       "spread_bps": 24.72,
       "gate_status": "PASS",
-      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AVEUSD_MASTER_DOSSIER.json"
     },
     {
