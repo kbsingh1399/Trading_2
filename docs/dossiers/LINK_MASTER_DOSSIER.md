@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: LINK
 **Canonical Key**: `LINK` | **Broker Instrument**: `LNKUSD.p` | **Asset Class**: `Crypto DeFi`
-**Timestamp**: `2026-10-30 08:42:52 IST` (`2026-10-30 03:12:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:45:54 IST` (`2026-10-30 03:15:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1297,17 +1297,17 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `537.56M` | Total OI Tokens: `50,238,701.9 LINK`
-  * 1h OI Change: `+3.19%` | 4h OI Change: `+2.09%` | 24h OI Change: `-1.90%`
-  * Exchange Breakdown: Binance=`100.47M` | Bybit=`68.33M` | OKX=`25.55M` | Hyperliquid=`54.58M`
+  * Total Open Interest: `508.93M` | Total OI Tokens: `47,288,587.3 LINK`
+  * 1h OI Change: `-3.14%` | 4h OI Change: `-3.35%` | 24h OI Change: `-7.22%`
+  * Exchange Breakdown: Binance=`100.92M` | Bybit=`68.57M` | OKX=`25.68M` | Hyperliquid=`54.87M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-6.32K` | Last 24h: `29.28K` | Last 3d: `90.77K` | Last 7d: `184.78K`
+  * Current Rate: `-6.53K` | Last 24h: `29.28K` | Last 3d: `90.77K` | Last 7d: `184.78K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0038%` | **USDT OKX** | `0.0006%` |
-| **USDT Bybit** | `-0.0160%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `0.0037%` | **USDT BingX** | `0.0100%` |
+| **USDT Binance** | `0.0040%` | **USDT OKX** | `0.0003%` |
+| **USDT Bybit** | `-0.0173%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `0.0038%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 

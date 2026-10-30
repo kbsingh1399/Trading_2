@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUSGD
 **Canonical Key**: `XAUSGD` | **Broker Instrument**: `XAUSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:45:54 IST` (`2026-10-30 03:15:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -773,9 +773,9 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `803.76M` | Total OI Tokens: `201,098.5 XAUT`
-  * 1h OI Change: `-1.33%` | 4h OI Change: `-2.42%` | 24h OI Change: `-5.54%`
-  * Exchange Breakdown: Binance=`60.57M` | Bybit=`143.71M` | OKX=`-` | Hyperliquid=`-`
+  * Total Open Interest: `802.32M` | Total OI Tokens: `200,975.7 XAUT`
+  * 1h OI Change: `-2.02%` | 4h OI Change: `-1.56%` | 24h OI Change: `-5.45%`
+  * Exchange Breakdown: Binance=`60.49M` | Bybit=`143.34M` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
   * Current Rate: `0.00` | Last 24h: `239.79K` | Last 3d: `863.21K` | Last 7d: `2.18M`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:

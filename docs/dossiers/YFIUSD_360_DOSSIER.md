@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: YFIUSD
 **Canonical Key**: `YFIUSD` | **Broker Instrument**: `YFIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:45:54 IST` (`2026-10-30 03:15:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,13 +152,13 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-173.65` | Last 24h: `-707.61` | Last 3d: `1.07K` | Last 7d: `3.51K`
+  * Current Rate: `-133.01` | Last 24h: `-707.61` | Last 3d: `1.07K` | Last 7d: `3.51K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0151%` | **USDT OKX** | `0.0018%` |
-| **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `0.0034%` |
-| **USDT MEXC** | `-0.0154%` | **USDT BingX** | `0.0088%` |
+| **USDT Binance** | `-0.0113%` | **USDT OKX** | `0.0046%` |
+| **USDT Bybit** | `0.0054%` | **USDT KuCoin** | `0.0063%` |
+| **USDT MEXC** | `-0.0119%` | **USDT BingX** | `0.0097%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
