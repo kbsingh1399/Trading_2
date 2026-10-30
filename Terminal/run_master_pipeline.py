@@ -150,31 +150,8 @@ def run_api_phase(parallel: bool = True) -> int:
 
 
 def cleanup_browser_tabs() -> int:
-    """Closes all collector ephemeral tabs via CDP while protecting Arena and Z.ai."""
-    closed_count = 0
-    try:
-        req = urllib.request.Request("http://127.0.0.1:9222/json")
-        with urllib.request.urlopen(req, timeout=3) as resp:
-            tabs = json.loads(resp.read().decode("utf-8"))
-        for t in tabs:
-            if t.get("type") != "page":
-                continue
-            url = t.get("url", "").lower()
-            title = t.get("title", "").lower()
-            # NEVER close Arena, Z.ai, or default empty/system tab
-            if any(k in url for k in ["arena.ai", "chat.z.ai", "z.ai", "edge://", "chrome://"]):
-                continue
-            # ONLY close specific ephemeral data scrapers
-            if any(k in url for k in ["coinglass.com", "forexfactory.com"]):
-                tab_id = t.get("id")
-                try:
-                    urllib.request.urlopen(f"http://127.0.0.1:9222/json/close/{tab_id}", timeout=3)
-                    closed_count += 1
-                except Exception:
-                    pass
-    except Exception as e:
-        log.debug(f"cleanup_browser_tabs notice: {e}")
-    return closed_count
+    """Tab cleanup disabled to guarantee zero tab disruptions for user and AI Council."""
+    return 0
 
 
 def run_browser_phase() -> int:

@@ -66,25 +66,8 @@ def acquire_singleton_lock() -> bool:
         return True
 
 def sweep_ephemeral_cdp_tabs():
-    """Sweeps and closes ONLY ephemeral CoinGlass scraper tabs on port 9222. Strictly protects Arena.ai, Z.ai, and user tabs."""
-    try:
-        import urllib.request
-        with urllib.request.urlopen("http://127.0.0.1:9222/json", timeout=3) as resp:
-            tabs = json.loads(resp.read().decode("utf-8"))
-        for t in tabs:
-            url = t.get("url", "").lower()
-            tid = t.get("id")
-            # Inviolable protection: never touch Arena.ai, Z.ai, newtab, or any other domain
-            if any(k in url for k in ["arena.ai", "z.ai", "edge://", "chrome://"]):
-                continue
-            # ONLY target CoinGlass scraper URLs
-            if "coinglass.com" in url:
-                try:
-                    urllib.request.urlopen(f"http://127.0.0.1:9222/json/close/{tid}", timeout=3)
-                except Exception:
-                    pass
-    except Exception:
-        pass
+    """Tab sweeper intentionally disabled to prevent accidental closure of user, Arena.ai, or Z.ai tabs."""
+    pass
 
 logging.basicConfig(
     level=logging.INFO,
