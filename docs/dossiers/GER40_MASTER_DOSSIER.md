@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GER40
 **Canonical Key**: `GER40` | **Broker Instrument**: `GER40.p` | **Asset Class**: `Equity Index EU`
-**Timestamp**: `2026-10-30 08:12:35 IST` (`2026-10-30 02:42:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:15:37 IST` (`2026-10-30 02:45:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `19368.80` | **Live Ask Quote**: `19376.90` | **Mid Price**: `19372.85`
-- **Spread Points**: `810.00` | **Spread BPS**: `4.18 bps` (Charter Threshold: `12.00 bps`)
-- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
+- **Spread Points**: `810.00` | **Spread BPS**: `4.18 bps` (Charter Threshold: `5.00 bps`)
+- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `10.0` | Digits: `1` | Point: `0.1`
   * Point Value (1.0 Lot): `1.00 USD` | Point Value (0.01 Lot): `0.0100 USD`
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `26097.06` (Distance: `-0.45%`)
-  * Point of Control (POC) = `26075.64` (Distance: `-0.37%`)
-  * Value Area Low (VAL) = `25996.74` (Distance: `-0.07%`)
+  * Value Area High (VAH) = `26097.06` (Distance: `-0.42%`)
+  * Point of Control (POC) = `26075.64` (Distance: `-0.34%`)
+  * Value Area Low (VAL) = `25988.95` (Distance: `-0.01%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`26052.09` | POC=`25717.66` | VAL=`25667.18`
   * Prior Day Extremes: PDH=`26138.85` | PDL=`25665.60` | PDC=`26082.70`
   * Monday Range Blueprint: High=`25515.05` | Mid=`25312.85` | Low=`25110.65`
-  * Developing Weekly Value Area: Weekly VAH=`25909.22` | Weekly POC=`25724.14` | Weekly VAL=`25326.57`
+  * Developing Weekly Value Area: Weekly VAH=`25916.07` | Weekly POC=`25724.14` | Weekly VAL=`25326.57`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`26097.55` | Low=`25951.45`
   * London Session (08:00-16:00 UTC): High=`19450.34` | Low=`19295.36`
@@ -268,9 +268,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `25996.74` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `25959.44` (Risk Distance: `37.30` pts)
-  * +2.5R Take Profit: `26089.99`
+  * Execution Entry: `25988.95` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `25951.65` (Risk Distance: `37.30` pts)
+  * +2.5R Take Profit: `26082.20`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
