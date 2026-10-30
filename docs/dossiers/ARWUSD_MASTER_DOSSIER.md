@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ARWUSD
 **Canonical Key**: `ARWUSD` | **Broker Instrument**: `ARWUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 14:41:48 IST` (`2026-10-30 09:11:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:44:50 IST` (`2026-10-30 09:14:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `3.15` | **Live Ask Quote**: `3.17` | **Mid Price**: `3.16`
-- **Spread Points**: `22.00` | **Spread BPS**: `69.62 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `22.00` | **Spread BPS**: `69.55 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `3.07` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`3.17` | POC=`3.16` | VAL=`3.15`
+  * Prior Day Value Area: VAH=`3.18` | POC=`3.16` | VAL=`3.15`
   * Prior Day Extremes: PDH=`3.18` | PDL=`3.14` | PDC=`3.16`
-  * Monday Range Blueprint: High=`3.18` | Mid=`3.16` | Low=`3.14`
-  * Developing Weekly Value Area: Weekly VAH=`3.19` | Weekly POC=`3.16` | Weekly VAL=`3.13`
+  * Monday Range Blueprint: High=`3.18` | Mid=`3.16` | Low=`3.15`
+  * Developing Weekly Value Area: Weekly VAH=`3.19` | Weekly POC=`3.16` | Weekly VAL=`3.14`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`3.17` | Low=`3.15`
-  * London Session (08:00-16:00 UTC): High=`3.17` | Low=`3.15`
+  * Asian Session (00:00-08:00 UTC): High=`3.17` | Low=`3.16`
+  * London Session (08:00-16:00 UTC): High=`3.18` | Low=`3.15`
   * New York Session (13:00-21:00 UTC): High=`3.18` | Low=`3.14`
   * Initial Balance (First Hour): IB High=`3.17` | IB Low=`3.15`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `3.15` - `3.17`
+  * Golden Pocket Zone (0.618 - 0.650): `3.15` - `3.18`
   * Optimal Trade Entry (OTE 0.705): `3.17`
   * Structural Invalidation Anchor (0.786): `3.19`
 

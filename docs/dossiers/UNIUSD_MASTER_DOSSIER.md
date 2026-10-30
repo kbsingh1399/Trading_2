@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 14:41:48 IST` (`2026-10-30 09:11:48 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:44:50 IST` (`2026-10-30 09:14:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `6.72` | **Live Ask Quote**: `6.75` | **Mid Price**: `6.73`
-- **Spread Points**: `26.00` | **Spread BPS**: `38.62 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `6.69` | **Live Ask Quote**: `6.71` | **Mid Price**: `6.70`
+- **Spread Points**: `24.00` | **Spread BPS**: `35.83 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.66` (Distance: `+1.28%`)
-  * Point of Control (POC) = `6.46` (Distance: `+4.32%`)
-  * Value Area Low (VAL) = `6.25` (Distance: `+7.91%`)
+  * Value Area High (VAH) = `6.66` (Distance: `+0.58%`)
+  * Point of Control (POC) = `6.46` (Distance: `+3.66%`)
+  * Value Area Low (VAL) = `6.25` (Distance: `+7.22%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7.32` | POC=`7.16` | VAL=`6.99`
@@ -56,12 +56,12 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`6.79` | Low=`6.23`
   * London Session (08:00-16:00 UTC): High=`6.85` | Low=`6.64`
-  * New York Session (13:00-21:00 UTC): High=`6.77` | Low=`6.69`
+  * New York Session (13:00-21:00 UTC): High=`6.74` | Low=`6.66`
   * Initial Balance (First Hour): IB High=`6.85` | IB Low=`6.72`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `6.71` - `6.76`
-  * Optimal Trade Entry (OTE 0.705): `6.75`
-  * Structural Invalidation Anchor (0.786): `6.79`
+  * Golden Pocket Zone (0.618 - 0.650): `6.67` - `6.73`
+  * Optimal Trade Entry (OTE 0.705): `6.71`
+  * Structural Invalidation Anchor (0.786): `6.75`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`6.73`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`6.70`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 14:32:27 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 14:43:12 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -247,21 +247,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 24,640.00 USD | 557,200.00 USD | **`ACCUMULATION`** |
-| `15m` | 141,930.00 USD | 688,210.00 USD | **`ACCUMULATION`** |
-| `30m` | 251,830.00 USD | 1,050,000.00 USD | **`ACCUMULATION`** |
-| `1h` | 334,190.00 USD | 2,110,000.00 USD | **`ACCUMULATION`** |
-| `2h` | 102,890.00 USD | 293,210.00 USD | **`ACCUMULATION`** |
-| `4h` | 631,270.00 USD | 1,310,000.00 USD | **`ACCUMULATION`** |
-| `6h` | 1,280,000.00 USD | 1,490,000.00 USD | **`ACCUMULATION`** |
-| `8h` | -1,530,000.00 USD | -3,530,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -9,390,000.00 USD | -30,110,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -11,610,000.00 USD | -42,300,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -18,530,000.00 USD | -78,760,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -51,510,000.00 USD | -500,390,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -150,460.00 USD | -165,400.00 USD | **`DISTRIBUTION`** |
+| `15m` | 419,510.00 USD | 402,710.00 USD | **`ACCUMULATION`** |
+| `30m` | 438,990.00 USD | 915,480.00 USD | **`ACCUMULATION`** |
+| `1h` | 615,290.00 USD | 2,460,000.00 USD | **`ACCUMULATION`** |
+| `2h` | 483,010.00 USD | 236,640.00 USD | **`ACCUMULATION`** |
+| `4h` | 982,220.00 USD | 1,100,000.00 USD | **`ACCUMULATION`** |
+| `6h` | 1,800,000.00 USD | 1,570,000.00 USD | **`ACCUMULATION`** |
+| `8h` | -1,210,000.00 USD | -2,250,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -9,090,000.00 USD | -29,880,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -11,490,000.00 USD | -42,080,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -18,340,000.00 USD | -78,560,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -51,330,000.00 USD | -500,180,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+24.64K` | 15m=`+141.93K` | 1h=`+334.19K` | 24h=`-11.61M`
-* Futures Capital Netflows: 5m=`+557.20K` | 15m=`+688.21K` | 1h=`+2.11M` | 24h=`-42.30M`
+* Spot Capital Netflows: 5m=`-150.46K` | 15m=`+419.51K` | 1h=`+615.29K` | 24h=`-11.49M`
+* Futures Capital Netflows: 5m=`-165.40K` | 15m=`+402.71K` | 1h=`+2.46M` | 24h=`-42.08M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -330,17 +330,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `6.25` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `6.13` (Risk Distance: `0.1203` pts)
-  * +2.5R Take Profit: `6.55`
+  * Spread-Padded Stop Loss: `6.13` (Risk Distance: `0.1173` pts)
+  * +2.5R Take Profit: `6.54`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `6.66` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `6.78` (Risk Distance: `0.1203` pts)
-  * +2.5R Take Profit: `6.36`
+  * Spread-Padded Stop Loss: `6.78` (Risk Distance: `0.1173` pts)
+  * +2.5R Take Profit: `6.37`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`6.79`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`6.75`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
