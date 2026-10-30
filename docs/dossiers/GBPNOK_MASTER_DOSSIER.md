@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNOK
 **Canonical Key**: `GBPNOK` | **Broker Instrument**: `GBPNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:27:10 IST` (`2026-10-30 09:57:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `12.35` | **Live Ask Quote**: `12.35` | **Mid Price**: `12.35`
-- **Spread Points**: `215.00` | **Spread BPS**: `1.74 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `214.00` | **Spread BPS**: `1.73 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,7 +28,7 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `12.44` | Lower -3.00σ Band: `12.27`
-  * Upper +2.51σ Band: `12.42` | Lower -2.51σ Band: `12.28`
+  * Upper +2.51σ Band: `12.42` | Lower -2.51σ Band: `12.29`
   * Upper +2.01σ Band: `12.40` | Lower -2.01σ Band: `12.30`
   * Upper +2.00σ Band: `12.40` | Lower -2.00σ Band: `12.30`
   * Upper +1.28σ Band: `12.39` | Lower -1.28σ Band: `12.32`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`12.35` | EMA-20=`12.35` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`12.35` (Slope: `+0.0000`) | EMA-100=`12.35`
   * Institutional Anchors: EMA-144=`12.35` | EMA-200=`12.35` (Slope: `+0.0000`) | EMA-233=`12.35`
-- **Range Boundaries**: 24H High=`12.48` | 24H Low=`12.23` | Weekly High=`12.60` | Weekly Low=`12.10`
+- **Range Boundaries**: 24H High=`12.48` | 24H Low=`12.23` | Weekly High=`12.60` | Weekly Low=`12.11`
 
 ---
 
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `12.39` (Distance: `+0.00%`)
   * Point of Control (POC) = `12.35` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `12.31` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `12.32` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`12.40` | POC=`12.35` | VAL=`12.30`
@@ -57,7 +57,7 @@
   * Asian Session (00:00-08:00 UTC): High=`12.38` | Low=`12.33`
   * London Session (08:00-16:00 UTC): High=`12.40` | Low=`12.30`
   * New York Session (13:00-21:00 UTC): High=`12.43` | Low=`12.28`
-  * Initial Balance (First Hour): IB High=`12.39` | IB Low=`12.31`
+  * Initial Balance (First Hour): IB High=`12.39` | IB Low=`12.32`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `12.30` - `12.40`
   * Optimal Trade Entry (OTE 0.705): `12.38`
@@ -267,7 +267,7 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `12.31` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `12.32` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `11.11` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `15.32`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)

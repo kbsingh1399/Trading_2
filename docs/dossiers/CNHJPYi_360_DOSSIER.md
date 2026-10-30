@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:27:09 IST` (`2026-10-30 09:57:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,11 +27,11 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `23.82` | Lower -3.00σ Band: `23.48`
+  * Upper +3.00σ Band: `23.82` | Lower -3.00σ Band: `23.49`
   * Upper +2.51σ Band: `23.78` | Lower -2.51σ Band: `23.52`
   * Upper +2.01σ Band: `23.75` | Lower -2.01σ Band: `23.55`
   * Upper +2.00σ Band: `23.75` | Lower -2.00σ Band: `23.56`
-  * Upper +1.28σ Band: `23.72` | Lower -1.28σ Band: `23.58`
+  * Upper +1.28σ Band: `23.72` | Lower -1.28σ Band: `23.59`
   * Upper +1.00σ Band: `23.70` | Lower -1.00σ Band: `23.60`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`23.65` | EMA-20=`23.65` (Slope: `+0.0000`)

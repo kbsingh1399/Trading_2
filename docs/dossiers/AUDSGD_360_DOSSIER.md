@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDSGD
 **Canonical Key**: `AUDSGD` | **Broker Instrument**: `AUDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:27:09 IST` (`2026-10-30 09:57:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `0.8980` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.9015` | POC=`0.8979` | VAL=`0.8943`
-  * Prior Day Extremes: PDH=`0.9033` | PDL=`0.8925` | PDC=`0.8979`
-  * Monday Range Blueprint: High=`0.9024` | Mid=`0.8979` | Low=`0.8934`
+  * Prior Day Value Area: VAH=`0.9015` | POC=`0.8979` | VAL=`0.8944`
+  * Prior Day Extremes: PDH=`0.9033` | PDL=`0.8926` | PDC=`0.8979`
+  * Monday Range Blueprint: High=`0.9024` | Mid=`0.8979` | Low=`0.8935`
   * Developing Weekly Value Area: Weekly VAH=`0.9051` | Weekly POC=`0.8979` | Weekly VAL=`0.8908`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.8997` | Low=`0.8961`
-  * London Session (08:00-16:00 UTC): High=`0.9015` | Low=`0.8943`
-  * New York Session (13:00-21:00 UTC): High=`0.9033` | Low=`0.8925`
-  * Initial Balance (First Hour): IB High=`0.9006` | IB Low=`0.8952`
+  * London Session (08:00-16:00 UTC): High=`0.9015` | Low=`0.8944`
+  * New York Session (13:00-21:00 UTC): High=`0.9033` | Low=`0.8926`
+  * Initial Balance (First Hour): IB High=`0.9006` | IB Low=`0.8953`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.8943` - `0.9015`
+  * Golden Pocket Zone (0.618 - 0.650): `0.8944` - `0.9015`
   * Optimal Trade Entry (OTE 0.705): `0.8997`
   * Structural Invalidation Anchor (0.786): `0.9051`
 

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:27:10 IST` (`2026-10-30 09:57:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.1646` | **Live Ask Quote**: `0.1649` | **Mid Price**: `0.1648`
-- **Spread Points**: `28.00` | **Spread BPS**: `16.99 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.1644` | **Live Ask Quote**: `0.1647` | **Mid Price**: `0.1645`
+- **Spread Points**: `30.00` | **Spread BPS**: `18.24 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1659` (Distance: `-0.67%`)
-  * Point of Control (POC) = `0.1648` (Distance: `+0.02%`)
-  * Value Area Low (VAL) = `0.1604` (Distance: `+2.77%`)
+  * Value Area High (VAH) = `0.1659` (Distance: `-0.88%`)
+  * Point of Control (POC) = `0.1648` (Distance: `-0.18%`)
+  * Value Area Low (VAL) = `0.1604` (Distance: `+2.56%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1713` | POC=`0.1674` | VAL=`0.1669`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`0.1715` | Weekly POC=`0.1675` | Weekly VAL=`0.1667`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.1659` | Low=`0.1574`
-  * London Session (08:00-16:00 UTC): High=`0.1676` | Low=`0.1644`
-  * New York Session (13:00-21:00 UTC): High=`0.1658` | Low=`0.1638`
+  * London Session (08:00-16:00 UTC): High=`0.1676` | Low=`0.1643`
+  * New York Session (13:00-21:00 UTC): High=`0.1655` | Low=`0.1635`
   * Initial Balance (First Hour): IB High=`0.1676` | IB Low=`0.1655`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.1641` - `0.1654`
-  * Optimal Trade Entry (OTE 0.705): `0.1651`
-  * Structural Invalidation Anchor (0.786): `0.1661`
+  * Golden Pocket Zone (0.618 - 0.650): `0.1639` - `0.1652`
+  * Optimal Trade Entry (OTE 0.705): `0.1648`
+  * Structural Invalidation Anchor (0.786): `0.1658`
 
 ---
 
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 15:20:42 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 15:30:10 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.1661`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.1658`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:27:09 IST` (`2026-10-30 09:57:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.79` | **Live Ask Quote**: `8.79` | **Mid Price**: `8.79`
-- **Spread Points**: `11.00` | **Spread BPS**: `0.13 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `15.00` | **Spread BPS**: `0.17 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`8.82` | POC=`8.79` | VAL=`8.75`
   * Prior Day Extremes: PDH=`8.84` | PDL=`8.73` | PDC=`8.79`
   * Monday Range Blueprint: High=`8.83` | Mid=`8.79` | Low=`8.74`
-  * Developing Weekly Value Area: Weekly VAH=`8.86` | Weekly POC=`8.79` | Weekly VAL=`8.72`
+  * Developing Weekly Value Area: Weekly VAH=`8.86` | Weekly POC=`8.79` | Weekly VAL=`8.71`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.80` | Low=`8.77`
   * London Session (08:00-16:00 UTC): High=`8.82` | Low=`8.75`

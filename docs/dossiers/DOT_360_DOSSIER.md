@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: DOT
 **Canonical Key**: `DOT` | **Broker Instrument**: `DOTUSD.pi` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 15:27:09 IST` (`2026-10-30 09:57:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:30:12 IST` (`2026-10-30 10:00:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.9220` | **Live Ask Quote**: `0.9420` | **Mid Price**: `0.9320`
-- **Spread Points**: `20.00` | **Spread BPS**: `214.59 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.9240` | **Live Ask Quote**: `0.9440` | **Mid Price**: `0.9340`
+- **Spread Points**: `20.00` | **Spread BPS**: `214.13 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,24 +44,24 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.9447` (Distance: `-1.29%`)
-  * Point of Control (POC) = `0.9119` (Distance: `+2.26%`)
-  * Value Area Low (VAL) = `0.8992` (Distance: `+3.71%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `0.9447` (Distance: `-1.18%`)
+  * Point of Control (POC) = `0.9119` (Distance: `+2.37%`)
+  * Value Area Low (VAL) = `0.8998` (Distance: `+3.75%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.9991` | POC=`0.9750` | VAL=`0.9546`
   * Prior Day Extremes: PDH=`1.02` | PDL=`0.8800` | PDC=`0.9000`
   * Monday Range Blueprint: High=`1.03` | Mid=`1.01` | Low=`0.9890`
-  * Developing Weekly Value Area: Weekly VAH=`1.02` | Weekly POC=`0.9945` | Weekly VAL=`0.9701`
+  * Developing Weekly Value Area: Weekly VAH=`1.02` | Weekly POC=`0.9945` | Weekly VAL=`0.9689`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.9330` | Low=`0.8570`
   * London Session (08:00-16:00 UTC): High=`0.9480` | Low=`0.9190`
-  * New York Session (13:00-21:00 UTC): High=`0.9376` | Low=`0.9264`
+  * New York Session (13:00-21:00 UTC): High=`0.9396` | Low=`0.9284`
   * Initial Balance (First Hour): IB High=`0.9480` | IB Low=`0.9290`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.9283` - `0.9357`
-  * Optimal Trade Entry (OTE 0.705): `0.9339`
-  * Structural Invalidation Anchor (0.786): `0.9395`
+  * Golden Pocket Zone (0.618 - 0.650): `0.9303` - `0.9377`
+  * Optimal Trade Entry (OTE 0.705): `0.9359`
+  * Structural Invalidation Anchor (0.786): `0.9415`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.9342` | `0.9342` | `0.9317` | `0.9328` | `92,520` | 86,334.59 USD | -41,579.19 USD | `-48.16%` | -5,828,363.01 USD | `-0.14` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `0.9326` | `0.9330` | `0.9292` | `0.9329` | `216,409` | 201,419.57 USD | -71,651.88 USD | `-35.57%` | -5,900,014.89 USD | `-0.92` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `5m` | `0.9329` | `0.9329` | `0.9325` | `0.9325` | `3,612` | 3,369.02 USD | -811.43 USD | `-24.09%` | -5,900,826.32 USD | `+1.16` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.9326` | `0.9330` | `0.9292` | `0.9329` | `216,409` | 201,419.57 USD | -71,651.88 USD | `-35.57%` | -5,838,714.35 USD | `-0.92` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `0.9329` | `0.9344` | `0.9319` | `0.9342` | `75,001` | 69,991.25 USD | -20,547.27 USD | `-29.36%` | -5,859,261.62 USD | `+0.63` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `0.9342` | `0.9350` | `0.9329` | `0.9342` | `70,671` | 65,991.22 USD | -17,803.72 USD | `-26.98%` | -5,877,065.34 USD | `+0.67` | **`BEARISH`** | `DELTA ALIGNED` |
 | `15m` | `0.9339` | `0.9366` | `0.9331` | `0.9363` | `291,787` | 272,828.10 USD | -28,574.65 USD | `-10.47%` | -5,669,647.15 USD | `+0.49` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `15m` | `0.9364` | `0.9364` | `0.9315` | `0.9328` | `346,655` | 323,640.65 USD | -97,415.33 USD | `-30.10%` | -5,767,062.47 USD | `-0.17` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `0.9326` | `0.9330` | `0.9292` | `0.9327` | `220,447` | 205,186.72 USD | -72,065.18 USD | `-35.12%` | -5,839,127.65 USD | `+0.16` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `0.9326` | `0.9350` | `0.9292` | `0.9342` | `362,080` | 337,402.04 USD | -110,002.87 USD | `-32.60%` | -5,877,065.34 USD | `-0.26` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `0.9521` | `0.9556` | `0.9420` | `0.9454` | `1,900,301` | 1,804,294.23 USD | -93,285.41 USD | `-5.17%` | -5,022,371.88 USD | `+0.16` | **`BEARISH`** | `DELTA ALIGNED` |
 | `1h` | `0.9454` | `0.9488` | `0.9359` | `0.9375` | `1,853,058` | 1,744,265.88 USD | -394,329.00 USD | `-22.61%` | -5,416,700.88 USD | `-0.14` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `1h` | `0.9375` | `0.9390` | `0.9292` | `0.9327` | `1,462,683` | 1,366,759.41 USD | -422,426.77 USD | `-30.91%` | -5,839,127.65 USD | `-0.13` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `1h` | `0.9375` | `0.9390` | `0.9292` | `0.9340` | `1,604,310` | 1,498,969.31 USD | -460,369.88 USD | `-30.71%` | -5,877,070.76 USD | `-0.17` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `0.9089` | `0.9341` | `0.8671` | `0.9318` | `27,623,369` | 24,910,302.08 USD | 1,406,387.33 USD | `+5.65%` | -4,092,983.65 USD | `+1.12` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `0.9318` | `0.9603` | `0.9263` | `0.9454` | `10,832,060` | 10,247,507.62 USD | -822,915.31 USD | `-8.03%` | -4,915,898.96 USD | `+0.08` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `4h` | `0.9454` | `0.9488` | `0.9292` | `0.9325` | `3,315,315` | 3,110,627.16 USD | -817,153.90 USD | `-26.27%` | -5,733,052.86 USD | `+0.08` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `4h` | `0.9454` | `0.9488` | `0.9292` | `0.9340` | `3,457,369` | 3,243,235.19 USD | -854,698.88 USD | `-26.35%` | -5,770,597.84 USD | `+0.06` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `4h` | `1.02` | `1.02` | `0.9766` | `0.9844` | `11,576,299` | 11,511,461.28 USD | -797,065.44 USD | `-6.92%` | -974,642.25 USD | `-1.00` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.9845` | `0.9849` | `0.8892` | `0.9088` | `44,360,278` | 41,175,320.93 USD | -4,524,728.73 USD | `-10.99%` | -5,499,370.98 USD | `-1.40` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.9089` | `0.9341` | `0.8671` | `0.9318` | `27,623,369` | 24,910,302.08 USD | 1,406,387.33 USD | `+5.65%` | -4,092,983.65 USD | `+1.12` | **`BULLISH`** | `DELTA ALIGNED` |
 | `4h` | `0.9318` | `0.9603` | `0.9263` | `0.9454` | `10,832,060` | 10,247,507.62 USD | -822,915.31 USD | `-8.03%` | -4,915,898.96 USD | `+0.08` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `4h` | `0.9454` | `0.9488` | `0.9292` | `0.9325` | `3,315,315` | 3,110,627.16 USD | -817,153.90 USD | `-26.27%` | -5,733,052.86 USD | `+0.08` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `4h` | `0.9454` | `0.9488` | `0.9292` | `0.9340` | `3,457,369` | 3,243,235.19 USD | -854,698.88 USD | `-26.35%` | -5,770,597.84 USD | `+0.06` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 15:20:42 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 15:30:10 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -1268,9 +1268,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.8992` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.8609` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.9992`
+  * Execution Entry: `0.8998` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `0.8615` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.9998`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
@@ -1281,5 +1281,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.9395`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.9415`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,68 +1,51 @@
 {
-  "cycle_id": "Cycle_026",
-  "seat": "Seat #3 — Z.ai Sovereign Council (Adversarial Solvency Arbiter)",
-  "envelope_binding": {
-    "uuid": "bf927e4e-2217-4b4b-ab5f-1c3f219ed550",
-    "dispatch_nonce": "cdf3c6fc-407d-42ab-ba47-b25ebac082b7",
-    "cutoff_utc_governing": "2026-10-30 05:13:53",
-    "header_cutoff": "2026-10-30 05:14:32",
-    "cutoff_drift_seconds": 39
-  },
+  "cycle_id": "Cycle_027",
+  "cutoff_utc": "2026-10-30 05:51:14",
+  "generated_by": "Seat #3 - Z.ai Sovereign Council (Risk Arbiter)",
   "account_solvency": {
     "login": 5064568, "server": "BlueberryMarketsSVG-Live",
-    "balance": 4762.83, "equity": 4769.55, "equity_identity": "EXACT",
-    "floating_pnl": 6.72, "margin_used": 187.39, "margin_free": 4582.16,
-    "margin_level_pct": 2545.2532,
-    "hard_floor_usd": 4775.0, "operating_buffer_usd": 4795.0,
-    "hard_floor_cushion_usd": -5.45, "operating_buffer_cushion_usd": -25.45,
-    "balance_vs_floor_usd": -12.17,
-    "cushion_trajectory": {"C24": -1.69, "C25": -0.89, "C26": -5.45},
-    "capital_mode": "TIER_0_DEFENSIVE",
-    "nominal_risk_capacity_usd": 0.0,
-    "new_risk_admissible": false,
-    "joint_stress": {
-      "desk_booked_usd": 65.4875, "desk_model_reproducible": false,
-      "verified_best_usd": 31.45, "verified_worst_usd": 82.1875,
-      "post_joint_desk_usd": 4695.3425, "post_joint_v_worst_usd": 4680.6425, "post_joint_v_best_usd": 4731.38,
-      "capacity_zero_robust": true
-    },
-    "posture": "MARKET_ORDERS_DENIED_FAIL_CLOSED"
+    "balance_usd": 4762.83, "equity_usd": 4770.67, "floating_usd": 7.84,
+    "hard_floor_usd": 4775.00, "operating_buffer_usd": 4795.00,
+    "hard_floor_cushion_usd": -4.33, "operating_buffer_cushion_usd": -24.33,
+    "balance_floor_deficit_usd": -12.17, "margin_level": 2545.850899194194,
+    "capital_mode": "TIER_0_DEFENSIVE", "nominal_risk_capacity_usd": 0.00,
+    "new_risk_admissible": false, "market_order_posture": "DENIED_FAIL_CLOSED",
+    "authorization": "DENIED_PENDING_FULL_HARD_GATES"
   },
-  "active_staged_orders": [
-    {"card_id": "C26-A-RATIFY", "action": "RATIFY_SL_0.70282_STANDING", "retired_directive": 0.70288, "protocol": "P3-BE", "class": "GOVERNANCE"},
-    {"card_id": "C26-B-RECOVERY-CLOSE", "priority": "P1_ARMED", "ticket": 19490051, "action": "MARKET_CLOSE",
-     "trigger_bid": 0.70450, "realizes_usd": 14.40, "post_balance_usd": 4777.23, "min_recovery_bid": 0.70423,
-     "fallback": "FLATTEN_BY_2026-10-30T20:45Z", "class": "RISK_REDUCING"},
-    {"card_id": "C26-C-CANCEL-PENDINGS", "priority": "P1_ESCALATED_GOVERNANCE_BREACH", "action": "CANCEL_PENDING",
-     "tickets": [19489155, 19489157, 19489158, 19489159, 19489160],
-     "evidence": ["RR 1.517R/1.195R breaches", "entries +0.46% to +2.25% beyond fresh VAH", "BTC/BNB dossiers ABSENT", "DJ dossier posture STAND_ASIDE_MONITOR", "concurrency 6>4", "C25 directive ignored"],
-     "receipt_required": "C27 envelope", "class": "RISK_RETIRING"},
-    {"card_id": "C26-D-VAH-GATE", "priority": "P2_ARMED", "ticket": 19490051, "action": "MARKET_CLOSE_AT_ENVELOPE",
-     "trigger": "C27 price_current <= 0.70340 (fresh VAH surrender)", "realizes_usd": 5.60, "optional_hardening": "SELL_STOP 0.08 @ 0.70340", "class": "RISK_REDUCING"}
+  "active_staged_orders": [],
+  "governance_directives": [
+    {"card": "C27-AUD-RATCHET", "action": "SL 0.70282 -> 0.70288", "ticket": 19490051,
+     "trigger": "LIVE (0.70368 >= 0.70366)", "lock_usd": 1.44, "status": "REISSUED_3RD", "compliance": "NON_COMPLIANT_X2"},
+    {"card": "C27-AUD-RECOVERY-EXIT", "action": "market close at bid >= 0.70450",
+     "profit_usd": 14.40, "balance_after": 4777.23, "floor_cushion_after": 2.23,
+     "min_repair_bid": "0.70423", "fallback": "HARD CLOSE 2026-10-30 20:45 UTC", "status": "ARMED", "compliance": "NOT_TRIGGERED"},
+    {"card": "C27-CANCEL-ALL-PENDINGS", "tickets": [19489155, 19489157, 19489158, 19489159, 19489160],
+     "status": "REISSUED_3RD", "compliance": "NON_COMPLIANT_X2"}
   ],
   "high_confluence_formulated_trades": [],
-  "rearm_templates": [
-    {"symbol": "DJ30.p", "source": "dossier Section 10 verbatim", "order": "SELL_LIMIT 52398.41", "sl": 52468.06,
-     "tp": 52224.28, "lots": 0.10, "risk_usd": 6.97, "rr": 2.5, "dossier_posture": "STAND_ASIDE_MONITOR",
-     "status": "NOT_POSTURED / NO_FILL_AUTHORIZATION"}
-  ],
+  "spread_screening": {"evaluated": 27, "conditional_pass_supplemental": ["AUDUSD:0.14bps", "BTCUSD:2.04bps"],
+                       "not_evaluable": 25, "root_cause": "EVIDENCE_VOID_FRESH_TICK_ABSENT_3RD_CYCLE"},
+  "econometric_grid": {"vr4": "NOT_COMPUTABLE", "er48": "NOT_COMPUTABLE", "hac_t": "NOT_COMPUTABLE",
+                       "ev_net_r": "NOT_COMPUTABLE", "p_win": "NOT_COMPUTABLE", "lcb_5pct": "NOT_COMPUTABLE"},
+  "active_position_ruling": {"ticket": 19490051, "ruling": "RUN",
+    "r_multiple": 0.8167, "be_ratchet_trigger": "LIVE", "time_decay": "EXEMPT (dual-clock: exec 17.49 bars / signal 28.84 bars)",
+    "weekend_gap_defense": "Card B fallback close 20:45 UTC tonight"},
   "disputes_or_rejections": [
-    {"id": "D1", "sev": "HIGH_ESCALATED", "item": "3rd consecutive preflight nonce-rebind (one stale Oct-27 object, three hashes: 05ac220e/78f4fcea/d2407f19)", "action": "VOID; pipeline quarantine; +/-120s freshness gate"},
-    {"id": "D4", "sev": "CRITICAL_ESCALATED", "item": "C25 Card C IGNORED; 5 GTC pendings still PLACED = pre-authorized risk at capacity 0.00", "action": "GOVERNANCE BREACH; done-receipts required in C27"},
-    {"id": "D6", "sev": "LOW", "item": "Cutoff drift 39s (6s in C25, growing)", "action": "Envelope governs"},
-    {"id": "D7", "sev": "MEDIUM", "item": "All 4 provenance hashes identical across C24-C26", "action": "Bind instantiated-prompt hash per cycle"},
-    {"id": "D8", "sev": "MEDIUM", "item": "MT5 trade-history demand standing (-139.41 leg; positive-slippage fill at open)", "action": "Disclose statement"},
-    {"id": "D10", "sev": "HIGH", "item": "Registry/ledger frozen re-confirmed (last writes 08:27:01/08:05 UTC Oct-29; content unchanged on re-fetch)", "action": "Per-cycle registry write mandate"},
-    {"id": "D11", "sev": "MEDIUM", "item": "Millisecond telemetry (time_update == time_msc) proves ZERO SL/TP modifications ever; C21-C25 ratchet narrative refuted; execution surface = open/close/cancel", "action": "P3-BE ratified; P4 close-form doctrine adopted"},
-    {"id": "D12", "sev": "MEDIUM", "item": "Equity cushion -0.89 -> -5.45 (2nd consecutive decline)", "action": "VAH-surrender gate C26-D instituted"},
-    {"id": "D13", "sev": "HIGH", "item": "Desk stress aggregate 65.4875 irreproducible under dossier-verified multipliers (DJ/NAS $1.00/pt/lot vs implied 10); BNB nominal unbounded [0.41, 41.00]", "action": "broker_spec receipts for BNBUSD.p; worst-case bound adopted"},
-    {"id": "D14", "sev": "MEDIUM", "item": "Dossier Section-10 completeness 1/4; the only complete card postures STAND_ASIDE_MONITOR while the book rests a contrarian order", "action": "Fix dossier generator; reconcile engine posture with book"}
+    {"id": "D1", "issue": "Preflight nonce-rebind: identical observed_at 2026-10-27 13:12:05 on distinct digests (C26 d2407f19, C27 cf3e7ea7)", "status": "RECURRENCE_3_OF_3_UPGRADED_PIPELINE_SYSTEMIC"},
+    {"id": "D2", "issue": "BTC RR 1.5168R / BNB RR 1.1951R < 2.5R floor", "status": "PERSISTS"},
+    {"id": "D3", "issue": "5 pendings stale 28.84 bars; BTC VAH_Fade anchor invalidated (+1512.08 pts above refreshed VAH 79571.92)", "status": "PERSISTS_DOSSIER_EVIDENCED"},
+    {"id": "D4", "issue": "Concurrency 6 > max 4", "status": "PERSISTS"},
+    {"id": "D5", "issue": "Card A unexecuted: SL 0.70282 vs directed 0.70288, $0.48 lock gap", "status": "PERSISTS_X2_ESCALATED"},
+    {"id": "D6", "issue": "Cutoff drift +6s/+39s/+23s across C25/C26/C27", "status": "PERSISTS_NON_MONOTONIC"},
+    {"id": "D7", "issue": "Provenance freeze: all 5 hashes refreshed; commit 7466befe verified real (2026-10-30T03:59:07Z, predates cutoff 1h52m)", "status": "RESOLVED_THIS_CYCLE"},
+    {"id": "D8", "issue": "Unexplained balance decomposition 4837.08 -> 4762.83 = -74.25, no MT5 deal history provided", "status": "PERSISTS"},
+    {"id": "D9", "issue": "Spread evidence void", "status": "PARTIALLY_RESOLVED (2/27 dossier-attested, post-cutoff +123s)"},
+    {"id": "D10", "issue": "Ghost ledger (Cycle_004 tail) + registry content 21.40h stale with 3 phantom positions / 7 phantom pendings, zero mention of ticket 19490051, actively re-committed (05:51:16Z +2s post-cutoff)", "status": "UPGRADED_GHOST_WITH_HEARTBEAT"},
+    {"id": "D11", "issue": "Time-decay clock baseline ambiguity (exec-epoch vs signal-epoch)", "status": "OPEN_DUAL_CLOCK_DISCLOSED"},
+    {"id": "D12", "issue": "Margin-model heterogeneity: BTC implied 1.99:1 vs AUD 30:1", "status": "OPEN_MOOT_WHILE_RECEIPT_VOID"},
+    {"id": "D13", "issue": "Spec-repo structural drift: mandated _MASTER_DOSSIER.md (10 sections) absent; repo uses _360_DOSSIER.md (8 sections)", "status": "OPEN"}
   ],
-  "artifacts": {
-    "verification_script": "scripts/cycle_026_seat3_math.py",
-    "script_sha256": "9d0554434fbf48c773fe24f9db85b71f75e1bda641bfcda1accea11b765089b3",
-    "sidecar": "download/Cycle_026_seat3_sidecar.json",
-    "sidecar_sha256": "7eb6eb01ad1ced7542cf04e0fbe6eaaec77a4e9840468fa564348e9897680600"
-  },
-  "authorization_echo": "DENIED_PENDING_FULL_HARD_GATES -> SEAT3_POSTURE: DENIED_FAIL_CLOSED_MAINTAINED (close/cancel-form directives only)"
+  "verification": {"script": "cycle_027_seat3_math.py", "script_sha256": "b9a779e996cf4dd00319580bd40118ff0fd15c39b635296f0d5b2485e2a88dcd",
+                   "sidecar": "Cycle_027_seat3_sidecar.json", "sidecar_sha256": "7d8050d1a8b3be643d9fc8ee773f4cc426c5745293fa83a49f59f87de398f637",
+                   "checks": "40/40 EXACT", "github_fetches": "7/7 reached"}
 }
