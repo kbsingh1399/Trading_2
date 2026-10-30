@@ -1638,19 +1638,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 749,
+      "rank": 747,
       "symbol": "GBPUSD",
-      "price": "$1.3397",
-      "price_24h_pct": "+0.22%",
-      "open_interest": "$401.56K",
+      "price": "$1.3383",
+      "price_24h_pct": "-0.04%",
+      "open_interest": "$401.08K",
       "current": "$0.00",
       "last_24h": "$0.00",
       "last_3d": "$0.00",
       "last_7d": "$0.00",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

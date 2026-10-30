@@ -129,17 +129,17 @@
     ],
     "hl_analysis_ladder": [
       {
-        "rank": "1829",
+        "rank": "1808",
         "user": "0x12d2...f97f",
         "side": "LONG",
-        "pos_usd": 1148902.33,
+        "pos_usd": 1157006.9,
         "tokens": 3972828.7,
         "entry_px": 0.3272,
-        "current_px": 0.28929,
+        "current_px": 0.28921,
         "liq_px": 0.0,
-        "pnl_usd": -150936.41,
-        "pnl_pct": -13.14,
-        "margin": 114890.23,
+        "pnl_usd": -142831.84,
+        "pnl_pct": -12.34,
+        "margin": 115700.69,
         "leverage": "10X Cross"
       }
     ],
@@ -1706,7 +1706,7 @@
         "tf_4h": "-",
         "tf_12h": "-",
         "tf_24h": "$6.10M",
-        "timestamp_ist": "2026-10-30 20:42:41 IST"
+        "timestamp_ist": "2026-10-30 20:54:30 IST"
       }
     ],
     "live_liq_rows": [],
@@ -1716,34 +1716,34 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "CRV",
-      "USDT_Binance": "-0.0239%",
-      "USDT_OKX": "-0.0129%",
-      "USDT_Bybit": "-0.0192%",
-      "USDT_KuCoin": "-0.0067%",
-      "USDT_MEXC": "-0.0132%",
-      "USDT_BingX": "-0.0069%",
-      "USDT_Gate": "-0.0265%",
-      "USDT_Bitunix": "-0.0246%",
-      "USDT_Bitget": "-0.0081%",
+      "USDT_Binance": "-0.0238%",
+      "USDT_OKX": "-0.0118%",
+      "USDT_Bybit": "-0.0179%",
+      "USDT_KuCoin": "-0.0044%",
+      "USDT_MEXC": "-0.0123%",
+      "USDT_BingX": "-0.0058%",
+      "USDT_Gate": "-0.0242%",
+      "USDT_Bitunix": "-0.0240%",
+      "USDT_Bitget": "-0.0072%",
       "USDT_WhiteBIT": "0.0100%",
-      "USDT_LBank": "-0.0132%",
+      "USDT_LBank": "-0.0124%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
       "rank": 38,
       "symbol": "CRV",
-      "price": "$0.288800",
-      "price_24h_pct": "-12.83%",
-      "open_interest": "$50.50M",
-      "current": "-$10.20K",
+      "price": "$0.288700",
+      "price_24h_pct": "-13.25%",
+      "open_interest": "$50.40M",
+      "current": "-$9.86K",
       "last_24h": "$967.59",
       "last_3d": "$19.73K",
       "last_7d": "$53.52K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

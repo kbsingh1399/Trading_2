@@ -178,14 +178,14 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "MANA",
-      "USDT_Binance": "-0.0029%",
-      "USDT_OKX": "-0.0123%",
+      "USDT_Binance": "-0.0031%",
+      "USDT_OKX": "-0.0104%",
       "USDT_Bybit": "0.0100%",
       "USDT_KuCoin": "0.0100%",
       "USDT_MEXC": "-0.0031%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
-      "USDT_Bitunix": "0.0000%",
+      "USDT_Bitunix": "-0.0015%",
       "USDT_Bitget": "0.0100%",
       "USDT_WhiteBIT": "0.0100%",
       "USDT_LBank": "-0.0031%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 607,
+      "rank": 571,
       "symbol": "MANA",
-      "price": "$0.073200",
-      "price_24h_pct": "-6.94%",
-      "open_interest": "$5.65M",
-      "current": "$57.13",
+      "price": "$0.074160",
+      "price_24h_pct": "-5.95%",
+      "open_interest": "$5.73M",
+      "current": "$78.27",
       "last_24h": "$495.97",
       "last_3d": "$1.62K",
       "last_7d": "$1.69K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

@@ -129,17 +129,17 @@
     ],
     "hl_analysis_ladder": [
       {
-        "rank": "1277",
+        "rank": "1262",
         "user": "0xeadc...9d55",
         "side": "LONG",
-        "pos_usd": 1736320.0,
+        "pos_usd": 1756000.0,
         "tokens": 2000000.0,
         "entry_px": 0.9824,
-        "current_px": 0.87137,
+        "current_px": 0.87135,
         "liq_px": 0.0,
-        "pnl_usd": -228446.39,
-        "pnl_pct": -13.16,
-        "margin": 347264.0,
+        "pnl_usd": -208766.39,
+        "pnl_pct": -11.89,
+        "margin": 351200.0,
         "leverage": "5X Cross"
       }
     ],
@@ -210,11 +210,11 @@
       {
         "rank": 27,
         "asset": "FIL",
-        "tf_1h": "-",
+        "tf_1h": "$112.07K",
         "tf_4h": "-",
         "tf_12h": "-",
-        "tf_24h": "$6.32M",
-        "timestamp_ist": "2026-10-30 20:42:41 IST"
+        "tf_24h": "$6.35M",
+        "timestamp_ist": "2026-10-30 20:54:30 IST"
       }
     ],
     "live_liq_rows": [],
@@ -226,32 +226,32 @@
       "Symbol": "FIL",
       "USDT_Binance": "0.0100%",
       "USDT_OKX": "0.0100%",
-      "USDT_Bybit": "-0.0023%",
-      "USDT_KuCoin": "-0.0072%",
+      "USDT_Bybit": "-0.0016%",
+      "USDT_KuCoin": "-0.0085%",
       "USDT_MEXC": "-",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "-0.0059%",
       "USDT_Bitunix": "0.0100%",
-      "USDT_Bitget": "0.0061%",
+      "USDT_Bitget": "0.0072%",
       "USDT_WhiteBIT": "0.0100%",
       "USDT_LBank": "0.0100%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "0.0100%",
       "CoinM_OKX": "0.0100%",
-      "CoinM_Bybit": "0.0081%",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "CoinM_Bybit": "0.0077%",
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 53,
+      "rank": 54,
       "symbol": "FIL",
-      "price": "$0.867900",
-      "price_24h_pct": "-4.89%",
-      "open_interest": "$83.32M",
-      "current": "$6.34K",
+      "price": "$0.871300",
+      "price_24h_pct": "-4.76%",
+      "open_interest": "$83.31M",
+      "current": "$6.54K",
       "last_24h": "$2.79K",
       "last_3d": "-$1.74K",
       "last_7d": "$3.54K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

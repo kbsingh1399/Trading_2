@@ -294,19 +294,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 247,
+      "rank": 252,
       "symbol": "AXS",
-      "price": "$0.871500",
-      "price_24h_pct": "-7.34%",
-      "open_interest": "$7.77M",
-      "current": "$472.04",
+      "price": "$0.876900",
+      "price_24h_pct": "-7.25%",
+      "open_interest": "$7.78M",
+      "current": "$472.90",
       "last_24h": "$1.43K",
       "last_3d": "$3.69K",
       "last_7d": "$2.70K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

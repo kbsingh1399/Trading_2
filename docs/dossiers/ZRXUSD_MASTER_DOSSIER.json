@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 599,
+      "rank": 535,
       "symbol": "ZRX",
-      "price": "$0.094400",
-      "price_24h_pct": "-8.79%",
-      "open_interest": "$2.23M",
-      "current": "$62.40",
+      "price": "$0.094900",
+      "price_24h_pct": "-7.23%",
+      "open_interest": "$2.24M",
+      "current": "$98.83",
       "last_24h": "-$210.14",
       "last_3d": "$11.39",
       "last_7d": "-$1.47K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

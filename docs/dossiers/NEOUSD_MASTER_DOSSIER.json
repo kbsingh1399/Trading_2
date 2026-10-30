@@ -189,9 +189,9 @@
     "funding_row": {
       "Symbol": "NEO",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "0.0006%",
+      "USDT_OKX": "0.0027%",
       "USDT_Bybit": "0.0100%",
-      "USDT_KuCoin": "-0.0490%",
+      "USDT_KuCoin": "-0.0447%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
@@ -203,19 +203,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 288,
+      "rank": 289,
       "symbol": "NEO",
-      "price": "$1.9740",
-      "price_24h_pct": "-7.37%",
-      "open_interest": "$3.82M",
-      "current": "$357.37",
+      "price": "$1.9880",
+      "price_24h_pct": "-7.28%",
+      "open_interest": "$3.85M",
+      "current": "$366.21",
       "last_24h": "$1.16K",
       "last_3d": "$2.80K",
       "last_7d": "$6.26K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

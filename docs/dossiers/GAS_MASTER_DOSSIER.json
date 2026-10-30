@@ -188,16 +188,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 518,
+      "rank": 523,
       "symbol": "GAS",
-      "price": "$1.1740",
-      "price_24h_pct": "-3.85%",
-      "open_interest": "$2.08M",
-      "current": "$104.08",
+      "price": "$1.1780",
+      "price_24h_pct": "-3.13%",
+      "open_interest": "$2.09M",
+      "current": "$104.51",
       "last_24h": "$255.65",
       "last_3d": "$1.45K",
       "last_7d": "$3.61K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

@@ -127,7 +127,7 @@
     "funding_row": {
       "Symbol": "NOK",
       "USDT_Binance": "0.0000%",
-      "USDT_OKX": "0.0043%",
+      "USDT_OKX": "0.0050%",
       "USDT_Bybit": "-",
       "USDT_KuCoin": "0.0000%",
       "USDT_MEXC": "0.0000%",
@@ -141,7 +141,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {},
     "ls_ladder": []

@@ -179,7 +179,7 @@
     "funding_row": {
       "Symbol": "NOK",
       "USDT_Binance": "0.0000%",
-      "USDT_OKX": "0.0043%",
+      "USDT_OKX": "0.0050%",
       "USDT_Bybit": "-",
       "USDT_KuCoin": "0.0000%",
       "USDT_MEXC": "0.0000%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {
-      "rank": 647,
+      "rank": 626,
       "symbol": "NOK",
-      "price": "$8.6800",
-      "price_24h_pct": "-6.36%",
-      "open_interest": "$5.16M",
-      "current": "$33.09",
+      "price": "$8.6700",
+      "price_24h_pct": "-6.87%",
+      "open_interest": "$5.15M",
+      "current": "$45.43",
       "last_24h": "$38.13",
       "last_3d": "$1.06K",
       "last_7d": "$1.57K",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

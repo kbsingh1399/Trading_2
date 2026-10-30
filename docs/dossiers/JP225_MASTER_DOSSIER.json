@@ -126,16 +126,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 651,
+      "rank": 657,
       "symbol": "JP225",
-      "price": "$62,643.00",
-      "price_24h_pct": "-3.32%",
-      "open_interest": "$127.37K",
-      "current": "$31.77",
+      "price": "$62,854.00",
+      "price_24h_pct": "-3.13%",
+      "open_interest": "$127.15K",
+      "current": "$29.07",
       "last_24h": "$89.95",
       "last_3d": "$108.82",
       "last_7d": "$172.48",
-      "timestamp_ist": "2026-10-30 20:42:33 IST"
+      "timestamp_ist": "2026-10-30 20:54:23 IST"
     },
     "ls_ladder": []
   },

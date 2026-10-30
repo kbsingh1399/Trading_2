@@ -399,13 +399,13 @@
     "ex_liq_ladder": [],
     "heapmap_rows": [
       {
-        "rank": 70,
+        "rank": 69,
         "asset": "QQQ",
         "tf_1h": "-",
-        "tf_4h": "$380.26K",
+        "tf_4h": "$374.16K",
         "tf_12h": "-",
         "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 20:42:41 IST"
+        "timestamp_ist": "2026-10-30 20:54:30 IST"
       }
     ],
     "live_liq_rows": [],
@@ -415,22 +415,22 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "QQQ",
-      "USDT_Binance": "0.0092%",
-      "USDT_OKX": "0.0102%",
-      "USDT_Bybit": "0.0143%",
-      "USDT_KuCoin": "0.0361%",
-      "USDT_MEXC": "0.0088%",
+      "USDT_Binance": "0.0114%",
+      "USDT_OKX": "0.0131%",
+      "USDT_Bybit": "0.0168%",
+      "USDT_KuCoin": "0.0389%",
+      "USDT_MEXC": "0.0110%",
       "USDT_BingX": "-",
       "USDT_Gate": "0.0000%",
-      "USDT_Bitunix": "0.0022%",
-      "USDT_Bitget": "0.0256%",
+      "USDT_Bitunix": "0.0044%",
+      "USDT_Bitget": "0.0283%",
       "USDT_WhiteBIT": "-",
       "USDT_LBank": "-",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 20:42:25 IST"
+      "Timestamp_IST": "2026-10-30 20:54:16 IST"
     },
     "settle_row": {},
     "ls_ladder": []
