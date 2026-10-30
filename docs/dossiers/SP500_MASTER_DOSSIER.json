@@ -1529,7 +1529,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
       "rank": 906,
@@ -1541,7 +1541,7 @@
       "last_24h": "$16.38",
       "last_3d": "$16.38",
       "last_7d": "$453.87",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

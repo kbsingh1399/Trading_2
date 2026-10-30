@@ -180,7 +180,7 @@
       "Symbol": "BAT",
       "USDT_Binance": "0.0100%",
       "USDT_OKX": "0.0100%",
-      "USDT_Bybit": "-0.0082%",
+      "USDT_Bybit": "-0.0086%",
       "USDT_KuCoin": "0.0100%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 238,
+      "rank": 237,
       "symbol": "BAT",
-      "price": "$0.128930",
-      "price_24h_pct": "-6.44%",
-      "open_interest": "$10.48M",
-      "current": "$546.68",
+      "price": "$0.128550",
+      "price_24h_pct": "-6.63%",
+      "open_interest": "$10.43M",
+      "current": "$522.19",
       "last_24h": "$1.51K",
       "last_3d": "$3.32K",
       "last_7d": "$12.75K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

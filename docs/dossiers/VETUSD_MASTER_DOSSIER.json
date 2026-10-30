@@ -178,14 +178,14 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "VET",
-      "USDT_Binance": "-0.0013%",
+      "USDT_Binance": "-0.0006%",
       "USDT_OKX": "-",
-      "USDT_Bybit": "0.0010%",
-      "USDT_KuCoin": "-0.0266%",
-      "USDT_MEXC": "-0.0015%",
+      "USDT_Bybit": "0.0014%",
+      "USDT_KuCoin": "-0.0249%",
+      "USDT_MEXC": "-0.0008%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
-      "USDT_Bitunix": "-0.0024%",
+      "USDT_Bitunix": "-0.0011%",
       "USDT_Bitget": "0.0100%",
       "USDT_WhiteBIT": "0.0100%",
       "USDT_LBank": "0.0100%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 667,
+      "rank": 689,
       "symbol": "VET",
-      "price": "$0.005862",
-      "price_24h_pct": "-4.71%",
-      "open_interest": "$7.06M",
-      "current": "-$37.53",
+      "price": "$0.005845",
+      "price_24h_pct": "-5.07%",
+      "open_interest": "$7.04M",
+      "current": "$28.39",
       "last_24h": "$1.17K",
       "last_3d": "$2.74K",
       "last_7d": "$8.80K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

@@ -170,7 +170,17 @@
       "timestamp_ist": null
     },
     "ex_liq_ladder": [],
-    "heapmap_rows": [],
+    "heapmap_rows": [
+      {
+        "rank": 85,
+        "asset": "XPD",
+        "tf_1h": "$28.38K",
+        "tf_4h": "-",
+        "tf_12h": "-",
+        "tf_24h": "-",
+        "timestamp_ist": "2026-10-30 17:56:29 IST"
+      }
+    ],
     "live_liq_rows": [],
     "forced_liq_ladder": []
   },
@@ -178,34 +188,34 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "XPD",
-      "USDT_Binance": "0.0208%",
-      "USDT_OKX": "0.0446%",
+      "USDT_Binance": "0.0224%",
+      "USDT_OKX": "0.0482%",
       "USDT_Bybit": "-",
       "USDT_KuCoin": "0.0000%",
-      "USDT_MEXC": "0.0205%",
+      "USDT_MEXC": "0.0221%",
       "USDT_BingX": "-",
-      "USDT_Gate": "0.0000%",
-      "USDT_Bitunix": "0.0213%",
-      "USDT_Bitget": "0.0366%",
+      "USDT_Gate": "0.0136%",
+      "USDT_Bitunix": "0.0210%",
+      "USDT_Bitget": "0.0383%",
       "USDT_WhiteBIT": "-",
-      "USDT_LBank": "0.0206%",
+      "USDT_LBank": "0.0221%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 146,
+      "rank": 136,
       "symbol": "XPD",
-      "price": "$978.4800",
-      "price_24h_pct": "-2.43%",
-      "open_interest": "$5.67M",
-      "current": "$1.41K",
+      "price": "$977.4100",
+      "price_24h_pct": "-2.48%",
+      "open_interest": "$5.69M",
+      "current": "$1.52K",
       "last_24h": "$4.39K",
       "last_3d": "$19.47K",
       "last_7d": "$27.13K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

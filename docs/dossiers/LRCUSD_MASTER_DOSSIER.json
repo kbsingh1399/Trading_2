@@ -126,16 +126,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 670,
+      "rank": 667,
       "symbol": "LRC",
-      "price": "$0.007730",
-      "price_24h_pct": "-6.30%",
-      "open_interest": "$363.71K",
-      "current": "$36.37",
+      "price": "$0.007700",
+      "price_24h_pct": "-6.78%",
+      "open_interest": "$362.14K",
+      "current": "$36.21",
       "last_24h": "$121.06",
       "last_3d": "$384.20",
       "last_7d": "$890.64",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

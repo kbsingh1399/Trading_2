@@ -1,0 +1,137 @@
+import asyncio
+import json
+import os
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from Terminal.arena_bridge import post_prompt_to_arena_single, post_prompt_to_zai
+
+sys.stdout.reconfigure(encoding='utf-8')
+
+# Load the Cycle_034 Full-Scale Universe Database
+db_path = ROOT / 'docs' / 'trade_plans' / 'CYCLE_034_FULL_SCALE_UNIVERSE_DATABASE.json'
+with open(db_path, 'r', encoding='utf-8') as f:
+    db = json.load(f)
+
+ranked = db.get('ranked_candidates', [])
+
+def build_cycle_034_prompt():
+    prompt = f"""# 🏛️ AUTONOMOUS TRI-COUNCIL AUDIT & UNIVERSE REVIEW: Cycle_034
+**Seat #1: Antigravity Autonomous Lead | Seat #2: Arena.ai Lead Strategist | Seat #3: Z.ai Solvency Arbiter**
+**Timestamp (UTC)**: 2026-10-30 12:28:00 UTC (17:58:00 IST) | **Cycle ID**: `Cycle_034`
+**Live Portfolio Registry**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`
+**Canonical Checklist**: `Data/Manditory/ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`
+
+---
+
+## 🏛️ 1. ACCOUNT SOLVENCY & LIVE MT5 ORDER INVENTORY
+- **MT5 Account**: #5064568 (Blueberry Markets, Live Raw Spread)
+- **Balance & Floating Equity**: **4,763.23 USD**
+- **Hard Solvency Floor**: **4,775.00 USD** (Deficit: **-11.77 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Deficit: **-31.77 USD**)
+- **Capital Posture**: `TIER_0_DEFENSIVE` (Operator Override Active for High-Confluence Maker Limits >= 2.5R, Risk <= 10.00 USD, Capacity N <= 3)
+- **Active Open Positions**: **0** (100% Cash Defense Preserved)
+- **Active Resting Maker Limit Orders**: **3** (Current Capacity: **3/3 Slots Utilized**)
+  1. **Ticket #19520222**: `BTCUSD.pi` SELL_LIMIT 0.02 lot @ **78,962.00** | SL **79,318.00** | TP **78,072.00** | Risk **$7.12 USD** | **2.500R**
+     - Live Mid: `77,419.00` | Sits +1,543 pts above market, resting above POC 77,902 and below 24H Short Max Pain 79,868.95 (+3.16%).
+  2. **Ticket #19520223**: `XAUUSD.pi` SELL_LIMIT 0.01 lot @ **4,007.50** | SL **4,017.00** | TP **3,983.70** | Risk **$9.50 USD** | **2.505R**
+     - Live Mid: `3,965.45` | Sits +42.05 pts above market, defending daily VAH 4,009.00 and VWAP resistance 3,993.54.
+  3. **Ticket #19520224**: `AUDUSD.pi` BUY_LIMIT 0.15 lot @ **0.70240** | SL **0.70180** | TP **0.70390** | Risk **$9.00 USD** | **2.500R**
+     - Live Mid: `0.70390` | Sits 15.0 pips below market, waiting at daily VAL 0.70240 sweep.
+- **Total Combined Downside Risk**: **$25.62 USD** (All tickets strictly <= 10.00 USD risk).
+
+---
+
+## 🔍 2. UNIVERSE FORENSICS & TOP HIGH-CONFLUENCE CANDIDATES (94 AUDITED)
+Antigravity completed full-length physical forensics across 10 sections for 100% of all 94 eligible spread-cleared assets. The top ranked candidates:
+
+1. **AVEUSD** [Broker: AVEUSD.p] (Confluence Score: 90.0/100 | Spread: 21.48 bps)
+   - Live Mid: 125.715 | VWAP: 122.50 | VAL: 120.04 | POC: 124.84 | VAH: 127.07
+   - Short Max Pain: 128.80 (+2.45%) | Long Max Pain: 123.64 (-1.65%)
+   - Forensics: Overextended above VWAP (+2.62%). Short Max Pain magnet overhead @ 128.80.
+
+2. **XAUUSD / XAUT / PAXG** [Broker: XAUUSD.pi] (Confluence Score: 88.0/100 | Spread: 0.40 bps)
+   - Live Mid: 3,965.45 | VWAP: 3,993.54 | VAL: 3,979.40 | POC: 3,992.40 | VAH: 4,009.00
+   - Short Max Pain: 4,068.25 (+2.59%) | Long Max Pain: 3,908.57 (-1.43%)
+   - Forensics: Trading below Developing VAL (Discount). Fading into 4,007.50 Sell Limit defends VAH 4,009.00.
+
+3. **BTC** [Broker: BTCUSD.pi] (Confluence Score: 80.0/100 | Spread: 2.97 bps)
+   - Live Mid: 77,419.00 | VWAP: 77,633.72 | VAL: 77,000.08 | POC: 77,902.48 | VAH: 78,646.96
+   - Short Max Pain: 79,868.95 (+3.16%) | Long Max Pain: 76,945.12 (-0.61%)
+   - Forensics: Sitting inside Value Area. Sell Limit #19520222 @ 78,962 sits above VAH 78,646.96.
+
+4. **ETH** [Broker: ETHUSD.pi] (Confluence Score: 80.0/100 | Spread: 16.10 bps)
+   - Live Mid: 2,236.55 | VWAP: 2,221.39 | VAL: 2,197.24 | POC: 2,224.76 | VAH: 2,249.04
+   - Short Max Pain: 2,275.30 (+1.73%) | Long Max Pain: 2,174.37 (-2.78%)
+
+5. **BCH** [Broker: BCHUSD.p] (Confluence Score: 75.0/100 | Spread: 17.61 bps)
+   - Live Mid: 284.50 | VWAP: 277.54 | VAL: 273.51 | POC: 283.88 | VAH: 284.87
+   - Short Max Pain: 288.85 (+1.53%) | Long Max Pain: 265.44 (-6.70%)
+
+6. **XMRUSD** [Broker: XMRUSD.p] (Confluence Score: 75.0/100 | Spread: 0.68 bps)
+   - Live Mid: 589.50 | VWAP: 603.59 | VAL: 587.74 | POC: 592.04 | VAH: 614.74
+   - Short Max Pain: 654.54 (+11.0%) | Long Max Pain: 579.76 (-1.65%)
+
+---
+
+## 🎯 3. MANDATORY TRI-COUNCIL AUDIT DELIVERABLES
+Arena.ai and Z.ai are instructed to independently deliver:
+1. **Resting Limit Orders Audit**:
+   - Ticket #19520222 (BTCUSD.pi 78,962.00 SELL_LIMIT): Evaluate against Short Max Pain magnet at 79,868.95 and Pitfall 24. Recommendation: `MAINTAIN`, `ADJUST_SL`, or `CANCEL`.
+   - Ticket #19520223 (XAUUSD.pi 4,007.50 SELL_LIMIT): Evaluate against Developing VAH 4,009.00 and Short Max Pain 4,068.25. Recommendation: `MAINTAIN` or `CANCEL`.
+   - Ticket #19520224 (AUDUSD.pi 0.70240 BUY_LIMIT): Evaluate against Developing VAL 0.70240 support. Recommendation: `MAINTAIN` or `CANCEL`.
+2. **Friday Rollover & Weekend Blackout Guidance**:
+   - Assess rollover window (21:15–22:30 UTC) and weekend gap risk for resting orders.
+3. **Definitive Solvency Verdict**:
+   - Ratify whether current N=3 resting limit stance ($25.62 USD risk) preserves the $4,775.00 USD solvency floor while effectively positioning for high-probability mean-reversion fills.
+"""
+    return prompt
+
+async def main():
+    print("=" * 80)
+    print("🚀 DISPATCHING CYCLE_034 UNIVERSE FORENSIC PROMPT TO ARENA.AI & Z.AI")
+    print("=" * 80)
+
+    prompt = build_cycle_034_prompt()
+    prompt_path = ROOT / "docs" / "trade_plans" / "CYCLE_034_DISPATCH_PROMPT.txt"
+    prompt_path.parent.mkdir(parents=True, exist_ok=True)
+    prompt_path.write_text(prompt, encoding="utf-8")
+    print(f"Saved Cycle_034 prompt ({len(prompt)} chars) to {prompt_path}")
+
+    raw = urllib.request.urlopen("http://127.0.0.1:9222/json", timeout=5).read().decode("utf-8")
+    tabs = json.loads(raw)
+
+    arena_tab = next((t for t in tabs if "arena.ai" in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
+    zai_tab = next((t for t in tabs if "chat.z.ai" in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
+
+    results = {}
+
+    if arena_tab:
+        print(f"\n[1/2] Dispatching to Arena.ai ({arena_tab['url']})...")
+        res_arena = await post_prompt_to_arena_single(arena_tab["webSocketDebuggerUrl"], prompt, "Arena.ai")
+        results["arena"] = res_arena
+        print(f"Arena.ai dispatch result: {'SUCCESS' if res_arena else 'FAILED'}")
+    else:
+        print("Warning: Arena.ai tab not found on port 9222.")
+        results["arena"] = False
+
+    if zai_tab:
+        print(f"\n[2/2] Dispatching to Z.ai ({zai_tab['url']})...")
+        res_zai = await post_prompt_to_zai(prompt)
+        results["zai"] = res_zai
+        print(f"Z.ai dispatch result: {'SUCCESS' if res_zai else 'FAILED'}")
+    else:
+        print("Warning: Z.ai tab not found on port 9222.")
+        results["zai"] = False
+
+    print("\n" + "=" * 80)
+    print("CYCLE_034 DISPATCH SUMMARY:", results)
+    print("=" * 80)
+
+if __name__ == '__main__':
+    asyncio.run(main())

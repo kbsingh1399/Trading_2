@@ -1715,9 +1715,9 @@
         "asset": "CRV",
         "tf_1h": "-",
         "tf_4h": "-",
-        "tf_12h": "$5.01M",
+        "tf_12h": "$4.47M",
         "tf_24h": "$6.08M",
-        "timestamp_ist": "2026-10-30 17:45:59 IST"
+        "timestamp_ist": "2026-10-30 17:56:29 IST"
       }
     ],
     "live_liq_rows": [],
@@ -1727,34 +1727,34 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "CRV",
-      "USDT_Binance": "-0.0257%",
-      "USDT_OKX": "-0.0221%",
-      "USDT_Bybit": "-0.0194%",
-      "USDT_KuCoin": "-0.0163%",
-      "USDT_MEXC": "-0.0220%",
-      "USDT_BingX": "-0.0062%",
-      "USDT_Gate": "-0.0171%",
-      "USDT_Bitunix": "-0.0261%",
-      "USDT_Bitget": "-0.0074%",
+      "USDT_Binance": "-0.0264%",
+      "USDT_OKX": "-0.0213%",
+      "USDT_Bybit": "-0.0211%",
+      "USDT_KuCoin": "-0.0158%",
+      "USDT_MEXC": "-0.0213%",
+      "USDT_BingX": "-0.0058%",
+      "USDT_Gate": "-0.0196%",
+      "USDT_Bitunix": "-0.0258%",
+      "USDT_Bitget": "-0.0073%",
       "USDT_WhiteBIT": "0.0100%",
-      "USDT_LBank": "-0.0221%",
+      "USDT_LBank": "-0.0213%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 42,
+      "rank": 43,
       "symbol": "CRV",
-      "price": "$0.288000",
-      "price_24h_pct": "-11.36%",
-      "open_interest": "$50.62M",
-      "current": "-$11.19K",
+      "price": "$0.286300",
+      "price_24h_pct": "-11.80%",
+      "open_interest": "$50.43M",
+      "current": "-$11.50K",
       "last_24h": "$967.59",
       "last_3d": "$19.73K",
       "last_7d": "$53.52K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

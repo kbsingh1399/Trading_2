@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 571,
+      "rank": 565,
       "symbol": "SKL",
-      "price": "$0.003836",
-      "price_24h_pct": "-3.74%",
-      "open_interest": "$2.15M",
-      "current": "$90.66",
+      "price": "$0.003826",
+      "price_24h_pct": "-4.18%",
+      "open_interest": "$2.14M",
+      "current": "$95.14",
       "last_24h": "$626.02",
       "last_3d": "$1.52K",
       "last_7d": "$3.79K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

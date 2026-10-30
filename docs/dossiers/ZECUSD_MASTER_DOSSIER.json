@@ -1757,69 +1757,69 @@
     "mp_24h": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1246.19,
+      "price": 1249.0,
       "short_max_pain_price": 1404.55,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 158.3599999999999,
-      "short_distance_pct": 12.71,
+      "short_distance_usd": 155.54999999999995,
+      "short_distance_pct": 12.45,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -69.71000000000004,
-      "long_distance_pct": -5.59,
-      "timestamp_ist": "2026-10-30 17:47:40 IST"
+      "long_distance_usd": -72.51999999999998,
+      "long_distance_pct": -5.81,
+      "timestamp_ist": "2026-10-30 17:58:07 IST"
     },
     "mp_48h": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1246.19,
+      "price": 1249.0,
       "short_max_pain_price": 1404.55,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 158.3599999999999,
-      "short_distance_pct": 12.71,
+      "short_distance_usd": 155.54999999999995,
+      "short_distance_pct": 12.45,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -69.71000000000004,
-      "long_distance_pct": -5.59,
-      "timestamp_ist": "2026-10-30 17:47:43 IST"
+      "long_distance_usd": -72.51999999999998,
+      "long_distance_pct": -5.81,
+      "timestamp_ist": "2026-10-30 17:58:09 IST"
     },
     "mp_3d": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1246.19,
+      "price": 1249.0,
       "short_max_pain_price": 1404.55,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 158.3599999999999,
-      "short_distance_pct": 12.71,
+      "short_distance_usd": 155.54999999999995,
+      "short_distance_pct": 12.45,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -69.71000000000004,
-      "long_distance_pct": -5.59,
-      "timestamp_ist": "2026-10-30 17:47:45 IST"
+      "long_distance_usd": -72.51999999999998,
+      "long_distance_pct": -5.81,
+      "timestamp_ist": "2026-10-30 17:58:11 IST"
     },
     "mp_7d": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1246.19,
+      "price": 1249.0,
       "short_max_pain_price": 1299.31,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 53.11999999999989,
-      "short_distance_pct": 4.26,
+      "short_distance_usd": 50.309999999999945,
+      "short_distance_pct": 4.03,
       "long_max_pain_price": 1176.74,
       "long_max_pain_vol": 4900000.0,
-      "long_distance_usd": -69.45000000000005,
-      "long_distance_pct": -5.57,
-      "timestamp_ist": "2026-10-30 17:47:47 IST"
+      "long_distance_usd": -72.25999999999999,
+      "long_distance_pct": -5.79,
+      "timestamp_ist": "2026-10-30 17:58:13 IST"
     },
     "ex_liq_ladder": [],
     "heapmap_rows": [
       {
         "rank": 6,
         "asset": "ZEC",
-        "tf_1h": "$266.62K",
-        "tf_4h": "$950.72K",
-        "tf_12h": "$7.10M",
-        "tf_24h": "$26.20M",
-        "timestamp_ist": "2026-10-30 17:45:59 IST"
+        "tf_1h": "$275.08K",
+        "tf_4h": "$953.31K",
+        "tf_12h": "$3.91M",
+        "tf_24h": "$26.22M",
+        "timestamp_ist": "2026-10-30 17:56:29 IST"
       }
     ],
     "live_liq_rows": [
@@ -1896,19 +1896,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 13,
+      "rank": 14,
       "symbol": "ZEC",
-      "price": "$1,248.28",
-      "price_24h_pct": "-1.44%",
-      "open_interest": "$853.96M",
-      "current": "$84.39K",
+      "price": "$1,248.53",
+      "price_24h_pct": "-1.34%",
+      "open_interest": "$853.33M",
+      "current": "$84.33K",
       "last_24h": "$172.80K",
       "last_3d": "$285.40K",
       "last_7d": "$848.74K",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },

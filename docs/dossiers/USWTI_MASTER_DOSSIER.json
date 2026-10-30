@@ -911,69 +911,69 @@
     "mp_24h": {
       "ranking": 11,
       "symbol": "CL",
-      "price": 104.2,
+      "price": 104.03,
       "short_max_pain_price": 105.21,
       "short_max_pain_vol": 5300000.0,
-      "short_distance_usd": 1.009999999999991,
-      "short_distance_pct": 0.97,
+      "short_distance_usd": 1.1799999999999926,
+      "short_distance_pct": 1.14,
       "long_max_pain_price": 99.16,
       "long_max_pain_vol": 6700000.0,
-      "long_distance_usd": -5.040000000000006,
-      "long_distance_pct": -4.84,
-      "timestamp_ist": "2026-10-30 17:47:40 IST"
+      "long_distance_usd": -4.8700000000000045,
+      "long_distance_pct": -4.68,
+      "timestamp_ist": "2026-10-30 17:58:07 IST"
     },
     "mp_48h": {
       "ranking": 11,
       "symbol": "CL",
-      "price": 104.2,
+      "price": 104.03,
       "short_max_pain_price": 105.21,
       "short_max_pain_vol": 5300000.0,
-      "short_distance_usd": 1.009999999999991,
-      "short_distance_pct": 0.97,
+      "short_distance_usd": 1.1799999999999926,
+      "short_distance_pct": 1.14,
       "long_max_pain_price": 103.17,
       "long_max_pain_vol": 5800000.0,
-      "long_distance_usd": -1.0300000000000011,
-      "long_distance_pct": -0.99,
-      "timestamp_ist": "2026-10-30 17:47:43 IST"
+      "long_distance_usd": -0.8599999999999994,
+      "long_distance_pct": -0.83,
+      "timestamp_ist": "2026-10-30 17:58:09 IST"
     },
     "mp_3d": {
       "ranking": 11,
       "symbol": "CL",
-      "price": 104.2,
+      "price": 104.03,
       "short_max_pain_price": 105.04,
       "short_max_pain_vol": 4500000.0,
-      "short_distance_usd": 0.8400000000000034,
-      "short_distance_pct": 0.8,
+      "short_distance_usd": 1.0100000000000051,
+      "short_distance_pct": 0.97,
       "long_max_pain_price": 99.12,
       "long_max_pain_vol": 9900000.0,
-      "long_distance_usd": -5.079999999999998,
-      "long_distance_pct": -4.87,
-      "timestamp_ist": "2026-10-30 17:47:45 IST"
+      "long_distance_usd": -4.909999999999997,
+      "long_distance_pct": -4.72,
+      "timestamp_ist": "2026-10-30 17:58:11 IST"
     },
     "mp_7d": {
       "ranking": 11,
       "symbol": "CL",
-      "price": 104.2,
+      "price": 104.03,
       "short_max_pain_price": 105.22,
       "short_max_pain_vol": 5400000.0,
-      "short_distance_usd": 1.019999999999996,
-      "short_distance_pct": 0.98,
+      "short_distance_usd": 1.1899999999999977,
+      "short_distance_pct": 1.14,
       "long_max_pain_price": 99.12,
       "long_max_pain_vol": 8000000.0,
-      "long_distance_usd": -5.079999999999998,
-      "long_distance_pct": -4.87,
-      "timestamp_ist": "2026-10-30 17:47:47 IST"
+      "long_distance_usd": -4.909999999999997,
+      "long_distance_pct": -4.72,
+      "timestamp_ist": "2026-10-30 17:58:13 IST"
     },
     "ex_liq_ladder": [],
     "heapmap_rows": [
       {
         "rank": 29,
         "asset": "CL",
-        "tf_1h": "$70.23K",
-        "tf_4h": "$118.23K",
-        "tf_12h": "$3.34M",
-        "tf_24h": "$5.75M",
-        "timestamp_ist": "2026-10-30 17:45:59 IST"
+        "tf_1h": "$70.18K",
+        "tf_4h": "$118.15K",
+        "tf_12h": "$2.59M",
+        "tf_24h": "$5.80M",
+        "timestamp_ist": "2026-10-30 17:56:29 IST"
       }
     ],
     "live_liq_rows": [],
@@ -998,19 +998,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 17:45:43 IST"
+      "Timestamp_IST": "2026-10-30 17:56:15 IST"
     },
     "settle_row": {
-      "rank": 7,
+      "rank": 6,
       "symbol": "CL",
-      "price": "$103.8800",
-      "price_24h_pct": "+1.87%",
-      "open_interest": "$536.28M",
-      "current": "-$141.63K",
+      "price": "$104.0700",
+      "price_24h_pct": "+2.15%",
+      "open_interest": "$539.45M",
+      "current": "-$150.40K",
       "last_24h": "-$780.47K",
       "last_3d": "-$1.08M",
       "last_7d": "-$1.43M",
-      "timestamp_ist": "2026-10-30 17:45:50 IST"
+      "timestamp_ist": "2026-10-30 17:56:22 IST"
     },
     "ls_ladder": []
   },
