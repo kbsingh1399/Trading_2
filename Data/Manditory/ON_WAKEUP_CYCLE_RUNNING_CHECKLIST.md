@@ -107,7 +107,7 @@ Evaluate each candidate against the available evidence, confluence strength, mar
 **Started**: YYYY-MM-DD HH:MM:SS IST (YYYY-MM-DD HH:MM:SS UTC)
 
 - [ ] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
-- [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+- [ ] **Step 2**: Full-Scale 10-Section Dossier Forensics for EVERY eligible asset (Physical examination executed across all 10 sections: Telemetry, Auction VAH/VAL/POC, MTF CVD Absorption, Whale Armor > /180s, Liquidation Max Pain Strikes, and Execution Cards; zero surface-only omissions)
 - [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
 - [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
 - [ ] **Step 5**: Activate AutoWake daemon and await completion of both systems

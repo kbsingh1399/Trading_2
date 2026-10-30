@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FILUSD
 **Canonical Key**: `FILUSD` | **Broker Instrument**: `FILUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 16:51:58 IST` (`2026-10-30 11:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.8290` (Distance: `+1.49%`)
   * Point of Control (POC) = `0.8140` (Distance: `+3.35%`)
-  * Value Area Low (VAL) = `0.7920` (Distance: `+6.20%`)
+  * Value Area Low (VAL) = `0.7920` (Distance: `+6.13%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.9030` | POC=`0.8930` | VAL=`0.8560`
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 16:42:20 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 16:52:59 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | -17,950.00 USD | **`DISTRIBUTION`** |
-| `15m` | 0.00 USD | 120,660.00 USD | **`ACCUMULATION`** |
-| `30m` | 0.00 USD | 174,470.00 USD | **`ACCUMULATION`** |
-| `1h` | 0.00 USD | 1,150,000.00 USD | **`ACCUMULATION`** |
-| `2h` | 0.00 USD | 1,330,000.00 USD | **`ACCUMULATION`** |
-| `4h` | 0.00 USD | 510,290.00 USD | **`ACCUMULATION`** |
-| `6h` | 0.00 USD | -797,610.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | 1,940,000.00 USD | **`ACCUMULATION`** |
-| `12h` | 0.00 USD | -6,190,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -22,750,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | -63,330,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | 0.00 USD | -309,730,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 610.35 USD | -23,660.00 USD | **`DISTRIBUTION`** |
+| `15m` | 1,580.00 USD | -62,740.00 USD | **`DISTRIBUTION`** |
+| `30m` | 42,810.00 USD | 173,610.00 USD | **`ACCUMULATION`** |
+| `1h` | 42,210.00 USD | 904,870.00 USD | **`ACCUMULATION`** |
+| `2h` | 73,420.00 USD | 1,420,000.00 USD | **`ACCUMULATION`** |
+| `4h` | 123,630.00 USD | 603,420.00 USD | **`ACCUMULATION`** |
+| `6h` | -162,310.00 USD | -261,380.00 USD | **`DISTRIBUTION`** |
+| `8h` | -394,800.00 USD | 1,660,000.00 USD | **`ACCUMULATION`** |
+| `12h` | -1,980,000.00 USD | -6,540,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -4,150,000.00 USD | -22,470,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -12,850,000.00 USD | -63,360,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -54,250,000.00 USD | -309,760,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-17.95K` | 15m=`+120.66K` | 1h=`+1.15M` | 24h=`-22.75M`
+* Spot Capital Netflows: 5m=`+610.35` | 15m=`+1.58K` | 1h=`+42.21K` | 24h=`-4.15M`
+* Futures Capital Netflows: 5m=`-23.66K` | 15m=`-62.74K` | 1h=`+904.87K` | 24h=`-22.47M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

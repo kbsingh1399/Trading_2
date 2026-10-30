@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSGD
 **Canonical Key**: `USDSGD` | **Broker Instrument**: `USDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:51:58 IST` (`2026-10-30 11:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.28` | VWAP Z-Score: `-1.28` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000321` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `40.20` (State: `NEUTRAL`)
+  * Session VWAP: `1.28` | VWAP Z-Score: `-2.07` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000388` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `41.69` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.28` | Lower -3.00σ Band: `1.28`
   * Upper +2.51σ Band: `1.28` | Lower -2.51σ Band: `1.28`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.28` | EMA-20=`1.28` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.28` (Slope: `+0.0000`) | EMA-100=`1.28`
-  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0252`) | EMA-233=`1.28`
+  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0118`) | EMA-233=`1.28`
 - **Range Boundaries**: 24H High=`1.28` | 24H Low=`1.28` | Weekly High=`1.28` | Weekly Low=`1.28`
 
 ---
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.28` | POC=`1.28` | VAL=`1.27`
-  * Prior Day Extremes: PDH=`1.28` | PDL=`1.27` | PDC=`1.28`
+  * Prior Day Extremes: PDH=`1.29` | PDL=`1.27` | PDC=`1.28`
   * Monday Range Blueprint: High=`1.28` | Mid=`1.28` | Low=`1.27`
   * Developing Weekly Value Area: Weekly VAH=`1.29` | Weekly POC=`1.28` | Weekly VAL=`1.27`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.28` | Low=`1.27`
   * London Session (08:00-16:00 UTC): High=`1.28` | Low=`1.27`
-  * New York Session (13:00-21:00 UTC): High=`1.28` | Low=`1.27`
+  * New York Session (13:00-21:00 UTC): High=`1.29` | Low=`1.27`
   * Initial Balance (First Hour): IB High=`1.28` | IB Low=`1.27`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.27` - `1.28`
