@@ -216,11 +216,25 @@ def extract_15_features_from_dossier(dossier: dict) -> dict:
         "footprint_rows": len(fm.get("footprint_ladder", []))
     }
 
-    # 14. CoinGlass Footprint Signals & Tape Metrics
+    # 14. CoinGlass Footprint Signals & Tape Metrics (Mandatory Institutional Standard)
     signals = fm.get("signals", []) or []
+    bull_absorp = [s for s in signals if "absorp" in str(s.get("type", "")).lower() and s.get("bias") == "BULLISH"]
+    bear_absorp = [s for s in signals if "absorp" in str(s.get("type", "")).lower() and s.get("bias") == "BEARISH"]
+    trapped_l = [s for s in signals if "trapped long" in str(s.get("type", "")).lower()]
+    trapped_s = [s for s in signals if "trapped short" in str(s.get("type", "")).lower()]
+    divergences = [s for s in signals if "div" in str(s.get("type", "")).lower()]
+    exhaustions = [s for s in signals if "exhaust" in str(s.get("type", "")).lower()]
+
     signals_summary = {
         "status": "PASS" if signals else "EMPTY",
-        "active_signals": signals
+        "total_signals_count": len(signals),
+        "recent_signals": signals[:6] if signals else [],
+        "bullish_absorption_levels": [{"time": s.get("time"), "price": s.get("price"), "vol": s.get("absorbed_vol"), "headline": s.get("headline")} for s in bull_absorp[:3]],
+        "bearish_absorption_levels": [{"time": s.get("time"), "price": s.get("price"), "vol": s.get("absorbed_vol"), "headline": s.get("headline")} for s in bear_absorp[:3]],
+        "trapped_longs_levels": [{"time": s.get("time"), "price": s.get("price"), "vol": s.get("absorbed_vol"), "headline": s.get("headline")} for s in trapped_l[:3]],
+        "trapped_shorts_levels": [{"time": s.get("time"), "price": s.get("price"), "vol": s.get("absorbed_vol"), "headline": s.get("headline")} for s in trapped_s[:3]],
+        "divergences_count": len(divergences),
+        "exhaustions_count": len(exhaustions)
     }
 
     # 15. MT5 Broker Telemetry & Sizing Clearance
@@ -259,13 +273,13 @@ def run_mechanical_multi_feed_examination(cycle_id: str = "Cycle_035"):
     now_ist = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S IST")
     cert_id = f"MULTI-FEED-DOSSIER-CERT-{cycle_id}-{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
 
-    # Audited candidate setups from cycle
+    # Audited candidate setups and active tickets from live MT5 portfolio
     candidates = [
         {"canonical": "BTCUSD", "broker_symbol": "BTCUSD.pi", "action": "BUY_LIMIT", "entry": 76350.0, "sl": 75850.0, "tp": 77600.0, "rr": 2.5, "risk_usd": 5.0, "ticket": 19532055},
-        {"canonical": "XMRUSD", "broker_symbol": "XMRUSD.p", "action": "BUY_LIMIT", "entry": 585.50, "sl": 577.50, "tp": 605.50, "rr": 2.5, "risk_usd": 8.0, "ticket": 19532057},
         {"canonical": "AVEUSD", "broker_symbol": "AVEUSD.p", "action": "BUY_LIMIT", "entry": 122.50, "sl": 121.20, "tp": 125.75, "rr": 2.5, "risk_usd": 9.10, "ticket": 19532058},
-        {"canonical": "ETHUSD", "broker_symbol": "ETHUSD.pi", "action": "STANDBY_MONITOR", "entry": None, "sl": None, "tp": None, "rr": None, "risk_usd": 0.0, "ticket": None},
-        {"canonical": "SOLUSD", "broker_symbol": "SOLUSD.p", "action": "STANDBY_MONITOR", "entry": None, "sl": None, "tp": None, "rr": None, "risk_usd": 0.0, "ticket": None}
+        {"canonical": "ETHUSD", "broker_symbol": "ETHUSD.pi", "action": "BUY_LIMIT", "entry": 2170.00, "sl": 2130.00, "tp": 2270.00, "rr": 2.5, "risk_usd": 4.0, "ticket": 19538626},
+        {"canonical": "SOLUSD", "broker_symbol": "SOLUSD.p", "action": "STANDBY_MONITOR", "entry": None, "sl": None, "tp": None, "rr": None, "risk_usd": 0.0, "ticket": None},
+        {"canonical": "XAUUSD", "broker_symbol": "XAUUSD.pi", "action": "STANDBY_MONITOR", "entry": None, "sl": None, "tp": None, "rr": None, "risk_usd": 0.0, "ticket": None}
     ]
 
     print(f"================================================================================")

@@ -564,6 +564,41 @@ The desk operates with realized balance and equity **4,846.32 USD**, **0 active 
 
 ---
 
+## SECTION 1.8: MANDATORY COINGLASS FOOTPRINT SIGNALS PROTOCOL & PRE-EXECUTION GATE (OPERATOR STANDARD)
+
+> **OPERATOR MANDATE: MANDATORY FOOTPRINT SIGNALS INTEGRATION**:
+> *"And I think you must consider Coinglass Signals footprint...They are very much helpfull and make it a standard to must use them as well to plan trade..."*
+>
+> In accordance with operator directive, CoinGlass Algorithmic Footprint Signals (`25_CoinGlass_Footprint_Signals.parquet`, `26_Aggregated_Footprint_Bar_Metrics.parquet`, and `dossier["footprint_and_macro"]["signals"]`) are formally elevated to a **COMPULSORY EX-ANTE VERIFICATION GATE** for all trade planning, candidate screening, and broker execution.
+
+### 1. Mandatory Signal Types & Microstructure Alignments:
+1. **Buyer & Seller Absorption (`type: 'Absorption'`)**:
+   - **Bullish Absorption (`bias: 'BULLISH'`)**: Occurs when aggressive market selling is absorbed by passive limit buy orders at support/lows (`"Selling absorbed at the low"`). Long entries MUST lean on or sit just behind confirmed bullish absorption clusters.
+   - **Bearish Absorption (`bias: 'BEARISH'`)**: Occurs when aggressive market buying is absorbed by passive limit sell orders at resistance/highs (`"Buying absorbed at the high"`). Short entries MUST lean on or sit just behind confirmed bearish absorption clusters.
+2. **Trapped Traders (`type: 'Trapped longs'`, `type: 'Trapped shorts'`)**:
+   - **Trapped Longs**: Aggressive market buyers who entered on breakout attempts that failed (`"Failed breakout"`). They represent trapped supply overhead. Take Profit targets for longs must NOT be placed blindly beyond major trapped long clusters without accounting for liquidation re-tests.
+   - **Trapped Shorts**: Aggressive market sellers trapped at swing lows. They provide rocket fuel for squeeze rallies back towards Short Max Pain.
+3. **Cumulative Delta Divergence (`type: 'Bull div'`, `type: 'Bear div'`, `type: 'Divergence'`)**:
+   - **Bullish Divergence**: Price makes a lower low while Cumulative Delta makes a higher low (`"Lower low, higher Cumulative Delta"` or `"Drop without taker selling"`). Confirms aggressive sellers have dried up.
+   - **Bearish Divergence**: Price makes a higher high while Cumulative Delta makes a lower high (`"Higher high, lower Cumulative Delta"` or `"Rally without taker buying"`).
+4. **Volume & Range Bar Exhaustion (`type: 'Exhaustion'`)**:
+   - **Seller Exhaustion**: Volume climax with zero downward follow-through. Signals immediate seller capitulation.
+   - **Buyer Exhaustion**: Volume climax at highs with zero upward follow-through. Signals immediate buyer exhaustion.
+
+### 2. Compulsory Ex-Ante Trade Planning Invariants:
+- **Long Setups**: Must satisfy at least ONE positive footprint confirmation at or adjacent to entry:
+  * (a) Confirmed Bullish Absorption within $1.5\times\text{ATR}$ of Limit Entry.
+  * (b) Trapped Shorts cluster below Entry being defended by passive limit buyers.
+  * (c) Seller Exhaustion or Bullish Delta Divergence on 15m, Range, or Volume bars.
+  * (d) Zero unmitigated Bearish Absorption walls or heavy Trapped Long clusters directly between Entry and Target.
+- **Short Setups**: Must satisfy at least ONE negative footprint confirmation at or adjacent to entry:
+  * (a) Confirmed Bearish Absorption within $1.5\times\text{ATR}$ of Limit Entry.
+  * (b) Trapped Longs cluster above Entry being defended by passive limit sellers.
+  * (c) Buyer Exhaustion or Bearish Delta Divergence on 15m, Range, or Volume bars.
+  * (d) Zero unmitigated Bullish Absorption walls or heavy Trapped Short clusters directly between Entry and Target.
+
+---
+
 ## SECTION 2: THE 10-STEP STANDARDIZED TRADING DECISION CHAIN
 
 ```mermaid

@@ -87,12 +87,15 @@ On every wakeup, execute these steps in strict sequential order. Do NOT check a 
 - Require each system to produce its own evidence-backed trade candidates, confluence assessments, risk analysis, entry criteria, invalidation levels, and execution recommendations.
 - Ensure that both systems complete their analyses independently before proceeding to the final trade decision.
 
-### Step 5: Activate the AutoWake Hard-Rock Daemon
-- Once the required analyses have been initiated, start the AutoWake Hard-Rock Daemon.
-- Configure the daemon to monitor the completion status of both Arena.ai and Z.ai.
-- Enter sleep or idle mode while the daemon monitors progress.
-- The daemon must wake the workflow when both systems have completed their assigned analyses.
-- Do not proceed to trade execution merely because prompts have been dispatched. Confirm that the required analyses are complete and available for review.
+### Step 5: Activate 10-Minute Split-View Council Surveillance Daemon & AutoWake Wakeup Loop
+- Once external prompts have been dispatched, launch Terminal/council_split_view_surveillance_daemon.py --interval 600.
+- The surveillance daemon captures high-resolution screenshots of both Arena.ai and Z.ai via Chrome CDP, stitches them into a side-by-side split view (Data/screenshots/council_split_view_latest.png), and records live generation status in Data/council_surveillance_status.json.
+- Schedule a 10-minute (600s) AutoWake timer via the schedule tool.
+- On each 10-minute wakeup:
+  1. Inspect Data/council_surveillance_status.json and review the latest split-view screenshot.
+  2. If either model is still actively generating: log generation progress, keep the surveillance daemon running, and resume the 10-minute sleep cycle.
+  3. If BOTH models have completed: terminate the surveillance daemon, harvest complete ruling texts into docs/trade_plans/ARENA_LATEST_RAW.md and docs/trade_plans/ZAI_LATEST_RAW.md, and immediately proceed to Step 6 (Tri-Council Triangulation & Broker Execution).
+- Under NO circumstance proceed to trade execution while models are actively generating. Confirm that required analyses are fully completed and sealed.
 
 ### Step 6: Compare Intelligence and Execute Trades
 After waking, perform a structured comparison of the three independent analyses:

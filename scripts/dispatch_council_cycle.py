@@ -178,6 +178,26 @@ def format_15_pillar_candidate_findings(cert_path: pathlib.Path) -> str:
             cvd_regime = cvd_recs[0].get('regime', 'N/A') if cvd_recs else "N/A"
             cvd_bias = cvd_recs[0].get('bias', 'N/A') if cvd_recs else "N/A"
 
+            trad = feats.get("13_Tradfye_Orderflow", {})
+            fp_sig = feats.get("14_Footprint_Signals_Tape", {})
+            fp_count = fp_sig.get("total_signals_count", 0)
+            fp_recs = fp_sig.get("recent_signals", [])
+            fp_lines = []
+            for s in fp_recs[:3]:
+                t = s.get('time', 'N/A')
+                tf = s.get('tf', 'N/A')
+                st = s.get('type', 'N/A')
+                b_bias = s.get('bias', 'N/A')
+                px = s.get('price', 0.0)
+                hl = s.get('headline', '')
+                vol = s.get('absorbed_vol') or s.get('bar_vol') or 0.0
+                vol_str = f" | Absorbed: {vol:,.0f}" if vol else ""
+                fp_lines.append(f"      - [{t}] {tf} · **{st}** ({b_bias}) @ **`{px:,.2f}`**{vol_str} — *{hl}*")
+            fp_formatted = "\n".join(fp_lines) if fp_lines else "      - No active footprint signals recorded."
+            bull_abs = fp_sig.get("bullish_absorption_levels", [])
+            bear_abs = fp_sig.get("bearish_absorption_levels", [])
+            abs_summary = f"Bullish Absorptions: {len(bull_abs)} | Bearish Absorptions: {len(bear_abs)} | Trapped Longs: {len(fp_sig.get('trapped_longs_levels', []))} | Trapped Shorts: {len(fp_sig.get('trapped_shorts_levels', []))}"
+
             b = f"""#### Setup #{idx}: `{sym}` ({can}) — Action: `{act}`
 - **Trade Card**: Action: **`{act}`** | Entry: **`{ent}`** | SL: **`{sl}`** | TP: **`{tp}`** | R:R: **{rr}R** | Risk: **${r_usd} USD** | CS: **{cs}** | Spread: **{spread_bps} bps**
 - **Antigravity 15-Pillar Mechanical Forensics Ground Truth**:
@@ -192,7 +212,11 @@ def format_15_pillar_candidate_findings(cert_path: pathlib.Path) -> str:
   * **9. L2 Orderbook**: **{ob.get('depth_levels_count', 0)} Depth Levels**
   * **10. Multi-Timeframe CVD**: Regime: **`{cvd_regime}`** | Bias: **`{cvd_bias}`**
   * **11. Auction Market Structure**: POC: **`{poc_str}`** | VAL: **`{val_str}`** | VAH: **`{vah_str}`** | Regime: **`{regime}`**
-  * **12. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`{l_pain}`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`{s_pain}`)."""
+  * **12. Tradfye Orderflow**: Hyperliquid: {trad.get('hyperliquid_rows', 0)} depth rows | Footprint: {trad.get('footprint_rows', 0)} rows
+  * **13. CoinGlass Footprint Signals (MANDATORY STANDARD)**: **{fp_count} Signals Recorded** ({abs_summary}):
+{fp_formatted}
+  * **14. MT5 Telemetry & Spread Clearance**: Spread: **`{spread_bps} bps`** | Contract Size: **`{cs}`** | Point: **`{mt5_t.get('point', 0.01)}`**
+  * **15. Pitfall 24 Immunity**: Entry positioned to exploit liquidation sweep below Long Pain (`{l_pain}`); SL anchored behind pain pool; TP targets Short Max Pain magnet (`{s_pain}`)."""
             blocks.append(b)
         return "\n\n".join(blocks)
     except Exception as e:
@@ -296,14 +320,19 @@ Below are Antigravity's concrete, physically extracted 15-pillar quantitative me
 
 ---
 
-## ⚖️ 4. MANDATORY TRI-COUNCIL DELIVERABLES (OPPORTUNITY DISCOVERY)
+## ⚖️ 4. MANDATORY TRI-COUNCIL DELIVERABLES (OPPORTUNITY DISCOVERY & FOOTPRINT STANDARD)
 Arena.ai (Seat #2) and Z.ai (Seat #3) are commanded to deliver:
 1. **PRIMARY OBJECTIVE: Nominate NEW High-Confluence Trade Opportunities**: 
    - Our clear intent is to FIND NEW TRADES. Fetch and inspect individual JSON dossiers across the 92 spread-cleared assets via the exact raw GitHub URLs provided.
-   - Propose 1 to 3 concrete NEW candidate setups for deployment into our open execution slot (or to upgrade/replace resting tickets if higher quality).
+   - Propose 1 to 3 concrete NEW candidate setups for deployment (or to upgrade/replace resting tickets if higher quality).
    - For every nominated trade, specify exact numeric levels: Asset Symbol, Action (BUY_LIMIT / SELL_LIMIT), Limit Entry Price, Stop Loss, Take Profit, Reward-to-Risk ratio (>= 2.50R), Nominal Dollar Risk (<= $10.00 USD), and the 15-pillar physical confluence evidence (POC/VAL/VAH, Max Pain sweep, Whale Armor, CVD regime).
-2. **Audit of 2 Active Resting Limit Orders**: Validate tickets #19532055 (BTC) and #19532058 (AVE). Should these remain resting as placed, or are there adverse shifts warranting replacement with your superior nominated setups?
-3. **Execution Ruling**: Deliver your clear, actionable verdict on whether to HOLD active limit orders, stage your new high-confluence candidate into slot #3, or modify.
+2. **Audit of 3 Active Resting Limit Orders**: Validate tickets #19532055 (BTC), #19532058 (AVE), and #19538626 (ETH). Should these remain resting as placed, or are there adverse orderflow/liquidation shifts warranting replacement?
+3. **MANDATORY COINGLASS FOOTPRINT SIGNALS AUDIT (Institutional Standard)**:
+   - Every candidate and audited ticket MUST be cross-referenced against CoinGlass Footprint Signals (`footprint_and_macro.signals` in dossier or Section 8 Table 2).
+   - Long setups require confirmed Bullish Absorption (sellers absorbed at lows), Trapped Shorts, Seller Exhaustion, or Bullish Delta Divergence at/near entry.
+   - Short setups require confirmed Bearish Absorption (buyers absorbed at highs), Trapped Longs, Buyer Exhaustion, or Bearish Delta Divergence at/near entry.
+   - Reject any setup where an unmitigated opposing footprint absorption wall or trapped trader cluster blocks the path to Take Profit.
+4. **Execution Ruling**: Deliver your clear, actionable verdict on whether to HOLD active limit orders, stage your new high-confluence candidate, or modify.
 
 > ⚠️ **REMINDER**: PRINT YOUR COMPLETE VERDICT, ANALYSIS, AND CANDIDATE SETUPS INLINE HERE ALL-IN-ONE.
 """
