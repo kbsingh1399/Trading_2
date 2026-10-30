@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUT
 **Canonical Key**: `XAUT` | **Broker Instrument**: `XAUUSD.pi` | **Asset Class**: `Tokenized Metal`
-**Timestamp**: `2026-10-30 15:57:26 IST` (`2026-10-30 10:27:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -554,7 +554,7 @@
 | `0:00 UTC` | `4000.35` | `3999.56` | `4000.35` | `4001.55` | `3997.95` | 10,610,433.25 USD | 4,382,210.73 USD | 6,228,222.52 USD | -1,846,011.79 USD | `-17.40%` | `0B / 0S` |
 | `5:00 UTC` | `4000.95` | `3999.70` | `4000.95` | `4001.85` | `3996.45` | 14,656,052.45 USD | 7,151,824.61 USD | 7,504,227.84 USD | -352,403.23 USD | `-2.40%` | `0B / 1S` |
 | `0:00 UTC` | `3997.95` | `3996.26` | `3997.95` | `4000.95` | `3991.65` | 20,329,795.57 USD | 9,073,400.57 USD | 11,256,395.00 USD | -2,182,994.43 USD | `-10.74%` | `1B / 8S` |
-| `5:00 UTC` | `3992.25` | `3992.34` | `3992.25` | `3994.35` | `3990.75` | 3,414,401.15 USD | 1,814,176.57 USD | 1,600,224.58 USD | 213,951.99 USD | `+6.27%` | `4B / 1S` |
+| `5:00 UTC` | `3992.25` | `3993.01` | `3992.25` | `3995.85` | `3990.75` | 11,565,921.76 USD | 5,451,605.98 USD | 6,114,315.78 USD | -662,709.80 USD | `-5.73%` | `2B / 3S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -618,21 +618,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 15:33:17 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:32:17 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:18:17 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:12:17 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:46:17 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:45:17 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:45:17 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:45:17 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:45:17 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:49:55 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:32:55 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:31:55 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:18:55 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:12:55 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:56:55 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:56:55 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:56:55 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:56:55 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:56:55 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:55:55 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:55:55 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:55:55 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:55:55 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:55:55 IST`: [@financialjuice] - (Sentiment: `Neutral`)
 
 
 ---
