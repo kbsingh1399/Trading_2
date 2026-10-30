@@ -34,8 +34,8 @@ ZAI_RAW_FILE = ROOT / "docs" / "trade_plans" / "ZAI_LATEST_RAW.md"
 ZAI_ATTACHMENT_FILE = ROOT / "docs" / "trade_plans" / "ZAI_LATEST_ATTACHMENT.md"
 
 try:
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 except Exception:
     pass
 
@@ -263,18 +263,19 @@ async def reload_cdp_tab(match_keyword: str) -> bool:
                 return []
         tabs = await asyncio.to_thread(get_tabs)
         for t in tabs:
-            if match_keyword in t.get("url", "") and t.get("webSocketDebuggerUrl"):
+            url = t.get("url", "")
+            if match_keyword in url and "preview-" not in url and t.get("webSocketDebuggerUrl"):
                 ws_url = t["webSocketDebuggerUrl"]
                 try:
                     ws = await asyncio.wait_for(
-                        websockets.connect(ws_url, max_size=10_000_000, open_timeout=3, close_timeout=1),
-                        timeout=4.0
+                        websockets.connect(ws_url, max_size=10_000_000, open_timeout=4, close_timeout=1),
+                        timeout=5.0
                     )
-                    print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via CDP location.reload()...", flush=True)
-                    await asyncio.wait_for(
-                        ws.send(json.dumps({"id": 8888, "method": "Runtime.evaluate", "params": {"expression": "location.reload()", "returnByValue": False}})),
-                        timeout=2.0
-                    )
+                    print(f"[RockHardWatchdog] Refreshing tab for '{match_keyword}' via CDP Page.reload() & location.reload()...", flush=True)
+                    # Page.reload protocol method
+                    await ws.send(json.dumps({"id": 8888, "method": "Page.reload", "params": {"ignoreCache": True}}))
+                    # Runtime.evaluate location.reload fallback
+                    await ws.send(json.dumps({"id": 8889, "method": "Runtime.evaluate", "params": {"expression": "window.location.reload()", "returnByValue": False}}))
                     try:
                         await asyncio.wait_for(ws.close(), timeout=1.0)
                     except Exception:
@@ -370,18 +371,18 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
         a_gen_flag = astate.get("isGenerating", False) if ('astate' in locals() and isinstance(astate, dict)) else False
         z_gen_flag = zstate.get("isGenerating", False) if ('zstate' in locals() and isinstance(zstate, dict)) else False
 
-        # Auto-refresh tab every 5 minutes ONLY IF NOT GENERATING (stuck/idle guardrail)
-        if not arena_done and not a_gen_flag and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
+        # Auto-refresh tab every 5 minutes until completed (Operator Mandate: unstick any stalled session)
+        if not arena_done and (now - arena_last_reload) >= RELOAD_INTERVAL_SEC:
             arena_last_reload = now
-            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Arena completion (idle/stuck). Auto-refreshing Arena.ai tab via CDP Page.reload...", flush=True)
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Arena completion. Auto-refreshing Arena.ai tab via CDP Page.reload...", flush=True)
             await reload_cdp_tab("arena.ai")
             await asyncio.sleep(2.0)
 
-        # Auto-refresh tab every 5 minutes ONLY IF NOT GENERATING (stuck/idle guardrail)
-        if not zai_done and not z_gen_flag and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
+        # Auto-refresh tab every 5 minutes until completed (Operator Mandate: unstick any stalled session)
+        if not zai_done and (now - zai_last_reload) >= RELOAD_INTERVAL_SEC:
             zai_last_reload = now
-            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Z.ai completion (idle/stuck). Auto-refreshing Z.ai tab via CDP Page.reload...", flush=True)
-            await reload_cdp_tab("chat.z.ai")
+            print(f"\n[RockHardWatchdog t={elapsed}s] ⏱️ 5-Minute interval reached without Z.ai completion. Auto-refreshing Z.ai tab via CDP Page.reload...", flush=True)
+            await reload_cdp_tab("z.ai")
             await asyncio.sleep(2.0)
 
         # Periodic log every 6 seconds
