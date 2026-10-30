@@ -117,11 +117,10 @@ class AssetRegistry:
         """Returns the tailored list of canonical symbols for a specific collector."""
         cname = collector_name.lower()
         if "liquidation_map" in cname or "8_exchange" in cname:
-            # 18 Tier 1 cryptos + Tokenized Gold + Liquid FX Majors available on Bybit
+            # CoinGlass Crypto Futures Liquidation Map (Crypto only)
             return [
                 "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK", "AVAX",
-                "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
-                "XAUT", "PAXG", "EURUSD", "GBPUSD", "USDJPY"
+                "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB"
             ]
         elif "spot_netflow" in cname or "2_spot" in cname:
             # Tier 1 + Tokenized Gold

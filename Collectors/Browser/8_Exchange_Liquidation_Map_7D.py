@@ -75,8 +75,7 @@ else:
         "BTC", "ETH", "XRP", "SOL", "BNB",
         "DOGE", "ADA", "TRX", "LINK", "AVAX",
         "SUI", "NEAR", "DOT", "LTC", "BCH",
-        "APT", "OP", "ARB",
-        "XAUT", "PAXG", "EURUSD", "GBPUSD", "USDJPY"
+        "APT", "OP", "ARB"
     ]
 
 COLUMNS_DEF = [
