@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XLMUSD
 **Canonical Key**: `XLMUSD` | **Broker Instrument**: `XLMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 09:34:19 IST` (`2026-10-30 04:04:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:37:21 IST` (`2026-10-30 04:07:21 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-11.61K` | Last 24h: `-11.80K` | Last 3d: `7.68K` | Last 7d: `35.06K`
+  * Current Rate: `-11.34K` | Last 24h: `-11.80K` | Last 3d: `7.68K` | Last 7d: `35.06K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0304%` | **USDT OKX** | `-0.0216%` |
-| **USDT Bybit** | `-0.0002%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `-0.0304%` | **USDT BingX** | `-0.0003%` |
-| **USDT Gate** | `-0.0035%` | **USDT Bitget** | `-0.0075%` |
+| **USDT Binance** | `-0.0294%` | **USDT OKX** | `-0.0217%` |
+| **USDT Bybit** | `-0.0005%` | **USDT KuCoin** | `0.0100%` |
+| **USDT MEXC** | `-0.0295%` | **USDT BingX** | `-0.0007%` |
+| **USDT Gate** | `-0.0044%` | **USDT Bitget** | `-0.0067%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -22,300.00 USD | 19,580.00 USD | **`DISTRIBUTION`** |
-| `15m` | 59,020.00 USD | -82,750.00 USD | **`DISTRIBUTION`** |
-| `30m` | 110,720.00 USD | 13,810.00 USD | **`ACCUMULATION`** |
-| `1h` | 163,070.00 USD | 125,880.00 USD | **`ACCUMULATION`** |
-| `2h` | 394,580.00 USD | 424,900.00 USD | **`ACCUMULATION`** |
-| `4h` | -1,640,000.00 USD | -952,240.00 USD | **`DISTRIBUTION`** |
-| `6h` | -2,440,000.00 USD | -1,060,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -5,090,000.00 USD | -1,850,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -5,910,000.00 USD | -3,080,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -5,910,000.00 USD | -4,300,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,760,000.00 USD | -5,990,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -26,810,000.00 USD | -84,610,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -22,300.00 USD | -64,250.00 USD | **`DISTRIBUTION`** |
+| `15m` | 59,020.00 USD | -152,840.00 USD | **`DISTRIBUTION`** |
+| `30m` | 110,720.00 USD | -223,890.00 USD | **`DISTRIBUTION`** |
+| `1h` | 163,070.00 USD | 45,400.00 USD | **`ACCUMULATION`** |
+| `2h` | 394,580.00 USD | 651,180.00 USD | **`ACCUMULATION`** |
+| `4h` | -1,640,000.00 USD | -1,110,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -2,440,000.00 USD | -1,210,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -5,090,000.00 USD | -2,050,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -5,910,000.00 USD | -3,220,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -5,910,000.00 USD | -4,440,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,760,000.00 USD | -6,150,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -26,810,000.00 USD | -84,950,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-22.30K` | 15m=`+59.02K` | 1h=`+163.07K` | 24h=`-5.91M`
-* Futures Capital Netflows: 5m=`+19.58K` | 15m=`-82.75K` | 1h=`+125.88K` | 24h=`-4.30M`
+* Futures Capital Netflows: 5m=`-64.25K` | 15m=`-152.84K` | 1h=`+45.40K` | 24h=`-4.44M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
