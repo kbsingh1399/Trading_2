@@ -1277,3 +1277,16 @@ Evaluate each candidate against the available evidence, confluence strength, mar
   - Updated `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` and `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`.
   - Pushed verified state to GitHub main.
   - Re-armed dynamic 20-minute cycle timer. Ready for `Cycle_033`.
+
+---
+
+### ⏳ Cycle_033 Scorecard: IN PROGRESS
+**Started**: 2026-10-30 16:30:00 IST (2026-10-30 11:00:00 UTC)
+
+- [ ] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
+- [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+- [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
+- [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
+- [ ] **Step 5**: Activate AutoWake daemon and await completion of both systems
+- [ ] **Step 6**: Compare 3-way intelligence and execute only qualified trades
+- [ ] **Step 7**: Update records and restart 20-minute AutoWake cycle
