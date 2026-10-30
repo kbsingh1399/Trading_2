@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:36:49 IST` (`2026-10-30 03:06:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.8200` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `0.7419` | VWAP Z-Score: `-1.45` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0151` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `27.36` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.8257` | Lower -3.00σ Band: `0.8143`
-  * Upper +2.51σ Band: `0.8245` | Lower -2.51σ Band: `0.8155`
-  * Upper +2.01σ Band: `0.8234` | Lower -2.01σ Band: `0.8166`
-  * Upper +2.00σ Band: `0.8233` | Lower -2.00σ Band: `0.8167`
-  * Upper +1.28σ Band: `0.8223` | Lower -1.28σ Band: `0.8177`
-  * Upper +1.00σ Band: `0.8216` | Lower -1.00σ Band: `0.8184`
+  * Upper +3.00σ Band: `0.7870` | Lower -3.00σ Band: `0.6967`
+  * Upper +2.51σ Band: `0.7796` | Lower -2.51σ Band: `0.7041`
+  * Upper +2.01σ Band: `0.7721` | Lower -2.01σ Band: `0.7116`
+  * Upper +2.00σ Band: `0.7720` | Lower -2.00σ Band: `0.7118`
+  * Upper +1.28σ Band: `0.7611` | Lower -1.28σ Band: `0.7226`
+  * Upper +1.00σ Band: `0.7569` | Lower -1.00σ Band: `0.7268`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.8200` | EMA-20=`0.8200` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.8200` (Slope: `+0.0000`) | EMA-100=`0.8200`
-  * Institutional Anchors: EMA-144=`0.8200` | EMA-200=`0.8200` (Slope: `+0.0000`) | EMA-233=`0.8200`
-- **Range Boundaries**: 24H High=`0.8282` | 24H Low=`0.8118` | Weekly High=`0.8364` | Weekly Low=`0.8036`
+  * Fast EMA Array: EMA-9=`0.7339` | EMA-20=`0.7519` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.7817` (Slope: `+0.0000`) | EMA-100=`0.8036`
+  * Institutional Anchors: EMA-144=`0.8135` | EMA-200=`0.8214` (Slope: `-1.2299`) | EMA-233=`0.8266`
+- **Range Boundaries**: 24H High=`0.8600` | 24H Low=`0.7100` | Weekly High=`0.8800` | Weekly Low=`0.7100`
 
 ---
 
@@ -134,16 +134,15 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `0.3205` | 13,000.00 USD | 0.00 USD | 171.72 USD | `-61.39%` | `535.80` |
-| `Live` | `Long` | `0.3535` | 12,830.00 USD | 0.00 USD | 144.37 USD | `-57.42%` | `408.40` |
-| `Live` | `Long` | `0.4025` | 12,690.00 USD | 0.00 USD | 383.99 USD | `-51.52%` | `954.00` |
-| `Live` | `Long` | `0.5225` | 12,300.00 USD | 0.00 USD | 1,180.00 USD | `-37.06%` | `2,259.30` |
-| `Live` | `Long` | `0.7365` | 11,120.00 USD | 0.00 USD | 136.62 USD | `-11.29%` | `185.50` |
-| `Live` | `Long` | `0.7975` | 10,990.00 USD | 0.00 USD | 5,330.00 USD | `-3.94%` | `6,689.50` |
-| `Live` | `Long` | `0.8085` | 5,650.00 USD | 0.00 USD | 128.55 USD | `-2.61%` | `159.00` |
-| `Live` | `Long` | `0.8285` | 5,520.00 USD | 0.00 USD | 5,520.00 USD | `-0.20%` | `6,664.80` |
-| `Live` | `Short` | `1.55` | 615.26 USD | 615.26 USD | 0.00 USD | `+86.16%` | `398.10` |
-| `Live` | `Short` | `1.60` | 47,520.00 USD | 46,900.00 USD | 0.00 USD | `+93.15%` | `29,250.00` |
+| `Live` | `Long` | `0.3785` | 7,430.00 USD | 0.00 USD | 361.09 USD | `-53.83%` | `954.00` |
+| `Live` | `Long` | `0.4365` | 7,070.00 USD | 0.00 USD | 290.71 USD | `-46.76%` | `666.00` |
+| `Live` | `Long` | `0.5225` | 6,780.00 USD | 0.00 USD | 1,180.00 USD | `-36.27%` | `2,259.30` |
+| `Live` | `Long` | `0.7365` | 5,600.00 USD | 0.00 USD | 136.62 USD | `-10.16%` | `185.50` |
+| `Live` | `Long` | `0.7975` | 5,460.00 USD | 0.00 USD | 5,330.00 USD | `-2.72%` | `6,689.50` |
+| `Live` | `Long` | `0.8085` | 128.55 USD | 0.00 USD | 128.55 USD | `-1.38%` | `159.00` |
+| `Live` | `Short` | `0.8435` | 6,710.00 USD | 6,710.00 USD | 0.00 USD | `+2.89%` | `7,955.00` |
+| `Live` | `Short` | `1.20` | 7,480.00 USD | 770.50 USD | 0.00 USD | `+45.82%` | `644.50` |
+| `Live` | `Short` | `1.38` | 9,540.00 USD | 2,060.00 USD | 0.00 USD | `+68.02%` | `1,492.40` |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
@@ -286,15 +285,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.7400` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.7600` (Risk Distance: `1.50` pts)
-  * +2.5R Take Profit: `4.49`
-  * Mathematical Lot Sizing: **`6.66 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `0.4219` (Risk Distance: `0.4000` pts)
+  * +2.5R Take Profit: `1.74`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.7800` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2.28` (Risk Distance: `1.50` pts)
-  * +2.5R Take Profit: `-2.97`
-  * Mathematical Lot Sizing: **`6.66 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.4000` pts)
+  * +2.5R Take Profit: `-0.2200`
+  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

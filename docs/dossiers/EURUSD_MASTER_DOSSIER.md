@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:36:49 IST` (`2026-10-30 03:06:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.12` | VWAP Z-Score: `-0.15` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000646` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `60.06` (State: `NEUTRAL`)
+  * Session VWAP: `1.12` | VWAP Z-Score: `-0.19` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000630` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `59.68` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.12` | Lower -3.00σ Band: `1.12`
   * Upper +2.51σ Band: `1.12` | Lower -2.51σ Band: `1.12`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.12` | EMA-20=`1.12` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.12` (Slope: `+0.0000`) | EMA-100=`1.12`
-  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0447`) | EMA-233=`1.12`
+  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0456`) | EMA-233=`1.12`
 - **Range Boundaries**: 24H High=`1.12` | 24H Low=`1.11` | Weekly High=`1.12` | Weekly Low=`1.11`
 
 ---
@@ -70,15 +70,15 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `99` | 110.75 USD | 10.55 USD | `+9.52%` | 2,233.40 USD | `-0.08` | **`BULLISH`** | `DELTA ALIGNED` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `124` | 138.70 USD | -38.84 USD | `-28.00%` | 2,194.57 USD | `-0.67` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `142` | 158.79 USD | -136.74 USD | `-86.11%` | 2,057.83 USD | `-1.68` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `381` | 426.33 USD | -66.32 USD | `-15.56%` | 7,572.26 USD | `-0.19` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `263` | 294.20 USD | -222.36 USD | `-75.58%` | 7,349.91 USD | `-0.62` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `365` | 408.16 USD | -317.05 USD | `-77.68%` | 7,032.85 USD | `-0.87` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `201` | 224.64 USD | 41.60 USD | `+18.52%` | 5,306.53 USD | `-0.07` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `1,198` | 1,340.67 USD | 1,174.15 USD | `+87.58%` | 6,480.68 USD | `+0.23` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `1,418` | 1,585.66 USD | -1,308.92 USD | `-82.55%` | 5,171.76 USD | `-0.57` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `197` | 220.29 USD | -67.05 USD | `-30.43%` | 2,772.14 USD | `-0.72` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `279` | 311.97 USD | -187.18 USD | `-60.00%` | 2,584.95 USD | `-1.87` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `224` | 250.50 USD | 125.25 USD | `+50.00%` | 2,710.20 USD | `+1.40` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `365` | 408.16 USD | -317.05 USD | `-77.68%` | 8,356.98 USD | `-0.87` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `409` | 457.36 USD | -89.48 USD | `-19.57%` | 8,267.50 USD | `-0.41` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `774` | 865.70 USD | 585.15 USD | `+67.59%` | 8,852.65 USD | `+1.03` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `1,198` | 1,340.67 USD | 1,174.15 USD | `+87.58%` | 9,101.20 USD | `+0.23` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `1,418` | 1,585.66 USD | -1,308.92 USD | `-82.55%` | 7,792.28 USD | `-0.57` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `3,467` | 3,882.21 USD | 3,493.99 USD | `+90.00%` | 11,286.26 USD | `+0.89` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `4h` | `1.11` | `1.12` | `1.11` | `1.12` | `35,597` | 39,738.71 USD | 24,268.79 USD | `+61.07%` | 6,924.90 USD | `+1.62` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `4h` | `1.12` | `1.12` | `1.12` | `1.12` | `14,336` | 16,024.64 USD | 7,816.90 USD | `+48.78%` | 14,741.79 USD | `+0.38` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `4h` | `1.12` | `1.12` | `1.12` | `1.12` | `6,284` | 7,036.57 USD | 6,332.91 USD | `+90.00%` | 21,074.71 USD | `+0.24` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -393,13 +393,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.12` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000790` pts)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000771` pts)
   * +2.5R Take Profit: `1.12`
   * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.12` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000790` pts)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000771` pts)
   * +2.5R Take Profit: `1.12`
   * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

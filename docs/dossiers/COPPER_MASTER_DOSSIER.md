@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: COPPER
 **Canonical Key**: `COPPER` | **Broker Instrument**: `COPPER.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 08:36:49 IST` (`2026-10-30 03:06:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `14327.70` | **Live Ask Quote**: `14342.25` | **Mid Price**: `14334.98`
+- **Live Bid Quote**: `14330.15` | **Live Ask Quote**: `14344.70` | **Mid Price**: `14337.42`
 - **Spread Points**: `14550.00` | **Spread BPS**: `10.15 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `14334.98` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `35.84` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
+  * Session VWAP: `14329.89` | VWAP Z-Score: `+0.40` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `24.39` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `47.08` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `14435.32` | Lower -3.00σ Band: `14234.63`
-  * Upper +2.51σ Band: `14413.82` | Lower -2.51σ Band: `14256.13`
-  * Upper +2.01σ Band: `14395.18` | Lower -2.01σ Band: `14274.77`
-  * Upper +2.00σ Band: `14392.31` | Lower -2.00σ Band: `14277.64`
-  * Upper +1.28σ Band: `14375.11` | Lower -1.28σ Band: `14294.84`
-  * Upper +1.00σ Band: `14363.64` | Lower -1.00σ Band: `14306.31`
+  * Upper +3.00σ Band: `14374.65` | Lower -3.00σ Band: `14285.12`
+  * Upper +2.51σ Band: `14367.34` | Lower -2.51σ Band: `14292.44`
+  * Upper +2.01σ Band: `14359.88` | Lower -2.01σ Band: `14299.90`
+  * Upper +2.00σ Band: `14359.73` | Lower -2.00σ Band: `14300.05`
+  * Upper +1.28σ Band: `14348.99` | Lower -1.28σ Band: `14310.79`
+  * Upper +1.00σ Band: `14344.81` | Lower -1.00σ Band: `14314.97`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`14334.98` | EMA-20=`14334.98` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`14334.98` (Slope: `+0.0000`) | EMA-100=`14334.98`
-  * Institutional Anchors: EMA-144=`14334.98` | EMA-200=`14334.98` (Slope: `+0.0000`) | EMA-233=`14334.98`
-- **Range Boundaries**: 24H High=`14478.32` | 24H Low=`14191.63` | Weekly High=`14621.67` | Weekly Low=`14048.28`
+  * Fast EMA Array: EMA-9=`14338.67` | EMA-20=`14342.58` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`14359.05` (Slope: `+0.0000`) | EMA-100=`14385.19`
+  * Institutional Anchors: EMA-144=`14392.80` | EMA-200=`14390.88` (Slope: `-0.0442`) | EMA-233=`14387.78`
+- **Range Boundaries**: 24H High=`14526.85` | 24H Low=`14290.17` | Weekly High=`14526.85` | Weekly Low=`14244.60`
 
 ---
 
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`14516.50` | Weekly POC=`14465.70` | Weekly VAL=`14345.27`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`14356.65` | Low=`14290.85`
-  * London Session (08:00-16:00 UTC): High=`14392.31` | Low=`14277.64`
-  * New York Session (13:00-21:00 UTC): High=`14420.98` | Low=`14248.97`
-  * Initial Balance (First Hour): IB High=`14377.98` | IB Low=`14291.97`
+  * London Session (08:00-16:00 UTC): High=`14394.77` | Low=`14280.08`
+  * New York Session (13:00-21:00 UTC): High=`14423.45` | Low=`14251.40`
+  * Initial Balance (First Hour): IB High=`14380.44` | IB Low=`14294.41`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `14277.64` - `14392.31`
-  * Optimal Trade Entry (OTE 0.705): `14363.64`
-  * Structural Invalidation Anchor (0.786): `14449.65`
+  * Golden Pocket Zone (0.618 - 0.650): `14280.08` - `14394.77`
+  * Optimal Trade Entry (OTE 0.705): `14366.10`
+  * Structural Invalidation Anchor (0.786): `14452.12`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `14322.65` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `14257.82` (Risk Distance: `64.83` pts)
-  * +2.5R Take Profit: `14484.73`
-  * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `14271.56` (Risk Distance: `51.09` pts)
+  * +2.5R Take Profit: `14450.38`
+  * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `14352.92` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `14417.75` (Risk Distance: `64.83` pts)
-  * +2.5R Take Profit: `14190.85`
-  * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `14404.01` (Risk Distance: `51.09` pts)
+  * +2.5R Take Profit: `14225.20`
+  * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14449.65`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14452.12`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

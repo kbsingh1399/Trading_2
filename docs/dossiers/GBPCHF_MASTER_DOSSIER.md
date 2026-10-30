@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCHF
 **Canonical Key**: `GBPCHF` | **Broker Instrument**: `GBPCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:36:49 IST` (`2026-10-30 03:06:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.10` | VWAP Z-Score: `-0.34` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000685` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `34.25` (State: `OVERSOLD`)
+  * Session VWAP: `1.10` | VWAP Z-Score: `+0.02` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000667` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `38.18` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.10` | Lower -3.00σ Band: `1.10`
   * Upper +2.51σ Band: `1.10` | Lower -2.51σ Band: `1.10`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.10` | EMA-20=`1.10` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.10` (Slope: `+0.0000`) | EMA-100=`1.10`
-  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `-0.0318`) | EMA-233=`1.10`
+  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `-0.0331`) | EMA-233=`1.10`
 - **Range Boundaries**: 24H High=`1.11` | 24H Low=`1.10` | Weekly High=`1.11` | Weekly Low=`1.10`
 
 ---
