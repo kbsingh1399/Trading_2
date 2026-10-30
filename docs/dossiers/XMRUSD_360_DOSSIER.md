@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XMRUSD
 **Canonical Key**: `XMRUSD` | **Broker Instrument**: `XMRUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:52:59 IST` (`2026-10-30 05:22:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `595.51` | **Live Ask Quote**: `595.84` | **Mid Price**: `595.67`
-- **Spread Points**: `33.00` | **Spread BPS**: `5.54 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `594.16` | **Live Ask Quote**: `594.67` | **Mid Price**: `594.41`
+- **Spread Points**: `51.00` | **Spread BPS**: `8.58 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,45 +23,45 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `614.44` | VWAP Z-Score: `-1.55` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `7.51` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `38.61` (State: `NEUTRAL`)
+  * Session VWAP: `613.70` | VWAP Z-Score: `-2.18` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `7.55` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `33.31` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `638.03` | Lower -3.00σ Band: `590.85`
-  * Upper +2.51σ Band: `634.18` | Lower -2.51σ Band: `594.70`
-  * Upper +2.01σ Band: `630.25` | Lower -2.01σ Band: `598.64`
-  * Upper +2.00σ Band: `630.17` | Lower -2.00σ Band: `598.71`
-  * Upper +1.28σ Band: `624.51` | Lower -1.28σ Band: `604.38`
-  * Upper +1.00σ Band: `622.30` | Lower -1.00σ Band: `606.58`
+  * Upper +3.00σ Band: `638.94` | Lower -3.00σ Band: `588.47`
+  * Upper +2.51σ Band: `634.82` | Lower -2.51σ Band: `592.59`
+  * Upper +2.01σ Band: `630.61` | Lower -2.01σ Band: `596.80`
+  * Upper +2.00σ Band: `630.53` | Lower -2.00σ Band: `596.88`
+  * Upper +1.28σ Band: `624.47` | Lower -1.28σ Band: `602.94`
+  * Upper +1.00σ Band: `622.12` | Lower -1.00σ Band: `605.29`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`609.04` | EMA-20=`611.65` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`610.81` (Slope: `+0.0000`) | EMA-100=`607.38`
-  * Institutional Anchors: EMA-144=`605.51` | EMA-200=`604.56` (Slope: `+0.1249`) | EMA-233=`604.38`
-- **Range Boundaries**: 24H High=`651.35` | 24H Low=`588.63` | Weekly High=`651.35` | Weekly Low=`583.39`
+  * Fast EMA Array: EMA-9=`606.31` | EMA-20=`610.11` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`610.21` (Slope: `+0.0000`) | EMA-100=`607.14`
+  * Institutional Anchors: EMA-144=`605.36` | EMA-200=`604.49` (Slope: `+0.0878`) | EMA-233=`604.28`
+- **Range Boundaries**: 24H High=`651.35` | 24H Low=`589.23` | Weekly High=`651.35` | Weekly Low=`583.39`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `621.47` (Distance: `-4.16%`)
-  * Point of Control (POC) = `613.91` (Distance: `-2.98%`)
-  * Value Area Low (VAL) = `604.46` (Distance: `-1.46%`)
+  * Value Area High (VAH) = `621.90` (Distance: `-4.36%`)
+  * Point of Control (POC) = `614.02` (Distance: `-3.13%`)
+  * Value Area Low (VAL) = `603.85` (Distance: `-1.50%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`611.25` | POC=`599.93` | VAL=`594.94`
   * Prior Day Extremes: PDH=`651.35` | PDL=`583.39` | PDC=`623.88`
   * Monday Range Blueprint: High=`602.04` | Mid=`592.51` | Low=`582.99`
-  * Developing Weekly Value Area: Weekly VAH=`608.28` | Weekly POC=`601.45` | Weekly VAL=`589.60`
+  * Developing Weekly Value Area: Weekly VAH=`607.83` | Weekly POC=`594.61` | Weekly VAL=`589.60`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`642.73` | Low=`600.40`
-  * London Session (08:00-16:00 UTC): High=`603.14` | Low=`595.48`
-  * New York Session (13:00-21:00 UTC): High=`599.25` | Low=`592.10`
-  * Initial Balance (First Hour): IB High=`603.14` | IB Low=`595.48`
+  * London Session (08:00-16:00 UTC): High=`603.14` | Low=`593.52`
+  * New York Session (13:00-21:00 UTC): High=`597.98` | Low=`590.85`
+  * Initial Balance (First Hour): IB High=`603.14` | IB Low=`593.52`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `593.29` - `598.06`
-  * Optimal Trade Entry (OTE 0.705): `596.87`
-  * Structural Invalidation Anchor (0.786): `600.44`
+  * Golden Pocket Zone (0.618 - 0.650): `592.04` - `596.79`
+  * Optimal Trade Entry (OTE 0.705): `595.60`
+  * Structural Invalidation Anchor (0.786): `599.17`
 
 ---
 
@@ -294,18 +294,18 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `604.46` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `594.96` (Risk Distance: `9.50` pts)
-  * +2.5R Take Profit: `628.21`
-  * Mathematical Lot Sizing: **`1.05 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `603.85` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `594.03` (Risk Distance: `9.82` pts)
+  * +2.5R Take Profit: `628.40`
+  * Mathematical Lot Sizing: **`1.01 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `621.47` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `630.97` (Risk Distance: `9.50` pts)
-  * +2.5R Take Profit: `597.72`
-  * Mathematical Lot Sizing: **`1.05 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `621.90` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `631.72` (Risk Distance: `9.82` pts)
+  * +2.5R Take Profit: `597.35`
+  * Mathematical Lot Sizing: **`1.01 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`600.44`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`599.17`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EGLUSD
 **Canonical Key**: `EGLUSD` | **Broker Instrument**: `EGLUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:52:59 IST` (`2026-10-30 05:22:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `3.04` | VWAP Z-Score: `+1.71` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0310` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `49.93` (State: `NEUTRAL`)
+  * Session VWAP: `3.04` | VWAP Z-Score: `+1.88` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0302` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `52.11` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `3.15` | Lower -3.00σ Band: `2.92`
   * Upper +2.51σ Band: `3.13` | Lower -2.51σ Band: `2.94`
   * Upper +2.01σ Band: `3.11` | Lower -2.01σ Band: `2.96`
   * Upper +2.00σ Band: `3.11` | Lower -2.00σ Band: `2.96`
-  * Upper +1.28σ Band: `3.08` | Lower -1.28σ Band: `2.99`
-  * Upper +1.00σ Band: `3.07` | Lower -1.00σ Band: `3.00`
+  * Upper +1.28σ Band: `3.09` | Lower -1.28σ Band: `2.99`
+  * Upper +1.00σ Band: `3.08` | Lower -1.00σ Band: `3.00`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`3.08` | EMA-20=`3.08` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`3.09` | EMA-20=`3.09` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`3.15` (Slope: `+0.0000`) | EMA-100=`3.21`
-  * Institutional Anchors: EMA-144=`3.23` | EMA-200=`3.23` (Slope: `-0.6393`) | EMA-233=`3.23`
+  * Institutional Anchors: EMA-144=`3.22` | EMA-200=`3.23` (Slope: `-0.6126`) | EMA-233=`3.23`
 - **Range Boundaries**: 24H High=`3.47` | 24H Low=`2.94` | Weekly High=`3.47` | Weekly Low=`2.94`
 
 ---

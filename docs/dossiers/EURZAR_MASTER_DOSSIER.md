@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURZAR
 **Canonical Key**: `EURZAR` | **Broker Instrument**: `EURZAR.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:52:59 IST` (`2026-10-30 05:22:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `18.59` | **Live Ask Quote**: `18.59` | **Mid Price**: `18.59`
-- **Spread Points**: `577.00` | **Spread BPS**: `3.10 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `566.00` | **Spread BPS**: `3.04 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`18.66` | POC=`18.59` | VAL=`18.51`
   * Prior Day Extremes: PDH=`18.70` | PDL=`18.48` | PDC=`18.59`
-  * Monday Range Blueprint: High=`18.68` | Mid=`18.59` | Low=`18.49`
+  * Monday Range Blueprint: High=`18.68` | Mid=`18.59` | Low=`18.50`
   * Developing Weekly Value Area: Weekly VAH=`18.74` | Weekly POC=`18.59` | Weekly VAL=`18.44`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`18.63` | Low=`18.55`

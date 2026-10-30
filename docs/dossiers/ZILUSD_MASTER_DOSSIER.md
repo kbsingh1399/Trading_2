@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:52:59 IST` (`2026-10-30 05:22:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0018` | VWAP Z-Score: `+0.90` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000025` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `46.74` (State: `NEUTRAL`)
+  * Session VWAP: `0.0018` | VWAP Z-Score: `+1.74` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000024` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `51.81` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0019` | Lower -3.00σ Band: `0.0017`
   * Upper +2.51σ Band: `0.0019` | Lower -2.51σ Band: `0.0018`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0018` | EMA-20=`0.0018` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0019` (Slope: `+0.0000`) | EMA-100=`0.0019`
-  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `-0.4073`) | EMA-233=`0.0019`
+  * Institutional Anchors: EMA-144=`0.0019` | EMA-200=`0.0019` (Slope: `-0.3783`) | EMA-233=`0.0019`
 - **Range Boundaries**: 24H High=`0.0020` | 24H Low=`0.0017` | Weekly High=`0.0020` | Weekly Low=`0.0017`
 
 ---
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.0018` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `0.0022` (Risk Distance: `0.0010` pts)
-  * +2.5R Take Profit: `-0.000658`
+  * +2.5R Take Profit: `-0.000651`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
