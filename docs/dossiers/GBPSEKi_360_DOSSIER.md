@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPSEK
 **Canonical Key**: `GBPSEK` | **Broker Instrument**: `GBPSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:21:39 IST` (`2026-10-30 10:51:39 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:24:41 IST` (`2026-10-30 10:54:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `13.17` | **Live Ask Quote**: `13.17` | **Mid Price**: `13.17`
-- **Spread Points**: `160.00` | **Spread BPS**: `1.21 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `151.00` | **Spread BPS**: `1.15 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,9 +28,9 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `13.26` | Lower -3.00σ Band: `13.08`
-  * Upper +2.51σ Band: `13.25` | Lower -2.51σ Band: `13.10`
+  * Upper +2.51σ Band: `13.24` | Lower -2.51σ Band: `13.10`
   * Upper +2.01σ Band: `13.23` | Lower -2.01σ Band: `13.12`
-  * Upper +2.00σ Band: `13.23` | Lower -2.00σ Band: `13.12`
+  * Upper +2.00σ Band: `13.22` | Lower -2.00σ Band: `13.12`
   * Upper +1.28σ Band: `13.21` | Lower -1.28σ Band: `13.14`
   * Upper +1.00σ Band: `13.20` | Lower -1.00σ Band: `13.15`
 - **Moving Average Ribbon & Trend Slopes**:
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `13.13` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`13.23` | POC=`13.17` | VAL=`13.12`
+  * Prior Day Value Area: VAH=`13.22` | POC=`13.17` | VAL=`13.12`
   * Prior Day Extremes: PDH=`13.25` | PDL=`13.09` | PDC=`13.17`
   * Monday Range Blueprint: High=`13.24` | Mid=`13.17` | Low=`13.11`
   * Developing Weekly Value Area: Weekly VAH=`13.28` | Weekly POC=`13.17` | Weekly VAL=`13.07`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`13.20` | Low=`13.15`
-  * London Session (08:00-16:00 UTC): High=`13.23` | Low=`13.12`
+  * London Session (08:00-16:00 UTC): High=`13.22` | Low=`13.12`
   * New York Session (13:00-21:00 UTC): High=`13.25` | Low=`13.09`
   * Initial Balance (First Hour): IB High=`13.21` | IB Low=`13.13`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `13.12` - `13.23`
+  * Golden Pocket Zone (0.618 - 0.650): `13.12` - `13.22`
   * Optimal Trade Entry (OTE 0.705): `13.20`
   * Structural Invalidation Anchor (0.786): `13.28`
 

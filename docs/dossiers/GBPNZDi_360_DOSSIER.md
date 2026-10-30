@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNZD
 **Canonical Key**: `GBPNZD` | **Broker Instrument**: `GBPNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:21:39 IST` (`2026-10-30 10:51:39 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:24:41 IST` (`2026-10-30 10:54:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `2.38` | **Live Ask Quote**: `2.38` | **Mid Price**: `2.38`
-- **Spread Points**: `15.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `21.00` | **Spread BPS**: `0.88 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.38` | VWAP Z-Score: `+1.53` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `2.38` | VWAP Z-Score: `+0.92` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0016` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `62.11` (State: `NEUTRAL`)
+  * 14-Period RSI: `56.04` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.38` | Lower -3.00σ Band: `2.37`
   * Upper +2.51σ Band: `2.38` | Lower -2.51σ Band: `2.37`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.38` | EMA-20=`2.38` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`2.38` (Slope: `+0.0000`) | EMA-100=`2.37`
-  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.37` (Slope: `+0.0468`) | EMA-233=`2.37`
+  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.37` (Slope: `+0.0456`) | EMA-233=`2.37`
 - **Range Boundaries**: 24H High=`2.38` | 24H Low=`2.37` | Weekly High=`2.38` | Weekly Low=`2.34`
 
 ---
