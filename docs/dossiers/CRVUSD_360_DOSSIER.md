@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 16:24:41 IST` (`2026-10-30 10:54:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:27:43 IST` (`2026-10-30 10:57:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -100,7 +100,7 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1826` | `0x12d2...f97f` | `LONG` | 1,131,183.52 USD | `3,972,828.70` | `0.3272` | `0.2847` | `0.000000` | -168,655.22 USD | `-14.91%` | `10X Cross` |
+| `1816` | `0x12d2...f97f` | `LONG` | 1,137,341.40 USD | `3,972,828.70` | `0.3272` | `0.2867` | `0.000000` | -162,497.34 USD | `-14.29%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -434,14 +434,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-10.53K` | Last 24h: `968.79` | Last 3d: `19.73K` | Last 7d: `53.52K`
+  * Current Rate: `-10.98K` | Last 24h: `968.79` | Last 3d: `19.73K` | Last 7d: `53.52K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0212%` | **USDT OKX** | `-0.0229%` |
-| **USDT Bybit** | `-0.0218%` | **USDT KuCoin** | `-0.0300%` |
-| **USDT MEXC** | `-0.0228%` | **USDT BingX** | `-0.0034%` |
-| **USDT Gate** | `-0.0162%` | **USDT Bitget** | `-0.0042%` |
+| **USDT Binance** | `-0.0217%` | **USDT OKX** | `-0.0219%` |
+| **USDT Bybit** | `-0.0238%` | **USDT KuCoin** | `-0.0284%` |
+| **USDT MEXC** | `-0.0221%` | **USDT BingX** | `-0.0040%` |
+| **USDT Gate** | `-0.0156%` | **USDT Bitget** | `-0.0053%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
