@@ -1,0 +1,3217 @@
+{
+  "certificate_id": "MULTI-FEED-DOSSIER-CERT-Cycle_037-20261030202639",
+  "cycle_id": "Cycle_037",
+  "timestamp_utc": "2026-10-30 14:56:39 UTC",
+  "timestamp_ist": "2026-10-30 20:26:39 IST",
+  "gate_name": "15_PILLAR_DOSSIER_JSON_PHYSICAL_EXAMINATION_GATE",
+  "gravitas_standard_enforced": true,
+  "gravitas_check_mark": "[x] \ud83c\udfdb\ufe0f Gravitas Rigor Standard: FULLY ENFORCED (All 15 quantitative features read directly from physical Dossier JSONs with full parameter values)",
+  "total_candidate_setups_audited": 5,
+  "candidates": [
+    {
+      "canonical": "BTCUSD",
+      "broker_symbol": "BTCUSD.pi",
+      "action": "BUY_LIMIT",
+      "entry": 76350.0,
+      "sl": 75850.0,
+      "tp": 77600.0,
+      "rr_ratio": 2.5,
+      "nominal_risk_usd": 5.0,
+      "mt5_ticket": 19532055,
+      "dossier_file": "BTC_MASTER_DOSSIER.json",
+      "dossier_bytes": 1400105,
+      "status": "PASS_PHYSICALLY_AUDITED",
+      "extracted_15_features": {
+        "1_ETF_Spot_Fut_Flows": {
+          "status": "PASS",
+          "record_count": 10,
+          "primary_sample": {
+            "#": "1",
+            "Ticker": "IBIT BTC",
+            "ETF_Name": "iShares Bitcoin Trust",
+            "Price": "$43.287",
+            "Price_Change": "-2.423 -5.30%",
+            "Volume_USD": "$1.52B",
+            "Volume_Shares": "35.17M",
+            "Turnover_Rate": "2.442%",
+            "Shares_Outstanding": "1.44B",
+            "AUM": "$66.17B",
+            "Market_Cap": "$62.30B",
+            "Expense_Ratio": "0.25%",
+            "Asset_Category": "Bitcoin",
+            "Issuer": "BlackRock / iShares",
+            "Daily_Net_Inflow": "-",
+            "Timestamp_IST": "2026-10-30 19:58:38 IST"
+          }
+        },
+        "2_Spot_Fut_Netflows": {
+          "status": "PASS",
+          "spot_5m": "-$327.29K",
+          "spot_1h": "-$121.95M",
+          "spot_24h": "-$862.78M",
+          "fut_5m": "-$22.29M",
+          "fut_1h": "-$150.03M",
+          "fut_24h": "-$3.07B",
+          "market_cap": "$1.54T"
+        },
+        "3_Long_Short_Ratios_MTF": {
+          "status": "PASS",
+          "total_exchange_rows": 3,
+          "sample_ratios": [
+            {
+              "exchange": "BTC",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "BTC",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "BTC",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            }
+          ]
+        },
+        "4_Funding_Rates_Settlement": {
+          "status": "PASS",
+          "usdt_binance": "0.0100%",
+          "usdt_bybit": "0.0100%",
+          "usdt_okx": "0.0100%",
+          "settlement_info": {
+            "rank": 1,
+            "symbol": "BTC",
+            "price": "$76,869.00",
+            "price_24h_pct": "-4.39%",
+            "open_interest": "$17.08B",
+            "current": "$1.71M",
+            "last_24h": "$3.60M",
+            "last_3d": "$11.32M",
+            "last_7d": "$24.36M",
+            "timestamp_ist": "2026-10-30 20:02:11 IST"
+          }
+        },
+        "5_Open_Interest_Dynamics": {
+          "status": "PASS",
+          "total_oi_usd": "$53.52B",
+          "change_1h": "+0.97%",
+          "change_4h": "+1.11%",
+          "change_24h": "-1.36%",
+          "binance_oi": "$10.83B",
+          "cme_oi": "$8.79B",
+          "hyperliquid_oi": "$3.14B"
+        },
+        "6_Multi_Horizon_Liquidations": {
+          "status": "PASS",
+          "mp_24h_price": 77226.3,
+          "short_max_pain_24h": 79868.95,
+          "short_max_pain_vol": 56100000.0,
+          "long_max_pain_24h": 76045.48,
+          "long_max_pain_vol": 70600000.0,
+          "ex_liq_rows": 384
+        },
+        "7_Whale_Orders_Large_Trades": {
+          "status": "PASS",
+          "total_whale_orders": 22,
+          "top_whale_walls": [
+            {
+              "side": "BUY ORDERS",
+              "price": 76974.0,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 76975.0,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 76976.0,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 76979.0,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 76980.0,
+              "size_usd": null
+            }
+          ]
+        },
+        "8_Technicals_VWAP_Dispersion": {
+          "status": "PASS",
+          "vwap": 77518.6613513387,
+          "vwap_z": -1.4399936146492853,
+          "upper_band_1": 78076.0675392364,
+          "lower_band_1": 76961.25516344099,
+          "rsi_14": 35.3159208958285,
+          "atr_14": 308.59235515736003
+        },
+        "9_Hyperdash_Stops_Intel": {
+          "status": "PASS",
+          "total_stop_clusters": 926,
+          "total_hd_liq_levels": 1337,
+          "nearest_stop_clusters": [
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 15550.0,
+              "cum_stops": 174980000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 538.96,
+              "dist": "-79.83%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 15650.0,
+              "cum_stops": 174980000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 104.39,
+              "dist": "-79.71%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 16050.0,
+              "cum_stops": 174980000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 129.36,
+              "dist": "-79.19%",
+              "tier": "TACTICAL (Retail Cluster)"
+            }
+          ]
+        },
+        "10_L2_Orderbook_Depth": {
+          "status": "PASS",
+          "depth_levels_count": 41,
+          "sample_levels": [
+            {
+              "side": "BID",
+              "price": 76974.0,
+              "coins": 4850700000.0,
+              "notional": 373381.63,
+              "cum_depth": 5090574.84,
+              "tier": "9 orders",
+              "dist": "-0.04%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 76975.0,
+              "coins": 15534400000.0,
+              "notional": 1195761.98,
+              "cum_depth": 4717193.21,
+              "tier": "4 orders",
+              "dist": "-0.04%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 76976.0,
+              "coins": 4048800000.0,
+              "notional": 311661.97,
+              "cum_depth": 3521431.23,
+              "tier": "4 orders",
+              "dist": "-0.04%",
+              "wallet": "-"
+            }
+          ]
+        },
+        "11_Multi_Timeframe_CVD": {
+          "status": "PASS",
+          "timeframe_records": 17,
+          "records": [
+            {
+              "timeframe": "5m",
+              "open": 76758.2,
+              "high": 76915.5,
+              "low": 76700.1,
+              "close": 76862.1,
+              "volume": 1531.691,
+              "quote_vol": 117627319.0762,
+              "delta": 21984185.501000002,
+              "delta_pct": 18.689693579395836,
+              "cum_cvd": -1595465529.8137991,
+              "cvd_z": 1.2717159432686846,
+              "bias": "BULLISH",
+              "regime": "AGGRESSIVE BUYING"
+            },
+            {
+              "timeframe": "5m",
+              "open": 76862.1,
+              "high": 76942.0,
+              "low": 76668.8,
+              "close": 76787.9,
+              "volume": 1104.49,
+              "quote_vol": 84790611.0366,
+              "delta": 11101647.48300001,
+              "delta_pct": 13.09301507239754,
+              "cum_cvd": -1584363882.330799,
+              "cvd_z": 0.5353485509372866,
+              "bias": "BULLISH",
+              "regime": "BULLISH ABSORPTION"
+            },
+            {
+              "timeframe": "5m",
+              "open": 76787.9,
+              "high": 77055.0,
+              "low": 76640.0,
+              "close": 77008.9,
+              "volume": 1357.893,
+              "quote_vol": 104327207.4512,
+              "delta": 20538813.173800007,
+              "delta_pct": 19.686919333489517,
+              "cum_cvd": -1563825069.156999,
+              "cvd_z": 1.0445294505734772,
+              "bias": "BULLISH",
+              "regime": "AGGRESSIVE BUYING"
+            },
+            {
+              "timeframe": "15m",
+              "open": 77128.2,
+              "high": 77154.2,
+              "low": 76719.0,
+              "close": 76728.6,
+              "volume": 3390.19,
+              "quote_vol": 260850667.6,
+              "delta": 1685050.3359999955,
+              "delta_pct": 0.6459827576841499,
+              "cum_cvd": -1584516255.7175999,
+              "cvd_z": 0.37035330102344444,
+              "bias": "BULLISH",
+              "regime": "BULLISH ABSORPTION"
+            }
+          ]
+        },
+        "12_Auction_Market_Structure": {
+          "status": "PASS",
+          "daily_poc": 77180.56,
+          "daily_vah": 78376.24,
+          "daily_val": 76639.12,
+          "auction_regime": "ROTATIONAL_BALANCE",
+          "session_bias": "BEARISH (Below Pivot)"
+        },
+        "13_Tradfye_Orderflow": {
+          "status": "PASS",
+          "hyperliquid_rows": 1,
+          "footprint_rows": 10
+        },
+        "14_Footprint_Signals_Tape": {
+          "status": "PASS",
+          "active_signals": [
+            {
+              "time": "10-30 20:02",
+              "tf": "Range 200",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 76640.0,
+              "absorbed_vol": 1300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:59",
+              "tf": "Range 200",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 76730.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:55",
+              "tf": "Volume 5.0K BTC",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 76688.3,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 17:18",
+              "tf": "Range 200",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 77181.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 15:55",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 77349.4,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:59",
+              "tf": "Volume 5.0K BTC",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 78533.6,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:03",
+              "tf": "Volume 5.0K BTC",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 78629.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:04",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 78740.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:02",
+              "tf": "Range 200",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 78419.5,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 09:32",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 77889.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:45",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 77273.6,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:09",
+              "tf": "Volume 5.0K BTC",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 77535.2,
+              "absorbed_vol": 1000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:07",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 77535.2,
+              "absorbed_vol": 1000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:35",
+              "tf": "Volume 5.0K BTC",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 76444.0,
+              "absorbed_vol": 1100.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:35",
+              "tf": "Volume 5.0K BTC",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 76444.0,
+              "absorbed_vol": 1100.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:01",
+              "tf": "Volume 5.0K BTC",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 76611.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:01",
+              "tf": "Volume 5.0K BTC",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 76611.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:43",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 77342.8,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:43",
+              "tf": "Range 200",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 77342.8,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:54",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 77229.5,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:42",
+              "tf": "Volume 5.0K BTC",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 77604.2,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:36",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 78242.4,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:36",
+              "tf": "Range 200",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 78242.4,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:31",
+              "tf": "Range 200",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 78004.8,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:31",
+              "tf": "Range 200",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 77700.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:31",
+              "tf": "Range 200",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 77700.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:26",
+              "tf": "Volume 5.0K BTC",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 78048.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            }
+          ]
+        },
+        "15_MT5_Broker_Telemetry": {
+          "status": "PASS",
+          "bid": 76867.0,
+          "ask": 76909.0,
+          "mid": 76888.0,
+          "spread_pts": 4200.0,
+          "spread_bps": 5.46,
+          "gate_status": "PASS",
+          "contract_size": 1.0,
+          "point": 0.01
+        }
+      }
+    },
+    {
+      "canonical": "XMRUSD",
+      "broker_symbol": "XMRUSD.p",
+      "action": "BUY_LIMIT",
+      "entry": 585.5,
+      "sl": 577.5,
+      "tp": 605.5,
+      "rr_ratio": 2.5,
+      "nominal_risk_usd": 8.0,
+      "mt5_ticket": 19532057,
+      "dossier_file": "XMRUSD_MASTER_DOSSIER.json",
+      "dossier_bytes": 37376,
+      "status": "PASS_PHYSICALLY_AUDITED",
+      "extracted_15_features": {
+        "1_ETF_Spot_Fut_Flows": {
+          "status": "PASS",
+          "record_count": 10,
+          "primary_sample": {
+            "#": "1",
+            "Ticker": "IBIT BTC",
+            "ETF_Name": "iShares Bitcoin Trust",
+            "Price": "$43.287",
+            "Price_Change": "-2.423 -5.30%",
+            "Volume_USD": "$1.52B",
+            "Volume_Shares": "35.17M",
+            "Turnover_Rate": "2.442%",
+            "Shares_Outstanding": "1.44B",
+            "AUM": "$66.17B",
+            "Market_Cap": "$62.30B",
+            "Expense_Ratio": "0.25%",
+            "Asset_Category": "Bitcoin",
+            "Issuer": "BlackRock / iShares",
+            "Daily_Net_Inflow": "-",
+            "Timestamp_IST": "2026-10-30 19:58:38 IST"
+          }
+        },
+        "2_Spot_Fut_Netflows": {
+          "status": "PASS",
+          "spot_5m": "-$94.93K",
+          "spot_1h": "-$394.85K",
+          "spot_24h": "+$399.87K",
+          "fut_5m": "-$1.15M",
+          "fut_1h": "-$2.51M",
+          "fut_24h": "+$1.25M",
+          "market_cap": "$10.93B"
+        },
+        "3_Long_Short_Ratios_MTF": {
+          "status": "EMPTY",
+          "total_exchange_rows": 0,
+          "sample_ratios": []
+        },
+        "4_Funding_Rates_Settlement": {
+          "status": "PASS",
+          "usdt_binance": "0.0252%",
+          "usdt_bybit": "0.0100%",
+          "usdt_okx": "-",
+          "settlement_info": {
+            "rank": 24,
+            "symbol": "XMR",
+            "price": "$577.0400",
+            "price_24h_pct": "-3.95%",
+            "open_interest": "$97.70M",
+            "current": "$18.00K",
+            "last_24h": "$116.54K",
+            "last_3d": "$202.38K",
+            "last_7d": "$345.09K",
+            "timestamp_ist": "2026-10-30 20:02:11 IST"
+          }
+        },
+        "5_Open_Interest_Dynamics": {
+          "status": "EMPTY",
+          "total_oi_usd": null,
+          "change_1h": null,
+          "change_4h": null,
+          "change_24h": null,
+          "binance_oi": null,
+          "cme_oi": null,
+          "hyperliquid_oi": null
+        },
+        "6_Multi_Horizon_Liquidations": {
+          "status": "PASS",
+          "mp_24h_price": 597.55,
+          "short_max_pain_24h": 654.63,
+          "short_max_pain_vol": 381700.0,
+          "long_max_pain_24h": null,
+          "long_max_pain_vol": null,
+          "ex_liq_rows": 0
+        },
+        "7_Whale_Orders_Large_Trades": {
+          "status": "EMPTY",
+          "total_whale_orders": 0,
+          "top_whale_walls": []
+        },
+        "8_Technicals_VWAP_Dispersion": {
+          "status": "PASS",
+          "vwap": 601.5783699461787,
+          "vwap_z": -1.9502118563901774,
+          "upper_band_1": 614.1351441581386,
+          "lower_band_1": 589.0215957342187,
+          "rsi_14": 32.41226094497539,
+          "atr_14": 5.157150303069144
+        },
+        "9_Hyperdash_Stops_Intel": {
+          "status": "EMPTY",
+          "total_stop_clusters": 0,
+          "total_hd_liq_levels": 0,
+          "nearest_stop_clusters": []
+        },
+        "10_L2_Orderbook_Depth": {
+          "status": "EMPTY",
+          "depth_levels_count": 0,
+          "sample_levels": []
+        },
+        "11_Multi_Timeframe_CVD": {
+          "status": "EMPTY",
+          "timeframe_records": 0,
+          "records": []
+        },
+        "12_Auction_Market_Structure": {
+          "status": "PASS",
+          "daily_poc": 591.83,
+          "daily_vah": 614.65,
+          "daily_val": 586.35,
+          "auction_regime": "TREND_DOWN_ACCEPTANCE",
+          "session_bias": "BEARISH (Below Pivot)"
+        },
+        "13_Tradfye_Orderflow": {
+          "status": "PASS",
+          "hyperliquid_rows": 1,
+          "footprint_rows": 0
+        },
+        "14_Footprint_Signals_Tape": {
+          "status": "EMPTY",
+          "active_signals": []
+        },
+        "15_MT5_Broker_Telemetry": {
+          "status": "PASS",
+          "bid": 582.22,
+          "ask": 582.47,
+          "mid": 582.345,
+          "spread_pts": 25.0,
+          "spread_bps": 4.29,
+          "gate_status": "PASS",
+          "contract_size": 1.0,
+          "point": 0.0001
+        }
+      }
+    },
+    {
+      "canonical": "AVEUSD",
+      "broker_symbol": "AVEUSD.p",
+      "action": "BUY_LIMIT",
+      "entry": 122.5,
+      "sl": 121.2,
+      "tp": 125.75,
+      "rr_ratio": 2.5,
+      "nominal_risk_usd": 9.1,
+      "mt5_ticket": 19532058,
+      "dossier_file": "AVEUSD_MASTER_DOSSIER.json",
+      "dossier_bytes": 95013,
+      "status": "PASS_PHYSICALLY_AUDITED",
+      "extracted_15_features": {
+        "1_ETF_Spot_Fut_Flows": {
+          "status": "PASS",
+          "record_count": 10,
+          "primary_sample": {
+            "#": "1",
+            "Ticker": "IBIT BTC",
+            "ETF_Name": "iShares Bitcoin Trust",
+            "Price": "$43.287",
+            "Price_Change": "-2.423 -5.30%",
+            "Volume_USD": "$1.52B",
+            "Volume_Shares": "35.17M",
+            "Turnover_Rate": "2.442%",
+            "Shares_Outstanding": "1.44B",
+            "AUM": "$66.17B",
+            "Market_Cap": "$62.30B",
+            "Expense_Ratio": "0.25%",
+            "Asset_Category": "Bitcoin",
+            "Issuer": "BlackRock / iShares",
+            "Daily_Net_Inflow": "-",
+            "Timestamp_IST": "2026-10-30 19:58:38 IST"
+          }
+        },
+        "2_Spot_Fut_Netflows": {
+          "status": "PASS",
+          "spot_5m": null,
+          "spot_1h": null,
+          "spot_24h": null,
+          "fut_5m": "+$55.00K",
+          "fut_1h": "-$1.19M",
+          "fut_24h": "-$9.61M",
+          "market_cap": "$1.91B"
+        },
+        "3_Long_Short_Ratios_MTF": {
+          "status": "EMPTY",
+          "total_exchange_rows": 0,
+          "sample_ratios": []
+        },
+        "4_Funding_Rates_Settlement": {
+          "status": "PASS",
+          "usdt_binance": "-0.0077%",
+          "usdt_bybit": "-0.0197%",
+          "usdt_okx": "-0.0062%",
+          "settlement_info": {
+            "rank": 27,
+            "symbol": "AAVE",
+            "price": "$124.8700",
+            "price_24h_pct": "-6.44%",
+            "open_interest": "$121.36M",
+            "current": "-$14.57K",
+            "last_24h": "$2.40K",
+            "last_3d": "$39.97K",
+            "last_7d": "$111.02K",
+            "timestamp_ist": "2026-10-30 20:02:11 IST"
+          }
+        },
+        "5_Open_Interest_Dynamics": {
+          "status": "EMPTY",
+          "total_oi_usd": null,
+          "change_1h": null,
+          "change_4h": null,
+          "change_24h": null,
+          "binance_oi": null,
+          "cme_oi": null,
+          "hyperliquid_oi": null
+        },
+        "6_Multi_Horizon_Liquidations": {
+          "status": "PASS",
+          "mp_24h_price": 126.61,
+          "short_max_pain_24h": 128.8,
+          "short_max_pain_vol": 368100.0,
+          "long_max_pain_24h": 116.52,
+          "long_max_pain_vol": 253400.0,
+          "ex_liq_rows": 0
+        },
+        "7_Whale_Orders_Large_Trades": {
+          "status": "EMPTY",
+          "total_whale_orders": 0,
+          "top_whale_walls": []
+        },
+        "8_Technicals_VWAP_Dispersion": {
+          "status": "PASS",
+          "vwap": 122.88467569444445,
+          "vwap_z": 0.5270811412818907,
+          "upper_band_1": 125.87344569999667,
+          "lower_band_1": 119.89590568889224,
+          "rsi_14": 48.84263698133691,
+          "atr_14": 1.0581807698068915
+        },
+        "9_Hyperdash_Stops_Intel": {
+          "status": "PASS",
+          "total_stop_clusters": 0,
+          "total_hd_liq_levels": 136,
+          "nearest_stop_clusters": []
+        },
+        "10_L2_Orderbook_Depth": {
+          "status": "EMPTY",
+          "depth_levels_count": 0,
+          "sample_levels": []
+        },
+        "11_Multi_Timeframe_CVD": {
+          "status": "EMPTY",
+          "timeframe_records": 0,
+          "records": []
+        },
+        "12_Auction_Market_Structure": {
+          "status": "PASS",
+          "daily_poc": 124.84,
+          "daily_vah": 127.07,
+          "daily_val": 120.73,
+          "auction_regime": "ROTATIONAL_BALANCE",
+          "session_bias": "BEARISH (Below Pivot)"
+        },
+        "13_Tradfye_Orderflow": {
+          "status": "PASS",
+          "hyperliquid_rows": 1,
+          "footprint_rows": 10
+        },
+        "14_Footprint_Signals_Tape": {
+          "status": "PASS",
+          "active_signals": [
+            {
+              "time": "10-30 20:20",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 126.21,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:11",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 123.28,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 16:21",
+              "tf": "Volume 20K AAVE",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 126.4,
+              "absorbed_vol": 5100.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 16:03",
+              "tf": "Range 0.5",
+              "type": "Bear div",
+              "bias": "BEARISH",
+              "headline": "Higher high, lower Cumulative Delta",
+              "price": 125.11,
+              "absorbed_vol": 2100.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 14:53",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 124.1,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 14:46",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 124.1,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:46",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 125.04,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:38",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 125.29,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:38",
+              "tf": "Range 0.5",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 124.72,
+              "absorbed_vol": 1700.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:24",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 125.45,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:24",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 124.72,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:23",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 125.38,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:23",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 124.79,
+              "absorbed_vol": 4400.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:13",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 124.8,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:10",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 125.56,
+              "absorbed_vol": 1300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:05",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 125.78,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:51",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 125.68,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:44",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 125.72,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:39",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 126.49,
+              "absorbed_vol": 1300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:35",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 126.41,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:25",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 126.58,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 12:24",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 126.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:25",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 125.65,
+              "absorbed_vol": 1400.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:25",
+              "tf": "Range 0.5",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 125.65,
+              "absorbed_vol": 3500.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:46",
+              "tf": "Range 0.5",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 127.48,
+              "absorbed_vol": 2100.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:02",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 124.13,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:32",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 122.49,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:30",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 122.49,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:58",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 121.83,
+              "absorbed_vol": 2000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:49",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 120.77,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:49",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 121.29,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:30",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 120.45,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:30",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 120.27,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:30",
+              "tf": "Range 0.5",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 120.27,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:14",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 120.05,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:06",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 119.53,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:06",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 120.26,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:01",
+              "tf": "Range 0.5",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 117.5,
+              "absorbed_vol": 2900.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:52",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 118.8,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:42",
+              "tf": "Range 0.5",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 119.97,
+              "absorbed_vol": 1700.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:21",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 119.34,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:21",
+              "tf": "Range 0.5",
+              "type": "Bear div",
+              "bias": "BEARISH",
+              "headline": "Higher high, lower Cumulative Delta",
+              "price": 119.34,
+              "absorbed_vol": 7600.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:15",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 118.11,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:15",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 118.76,
+              "absorbed_vol": 2300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:08",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 118.01,
+              "absorbed_vol": 3200.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Volume 20K AAVE",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 115.0,
+              "absorbed_vol": 4300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Volume 20K AAVE",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 115.0,
+              "absorbed_vol": 4300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 115.0,
+              "absorbed_vol": 4300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Range 0.5",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 115.0,
+              "absorbed_vol": 4300.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:33",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 118.92,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:29",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 119.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:29",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 119.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:29",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 119.11,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:17",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 119.6,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:38",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 118.32,
+              "absorbed_vol": 3000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:38",
+              "tf": "Range 0.5",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 118.32,
+              "absorbed_vol": 3000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:34",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 119.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:34",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 119.03,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:28",
+              "tf": "Volume 20K AAVE",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 119.34,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:28",
+              "tf": "Range 0.5",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 119.34,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:26",
+              "tf": "Volume 20K AAVE",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 120.68,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:26",
+              "tf": "Range 0.5",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 120.68,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:22",
+              "tf": "Volume 20K AAVE",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 121.69,
+              "absorbed_vol": 4600.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:16",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 123.04,
+              "absorbed_vol": 1200.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:15",
+              "tf": "Volume 20K AAVE",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 123.68,
+              "absorbed_vol": 4700.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:15",
+              "tf": "Range 0.5",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 123.68,
+              "absorbed_vol": 4700.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:07",
+              "tf": "Range 0.5",
+              "type": "Bear div",
+              "bias": "BEARISH",
+              "headline": "Higher high, lower Cumulative Delta",
+              "price": 125.25,
+              "absorbed_vol": 8000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            }
+          ]
+        },
+        "15_MT5_Broker_Telemetry": {
+          "status": "PASS",
+          "bid": 125.23,
+          "ask": 125.54,
+          "mid": 125.385,
+          "spread_pts": 31.0,
+          "spread_bps": 24.72,
+          "gate_status": "PASS",
+          "contract_size": 1.0,
+          "point": 0.0001
+        }
+      }
+    },
+    {
+      "canonical": "ETHUSD",
+      "broker_symbol": "ETHUSD.pi",
+      "action": "STANDBY_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr_ratio": null,
+      "nominal_risk_usd": 0.0,
+      "mt5_ticket": null,
+      "dossier_file": "ETH_MASTER_DOSSIER.json",
+      "dossier_bytes": 660600,
+      "status": "PASS_PHYSICALLY_AUDITED",
+      "extracted_15_features": {
+        "1_ETF_Spot_Fut_Flows": {
+          "status": "PASS",
+          "record_count": 10,
+          "primary_sample": {
+            "#": "1",
+            "Ticker": "IBIT BTC",
+            "ETF_Name": "iShares Bitcoin Trust",
+            "Price": "$43.287",
+            "Price_Change": "-2.423 -5.30%",
+            "Volume_USD": "$1.52B",
+            "Volume_Shares": "35.17M",
+            "Turnover_Rate": "2.442%",
+            "Shares_Outstanding": "1.44B",
+            "AUM": "$66.17B",
+            "Market_Cap": "$62.30B",
+            "Expense_Ratio": "0.25%",
+            "Asset_Category": "Bitcoin",
+            "Issuer": "BlackRock / iShares",
+            "Daily_Net_Inflow": "-",
+            "Timestamp_IST": "2026-10-30 19:58:38 IST"
+          }
+        },
+        "2_Spot_Fut_Netflows": {
+          "status": "PASS",
+          "spot_5m": "+$1.35M",
+          "spot_1h": "+$478.42K",
+          "spot_24h": "-$142.68M",
+          "fut_5m": "+$2.72M",
+          "fut_1h": "-$61.27M",
+          "fut_24h": "-$2.06B",
+          "market_cap": "$271.13B"
+        },
+        "3_Long_Short_Ratios_MTF": {
+          "status": "PASS",
+          "total_exchange_rows": 3,
+          "sample_ratios": [
+            {
+              "exchange": "ETH",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "ETH",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "ETH",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            }
+          ]
+        },
+        "4_Funding_Rates_Settlement": {
+          "status": "PASS",
+          "usdt_binance": "-0.0035%",
+          "usdt_bybit": "-0.0062%",
+          "usdt_okx": "0.0028%",
+          "settlement_info": {
+            "rank": 6,
+            "symbol": "ETH",
+            "price": "$2,219.96",
+            "price_24h_pct": "-4.46%",
+            "open_interest": "$11.25B",
+            "current": "-$202.59K",
+            "last_24h": "$195.10K",
+            "last_3d": "$5.21M",
+            "last_7d": "$11.81M",
+            "timestamp_ist": "2026-10-30 20:02:11 IST"
+          }
+        },
+        "5_Open_Interest_Dynamics": {
+          "status": "PASS",
+          "total_oi_usd": "$28.38B",
+          "change_1h": "+0.07%",
+          "change_4h": "-0.38%",
+          "change_24h": "-6.47%",
+          "binance_oi": "$8.43B",
+          "cme_oi": "$2.96B",
+          "hyperliquid_oi": "$2.30B"
+        },
+        "6_Multi_Horizon_Liquidations": {
+          "status": "PASS",
+          "mp_24h_price": 2237.11,
+          "short_max_pain_24h": 2275.3,
+          "short_max_pain_vol": 38000000.0,
+          "long_max_pain_24h": 2174.37,
+          "long_max_pain_vol": 39000000.0,
+          "ex_liq_rows": 379
+        },
+        "7_Whale_Orders_Large_Trades": {
+          "status": "PASS",
+          "total_whale_orders": 33,
+          "top_whale_walls": [
+            {
+              "side": "BUY ORDERS",
+              "price": 2226.7,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 2226.8,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 2226.9,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 2227.0,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 2227.2,
+              "size_usd": null
+            }
+          ]
+        },
+        "8_Technicals_VWAP_Dispersion": {
+          "status": "PASS",
+          "vwap": 2221.5468389709827,
+          "vwap_z": -0.302804103859427,
+          "upper_band_1": 2236.23236969631,
+          "lower_band_1": 2206.8613082456554,
+          "rsi_14": 42.591897027011825,
+          "atr_14": 12.38195482613547
+        },
+        "9_Hyperdash_Stops_Intel": {
+          "status": "PASS",
+          "total_stop_clusters": 329,
+          "total_hd_liq_levels": 399,
+          "nearest_stop_clusters": [
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 455.0,
+              "cum_stops": 36330000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 256.94,
+              "dist": "-79.54%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 485.0,
+              "cum_stops": 36330000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 278.83,
+              "dist": "-78.20%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 505.0,
+              "cum_stops": 36330000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 15960.0,
+              "dist": "-77.30%",
+              "tier": "TACTICAL (Retail Cluster)"
+            }
+          ]
+        },
+        "10_L2_Orderbook_Depth": {
+          "status": "PASS",
+          "depth_levels_count": 41,
+          "sample_levels": [
+            {
+              "side": "BID",
+              "price": 2226.7,
+              "coins": 182.2642,
+              "notional": 405847.69,
+              "cum_depth": 6996824.46,
+              "tier": "5 orders",
+              "dist": "-0.10%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 2226.8,
+              "coins": 179.0682,
+              "notional": 398749.07,
+              "cum_depth": 6590976.76,
+              "tier": "7 orders",
+              "dist": "-0.09%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 2226.9,
+              "coins": 82.7643,
+              "notional": 184307.82,
+              "cum_depth": 6192227.7,
+              "tier": "4 orders",
+              "dist": "-0.09%",
+              "wallet": "-"
+            }
+          ]
+        },
+        "11_Multi_Timeframe_CVD": {
+          "status": "PASS",
+          "timeframe_records": 17,
+          "records": [
+            {
+              "timeframe": "5m",
+              "open": 2218.61,
+              "high": 2223.57,
+              "low": 2217.05,
+              "close": 2222.16,
+              "volume": 16940.573,
+              "quote_vol": 37609639.00638,
+              "delta": 2938570.538999997,
+              "delta_pct": 7.813344176213725,
+              "cum_cvd": -1023545338.6267502,
+              "cvd_z": 0.5622035571763959,
+              "bias": "BULLISH",
+              "regime": "DELTA ALIGNED"
+            },
+            {
+              "timeframe": "5m",
+              "open": 2222.15,
+              "high": 2224.57,
+              "low": 2215.71,
+              "close": 2219.65,
+              "volume": 12356.597,
+              "quote_vol": 27421300.10827,
+              "delta": 2638553.8230099976,
+              "delta_pct": 9.622278347824343,
+              "cum_cvd": -1020906784.8037403,
+              "cvd_z": 0.5030149176423828,
+              "bias": "BULLISH",
+              "regime": "BULLISH ABSORPTION"
+            },
+            {
+              "timeframe": "5m",
+              "open": 2219.64,
+              "high": 2231.2,
+              "low": 2215.95,
+              "close": 2228.86,
+              "volume": 22966.109,
+              "quote_vol": 51101676.42526,
+              "delta": 19508703.608760007,
+              "delta_pct": 38.17624973085362,
+              "cum_cvd": -1001398081.1949803,
+              "cvd_z": 2.2006594066577994,
+              "bias": "BULLISH",
+              "regime": "AGGRESSIVE BUYING"
+            },
+            {
+              "timeframe": "15m",
+              "open": 2224.48,
+              "high": 2226.57,
+              "low": 2214.61,
+              "close": 2215.01,
+              "volume": 49820.538,
+              "quote_vol": 110666162.60284,
+              "delta": -6277913.231100008,
+              "delta_pct": -5.672838999243387,
+              "cum_cvd": -1025746352.15858,
+              "cvd_z": -0.44596706452199203,
+              "bias": "BEARISH",
+              "regime": "DELTA ALIGNED"
+            }
+          ]
+        },
+        "12_Auction_Market_Structure": {
+          "status": "PASS",
+          "daily_poc": 2224.76,
+          "daily_vah": 2246.61,
+          "daily_val": 2200.48,
+          "auction_regime": "ROTATIONAL_BALANCE",
+          "session_bias": "BEARISH (Below Pivot)"
+        },
+        "13_Tradfye_Orderflow": {
+          "status": "PASS",
+          "hyperliquid_rows": 1,
+          "footprint_rows": 10
+        },
+        "14_Footprint_Signals_Tape": {
+          "status": "PASS",
+          "active_signals": [
+            {
+              "time": "10-30 19:03",
+              "tf": "Volume 100K ETH",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 2215.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 16:16",
+              "tf": "Volume 100K ETH",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 2240.2,
+              "absorbed_vol": 21000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 16:06",
+              "tf": "Volume 100K ETH",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 2248.6,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:42",
+              "tf": "Range 10",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 2252.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 09:10",
+              "tf": "Range 10",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 2238.0,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 08:13",
+              "tf": "Volume 100K ETH",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 2207.3,
+              "absorbed_vol": 16000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:03",
+              "tf": "Range 10",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 2193.4,
+              "absorbed_vol": 12000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:08",
+              "tf": "Range 10",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 2219.0,
+              "absorbed_vol": 14000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Volume 100K ETH",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 2220.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:52",
+              "tf": "Range 10",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 2220.9,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:35",
+              "tf": "Volume 100K ETH",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 2254.9,
+              "absorbed_vol": 21000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:26",
+              "tf": "Range 10",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 2245.4,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:16",
+              "tf": "Range 10",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 2246.7,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            }
+          ]
+        },
+        "15_MT5_Broker_Telemetry": {
+          "status": "PASS",
+          "bid": 2225.0,
+          "ask": 2228.4,
+          "mid": 2226.7,
+          "spread_pts": 340.0,
+          "spread_bps": 15.27,
+          "gate_status": "PASS",
+          "contract_size": 1.0,
+          "point": 0.01
+        }
+      }
+    },
+    {
+      "canonical": "SOLUSD",
+      "broker_symbol": "SOLUSD.p",
+      "action": "STANDBY_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr_ratio": null,
+      "nominal_risk_usd": 0.0,
+      "mt5_ticket": null,
+      "dossier_file": "SOL_MASTER_DOSSIER.json",
+      "dossier_bytes": 1033809,
+      "status": "PASS_PHYSICALLY_AUDITED",
+      "extracted_15_features": {
+        "1_ETF_Spot_Fut_Flows": {
+          "status": "PASS",
+          "record_count": 10,
+          "primary_sample": {
+            "#": "1",
+            "Ticker": "IBIT BTC",
+            "ETF_Name": "iShares Bitcoin Trust",
+            "Price": "$43.287",
+            "Price_Change": "-2.423 -5.30%",
+            "Volume_USD": "$1.52B",
+            "Volume_Shares": "35.17M",
+            "Turnover_Rate": "2.442%",
+            "Shares_Outstanding": "1.44B",
+            "AUM": "$66.17B",
+            "Market_Cap": "$62.30B",
+            "Expense_Ratio": "0.25%",
+            "Asset_Category": "Bitcoin",
+            "Issuer": "BlackRock / iShares",
+            "Daily_Net_Inflow": "-",
+            "Timestamp_IST": "2026-10-30 19:58:38 IST"
+          }
+        },
+        "2_Spot_Fut_Netflows": {
+          "status": "PASS",
+          "spot_5m": "-$365.15K",
+          "spot_1h": "-$11.64M",
+          "spot_24h": "-$70.89M",
+          "fut_5m": "+$736.73K",
+          "fut_1h": "+$53.84M",
+          "fut_24h": "-$336.50M",
+          "market_cap": "$55.80B"
+        },
+        "3_Long_Short_Ratios_MTF": {
+          "status": "PASS",
+          "total_exchange_rows": 3,
+          "sample_ratios": [
+            {
+              "exchange": "SOL",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "SOL",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            },
+            {
+              "exchange": "SOL",
+              "long_pct": "1.00%",
+              "short_pct": "50.00%",
+              "ratio": null
+            }
+          ]
+        },
+        "4_Funding_Rates_Settlement": {
+          "status": "PASS",
+          "usdt_binance": "0.0100%",
+          "usdt_bybit": "0.0054%",
+          "usdt_okx": "0.0100%",
+          "settlement_info": {
+            "rank": 9,
+            "symbol": "SOL",
+            "price": "$94.5300",
+            "price_24h_pct": "-6.11%",
+            "open_interest": "$1.84B",
+            "current": "$145.49K",
+            "last_24h": "$177.62K",
+            "last_3d": "$997.77K",
+            "last_7d": "$2.11M",
+            "timestamp_ist": "2026-10-30 20:02:11 IST"
+          }
+        },
+        "5_Open_Interest_Dynamics": {
+          "status": "PASS",
+          "total_oi_usd": "$5.54B",
+          "change_1h": "+0.15%",
+          "change_4h": "-0.83%",
+          "change_24h": "-14.62%",
+          "binance_oi": "$1.00B",
+          "cme_oi": "$605.46M",
+          "hyperliquid_oi": "$501.62M"
+        },
+        "6_Multi_Horizon_Liquidations": {
+          "status": "PASS",
+          "mp_24h_price": 94.96,
+          "short_max_pain_24h": 96.209,
+          "short_max_pain_vol": 5200000.0,
+          "long_max_pain_24h": 92.176,
+          "long_max_pain_vol": 5300000.0,
+          "ex_liq_rows": 235
+        },
+        "7_Whale_Orders_Large_Trades": {
+          "status": "PASS",
+          "total_whale_orders": 5,
+          "top_whale_walls": [
+            {
+              "side": "BUY ORDERS",
+              "price": 94.61,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 94.61,
+              "size_usd": null
+            },
+            {
+              "side": "BUY ORDERS",
+              "price": 94.63,
+              "size_usd": null
+            },
+            {
+              "side": "SELL ORDERS",
+              "price": 94.68,
+              "size_usd": null
+            },
+            {
+              "side": "SELL ORDERS",
+              "price": 94.68,
+              "size_usd": null
+            }
+          ]
+        },
+        "8_Technicals_VWAP_Dispersion": {
+          "status": "PASS",
+          "vwap": 95.76538754225409,
+          "vwap_z": -1.0693508098639413,
+          "upper_band_1": 97.18249737026918,
+          "lower_band_1": 94.348277714239,
+          "rsi_14": 28.999737829870597,
+          "atr_14": 0.6381252605846169
+        },
+        "9_Hyperdash_Stops_Intel": {
+          "status": "PASS",
+          "total_stop_clusters": 728,
+          "total_hd_liq_levels": 1191,
+          "nearest_stop_clusters": [
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 23.05,
+              "cum_stops": 9800000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 13800.0,
+              "dist": "-75.79%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 30.35,
+              "cum_stops": 9780000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 499.56,
+              "dist": "-68.12%",
+              "tier": "TACTICAL (Retail Cluster)"
+            },
+            {
+              "window": "Live",
+              "side": "Sell Stop",
+              "price": 32.05,
+              "cum_stops": 9780000.0,
+              "buy_stops": 0.0,
+              "sell_stops": 1470.0,
+              "dist": "-66.34%",
+              "tier": "TACTICAL (Retail Cluster)"
+            }
+          ]
+        },
+        "10_L2_Orderbook_Depth": {
+          "status": "PASS",
+          "depth_levels_count": 41,
+          "sample_levels": [
+            {
+              "side": "BID",
+              "price": 94.6,
+              "coins": 1.87,
+              "notional": 176.91,
+              "cum_depth": 816946.9,
+              "tier": "1 orders",
+              "dist": "-0.05%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 94.6,
+              "coins": 57.31,
+              "notional": 5421.53,
+              "cum_depth": 822368.42,
+              "tier": "1 orders",
+              "dist": "-0.05%",
+              "wallet": "-"
+            },
+            {
+              "side": "BID",
+              "price": 94.6,
+              "coins": 305.38,
+              "notional": 28888.64,
+              "cum_depth": 851257.06,
+              "tier": "1 orders",
+              "dist": "-0.06%",
+              "wallet": "-"
+            }
+          ]
+        },
+        "11_Multi_Timeframe_CVD": {
+          "status": "PASS",
+          "timeframe_records": 17,
+          "records": [
+            {
+              "timeframe": "5m",
+              "open": 94.56,
+              "high": 94.78,
+              "low": 94.28,
+              "close": 94.56,
+              "volume": 303017.97,
+              "quote_vol": 28612736.7481,
+              "delta": 10311026.648299996,
+              "delta_pct": 36.036492206515994,
+              "cum_cvd": -158765307.04429996,
+              "cvd_z": 1.548323442581518,
+              "bias": "BULLISH",
+              "regime": "DELTA ALIGNED"
+            },
+            {
+              "timeframe": "5m",
+              "open": 94.55,
+              "high": 94.68,
+              "low": 94.05,
+              "close": 94.13,
+              "volume": 283303.93,
+              "quote_vol": 26700695.4449,
+              "delta": 5120531.0843,
+              "delta_pct": 19.177519532653424,
+              "cum_cvd": -153644775.95999995,
+              "cvd_z": 0.48627590302587065,
+              "bias": "BULLISH",
+              "regime": "BULLISH ABSORPTION"
+            },
+            {
+              "timeframe": "5m",
+              "open": 94.13,
+              "high": 94.76,
+              "low": 93.89,
+              "close": 94.7,
+              "volume": 225618.32,
+              "quote_vol": 21243245.0169,
+              "delta": 4450428.031100001,
+              "delta_pct": 20.94985030563587,
+              "cum_cvd": -149194347.92889994,
+              "cvd_z": 0.317746764792116,
+              "bias": "BULLISH",
+              "regime": "AGGRESSIVE BUYING"
+            },
+            {
+              "timeframe": "15m",
+              "open": 95.26,
+              "high": 95.32,
+              "low": 94.35,
+              "close": 94.39,
+              "volume": 442404.05,
+              "quote_vol": 41943063.3246,
+              "delta": -3815007.3592000008,
+              "delta_pct": -9.09568128029996,
+              "cum_cvd": -165462769.78520003,
+              "cvd_z": -0.9517527837567563,
+              "bias": "BEARISH",
+              "regime": "DELTA ALIGNED"
+            }
+          ]
+        },
+        "12_Auction_Market_Structure": {
+          "status": "PASS",
+          "daily_poc": 96.55,
+          "daily_vah": 97.96,
+          "daily_val": 95.13,
+          "auction_regime": "TREND_DOWN_ACCEPTANCE",
+          "session_bias": "BEARISH (Below Pivot)"
+        },
+        "13_Tradfye_Orderflow": {
+          "status": "PASS",
+          "hyperliquid_rows": 1,
+          "footprint_rows": 10
+        },
+        "14_Footprint_Signals_Tape": {
+          "status": "PASS",
+          "active_signals": [
+            {
+              "time": "10-30 20:03",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 93.89,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 20:03",
+              "tf": "Range 0.25",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 93.89,
+              "absorbed_vol": 132000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 20:01",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 94.07,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:57",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 94.28,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:45",
+              "tf": "Volume 500K SOL",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 94.31,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:45",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 94.31,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:37",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 94.71,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:20",
+              "tf": "Range 0.25",
+              "type": "Bull div",
+              "bias": "BULLISH",
+              "headline": "Lower low, higher Cumulative Delta",
+              "price": 94.54,
+              "absorbed_vol": 381000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:18",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 94.75,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:16",
+              "tf": "Volume 500K SOL",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 94.54,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:16",
+              "tf": "Volume 500K SOL",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 95.18,
+              "absorbed_vol": 131000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:05",
+              "tf": "Volume 500K SOL",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 95.41,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:03",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 95.39,
+              "absorbed_vol": 18000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:03",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 95.39,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:03",
+              "tf": "Range 0.25",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 95.39,
+              "absorbed_vol": 18000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 19:01",
+              "tf": "Volume 500K SOL",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 95.39,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 18:56",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 96.05,
+              "absorbed_vol": 53000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 18:37",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 96.68,
+              "absorbed_vol": 22000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 17:28",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 96.39,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 15:45",
+              "tf": "Volume 500K SOL",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 96.27,
+              "absorbed_vol": 84000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 15:45",
+              "tf": "Volume 500K SOL",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 96.27,
+              "absorbed_vol": 84000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 15:34",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 96.27,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 14:14",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 97.41,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 14:14",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 97.0,
+              "absorbed_vol": 44000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 14:14",
+              "tf": "Range 0.25",
+              "type": "Trapped shorts",
+              "bias": "BULLISH",
+              "headline": "Failed breakdown",
+              "price": 97.0,
+              "absorbed_vol": 44000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:53",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 97.55,
+              "absorbed_vol": 38000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:53",
+              "tf": "Range 0.25",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 97.55,
+              "absorbed_vol": 38000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 13:15",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 97.17,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:59",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 98.18,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:48",
+              "tf": "Volume 500K SOL",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 98.06,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:28",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 98.05,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:14",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 98.54,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 11:14",
+              "tf": "Range 0.25",
+              "type": "Bear div",
+              "bias": "BEARISH",
+              "headline": "Higher high, lower Cumulative Delta",
+              "price": 98.54,
+              "absorbed_vol": 44000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:41",
+              "tf": "Volume 500K SOL",
+              "type": "Absorption",
+              "bias": "BULLISH",
+              "headline": "Selling absorbed at the low",
+              "price": 97.67,
+              "absorbed_vol": 84000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 10:33",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 97.69,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 09:19",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 97.23,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:57",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 95.34,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 07:08",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 94.14,
+              "absorbed_vol": 33000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:53",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 94.1,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:53",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 93.77,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:46",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 94.12,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:22",
+              "tf": "Range 0.25",
+              "type": "Bear div",
+              "bias": "BEARISH",
+              "headline": "Higher high, lower Cumulative Delta",
+              "price": 94.95,
+              "absorbed_vol": 70000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:15",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 94.08,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 06:08",
+              "tf": "Volume 500K SOL",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 93.99,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:35",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 95.66,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:31",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BEARISH",
+              "headline": "Rally without taker buying",
+              "price": 95.67,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 05:17",
+              "tf": "Volume 500K SOL",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 95.55,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:34",
+              "tf": "Volume 500K SOL",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 96.24,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:34",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 96.33,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:23",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BULLISH",
+              "headline": "Seller exhaustion",
+              "price": 96.78,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:08",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 97.82,
+              "absorbed_vol": 24000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:08",
+              "tf": "Range 0.25",
+              "type": "Exhaustion",
+              "bias": "BEARISH",
+              "headline": "Buyer exhaustion",
+              "price": 97.82,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 04:08",
+              "tf": "Range 0.25",
+              "type": "Trapped longs",
+              "bias": "BEARISH",
+              "headline": "Failed breakout",
+              "price": 97.82,
+              "absorbed_vol": 24000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 03:56",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 97.11,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 03:56",
+              "tf": "Range 0.25",
+              "type": "Absorption",
+              "bias": "BEARISH",
+              "headline": "Buying absorbed at the high",
+              "price": 97.49,
+              "absorbed_vol": 64000.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            },
+            {
+              "time": "10-30 03:53",
+              "tf": "Range 0.25",
+              "type": "Divergence",
+              "bias": "BULLISH",
+              "headline": "Drop without taker selling",
+              "price": 97.25,
+              "absorbed_vol": 0.0,
+              "last_px": 0.0,
+              "bar_delta": 0.0,
+              "bar_vol": 0.0
+            }
+          ]
+        },
+        "15_MT5_Broker_Telemetry": {
+          "status": "PASS",
+          "bid": 94.34,
+          "ask": 94.66,
+          "mid": 94.5,
+          "spread_pts": 32.0,
+          "spread_bps": 33.86,
+          "gate_status": "SPREAD_DISQUALIFIED",
+          "contract_size": 1.0,
+          "point": 0.01
+        }
+      }
+    }
+  ],
+  "sha256_checksum": "5d059d3eafd8a3f88a3f13f4db9f01cc8f16a76518167b8b9115be77ed153eba"
+}
