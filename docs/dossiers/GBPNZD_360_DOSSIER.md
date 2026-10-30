@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNZD
 **Canonical Key**: `GBPNZD` | **Broker Instrument**: `GBPNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:23:17 IST` (`2026-10-30 05:53:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:26:19 IST` (`2026-10-30 05:56:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.38` | VWAP Z-Score: `-1.18` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `2.38` | VWAP Z-Score: `-1.00` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0015` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.25` (State: `NEUTRAL`)
+  * 14-Period RSI: `45.24` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.38` | Lower -3.00σ Band: `2.37`
   * Upper +2.51σ Band: `2.38` | Lower -2.51σ Band: `2.37`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.37` | EMA-20=`2.37` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`2.37` (Slope: `+0.0000`) | EMA-100=`2.37`
-  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.37` (Slope: `+0.0373`) | EMA-233=`2.37`
+  * Institutional Anchors: EMA-144=`2.37` | EMA-200=`2.37` (Slope: `+0.0357`) | EMA-233=`2.37`
 - **Range Boundaries**: 24H High=`2.38` | 24H Low=`2.37` | Weekly High=`2.38` | Weekly Low=`2.34`
 
 ---
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `2.37` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`2.38` | POC=`2.37` | VAL=`2.36`
+  * Prior Day Value Area: VAH=`2.38` | POC=`2.37` | VAL=`2.37`
   * Prior Day Extremes: PDH=`2.39` | PDL=`2.36` | PDC=`2.37`
   * Monday Range Blueprint: High=`2.39` | Mid=`2.37` | Low=`2.36`
   * Developing Weekly Value Area: Weekly VAH=`2.39` | Weekly POC=`2.37` | Weekly VAL=`2.36`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`2.38` | Low=`2.37`
-  * London Session (08:00-16:00 UTC): High=`2.38` | Low=`2.36`
+  * London Session (08:00-16:00 UTC): High=`2.38` | Low=`2.37`
   * New York Session (13:00-21:00 UTC): High=`2.39` | Low=`2.36`
   * Initial Balance (First Hour): IB High=`2.38` | IB Low=`2.37`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2.36` - `2.38`
+  * Golden Pocket Zone (0.618 - 0.650): `2.37` - `2.38`
   * Optimal Trade Entry (OTE 0.705): `2.38`
   * Structural Invalidation Anchor (0.786): `2.39`
 
