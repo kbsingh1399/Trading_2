@@ -1,8 +1,8 @@
 {
   "schema_version": "2.0.0",
   "format": "JSON_STANDALONE",
-  "timestamp_utc": "2026-10-30 12:03:15 UTC",
-  "timestamp_ist": "2026-10-30 17:33:15 IST",
+  "timestamp_utc": "2026-10-30 12:05:35 UTC",
+  "timestamp_ist": "2026-10-30 17:35:35 IST",
   "total_assets": 162,
   "assets": [
     {
@@ -660,7 +660,7 @@
       "display_name": "XAUAUD",
       "category": "Forex Cross",
       "broker_symbol": "XAUAUD.pi",
-      "spread_bps": 0.4,
+      "spread_bps": 0.82,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUAUD_MASTER_DOSSIER.json"
@@ -670,7 +670,7 @@
       "display_name": "XAUEUR",
       "category": "Forex Cross",
       "broker_symbol": "XAUEUR.pi",
-      "spread_bps": 0.4,
+      "spread_bps": 0.68,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUEUR_MASTER_DOSSIER.json"
@@ -760,7 +760,7 @@
       "display_name": "XAUSGD",
       "category": "Forex Exotic",
       "broker_symbol": "XAUSGD.pi",
-      "spread_bps": 1.22,
+      "spread_bps": 0.4,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUSGD_MASTER_DOSSIER.json"
@@ -1000,9 +1000,9 @@
       "display_name": "XAGSGD",
       "category": "Forex Exotic",
       "broker_symbol": "XAGSGD.pi",
-      "spread_bps": 3.74,
-      "gate_status": "PASS",
-      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "spread_bps": 10.16,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XAGSGD_MASTER_DOSSIER.json"
     },
     {

@@ -13,16 +13,16 @@
     "point_value_001_lot": 0.05
   },
   "telemetry": {
-    "bid": 64.14,
-    "ask": 64.164,
-    "mid": 64.152,
-    "spread_pts": 24.0,
-    "spread_bps": 3.74,
+    "bid": 50.188,
+    "ask": 50.239,
+    "mid": 50.213499999999996,
+    "spread_pts": 51.0,
+    "spread_bps": 10.16,
     "thresh_bps": 5.0,
-    "gate_status": "PASS",
-    "exec_posture": "PASSIVE LIMIT ONLY",
-    "order_type_allowed": "BUY_LIMIT / SELL_LIMIT",
-    "pillar_1": "QUALIFIED",
+    "gate_status": "SPREAD_DISQUALIFIED",
+    "exec_posture": "DISQUALIFIED",
+    "order_type_allowed": "NONE",
+    "pillar_1": "BLOCKED",
     "pipeline_status": "HEALTHY",
     "pipeline_latency_ms": 4.2,
     "ram_usage_mb": 385.0
@@ -90,10 +90,10 @@
     "ny_low": 50.069,
     "ib_high": 51.792,
     "ib_low": 50.871,
-    "fib_gp_low": 63.895392,
-    "fib_gp_high": 64.408608,
-    "fib_ote": 64.280304,
-    "fib_inval": 64.665216
+    "fib_gp_low": 50.012646,
+    "fib_gp_high": 50.414353999999996,
+    "fib_ote": 50.313927,
+    "fib_inval": 50.615207999999996
   },
   "cvd": {
     "table": [
@@ -1883,19 +1883,19 @@
   "formulation": {
     "long": {
       "entry": 50.823,
-      "sl": 50.57127944301219,
-      "tp": 51.452301392469536,
-      "dist": 0.2517205569878129,
+      "sl": 50.53077944301219,
+      "tp": 51.553551392469515,
+      "dist": 0.29222055698780736,
       "lots": 0.01
     },
     "short": {
       "entry": 52.071,
-      "sl": 52.32272055698781,
-      "tp": 51.44169860753047,
-      "dist": 0.2517205569878129,
+      "sl": 52.363220556987805,
+      "tp": 51.340448607530476,
+      "dist": 0.29222055698780736,
       "lots": 0.01
     },
-    "confluence_score": 87,
-    "decision": "PASSIVE_MAKER_LIMIT_ARMED"
+    "confluence_score": 77,
+    "decision": "STAND_ASIDE_MONITOR"
   }
 }

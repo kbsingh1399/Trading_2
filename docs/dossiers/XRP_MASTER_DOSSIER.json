@@ -1550,6 +1550,50 @@
       {
         "side": "SELL ORDERS",
         "price": 1.25,
+        "val": 182000.0,
+        "coins": 344800.0,
+        "dist_pct": 0.28078620136380555,
+        "dur": "1m 21s",
+        "traded": 0.0,
+        "ex": "OKX",
+        "id": "CG_WHALE_XRP_T_33"
+      },
+      {
+        "side": "SELL ORDERS",
+        "price": 1.25,
+        "val": 59800.0,
+        "coins": 340000.0,
+        "dist_pct": 0.28078620136380555,
+        "dur": "4m 24s",
+        "traded": 0.0,
+        "ex": "Binance",
+        "id": "CG_WHALE_XRP_T_34"
+      },
+      {
+        "side": "SELL ORDERS",
+        "price": 1.25,
+        "val": 431000.0,
+        "coins": 344800.0,
+        "dist_pct": 0.28078620136380555,
+        "dur": "1m 21s",
+        "traded": 0.0,
+        "ex": "Binance",
+        "id": "CG_LADDER_XRP_48"
+      },
+      {
+        "side": "SELL ORDERS",
+        "price": 1.25,
+        "val": 425000.0,
+        "coins": 340000.0,
+        "dist_pct": 0.28078620136380555,
+        "dur": "4m 24s",
+        "traded": 0.0,
+        "ex": "Binance",
+        "id": "CG_LADDER_XRP_49"
+      },
+      {
+        "side": "SELL ORDERS",
+        "price": 1.25,
         "val": 390627.3,
         "coins": 312727.0,
         "dist_pct": 0.28078620136380555,
@@ -1678,50 +1722,6 @@
         "traded": 0.0,
         "ex": "MT5-Crypto",
         "id": "MT5_XRP_BID_1"
-      },
-      {
-        "side": "SELL ORDERS",
-        "price": 1.25,
-        "val": 182000.0,
-        "coins": 344800.0,
-        "dist_pct": 0.28078620136380555,
-        "dur": "1m 21s",
-        "traded": 0.0,
-        "ex": "OKX",
-        "id": "CG_WHALE_XRP_T_33"
-      },
-      {
-        "side": "SELL ORDERS",
-        "price": 1.25,
-        "val": 59800.0,
-        "coins": 340000.0,
-        "dist_pct": 0.28078620136380555,
-        "dur": "4m 24s",
-        "traded": 0.0,
-        "ex": "Binance",
-        "id": "CG_WHALE_XRP_T_34"
-      },
-      {
-        "side": "SELL ORDERS",
-        "price": 1.25,
-        "val": 431000.0,
-        "coins": 344800.0,
-        "dist_pct": 0.28078620136380555,
-        "dur": "1m 21s",
-        "traded": 0.0,
-        "ex": "Binance",
-        "id": "CG_LADDER_XRP_48"
-      },
-      {
-        "side": "SELL ORDERS",
-        "price": 1.25,
-        "val": 425000.0,
-        "coins": 340000.0,
-        "dist_pct": 0.28078620136380555,
-        "dur": "4m 24s",
-        "traded": 0.0,
-        "ex": "Binance",
-        "id": "CG_LADDER_XRP_49"
       },
       {
         "side": "SELL ORDERS",
@@ -18113,402 +18113,18 @@
       {
         "horizon": "1H",
         "exchange": "XRP",
-        "long_pct": "42.49%",
-        "short_pct": "57.51%",
-        "ls_ratio": "0.74",
-        "vol": 1210000000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Binance",
-        "long_pct": "44.42%",
-        "short_pct": "55.58%",
-        "ls_ratio": "0.80",
-        "vol": 381520000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "OKX",
-        "long_pct": "39.84%",
-        "short_pct": "60.16%",
-        "ls_ratio": "0.66",
-        "vol": 221200000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bybit",
-        "long_pct": "45.58%",
-        "short_pct": "54.42%",
-        "ls_ratio": "0.84",
-        "vol": 84630000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "KuCoin",
-        "long_pct": "41.23%",
-        "short_pct": "58.77%",
-        "ls_ratio": "0.70",
-        "vol": 3620000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Gate",
-        "long_pct": "44.57%",
-        "short_pct": "55.43%",
-        "ls_ratio": "0.80",
-        "vol": 192610000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitget",
-        "long_pct": "22.41%",
-        "short_pct": "77.59%",
-        "ls_ratio": "0.29",
-        "vol": 86350000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "BingX",
-        "long_pct": "41.56%",
-        "short_pct": "58.44%",
-        "ls_ratio": "0.71",
-        "vol": 21460000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "MEXC",
-        "long_pct": "51.05%",
-        "short_pct": "48.95%",
-        "ls_ratio": "1.04",
-        "vol": 62930000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitunix",
-        "long_pct": "44.31%",
-        "short_pct": "55.69%",
-        "ls_ratio": "0.80",
-        "vol": 44640000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Hyperliquid",
-        "long_pct": "31.28%",
-        "short_pct": "68.72%",
-        "ls_ratio": "0.46",
-        "vol": 33280000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
+        "long_pct": "1.00%",
+        "short_pct": "50.00%",
+        "ls_ratio": "0.02",
         "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "LBank",
-        "long_pct": "52.79%",
-        "short_pct": "47.21%",
-        "ls_ratio": "1.12",
-        "vol": 2670000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Crypto.com",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "WhiteBIT",
-        "long_pct": "70.38%",
-        "short_pct": "29.62%",
-        "ls_ratio": "2.38",
-        "vol": 9390000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "HTX",
-        "long_pct": "60.66%",
-        "short_pct": "39.34%",
-        "ls_ratio": "1.54",
-        "vol": 18170000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Deribit",
-        "long_pct": "53.77%",
-        "short_pct": "46.23%",
-        "ls_ratio": "1.16",
-        "vol": 4420000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitfinex",
-        "long_pct": "50.13%",
-        "short_pct": "49.87%",
-        "ls_ratio": "1.01",
-        "vol": 141170.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Kraken",
-        "long_pct": "30.86%",
-        "short_pct": "69.14%",
-        "ls_ratio": "0.45",
-        "vol": 4050000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Aster",
-        "long_pct": "40.3%",
-        "short_pct": "59.7%",
-        "ls_ratio": "0.68",
-        "vol": 18090000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Lighter",
-        "long_pct": "48.82%",
-        "short_pct": "51.18%",
-        "ls_ratio": "0.95",
-        "vol": 18960000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Whale Positions",
-        "long_pct": "44.42%",
-        "short_pct": "55.58%",
-        "ls_ratio": "0.80",
-        "vol": 381520000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Global Accounts",
-        "long_pct": "42.49%",
-        "short_pct": "57.51%",
-        "ls_ratio": "0.74",
-        "vol": 1210000000.0
       },
       {
         "horizon": "4H",
         "exchange": "XRP",
-        "long_pct": "45.84%",
-        "short_pct": "54.16%",
-        "ls_ratio": "0.85",
-        "vol": 417690000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Binance",
-        "long_pct": "49.33%",
-        "short_pct": "50.67%",
-        "ls_ratio": "0.97",
-        "vol": 133289999.99999999
-      },
-      {
-        "horizon": "4H",
-        "exchange": "OKX",
-        "long_pct": "46.98%",
-        "short_pct": "53.02%",
-        "ls_ratio": "0.89",
-        "vol": 41920000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bybit",
-        "long_pct": "45.84%",
-        "short_pct": "54.16%",
-        "ls_ratio": "0.85",
-        "vol": 63440000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "KuCoin",
-        "long_pct": "42.94%",
-        "short_pct": "57.06%",
-        "ls_ratio": "0.75",
-        "vol": 5890000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Gate",
-        "long_pct": "53.78%",
-        "short_pct": "46.22%",
-        "ls_ratio": "1.16",
-        "vol": 19190000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitget",
-        "long_pct": "51.63%",
-        "short_pct": "48.37%",
-        "ls_ratio": "1.07",
-        "vol": 28900000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "BingX",
-        "long_pct": "34.3%",
-        "short_pct": "65.7%",
-        "ls_ratio": "0.52",
-        "vol": 9180000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "MEXC",
-        "long_pct": "48.83%",
-        "short_pct": "51.17%",
-        "ls_ratio": "0.95",
-        "vol": 54820000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitunix",
-        "long_pct": "52.03%",
-        "short_pct": "47.97%",
-        "ls_ratio": "1.08",
-        "vol": 17430000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Hyperliquid",
-        "long_pct": "56.83%",
-        "short_pct": "43.17%",
-        "ls_ratio": "1.32",
-        "vol": 10270000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
+        "long_pct": "1.00%",
+        "short_pct": "50.00%",
+        "ls_ratio": "0.02",
         "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "LBank",
-        "long_pct": "51.7%",
-        "short_pct": "48.3%",
-        "ls_ratio": "1.07",
-        "vol": 1760000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Crypto.com",
-        "long_pct": "53.72%",
-        "short_pct": "46.28%",
-        "ls_ratio": "1.16",
-        "vol": 728350.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "WhiteBIT",
-        "long_pct": "1.07%",
-        "short_pct": "98.93%",
-        "ls_ratio": "0.01",
-        "vol": 24230000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "HTX",
-        "long_pct": "36.38%",
-        "short_pct": "63.62%",
-        "ls_ratio": "0.57",
-        "vol": 199390.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Kraken",
-        "long_pct": "37.03%",
-        "short_pct": "62.97%",
-        "ls_ratio": "0.59",
-        "vol": 3250000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Aster",
-        "long_pct": "41.69%",
-        "short_pct": "58.31%",
-        "ls_ratio": "0.71",
-        "vol": 2230000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Lighter",
-        "long_pct": "61.08%",
-        "short_pct": "38.92%",
-        "ls_ratio": "1.57",
-        "vol": 958220.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Whale Positions",
-        "long_pct": "49.33%",
-        "short_pct": "50.67%",
-        "ls_ratio": "0.97",
-        "vol": 133289999.99999999
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Global Accounts",
-        "long_pct": "45.84%",
-        "short_pct": "54.16%",
-        "ls_ratio": "0.85",
-        "vol": 417690000.0
       }
     ]
   },
