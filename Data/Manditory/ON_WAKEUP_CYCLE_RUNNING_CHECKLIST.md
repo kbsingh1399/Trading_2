@@ -1283,7 +1283,9 @@ Evaluate each candidate against the available evidence, confluence strength, mar
 ### ⏳ Cycle_033 Scorecard: IN PROGRESS
 **Started**: 2026-10-30 16:30:00 IST (2026-10-30 11:00:00 UTC)
 
-- [ ] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
+- [x] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
+  - Interrogated `00_MT5_Account_Telemetry.parquet`: 94 tradeable broker symbols cleared spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - Cataloged in `scripts/cycle_033_eligible_dossiers.txt`.
 - [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
 - [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
 - [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
