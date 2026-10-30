@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CELUSD
 **Canonical Key**: `CELUSD` | **Broker Instrument**: `CELUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 14:56:55 IST` (`2026-10-30 09:26:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 14:41:03 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:38:03 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:34:03 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:33:03 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:10:03 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:52:03 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:51:03 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:47:03 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:41:20 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:38:20 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:33:20 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:33:20 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:09:20 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [destatis.de] - (Sentiment: `Neutral`)
 
 
 ---

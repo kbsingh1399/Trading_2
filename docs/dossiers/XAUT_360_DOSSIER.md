@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUT
 **Canonical Key**: `XAUT` | **Broker Instrument**: `XAUUSD.pi` | **Asset Class**: `Tokenized Metal`
-**Timestamp**: `2026-10-30 14:56:55 IST` (`2026-10-30 09:26:55 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:59:56 IST` (`2026-10-30 09:29:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -210,10 +210,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`4071.25` (Vol: 14,000,000.00 USD, Dist: `+1.79%`) | Long MP=`3950.06` (Vol: 11,000,000.00 USD, Dist: `--1.24%`)
-  * 48H Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.91%`) | Long MP=`3969.36` (Vol: 9,500,000.00 USD, Dist: `--0.75%`)
-  * 3D Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.91%`) | Long MP=`3966.22` (Vol: 13,600,000.00 USD, Dist: `--0.83%`)
-  * 7D Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.91%`) | Long MP=`3963.08` (Vol: 21,000,000.00 USD, Dist: `--0.91%`)
+  * 24H Horizon: Short MP=`4071.25` (Vol: 14,000,000.00 USD, Dist: `+1.79%`) | Long MP=`3950.06` (Vol: 10,500,000.00 USD, Dist: `--1.24%`)
+  * 48H Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.92%`) | Long MP=`3969.36` (Vol: 9,500,000.00 USD, Dist: `--0.75%`)
+  * 3D Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.92%`) | Long MP=`3966.22` (Vol: 12,100,000.00 USD, Dist: `--0.83%`)
+  * 7D Horizon: Short MP=`4076.12` (Vol: 15,300,000.00 USD, Dist: `+1.92%`) | Long MP=`3963.08` (Vol: 21,000,000.00 USD, Dist: `--0.91%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -554,7 +554,7 @@
 | `0:00 UTC` | `3997.05` | `3997.44` | `3997.05` | `3999.75` | `3995.25` | 19,570,728.76 USD | 11,961,064.45 USD | 7,609,664.31 USD | 4,351,400.15 USD | `+22.23%` | `5B / 0S` |
 | `5:00 UTC` | `4006.95` | `4004.53` | `4006.95` | `4008.45` | `3997.95` | 44,001,963.37 USD | 19,638,518.84 USD | 24,363,444.53 USD | -4,724,925.70 USD | `-10.74%` | `4B / 1S` |
 | `0:00 UTC` | `4006.95` | `4003.87` | `4006.95` | `4007.55` | `3999.75` | 22,763,119.63 USD | 8,502,990.90 USD | 14,260,128.73 USD | -5,757,137.84 USD | `-25.29%` | `1B / 8S` |
-| `5:00 UTC` | `4003.05` | `4001.92` | `4003.05` | `4004.25` | `3999.45` | 3,645,477.94 USD | 2,136,208.04 USD | 1,509,269.90 USD | 626,938.14 USD | `+17.20%` | `7B / 0S` |
+| `5:00 UTC` | `3999.45` | `4001.10` | `3999.45` | `4004.25` | `3999.15` | 11,753,347.10 USD | 5,040,575.27 USD | 6,712,771.83 USD | -1,672,196.56 USD | `-14.23%` | `0B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -618,21 +618,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 14:41:03 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:38:03 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:34:03 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:33:03 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:10:03 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:52:03 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:51:03 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:48:03 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:47:03 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:41:20 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:38:20 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:33:20 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:33:20 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:09:20 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:57:20 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:56:20 IST`: [destatis.de] - (Sentiment: `Neutral`)
 
 
 ---
