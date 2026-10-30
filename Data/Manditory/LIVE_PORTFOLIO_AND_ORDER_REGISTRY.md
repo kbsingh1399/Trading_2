@@ -14,16 +14,16 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,762.83 USD**
-- **Floating Equity**: **4,769.95 USD**
-- **Free Margin**: **4,582.56 USD**
+- **Floating Equity**: **4,768.35 USD**
+- **Free Margin**: **4,580.96 USD**
 - **Margin Used**: **187.39 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit compressed to: **-5.05 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit compressed to: **-25.05 USD**)
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit compressed to: **-6.65 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit compressed to: **-26.65 USD**)
 - **Active Running Positions**: **1 ACTIVE (AUDUSD.pi Long)**
 - **Active Resting Pending Orders**: **5 LIVE PENDING MAKER LIMIT ORDERS**
 - **Total Contingent Downside Risk**: **42.87 USD** (Max per-ticket risk capped at <= 10.00 USD)
 - **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-30 02:07:00 UTC` (`2026-10-30 07:37:00 IST`)
+- **Last Synchronized (UTC)**: `2026-10-30 02:30:00 UTC` (`2026-10-30 08:00:00 IST`)
 
 ---
 
@@ -31,7 +31,7 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70359` | `0.70150` | `0.70570` | `+7.12 USD` | Floating in Profit (+0.74R) | **LET RUN. Sits at Asian Range Low / VAL support. Price bouncing strongly (+17.8 pips off low of 0.70181 to 0.70359); 5m CVD buying (+83% delta) defending. Close to +0.80R BE lock at 0.70366.** |
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70339` | `0.70150` | `0.70570` | `+5.52 USD` | Floating in Profit (+0.58R) | **LET RUN. Sits at Asian Range Low / VAL support. Price holding firmly (+15.8 pips off low of 0.70181); 5m CVD buying (+83% delta) defending. Advancing toward +0.80R BE lock at 0.70366.** |
 
 ---
 
