@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:56:01 IST` (`2026-10-30 05:26:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:59:03 IST` (`2026-10-30 05:29:03 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -405,14 +405,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-1.22K` | Last 24h: `9.20K` | Last 3d: `30.42K` | Last 7d: `57.33K`
+  * Current Rate: `-1.59K` | Last 24h: `9.20K` | Last 3d: `30.42K` | Last 7d: `57.33K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0014%` | **USDT OKX** | `0.0017%` |
-| **USDT Bybit** | `-0.0085%` | **USDT KuCoin** | `-0.0165%` |
-| **USDT MEXC** | `0.0019%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0090%` | **USDT Bitget** | `0.0100%` |
+| **USDT Binance** | `0.0015%` | **USDT OKX** | `-0.0006%` |
+| **USDT Bybit** | `-0.0093%` | **USDT KuCoin** | `-0.0212%` |
+| **USDT MEXC** | `-0.0006%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `0.0080%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
