@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSGD
 **Canonical Key**: `USDSGD` | **Broker Instrument**: `USDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:22:41 IST` (`2026-10-30 04:52:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:25:43 IST` (`2026-10-30 04:55:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.28` | VWAP Z-Score: `-0.85` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000377` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `36.29` (State: `NEUTRAL`)
+  * Session VWAP: `1.28` | VWAP Z-Score: `-0.69` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000371` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `38.14` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.28` | Lower -3.00σ Band: `1.28`
   * Upper +2.51σ Band: `1.28` | Lower -2.51σ Band: `1.28`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.28` | EMA-20=`1.28` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.28` (Slope: `+0.0000`) | EMA-100=`1.28`
-  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0246`) | EMA-233=`1.28`
+  * Institutional Anchors: EMA-144=`1.28` | EMA-200=`1.28` (Slope: `-0.0248`) | EMA-233=`1.28`
 - **Range Boundaries**: 24H High=`1.28` | 24H Low=`1.28` | Weekly High=`1.28` | Weekly Low=`1.28`
 
 ---

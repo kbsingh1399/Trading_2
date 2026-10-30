@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ETH
 **Canonical Key**: `ETH` | **Broker Instrument**: `ETHUSD.pi` | **Asset Class**: `Crypto Major`
-**Timestamp**: `2026-10-30 10:22:41 IST` (`2026-10-30 04:52:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:25:42 IST` (`2026-10-30 04:55:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2238.50` | **Live Ask Quote**: `2241.70` | **Mid Price**: `2240.10`
-- **Spread Points**: `320.00` | **Spread BPS**: `14.29 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `2239.10` | **Live Ask Quote**: `2242.70` | **Mid Price**: `2240.90`
+- **Spread Points**: `360.00` | **Spread BPS**: `16.06 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `2` | Point: `0.01`
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2210.38` | VWAP Z-Score: `+1.85` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `17.46` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `51.41` (State: `NEUTRAL`)
+  * Session VWAP: `2211.30` | VWAP Z-Score: `+1.85` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `17.10` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `52.39` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `2253.31` | Lower -3.00σ Band: `2167.45`
-  * Upper +2.51σ Band: `2246.30` | Lower -2.51σ Band: `2174.46`
-  * Upper +2.01σ Band: `2239.14` | Lower -2.01σ Band: `2181.62`
-  * Upper +2.00σ Band: `2239.00` | Lower -2.00σ Band: `2181.76`
-  * Upper +1.28σ Band: `2228.70` | Lower -1.28σ Band: `2192.06`
-  * Upper +1.00σ Band: `2224.69` | Lower -1.00σ Band: `2196.07`
+  * Upper +3.00σ Band: `2255.75` | Lower -3.00σ Band: `2166.84`
+  * Upper +2.51σ Band: `2248.49` | Lower -2.51σ Band: `2174.10`
+  * Upper +2.01σ Band: `2241.08` | Lower -2.01σ Band: `2181.51`
+  * Upper +2.00σ Band: `2240.93` | Lower -2.00σ Band: `2181.66`
+  * Upper +1.28σ Band: `2230.27` | Lower -1.28σ Band: `2192.33`
+  * Upper +1.00σ Band: `2226.12` | Lower -1.00σ Band: `2196.48`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`2222.62` | EMA-20=`2226.82` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`2256.59` (Slope: `+0.0000`) | EMA-100=`2283.67`
-  * Institutional Anchors: EMA-144=`2295.32` | EMA-200=`2304.16` (Slope: `-0.5004`) | EMA-233=`2309.12`
+  * Fast EMA Array: EMA-9=`2225.83` | EMA-20=`2227.95` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`2255.89` (Slope: `+0.0000`) | EMA-100=`2282.78`
+  * Institutional Anchors: EMA-144=`2294.55` | EMA-200=`2303.59` (Slope: `-0.4793`) | EMA-233=`2308.57`
 - **Range Boundaries**: 24H High=`2374.90` | 24H Low=`2167.70` | Weekly High=`2387.80` | Weekly Low=`2167.70`
 
 ---
@@ -44,24 +44,24 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2280.60` (Distance: `-1.77%`)
-  * Point of Control (POC) = `2264.42` (Distance: `-1.07%`)
-  * Value Area Low (VAL) = `2207.76` (Distance: `+1.47%`)
+  * Value Area High (VAH) = `2280.60` (Distance: `-1.76%`)
+  * Point of Control (POC) = `2264.42` (Distance: `-1.06%`)
+  * Value Area Low (VAL) = `2207.76` (Distance: `+1.48%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2339.52` | POC=`2321.58` | VAL=`2296.66`
   * Prior Day Extremes: PDH=`2374.90` | PDL=`2225.40` | PDC=`2252.70`
   * Monday Range Blueprint: High=`2348.00` | Mid=`2318.15` | Low=`2288.30`
-  * Developing Weekly Value Area: Weekly VAH=`2350.38` | Weekly POC=`2309.30` | Weekly VAL=`2300.49`
+  * Developing Weekly Value Area: Weekly VAH=`2351.85` | Weekly POC=`2309.30` | Weekly VAL=`2300.49`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`2289.10` | Low=`2167.70`
-  * London Session (08:00-16:00 UTC): High=`2249.06` | Low=`2231.14`
-  * New York Session (13:00-21:00 UTC): High=`2253.54` | Low=`2226.66`
-  * Initial Balance (First Hour): IB High=`2246.82` | IB Low=`2233.38`
+  * London Session (08:00-16:00 UTC): High=`2249.86` | Low=`2231.94`
+  * New York Session (13:00-21:00 UTC): High=`2254.35` | Low=`2227.45`
+  * Initial Balance (First Hour): IB High=`2247.62` | IB Low=`2234.18`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2231.14` - `2249.06`
-  * Optimal Trade Entry (OTE 0.705): `2244.58`
-  * Structural Invalidation Anchor (0.786): `2258.02`
+  * Golden Pocket Zone (0.618 - 0.650): `2231.94` - `2249.86`
+  * Optimal Trade Entry (OTE 0.705): `2245.38`
+  * Structural Invalidation Anchor (0.786): `2258.83`
 
 ---
 
@@ -73,12 +73,12 @@
 | `5m` | `2243.26` | `2245.83` | `2242.57` | `2243.36` | `21,837` | 49,002,965.20 USD | -1,156,398.46 USD | `-2.36%` | -1,030,824,899.58 USD | `-0.39` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `5m` | `2243.36` | `2245.99` | `2243.00` | `2245.49` | `22,137` | 49,687,433.71 USD | -2,899,438.65 USD | `-5.84%` | -1,033,724,338.22 USD | `-0.64` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `5m` | `2245.49` | `2246.30` | `2244.63` | `2245.00` | `11,638` | 26,134,304.40 USD | -995,012.12 USD | `-3.81%` | -1,034,719,350.34 USD | `-0.31` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `15m` | `2236.81` | `2236.84` | `2225.47` | `2236.84` | `56,302` | 125,588,915.24 USD | -10,589,434.83 USD | `-8.43%` | -1,041,753,415.94 USD | `+0.12` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `2236.83` | `2243.26` | `2233.91` | `2243.25` | `55,082` | 123,392,803.54 USD | 12,084,914.83 USD | `+9.79%` | -1,029,668,501.11 USD | `+0.62` | **`BULLISH`** | `DELTA ALIGNED` |
-| `15m` | `2243.26` | `2246.30` | `2242.57` | `2245.00` | `55,611` | 124,824,703.30 USD | -5,050,849.23 USD | `-4.05%` | -1,034,719,350.34 USD | `+0.22` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `2236.83` | `2243.26` | `2233.91` | `2243.25` | `55,082` | 123,392,803.54 USD | 12,084,914.83 USD | `+9.79%` | -1,040,789,482.89 USD | `+0.62` | **`BULLISH`** | `DELTA ALIGNED` |
+| `15m` | `2243.26` | `2246.30` | `2242.57` | `2245.14` | `58,155` | 130,536,562.11 USD | -7,028,617.44 USD | `-5.38%` | -1,047,818,100.33 USD | `+0.17` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `2245.13` | `2246.94` | `2243.62` | `2245.43` | `22,132` | 49,700,364.28 USD | 3,580,054.84 USD | `+7.20%` | -1,044,238,045.48 USD | `+0.38` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `2194.71` | `2218.96` | `2181.22` | `2209.27` | `270,460` | 596,517,649.16 USD | 43,347,954.49 USD | `+7.27%` | -1,076,486,651.41 USD | `+0.85` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `2209.27` | `2238.00` | `2208.12` | `2236.82` | `225,707` | 502,124,659.31 USD | 34,201,688.52 USD | `+6.81%` | -1,042,284,962.89 USD | `+0.73` | **`BULLISH`** | `DELTA ALIGNED` |
-| `1h` | `2236.81` | `2246.30` | `2225.47` | `2245.00` | `166,991` | 373,796,530.61 USD | -3,545,886.35 USD | `-0.95%` | -1,045,830,849.23 USD | `+0.39` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `1h` | `2236.81` | `2246.94` | `2225.47` | `2245.43` | `191,671` | 429,218,645.17 USD | -1,953,082.60 USD | `-0.46%` | -1,044,238,045.48 USD | `+0.41` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `2335.68` | `2335.92` | `2230.20` | `2252.34` | `2,564,135` | 5,830,064,162.53 USD | -554,237,569.32 USD | `-9.51%` | -701,515,761.74 USD | `-1.55` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2252.35` | `2256.50` | `2172.85` | `2236.82` | `1,953,944` | 4,320,239,164.03 USD | -261,635,414.23 USD | `-6.06%` | -963,151,175.97 USD | `-0.31` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2236.81` | `2246.30` | `2225.47` | `2245.00` | `166,996` | 373,806,422.08 USD | -3,555,369.23 USD | `-0.95%` | -966,706,545.19 USD | `+0.74` | **`BEARISH`** | `BEARISH ABSORPTION` |
@@ -86,7 +86,7 @@
 | `4h` | `2368.02` | `2378.69` | `2323.01` | `2335.68` | `664,456` | 1,559,227,814.77 USD | -202,156,116.94 USD | `-12.97%` | -147,278,192.42 USD | `-1.22` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2335.68` | `2335.92` | `2230.20` | `2252.34` | `2,564,135` | 5,830,064,162.53 USD | -554,237,569.32 USD | `-9.51%` | -701,515,761.74 USD | `-1.55` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `2252.35` | `2256.50` | `2172.85` | `2236.82` | `1,953,944` | 4,320,239,164.03 USD | -261,635,414.23 USD | `-6.06%` | -963,151,175.97 USD | `-0.31` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `2236.81` | `2246.30` | `2225.47` | `2245.00` | `166,996` | 373,806,422.08 USD | -3,555,369.23 USD | `-0.95%` | -966,706,545.19 USD | `+0.74` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `4h` | `2236.81` | `2246.94` | `2225.47` | `2245.48` | `191,632` | 429,129,554.11 USD | -1,864,395.73 USD | `-0.43%` | -965,015,571.69 USD | `+0.74` | **`BEARISH`** | `BEARISH ABSORPTION` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -101,120 +101,120 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`2240.10`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| --- | **`2240.90`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `BID` | `2242.50` | `123.6780` | 277,347.91 USD | 10,200,456.99 USD | `7 orders` | `-0.09%` | `-` |
-| `BID` | `2242.60` | `161.1879` | 361,479.98 USD | 9,923,109.07 USD | `8 orders` | `-0.08%` | `-` |
-| `BID` | `2242.70` | `102.6154` | 230,135.56 USD | 9,561,629.09 USD | `9 orders` | `-0.08%` | `-` |
-| `BID` | `2242.80` | `315.6635` | 707,970.10 USD | 9,331,493.53 USD | `12 orders` | `-0.07%` | `-` |
-| `BID` | `2242.90` | `180.8641` | 405,660.09 USD | 8,623,523.43 USD | `9 orders` | `-0.07%` | `-` |
-| `BID` | `2243.00` | `65.5358` | 146,996.80 USD | 8,217,863.34 USD | `8 orders` | `-0.06%` | `-` |
-| `BID` | `2243.10` | `178.6072` | 400,633.81 USD | 8,070,866.54 USD | `9 orders` | `-0.06%` | `-` |
-| `BID` | `2243.20` | `264.0878` | 592,401.75 USD | 7,670,232.73 USD | `10 orders` | `-0.06%` | `-` |
-| `BID` | `2243.30` | `515.7098` | 1,156,891.79 USD | 7,077,830.98 USD | `15 orders` | `-0.05%` | `-` |
-| `BID` | `2243.40` | `250.1570` | 561,202.21 USD | 5,920,939.19 USD | `8 orders` | `-0.05%` | `-` |
-| `BID` | `2243.50` | `411.0522` | 922,195.61 USD | 5,359,736.97 USD | `10 orders` | `-0.04%` | `-` |
-| `BID` | `2243.60` | `583.4383` | 1,309,002.17 USD | 4,437,541.36 USD | `12 orders` | `-0.04%` | `-` |
-| `BID` | `2243.70` | `176.9342` | 396,987.26 USD | 3,128,539.19 USD | `7 orders` | `-0.03%` | `-` |
-| `BID` | `2243.80` | `184.6400` | 414,295.23 USD | 2,731,551.93 USD | `3 orders` | `-0.03%` | `-` |
-| `BID` | `2243.90` | `549.4394` | 1,232,887.07 USD | 2,317,256.69 USD | `9 orders` | `-0.02%` | `-` |
-| `BID` | `2244.00` | `21.1941` | 47,559.56 USD | 1,084,369.63 USD | `6 orders` | `-0.02%` | `-` |
-| `BID` | `2244.10` | `244.0559` | 547,685.85 USD | 1,036,810.06 USD | `18 orders` | `-0.02%` | `-` |
-| `BID` | `2244.20` | `48.0091` | 107,742.02 USD | 489,124.22 USD | `7 orders` | `-0.01%` | `-` |
-| `BID` | `2244.30` | `42.0574` | 94,389.42 USD | 381,382.20 USD | `3 orders` | `-0.01%` | `-` |
-| `BID` | `2244.40` | `127.8706` | 286,992.77 USD | 286,992.77 USD | `26 orders` | `-0.00%` | `-` |
-| `MID_SPREAD` | `2244.45` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 2,244.45` | `0.00%` | `-` |
-| `ASK` | `2244.50` | `2.8192` | 6,327.69 USD | 6,327.69 USD | `2 orders` | `+0.00%` | `-` |
-| `ASK` | `2244.60` | `9.3590` | 21,007.21 USD | 27,334.91 USD | `4 orders` | `+0.01%` | `-` |
-| `ASK` | `2244.70` | `16.2872` | 36,559.88 USD | 63,894.78 USD | `3 orders` | `+0.01%` | `-` |
-| `ASK` | `2244.80` | `2.8578` | 6,415.19 USD | 70,309.97 USD | `2 orders` | `+0.02%` | `-` |
-| `ASK` | `2244.90` | `275.3017` | 618,024.79 USD | 688,334.76 USD | `15 orders` | `+0.02%` | `-` |
-| `ASK` | `2245.00` | `470.7651` | 1,056,867.65 USD | 1,745,202.41 USD | `12 orders` | `+0.02%` | `-` |
-| `ASK` | `2245.10` | `124.8652` | 280,334.86 USD | 2,025,537.27 USD | `9 orders` | `+0.03%` | `-` |
-| `ASK` | `2245.20` | `61.7037` | 138,537.15 USD | 2,164,074.42 USD | `9 orders` | `+0.03%` | `-` |
-| `ASK` | `2245.30` | `346.7419` | 778,539.59 USD | 2,942,614.00 USD | `15 orders` | `+0.04%` | `-` |
-| `ASK` | `2245.40` | `589.1216` | 1,322,813.64 USD | 4,265,427.65 USD | `8 orders` | `+0.04%` | `-` |
-| `ASK` | `2245.50` | `648.5738` | 1,456,372.47 USD | 5,721,800.11 USD | `10 orders` | `+0.05%` | `-` |
-| `ASK` | `2245.60` | `114.6707` | 257,504.52 USD | 5,979,304.64 USD | `12 orders` | `+0.05%` | `-` |
-| `ASK` | `2245.70` | `279.4216` | 627,497.09 USD | 6,606,801.72 USD | `12 orders` | `+0.06%` | `-` |
-| `ASK` | `2245.80` | `434.1514` | 975,017.21 USD | 7,581,818.94 USD | `11 orders` | `+0.06%` | `-` |
-| `ASK` | `2245.90` | `130.4789` | 293,042.56 USD | 7,874,861.50 USD | `14 orders` | `+0.06%` | `-` |
-| `ASK` | `2246.00` | `423.4065` | 950,971.00 USD | 8,825,832.50 USD | `12 orders` | `+0.07%` | `-` |
-| `ASK` | `2246.10` | `130.1475` | 292,324.30 USD | 9,118,156.80 USD | `12 orders` | `+0.07%` | `-` |
-| `ASK` | `2246.20` | `218.4781` | 490,745.51 USD | 9,608,902.31 USD | `10 orders` | `+0.08%` | `-` |
-| `ASK` | `2246.30` | `404.6675` | 909,004.61 USD | 10,517,906.91 USD | `14 orders` | `+0.08%` | `-` |
-| `ASK` | `2246.40` | `65.7422` | 147,683.28 USD | 10,665,590.19 USD | `11 orders` | `+0.09%` | `-` |
+| `BID` | `2242.70` | `338.4720` | 759,091.15 USD | 9,539,564.34 USD | `4 orders` | `-0.09%` | `-` |
+| `BID` | `2242.80` | `85.7636` | 192,350.60 USD | 8,780,473.19 USD | `6 orders` | `-0.08%` | `-` |
+| `BID` | `2242.90` | `87.2263` | 195,639.87 USD | 8,588,122.59 USD | `8 orders` | `-0.08%` | `-` |
+| `BID` | `2243.00` | `67.6584` | 151,757.79 USD | 8,392,482.72 USD | `5 orders` | `-0.07%` | `-` |
+| `BID` | `2243.10` | `202.9039` | 455,133.74 USD | 8,240,724.93 USD | `9 orders` | `-0.07%` | `-` |
+| `BID` | `2243.20` | `149.2314` | 334,755.88 USD | 7,785,591.19 USD | `10 orders` | `-0.06%` | `-` |
+| `BID` | `2243.30` | `372.9413` | 836,619.22 USD | 7,450,835.31 USD | `11 orders` | `-0.06%` | `-` |
+| `BID` | `2243.40` | `119.0409` | 267,056.36 USD | 6,614,216.10 USD | `10 orders` | `-0.06%` | `-` |
+| `BID` | `2243.50` | `472.2804` | 1,059,561.08 USD | 6,347,159.74 USD | `10 orders` | `-0.05%` | `-` |
+| `BID` | `2243.60` | `218.4971` | 490,220.09 USD | 5,287,598.66 USD | `12 orders` | `-0.05%` | `-` |
+| `BID` | `2243.70` | `52.8959` | 118,682.53 USD | 4,797,378.57 USD | `12 orders` | `-0.04%` | `-` |
+| `BID` | `2243.80` | `358.2152` | 803,763.27 USD | 4,678,696.04 USD | `10 orders` | `-0.04%` | `-` |
+| `BID` | `2243.90` | `334.1064` | 749,701.35 USD | 3,874,932.77 USD | `8 orders` | `-0.03%` | `-` |
+| `BID` | `2244.00` | `348.4225` | 781,860.09 USD | 3,125,231.42 USD | `13 orders` | `-0.03%` | `-` |
+| `BID` | `2244.10` | `291.3142` | 653,738.20 USD | 2,343,371.33 USD | `14 orders` | `-0.02%` | `-` |
+| `BID` | `2244.20` | `181.6783` | 407,722.44 USD | 1,689,633.14 USD | `12 orders` | `-0.02%` | `-` |
+| `BID` | `2244.30` | `243.2254` | 545,870.77 USD | 1,281,910.69 USD | `14 orders` | `-0.02%` | `-` |
+| `BID` | `2244.40` | `272.1767` | 610,873.39 USD | 736,039.93 USD | `8 orders` | `-0.01%` | `-` |
+| `BID` | `2244.50` | `44.7287` | 100,393.57 USD | 125,166.54 USD | `5 orders` | `-0.01%` | `-` |
+| `BID` | `2244.60` | `11.0367` | 24,772.98 USD | 24,772.98 USD | `3 orders` | `-0.00%` | `-` |
+| `MID_SPREAD` | `2244.65` | `0.0000` | 0.00 USD | 0.00 USD | `Mid: USD 2,244.65` | `0.00%` | `-` |
+| `ASK` | `2244.70` | `73.4083` | 164,779.61 USD | 164,779.61 USD | `10 orders` | `+0.00%` | `-` |
+| `ASK` | `2244.80` | `216.5261` | 486,057.79 USD | 650,837.40 USD | `34 orders` | `+0.01%` | `-` |
+| `ASK` | `2244.90` | `76.3463` | 171,389.81 USD | 822,227.21 USD | `11 orders` | `+0.01%` | `-` |
+| `ASK` | `2245.00` | `27.4526` | 61,631.09 USD | 883,858.30 USD | `5 orders` | `+0.02%` | `-` |
+| `ASK` | `2245.10` | `41.7851` | 93,811.73 USD | 977,670.02 USD | `4 orders` | `+0.02%` | `-` |
+| `ASK` | `2245.20` | `58.7965` | 132,009.90 USD | 1,109,679.93 USD | `7 orders` | `+0.02%` | `-` |
+| `ASK` | `2245.30` | `134.4740` | 301,934.47 USD | 1,411,614.40 USD | `6 orders` | `+0.03%` | `-` |
+| `ASK` | `2245.40` | `292.3829` | 656,516.56 USD | 2,068,130.96 USD | `11 orders` | `+0.03%` | `-` |
+| `ASK` | `2245.50` | `280.3109` | 629,438.13 USD | 2,697,569.09 USD | `10 orders` | `+0.04%` | `-` |
+| `ASK` | `2245.60` | `93.3608` | 209,651.01 USD | 2,907,220.10 USD | `4 orders` | `+0.04%` | `-` |
+| `ASK` | `2245.70` | `111.4711` | 250,330.65 USD | 3,157,550.75 USD | `9 orders` | `+0.05%` | `-` |
+| `ASK` | `2245.80` | `230.2378` | 517,068.05 USD | 3,674,618.80 USD | `8 orders` | `+0.05%` | `-` |
+| `ASK` | `2245.90` | `694.9023` | 1,560,681.08 USD | 5,235,299.88 USD | `14 orders` | `+0.06%` | `-` |
+| `ASK` | `2246.00` | `106.1862` | 238,494.21 USD | 5,473,794.08 USD | `12 orders` | `+0.06%` | `-` |
+| `ASK` | `2246.10` | `153.0571` | 343,781.55 USD | 5,817,575.63 USD | `10 orders` | `+0.06%` | `-` |
+| `ASK` | `2246.20` | `136.8671` | 307,430.88 USD | 6,125,006.51 USD | `7 orders` | `+0.07%` | `-` |
+| `ASK` | `2246.30` | `131.6455` | 295,715.29 USD | 6,420,721.80 USD | `10 orders` | `+0.07%` | `-` |
+| `ASK` | `2246.40` | `82.1330` | 184,503.57 USD | 6,605,225.37 USD | `8 orders` | `+0.08%` | `-` |
+| `ASK` | `2246.50` | `562.7222` | 1,264,155.42 USD | 7,869,380.79 USD | `14 orders` | `+0.08%` | `-` |
+| `ASK` | `2246.60` | `110.5893` | 248,449.92 USD | 8,117,830.72 USD | `15 orders` | `+0.09%` | `-` |
 
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1844.27` | `7,964.66` | 14,688,972.62 USD | `AT_RISK_LIQ` | `0x5f912dbde4` | `2026-10-30 10:14:44 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `1871.10` | `9,700.00` | 18,149,670.00 USD | `TRIGGER_STOP` | `0xaeaab54bbf` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1913.52` | `6,500.22` | 12,438,334.12 USD | `AT_RISK_LIQ` | `0xf78c5d8d4b` | `2026-10-30 10:14:44 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `1926.10` | `10,000.00` | 19,261,000.00 USD | `TRIGGER_STOP` | `0xb37f083bad` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1928.81` | `8,092.45` | 15,608,770.69 USD | `AT_RISK_LIQ` | `0x9eec98d048` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2122.22` | `30,641.99` | 65,028,977.30 USD | `AT_RISK_LIQ` | `0x77ddcc4b64` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2129.50` | `26,025.05` | 55,420,231.63 USD | `AT_RISK_LIQ` | `0x0392a716db` | `2026-10-30 10:14:44 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `2175.00` | `3,000.00` | 6,525,000.00 USD | `TRIGGER_STOP` | `0x469e9a7f62` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2207.40` | `266.00` | 587,168.40 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x24fb652303` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2208.00` | `2,119.20` | 4,679,203.32 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2209.90` | `505.00` | 1,115,999.50 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2210.10` | `4,701.86` | 10,391,585.21 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2219.10` | `1,469.14` | 3,260,157.70 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2221.00` | `458.19` | 1,017,637.99 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x9362ca4dfd` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2226.10` | `357.00` | 794,719.93 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2226.10` | `342.27` | 761,925.47 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2226.70` | `2,422.48` | 5,394,146.68 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2226.70` | `504.71` | 1,123,839.98 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2227.60` | `984.45` | 2,192,967.06 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2232.00` | `504.79` | 1,126,686.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2233.90` | `1,794.39` | 4,008,487.60 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2234.30` | `1,235.96` | 2,761,509.23 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2234.30` | `667.07` | 1,490,424.22 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2235.10` | `355.33` | 794,192.50 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2235.40` | `1,344.80` | 3,006,164.36 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2235.60` | `472.13` | 1,055,487.12 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2238.20` | `895.47` | 2,004,239.61 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2238.80` | `470.17` | 1,052,620.18 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2239.90` | `671.09` | 1,503,163.29 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2241.30` | `354.34` | 794,193.00 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2241.90` | `446.91` | 1,001,928.65 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `BUY` | `2243.40` | `335.01` | 751,564.13 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2245.70` | `392.01` | 880,340.67 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x6798a1b850` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2247.80` | `334.38` | 751,628.13 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2248.70` | `445.69` | 1,002,217.03 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2249.50` | `353.90` | 796,105.47 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2250.10` | `668.06` | 1,503,210.81 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2251.90` | `476.90` | 1,073,923.68 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2252.10` | `889.94` | 2,004,223.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2253.20` | `471.90` | 1,063,285.08 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2253.50` | `1,334.03` | 3,006,232.10 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2253.70` | `1,235.96` | 2,785,486.88 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2255.70` | `352.93` | 796,105.33 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2256.40` | `1,776.46` | 4,008,413.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2256.40` | `681.06` | 1,536,746.72 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2256.40` | `504.75` | 1,138,926.93 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2261.30` | `2,422.48` | 5,477,964.65 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2261.40` | `505.05` | 1,142,108.76 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2263.20` | `1,009.70` | 2,285,163.68 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2266.30` | `336.20` | 761,925.53 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2269.70` | `620.97` | 1,409,408.35 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x674982e841` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2269.80` | `350.13` | 794,719.85 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2271.80` | `1,391.15` | 3,160,417.75 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2272.20` | `2,200.51` | 4,999,999.96 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb1ec7febea` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2275.70` | `4,696.65` | 10,688,176.87 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2278.00` | `504.78` | 1,149,879.73 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2283.20` | `2,075.47` | 4,738,715.84 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:14:44 IST` |
-| `L3_RESTING_ORDER` | `SELL` | `2289.80` | `3,258.62` | 7,461,591.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:14:44 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `2300.00` | `4,002.10` | 9,204,832.99 USD | `TRIGGER_STOP` | `0xfb941d2344` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2463.82` | `22,046.99` | 54,319,767.92 USD | `AT_RISK_LIQ` | `0x8added25f8` | `2026-10-30 10:14:44 IST` |
-| `TOP_STOPS` | `BUY_STOP` | `2513.90` | `2,733.67` | 6,872,176.53 USD | `TRIGGER_STOP` | `0x9c2a2a966e` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2624.22` | `10,000.00` | 26,242,230.56 USD | `AT_RISK_LIQ` | `0xb37f083bad` | `2026-10-30 10:14:44 IST` |
-| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2658.08` | `9,700.00` | 25,783,366.12 USD | `AT_RISK_LIQ` | `0xaeaab54bbf` | `2026-10-30 10:14:44 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1844.27` | `7,964.66` | 14,688,972.62 USD | `AT_RISK_LIQ` | `0x5f912dbde4` | `2026-10-30 10:24:51 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `1871.10` | `9,700.00` | 18,149,670.00 USD | `TRIGGER_STOP` | `0xaeaab54bbf` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1913.52` | `6,500.22` | 12,438,334.12 USD | `AT_RISK_LIQ` | `0xf78c5d8d4b` | `2026-10-30 10:24:51 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `1926.10` | `10,000.00` | 19,261,000.00 USD | `TRIGGER_STOP` | `0xb37f083bad` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `1928.81` | `8,092.45` | 15,608,770.69 USD | `AT_RISK_LIQ` | `0x9eec98d048` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2122.22` | `30,641.99` | 65,028,977.30 USD | `AT_RISK_LIQ` | `0x77ddcc4b64` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `LONG_AT_RISK` | `2129.50` | `26,025.05` | 55,420,231.63 USD | `AT_RISK_LIQ` | `0x0392a716db` | `2026-10-30 10:24:51 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `2175.00` | `3,000.00` | 6,525,000.00 USD | `TRIGGER_STOP` | `0x469e9a7f62` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2207.40` | `266.00` | 587,168.40 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x24fb652303` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2207.90` | `2,011.52` | 4,441,235.67 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2209.90` | `505.00` | 1,115,999.50 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2210.10` | `4,701.86` | 10,391,585.21 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2219.00` | `1,405.55` | 3,118,915.89 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2221.00` | `458.19` | 1,017,637.99 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x9362ca4dfd` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2226.10` | `357.00` | 794,719.93 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2226.10` | `342.27` | 761,925.47 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2226.70` | `2,422.48` | 5,394,146.68 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2226.70` | `504.71` | 1,123,839.98 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2227.50` | `982.33` | 2,188,136.73 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2232.00` | `504.79` | 1,126,686.82 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2234.20` | `1,794.21` | 4,008,613.93 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2234.30` | `715.66` | 1,599,005.39 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2235.80` | `355.25` | 794,263.70 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2236.30` | `1,344.36` | 3,006,382.43 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2236.60` | `471.77` | 1,055,151.84 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2237.40` | `1,234.64` | 2,762,390.02 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2238.10` | `895.53` | 2,004,275.62 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2238.80` | `483.51` | 1,082,492.49 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2240.10` | `671.01` | 1,503,138.24 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2241.50` | `447.03` | 1,002,015.50 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2242.20` | `354.91` | 795,777.18 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `BUY` | `2243.60` | `334.99` | 751,585.58 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2247.80` | `334.38` | 751,608.13 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2248.70` | `445.71` | 1,002,257.73 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2249.20` | `250.98` | 564,501.97 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2249.40` | `354.74` | 797,961.38 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2249.90` | `668.12` | 1,503,211.96 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2252.20` | `889.91` | 2,004,254.63 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2252.30` | `478.75` | 1,078,296.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2253.50` | `471.98` | 1,063,606.93 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2253.70` | `1,235.96` | 2,785,486.88 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2254.40` | `1,333.59` | 3,006,436.50 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd911e53d53` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2256.10` | `352.47` | 795,206.66 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xd6e1a6f7bb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2256.70` | `1,776.28` | 4,008,525.66 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb8eb97eaed` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2256.80` | `679.17` | 1,532,754.69 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2257.10` | `504.77` | 1,139,325.40 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2261.30` | `2,422.48` | 5,477,964.65 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2263.60` | `981.79` | 2,222,387.09 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2263.60` | `504.46` | 1,141,902.45 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2266.30` | `336.20` | 761,925.53 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xc9186f2969` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2269.70` | `620.97` | 1,409,408.35 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x674982e841` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2269.80` | `350.13` | 794,719.85 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x2e1aa624f0` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2272.20` | `2,200.51` | 4,999,999.96 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xb1ec7febea` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2272.30` | `1,432.02` | 3,253,975.41 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2275.70` | `4,696.65` | 10,688,176.87 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2278.00` | `504.78` | 1,149,879.73 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x71d0e11ebb` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2283.70` | `2,099.23` | 4,794,022.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0x31dea2516b` | `2026-10-30 10:24:51 IST` |
+| `L3_RESTING_ORDER` | `SELL` | `2289.80` | `3,258.62` | 7,461,591.51 USD | `HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT` | `0xab5e6f3949` | `2026-10-30 10:24:51 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `2300.00` | `4,002.10` | 9,204,832.99 USD | `TRIGGER_STOP` | `0xfb941d2344` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2463.82` | `22,046.99` | 54,319,767.92 USD | `AT_RISK_LIQ` | `0x8added25f8` | `2026-10-30 10:24:51 IST` |
+| `TOP_STOPS` | `BUY_STOP` | `2513.90` | `2,733.67` | 6,872,176.53 USD | `TRIGGER_STOP` | `0x9c2a2a966e` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2624.22` | `10,000.00` | 26,242,230.56 USD | `AT_RISK_LIQ` | `0xb37f083bad` | `2026-10-30 10:24:51 IST` |
+| `TOP_LIQUIDATIONS` | `SHORT_AT_RISK` | `2658.08` | `9,700.00` | 25,783,366.12 USD | `AT_RISK_LIQ` | `0xaeaab54bbf` | `2026-10-30 10:24:51 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -437,8 +437,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `2343.30` | 46,866.00 USD | `-` | `NEWS_INTEL` | `-` | #ETH Whale SELL: 46.87K USD at 2343.3000 USD [API] | `2026-10-29 01:10:12` |
-| `ANNOUNCEMENT` | `INFO` | `2347.00` | 207,777.56 USD | `-` | `NEWS_INTEL` | `-` | #ETH Whale SELL: 207.78K USD at 2347.0000 USD [API] | `2026-10-29 01:18:29` |
 | `ANNOUNCEMENT` | `INFO` | `2311.30` | 10,204.16 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 10.20K USD at 2311.3000 USD [API] | `2026-10-29 01:49:05` |
 | `ANNOUNCEMENT` | `INFO` | `2311.30` | 79.74 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 0.08K USD at 2311.3000 USD [API] | `2026-10-29 01:49:05` |
 | `ANNOUNCEMENT` | `INFO` | `2311.30` | 281.98 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 0.28K USD at 2311.3000 USD [API] | `2026-10-29 01:49:05` |
@@ -465,6 +463,10 @@
 | `ANNOUNCEMENT` | `INFO` | `2311.30` | 13,824.81 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 13.82K USD at 2311.3000 USD [API] | `2026-10-29 01:49:05` |
 | `ANNOUNCEMENT` | `INFO` | `2323.10` | 1,557.17 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 1.56K USD at 2323.1000 USD [API] | `2026-10-29 01:48:11` |
 | `ANNOUNCEMENT` | `INFO` | `2308.10` | 108,950.17 USD | `-` | `NEWS_INTEL` | `-` | #ETH Whale BUY: 108.95K USD at 2308.1000 USD [API] | `2026-10-29 02:18:56` |
+| `ANNOUNCEMENT` | `INFO` | `2300.40` | 41,119.19 USD | `-` | `NEWS_INTEL` | `-` | #ETH Whale SELL: 41.12K USD at 2300.4000 USD [API] | `2026-10-29 02:34:40` |
+| `ANNOUNCEMENT` | `INFO` | `2298.30` | 19.08 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 0.02K USD at 2298.3000 USD [API] | `2026-10-29 02:30:54` |
+| `ANNOUNCEMENT` | `INFO` | `2298.30` | 29.42 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 0.03K USD at 2298.3000 USD [API] | `2026-10-29 02:30:54` |
+| `ANNOUNCEMENT` | `INFO` | `2332.40` | 222.74 USD | `-` | `NEWS_INTEL` | `-` | #ETH Liquidated Short: 0.22K USD at 2332.4000 USD [API] | `2026-10-29 01:39:01` |
 
 
 ---
@@ -2493,21 +2495,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 1,020,000.00 USD | 1,040,000.00 USD | **`ACCUMULATION`** |
-| `15m` | 1,990,000.00 USD | -9,620,000.00 USD | **`DISTRIBUTION`** |
-| `30m` | -441,710.00 USD | 37,470,000.00 USD | **`ACCUMULATION`** |
-| `1h` | -6,450,000.00 USD | 33,930,000.00 USD | **`ACCUMULATION`** |
-| `2h` | 2,770,000.00 USD | 82,720,000.00 USD | **`ACCUMULATION`** |
-| `4h` | -28,370,000.00 USD | -107,790,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -64,060,000.00 USD | -594,770,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -87,600,000.00 USD | -1,750,000,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -162,110,000.00 USD | -1,990,000,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -131,100,000.00 USD | -1,980,000,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -163,080,000.00 USD | -3,010,000,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -3,160,000,000.00 USD | -9,690,000,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -579,230.00 USD | -781,050.00 USD | **`DISTRIBUTION`** |
+| `15m` | 1,790,000.00 USD | -6,920,000.00 USD | **`DISTRIBUTION`** |
+| `30m` | -4,440,000.00 USD | -5,880,000.00 USD | **`DISTRIBUTION`** |
+| `1h` | -8,440,000.00 USD | 11,770,000.00 USD | **`ACCUMULATION`** |
+| `2h` | 5,860,000.00 USD | 111,220,000.00 USD | **`ACCUMULATION`** |
+| `4h` | -30,570,000.00 USD | -129,660,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -59,740,000.00 USD | -573,100,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -73,170,000.00 USD | -1,760,000,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -161,380,000.00 USD | -1,970,000,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -131,270,000.00 USD | -2,000,000,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -159,110,000.00 USD | -3,000,000,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -3,160,000,000.00 USD | -9,680,000,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+1.02M` | 15m=`+1.99M` | 1h=`-6.45M` | 24h=`-131.10M`
-* Futures Capital Netflows: 5m=`+1.04M` | 15m=`-9.62M` | 1h=`+33.93M` | 24h=`-1.98B`
+* Spot Capital Netflows: 5m=`-579.23K` | 15m=`+1.79M` | 1h=`-8.44M` | 24h=`-131.27M`
+* Futures Capital Netflows: 5m=`-781.05K` | 15m=`-6.92M` | 1h=`+11.77M` | 24h=`-2.00B`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -2576,17 +2578,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `2207.76` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2182.01` (Risk Distance: `25.75` pts)
-  * +2.5R Take Profit: `2272.13`
+  * Spread-Padded Stop Loss: `2181.84` (Risk Distance: `25.92` pts)
+  * +2.5R Take Profit: `2272.55`
   * Mathematical Lot Sizing: **`0.38 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `2280.60` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2306.35` (Risk Distance: `25.75` pts)
-  * +2.5R Take Profit: `2216.23`
+  * Spread-Padded Stop Loss: `2306.52` (Risk Distance: `25.92` pts)
+  * +2.5R Take Profit: `2215.81`
   * Mathematical Lot Sizing: **`0.38 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`2258.02`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`2258.83`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

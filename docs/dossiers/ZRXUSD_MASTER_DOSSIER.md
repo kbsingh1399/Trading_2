@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZRXUSD
 **Canonical Key**: `ZRXUSD` | **Broker Instrument**: `ZRXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 10:22:41 IST` (`2026-10-30 04:52:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:25:43 IST` (`2026-10-30 04:55:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0928` | VWAP Z-Score: `+1.27` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000898` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `44.88` (State: `NEUTRAL`)
+  * Session VWAP: `0.0928` | VWAP Z-Score: `+1.66` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000869` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `47.48` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0949` | Lower -3.00σ Band: `0.0907`
+  * Upper +3.00σ Band: `0.0950` | Lower -3.00σ Band: `0.0907`
   * Upper +2.51σ Band: `0.0946` | Lower -2.51σ Band: `0.0910`
-  * Upper +2.01σ Band: `0.0942` | Lower -2.01σ Band: `0.0914`
+  * Upper +2.01σ Band: `0.0943` | Lower -2.01σ Band: `0.0914`
   * Upper +2.00σ Band: `0.0942` | Lower -2.00σ Band: `0.0914`
   * Upper +1.28σ Band: `0.0937` | Lower -1.28σ Band: `0.0919`
   * Upper +1.00σ Band: `0.0935` | Lower -1.00σ Band: `0.0921`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0933` | EMA-20=`0.0938` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0958` (Slope: `+0.0000`) | EMA-100=`0.0976`
-  * Institutional Anchors: EMA-144=`0.0984` | EMA-200=`0.0992` (Slope: `-0.7862`) | EMA-233=`0.0997`
+  * Fast EMA Array: EMA-9=`0.0934` | EMA-20=`0.0938` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0957` (Slope: `+0.0000`) | EMA-100=`0.0975`
+  * Institutional Anchors: EMA-144=`0.0984` | EMA-200=`0.0992` (Slope: `-0.7710`) | EMA-233=`0.0996`
 - **Range Boundaries**: 24H High=`0.1040` | 24H Low=`0.0906` | Weekly High=`0.1051` | Weekly Low=`0.0906`
 
 ---
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 2,290.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `15m` | 2,300.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `30m` | 5,840.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `1h` | 5,190.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `2h` | 2,820.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `4h` | -7,720.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `6h` | -18,380.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `8h` | -53,380.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `12h` | -55,610.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `24h` | -46,060.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1w` | -122,760.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30d` | -724,610.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `5m` | 76.71 USD | 509.40 USD | **`ACCUMULATION`** |
+| `15m` | 4,470.00 USD | 5,370.00 USD | **`ACCUMULATION`** |
+| `30m` | 3,800.00 USD | 9,740.00 USD | **`ACCUMULATION`** |
+| `1h` | 2,850.00 USD | 16,240.00 USD | **`ACCUMULATION`** |
+| `2h` | 1,550.00 USD | 12,550.00 USD | **`ACCUMULATION`** |
+| `4h` | 10,400.00 USD | 9,220.00 USD | **`ACCUMULATION`** |
+| `6h` | -15,490.00 USD | -63,930.00 USD | **`DISTRIBUTION`** |
+| `8h` | -51,520.00 USD | -119,920.00 USD | **`DISTRIBUTION`** |
+| `12h` | -56,530.00 USD | -122,070.00 USD | **`DISTRIBUTION`** |
+| `24h` | -46,610.00 USD | -164,800.00 USD | **`DISTRIBUTION`** |
+| `1w` | -123,560.00 USD | -193,640.00 USD | **`DISTRIBUTION`** |
+| `30d` | -724,260.00 USD | -843,770.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+2.29K` | 15m=`+2.30K` | 1h=`+5.19K` | 24h=`-46.06K`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Spot Capital Netflows: 5m=`+76.71` | 15m=`+4.47K` | 1h=`+2.85K` | 24h=`-46.61K`
+* Futures Capital Netflows: 5m=`+509.40` | 15m=`+5.37K` | 1h=`+16.24K` | 24h=`-164.80K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

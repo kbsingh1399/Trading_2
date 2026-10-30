@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: OP
 **Canonical Key**: `OP` | **Broker Instrument**: `OPUSD.p` | **Asset Class**: `Crypto Alt L2`
-**Timestamp**: `2026-10-30 10:22:41 IST` (`2026-10-30 04:52:41 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:25:43 IST` (`2026-10-30 04:55:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -73,12 +73,12 @@
 | `5m` | `0.1004` | `0.1007` | `0.1002` | `0.1006` | `1,182,620` | 118,825.88 USD | 24,350.12 USD | `+20.49%` | -2,002,524.51 USD | `+0.54` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `5m` | `0.1006` | `0.1007` | `0.1003` | `0.1005` | `1,069,885` | 107,522.60 USD | 35,696.40 USD | `+33.20%` | -1,966,828.12 USD | `+0.68` | **`BULLISH`** | `BULLISH ABSORPTION` |
 | `5m` | `0.1005` | `0.1008` | `0.1004` | `0.1008` | `594,041` | 59,765.81 USD | 30,257.07 USD | `+50.63%` | -1,936,571.04 USD | `+0.57` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `0.0993` | `0.0999` | `0.0988` | `0.0999` | `3,501,821` | 347,230.40 USD | 7,391.34 USD | `+2.13%` | -2,152,693.12 USD | `+0.30` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `15m` | `0.0999` | `0.1004` | `0.0996` | `0.1004` | `3,605,793` | 360,867.60 USD | 125,818.48 USD | `+34.87%` | -2,026,874.64 USD | `+0.80` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `0.1004` | `0.1008` | `0.1002` | `0.1008` | `2,849,386` | 286,400.44 USD | 90,589.75 USD | `+31.63%` | -1,936,284.89 USD | `+0.64` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.0999` | `0.1004` | `0.0996` | `0.1004` | `3,605,793` | 360,867.60 USD | 125,818.48 USD | `+34.87%` | -2,063,321.31 USD | `+0.80` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.1004` | `0.1009` | `0.1002` | `0.1008` | `3,198,294` | 321,574.58 USD | 96,000.52 USD | `+29.85%` | -1,967,320.79 USD | `+0.67` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `0.1009` | `0.1013` | `0.1006` | `0.1013` | `4,052,381` | 409,127.59 USD | 80,087.68 USD | `+19.58%` | -1,887,233.11 USD | `+0.57` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `0.0975` | `0.0991` | `0.0965` | `0.0981` | `16,150,698` | 1,585,412.30 USD | 111,043.46 USD | `+7.00%` | -1,755,382.94 USD | `+0.44` | **`BULLISH`** | `DELTA ALIGNED` |
 | `1h` | `0.0981` | `0.0995` | `0.0970` | `0.0993` | `30,519,947` | 2,992,768.64 USD | -441,148.19 USD | `-14.74%` | -2,196,531.13 USD | `-0.72` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `1h` | `0.0993` | `0.1008` | `0.0988` | `0.1008` | `9,957,001` | 994,498.43 USD | 223,799.57 USD | `+22.50%` | -1,972,731.56 USD | `+0.75` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `1h` | `0.0993` | `0.1013` | `0.0988` | `0.1013` | `14,359,730` | 1,438,946.07 USD | 309,443.92 USD | `+21.50%` | -1,887,087.21 USD | `+0.92` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1012` | `228,454,236` | 23,598,875.37 USD | -1,317,197.86 USD | `-5.58%` | -1,009,359.71 USD | `-1.66` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.1012` | `0.1013` | `0.0934` | `0.0993` | `154,779,937` | 15,105,414.22 USD | -1,338,026.39 USD | `-8.86%` | -2,347,386.10 USD | `-1.21` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.0993` | `0.1008` | `0.0988` | `0.1008` | `9,955,194` | 994,316.35 USD | 223,617.50 USD | `+22.49%` | -2,123,768.60 USD | `+0.82` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -86,7 +86,7 @@
 | `4h` | `0.1140` | `0.1148` | `0.1094` | `0.1101` | `61,838,594` | 6,908,457.75 USD | -176,140.28 USD | `-2.55%` | 307,838.15 USD | `-1.31` | **`BEARISH`** | `NEUTRAL CHOP` |
 | `4h` | `0.1101` | `0.1103` | `0.0989` | `0.1012` | `228,454,236` | 23,598,875.37 USD | -1,317,197.86 USD | `-5.58%` | -1,009,359.71 USD | `-1.66` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.1012` | `0.1013` | `0.0934` | `0.0993` | `154,779,937` | 15,105,414.22 USD | -1,338,026.39 USD | `-8.86%` | -2,347,386.10 USD | `-1.21` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.0993` | `0.1008` | `0.0988` | `0.1008` | `9,955,194` | 994,316.35 USD | 223,617.50 USD | `+22.49%` | -2,123,768.60 USD | `+0.82` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `4h` | `0.0993` | `0.1013` | `0.0988` | `0.1013` | `14,358,290` | 1,438,800.16 USD | 309,298.02 USD | `+21.50%` | -2,038,088.08 USD | `+0.90` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:14:44 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:24:51 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -807,21 +807,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 9,410.00 USD | 26,450.00 USD | **`ACCUMULATION`** |
-| `15m` | 76,130.00 USD | 92,040.00 USD | **`ACCUMULATION`** |
-| `30m` | 141,570.00 USD | 221,230.00 USD | **`ACCUMULATION`** |
-| `1h` | 226,900.00 USD | 211,650.00 USD | **`ACCUMULATION`** |
-| `2h` | -111,750.00 USD | -482,110.00 USD | **`DISTRIBUTION`** |
-| `4h` | -129,740.00 USD | 47,650.00 USD | **`DISTRIBUTION`** |
-| `6h` | -36,180.00 USD | -1,910,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | 231,160.00 USD | -4,630,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | 4,830.00 USD | -5,000,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | 303,980.00 USD | -3,910,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -84,660.00 USD | -14,830,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -12,360,000.00 USD | -83,270,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 10,030.00 USD | 50,220.00 USD | **`ACCUMULATION`** |
+| `15m` | 26,060.00 USD | 62,430.00 USD | **`ACCUMULATION`** |
+| `30m` | 104,120.00 USD | 178,690.00 USD | **`ACCUMULATION`** |
+| `1h` | 212,010.00 USD | 201,600.00 USD | **`ACCUMULATION`** |
+| `2h` | -86,190.00 USD | -371,680.00 USD | **`DISTRIBUTION`** |
+| `4h` | -89,290.00 USD | 94,710.00 USD | **`ACCUMULATION`** |
+| `6h` | -21,130.00 USD | -1,970,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | 492,700.00 USD | -4,710,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | 24,490.00 USD | -4,930,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | 314,030.00 USD | -3,890,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -71,230.00 USD | -14,800,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -12,340,000.00 USD | -83,250,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+9.41K` | 15m=`+76.13K` | 1h=`+226.90K` | 24h=`+303.98K`
-* Futures Capital Netflows: 5m=`+26.45K` | 15m=`+92.04K` | 1h=`+211.65K` | 24h=`-3.91M`
+* Spot Capital Netflows: 5m=`+10.03K` | 15m=`+26.06K` | 1h=`+212.01K` | 24h=`+314.03K`
+* Futures Capital Netflows: 5m=`+50.22K` | 15m=`+62.43K` | 1h=`+201.60K` | 24h=`-3.89M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
