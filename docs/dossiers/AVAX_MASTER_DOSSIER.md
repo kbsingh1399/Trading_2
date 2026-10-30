@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVAX
 **Canonical Key**: `AVAX` | **Broker Instrument**: `AVXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 07:45:22 IST` (`2026-10-30 02:15:22 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -424,8 +424,8 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1502` | `0x7737...bf66` | `SHORT` | 1,406,600.74 USD | `171,568.06` | `7.43` | `8.21` | `103.14` | -131,055.72 USD | `-9.32%` | `10X Cross` |
-| `1586` | `0xeadc...9d55` | `LONG` | 1,312,338.49 USD | `160,070.56` | `8.11` | `8.21` | `0.000000` | 14,700.91 USD | `+1.12%` | `10X Cross` |
+| `1515` | `0x7737...bf66` | `SHORT` | 1,402,191.44 USD | `171,568.06` | `7.43` | `8.25` | `103.01` | -126,646.42 USD | `-9.03%` | `10X Cross` |
+| `1583` | `0xeadc...9d55` | `LONG` | 1,320,181.94 USD | `160,070.56` | `8.11` | `8.25` | `0.000000` | 22,544.37 USD | `+1.71%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -1793,18 +1793,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `340.51M` | Total OI Tokens: `41,473,707.4 AVAX`
-  * 1h OI Change: `-0.10%` | 4h OI Change: `-4.99%` | 24h OI Change: `-10.75%`
-  * Exchange Breakdown: Binance=`79.25M` | Bybit=`56.25M` | OKX=`11.32M` | Hyperliquid=`16.08M`
+  * Total Open Interest: `343.62M` | Total OI Tokens: `41,613,509.8 AVAX`
+  * 1h OI Change: `-0.46%` | 4h OI Change: `-3.48%` | 24h OI Change: `-9.00%`
+  * Exchange Breakdown: Binance=`79.69M` | Bybit=`56.62M` | OKX=`11.33M` | Hyperliquid=`16.21M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-8.43K` | Last 24h: `18.18K` | Last 3d: `59.53K` | Last 7d: `106.20K`
+  * Current Rate: `-6.40K` | Last 24h: `18.18K` | Last 3d: `59.53K` | Last 7d: `106.20K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0031%` | **USDT OKX** | `0.0055%` |
-| **USDT Bybit** | `-0.0211%` | **USDT KuCoin** | `0.0029%` |
-| **USDT MEXC** | `0.0028%` | **USDT BingX** | `0.0049%` |
-| **USDT Gate** | `-0.0055%` | **USDT Bitget** | `-0.0020%` |
+| **USDT Binance** | `0.0039%` | **USDT OKX** | `0.0057%` |
+| **USDT Bybit** | `-0.0182%` | **USDT KuCoin** | `0.0043%` |
+| **USDT MEXC** | `0.0039%` | **USDT BingX** | `0.0053%` |
+| **USDT Gate** | `-0.0019%` | **USDT Bitget** | `-0.0017%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

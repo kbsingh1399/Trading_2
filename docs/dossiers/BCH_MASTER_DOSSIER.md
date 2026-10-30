@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BCH
 **Canonical Key**: `BCH` | **Broker Instrument**: `BCHUSD.p` | **Asset Class**: `Crypto PoW`
-**Timestamp**: `2026-10-30 07:45:23 IST` (`2026-10-30 02:15:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1086,16 +1086,16 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `295.80M` | Total OI Tokens: `1,090,300.9 BCH`
-  * 1h OI Change: `+0.94%` | 4h OI Change: `-0.66%` | 24h OI Change: `-5.51%`
-  * Exchange Breakdown: Binance=`86.17M` | Bybit=`36.76M` | OKX=`23.06M` | Hyperliquid=`7.29M`
+  * Total Open Interest: `299.03M` | Total OI Tokens: `1,088,383.7 BCH`
+  * 1h OI Change: `+2.47%` | 4h OI Change: `+0.30%` | 24h OI Change: `-4.02%`
+  * Exchange Breakdown: Binance=`87.29M` | Bybit=`37.17M` | OKX=`23.38M` | Hyperliquid=`7.39M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `5.87K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
+  * Current Rate: `7.53K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0056%` |
-| **USDT Bybit** | `-0.0084%` | **USDT KuCoin** | `0.0078%` |
+| **USDT Bybit** | `-0.0056%` | **USDT KuCoin** | `0.0079%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ADA
 **Canonical Key**: `ADA` | **Broker Instrument**: `ADAUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 07:45:22 IST` (`2026-10-30 02:15:22 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `540` | `0x77ee...2902` | `SHORT` | 3,998,940.98 USD | `21,412,192.00` | `0.1911` | `0.1871` | `0.5718` | 92,310.76 USD | `+2.31%` | `10X Cross` |
-| `1236` | `0x123d...3bff` | `LONG` | 1,755,151.69 USD | `9,392,870.00` | `0.2912` | `0.1871` | `0.000000` | -980,505.03 USD | `-55.86%` | `10X Cross` |
-| `1260` | `0x7737...bf66` | `SHORT` | 1,698,740.42 USD | `9,091,466.00` | `0.2190` | `0.1871` | `1.98` | 292,249.38 USD | `+17.20%` | `10X Cross` |
-| `1563` | `0x5f94...4b96` | `SHORT` | 1,338,422.36 USD | `7,162,318.00` | `0.2303` | `0.1871` | `0.6810` | 311,052.83 USD | `+23.24%` | `10X Cross` |
-| `1788` | `0x4982...59e6` | `SHORT` | 1,120,218.15 USD | `5,998,812.00` | `0.1891` | `0.1871` | `0.4249` | 14,340.21 USD | `+1.28%` | `10X Cross` |
-| `1826` | `0xcac1...26b3` | `LONG` | 1,083,825.33 USD | `5,803,927.00` | `0.2000` | `0.1871` | `0.000000` | -76,990.26 USD | `-7.10%` | `10X Cross` |
+| `542` | `0x77ee...2902` | `SHORT` | 4,010,503.56 USD | `21,412,192.00` | `0.1911` | `0.1881` | `0.5717` | 80,748.18 USD | `+2.01%` | `10X Cross` |
+| `1238` | `0x123d...3bff` | `LONG` | 1,762,384.20 USD | `9,392,870.00` | `0.2912` | `0.1881` | `0.000000` | -973,272.52 USD | `-55.22%` | `10X Cross` |
+| `1265` | `0x7737...bf66` | `SHORT` | 1,693,376.46 USD | `9,091,466.00` | `0.2190` | `0.1881` | `1.98` | 297,613.34 USD | `+17.58%` | `10X Cross` |
+| `1565` | `0x5f94...4b96` | `SHORT` | 1,345,226.57 USD | `7,162,318.00` | `0.2303` | `0.1881` | `0.6871` | 304,248.63 USD | `+22.62%` | `10X Cross` |
+| `1797` | `0x4982...59e6` | `SHORT` | 1,116,798.83 USD | `5,998,812.00` | `0.1891` | `0.1881` | `0.4255` | 17,759.53 USD | `+1.59%` | `10X Cross` |
+| `1832` | `0xcac1...26b3` | `LONG` | 1,090,267.69 USD | `5,803,927.00` | `0.2000` | `0.1881` | `0.000000` | -70,547.90 USD | `-6.47%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -787,18 +787,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `402.16M` | Total OI Tokens: `2,137,744,372.1 ADA`
-  * 1h OI Change: `+0.21%` | 4h OI Change: `-3.38%` | 24h OI Change: `-8.47%`
-  * Exchange Breakdown: Binance=`75.07M` | Bybit=`49.32M` | OKX=`28.49M` | Hyperliquid=`27.62M`
+  * Total Open Interest: `405.74M` | Total OI Tokens: `2,145,362,342.5 ADA`
+  * 1h OI Change: `+0.20%` | 4h OI Change: `-2.31%` | 24h OI Change: `-7.32%`
+  * Exchange Breakdown: Binance=`75.59M` | Bybit=`49.70M` | OKX=`28.53M` | Hyperliquid=`27.78M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-1.29K` | Last 24h: `10.44K` | Last 3d: `50.88K` | Last 7d: `82.10K`
+  * Current Rate: `398.20` | Last 24h: `10.44K` | Last 3d: `50.88K` | Last 7d: `82.10K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0078%` | **USDT OKX** | `0.0030%` |
-| **USDT Bybit** | `-0.0144%` | **USDT KuCoin** | `-0.0011%` |
-| **USDT MEXC** | `0.0074%` | **USDT BingX** | `0.0090%` |
-| **USDT Gate** | `-0.0067%` | **USDT Bitget** | `0.0094%` |
+| **USDT Binance** | `0.0093%` | **USDT OKX** | `0.0038%` |
+| **USDT Bybit** | `-0.0148%` | **USDT KuCoin** | `-0.0008%` |
+| **USDT MEXC** | `0.0093%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `-0.0050%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: TRX
 **Canonical Key**: `TRX` | **Broker Instrument**: `TRXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 07:45:22 IST` (`2026-10-30 02:15:22 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,8 +116,8 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `746` | `0xecb6...2b00` | `LONG` | 2,998,903.86 USD | `8,430,755.00` | `0.3340` | `0.3560` | `0.000000` | 183,124.76 USD | `+6.11%` | `10X Cross` |
-| `1484` | `0xeadc...9d55` | `LONG` | 1,421,600.00 USD | `4,000,000.00` | `0.3421` | `0.3560` | `0.000000` | 53,121.91 USD | `+3.74%` | `10X Cross` |
+| `750` | `0xecb6...2b00` | `LONG` | 3,007,250.31 USD | `8,430,755.00` | `0.3340` | `0.3569` | `0.000000` | 191,471.21 USD | `+6.37%` | `10X Cross` |
+| `1492` | `0xeadc...9d55` | `LONG` | 1,425,000.00 USD | `4,000,000.00` | `0.3421` | `0.3569` | `0.000000` | 56,521.91 USD | `+3.97%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -1256,19 +1256,19 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `410.27M` | Total OI Tokens: `1,151,852,411.8 TRX`
-  * 1h OI Change: `+1.32%` | 4h OI Change: `+9.49%` | 24h OI Change: `+41.72%`
-  * Exchange Breakdown: Binance=`115.39M` | Bybit=`86.31M` | OKX=`25.31M` | Hyperliquid=`19.12M`
+  * Total Open Interest: `411.56M` | Total OI Tokens: `1,152,952,030.8 TRX`
+  * 1h OI Change: `+0.92%` | 4h OI Change: `+5.94%` | 24h OI Change: `+42.09%`
+  * Exchange Breakdown: Binance=`115.80M` | Bybit=`86.55M` | OKX=`25.49M` | Hyperliquid=`19.08M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-857.87K` | Last 24h: `-591.71K` | Last 3d: `-625.30K` | Last 7d: `-857.35K`
+  * Current Rate: `-843.79K` | Last 24h: `-591.71K` | Last 3d: `-625.30K` | Last 7d: `-857.35K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.3900%` | **USDT OKX** | `-0.8747%` |
-| **USDT Bybit** | `-0.2302%` | **USDT KuCoin** | `-0.0406%` |
-| **USDT MEXC** | `-0.3901%` | **USDT BingX** | `-0.5000%` |
-| **USDT Gate** | `-0.2396%` | **USDT Bitget** | `-0.4081%` |
-| **CoinM Binance** | `-0.6349%` | **CoinM OKX** | `-` |
+| **USDT Binance** | `-0.3870%` | **USDT OKX** | `-0.8587%` |
+| **USDT Bybit** | `-0.2194%` | **USDT KuCoin** | `-0.0366%` |
+| **USDT MEXC** | `-0.3869%` | **USDT BingX** | `-0.5000%` |
+| **USDT Gate** | `-0.2273%` | **USDT Bitget** | `-0.4081%` |
+| **CoinM Binance** | `-0.6295%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |

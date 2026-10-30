@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SUI
 **Canonical Key**: `SUI` | **Broker Instrument**: `SUIUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 07:45:23 IST` (`2026-10-30 02:15:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -433,10 +433,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `671` | `0xb83d...6e36` | `SHORT` | 3,260,276.60 USD | `3,817,609.40` | `1.11` | `0.8555` | `38.01` | 958,458.71 USD | `+29.40%` | `3X Cross` |
-| `1005` | `0xa2ce...3126` | `LONG` | 2,134,133.88 USD | `2,500,010.40` | `0.8597` | `0.8555` | `0.000000` | -15,072.65 USD | `-0.71%` | `10X Cross` |
-| `1542` | `0x9946...0852` | `SHORT` | 1,368,830.16 USD | `1,604,743.50` | `1.08` | `0.8555` | `2.02` | 362,924.08 USD | `+26.51%` | `10X Cross` |
-| `1900` | `0x9df2...c665` | `SHORT` | 1,024,464.00 USD | `1,200,000.00` | `0.7465` | `0.8555` | `27.70` | -128,611.60 USD | `-12.55%` | `10X Cross` |
+| `676` | `0xb83d...6e36` | `SHORT` | 3,274,898.05 USD | `3,817,609.40` | `1.11` | `0.8598` | `37.26` | 943,837.27 USD | `+28.82%` | `3X Cross` |
+| `1003` | `0xa2ce...3126` | `LONG` | 2,148,458.94 USD | `2,500,010.40` | `0.8597` | `0.8598` | `0.000000` | -747.59 USD | `-0.03%` | `10X Cross` |
+| `1542` | `0x9946...0852` | `SHORT` | 1,378,635.14 USD | `1,604,743.50` | `1.08` | `0.8598` | `1.99` | 353,119.09 USD | `+25.61%` | `10X Cross` |
+| `1902` | `0x9df2...c665` | `SHORT` | 1,031,076.00 USD | `1,200,000.00` | `0.7465` | `0.8598` | `27.40` | -135,223.60 USD | `-13.11%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -2229,18 +2229,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `556.51M` | Total OI Tokens: `650,399,094.3 SUI`
-  * 1h OI Change: `+0.03%` | 4h OI Change: `-3.97%` | 24h OI Change: `-9.19%`
-  * Exchange Breakdown: Binance=`101.45M` | Bybit=`74.53M` | OKX=`32.16M` | Hyperliquid=`29.44M`
+  * Total Open Interest: `558.89M` | Total OI Tokens: `649,802,717.2 SUI`
+  * 1h OI Change: `-0.08%` | 4h OI Change: `-3.76%` | 24h OI Change: `-8.71%`
+  * Exchange Breakdown: Binance=`101.93M` | Bybit=`74.83M` | OKX=`32.19M` | Hyperliquid=`29.44M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-28.26K` | Last 24h: `-2.19K` | Last 3d: `56.09K` | Last 7d: `151.29K`
+  * Current Rate: `-22.93K` | Last 24h: `-2.19K` | Last 3d: `56.09K` | Last 7d: `151.29K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0199%` | **USDT OKX** | `-0.0112%` |
-| **USDT Bybit** | `-0.0085%` | **USDT KuCoin** | `-0.0105%` |
-| **USDT MEXC** | `-0.0205%` | **USDT BingX** | `-0.0046%` |
-| **USDT Gate** | `-0.0127%` | **USDT Bitget** | `-0.0060%` |
+| **USDT Binance** | `-0.0178%` | **USDT OKX** | `-0.0106%` |
+| **USDT Bybit** | `-0.0063%` | **USDT KuCoin** | `-0.0107%` |
+| **USDT MEXC** | `-0.0182%` | **USDT BingX** | `-0.0050%` |
+| **USDT Gate** | `-0.0085%` | **USDT Bitget** | `-0.0060%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
