@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XMRUSD
 **Canonical Key**: `XMRUSD` | **Broker Instrument**: `XMRUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:54:24 IST` (`2026-10-30 10:24:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:57:26 IST` (`2026-10-30 10:27:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -141,10 +141,10 @@
 ## 6. Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map
 *(Sources: 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, 15_Hyperdash_Stops_Map.parquet, 9_Liquidation_Max_Pain_24H/48H/3D/7D.parquet, 8_Exchange_Liquidation_Map_1D/7D.parquet, 7_Liq_Heapmap.parquet, 7_Live_Liq.parquet, 22_Forced_Liquidations_MTF.parquet)*
 - **Multi-Horizon Liquidation Max Pain Strikes (9_Liquidation_Max_Pain*.parquet)**:
-  * 24H Horizon: Short MP=`654.54` (Vol: 381,700.00 USD, Dist: `+10.99%`) | Long MP=`579.76` (Vol: 124,300.00 USD, Dist: `--1.69%`)
-  * 48H Horizon: Short MP=`648.23` (Vol: 359,800.00 USD, Dist: `+9.92%`) | Long MP=`580.12` (Vol: 232,400.00 USD, Dist: `--1.63%`)
-  * 3D Horizon: Short MP=`648.23` (Vol: 359,800.00 USD, Dist: `+9.92%`) | Long MP=`580.12` (Vol: 286,300.00 USD, Dist: `--1.63%`)
-  * 7D Horizon: Short MP=`648.04` (Vol: 382,600.00 USD, Dist: `+9.88%`) | Long MP=`582.51` (Vol: 468,600.00 USD, Dist: `--1.23%`)
+  * 24H Horizon: Short MP=`654.54` (Vol: 381,700.00 USD, Dist: `+10.92%`) | Long MP=`579.76` (Vol: 124,300.00 USD, Dist: `--1.75%`)
+  * 48H Horizon: Short MP=`648.23` (Vol: 359,800.00 USD, Dist: `+9.85%`) | Long MP=`580.12` (Vol: 232,400.00 USD, Dist: `--1.69%`)
+  * 3D Horizon: Short MP=`648.23` (Vol: 359,800.00 USD, Dist: `+9.85%`) | Long MP=`580.12` (Vol: 286,300.00 USD, Dist: `--1.69%`)
+  * 7D Horizon: Short MP=`648.04` (Vol: 382,600.00 USD, Dist: `+9.82%`) | Long MP=`582.51` (Vol: 468,600.00 USD, Dist: `--1.29%`)
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -180,7 +180,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `33.94K` | Last 24h: `116.53K` | Last 3d: `202.38K` | Last 7d: `345.10K`
+  * Current Rate: `27.85K` | Last 24h: `116.53K` | Last 3d: `202.38K` | Last 7d: `345.10K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
