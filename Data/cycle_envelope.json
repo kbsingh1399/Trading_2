@@ -19,13 +19,13 @@
     "account_login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
     "currency": "USD",
-    "balance": 4763.23,
-    "equity": 4763.23,
+    "balance": 4755.23,
+    "equity": 4755.23,
     "margin_used": 0.0,
-    "margin_free": 4763.23,
+    "margin_free": 4755.23,
     "margin_level": 0.0,
     "active_positions_count": 0,
-    "pending_orders_count": 3,
+    "pending_orders_count": 2,
     "active_positions": [],
     "pending_orders": [
       {
@@ -37,17 +37,6 @@
         "sl": 75850.0,
         "tp": 77600.0,
         "risk_usd": 5.0,
-        "rr_ratio": 2.5
-      },
-      {
-        "ticket": 19532057,
-        "symbol": "XMRUSD.p",
-        "type": "BUY_LIMIT",
-        "volume": 0.01,
-        "price": 585.5,
-        "sl": 577.5,
-        "tp": 605.5,
-        "risk_usd": 8.0,
         "rr_ratio": 2.5
       },
       {
@@ -69,7 +58,7 @@
     "solvency_kernel_usd": 0.0,
     "base_capital_usd": 4763.23,
     "operator_floor_override": "MANDATE_NO_HARD_FLOOR_ACTIVE_TRADING",
-    "total_contingent_risk_usd": 22.1,
+    "total_contingent_risk_usd": 14.1,
     "post_joint_stress_equity_usd": 4741.13,
     "capital_mode": "ACTIVE_HIGH_CONFLUENCE_OPERATION",
     "risk_min_usd": 1.0,
@@ -93,6 +82,6 @@
     "audited_count": 93,
     "multi_feed_pillars_checked": 15,
     "physical_examination_verdict": "APPROVED_FOR_BROKER_EXECUTION",
-    "staged_maker_limits_count": 3
+    "staged_maker_limits_count": 2
   }
 }

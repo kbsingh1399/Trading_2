@@ -13,36 +13,36 @@
 
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
-- **Account Balance**: **4,763.23 USD**
-- **Floating Equity**: **4,763.23 USD**
-- **Free Margin**: **4,763.23 USD**
+- **Account Balance**: **4,755.23 USD**
+- **Floating Equity**: **4,755.23 USD**
+- **Free Margin**: **4,755.23 USD**
 - **Margin Used**: **0.00 USD**
 - **Capital Posture**: **ACTIVE_HIGH_CONFLUENCE_OPERATION (Operator Mandate: Hard floor lifted)**
 - **Active Running Positions**: **0 ACTIVE** (100% Cash Defense Preserved)
-- **Active Resting Pending Orders**: **3 ACTIVE** (Staged per Cycle_035/036 15-Pillar Mechanical Forensics & Tri-Council Synthesis)
-- **Total Contingent Downside Risk**: **22.10 USD** (0.46% of account equity)
-- **Execution Capacity**: **3 / 3 Slots Deployed** ($N=3 \le 3$)
-- **Last Synchronized (UTC)**: 2026-10-30 14:12:30 UTC (2026-10-30 19:42:30 IST) - Cycle_036
+- **Active Resting Pending Orders**: **2 ACTIVE** (Staged per 15-Pillar Mechanical Forensics & Tri-Council Synthesis)
+- **Total Contingent Downside Risk**: **14.10 USD** (0.29% of account equity)
+- **Execution Capacity**: **2 / 3 Slots Deployed** (1 Slot Available)
+- **Last Synchronized (UTC)**: 2026-10-30 14:38:30 UTC (2026-10-30 20:08:30 IST) - Cycle_036 Reconciled
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (0 ACTIVE — BANKED IN GREEN)
+## 🚀 2. RECENT CLOSED POSITIONS & HISTORICAL AUTOPSY
 
-| Ticket | Symbol | Type | Volume | Entry Price | Exit Price | Exit SL | Realized PnL | Dynamic Ratchet Exit Outcome |
+| Ticket | Symbol | Type | Volume | Entry Price | Exit Price | Exit Reason | Realized PnL | Forensic Autopsy & Risk Control |
 |---|---|---|---|---|---|---|---|---|
-| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70282` | `0.70282` | **+0.96 USD (+0.40 USD net)** | **CLOSED IN PROFIT VIA RATCHET (+1.2 pips). Banked into balance (4,763.23 USD).** |
+| **#19532057** | `XMRUSD.p` | BUY | 0.01 lot | `585.50` | `577.50` | `SL Hit [sl 577.50]` | **-8.00 USD** | Filled Deal #17702967 (17:08:37 UTC) @ 585.50; exited Deal #17704303 (17:25:05 UTC) @ 577.50 during market-wide altcoin sweep. Downside strictly contained within $10.00 max limit ($8.00 loss = 0.16% equity). |
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70282` | `Ratchet Exit` | **+0.96 USD** | Banked profit via automated trailing ratchet (+1.2 pips). |
 
-*(Currently 0 active running positions. 100% flat cash preserved while limit orders rest).*
+*(Currently 0 active running positions. 100% cash flat defense active).*
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (3 ACTIVE — CAPACITY DEPLOYED)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (2 ACTIVE — 1 SLOT OPEN)
 
 | Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | R:R | Contingent Risk (USD) | Broker Retcode & Rationale |
 |---|---|---|---|---|---|---|---|---|---|
-| **#19532055** | `BTCUSD.pi` | `BUY_LIMIT` | 0.01 lot | `76,350.00` | `75,850.00` | `77,600.00` | **2.500R** | **$5.00 USD** | **ACTIVE (`retcode=10009`)**: Leans below Long Max Pain sweep 76,945; 4h CVD absorption; targets Short Max Pain 79,868. |
-| **#19532057** | `XMRUSD.p` | `BUY_LIMIT` | 0.01 lot | `585.50` | `577.50` | `605.50` | **2.500R** | **$8.00 USD** | **ACTIVE (`retcode=10009`)**: Absorbs below Long Max Pain 579.76 & VAL 586.56 support; targets 605.50 upper value area. |
-| **#19532058** | `AVEUSD.p` | `BUY_LIMIT` | 0.07 lot | `122.50` | `121.20` | `125.75` | **2.500R** | **$9.10 USD** | **ACTIVE (`retcode=10009`)**: Defends developing VAL 120.30; strictly sized for contract size 100 to guarantee risk <= $10.00 USD. |
+| **#19532055** | `BTCUSD.pi` | `BUY_LIMIT` | 0.01 lot | `76,350.00` | `75,850.00` | `77,600.00` | **2.500R** | **$5.00 USD** | **ACTIVE (`retcode=10009`)**: Leans below Long Max Pain sweep 76,195; 4h CVD absorption; targets Short Max Pain 79,868. |
+| **#19532058** | `AVEUSD.p` | `BUY_LIMIT` | 0.07 lot | `122.50` | `121.20` | `125.75` | **2.500R** | **$9.10 USD** | **ACTIVE (`retcode=10009`)**: Defends developing VAL 120.30; contract size 100 strictly guarantees risk <= $10.00 USD. |
 
 ---
 
