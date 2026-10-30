@@ -1,8 +1,8 @@
 {
   "schema_version": "2.0.0",
   "format": "JSON_STANDALONE",
-  "timestamp_utc": "2026-10-30 15:16:30 UTC",
-  "timestamp_ist": "2026-10-30 20:46:30 IST",
+  "timestamp_utc": "2026-10-30 15:22:34 UTC",
+  "timestamp_ist": "2026-10-30 20:52:34 IST",
   "total_assets": 162,
   "assets": [
     {
@@ -10,7 +10,7 @@
       "display_name": "BTC",
       "category": "Crypto Major",
       "broker_symbol": "BTCUSD.pi",
-      "spread_bps": 4.65,
+      "spread_bps": 3.98,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "BTC_MASTER_DOSSIER.json"
@@ -20,7 +20,7 @@
       "display_name": "ETH",
       "category": "Crypto Major",
       "broker_symbol": "ETHUSD.pi",
-      "spread_bps": 16.93,
+      "spread_bps": 14.66,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "ETH_MASTER_DOSSIER.json"
@@ -30,9 +30,9 @@
       "display_name": "SOL",
       "category": "Crypto Major",
       "broker_symbol": "SOLUSD.p",
-      "spread_bps": 25.31,
-      "gate_status": "SPREAD_DISQUALIFIED",
-      "posture": "STAND_ASIDE_MONITOR",
+      "spread_bps": 24.09,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "SOL_MASTER_DOSSIER.json"
     },
     {
@@ -40,7 +40,7 @@
       "display_name": "XRP",
       "category": "Crypto Major",
       "broker_symbol": "XRPUSD.pi",
-      "spread_bps": 40.05,
+      "spread_bps": 39.76,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XRP_MASTER_DOSSIER.json"
@@ -50,7 +50,7 @@
       "display_name": "BNB",
       "category": "Crypto Major",
       "broker_symbol": "BNBUSD.p",
-      "spread_bps": 45.62,
+      "spread_bps": 59.66,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "BNB_MASTER_DOSSIER.json"
@@ -60,7 +60,7 @@
       "display_name": "DOGE",
       "category": "Crypto Meme",
       "broker_symbol": "DOGUSD.p",
-      "spread_bps": 276.13,
+      "spread_bps": 287.96,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "DOGE_MASTER_DOSSIER.json"
@@ -70,7 +70,7 @@
       "display_name": "ADA",
       "category": "Crypto Alt L1",
       "broker_symbol": "ADAUSD.p",
-      "spread_bps": 119.14,
+      "spread_bps": 113.4,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ADA_MASTER_DOSSIER.json"
@@ -80,7 +80,7 @@
       "display_name": "TRX",
       "category": "Crypto Alt L1",
       "broker_symbol": "TRXUSD.p",
-      "spread_bps": 83.23,
+      "spread_bps": 71.28,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "TRX_MASTER_DOSSIER.json"
@@ -90,7 +90,7 @@
       "display_name": "LINK",
       "category": "Crypto DeFi",
       "broker_symbol": "LNKUSD.p",
-      "spread_bps": 76.87,
+      "spread_bps": 77.44,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "LINK_MASTER_DOSSIER.json"
@@ -100,7 +100,7 @@
       "display_name": "AVAX",
       "category": "Crypto Alt L1",
       "broker_symbol": "AVXUSD.p",
-      "spread_bps": 35.99,
+      "spread_bps": 47.56,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AVAX_MASTER_DOSSIER.json"
@@ -120,7 +120,7 @@
       "display_name": "NEAR",
       "category": "Crypto Alt L1",
       "broker_symbol": "NERUSD.p",
-      "spread_bps": 71.14,
+      "spread_bps": 68.1,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NEAR_MASTER_DOSSIER.json"
@@ -130,7 +130,7 @@
       "display_name": "DOT",
       "category": "Crypto Alt L1",
       "broker_symbol": "DOTUSD.pi",
-      "spread_bps": 210.08,
+      "spread_bps": 218.18,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "DOT_MASTER_DOSSIER.json"
@@ -140,7 +140,7 @@
       "display_name": "LTC",
       "category": "Crypto PoW",
       "broker_symbol": "LTCUSD.pi",
-      "spread_bps": 53.93,
+      "spread_bps": 53.7,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "LTC_MASTER_DOSSIER.json"
@@ -150,7 +150,7 @@
       "display_name": "BCH",
       "category": "Crypto PoW",
       "broker_symbol": "BCHUSD.p",
-      "spread_bps": 33.74,
+      "spread_bps": 29.72,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "BCH_MASTER_DOSSIER.json"
@@ -220,7 +220,7 @@
       "display_name": "XAGUSD",
       "category": "Precious Metal",
       "broker_symbol": "XAGUSD.pi",
-      "spread_bps": 11.71,
+      "spread_bps": 11.76,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XAGUSD_MASTER_DOSSIER.json"
@@ -230,7 +230,7 @@
       "display_name": "USWTI",
       "category": "Energy Commodity",
       "broker_symbol": "USWTI.p",
-      "spread_bps": 2.87,
+      "spread_bps": 2.86,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "USWTI_MASTER_DOSSIER.json"
@@ -240,7 +240,7 @@
       "display_name": "UKBRENT",
       "category": "Energy Commodity",
       "broker_symbol": "UKBRENT.p",
-      "spread_bps": 3.22,
+      "spread_bps": 3.3,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "UKBRENT_MASTER_DOSSIER.json"
@@ -260,7 +260,7 @@
       "display_name": "GBPUSD",
       "category": "FX Major",
       "broker_symbol": "GBPUSD.pi",
-      "spread_bps": 0.15,
+      "spread_bps": 0.07,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "GBPUSD_MASTER_DOSSIER.json"
@@ -270,7 +270,7 @@
       "display_name": "USDJPY",
       "category": "FX Major",
       "broker_symbol": "USDJPY.pi",
-      "spread_bps": 0.13,
+      "spread_bps": 0.06,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "USDJPY_MASTER_DOSSIER.json"
@@ -310,7 +310,7 @@
       "display_name": "NZDUSD",
       "category": "FX Major",
       "broker_symbol": "NZDUSD.pi",
-      "spread_bps": 0.18,
+      "spread_bps": 0.35,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NZDUSD_MASTER_DOSSIER.json"
@@ -330,7 +330,7 @@
       "display_name": "EURJPY",
       "category": "FX Cross",
       "broker_symbol": "EURJPY.pi",
-      "spread_bps": 0.29,
+      "spread_bps": 0.17,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURJPY_MASTER_DOSSIER.json"
@@ -340,7 +340,7 @@
       "display_name": "GBPJPY",
       "category": "FX Cross",
       "broker_symbol": "GBPJPY.pi",
-      "spread_bps": 0.57,
+      "spread_bps": 0.24,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPJPY_MASTER_DOSSIER.json"
@@ -390,7 +390,7 @@
       "display_name": "USDHKD",
       "category": "Forex Exotic",
       "broker_symbol": "USDHKD.pi",
-      "spread_bps": 1.68,
+      "spread_bps": 0.11,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDHKD_MASTER_DOSSIER.json"
@@ -400,7 +400,7 @@
       "display_name": "USDCNH",
       "category": "Forex Exotic",
       "broker_symbol": "USDCNH.pi",
-      "spread_bps": 0.02,
+      "spread_bps": 0.05,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDCNH_MASTER_DOSSIER.json"
@@ -410,7 +410,7 @@
       "display_name": "GBPHKD",
       "category": "Forex Exotic",
       "broker_symbol": "GBPHKD.pi",
-      "spread_bps": 0.24,
+      "spread_bps": 0.16,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPHKD_MASTER_DOSSIER.json"
@@ -420,7 +420,7 @@
       "display_name": "EURHKD",
       "category": "Forex Exotic",
       "broker_symbol": "EURHKD.pi",
-      "spread_bps": 0.18,
+      "spread_bps": 0.17,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURHKD_MASTER_DOSSIER.json"
@@ -430,7 +430,7 @@
       "display_name": "USDSGD",
       "category": "Forex Exotic",
       "broker_symbol": "USDSGD.pi",
-      "spread_bps": 0.55,
+      "spread_bps": 0.31,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDSGD_MASTER_DOSSIER.json"
@@ -440,7 +440,7 @@
       "display_name": "AUDJPY",
       "category": "Forex Cross",
       "broker_symbol": "AUDJPY.pi",
-      "spread_bps": 0.18,
+      "spread_bps": 0.36,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDJPY_MASTER_DOSSIER.json"
@@ -450,7 +450,7 @@
       "display_name": "AUDCAD",
       "category": "Forex Cross",
       "broker_symbol": "AUDCAD.pi",
-      "spread_bps": 0.1,
+      "spread_bps": 0.31,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDCAD_MASTER_DOSSIER.json"
@@ -460,7 +460,7 @@
       "display_name": "GBPCNH",
       "category": "Forex Exotic",
       "broker_symbol": "GBPCNH.pi",
-      "spread_bps": 0.52,
+      "spread_bps": 0.38,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPCNH_MASTER_DOSSIER.json"
@@ -470,7 +470,7 @@
       "display_name": "GBPAUD",
       "category": "Forex Cross",
       "broker_symbol": "GBPAUD.pi",
-      "spread_bps": 0.26,
+      "spread_bps": 0.32,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPAUD_MASTER_DOSSIER.json"
@@ -490,7 +490,7 @@
       "display_name": "EURAUD",
       "category": "Forex Cross",
       "broker_symbol": "EURAUD.pi",
-      "spread_bps": 0.25,
+      "spread_bps": 0.44,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURAUD_MASTER_DOSSIER.json"
@@ -500,7 +500,7 @@
       "display_name": "GBPNZD",
       "category": "Forex Cross",
       "broker_symbol": "GBPNZD.pi",
-      "spread_bps": 0.5,
+      "spread_bps": 0.63,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPNZD_MASTER_DOSSIER.json"
@@ -510,7 +510,7 @@
       "display_name": "CHFJPY",
       "category": "Forex Cross",
       "broker_symbol": "CHFJPY.pi",
-      "spread_bps": 0.47,
+      "spread_bps": 0.37,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CHFJPY_MASTER_DOSSIER.json"
@@ -520,7 +520,7 @@
       "display_name": "GBPCAD",
       "category": "Forex Cross",
       "broker_symbol": "GBPCAD.pi",
-      "spread_bps": 0.32,
+      "spread_bps": 0.21,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPCAD_MASTER_DOSSIER.json"
@@ -530,7 +530,7 @@
       "display_name": "EURCAD",
       "category": "Forex Cross",
       "broker_symbol": "EURCAD.pi",
-      "spread_bps": 0.32,
+      "spread_bps": 0.39,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURCAD_MASTER_DOSSIER.json"
@@ -540,7 +540,7 @@
       "display_name": "AUDCHF",
       "category": "Forex Cross",
       "broker_symbol": "AUDCHF.pi",
-      "spread_bps": 0.34,
+      "spread_bps": 0.52,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDCHF_MASTER_DOSSIER.json"
@@ -550,7 +550,7 @@
       "display_name": "NZDCNH",
       "category": "Forex Exotic",
       "broker_symbol": "NZDCNH.pi",
-      "spread_bps": 0.45,
+      "spread_bps": 0.56,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NZDCNH_MASTER_DOSSIER.json"
@@ -560,7 +560,7 @@
       "display_name": "AUDSGD",
       "category": "Forex Exotic",
       "broker_symbol": "AUDSGD.pi",
-      "spread_bps": 0.33,
+      "spread_bps": 0.44,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDSGD_MASTER_DOSSIER.json"
@@ -580,7 +580,7 @@
       "display_name": "GAUUSD",
       "category": "Forex Cross",
       "broker_symbol": "GAUUSD.pi",
-      "spread_bps": 0.68,
+      "spread_bps": 0.41,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GAUUSD_MASTER_DOSSIER.json"
@@ -590,7 +590,7 @@
       "display_name": "NZDCHF",
       "category": "Forex Cross",
       "broker_symbol": "NZDCHF.pi",
-      "spread_bps": 0.65,
+      "spread_bps": 0.86,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NZDCHF_MASTER_DOSSIER.json"
@@ -600,7 +600,7 @@
       "display_name": "XAUGBP",
       "category": "Forex Cross",
       "broker_symbol": "XAUGBP.pi",
-      "spread_bps": 0.75,
+      "spread_bps": 0.65,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUGBP_MASTER_DOSSIER.json"
@@ -620,7 +620,7 @@
       "display_name": "CADJPY",
       "category": "Forex Cross",
       "broker_symbol": "CADJPY.pi",
-      "spread_bps": 1.07,
+      "spread_bps": 0.98,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CADJPY_MASTER_DOSSIER.json"
@@ -630,7 +630,7 @@
       "display_name": "CHFSGD",
       "category": "Forex Exotic",
       "broker_symbol": "CHFSGD.pi",
-      "spread_bps": 0.71,
+      "spread_bps": 0.65,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CHFSGD_MASTER_DOSSIER.json"
@@ -640,7 +640,7 @@
       "display_name": "AUDNZD",
       "category": "Forex Cross",
       "broker_symbol": "AUDNZD.pi",
-      "spread_bps": 0.56,
+      "spread_bps": 0.88,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDNZD_MASTER_DOSSIER.json"
@@ -650,7 +650,7 @@
       "display_name": "USDSEK",
       "category": "Forex Exotic",
       "broker_symbol": "USDSEK.pi",
-      "spread_bps": 1.2,
+      "spread_bps": 0.75,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDSEK_MASTER_DOSSIER.json"
@@ -660,7 +660,7 @@
       "display_name": "XAUAUD",
       "category": "Forex Cross",
       "broker_symbol": "XAUAUD.pi",
-      "spread_bps": 0.58,
+      "spread_bps": 0.74,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUAUD_MASTER_DOSSIER.json"
@@ -680,7 +680,7 @@
       "display_name": "EURNZD",
       "category": "Forex Cross",
       "broker_symbol": "EURNZD.pi",
-      "spread_bps": 0.66,
+      "spread_bps": 0.81,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURNZD_MASTER_DOSSIER.json"
@@ -690,7 +690,7 @@
       "display_name": "EURCNH",
       "category": "Forex Exotic",
       "broker_symbol": "EURCNH.pi",
-      "spread_bps": 0.7,
+      "spread_bps": 0.65,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURCNH_MASTER_DOSSIER.json"
@@ -700,7 +700,7 @@
       "display_name": "XAUCNH",
       "category": "Forex Exotic",
       "broker_symbol": "XAUCNH.pi",
-      "spread_bps": 0.73,
+      "spread_bps": 0.67,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XAUCNH_MASTER_DOSSIER.json"
@@ -710,7 +710,7 @@
       "display_name": "SGDJPY",
       "category": "Forex Exotic",
       "broker_symbol": "SGDJPY.pi",
-      "spread_bps": 0.98,
+      "spread_bps": 0.81,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "SGDJPY_MASTER_DOSSIER.json"
@@ -720,7 +720,7 @@
       "display_name": "NZDSGD",
       "category": "Forex Exotic",
       "broker_symbol": "NZDSGD.pi",
-      "spread_bps": 0.97,
+      "spread_bps": 1.39,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NZDSGD_MASTER_DOSSIER.json"
@@ -750,7 +750,7 @@
       "display_name": "GBPSGD",
       "category": "Forex Exotic",
       "broker_symbol": "GBPSGD.pi",
-      "spread_bps": 0.53,
+      "spread_bps": 0.41,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPSGD_MASTER_DOSSIER.json"
@@ -760,7 +760,7 @@
       "display_name": "XAUSGD",
       "category": "Forex Exotic",
       "broker_symbol": "XAUSGD.pi",
-      "spread_bps": 0.72,
+      "spread_bps": 0.6,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAUSGD_MASTER_DOSSIER.json"
@@ -780,7 +780,7 @@
       "display_name": "NZDCAD",
       "category": "Forex Cross",
       "broker_symbol": "NZDCAD.pi",
-      "spread_bps": 0.38,
+      "spread_bps": 0.51,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NZDCAD_MASTER_DOSSIER.json"
@@ -790,7 +790,7 @@
       "display_name": "GBPSEK",
       "category": "Forex Exotic",
       "broker_symbol": "GBPSEK.pi",
-      "spread_bps": 1.62,
+      "spread_bps": 1.06,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPSEK_MASTER_DOSSIER.json"
@@ -810,7 +810,7 @@
       "display_name": "EURSEK",
       "category": "Forex Exotic",
       "broker_symbol": "EURSEK.pi",
-      "spread_bps": 0.91,
+      "spread_bps": 1.02,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURSEK_MASTER_DOSSIER.json"
@@ -860,7 +860,7 @@
       "display_name": "USDNOK",
       "category": "Forex Exotic",
       "broker_symbol": "USDNOK.pi",
-      "spread_bps": 1.65,
+      "spread_bps": 1.51,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDNOK_MASTER_DOSSIER.json"
@@ -870,7 +870,7 @@
       "display_name": "EURNOK",
       "category": "Forex Exotic",
       "broker_symbol": "EURNOK.pi",
-      "spread_bps": 1.24,
+      "spread_bps": 1.56,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURNOK_MASTER_DOSSIER.json"
@@ -880,7 +880,7 @@
       "display_name": "USDMXN",
       "category": "Forex Exotic",
       "broker_symbol": "USDMXN.pi",
-      "spread_bps": 1.35,
+      "spread_bps": 0.86,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDMXN_MASTER_DOSSIER.json"
@@ -890,7 +890,7 @@
       "display_name": "USDZAR",
       "category": "Forex Exotic",
       "broker_symbol": "USDZAR.pi",
-      "spread_bps": 1.4,
+      "spread_bps": 1.04,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "USDZAR_MASTER_DOSSIER.json"
@@ -900,7 +900,7 @@
       "display_name": "GBPNOK",
       "category": "Forex Exotic",
       "broker_symbol": "GBPNOK.pi",
-      "spread_bps": 2.16,
+      "spread_bps": 1.82,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GBPNOK_MASTER_DOSSIER.json"
@@ -910,7 +910,7 @@
       "display_name": "EURZAR",
       "category": "Forex Exotic",
       "broker_symbol": "EURZAR.pi",
-      "spread_bps": 2.35,
+      "spread_bps": 2.05,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURZAR_MASTER_DOSSIER.json"
@@ -920,7 +920,7 @@
       "display_name": "EURMXN",
       "category": "Forex Exotic",
       "broker_symbol": "EURMXN.pi",
-      "spread_bps": 1.8,
+      "spread_bps": 1.32,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURMXN_MASTER_DOSSIER.json"
@@ -930,7 +930,7 @@
       "display_name": "STOXX50",
       "category": "Equity Index",
       "broker_symbol": "STOXX50.p",
-      "spread_bps": 2.6,
+      "spread_bps": 2.61,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "STOXX50_MASTER_DOSSIER.json"
@@ -950,7 +950,7 @@
       "display_name": "AUDCNH",
       "category": "Forex Exotic",
       "broker_symbol": "AUDCNH.pi",
-      "spread_bps": 2.5,
+      "spread_bps": 2.59,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AUDCNH_MASTER_DOSSIER.json"
@@ -970,7 +970,7 @@
       "display_name": "NOKSEK",
       "category": "Forex Exotic",
       "broker_symbol": "NOKSEK.pi",
-      "spread_bps": 2.06,
+      "spread_bps": 1.87,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NOKSEK_MASTER_DOSSIER.json"
@@ -1000,7 +1000,7 @@
       "display_name": "XAGSGD",
       "category": "Forex Exotic",
       "broker_symbol": "XAGSGD.pi",
-      "spread_bps": 1.58,
+      "spread_bps": 1.9,
       "gate_status": "PASS",
       "posture": "PASSIVE_MAKER_LIMIT_ARMED",
       "json_file": "XAGSGD_MASTER_DOSSIER.json"
@@ -1020,7 +1020,7 @@
       "display_name": "ZARJPY",
       "category": "Forex Exotic",
       "broker_symbol": "ZARJPY.pi",
-      "spread_bps": 3.42,
+      "spread_bps": 3.29,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ZARJPY_MASTER_DOSSIER.json"
@@ -1040,7 +1040,7 @@
       "display_name": "COPPER",
       "category": "Base Metal",
       "broker_symbol": "COPPER.p",
-      "spread_bps": 5.7,
+      "spread_bps": 5.67,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "COPPER_MASTER_DOSSIER.json"
@@ -1050,7 +1050,7 @@
       "display_name": "XMRUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "XMRUSD.p",
-      "spread_bps": 7.51,
+      "spread_bps": 2.99,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XMRUSD_MASTER_DOSSIER.json"
@@ -1070,7 +1070,7 @@
       "display_name": "ZECUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ZECUSD.p",
-      "spread_bps": 9.73,
+      "spread_bps": 7.32,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ZECUSD_MASTER_DOSSIER.json"
@@ -1080,7 +1080,7 @@
       "display_name": "DSHUSD",
       "category": "Forex Cross",
       "broker_symbol": "DSHUSD.p",
-      "spread_bps": 11.34,
+      "spread_bps": 14.25,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "DSHUSD_MASTER_DOSSIER.json"
@@ -1090,7 +1090,7 @@
       "display_name": "YFIUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "YFIUSD.p",
-      "spread_bps": 16.78,
+      "spread_bps": 16.59,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "YFIUSD_MASTER_DOSSIER.json"
@@ -1100,7 +1100,7 @@
       "display_name": "XLMUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "XLMUSD.p",
-      "spread_bps": 22.62,
+      "spread_bps": 23.56,
       "gate_status": "PASS",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XLMUSD_MASTER_DOSSIER.json"
@@ -1110,7 +1110,7 @@
       "display_name": "AVEUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "AVEUSD.p",
-      "spread_bps": 25.24,
+      "spread_bps": 26.72,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AVEUSD_MASTER_DOSSIER.json"
@@ -1120,7 +1120,7 @@
       "display_name": "NOKJPY",
       "category": "Forex Exotic",
       "broker_symbol": "NOKJPY.pi",
-      "spread_bps": 5.28,
+      "spread_bps": 7.62,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NOKJPY_MASTER_DOSSIER.json"
@@ -1150,7 +1150,7 @@
       "display_name": "XAGAUD",
       "category": "Forex Cross",
       "broker_symbol": "XAGAUD.pi",
-      "spread_bps": 5.25,
+      "spread_bps": 5.85,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XAGAUD_MASTER_DOSSIER.json"
@@ -1170,7 +1170,7 @@
       "display_name": "XAGEUR",
       "category": "Forex Cross",
       "broker_symbol": "XAGEUR.pi",
-      "spread_bps": 5.63,
+      "spread_bps": 5.88,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XAGEUR_MASTER_DOSSIER.json"
@@ -1180,7 +1180,7 @@
       "display_name": "XPTUSD",
       "category": "Forex Cross",
       "broker_symbol": "XPTUSD.pi",
-      "spread_bps": 39.53,
+      "spread_bps": 38.36,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XPTUSD_MASTER_DOSSIER.json"
@@ -1190,7 +1190,7 @@
       "display_name": "EURHUF",
       "category": "Forex Exotic",
       "broker_symbol": "EURHUF.pi",
-      "spread_bps": 8.15,
+      "spread_bps": 15.7,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EURHUF_MASTER_DOSSIER.json"
@@ -1210,7 +1210,7 @@
       "display_name": "LEAD",
       "category": "Base Metal",
       "broker_symbol": "LEAD.p",
-      "spread_bps": 24.58,
+      "spread_bps": 24.59,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "LEAD_MASTER_DOSSIER.json"
@@ -1220,7 +1220,7 @@
       "display_name": "CHINAH",
       "category": "Equity Index",
       "broker_symbol": "CHINAH.p",
-      "spread_bps": 25.29,
+      "spread_bps": 25.3,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CHINAH_MASTER_DOSSIER.json"
@@ -1230,7 +1230,7 @@
       "display_name": "BARUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "BARUSD.p",
-      "spread_bps": 33.43,
+      "spread_bps": 31.86,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "BARUSD_MASTER_DOSSIER.json"
@@ -1240,7 +1240,7 @@
       "display_name": "UNIUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "UNIUSD.p",
-      "spread_bps": 36.95,
+      "spread_bps": 35.3,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "UNIUSD_MASTER_DOSSIER.json"
@@ -1250,7 +1250,7 @@
       "display_name": "XPDUSD",
       "category": "Forex Cross",
       "broker_symbol": "XPDUSD.pi",
-      "spread_bps": 29.37,
+      "spread_bps": 26.32,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XPDUSD_MASTER_DOSSIER.json"
@@ -1260,7 +1260,7 @@
       "display_name": "VETUSD",
       "category": "Forex Cross",
       "broker_symbol": "VETUSD.p",
-      "spread_bps": 34.25,
+      "spread_bps": 33.9,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "VETUSD_MASTER_DOSSIER.json"
@@ -1270,7 +1270,7 @@
       "display_name": "ARWUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ARWUSD.p",
-      "spread_bps": 65.92,
+      "spread_bps": 68.62,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ARWUSD_MASTER_DOSSIER.json"
@@ -1280,7 +1280,7 @@
       "display_name": "GAS",
       "category": "Energy / Commodity",
       "broker_symbol": "GAS.p",
-      "spread_bps": 38.73,
+      "spread_bps": 38.45,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GAS_MASTER_DOSSIER.json"
@@ -1290,7 +1290,7 @@
       "display_name": "GRTUSD",
       "category": "Forex Cross",
       "broker_symbol": "GRTUSD.p",
-      "spread_bps": 107.84,
+      "spread_bps": 106.95,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "GRTUSD_MASTER_DOSSIER.json"
@@ -1300,7 +1300,7 @@
       "display_name": "NEOUSD",
       "category": "Forex Cross",
       "broker_symbol": "NEOUSD.p",
-      "spread_bps": 126.61,
+      "spread_bps": 125.53,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "NEOUSD_MASTER_DOSSIER.json"
@@ -1310,7 +1310,7 @@
       "display_name": "COMUSD",
       "category": "Forex Cross",
       "broker_symbol": "COMUSD.p",
-      "spread_bps": 147.2,
+      "spread_bps": 146.13,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "COMUSD_MASTER_DOSSIER.json"
@@ -1320,7 +1320,7 @@
       "display_name": "ATMUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ATMUSD.p",
-      "spread_bps": 144.36,
+      "spread_bps": 156.66,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ATMUSD_MASTER_DOSSIER.json"
@@ -1330,7 +1330,7 @@
       "display_name": "THTUSD",
       "category": "Forex Cross",
       "broker_symbol": "THTUSD.p",
-      "spread_bps": 158.38,
+      "spread_bps": 157.18,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "THTUSD_MASTER_DOSSIER.json"
@@ -1340,7 +1340,7 @@
       "display_name": "BATUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "BATUSD.p",
-      "spread_bps": 162.35,
+      "spread_bps": 168.71,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "BATUSD_MASTER_DOSSIER.json"
@@ -1350,7 +1350,7 @@
       "display_name": "XTZUSD",
       "category": "Forex Cross",
       "broker_symbol": "XTZUSD.p",
-      "spread_bps": 140.52,
+      "spread_bps": 147.34,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XTZUSD_MASTER_DOSSIER.json"
@@ -1360,7 +1360,7 @@
       "display_name": "ZRXUSD",
       "category": "Forex Cross",
       "broker_symbol": "ZRXUSD.p",
-      "spread_bps": 127.39,
+      "spread_bps": 126.32,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ZRXUSD_MASTER_DOSSIER.json"
@@ -1370,7 +1370,7 @@
       "display_name": "ALGUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ALGUSD.p",
-      "spread_bps": 241.47,
+      "spread_bps": 240.21,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ALGUSD_MASTER_DOSSIER.json"
@@ -1380,7 +1380,7 @@
       "display_name": "QTMUSD",
       "category": "Forex Cross",
       "broker_symbol": "QTMUSD.p",
-      "spread_bps": 280.61,
+      "spread_bps": 278.48,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "QTMUSD_MASTER_DOSSIER.json"
@@ -1390,7 +1390,7 @@
       "display_name": "MANUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "MANUSD.p",
-      "spread_bps": 286.69,
+      "spread_bps": 283.59,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "MANUSD_MASTER_DOSSIER.json"
@@ -1400,7 +1400,7 @@
       "display_name": "KAVUSD",
       "category": "Forex Cross",
       "broker_symbol": "KAVUSD.p",
-      "spread_bps": 303.25,
+      "spread_bps": 288.6,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "KAVUSD_MASTER_DOSSIER.json"
@@ -1410,7 +1410,7 @@
       "display_name": "CHZUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "CHZUSD.p",
-      "spread_bps": 329.19,
+      "spread_bps": 326.3,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CHZUSD_MASTER_DOSSIER.json"
@@ -1420,7 +1420,7 @@
       "display_name": "INCUSD",
       "category": "Forex Cross",
       "broker_symbol": "INCUSD.p",
-      "spread_bps": 356.69,
+      "spread_bps": 354.43,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "INCUSD_MASTER_DOSSIER.json"
@@ -1440,7 +1440,7 @@
       "display_name": "ONTUSD",
       "category": "Forex Cross",
       "broker_symbol": "ONTUSD.p",
-      "spread_bps": 446.33,
+      "spread_bps": 442.57,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ONTUSD_MASTER_DOSSIER.json"
@@ -1450,7 +1450,7 @@
       "display_name": "FILUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "FILUSD.p",
-      "spread_bps": 460.83,
+      "spread_bps": 456.62,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "FILUSD_MASTER_DOSSIER.json"
@@ -1460,7 +1460,7 @@
       "display_name": "SNDUSD",
       "category": "Forex Cross",
       "broker_symbol": "SNDUSD.p",
-      "spread_bps": 476.19,
+      "spread_bps": 473.12,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "SNDUSD_MASTER_DOSSIER.json"
@@ -1470,7 +1470,7 @@
       "display_name": "SKLUSD",
       "category": "Forex Cross",
       "broker_symbol": "SKLUSD.p",
-      "spread_bps": 540.54,
+      "spread_bps": 507.61,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "SKLUSD_MASTER_DOSSIER.json"
@@ -1480,7 +1480,7 @@
       "display_name": "KSMUSD",
       "category": "Forex Cross",
       "broker_symbol": "KSMUSD.p",
-      "spread_bps": 566.57,
+      "spread_bps": 589.06,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "KSMUSD_MASTER_DOSSIER.json"
@@ -1490,7 +1490,7 @@
       "display_name": "IOTUSD",
       "category": "Forex Cross",
       "broker_symbol": "IOTUSD.p",
-      "spread_bps": 558.38,
+      "spread_bps": 580.08,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "IOTUSD_MASTER_DOSSIER.json"
@@ -1500,7 +1500,7 @@
       "display_name": "EGLUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "EGLUSD.p",
-      "spread_bps": 637.33,
+      "spread_bps": 602.41,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "EGLUSD_MASTER_DOSSIER.json"
@@ -1520,7 +1520,7 @@
       "display_name": "CRVUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "CRVUSD.p",
-      "spread_bps": 761.25,
+      "spread_bps": 758.62,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CRVUSD_MASTER_DOSSIER.json"
@@ -1530,7 +1530,7 @@
       "display_name": "ENJUSD",
       "category": "Forex Cross",
       "broker_symbol": "ENJUSD.p",
-      "spread_bps": 851.06,
+      "spread_bps": 840.34,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ENJUSD_MASTER_DOSSIER.json"
@@ -1550,7 +1550,7 @@
       "display_name": "SNXUSD",
       "category": "Forex Cross",
       "broker_symbol": "SNXUSD.p",
-      "spread_bps": 1081.08,
+      "spread_bps": 1069.52,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "SNXUSD_MASTER_DOSSIER.json"
@@ -1560,7 +1560,7 @@
       "display_name": "ZILUSD",
       "category": "Forex Cross",
       "broker_symbol": "ZILUSD.p",
-      "spread_bps": 515.46,
+      "spread_bps": 562.66,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "ZILUSD_MASTER_DOSSIER.json"
@@ -1570,7 +1570,7 @@
       "display_name": "XSIUSD",
       "category": "Forex Cross",
       "broker_symbol": "XSIUSD.p",
-      "spread_bps": 621.76,
+      "spread_bps": 618.56,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "XSIUSD_MASTER_DOSSIER.json"
@@ -1580,7 +1580,7 @@
       "display_name": "CHRUSD",
       "category": "Forex Cross",
       "broker_symbol": "CHRUSD.p",
-      "spread_bps": 1316.61,
+      "spread_bps": 1234.57,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "CHRUSD_MASTER_DOSSIER.json"
@@ -1600,7 +1600,7 @@
       "display_name": "KNCUSD",
       "category": "Forex Cross",
       "broker_symbol": "KNCUSD.p",
-      "spread_bps": 1666.67,
+      "spread_bps": 1652.89,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "KNCUSD_MASTER_DOSSIER.json"
@@ -1610,7 +1610,7 @@
       "display_name": "AXSUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "AXSUSD.p",
-      "spread_bps": 2298.85,
+      "spread_bps": 2272.73,
       "gate_status": "SPREAD_DISQUALIFIED",
       "posture": "STAND_ASIDE_MONITOR",
       "json_file": "AXSUSD_MASTER_DOSSIER.json"

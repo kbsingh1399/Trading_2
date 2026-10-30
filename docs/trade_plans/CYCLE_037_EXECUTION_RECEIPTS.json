@@ -1,0 +1,44 @@
+[
+  {
+    "ticket": 19532055,
+    "symbol": "BTCUSD.pi",
+    "action": "BUY_LIMIT",
+    "volume": 0.01,
+    "price": 76350.0,
+    "sl": 75850.0,
+    "tp": 77600.0,
+    "retcode": 10009,
+    "nominal_risk_usd": 5.0,
+    "rr_ratio": 2.5,
+    "comment": "C35_BTC_2.5R_GVT",
+    "status": "ACTIVE_RESTING_ORDER"
+  },
+  {
+    "ticket": 19532058,
+    "symbol": "AVEUSD.p",
+    "action": "BUY_LIMIT",
+    "volume": 0.07,
+    "price": 122.5,
+    "sl": 121.2,
+    "tp": 125.75,
+    "retcode": 10009,
+    "nominal_risk_usd": 9.1,
+    "rr_ratio": 2.5,
+    "comment": "C35_AVE_2.5R_GVT",
+    "status": "ACTIVE_RESTING_ORDER"
+  },
+  {
+    "ticket": 19538626,
+    "symbol": "ETHUSD.pi",
+    "action": "BUY_LIMIT",
+    "volume": 0.10,
+    "price": 2170.0,
+    "sl": 2130.0,
+    "tp": 2270.0,
+    "retcode": 10009,
+    "nominal_risk_usd": 4.0,
+    "rr_ratio": 2.5,
+    "comment": "C37_ETH_2.5R_GVT",
+    "status": "ACTIVE_RESTING_ORDER"
+  }
+]

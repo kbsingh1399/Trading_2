@@ -25,7 +25,7 @@
     "margin_free": 4755.23,
     "margin_level": 0.0,
     "active_positions_count": 0,
-    "pending_orders_count": 2,
+    "pending_orders_count": 3,
     "active_positions": [],
     "pending_orders": [
       {
@@ -49,6 +49,17 @@
         "tp": 125.75,
         "risk_usd": 9.1,
         "rr_ratio": 2.5
+      },
+      {
+        "ticket": 19538626,
+        "symbol": "ETHUSD.pi",
+        "type": "BUY_LIMIT",
+        "volume": 0.1,
+        "price": 2170.0,
+        "sl": 2130.0,
+        "tp": 2270.0,
+        "risk_usd": 4.0,
+        "rr_ratio": 2.5
       }
     ]
   },
@@ -58,8 +69,8 @@
     "solvency_kernel_usd": 0.0,
     "base_capital_usd": 4763.23,
     "operator_floor_override": "MANDATE_NO_HARD_FLOOR_ACTIVE_TRADING",
-    "total_contingent_risk_usd": 14.1,
-    "post_joint_stress_equity_usd": 4741.13,
+    "total_contingent_risk_usd": 18.1,
+    "post_joint_stress_equity_usd": 4737.13,
     "capital_mode": "ACTIVE_HIGH_CONFLUENCE_OPERATION",
     "risk_min_usd": 1.0,
     "risk_max_usd": 10.0,
@@ -82,6 +93,6 @@
     "audited_count": 93,
     "multi_feed_pillars_checked": 15,
     "physical_examination_verdict": "APPROVED_FOR_BROKER_EXECUTION",
-    "staged_maker_limits_count": 2
+    "staged_maker_limits_count": 3
   }
 }

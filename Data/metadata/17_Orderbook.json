@@ -20,9 +20,9 @@
     "wallet_address",
     "explorer_url"
   ],
-  "byte_size": 30931,
-  "timestamp_ist": "2026-10-30 20:38:46 IST",
-  "timestamp_utc": "2026-10-30 15:08:46 UTC",
-  "epoch_utc": 1793372926.294237,
-  "write_duration_ms": 330.34
+  "byte_size": 30644,
+  "timestamp_ist": "2026-10-30 20:51:18 IST",
+  "timestamp_utc": "2026-10-30 15:21:18 UTC",
+  "epoch_utc": 1793373678.735781,
+  "write_duration_ms": 271.36
 }
