@@ -1,0 +1,26 @@
+{
+  "cycle_id": "Cycle_038",
+  "timestamp_ist": "2026-10-30 21:54:27 IST",
+  "timestamp_utc": "2026-10-30T16:24:27.426786+00:00",
+  "action": "ATOMIC_SLOT_SWAP_SIGNAL_ANCHORED",
+  "cancelled_order": {
+    "ticket": 19532058,
+    "symbol": "AVEUSD.p",
+    "retcode": 10009,
+    "comment": "Request executed"
+  },
+  "placed_order": {
+    "ticket": 19540859,
+    "symbol": "BCHUSD.p",
+    "type": "SELL_LIMIT",
+    "volume": 0.3,
+    "price": 294.48,
+    "sl": 297.68,
+    "tp": 286.48,
+    "risk_usd": 9.6,
+    "reward_usd": 24.0,
+    "rr": 2.5,
+    "retcode": 10009,
+    "comment": "Request executed"
+  }
+}
