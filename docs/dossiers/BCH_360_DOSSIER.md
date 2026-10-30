@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BCH
 **Canonical Key**: `BCH` | **Broker Instrument**: `BCHUSD.p` | **Asset Class**: `Crypto PoW`
-**Timestamp**: `2026-10-30 08:15:37 IST` (`2026-10-30 02:45:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:18:38 IST` (`2026-10-30 02:48:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1094,16 +1094,16 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `300.85M` | Total OI Tokens: `1,085,421.9 BCH`
-  * 1h OI Change: `+2.67%` | 4h OI Change: `+0.43%` | 24h OI Change: `-3.69%`
-  * Exchange Breakdown: Binance=`88.01M` | Bybit=`37.79M` | OKX=`23.79M` | Hyperliquid=`7.16M`
+  * Total Open Interest: `300.89M` | Total OI Tokens: `1,085,238.2 BCH`
+  * 1h OI Change: `+0.96%` | 4h OI Change: `+0.79%` | 24h OI Change: `-3.31%`
+  * Exchange Breakdown: Binance=`87.87M` | Bybit=`37.78M` | OKX=`23.70M` | Hyperliquid=`7.17M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `10.07K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
+  * Current Rate: `10.66K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0071%` |
-| **USDT Bybit** | `0.0009%` | **USDT KuCoin** | `0.0097%` |
+| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0076%` |
+| **USDT Bybit** | `0.0016%` | **USDT KuCoin** | `0.0093%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |

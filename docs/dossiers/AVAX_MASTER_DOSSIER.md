@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVAX
 **Canonical Key**: `AVAX` | **Broker Instrument**: `AVXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 08:15:37 IST` (`2026-10-30 02:45:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:18:38 IST` (`2026-10-30 02:48:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1528,18 +1528,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `345.82M` | Total OI Tokens: `41,570,521.0 AVAX`
-  * 1h OI Change: `+1.83%` | 4h OI Change: `-2.61%` | 24h OI Change: `-8.78%`
-  * Exchange Breakdown: Binance=`80.10M` | Bybit=`56.96M` | OKX=`11.42M` | Hyperliquid=`16.23M`
+  * Total Open Interest: `347.41M` | Total OI Tokens: `41,641,689.4 AVAX`
+  * 1h OI Change: `+2.02%` | 4h OI Change: `-2.07%` | 24h OI Change: `-7.65%`
+  * Exchange Breakdown: Binance=`80.24M` | Bybit=`57.11M` | OKX=`11.49M` | Hyperliquid=`16.22M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-5.49K` | Last 24h: `18.18K` | Last 3d: `59.53K` | Last 7d: `106.20K`
+  * Current Rate: `-5.95K` | Last 24h: `18.18K` | Last 3d: `59.53K` | Last 7d: `106.20K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0050%` | **USDT OKX** | `0.0060%` |
-| **USDT Bybit** | `-0.0185%` | **USDT KuCoin** | `0.0061%` |
-| **USDT MEXC** | `0.0050%` | **USDT BingX** | `0.0058%` |
-| **USDT Gate** | `0.0012%` | **USDT Bitget** | `-0.0015%` |
+| **USDT Binance** | `0.0048%` | **USDT OKX** | `0.0063%` |
+| **USDT Bybit** | `-0.0187%` | **USDT KuCoin** | `0.0083%` |
+| **USDT MEXC** | `0.0047%` | **USDT BingX** | `0.0060%` |
+| **USDT Gate** | `0.0013%` | **USDT Bitget** | `-0.0015%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
