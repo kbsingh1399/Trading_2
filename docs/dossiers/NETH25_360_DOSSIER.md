@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NETH25
 **Canonical Key**: `NETH25` | **Broker Instrument**: `NETH25.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:44:31 IST` (`2026-10-30 06:14:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1139.73` (Distance: `-0.23%`)
+  * Value Area High (VAH) = `1139.68` (Distance: `-0.23%`)
   * Point of Control (POC) = `1136.70` (Distance: `+0.04%`)
   * Value Area Low (VAL) = `1135.42` (Distance: `+0.15%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`4.21 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `1139.73` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1142.10` (Risk Distance: `2.37` pts)
-  * +2.5R Take Profit: `1133.80`
+  * Execution Entry: `1139.68` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `1142.05` (Risk Distance: `2.37` pts)
+  * +2.5R Take Profit: `1133.75`
   * Mathematical Lot Sizing: **`4.21 lots`** (Nominal Risk = `0.10 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: COPPER
 **Canonical Key**: `COPPER` | **Broker Instrument**: `COPPER.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:44:31 IST` (`2026-10-30 06:14:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `14343.45` | **Live Ask Quote**: `14358.00` | **Mid Price**: `14350.73`
-- **Spread Points**: `14550.00` | **Spread BPS**: `10.14 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `14328.50` | **Live Ask Quote**: `14343.05` | **Mid Price**: `14335.77`
+- **Spread Points**: `14550.00` | **Spread BPS**: `10.15 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `14354.84` (Distance: `-0.03%`)
-  * Point of Control (POC) = `14341.88` (Distance: `+0.06%`)
-  * Value Area Low (VAL) = `14318.66` (Distance: `+0.22%`)
+  * Value Area High (VAH) = `14353.76` (Distance: `-0.12%`)
+  * Point of Control (POC) = `14339.72` (Distance: `-0.02%`)
+  * Value Area Low (VAL) = `14318.66` (Distance: `+0.13%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`14387.09` | POC=`14357.38` | VAL=`14290.88`
@@ -56,12 +56,12 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`14356.65` | Low=`14290.85`
   * London Session (08:00-16:00 UTC): High=`14371.85` | Low=`14311.50`
-  * New York Session (13:00-21:00 UTC): High=`14436.83` | Low=`14264.62`
+  * New York Session (13:00-21:00 UTC): High=`14421.79` | Low=`14249.76`
   * Initial Balance (First Hour): IB High=`14371.85` | IB Low=`14311.50`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `14293.32` - `14408.13`
-  * Optimal Trade Entry (OTE 0.705): `14379.43`
-  * Structural Invalidation Anchor (0.786): `14465.53`
+  * Golden Pocket Zone (0.618 - 0.650): `14278.43` - `14393.12`
+  * Optimal Trade Entry (OTE 0.705): `14364.45`
+  * Structural Invalidation Anchor (0.786): `14450.46`
 
 ---
 
@@ -273,12 +273,12 @@
   * Mathematical Lot Sizing: **`0.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `14354.84` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `14404.08` (Risk Distance: `49.24` pts)
-  * +2.5R Take Profit: `14231.73`
+  * Execution Entry: `14353.76` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `14403.00` (Risk Distance: `49.24` pts)
+  * +2.5R Take Profit: `14230.65`
   * Mathematical Lot Sizing: **`0.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14465.53`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`14450.46`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:44:31 IST` (`2026-10-30 06:14:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -133,15 +133,15 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `0.3045` | 13,520.00 USD | 0.00 USD | 290.49 USD | `-64.13%` | `954.00` |
-| `Live` | `Long` | `0.4365` | 13,230.00 USD | 0.00 USD | 290.71 USD | `-48.58%` | `666.00` |
-| `Live` | `Long` | `0.5225` | 12,940.00 USD | 0.00 USD | 1,180.00 USD | `-38.45%` | `2,259.30` |
-| `Live` | `Long` | `0.6315` | 11,760.00 USD | 0.00 USD | 330.27 USD | `-25.61%` | `523.00` |
-| `Live` | `Long` | `0.7325` | 11,430.00 USD | 0.00 USD | 5,830.00 USD | `-13.71%` | `7,955.00` |
-| `Live` | `Long` | `0.7365` | 5,600.00 USD | 0.00 USD | 136.62 USD | `-13.24%` | `185.50` |
-| `Live` | `Long` | `0.7975` | 5,460.00 USD | 0.00 USD | 5,330.00 USD | `-6.05%` | `6,689.50` |
-| `Live` | `Long` | `0.8085` | 128.55 USD | 0.00 USD | 128.55 USD | `-4.75%` | `159.00` |
-| `Live` | `Short` | `0.9035` | 924.46 USD | 924.46 USD | 0.00 USD | `+6.44%` | `1,023.20` |
+| `Live` | `Long` | `0.3045` | 13,520.00 USD | 0.00 USD | 290.49 USD | `-64.14%` | `954.00` |
+| `Live` | `Long` | `0.4365` | 13,230.00 USD | 0.00 USD | 290.71 USD | `-48.59%` | `666.00` |
+| `Live` | `Long` | `0.5225` | 12,940.00 USD | 0.00 USD | 1,180.00 USD | `-38.46%` | `2,259.30` |
+| `Live` | `Long` | `0.6315` | 11,760.00 USD | 0.00 USD | 330.27 USD | `-25.62%` | `523.00` |
+| `Live` | `Long` | `0.7325` | 11,430.00 USD | 0.00 USD | 5,830.00 USD | `-13.72%` | `7,955.00` |
+| `Live` | `Long` | `0.7365` | 5,600.00 USD | 0.00 USD | 136.62 USD | `-13.25%` | `185.50` |
+| `Live` | `Long` | `0.7975` | 5,460.00 USD | 0.00 USD | 5,330.00 USD | `-6.07%` | `6,689.50` |
+| `Live` | `Long` | `0.8085` | 128.55 USD | 0.00 USD | 128.55 USD | `-4.77%` | `159.00` |
+| `Live` | `Short` | `0.9035` | 924.46 USD | 924.46 USD | 0.00 USD | `+6.42%` | `1,023.20` |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |
@@ -201,20 +201,20 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -60.30 USD | 15,010.00 USD | **`ACCUMULATION`** |
-| `15m` | 2,810.00 USD | 36,790.00 USD | **`ACCUMULATION`** |
-| `30m` | 1,050.00 USD | 55,000.00 USD | **`ACCUMULATION`** |
-| `1h` | 22,760.00 USD | 136,160.00 USD | **`ACCUMULATION`** |
-| `2h` | 16,150.00 USD | 195,950.00 USD | **`ACCUMULATION`** |
-| `4h` | -65,340.00 USD | 287,680.00 USD | **`ACCUMULATION`** |
-| `6h` | -308,010.00 USD | -383,650.00 USD | **`DISTRIBUTION`** |
-| `8h` | -427,050.00 USD | -784,230.00 USD | **`DISTRIBUTION`** |
-| `12h` | -788,860.00 USD | -758,270.00 USD | **`DISTRIBUTION`** |
-| `24h` | -772,500.00 USD | -913,970.00 USD | **`DISTRIBUTION`** |
+| `5m` | -2,680.00 USD | 15,010.00 USD | **`ACCUMULATION`** |
+| `15m` | -3,880.00 USD | 36,790.00 USD | **`ACCUMULATION`** |
+| `30m` | 3,020.00 USD | 55,000.00 USD | **`ACCUMULATION`** |
+| `1h` | 15,970.00 USD | 136,160.00 USD | **`ACCUMULATION`** |
+| `2h` | 24,120.00 USD | 195,950.00 USD | **`ACCUMULATION`** |
+| `4h` | -50,250.00 USD | 287,680.00 USD | **`ACCUMULATION`** |
+| `6h` | -298,890.00 USD | -383,650.00 USD | **`DISTRIBUTION`** |
+| `8h` | -406,560.00 USD | -784,230.00 USD | **`DISTRIBUTION`** |
+| `12h` | -792,110.00 USD | -758,270.00 USD | **`DISTRIBUTION`** |
+| `24h` | -765,600.00 USD | -913,970.00 USD | **`DISTRIBUTION`** |
 | `1w` | -2,380,000.00 USD | -3,490,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -27,050,000.00 USD | -25,990,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -27,100,000.00 USD | -25,990,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-60.30` | 15m=`+2.81K` | 1h=`+22.76K` | 24h=`-772.50K`
+* Spot Capital Netflows: 5m=`-2.68K` | 15m=`-3.88K` | 1h=`+15.97K` | 24h=`-765.60K`
 * Futures Capital Netflows: 5m=`+15.01K` | 15m=`+36.79K` | 1h=`+136.16K` | 24h=`-913.97K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

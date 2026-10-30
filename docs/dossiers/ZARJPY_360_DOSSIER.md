@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZARJPY
 **Canonical Key**: `ZARJPY` | **Broker Instrument**: `ZARJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:44:31 IST` (`2026-10-30 06:14:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.48` | **Live Ask Quote**: `9.48` | **Mid Price**: `9.48`
-- **Spread Points**: `399.00` | **Spread BPS**: `4.21 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `390.00` | **Spread BPS**: `4.12 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,11 +27,11 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `9.55` | Lower -3.00σ Band: `9.41`
+  * Upper +3.00σ Band: `9.54` | Lower -3.00σ Band: `9.41`
   * Upper +2.51σ Band: `9.53` | Lower -2.51σ Band: `9.43`
   * Upper +2.01σ Band: `9.52` | Lower -2.01σ Band: `9.44`
   * Upper +2.00σ Band: `9.52` | Lower -2.00σ Band: `9.44`
-  * Upper +1.28σ Band: `9.51` | Lower -1.28σ Band: `9.45`
+  * Upper +1.28σ Band: `9.50` | Lower -1.28σ Band: `9.45`
   * Upper +1.00σ Band: `9.50` | Lower -1.00σ Band: `9.46`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.48` | EMA-20=`9.48` (Slope: `+0.0000`)
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`9.52` | POC=`9.48` | VAL=`9.44`
-  * Prior Day Extremes: PDH=`9.54` | PDL=`9.42` | PDC=`9.48`
-  * Monday Range Blueprint: High=`9.53` | Mid=`9.48` | Low=`9.43`
+  * Prior Day Extremes: PDH=`9.53` | PDL=`9.42` | PDC=`9.48`
+  * Monday Range Blueprint: High=`9.52` | Mid=`9.48` | Low=`9.43`
   * Developing Weekly Value Area: Weekly VAH=`9.55` | Weekly POC=`9.48` | Weekly VAL=`9.40`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.50` | Low=`9.46`
   * London Session (08:00-16:00 UTC): High=`9.52` | Low=`9.44`
-  * New York Session (13:00-21:00 UTC): High=`9.54` | Low=`9.42`
+  * New York Session (13:00-21:00 UTC): High=`9.53` | Low=`9.42`
   * Initial Balance (First Hour): IB High=`9.51` | IB Low=`9.45`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.44` - `9.52`
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `9.45` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `8.24` (Risk Distance: `1.21` pts)
-  * +2.5R Take Profit: `12.47`
+  * +2.5R Take Profit: `12.46`
   * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

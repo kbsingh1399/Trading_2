@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:41:29 IST` (`2026-10-30 06:11:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:44:30 IST` (`2026-10-30 06:14:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -31,13 +31,13 @@
   * Upper +2.51σ Band: `9.88` | Lower -2.51σ Band: `9.77`
   * Upper +2.01σ Band: `9.87` | Lower -2.01σ Band: `9.79`
   * Upper +2.00σ Band: `9.87` | Lower -2.00σ Band: `9.79`
-  * Upper +1.28σ Band: `9.85` | Lower -1.28σ Band: `9.80`
+  * Upper +1.28σ Band: `9.86` | Lower -1.28σ Band: `9.80`
   * Upper +1.00σ Band: `9.85` | Lower -1.00σ Band: `9.81`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.83` | EMA-20=`9.83` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.83` (Slope: `+0.0000`) | EMA-100=`9.83`
   * Institutional Anchors: EMA-144=`9.83` | EMA-200=`9.83` (Slope: `+0.0000`) | EMA-233=`9.83`
-- **Range Boundaries**: 24H High=`9.92` | 24H Low=`9.73` | Weekly High=`10.02` | Weekly Low=`9.63`
+- **Range Boundaries**: 24H High=`9.93` | 24H Low=`9.73` | Weekly High=`10.03` | Weekly Low=`9.63`
 
 ---
 
