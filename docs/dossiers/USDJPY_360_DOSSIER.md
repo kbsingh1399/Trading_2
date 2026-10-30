@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 07:51:26 IST` (`2026-10-30 02:21:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:00:30 IST` (`2026-10-30 02:30:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `157.52` | **Live Ask Quote**: `157.52` | **Mid Price**: `157.52`
+- **Live Bid Quote**: `157.44` | **Live Ask Quote**: `157.44` | **Mid Price**: `157.44`
 - **Spread Points**: `1.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`158.07` | Weekly POC=`157.87` | Weekly VAL=`157.46`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`157.90` | Low=`157.19`
-  * London Session (08:00-16:00 UTC): High=`158.15` | Low=`156.89`
-  * New York Session (13:00-21:00 UTC): High=`158.46` | Low=`156.57`
-  * Initial Balance (First Hour): IB High=`157.99` | IB Low=`157.05`
+  * London Session (08:00-16:00 UTC): High=`158.07` | Low=`156.81`
+  * New York Session (13:00-21:00 UTC): High=`158.38` | Low=`156.49`
+  * Initial Balance (First Hour): IB High=`157.91` | IB Low=`156.97`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `156.89` - `158.15`
-  * Optimal Trade Entry (OTE 0.705): `157.83`
-  * Structural Invalidation Anchor (0.786): `158.78`
+  * Golden Pocket Zone (0.618 - 0.650): `156.81` - `158.07`
+  * Optimal Trade Entry (OTE 0.705): `157.75`
+  * Structural Invalidation Anchor (0.786): `158.70`
 
 ---
 
@@ -286,16 +286,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `01:20:00` | `157.66` | `157.66` | `157.66` | `157.66` | `157.62` | 29,008.52 USD | 24,475.94 USD | 4,532.58 USD | 19,943.36 USD | `+68.75%` | `1B / 0S` |
-| `01:25:00` | `157.69` | `157.69` | `157.69` | `157.69` | `157.65` | 29,330.53 USD | 27,005.55 USD | 2,324.98 USD | 24,680.56 USD | `+84.15%` | `1B / 0S` |
-| `01:30:00` | `157.68` | `157.68` | `157.68` | `157.71` | `157.68` | 36,738.97 USD | 5,333.08 USD | 31,405.90 USD | -26,072.82 USD | `-70.97%` | `0B / 1S` |
-| `01:30:00` | `157.72` | `157.72` | `157.72` | `157.75` | `157.67` | 141,162.98 USD | 99,755.17 USD | 41,407.81 USD | 58,347.37 USD | `+41.33%` | `1B / 0S` |
-| `01:35:00` | `157.73` | `157.73` | `157.73` | `157.75` | `157.67` | 57,414.08 USD | 47,079.55 USD | 10,334.54 USD | 36,745.01 USD | `+64.00%` | `1B / 0S` |
 | `01:40:00` | `157.72` | `157.72` | `157.72` | `157.73` | `157.71` | 47,001.75 USD | 21,898.54 USD | 25,103.21 USD | -3,204.66 USD | `-6.82%` | `0B / 1S` |
 | `01:45:00` | `157.67` | `157.67` | `157.67` | `157.73` | `157.64` | 183,690.21 USD | 59,043.28 USD | 124,646.93 USD | -65,603.65 USD | `-35.71%` | `0B / 1S` |
 | `01:45:00` | `157.68` | `157.68` | `157.68` | `157.73` | `157.68` | 47,304.00 USD | 3,478.24 USD | 43,825.76 USD | -40,347.53 USD | `-85.29%` | `0B / 1S` |
 | `01:50:00` | `157.66` | `157.66` | `157.66` | `157.69` | `157.64` | 81,193.87 USD | 27,958.27 USD | 53,235.60 USD | -25,277.34 USD | `-31.13%` | `0B / 1S` |
 | `01:55:00` | `157.67` | `157.67` | `157.67` | `157.68` | `157.64` | 55,185.90 USD | 46,342.01 USD | 8,843.89 USD | 37,498.11 USD | `+67.95%` | `1B / 0S` |
+| `02:00:00` | `157.72` | `157.72` | `157.72` | `157.78` | `157.64` | 242,417.18 USD | 149,346.30 USD | 93,070.88 USD | 56,275.42 USD | `+23.21%` | `1B / 0S` |
+| `02:00:00` | `157.72` | `157.72` | `157.72` | `157.73` | `157.64` | 124,286.51 USD | 104,953.05 USD | 19,333.46 USD | 85,619.60 USD | `+68.89%` | `1B / 0S` |
+| `02:00:00` | `157.81` | `157.81` | `157.81` | `157.85` | `157.64` | 753,069.32 USD | 609,415.10 USD | 143,654.22 USD | 465,760.88 USD | `+61.85%` | `1B / 0S` |
+| `02:05:00` | `157.75` | `157.75` | `157.75` | `157.75` | `157.72` | 69,726.38 USD | 63,304.22 USD | 6,422.17 USD | 56,882.05 USD | `+81.58%` | `1B / 0S` |
+| `02:10:00` | `157.72` | `157.72` | `157.72` | `157.78` | `157.72` | 48,420.35 USD | 6,443.03 USD | 41,977.32 USD | -35,534.29 USD | `-73.39%` | `0B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -350,21 +350,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:53:25 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:53:25 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:53:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---
@@ -400,5 +400,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.78`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.70`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

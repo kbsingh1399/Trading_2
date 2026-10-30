@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 07:51:26 IST` (`2026-10-30 02:21:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:00:30 IST` (`2026-10-30 02:30:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `104.88` | **Live Ask Quote**: `104.93` | **Mid Price**: `104.91`
-- **Spread Points**: `50.00` | **Spread BPS**: `4.77 bps` (Charter Threshold: `5.00 bps`)
-- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
+- **Live Bid Quote**: `105.06` | **Live Ask Quote**: `105.12` | **Mid Price**: `105.09`
+- **Spread Points**: `55.00` | **Spread BPS**: `5.23 bps` (Charter Threshold: `12.00 bps`)
+- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1,000.0` | Digits: `2` | Point: `0.01`
   * Point Value (1.0 Lot): `10.00 USD` | Point Value (0.01 Lot): `0.1000 USD`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`103.15` | Weekly POC=`102.03` | Weekly VAL=`101.42`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`105.59` | Low=`103.05`
-  * London Session (08:00-16:00 UTC): High=`105.33` | Low=`104.49`
-  * New York Session (13:00-21:00 UTC): High=`105.54` | Low=`104.28`
-  * Initial Balance (First Hour): IB High=`105.22` | IB Low=`104.59`
+  * London Session (08:00-16:00 UTC): High=`105.51` | Low=`104.67`
+  * New York Session (13:00-21:00 UTC): High=`105.72` | Low=`104.46`
+  * Initial Balance (First Hour): IB High=`105.41` | IB Low=`104.78`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `104.49` - `105.33`
-  * Optimal Trade Entry (OTE 0.705): `105.12`
-  * Structural Invalidation Anchor (0.786): `105.75`
+  * Golden Pocket Zone (0.618 - 0.650): `104.67` - `105.51`
+  * Optimal Trade Entry (OTE 0.705): `105.30`
+  * Structural Invalidation Anchor (0.786): `105.93`
 
 ---
 
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 07:43:27 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 07:57:16 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -175,8 +175,8 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Envelope` | `Long Liquidation` | `104.08` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
-| `Envelope` | `Short Liquidation` | `105.94` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Long Liquidation` | `103.94` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Short Liquidation` | `105.95` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -231,17 +231,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `01:20:00` | `103.48` | `103.48` | `103.48` | `103.48` | `103.40` | 8,278.40 USD | 7,864.48 USD | 413.92 USD | 7,450.56 USD | `+90.00%` | `1B / 0S` |
-| `01:25:00` | `103.44` | `103.44` | `103.44` | `103.50` | `103.42` | 5,895.80 USD | 1,228.29 USD | 4,667.50 USD | -3,439.21 USD | `-58.33%` | `0B / 1S` |
-| `01:30:00` | `103.47` | `103.47` | `103.47` | `103.54` | `103.45` | 16,347.47 USD | 6,130.30 USD | 10,217.17 USD | -4,086.87 USD | `-25.00%` | `0B / 1S` |
-| `01:30:00` | `103.49` | `103.49` | `103.49` | `103.54` | `103.45` | 8,900.14 USD | 5,191.75 USD | 3,708.39 USD | 1,483.36 USD | `+16.67%` | `1B / 0S` |
-| `01:35:00` | `103.51` | `103.51` | `103.51` | `103.53` | `103.47` | 3,415.83 USD | 2,328.98 USD | 1,086.85 USD | 1,242.12 USD | `+36.36%` | `1B / 0S` |
 | `01:40:00` | `103.47` | `103.47` | `103.47` | `103.54` | `103.47` | 4,035.14 USD | 201.76 USD | 3,833.38 USD | -3,631.62 USD | `-90.00%` | `0B / 1S` |
 | `01:45:00` | `103.47` | `103.47` | `103.47` | `103.50` | `103.46` | 3,931.67 USD | 982.92 USD | 2,948.75 USD | -1,965.83 USD | `-50.00%` | `0B / 1S` |
 | `01:45:00` | `103.45` | `103.45` | `103.45` | `103.50` | `103.38` | 13,448.50 USD | 6,724.25 USD | 6,724.25 USD | 0.00 USD | `+0.00%` | `1B / 0S` |
 | `01:50:00` | `103.41` | `103.41` | `103.41` | `103.50` | `103.39` | 4,550.04 USD | 920.84 USD | 3,629.20 USD | -2,708.36 USD | `-59.52%` | `0B / 1S` |
 | `01:55:00` | `103.45` | `103.45` | `103.45` | `103.45` | `103.38` | 4,965.60 USD | 4,344.90 USD | 620.70 USD | 3,724.20 USD | `+75.00%` | `1B / 0S` |
-| `5:00 UTC` | `102.84` | `102.85` | `102.84` | `102.95` | `102.73` | 9,405,607.31 USD | 4,971,834.89 USD | 4,433,772.42 USD | 538,062.47 USD | `+5.72%` | `4B / 5S` |
+| `02:00:00` | `103.38` | `103.38` | `103.38` | `103.46` | `103.28` | 16,954.32 USD | 7,064.30 USD | 9,890.02 USD | -2,825.72 USD | `-16.67%` | `0B / 1S` |
+| `02:00:00` | `103.48` | `103.48` | `103.48` | `103.48` | `103.24` | 58,673.16 USD | 44,603.58 USD | 14,069.58 USD | 30,533.99 USD | `+52.04%` | `1B / 0S` |
+| `02:00:00` | `103.44` | `103.44` | `103.44` | `103.46` | `103.41` | 6,413.59 USD | 3,498.32 USD | 2,915.27 USD | 583.05 USD | `+9.09%` | `1B / 0S` |
+| `02:05:00` | `103.38` | `103.38` | `103.38` | `103.44` | `103.28` | 7,856.50 USD | 3,498.60 USD | 4,357.90 USD | -859.30 USD | `-10.94%` | `0B / 1S` |
+| `02:10:00` | `103.38` | `103.38` | `103.38` | `103.40` | `103.36` | 2,687.88 USD | 1,567.93 USD | 1,119.95 USD | 447.98 USD | `+16.67%` | `1B / 0S` |
 | `0:00 UTC` | `102.91` | `102.88` | `102.91` | `103.00` | `102.75` | 22,493,822.01 USD | 8,410,545.53 USD | 14,083,276.47 USD | -5,672,730.94 USD | `-25.22%` | `1B / 6S` |
 | `5:00 UTC` | `102.84` | `102.85` | `102.84` | `102.91` | `102.78` | 12,501,739.47 USD | 4,708,353.14 USD | 7,793,386.33 USD | -3,085,033.19 USD | `-24.68%` | `1B / 4S` |
 | `0:00 UTC` | `102.80` | `102.83` | `102.80` | `102.93` | `102.75` | 11,683,758.36 USD | 3,517,048.40 USD | 8,166,709.96 USD | -4,649,661.56 USD | `-39.80%` | `1B / 5S` |
@@ -250,7 +249,8 @@
 | `5:00 UTC` | `102.88` | `102.88` | `102.88` | `102.94` | `102.81` | 12,332,708.79 USD | 3,885,730.79 USD | 8,446,978.00 USD | -4,561,247.21 USD | `-36.98%` | `0B / 5S` |
 | `0:00 UTC` | `104.23` | `103.97` | `104.23` | `104.72` | `102.88` | 80,432,525.97 USD | 47,963,579.07 USD | 32,468,946.89 USD | 15,494,632.18 USD | `+19.26%` | `55B / 11S` |
 | `5:00 UTC` | `104.70` | `104.79` | `104.70` | `105.12` | `104.31` | 57,288,800.08 USD | 26,593,078.99 USD | 30,695,721.09 USD | -4,102,642.10 USD | `-7.16%` | `9B / 11S` |
-| `0:00 UTC` | `104.60` | `104.61` | `104.60` | `104.78` | `104.40` | 29,946,412.42 USD | 14,662,128.79 USD | 15,284,283.63 USD | -622,154.84 USD | `-2.08%` | `2B / 2S` |
+| `0:00 UTC` | `104.60` | `104.57` | `104.60` | `104.78` | `104.25` | 37,381,511.82 USD | 18,039,773.84 USD | 19,341,737.99 USD | -1,301,964.15 USD | `-3.48%` | `2B / 5S` |
+| `5:00 UTC` | `104.16` | `104.20` | `104.16` | `104.37` | `104.05` | 8,207,326.66 USD | 2,774,005.16 USD | 5,433,321.50 USD | -2,659,316.34 USD | `-32.40%` | `2B / 8S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -308,21 +308,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:53:25 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:53:25 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:53:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---
@@ -346,17 +346,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `103.05` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `102.50` (Risk Distance: `0.5575` pts)
-  * +2.5R Take Profit: `104.45`
+  * Spread-Padded Stop Loss: `102.49` (Risk Distance: `0.5650` pts)
+  * +2.5R Take Profit: `104.47`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `104.94` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `105.49` (Risk Distance: `0.5575` pts)
-  * +2.5R Take Profit: `103.54`
+  * Spread-Padded Stop Loss: `105.50` (Risk Distance: `0.5650` pts)
+  * +2.5R Take Profit: `103.52`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.56 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`105.75`) or if 21:15 UTC rollover blackout begins.
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`105.93`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

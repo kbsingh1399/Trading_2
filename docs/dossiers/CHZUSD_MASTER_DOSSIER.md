@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 07:51:26 IST` (`2026-10-30 02:21:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:00:30 IST` (`2026-10-30 02:30:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0116` | **Live Ask Quote**: `0.0120` | **Mid Price**: `0.0118`
-- **Spread Points**: `41.00` | **Spread BPS**: `347.90 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `42.00` | **Spread BPS**: `356.54 bps` (Charter Threshold: `12.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -185,20 +185,20 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -1,310.00 USD | 8,120.00 USD | **`ACCUMULATION`** |
-| `15m` | -13,630.00 USD | -9,530.00 USD | **`DISTRIBUTION`** |
-| `30m` | -26,920.00 USD | -28,800.00 USD | **`DISTRIBUTION`** |
-| `1h` | -53,800.00 USD | -69,520.00 USD | **`DISTRIBUTION`** |
-| `2h` | -67,160.00 USD | -399,260.00 USD | **`DISTRIBUTION`** |
-| `4h` | -113,450.00 USD | -425,480.00 USD | **`DISTRIBUTION`** |
-| `6h` | -170,560.00 USD | -128,970.00 USD | **`DISTRIBUTION`** |
-| `8h` | -191,270.00 USD | -118,730.00 USD | **`DISTRIBUTION`** |
-| `12h` | -131,760.00 USD | -97,180.00 USD | **`DISTRIBUTION`** |
-| `24h` | -159,610.00 USD | -244,230.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,040,000.00 USD | -898,980.00 USD | **`DISTRIBUTION`** |
-| `30d` | -7,150,000.00 USD | -11,160,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 2,320.00 USD | 8,120.00 USD | **`ACCUMULATION`** |
+| `15m` | -5,800.00 USD | -9,530.00 USD | **`DISTRIBUTION`** |
+| `30m` | -19,670.00 USD | -28,800.00 USD | **`DISTRIBUTION`** |
+| `1h` | -52,950.00 USD | -69,520.00 USD | **`DISTRIBUTION`** |
+| `2h` | -11,400.00 USD | -399,260.00 USD | **`DISTRIBUTION`** |
+| `4h` | -95,600.00 USD | -425,480.00 USD | **`DISTRIBUTION`** |
+| `6h` | -175,810.00 USD | -128,970.00 USD | **`DISTRIBUTION`** |
+| `8h` | -191,950.00 USD | -118,730.00 USD | **`DISTRIBUTION`** |
+| `12h` | -141,550.00 USD | -97,180.00 USD | **`DISTRIBUTION`** |
+| `24h` | -126,380.00 USD | -244,230.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,050,000.00 USD | -898,980.00 USD | **`DISTRIBUTION`** |
+| `30d` | -7,130,000.00 USD | -11,160,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-1.31K` | 15m=`-13.63K` | 1h=`-53.80K` | 24h=`-159.61K`
+* Spot Capital Netflows: 5m=`+2.32K` | 15m=`-5.80K` | 1h=`-52.95K` | 24h=`-126.38K`
 * Futures Capital Netflows: 5m=`+8.12K` | 15m=`-9.53K` | 1h=`-69.52K` | 24h=`-244.23K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:25 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:52:25 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:51:25 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:53:25 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:53:25 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:53:25 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:53:25 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---
