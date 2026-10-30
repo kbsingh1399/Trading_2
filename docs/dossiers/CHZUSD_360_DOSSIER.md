@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 11:05:06 IST` (`2026-10-30 05:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:08:07 IST` (`2026-10-30 05:38:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,13 +152,13 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `142.40` | Last 24h: `686.57` | Last 3d: `1.65K` | Last 7d: `-3.31K`
+  * Current Rate: `110.00` | Last 24h: `686.57` | Last 3d: `1.65K` | Last 7d: `-3.31K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0038%` | **USDT OKX** | `0.0000%` |
-| **USDT Bybit** | `0.0092%` | **USDT KuCoin** | `-0.0528%` |
-| **USDT MEXC** | `-0.0038%` | **USDT BingX** | `0.0100%` |
+| **USDT Binance** | `-0.0045%` | **USDT OKX** | `-0.0008%` |
+| **USDT Bybit** | `0.0082%` | **USDT KuCoin** | `-0.0504%` |
+| **USDT MEXC** | `-0.0042%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
