@@ -1,4246 +1,1629 @@
 {
-  "version": "3.3",
-  "timestamp_utc": "2026-10-30 11:58:17 UTC",
+  "schema_version": "2.0.0",
+  "format": "JSON_STANDALONE",
+  "timestamp_utc": "2026-10-30 12:03:15 UTC",
+  "timestamp_ist": "2026-10-30 17:33:15 IST",
   "total_assets": 162,
-  "radar_candidates": [
-    "BTC",
-    "ETH",
-    "XRP",
-    "SUI",
-    "BCH",
-    "APT",
-    "OP",
-    "ARB",
-    "XAUT",
-    "PAXG",
-    "XAUUSD",
-    "EURUSD",
-    "GBPUSD",
-    "USDJPY",
-    "AUDUSD",
-    "SP500",
-    "NAS100",
-    "XAUGBP",
-    "XAUAUD",
-    "XAUEUR",
-    "XAUCNH",
-    "XAUSGD",
-    "US2000",
-    "XAGSGD",
-    "AVEUSD"
-  ],
-  "assets": {
-    "BTC": {
+  "assets": [
+    {
       "canonical": "BTC",
+      "display_name": "BTC",
       "category": "Crypto Major",
       "broker_symbol": "BTCUSD.pi",
-      "mid_price": 77260.5,
       "spread_bps": 2.85,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 76977.52,
-        "sl": 76594.21406456281,
-        "tp": 77935.78483859298,
-        "dist": 383.3059354371944,
-        "lots": 0.02
-      },
-      "short_setup": {
-        "entry": 78646.96,
-        "sl": 79030.2659354372,
-        "tp": 77688.69516140703,
-        "dist": 383.3059354371944,
-        "lots": 0.02
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "BTC_MASTER_DOSSIER.json"
     },
-    "ETH": {
+    {
       "canonical": "ETH",
+      "display_name": "ETH",
       "category": "Crypto Major",
       "broker_symbol": "ETHUSD.pi",
-      "mid_price": 2231.7,
-      "spread_bps": 16.13,
+      "spread_bps": 16.11,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 2196.43,
-        "sl": 2177.4620925960508,
-        "tp": 2243.849768509873,
-        "dist": 18.967907403949084,
-        "lots": 0.52
-      },
-      "short_setup": {
-        "entry": 2249.85,
-        "sl": 2268.817907403949,
-        "tp": 2202.430231490127,
-        "dist": 18.967907403949084,
-        "lots": 0.52
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "ETH_MASTER_DOSSIER.json"
     },
-    "SOL": {
+    {
       "canonical": "SOL",
+      "display_name": "SOL",
       "category": "Crypto Major",
       "broker_symbol": "SOLUSD.p",
-      "mid_price": 96.345,
-      "spread_bps": 46.71,
+      "spread_bps": 46.67,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 95.31,
-        "sl": 93.94715601941564,
-        "tp": 98.7171099514609,
-        "dist": 1.3628439805843584,
-        "lots": 7.33
-      },
-      "short_setup": {
-        "entry": 98.09,
-        "sl": 99.45284398058436,
-        "tp": 94.68289004853911,
-        "dist": 1.3628439805843584,
-        "lots": 7.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SOL_MASTER_DOSSIER.json"
     },
-    "XRP": {
+    {
       "canonical": "XRP",
+      "display_name": "XRP",
       "category": "Crypto Major",
       "broker_symbol": "XRPUSD.pi",
-      "mid_price": 1.2465000000000002,
       "spread_bps": 24.07,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 1.2338,
-        "sl": 1.2204913095038594,
-        "tp": 1.2670717262403515,
-        "dist": 0.013308690496140585,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.2606,
-        "sl": 1.2739086904961405,
-        "tp": 1.2273282737596485,
-        "dist": 0.013308690496140585,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XRP_MASTER_DOSSIER.json"
     },
-    "BNB": {
+    {
       "canonical": "BNB",
+      "display_name": "BNB",
       "category": "Crypto Major",
       "broker_symbol": "BNBUSD.p",
-      "mid_price": 698.5,
       "spread_bps": 45.81,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 698.34,
-        "sl": 689.8744559031838,
-        "tp": 719.5038602420404,
-        "dist": 8.465544096816188,
-        "lots": 1.18
-      },
-      "short_setup": {
-        "entry": 714.32,
-        "sl": 722.7855440968162,
-        "tp": 693.1561397579596,
-        "dist": 8.465544096816188,
-        "lots": 1.18
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "BNB_MASTER_DOSSIER.json"
     },
-    "DOGE": {
+    {
       "canonical": "DOGE",
+      "display_name": "DOGE",
       "category": "Crypto Meme",
       "broker_symbol": "DOGUSD.p",
-      "mid_price": 0.07565,
-      "spread_bps": 541.97,
+      "spread_bps": 541.25,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0737,
-        "sl": 0.06706197216600528,
-        "tp": 0.09420000000000003,
-        "dist": 0.008200000000000013,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.07537,
-        "sl": 0.08200802783399473,
-        "tp": 0.054869999999999974,
-        "dist": 0.008200000000000013,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "DOGE_MASTER_DOSSIER.json"
     },
-    "ADA": {
+    {
       "canonical": "ADA",
+      "display_name": "ADA",
       "category": "Crypto Alt L1",
       "broker_symbol": "ADAUSD.p",
-      "mid_price": 0.19325,
-      "spread_bps": 160.41,
+      "spread_bps": 165.8,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.1877,
-        "sl": 0.18171887229073783,
-        "tp": 0.20319999999999996,
-        "dist": 0.006199999999999983,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.1938,
-        "sl": 0.19978112770926218,
-        "tp": 0.17830000000000004,
-        "dist": 0.006199999999999983,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ADA_MASTER_DOSSIER.json"
     },
-    "TRX": {
+    {
       "canonical": "TRX",
+      "display_name": "TRX",
       "category": "Crypto Alt L1",
       "broker_symbol": "TRXUSD.p",
-      "mid_price": 0.34095,
-      "spread_bps": 102.65,
+      "spread_bps": 102.96,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.3387,
-        "sl": 0.3300223020598424,
-        "tp": 0.360394244850394,
-        "dist": 0.008677697940157603,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.3578,
-        "sl": 0.3664776979401576,
-        "tp": 0.336105755149606,
-        "dist": 0.008677697940157603,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "TRX_MASTER_DOSSIER.json"
     },
-    "LINK": {
+    {
       "canonical": "LINK",
+      "display_name": "LINK",
       "category": "Crypto DeFi",
       "broker_symbol": "LNKUSD.p",
-      "mid_price": 11.0745,
-      "spread_bps": 112.87,
+      "spread_bps": 113.91,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 10.573,
-        "sl": 10.28963445182719,
-        "tp": 11.281413870432026,
-        "dist": 0.2833655481728101,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 11.121,
-        "sl": 11.40436554817281,
-        "tp": 10.412586129567975,
-        "dist": 0.2833655481728101,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "LINK_MASTER_DOSSIER.json"
     },
-    "AVAX": {
+    {
       "canonical": "AVAX",
+      "display_name": "AVAX",
       "category": "Crypto Alt L1",
       "broker_symbol": "AVXUSD.p",
-      "mid_price": 8.495000000000001,
-      "spread_bps": 35.31,
+      "spread_bps": 35.69,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 8.26,
-        "sl": 8.146852762014372,
-        "tp": 8.542868094964067,
-        "dist": 0.11314723798562731,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 8.59,
-        "sl": 8.703147237985627,
-        "tp": 8.30713190503593,
-        "dist": 0.11314723798562731,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AVAX_MASTER_DOSSIER.json"
     },
-    "SUI": {
+    {
       "canonical": "SUI",
+      "display_name": "SUI",
       "category": "Crypto Alt L1",
       "broker_symbol": "SUIUSD.p",
-      "mid_price": 0.910091,
       "spread_bps": 1.9998000199981703,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 0.907360727,
-        "sl": -0.2929122729999999,
-        "tp": 3.908043227,
-        "dist": 1.200273,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 0.9128212729999999,
-        "sl": 2.1130942729999997,
-        "tp": -2.087861226999999,
-        "dist": 1.2002729999999997,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "SUI_MASTER_DOSSIER.json"
     },
-    "NEAR": {
+    {
       "canonical": "NEAR",
+      "display_name": "NEAR",
       "category": "Crypto Alt L1",
       "broker_symbol": "NERUSD.p",
-      "mid_price": 4.319,
-      "spread_bps": 69.46,
+      "spread_bps": 69.59,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 4.065,
-        "sl": 3.9600667446697995,
-        "tp": 4.3273331383255025,
-        "dist": 0.10493325533020093,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 4.368,
-        "sl": 4.472933255330201,
-        "tp": 4.105666861674499,
-        "dist": 0.10493325533020048,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NEAR_MASTER_DOSSIER.json"
     },
-    "DOT": {
+    {
       "canonical": "DOT",
+      "display_name": "DOT",
       "category": "Crypto Alt L1",
       "broker_symbol": "DOTUSD.pi",
-      "mid_price": 0.94,
-      "spread_bps": 425.53,
+      "spread_bps": 434.55,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.9016,
-        "sl": 0.8342483360213107,
-        "tp": 1.1015999999999995,
-        "dist": 0.07999999999999985,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.9447,
-        "sl": 1.0120516639786894,
-        "tp": 0.7447000000000004,
-        "dist": 0.07999999999999985,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "DOT_MASTER_DOSSIER.json"
     },
-    "LTC": {
+    {
       "canonical": "LTC",
+      "display_name": "LTC",
       "category": "Crypto PoW",
       "broker_symbol": "LTCUSD.pi",
-      "mid_price": 55.275000000000006,
-      "spread_bps": 72.37,
+      "spread_bps": 72.6,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 54.66,
-        "sl": 53.674440952617154,
-        "tp": 57.12389761845711,
-        "dist": 0.9855590473828428,
-        "lots": 10.14
-      },
-      "short_setup": {
-        "entry": 56.07,
-        "sl": 57.05555904738284,
-        "tp": 53.6061023815429,
-        "dist": 0.9855590473828428,
-        "lots": 10.14
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "LTC_MASTER_DOSSIER.json"
     },
-    "BCH": {
+    {
       "canonical": "BCH",
+      "display_name": "BCH",
       "category": "Crypto PoW",
       "broker_symbol": "BCHUSD.p",
-      "mid_price": 283.8,
-      "spread_bps": 17.62,
+      "spread_bps": 24.74,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 273.35,
-        "sl": 270.09916092567516,
-        "tp": 281.47709768581217,
-        "dist": 3.2508390743248583,
-        "lots": 3.0700000000000003
-      },
-      "short_setup": {
-        "entry": 284.87,
-        "sl": 288.12083907432486,
-        "tp": 276.74290231418786,
-        "dist": 3.2508390743248583,
-        "lots": 3.0700000000000003
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "BCH_MASTER_DOSSIER.json"
     },
-    "APT": {
+    {
       "canonical": "APT",
+      "display_name": "APT",
       "category": "Crypto Alt L1",
       "broker_symbol": "APTUSD.p",
-      "mid_price": 0.6900689999999999,
       "spread_bps": 1.999800019997587,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 0.6879987929999999,
-        "sl": -0.5122082069999999,
-        "tp": 3.6885162929999993,
-        "dist": 1.2002069999999998,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 0.6921392069999999,
-        "sl": 1.8923462069999997,
-        "tp": -2.3083782929999996,
-        "dist": 1.2002069999999998,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "APT_MASTER_DOSSIER.json"
     },
-    "OP": {
+    {
       "canonical": "OP",
+      "display_name": "OP",
       "category": "Crypto Alt L2",
       "broker_symbol": "OPUSD.p",
-      "mid_price": 0.110011,
       "spread_bps": 1.9998000199974773,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 0.109680967,
-        "sl": -1.0903520329999998,
-        "tp": 3.1097634669999996,
-        "dist": 1.200033,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 0.11034103299999999,
-        "sl": 1.310374033,
-        "tp": -2.8897414669999995,
-        "dist": 1.200033,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "OP_MASTER_DOSSIER.json"
     },
-    "ARB": {
+    {
       "canonical": "ARB",
+      "display_name": "ARB",
       "category": "Crypto Alt L2",
       "broker_symbol": "ARBUSD.p",
-      "mid_price": 0.17001700000000003,
       "spread_bps": 1.9998000199983672,
       "gate_status": "PASS",
-      "confluence_score": 95,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 0.16950694900000002,
-        "sl": -1.030544051,
-        "tp": 3.169634449,
-        "dist": 1.200051,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 0.170527051,
-        "sl": 1.370578051,
-        "tp": -2.829600449,
-        "dist": 1.200051,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "ARB_MASTER_DOSSIER.json"
     },
-    "XAUT": {
+    {
       "canonical": "XAUT",
+      "display_name": "XAUT",
       "category": "Tokenized Metal",
       "broker_symbol": "XAUUSD.pi",
-      "mid_price": 3967.64,
       "spread_bps": 0.4,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUT_MASTER_DOSSIER.json"
     },
-    "PAXG": {
+    {
       "canonical": "PAXG",
+      "display_name": "PAXG",
       "category": "Tokenized Metal",
       "broker_symbol": "XAUUSD.pi",
-      "mid_price": 3967.64,
       "spread_bps": 0.4,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 1.05
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 1.05
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "PAXG_MASTER_DOSSIER.json"
     },
-    "XAUUSD": {
+    {
       "canonical": "XAUUSD",
+      "display_name": "XAUUSD",
       "category": "Precious Metal",
       "broker_symbol": "XAUUSD.pi",
-      "mid_price": 3967.64,
       "spread_bps": 0.4,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUUSD_MASTER_DOSSIER.json"
     },
-    "XAGUSD": {
+    {
       "canonical": "XAGUSD",
+      "display_name": "XAGUSD",
       "category": "Precious Metal",
       "broker_symbol": "XAGUSD.pi",
-      "mid_price": 50.2125,
       "spread_bps": 10.16,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 50.838,
-        "sl": 50.54838555400831,
-        "tp": 51.56203611497922,
-        "dist": 0.2896144459916883,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 52.079,
-        "sl": 52.36861444599169,
-        "tp": 51.35496388502078,
-        "dist": 0.2896144459916883,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XAGUSD_MASTER_DOSSIER.json"
     },
-    "USWTI": {
+    {
       "canonical": "USWTI",
+      "display_name": "USWTI",
       "category": "Energy Commodity",
       "broker_symbol": "USWTI.p",
-      "mid_price": 104.818,
-      "spread_bps": 5.72,
+      "spread_bps": 5.74,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 103.732,
-        "sl": 103.21589397013437,
-        "tp": 105.02226507466406,
-        "dist": 0.5161060298656253,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 105.022,
-        "sl": 105.53810602986563,
-        "tp": 103.73173492533594,
-        "dist": 0.5161060298656253,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USWTI_MASTER_DOSSIER.json"
     },
-    "UKBRENT": {
+    {
       "canonical": "UKBRENT",
+      "display_name": "UKBRENT",
       "category": "Energy Commodity",
       "broker_symbol": "UKBRENT.p",
-      "mid_price": 118.0925,
-      "spread_bps": 4.66,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 116.362,
-        "sl": 115.77739306309444,
-        "tp": 117.8235173422639,
-        "dist": 0.5846069369055584,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 117.959,
-        "sl": 118.54360693690556,
-        "tp": 116.4974826577361,
-        "dist": 0.5846069369055584,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "spread_bps": 5.09,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "UKBRENT_MASTER_DOSSIER.json"
     },
-    "EURUSD": {
+    {
       "canonical": "EURUSD",
+      "display_name": "EURUSD",
       "category": "FX Major",
       "broker_symbol": "EURUSD.pi",
-      "mid_price": 1.119305,
-      "spread_bps": 0.09,
+      "spread_bps": 0.18,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 1.11857,
-        "sl": 1.117811952876447,
-        "tp": 1.120465117808883,
-        "dist": 0.0007580471235530961,
-        "lots": 0.13
-      },
-      "short_setup": {
-        "entry": 1.12019,
-        "sl": 1.1209480471235531,
-        "tp": 1.1182948821911172,
-        "dist": 0.0007580471235530961,
-        "lots": 0.13
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "EURUSD_MASTER_DOSSIER.json"
     },
-    "GBPUSD": {
+    {
       "canonical": "GBPUSD",
+      "display_name": "GBPUSD",
       "category": "FX Major",
       "broker_symbol": "GBPUSD.pi",
-      "mid_price": 1.342775,
-      "spread_bps": 0.07,
+      "spread_bps": 0.37,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 1.33814,
-        "sl": 1.3372786094219573,
-        "tp": 1.340293476445107,
-        "dist": 0.0008613905780427977,
-        "lots": 0.11
-      },
-      "short_setup": {
-        "entry": 1.34122,
-        "sl": 1.3420813905780429,
-        "tp": 1.339066523554893,
-        "dist": 0.0008613905780427977,
-        "lots": 0.11
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "GBPUSD_MASTER_DOSSIER.json"
     },
-    "USDJPY": {
+    {
       "canonical": "USDJPY",
+      "display_name": "USDJPY",
       "category": "FX Major",
       "broker_symbol": "USDJPY.pi",
-      "mid_price": 157.063,
-      "spread_bps": 0.13,
+      "spread_bps": 0.51,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 157.242,
-        "sl": 157.07168367821436,
-        "tp": 157.66779080446406,
-        "dist": 0.17031632178563427,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 157.652,
-        "sl": 157.82231632178562,
-        "tp": 157.2262091955359,
-        "dist": 0.17031632178563427,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "USDJPY_MASTER_DOSSIER.json"
     },
-    "AUDUSD": {
+    {
       "canonical": "AUDUSD",
+      "display_name": "AUDUSD",
       "category": "FX Major",
       "broker_symbol": "AUDUSD.pi",
-      "mid_price": 0.70263,
       "spread_bps": 0.57,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 0.70235,
-        "sl": 0.7017664439678342,
-        "tp": 0.7038088900804147,
-        "dist": 0.0005835560321658662,
-        "lots": 0.17
-      },
-      "short_setup": {
-        "entry": 0.70328,
-        "sl": 0.7038635560321659,
-        "tp": 0.7018211099195854,
-        "dist": 0.0005835560321658662,
-        "lots": 0.17
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "AUDUSD_MASTER_DOSSIER.json"
     },
-    "USDCAD": {
+    {
       "canonical": "USDCAD",
+      "display_name": "USDCAD",
       "category": "FX Major",
       "broker_symbol": "USDCAD.pi",
-      "mid_price": 1.3961700000000001,
       "spread_bps": 0.72,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.396,
-        "sl": 1.3952953245377968,
-        "tp": 1.3977616886555078,
-        "dist": 0.0007046754622030971,
-        "lots": 0.14
-      },
-      "short_setup": {
-        "entry": 1.39752,
-        "sl": 1.3982246754622032,
-        "tp": 1.3957583113444922,
-        "dist": 0.0007046754622030971,
-        "lots": 0.14
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDCAD_MASTER_DOSSIER.json"
     },
-    "USDCHF": {
+    {
       "canonical": "USDCHF",
+      "display_name": "USDCHF",
       "category": "FX Major",
       "broker_symbol": "USDCHF.pi",
-      "mid_price": 0.820635,
       "spread_bps": 0.85,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.82083,
-        "sl": 0.8199138863749265,
-        "tp": 0.8231202840626837,
-        "dist": 0.0009161136250734891,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 0.8227,
-        "sl": 0.8236161136250735,
-        "tp": 0.8204097159373163,
-        "dist": 0.0009161136250734891,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDCHF_MASTER_DOSSIER.json"
     },
-    "NZDUSD": {
+    {
       "canonical": "NZDUSD",
+      "display_name": "NZDUSD",
       "category": "FX Major",
       "broker_symbol": "NZDUSD.pi",
-      "mid_price": 0.5645,
-      "spread_bps": 1.06,
+      "spread_bps": 1.24,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.56307,
-        "sl": 0.5624800979103699,
-        "tp": 0.5645447552240751,
-        "dist": 0.0005899020896300566,
-        "lots": 0.16
-      },
-      "short_setup": {
-        "entry": 0.56452,
-        "sl": 0.5651099020896301,
-        "tp": 0.5630452447759249,
-        "dist": 0.0005899020896300566,
-        "lots": 0.16
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDUSD_MASTER_DOSSIER.json"
     },
-    "EURGBP": {
+    {
       "canonical": "EURGBP",
+      "display_name": "EURGBP",
       "category": "FX Cross",
       "broker_symbol": "EURGBP.pi",
-      "mid_price": 0.83358,
       "spread_bps": 0.72,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.83464,
-        "sl": 0.8341533510679113,
-        "tp": 0.8358566223302218,
-        "dist": 0.00048664893208871796,
-        "lots": 0.2
-      },
-      "short_setup": {
-        "entry": 0.83648,
-        "sl": 0.8369666489320887,
-        "tp": 0.8352633776697782,
-        "dist": 0.00048664893208871796,
-        "lots": 0.2
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURGBP_MASTER_DOSSIER.json"
     },
-    "EURJPY": {
+    {
       "canonical": "EURJPY",
+      "display_name": "EURJPY",
       "category": "FX Cross",
       "broker_symbol": "EURJPY.pi",
-      "mid_price": 175.807,
       "spread_bps": 0.68,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 176.08,
-        "sl": 175.8924465381203,
-        "tp": 176.54888365469927,
-        "dist": 0.1875534618797019,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 176.385,
-        "sl": 176.5725534618797,
-        "tp": 175.91611634530074,
-        "dist": 0.1875534618797019,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURJPY_MASTER_DOSSIER.json"
     },
-    "GBPJPY": {
+    {
       "canonical": "GBPJPY",
+      "display_name": "GBPJPY",
       "category": "FX Cross",
       "broker_symbol": "GBPJPY.pi",
-      "mid_price": 210.9015,
       "spread_bps": 0.52,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 210.818,
-        "sl": 210.6009177676596,
-        "tp": 211.360705580851,
-        "dist": 0.21708223234040247,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 211.205,
-        "sl": 211.42208223234041,
-        "tp": 210.66229441914902,
-        "dist": 0.21708223234040247,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPJPY_MASTER_DOSSIER.json"
     },
-    "SP500": {
+    {
       "canonical": "SP500",
+      "display_name": "SP500",
       "category": "Equity Index US",
       "broker_symbol": "SP500.p",
-      "mid_price": 7630.785,
       "spread_bps": 0.96,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 7634.15,
-        "sl": 7625.1411499505,
-        "tp": 7656.672125123749,
-        "dist": 9.008850049499415,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 7651.43,
-        "sl": 7660.4388500495,
-        "tp": 7628.907874876251,
-        "dist": 9.008850049499415,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "SP500_MASTER_DOSSIER.json"
     },
-    "NAS100": {
+    {
       "canonical": "NAS100",
+      "display_name": "NAS100",
       "category": "Equity Index US",
       "broker_symbol": "NAS100.p",
-      "mid_price": 28627.760000000002,
       "spread_bps": 0.68,
       "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 28679.53,
-        "sl": 28621.05062621967,
-        "tp": 28825.728434450823,
-        "dist": 58.47937378033021,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 28844.8,
-        "sl": 28903.27937378033,
-        "tp": 28698.601565549172,
-        "dist": 58.47937378033021,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "NAS100_MASTER_DOSSIER.json"
     },
-    "DJ30": {
+    {
       "canonical": "DJ30",
+      "display_name": "DJ30",
       "category": "Equity Index US",
       "broker_symbol": "DJ30.p",
-      "mid_price": 52352.5,
       "spread_bps": 0.55,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 52272.49,
-        "sl": 52202.88877262031,
-        "tp": 52446.493068449214,
-        "dist": 69.60122737968777,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 52441.92,
-        "sl": 52511.521227379686,
-        "tp": 52267.916931550775,
-        "dist": 69.60122737968777,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "DJ30_MASTER_DOSSIER.json"
     },
-    "GER40": {
+    {
       "canonical": "GER40",
+      "display_name": "GER40",
       "category": "Equity Index EU",
       "broker_symbol": "GER40.p",
-      "mid_price": 19372.85,
-      "spread_bps": 4.18,
+      "spread_bps": 0.58,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 25908.63,
-        "sl": 25871.329843267253,
-        "tp": 26001.880391831874,
-        "dist": 37.30015673274829,
-        "lots": 0.1
-      },
-      "short_setup": {
-        "entry": 26029.1,
-        "sl": 26066.400156732747,
-        "tp": 25935.84960816813,
-        "dist": 37.30015673274829,
-        "lots": 0.1
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GER40_MASTER_DOSSIER.json"
     },
-    "USDHKD": {
+    {
       "canonical": "USDHKD",
+      "display_name": "USDHKD",
       "category": "Forex Exotic",
       "broker_symbol": "USDHKD.pi",
-      "mid_price": 7.845355,
-      "spread_bps": 0.14,
+      "spread_bps": 0.05,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 7.8443954,
-        "sl": 7.843506854494906,
-        "tp": 7.8468954,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 7.845582199999999,
-        "sl": 7.846470745505093,
-        "tp": 7.843082199999999,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDHKD_MASTER_DOSSIER.json"
     },
-    "USDCNH": {
+    {
       "canonical": "USDCNH",
+      "display_name": "USDCNH",
       "category": "Forex Exotic",
       "broker_symbol": "USDCNH.pi",
-      "mid_price": 6.65091,
-      "spread_bps": 0.06,
+      "spread_bps": 0.09,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 6.6519,
-        "sl": 6.650933332291335,
-        "tp": 6.654400000000001,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 6.6573,
-        "sl": 6.6582666677086655,
-        "tp": 6.6548,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDCNH_MASTER_DOSSIER.json"
     },
-    "GBPHKD": {
+    {
       "canonical": "GBPHKD",
+      "display_name": "GBPHKD",
       "category": "Forex Exotic",
       "broker_symbol": "GBPHKD.pi",
-      "mid_price": 10.534510000000001,
-      "spread_bps": 0.21,
+      "spread_bps": 0.56,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 10.502906470000001,
-        "sl": 9.30257647,
-        "tp": 13.503731470000004,
-        "dist": 1.200330000000001,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 10.566113529999999,
-        "sl": 11.76644353,
-        "tp": 7.565288529999997,
-        "dist": 1.200330000000001,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPHKD_MASTER_DOSSIER.json"
     },
-    "EURHKD": {
+    {
       "canonical": "EURHKD",
+      "display_name": "EURHKD",
       "category": "Forex Exotic",
       "broker_symbol": "EURHKD.pi",
-      "mid_price": 8.7813,
-      "spread_bps": 0.14,
+      "spread_bps": 0.13,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 8.7549561,
-        "sl": 7.554776100000001,
-        "tp": 11.755406099999997,
-        "dist": 1.2001799999999987,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 8.807643899999999,
-        "sl": 10.007823899999996,
-        "tp": 5.807193900000004,
-        "dist": 1.2001799999999978,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURHKD_MASTER_DOSSIER.json"
     },
-    "USDSGD": {
+    {
       "canonical": "USDSGD",
+      "display_name": "USDSGD",
       "category": "Forex Exotic",
       "broker_symbol": "USDSGD.pi",
-      "mid_price": 1.27753,
-      "spread_bps": 0.47,
+      "spread_bps": 0.23,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.2771999,
-        "sl": 1.2767091632585759,
-        "tp": 1.2796999,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.2781701,
-        "sl": 1.2786608367414243,
-        "tp": 1.2756701000000001,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDSGD_MASTER_DOSSIER.json"
     },
-    "AUDJPY": {
+    {
       "canonical": "AUDJPY",
+      "display_name": "AUDJPY",
       "category": "Forex Cross",
       "broker_symbol": "AUDJPY.pi",
-      "mid_price": 110.35499999999999,
-      "spread_bps": 0.72,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 110.579,
-        "sl": 110.44672465263199,
-        "tp": 110.90968836842,
-        "dist": 0.13227534736800806,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 110.854,
-        "sl": 110.98627534736801,
-        "tp": 110.52331163157999,
-        "dist": 0.13227534736800806,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "AUDCAD": {
-      "canonical": "AUDCAD",
-      "category": "Forex Cross",
-      "broker_symbol": "AUDCAD.pi",
-      "mid_price": 0.98095,
-      "spread_bps": 1.22,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.98116,
-        "sl": 0.980296830494969,
-        "tp": 0.98366,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.98295,
-        "sl": 0.9838131695050311,
-        "tp": 0.98045,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPCNH": {
-      "canonical": "GBPCNH",
-      "category": "Forex Exotic",
-      "broker_symbol": "GBPCNH.pi",
-      "mid_price": 8.93067,
-      "spread_bps": 0.29,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 8.90387799,
-        "sl": 7.703487990000001,
-        "tp": 11.904852989999997,
-        "dist": 1.2003899999999987,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 8.957462009999999,
-        "sl": 10.157852009999997,
-        "tp": 5.956487010000002,
-        "dist": 1.2003899999999987,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPAUD": {
-      "canonical": "GBPAUD",
-      "category": "Forex Cross",
-      "broker_symbol": "GBPAUD.pi",
-      "mid_price": 1.91107,
-      "spread_bps": 0.63,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.90408,
-        "sl": 1.9024839021927937,
-        "tp": 1.9080702445180155,
-        "dist": 0.0015960978072062648,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.91046,
-        "sl": 1.9120560978072063,
-        "tp": 1.9064697554819845,
-        "dist": 0.0015960978072062648,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CNHJPY": {
-      "canonical": "CNHJPY",
-      "category": "Forex Exotic",
-      "broker_symbol": "CNHJPY.pi",
-      "mid_price": 23.6175,
-      "spread_bps": 0.42,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 23.5466475,
-        "sl": 22.345147500000003,
-        "tp": 26.55039749999999,
-        "dist": 1.2014999999999958,
-        "lots": 8.32
-      },
-      "short_setup": {
-        "entry": 23.688352499999997,
-        "sl": 24.889852499999993,
-        "tp": 20.684602500000008,
-        "dist": 1.2014999999999958,
-        "lots": 8.32
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURAUD": {
-      "canonical": "EURAUD",
-      "category": "Forex Cross",
-      "broker_symbol": "EURAUD.pi",
-      "mid_price": 1.59302,
-      "spread_bps": 0.88,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.59068,
-        "sl": 1.5891188103149443,
-        "tp": 1.5945829742126396,
-        "dist": 0.0015611896850558082,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.59386,
-        "sl": 1.5954211896850559,
-        "tp": 1.5899570257873605,
-        "dist": 0.0015611896850558082,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPNZD": {
-      "canonical": "GBPNZD",
-      "category": "Forex Cross",
-      "broker_symbol": "GBPNZD.pi",
-      "mid_price": 2.3786899999999997,
-      "spread_bps": 0.67,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 2.3746479000000003,
-        "sl": 2.372565336699274,
-        "tp": 2.379854308251816,
-        "dist": 0.0020825633007262034,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 2.3795209,
-        "sl": 2.3816034633007264,
-        "tp": 2.3743144917481844,
-        "dist": 0.0020825633007262034,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CHFJPY": {
-      "canonical": "CHFJPY",
-      "category": "Forex Cross",
-      "broker_symbol": "CHFJPY.pi",
-      "mid_price": 191.415,
-      "spread_bps": 0.63,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 191.423,
-        "sl": 191.22727737295747,
-        "tp": 191.91230656760632,
-        "dist": 0.19572262704252807,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 191.717,
-        "sl": 191.91272262704254,
-        "tp": 191.2276934323937,
-        "dist": 0.19572262704252807,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPCAD": {
-      "canonical": "GBPCAD",
-      "category": "Forex Cross",
-      "broker_symbol": "GBPCAD.pi",
-      "mid_price": 1.874655,
-      "spread_bps": 0.8,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.87004,
-        "sl": 1.8688528198443335,
-        "tp": 1.873007950389166,
-        "dist": 0.001187180155666434,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.87264,
-        "sl": 1.8738271801556665,
-        "tp": 1.869672049610834,
-        "dist": 0.001187180155666434,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURCAD": {
-      "canonical": "EURCAD",
-      "category": "Forex Cross",
-      "broker_symbol": "EURCAD.pi",
-      "mid_price": 1.562675,
-      "spread_bps": 0.58,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.56258,
-        "sl": 1.5616418569175572,
-        "tp": 1.56508,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.564,
-        "sl": 1.564938143082443,
-        "tp": 1.5615,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "AUDCHF": {
-      "canonical": "AUDCHF",
-      "category": "Forex Cross",
-      "broker_symbol": "AUDCHF.pi",
-      "mid_price": 0.5766,
-      "spread_bps": 3.47,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.5772,
-        "sl": 0.576245000274372,
-        "tp": 0.5797,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.57868,
-        "sl": 0.579634999725628,
-        "tp": 0.57618,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "NZDCNH": {
-      "canonical": "NZDCNH",
-      "category": "Forex Exotic",
-      "broker_symbol": "NZDCNH.pi",
-      "mid_price": 3.75445,
-      "spread_bps": 0.32,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3.7431866499999997,
-        "sl": 2.5430066499999997,
-        "tp": 6.743636649999999,
-        "dist": 1.20018,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 3.7657133499999995,
-        "sl": 4.965893349999999,
-        "tp": 0.7652633500000006,
-        "dist": 1.2001799999999996,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "AUDSGD": {
-      "canonical": "AUDSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "AUDSGD.pi",
-      "mid_price": 0.897635,
-      "spread_bps": 0.33,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.8979177,
-        "sl": 0.8972815187729544,
-        "tp": 0.9004177,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.8995504999999999,
-        "sl": 0.9001866812270456,
-        "tp": 0.8970505,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "NZDJPY": {
-      "canonical": "NZDJPY",
-      "category": "Forex Cross",
-      "broker_symbol": "NZDJPY.pi",
-      "mid_price": 88.66550000000001,
-      "spread_bps": 1.02,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 88.72,
-        "sl": 88.61693050584535,
-        "tp": 88.97767373538663,
-        "dist": 0.10306949415465283,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 88.84,
-        "sl": 88.94306949415466,
-        "tp": 88.58232626461337,
-        "dist": 0.10306949415465283,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GAUUSD": {
-      "canonical": "GAUUSD",
-      "category": "Forex Cross",
-      "broker_symbol": "GAUUSD.pi",
-      "mid_price": 127.56245,
-      "spread_bps": 0.53,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 127.84575849999999,
-        "sl": 127.53815739883292,
-        "tp": 128.61476125291765,
-        "dist": 0.30760110116706585,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 128.6943895,
-        "sl": 129.00199060116705,
-        "tp": 127.92538674708237,
-        "dist": 0.30760110116705164,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "NZDCHF": {
-      "canonical": "NZDCHF",
-      "category": "Forex Cross",
-      "broker_symbol": "NZDCHF.pi",
-      "mid_price": 0.46325000000000005,
-      "spread_bps": 1.3,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.46306505,
-        "sl": 0.4625346812743444,
-        "tp": 0.46556505,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.46400684999999997,
-        "sl": 0.46453721872565557,
-        "tp": 0.46150684999999997,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAUGBP": {
-      "canonical": "XAUGBP",
-      "category": "Forex Cross",
-      "broker_symbol": "XAUGBP.pi",
-      "mid_price": 3967.64,
-      "spread_bps": 0.4,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURSGD": {
-      "canonical": "EURSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "EURSGD.pi",
-      "mid_price": 1.429925,
-      "spread_bps": 0.35,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.425635225,
-        "sl": 0.22556022499999995,
-        "tp": 4.425822725,
-        "dist": 1.200075,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 1.4342147749999998,
-        "sl": 2.634289775,
-        "tp": -1.5659727250000006,
-        "dist": 1.2000750000000002,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CADJPY": {
-      "canonical": "CADJPY",
-      "category": "Forex Cross",
-      "broker_symbol": "CADJPY.pi",
-      "mid_price": 112.5055,
-      "spread_bps": 0.98,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 112.635,
-        "sl": 112.50919564237105,
-        "tp": 112.94951089407238,
-        "dist": 0.12580435762895092,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 112.828,
-        "sl": 112.95380435762895,
-        "tp": 112.51348910592762,
-        "dist": 0.12580435762895092,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CHFSGD": {
-      "canonical": "CHFSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "CHFSGD.pi",
-      "mid_price": 1.556775,
-      "spread_bps": 0.71,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.552104675,
-        "sl": 0.3519396749999997,
-        "tp": 4.552517175000001,
-        "dist": 1.2001650000000004,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 1.5614453249999998,
-        "sl": 2.7616103250000004,
-        "tp": -1.4389671750000015,
-        "dist": 1.2001650000000006,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "AUDNZD": {
-      "canonical": "AUDNZD",
-      "category": "Forex Cross",
-      "broker_symbol": "AUDNZD.pi",
-      "mid_price": 1.244695,
-      "spread_bps": 1.21,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.2460248,
-        "sl": 1.2448200094192545,
-        "tp": 1.249036776451864,
-        "dist": 0.0012047905807455184,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.2488584,
-        "sl": 1.2500631905807456,
-        "tp": 1.2458464235481364,
-        "dist": 0.0012047905807455184,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "USDSEK": {
-      "canonical": "USDSEK",
-      "category": "Forex Exotic",
-      "broker_symbol": "USDSEK.pi",
-      "mid_price": 9.805344999999999,
-      "spread_bps": 1.27,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 9.775928964999999,
-        "sl": 8.574053964999997,
-        "tp": 12.780616465000001,
-        "dist": 1.2018750000000011,
-        "lots": 8.32
-      },
-      "short_setup": {
-        "entry": 9.834761034999998,
-        "sl": 11.036636034999999,
-        "tp": 6.830073534999995,
-        "dist": 1.2018750000000011,
-        "lots": 8.32
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAUAUD": {
-      "canonical": "XAUAUD",
-      "category": "Forex Cross",
-      "broker_symbol": "XAUAUD.pi",
-      "mid_price": 3967.64,
-      "spread_bps": 0.4,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAUEUR": {
-      "canonical": "XAUEUR",
-      "category": "Forex Cross",
-      "broker_symbol": "XAUEUR.pi",
-      "mid_price": 3544.6800000000003,
-      "spread_bps": 0.45,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3557.48,
-        "sl": 3548.0096436763674,
-        "tp": 3581.1558908090815,
-        "dist": 9.470356323632586,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 3583.21,
-        "sl": 3592.6803563236326,
-        "tp": 3559.5341091909186,
-        "dist": 9.470356323632586,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURNZD": {
-      "canonical": "EURNZD",
-      "category": "Forex Cross",
-      "broker_symbol": "EURNZD.pi",
-      "mid_price": 1.98284,
-      "spread_bps": 0.91,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.98252265,
-        "sl": 1.9806682438905399,
-        "tp": 1.9871586652736501,
-        "dist": 0.0018544061094600828,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.98659395,
-        "sl": 1.9884483561094601,
-        "tp": 1.9819579347263498,
-        "dist": 0.0018544061094600828,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURCNH": {
-      "canonical": "EURCNH",
-      "category": "Forex Exotic",
-      "broker_symbol": "EURCNH.pi",
-      "mid_price": 7.44433,
-      "spread_bps": 0.67,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 7.42199701,
-        "sl": 6.221247009999999,
-        "tp": 10.423872010000004,
-        "dist": 1.200750000000001,
-        "lots": 8.32
-      },
-      "short_setup": {
-        "entry": 7.466662989999999,
-        "sl": 8.667412989999999,
-        "tp": 4.464787989999998,
-        "dist": 1.2007500000000002,
-        "lots": 8.32
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAUCNH": {
-      "canonical": "XAUCNH",
-      "category": "Forex Exotic",
-      "broker_symbol": "XAUCNH.pi",
-      "mid_price": 3967.64,
-      "spread_bps": 0.4,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.989643676368,
-        "tp": 4003.1358908090806,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.400356323632,
-        "tp": 3984.2541091909197,
-        "dist": 9.470356323632132,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "SGDJPY": {
-      "canonical": "SGDJPY",
-      "category": "Forex Exotic",
-      "broker_symbol": "SGDJPY.pi",
-      "mid_price": 122.94999999999999,
-      "spread_bps": 0.81,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 122.58115,
-        "sl": 121.36614999999999,
-        "tp": 125.61865,
-        "dist": 1.2150000000000034,
-        "lots": 8.23
-      },
-      "short_setup": {
-        "entry": 123.31884999999997,
-        "sl": 124.53384999999997,
-        "tp": 120.28134999999996,
-        "dist": 1.2150000000000034,
-        "lots": 8.23
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "NZDSGD": {
-      "canonical": "NZDSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "NZDSGD.pi",
-      "mid_price": 0.721155,
-      "spread_bps": 0.97,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.718991535,
-        "sl": -0.48111346499999996,
-        "tp": 3.7192540349999996,
-        "dist": 1.200105,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 0.723318465,
-        "sl": 1.923423465,
-        "tp": -2.2769440349999996,
-        "dist": 1.200105,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CADCHF": {
-      "canonical": "CADCHF",
-      "category": "Forex Cross",
-      "broker_symbol": "CADCHF.pi",
-      "mid_price": 0.5877950000000001,
-      "spread_bps": 1.53,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.58812,
-        "sl": 0.5874778635119355,
-        "tp": 0.5906199999999999,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.58889,
-        "sl": 0.5895321364880645,
-        "tp": 0.5863900000000001,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "JP225": {
-      "canonical": "JP225",
-      "category": "Equity Index",
-      "broker_symbol": "JP225.p",
-      "mid_price": 62590.1,
-      "spread_bps": 1.36,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 62525.4,
-        "sl": 62327.024520254796,
-        "tp": 63021.33869936301,
-        "dist": 198.37547974520567,
-        "lots": 0.05
-      },
-      "short_setup": {
-        "entry": 63173.4,
-        "sl": 63371.77547974521,
-        "tp": 62677.46130063699,
-        "dist": 198.37547974520567,
-        "lots": 0.05
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPSGD": {
-      "canonical": "GBPSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "GBPSGD.pi",
-      "mid_price": 1.7154250000000002,
-      "spread_bps": 0.52,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.7102787250000002,
-        "sl": 0.5101437250000003,
-        "tp": 4.710616225,
-        "dist": 1.200135,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 1.720571275,
-        "sl": 2.9207062749999997,
-        "tp": -1.2797662249999993,
-        "dist": 1.2001349999999997,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAUSGD": {
-      "canonical": "XAUSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "XAUSGD.pi",
-      "mid_price": 5068.715,
-      "spread_bps": 0.61,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 3979.46,
-        "sl": 3969.7646436763685,
-        "tp": 4003.698390809079,
-        "dist": 9.695356323631586,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 4007.93,
-        "sl": 4017.6253563236314,
-        "tp": 3983.6916091909206,
-        "dist": 9.695356323631586,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPCHF": {
-      "canonical": "GBPCHF",
-      "category": "Forex Cross",
-      "broker_symbol": "GBPCHF.pi",
-      "mid_price": 1.101925,
-      "spread_bps": 1.18,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.1005,
-        "sl": 1.0994362600331498,
-        "tp": 1.1031593499171257,
-        "dist": 0.0010637399668502745,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.10322,
-        "sl": 1.1042837399668504,
-        "tp": 1.1005606500828744,
-        "dist": 0.0010637399668502745,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "NZDCAD": {
-      "canonical": "NZDCAD",
-      "category": "Forex Cross",
-      "broker_symbol": "NZDCAD.pi",
-      "mid_price": 0.788105,
-      "spread_bps": 1.4,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.78698785,
-        "sl": 0.7862058451419479,
-        "tp": 0.78948785,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.78834625,
-        "sl": 0.7891282548580522,
-        "tp": 0.7858462500000001,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GBPSEK": {
-      "canonical": "GBPSEK",
-      "category": "Forex Exotic",
-      "broker_symbol": "GBPSEK.pi",
-      "mid_price": 13.166274999999999,
-      "spread_bps": 1.19,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 13.126776174999998,
-        "sl": 11.924421174999999,
-        "tp": 16.132663674999996,
-        "dist": 1.202354999999999,
-        "lots": 8.31
-      },
-      "short_setup": {
-        "entry": 13.205773824999998,
-        "sl": 14.408128824999997,
-        "tp": 10.199886325000001,
-        "dist": 1.202354999999999,
-        "lots": 8.31
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "US2000": {
-      "canonical": "US2000",
-      "category": "Equity Index",
-      "broker_symbol": "US2000.p",
-      "mid_price": 2841.6,
-      "spread_bps": 2.46,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 2841.51,
-        "sl": 2836.0419741621936,
-        "tp": 2855.180064594517,
-        "dist": 5.4680258378066355,
-        "lots": 1.82
-      },
-      "short_setup": {
-        "entry": 2851.53,
-        "sl": 2856.998025837807,
-        "tp": 2837.8599354054836,
-        "dist": 5.4680258378066355,
-        "lots": 1.82
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURSEK": {
-      "canonical": "EURSEK",
-      "category": "Forex Exotic",
-      "broker_symbol": "EURSEK.pi",
-      "mid_price": 10.975169999999999,
-      "spread_bps": 1.06,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 10.942244489999998,
-        "sl": 9.740504489999998,
-        "tp": 13.94659449,
-        "dist": 1.201740000000001,
-        "lots": 8.32
-      },
-      "short_setup": {
-        "entry": 11.008095509999997,
-        "sl": 12.209835509999998,
-        "tp": 8.003745509999995,
-        "dist": 1.201740000000001,
-        "lots": 8.32
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "AU200": {
-      "canonical": "AU200",
-      "category": "Equity Index",
-      "broker_symbol": "AU200.p",
-      "mid_price": 8908.6,
-      "spread_bps": 1.12,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 8904.05,
-        "sl": 8891.154842889042,
-        "tp": 8936.287892777393,
-        "dist": 12.89515711095737,
-        "lots": 0.77
-      },
-      "short_setup": {
-        "entry": 8942.57,
-        "sl": 8955.465157110957,
-        "tp": 8910.332107222606,
-        "dist": 12.89515711095737,
-        "lots": 0.77
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "EURCHF": {
-      "canonical": "EURCHF",
-      "category": "Forex Cross",
-      "broker_symbol": "EURCHF.pi",
-      "mid_price": 0.91854,
       "spread_bps": 1.09,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.91912,
-        "sl": 0.9183177580844873,
-        "tp": 0.92162,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.92024,
-        "sl": 0.9210422419155126,
-        "tp": 0.91774,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDJPY_MASTER_DOSSIER.json"
     },
-    "UK100": {
-      "canonical": "UK100",
-      "category": "Equity Index",
-      "broker_symbol": "UK100.p",
-      "mid_price": 10731.43,
-      "spread_bps": 1.86,
+    {
+      "canonical": "AUDCAD",
+      "display_name": "AUDCAD",
+      "category": "Forex Cross",
+      "broker_symbol": "AUDCAD.pi",
+      "spread_bps": 1.22,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 10737.78,
-        "sl": 10717.093068158252,
-        "tp": 10789.497329604372,
-        "dist": 20.686931841748446,
-        "lots": 0.48
-      },
-      "short_setup": {
-        "entry": 10765.01,
-        "sl": 10785.696931841749,
-        "tp": 10713.29267039563,
-        "dist": 20.686931841748446,
-        "lots": 0.48
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDCAD_MASTER_DOSSIER.json"
     },
-    "FR40": {
-      "canonical": "FR40",
-      "category": "Equity Index",
-      "broker_symbol": "FR40.p",
-      "mid_price": 7969.85,
-      "spread_bps": 1.88,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 7960.49,
-        "sl": 7944.868272580281,
-        "tp": 7999.544318549297,
-        "dist": 15.621727419718809,
-        "lots": 0.64
-      },
-      "short_setup": {
-        "entry": 7987.37,
-        "sl": 8002.991727419719,
-        "tp": 7948.315681450703,
-        "dist": 15.621727419718809,
-        "lots": 0.64
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "USDNOK": {
-      "canonical": "USDNOK",
+    {
+      "canonical": "GBPCNH",
+      "display_name": "GBPCNH",
       "category": "Forex Exotic",
-      "broker_symbol": "USDNOK.pi",
-      "mid_price": 9.218215,
-      "spread_bps": 1.42,
+      "broker_symbol": "GBPCNH.pi",
+      "spread_bps": 0.73,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 9.190560355,
-        "sl": 7.988595355,
-        "tp": 12.195472855000002,
-        "dist": 1.2019650000000004,
-        "lots": 8.31
-      },
-      "short_setup": {
-        "entry": 9.245869644999999,
-        "sl": 10.447834644999999,
-        "tp": 6.240957145,
-        "dist": 1.2019649999999995,
-        "lots": 8.31
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPCNH_MASTER_DOSSIER.json"
     },
-    "EURNOK": {
-      "canonical": "EURNOK",
-      "category": "Forex Exotic",
-      "broker_symbol": "EURNOK.pi",
-      "mid_price": 10.31772,
-      "spread_bps": 1.63,
+    {
+      "canonical": "GBPAUD",
+      "display_name": "GBPAUD",
+      "category": "Forex Cross",
+      "broker_symbol": "GBPAUD.pi",
+      "spread_bps": 1.05,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 10.28676684,
-        "sl": 9.08424684,
-        "tp": 13.29306684,
-        "dist": 1.2025199999999998,
-        "lots": 8.31
-      },
-      "short_setup": {
-        "entry": 10.348673159999999,
-        "sl": 11.551193159999999,
-        "tp": 7.342373159999999,
-        "dist": 1.2025199999999998,
-        "lots": 8.31
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPAUD_MASTER_DOSSIER.json"
     },
-    "USDMXN": {
-      "canonical": "USDMXN",
+    {
+      "canonical": "CNHJPY",
+      "display_name": "CNHJPY",
       "category": "Forex Exotic",
-      "broker_symbol": "USDMXN.pi",
-      "mid_price": 18.903085,
-      "spread_bps": 1.74,
+      "broker_symbol": "CNHJPY.pi",
+      "spread_bps": 0.42,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 18.846375745,
-        "sl": 17.641440745,
-        "tp": 21.858713244999997,
-        "dist": 1.204934999999999,
-        "lots": 8.290000000000001
-      },
-      "short_setup": {
-        "entry": 18.959794255,
-        "sl": 20.164729254999997,
-        "tp": 15.947456755000001,
-        "dist": 1.204934999999999,
-        "lots": 8.290000000000001
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CNHJPY_MASTER_DOSSIER.json"
     },
-    "USDZAR": {
-      "canonical": "USDZAR",
-      "category": "Forex Exotic",
-      "broker_symbol": "USDZAR.pi",
-      "mid_price": 16.669385,
-      "spread_bps": 1.89,
+    {
+      "canonical": "EURAUD",
+      "display_name": "EURAUD",
+      "category": "Forex Cross",
+      "broker_symbol": "EURAUD.pi",
+      "spread_bps": 0.94,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 16.619376844999998,
-        "sl": 15.414651844999996,
-        "tp": 19.631189345000003,
-        "dist": 1.2047250000000016,
-        "lots": 8.3
-      },
-      "short_setup": {
-        "entry": 16.719393154999995,
-        "sl": 17.924118155,
-        "tp": 13.707580654999987,
-        "dist": 1.2047250000000034,
-        "lots": 8.3
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURAUD_MASTER_DOSSIER.json"
     },
-    "GBPNOK": {
-      "canonical": "GBPNOK",
-      "category": "Forex Exotic",
-      "broker_symbol": "GBPNOK.pi",
-      "mid_price": 12.378150000000002,
-      "spread_bps": 1.7,
+    {
+      "canonical": "GBPNZD",
+      "display_name": "GBPNZD",
+      "category": "Forex Cross",
+      "broker_symbol": "GBPNZD.pi",
+      "spread_bps": 1.09,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 12.341015550000002,
-        "sl": 11.13786555,
-        "tp": 15.348890550000004,
-        "dist": 1.2031500000000008,
-        "lots": 8.31
-      },
-      "short_setup": {
-        "entry": 12.41528445,
-        "sl": 13.61843445,
-        "tp": 9.407409449999998,
-        "dist": 1.2031500000000008,
-        "lots": 8.31
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPNZD_MASTER_DOSSIER.json"
     },
-    "EURZAR": {
-      "canonical": "EURZAR",
-      "category": "Forex Exotic",
-      "broker_symbol": "EURZAR.pi",
-      "mid_price": 18.658479999999997,
-      "spread_bps": 1.97,
+    {
+      "canonical": "CHFJPY",
+      "display_name": "CHFJPY",
+      "category": "Forex Cross",
+      "broker_symbol": "CHFJPY.pi",
+      "spread_bps": 0.99,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 18.602504559999996,
-        "sl": 17.396984559999996,
-        "tp": 21.616304559999996,
-        "dist": 1.20552,
-        "lots": 8.290000000000001
-      },
-      "short_setup": {
-        "entry": 18.714455439999995,
-        "sl": 19.919975439999995,
-        "tp": 15.700655439999995,
-        "dist": 1.20552,
-        "lots": 8.290000000000001
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHFJPY_MASTER_DOSSIER.json"
     },
-    "EURMXN": {
-      "canonical": "EURMXN",
+    {
+      "canonical": "GBPCAD",
+      "display_name": "GBPCAD",
+      "category": "Forex Cross",
+      "broker_symbol": "GBPCAD.pi",
+      "spread_bps": 0.8,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPCAD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURCAD",
+      "display_name": "EURCAD",
+      "category": "Forex Cross",
+      "broker_symbol": "EURCAD.pi",
+      "spread_bps": 0.64,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURCAD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "AUDCHF",
+      "display_name": "AUDCHF",
+      "category": "Forex Cross",
+      "broker_symbol": "AUDCHF.pi",
+      "spread_bps": 3.47,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDCHF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "NZDCNH",
+      "display_name": "NZDCNH",
       "category": "Forex Exotic",
-      "broker_symbol": "EURMXN.pi",
-      "mid_price": 21.158625,
+      "broker_symbol": "NZDCNH.pi",
+      "spread_bps": 0.53,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDCNH_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "AUDSGD",
+      "display_name": "AUDSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "AUDSGD.pi",
+      "spread_bps": 0.33,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "NZDJPY",
+      "display_name": "NZDJPY",
+      "category": "Forex Cross",
+      "broker_symbol": "NZDJPY.pi",
+      "spread_bps": 1.47,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDJPY_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GAUUSD",
+      "display_name": "GAUUSD",
+      "category": "Forex Cross",
+      "broker_symbol": "GAUUSD.pi",
+      "spread_bps": 0.97,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GAUUSD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "NZDCHF",
+      "display_name": "NZDCHF",
+      "category": "Forex Cross",
+      "broker_symbol": "NZDCHF.pi",
+      "spread_bps": 1.3,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDCHF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAUGBP",
+      "display_name": "XAUGBP",
+      "category": "Forex Cross",
+      "broker_symbol": "XAUGBP.pi",
+      "spread_bps": 0.4,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUGBP_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURSGD",
+      "display_name": "EURSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURSGD.pi",
+      "spread_bps": 0.28,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "CADJPY",
+      "display_name": "CADJPY",
+      "category": "Forex Cross",
+      "broker_symbol": "CADJPY.pi",
       "spread_bps": 1.33,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 21.095149125,
-        "sl": 19.890934124999998,
-        "tp": 24.105686625000004,
-        "dist": 1.2042150000000014,
-        "lots": 8.3
-      },
-      "short_setup": {
-        "entry": 21.222100875,
-        "sl": 22.426315875,
-        "tp": 18.211563374999997,
-        "dist": 1.2042150000000014,
-        "lots": 8.3
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CADJPY_MASTER_DOSSIER.json"
     },
-    "STOXX50": {
+    {
+      "canonical": "CHFSGD",
+      "display_name": "CHFSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "CHFSGD.pi",
+      "spread_bps": 0.84,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHFSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "AUDNZD",
+      "display_name": "AUDNZD",
+      "category": "Forex Cross",
+      "broker_symbol": "AUDNZD.pi",
+      "spread_bps": 1.2,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDNZD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDSEK",
+      "display_name": "USDSEK",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDSEK.pi",
+      "spread_bps": 0.75,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDSEK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAUAUD",
+      "display_name": "XAUAUD",
+      "category": "Forex Cross",
+      "broker_symbol": "XAUAUD.pi",
+      "spread_bps": 0.4,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUAUD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAUEUR",
+      "display_name": "XAUEUR",
+      "category": "Forex Cross",
+      "broker_symbol": "XAUEUR.pi",
+      "spread_bps": 0.4,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUEUR_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURNZD",
+      "display_name": "EURNZD",
+      "category": "Forex Cross",
+      "broker_symbol": "EURNZD.pi",
+      "spread_bps": 0.96,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURNZD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURCNH",
+      "display_name": "EURCNH",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURCNH.pi",
+      "spread_bps": 0.63,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURCNH_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAUCNH",
+      "display_name": "XAUCNH",
+      "category": "Forex Exotic",
+      "broker_symbol": "XAUCNH.pi",
+      "spread_bps": 0.79,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XAUCNH_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "SGDJPY",
+      "display_name": "SGDJPY",
+      "category": "Forex Exotic",
+      "broker_symbol": "SGDJPY.pi",
+      "spread_bps": 1.3,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SGDJPY_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "NZDSGD",
+      "display_name": "NZDSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "NZDSGD.pi",
+      "spread_bps": 1.11,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "CADCHF",
+      "display_name": "CADCHF",
+      "category": "Forex Cross",
+      "broker_symbol": "CADCHF.pi",
+      "spread_bps": 1.53,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CADCHF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "JP225",
+      "display_name": "JP225",
+      "category": "Equity Index",
+      "broker_symbol": "JP225.p",
+      "spread_bps": 1.36,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "JP225_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GBPSGD",
+      "display_name": "GBPSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "GBPSGD.pi",
+      "spread_bps": 0.47,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAUSGD",
+      "display_name": "XAUSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "XAUSGD.pi",
+      "spread_bps": 1.22,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAUSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GBPCHF",
+      "display_name": "GBPCHF",
+      "category": "Forex Cross",
+      "broker_symbol": "GBPCHF.pi",
+      "spread_bps": 1.54,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPCHF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "NZDCAD",
+      "display_name": "NZDCAD",
+      "category": "Forex Cross",
+      "broker_symbol": "NZDCAD.pi",
+      "spread_bps": 1.52,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NZDCAD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GBPSEK",
+      "display_name": "GBPSEK",
+      "category": "Forex Exotic",
+      "broker_symbol": "GBPSEK.pi",
+      "spread_bps": 1.15,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPSEK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "US2000",
+      "display_name": "US2000",
+      "category": "Equity Index",
+      "broker_symbol": "US2000.p",
+      "spread_bps": 2.46,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "US2000_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURSEK",
+      "display_name": "EURSEK",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURSEK.pi",
+      "spread_bps": 0.98,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURSEK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "AU200",
+      "display_name": "AU200",
+      "category": "Equity Index",
+      "broker_symbol": "AU200.p",
+      "spread_bps": 1.12,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AU200_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURCHF",
+      "display_name": "EURCHF",
+      "category": "Forex Cross",
+      "broker_symbol": "EURCHF.pi",
+      "spread_bps": 1.09,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURCHF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "UK100",
+      "display_name": "UK100",
+      "category": "Equity Index",
+      "broker_symbol": "UK100.p",
+      "spread_bps": 1.86,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "UK100_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "FR40",
+      "display_name": "FR40",
+      "category": "Equity Index",
+      "broker_symbol": "FR40.p",
+      "spread_bps": 1.88,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "FR40_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDNOK",
+      "display_name": "USDNOK",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDNOK.pi",
+      "spread_bps": 1.04,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDNOK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURNOK",
+      "display_name": "EURNOK",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURNOK.pi",
+      "spread_bps": 1.16,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURNOK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDMXN",
+      "display_name": "USDMXN",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDMXN.pi",
+      "spread_bps": 2.22,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDMXN_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDZAR",
+      "display_name": "USDZAR",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDZAR.pi",
+      "spread_bps": 0.94,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDZAR_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GBPNOK",
+      "display_name": "GBPNOK",
+      "category": "Forex Exotic",
+      "broker_symbol": "GBPNOK.pi",
+      "spread_bps": 1.91,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GBPNOK_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURZAR",
+      "display_name": "EURZAR",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURZAR.pi",
+      "spread_bps": 1.88,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURZAR_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "EURMXN",
+      "display_name": "EURMXN",
+      "category": "Forex Exotic",
+      "broker_symbol": "EURMXN.pi",
+      "spread_bps": 1.62,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURMXN_MASTER_DOSSIER.json"
+    },
+    {
       "canonical": "STOXX50",
+      "display_name": "STOXX50",
       "category": "Equity Index",
       "broker_symbol": "STOXX50.p",
-      "mid_price": 6139.37,
-      "spread_bps": 3.26,
+      "spread_bps": 3.25,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 6165.2,
-        "sl": 6150.628882526123,
-        "tp": 6201.627793684693,
-        "dist": 14.571117473877166,
-        "lots": 0.68
-      },
-      "short_setup": {
-        "entry": 6181.56,
-        "sl": 6196.131117473878,
-        "tp": 6145.1322063153075,
-        "dist": 14.571117473877166,
-        "lots": 0.68
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "STOXX50_MASTER_DOSSIER.json"
     },
-    "NETH25": {
+    {
       "canonical": "NETH25",
+      "display_name": "NETH25",
       "category": "Forex Cross",
       "broker_symbol": "NETH25.p",
-      "mid_price": 1138.15,
       "spread_bps": 3.51,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1136.01,
-        "sl": 1133.5364801080086,
-        "tp": 1142.1937997299783,
-        "dist": 2.473519891991373,
-        "lots": 4.04
-      },
-      "short_setup": {
-        "entry": 1139.98,
-        "sl": 1142.4535198919914,
-        "tp": 1133.7962002700215,
-        "dist": 2.473519891991373,
-        "lots": 4.04
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NETH25_MASTER_DOSSIER.json"
     },
-    "AUDCNH": {
+    {
       "canonical": "AUDCNH",
+      "display_name": "AUDCNH",
       "category": "Forex Exotic",
       "broker_symbol": "AUDCNH.pi",
-      "mid_price": 4.673145,
-      "spread_bps": 0.58,
+      "spread_bps": 0.64,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 4.659125565,
-        "sl": 3.4587205649999992,
-        "tp": 7.660138065000002,
-        "dist": 1.2004050000000008,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 4.687164435,
-        "sl": 5.8875694350000005,
-        "tp": 1.6861519349999976,
-        "dist": 1.2004050000000008,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AUDCNH_MASTER_DOSSIER.json"
     },
-    "SWISS20": {
+    {
       "canonical": "SWISS20",
+      "display_name": "SWISS20",
       "category": "Equity Index",
       "broker_symbol": "SWISS20.p",
-      "mid_price": 14806.5,
       "spread_bps": 2.84,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 14762.1,
-        "sl": 14731.950011972049,
-        "tp": 14837.47497006988,
-        "dist": 30.149988027951622,
-        "lots": 0.33
-      },
-      "short_setup": {
-        "entry": 14825.46,
-        "sl": 14855.60998802795,
-        "tp": 14750.08502993012,
-        "dist": 30.149988027951622,
-        "lots": 0.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SWISS20_MASTER_DOSSIER.json"
     },
-    "NOKSEK": {
+    {
       "canonical": "NOKSEK",
+      "display_name": "NOKSEK",
       "category": "Forex Exotic",
       "broker_symbol": "NOKSEK.pi",
-      "mid_price": 1.063695,
-      "spread_bps": 1.97,
+      "spread_bps": 2.16,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.060503915,
-        "sl": -0.13981108500000006,
-        "tp": 4.0612914149999995,
-        "dist": 1.200315,
-        "lots": 8.33
-      },
-      "short_setup": {
-        "entry": 1.066886085,
-        "sl": 2.267201085,
-        "tp": -1.933901415,
-        "dist": 1.200315,
-        "lots": 8.33
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NOKSEK_MASTER_DOSSIER.json"
     },
-    "HK50": {
+    {
       "canonical": "HK50",
+      "display_name": "HK50",
       "category": "Equity Index",
       "broker_symbol": "HK50.p",
-      "mid_price": 23284.1,
-      "spread_bps": 3.52,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 23224.17,
-        "sl": 23171.273319951964,
-        "tp": 23356.411700120083,
-        "dist": 52.896680048033886,
-        "lots": 0.18
-      },
-      "short_setup": {
-        "entry": 23390.34,
-        "sl": 23443.236680048034,
-        "tp": 23258.098299879915,
-        "dist": 52.896680048033886,
-        "lots": 0.18
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GAUCNH": {
-      "canonical": "GAUCNH",
-      "category": "Forex Exotic",
-      "broker_symbol": "GAUCNH.pi",
-      "mid_price": 848.4000000000001,
-      "spread_bps": 4.48,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 850.81174,
-        "sl": 848.292917959203,
-        "tp": 857.1087951019924,
-        "dist": 2.5188220407969766,
-        "lots": 3.97
-      },
-      "short_setup": {
-        "entry": 856.5007,
-        "sl": 859.019522040797,
-        "tp": 850.2036448980076,
-        "dist": 2.5188220407969766,
-        "lots": 3.97
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAGSGD": {
-      "canonical": "XAGSGD",
-      "category": "Forex Exotic",
-      "broker_symbol": "XAGSGD.pi",
-      "mid_price": 64.1465,
-      "spread_bps": 1.71,
-      "gate_status": "PASS",
-      "confluence_score": 87,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 50.838,
-        "sl": 50.60838555400832,
-        "tp": 51.4120361149792,
-        "dist": 0.2296144459916789,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 52.079,
-        "sl": 52.30861444599168,
-        "tp": 51.5049638850208,
-        "dist": 0.2296144459916789,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "USDHUF": {
-      "canonical": "USDHUF",
-      "category": "Forex Exotic",
-      "broker_symbol": "USDHUF.pi",
-      "mid_price": 326.7635,
-      "spread_bps": 2.85,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 325.7832095,
-        "sl": 324.44370949999995,
-        "tp": 329.1319595000001,
-        "dist": 1.3395000000000437,
-        "lots": 7.46
-      },
-      "short_setup": {
-        "entry": 327.7437905,
-        "sl": 329.08329050000003,
-        "tp": 324.3950404999999,
-        "dist": 1.3395000000000437,
-        "lots": 7.46
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "ZARJPY": {
-      "canonical": "ZARJPY",
-      "category": "Forex Exotic",
-      "broker_symbol": "ZARJPY.pi",
-      "mid_price": 9.420215,
-      "spread_bps": 3.39,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 9.391954355000001,
-        "sl": 8.187169355000002,
-        "tp": 12.403916854999999,
-        "dist": 1.2047849999999993,
-        "lots": 8.3
-      },
-      "short_setup": {
-        "entry": 9.448475645,
-        "sl": 10.653260645,
-        "tp": 6.436513145000002,
-        "dist": 1.2047849999999993,
-        "lots": 8.3
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "GER30": {
-      "canonical": "GER30",
-      "category": "Equity Index",
-      "broker_symbol": "GER30.p",
-      "mid_price": 19372.85,
-      "spread_bps": 4.18,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 25908.63,
-        "sl": 25871.329843267253,
-        "tp": 26001.880391831874,
-        "dist": 37.30015673274829,
-        "lots": 0.26
-      },
-      "short_setup": {
-        "entry": 26029.1,
-        "sl": 26066.400156732747,
-        "tp": 25935.84960816813,
-        "dist": 37.30015673274829,
-        "lots": 0.26
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "COPPER": {
-      "canonical": "COPPER",
-      "category": "Base Metal",
-      "broker_symbol": "COPPER.p",
-      "mid_price": 14194.75,
-      "spread_bps": 5.99,
-      "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 14254.516,
-        "sl": 14212.365865596048,
-        "tp": 14359.891336009878,
-        "dist": 42.1501344039516,
-        "lots": 0.23
-      },
-      "short_setup": {
-        "entry": 14357.103,
-        "sl": 14399.25313440395,
-        "tp": 14251.727663990121,
-        "dist": 42.1501344039516,
-        "lots": 0.23
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XMRUSD": {
-      "canonical": "XMRUSD",
-      "category": "Crypto Altcoin",
-      "broker_symbol": "XMRUSD.p",
-      "mid_price": 589.905,
-      "spread_bps": 3.56,
-      "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 587.74,
-        "sl": 580.9873809668502,
-        "tp": 604.6215475828745,
-        "dist": 6.752619033149813,
-        "lots": 1.48
-      },
-      "short_setup": {
-        "entry": 615.14,
-        "sl": 621.8926190331498,
-        "tp": 598.2584524171255,
-        "dist": 6.752619033149813,
-        "lots": 1.48
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "USDTHB": {
-      "canonical": "USDTHB",
-      "category": "Forex Exotic",
-      "broker_symbol": "USDTHB.pi",
-      "mid_price": 33.718500000000006,
       "spread_bps": 3.86,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 33.61734450000001,
-        "sl": 32.39784450000001,
-        "tp": 36.6660945,
-        "dist": 1.2194999999999965,
-        "lots": 8.2
-      },
-      "short_setup": {
-        "entry": 33.8196555,
-        "sl": 35.0391555,
-        "tp": 30.770905500000012,
-        "dist": 1.2194999999999965,
-        "lots": 8.2
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "HK50_MASTER_DOSSIER.json"
     },
-    "ZECUSD": {
+    {
+      "canonical": "GAUCNH",
+      "display_name": "GAUCNH",
+      "category": "Forex Exotic",
+      "broker_symbol": "GAUCNH.pi",
+      "spread_bps": 4.82,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GAUCNH_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAGSGD",
+      "display_name": "XAGSGD",
+      "category": "Forex Exotic",
+      "broker_symbol": "XAGSGD.pi",
+      "spread_bps": 3.74,
+      "gate_status": "PASS",
+      "posture": "PASSIVE_MAKER_LIMIT_ARMED",
+      "json_file": "XAGSGD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDHUF",
+      "display_name": "USDHUF",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDHUF.pi",
+      "spread_bps": 3.46,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDHUF_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "ZARJPY",
+      "display_name": "ZARJPY",
+      "category": "Forex Exotic",
+      "broker_symbol": "ZARJPY.pi",
+      "spread_bps": 4.52,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ZARJPY_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "GER30",
+      "display_name": "GER30",
+      "category": "Equity Index",
+      "broker_symbol": "GER30.p",
+      "spread_bps": 0.58,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GER30_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "COPPER",
+      "display_name": "COPPER",
+      "category": "Base Metal",
+      "broker_symbol": "COPPER.p",
+      "spread_bps": 5.94,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "COPPER_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XMRUSD",
+      "display_name": "XMRUSD",
+      "category": "Crypto Altcoin",
+      "broker_symbol": "XMRUSD.p",
+      "spread_bps": 4.25,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XMRUSD_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "USDTHB",
+      "display_name": "USDTHB",
+      "category": "Forex Exotic",
+      "broker_symbol": "USDTHB.pi",
+      "spread_bps": 4.15,
+      "gate_status": "PASS",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "USDTHB_MASTER_DOSSIER.json"
+    },
+    {
       "canonical": "ZECUSD",
+      "display_name": "ZECUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ZECUSD.p",
-      "mid_price": 1245.8249999999998,
-      "spread_bps": 7.46,
+      "spread_bps": 7.61,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1240.72,
-        "sl": 1224.1114313859741,
-        "tp": 1282.2414215350648,
-        "dist": 16.6085686140259,
-        "lots": 0.6
-      },
-      "short_setup": {
-        "entry": 1278.6,
-        "sl": 1295.2085686140258,
-        "tp": 1237.0785784649352,
-        "dist": 16.6085686140259,
-        "lots": 0.6
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ZECUSD_MASTER_DOSSIER.json"
     },
-    "DSHUSD": {
+    {
       "canonical": "DSHUSD",
+      "display_name": "DSHUSD",
       "category": "Forex Cross",
       "broker_symbol": "DSHUSD.p",
-      "mid_price": 49.807500000000005,
-      "spread_bps": 18.27,
+      "spread_bps": 18.41,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 47.121,
-        "sl": 46.40964865630649,
-        "tp": 48.89937835923379,
-        "dist": 0.711351343693515,
-        "lots": 14.05
-      },
-      "short_setup": {
-        "entry": 48.824,
-        "sl": 49.53535134369351,
-        "tp": 47.045621640766214,
-        "dist": 0.711351343693515,
-        "lots": 14.05
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "DSHUSD_MASTER_DOSSIER.json"
     },
-    "YFIUSD": {
+    {
       "canonical": "YFIUSD",
+      "display_name": "YFIUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "YFIUSD.p",
-      "mid_price": 1827.0,
-      "spread_bps": 10.95,
+      "spread_bps": 16.44,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1724.2,
-        "sl": 1701.7129122026247,
-        "tp": 1780.4177194934384,
-        "dist": 22.487087797375352,
-        "lots": 0.44
-      },
-      "short_setup": {
-        "entry": 1883.9,
-        "sl": 1906.3870877973754,
-        "tp": 1827.6822805065617,
-        "dist": 22.487087797375352,
-        "lots": 0.44
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "YFIUSD_MASTER_DOSSIER.json"
     },
-    "XLMUSD": {
+    {
       "canonical": "XLMUSD",
+      "display_name": "XLMUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "XLMUSD.p",
-      "mid_price": 0.16542,
-      "spread_bps": 7.25,
+      "spread_bps": 8.45,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.1608,
-        "sl": 0.1596099847836824,
-        "tp": 0.16377503804079396,
-        "dist": 0.0011900152163175914,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.1659,
-        "sl": 0.16709001521631758,
-        "tp": 0.16292496195920603,
-        "dist": 0.0011900152163175914,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XLMUSD_MASTER_DOSSIER.json"
     },
-    "AVEUSD": {
+    {
       "canonical": "AVEUSD",
+      "display_name": "AVEUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "AVEUSD.p",
-      "mid_price": 125.43,
-      "spread_bps": 20.73,
-      "gate_status": "PASS",
-      "confluence_score": 90,
-      "decision": "PASSIVE_MAKER_LIMIT_ARMED",
-      "long_setup": {
-        "entry": 119.96,
-        "sl": 118.42444484634076,
-        "tp": 123.79888788414807,
-        "dist": 1.5355551536592316,
-        "lots": 6.51
-      },
-      "short_setup": {
-        "entry": 127.07,
-        "sl": 128.60555515365922,
-        "tp": 123.23111211585191,
-        "dist": 1.5355551536592316,
-        "lots": 6.51
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "spread_bps": 27.13,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AVEUSD_MASTER_DOSSIER.json"
     },
-    "NOKJPY": {
+    {
       "canonical": "NOKJPY",
+      "display_name": "NOKJPY",
       "category": "Forex Exotic",
       "broker_symbol": "NOKJPY.pi",
-      "mid_price": 17.0385,
-      "spread_bps": 6.46,
+      "spread_bps": 7.63,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 16.987384499999997,
-        "sl": 15.7708845,
-        "tp": 20.028634499999992,
-        "dist": 1.2164999999999981,
-        "lots": 8.22
-      },
-      "short_setup": {
-        "entry": 17.089615499999997,
-        "sl": 18.306115499999997,
-        "tp": 14.048365499999997,
-        "dist": 1.2165,
-        "lots": 8.22
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NOKJPY_MASTER_DOSSIER.json"
     },
-    "ZINC": {
+    {
       "canonical": "ZINC",
+      "display_name": "ZINC",
       "category": "Base Metal",
       "broker_symbol": "ZINC.p",
-      "mid_price": 3878.7,
-      "spread_bps": 13.46,
+      "spread_bps": 13.45,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3863.1,
-        "sl": 3844.367042938782,
-        "tp": 3909.932392653044,
-        "dist": 18.732957061217803,
-        "lots": 0.53
-      },
-      "short_setup": {
-        "entry": 3884.45,
-        "sl": 3903.1829570612176,
-        "tp": 3837.617607346955,
-        "dist": 18.732957061217803,
-        "lots": 0.53
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ZINC_MASTER_DOSSIER.json"
     },
-    "ALUMINIUM": {
+    {
       "canonical": "ALUMINIUM",
+      "display_name": "ALUMINIUM",
       "category": "Base Metal",
       "broker_symbol": "ALUMINIUM.p",
-      "mid_price": 3077.7,
-      "spread_bps": 14.3,
+      "spread_bps": 14.29,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3071.72,
-        "sl": 3058.061706994278,
-        "tp": 3105.865732514304,
-        "dist": 13.658293005721589,
-        "lots": 0.73
-      },
-      "short_setup": {
-        "entry": 3085.04,
-        "sl": 3098.6982930057216,
-        "tp": 3050.894267485696,
-        "dist": 13.658293005721589,
-        "lots": 0.73
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ALUMINIUM_MASTER_DOSSIER.json"
     },
-    "XAGAUD": {
+    {
       "canonical": "XAGAUD",
+      "display_name": "XAGAUD",
       "category": "Forex Cross",
       "broker_symbol": "XAGAUD.pi",
-      "mid_price": 71.46449999999999,
-      "spread_bps": 6.3,
-      "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 50.838,
-        "sl": 50.55738555400831,
-        "tp": 51.53953611497922,
-        "dist": 0.28061444599168794,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 52.079,
-        "sl": 52.35961444599169,
-        "tp": 51.37746388502078,
-        "dist": 0.28061444599168794,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "CHINA50": {
-      "canonical": "CHINA50",
-      "category": "Equity Index",
-      "broker_symbol": "CHINA50.p",
-      "mid_price": 12791.5,
-      "spread_bps": 8.51,
-      "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 12769.79,
-        "sl": 12731.41445042399,
-        "tp": 12865.728873940028,
-        "dist": 38.3755495760106,
-        "lots": 0.26
-      },
-      "short_setup": {
-        "entry": 12875.17,
-        "sl": 12913.54554957601,
-        "tp": 12779.231126059974,
-        "dist": 38.3755495760106,
-        "lots": 0.26
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
-    },
-    "XAGEUR": {
-      "canonical": "XAGEUR",
-      "category": "Forex Cross",
-      "broker_symbol": "XAGEUR.pi",
-      "mid_price": 50.2125,
       "spread_bps": 10.16,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 50.838,
-        "sl": 50.54838555400831,
-        "tp": 51.56203611497922,
-        "dist": 0.2896144459916883,
-        "lots": 0.01
-      },
-      "short_setup": {
-        "entry": 52.079,
-        "sl": 52.36861444599169,
-        "tp": 51.35496388502078,
-        "dist": 0.2896144459916883,
-        "lots": 0.01
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XAGAUD_MASTER_DOSSIER.json"
     },
-    "XPTUSD": {
+    {
+      "canonical": "CHINA50",
+      "display_name": "CHINA50",
+      "category": "Equity Index",
+      "broker_symbol": "CHINA50.p",
+      "spread_bps": 8.5,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHINA50_MASTER_DOSSIER.json"
+    },
+    {
+      "canonical": "XAGEUR",
+      "display_name": "XAGEUR",
+      "category": "Forex Cross",
+      "broker_symbol": "XAGEUR.pi",
+      "spread_bps": 10.16,
+      "gate_status": "SPREAD_DISQUALIFIED",
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XAGEUR_MASTER_DOSSIER.json"
+    },
+    {
       "canonical": "XPTUSD",
+      "display_name": "XPTUSD",
       "category": "Forex Cross",
       "broker_symbol": "XPTUSD.pi",
-      "mid_price": 1434.835,
-      "spread_bps": 11.36,
+      "spread_bps": 10.9,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1432.96,
-        "sl": 1423.1806189125764,
-        "tp": 1457.4084527185591,
-        "dist": 9.779381087423644,
-        "lots": 1.02
-      },
-      "short_setup": {
-        "entry": 1467.18,
-        "sl": 1476.9593810874237,
-        "tp": 1442.731547281441,
-        "dist": 9.779381087423644,
-        "lots": 1.02
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XPTUSD_MASTER_DOSSIER.json"
     },
-    "EURHUF": {
+    {
       "canonical": "EURHUF",
+      "display_name": "EURHUF",
       "category": "Forex Exotic",
       "broker_symbol": "EURHUF.pi",
-      "mid_price": 365.7425,
-      "spread_bps": 14.03,
+      "spread_bps": 15.69,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 364.64527250000003,
-        "sl": 362.6757725,
-        "tp": 369.56902250000013,
-        "dist": 1.969500000000039,
-        "lots": 5.07
-      },
-      "short_setup": {
-        "entry": 366.8397275,
-        "sl": 368.8092275,
-        "tp": 361.9159774999999,
-        "dist": 1.969500000000039,
-        "lots": 5.07
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EURHUF_MASTER_DOSSIER.json"
     },
-    "NICKEL": {
+    {
       "canonical": "NICKEL",
+      "display_name": "NICKEL",
       "category": "Base Metal",
       "broker_symbol": "NICKEL.p",
-      "mid_price": 15501.25,
-      "spread_bps": 11.57,
+      "spread_bps": 11.56,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 15526.18625,
-        "sl": 15460.56425330788,
-        "tp": 15690.2412417303,
-        "dist": 65.62199669211986,
-        "lots": 0.15
-      },
-      "short_setup": {
-        "entry": 15669.62375,
-        "sl": 15735.24574669212,
-        "tp": 15505.568758269701,
-        "dist": 65.62199669211986,
-        "lots": 0.15
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NICKEL_MASTER_DOSSIER.json"
     },
-    "LEAD": {
+    {
       "canonical": "LEAD",
+      "display_name": "LEAD",
       "category": "Base Metal",
       "broker_symbol": "LEAD.p",
-      "mid_price": 1915.65,
-      "spread_bps": 24.53,
+      "spread_bps": 24.55,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1907.05,
-        "sl": 1896.6461026441818,
-        "tp": 1933.0597433895452,
-        "dist": 10.403897355818117,
-        "lots": 0.96
-      },
-      "short_setup": {
-        "entry": 1916.39,
-        "sl": 1926.7938973558182,
-        "tp": 1890.3802566104548,
-        "dist": 10.403897355818117,
-        "lots": 0.96
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "LEAD_MASTER_DOSSIER.json"
     },
-    "CHINAH": {
+    {
       "canonical": "CHINAH",
+      "display_name": "CHINAH",
       "category": "Equity Index",
       "broker_symbol": "CHINAH.p",
-      "mid_price": 7861.174999999999,
-      "spread_bps": 32.5,
+      "spread_bps": 32.88,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 7828.83,
-        "sl": 7773.632120595914,
-        "tp": 7966.824698510215,
-        "dist": 55.19787940408605,
-        "lots": 0.18
-      },
-      "short_setup": {
-        "entry": 7888.23,
-        "sl": 7943.427879404086,
-        "tp": 7750.235301489784,
-        "dist": 55.19787940408605,
-        "lots": 0.18
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHINAH_MASTER_DOSSIER.json"
     },
-    "BARUSD": {
+    {
       "canonical": "BARUSD",
+      "display_name": "BARUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "BARUSD.p",
-      "mid_price": 0.07214999999999999,
-      "spread_bps": 33.26,
+      "spread_bps": 33.32,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0681,
-        "sl": 0.0671793715476799,
-        "tp": 0.0706,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0709,
-        "sl": 0.0718206284523201,
-        "tp": 0.0684,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "BARUSD_MASTER_DOSSIER.json"
     },
-    "UNIUSD": {
+    {
       "canonical": "UNIUSD",
+      "display_name": "UNIUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "UNIUSD.p",
-      "mid_price": 6.8774999999999995,
-      "spread_bps": 33.44,
+      "spread_bps": 39.26,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 80,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 6.245,
-        "sl": 6.129084465180619,
-        "tp": 6.534788837048453,
-        "dist": 0.115915534819381,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 6.696,
-        "sl": 6.811915534819381,
-        "tp": 6.406211162951547,
-        "dist": 0.115915534819381,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "UNIUSD_MASTER_DOSSIER.json"
     },
-    "XPDUSD": {
+    {
       "canonical": "XPDUSD",
+      "display_name": "XPDUSD",
       "category": "Forex Cross",
       "broker_symbol": "XPDUSD.pi",
-      "mid_price": 975.55,
-      "spread_bps": 56.38,
+      "spread_bps": 56.29,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 980.54,
-        "sl": 967.9760110615516,
-        "tp": 1011.9499723461208,
-        "dist": 12.563988938448347,
-        "lots": 0.79
-      },
-      "short_setup": {
-        "entry": 993.65,
-        "sl": 1006.2139889384483,
-        "tp": 962.2400276538791,
-        "dist": 12.563988938448347,
-        "lots": 0.79
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XPDUSD_MASTER_DOSSIER.json"
     },
-    "VETUSD": {
+    {
       "canonical": "VETUSD",
+      "display_name": "VETUSD",
       "category": "Forex Cross",
       "broker_symbol": "VETUSD.p",
-      "mid_price": 0.005849999999999999,
-      "spread_bps": 34.19,
+      "spread_bps": 34.25,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0056913,
-        "sl": 0.0056131543783296475,
-        "tp": 0.0081913,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0058749,
-        "sl": 0.005953045621670352,
-        "tp": 0.0033748999999999997,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "VETUSD_MASTER_DOSSIER.json"
     },
-    "ARWUSD": {
+    {
       "canonical": "ARWUSD",
+      "display_name": "ARWUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ARWUSD.p",
-      "mid_price": 3.1545,
-      "spread_bps": 98.27,
+      "spread_bps": 101.59,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3.081655,
-        "sl": 3.004706601287079,
-        "tp": 3.274025996782303,
-        "dist": 0.07694839871292114,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 3.2021550000000003,
-        "sl": 3.2791033987129214,
-        "tp": 3.0097840032176975,
-        "dist": 0.07694839871292114,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ARWUSD_MASTER_DOSSIER.json"
     },
-    "GAS": {
+    {
       "canonical": "GAS",
+      "display_name": "GAS",
       "category": "Energy / Commodity",
       "broker_symbol": "GAS.p",
-      "mid_price": 2.6014999999999997,
-      "spread_bps": 134.54,
+      "spread_bps": 134.49,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 2.598,
-        "sl": 2.532867205927124,
-        "tp": 2.7729999999999984,
-        "dist": 0.0699999999999994,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 2.623,
-        "sl": 2.688132794072876,
-        "tp": 2.4480000000000017,
-        "dist": 0.0699999999999994,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GAS_MASTER_DOSSIER.json"
     },
-    "GRTUSD": {
+    {
       "canonical": "GRTUSD",
+      "display_name": "GRTUSD",
       "category": "Forex Cross",
       "broker_symbol": "GRTUSD.p",
-      "mid_price": 0.02001,
-      "spread_bps": 109.95,
+      "spread_bps": 110.55,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.01906135,
-        "sl": 0.01852773649965525,
-        "tp": 0.02156135,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.01976095,
-        "sl": 0.02029456350034475,
-        "tp": 0.01726095,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "GRTUSD_MASTER_DOSSIER.json"
     },
-    "NEOUSD": {
+    {
       "canonical": "NEOUSD",
+      "display_name": "NEOUSD",
       "category": "Forex Cross",
       "broker_symbol": "NEOUSD.p",
-      "mid_price": 1.9725,
-      "spread_bps": 126.74,
+      "spread_bps": 126.81,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.91,
-        "sl": 1.8578241962619508,
-        "tp": 2.0404395093451226,
-        "dist": 0.05217580373804909,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.99,
-        "sl": 2.042175803738049,
-        "tp": 1.8595604906548777,
-        "dist": 0.052175803738048865,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "NEOUSD_MASTER_DOSSIER.json"
     },
-    "COMUSD": {
+    {
       "canonical": "COMUSD",
+      "display_name": "COMUSD",
       "category": "Forex Cross",
       "broker_symbol": "COMUSD.p",
-      "mid_price": 20.25,
-      "spread_bps": 148.15,
+      "spread_bps": 153.12,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 19.8251,
-        "sl": 19.2111044718546,
-        "tp": 21.360088820363494,
-        "dist": 0.6139955281453986,
-        "lots": 16.28
-      },
-      "short_setup": {
-        "entry": 20.521700000000003,
-        "sl": 21.1356955281454,
-        "tp": 18.986711179636508,
-        "dist": 0.6139955281453986,
-        "lots": 16.28
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "COMUSD_MASTER_DOSSIER.json"
     },
-    "ATMUSD": {
+    {
       "canonical": "ATMUSD",
+      "display_name": "ATMUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ATMUSD.p",
-      "mid_price": 1.5265,
-      "spread_bps": 216.18,
+      "spread_bps": 215.9,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 1.475,
-        "sl": 1.415725248534408,
-        "tp": 1.6400000000000008,
-        "dist": 0.06600000000000028,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 1.522,
-        "sl": 1.581274751465592,
-        "tp": 1.3569999999999993,
-        "dist": 0.06600000000000028,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ATMUSD_MASTER_DOSSIER.json"
     },
-    "THTUSD": {
+    {
       "canonical": "THTUSD",
+      "display_name": "THTUSD",
       "category": "Forex Cross",
       "broker_symbol": "THTUSD.p",
-      "mid_price": 0.1594,
-      "spread_bps": 163.11,
+      "spread_bps": 163.73,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.15585,
-        "sl": 0.15063615049217893,
-        "tp": 0.16888462376955263,
-        "dist": 0.005213849507821056,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.16035,
-        "sl": 0.16556384950782105,
-        "tp": 0.14731537623044735,
-        "dist": 0.005213849507821056,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "THTUSD_MASTER_DOSSIER.json"
     },
-    "BATUSD": {
+    {
       "canonical": "BATUSD",
+      "display_name": "BATUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "BATUSD.p",
-      "mid_price": 0.1293,
-      "spread_bps": 170.15,
+      "spread_bps": 162.6,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.1253865,
-        "sl": 0.12074588907240132,
-        "tp": 0.13698802731899676,
-        "dist": 0.004640610927598696,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.13174950000000002,
-        "sl": 0.1363901109275987,
-        "tp": 0.12014797268100331,
-        "dist": 0.004640610927598682,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "BATUSD_MASTER_DOSSIER.json"
     },
-    "XTZUSD": {
+    {
       "canonical": "XTZUSD",
+      "display_name": "XTZUSD",
       "category": "Forex Cross",
       "broker_symbol": "XTZUSD.p",
-      "mid_price": 0.25585,
-      "spread_bps": 97.71,
+      "spread_bps": 109.46,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.25027,
-        "sl": 0.2446855163733687,
-        "tp": 0.26423120906657827,
-        "dist": 0.005584483626631304,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.25800999999999996,
-        "sl": 0.26359448362663124,
-        "tp": 0.24404879093342177,
-        "dist": 0.005584483626631276,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XTZUSD_MASTER_DOSSIER.json"
     },
-    "ZRXUSD": {
+    {
       "canonical": "ZRXUSD",
+      "display_name": "ZRXUSD",
       "category": "Forex Cross",
       "broker_symbol": "ZRXUSD.p",
-      "mid_price": 0.09375,
-      "spread_bps": 32.0,
+      "spread_bps": 32.03,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.09208050000000001,
-        "sl": 0.09083141179753342,
-        "tp": 0.0952032205061665,
-        "dist": 0.0012490882024665945,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.09372549999999999,
-        "sl": 0.09497458820246658,
-        "tp": 0.0906027794938335,
-        "dist": 0.0012490882024665945,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ZRXUSD_MASTER_DOSSIER.json"
     },
-    "ALGUSD": {
+    {
       "canonical": "ALGUSD",
+      "display_name": "ALGUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "ALGUSD.p",
-      "mid_price": 0.09505,
-      "spread_bps": 347.19,
+      "spread_bps": 346.82,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0914,
-        "sl": 0.08569417108048712,
-        "tp": 0.10789999999999998,
-        "dist": 0.006599999999999995,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0946,
-        "sl": 0.10030582891951288,
-        "tp": 0.07810000000000002,
-        "dist": 0.006599999999999995,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ALGUSD_MASTER_DOSSIER.json"
     },
-    "QTMUSD": {
+    {
       "canonical": "QTMUSD",
+      "display_name": "QTMUSD",
       "category": "Forex Cross",
       "broker_symbol": "QTMUSD.p",
-      "mid_price": 0.7835000000000001,
-      "spread_bps": 268.03,
+      "spread_bps": 280.97,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.7538400000000001,
-        "sl": 0.7170635699031915,
-        "tp": 0.8588400000000002,
-        "dist": 0.04200000000000004,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.7744800000000001,
-        "sl": 0.8112564300968086,
-        "tp": 0.66948,
-        "dist": 0.04200000000000004,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "QTMUSD_MASTER_DOSSIER.json"
     },
-    "MANUSD": {
+    {
       "canonical": "MANUSD",
+      "display_name": "MANUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "MANUSD.p",
-      "mid_price": 0.07275000000000001,
-      "spread_bps": 13.75,
+      "spread_bps": 13.73,
       "gate_status": "PASS",
-      "confluence_score": 82,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.069025,
-        "sl": 0.06822222435353685,
-        "tp": 0.071525,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.071275,
-        "sl": 0.07207777564646316,
-        "tp": 0.068775,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "MANUSD_MASTER_DOSSIER.json"
     },
-    "KAVUSD": {
+    {
       "canonical": "KAVUSD",
+      "display_name": "KAVUSD",
       "category": "Forex Cross",
       "broker_symbol": "KAVUSD.p",
-      "mid_price": 0.0693,
-      "spread_bps": 288.6,
+      "spread_bps": 288.18,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.06684699999999999,
-        "sl": 0.06370673618953937,
-        "tp": 0.076847,
-        "dist": 0.0040000000000000036,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.06848100000000001,
-        "sl": 0.07162126381046063,
-        "tp": 0.058481000000000005,
-        "dist": 0.0040000000000000036,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "KAVUSD_MASTER_DOSSIER.json"
     },
-    "CHZUSD": {
+    {
       "canonical": "CHZUSD",
+      "display_name": "CHZUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "CHZUSD.p",
-      "mid_price": 0.01236,
-      "spread_bps": 339.81,
+      "spread_bps": 332.12,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0115882,
-        "sl": 0.010855891085408109,
-        "tp": 0.0140882,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0122842,
-        "sl": 0.013016508914591891,
-        "tp": 0.0097842,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHZUSD_MASTER_DOSSIER.json"
     },
-    "INCUSD": {
+    {
       "canonical": "INCUSD",
+      "display_name": "INCUSD",
       "category": "Forex Cross",
       "broker_symbol": "INCUSD.p",
-      "mid_price": 0.0791,
-      "spread_bps": 353.98,
+      "spread_bps": 354.88,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.07526250000000001,
-        "sl": 0.07036888767940085,
-        "tp": 0.0892625,
-        "dist": 0.005599999999999994,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0798055,
-        "sl": 0.08469911232059917,
-        "tp": 0.06580550000000002,
-        "dist": 0.005599999999999994,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "INCUSD_MASTER_DOSSIER.json"
     },
-    "SXPUSD": {
+    {
       "canonical": "SXPUSD",
+      "display_name": "SXPUSD",
       "category": "Forex Cross",
       "broker_symbol": "SXPUSD.p",
-      "mid_price": 0.05065,
       "spread_bps": 414.61,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0673,
-        "sl": 0.0627544842478883,
-        "tp": 0.07866378938027924,
-        "dist": 0.004545515752111692,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0673,
-        "sl": 0.07184551575211169,
-        "tp": 0.05593621061972077,
-        "dist": 0.004545515752111692,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SXPUSD_MASTER_DOSSIER.json"
     },
-    "ONTUSD": {
+    {
       "canonical": "ONTUSD",
+      "display_name": "ONTUSD",
       "category": "Forex Cross",
       "broker_symbol": "ONTUSD.p",
-      "mid_price": 0.04655,
-      "spread_bps": 451.13,
+      "spread_bps": 431.03,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0434075,
-        "sl": 0.03993217261140848,
-        "tp": 0.053907500000000025,
-        "dist": 0.004200000000000009,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0448865,
-        "sl": 0.04836182738859152,
-        "tp": 0.03438649999999998,
-        "dist": 0.004200000000000009,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ONTUSD_MASTER_DOSSIER.json"
     },
-    "FILUSD": {
+    {
       "canonical": "FILUSD",
+      "display_name": "FILUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "FILUSD.p",
-      "mid_price": 0.841,
-      "spread_bps": 475.62,
+      "spread_bps": 475.06,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.793,
-        "sl": 0.7258972474854211,
-        "tp": 0.9930000000000002,
-        "dist": 0.08000000000000007,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.829,
-        "sl": 0.896102752514579,
-        "tp": 0.6289999999999998,
-        "dist": 0.08000000000000007,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "FILUSD_MASTER_DOSSIER.json"
     },
-    "SNDUSD": {
+    {
       "canonical": "SNDUSD",
+      "display_name": "SNDUSD",
       "category": "Forex Cross",
       "broker_symbol": "SNDUSD.p",
-      "mid_price": 0.046299999999999994,
       "spread_bps": 475.16,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0418,
-        "sl": 0.03792924220699669,
-        "tp": 0.0528,
-        "dist": 0.004400000000000001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0446,
-        "sl": 0.048470757793003305,
-        "tp": 0.0336,
-        "dist": 0.004400000000000001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SNDUSD_MASTER_DOSSIER.json"
     },
-    "SKLUSD": {
+    {
       "canonical": "SKLUSD",
+      "display_name": "SKLUSD",
       "category": "Forex Cross",
       "broker_symbol": "SKLUSD.p",
-      "mid_price": 0.003835,
-      "spread_bps": 547.59,
+      "spread_bps": 522.19,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0036653500000000004,
-        "sl": 0.0033183176355350208,
-        "tp": 0.00616535,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.00376195,
-        "sl": 0.00410898236446498,
-        "tp": 0.00126195,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SKLUSD_MASTER_DOSSIER.json"
     },
-    "KSMUSD": {
+    {
       "canonical": "KSMUSD",
+      "display_name": "KSMUSD",
       "category": "Forex Cross",
       "broker_symbol": "KSMUSD.p",
-      "mid_price": 3.51,
       "spread_bps": 569.8,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3.3260500000000004,
-        "sl": 3.001799633825991,
-        "tp": 4.326049999999999,
-        "dist": 0.39999999999999947,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 3.42265,
-        "sl": 3.7469003661740095,
-        "tp": 2.4226500000000013,
-        "dist": 0.39999999999999947,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "KSMUSD_MASTER_DOSSIER.json"
     },
-    "IOTUSD": {
+    {
       "canonical": "IOTUSD",
+      "display_name": "IOTUSD",
       "category": "Forex Cross",
       "broker_symbol": "IOTUSD.p",
-      "mid_price": 0.0392,
-      "spread_bps": 561.22,
+      "spread_bps": 559.8,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0361505,
-        "sl": 0.032526851232631784,
-        "tp": 0.047150500000000005,
-        "dist": 0.004400000000000001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0382225,
-        "sl": 0.04184614876736822,
-        "tp": 0.027222499999999997,
-        "dist": 0.004400000000000001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "IOTUSD_MASTER_DOSSIER.json"
     },
-    "EGLUSD": {
+    {
       "canonical": "EGLUSD",
+      "display_name": "EGLUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "EGLUSD.p",
-      "mid_price": 3.2699999999999996,
       "spread_bps": 1223.24,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 3.0505,
-        "sl": 2.422405233572552,
-        "tp": 5.0504999999999995,
-        "dist": 0.7999999999999998,
-        "lots": 12.5
-      },
-      "short_setup": {
-        "entry": 3.1935000000000002,
-        "sl": 3.8215947664274483,
-        "tp": 1.1935000000000007,
-        "dist": 0.7999999999999998,
-        "lots": 12.5
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "EGLUSD_MASTER_DOSSIER.json"
     },
-    "STOUSD": {
+    {
       "canonical": "STOUSD",
+      "display_name": "STOUSD",
       "category": "Forex Cross",
       "broker_symbol": "STOUSD.p",
-      "mid_price": 0.0398,
       "spread_bps": 653.27,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0385,
-        "sl": 0.0345276979296263,
-        "tp": 0.05149999999999999,
-        "dist": 0.005199999999999996,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0385,
-        "sl": 0.042472302070373696,
-        "tp": 0.02550000000000001,
-        "dist": 0.005199999999999996,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "STOUSD_MASTER_DOSSIER.json"
     },
-    "CRVUSD": {
+    {
       "canonical": "CRVUSD",
+      "display_name": "CRVUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "CRVUSD.p",
-      "mid_price": 0.2865,
-      "spread_bps": 802.79,
+      "spread_bps": 800.0,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.257,
-        "sl": 0.21850800475819399,
-        "tp": 0.37199999999999983,
-        "dist": 0.04599999999999993,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.285,
-        "sl": 0.323491995241806,
-        "tp": 0.17000000000000015,
-        "dist": 0.04599999999999993,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CRVUSD_MASTER_DOSSIER.json"
     },
-    "ENJUSD": {
+    {
       "canonical": "ENJUSD",
+      "display_name": "ENJUSD",
       "category": "Forex Cross",
       "broker_symbol": "ENJUSD.p",
-      "mid_price": 0.02325,
-      "spread_bps": 1763.44,
+      "spread_bps": 1724.14,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.021501,
-        "sl": 0.015105957419291147,
-        "tp": 0.042001,
-        "dist": 0.008199999999999999,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.022383,
-        "sl": 0.028778042580708853,
-        "tp": 0.0018830000000000027,
-        "dist": 0.008199999999999999,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ENJUSD_MASTER_DOSSIER.json"
     },
-    "LRCUSD": {
+    {
       "canonical": "LRCUSD",
+      "display_name": "LRCUSD",
       "category": "Forex Cross",
       "broker_symbol": "LRCUSD.p",
-      "mid_price": 0.02305,
       "spread_bps": 911.06,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.021991999999999998,
-        "sl": 0.018590162986476207,
-        "tp": 0.03249200000000001,
-        "dist": 0.004200000000000002,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.022696,
-        "sl": 0.026097837013523792,
-        "tp": 0.012195999999999995,
-        "dist": 0.004200000000000002,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "LRCUSD_MASTER_DOSSIER.json"
     },
-    "SNXUSD": {
+    {
       "canonical": "SNXUSD",
+      "display_name": "SNXUSD",
       "category": "Forex Cross",
       "broker_symbol": "SNXUSD.p",
-      "mid_price": 0.182,
       "spread_bps": 1098.9,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.167,
-        "sl": 0.13546186737676363,
-        "tp": 0.2670000000000001,
-        "dist": 0.040000000000000036,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.174,
-        "sl": 0.20553813262323634,
-        "tp": 0.0739999999999999,
-        "dist": 0.040000000000000036,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "SNXUSD_MASTER_DOSSIER.json"
     },
-    "ZILUSD": {
+    {
       "canonical": "ZILUSD",
+      "display_name": "ZILUSD",
       "category": "Forex Cross",
       "broker_symbol": "ZILUSD.p",
-      "mid_price": 0.0019450000000000001,
-      "spread_bps": 565.55,
+      "spread_bps": 515.46,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.00177985,
-        "sl": 0.0015939384441581996,
-        "tp": 0.00427985,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.00186725,
-        "sl": 0.0020531615558418,
-        "tp": -0.0006327500000000001,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "ZILUSD_MASTER_DOSSIER.json"
     },
-    "XSIUSD": {
+    {
       "canonical": "XSIUSD",
+      "display_name": "XSIUSD",
       "category": "Forex Cross",
       "broker_symbol": "XSIUSD.p",
-      "mid_price": 0.1915,
-      "spread_bps": 156.66,
+      "spread_bps": 157.48,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.175,
-        "sl": 0.16848723362771675,
-        "tp": 0.1912819159307081,
-        "dist": 0.006512766372283235,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.185,
-        "sl": 0.19151276637228323,
-        "tp": 0.1687180840692919,
-        "dist": 0.006512766372283235,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "XSIUSD_MASTER_DOSSIER.json"
     },
-    "CHRUSD": {
+    {
       "canonical": "CHRUSD",
+      "display_name": "CHRUSD",
       "category": "Forex Cross",
       "broker_symbol": "CHRUSD.p",
-      "mid_price": 0.0157,
       "spread_bps": 1273.89,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.014315,
-        "sl": 0.011191141335236106,
-        "tp": 0.024315,
-        "dist": 0.004,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.014815,
-        "sl": 0.017938858664763895,
-        "tp": 0.004815,
-        "dist": 0.004,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CHRUSD_MASTER_DOSSIER.json"
     },
-    "CELUSD": {
+    {
       "canonical": "CELUSD",
+      "display_name": "CELUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "CELUSD.p",
-      "mid_price": 0.00157,
       "spread_bps": 1273.89,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.0014303,
-        "sl": 0.0011226496876596136,
-        "tp": 0.0039303,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.0014639000000000002,
-        "sl": 0.0017715503123403868,
-        "tp": -0.0010360999999999999,
-        "dist": 0.001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "CELUSD_MASTER_DOSSIER.json"
     },
-    "KNCUSD": {
+    {
       "canonical": "KNCUSD",
+      "display_name": "KNCUSD",
       "category": "Forex Cross",
       "broker_symbol": "KNCUSD.p",
-      "mid_price": 0.11699999999999999,
       "spread_bps": 1709.4,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.09978000000000001,
-        "sl": 0.06891950986610562,
-        "tp": 0.19978,
-        "dist": 0.04000000000000001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.1041,
-        "sl": 0.13496049013389438,
-        "tp": 0.004099999999999979,
-        "dist": 0.04000000000000001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "KNCUSD_MASTER_DOSSIER.json"
     },
-    "AXSUSD": {
+    {
       "canonical": "AXSUSD",
+      "display_name": "AXSUSD",
       "category": "Crypto Altcoin",
       "broker_symbol": "AXSUSD.p",
-      "mid_price": 0.865,
       "spread_bps": 2427.75,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.75,
-        "sl": 0.42764097228637077,
-        "tp": 1.7999999999999998,
-        "dist": 0.41999999999999993,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.78,
-        "sl": 1.1023590277136293,
-        "tp": -0.2699999999999998,
-        "dist": 0.41999999999999993,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "AXSUSD_MASTER_DOSSIER.json"
     },
-    "FLWUSD": {
+    {
       "canonical": "FLWUSD",
+      "display_name": "FLWUSD",
       "category": "Forex Cross",
       "broker_symbol": "FLWUSD.p",
-      "mid_price": 0.023,
       "spread_bps": 8695.65,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 72,
-      "decision": "STAND_ASIDE_MONITOR",
-      "long_setup": {
-        "entry": 0.01267,
-        "sl": -0.017409647074560056,
-        "tp": 0.11267000000000002,
-        "dist": 0.04000000000000001,
-        "lots": 20.0
-      },
-      "short_setup": {
-        "entry": 0.012989999999999998,
-        "sl": 0.043069647074560055,
-        "tp": -0.08701000000000002,
-        "dist": 0.04000000000000001,
-        "lots": 20.0
-      },
-      "top_bid_whale": null,
-      "top_ask_whale": null
+      "posture": "STAND_ASIDE_MONITOR",
+      "json_file": "FLWUSD_MASTER_DOSSIER.json"
     }
-  }
+  ]
 }
