@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHUF
 **Canonical Key**: `EURHUF` | **Broker Instrument**: `EURHUF.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 09:46:25 IST` (`2026-10-30 04:16:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:49:26 IST` (`2026-10-30 04:19:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `365.72` | **Live Ask Quote**: `366.10` | **Mid Price**: `365.91`
-- **Spread Points**: `383.00` | **Spread BPS**: `10.47 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `365.66` | **Live Ask Quote**: `366.16` | **Mid Price**: `365.91`
+- **Spread Points**: `496.00` | **Spread BPS**: `13.56 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `368.47` | Lower -3.00σ Band: `363.35`
   * Upper +2.51σ Band: `367.92` | Lower -2.51σ Band: `363.90`
-  * Upper +2.01σ Band: `367.45` | Lower -2.01σ Band: `364.37`
+  * Upper +2.01σ Band: `367.44` | Lower -2.01σ Band: `364.37`
   * Upper +2.00σ Band: `367.37` | Lower -2.00σ Band: `364.44`
   * Upper +1.28σ Band: `366.93` | Lower -1.28σ Band: `364.88`
   * Upper +1.00σ Band: `366.64` | Lower -1.00σ Band: `365.18`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `364.81` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `363.04` (Risk Distance: `1.77` pts)
-  * +2.5R Take Profit: `369.25`
-  * Mathematical Lot Sizing: **`5.63 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `362.87` (Risk Distance: `1.94` pts)
+  * +2.5R Take Profit: `369.67`
+  * Mathematical Lot Sizing: **`5.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `367.01` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `368.78` (Risk Distance: `1.77` pts)
-  * +2.5R Take Profit: `362.57`
-  * Mathematical Lot Sizing: **`5.63 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `368.95` (Risk Distance: `1.94` pts)
+  * +2.5R Take Profit: `362.15`
+  * Mathematical Lot Sizing: **`5.14 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
