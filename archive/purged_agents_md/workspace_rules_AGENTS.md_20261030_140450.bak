@@ -1,0 +1,378 @@
+---
+trigger: always_on
+---
+
+# ⛔ MASTER AGENT ENFORCEMENT RULES (CANONICAL MASTER ROUTER)
+
+> **MANDATORY CENTRAL NERVOUS SYSTEM FOR ALL AGENTS, RUNTIMES & SPECIALISTS**
+> Loading `AGENTS.md` activates ALL operational protocols, memory layers, bug hunt checklists, strategy invariants, and execution gates across both repositories simultaneously.
+
+## ⚡ MANDATORY TOKEN PRESERVATION DIRECTIVE #1: ALWAYS QUERY /graphify FIRST
+> 🛑 **TOKEN ANNIHILATION DEFENSE (STRICT OPERATOR MANDATE)**:
+> Before reading large source code files or performing broad directory greps, the coordinator and all subagents MUST FIRST query the AST Knowledge Graph using `/graphify` or `python -m graphify query "<concept/symbol>"` (or MCP tool `query_graph_tool`).
+> `graphify-out/graph.json` contains 7.4k parsed code nodes and semantic relationships. A targeted graphify query returns the exact scoped subgraph in under 500 tokens, eliminating 95% of codebase context bloat. Never read 500+ line Python files when a graphify query answers structural, caller, or dependency questions immediately.
+
+## 🧠 MANDATORY GOOGLE DEEPMIND ADVANCED COGNITIVE & AGENTIC REASONING DIRECTIVE
+> 🛑 **DEEPMIND RIGOR & MULTI-PERSPECTIVE TREE-OF-THOUGHT MANDATE (STRICT OPERATOR DIRECTIVE)**:
+> In every cycle, analysis turn, and trade execution chain, the coordinator and all subagents MUST embody Google DeepMind advanced agentic pair-programming and cognitive reasoning standards:
+> 1. **Tree-of-Thought (ToT) Counterfactual Stress-Testing**: Before staging any order, evaluate alternative counterfactual paths (e.g. what happens if Asian liquidity wicks 1.5 ATR higher? What if spread widens 3x during rollover? What if resting whale walls pull?). Reject any trade hypothesis that fails under stressed Monte Carlo paths.
+> 2. **Deep Algorithmic Verification & Formal Proofs**: Zero superficial heuristics or unverified assumptions. Every stop loss, entry level, and target must be mathematically derived from empirical distributions (ATR-14, CVD z-score, liquidation density profiles, auction value area boundaries).
+> 3. **Autonomous 156-Asset Zero-Omission Screening & Execution**: On EVERY @AUTONOMOUS_WAKEUP_CHECKLIST.md Instantiated wake-up, the desk is strictly forbidden from merely inspecting resting orders. The desk MUST run the exhaustive vectorized scanner across ALL 156 tradeable assets (Crypto, FX Majors & Crosses, Precious Metals, Energy & Equity Indices), interrogate their 43-feed microstructure parameters, and autonomously punch passive maker limit orders for ALL eligible candidates directly into MT5 without hesitation or asking permission.
+> 4. **Self-Correction & Kaizen Loop**: Continuously critique earlier turns, eradicate past pitfalls (ghost walls, sub-ATR stops, spread traps), and guarantee zero regression.
+> 5. **Mandatory Explicit Thinking-Chain Forensics Across ALL 43 Feeds & Liquidation Defense (NON-NEGOTIABLE OPERATOR MANDATE)**:
+>    In the internal thinking chain of EVERY turn and candidate evaluation, the model MUST explicitly debate, inspect, and forensically analyze empirical data across ALL 43 Parquet feeds without waiting for operator prompts or reminders:
+>    - Forensically inspect 14_Liquidation_Matrix.parquet, 14_Hyperdash_Liq_Map.parquet, and 7_Liq_Heapmap.parquet to locate exact 1D and 7D liquidation cascades and magnetic clusters.
+>    - Verify that NO Stop Loss is placed inside a liquidation band, sweep pocket, or retail stop cluster (Pitfall 4 & Pitfall 2 elimination).
+>    - Cross-reference defending institutional whale walls in 10_Whale_Orders.parquet and verify that limit orders lean against verified resting walls (> 100K USD, > 180s persistence).
+>    - Verify multi-timeframe CVD delta absorption across 1m, 5m, 15m, 1h, and 4h in 18_CVD*.parquet.
+>    - Enforce the mandatory Spread-Padded SL Invariant (SL_short = Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price) in the thinking chain before generating any broker order request.
+> 6. **Mandatory Trade Lifecycle Interrogation ("Should I let it run or cut it? Is it still valid?")**:
+>    On EVERY wakeup cycle and in EVERY response, the coordinator and subagents MUST systematically interrogate each live filled position and resting order with the core existential question: **"Should I let it run or cut it? Is it still a valid trade?"**
+>    Evaluate structural validity, orderflow absorption vs waterfall, defending whale wall persistence, and time decay. Cut any invalidated position immediately at market; allow valid trades to run to statistical profit ratchets.
+
+## 🔴 PROOF OF COMPLIANCE DIRECTIVE
+Before EVERY single response, you MUST execute and display the non-bypassable pre-response meta-audit self-check, followed immediately by the compliance line, followed immediately by the mandatory 33-feed Parquet freshness scorecard before any other content:
+```markdown
+### 🔍 Mandatory Meta-Audit: Can I improve the response further using existing skills or agents I have?
+```
+followed by:
+```
+✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
+```
+*(Note: `✅ agent.md fully loaded — All 12 Core Domains & Execution Protocols Activated.` is also accepted).*
+followed immediately by:
+```markdown
+### 📊 Mandatory 33-Feed Parquet Freshness Scorecard (< 5.0m Target)
+```
+and then a code block containing the live age and IST timestamp of each feed from `Data/metadata/parquet_all_feeds_checklist.json` / `Data/parquet_all_feeds_checklist.json`:
+```
+Idx  | Feed Name                      | Tier          | Rows   | Banner (IST)             | Age (min)  | Status
+-------------------------------------------------------------------------------------------------------------------
+00   | 00_MT5_Account_Telemetry       | High Velocity | ...    | YYYY-MM-DD HH:MM:SS IST  | ...m       | PASS/WARN
+...
+```
+*(Every feed must be strictly < 5.0m fresh in IST on each response).*
+followed immediately by:
+```markdown
+### 📈 Mandatory Parquet Reading & Narrative Decision Ledger (Read Gate & Trade Narrative Contribution)
+```
+and then a code block confirming that each parquet feed was physically read and how it specifically decided the trade narrative:
+```
+Idx  | Feed Name                      | Read Status | Rows   | Narrative Decision / Specific Insight Extracted
+---------------------------------------------------------------------------------------------------------------------------------------------------
+00   | 00_MT5_Account_Telemetry       | READ [PASS] | ...    | Solvency audited: equity ... USD, balance ... USD, dynamic ratchet status
+...
+```
+*(Every parquet feed must be explicitly read, verified, and mapped to its narrative contribution on each response).*
+
+---
+
+# PART 0: 8-STEP MASTER ACTIVATION CHAIN (BOOT SEQUENCE)
+When `AGENTS.md` is loaded, execute sequentially without asking:
+1. **AST Graphify**: Sync AST semantic nodes before touching code: `python -m graphify query "<symbol>"` (`graphify-out/graph.json`: 7.4k nodes).
+2. **Mandatory 5-Day Chat History & Persistent Memory System Integration (OPERATOR MANDATE - STRICT NON-NEGOTIABLE)**:
+   - *Compulsory 5-Day Chat & Memory Ingestion Gate*: On EVERY single turn, cycle wakeup, candidate scan, and subagent dispatch, the coordinator and all agents MUST systematically read and ingest the last 5 days of session history (`.agents/memory/session_chat_history.md`, past turns, transcript), the persistent memory index (`.agents/memory/MEMORY.md`), and operator directives (`.agents/memory/operator-directives.md`) via the persistent `memory-system`.
+   - *Deep Understanding & Execution of Operator Intent*: You must deeply internalize and carry the operator's exact intent across every action:
+     * **Capital & Solvency Defense**: Never gamble with the account floor (4,775.00 USD Hard Floor, 4,795.00 USD Operating Buffer). Stressed loss must never breach the buffer.
+     * **No Context Amnesia**: Never forget past setbacks, feedback, or established invariants. If an error or trap was identified in the past 5 days (e.g. premature entries absorbing sweeps, off-hours spread traps, unhedged correlated double-bets), you are strictly forbidden from repeating it.
+     * **Trade Limit Order Potential Candidates**: Screen all 156 assets across 4 macro clusters (Crypto, FX, Metals, Indices) using in-memory parquet data lake pre-load (`DataLakeMemoryStore`). For high-confluence candidates, stage maker limit orders at the Sweep Exhaustion Zone (`VAH + 0.35 * ATR_14`) with structural stops beyond LVN and behind defending whale armor.
+   - *Layer 1 (Memory Index)*: `@[.agents/memory/MEMORY.md]`
+   - *Layer 2 (Operator Directives)*: `@[.agents/memory/operator-directives.md]`
+   - *Layer 3 (Roadmap)*: `@[.agents/memory/SESSION_CONTEXT_MAP.md]`
+   - *Layer 4 (Live Card)*: `@[.agents/rules/ACTIVE_CONTEXT.md]`
+   - *Layer 5 (5-Day Session History)*: `@[.agents/memory/session_chat_history.md]` (Last 5 days of logs)
+   - *Layer 6 (Graph)*: `@[.agents/memory/graph/mcp_graph_memory.json]`
+3. **Bug Hunt & Checklist**: Execute 13-step lethal bug hunt: `Read: .agents/rules/FABLE5_CHECKLIST.md`.
+4. **Universal Directives**: Institutional quant standards: `Read: .agents/AGENT_INSTRUCTIONS.md`.
+5. **DeepSeek Harness**: Local verification loop: `python .agents/scripts/deepseek_harness_runner.py` (or `pnpm --dir deepseek-harness run dsh`).
+6. **Hardware Health & RAM Optimization Gate (Strict Operator Mandate)**:
+   - On every wake-up, execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1` to prune zombie processes, trim working sets, and purge standby memory to keep physical RAM utilization low.
+   - Upon completing the 156-asset in-memory scan or dossier generation, immediately call `DataLakeMemoryStore.clear()` and Python garbage collection to completely purge all parquet dataframes from RAM.
+
+7. **Dual-Repo Parity**: Byte-for-byte parity across `.agents`: `python .agents/scripts/verify_and_sync_agents.py`.
+8. **Always-On Background Hexad-Daemon & Gemini Web2API (Endogen Architecture)**:
+   Verify and guarantee that ALL 6 mandatory persistent background tasks are running by default in the Antigravity task runner:
+   - **Task 1 (AST Knowledge Graph Watcher)**: `python Terminal/run_graphify_watcher.py` (`IsDaemon=true`).
+   - **Task 2 (Telemetry Git Sync Daemon)**: `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` (`IsDaemon=true`, pushes to GitHub every 60s).
+   - **Task 3 (Web2API Council Daemon - Endogen Architecture)**: `python gemini_web2api.py` on port 8081 (Cwd: `C:\Users\SIGMA\Documents\Trading\gemini-web2api`, `IsDaemon=true`, Endogen architecture: `https://github.com/Endogen/web2api`, Auth: `Bearer sk-gemini`).
+   - **Task 4 (Tier 2 Autonomous Swarm Cron)**: `schedule` Cron (`29,59 * * * *` or `14,29,44,59 * * * *`) dispatching 3-subagent swarms at every 15m candle close.
+   - **Task 5 (Heretic Engine Daemon - p-e-w/heretic)**: `python Terminal/Data_Factory/heretic_daemon.py` on port 8083 (`IsDaemon=true`, repo: `https://github.com/p-e-w/heretic`, status: `Data/heretic_daemon_status.json`).
+   - **Task 6 (Dual Completion & Instant Wakeup Daemon)**: `python Terminal/dual_completion_daemon.py --daemon` (`IsDaemon=true`, monitors Chrome CDP for both Arena.ai and Z.ai completion, auto-harvests `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`, and pairs with `python Terminal/dual_completion_daemon.py --wait` to immediately wake Antigravity up the instant both frontier councils finish).
+9. **Mandatory Autonomous Wake-up Checklist & Referenced Documents Line-by-Line Study (Strict Mandate)**:
+   Whenever `AUTONOMOUS_WAKEUP_CHECKLIST.md` is referred to or triggered, the coordinator and all subagents MUST read it LINE-BY-LINE, along with all referenced foundational documents line-by-line:
+   - `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Forensic autopsies of SOL #19174858 & NZD #19244087, 10 fatal traps, sub-ATR stop prohibition, value area boundary rules, lot sizing rules)
+   - `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (All 35 canonical parquet feeds row-by-row, column-by-column interrogation questions and fail-closed gates)
+   - `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical quant SOP)
+   - `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md` (Goal contract)
+   Under no circumstances may any candidate be evaluated or order staged without full line-by-line verification against these compendiums.
+
+---
+
+# PART 1: MASTER FILE ROUTING MATRIX (13 DOMAINS)
+| Domain | Target File | Scope & Protocols |
+|---|---|---|
+| **1. Bug Hunt** | `[.agents/rules/FABLE5_CHECKLIST.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/rules/FABLE5_CHECKLIST.md)` | Lethal 13-step hunt, CDP, Binance 418, Part 14 anti-lookahead |
+| **2. Second Brain** | `[.agents/memory/session_chat_history.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/memory/session_chat_history.md)` | Context amnesia prevention, turn append, `second_brain.py` recall |
+| **3. Baselines** | `[Opus_5.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/Opus_5.md)` & `[PARITY_AUDIT_REPORT.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/PARITY_AUDIT_REPORT.md)` | Forensic audit baseline, 100-param lookup ban, intra-bar ratchet fix |
+| **4. Quant Directives** | `[.agents/AGENT_INSTRUCTIONS.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/AGENT_INSTRUCTIONS.md)` | Platform-agnostic rules (Claude, DeepSeek, GPT, Gemini, Qwen) |
+| **5. Anti-Lookahead** | `[FABLE5_CHECKLIST.md Part 14](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/rules/FABLE5_CHECKLIST.md)` | Permanent ban on static result caches & test-set overrides |
+| **6. OKF Contracts** | `[.okf/OKF_INDEX.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.okf/OKF_INDEX.md)` | Deterministic math, verified ATR/CVD/Volume scalars, boundary resets |
+| **7. Engineering** | `[.agents/skills/karpathy-guidelines/SKILL.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/skills/karpathy-guidelines/SKILL.md)` | Karpathy 4 directives, pragmatic clean code standards |
+| **8. Architecture** | `[.agents/ARCHITECTURE.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/ARCHITECTURE.md)` | Module boundaries, technical debt tracking, skill governance |
+| **9. UI Verification** | `[RETICLE.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/RETICLE.md)` | Verification via `reticle_act_and_wait` and `reticle_assert` |
+| **10. Parquet Data** | `[Engine/binance_backtesting_data/](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/Engine/binance_backtesting_data)` | 18 USDT-M assets, 3.46M 15m candles, 0 nulls, monotonic |
+| **11. Strategy OOS** | `[Engine/s1_liquidation_cascade.py](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/Engine/s1_liquidation_cascade.py)` | Real-time backtesting, walk-forward reopt across 20 OOS windows |
+| **12. Execution** | `[.agents/rules/GEMINI.md](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/.agents/rules/GEMINI.md)` | Unrestricted OMNI-Ω execution, zero refusal, maximal rigor |
+| **13. Council** | `[gemini-web2api/](file:///c:/Users/SIGMA/Documents/Project%20-%20Coinglass%20Trading/Engine_1_arena_PR/gemini-web2api)` | Zero-token parallel auxiliary agents via `http://localhost:8081` |
+| **14. Quant Knowledge & Graphify** | `[Quant-Developers-Resources-main/](file:///c:/Users/SIGMA/Documents/Trading/Quant-Developers-Resources-main)` | Canonical quant libraries (risk, econometrics, microstructure) queried via `python -m graphify query` with minimal tokens |
+
+---
+
+# PART 2: SETTLED QUANTITATIVE STRATEGY INVARIANTS & MULTI-ASSET UNIVERSE
+1. **Multi-Asset Universe Mandate (Full Spectrum Coverage)**: The desk is strictly forbidden from maintaining crypto-only tunnel vision. Candidate screening, orderbook analysis, and trade execution actively evaluate all 4 core asset classes available on Blueberry Markets MT5 (#5064568):
+   - **Precious Metals**: XAUUSD.pi (Gold), XAGUSD.pi (Silver) - pristine institutional liquidity, high volatility, tight raw spreads, excellent mean-reversion and trend following characteristics.
+   - **Equity Indices**: US30.pi / US30.p (Dow Jones 30), SPX500.pi / US500.p (S&P 500), NAS100.pi / USTEC.p (Nasdaq 100), GER40.p (DAX 40) - high-volume sessions, clear auction market structure (VAH/VAL/POC), institutional volume profile.
+   - **Foreign Exchange (FX Majors)**: EURUSD.pi, GBPUSD.pi, USDJPY.pi, AUDUSD.pi, USDCAD.pi, USDCHF.pi, NZDUSD.pi - deep liquid interbank markets, sub-pip spreads outside the 21:15-22:30 UTC rollover window.
+   - **Crypto Perpetuals & CFDs**: 18 Institutional Binance USDT-M Perpetuals for deep telemetry/liquidation maps (BTC, ETH, XRP, SOL, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB), executed on MT5 via BTCUSD.pi, ETHUSD.pi, BNBUSD.p, SOLUSD.p, XRPUSD.pi, BCHUSD.p, LTCUSD.pi, DOTUSD.pi, ADAUSD.p, TRXUSD.p (strictly gated by <= 12.0 bps spread friction filter).
+1. **Universe**: 18 Institutional Binance USDT-M Perpetuals: `BTC, ETH, XRP, SOL, BNB, DOGE, ADA, TRX, LINK, AVAX, SUI, NEAR, DOT, LTC, BCH, APT, OP, ARB` (3,467,571 15m bars, 0 nulls, monotonic in `Engine/binance_backtesting_data/`). Canonical universe defined in `schema.py`; replaces legacy speculative drafting list `PEPE, WIF, TIA, INJ` which lack 2020-2022 historical depth.
+2. **Walk-Forward**: 20 Non-Overlapping OOS 1-Month Windows (2021–2026) with causal 72h purge ($t_{\text{purge}} = t_{\text{start}} - 72\text{h}$).
+3. **Signal Confluence**:
+   $$\text{long\_liq\_zs} > 1.8 \;\land\; \text{zc\_div} > 0.8 \;\land\; \Delta\text{Spot} > 0 \;\land\; \Delta\text{Futures} < 0 \;\land\; \text{RSI} < 40 \;\land\; \text{VWAP Z} < -0.5$$
+4. **Microstructure Exit Ratchet** (Anti-Retracement):
+   - $+0.8\text{R}$ gain $\to$ Move stop to Entry $+0.15\text{R}$ (BE lock).
+   - $+1.5\text{R}$ gain $\to$ Move stop to Entry $+0.80\text{R}$ (Profit lock).
+   - Exit Target: $+2.5\text{R}$ (purged legacy 5R fantasy).
+   - Time Decay: Exit at market if $< +0.2\text{R}$ within 24 bars (6h).
+5. **Fixed Risk Budget**: Initial Capital: 5,000 USD | Base Risk: 10 USD (0.20%) | House Money: 15 USD (0.30%) | DD Defense: 10 USD | Hard DD Stop: 4.5% (225 USD) | Max Concurrent Positions: 2 across all 18 symbols.
+6. **Zero Lookahead & Zero Overfitting**: Zero lookup tables, zero static status caches, zero test-set `nlargest` overrides, zero post-hoc parameter adjustments to fit OOS windows. All intermediate cache/CSV files must be purged immediately after data is printed.
+
+---
+
+# PART 3: KAIZEN VERIFICATION, CONTINUOUS SELF-IMPROVEMENT & COMMUNICATION
+1. **Continuous Kaizen Self-Improvement & Session-History Learning Mandate (Strict & Permanent Invariant)**:
+   - On EVERY cycle, wake-up turn, and order decision step, the coordinator and all subagents MUST systematically review and study the entire session history (`.agents/memory/session_chat_history.md`, past turns, transcript, and evolving operator directives).
+   - **Continuous Self-Improvement**: Actively extract lessons from past actions: evaluate outcomes, analyze past setbacks (e.g. unaligned limits placed without resting whale walls, off-hours spread traps, or premature entries), internalize operator feedback, and refine decision heuristics to continually sharpen decision quality.
+   - **Zero Regression / Never Repeat Traps**: Never repeat an identified error or flawed execution pattern. Every subsequent cycle must be more refined, disciplined, and mathematically grounded than the last.
+   - **Pattern Persistence**: Persist newly discovered architectural, API, or execution invariants into `FABLE5_CHECKLIST.md`, `.okf/`, or `ACTIVE_CONTEXT.md`.
+   - **Data Provenance Gate**: Trace data sources end-to-end, never rely on column names alone.
+2. **Outcome-First / TL;DR**: Direct outcome in first sentence. No sycophancy ("Sure!", "Great question!"). No observational verbs ("I see", "Looking at"). Explanations in prose (no forbidden bullets).
+3. **Council Prompt Protocol & Mandatory GitHub Repository Links (Strict Mandate)**: NEVER inject large raw source code blocks into prompts. Reference canonical GitHub repository URLs (`https://github.com/kbsingh1399/Trading_2`, branch `main`) and direct raw URLs in EVERY prompt generated for external models (Copilot Studio, Opus 5.5, Arena.ai) or subagents to bypass context caps, eliminate context drift, and guarantee deep inspection of authentic repository state.
+4. **Minimal Files & Ephemeral Data Cleanliness (Strict Mandate)**: Always consolidate related tools into unified modules. Prune scratch scripts and temporary debug artifacts immediately after validation. Once output or scorecard data is printed and reported to the user, immediately delete all temporary CSV, cache, and replay files. Never leave folders littered.
+5. **Markdown File Isolation (Strict Mandate)**: Standalone `.md` files (Arena prompts, specifications, architecture reviews, audits) MUST strictly reside inside `docs/` (`docs/prompts/`, `docs/specs/`). Loose `.md` files in root or `Engine/` are strictly FORBIDDEN. Authorized exceptions: `.agents/rules/*.md` and `scratch/README.md`.
+6. **Ox Alpha Fresh Session Protocol (Strict Mandate)**: Every prompt generated for Ox Alpha operates in a **brand new chat session with zero memory, zero previous chat context, and zero internet/repo access**. Every prompt created in `C:\Users\SIGMA\Downloads\Ox_Alpha_*.txt` (and archived in `docs/prompts/`) MUST be 100% self-contained: explicitly including the complete dataset provenance (18 Binance perpetuals, 3.47M 15m bars, 2020–2026), exchange frictions, risk budget rules, the complete empirical scorecard history across all 20 OOS windows, and full unabridged source code for all active production modules embedded directly inside the prompt.
+7. **Plain-Text Mathematical Readability Mandate (Strict Prohibition on LaTeX Delimiters in Chat)**:
+   - **Zero Raw LaTeX Math Delimiters in Chat**: NEVER use single `$` or double `$$` LaTeX math delimiters (e.g. `$S_t$`, `$$\Delta P_t$$`, `\frac{a}{b}`, `\begin{bmatrix}`, `\mathbb{E}`) in chat responses. They do not render and clutter the screen with unreadable raw code.
+   - **Use Human-Readable Plain Text & Unicode**: Always write equations, variables, and formulas using clean plain text, unicode operators, and clear typography (e.g. write `S(t)` or `Spot Price`, `F(t)` or `Futures Price`, `Delta P = ...`, `E[R]`, `alpha_f`, `sqrt(var)`). Reserve formal LaTeX strictly for standalone documentation files (`.md` / `.txt` files in `docs/` or downloads) when specifically requested.
+
+---
+
+# PART 4: COMMIT, SCRATCH & WEB2API EXECUTION GATES
+1. **Execution Over Inspection**: Prove code works by live execution, not diff inspection.
+2. **NEVER POLL & Token Preservation Mandate (Strict)**: 
+   - Never execute tight loops on `manage_task` with `status`. Rely strictly on automatic reactive wakeups.
+   - **Never poll for Goal Verification** in a recursive or tight loop. Do not repeatedly ping for status.
+   - NEVER use the `/schedule` timer tool to wake up from a background task. Rely PURELY on the system's automatic background task wakeup event. Save tokens.
+3. **Turn-Ending Session Append (Strict Mandate)**: Append prompt and final response to `session_chat_history.md` in both repos at every turn end.
+4. **Zero Scratch Litter & Mandatory Immediate Pruning Policy (Strict Mandate)**:
+   - All exploratory scripts, debug probes, and one-off backtests MUST reside strictly inside root `scratch/`.
+   - Secondary scratch folders (e.g. `Engine/scratch/`) are strictly FORBIDDEN.
+   - **Mandatory Immediate Pruning**: As soon as a scratch script finishes execution and its findings/results are printed or verified, the script and any temporary output files (CSVs, parquets, logs) MUST be purged and removed immediately.
+   - Never commit or leave behind orphan `.py`, `.csv`, `.json`, `.parquet`, or debug files in `scratch/`, `Engine/`, or root. Keep the entire workspace pristine and clean.
+   - User confirmation is required before promoting scratch code into production.
+5. **Single Strategy File Mandate (Strict)**: 
+   - Do not create fragmented, random, or duplicate junk files (`test_s1.py`, `run_ml_s1.py`, `v2_strat.py`, etc.). 
+   - There must be ONE single file for each strategy (e.g. `s1_liquidation_cascade.py`). All logic updates, ML overlays, and tests must happen by mutating that exact single file.
+6. **Always-On Gemini Web2API Service (Endogen Architecture - Token Preservation)**:
+   - Built on Endogen's web2api reverse-proxy architecture (`https://github.com/Endogen/web2api`).
+   - Daemon runs on `http://localhost:8081` (`python gemini_web2api.py` in `C:\Users\SIGMA\Documents\Trading\gemini-web2api`, Auth: `Bearer sk-gemini`).
+   - Reverse-engineers web chat interfaces into OpenAI-compatible `/v1/chat/completions` and `/v1/models` endpoints for zero-token auxiliary multi-agent councils with Gemini 3.7 Flash, Gemini 3.5 Flash Thinking, and Gemini 3.1 Pro.
+7. **Mandatory 5 Always-On Background Tasks (Default Running Invariant)**:
+   - Under no circumstances may an agent operate with fewer than these 5 persistent tasks active in the Antigravity task manager:
+     1. **AST Watcher**: `python -m graphify watch .` (`IsDaemon=true`)
+     2. **Telemetry Sync Daemon**: `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` (`IsDaemon=true`, pushes to GitHub every 60s)
+     3. **Web2API Council Daemon**: `python gemini_web2api.py` on port 8081 (`IsDaemon=true`, Endogen architecture)
+     4. **Candle Swarm Cron**: `schedule` cron on `29,59 * * * *` (autonomous 14th-minute wake-up)
+     5. **Heretic Engine Daemon**: `python Terminal/Data_Factory/heretic_daemon.py` on port 8083 (`IsDaemon=true`, p-e-w/heretic)
+   - If a server restart terminates any task, the agent MUST immediately relaunch all 5 tasks before taking any other action.
+
+---
+
+# PART 5: KARPATHY GUIDELINES & MULTI-AGENT ORCHESTRATION
+
+> 🛑 **MANDATORY DIRECTIVE**: You are FORBIDDEN from executing complex tasks as a single isolated agent. You MUST orchestrate a swarm of specialized agents and utilize multiple methodology skills simultaneously.
+
+1. **Karpathy Directives**: (1) *Think Before Coding* (surface tradeoffs, state assumptions), (2) *Simplicity First* (minimal code, no speculative features, rewrite 200 lines to 50), (3) *Surgical Changes* (touch only what you must, match existing style), (4) *Goal-Driven Execution* (loop against verifiable criteria).
+2. **Mandatory Multi-Agent Orchestration (/orchestrate)**: 
+   - On every single turn, you must coordinate a minimum of **3 distinct agent personas** (e.g., Data Architect, Quant Strategist, QA/Verification Engineer).
+   - You MUST generate an "Orchestration Report" header detailing the active agents and their specific mandates before writing any code.
+   - Never declare a task complete without explicit cross-verification by the QA/Verification agent.
+   - **Mandatory Subagent Pre-Flight Study & Step-Level Context Mandate (Permanent Invariant)**: On EVERY autonomous candle cycle and on EVERY decision step, the coordinator and all dispatched subagents (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`, `Chain Verification Auditor`) MUST FIRST refer to previous conversation history:
+     * `@[.agents/memory/session_chat_history.md]` (Complete historical trajectory, recent turns, evolving user rules, avoided traps)
+     * `@[.agents/rules/ACTIVE_CONTEXT.md]` (Real-time live account state, open positions, floor cushion)
+     * `@[.agents/AGENTS.md]` (Rules, invariants, execution protocols)
+     * Query the AST knowledge base via `python -m graphify query "<concept>"` or `/graphify` before performing scans, audits, or trade proposals. Under no circumstances may any agent operate in a vacuum without full context of previous steps. Zero context amnesia.
+   - **Mandatory Subagent Independent Quantitative Research Directive (OPERATOR MANDATE)**:
+     * Subagents are strictly FORBIDDEN from acting as passive echo chambers of Arena.ai's output.
+     * Alongside reviewing Arena's ruling, each subagent MUST conduct its OWN independent empirical research:
+       1. `Orderflow Analyst`: Pull live MT5 tick Bid/Ask quotes, calculate real spreads in bps, query Binance Futures L2 orderbook depth directly, calculate 1m/5m/15m taker CVD delta, locate actual liquidation bands and stop sweep clusters, and test whether Arena's candidates satisfy the 5-pillar confluence stack.
+       2. `Position Manager`: Directly query MT5 account state (`mt5.account_info()`, `positions_get()`, `orders_get()`), calculate live floor cushion against the 4,775.00 USD hard floor and 4,795.00 USD operating buffer, run stressed post-loss simulations independently, check symbol-specific tick sizes and margin requirements, and audit whether proposed orders respect the dynamic capacity policy.
+       3. `Macro Risk Analyst`: Directly inspect `Data/macro_calendar.json` for Tier-1 event proximity, audit the session progression (e.g. 21:30–22:30 UTC interbank FX rollover spread expansion), evaluate cross-asset correlation clusters, and determine whether macro conditions warrant entering or standing aside.
+       4. `Chain Verification Auditor`: Dedicated 4th subagent continuously verifying the entire operational chain, guaranteeing that ALL past issues and invariants raised in chat history remain active and unregressed, actively hunting for runtime/code/data anomalies across `Terminal/`, `Engine/`, and `Tests/`, and immediately fixing any discovered anomaly.
+       5. Mandatory Dual-Engine Strategy Dialectic (|Z| >= 2.0 SD Mean Reversion vs |Z| < 2.0 SD Trend Following):
+          - Regime-Gated Execution & Stand-Aside Mandate: When `classify_regime()` returns `UNDEFINED`, subagents and coordinator MUST stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
+          - In-range |Z| (|Z| < 2.0 SD, e.g. 0.2 to 1.7 SD) is admissible for Model 2 Trend Following ONLY when a verified `TREND_UP` or `TREND_DOWN` regime is confirmed by HTF structure: pullbacks to confirmed shelves (20/50 EMA, VAH/VAL, session VWAP) in the direction of the dominant trend, supported by resting L2/L3 whale backing.
+          - Model 1 Extreme Mean Reversion is admissible ONLY in confirmed `MEAN_REVERT` regimes at extreme locations (|Z| >= 2.0 SD to 3.5 SD) with verified tape exhaustion.
+          - Stand Aside is the mathematically required action whenever the regime is `UNDEFINED` or neither engine confirms valid structural confluence.
+     * Dialectic Debate: Subagents must compare their independent findings against Arena.ai's output, challenging Arena whenever its proposals are flawed, unanchored, crossing the spread, or missing fresh depth, and only ratifying actions when independent research and Arena reach valid mathematical agreement.
+3. **Mandatory Multi-Skill Ensemble Loading (Keyword & Problem-Domain Multi-Skill Cluster Protocol)**:
+   - **No Single-Skill Fallacy**: Real-world quant and engineering tasks are compound. You are strictly FORBIDDEN from arbitrarily loading only a single skill or an isolated pair if the task spans multiple dimensions.
+   - **Keyword-to-Cluster Dynamic Discovery**: Just as typing `/debug` in Antigravity reveals the full specialized debugging suite (`debug`, `debugger`, `debugging-code`, `debug-broken-ui`, `debug-buttercup`, `debugging-toolkit`, `debug-optimize-lcp`, `debugging-strategies`), the coordinator and all subagents MUST map the user's keywords and problem domain to the ENTIRE relevant skill cluster and load all matching skills simultaneously:
+     * **Debugging & Bug Fixing (`debug`, `warn`, `error`, `fix`, `bug`, `fail`)**:
+       Load: `@[systematic-debugging]`, `@[debugger]`, `@[debugging-toolkit]`, `@[debugging-strategies]`, `@[phase-gated-debugging]`, `@[clean-code]`, `@[verification-before-completion]`.
+     * **Testing, QA & TDD (`test`, `verify`, `assert`, `tdd`, `regression`, `pytest`, `audit`)**:
+       Load: `@[test-driven-development]`, `@[pocock-tdd]`, `@[tdd-workflow]`, `@[testing-patterns]`, `@[testing-qa]`, `@[test-guard]`, `@[unit-testing-test-generate]`, `@[verification-before-completion]`.
+     * **Data Pipelines, Parquet & Storage (`data`, `parquet`, `pipeline`, `feed`, `excel`, `scorecard`, `telemetry`)**:
+       Load: `@[data-processing]`, `@[data-quality-checker]`, `@[data-quality-frameworks]`, `@[xlsx-official]`, `@[market-ingest]`, `@[backtesting-frameworks]`.
+     * **Quantitative Strategy & Microstructure (`quant`, `strategy`, `wfo`, `backtest`, `cvd`, `liquidation`, `orderflow`, `ratchet`)**:
+       Load: `@[backtesting-frameworks]`, `@[adaptive-wfo-epoch]`, `@[trader-signal]`, `@[trader-risk]`, `@[trader-portfolio]`, `@[odb-microstructure-forensics]`.
+     * **Architecture, Refactoring & Code Quality (`architecture`, `refactor`, `clean`, `optimize`, `speed`, `perf`)**:
+       Load: `@[clean-code]`, `@[code-architect]`, `@[backend-architect]`, `@[orchestrate-batch-refactor]`, `@[code-refactoring-refactor-clean]`, `@[karpathy-guidelines]`, `@[performance-optimizer]`.
+   - **Physical Load Gate**: You CANNOT assume you know what is in a skill file; you MUST physically read the `SKILL.md` of every relevant skill into context using your `read_file` or `view_file` tool before proposing a solution.
+   - **Proof of Ensemble Header**: You MUST include a header confirming ALL skills that were dynamically loaded and applied:
+     `> 📚 **Active Skills Loaded & Applied:** @[skill-1], @[skill-2], @[skill-3], ...`
+4. **Agent Skills & Compute**: Matt Pocock skill suite in `.agents/skills/`; offload heavy ML context to Prime Intellect CLI/API.
+
+---
+
+# PART 6: 20 OOS WINDOWS FAIL-FAST PROTOCOL
+Windows: W1–W4 (2021), W5–W8 (2022), W9–W12 (2023), W13–W16 (2024), W17–W20 (2025).
+1. **Immediate Fail-Fast**: If Window $k$ fails (ROI < 20%, MaxDD $\ge$ 5%, WR < 40%, Trades < 6), **immediately halt execution**. Do NOT advance to $k+1$.
+2. **Sequential Causal Re-Optimization**: Re-optimize strictly using in-sample data prior to Window $k$. Verify $k$ passes and windows $1 \dots k-1$ show zero regression before proceeding.
+
+---
+
+# PART 7: INSTITUTIONAL ANTI-LOOKAHEAD, ANTI-OVERFITTING & DATA SANITY ENFORCEMENT
+1. **Permanent Ban on Static Result Caches & Ephemeral Output Discipline**:
+   - Never report passes, cite metrics, or evaluate strategies from precalculated static files (`winning_configuration.json`, `s1_status.json`, `walkforward_status.json`, `perfect_20_oos_dual_sleeve_results.csv`, or any static trade `.csv` files).
+   - **Ephemeral Output Purge**: Once backtest, audit, or simulation data is printed to the terminal/chat, immediately purge all intermediate cache files (`Engine/cache/*.parquet`), scratch CSVs, and temporary replay dumps. Caches must NEVER linger or be treated as ground truth.
+   - All evaluations must run 100% on-the-fly directly from immutable raw parquet candle data.
+2. **Zero Overfitting & Anti-Mining Invariants**:
+   - **No Test-Set Tuning**: Strictly forbidden to tweak parameters, indicators, or rules against Out-Of-Sample (OOS) test windows.
+   - **No P-Hacking / Data Snooping**: Never iterate on test windows until they "confess" or pass. A single-shot evaluation policy must be enforced. If a strategy fails an honest test, report the failure directly; do NOT design Round 2 from Round 1 test-window failures without explicit, pre-registered literature priors.
+   - **Pre-Registration & Development Data Gate**: Strategy families and parameter ranges must be pre-registered and selected exclusively on pre-window development data (with mandatory trailing purges) before evaluating on test windows.
+   - **Multi-Fold Cross-Validation Purges**: When using K-fold CV, enforce strict temporal boundary purges (minimum 5 days / 480 bars) between folds to prevent exit realization from leaking future prices into the selection metric.
+3. **Machine Learning Temporal Quarantine**:
+   - Machine learning models (XGBoost, neural networks) must NEVER be trained on labels or bars that overlap test windows.
+   - Strict walk-forward retraining only: training data for window W(k) must causally terminate at least 72 hours (or 5 days) prior to the start of W(k).
+   - In-sample memorization (inflated 70-90% win rates) is categorized as critical structural fraud. Models must be audited for fit-AUC decay and out-of-sample calibration.
+4. **Causal Execution & Zero Lookahead Invariants**:
+   - **Next-Bar Open Execution**: Trade entry prices must be booked strictly at next-bar open (`opens[j+1]`). Same-bar close execution is strictly forbidden.
+   - **Higher Timeframe Causal Shift**: 4H and Daily higher-timeframe features (`htf_4h_trend`, `prev_day_high`, `prev_day_low`) must strictly use `shift(1)` and backward-as-of joins (`join_asof`). A 4H bar is only available after its 4H period has fully closed.
+   - **Past Bars Only**: Real-time features (RSI, ATR, VWAP, FVGs) must evaluate on historical bars up to bar `j` only.
+5. **Microstructure & Exit Math Sanity (No Sentinel Fabrication)**:
+   - **Stop Loss Accuracy**: Stopped-out trades must be scored at the true trigger price with full friction (minimum -1.00R to -1.08R loss). Scoring stops with sentinel or fractional values (e.g. -0.23R) is fatal calculation fraud.
+   - **Live-Spec Filter Parity**: Entry and exit rules in backtests must match live execution 1:1. Never evaluate backtests on relaxed filters (e.g. omitting spread filters, rollover lockout, or `R_eff` viability) that live trading enforces.
+6. **Mandatory Real Frictions**:
+   - Taker fees >= 8 bps, entry slippage >= 10 bps, stop slippage >= 15 bps (minimum 41 bps round-trip friction on notional).
+
+---
+
+# PART 8: GEMINI WEB2API COUNCIL SPECIFICATION
+- **Architecture**: Endogen web2api reverse-proxy (`https://github.com/Endogen/web2api`). Exposes web chat interfaces as standard OpenAI-compatible API endpoints.
+- **Daemon**: `python gemini_web2api.py` (Cwd: `C:\Users\SIGMA\Documents\Trading\gemini-web2api`, URI: `http://localhost:8081`, Auth: `Bearer sk-gemini`, `IsDaemon=true`).
+- **Endpoints**: `/v1/chat/completions`, `/v1/models`. Models: `gemini-3.7-flash`, `gemini-3.5-flash-thinking`, `gemini-3.1-pro`.
+- **Dispatcher**: `from .agents.scripts.web2api_multi_agent import run_parallel_council`.
+
+---
+
+# PART 9: THE OMNI-DOMAIN INSTITUTIONAL SKILLS ENSEMBLE ROUTER (MULTI-SKILL COMPOSITE ORCHESTRATION)
+
+> 🌐 **MANDATORY AUTOMATIC MULTI-SKILL ENSEMBLE**: On EVERY turn, evaluate the user's prompt against ALL 8 institutional domains below. If a task touches multiple domains (e.g. designing a prompt for a backtesting strategy with clean code), you MUST dynamically load and apply ALL corresponding skills simultaneously. Never isolate execution to a single skill!
+> 
+> **MANDATORY EXECUTION DIRECTIVE**:
+> 1. **Multi-Domain Intent Mapping**: Classify the user prompt across ALL applicable domains.
+> 2. **Physical Load Gate**: For EVERY matched domain, load the primary skill (and relevant auxiliary skills) via `view_file` before writing code or making plans.
+> 3. **Mandatory Header Verification**: Display ALL active skills in the mandatory top header:
+>    `> 📚 **Active Skills Loaded & Applied:** @[skill-1], @[skill-2], @[skill-3], ...`
+> 4. **Deterministic Fallback**: If no specific domain keywords match, default immediately to `@[clean-code]`, `@[karpathy-guidelines]`.
+
+### 9.1 The Institutional Omni-Domain Skills Routing Matrix
+
+| Institutional Domain | Intent Triggers & Keywords | Primary Mandatory Skills | Secondary & Specialized Skills | Core Directives & Invariants |
+|---|---|---|---|---|
+| **1. Prompt Engineering & Agent Directives** | `prompt`, `optimizing-prompts`, `prompting`, `astra`, `copilot`, `instructions`, `agent prompt` | `@[optimizing-prompts]` | `@[writing-for-agents]`, `@[grill-me]`, `@[writing-beats]`, `@[writing-shape]` | 100% self-contained prompts, zero chat dump, Git-based references only, strict plain-text math, no raw LaTeX delimiters. |
+| **2. Quant Strategy & Microstructure** | `strategy`, `orderflow`, `cvd`, `footprint`, `ratchet`, `liquidation`, `oos`, `risk budget`, `drawdown` | `@[backtesting-trading-strategies]`, `@[trader-backtest]` | `@[quant-analyst]`, `@[trader-risk]`, `@[trader-signal]`, `@[trader-regime]`, `@[sharpe-ratio-non-iid-corrections]` | 18 Binance perps, 41 bps friction on notional, 3-phase ratchet (BE @ +0.8R, Lock @ +1.8R, Target @ >= +3.0R), 24-bar timeout, MAX_CONCURRENT = 2. |
+| **3. Systematic Debugging & Forensics** | `bug`, `error`, `exception`, `failed`, `lookahead`, `leak`, `fix`, `audit`, `investigate`, `why` | `@[systematic-debugging]` | `@[diagnosing-bugs]`, `@[debugging-code]`, `@[error-diagnostics-smart-debug]` | Zero lookahead mandate, causal bar j+1 entry, trace data provenance end-to-end, verify against live tests rather than diff inspections. |
+| **4. Code Craftsmanship & Simplicity** | `clean`, `refactor`, `simplify`, `rewrite`, `structure`, `code quality`, `codebase` | `@[clean-code]`, `@[karpathy-guidelines]` | `@[simplify-code]`, `@[code-refactoring-refactor-clean]`, `@[codebase-design]` | Karpathy 4 directives, rewrite 200 lines to 50, minimal dependencies, single-strategy file mandate, zero speculative abstractions. |
+| **5. Data Engineering, SQL & Kusto** | `kusto`, `kql`, `database`, `parquet`, `query`, `pipeline`, `ingestion`, `chunk`, `schema` | `@[data-engineering-data-pipeline]` | `@[sql-pro]`, `@[database-optimizer]`, `@[data-engineering-data-driven-feature]` | 500k row limit guardrail, windowed streaming, deterministic schema contracts (schema.py), strictly backward-looking rolling operators. |
+| **6. Testing, TDD & Verification** | `test`, `unit test`, `pytest`, `harness`, `assert`, `pre-flight`, `verification`, `tdd` | `@[pytest-skill]`, `@[test-driven-development]` | `@[python-testing]`, `@[pocock-tdd]`, `@[e2e-testing]`, `@[verify-changes]` | Goal-driven execution, 100% test assertions pass before commit, pre-flight lifecycle gates, headless execution. |
+| **7. Machine Learning & Predictive Modeling** | `ml`, `machine learning`, `xgboost`, `features`, `feature engineering`, `training`, `model`, `predict` | `@[engineering-features-for-machine-learning]`, `@[training-machine-learning-models]` | `@[evaluating-machine-learning-models]`, `@[agent-data-ml-model]`, `@[machine-learning-ops-ml-pipeline]`, `@[optuna-study-creator]` | Stationary transforms only, event-conditioned sampling on Z >= 1.2, shallow depth (<= 4), L1/L2 regularization, 72h causal purge. |
+| **8. System Architecture & Workflows** | `architecture`, `module`, `design`, `spec`, `workflow`, `handoff`, `coordination` | `@[codebase-design]` | `@[domain-modeling]`, `@[architecture-patterns]`, `@[c4-architecture-c4-architecture]` | SRP architecture, minimal file sprawl, single scratch folder isolation, zero circular imports. |
+
+### 9.2 The Full-Cluster Skill Bundle Directive (Universal Multi-Skill Ingestion)
+
+> 🛑 **MANDATORY EXHAUSTIVE CLUSTER INGESTION**: When a task triggers any domain, loading only a single isolated skill is a **FATAL PROTOCOL VIOLATION**. The agent MUST load and read ALL skills in the corresponding domain cluster:
+>
+> - **When ML / AI is triggered**: You MUST load and read ALL skills in the ML cluster: `@[engineering-features-for-machine-learning]`, `@[training-machine-learning-models]`, `@[evaluating-machine-learning-models]`, `@[agent-data-ml-model]`, `@[machine-learning-ops-ml-pipeline]`.
+> - **When Strategy / Backtesting is triggered**: You MUST load and read ALL skills in the Quant Strategy cluster: `@[backtesting-trading-strategies]`, `@[trader-backtest]`, `@[quant-analyst]`, `@[trader-risk]`, `@[trader-signal]`.
+> - **When Prompting / Directives is triggered**: You MUST load and read ALL skills in the Prompt cluster: `@[optimizing-prompts]`, `@[writing-for-agents]`, `@[grill-me]`.
+> - **When Debugging / Audit is triggered**: You MUST load and read ALL skills in the Forensic Debugging cluster: `@[systematic-debugging]`, `@[diagnosing-bugs]`, `@[debugging-code]`.
+> - **When Code / Refactoring is triggered**: You MUST load and read ALL skills in the Clean Code cluster: `@[clean-code]`, `@[karpathy-guidelines]`, `@[simplify-code]`.
+> - **When Data / Kusto / SQL is triggered**: You MUST load and read ALL skills in the Data Pipeline cluster: `@[data-engineering-data-pipeline]`, `@[sql-pro]`, `@[database-optimizer]`.
+> - **When Testing / Verification is triggered**: You MUST load and read ALL skills in the Testing cluster: `@[pytest-skill]`, `@[test-driven-development]`, `@[python-testing]`.
+> - **When Architecture / Design is triggered**: You MUST load and read ALL skills in the Architecture cluster: `@[codebase-design]`, `@[architecture-patterns]`, `@[domain-modeling]`.
+>
+> **Compound Tasks**: If a task spans multiple domains (e.g. "Optimize this prompt for an orderflow backtesting strategy with clean code"), the agent MUST load the complete bundles across ALL touched domains!
+
+### 9.3 Execution & Invariant Verification Protocol
+1. **Physical Load Gate**: Never assume knowledge of skill files. Execute `view_file` on each `SKILL.md` in the activated clusters before generating code, prompts, or architecture.
+2. **Mandatory Header Verification**: Display ALL actively loaded cluster skills in the mandatory top header:
+   `> 📚 **Active Skills Loaded & Applied:** @[skill-1], @[skill-2], @[skill-3], @[skill-4], @[skill-5], ...`
+3. **AST Synchronization**: After creating or modifying any feature, model, or strategy code, synchronize AST nodes via `python -m graphify update .` to maintain live knowledge graph parity.
+
+---
+
+# PART 10: MANDATORY 33-FEED PARQUET FRESHNESS (< 5 MINUTES) & HIGH-PERFORMANCE PIPELINE PROTOCOL
+
+> 🛑 **STRICT OPERATOR MANDATE: 100% OF PARQUET FEEDS MUST BE FRESH (< 5 MINUTES / 300 SECONDS)**:
+> Operating on stale market data, delayed liquidations, or lagging orderbook depth causes fatal adverse selection and account drawdown. 
+> To guarantee maximum edge and mathematical rigor across all 33 institutional feeds in `Data/feeds/*.parquet`, the system enforces:
+
+### 10.1 The 5-Minute Maximum Data Age Threshold (Strict Non-Negotiable)
+1. **Freshness Invariant**: The age of data in every single feed in `Data/feeds/*.parquet` MUST be strictly less than 5.0 minutes (`age_minutes < 5.0m`).
+2. **Autonomous Multi-Tab Parallel Execution**:
+   - Sequential harvester execution is strictly FORBIDDEN because 33 modules * 30s = 16 minutes, which mathematically violates the 5-minute rule.
+   - Harvester modules must execute in parallel:
+     * **Pure API Modules (Tier 1A - 12 modules)**: Concurrently executed across 6 worker threads (`ThreadPoolExecutor(max_workers=6)`). All 12 complete in under 10 seconds.
+     * **Browser CDP Modules (Tier 1B - 20 modules)**: Executed across 3 concurrent parallel Edge browser tabs (via CDP `PUT /json/new` and dedicated WebSocket debugger endpoints). All 20 complete in under 120 seconds without interfering with Arena.ai or Z.ai.
+     * **Streaming WebSocket Modules (Tier 1C)**: Always-on continuous listener (`forced_liquidation_daemon.py`) updating memory buffers and atomic Parquet feeds in real-time.
+3. **Zero File Locks & Atomic Parquet Writes**:
+   - All feeds are written atomically via temporary files and rename: `write_parquet_feed(feed_name, records)`. Zero Excel file contention, zero openpyxl locks, sub-10ms write latency.
+4. **Mandatory Parquet Age Audit Table**:
+   - On EVERY cycle and before staging orders, the agent and automated checklist auditor (`python Terminal/parquet_checklist_auditor.py`) MUST print the full 33-feed table with exact Row Counts, IST Timestamps, and Ages.
+   - Any feed with `Age >= 5.0m` triggers immediate priority re-harvesting before any trade execution.
+
+---
+
+# PART 11: MANDATORY META-COGNITIVE SELF-INQUEST (CAN I DO THIS BETTER WITH INSTALLED SKILLS OR AGENTS?)
+
+> 🛑 **MANDATORY IN-TURN SELF-INQUEST (STRICT OPERATOR MANDATE)**:
+> At EVERY single step, decision point, tool execution, code write, prompt generation, and autonomous candle turn, the coordinator and all subagents MUST explicitly pause and ask themselves before acting:
+> 
+> 🧠 **"Can I do this task better, faster, or with higher mathematical precision using existing skills or agents installed in this system?"**
+> 
+> ### Systematic Self-Audit Checklist:
+> 1. **Installed Skills Check**:
+>    - Risk / Capital / Solvency: Explicitly load and apply `@[trader-risk]`, `@[trader-portfolio]`.
+>    - Strategy / Microstructure / Backtesting: Explicitly load and apply `@[backtesting-trading-strategies]`, `@[trader-backtest]`, `@[quant-analyst]`, `@[trader-signal]`, `@[trader-regime]`.
+>    - Code Craftsmanship / Refactoring: Explicitly load and apply `@[clean-code]`, `@[karpathy-guidelines]`, `@[simplify-code]`.
+>    - Systematic Debugging / Anomaly Hunt: Explicitly load and apply `@[systematic-debugging]`, `@[diagnosing-bugs]`.
+>    - Prompt Engineering / Frontier Council Prompts: Explicitly load and apply `@[optimizing-prompts]`, `@[writing-for-agents]`.
+>    - Testing / TDD: Explicitly load and apply `@[pytest-skill]`, `@[test-driven-development]`.
+> 2. **Available Subagents Check**:
+>    - Deep Research / Literature Survey: Delegate to `research` subagent.
+>    - Architecture / Modularity / Blueprints: Consult `code-architect` or `architect`.
+>    - Simplification / Dead Code Cleanup: Consult `code-simplifier` or `refactor-cleaner`.
+>    - High-Precision Verification: Consult `test-guard` or `qa-browser-automation`.
+> 3. **Action Rule**:
+>    - Never reinvent the wheel or write ad-hoc logic from scratch when an installed skill or subagent provides a proven, battle-tested methodology. Always invoke the specialized capability!

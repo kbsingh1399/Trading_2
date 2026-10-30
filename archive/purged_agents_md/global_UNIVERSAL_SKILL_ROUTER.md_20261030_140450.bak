@@ -1,0 +1,52 @@
+---
+trigger: always_on
+---
+
+# 🌐 UNIVERSAL SKILL ROUTER (ALWAYS-ON)
+
+> **MANDATORY PROTOCOL:** This rule file is triggered on EVERY prompt. You CANNOT bypass this protocol. 
+> To prevent context amnesia and ensure high-fidelity engineering, you MUST dynamically discover and load relevant repository methodologies and skills BEFORE proposing solutions or writing any code.
+
+## 🔴 THE FORCED SKILL-LOADING LOOP (Execute Immediately)
+
+On every single turn, before doing anything else, you must execute the following 4 steps:
+
+### STEP 1: Domain & Keyword Classification
+Analyze the user's request and classify it into one or more core domains and trigger keywords:
+- `Debugging / Bug Fixing` (`debug`, `warn`, `error`, `fix`, `bug`, `fail`, `issue`)
+- `Testing / Verification / TDD` (`test`, `verify`, `assert`, `tdd`, `regression`, `pytest`, `audit`)
+- `Data / Pipeline / Parquet / Excel` (`data`, `parquet`, `pipeline`, `feed`, `excel`, `scorecard`, `telemetry`)
+- `Quant / Microstructure / Strategy` (`quant`, `strategy`, `wfo`, `backtest`, `cvd`, `liquidation`, `orderflow`, `ratchet`)
+- `Architecture / Refactoring / Code Quality` (`architecture`, `refactor`, `clean`, `optimize`, `speed`, `perf`)
+
+### STEP 2: Multi-Skill Cluster Discovery (Ensemble Protocol)
+Just like typing `/debug` in Antigravity reveals the full specialized debugging suite (`debug`, `debugger`, `debugging-code`, `debug-broken-ui`, `debug-buttercup`, `debugging-toolkit`, `debug-optimize-lcp`, `debugging-strategies`), you MUST NOT pick an arbitrary single skill. You MUST search the installed skills directories (`.agents/skills/` and `C:\Users\SIGMA\.gemini\config\skills`) and load the ENTIRE relevant skill cluster:
+- **Debugging Cluster**: `@[systematic-debugging]`, `@[debugger]`, `@[debugging-toolkit]`, `@[debugging-strategies]`, `@[phase-gated-debugging]`, `@[clean-code]`, `@[verification-before-completion]`.
+- **Testing / TDD Cluster**: `@[test-driven-development]`, `@[pocock-tdd]`, `@[tdd-workflow]`, `@[testing-patterns]`, `@[testing-qa]`, `@[test-guard]`, `@[unit-testing-test-generate]`, `@[verification-before-completion]`.
+- **Data / Pipeline Cluster**: `@[data-processing]`, `@[data-quality-checker]`, `@[data-quality-frameworks]`, `@[xlsx-official]`, `@[market-ingest]`, `@[backtesting-frameworks]`.
+- **Quant Strategy Cluster**: `@[backtesting-frameworks]`, `@[adaptive-wfo-epoch]`, `@[trader-signal]`, `@[trader-risk]`, `@[trader-portfolio]`, `@[odb-microstructure-forensics]`.
+- **Architecture / Refactor Cluster**: `@[clean-code]`, `@[code-architect]`, `@[backend-architect]`, `@[orchestrate-batch-refactor]`, `@[code-refactoring-refactor-clean]`, `@[karpathy-guidelines]`, `@[performance-optimizer]`.
+
+### STEP 3: Core Orchestration & Framework Validation
+Before finalizing skill selection, check if the task intersects with installed high-end orchestration frameworks:
+- `DeepSeek Harness` (Evaluation & Multi-agent execution)
+- `Claude Code` (Dynamic Prompt Boundary Caching, Proactive Loops, Verification Agent)
+- `Serena` / `Pony` / `Arena` (Advanced reasoning, routing, and deployment constraints)
+- `Prime Intellect` (Compute & large-context synthesis)
+- `Hermes` (Agent loops & delegation)
+
+### STEP 4: Mandatory Physical Read Gate
+You MUST use the `read_file` or `view_file` tool to physically load and read the `SKILL.md` or rule file for the selected methodologies. 
+- *Rule:* You cannot assume you know what is in the skill file. You must explicitly load it into context.
+
+---
+
+## 📝 OUTPUT REQUIREMENT (Strict Formatting)
+
+At the very top of your final response to the user, you MUST include a header confirming ALL skills that you dynamically loaded and applied, using this exact format:
+
+```markdown
+> 📚 **Active Skills Loaded & Applied:** `@[skill-1]`, `@[skill-2]`, `@[skill-3]`, ...
+```
+
+If you fail to include this header, or if you failed to physically read the skill files before responding, your execution is considered a **TOTAL FAILURE**.
