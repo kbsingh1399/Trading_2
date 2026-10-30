@@ -176,36 +176,18 @@
   },
   "derivatives": {
     "oi_row": {},
-    "funding_row": {
-      "Symbol": "NET",
-      "USDT_Binance": "0.0000%",
-      "USDT_OKX": "0.0000%",
-      "USDT_Bybit": "0.0000%",
-      "USDT_KuCoin": "0.0000%",
-      "USDT_MEXC": "0.0000%",
-      "USDT_BingX": "-",
-      "USDT_Gate": "0.0000%",
-      "USDT_Bitunix": "-0.0051%",
-      "USDT_Bitget": "0.0142%",
-      "USDT_WhiteBIT": "-",
-      "USDT_LBank": "0.0000%",
-      "USDT_tradeXYZ": "-0.0030%",
-      "CoinM_Binance": "-",
-      "CoinM_OKX": "-",
-      "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
-    },
+    "funding_row": {},
     "settle_row": {
-      "rank": 796,
+      "rank": 743,
       "symbol": "NET",
-      "price": "$299.2500",
-      "price_24h_pct": "-1.66%",
-      "open_interest": "$1.49M",
-      "current": "$0.00",
+      "price": "$290.8900",
+      "price_24h_pct": "-4.62%",
+      "open_interest": "$1.50M",
+      "current": "-$1.16",
       "last_24h": "-$324.09",
       "last_3d": "-$205.15",
       "last_7d": "$1.93K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },

@@ -179,12 +179,12 @@
     "funding_row": {
       "Symbol": "ONT",
       "USDT_Binance": "0.0050%",
-      "USDT_OKX": "-0.0001%",
+      "USDT_OKX": "-0.0004%",
       "USDT_Bybit": "0.0050%",
       "USDT_KuCoin": "0.0050%",
       "USDT_MEXC": "0.0050%",
       "USDT_BingX": "0.0050%",
-      "USDT_Gate": "-0.0035%",
+      "USDT_Gate": "0.0006%",
       "USDT_Bitunix": "0.0050%",
       "USDT_Bitget": "0.0050%",
       "USDT_WhiteBIT": "0.0050%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
+      "Timestamp_IST": "2026-10-30 19:14:59 IST"
     },
     "settle_row": {
-      "rank": 534,
+      "rank": 529,
       "symbol": "ONT",
-      "price": "$0.046610",
-      "price_24h_pct": "-4.90%",
-      "open_interest": "$2.62M",
-      "current": "$109.63",
+      "price": "$0.047170",
+      "price_24h_pct": "-4.03%",
+      "open_interest": "$2.64M",
+      "current": "$108.80",
       "last_24h": "$618.79",
       "last_3d": "$736.31",
       "last_7d": "$1.52K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },

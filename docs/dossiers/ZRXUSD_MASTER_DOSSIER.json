@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 661,
+      "rank": 669,
       "symbol": "ZRX",
-      "price": "$0.093900",
-      "price_24h_pct": "-7.49%",
-      "open_interest": "$2.19M",
-      "current": "$44.81",
+      "price": "$0.093000",
+      "price_24h_pct": "-8.91%",
+      "open_interest": "$2.17M",
+      "current": "-$35.20",
       "last_24h": "-$210.14",
       "last_3d": "$11.39",
       "last_7d": "-$1.47K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },
@@ -195,7 +195,24 @@
     "footprint_ladder": [],
     "signals": [],
     "spot_netflow": {},
-    "fut_netflow": {},
+    "fut_netflow": {
+      "Symbol": "ZRX",
+      "5_minute": "+$24.29",
+      "15_minute": "+$5.65K",
+      "30_minute": "+$8.23K",
+      "1_hour": "+$11.32K",
+      "2_hour": "+$23.33K",
+      "4_hour": "+$42.23K",
+      "6_hour": "+$37.99K",
+      "8_hour": "+$66.87K",
+      "12_hour": "+$61.19K",
+      "24_hour": "-$97.65K",
+      "1_week": "-$134.55K",
+      "15_day": "-$291.58K",
+      "30_day": "-$821.72K",
+      "Market_Cap": "$79.32M",
+      "Timestamp_IST": "2026-10-30 19:12:12 IST"
+    },
     "calendar": [
       {
         "date": "Sun Oct 25",

@@ -189,23 +189,23 @@
       "USDT_Bitget": "-",
       "USDT_WhiteBIT": "-",
       "USDT_LBank": "-",
-      "USDT_tradeXYZ": "0.0006%",
+      "USDT_tradeXYZ": "0.0010%",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
+      "Timestamp_IST": "2026-10-30 19:14:59 IST"
     },
     "settle_row": {
-      "rank": 770,
+      "rank": 769,
       "symbol": "NOK",
-      "price": "$8.6800",
-      "price_24h_pct": "-5.14%",
-      "open_interest": "$5.24M",
+      "price": "$8.6200",
+      "price_24h_pct": "-5.90%",
+      "open_interest": "$5.25M",
       "current": "$0.00",
       "last_24h": "$38.13",
       "last_3d": "$1.06K",
       "last_7d": "$1.57K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },

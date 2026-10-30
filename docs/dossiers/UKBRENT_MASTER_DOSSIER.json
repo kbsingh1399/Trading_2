@@ -130,7 +130,7 @@
       "USDT_OKX": "-",
       "USDT_Bybit": "-",
       "USDT_KuCoin": "-",
-      "USDT_MEXC": "-0.0141%",
+      "USDT_MEXC": "-0.0140%",
       "USDT_BingX": "-",
       "USDT_Gate": "-",
       "USDT_Bitunix": "-",
@@ -141,7 +141,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
+      "Timestamp_IST": "2026-10-30 19:14:59 IST"
     },
     "settle_row": {},
     "ls_ladder": []

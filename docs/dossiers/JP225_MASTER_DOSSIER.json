@@ -126,16 +126,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 668,
+      "rank": 688,
       "symbol": "JP225",
-      "price": "$62,688.00",
-      "price_24h_pct": "-2.94%",
-      "open_interest": "$125.77K",
-      "current": "$40.33",
+      "price": "$62,700.00",
+      "price_24h_pct": "-0.43%",
+      "open_interest": "$126.27K",
+      "current": "$27.68",
       "last_24h": "$89.95",
       "last_3d": "$108.82",
       "last_7d": "$172.48",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },
@@ -146,20 +146,20 @@
     "fut_netflow": {
       "Symbol": "JP225",
       "5_minute": "+$0.00",
-      "15_minute": "+$0.00",
-      "30_minute": "-$100.41",
-      "1_hour": "-$200.72",
-      "2_hour": "-$1.49K",
-      "4_hour": "-$2.63K",
-      "6_hour": "-$1.40K",
-      "8_hour": "+$1.47K",
-      "12_hour": "+$5.54K",
-      "24_hour": "-$34.96K",
-      "1_week": "-$45.05K",
-      "15_day": "-$40.09K",
-      "30_day": "-$35.38K",
+      "15_minute": "-$627.00",
+      "30_minute": "-$627.00",
+      "1_hour": "-$727.41",
+      "2_hour": "-$2.11K",
+      "4_hour": "-$2.57K",
+      "6_hour": "-$2.03K",
+      "8_hour": "+$851.35",
+      "12_hour": "+$4.56K",
+      "24_hour": "-$35.01K",
+      "1_week": "-$45.68K",
+      "15_day": "-$40.71K",
+      "30_day": "-$36.00K",
       "Market_Cap": "-",
-      "Timestamp_IST": "2026-10-30 19:05:27 IST"
+      "Timestamp_IST": "2026-10-30 19:12:12 IST"
     },
     "calendar": [
       {

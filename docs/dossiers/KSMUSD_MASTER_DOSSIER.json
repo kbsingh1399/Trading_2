@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
+      "Timestamp_IST": "2026-10-30 19:14:59 IST"
     },
     "settle_row": {
-      "rank": 327,
+      "rank": 311,
       "symbol": "KSM",
-      "price": "$3.5030",
-      "price_24h_pct": "-5.93%",
-      "open_interest": "$3.44M",
-      "current": "$315.25",
+      "price": "$3.4890",
+      "price_24h_pct": "-6.64%",
+      "open_interest": "$3.43M",
+      "current": "$314.37",
       "last_24h": "$839.82",
       "last_3d": "$2.16K",
       "last_7d": "$4.66K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },

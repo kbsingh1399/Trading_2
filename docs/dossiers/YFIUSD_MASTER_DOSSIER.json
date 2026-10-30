@@ -179,8 +179,8 @@
     "funding_row": {
       "Symbol": "YFI",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0044%",
-      "USDT_Bybit": "-0.0299%",
+      "USDT_OKX": "-0.0075%",
+      "USDT_Bybit": "-0.0362%",
       "USDT_KuCoin": "0.0100%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 18:16:52 IST"
+      "Timestamp_IST": "2026-10-30 19:14:59 IST"
     },
     "settle_row": {
-      "rank": 440,
+      "rank": 338,
       "symbol": "YFI",
-      "price": "$1,810.00",
-      "price_24h_pct": "-12.35%",
-      "open_interest": "$3.57M",
-      "current": "-$176.83",
+      "price": "$1,814.00",
+      "price_24h_pct": "-3.77%",
+      "open_interest": "$3.54M",
+      "current": "-$270.24",
       "last_24h": "$292.54",
       "last_3d": "$960.78",
       "last_7d": "$3.45K",
-      "timestamp_ist": "2026-10-30 18:16:59 IST"
+      "timestamp_ist": "2026-10-30 19:15:05 IST"
     },
     "ls_ladder": []
   },
