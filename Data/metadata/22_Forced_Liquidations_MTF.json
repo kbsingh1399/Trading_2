@@ -19,9 +19,9 @@
     "orders_count",
     "dominant_side"
   ],
-  "byte_size": 4968,
-  "timestamp_ist": "2026-10-30 20:50:48 IST",
-  "timestamp_utc": "2026-10-30 15:20:48 UTC",
-  "epoch_utc": 1793373648.362918,
-  "write_duration_ms": 4.78
+  "byte_size": 5029,
+  "timestamp_ist": "2026-10-30 21:01:46 IST",
+  "timestamp_utc": "2026-10-30 15:31:46 UTC",
+  "epoch_utc": 1793374306.662135,
+  "write_duration_ms": 4.43
 }

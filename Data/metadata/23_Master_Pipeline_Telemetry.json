@@ -11,8 +11,8 @@
     "tier"
   ],
   "byte_size": 2090,
-  "timestamp_ist": "2026-10-30 20:48:25 IST",
-  "timestamp_utc": "2026-10-30 15:18:25 UTC",
-  "epoch_utc": 1793373505.337421,
-  "write_duration_ms": 295.43
+  "timestamp_ist": "2026-10-30 20:59:19 IST",
+  "timestamp_utc": "2026-10-30 15:29:19 UTC",
+  "epoch_utc": 1793374159.055825,
+  "write_duration_ms": 250.11
 }
