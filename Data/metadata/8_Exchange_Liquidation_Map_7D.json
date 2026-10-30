@@ -20,8 +20,8 @@
     "Bybit"
   ],
   "byte_size": 155966,
-  "timestamp_ist": "2026-10-30 10:11:05 IST",
-  "timestamp_utc": "2026-10-30 04:41:05 UTC",
-  "epoch_utc": 1793335265.839652,
+  "timestamp_ist": "2026-10-30 10:11:30 IST",
+  "timestamp_utc": "2026-10-30 04:41:30 UTC",
+  "epoch_utc": 1793335290.30426,
   "write_duration_ms": 540.07
 }
