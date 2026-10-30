@@ -2,7 +2,7 @@
   "feed_name": "1_Crypto_ETF_Flows",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 19,
+  "row_count": 41,
   "column_count": 16,
   "columns": [
     "#",
@@ -22,9 +22,9 @@
     "Daily_Net_Inflow",
     "Timestamp_IST"
   ],
-  "byte_size": 6783,
-  "timestamp_ist": "2026-10-30 11:03:02 IST",
-  "timestamp_utc": "2026-10-30 05:33:02 UTC",
-  "epoch_utc": 1793338382.221843,
-  "write_duration_ms": 364.6
+  "byte_size": 8927,
+  "timestamp_ist": "2026-10-30 11:05:14 IST",
+  "timestamp_utc": "2026-10-30 05:35:14 UTC",
+  "epoch_utc": 1793338514.280937,
+  "write_duration_ms": 343.8
 }

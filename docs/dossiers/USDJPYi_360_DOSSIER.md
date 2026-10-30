@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 11:02:04 IST` (`2026-10-30 05:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:05:06 IST` (`2026-10-30 05:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `157.58` | **Live Ask Quote**: `157.58` | **Mid Price**: `157.58`
+- **Live Bid Quote**: `157.64` | **Live Ask Quote**: `157.64` | **Mid Price**: `157.64`
 - **Spread Points**: `1.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `157.43` | VWAP Z-Score: `+0.56` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.1409` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `50.42` (State: `NEUTRAL`)
+  * Session VWAP: `157.43` | VWAP Z-Score: `+1.21` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.1451` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `54.13` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `157.80` | Lower -3.00σ Band: `157.05`
-  * Upper +2.51σ Band: `157.74` | Lower -2.51σ Band: `157.12`
-  * Upper +2.01σ Band: `157.68` | Lower -2.01σ Band: `157.18`
-  * Upper +2.00σ Band: `157.68` | Lower -2.00σ Band: `157.18`
-  * Upper +1.28σ Band: `157.59` | Lower -1.28σ Band: `157.27`
-  * Upper +1.00σ Band: `157.55` | Lower -1.00σ Band: `157.30`
+  * Upper +3.00σ Band: `157.81` | Lower -3.00σ Band: `157.06`
+  * Upper +2.51σ Band: `157.75` | Lower -2.51σ Band: `157.12`
+  * Upper +2.01σ Band: `157.69` | Lower -2.01σ Band: `157.18`
+  * Upper +2.00σ Band: `157.69` | Lower -2.00σ Band: `157.18`
+  * Upper +1.28σ Band: `157.60` | Lower -1.28σ Band: `157.27`
+  * Upper +1.00σ Band: `157.56` | Lower -1.00σ Band: `157.31`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`157.40` | EMA-20=`157.45` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`157.44` | EMA-20=`157.46` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`157.59` (Slope: `+0.0000`) | EMA-100=`157.70`
-  * Institutional Anchors: EMA-144=`157.75` | EMA-200=`157.78` (Slope: `-0.0307`) | EMA-233=`157.79`
+  * Institutional Anchors: EMA-144=`157.75` | EMA-200=`157.78` (Slope: `-0.0298`) | EMA-233=`157.79`
 - **Range Boundaries**: 24H High=`158.13` | 24H Low=`157.12` | Weekly High=`158.35` | Weekly Low=`157.12`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `157.56` (Distance: `+0.02%`)
-  * Point of Control (POC) = `157.45` (Distance: `+0.10%`)
-  * Value Area Low (VAL) = `157.24` (Distance: `+0.23%`)
+  * Value Area High (VAH) = `157.58` (Distance: `+0.04%`)
+  * Point of Control (POC) = `157.45` (Distance: `+0.12%`)
+  * Value Area Low (VAL) = `157.24` (Distance: `+0.26%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`157.99` | POC=`157.87` | VAL=`157.76`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`158.06` | Weekly POC=`157.87` | Weekly VAL=`157.44`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`157.90` | Low=`157.12`
-  * London Session (08:00-16:00 UTC): High=`157.60` | Low=`157.40`
-  * New York Session (13:00-21:00 UTC): High=`158.53` | Low=`156.64`
-  * Initial Balance (First Hour): IB High=`157.60` | IB Low=`157.40`
+  * London Session (08:00-16:00 UTC): High=`157.69` | Low=`157.40`
+  * New York Session (13:00-21:00 UTC): High=`158.58` | Low=`156.69`
+  * Initial Balance (First Hour): IB High=`157.69` | IB Low=`157.40`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `156.95` - `158.21`
-  * Optimal Trade Entry (OTE 0.705): `157.90`
-  * Structural Invalidation Anchor (0.786): `158.84`
+  * Golden Pocket Zone (0.618 - 0.650): `157.01` - `158.27`
+  * Optimal Trade Entry (OTE 0.705): `157.95`
+  * Structural Invalidation Anchor (0.786): `158.90`
 
 ---
 
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `157.52` | `157.55` | `157.46` | `157.46` | `880` | 138,566.56 USD | -105,431.08 USD | `-76.09%` | 550,937.34 USD | `-0.77` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `157.46` | `157.49` | `157.45` | `157.49` | `624` | 98,272.51 USD | 63,772.59 USD | `+64.89%` | 614,709.93 USD | `+0.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `157.49` | `157.53` | `157.46` | `157.50` | `527` | 83,002.50 USD | 11,412.84 USD | `+13.75%` | 626,122.77 USD | `+0.07` | **`BULLISH`** | `DELTA ALIGNED` |
-| `15m` | `157.48` | `157.50` | `157.37` | `157.42` | `4,313` | 678,969.71 USD | -202,136.02 USD | `-29.77%` | 199,349.57 USD | `-0.92` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `157.43` | `157.55` | `157.42` | `157.46` | `2,804` | 441,523.45 USD | -18,679.84 USD | `-4.23%` | 180,669.73 USD | `-0.02` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `157.46` | `157.53` | `157.45` | `157.48` | `1,669` | 262,839.13 USD | 7,467.02 USD | `+2.84%` | 188,136.75 USD | `+0.11` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `5m` | `157.49` | `157.53` | `157.46` | `157.50` | `527` | 83,002.50 USD | 11,412.84 USD | `+13.75%` | 625,893.22 USD | `+0.07` | **`BULLISH`** | `DELTA ALIGNED` |
+| `5m` | `157.50` | `157.50` | `157.47` | `157.48` | `518` | 81,576.19 USD | -36,417.94 USD | `-44.64%` | 589,475.27 USD | `-0.29` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `157.48` | `157.53` | `157.46` | `157.48` | `488` | 76,849.26 USD | -20,310.16 USD | `-26.43%` | 569,165.11 USD | `-0.22` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `157.43` | `157.55` | `157.42` | `157.46` | `2,804` | 441,523.45 USD | -18,679.84 USD | `-4.23%` | -42,770.59 USD | `-0.02` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `157.46` | `157.53` | `157.45` | `157.48` | `1,669` | 262,839.13 USD | 7,467.02 USD | `+2.84%` | -35,303.56 USD | `+0.11` | **`BULLISH`** | `NEUTRAL CHOP` |
+| `15m` | `157.48` | `157.53` | `157.43` | `157.46` | `1,105` | 173,988.88 USD | -65,245.83 USD | `-37.50%` | -100,549.39 USD | `-0.23` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `157.81` | `157.90` | `157.31` | `157.36` | `12,235` | 1,925,262.90 USD | -1,548,081.92 USD | `-80.41%` | -1,144,679.06 USD | `-2.67` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `157.36` | `157.50` | `157.19` | `157.42` | `16,438` | 2,587,735.71 USD | 925,962.94 USD | `+35.78%` | -218,716.12 USD | `+1.55` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `157.43` | `157.59` | `157.42` | `157.58` | `6,490` | 1,022,687.71 USD | 869,872.31 USD | `+85.06%` | 651,156.18 USD | `+1.31` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -397,17 +397,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `157.24` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `157.07` (Risk Distance: `0.1706` pts)
-  * +2.5R Take Profit: `157.66`
-  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.17 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `157.06` (Risk Distance: `0.1756` pts)
+  * +2.5R Take Profit: `157.68`
+  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.18 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `157.56` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `157.73` (Risk Distance: `0.1706` pts)
+  * Execution Entry: `157.58` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `157.75` (Risk Distance: `0.1756` pts)
   * +2.5R Take Profit: `157.14`
-  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.17 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.18 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.84`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.90`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

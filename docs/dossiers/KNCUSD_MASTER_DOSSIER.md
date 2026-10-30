@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KNCUSD
 **Canonical Key**: `KNCUSD` | **Broker Instrument**: `KNCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:02:04 IST` (`2026-10-30 05:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:05:06 IST` (`2026-10-30 05:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0999` | VWAP Z-Score: `+2.32` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000711` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.1000` | VWAP Z-Score: `+2.14` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000732` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `62.65` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1039` | Lower -3.00σ Band: `0.0960`
-  * Upper +2.51σ Band: `0.1032` | Lower -2.51σ Band: `0.0967`
-  * Upper +2.01σ Band: `0.1026` | Lower -2.01σ Band: `0.0973`
-  * Upper +2.00σ Band: `0.1026` | Lower -2.00σ Band: `0.0973`
-  * Upper +1.28σ Band: `0.1016` | Lower -1.28σ Band: `0.0983`
-  * Upper +1.00σ Band: `0.1013` | Lower -1.00σ Band: `0.0986`
+  * Upper +3.00σ Band: `0.1042` | Lower -3.00σ Band: `0.0959`
+  * Upper +2.51σ Band: `0.1035` | Lower -2.51σ Band: `0.0966`
+  * Upper +2.01σ Band: `0.1028` | Lower -2.01σ Band: `0.0973`
+  * Upper +2.00σ Band: `0.1028` | Lower -2.00σ Band: `0.0973`
+  * Upper +1.28σ Band: `0.1018` | Lower -1.28σ Band: `0.0983`
+  * Upper +1.00σ Band: `0.1014` | Lower -1.00σ Band: `0.0987`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1016` | EMA-20=`0.1014` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.1019` | EMA-20=`0.1016` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.1028` (Slope: `+0.0000`) | EMA-100=`0.1044`
-  * Institutional Anchors: EMA-144=`0.1053` | EMA-200=`0.1062` (Slope: `-0.5733`) | EMA-233=`0.1067`
+  * Institutional Anchors: EMA-144=`0.1053` | EMA-200=`0.1061` (Slope: `-0.5500`) | EMA-233=`0.1066`
 - **Range Boundaries**: 24H High=`0.1110` | 24H Low=`0.0960` | Weekly High=`0.1110` | Weekly Low=`0.0960`
 
 ---
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0990` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.0682` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.0681` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.1990`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1011` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.1319` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.1320` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.0011`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

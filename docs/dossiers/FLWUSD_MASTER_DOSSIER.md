@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:02:04 IST` (`2026-10-30 05:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:05:06 IST` (`2026-10-30 05:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.31` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000456` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.26` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000423` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.42` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0136` | Lower -3.00σ Band: `0.0115`
   * Upper +2.51σ Band: `0.0134` | Lower -2.51σ Band: `0.0117`
-  * Upper +2.01σ Band: `0.0132` | Lower -2.01σ Band: `0.0119`
-  * Upper +2.00σ Band: `0.0132` | Lower -2.00σ Band: `0.0119`
+  * Upper +2.01σ Band: `0.0133` | Lower -2.01σ Band: `0.0119`
+  * Upper +2.00σ Band: `0.0133` | Lower -2.00σ Band: `0.0119`
   * Upper +1.28σ Band: `0.0130` | Lower -1.28σ Band: `0.0121`
   * Upper +1.00σ Band: `0.0129` | Lower -1.00σ Band: `0.0122`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0129` | EMA-20=`0.0129` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0134` (Slope: `+0.0000`) | EMA-100=`0.0142`
-  * Institutional Anchors: EMA-144=`0.0146` | EMA-200=`0.0149` (Slope: `-1.7274`) | EMA-233=`0.0151`
+  * Institutional Anchors: EMA-144=`0.0145` | EMA-200=`0.0149` (Slope: `-1.7140`) | EMA-233=`0.0151`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0110` | Weekly High=`0.0170` | Weekly Low=`0.0110`
 
 ---
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0123` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.0183` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `-0.0182` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.1123`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

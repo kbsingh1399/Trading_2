@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 11:02:04 IST` (`2026-10-30 05:32:04 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:05:06 IST` (`2026-10-30 05:35:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.12` | VWAP Z-Score: `-1.53` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000536` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `45.65` (State: `NEUTRAL`)
+  * Session VWAP: `1.12` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0028` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.12` | Lower -3.00σ Band: `1.12`
-  * Upper +2.51σ Band: `1.12` | Lower -2.51σ Band: `1.12`
-  * Upper +2.01σ Band: `1.12` | Lower -2.01σ Band: `1.12`
-  * Upper +2.00σ Band: `1.12` | Lower -2.00σ Band: `1.12`
+  * Upper +3.00σ Band: `1.13` | Lower -3.00σ Band: `1.11`
+  * Upper +2.51σ Band: `1.12` | Lower -2.51σ Band: `1.11`
+  * Upper +2.01σ Band: `1.12` | Lower -2.01σ Band: `1.11`
+  * Upper +2.00σ Band: `1.12` | Lower -2.00σ Band: `1.11`
   * Upper +1.28σ Band: `1.12` | Lower -1.28σ Band: `1.12`
   * Upper +1.00σ Band: `1.12` | Lower -1.00σ Band: `1.12`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.12` | EMA-20=`1.12` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.12` (Slope: `+0.0000`) | EMA-100=`1.12`
-  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0383`) | EMA-233=`1.12`
-- **Range Boundaries**: 24H High=`1.12` | 24H Low=`1.11` | Weekly High=`1.12` | Weekly Low=`1.11`
+  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0000`) | EMA-233=`1.12`
+- **Range Boundaries**: 24H High=`1.13` | 24H Low=`1.11` | Weekly High=`1.14` | Weekly Low=`1.10`
 
 ---
 
@@ -70,12 +70,12 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `283` | 316.89 USD | 225.78 USD | `+71.25%` | 1,114.10 USD | `+0.74` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `290` | 324.66 USD | -238.08 USD | `-73.33%` | 876.01 USD | `-0.60` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `271` | 303.40 USD | 128.36 USD | `+42.31%` | 1,004.38 USD | `+0.50` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `1,688` | 1,889.58 USD | -984.99 USD | `-52.13%` | 5,996.47 USD | `-1.55` | **`BEARISH`** | `AGGRESSIVE SELLING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `919` | 1,029.05 USD | 827.28 USD | `+80.39%` | 6,823.75 USD | `+1.15` | **`BULLISH`** | `AGGRESSIVE BUYING` |
-| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `834` | 933.80 USD | -149.41 USD | `-16.00%` | 6,674.34 USD | `-0.30` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `271` | 303.40 USD | 128.36 USD | `+42.31%` | 1,244.33 USD | `+0.50` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `273` | 305.67 USD | 138.28 USD | `+45.24%` | 1,382.61 USD | `+0.50` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `5m` | `1.12` | `1.12` | `1.12` | `1.12` | `393` | 440.02 USD | -132.01 USD | `-30.00%` | 1,250.61 USD | `-0.30` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `919` | 1,029.05 USD | 827.28 USD | `+80.39%` | 7,729.93 USD | `+1.15` | **`BULLISH`** | `AGGRESSIVE BUYING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `834` | 933.80 USD | -149.41 USD | `-16.00%` | 7,580.52 USD | `-0.30` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `15m` | `1.12` | `1.12` | `1.12` | `1.12` | `1,047` | 1,172.29 USD | -19.54 USD | `-1.67%` | 7,560.98 USD | `-0.10` | **`BEARISH`** | `NEUTRAL CHOP` |
 | `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `3,467` | 3,882.21 USD | 3,493.99 USD | `+90.00%` | 10,866.33 USD | `+0.89` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `6,722` | 7,524.74 USD | -4,133.31 USD | `-54.93%` | 6,733.02 USD | `-1.41` | **`BEARISH`** | `AGGRESSIVE SELLING` |
 | `1h` | `1.12` | `1.12` | `1.12` | `1.12` | `3,626` | 4,059.81 USD | 829.12 USD | `+20.42%` | 7,562.13 USD | `+0.10` | **`BULLISH`** | `AGGRESSIVE BUYING` |
@@ -420,15 +420,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.12` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000658` pts)
-  * +2.5R Take Profit: `1.12`
-  * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.0034` pts)
+  * +2.5R Take Profit: `1.13`
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.12` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000658` pts)
-  * +2.5R Take Profit: `1.12`
-  * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.0034` pts)
+  * +2.5R Take Profit: `1.11`
+  * Mathematical Lot Sizing: **`0.02 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
