@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XAUCNH
 **Canonical Key**: `XAUCNH` | **Broker Instrument**: `XAUCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:28:45 IST` (`2026-10-30 04:58:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:31:47 IST` (`2026-10-30 05:01:47 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -209,7 +209,7 @@
 | `1D` | `3830.00` | 5,000,000.00 USD | 0.00 USD | 5,000,000.00 USD | 9,460.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `3830.20` | 20,450,000.00 USD | 0.00 USD | 20,450,000.00 USD | 126,670.00 USD | 0.00 USD | 333,830.00 USD |
 | `1D` | `3834.10` | 4,990,000.00 USD | 0.00 USD | 4,990,000.00 USD | 80,990.00 USD | 0.00 USD | 47,190.00 USD |
-| `7D` | `3834.50` | 19,980,000.00 USD | 0.00 USD | 19,980,000.00 USD | 284,990.00 USD | 0.00 USD | 564,320.00 USD |
+| `7D` | `3834.50` | 19,980,000.00 USD | 0.00 USD | 19,980,000.00 USD | 284,980.00 USD | 0.00 USD | 564,320.00 USD |
 | `1D` | `3838.20` | 4,860,000.00 USD | 0.00 USD | 4,860,000.00 USD | 32,520.00 USD | 0.00 USD | 98,220.00 USD |
 | `7D` | `3838.80` | 19,140,000.00 USD | 0.00 USD | 19,140,000.00 USD | 311,710.00 USD | 0.00 USD | 789,870.00 USD |
 | `1D` | `3842.30` | 4,730,000.00 USD | 0.00 USD | 4,730,000.00 USD | 10,530.00 USD | 0.00 USD | 93,880.00 USD |
@@ -241,7 +241,7 @@
 | `7D` | `3911.90` | 13,220,000.00 USD | 0.00 USD | 13,220,000.00 USD | 413,650.00 USD | 0.00 USD | 689,910.00 USD |
 | `1D` | `3912.00` | 3,330,000.00 USD | 0.00 USD | 3,330,000.00 USD | 145,610.00 USD | 0.00 USD | 63,400.00 USD |
 | `1D` | `3916.10` | 3,120,000.00 USD | 0.00 USD | 3,120,000.00 USD | 93,170.00 USD | 0.00 USD | 174,960.00 USD |
-| `7D` | `3916.20` | 12,120,000.00 USD | 0.00 USD | 12,120,000.00 USD | 712,000.00 USD | 0.00 USD | 1,380,000.00 USD |
+| `7D` | `3916.20` | 12,120,000.00 USD | 0.00 USD | 12,120,000.00 USD | 711,980.00 USD | 0.00 USD | 1,380,000.00 USD |
 | `1D` | `3920.20` | 2,850,000.00 USD | 0.00 USD | 2,850,000.00 USD | 11,650.00 USD | 0.00 USD | 121,880.00 USD |
 | `7D` | `3920.50` | 10,030,000.00 USD | 0.00 USD | 10,030,000.00 USD | 681,530.00 USD | 0.00 USD | 1,400,000.00 USD |
 | `1D` | `3924.30` | 2,720,000.00 USD | 0.00 USD | 2,720,000.00 USD | 25,710.00 USD | 0.00 USD | 228,850.00 USD |
@@ -269,12 +269,12 @@
 | `7D` | `3976.40` | 313,290.00 USD | 0.00 USD | 313,290.00 USD | 39,610.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `3980.70` | 273,680.00 USD | 0.00 USD | 273,680.00 USD | 111,850.00 USD | 0.00 USD | 115,850.00 USD |
 | `7D` | `3985.00` | 45,980.00 USD | 0.00 USD | 45,980.00 USD | 11,550.00 USD | 0.00 USD | 34,430.00 USD |
-| `7D` | `3994.30` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
+| `7D` | `3997.00` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `1D` | `3997.50` | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | 0.00 USD |
 | `7D` | `4066.70` | 170,220.00 USD | 170,220.00 USD | 0.00 USD | 31,730.00 USD | 0.00 USD | 138,490.00 USD |
 | `7D` | `4071.00` | 1,340,000.00 USD | 1,340,000.00 USD | 0.00 USD | 344,960.00 USD | 0.00 USD | 821,300.00 USD |
 | `1D` | `4071.90` | 233,240.00 USD | 233,240.00 USD | 0.00 USD | 152,500.00 USD | 0.00 USD | 80,750.00 USD |
-| `7D` | `4075.30` | 3,040,000.00 USD | 3,040,000.00 USD | 0.00 USD | 594,710.00 USD | 0.00 USD | 1,110,000.00 USD |
+| `7D` | `4075.30` | 3,040,000.00 USD | 3,040,000.00 USD | 0.00 USD | 594,700.00 USD | 0.00 USD | 1,110,000.00 USD |
 | `1D` | `4076.00` | 477,130.00 USD | 477,130.00 USD | 0.00 USD | 86,290.00 USD | 0.00 USD | 157,610.00 USD |
 | `7D` | `4079.60` | 5,150,000.00 USD | 5,150,000.00 USD | 0.00 USD | 657,780.00 USD | 0.00 USD | 1,450,000.00 USD |
 | `1D` | `4080.10` | 610,660.00 USD | 610,660.00 USD | 0.00 USD | 11,650.00 USD | 0.00 USD | 121,880.00 USD |
@@ -307,7 +307,7 @@
 | `1D` | `4149.80` | 3,360,000.00 USD | 3,360,000.00 USD | 0.00 USD | 15,470.00 USD | 0.00 USD | 14,400.00 USD |
 | `7D` | `4152.70` | 14,580,000.00 USD | 14,580,000.00 USD | 0.00 USD | 274,610.00 USD | 0.00 USD | 474,970.00 USD |
 | `1D` | `4153.90` | 3,490,000.00 USD | 3,490,000.00 USD | 0.00 USD | 83,190.00 USD | 0.00 USD | 42,310.00 USD |
-| `7D` | `4157.00` | 15,690,000.00 USD | 15,690,000.00 USD | 0.00 USD | 318,590.00 USD | 0.00 USD | 792,530.00 USD |
+| `7D` | `4157.00` | 15,690,000.00 USD | 15,690,000.00 USD | 0.00 USD | 318,580.00 USD | 0.00 USD | 792,530.00 USD |
 | `1D` | `4158.00` | 3,600,000.00 USD | 3,600,000.00 USD | 0.00 USD | 24,310.00 USD | 0.00 USD | 88,700.00 USD |
 | `7D` | `4161.30` | 16,500,000.00 USD | 16,500,000.00 USD | 0.00 USD | 314,240.00 USD | 0.00 USD | 494,920.00 USD |
 | `1D` | `4162.10` | 3,680,000.00 USD | 3,680,000.00 USD | 0.00 USD | 10,530.00 USD | 0.00 USD | 72,670.00 USD |
@@ -523,21 +523,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 09:51:07 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:20:07 IST`: [forex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:20:07 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:20:07 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:19:07 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:21:07 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:21:07 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:21:07 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:21:07 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:21:07 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:21:07 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:21:07 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:21:07 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:21:07 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:21:07 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:51:10 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:30:10 IST`: [forex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:30:10 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:30:10 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:29:10 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:31:10 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:31:10 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:31:10 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:31:10 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:31:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:31:10 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:31:10 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:31:10 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:31:10 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:31:10 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
 
 
 ---
