@@ -1,37 +1,31 @@
 import asyncio
 import json
-import urllib.request
 import websockets
 
-async def check():
-    raw = urllib.request.urlopen("http://127.0.0.1:9222/json", timeout=5).read().decode("utf-8")
-    tabs = json.loads(raw)
-    ws_url = None
-    for t in tabs:
-        if "z.ai" in t.get("url", "").lower() or "chat.z.ai" in t.get("url", "").lower():
-            ws_url = t.get("webSocketDebuggerUrl")
-            break
-    if not ws_url:
-        print("No Z.ai tab found")
-        return
-    async with websockets.connect(ws_url, max_size=10*1024*1024) as ws:
-        expr = """
-        (() => {
-            const stopBtn = document.querySelector('button span.block.size-3.rounded-xs.bg-text-inverted, button[aria-label*="Stop"]');
-            const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose, .markdown-prose'));
-            const lastMsg = allChatMsgs.length > 0 ? allChatMsgs[allChatMsgs.length - 1].innerText : '';
+async def inspect():
+    ws_url = 'ws://127.0.0.1:9222/devtools/page/D059AE2A850B0EAC7734A3F6B8471786'
+    async with websockets.connect(ws_url) as ws:
+        js = """(() => {
+            const msgs = Array.from(document.querySelectorAll('.message, [class*="message"], [data-message-author-role]'));
+            const lastMsg = msgs.length ? msgs[msgs.length - 1].innerText : '';
+            const textarea = document.querySelector('textarea, div[contenteditable="true"]');
+            const textareaVal = textarea ? (textarea.value || textarea.innerText || '') : '';
+            const sendBtn = document.querySelector('button[aria-label*="Send"], button[type="submit"], button.send, button[data-testid*="send"]');
+            const stopBtn = document.querySelector('button[aria-label*="Stop"], button.stop, [data-testid*="stop"]');
+            const modals = Array.from(document.querySelectorAll('[role="dialog"], .modal, [class*="modal"], [class*="popup"]')).map(m => m.innerText.slice(0, 100));
             return {
-                hasStop: !!stopBtn,
-                msgCount: allChatMsgs.length,
-                lastMsgLen: lastMsg.length,
-                lastMsgPreview: lastMsg.slice(0, 200).replace(/\\n/g, ' ')
+                messageCount: msgs.length,
+                lastMessagePreview: lastMsg.slice(0, 300),
+                textareaLength: textareaVal.length,
+                textareaSnippet: textareaVal.slice(0, 200),
+                hasSendButton: sendBtn !== null,
+                sendButtonDisabled: sendBtn ? sendBtn.disabled : null,
+                hasStopButton: stopBtn !== null,
+                modals: modals
             };
-        })()
-        """
-        msg = {"id": 1, "method": "Runtime.evaluate", "params": {"expression": expr, "returnByValue": True}}
-        await ws.send(json.dumps(msg))
-        res = json.loads(await ws.recv())
-        print(json.dumps(res.get("result", {}).get("result", {}).get("value"), indent=2))
+        })()"""
+        await ws.send(json.dumps({'id': 1, 'method': 'Runtime.evaluate', 'params': {'expression': js, 'returnByValue': True}}))
+        resp = json.loads(await ws.recv())
+        print(json.dumps(resp.get('result', {}).get('result', {}).get('value'), indent=2))
 
-if __name__ == "__main__":
-    asyncio.run(check())
+asyncio.run(inspect())
