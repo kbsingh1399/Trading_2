@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: DJ30
 **Canonical Key**: `DJ30` | **Broker Instrument**: `DJ30.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-30 14:17:33 IST` (`2026-10-30 08:47:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -120,8 +120,8 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Envelope` | `Long Liquidation` | `52193.26` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
-| `Envelope` | `Short Liquidation` | `52422.66` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Long Liquidation` | `52211.51` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Short Liquidation` | `52440.41` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -231,21 +231,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 13:52:16 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:51:16 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:32:16 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:24:16 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:24:16 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:22:16 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 13:21:16 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:06:16 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:06:16 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:06:16 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:06:16 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:06:16 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:05:16 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:05:16 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:05:16 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:10:12 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:52:12 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:51:12 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:32:12 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:24:12 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:24:12 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:22:12 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 13:21:12 IST`: [insee.fr] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:17:12 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:17:12 IST`: [nationwide.co.uk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:17:12 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:17:12 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:17:12 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:16:12 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:16:12 IST`: [insee.fr] - (Sentiment: `Neutral`)
 
 
 ---
