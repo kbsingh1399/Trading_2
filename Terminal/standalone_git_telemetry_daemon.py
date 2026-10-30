@@ -50,6 +50,7 @@ TRACKED_PATHS = [
     "Data/feeds",
     "Data/metadata",
     "Data/cycle_envelope.json",
+    "Data/council_surveillance_status.json",
     "docs/trade_plans",
     "docs/telemetry",
     "docs/dossiers",
