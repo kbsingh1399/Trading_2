@@ -22711,58 +22711,58 @@
     "mp_24h": {
       "ranking": 2,
       "symbol": "ETH",
-      "price": 2230.0,
+      "price": 2230.07,
       "short_max_pain_price": 2275.3,
       "short_max_pain_vol": 35200000.0,
-      "short_distance_usd": 45.30000000000018,
+      "short_distance_usd": 45.23000000000002,
       "short_distance_pct": 2.03,
       "long_max_pain_price": 2174.37,
       "long_max_pain_vol": 35800000.0,
-      "long_distance_usd": -55.63000000000011,
-      "long_distance_pct": -2.49,
-      "timestamp_ist": "2026-10-30 18:34:33 IST"
+      "long_distance_usd": -55.70000000000027,
+      "long_distance_pct": -2.5,
+      "timestamp_ist": "2026-10-30 18:50:22 IST"
     },
     "mp_48h": {
       "ranking": 2,
       "symbol": "ETH",
-      "price": 2230.0,
+      "price": 2230.07,
       "short_max_pain_price": 2270.12,
       "short_max_pain_vol": 43400000.0,
-      "short_distance_usd": 40.11999999999989,
+      "short_distance_usd": 40.04999999999973,
       "short_distance_pct": 1.8,
       "long_max_pain_price": 2174.0,
       "long_max_pain_vol": 35800000.0,
-      "long_distance_usd": -56.0,
+      "long_distance_usd": -56.070000000000164,
       "long_distance_pct": -2.51,
-      "timestamp_ist": "2026-10-30 18:34:36 IST"
+      "timestamp_ist": "2026-10-30 18:50:24 IST"
     },
     "mp_3d": {
       "ranking": 2,
       "symbol": "ETH",
-      "price": 2230.0,
+      "price": 2230.07,
       "short_max_pain_price": 2270.12,
       "short_max_pain_vol": 43400000.0,
-      "short_distance_usd": 40.11999999999989,
+      "short_distance_usd": 40.04999999999973,
       "short_distance_pct": 1.8,
       "long_max_pain_price": 2174.0,
       "long_max_pain_vol": 35800000.0,
-      "long_distance_usd": -56.0,
+      "long_distance_usd": -56.070000000000164,
       "long_distance_pct": -2.51,
-      "timestamp_ist": "2026-10-30 18:34:38 IST"
+      "timestamp_ist": "2026-10-30 18:50:27 IST"
     },
     "mp_7d": {
       "ranking": 2,
       "symbol": "ETH",
-      "price": 2230.0,
+      "price": 2230.07,
       "short_max_pain_price": 2401.8,
       "short_max_pain_vol": 50700000.0,
-      "short_distance_usd": 171.80000000000018,
+      "short_distance_usd": 171.73000000000002,
       "short_distance_pct": 7.7,
       "long_max_pain_price": 2175.27,
       "long_max_pain_vol": 44800000.0,
-      "long_distance_usd": -54.73000000000002,
-      "long_distance_pct": -2.45,
-      "timestamp_ist": "2026-10-30 18:34:40 IST"
+      "long_distance_usd": -54.80000000000018,
+      "long_distance_pct": -2.46,
+      "timestamp_ist": "2026-10-30 18:50:29 IST"
     },
     "ex_liq_ladder": [
       {
