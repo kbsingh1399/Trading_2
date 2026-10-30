@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:32:23 IST` (`2026-10-30 06:02:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:35:25 IST` (`2026-10-30 06:05:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,8 +27,8 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `8.83` | Lower -3.00σ Band: `8.71`
-  * Upper +2.51σ Band: `8.82` | Lower -2.51σ Band: `8.72`
+  * Upper +3.00σ Band: `8.84` | Lower -3.00σ Band: `8.71`
+  * Upper +2.51σ Band: `8.82` | Lower -2.51σ Band: `8.73`
   * Upper +2.01σ Band: `8.81` | Lower -2.01σ Band: `8.74`
   * Upper +2.00σ Band: `8.81` | Lower -2.00σ Band: `8.74`
   * Upper +1.28σ Band: `8.80` | Lower -1.28σ Band: `8.75`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`8.77` | EMA-20=`8.77` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.77` (Slope: `+0.0000`) | EMA-100=`8.77`
   * Institutional Anchors: EMA-144=`8.77` | EMA-200=`8.77` (Slope: `+0.0000`) | EMA-233=`8.77`
-- **Range Boundaries**: 24H High=`8.86` | 24H Low=`8.68` | Weekly High=`8.95` | Weekly Low=`8.60`
+- **Range Boundaries**: 24H High=`8.86` | 24H Low=`8.69` | Weekly High=`8.95` | Weekly Low=`8.60`
 
 ---
 

@@ -1,14 +1,14 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZARJPY
 **Canonical Key**: `ZARJPY` | **Broker Instrument**: `ZARJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:32:23 IST` (`2026-10-30 06:02:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:35:25 IST` (`2026-10-30 06:05:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `9.48` | **Live Ask Quote**: `9.49` | **Mid Price**: `9.48`
-- **Spread Points**: `1110.00` | **Spread BPS**: `11.71 bps` (Charter Threshold: `5.00 bps`)
-- **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
+- **Live Bid Quote**: `9.48` | **Live Ask Quote**: `9.48` | **Mid Price**: `9.48`
+- **Spread Points**: `399.00` | **Spread BPS**: `4.21 bps` (Charter Threshold: `5.00 bps`)
+- **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
   * Point Value (1.0 Lot): `0.00 USD` | Point Value (0.01 Lot): `0.0000 USD`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`9.48` | EMA-20=`9.48` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.48` (Slope: `+0.0000`) | EMA-100=`9.48`
   * Institutional Anchors: EMA-144=`9.48` | EMA-200=`9.48` (Slope: `+0.0000`) | EMA-233=`9.48`
-- **Range Boundaries**: 24H High=`9.58` | 24H Low=`9.39` | Weekly High=`9.67` | Weekly Low=`9.29`
+- **Range Boundaries**: 24H High=`9.57` | 24H Low=`9.38` | Weekly High=`9.67` | Weekly Low=`9.29`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`9.52` | POC=`9.48` | VAL=`9.44`
   * Prior Day Extremes: PDH=`9.54` | PDL=`9.42` | PDC=`9.48`
   * Monday Range Blueprint: High=`9.53` | Mid=`9.48` | Low=`9.43`
-  * Developing Weekly Value Area: Weekly VAH=`9.56` | Weekly POC=`9.48` | Weekly VAL=`9.41`
+  * Developing Weekly Value Area: Weekly VAH=`9.55` | Weekly POC=`9.48` | Weekly VAL=`9.40`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.50` | Low=`9.46`
   * London Session (08:00-16:00 UTC): High=`9.52` | Low=`9.44`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.44` - `9.52`
   * Optimal Trade Entry (OTE 0.705): `9.50`
-  * Structural Invalidation Anchor (0.786): `9.56`
+  * Structural Invalidation Anchor (0.786): `9.55`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `9.45` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `8.24` (Risk Distance: `1.22` pts)
-  * +2.5R Take Profit: `12.49`
-  * Mathematical Lot Sizing: **`8.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `8.24` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `12.47`
+  * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.51` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `10.73` (Risk Distance: `1.22` pts)
-  * +2.5R Take Profit: `6.47`
-  * Mathematical Lot Sizing: **`8.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `10.71` (Risk Distance: `1.21` pts)
+  * +2.5R Take Profit: `6.49`
+  * Mathematical Lot Sizing: **`8.29 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.56`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.55`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

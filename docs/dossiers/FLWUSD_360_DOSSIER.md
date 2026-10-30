@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:32:23 IST` (`2026-10-30 06:02:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:35:25 IST` (`2026-10-30 06:05:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.21` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000393` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0126` | VWAP Z-Score: `+1.16` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000365` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.42` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0136` | Lower -3.00σ Band: `0.0115`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0129` | EMA-20=`0.0129` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0134` (Slope: `+0.0000`) | EMA-100=`0.0141`
-  * Institutional Anchors: EMA-144=`0.0145` | EMA-200=`0.0149` (Slope: `-1.7008`) | EMA-233=`0.0150`
+  * Institutional Anchors: EMA-144=`0.0145` | EMA-200=`0.0148` (Slope: `-1.6877`) | EMA-233=`0.0150`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0110` | Weekly High=`0.0170` | Weekly Low=`0.0110`
 
 ---
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0123` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.0182` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `-0.0181` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.1123`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.0130` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0435` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.0434` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `-0.0870`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
