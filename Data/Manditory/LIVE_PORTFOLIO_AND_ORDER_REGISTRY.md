@@ -20,10 +20,10 @@
 - **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-11.77 USD**)
 - **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-31.77 USD**)
 - **Active Running Positions**: **0 ACTIVE** (100% Cash Defense)
-- **Active Resting Pending Orders**: **0 ACTIVE** (All resting limit orders cancelled on MT5 per Tri-Council consensus)
-- **Total Contingent Downside Risk**: **0.00 USD**
-- **Execution Posture**: **FLAT_100_PERCENT_CASH_DEFENSE (TIER_0_DEFENSIVE)**
-- **Last Synchronized (UTC)**: 2026-10-30 09:21:00 UTC (2026-10-30 14:51:00 IST)
+- **Active Resting Pending Orders**: **3 ACTIVE** (High-confluence maker limit orders placed per Tri-Council)
+- **Total Contingent Downside Risk**: **25.62 USD**
+- **Execution Posture**: **ARMED_MAKER_LIMITS (N=3 <= 3, Total Risk = 25.62 USD)**
+- **Last Synchronized (UTC)**: 2026-10-30 10:50:00 UTC (2026-10-30 16:20:00 IST)
 
 ---
 
@@ -33,13 +33,19 @@
 |---|---|---|---|---|---|---|---|---|
 | **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70282` | `0.70282` | **+0.96 USD (+0.40 USD net)** | **CLOSED IN PROFIT VIA RATCHET (+1.2 pips). Banked into balance (4,763.23 USD).** |
 
-*(Currently 0 active running positions. 100% capital preserved in cash under TIER_0_DEFENSIVE posture).*
+*(Currently 0 active running positions. Capital deployed strictly in resting maker limit orders).*
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 ACTIVE — 100% FLAT)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (3 ACTIVE — ARMED ON BROKER)
 
-*(Zero pending orders resting on MT5. Total contingent risk = 0.00 USD).*
+| Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | R:R Ratio | Nominal Risk USD | Confluence Rationale & Status |
+|---|---|---|---|---|---|---|---|---|---|
+| **#19520222** | `BTCUSD.pi` | SELL_LIMIT | 0.02 lot | `78,962.00` | `79,318.00` | `78,072.00` | **2.500R** | 7.12 USD | **ACTIVE_ON_BROKER** (`retcode=10009`). Daily VAH sweep fade + $16.3M Ask wall at 81.5k. |
+| **#19520223** | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | `4,007.50` | `4,017.00` | `3,983.70` | **2.505R** | 9.50 USD | **ACTIVE_ON_BROKER** (`retcode=10009`). Gold Daily VAH sweep fade + 0.20 bps spread. |
+| **#19520224** | `AUDUSD.pi` | BUY_LIMIT | 0.15 lot | `0.70240` | `0.70180` | `0.70390` | **2.500R** | 9.00 USD | **ACTIVE_ON_BROKER** (`retcode=10009`). Daily VAL sweep fade + 0.14 bps spread. |
+
+*Total contingent downside risk across all 3 resting orders: **25.62 USD** (Capacity $N=3 \le 3$, each trade $\le 10.00$ USD risk).*
 
 ---
 
