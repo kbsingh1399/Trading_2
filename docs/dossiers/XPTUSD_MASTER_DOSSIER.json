@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 1441.42,
-    "ask": 1442.97,
-    "mid": 1442.1950000000002,
-    "spread_pts": 155.0,
-    "spread_bps": 10.75,
+    "bid": 1437.16,
+    "ask": 1438.72,
+    "mid": 1437.94,
+    "spread_pts": 156.0,
+    "spread_bps": 10.85,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -28,32 +28,32 @@
     "ram_usage_mb": 385.0
   },
   "technicals": {
-    "vwap": 1457.450384009181,
-    "vwap_z": -1.5232682115710034,
-    "u1": 1472.2412027488072,
-    "l1": 1442.659565269555,
-    "u1_28": 1476.3826319959023,
-    "l1_28": 1438.5181360224599,
-    "u2": 1487.0320214884332,
-    "l2": 1427.868746529929,
-    "u2_01": 1487.1799296758295,
-    "l2_01": 1427.7208383425327,
-    "u2_51": 1494.5753390456425,
-    "l2_51": 1420.3254289727197,
-    "u3": 1501.8228402280592,
-    "l3": 1413.077927790303,
-    "atr_14": 5.955413936682476,
-    "rsi_14": 36.76874012422248,
-    "ema_9": 1439.9326921531967,
-    "ema_20": 1442.8375659835233,
-    "ema_50": 1453.3835748003598,
-    "ema_100": 1468.7899337426968,
-    "ema_200": 1488.3353488951398,
-    "ema_144": 1478.5711771900642,
-    "ema_233": 1494.8706570864092,
+    "vwap": 1457.0488978870246,
+    "vwap_z": -1.08246115616611,
+    "u1": 1471.9121544532081,
+    "l1": 1442.1856413208411,
+    "u1_28": 1476.0738662917395,
+    "l1_28": 1438.0239294823098,
+    "u2": 1486.7754110193916,
+    "l2": 1427.3223847546576,
+    "u2_01": 1486.9240435850536,
+    "l2_01": 1427.1737521889956,
+    "u2_51": 1494.3556718681455,
+    "l2_51": 1419.7421239059038,
+    "u3": 1501.6386675855754,
+    "l3": 1412.4591281884739,
+    "atr_14": 6.102884369619025,
+    "rsi_14": 45.29970262023776,
+    "ema_9": 1440.1381537225575,
+    "ema_20": 1442.6587501755682,
+    "ema_50": 1452.896368451596,
+    "ema_100": 1468.2401263827746,
+    "ema_200": 1487.9524581369908,
+    "ema_144": 1478.0611025759179,
+    "ema_233": 1494.5521397139921,
     "slope_20": 0.0,
     "slope_50": 0.0,
-    "slope_200": -0.392495218825332,
+    "slope_200": -0.3910893064833469,
     "high_24h": 1502.48,
     "low_24h": 1431.11,
     "week_high": 1556.7,
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 1467.18,
+    "daily_vah": 1466.77,
     "daily_poc": 1442.03,
     "daily_val": 1432.96,
-    "dist_poc_pct": 0.04,
-    "dist_vah_pct": -1.67,
-    "dist_val_pct": 0.67,
+    "dist_poc_pct": -0.28,
+    "dist_vah_pct": -1.96,
+    "dist_val_pct": 0.35,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 1433.13,
     "ib_high": 1465.71,
     "ib_low": 1448.48,
-    "fib_gp_low": 1436.42622,
-    "fib_gp_high": 1447.9637800000003,
-    "fib_ote": 1445.07939,
-    "fib_inval": 1453.7325600000001
+    "fib_gp_low": 1432.18824,
+    "fib_gp_high": 1443.6917600000002,
+    "fib_ote": 1440.81588,
+    "fib_inval": 1449.44352
   },
   "cvd": {
     "table": [],
@@ -213,14 +213,14 @@
     "footprint_ladder": [],
     "signals": [
       {
-        "time": "2026-10-30 17:36:02 IST",
+        "time": "2026-10-30 17:41:00 IST",
         "tf": "Auction",
         "type": "AUCTION_ROTATIONAL_BALANCE",
         "bias": "BEARISH (BELOW PIVOT)",
         "headline": "PLATINUM (XPTUSD.pi) Metal Auction: ROTATIONAL_BALANCE",
-        "price": 1440.81,
+        "price": 1442.63,
         "absorbed_vol": 0.0,
-        "last_px": 1440.81,
+        "last_px": 1442.63,
         "bar_delta": 0.0,
         "bar_vol": 0.0
       }
@@ -626,29 +626,29 @@
         "#": "1",
         "Ticker": "IBIT BTC",
         "ETF_Name": "iShares Bitcoin Trust",
-        "Price": "$43.756",
-        "Price_Change": "-1.954 -4.27%",
-        "Volume_USD": "$159.61M",
-        "Volume_Shares": "3.63M",
-        "Turnover_Rate": "0.253%",
+        "Price": "$43.778",
+        "Price_Change": "-1.932 -4.23%",
+        "Volume_USD": "$170.88M",
+        "Volume_Shares": "3.89M",
+        "Turnover_Rate": "0.271%",
         "Shares_Outstanding": "1.44B",
         "AUM": "$66.17B",
-        "Market_Cap": "$62.97B",
+        "Market_Cap": "$63.01B",
         "Expense_Ratio": "0.25%",
         "Asset_Category": "Bitcoin",
         "Issuer": "BlackRock / iShares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "2",
         "Ticker": "FBTC BTC",
         "ETF_Name": "Fidelity Wise Origin Bitcoin Fund",
-        "Price": "$67.259",
-        "Price_Change": "-2.971 -4.23%",
-        "Volume_USD": "$12.09M",
-        "Volume_Shares": "179.54K",
-        "Turnover_Rate": "0.089%",
+        "Price": "$67.231",
+        "Price_Change": "-2.999 -4.27%",
+        "Volume_USD": "$12.44M",
+        "Volume_Shares": "184.80K",
+        "Turnover_Rate": "0.092%",
         "Shares_Outstanding": "202.10M",
         "AUM": "$14.92B",
         "Market_Cap": "$13.59B",
@@ -656,17 +656,17 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "Fidelity",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "3",
         "Ticker": "GBTC BTC",
         "ETF_Name": "Grayscale Bitcoin Trust ETF",
-        "Price": "$59.698",
-        "Price_Change": "-2.612 -4.19%",
-        "Volume_USD": "$13.42M",
-        "Volume_Shares": "224.27K",
-        "Turnover_Rate": "0.138%",
+        "Price": "$59.731",
+        "Price_Change": "-2.579 -4.14%",
+        "Volume_USD": "$15.24M",
+        "Volume_Shares": "254.79K",
+        "Turnover_Rate": "0.157%",
         "Shares_Outstanding": "162.29M",
         "AUM": "$10.11B",
         "Market_Cap": "$9.69B",
@@ -674,17 +674,17 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "Grayscale",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "4",
         "Ticker": "BTC",
         "ETF_Name": "Grayscale Bitcoin Mini Trust ETF",
-        "Price": "$34.145",
-        "Price_Change": "-1.525 -4.28%",
-        "Volume_USD": "$354.15K",
-        "Volume_Shares": "10.34K",
-        "Turnover_Rate": "0.007%",
+        "Price": "$34.177",
+        "Price_Change": "-1.493 -4.19%",
+        "Volume_USD": "$374.65K",
+        "Volume_Shares": "10.94K",
+        "Turnover_Rate": "0.008%",
         "Shares_Outstanding": "142.23M",
         "AUM": "$5.42B",
         "Market_Cap": "$4.86B",
@@ -692,7 +692,7 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "Grayscale",
         "Daily_Net_Inflow": "-$15,300,000",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "5",
@@ -710,17 +710,17 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "Bitwise",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "6",
         "Ticker": "ARKB BTC",
         "ETF_Name": "ARK 21Shares Bitcoin ETF",
-        "Price": "$25.609",
-        "Price_Change": "-1.141 -4.27%",
-        "Volume_USD": "$247.54K",
-        "Volume_Shares": "9.58K",
-        "Turnover_Rate": "0.010%",
+        "Price": "$25.625",
+        "Price_Change": "-1.125 -4.21%",
+        "Volume_USD": "$260.59K",
+        "Volume_Shares": "10.09K",
+        "Turnover_Rate": "0.011%",
         "Shares_Outstanding": "92.75M",
         "AUM": "$2.48B",
         "Market_Cap": "$2.38B",
@@ -728,17 +728,17 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "ARK / 21Shares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "7",
         "Ticker": "BITO BTC",
         "ETF_Name": "ProShares Bitcoin ETF",
-        "Price": "$10.306",
-        "Price_Change": "-0.464 -4.31%",
-        "Volume_USD": "$1.77M",
-        "Volume_Shares": "170.55K",
-        "Turnover_Rate": "0.108%",
+        "Price": "$10.309",
+        "Price_Change": "-0.461 -4.28%",
+        "Volume_USD": "$1.86M",
+        "Volume_Shares": "179.52K",
+        "Turnover_Rate": "0.114%",
         "Shares_Outstanding": "158.89M",
         "AUM": "$1.62B",
         "Market_Cap": "$1.64B",
@@ -746,7 +746,7 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "ProShares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "8",
@@ -764,7 +764,7 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "VanEck",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "9",
@@ -782,7 +782,7 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "Franklin Templeton",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       },
       {
         "#": "10",
@@ -800,24 +800,24 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "CoinShares / Valkyrie",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 17:36:38 IST"
+        "Timestamp_IST": "2026-10-30 17:53:33 IST"
       }
     ]
   },
   "formulation": {
     "long": {
       "entry": 1432.96,
-      "sl": 1423.4885032759812,
-      "tp": 1456.6387418100471,
-      "dist": 9.471496724018834,
-      "lots": 1.05
+      "sl": 1423.2965387564573,
+      "tp": 1457.118653108857,
+      "dist": 9.66346124354277,
+      "lots": 1.03
     },
     "short": {
-      "entry": 1467.18,
-      "sl": 1476.651496724019,
-      "tp": 1443.501258189953,
-      "dist": 9.471496724018834,
-      "lots": 1.05
+      "entry": 1466.77,
+      "sl": 1476.4334612435428,
+      "tp": 1442.611346891143,
+      "dist": 9.66346124354277,
+      "lots": 1.03
     },
     "confluence_score": 72,
     "decision": "STAND_ASIDE_MONITOR"
