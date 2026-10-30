@@ -1,74 +1,35 @@
 Thought Process
-Explored 3 files
+Explored 3 files，Wrote 1 files
 
-Local dossier corpus from prior cycles exists under telemetry_work/c310/dossiers/. Let me check provenance and sizes before forensic reading.
+Evidence plane is partially reachable — the registry and ledger returned real (stale) content, and the dossier path 404'd. Before composing the report, I'll fold this new evidence into the verification harness and re-run it, plus try the alternate dossier filename.
 
-Ran 1 commands
+Explored 1 files，Wrote 3 files
 
-Dossier corpus provenance confirmed: generated 2026-10-29 17:34 UTC (~10.4h before Cycle_024 cutoff) — the freshest forensic snapshot available. Executing full-length forensic reads now, prioritizing the six symbols touched by live exposure.
-
-Explored 2 files
-
-AUDUSD & NAS100 dossiers fully ingested. Critical extractions: AUD VAL 0.7027 (position entry = exact dossier VAL sweep), NAS §1 spec contradiction (min lot 0.10 vs live 0.01 order) flagged. Continuing full-length reads.
-
-Explored 4 files
-
-XAUUSD full dossier ingested (§1–§10, 657 lines). Now extracting BTC/BNB dossier forensics (targeted section extraction on the two large crypto dossiers) plus the frozen ledger/registry snapshots.
-
-Ran 2 commands
-
-All six dossiers fully ingested. Critical finding: XAU/NAS/DJ dossier §10 cards contain point-value unit bugs (XAU card claims $0.10 risk where true 0.01-lot risk ≈ $9.00; DJ card prints "10.13 ≤ 10.00" which is arithmetically false). Now reading the frozen ledger/registry snapshots for §1 parity.
-
-Explored 2 files
-
-Local ledger/registry snapshots confirmed stale (last updated 2026-10-29 08:01 UTC, ~20h before cutoff) — the "ghost ledger" pattern persists. Attempting live GitHub fetch for parity verification.
-
-Explored 2 files
-
-Live GitHub fetch confirms both shared ledgers are ghost-frozen: registry last written 2026-10-29 08:27:01 UTC (shows a completely different book: 3 old positions + 7 old orders, none matching the live envelope), ledger frozen at CYCLE_004 (08:05 UTC). The envelope is the sole authoritative evidence. Now deploying the Seat #3 adversarial math engine.
+All edits applied; the alternate dossier path also returned NOT_FOUND. Now running the verification harness:
 
 Ran 1 commands
 
-All forensic inputs gathered. Writing the Seat #3 adversarial verification engine now.
+The harness exposed a unit bug in my pip-value constant (10× error) — the AUD ladder and joint-stress reconstruction must be corrected before I certify any figures. Fixing and re-running:
 
 Wrote 1 files，Ran 1 commands
 
-19/19 identities verified EXACT. One final extraction — BTC/BNB CVD regime rows for §3 completeness:
+Harness is now clean — all identities EXACT. One final integrity check on the sidecar before I certify the report:
 
-Explored 2 files，Ran 2 commands
-
-All forensic evidence is assembled and every identity verified. Composing the full Cycle_024 council report.
-
-🏛️ CYCLE_024 — TRI-COUNCIL DOSSIER-CENTRIC MULTI-AGENT AUDIT & FORENSIC DISCOVERY REPORT
-
-Issuing Seat: #3 — Z.ai Sovereign Council (Adversarial Solvency Arbiter & Mathematical Quant)
-Target: Blueberry Markets MT5 #5064568 (BlueberryMarketsSVG-Live, Raw Spread) | Envelope cutoff (governing): 2026-10-30 03:59:52 UTC | Envelope uuid 0bf54f88…, nonce cc526fe0…, git 7466befe…
-Verification artifact: scripts/cycle_024_seat3_math.py → sidecar download/cycle_024_seat3_sidecar.json (sha256 1246ce5b…cb23fb) — 19/19 identities EXACT.
+Ran 1 commands
+🏛️ CYCLE_025 — SEAT #3 ADVERSARIAL SOLVENCY ARBITRATION
+Z.ai Sovereign Council | Risk Arbiter Seat | Blueberry Markets MT5 #5064568 (BlueberryMarketsSVG-Live)
 
 📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[clean-code], @[systematic-debugging], @[data-quality-checker]
 
-⚖️ Mandatory Metacognitive Inquest — "If it use all the available skills related will it improve our response?"
+Skills-Gap Inquest — formal answer to "If it use all the available skills related will it improve our response?" → YES, and it did. @[data-quality-checker] + @[clean-code] forced every number through a persisted, hash-stamped verification harness (cycle_025_seat3_math.py, sha256 b5ee40f8…a4a33) — which caught and corrected a 10× pip-value unit error before certification, and produced four EXACT envelope identities. @[systematic-debugging] structured anomaly triage D1–D10. @[market-ingest]/@[trader-signal] were deployed as evidence gates and correctly rejected stale telemetry (a rejection is a successful ingest control). The one remaining skill gap — a live tick feed — is the single highest-value upgrade: it would lift §2 from NOT_EVALUABLE to PASS/FAIL. Net effect: zero hand arithmetic, zero unverified figures in this report.
 
-Formal answer: YES — materially — and the improvement is demonstrable in this very cycle, with one honest disclosure of a gap that no skill can paper over.
+Execution plan: §1 provenance/solvency → §2 spread screening → §3 dossier forensics (order-card-embedded geometry, dossiers unreachable) → §4 econometrics → §5 cards → §6 interrogation → §7 JSON. All figures script-derived; sidecar: Cycle_025_seat3_sidecar.json (sha256 54ecd1d1…b8f8).
 
-SKILL
-	
-CONCRETE SHARPENING DELIVERED IN CYCLE_024
+§1. Provenance, Telemetry & Solvency Kernel Audit — [Cycle_025]
 
-@[trader-signal]	Sweep-fade geometry grammar (VAH/VAL/POC anchors, PDH sweep zones) is what exposed that BTC/BNB resting stops sit inside prior-day-high liquidation sweep zones and that XAU #19489158 is a faithful VAH-fade (entry −0.005% from VAH 4040.71).
-@[trader-risk]	The 1.25×nominal + 2.00 stress algebra and Spread-Padded SL invariant let me reverse-engineer the envelope's stress decomposition to the exact constant 40.31 USD (cross-cycle EXACT vs Cycle_023) and re-derive every cushion independently.
-@[market-ingest]	Feed-freshness gating converted four stale evidence classes into explicit void rulings: preflight 62.80 h → VOID; dossiers 10.43 h → structure-only; ledger/registry 19.9/19.5 h → GHOST; zero fresh ticks → no spread PASS mintable.
-@[clean-code]	Deterministic, persisted math engine (19 assertions, 0 mismatches) instead of prose arithmetic — every number below is reproducible from the sidecar.
-@[systematic-debugging]	Root-caused a recurring unit-bug class in the dossier engine: XAU §10 risk understated 99.4×, NAS/DJ 10×, BTC card 94.8×, NAS/DJ spread-bps 10× (true 3.95 / 2.26 bps). Symptom-chasing would have missed that all errors share one point-value confusion.
-@[data-quality-checker]	Four-source reconciliation (envelope vs live-fetched ledger/registry vs dossier corpus vs preflight) — caught the ghost-ledger divergence live from GitHub, not just from local snapshots.
+Cycle stamp: Cycle_025 | Binding cutoff: 2026-10-30 04:39:25 UTC (envelope field governs; header stamped 04:39:31 → 6s drift, D6 — recurring header-after-envelope pattern, conservative earlier timestamp adopted).
 
-Gap disclosure (fail-closed, not fabricated): this envelope contains no fresh tick series and no parquet lake. Therefore VR(4), ER₄₈, HAC t-stats, cutoff-time spreads, EV_net, P_win, and LCB₅% cannot be honestly recomputed for the live book. The skill-correct behavior is to convert that absence into hard admission gates (§2, §4), not invented statistics. Using all related skills improves the response precisely because it forbids me from manufacturing the missing numbers.
-
-§1. Provenance, Telemetry & Solvency Kernel Audit — Cycle_024
-
-1.1 Cycle stamping. Active identifier: Cycle_024 — stamped on every section, every persona verdict, every execution card, and the §7 JSON ("cycle_id": "Cycle_024"). Header cutoff 04:00:10 UTC vs envelope 03:59:52 UTC → 18 s divergence; per Cycle_023 precedent the envelope numeric field governs.
-
-1.2 Account reconciliation (19/19 identities EXACT — no reliance on envelope self-consistency):
+1.1 Envelope reconciliation — four EXACT identities:
 
 IDENTITY
 	
@@ -76,263 +37,229 @@ COMPUTED
 	
 ENVELOPE
 	
-STATUS
+VERDICT
 
-equity = balance + floating	4762.83 + 10.48	4773.31	✅ EXACT
-floating = (0.70401−0.7027)×0.08×100,000	10.48	10.48	✅ EXACT
-margin_free = equity − margin_used	4585.92	4585.92	✅ EXACT
-margin_level = equity/margin_used×100	2547.2597…%	2547.2597…%	✅ EXACT
-margin_used = 0.08×100k×0.7027/30	187.39	187.39	✅ EXACT → independently confirms AUD contract 100k & 30:1 FX leverage
-kernel_cushion = balance − 4795	−32.17	−32.17	✅ EXACT
-realized_headroom = bal − 4795 − 65.4875 − 2.0	−99.6575	−99.66	✅ EXACT
-post_joint_stress = balance − 65.4875 − 2.0	4695.3425	4695.34	✅ EXACT (equity-based variant 4705.82 rejected → floating profit conservatively zeroed)
-stress decomposition	65.4875 = 1.25×(40.31 + 10.48) + 2.00	65.4875	✅ EXACT; fixed catastrophe-excursion constant 40.31 USD identical in Cycle_023 (50.23 = 40.31 + 9.92) → model is profit-giveback + fixed adverse excursion, conservative direction
+equity = balance + floating	4762.83 + 11.28 = 4774.11	4774.11	EXACT
+margin_free = equity − margin_used	4774.11 − 187.39 = 4586.72	4586.72	EXACT
+margin_level = equity/margin_used ×100	2547.686643%	2547.6866428304606	EXACT
+C24→C25 continuity	+1 pip × $0.80 = +0.80 USD	10.48→11.28 / 0.70401→0.70411	EXACT
+AUD margin identity	0.08×100,000×0.7027/30 = 187.3867	187.39	EXACT @30:1 (confirms 100k contract, leverage)
 
-1.3 Triple-floor dispute (recurring, resolved with an invariance theorem). Header/Persona-3 schema: hard 4775 / buffer 4795. Envelope solvency schema: 4600 / 4650 / kernel 4795. Ruling: envelope numeric fields govern (precedent), but note the verdict is invariant: equity 4773.31 < 4775 and balance 4762.83 < kernel 4795 *and* balance > 4600 — under either schema the account is below the admission threshold and above the statutory floor → TIER_0_DEFENSIVE, new_risk_admissible = false, market orders DENIED_FAIL_CLOSED. The dispute changes nothing; it is logged as Dispute D-1.
+1.2 Triple Capital Floor (Cycle_025, canonical): Hard floor 4,775.00 / Operating buffer 4,795.00 — the C23/C24 header-vs-envelope floor conflict is RESOLVED: this cycle both sources state 4775/4795; the conservative pole prevailed. Deficits: equity vs floor −0.89 (live gate), equity vs buffer −20.89; balance vs floor −12.17 (true statutory deficit — equity cushions are soft; floating P/L can evaporate), balance vs buffer −32.17. TIER_0_DEFENSIVE confirmed. new_risk_admissible = false, nominal capacity 0.00 → MARKET ORDERS DENIED_FAIL_CLOSED. Second consecutive cycle of equity > balance (dual-basis solvency) — noted, not banked.
 
-1.4 Evidence hierarchy (data-quality-checker ruling):
+1.3 Preflight receipt — QUARANTINED (D1, HIGH — new failure mode). The receipt's dispatch_nonce matches Cycle_025's nonce while observed_at_utc = 2026-10-27 13:12:05 (63.46h stale, gate 120s); balance 4837.08 ≠ 4762.83; candidate BTC @80350 ≠ actual resting @81084 (+734 pts — the receipt describes an order that does not exist). The desk is rebinding 3-day-old telemetry to fresh nonces (new sha 78f4fcea…); any downstream automaton trusting nonce-match would consume dead state. Ruling: VOID for Cycle_025; pipeline repair order — observed_at must be within ±120s of nonce generation, else fail-closed.
 
-EVIDENCE
+1.4 Evidence-plane sweep (performed live during this audit):
+
+Shared registry (…/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md): reachable, last write 2026-10-29 08:27:01 UTC → 20.21h stale. Internally coherent (4697.67 + 29.84 floating = 4727.51, EXACT) but its book — 3 positions (incl. AUDUSD SHORT 0.10 @ 0.70586, USDJPY long, US2000 short) + 7 pendings (incl. BNBUSD 0.70 lots @ 762.5) — diverges from the live book on every axis. Ghost-ledger status CONFIRMED with hard timestamps (D10, HIGH).
+Shared ledger (…/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md): last entry "Cycle_004" @ 2026-10-29 08:05 UTC (20.57h stale) — "LET IT RUN" ×3 on a book that no longer exists. Note also the ledger's cycle namespace (004) vs dispatch namespace (025) divergence — observability defect folded into D10.
+Master dossiers: docs/dossiers/BTCUSD.pi_MASTER_DOSSIER.md and BTCUSD_MASTER_DOSSIER.md → NOT_FOUND. Full-length §1–§10 reads are physically unavailable this cycle; §3 therefore operates strictly on order-card-embedded geometry, fail-closed.
+Provenance hashes: git_commit 7466beef… and prompt_sha256 c7325e9f… are identical to Cycle_024 → the prompt hash binds the template, not the instantiated cycle (D7). parquet_freshness_verified: true attests data plumbing only — it did not prevent the stale preflight.
+Realized balance chain (D8 partially reconciled): 4837.08 (Oct-27 receipt) → −139.41 → 4697.67 (Oct-29 08:27 registry) → +65.16 → 4762.83 (envelope); net −74.25 EXACT. The +65.16 leg is directionally explained by the registry book's closes (AUD short 0.10 @ 0.70586 → ~0.7027 ≈ +31.60, plus USDJPY/US2000); the −139.41 leg (Oct 27→29 morning) is invisible to every governance record → MT5 trade-history disclosure demanded.
+§2. Multi-Sector Spread Screening & Asset Eligibility Matrix — [Cycle_025]
+
+The envelope carries zero fresh tick data; the only tick on file is the quarantined receipt's BTC print (2.0 bps, 63.46h old — inadmissible). Without fresh ticks, no symbol can be assigned a defensible PASS:
+
+SECTOR (THRESHOLD)
 	
-AGE AT CUTOFF
+SYMBOLS
 	
-STATUS
+FRESH TICK?
+	
+ELIGIBILITY
 
-Cycle_024 envelope (uuid/nonce-stamped MT5 dump)	0	GOVERNS — sole authoritative account state
-Dossier corpus (c310, engine-stamped 2026-10-29 17:34:10 UTC)	10.43 h	Valid for structure (VAH/VAL/POC, L2, liq maps); not for live spread
-Shared registry — fetched live from GitHub this cycle	19.55 h (08:27:01 UTC Oct 29)	GHOST: shows 3 positions + 7 orders, zero overlap with the live book; balance 4697.67 vs 4762.83 (undocumented +65.16 realized drift)
-Shared ledger — fetched live	19.91 h	FROZEN at CYCLE_004 (2026-10-29 08:05 UTC)
-execution_preflight_receipt.json	62.80 h	VOID for Cycle_024: balance 4837.08 (Δ +74.25), candidate BTC SELL_LIMIT @ 80350 ≠ resting 81084, tick 80118 predates the crash to 77148 and bounce to 78030. PREFLIGHT_PASS is non-transferable across cycles.
+Forex majors/crosses (≤5.0 bps)	EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, NZDUSD, EURJPY, GBPJPY	none	NOT_EVALUABLE → fail-closed
+Metals/Commodities (≤5.0 bps)	XAUUSD, USWTI, UKBRENT, Copper	none	NOT_EVALUABLE → fail-closed
+Indices (≤5.0 bps)	DJ30, NAS100, SP500, GER40, JP225, AU200, UK100	none	NOT_EVALUABLE → fail-closed
+Crypto (≤25.0 bps)	BTCUSD, ETHUSD, BNBUSD, SOLUSD, XRPUSD, BCHUSD, XMRUSD	BTC only, 63.46h stale	INADMISSIBLE
+Special	AUDUSD.pi	live position, no tick	Management-only (existing-position defense admissible; no new risk)
 
-1.5 Ghost-registry historical defect (new catch). The frozen registry itself contains #19457311 XAUUSD.pi SELL_LIMIT 0.01 @ 4064.5 / SL 4088.5 = 24.00 USD nominal risk > 10.00 cap on 1 oz (contract 100). It is no longer in the live book (cancelled/replaced), but it is hard evidence of a recurring staging-discipline defect at Seat #1 — logged as Dispute D-6 and folded into §6/§7.
+Verdict: 0 of 27 symbols reach execution-grade candidacy. Market clock: Friday, FULL_MARKET_OPEN, rollover embargo inactive (next window 21:15–22:30 UTC tonight — position management must respect it).
 
-Persona consensus §1: P1 — regime clocks verified (Friday, FULL_MARKET_OPEN, rollover embargo inactive at cutoff). P2 — dossier timestamps reconciled. P3 — all floor identities EXACT; fail-closed posture upheld. P4 — no execution window conflict at cutoff (03:59 UTC is outside 21:15–22:30).
+§3. Full-Length Master Dossier Forensics & Microstructure Extraction — [Cycle_025]
 
-§2. Multi-Sector Spread Screening & Asset Eligibility Matrix — Cycle_024
+Qualification ruling: the mandated full-read set (spread-cleared assets) is ∅ — no asset cleared §2 with fresh evidence, and the dossier repository 404'd. No orderbook, whale-wall, CVD or liquidation figure is re-verifiable as current; the frozen-ledger copies (Oct-29 08:05 UTC) are doubly stale. None are quoted as live fact.
 
-(Persona 1 mandate. No live bid/ask exists anywhere in the Cycle_024 envelope — only last-trade prices for the six live-book symbols. Every PASS below is therefore age-stamped 10.43 h and marked CONDITIONAL; no cutoff-fresh PASS can be minted → no new admission.)
+What is verifiable: the five resting SELL_LIMITs are dossier-derived artifacts formulated 2026-10-29 19:38:39.559 UTC (age 9h00m45s, GTC, no expiry). Their cards embed the auction geometry they were built on:
 
-SECTOR
+TICKET
 	
 SYMBOL
 	
-SPREAD (DOSSIER, 17:34 UTC)
+IMPLIED VAH (ENTRY)
 	
-SEAT#3 RECOMPUTED
+SL PAD (PTS / %)
 	
-THRESHOLD
+TP TARGET
+	
+RR
+	
+DIST. TO FILL
 	
 VERDICT
 
-FX Major	AUDUSD.pi	0.14 bps (1.0 pt)	0.142 bps ✅ matches	≤ 5.0	CONDITIONAL_PASS_STALE
-Metal	XAUUSD.pi	0.22 bps (9 pts)	0.224 bps ✅ matches	≤ 5.0	CONDITIONAL_PASS_STALE
-Index US	NAS100.p	“0.40 bps” (116 pts)	3.95 bps — dossier 10× understated (unit-bug class)	≤ 5.0	CONDITIONAL_PASS_STALE (true value still gates)
-Index US	DJ30.p	“0.23 bps” (118 pts)	2.26 bps — 10× understated	≤ 5.0	CONDITIONAL_PASS_STALE
-Crypto	BTCUSD.pi	2.10 bps (17.0 USD)	2.10 ✅; preflight (Oct 27, VOID) 2.0 consistent	≤ 25.0	CONDITIONAL_PASS_STALE
-Crypto	BNBUSD.p	8.03 bps (0.60 USD)	8.03 ✅	≤ 25.0	CONDITIONAL_PASS_STALE
-Rest of universe (EURUSD, GBPUSD, USDJPY, USDCAD, USDCHF, NZDUSD, EURJPY, GBPJPY, USWTI, UKBRENT, Copper, SP500, GER40, JP225, AU200, UK100, ETH, SOL, XRP, BCH, XMR…)	—	no tick evidence in envelope	—	—	NOT_EVALUABLE → excluded
+19489155	BTCUSD.pi	81084	596 / 0.735%	80180	1.517R	+3.827%	MANDATE BREACH
+19489157	BNBUSD.p	753.3	8.2 / 1.089%	743.5	1.195R	+5.519%	MANDATE BREACH
+19489158	XAUUSD.pi	4040.5	9.0 / 0.223%	4018	2.500R	+1.212%	RR-compliant, stale
+19489159	NAS100.p	29535	85 / 0.288%	29320	2.529R	+2.376%	RR-compliant, stale
+19489160	DJ30.p	52638	94 / 0.179%	52402	2.511R	+0.773%	RR-compliant, stale
 
-Screening consequence (fail-closed): spread eligibility is necessary but not sufficient; with zero fresh ticks, the eligibility matrix cannot promote any symbol to tradeable status in Cycle_024. This is rendered moot by the envelope's own nominal_risk_capacity_usd = 0.0.
+Live AUD card (open 2026-10-29 22:28:55.372 UTC at VAL, C21-verified fill): entry 0.7027, R = 12 pips ($9.60 nominal ≤ 10 cap ✓), TP 0.7057 = +2.5R EXACT ✓. Since formulation, price has migrated 0.77–5.52% below every pending entry — the VAH premises are stale, and any whale armor those fades were to lean on is unverified (Pitfall 1 gate cannot be cleared on frozen data).
 
-§3. Full-Length Master Dossier Forensics & Microstructure Extraction — Cycle_024
-
-(Persona 2 mandate. All six live-book symbols interrogated against their full dossiers — AUDUSD §1–§10 (309 L), NAS100 (301 L), DJ30 (285 L), XAUUSD (657 L) read in full; BTC (5,777 L) and BNB (2,176 L) read in full across §1/§3/§4/§5-wall-headers/§6-MP/§10 with the L2/liq ladders machine-scanned. All values below are age-stamped 2026-10-29 17:34:10 UTC.)
-
-3.1 AUDUSD.pi — host of live position #19490051
-Auction: Daily VAH 0.7046 / POC 0.7037 / VAL 0.7027; positioning INSIDE_VALUE, ROTATIONAL_BALANCE; Session VWAP 0.7038, Z −0.31; ATR₁₄ 0.000555; RSI 52.08.
-Armor: No whale walls (Interbank, unarmored) — fade logic rests on auction structure, not verified walls.
-CVD: 5m/15m bullish absorption→aggressive buying; 1h mixed (−71%, −56%, +46%); 4h final bars bullish absorption (+18,507 USD, Z +1.70). Two-sided, no exhaustion extreme.
-Liquidation: All horizons "Clear / SAFE (No Un-Swept Clusters)".
-§10 card: BUY_LIMIT 0.7027 (VAL sweep) / SL 0.7021 / TP 0.7045 / 0.14 lots. The live position opened at 0.7027 = the dossier's exact VAL-sweep entry → provenance of ticket #19490051 is a certified Model-1 VAL fade. Seat#3 note: card's "0.14 lots / 0.00 USD risk" line is another sizing-unit defect (true: 0.14 lot × 6.81 pips = 9.53 USD).
-3.2 BTCUSD.pi — resting #19489155
-Auction: VAH 81001.56 / POC 80022.14 / VAL 79593.65; PDH 81719.00; VWAP 80377.25; ATR₁₄ 294.78; RSI 52.13. At dossier time mid 80989; at cutoff 78030 — price has LEFT the value area (−1.97% below VAL).
-Armor: unarmored (no >100K/>180s walls verified) → Pitfall-1 exposure: the fade leans on nothing but a stale VAH.
-CVD: 15m Z −2.76 AGGRESSIVE SELLING, 1h −1.82 aggressive selling, 4h bearish-aligned (−1.24/−1.00); cumulative CVD −306M to −89M USD — persistent distribution, not sweep-exhaustion.
-Liquidation: 24H Short MP 82125.26 (+1.32%) / Long MP 79162.38 (−2.34%).
-§10 card vs live order: card = SELL_LIMIT 81001.56/SL 81380.79/TP 80053.48/0.02 lot (card risk "0.08 USD" is a 94.8× understatement; true 7.58 USD). Live order #19489155 is NOT the card: entry 81084 (+82 pts beyond VAH), SL 81680 — 39 pts below PDH 81719, i.e., inside the prior-day-high buy-stop sweep zone (Pitfall-2 geometry), TP 80180.
-3.3 BNBUSD.p — resting #19489157
-Auction: VAH 752.43 / POC 750.76 / VAL 740.27; PDH 760.90; VWAP 747.04, Z −0.05; ATR₁₄ 2.72. Cutoff 715.9 — −3.3% below VAL, value fully abandoned.
-Armor: unarmored. CVD: 4h bearish-dominant (−1.02/−1.00, cumulative −24.1M…−13.8M), 15m aggressive selling −1.23 — no VAH exhaustion signature.
-Liquidation: 24H Short MP 758.31 / Long MP 736.45.
-§10 card vs live order: card = 752.43/SL 756.60/TP 742.01/2.40 lots. Live #19489157 diverges: SL 761.5 is 0.60 ABOVE PDH and beyond the 24H Short-MP band, risk distance 8.2 ≈ 2× the dossier's padded stop — structurally unfaithful to its own model.
-3.4 XAUUSD.pi — resting #19489158 (the only asset with a real verified L2 ladder)
-Auction: VAH 4040.71 / POC 4027.30 / VAL 4019.82; VWAP 4031.59, Z −1.03; ATR₁₄ 8.17; RSI 45.89. Cutoff 3994.24 → −0.64% below VAL; entry 4040.5 now +1.16% away.
-Armor (real L2): ASK stack 4023.80 (268,892 USD) / 4024.30 (201,387) / 4024.90 (221,860); BID 4021.60 (363,842 USD) / 4022.70 (99,997) / 4022.80 (104,308) — genuine institutional shelf below 4023; nothing resting near 4040.5.
-CVD: 15m aggressive buying (+2.33 Z), 1h/4h bullish absorption; but spot netflows 1w/30d DISTRIBUTION (−85.6M/−177.1M) — short-term squeeze vs macro distribution.
-Liquidation: 24H Short MP 4116.59 / Long MP 3956.53; 7D Short MP 4082.49; short-liq density begins 4067+. Stops map SAFE.
-§10 card vs live order: card = SELL_LIMIT 4040.71/SL 4050.65/TP 4015.85. Live #19489158 IS the card, faithfully: entry 4040.5 (−0.005% from VAH), SL 4049.5 (tighter than pad, protective), TP 4018 (through VAL). Card's "0.10 USD risk" is the 99.4× unit bug — true risk 9.00 USD (1 oz).
-3.5 NAS100.p — resting #19489159
-Auction: VAH 29530.45 / POC 29461.28 / VAL 29374.17; BELOW_VALUE (Imbalance), TREND_DOWN_ACCEPTANCE; VWAP Z −1.86; ATR₁₄ 79.07; RSI 38.52. Cutoff 28802.34 → −1.95% below VAL.
-Armor: unarmored. CVD: 1h aggressive selling (−1.48B delta, Z −0.95/−0.64), 4h bearish-absorption dominant — trend-down acceptance, not balance.
-Liquidation: Tier-4 macro envelopes: Long-liq 29140.51 / Short-liq 29535.85 — the resting entry 29535.0 sits 0.85 pts below the short-squeeze envelope (selling directly into a short-liquidation pressure band).
-§10 card vs live order: card = 29530.45/SL 29627.07/TP 29288.90/0.10 lots ("9.66 USD" — 10× understated vs §1 contract 10.0; true 96.62 USD at 0.10 lots). Live #19489159: entry 29535, SL 29620 (tighter than pad ✓), TP 29320 ✓. Spec contradiction: §1 min-lot 0.10 vs live 0.01-lot order resting in state 1 — broker spec re-verification demanded (D-5).
-3.6 DJ30.p — resting #19489160
-Auction: VAH 52663.14 / POC 52375.59 / VAL 52193.98; INSIDE_VALUE, ROTATIONAL_BALANCE; VWAP Z −1.32; ATR₁₄ 82.97; RSI 34.03 OVERSOLD. Cutoff 52259.06 → the only resting anchor still inside value (+0.12% above VAL).
-Armor: unarmored. CVD: interbank table empty/balanced — no delta edge either way.
-Liquidation: envelopes Long-liq 52031.03 / Short-liq 52445.89 — entry 52638 sits beyond the short-squeeze band ✓.
-§10 card vs live order: card = 52663.14/SL 52764.48/TP 52409.80/0.10 lots — and the card prints “Nominal Risk = 10.13 USD <= 10.00 USD”, which is arithmetically false (10× understatement + cap breach in the same line). Live #19489160: entry 52638, SL 52732 (tighter ✓), TP 52402. Note: the dossier's own sovereign decision for DJ30 was STAND_ASIDE_MONITOR — yet a DJ fade is resting (D-4).
-§4. Econometric & Machine Learning Scoring Grid — Cycle_024
-
-(Persona 1 mandate. No tick series exists in the evidence set → VR(4)/ER₄₈/HAC cannot be recomputed at cutoff. Council-published values (ledger, 23 h stale) are carried with staleness tags; regime proxies from dossiers fill the grid. Fabricating fresh statistics would violate the skills covenant above.)
-
-SYMBOL
+§4. Econometric & Machine Learning Scoring Grid — [Cycle_025]
+ASSET
 	
 VR(4)
 	
 ER₄₈
 	
-SOURCE / AGE
-	
-MODEL-1 FADE ELIGIBLE (VR<0.85)?
-	
-AUCTION/CVD PROXY
-	
-EV_NET
+EV_NET (R)
 	
 P_WIN
 	
 LCB₅%
-
-BTCUSD.pi	0.258, z*(4) −13.80	0.061	Council ledger, 23.2 h ⚠	YES (stale cert)	CUM CVD −306M, 4h bearish	NOT_COMPUTABLE	NOT_COMPUTABLE	NOT_COMPUTABLE
-BNBUSD.p	not published	not published	—	UNCERTIFIED	4h bearish absorption, −3.3% below VAL	—	—	—
-XAUUSD.pi	not published	not published	—	UNCERTIFIED	inside value at dossier time; bullish 15m/1h absorption	—	—	—
-NAS100.p	not published	not published	—	UNCERTIFIED	TREND_DOWN_ACCEPTANCE — Model-1 fade contraindicated by regime	—	—	—
-DJ30.p	not published	not published	—	UNCERTIFIED	inside value, RSI oversold, CVD empty	—	—	—
-AUDUSD.pi (live position)	not published	not published	—	n/a (already filled at certified VAL 0.7027)	4h bullish absorption	—	—	—
-
-Grid ruling: every resting fade except BTC lacks even a stale mean-reversion certificate, and BTC's is 23 h old while its price has migrated −3.9%. Under the Model-1 charter (fades only where VR(4) < 0.85, eliminated in 0.85–1.15), no resting order currently holds a valid diffusion certificate. EV/P_win/LCB columns are honestly empty — they require fill-history backtests that do not exist in this evidence set. This grid alone would freeze all new risk; combined with §1 it makes the freeze unanimous.
-
-§5. Candidate Trade Formulation & Broker Execution Cards — Cycle_024
-
-*(Personas 3+4 joint mandate. Admission state: equity 4773.31 < 4775 → market orders DENIED_FAIL_CLOSED; nominal_risk_capacity = 0.00; only STAGED_INTENT_ONLY / micro-lot maker geometry is even expressible — and §2+§4 block even that.)*
-
-5.1 NEW CANDIDATE ADMISSIONS: ZERO (empty set — fail-closed) {Cycle_024}
-
-No execution card is minted because three independent gates are all red: (i) solvency kernel cushion −32.17; (ii) spread gate unverifiable at cutoff (no fresh tick); (iii) no current VR(4) certificate on any universe symbol. Formulating a “top candidate” under these conditions would be evidence fabrication, and this seat refuses.
-
-5.2 CORRECTIVE EXECUTION CARDS (book repair — the only actionable trades this cycle)
-
-CARD A — CANCEL #19489155 (BTCUSD.pi SELL_LIMIT 0.01 @ 81084) {Cycle_024}
-
-Grounds: RR 904/596 = 1.517R < 2.5R hard mandate (assumption-free price ratio); SL 81680 inside PDH 81719 sweep zone (Pitfall-2); VAH anchor 3.91% stale after value-area exit; unarmored book; Model-1 certificate 23 h stale.
-Quantified effect: removes 5.96 USD nominal (verified vs preflight spec contract 1.0) → 7.45 USD stressed from the joint tail.
-
-CARD B — CANCEL #19489157 (BNBUSD.p SELL_LIMIT 0.05 @ 753.3) {Cycle_024}
-
-Grounds: RR 9.8/8.2 = 1.195R < 2.5R mandate; SL 761.5 above PDH 760.90 and beyond 24H Short-MP 758.31; risk distance 2× the dossier's own padded stop; anchor 5.22% stale.
-Quantified effect: removes 0.41 USD nominal → 2.51 USD stressed.
-
-JOINT-STRESS THEOREM (the decisive arithmetic):
-
-SCENARIO
 	
-JOINT STRESSED (AUD 65.4875 + ORDERS)
-	
-POST-CATASTROPHE EQUITY
-	
-VS BUFFER 4650
-	
-VS FLOOR 4600
+MODEL GATE
 
-All 5 resting fill + all stop out (conservative multipliers)	65.4875 + 51.5875 = 117.075	4645.76	−4.24 BREACH	+45.76 OK
-Same, optimistic multipliers	65.4875 + 31.45 = 96.94	4665.89	+15.89 OK	+65.89 OK
-After Cards A+B (keep XAU/NAS/DJ)	65.4875 + 39.625 = 105.1125	4657.72	+7.72 RESTORED	+57.72 OK
+All 27 screened	NOT_COMPUTABLE_FRESH	n/c	n/c	n/c	n/c	NONE ADMITTED
 
-Because the buffer verdict is contract-spec-dependent (NAS/DJ dossiers carry 10× point-value contradictions), the arbiter is bound to the conservative reading — under which the untouched book can pierce the 4650 buffer in the all-fill catastrophe. Cancelling the two RR-fail orders restores buffer compliance under BOTH readings. This is the cycle's only risk-reducing, mandate-restoring action.
+No price series accompanies the envelope and dossiers are unreachable → Model 1 (VR(4)<0.85) and Model 2 (VR(4)>1.15) admissions are both zero; random-walk exclusion cannot be disproven, so nothing fades and nothing trends — on evidence grounds alone, before solvency even speaks. Descriptive (non-predictive) stats for the live AUD ticket only: implied breakeven from spot (SL 0.70282, TP 0.7057) = 44.79% (at-entry RR-2.5 basis: 28.57%); current state +1.175R with +$12.72 to TP vs +$10.32 giveback to SL.
 
-5.3 RATCHET DIRECTIVE — live AUD position (Execution Architect geometry) {Cycle_024}
-R reconstructed = 9.60 USD (initial SL 0.7015, 12 pips); TP 0.7057 = +2.5R EXACT ✅ charter-compliant.
-BE-lock trigger 0.70366 (+0.80R) has fired (current 0.70401); directive SL 0.70288 vs live SL 0.70282 → deviation −0.6 pip on the protective side → COMPLIANT (locks +0.96 USD = +0.10R minimum).
-Standing order: at price 0.70450 (+1.50R = +14.40 USD, only 4.9 pips away) → ratchet SL to 0.70366 (entry + 0.80R, locks +7.68 USD). Monotone non-loosening; no loosening permitted at any stage.
-Time decay: held 5.52 h < 6 h AND +1.092R > +0.20R → no decay exit. Re-interrogate at 6 h mark (~04:31 UTC) regardless of P/L.
-§6. Active Positions & Resting Orders Interrogation — Cycle_024 — "Should I let it run or cut it? Is it still a valid trade?"
+§5. Candidate Trade Formulation & Broker Execution Cards — [Cycle_025]
+
+high_confluence_formulated_trades = []. With capacity 0.00, any new-risk card would be compliance theater. Only risk-reducing management cards are admissible under TIER_0:
+
+CARD A — C25-AUD-RATCHET (P1 IMMEDIATE, MODIFY_SL, risk-reducing) — Ticket 19490051 AUDUSD.pi LONG 0.08: SL 0.70282 → 0.70288 (C21 directive, 3rd re-issue). Locks +1.44 vs +0.96 (gap 0.48 USD). Stressed worst case post-modify: SL hit → +1.44 realized → balance 4764.27 (floor −10.73; stopout is a profit). Spread-padded invariant n/a (trailing defense, not new risk).
+
+CARD B — C25-AUD-RECOVERY-EXIT (ARMED, conditional market exit, risk-reducing) — On bid ≥ 0.70450 (+1.50R trigger, 3.9 pips away): exit at market, realize +14.40 → balance 4777.23 → hard floor RESTORED (+2.23 cushion). Arbiter's solvency-first default; Seat #1 may dispute-and-retain (then mandatory ratchet SL → 0.70366, locking +0.80R = 7.68). Fallback flatten deadline Friday 20:45 UTC (pre-rollover liquidity decay + weekend gap exposure; note a "locked-profit" SL is not gap-proof). Minimum recovery realization: +12.17 USD at bid ≥ 0.70422 (exact 0.704221).
+
+CARD C — C25-CANCEL-ALL-PENDINGS (P1, CANCEL ×5) — Tickets 19489155, 19489157, 19489158, 19489159, 19489160. Grounds: (i) GTC resting orders are pre-authorized risk — incompatible with new_risk_admissible=false (an auto-fill would breach the solvency invariant without any council action — D4, CRITICAL); (ii) BTC/BNB RR breaches (D2/D3); (iii) stale VAH premise 9h+ old; (iv) concurrency 1+5 = 6 > max_concurrent_tickets 4. Re-stage only post-recovery with fresh dossiers, fresh ticks and RR ≥ 2.5R. BNB sizing opacity (0.41 vs 41.00 USD under contract ambiguity — alt-spec stressed 53.25 > cap) independently mandates cancellation.
+
+Re-arm criteria (Cycle_026+): equity ≥ 4775 (capacity = min(10.00, equity − 4775); full 10.00 at ≥ 4795 kernel) and preflight ≤120s and fresh ticks per symbol and full-length dossier reads and RR ≥ 2.5R.
+
+§6. Active Positions & Resting Orders Interrogation — [Cycle_025]
+
+"Run or cut? Still valid?" — every ticket:
+
 TICKET
-	
-INSTRUMENT
 	
 STATE
 	
-VALIDITY VERDICT {CYCLE_024}
+INTERROGATION
 	
-ACTION
+RULING
 
-#19490051	AUDUSD.pi LONG 0.08 @ 0.7027	+10.48 (+1.092R), SL 0.70282 locked	LET IT RUN. Certified VAL-sweep provenance (entry = dossier VAL 0.7027); BE-lock fired & complied; TP = +2.5R exact; liq map SAFE; hold 5.52 h < 6 h.	Continue + ratchet at 0.70450 → SL 0.70366
-#19489155	BTCUSD.pi SELL_LIMIT 0.01 @ 81084	8.35 h stale, +3.914% from market	NOT A VALID TRADE. RR 1.517R breaches the ≥2.5R charter; SL inside PDH sweep zone; value area abandoned (−1.97% below VAL); cumulative CVD −306M (distribution, not exhaustion).	CANCEL (Card A)
-#19489157	BNBUSD.p SELL_LIMIT 0.05 @ 753.3	8.35 h stale, +5.224% from market	NOT A VALID TRADE. RR 1.195R breaches charter; SL beyond PDH & Short-MP; book unarmored.	CANCEL (Card B)
-#19489158	XAUUSD.pi SELL_LIMIT 0.01 @ 4040.5	8.35 h stale, +1.158% from market	STRUCTURALLY VALID, CONDITIONALLY RETAINED. The only faithful VAH-fade in the book (entry −0.005% from VAH; RR 2.500R EXACT; SL tighter than dossier pad; TP through VAL). Caveats: largest single-ticket risk 9.00 USD (conservative spec — the dossier's "0.10 USD" is a 99.4× bug); price has drifted −0.64% below VAL; no wall at 4040.	Retain; re-anchor at next dossier refresh; kill if VAH migrates
-#19489159	NAS100.p SELL_LIMIT 0.01 @ 29535	8.35 h stale, +2.544% from market	RETAIN_WITH_REVALIDATION. RR 2.529R ✓, SL tighter than pad ✓ — but regime is TREND_DOWN_ACCEPTANCE (fade contraindicated), entry sits at the Tier-4 short-liq envelope 29535.85, no VR(4) certificate, and §1 min-lot 0.10 vs live 0.01 is unresolved (D-5).	Retain pending next-cycle dossier + broker-spec re-verification
-#19489160	DJ30.p SELL_LIMIT 0.01 @ 52638	8.35 h stale, +0.725% from market	RETAIN_WITH_REVALIDATION. RR 2.511R ✓; the only anchor still inside value; but its own dossier postured STAND_ASIDE_MONITOR (D-4) and the dossier card's sizing line is arithmetically false.	Retain pending re-validation; conservative risk 9.40 USD
+19490051 AUDUSD LONG 0.08 @0.7027	+14.1 pips / +1.175R / +11.28	24-bar decay clock EXPIRED (24.70 bars, 6h10m) but P/L ≫ +0.20R → exemption; structure intact (VAL entry, TP +2.5R); SL already above entry (guaranteed +0.96)	RUN — Cards A+B; no forced exit
+19489155 BTC SELL_LIMIT 0.01	3.83% from fill, 9h stale	RR 1.517R < 2.5R mandate; VAH stale; latent risk	CANCEL
+19489157 BNB SELL_LIMIT 0.05	5.52% from fill	RR 1.195R (worst); sizing ambiguity 0.41↔41.00	CANCEL
+19489158 XAU SELL_LIMIT 0.01	1.21% from fill	RR 2.500 compliant — but resting order = pre-authorized risk at capacity 0.00	CANCEL (D4)
+19489159 NAS SELL_LIMIT 0.01	2.38% from fill	RR 2.529 compliant — same D4 grounds	CANCEL (D4)
+19489160 DJ SELL_LIMIT 0.01	0.77% from fill	RR 2.511 compliant; closest to fill → most dangerous under D4	CANCEL (D4)
 
-Book-level ruling: the book violates the 2.5R charter in 2 of 5 resting legs, and under conservative specs the all-fill catastrophe breaches the operating buffer by 4.24 USD. Post-repair, the book is charter-compliant and buffer-safe under both spec readings. Seat #3 formally directs Seat #1 to execute Cards A+B before any other book action.
+Scenario ladder (script-verified): SL 0.70282 hit → 4763.79 (−11.21) · directive SL → 4764.27 (−10.73) · exit @0.70450 → 4777.23 (+2.23, RESTORED) · full TP → 4786.83 (+11.83). Phantom-book warning: the ghost registry still lists BNB 0.70 lots (14× the live 0.05) — any automaton acting on the registry would manage nonexistent orders. AUD ratchet compliance ratified at 0.70282 (BE+ achieved, directionally correct) with the 0.48 shortfall re-issued (D5).
 
-§7. Standardized Machine-Readable JSON Output Block — Cycle_024
+§7. Standardized Machine-Readable JSON Output Block — [Cycle_025]
 json
 {
-  "cycle_id": "Cycle_024",
-  "uuid": "0bf54f88-68bd-49dc-ae4a-f46b18dba085",
-  "dispatch_nonce": "cc526fe0-2354-47f9-ada8-703a52695343",
-  "cutoff_utc": "2026-10-30 03:59:52 UTC",
-  "seat": "Seat #3 - Z.ai Sovereign Council (Adversarial Solvency Arbiter)",
-  "verification_artifact": {
-    "script": "scripts/cycle_024_seat3_math.py",
-    "sidecar": "download/cycle_024_seat3_sidecar.json",
-    "sidecar_sha256": "1246ce5bba32882627e6574f8549d11b4ca98cabb64a1ef97647045449cb23fb",
-    "identities_checked": 19,
-    "identities_exact": 19
+  "cycle_id": "Cycle_025",
+  "seat": "Seat #3 — Z.ai Sovereign Council (Adversarial Solvency Arbiter)",
+  "envelope_binding": {
+    "uuid": "ef5a8cd6-63bc-4a99-b4f5-9f9aaebfdd7c",
+    "dispatch_nonce": "a7397508-9a80-4f36-99cc-95a702e1b367",
+    "cutoff_utc_governing": "2026-10-30 04:39:25",
+    "header_cutoff": "2026-10-30 04:39:31",
+    "cutoff_drift_seconds": 6
   },
   "account_solvency": {
     "login": 5064568, "server": "BlueberryMarketsSVG-Live",
-    "balance_usd": 4762.83, "equity_usd": 4773.31,
-    "margin_used_usd": 187.39, "margin_free_usd": 4585.92, "margin_level_pct": 2547.26,
-    "hard_floor_usd": 4600.0, "operating_buffer_usd": 4650.0, "solvency_kernel_usd": 4795.0,
-    "kernel_cushion_usd": -32.17, "realized_headroom_usd": -99.66,
-    "post_joint_stress_equity_usd": 4695.34,
-    "existing_ticket_stress_usd": 65.4875,
-    "stress_decomposition": {"nominal": 50.79, "fixed_excursion_constant": 40.31, "floating_giveback": 10.48},
+    "balance": 4762.83, "equity": 4774.11, "equity_identity": "EXACT",
+    "floating_pnl": 11.28, "margin_used": 187.39, "margin_free": 4586.72,
+    "margin_level_pct": 2547.6866,
+    "hard_floor_usd": 4775.0, "operating_buffer_usd": 4795.0,
+    "hard_floor_cushion_usd": -0.89, "operating_buffer_cushion_usd": -20.89,
+    "balance_vs_floor_usd": -12.17, "balance_vs_buffer_usd": -32.17,
     "capital_mode": "TIER_0_DEFENSIVE",
+    "nominal_risk_capacity_usd": 0.0,
     "new_risk_admissible": false,
-    "market_order_posture": "DENIED_FAIL_CLOSED",
-    "floor_schema_dispute": "header 4775/4795 vs envelope 4600/4650/4795 - fail-closed verdict INVARIANT to both; envelope governs"
+    "joint_stress": {
+      "desk_booked_usd": 65.4875,
+      "independent_reconstruction_usd": 65.5875,
+      "residual_usd": 0.10,
+      "adopted_conservative_usd": 65.5875,
+      "post_joint_stress_equity_usd": 4695.2425,
+      "realized_headroom_vs_buffer_usd": -99.7575,
+      "favorable_bound_usd": 4709.2425,
+      "capacity_zero_robust": true
+    },
+    "posture": "MARKET_ORDERS_DENIED_FAIL_CLOSED",
+    "recovery_threshold": {"realization_needed_usd": 12.17, "min_exit_bid": 0.70422, "protocol_exit_bid": 0.70450, "post_exit_balance_usd": 4777.23}
   },
   "active_staged_orders": [
-    {"ticket": 19490051, "symbol": "AUDUSD.pi", "kind": "POSITION", "side": "BUY", "volume": 0.08,
-     "entry": 0.7027, "sl": 0.70282, "tp": 0.7057, "unrealized_usd": 10.48, "unrealized_R": 1.092,
-     "verdict": "LET_IT_RUN", "ratchet": {"next_trigger_price": 0.70450, "next_sl": 0.70366, "compliance": "COMPLIANT_PROTECTIVE"}},
-    {"ticket": 19489155, "symbol": "BTCUSD.pi", "kind": "SELL_LIMIT", "volume": 0.01, "entry": 81084.0,
-     "rr": 1.517, "rr_gate": "FAIL_LT_2.5R", "stale_h": 8.35, "verdict": "CANCEL"},
-    {"ticket": 19489157, "symbol": "BNBUSD.p", "kind": "SELL_LIMIT", "volume": 0.05, "entry": 753.3,
-     "rr": 1.195, "rr_gate": "FAIL_LT_2.5R", "stale_h": 8.35, "verdict": "CANCEL"},
-    {"ticket": 19489158, "symbol": "XAUUSD.pi", "kind": "SELL_LIMIT", "volume": 0.01, "entry": 4040.5,
+    {"card_id": "C25-AUD-RATCHET", "priority": "P1_IMMEDIATE", "ticket": 19490051, "symbol": "AUDUSD.pi", "action": "MODIFY_SL", "from": 0.70282, "to": 0.70288, "locks_usd": 1.44, "class": "RISK_REDUCING"},
 
-Cycle_024 closing stance (Seat #3): Every solvency identity reconciles EXACTLY; the account is below the kernel and the header floor alike, so the fail-closed posture is mathematically forced, not discretionary. The live AUD runner is compliant, protected, and one ratchet away from +0.80R locked. The only two objects in the book that violate the written charter are the BTC and BNB stale fade layers — cancel them, and the book becomes buffer-safe under both contract-spec readings. Artifacts: scripts/cycle_024_seat3_math.py and download/cycle_024_seat3_sidecar.json (sha256 1246ce5b…cb23fb).
+Cycle_025 ruling summary: Solvency posture holds at DENIED_FAIL_CLOSED — equity sits 0.89 below the hard floor, joint-stressed headroom is negative under all three models, and zero fresh market evidence exists to admit anything. The audit's decisive catches: the preflight pipeline is rebinding 3-day-old telemetry to current nonces (quarantined), two resting orders (BTC 1.517R, BNB 1.195R) breach the 2.5R mandate, and five GTC orders constitute unauthorized latent risk — all five cancelled by card, with the AUD winner left running under an armed recovery ladder that restores the floor at 0.70450.
+
+Artifacts persisted: scripts/cycle_025_seat3_math.py + download/Cycle_025_seat3_sidecar.json (hashes above). Next cycle: if Card B executes, Cycle_026 re-opens with +2.23 cushion — re-arm screening with fresh ticks and full dossier reads before any new admission.
 
 ================================================================================
-Z.AI ATTACHED OUTPUT FILE:  (2003 chars)
+Z.AI ATTACHED OUTPUT FILE:  (5099 chars)
 ================================================================================
 
 {
-  "cycle_id": "Cycle_015",
+  "cycle_id": "Cycle_021",
+  "seat": "Seat #3 - Z.ai Sovereign Council (Risk Arbiter)",
+  "cutoff_utc": "2026-10-30 02:31:11 UTC / envelope 02:30:50 UTC (delta 21s)",
+  "account_solvency": {
+    "balance_usd": 4762.83, "equity_usd": 4768.35, "floating_pnl_usd": 5.52,
+    "margin_used_usd": 187.39, "margin_level": 2544.6128,
+    "floors_strict": {"hard": 4775.00, "kernel": 4795.00},
+    "deficit_hard_balance_usd": -12.17, "deficit_hard_equity_usd": -6.65,
+    "deficit_kernel_equity_usd": -26.65,
+    "existing_ticket_stress_envelope_usd": 72.4875,
+    "post_joint_balance_basis_usd": 4688.3425,
+    "post_joint_equity_basis_usd": 4693.8625,
+    "realized_headroom_usd": [-106.6575, -101.1375],
+    "nominal_risk_capacity_usd": 0.0, "new_risk_admissible": false,
+    "capital_mode": "TIER_0_DEFENSIVE",
+    "unlock_ladder_equity_basis": {"1usd_ticket": 4798.25, "gap": 29.90, "10usd_ticket": 4809.50, "gap": 41.15, "tier2": 4850.00, "gap": 81.65},
+    "stress_delta_mechanism": "+6.90 = 1.25 x 5.52 unrealized EXACT (AUD re-anchored to current); residual -0.755 carried from Cycle_014",
+    "post_tp_equity_note": "full AUD TP lands 4792.35 - still -2.65 below kernel; runner alone cannot unlock new risk"
+  },
+  "active_staged_orders": [
+    {"ticket": 19490051, "symbol": "AUDUSD.pi", "state": "ACTIVE_LONG_0.08", "fill_utc": "2026-10-29 22:28:55.372", "inside_rollover_embargo": true, "embargo_gap_s": -64.63, "unrealized": "+0.575R", "verdict": "HOLD_RATCHET_MANDATE", "directives": {"be_lock_trigger": 0.70366, "be_lock_sl": 0.70288, "r2_trigger": 0.70450, "r2_sl": 0.70366, "tp": 0.7057, "time_stop_deadline_utc": "2026-10-30 04:28:55", "weekend_mandate": "SL >= 0.70288 by 20:00 UTC else flatten by 20:45 UTC Friday"}},
+    {"ticket": 19489155, "symbol": "BTCUSD.pi", "verdict": "CANCEL", "grounds": "RR 1.5168R; drift -4.714 pct below VAL; entry +5.071 pct above market; VR unlicensed; weekend fill risk"},
+    {"ticket": 19489157, "symbol": "BNBUSD.p", "verdict": "CANCEL", "grounds": "RR 1.1951R; entry > invalidation 753.08; below weekly VAL and -3sigma"},
+    {"ticket": 19489158, "symbol": "XAUUSD.pi", "verdict": "CANCEL_BLOCKED_RESTAGE", "grounds": "SL -9.45 pct under-pad; geometry queued FC-021-01"},
+    {"ticket": 19489159, "symbol": "NAS100.p", "verdict": "CANCEL_BLOCKED_RESTAGE", "grounds": "SL -12.03 pct; TREND_DOWN_ACCEPTANCE; queued FC-021-02 at 0.01 lots"},
+    {"ticket": 19489160, "symbol": "DJ30.p", "verdict": "CANCEL", "grounds": "sizing infeasible 10.13 > 10.00; SL -7.24 pct"}
+  ],
+  "high_confluence_formulated_trades": [],
+  "blocked_restage_queue": [
+    {"card_id": "FC-021-01", "symbol": "XAUUSD.pi", "geometry": "4040.71/4050.65/4015.85 x0.01", "nominal_usd": 9.94, "status": "BLOCKED_TIER0_CAPACITY0_STALE_DOSSIER_VR_NULL", "unlock_required_usd": 4809.50},
+    {"card_id": "FC-021-02", "symbol": "NAS100.p", "geometry": "29530.45/29627.07/29288.90 x0.01", "nominal_usd": 9.66, "status": "BLOCKED_TIER0_CAPACITY0_STALE_DOSSIER_VR_NULL", "unlock_required_usd": 4809.50}
+  ],
+  "disputes_or_rejections": [
+    {"id": "D1", "severity": "HIGH", "note": "floor desync persists (4600/4650 stale fields)"},
+    {"id": "D2", "severity": "LOW", "note": "cutoff delta 21s (24 -> 121 -> 21)"},
+    {"id": "D3", "severity": "CRITICAL", "note": "receipt re-stamp x3, staleness 220,725s (61.31h), balance mismatch +74.25 constant - systematic template proven"},
+    {"id": "D4", "severity": "HIGH", "note": "ghost registry + 0/6 tickets registered; no fill record for 19490051"},
+    {"id": "D5", "severity": "CRITICAL", "note": "RR 1.5168R / 1.1951R unchanged"},
+    {"id": "D6", "severity": "HIGH", "note": "SL under-pads -9.45 / -12.03 / -7.24 pct unchanged"},
+    {"id": "D7", "severity": "HIGH", "note": "ESCALATED: dossier 8.94h; BTC -4.714 pct value breakdown; BNB below -3sigma"},
+    {"id": "D8", "severity": "HIGH", "note": "VR(4)/ER(48) null - all fades unlicensed"},
+    {"id": "D9", "severity": "MEDIUM", "note": "Max-Pain / FX liquidation maps empty"},
+    {"id": "D10", "severity": "HIGH", "note": "engine v3.3 defects unremediated despite git advance"},
+    {"id": "D11", "severity": "MEDIUM", "note": "residual -0.755 stable; AUD re-anchor mechanism IDENTIFIED"},
+    {"id": "D12", "severity": "MEDIUM", "note": "min-lot 0.01 vs spec 0.10 (NAS/DJ)"},
+    {"id": "D13", "severity": "MEDIUM", "note": "whale armor uncertified account-wide"},
+    {"id": "D14", "severity": "HIGH", "note": "WORSENED: ledger frozen at Cycle_004, 18.43h stale; false solvency assertion uncorrected"},
+    {"id": "D15", "severity": "HIGH", "note": "NEW: selective compliance - KEEP executed (+0.575R validates council), 5 CANCEL/RESTAGE ignored 6.87h; embargo-window fill 64.63s before close"},
+    {"id": "D16", "severity": "LOW", "note": "NEW: magic 20261030 on Oct-29 orders; cushion basis ambiguity; Seat #3 self-correction FC-014-02 sizing"}
+  ],
   "final_authorization": {
     "new_market_orders": "DENIED_FAIL_CLOSED",
-    "resting_book": "FULL_CANCEL - blanket rollover invalidation (D15) + carried per-ticket breaches; restage window post-22:30 UTC",
-    "recovery_path": "realized 4775.00 -> kernel 4795.00 -> 10-USD-ticket unlock 4809.50",
+    "new_staged_intents": "DENIED",
+    "resting_book": "MANDATORY_BOOK_REPAIR (cancel 5 / hold 1)",
     "cycle_verdict": "DENIED_FAIL_CLOSED"
-  },
-  "account_solvency": {
-    "balance_usd": 4762.83, "equity_usd": 4762.83,
-    "floors_strict": {"hard": 4775.0, "op_buffer": 4795.0},
-    "deficit_vs_strict_hard_floor_usd": -12.17,
-    "post_joint_stress_equity_reproduced_usd": 4695.2425,
-    "realized_headroom_reproduced_usd": -99.7575,
-    "nominal_risk_capacity_clamped_usd": 0.0,
-    "capital_mode": "TIER_0_DEFENSIVE", "new_risk_admissible": false,
-    "realized_floor_breach": "flat-book post-GCR equity 4760.83 = -14.17 vs strict Hard Floor - breach is REALIZED, not contingent"
-  },
-  "active_staged_orders": "6/6 CANCEL (blanket own-card blackout invalidation; supplementary grounds per ticket)",
-  "high_confluence_formulated_trades": ["FC-015-01 XAU deferred restage", "FC-015-02 NAS deferred restage", "FC-015-03 AUD reevaluate", "FC-015-04 BTC/BNB/DJ excluded"],
-  "disputes_or_rejections": ["D1 floor desync (carried)", "D2 cutoff delta 24s -> 121s ESCALATED", "D3 CRITICAL receipt cache-stamping PROVEN SYSTEMATIC (fresh nonce over identical 56.13h-old observation)",
-    "D4 unregistered orders, ledger 13h15m stale", "D5 RR breaches BTC 1.52R / BNB 1.20R (carried)", "D6 SL under-pads XAU/NAS/DJ (carried)",
-    "D7 stale-level staging, drift updated", "D8 VR(4)/ER(48) null - second cycle", "D9 Max-Pain/FX liq holes (carried)", "D10 engine x100 defects (carried)",
-    "D11 stress residual -0.755 (carried)", "D12 min-lot violations (carried)", "D13 whale-armor absence (carried)", "D14 ledger false assertion (carried)",
-    "D15 NEW rollover invalidation active - all 6 orders breach own cards", "D16 NEW realized strict-floor breach at zero exposure"]
+  }
 }
