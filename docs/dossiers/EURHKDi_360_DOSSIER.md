@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:36 IST` (`2026-10-30 08:53:36 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`8.78` | EMA-20=`8.78` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`8.78` (Slope: `+0.0000`) | EMA-100=`8.78`
   * Institutional Anchors: EMA-144=`8.78` | EMA-200=`8.78` (Slope: `+0.0000`) | EMA-233=`8.78`
-- **Range Boundaries**: 24H High=`8.87` | 24H Low=`8.70` | Weekly High=`8.96` | Weekly Low=`8.61`
+- **Range Boundaries**: 24H High=`8.87` | 24H Low=`8.69` | Weekly High=`8.96` | Weekly Low=`8.61`
 
 ---
 

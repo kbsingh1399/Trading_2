@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDCNH
 **Canonical Key**: `NZDCNH` | **Broker Instrument**: `NZDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `3.76` | **Live Ask Quote**: `3.76` | **Mid Price**: `3.76`
-- **Spread Points**: `17.00` | **Spread BPS**: `0.45 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `15.00` | **Spread BPS**: `0.40 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,10 +28,10 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `3.78` | Lower -3.00σ Band: `3.73`
-  * Upper +2.51σ Band: `3.78` | Lower -2.51σ Band: `3.73`
+  * Upper +2.51σ Band: `3.78` | Lower -2.51σ Band: `3.74`
   * Upper +2.01σ Band: `3.77` | Lower -2.01σ Band: `3.74`
   * Upper +2.00σ Band: `3.77` | Lower -2.00σ Band: `3.74`
-  * Upper +1.28σ Band: `3.77` | Lower -1.28σ Band: `3.74`
+  * Upper +1.28σ Band: `3.77` | Lower -1.28σ Band: `3.75`
   * Upper +1.00σ Band: `3.76` | Lower -1.00σ Band: `3.75`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`3.76` | EMA-20=`3.76` (Slope: `+0.0000`)
@@ -46,18 +46,18 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `3.77` (Distance: `+0.00%`)
   * Point of Control (POC) = `3.76` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `3.74` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `3.75` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`3.77` | POC=`3.76` | VAL=`3.74`
   * Prior Day Extremes: PDH=`3.78` | PDL=`3.73` | PDC=`3.76`
-  * Monday Range Blueprint: High=`3.77` | Mid=`3.76` | Low=`3.74`
+  * Monday Range Blueprint: High=`3.78` | Mid=`3.76` | Low=`3.74`
   * Developing Weekly Value Area: Weekly VAH=`3.79` | Weekly POC=`3.76` | Weekly VAL=`3.73`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`3.76` | Low=`3.75`
   * London Session (08:00-16:00 UTC): High=`3.77` | Low=`3.74`
   * New York Session (13:00-21:00 UTC): High=`3.78` | Low=`3.73`
-  * Initial Balance (First Hour): IB High=`3.77` | IB Low=`3.74`
+  * Initial Balance (First Hour): IB High=`3.77` | IB Low=`3.75`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `3.74` - `3.77`
   * Optimal Trade Entry (OTE 0.705): `3.76`
@@ -267,15 +267,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `3.74` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `3.75` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `2.54` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `6.74`
+  * +2.5R Take Profit: `6.75`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `3.77` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `4.97` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `0.7659`
+  * +2.5R Take Profit: `0.7671`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

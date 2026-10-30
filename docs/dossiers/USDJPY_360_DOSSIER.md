@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `157.47` | VWAP Z-Score: `-2.12` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.1556` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `36.99` (State: `NEUTRAL`)
+  * Session VWAP: `157.46` | VWAP Z-Score: `-0.96` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.1575` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `43.64` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `157.87` | Lower -3.00σ Band: `157.07`
-  * Upper +2.51σ Band: `157.80` | Lower -2.51σ Band: `157.13`
-  * Upper +2.01σ Band: `157.74` | Lower -2.01σ Band: `157.20`
-  * Upper +2.00σ Band: `157.74` | Lower -2.00σ Band: `157.20`
-  * Upper +1.28σ Band: `157.64` | Lower -1.28σ Band: `157.30`
+  * Upper +3.00σ Band: `157.87` | Lower -3.00σ Band: `157.06`
+  * Upper +2.51σ Band: `157.80` | Lower -2.51σ Band: `157.12`
+  * Upper +2.01σ Band: `157.74` | Lower -2.01σ Band: `157.19`
+  * Upper +2.00σ Band: `157.73` | Lower -2.00σ Band: `157.19`
+  * Upper +1.28σ Band: `157.64` | Lower -1.28σ Band: `157.29`
   * Upper +1.00σ Band: `157.60` | Lower -1.00σ Band: `157.33`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`157.47` | EMA-20=`157.50` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`157.57` (Slope: `+0.0000`) | EMA-100=`157.67`
-  * Institutional Anchors: EMA-144=`157.71` | EMA-200=`157.75` (Slope: `-0.0172`) | EMA-233=`157.77`
+  * Fast EMA Array: EMA-9=`157.44` | EMA-20=`157.48` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`157.56` (Slope: `+0.0000`) | EMA-100=`157.66`
+  * Institutional Anchors: EMA-144=`157.71` | EMA-200=`157.75` (Slope: `-0.0190`) | EMA-233=`157.76`
 - **Range Boundaries**: 24H High=`158.13` | 24H Low=`157.12` | Weekly High=`158.35` | Weekly Low=`157.12`
 
 ---
@@ -45,22 +45,22 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `157.65` (Distance: `-0.25%`)
-  * Point of Control (POC) = `157.45` (Distance: `-0.12%`)
+  * Point of Control (POC) = `157.45` (Distance: `-0.13%`)
   * Value Area Low (VAL) = `157.28` (Distance: `-0.02%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`157.99` | POC=`157.87` | VAL=`157.76`
   * Prior Day Extremes: PDH=`158.13` | PDL=`157.60` | PDC=`157.69`
   * Monday Range Blueprint: High=`157.64` | Mid=`157.15` | Low=`156.65`
-  * Developing Weekly Value Area: Weekly VAH=`158.03` | Weekly POC=`157.87` | Weekly VAL=`157.43`
+  * Developing Weekly Value Area: Weekly VAH=`158.03` | Weekly POC=`157.87` | Weekly VAL=`157.41`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`157.90` | Low=`157.12`
   * London Session (08:00-16:00 UTC): High=`157.75` | Low=`157.16`
-  * New York Session (13:00-21:00 UTC): High=`158.20` | Low=`156.31`
+  * New York Session (13:00-21:00 UTC): High=`158.19` | Low=`156.31`
   * Initial Balance (First Hour): IB High=`157.70` | IB Low=`157.40`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `156.62` - `157.88`
-  * Optimal Trade Entry (OTE 0.705): `157.57`
+  * Optimal Trade Entry (OTE 0.705): `157.56`
   * Structural Invalidation Anchor (0.786): `158.51`
 
 ---
@@ -397,13 +397,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `157.28` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `157.09` (Risk Distance: `0.1883` pts)
-  * +2.5R Take Profit: `157.75`
+  * Spread-Padded Stop Loss: `157.09` (Risk Distance: `0.1904` pts)
+  * +2.5R Take Profit: `157.76`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.19 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `157.65` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `157.83` (Risk Distance: `0.1883` pts)
+  * Spread-Padded Stop Loss: `157.84` (Risk Distance: `0.1904` pts)
   * +2.5R Take Profit: `157.17`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.19 USD <= 10.00 USD`)
 

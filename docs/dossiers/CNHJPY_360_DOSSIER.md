@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CNHJPY
 **Canonical Key**: `CNHJPY` | **Broker Instrument**: `CNHJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:36 IST` (`2026-10-30 08:53:36 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `23.81` | Lower -3.00σ Band: `23.48`
   * Upper +2.51σ Band: `23.77` | Lower -2.51σ Band: `23.51`
-  * Upper +2.01σ Band: `23.74` | Lower -2.01σ Band: `23.54`
+  * Upper +2.01σ Band: `23.74` | Lower -2.01σ Band: `23.55`
   * Upper +2.00σ Band: `23.74` | Lower -2.00σ Band: `23.55`
   * Upper +1.28σ Band: `23.71` | Lower -1.28σ Band: `23.58`
   * Upper +1.00σ Band: `23.69` | Lower -1.00σ Band: `23.60`
@@ -44,20 +44,20 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `23.71` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `23.72` (Distance: `+0.00%`)
   * Point of Control (POC) = `23.64` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `23.57` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`23.74` | POC=`23.64` | VAL=`23.55`
-  * Prior Day Extremes: PDH=`23.78` | PDL=`23.50` | PDC=`23.64`
-  * Monday Range Blueprint: High=`23.76` | Mid=`23.64` | Low=`23.52`
-  * Developing Weekly Value Area: Weekly VAH=`23.83` | Weekly POC=`23.64` | Weekly VAL=`23.45`
+  * Prior Day Extremes: PDH=`23.79` | PDL=`23.50` | PDC=`23.64`
+  * Monday Range Blueprint: High=`23.76` | Mid=`23.64` | Low=`23.53`
+  * Developing Weekly Value Area: Weekly VAH=`23.83` | Weekly POC=`23.64` | Weekly VAL=`23.46`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`23.69` | Low=`23.60`
   * London Session (08:00-16:00 UTC): High=`23.74` | Low=`23.55`
-  * New York Session (13:00-21:00 UTC): High=`23.78` | Low=`23.50`
-  * Initial Balance (First Hour): IB High=`23.71` | IB Low=`23.57`
+  * New York Session (13:00-21:00 UTC): High=`23.79` | Low=`23.50`
+  * Initial Balance (First Hour): IB High=`23.72` | IB Low=`23.57`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `23.55` - `23.74`
   * Optimal Trade Entry (OTE 0.705): `23.69`
@@ -273,8 +273,8 @@
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `23.71` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `24.91` (Risk Distance: `1.20` pts)
+  * Execution Entry: `23.72` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `24.92` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `20.71`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

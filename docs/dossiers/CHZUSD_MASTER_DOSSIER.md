@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0117` | VWAP Z-Score: `+1.43` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `0.0117` | VWAP Z-Score: `+1.07` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.000098` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `54.73` (State: `NEUTRAL`)
+  * 14-Period RSI: `48.15` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0125` | Lower -3.00σ Band: `0.0109`
   * Upper +2.51σ Band: `0.0124` | Lower -2.51σ Band: `0.0110`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0121` | EMA-20=`0.0120` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0120` (Slope: `+0.0000`) | EMA-100=`0.0122`
-  * Institutional Anchors: EMA-144=`0.0123` | EMA-200=`0.0124` (Slope: `-0.2955`) | EMA-233=`0.0124`
+  * Institutional Anchors: EMA-144=`0.0123` | EMA-200=`0.0124` (Slope: `-0.3102`) | EMA-233=`0.0124`
 - **Range Boundaries**: 24H High=`0.0130` | 24H Low=`0.0111` | Weekly High=`0.0130` | Weekly Low=`0.0111`
 
 ---
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 3,780.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `15m` | -1,690.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30m` | 206.28 USD | 0.00 USD | **`ACCUMULATION`** |
-| `1h` | 15,730.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `2h` | 13,310.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `4h` | 60,650.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `6h` | 97,520.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `8h` | 44,600.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `12h` | -71,510.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `24h` | -1,980.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1w` | -947,430.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30d` | -7,000,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `5m` | -657.61 USD | -1,380.00 USD | **`DISTRIBUTION`** |
+| `15m` | -3,830.00 USD | -12,490.00 USD | **`DISTRIBUTION`** |
+| `30m` | -7,200.00 USD | 4,490.00 USD | **`DISTRIBUTION`** |
+| `1h` | 22,670.00 USD | 44,000.00 USD | **`ACCUMULATION`** |
+| `2h` | 16,360.00 USD | 82,900.00 USD | **`ACCUMULATION`** |
+| `4h` | 52,740.00 USD | 24,390.00 USD | **`ACCUMULATION`** |
+| `6h` | 95,730.00 USD | 48,210.00 USD | **`ACCUMULATION`** |
+| `8h` | 36,730.00 USD | -377,170.00 USD | **`DISTRIBUTION`** |
+| `12h` | -38,590.00 USD | 110,370.00 USD | **`ACCUMULATION`** |
+| `24h` | -1,590.00 USD | -70,070.00 USD | **`DISTRIBUTION`** |
+| `1w` | -953,670.00 USD | -889,470.00 USD | **`DISTRIBUTION`** |
+| `30d` | -7,020,000.00 USD | -11,250,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+3.78K` | 15m=`-1.69K` | 1h=`+15.73K` | 24h=`-1.98K`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Spot Capital Netflows: 5m=`-657.61` | 15m=`-3.83K` | 1h=`+22.67K` | 24h=`-1.59K`
+* Futures Capital Netflows: 5m=`-1.38K` | 15m=`-12.49K` | 1h=`+44.00K` | 24h=`-70.07K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.45` | **Live Ask Quote**: `7.45` | **Mid Price**: `7.45`
-- **Spread Points**: `58.00` | **Spread BPS**: `0.78 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `34.00` | **Spread BPS**: `0.46 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,16 +28,16 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `7.50` | Lower -3.00σ Band: `7.39`
-  * Upper +2.51σ Band: `7.49` | Lower -2.51σ Band: `7.41`
-  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.42`
+  * Upper +2.51σ Band: `7.49` | Lower -2.51σ Band: `7.40`
+  * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.41`
   * Upper +2.00σ Band: `7.48` | Lower -2.00σ Band: `7.42`
-  * Upper +1.28σ Band: `7.47` | Lower -1.28σ Band: `7.43`
+  * Upper +1.28σ Band: `7.47` | Lower -1.28σ Band: `7.42`
   * Upper +1.00σ Band: `7.46` | Lower -1.00σ Band: `7.43`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`7.45` | EMA-20=`7.45` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`7.45` (Slope: `+0.0000`) | EMA-100=`7.45`
   * Institutional Anchors: EMA-144=`7.45` | EMA-200=`7.45` (Slope: `+0.0000`) | EMA-233=`7.45`
-- **Range Boundaries**: 24H High=`7.52` | 24H Low=`7.37` | Weekly High=`7.60` | Weekly Low=`7.30`
+- **Range Boundaries**: 24H High=`7.52` | 24H Low=`7.37` | Weekly High=`7.59` | Weekly Low=`7.30`
 
 ---
 
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `7.42` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `6.22` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `10.43`
+  * +2.5R Take Profit: `10.42`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

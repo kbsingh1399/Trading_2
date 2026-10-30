@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.82` | **Live Ask Quote**: `9.82` | **Mid Price**: `9.82`
-- **Spread Points**: `74.00` | **Spread BPS**: `0.75 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `115.00` | **Spread BPS**: `1.17 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -28,16 +28,16 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `9.89` | Lower -3.00σ Band: `9.75`
-  * Upper +2.51σ Band: `9.87` | Lower -2.51σ Band: `9.77`
+  * Upper +2.51σ Band: `9.87` | Lower -2.51σ Band: `9.76`
   * Upper +2.01σ Band: `9.86` | Lower -2.01σ Band: `9.78`
   * Upper +2.00σ Band: `9.86` | Lower -2.00σ Band: `9.78`
-  * Upper +1.28σ Band: `9.85` | Lower -1.28σ Band: `9.79`
+  * Upper +1.28σ Band: `9.84` | Lower -1.28σ Band: `9.79`
   * Upper +1.00σ Band: `9.84` | Lower -1.00σ Band: `9.80`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.82` | EMA-20=`9.82` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.82` (Slope: `+0.0000`) | EMA-100=`9.82`
   * Institutional Anchors: EMA-144=`9.82` | EMA-200=`9.82` (Slope: `+0.0000`) | EMA-233=`9.82`
-- **Range Boundaries**: 24H High=`9.92` | 24H Low=`9.72` | Weekly High=`10.02` | Weekly Low=`9.62`
+- **Range Boundaries**: 24H High=`9.91` | 24H Low=`9.72` | Weekly High=`10.01` | Weekly Low=`9.62`
 
 ---
 
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.85` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.05` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `6.85`
+  * +2.5R Take Profit: `6.84`
   * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

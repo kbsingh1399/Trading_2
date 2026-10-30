@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: COMUSD
 **Canonical Key**: `COMUSD` | **Broker Instrument**: `COMUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `20.07` | VWAP Z-Score: `-0.07` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.1675` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `47.54` (State: `NEUTRAL`)
+  * Session VWAP: `20.07` | VWAP Z-Score: `-0.28` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.1641` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `44.40` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `21.17` | Lower -3.00σ Band: `18.98`
-  * Upper +2.51σ Band: `20.99` | Lower -2.51σ Band: `19.16`
-  * Upper +2.01σ Band: `20.81` | Lower -2.01σ Band: `19.34`
-  * Upper +2.00σ Band: `20.81` | Lower -2.00σ Band: `19.34`
+  * Upper +3.00σ Band: `21.16` | Lower -3.00σ Band: `18.99`
+  * Upper +2.51σ Band: `20.98` | Lower -2.51σ Band: `19.17`
+  * Upper +2.01σ Band: `20.80` | Lower -2.01σ Band: `19.35`
+  * Upper +2.00σ Band: `20.80` | Lower -2.00σ Band: `19.35`
   * Upper +1.28σ Band: `20.54` | Lower -1.28σ Band: `19.61`
-  * Upper +1.00σ Band: `20.44` | Lower -1.00σ Band: `19.71`
+  * Upper +1.00σ Band: `20.43` | Lower -1.00σ Band: `19.71`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`20.02` | EMA-20=`20.05` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`20.33` (Slope: `+0.0000`) | EMA-100=`20.65`
-  * Institutional Anchors: EMA-144=`20.80` | EMA-200=`20.92` (Slope: `-0.5299`) | EMA-233=`20.95`
+  * Fast EMA Array: EMA-9=`20.01` | EMA-20=`20.04` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`20.31` (Slope: `+0.0000`) | EMA-100=`20.64`
+  * Institutional Anchors: EMA-144=`20.79` | EMA-200=`20.91` (Slope: `-0.5312`) | EMA-233=`20.94`
 - **Range Boundaries**: 24H High=`21.81` | 24H Low=`19.25` | Weekly High=`21.81` | Weekly Low=`19.25`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `20.62` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `20.60` (Distance: `+0.00%`)
   * Point of Control (POC) = `20.02` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `19.83` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `19.83` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `19.17` (Risk Distance: `0.6510` pts)
-  * +2.5R Take Profit: `21.45`
-  * Mathematical Lot Sizing: **`15.36 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `19.18` (Risk Distance: `0.6469` pts)
+  * +2.5R Take Profit: `21.44`
+  * Mathematical Lot Sizing: **`15.45 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `20.62` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `21.27` (Risk Distance: `0.6510` pts)
+  * Execution Entry: `20.60` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `21.25` (Risk Distance: `0.6469` pts)
   * +2.5R Take Profit: `18.99`
-  * Mathematical Lot Sizing: **`15.36 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`15.45 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: INCUSD
 **Canonical Key**: `INCUSD` | **Broker Instrument**: `INCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0783` | VWAP Z-Score: `-0.42` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000708` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `44.47` (State: `NEUTRAL`)
+  * Session VWAP: `0.0782` | VWAP Z-Score: `-0.58` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000700` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `42.02` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0837` | Lower -3.00σ Band: `0.0728`
+  * Upper +3.00σ Band: `0.0836` | Lower -3.00σ Band: `0.0728`
   * Upper +2.51σ Band: `0.0828` | Lower -2.51σ Band: `0.0737`
   * Upper +2.01σ Band: `0.0819` | Lower -2.01σ Band: `0.0746`
-  * Upper +2.00σ Band: `0.0819` | Lower -2.00σ Band: `0.0746`
-  * Upper +1.28σ Band: `0.0806` | Lower -1.28σ Band: `0.0759`
-  * Upper +1.00σ Band: `0.0801` | Lower -1.00σ Band: `0.0764`
+  * Upper +2.00σ Band: `0.0818` | Lower -2.00σ Band: `0.0746`
+  * Upper +1.28σ Band: `0.0805` | Lower -1.28σ Band: `0.0759`
+  * Upper +1.00σ Band: `0.0800` | Lower -1.00σ Band: `0.0764`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0777` | EMA-20=`0.0778` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.0794` (Slope: `+0.0000`) | EMA-100=`0.0816`
-  * Institutional Anchors: EMA-144=`0.0827` | EMA-200=`0.0836` (Slope: `-0.8794`) | EMA-233=`0.0839`
+  * Fast EMA Array: EMA-9=`0.0776` | EMA-20=`0.0777` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.0793` (Slope: `+0.0000`) | EMA-100=`0.0815`
+  * Institutional Anchors: EMA-144=`0.0826` | EMA-200=`0.0835` (Slope: `-0.8756`) | EMA-233=`0.0839`
 - **Range Boundaries**: 24H High=`0.0883` | 24H Low=`0.0743` | Weekly High=`0.0889` | Weekly Low=`0.0743`
 
 ---

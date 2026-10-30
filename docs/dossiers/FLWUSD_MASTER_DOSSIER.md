@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:20:35 IST` (`2026-10-30 08:50:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:23:37 IST` (`2026-10-30 08:53:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0127` | VWAP Z-Score: `+0.89` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000174` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0127` | VWAP Z-Score: `+0.87` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000162` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.42` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0137` | Lower -3.00σ Band: `0.0116`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0130` | EMA-20=`0.0130` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0133` (Slope: `+0.0000`) | EMA-100=`0.0139`
-  * Institutional Anchors: EMA-144=`0.0143` | EMA-200=`0.0147` (Slope: `-1.4353`) | EMA-233=`0.0149`
+  * Institutional Anchors: EMA-144=`0.0143` | EMA-200=`0.0147` (Slope: `-1.4243`) | EMA-233=`0.0148`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0110` | Weekly High=`0.0170` | Weekly Low=`0.0110`
 
 ---
@@ -46,7 +46,7 @@
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.0130` (Distance: `+0.00%`)
   * Point of Control (POC) = `0.0130` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.0124` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `0.0125` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0231` | POC=`0.0230` | VAL=`0.0229`
@@ -267,8 +267,8 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.0124` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.0178` (Risk Distance: `0.0400` pts)
+  * Execution Entry: `0.0125` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `-0.0177` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.1125`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
