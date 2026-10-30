@@ -180,8 +180,8 @@
       "Symbol": "ENJ",
       "USDT_Binance": "0.0050%",
       "USDT_OKX": "0.0050%",
-      "USDT_Bybit": "-0.0022%",
-      "USDT_KuCoin": "-0.0118%",
+      "USDT_Bybit": "-0.0012%",
+      "USDT_KuCoin": "-0.0091%",
       "USDT_MEXC": "0.0050%",
       "USDT_BingX": "0.0050%",
       "USDT_Gate": "0.0050%",
@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:16:45 IST"
+      "Timestamp_IST": "2026-10-30 21:29:23 IST"
     },
     "settle_row": {
-      "rank": 541,
+      "rank": 528,
       "symbol": "ENJ",
-      "price": "$0.023580",
-      "price_24h_pct": "-8.07%",
-      "open_interest": "$3.18M",
-      "current": "$93.54",
+      "price": "$0.023600",
+      "price_24h_pct": "-8.31%",
+      "open_interest": "$3.17M",
+      "current": "$99.52",
       "last_24h": "$860.24",
       "last_3d": "$1.93K",
       "last_7d": "$3.01K",
-      "timestamp_ist": "2026-10-30 21:16:52 IST"
+      "timestamp_ist": "2026-10-30 21:29:30 IST"
     },
     "ls_ladder": []
   },

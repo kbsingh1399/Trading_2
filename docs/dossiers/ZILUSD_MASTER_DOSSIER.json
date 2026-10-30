@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:16:45 IST"
+      "Timestamp_IST": "2026-10-30 21:29:23 IST"
     },
     "settle_row": {
-      "rank": 332,
+      "rank": 329,
       "symbol": "ZIL",
-      "price": "$0.001922",
-      "price_24h_pct": "-5.83%",
+      "price": "$0.001925",
+      "price_24h_pct": "-6.28%",
       "open_interest": "$4.48M",
-      "current": "$284.18",
+      "current": "$284.43",
       "last_24h": "$823.57",
       "last_3d": "-$1.26K",
       "last_7d": "-$27.72K",
-      "timestamp_ist": "2026-10-30 21:16:52 IST"
+      "timestamp_ist": "2026-10-30 21:29:30 IST"
     },
     "ls_ladder": []
   },

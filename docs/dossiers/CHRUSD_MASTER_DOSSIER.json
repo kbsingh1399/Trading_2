@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 427,
+      "rank": 429,
       "symbol": "CHR",
-      "price": "$0.016110",
-      "price_24h_pct": "-10.05%",
-      "open_interest": "$1.66M",
-      "current": "$166.16",
+      "price": "$0.016060",
+      "price_24h_pct": "-10.43%",
+      "open_interest": "$1.65M",
+      "current": "$165.29",
       "last_24h": "$496.69",
       "last_3d": "$1.43K",
       "last_7d": "$3.12K",
-      "timestamp_ist": "2026-10-30 21:16:52 IST"
+      "timestamp_ist": "2026-10-30 21:29:30 IST"
     },
     "ls_ladder": []
   },

@@ -189,7 +189,7 @@
     "funding_row": {
       "Symbol": "SNX",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0087%",
+      "USDT_OKX": "-0.0069%",
       "USDT_Bybit": "0.0100%",
       "USDT_KuCoin": "0.0100%",
       "USDT_MEXC": "0.0100%",
@@ -203,19 +203,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:16:45 IST"
+      "Timestamp_IST": "2026-10-30 21:29:23 IST"
     },
     "settle_row": {
-      "rank": 329,
+      "rank": 320,
       "symbol": "SNX",
-      "price": "$0.183700",
-      "price_24h_pct": "-9.24%",
-      "open_interest": "$3.84M",
-      "current": "$295.71",
+      "price": "$0.183900",
+      "price_24h_pct": "-9.72%",
+      "open_interest": "$3.85M",
+      "current": "$301.12",
       "last_24h": "$1.23K",
       "last_3d": "$2.99K",
       "last_7d": "$3.18K",
-      "timestamp_ist": "2026-10-30 21:16:52 IST"
+      "timestamp_ist": "2026-10-30 21:29:30 IST"
     },
     "ls_ladder": []
   },

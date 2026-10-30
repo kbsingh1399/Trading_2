@@ -193,19 +193,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:16:45 IST"
+      "Timestamp_IST": "2026-10-30 21:29:23 IST"
     },
     "settle_row": {
-      "rank": 314,
+      "rank": 311,
       "symbol": "XTZ",
-      "price": "$0.255300",
-      "price_24h_pct": "-9.92%",
-      "open_interest": "$5.61M",
-      "current": "$322.42",
+      "price": "$0.255900",
+      "price_24h_pct": "-10.12%",
+      "open_interest": "$5.62M",
+      "current": "$322.90",
       "last_24h": "$1.31K",
       "last_3d": "$4.00K",
       "last_7d": "$9.41K",
-      "timestamp_ist": "2026-10-30 21:16:52 IST"
+      "timestamp_ist": "2026-10-30 21:29:30 IST"
     },
     "ls_ladder": []
   },
