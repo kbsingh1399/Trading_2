@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCNH
 **Canonical Key**: `GBPCNH` | **Broker Instrument**: `GBPCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 17:19:12 IST` (`2026-10-30 11:49:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `8.93` | **Live Ask Quote**: `8.93` | **Mid Price**: `8.93`
-- **Spread Points**: `58.00` | **Spread BPS**: `0.65 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `19.00` | **Spread BPS**: `0.21 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -30,8 +30,8 @@
   * Upper +3.00σ Band: `8.99` | Lower -3.00σ Band: `8.87`
   * Upper +2.51σ Band: `8.98` | Lower -2.51σ Band: `8.88`
   * Upper +2.01σ Band: `8.97` | Lower -2.01σ Band: `8.89`
-  * Upper +2.00σ Band: `8.96` | Lower -2.00σ Band: `8.89`
-  * Upper +1.28σ Band: `8.95` | Lower -1.28σ Band: `8.90`
+  * Upper +2.00σ Band: `8.97` | Lower -2.00σ Band: `8.90`
+  * Upper +1.28σ Band: `8.96` | Lower -1.28σ Band: `8.91`
   * Upper +1.00σ Band: `8.95` | Lower -1.00σ Band: `8.91`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`8.93` | EMA-20=`8.93` (Slope: `+0.0000`)
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `8.90` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`8.96` | POC=`8.93` | VAL=`8.89`
-  * Prior Day Extremes: PDH=`8.98` | PDL=`8.87` | PDC=`8.93`
-  * Monday Range Blueprint: High=`8.97` | Mid=`8.93` | Low=`8.88`
+  * Prior Day Value Area: VAH=`8.97` | POC=`8.93` | VAL=`8.90`
+  * Prior Day Extremes: PDH=`8.99` | PDL=`8.88` | PDC=`8.93`
+  * Monday Range Blueprint: High=`8.98` | Mid=`8.93` | Low=`8.89`
   * Developing Weekly Value Area: Weekly VAH=`9.00` | Weekly POC=`8.93` | Weekly VAL=`8.86`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`8.95` | Low=`8.91`
-  * London Session (08:00-16:00 UTC): High=`8.96` | Low=`8.89`
-  * New York Session (13:00-21:00 UTC): High=`8.98` | Low=`8.87`
+  * London Session (08:00-16:00 UTC): High=`8.97` | Low=`8.90`
+  * New York Session (13:00-21:00 UTC): High=`8.99` | Low=`8.88`
   * Initial Balance (First Hour): IB High=`8.96` | IB Low=`8.90`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `8.89` - `8.96`
+  * Golden Pocket Zone (0.618 - 0.650): `8.90` - `8.97`
   * Optimal Trade Entry (OTE 0.705): `8.95`
   * Structural Invalidation Anchor (0.786): `9.00`
 
@@ -269,14 +269,14 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `8.90` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `7.70` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `11.90`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `11.91`
+  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `8.96` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `10.16` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `5.95`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `5.96`
+  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 17:19:12 IST` (`2026-10-30 11:49:12 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,28 +23,28 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `6.66` | VWAP Z-Score: `-1.44` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000638` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `51.11` (State: `NEUTRAL`)
+  * Session VWAP: `6.65` | VWAP Z-Score: `-1.18` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000756` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `38.52` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.66`
-  * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.66`
-  * Upper +2.01σ Band: `6.66` | Lower -2.01σ Band: `6.66`
-  * Upper +2.00σ Band: `6.66` | Lower -2.00σ Band: `6.66`
-  * Upper +1.28σ Band: `6.66` | Lower -1.28σ Band: `6.66`
-  * Upper +1.00σ Band: `6.66` | Lower -1.00σ Band: `6.66`
+  * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.65`
+  * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.65`
+  * Upper +2.01σ Band: `6.66` | Lower -2.01σ Band: `6.65`
+  * Upper +2.00σ Band: `6.66` | Lower -2.00σ Band: `6.65`
+  * Upper +1.28σ Band: `6.66` | Lower -1.28σ Band: `6.65`
+  * Upper +1.00σ Band: `6.66` | Lower -1.00σ Band: `6.65`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`6.66` | EMA-20=`6.66` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`6.66` (Slope: `+0.0000`) | EMA-100=`6.66`
-  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `-0.0078`) | EMA-233=`6.66`
-- **Range Boundaries**: 24H High=`6.66` | 24H Low=`6.66` | Weekly High=`6.67` | Weekly Low=`6.66`
+  * Fast EMA Array: EMA-9=`6.65` | EMA-20=`6.65` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`6.65` (Slope: `+0.0000`) | EMA-100=`6.66`
+  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `-0.0139`) | EMA-233=`6.66`
+- **Range Boundaries**: 24H High=`6.66` | 24H Low=`6.65` | Weekly High=`6.67` | Weekly Low=`6.65`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.66` (Distance: `-0.09%`)
+  * Value Area High (VAH) = `6.66` (Distance: `-0.10%`)
   * Point of Control (POC) = `6.65` (Distance: `-0.06%`)
   * Value Area Low (VAL) = `6.65` (Distance: `-0.01%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
