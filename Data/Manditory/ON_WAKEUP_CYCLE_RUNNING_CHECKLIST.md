@@ -1286,8 +1286,17 @@ Evaluate each candidate against the available evidence, confluence strength, mar
 - [x] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
   - Interrogated `00_MT5_Account_Telemetry.parquet`: 94 tradeable broker symbols cleared spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
   - Cataloged in `scripts/cycle_033_eligible_dossiers.txt`.
-- [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
-- [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
+- [x] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+  - Executed `scripts/forensic_dossier_scanner_cycle_033.py`: 100% of all 94 eligible master dossiers read to EOF (48,251 lines, 4,347,004 bytes / 4.15 MB, zero line skipping, zero artificial caps).
+  - Full auction structure (VAH/VAL/POC), orderbook imbalances, and Model 1/Model 2 execution cards cataloged into `docs/trade_plans/CYCLE_033_DOSSIER_FORENSICS_ALL_94.json`.
+  - Re-audited all 3 resting limit orders against live market quotes:
+    * #19520222 BTCUSD.pi SELL_LIMIT 0.02 @ 78,962.00 (Risk: $7.12, 2.500R) — Valid, sits above VAH 78,646.96.
+    * #19520223 XAUUSD.pi SELL_LIMIT 0.01 @ 4,007.50 (Risk: $9.50, 2.505R) — Valid, defends VAH 4,006.65.
+    * #19520224 AUDUSD.pi BUY_LIMIT 0.15 @ 0.70240 (Risk: $9.00, 2.500R) — Valid, sits at VAL 0.70240 sweep.
+- [x] **Step 3**: Synchronise intelligence ledger and portfolio registry
+  - Regenerated `Data/cycle_envelope.json` for Cycle_033.
+  - Reconciled `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` and appended Cycle_033 to `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`.
+  - Reconciled MT5 account (#5064568): Balance 4,763.23 USD, Equity 4,763.23 USD, 0 open positions, 3 active resting limits, total contingent risk $25.62 USD.
 - [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
 - [ ] **Step 5**: Activate AutoWake daemon and await completion of both systems
 - [ ] **Step 6**: Compare 3-way intelligence and execute only qualified trades
