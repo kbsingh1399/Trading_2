@@ -1,9 +1,9 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle_037",
+  "cycle_id": "Cycle_038",
   "uuid": "cce23021-7bf0-4c7d-bdbc-9e5fc2e19b1c",
   "dispatch_nonce": "d51f52a2-0e4d-4cca-87f6-acc41593ae06",
-  "cutoff_utc": "2026-10-30 14:56:58 UTC",
+  "cutoff_utc": "2026-10-30 15:42:50 UTC",
   "provenance": {
     "git_commit": "b41aee68bd5d3ec2edb8c354f83eafca6a2403e1",
     "git_tree": "5ffac3541022ccfe2420e4537baea0a5ad98fdf0",
@@ -20,13 +20,34 @@
     "server": "BlueberryMarketsSVG-Live",
     "currency": "USD",
     "balance": 4755.23,
-    "equity": 4755.23,
+    "equity": 4774.28,
     "margin_used": 0.0,
     "margin_free": 4755.23,
     "margin_level": 0.0,
-    "active_positions_count": 0,
+    "active_positions_count": 2,
     "pending_orders_count": 3,
-    "active_positions": [],
+    "active_positions": [
+      {
+        "ticket": 19538719,
+        "symbol": "BTCUSD.pi",
+        "type": "SELL",
+        "volume": 0.01,
+        "open_price": 77709.5,
+        "sl": 78025.08,
+        "tp": 0.0,
+        "unrealized_pnl": 3.05
+      },
+      {
+        "ticket": 19539053,
+        "symbol": "AVEUSD.p",
+        "type": "SELL",
+        "volume": 0.5,
+        "open_price": 125.54,
+        "sl": 0.0,
+        "tp": 123.15,
+        "unrealized_pnl": 16.0
+      }
+    ],
     "pending_orders": [
       {
         "ticket": 19532055,
@@ -35,7 +56,7 @@
         "volume": 0.01,
         "price": 76350.0,
         "sl": 75850.0,
-        "tp": 77600.0,
+        "tp": 76568.95,
         "risk_usd": 5.0,
         "rr_ratio": 2.5
       },
@@ -46,7 +67,7 @@
         "volume": 0.07,
         "price": 122.5,
         "sl": 121.2,
-        "tp": 125.75,
+        "tp": 127.83,
         "risk_usd": 9.1,
         "rr_ratio": 2.5
       },
@@ -70,7 +91,7 @@
     "base_capital_usd": 4763.23,
     "operator_floor_override": "MANDATE_NO_HARD_FLOOR_ACTIVE_TRADING",
     "total_contingent_risk_usd": 18.1,
-    "post_joint_stress_equity_usd": 4737.13,
+    "post_joint_stress_equity_usd": 4756.18,
     "capital_mode": "ACTIVE_HIGH_CONFLUENCE_OPERATION",
     "risk_min_usd": 1.0,
     "risk_max_usd": 10.0,
