@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: MANUSD
 **Canonical Key**: `MANUSD` | **Broker Instrument**: `MANUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:30:45 IST` (`2026-10-30 03:00:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,13 +152,13 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-492.12` | Last 24h: `-185.27` | Last 3d: `1.43K` | Last 7d: `1.59K`
+  * Current Rate: `-294.79` | Last 24h: `-185.27` | Last 3d: `1.43K` | Last 7d: `1.59K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0141%` | **USDT OKX** | `-0.0256%` |
-| **USDT Bybit** | `0.0045%` | **USDT KuCoin** | `-0.0809%` |
-| **USDT MEXC** | `-0.0147%` | **USDT BingX** | `0.0100%` |
+| **USDT Binance** | `-0.0117%` | **USDT OKX** | `-0.0232%` |
+| **USDT Bybit** | `0.0078%` | **USDT KuCoin** | `-0.0743%` |
+| **USDT MEXC** | `-0.0118%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 

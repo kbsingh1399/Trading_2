@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:27:43 IST` (`2026-10-30 02:57:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:30:45 IST` (`2026-10-30 03:00:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,10 +116,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `212` | `0x0911...129a` | `LONG` | 9,966,756.69 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -255,985.73 USD | `-2.57%` | `20X Isolated` |
-| `1115` | `0xe03b...ed11` | `SHORT` | 1,950,881.07 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 42,322.25 USD | `+2.17%` | `50X Isolated` |
-| `1715` | `0x3f31...a3d7` | `SHORT` | 1,205,693.55 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -5,762.11 USD | `-0.48%` | `50X Isolated` |
-| `1818` | `0x9df2...c665` | `SHORT` | 1,119,929.55 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 640.28 USD | `+0.06%` | `5X Isolated` |
+| `212` | `0x0911...129a` | `LONG` | 9,967,646.58 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -255,095.85 USD | `-2.56%` | `20X Isolated` |
+| `1112` | `0xe03b...ed11` | `SHORT` | 1,951,229.44 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 41,973.88 USD | `+2.15%` | `50X Isolated` |
+| `1709` | `0x3f31...a3d7` | `SHORT` | 1,205,908.85 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -5,977.41 USD | `-0.50%` | `50X Isolated` |
+| `1812` | `0x9df2...c665` | `SHORT` | 1,120,129.54 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 440.30 USD | `+0.04%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -284,7 +284,7 @@
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `0.0000%` | **USDT KuCoin** | `-` |
 | **USDT MEXC** | `-` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0343%` |
+| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0405%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

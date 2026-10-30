@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:30:45 IST` (`2026-10-30 03:00:45 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `203` | `0x0911...129a` | `SHORT` | 10,422,869.45 USD | `66,223.20` | `156.58` | `157.40` | `167.72` | -53,849.22 USD | `-0.52%` | `20X Isolated` |
-| `1019` | `0x9dea...d617` | `LONG` | 2,135,306.98 USD | `13,566.98` | `157.66` | `157.40` | `149.22` | -3,706.77 USD | `-0.17%` | `50X Isolated` |
-| `1097` | `0xec0b...b078` | `SHORT` | 1,986,245.28 USD | `12,617.49` | `158.22` | `157.40` | `162.95` | 10,120.40 USD | `+0.51%` | `20X Isolated` |
-| `1120` | `0xc966...f6b6` | `SHORT` | 1,942,627.34 USD | `12,340.41` | `157.61` | `157.40` | `215.27` | 2,288.68 USD | `+0.12%` | `5X Isolated` |
-| `1173` | `0xbef1...d2e5` | `LONG` | 1,860,552.83 USD | `11,821.29` | `157.63` | `157.40` | `155.50` | -2,807.78 USD | `-0.15%` | `50X Isolated` |
-| `1855` | `0x3d89...eb14` | `LONG` | 1,085,991.00 USD | `6,900.00` | `158.17` | `157.40` | `127.35` | -5,398.60 USD | `-0.50%` | `5X Isolated` |
+| `203` | `0x0911...129a` | `SHORT` | 10,426,180.61 USD | `66,223.20` | `156.58` | `157.48` | `167.72` | -57,160.38 USD | `-0.55%` | `20X Isolated` |
+| `1012` | `0x9dea...d617` | `LONG` | 2,135,849.66 USD | `13,566.98` | `157.66` | `157.48` | `149.22` | -3,164.09 USD | `-0.15%` | `50X Isolated` |
+| `1091` | `0xec0b...b078` | `SHORT` | 1,986,371.45 USD | `12,617.49` | `158.22` | `157.48` | `162.95` | 9,994.22 USD | `+0.50%` | `20X Isolated` |
+| `1115` | `0xc966...f6b6` | `SHORT` | 1,942,750.75 USD | `12,340.41` | `157.61` | `157.48` | `215.27` | 2,165.28 USD | `+0.11%` | `5X Isolated` |
+| `1168` | `0xbef1...d2e5` | `LONG` | 1,861,262.11 USD | `11,821.29` | `157.63` | `157.48` | `155.50` | -2,098.50 USD | `-0.11%` | `50X Isolated` |
+| `1855` | `0x3d89...eb14` | `LONG` | 1,086,405.00 USD | `6,900.00` | `158.17` | `157.48` | `127.35` | -4,984.60 USD | `-0.46%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
