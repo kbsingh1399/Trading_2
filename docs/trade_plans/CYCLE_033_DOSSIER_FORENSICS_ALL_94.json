@@ -1,0 +1,2258 @@
+{
+  "USDHKD": {
+    "file": "docs/dossiers/USDHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18133,
+    "bid": "7.85",
+    "ask": "7.85",
+    "spread_bps": "0.06 bps",
+    "vah": "7.85",
+    "poc": "7.85",
+    "val": "7.84",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "7.84",
+      "sl": "7.84",
+      "tp": "7.85",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "7.85",
+      "sl": "7.85",
+      "tp": "7.84",
+      "lot": "20.00 lots"
+    }
+  },
+  "EURGBP": {
+    "file": "docs/dossiers/EURGBP_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18285,
+    "bid": "0.8339",
+    "ask": "0.8339",
+    "spread_bps": "0.12 bps",
+    "vah": "0.8365",
+    "poc": "0.8359",
+    "val": "0.8348",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.8348",
+      "sl": "0.8344",
+      "tp": "0.8358",
+      "lot": "0.25 lots"
+    },
+    "short_setup": {
+      "entry": "0.8365",
+      "sl": "0.8369",
+      "tp": "0.8355",
+      "lot": "0.25 lots"
+    }
+  },
+  "EURHKD": {
+    "file": "docs/dossiers/EURHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18129,
+    "bid": "8.79",
+    "ask": "8.79",
+    "spread_bps": "0.14 bps",
+    "vah": "8.81",
+    "poc": "8.79",
+    "val": "8.76",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "8.76",
+      "sl": "7.56",
+      "tp": "11.76",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "8.81",
+      "sl": "10.01",
+      "tp": "5.81",
+      "lot": "8.33 lots"
+    }
+  },
+  "USDCNH": {
+    "file": "docs/dossiers/USDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18154,
+    "bid": "6.65",
+    "ask": "6.65",
+    "spread_bps": "0.08 bps",
+    "vah": "6.66",
+    "poc": "6.65",
+    "val": "6.65",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "6.65",
+      "sl": "6.65",
+      "tp": "6.65",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "6.66",
+      "sl": "6.66",
+      "tp": "6.65",
+      "lot": "20.00 lots"
+    }
+  },
+  "USDSGD": {
+    "file": "docs/dossiers/USDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18133,
+    "bid": "1.28",
+    "ask": "1.28",
+    "spread_bps": "0.31 bps",
+    "vah": "1.28",
+    "poc": "1.28",
+    "val": "1.28",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.28",
+      "sl": "1.28",
+      "tp": "1.28",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.28",
+      "sl": "1.28",
+      "tp": "1.28",
+      "lot": "20.00 lots"
+    }
+  },
+  "EURUSD": {
+    "file": "docs/dossiers/EURUSD_MASTER_DOSSIER.md",
+    "lines": 426,
+    "bytes": 33247,
+    "bid": "1.12",
+    "ask": "1.12",
+    "spread_bps": "0.09 bps",
+    "vah": "1.12",
+    "poc": "1.12",
+    "val": "1.12",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.12",
+      "sl": "1.12",
+      "tp": "1.12",
+      "lot": "0.13 lots"
+    },
+    "short_setup": {
+      "entry": "1.12",
+      "sl": "1.12",
+      "tp": "1.12",
+      "lot": "0.13 lots"
+    }
+  },
+  "XAUUSD": {
+    "file": "docs/dossiers/XAUUSD_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103801,
+    "bid": "3980.64",
+    "ask": "3980.72",
+    "spread_bps": "0.20 bps",
+    "vah": "4006.65",
+    "poc": "3990.50",
+    "val": "3979.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3979.88",
+      "sl": "3967.82",
+      "tp": "4010.04",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "4006.65",
+      "sl": "4018.71",
+      "tp": "3976.49",
+      "lot": "0.01 lots"
+    }
+  },
+  "USDCAD": {
+    "file": "docs/dossiers/USDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18159,
+    "bid": "1.40",
+    "ask": "1.40",
+    "spread_bps": "0.22 bps",
+    "vah": "1.40",
+    "poc": "1.40",
+    "val": "1.40",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.40",
+      "sl": "1.40",
+      "tp": "1.40",
+      "lot": "0.18 lots"
+    },
+    "short_setup": {
+      "entry": "1.40",
+      "sl": "1.40",
+      "tp": "1.40",
+      "lot": "0.18 lots"
+    }
+  },
+  "EURJPY": {
+    "file": "docs/dossiers/EURJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18275,
+    "bid": "176.03",
+    "ask": "176.04",
+    "spread_bps": "0.40 bps",
+    "vah": "176.36",
+    "poc": "176.31",
+    "val": "176.09",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "176.09",
+      "sl": "175.92",
+      "tp": "176.53",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "176.36",
+      "sl": "176.53",
+      "tp": "175.92",
+      "lot": "0.01 lots"
+    }
+  },
+  "DJ30": {
+    "file": "docs/dossiers/DJ30_MASTER_DOSSIER.md",
+    "lines": 286,
+    "bytes": 18621,
+    "bid": "52428.16",
+    "ask": "52429.34",
+    "spread_bps": "0.23 bps",
+    "vah": "52406.25",
+    "poc": "52377.27",
+    "val": "52256.89",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "52256.89",
+      "sl": "52190.80",
+      "tp": "52422.11",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "52406.25",
+      "sl": "52472.34",
+      "tp": "52241.03",
+      "lot": "0.10 lots"
+    }
+  },
+  "USDJPY": {
+    "file": "docs/dossiers/USDJPY_MASTER_DOSSIER.md",
+    "lines": 415,
+    "bytes": 33348,
+    "bid": "157.17",
+    "ask": "157.17",
+    "spread_bps": "0.06 bps",
+    "vah": "157.60",
+    "poc": "157.34",
+    "val": "157.24",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "157.24",
+      "sl": "157.08",
+      "tp": "157.65",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "157.60",
+      "sl": "157.76",
+      "tp": "157.19",
+      "lot": "0.01 lots"
+    }
+  },
+  "AUDUSD": {
+    "file": "docs/dossiers/AUDUSD_MASTER_DOSSIER.md",
+    "lines": 310,
+    "bytes": 22453,
+    "bid": "0.7037",
+    "ask": "0.7037",
+    "spread_bps": "0.14 bps",
+    "vah": "0.7033",
+    "poc": "0.7029",
+    "val": "0.7024",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.7024",
+      "sl": "0.7002",
+      "tp": "0.7077",
+      "lot": "0.04 lots"
+    },
+    "short_setup": {
+      "entry": "0.7033",
+      "sl": "0.7054",
+      "tp": "0.6980",
+      "lot": "0.04 lots"
+    }
+  },
+  "GBPUSD": {
+    "file": "docs/dossiers/GBPUSD_MASTER_DOSSIER.md",
+    "lines": 431,
+    "bytes": 33586,
+    "bid": "1.34",
+    "ask": "1.34",
+    "spread_bps": "0.07 bps",
+    "vah": "1.34",
+    "poc": "1.34",
+    "val": "1.34",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.34",
+      "sl": "1.34",
+      "tp": "1.34",
+      "lot": "0.12 lots"
+    },
+    "short_setup": {
+      "entry": "1.34",
+      "sl": "1.34",
+      "tp": "1.34",
+      "lot": "0.12 lots"
+    }
+  },
+  "GER40": {
+    "file": "docs/dossiers/GER40_MASTER_DOSSIER.md",
+    "lines": 286,
+    "bytes": 18614,
+    "bid": "19368.80",
+    "ask": "19376.90",
+    "spread_bps": "4.18 bps",
+    "vah": "26028.56",
+    "poc": "25991.47",
+    "val": "25918.77",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "25918.77",
+      "sl": "25881.47",
+      "tp": "26012.02",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "26028.56",
+      "sl": "26065.86",
+      "tp": "25935.31",
+      "lot": "0.10 lots"
+    }
+  },
+  "AUDSGD": {
+    "file": "docs/dossiers/AUDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18243,
+    "bid": "0.8987",
+    "ask": "0.8988",
+    "spread_bps": "0.33 bps",
+    "vah": "0.9015",
+    "poc": "0.8988",
+    "val": "0.8961",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.8961",
+      "sl": "-0.3040",
+      "tp": "3.90",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.9015",
+      "sl": "2.10",
+      "tp": "-2.10",
+      "lot": "8.33 lots"
+    }
+  },
+  "GBPHKD": {
+    "file": "docs/dossiers/GBPHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18185,
+    "bid": "10.54",
+    "ask": "10.54",
+    "spread_bps": "0.21 bps",
+    "vah": "10.57",
+    "poc": "10.54",
+    "val": "10.50",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "10.50",
+      "sl": "9.30",
+      "tp": "13.51",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "10.57",
+      "sl": "11.77",
+      "tp": "7.57",
+      "lot": "8.33 lots"
+    }
+  },
+  "USDCHF": {
+    "file": "docs/dossiers/USDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18281,
+    "bid": "0.8212",
+    "ask": "0.8213",
+    "spread_bps": "0.49 bps",
+    "vah": "0.8227",
+    "poc": "0.8213",
+    "val": "0.8208",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.8208",
+      "sl": "0.8200",
+      "tp": "0.8230",
+      "lot": "0.11 lots"
+    },
+    "short_setup": {
+      "entry": "0.8227",
+      "sl": "0.8235",
+      "tp": "0.8206",
+      "lot": "0.11 lots"
+    }
+  },
+  "NAS100": {
+    "file": "docs/dossiers/NAS100_MASTER_DOSSIER.md",
+    "lines": 301,
+    "bytes": 21715,
+    "bid": "28682.04",
+    "ask": "28683.10",
+    "spread_bps": "0.37 bps",
+    "vah": "28849.34",
+    "poc": "28729.49",
+    "val": "28694.24",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "28694.24",
+      "sl": "28606.60",
+      "tp": "28913.33",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "28849.34",
+      "sl": "28936.98",
+      "tp": "28630.25",
+      "lot": "0.10 lots"
+    }
+  },
+  "SP500": {
+    "file": "docs/dossiers/SP500_MASTER_DOSSIER.md",
+    "lines": 743,
+    "bytes": 75179,
+    "bid": "7639.86",
+    "ask": "7640.16",
+    "spread_bps": "0.39 bps",
+    "vah": "7652.19",
+    "poc": "7637.32",
+    "val": "7634.79",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "7634.79",
+      "sl": "7626.27",
+      "tp": "7656.08",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "7652.19",
+      "sl": "7660.71",
+      "tp": "7630.90",
+      "lot": "0.10 lots"
+    }
+  },
+  "GBPJPY": {
+    "file": "docs/dossiers/GBPJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18276,
+    "bid": "211.08",
+    "ask": "211.09",
+    "spread_bps": "0.38 bps",
+    "vah": "211.26",
+    "poc": "211.08",
+    "val": "210.85",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "210.85",
+      "sl": "210.65",
+      "tp": "211.38",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "211.26",
+      "sl": "211.47",
+      "tp": "210.74",
+      "lot": "0.01 lots"
+    }
+  },
+  "EURCAD": {
+    "file": "docs/dossiers/EURCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18153,
+    "bid": "1.56",
+    "ask": "1.56",
+    "spread_bps": "0.38 bps",
+    "vah": "1.56",
+    "poc": "1.56",
+    "val": "1.56",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.56",
+      "sl": "1.56",
+      "tp": "1.57",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.56",
+      "sl": "1.56",
+      "tp": "1.56",
+      "lot": "20.00 lots"
+    }
+  },
+  "GAUUSD": {
+    "file": "docs/dossiers/GAUUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18254,
+    "bid": "127.98",
+    "ask": "127.98",
+    "spread_bps": "0.30 bps",
+    "vah": "128.71",
+    "poc": "128.30",
+    "val": "127.93",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "127.93",
+      "sl": "127.64",
+      "tp": "128.67",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "128.71",
+      "sl": "129.00",
+      "tp": "127.98",
+      "lot": "20.00 lots"
+    }
+  },
+  "GBPCNH": {
+    "file": "docs/dossiers/GBPCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18128,
+    "bid": "8.93",
+    "ask": "8.93",
+    "spread_bps": "0.34 bps",
+    "vah": "8.96",
+    "poc": "8.93",
+    "val": "8.90",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "8.90",
+      "sl": "7.70",
+      "tp": "11.91",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "8.96",
+      "sl": "10.16",
+      "tp": "5.96",
+      "lot": "8.33 lots"
+    }
+  },
+  "AUDCAD": {
+    "file": "docs/dossiers/AUDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18256,
+    "bid": "0.9818",
+    "ask": "0.9818",
+    "spread_bps": "0.41 bps",
+    "vah": "0.9829",
+    "poc": "0.9822",
+    "val": "0.9811",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.9811",
+      "sl": "-0.2189",
+      "tp": "3.98",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.9829",
+      "sl": "2.18",
+      "tp": "-2.02",
+      "lot": "8.33 lots"
+    }
+  },
+  "GBPCAD": {
+    "file": "docs/dossiers/GBPCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18156,
+    "bid": "1.87",
+    "ask": "1.87",
+    "spread_bps": "0.37 bps",
+    "vah": "1.87",
+    "poc": "1.87",
+    "val": "1.87",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.87",
+      "sl": "1.87",
+      "tp": "1.87",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.87",
+      "sl": "1.87",
+      "tp": "1.87",
+      "lot": "20.00 lots"
+    }
+  },
+  "NZDCNH": {
+    "file": "docs/dossiers/NZDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18122,
+    "bid": "3.76",
+    "ask": "3.76",
+    "spread_bps": "0.45 bps",
+    "vah": "3.77",
+    "poc": "3.76",
+    "val": "3.75",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3.75",
+      "sl": "2.55",
+      "tp": "6.75",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "3.77",
+      "sl": "4.97",
+      "tp": "0.7676",
+      "lot": "8.33 lots"
+    }
+  },
+  "CADCHF": {
+    "file": "docs/dossiers/CADCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18258,
+    "bid": "0.5886",
+    "ask": "0.5886",
+    "spread_bps": "1.02 bps",
+    "vah": "0.5889",
+    "poc": "0.5885",
+    "val": "0.5881",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.5881",
+      "sl": "-0.6120",
+      "tp": "3.59",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.5889",
+      "sl": "1.79",
+      "tp": "-2.41",
+      "lot": "8.33 lots"
+    }
+  },
+  "CHFJPY": {
+    "file": "docs/dossiers/CHFJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18274,
+    "bid": "191.40",
+    "ask": "191.41",
+    "spread_bps": "0.52 bps",
+    "vah": "191.72",
+    "poc": "191.62",
+    "val": "191.46",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "191.46",
+      "sl": "190.25",
+      "tp": "194.50",
+      "lot": "8.23 lots"
+    },
+    "short_setup": {
+      "entry": "191.72",
+      "sl": "192.94",
+      "tp": "188.69",
+      "lot": "8.23 lots"
+    }
+  },
+  "AUDCHF": {
+    "file": "docs/dossiers/AUDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18258,
+    "bid": "0.5779",
+    "ask": "0.5779",
+    "spread_bps": "0.52 bps",
+    "vah": "0.5787",
+    "poc": "0.5778",
+    "val": "0.5772",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.5772",
+      "sl": "-0.6228",
+      "tp": "3.58",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.5787",
+      "sl": "1.78",
+      "tp": "-2.42",
+      "lot": "8.33 lots"
+    }
+  },
+  "EURAUD": {
+    "file": "docs/dossiers/EURAUD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18153,
+    "bid": "1.59",
+    "ask": "1.59",
+    "spread_bps": "0.31 bps",
+    "vah": "1.59",
+    "poc": "1.59",
+    "val": "1.59",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.59",
+      "sl": "1.59",
+      "tp": "1.59",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.59",
+      "sl": "1.60",
+      "tp": "1.59",
+      "lot": "20.00 lots"
+    }
+  },
+  "GBPSGD": {
+    "file": "docs/dossiers/GBPSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18129,
+    "bid": "1.72",
+    "ask": "1.72",
+    "spread_bps": "0.70 bps",
+    "vah": "1.72",
+    "poc": "1.72",
+    "val": "1.71",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.71",
+      "sl": "0.5100",
+      "tp": "4.71",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "1.72",
+      "sl": "2.92",
+      "tp": "-1.28",
+      "lot": "8.33 lots"
+    }
+  },
+  "CHFSGD": {
+    "file": "docs/dossiers/CHFSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18130,
+    "bid": "1.56",
+    "ask": "1.56",
+    "spread_bps": "0.64 bps",
+    "vah": "1.56",
+    "poc": "1.56",
+    "val": "1.55",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.55",
+      "sl": "0.3504",
+      "tp": "4.55",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "1.56",
+      "sl": "2.76",
+      "tp": "-1.44",
+      "lot": "8.33 lots"
+    }
+  },
+  "NZDUSD": {
+    "file": "docs/dossiers/NZDUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18270,
+    "bid": "0.5649",
+    "ask": "0.5649",
+    "spread_bps": "0.53 bps",
+    "vah": "0.5645",
+    "poc": "0.5636",
+    "val": "0.5632",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.5632",
+      "sl": "0.5614",
+      "tp": "0.5675",
+      "lot": "0.05 lots"
+    },
+    "short_setup": {
+      "entry": "0.5645",
+      "sl": "0.5663",
+      "tp": "0.5602",
+      "lot": "0.05 lots"
+    }
+  },
+  "XAUSGD": {
+    "file": "docs/dossiers/XAUSGD_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103801,
+    "bid": "5084.11",
+    "ask": "5084.34",
+    "spread_bps": "0.45 bps",
+    "vah": "4006.65",
+    "poc": "3990.50",
+    "val": "3979.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3979.88",
+      "sl": "3964.28",
+      "tp": "4018.87",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "4006.65",
+      "sl": "4022.25",
+      "tp": "3967.66",
+      "lot": "0.01 lots"
+    }
+  },
+  "EURCNH": {
+    "file": "docs/dossiers/EURCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18128,
+    "bid": "7.45",
+    "ask": "7.45",
+    "spread_bps": "0.56 bps",
+    "vah": "7.47",
+    "poc": "7.45",
+    "val": "7.43",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "7.43",
+      "sl": "6.23",
+      "tp": "10.43",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "7.47",
+      "sl": "8.67",
+      "tp": "4.47",
+      "lot": "8.32 lots"
+    }
+  },
+  "XAUCNH": {
+    "file": "docs/dossiers/XAUCNH_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103799,
+    "bid": "3980.64",
+    "ask": "3980.72",
+    "spread_bps": "0.20 bps",
+    "vah": "4006.65",
+    "poc": "3990.50",
+    "val": "3979.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3979.88",
+      "sl": "3967.82",
+      "tp": "4010.04",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "4006.65",
+      "sl": "4018.71",
+      "tp": "3976.49",
+      "lot": "0.01 lots"
+    }
+  },
+  "GBPAUD": {
+    "file": "docs/dossiers/GBPAUD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18152,
+    "bid": "1.91",
+    "ask": "1.91",
+    "spread_bps": "0.42 bps",
+    "vah": "1.91",
+    "poc": "1.90",
+    "val": "1.90",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.90",
+      "sl": "1.90",
+      "tp": "1.91",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.91",
+      "sl": "1.91",
+      "tp": "1.91",
+      "lot": "20.00 lots"
+    }
+  },
+  "AUDJPY": {
+    "file": "docs/dossiers/AUDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18270,
+    "bid": "110.59",
+    "ask": "110.60",
+    "spread_bps": "0.36 bps",
+    "vah": "110.86",
+    "poc": "110.79",
+    "val": "110.60",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "110.60",
+      "sl": "109.40",
+      "tp": "113.62",
+      "lot": "8.29 lots"
+    },
+    "short_setup": {
+      "entry": "110.86",
+      "sl": "112.06",
+      "tp": "107.84",
+      "lot": "8.29 lots"
+    }
+  },
+  "XAUEUR": {
+    "file": "docs/dossiers/XAUEUR_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103803,
+    "bid": "3554.19",
+    "ask": "3554.39",
+    "spread_bps": "0.56 bps",
+    "vah": "3580.98",
+    "poc": "3566.44",
+    "val": "3557.86",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3557.86",
+      "sl": "3546.90",
+      "tp": "3585.27",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "3580.98",
+      "sl": "3591.94",
+      "tp": "3553.57",
+      "lot": "0.01 lots"
+    }
+  },
+  "CNHJPY": {
+    "file": "docs/dossiers/CNHJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18180,
+    "bid": "23.63",
+    "ask": "23.64",
+    "spread_bps": "0.42 bps",
+    "vah": "23.71",
+    "poc": "23.63",
+    "val": "23.56",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "23.56",
+      "sl": "22.36",
+      "tp": "26.57",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "23.71",
+      "sl": "24.91",
+      "tp": "20.70",
+      "lot": "8.32 lots"
+    }
+  },
+  "NZDCHF": {
+    "file": "docs/dossiers/NZDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18236,
+    "bid": "0.4639",
+    "ask": "0.4640",
+    "spread_bps": "0.65 bps",
+    "vah": "0.4653",
+    "poc": "0.4639",
+    "val": "0.4626",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.4626",
+      "sl": "-0.7375",
+      "tp": "3.46",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.4653",
+      "sl": "1.67",
+      "tp": "-2.53",
+      "lot": "8.33 lots"
+    }
+  },
+  "GBPNZD": {
+    "file": "docs/dossiers/GBPNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18137,
+    "bid": "2.38",
+    "ask": "2.38",
+    "spread_bps": "0.46 bps",
+    "vah": "2.38",
+    "poc": "2.38",
+    "val": "2.37",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "2.37",
+      "sl": "2.37",
+      "tp": "2.38",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "2.38",
+      "sl": "2.38",
+      "tp": "2.37",
+      "lot": "20.00 lots"
+    }
+  },
+  "XAUAUD": {
+    "file": "docs/dossiers/XAUAUD_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103798,
+    "bid": "3980.64",
+    "ask": "3980.72",
+    "spread_bps": "0.20 bps",
+    "vah": "4006.65",
+    "poc": "3990.50",
+    "val": "3979.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3979.88",
+      "sl": "3967.82",
+      "tp": "4010.04",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "4006.65",
+      "sl": "4018.71",
+      "tp": "3976.49",
+      "lot": "0.01 lots"
+    }
+  },
+  "NZDJPY": {
+    "file": "docs/dossiers/NZDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18195,
+    "bid": "88.79",
+    "ask": "88.80",
+    "spread_bps": "0.56 bps",
+    "vah": "88.84",
+    "poc": "88.80",
+    "val": "88.73",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "88.73",
+      "sl": "87.52",
+      "tp": "91.75",
+      "lot": "8.28 lots"
+    },
+    "short_setup": {
+      "entry": "88.84",
+      "sl": "90.05",
+      "tp": "85.82",
+      "lot": "8.28 lots"
+    }
+  },
+  "EURSGD": {
+    "file": "docs/dossiers/EURSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18129,
+    "bid": "1.43",
+    "ask": "1.43",
+    "spread_bps": "0.56 bps",
+    "vah": "1.43",
+    "poc": "1.43",
+    "val": "1.43",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.43",
+      "sl": "0.2260",
+      "tp": "4.43",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "1.43",
+      "sl": "2.63",
+      "tp": "-1.57",
+      "lot": "8.33 lots"
+    }
+  },
+  "JP225": {
+    "file": "docs/dossiers/JP225_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18504,
+    "bid": "62869.50",
+    "ask": "62875.50",
+    "spread_bps": "0.95 bps",
+    "vah": "63322.60",
+    "poc": "62952.90",
+    "val": "62832.70",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "62832.70",
+      "sl": "62635.08",
+      "tp": "63326.74",
+      "lot": "0.05 lots"
+    },
+    "short_setup": {
+      "entry": "63322.60",
+      "sl": "63520.22",
+      "tp": "62828.56",
+      "lot": "0.05 lots"
+    }
+  },
+  "XAUGBP": {
+    "file": "docs/dossiers/XAUGBP_MASTER_DOSSIER.md",
+    "lines": 1026,
+    "bytes": 103798,
+    "bid": "3980.64",
+    "ask": "3980.72",
+    "spread_bps": "0.20 bps",
+    "vah": "4006.65",
+    "poc": "3990.50",
+    "val": "3979.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "3979.88",
+      "sl": "3967.82",
+      "tp": "4010.04",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "4006.65",
+      "sl": "4018.71",
+      "tp": "3976.49",
+      "lot": "0.01 lots"
+    }
+  },
+  "EURNZD": {
+    "file": "docs/dossiers/EURNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18138,
+    "bid": "1.98",
+    "ask": "1.98",
+    "spread_bps": "0.66 bps",
+    "vah": "1.99",
+    "poc": "1.98",
+    "val": "1.98",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.98",
+      "sl": "1.98",
+      "tp": "1.99",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.99",
+      "sl": "1.99",
+      "tp": "1.98",
+      "lot": "20.00 lots"
+    }
+  },
+  "AUDNZD": {
+    "file": "docs/dossiers/AUDNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18127,
+    "bid": "1.25",
+    "ask": "1.25",
+    "spread_bps": "0.72 bps",
+    "vah": "1.25",
+    "poc": "1.25",
+    "val": "1.24",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.24",
+      "sl": "0.0417",
+      "tp": "4.24",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "1.25",
+      "sl": "2.45",
+      "tp": "-1.75",
+      "lot": "8.33 lots"
+    }
+  },
+  "CADJPY": {
+    "file": "docs/dossiers/CADJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18266,
+    "bid": "112.65",
+    "ask": "112.66",
+    "spread_bps": "0.71 bps",
+    "vah": "112.82",
+    "poc": "112.67",
+    "val": "112.64",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "112.64",
+      "sl": "111.43",
+      "tp": "115.67",
+      "lot": "8.25 lots"
+    },
+    "short_setup": {
+      "entry": "112.82",
+      "sl": "114.03",
+      "tp": "109.79",
+      "lot": "8.25 lots"
+    }
+  },
+  "US2000": {
+    "file": "docs/dossiers/US2000_MASTER_DOSSIER.md",
+    "lines": 301,
+    "bytes": 21426,
+    "bid": "2844.24",
+    "ask": "2844.56",
+    "spread_bps": "1.13 bps",
+    "vah": "2853.33",
+    "poc": "2848.69",
+    "val": "2843.15",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "2843.15",
+      "sl": "2838.48",
+      "tp": "2854.82",
+      "lot": "2.14 lots"
+    },
+    "short_setup": {
+      "entry": "2853.33",
+      "sl": "2858.00",
+      "tp": "2841.66",
+      "lot": "2.14 lots"
+    }
+  },
+  "GBPSEK": {
+    "file": "docs/dossiers/GBPSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18188,
+    "bid": "13.17",
+    "ask": "13.17",
+    "spread_bps": "1.15 bps",
+    "vah": "13.21",
+    "poc": "13.17",
+    "val": "13.13",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "13.13",
+      "sl": "11.92",
+      "tp": "16.13",
+      "lot": "8.31 lots"
+    },
+    "short_setup": {
+      "entry": "13.21",
+      "sl": "14.41",
+      "tp": "10.20",
+      "lot": "8.31 lots"
+    }
+  },
+  "GBPCHF": {
+    "file": "docs/dossiers/GBPCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18155,
+    "bid": "1.10",
+    "ask": "1.10",
+    "spread_bps": "1.09 bps",
+    "vah": "1.10",
+    "poc": "1.10",
+    "val": "1.10",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.10",
+      "sl": "1.10",
+      "tp": "1.10",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.10",
+      "sl": "1.10",
+      "tp": "1.10",
+      "lot": "20.00 lots"
+    }
+  },
+  "USDZAR": {
+    "file": "docs/dossiers/USDZAR_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18183,
+    "bid": "16.64",
+    "ask": "16.64",
+    "spread_bps": "1.58 bps",
+    "vah": "16.69",
+    "poc": "16.64",
+    "val": "16.59",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "16.59",
+      "sl": "15.38",
+      "tp": "19.60",
+      "lot": "8.30 lots"
+    },
+    "short_setup": {
+      "entry": "16.69",
+      "sl": "17.89",
+      "tp": "13.68",
+      "lot": "8.30 lots"
+    }
+  },
+  "AU200": {
+    "file": "docs/dossiers/AU200_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18323,
+    "bid": "8922.95",
+    "ask": "8924.05",
+    "spread_bps": "1.23 bps",
+    "vah": "8947.06",
+    "poc": "8932.30",
+    "val": "8904.69",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "8904.69",
+      "sl": "8876.27",
+      "tp": "8975.74",
+      "lot": "0.35 lots"
+    },
+    "short_setup": {
+      "entry": "8947.06",
+      "sl": "8975.48",
+      "tp": "8876.01",
+      "lot": "0.35 lots"
+    }
+  },
+  "NZDSGD": {
+    "file": "docs/dossiers/NZDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18237,
+    "bid": "0.7215",
+    "ask": "0.7216",
+    "spread_bps": "0.83 bps",
+    "vah": "0.7237",
+    "poc": "0.7215",
+    "val": "0.7194",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.7194",
+      "sl": "-0.4807",
+      "tp": "3.72",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.7237",
+      "sl": "1.92",
+      "tp": "-2.28",
+      "lot": "8.33 lots"
+    }
+  },
+  "EURMXN": {
+    "file": "docs/dossiers/EURMXN_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18189,
+    "bid": "21.11",
+    "ask": "21.11",
+    "spread_bps": "1.32 bps",
+    "vah": "21.17",
+    "poc": "21.11",
+    "val": "21.05",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "21.05",
+      "sl": "19.84",
+      "tp": "24.06",
+      "lot": "8.30 lots"
+    },
+    "short_setup": {
+      "entry": "21.17",
+      "sl": "22.38",
+      "tp": "18.16",
+      "lot": "8.30 lots"
+    }
+  },
+  "EURSEK": {
+    "file": "docs/dossiers/EURSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18186,
+    "bid": "10.98",
+    "ask": "10.98",
+    "spread_bps": "0.82 bps",
+    "vah": "11.01",
+    "poc": "10.98",
+    "val": "10.95",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "10.95",
+      "sl": "9.75",
+      "tp": "13.95",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "11.01",
+      "sl": "12.21",
+      "tp": "8.01",
+      "lot": "8.32 lots"
+    }
+  },
+  "NZDCAD": {
+    "file": "docs/dossiers/NZDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18236,
+    "bid": "0.7882",
+    "ask": "0.7883",
+    "spread_bps": "0.89 bps",
+    "vah": "0.7906",
+    "poc": "0.7882",
+    "val": "0.7859",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.7859",
+      "sl": "-0.4143",
+      "tp": "3.79",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "0.7906",
+      "sl": "1.99",
+      "tp": "-2.21",
+      "lot": "8.33 lots"
+    }
+  },
+  "EURCHF": {
+    "file": "docs/dossiers/EURCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18278,
+    "bid": "0.9197",
+    "ask": "0.9198",
+    "spread_bps": "1.30 bps",
+    "vah": "0.9203",
+    "poc": "0.9198",
+    "val": "0.9192",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.9192",
+      "sl": "0.9183",
+      "tp": "0.9216",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "0.9203",
+      "sl": "0.9211",
+      "tp": "0.9178",
+      "lot": "20.00 lots"
+    }
+  },
+  "SGDJPY": {
+    "file": "docs/dossiers/SGDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18246,
+    "bid": "123.06",
+    "ask": "123.07",
+    "spread_bps": "0.81 bps",
+    "vah": "123.44",
+    "poc": "123.07",
+    "val": "122.70",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "122.70",
+      "sl": "121.48",
+      "tp": "125.73",
+      "lot": "8.23 lots"
+    },
+    "short_setup": {
+      "entry": "123.44",
+      "sl": "124.65",
+      "tp": "120.40",
+      "lot": "8.23 lots"
+    }
+  },
+  "USDSEK": {
+    "file": "docs/dossiers/USDSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18125,
+    "bid": "9.80",
+    "ask": "9.80",
+    "spread_bps": "1.08 bps",
+    "vah": "9.83",
+    "poc": "9.80",
+    "val": "9.77",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "9.77",
+      "sl": "8.57",
+      "tp": "12.78",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "9.83",
+      "sl": "11.03",
+      "tp": "6.83",
+      "lot": "8.32 lots"
+    }
+  },
+  "UK100": {
+    "file": "docs/dossiers/UK100_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18384,
+    "bid": "10764.13",
+    "ask": "10765.83",
+    "spread_bps": "1.58 bps",
+    "vah": "10766.37",
+    "poc": "10750.03",
+    "val": "10738.23",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "10738.23",
+      "sl": "10717.57",
+      "tp": "10789.89",
+      "lot": "0.48 lots"
+    },
+    "short_setup": {
+      "entry": "10766.37",
+      "sl": "10787.03",
+      "tp": "10714.71",
+      "lot": "0.48 lots"
+    }
+  },
+  "EURNOK": {
+    "file": "docs/dossiers/EURNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18187,
+    "bid": "10.30",
+    "ask": "10.30",
+    "spread_bps": "1.36 bps",
+    "vah": "10.33",
+    "poc": "10.30",
+    "val": "10.27",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "10.27",
+      "sl": "9.07",
+      "tp": "13.27",
+      "lot": "8.31 lots"
+    },
+    "short_setup": {
+      "entry": "10.33",
+      "sl": "11.53",
+      "tp": "7.32",
+      "lot": "8.31 lots"
+    }
+  },
+  "FR40": {
+    "file": "docs/dossiers/FR40_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18318,
+    "bid": "7989.30",
+    "ask": "7990.60",
+    "spread_bps": "1.63 bps",
+    "vah": "7982.39",
+    "poc": "7958.83",
+    "val": "7956.17",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "7956.17",
+      "sl": "7940.97",
+      "tp": "7994.17",
+      "lot": "0.65 lots"
+    },
+    "short_setup": {
+      "entry": "7982.39",
+      "sl": "7997.59",
+      "tp": "7944.39",
+      "lot": "0.65 lots"
+    }
+  },
+  "USDMXN": {
+    "file": "docs/dossiers/USDMXN_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18183,
+    "bid": "18.85",
+    "ask": "18.85",
+    "spread_bps": "1.46 bps",
+    "vah": "18.91",
+    "poc": "18.85",
+    "val": "18.79",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "18.79",
+      "sl": "17.59",
+      "tp": "21.80",
+      "lot": "8.30 lots"
+    },
+    "short_setup": {
+      "entry": "18.91",
+      "sl": "20.11",
+      "tp": "15.89",
+      "lot": "8.30 lots"
+    }
+  },
+  "GBPNOK": {
+    "file": "docs/dossiers/GBPNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18187,
+    "bid": "12.35",
+    "ask": "12.35",
+    "spread_bps": "1.89 bps",
+    "vah": "12.39",
+    "poc": "12.35",
+    "val": "12.31",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "12.31",
+      "sl": "11.11",
+      "tp": "15.32",
+      "lot": "8.30 lots"
+    },
+    "short_setup": {
+      "entry": "12.39",
+      "sl": "13.59",
+      "tp": "9.38",
+      "lot": "8.30 lots"
+    }
+  },
+  "BTCUSD": {
+    "file": "docs/dossiers/BTCUSDi_360_DOSSIER.md",
+    "lines": 5713,
+    "bytes": 725082,
+    "bid": "77692.00",
+    "ask": "77708.00",
+    "spread_bps": "2.06 bps",
+    "vah": "78646.96",
+    "poc": "77902.48",
+    "val": "76932.40",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "76932.40",
+      "sl": "76675.30",
+      "tp": "77575.15",
+      "lot": "0.03 lots"
+    },
+    "short_setup": {
+      "entry": "78646.96",
+      "sl": "78904.06",
+      "tp": "78004.21",
+      "lot": "0.03 lots"
+    }
+  },
+  "USDNOK": {
+    "file": "docs/dossiers/USDNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18124,
+    "bid": "9.20",
+    "ask": "9.20",
+    "spread_bps": "1.35 bps",
+    "vah": "9.22",
+    "poc": "9.20",
+    "val": "9.17",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "9.17",
+      "sl": "7.97",
+      "tp": "12.17",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "9.22",
+      "sl": "10.43",
+      "tp": "6.22",
+      "lot": "8.32 lots"
+    }
+  },
+  "EURZAR": {
+    "file": "docs/dossiers/EURZAR_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18189,
+    "bid": "18.63",
+    "ask": "18.63",
+    "spread_bps": "2.13 bps",
+    "vah": "18.69",
+    "poc": "18.63",
+    "val": "18.58",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "18.58",
+      "sl": "17.37",
+      "tp": "21.59",
+      "lot": "8.29 lots"
+    },
+    "short_setup": {
+      "entry": "18.69",
+      "sl": "19.89",
+      "tp": "15.67",
+      "lot": "8.29 lots"
+    }
+  },
+  "XAGSGD": {
+    "file": "docs/dossiers/XAGSGD_MASTER_DOSSIER.md",
+    "lines": 737,
+    "bytes": 72486,
+    "bid": "64.52",
+    "ask": "64.54",
+    "spread_bps": "2.94 bps",
+    "vah": "52.07",
+    "poc": "51.44",
+    "val": "50.88",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "50.88",
+      "sl": "50.63",
+      "tp": "51.50",
+      "lot": "0.01 lots"
+    },
+    "short_setup": {
+      "entry": "52.07",
+      "sl": "52.32",
+      "tp": "51.45",
+      "lot": "0.01 lots"
+    }
+  },
+  "NOKSEK": {
+    "file": "docs/dossiers/NOKSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18155,
+    "bid": "1.07",
+    "ask": "1.07",
+    "spread_bps": "2.16 bps",
+    "vah": "1.07",
+    "poc": "1.07",
+    "val": "1.06",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.06",
+      "sl": "-0.1375",
+      "tp": "4.06",
+      "lot": "8.33 lots"
+    },
+    "short_setup": {
+      "entry": "1.07",
+      "sl": "2.27",
+      "tp": "-1.93",
+      "lot": "8.33 lots"
+    }
+  },
+  "HK50": {
+    "file": "docs/dossiers/HK50_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18381,
+    "bid": "23349.40",
+    "ask": "23355.80",
+    "spread_bps": "2.74 bps",
+    "vah": "23390.34",
+    "poc": "23298.02",
+    "val": "23218.01",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "23218.01",
+      "sl": "23138.35",
+      "tp": "23417.15",
+      "lot": "0.12 lots"
+    },
+    "short_setup": {
+      "entry": "23390.34",
+      "sl": "23470.00",
+      "tp": "23191.20",
+      "lot": "0.12 lots"
+    }
+  },
+  "STOXX50": {
+    "file": "docs/dossiers/STOXX50_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18326,
+    "bid": "6161.60",
+    "ask": "6163.20",
+    "spread_bps": "2.60 bps",
+    "vah": "6180.39",
+    "poc": "6177.46",
+    "val": "6166.10",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "6166.10",
+      "sl": "6152.19",
+      "tp": "6200.86",
+      "lot": "0.71 lots"
+    },
+    "short_setup": {
+      "entry": "6180.39",
+      "sl": "6194.30",
+      "tp": "6145.63",
+      "lot": "0.71 lots"
+    }
+  },
+  "NETH25": {
+    "file": "docs/dossiers/NETH25_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18378,
+    "bid": "1140.00",
+    "ask": "1140.30",
+    "spread_bps": "2.63 bps",
+    "vah": "1139.88",
+    "poc": "1136.70",
+    "val": "1135.96",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1135.96",
+      "sl": "1132.09",
+      "tp": "1145.64",
+      "lot": "2.58 lots"
+    },
+    "short_setup": {
+      "entry": "1139.88",
+      "sl": "1143.75",
+      "tp": "1130.20",
+      "lot": "2.58 lots"
+    }
+  },
+  "SWISS20": {
+    "file": "docs/dossiers/SWISS20_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18388,
+    "bid": "14819.50",
+    "ask": "14823.50",
+    "spread_bps": "2.70 bps",
+    "vah": "14819.30",
+    "poc": "14799.06",
+    "val": "14759.46",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "14759.46",
+      "sl": "14729.42",
+      "tp": "14834.56",
+      "lot": "0.33 lots"
+    },
+    "short_setup": {
+      "entry": "14819.30",
+      "sl": "14849.34",
+      "tp": "14744.20",
+      "lot": "0.33 lots"
+    }
+  },
+  "AUDCNH": {
+    "file": "docs/dossiers/AUDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18127,
+    "bid": "4.68",
+    "ask": "4.68",
+    "spread_bps": "2.52 bps",
+    "vah": "4.69",
+    "poc": "4.68",
+    "val": "4.67",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "4.67",
+      "sl": "3.46",
+      "tp": "7.67",
+      "lot": "8.32 lots"
+    },
+    "short_setup": {
+      "entry": "4.69",
+      "sl": "5.90",
+      "tp": "1.69",
+      "lot": "8.32 lots"
+    }
+  },
+  "UKBRENT": {
+    "file": "docs/dossiers/UKBRENT_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18289,
+    "bid": "118.03",
+    "ask": "118.07",
+    "spread_bps": "3.30 bps",
+    "vah": "117.88",
+    "poc": "116.87",
+    "val": "116.34",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "116.34",
+      "sl": "115.78",
+      "tp": "117.74",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "117.88",
+      "sl": "118.44",
+      "tp": "116.48",
+      "lot": "0.10 lots"
+    }
+  },
+  "GAUCNH": {
+    "file": "docs/dossiers/GAUCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18247,
+    "bid": "851.00",
+    "ask": "851.26",
+    "spread_bps": "3.05 bps",
+    "vah": "856.26",
+    "poc": "853.06",
+    "val": "851.17",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "851.17",
+      "sl": "848.90",
+      "tp": "856.84",
+      "lot": "4.40 lots"
+    },
+    "short_setup": {
+      "entry": "856.26",
+      "sl": "858.53",
+      "tp": "850.59",
+      "lot": "4.40 lots"
+    }
+  },
+  "USDHUF": {
+    "file": "docs/dossiers/USDHUF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18248,
+    "bid": "326.61",
+    "ask": "326.71",
+    "spread_bps": "3.06 bps",
+    "vah": "327.64",
+    "poc": "326.66",
+    "val": "325.68",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "325.68",
+      "sl": "324.33",
+      "tp": "329.06",
+      "lot": "7.40 lots"
+    },
+    "short_setup": {
+      "entry": "327.64",
+      "sl": "328.99",
+      "tp": "324.26",
+      "lot": "7.40 lots"
+    }
+  },
+  "USDTHB": {
+    "file": "docs/dossiers/USDTHB_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18184,
+    "bid": "33.67",
+    "ask": "33.69",
+    "spread_bps": "4.75 bps",
+    "vah": "33.78",
+    "poc": "33.68",
+    "val": "33.58",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "33.58",
+      "sl": "32.35",
+      "tp": "36.64",
+      "lot": "8.16 lots"
+    },
+    "short_setup": {
+      "entry": "33.78",
+      "sl": "35.01",
+      "tp": "30.72",
+      "lot": "8.16 lots"
+    }
+  },
+  "GER30": {
+    "file": "docs/dossiers/GER30_MASTER_DOSSIER.md",
+    "lines": 286,
+    "bytes": 18612,
+    "bid": "19368.80",
+    "ask": "19376.90",
+    "spread_bps": "4.18 bps",
+    "vah": "26028.56",
+    "poc": "25991.47",
+    "val": "25918.77",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "25918.77",
+      "sl": "25881.47",
+      "tp": "26012.02",
+      "lot": "0.26 lots"
+    },
+    "short_setup": {
+      "entry": "26028.56",
+      "sl": "26065.86",
+      "tp": "25935.31",
+      "lot": "0.26 lots"
+    }
+  },
+  "USWTI": {
+    "file": "docs/dossiers/USWTI_MASTER_DOSSIER.md",
+    "lines": 359,
+    "bytes": 30261,
+    "bid": "104.75",
+    "ask": "104.80",
+    "spread_bps": "4.68 bps",
+    "vah": "104.97",
+    "poc": "104.06",
+    "val": "103.63",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "103.63",
+      "sl": "103.14",
+      "tp": "104.86",
+      "lot": "0.10 lots"
+    },
+    "short_setup": {
+      "entry": "104.97",
+      "sl": "105.46",
+      "tp": "103.74",
+      "lot": "0.10 lots"
+    }
+  },
+  "ZARJPY": {
+    "file": "docs/dossiers/ZARJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18123,
+    "bid": "9.44",
+    "ask": "9.45",
+    "spread_bps": "4.70 bps",
+    "vah": "9.47",
+    "poc": "9.45",
+    "val": "9.42",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "9.42",
+      "sl": "8.21",
+      "tp": "12.43",
+      "lot": "8.28 lots"
+    },
+    "short_setup": {
+      "entry": "9.47",
+      "sl": "10.68",
+      "tp": "6.46",
+      "lot": "8.28 lots"
+    }
+  },
+  "XMRUSD": {
+    "file": "docs/dossiers/XMRUSD_MASTER_DOSSIER.md",
+    "lines": 313,
+    "bytes": 23033,
+    "bid": "593.55",
+    "ask": "593.89",
+    "spread_bps": "5.73 bps",
+    "vah": "615.53",
+    "poc": "592.04",
+    "val": "587.74",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "587.74",
+      "sl": "580.88",
+      "tp": "604.89",
+      "lot": "1.45 lots"
+    },
+    "short_setup": {
+      "entry": "615.53",
+      "sl": "622.39",
+      "tp": "598.38",
+      "lot": "1.45 lots"
+    }
+  },
+  "ZECUSD": {
+    "file": "docs/dossiers/ZECUSD_MASTER_DOSSIER.md",
+    "lines": 429,
+    "bytes": 40483,
+    "bid": "1272.59",
+    "ask": "1273.73",
+    "spread_bps": "8.95 bps",
+    "vah": "1278.60",
+    "poc": "1247.68",
+    "val": "1239.95",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1239.95",
+      "sl": "1222.75",
+      "tp": "1282.95",
+      "lot": "0.58 lots"
+    },
+    "short_setup": {
+      "entry": "1278.60",
+      "sl": "1295.80",
+      "tp": "1235.60",
+      "lot": "0.58 lots"
+    }
+  },
+  "DSHUSD": {
+    "file": "docs/dossiers/DSHUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18206,
+    "bid": "49.95",
+    "ask": "50.01",
+    "spread_bps": "10.00 bps",
+    "vah": "48.81",
+    "poc": "48.18",
+    "val": "47.30",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "47.30",
+      "sl": "46.68",
+      "tp": "48.83",
+      "lot": "16.27 lots"
+    },
+    "short_setup": {
+      "entry": "48.81",
+      "sl": "49.43",
+      "tp": "47.28",
+      "lot": "16.27 lots"
+    }
+  },
+  "YFIUSD": {
+    "file": "docs/dossiers/YFIUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18403,
+    "bid": "1823.90",
+    "ask": "1828.10",
+    "spread_bps": "23.00 bps",
+    "vah": "1887.90",
+    "poc": "1760.60",
+    "val": "1722.20",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1722.20",
+      "sl": "1695.53",
+      "tp": "1788.87",
+      "lot": "0.37 lots"
+    },
+    "short_setup": {
+      "entry": "1887.90",
+      "sl": "1914.57",
+      "tp": "1821.23",
+      "lot": "0.37 lots"
+    }
+  },
+  "ETHUSD": {
+    "file": "docs/dossiers/ETHUSDi_360_DOSSIER.md",
+    "lines": 2946,
+    "bytes": 360675,
+    "bid": "2244.90",
+    "ask": "2247.70",
+    "spread_bps": "12.46 bps",
+    "vah": "2251.47",
+    "poc": "2241.75",
+    "val": "2196.43",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "2196.43",
+      "sl": "2178.31",
+      "tp": "2241.74",
+      "lot": "0.55 lots"
+    },
+    "short_setup": {
+      "entry": "2251.47",
+      "sl": "2269.59",
+      "tp": "2206.16",
+      "lot": "0.55 lots"
+    }
+  },
+  "XLMUSD": {
+    "file": "docs/dossiers/XLMUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18682,
+    "bid": "0.1653",
+    "ask": "0.1656",
+    "spread_bps": "18.13 bps",
+    "vah": "0.1659",
+    "poc": "0.1644",
+    "val": "0.1606",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "0.1606",
+      "sl": "0.1591",
+      "tp": "0.1644",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "0.1659",
+      "sl": "0.1674",
+      "tp": "0.1621",
+      "lot": "20.00 lots"
+    }
+  },
+  "AVEUSD": {
+    "file": "docs/dossiers/AVEUSD_MASTER_DOSSIER.md",
+    "lines": 609,
+    "bytes": 56196,
+    "bid": "126.01",
+    "ask": "126.31",
+    "spread_bps": "23.78 bps",
+    "vah": "127.07",
+    "poc": "124.41",
+    "val": "119.87",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "119.87",
+      "sl": "118.22",
+      "tp": "123.99",
+      "lot": "6.06 lots"
+    },
+    "short_setup": {
+      "entry": "127.07",
+      "sl": "128.72",
+      "tp": "122.94",
+      "lot": "6.06 lots"
+    }
+  },
+  "SOLUSD": {
+    "file": "docs/dossiers/SOLUSD_360_DOSSIER.md",
+    "lines": 4400,
+    "bytes": 498371,
+    "bid": "96.94",
+    "ask": "97.16",
+    "spread_bps": "22.67 bps",
+    "vah": "98.09",
+    "poc": "96.89",
+    "val": "95.22",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "95.22",
+      "sl": "94.18",
+      "tp": "97.83",
+      "lot": "9.57 lots"
+    },
+    "short_setup": {
+      "entry": "98.09",
+      "sl": "99.13",
+      "tp": "95.48",
+      "lot": "9.57 lots"
+    }
+  },
+  "XRPUSD": {
+    "file": "docs/dossiers/XRPUSDi_360_DOSSIER.md",
+    "lines": 2018,
+    "bytes": 228404,
+    "bid": "1.25",
+    "ask": "1.26",
+    "spread_bps": "23.88 bps",
+    "vah": "1.26",
+    "poc": "1.25",
+    "val": "1.23",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "1.23",
+      "sl": "1.22",
+      "tp": "1.27",
+      "lot": "20.00 lots"
+    },
+    "short_setup": {
+      "entry": "1.26",
+      "sl": "1.27",
+      "tp": "1.23",
+      "lot": "20.00 lots"
+    }
+  },
+  "BCHUSD": {
+    "file": "docs/dossiers/BCHUSD_360_DOSSIER.md",
+    "lines": 1406,
+    "bytes": 153101,
+    "bid": "285.66",
+    "ask": "286.24",
+    "spread_bps": "20.28 bps",
+    "vah": "284.54",
+    "poc": "283.72",
+    "val": "273.18",
+    "postured_action": null,
+    "long_setup": {
+      "entry": "273.18",
+      "sl": "271.11",
+      "tp": "278.36",
+      "lot": "4.83 lots"
+    },
+    "short_setup": {
+      "entry": "284.54",
+      "sl": "286.61",
+      "tp": "279.37",
+      "lot": "4.83 lots"
+    }
+  }
+}
