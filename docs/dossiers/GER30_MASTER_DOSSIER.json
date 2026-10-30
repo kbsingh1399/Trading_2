@@ -63,10 +63,10 @@
   "auction": {
     "daily_vah": 26029.01,
     "daily_poc": 25995.26,
-    "daily_val": 25894.03,
-    "dist_poc_pct": -0.67,
-    "dist_vah_pct": -0.8,
-    "dist_val_pct": -0.28,
+    "daily_val": 25889.81,
+    "dist_poc_pct": -0.62,
+    "dist_vah_pct": -0.75,
+    "dist_val_pct": -0.22,
     "va_position": "BELOW_VALUE (Imbalance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "RANGE_EXPANSION",
@@ -735,9 +735,9 @@
   },
   "formulation": {
     "long": {
-      "entry": 25894.03,
-      "sl": 25856.72984326725,
-      "tp": 25987.280391831868,
+      "entry": 25889.81,
+      "sl": 25852.509843267253,
+      "tp": 25983.060391831874,
       "dist": 37.30015673274829,
       "lots": 0.26
     },
