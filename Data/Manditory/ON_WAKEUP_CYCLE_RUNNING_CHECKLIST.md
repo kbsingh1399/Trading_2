@@ -18,25 +18,35 @@ Establish a continuous, evidence-driven, multi-agent trading intelligence loop t
 
 ---
 
-## 🛡️ Non-Negotiable Operating Principles
+## 🛡️ Non-Negotiable Operating Principles & Gravitas Mandate
 
-1. **Complete coverage**: Every eligible asset and every associated Markdown dossier must be examined individually. Skipping, summarising without inspection, or selectively reviewing documents is strictly prohibited.
-2. **Independent intelligence**: Antigravity, Arena.ai, and Z.ai must each conduct their own analysis.
-3. **Verified completion**: Wait for both external systems to finish before making the final comparison.
-4. **Data consistency**: Keep the collaborative intelligence ledger synchronised with the live portfolio and order registry.
-5. **Evidence-driven execution**: Never place a trade solely on the basis of consensus, incomplete analysis, or an unverified setup.
-6. **Continuous operation**: Repeat the complete workflow every 20 minutes after each cycle finishes.
-7. **Failure handling**: If a system, daemon, or data source fails, report the failure, preserve the current state, and avoid treating incomplete work as completed.
-8. **Mandatory Exclusive Dossier Use**: ALL analysis MUST use ONLY the comprehensive 360° master dossier files (`docs/dossiers/<ASSET>_MASTER_DOSSIER.md`). Isolated indicators or un-cross-referenced columns are strictly forbidden.
-9. **Mandatory 10-Section Full-Scale Examination Gate**: Every asset dossier consists of 10 structural sections. Reading surface parameters (e.g. VAH/VAL/POC only) while ignoring orderflow, whale depth, or liquidation max pain is STRICTLY FORBIDDEN. All 10 sections must be physically examined and verified to EOF via programmatic AST/file extraction and recorded in `CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json` before any trade setup is formulated.
+1. **Gravitas Scientific Rigor**: ZERO hallucination, zero assumptions, zero ungrounded assertions. Every statement, metric, level, and recommendation must be physically anchored in audited Parquet feeds, individual JSON dossiers, or live broker telemetry. If evidence is lacking, state unknown and stand aside.
+2. **Step 0 Mandatory Governance Gate**: Prior to formulating any trades, every cycle must verify compliance with the 4 foundational governance documents:
+   - `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`
+   - `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`
+   - `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`
+   - `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`
+3. **100% Individual JSON Dossier Study**: Every asset passing the spread test MUST be individually opened, loaded, and audited from its standalone file `docs/dossiers/<SYMBOL>_MASTER_DOSSIER.json`. Skimming, selective sub-sampling, or bulk approximations without individual file verification are strictly prohibited.
+4. **Independent Tri-Council Intelligence**: Antigravity, Arena.ai, and Z.ai must each conduct their own independent asset-level analysis across the universe of spread-cleared JSON dossiers. Prompts to external models must explicitly grant them individual asset links and command them to independently formulate their own high-confluence candidates.
+5. **Verified Completion via AutoWake Watchdog**: Never proceed to execution prematurely; wait for both external models to complete their analyses via the Rock-Hard Dual Watchdog.
+6. **Data Consistency**: Keep the collaborative intelligence ledger, cycle envelope, and live portfolio registry strictly synchronized with live MT5 telemetry.
+7. **Evidence-Driven Execution**: Never execute on majority consensus alone. Execute only when an individual setup meets strict mathematical criteria: $R:R \ge 2.5R$, nominal risk $\le \$10.00$ USD, capital floor defense, and liquidation max pain / retail stop cascade immunity (Pitfall 24 immunity).
+8. **Continuous Kaizen Learning Loop**: Continuous 20-minute cycle operation via dynamic AutoWake timer. Every unexpected behavior or market shift triggers an immediate root-cause audit and permanent preventative codification.
 
 ---
 
-## 🔄 THE 7-STEP CANONICAL CYCLE PROTOCOL
+## 🔄 THE 8-STEP CANONICAL CYCLE PROTOCOL (STEP 0 - STEP 7)
 
-On every wakeup, execute these 7 steps in order. Do NOT check a step until the work is physically done.
+On every wakeup, execute these steps in strict sequential order. Do NOT check a step until the work is physically done and verified.
 
-### Step 1: Identify Eligible Assets
+### Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate
+- Physically open, read, and cross-reference the 4 inviolable risk and execution specifications:
+  1. `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (Row-by-row interrogation across all 4 macro groups).
+  2. `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (5-stage PDCA-Ω continuous adaptation loop).
+  3. `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical Capital Defense Ladder, Solvency Kernel Floor $4,795.00 USD, Hard Floor $4,775.00 USD).
+  4. `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Forensic defense against ghost walls, stop clusters, CVD exhaustion, and Pitfall 24).
+
+### Step 1: Identify Eligible Assets (Spread Screening)
 - Identify and list ALL assets currently within the defined spread range.
 - Read `00_MT5_Account_Telemetry.parquet` and filter against broker spread thresholds (TradFi ≤ 5.0 bps, Crypto ≤ 25.0 bps).
 - Establish the complete list of eligible candidates (across Crypto, Forex, Indices, and Metals) before proceeding.
