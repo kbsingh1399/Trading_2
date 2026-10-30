@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: LRCUSD
 **Canonical Key**: `LRCUSD` | **Broker Instrument**: `LRCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:44:31 IST` (`2026-10-30 06:14:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:47:32 IST` (`2026-10-30 06:17:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,7 +152,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `36.19` | Last 24h: `127.75` | Last 3d: `393.37` | Last 7d: `891.11`
+  * Current Rate: `36.09` | Last 24h: `127.75` | Last 3d: `393.37` | Last 7d: `891.11`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|

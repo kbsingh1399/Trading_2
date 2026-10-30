@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 11:44:30 IST` (`2026-10-30 06:14:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:47:32 IST` (`2026-10-30 06:17:32 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -117,9 +117,9 @@
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `218` | `0x0911...129a` | `LONG` | 9,956,967.91 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -265,774.51 USD | `-2.67%` | `20X Isolated` |
-| `1139` | `0xe03b...ed11` | `SHORT` | 1,948,965.03 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 44,238.29 USD | `+2.27%` | `50X Isolated` |
-| `1721` | `0x3f31...a3d7` | `SHORT` | 1,204,509.39 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -4,577.94 USD | `-0.38%` | `50X Isolated` |
-| `1835` | `0x9df2...c665` | `SHORT` | 1,118,729.63 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 1,840.21 USD | `+0.16%` | `5X Isolated` |
+| `1136` | `0xe03b...ed11` | `SHORT` | 1,948,790.84 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 44,412.48 USD | `+2.28%` | `50X Isolated` |
+| `1718` | `0x3f31...a3d7` | `SHORT` | 1,204,294.09 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -4,362.64 USD | `-0.36%` | `50X Isolated` |
+| `1834` | `0x9df2...c665` | `SHORT` | 1,118,829.62 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 1,740.21 USD | `+0.16%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -293,14 +293,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `571.55` | Last 24h: `95.44` | Last 3d: `198.32` | Last 7d: `265.06`
+  * Current Rate: `581.44` | Last 24h: `95.44` | Last 3d: `198.32` | Last 7d: `265.06`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
-| **USDT Bybit** | `0.0708%` | **USDT KuCoin** | `-` |
+| **USDT Bybit** | `0.0728%` | **USDT KuCoin** | `-` |
 | **USDT MEXC** | `-` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0613%` |
+| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0604%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
