@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDHKD
 **Canonical Key**: `USDHKD` | **Broker Instrument**: `USDHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `7.84` | **Live Ask Quote**: `7.84` | **Mid Price**: `7.84`
+- **Live Bid Quote**: `7.84` | **Live Ask Quote**: `7.85` | **Mid Price**: `7.84`
 - **Spread Points**: `7.00` | **Spread BPS**: `0.09 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:

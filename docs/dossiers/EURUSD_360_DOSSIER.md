@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `1.12` | **Live Ask Quote**: `1.12` | **Mid Price**: `1.12`
-- **Spread Points**: `2.00` | **Spread BPS**: `0.18 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `1.00` | **Spread BPS**: `0.09 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `5` | Point: `1e-05`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.12` | VWAP Z-Score: `+1.29` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000633` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `62.41` (State: `NEUTRAL`)
+  * Session VWAP: `1.12` | VWAP Z-Score: `+1.38` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000619` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `63.27` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.12` | Lower -3.00σ Band: `1.12`
   * Upper +2.51σ Band: `1.12` | Lower -2.51σ Band: `1.12`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.12` | EMA-20=`1.12` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.12` (Slope: `+0.0000`) | EMA-100=`1.12`
-  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0355`) | EMA-233=`1.12`
+  * Institutional Anchors: EMA-144=`1.12` | EMA-200=`1.12` (Slope: `+0.0364`) | EMA-233=`1.12`
 - **Range Boundaries**: 24H High=`1.12` | 24H Low=`1.11` | Weekly High=`1.12` | Weekly Low=`1.11`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.12` (Distance: `+0.00%`)
-  * Point of Control (POC) = `1.12` (Distance: `+0.05%`)
-  * Value Area Low (VAL) = `1.12` (Distance: `+0.14%`)
+  * Value Area High (VAH) = `1.12` (Distance: `+0.02%`)
+  * Point of Control (POC) = `1.12` (Distance: `+0.07%`)
+  * Value Area Low (VAL) = `1.12` (Distance: `+0.17%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.12` | POC=`1.11` | VAL=`1.11`
@@ -409,15 +409,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.12` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000789` pts)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000758` pts)
   * +2.5R Take Profit: `1.12`
-  * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.12` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000789` pts)
+  * Spread-Padded Stop Loss: `1.12` (Risk Distance: `0.000758` pts)
   * +2.5R Take Profit: `1.12`
-  * Mathematical Lot Sizing: **`0.12 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`0.13 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**

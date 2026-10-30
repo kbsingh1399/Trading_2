@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: KAVUSD
 **Canonical Key**: `KAVUSD` | **Broker Instrument**: `KAVUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,12 +23,12 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0672` | VWAP Z-Score: `+1.52` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000135` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0672` | VWAP Z-Score: `+1.48` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000133` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `70.55` (State: `OVERBOUGHT`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0694` | Lower -3.00σ Band: `0.0650`
-  * Upper +2.51σ Band: `0.0690` | Lower -2.51σ Band: `0.0653`
+  * Upper +2.51σ Band: `0.0691` | Lower -2.51σ Band: `0.0653`
   * Upper +2.01σ Band: `0.0687` | Lower -2.01σ Band: `0.0657`
   * Upper +2.00σ Band: `0.0687` | Lower -2.00σ Band: `0.0657`
   * Upper +1.28σ Band: `0.0681` | Lower -1.28σ Band: `0.0662`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0682` | EMA-20=`0.0681` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0679` (Slope: `+0.0000`) | EMA-100=`0.0679`
-  * Institutional Anchors: EMA-144=`0.0679` | EMA-200=`0.0680` (Slope: `+0.0369`) | EMA-233=`0.0680`
+  * Institutional Anchors: EMA-144=`0.0679` | EMA-200=`0.0680` (Slope: `+0.0378`) | EMA-233=`0.0680`
 - **Range Boundaries**: 24H High=`0.0688` | 24H Low=`0.0647` | Weekly High=`0.0693` | Weekly Low=`0.0647`
 
 ---

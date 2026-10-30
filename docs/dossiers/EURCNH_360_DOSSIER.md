@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.45` | **Live Ask Quote**: `7.45` | **Mid Price**: `7.45`
-- **Spread Points**: `45.00` | **Spread BPS**: `0.60 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `47.00` | **Spread BPS**: `0.63 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`7.45` | EMA-20=`7.45` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`7.45` (Slope: `+0.0000`) | EMA-100=`7.45`
   * Institutional Anchors: EMA-144=`7.45` | EMA-200=`7.45` (Slope: `+0.0000`) | EMA-233=`7.45`
-- **Range Boundaries**: 24H High=`7.52` | 24H Low=`7.38` | Weekly High=`7.60` | Weekly Low=`7.30`
+- **Range Boundaries**: 24H High=`7.53` | 24H Low=`7.38` | Weekly High=`7.60` | Weekly Low=`7.30`
 
 ---
 

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZARJPY
 **Canonical Key**: `ZARJPY` | **Broker Instrument**: `ZARJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.44` | **Live Ask Quote**: `9.45` | **Mid Price**: `9.45`
-- **Spread Points**: `346.00` | **Spread BPS**: `3.66 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `358.00` | **Spread BPS**: `3.79 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,12 +32,12 @@
   * Upper +2.01σ Band: `9.49` | Lower -2.01σ Band: `9.41`
   * Upper +2.00σ Band: `9.48` | Lower -2.00σ Band: `9.41`
   * Upper +1.28σ Band: `9.47` | Lower -1.28σ Band: `9.42`
-  * Upper +1.00σ Band: `9.47` | Lower -1.00σ Band: `9.43`
+  * Upper +1.00σ Band: `9.46` | Lower -1.00σ Band: `9.43`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`9.45` | EMA-20=`9.45` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`9.45` (Slope: `+0.0000`) | EMA-100=`9.45`
   * Institutional Anchors: EMA-144=`9.45` | EMA-200=`9.45` (Slope: `+0.0000`) | EMA-233=`9.45`
-- **Range Boundaries**: 24H High=`9.54` | 24H Low=`9.35` | Weekly High=`9.64` | Weekly Low=`9.26`
+- **Range Boundaries**: 24H High=`9.54` | 24H Low=`9.35` | Weekly High=`9.63` | Weekly Low=`9.26`
 
 ---
 
@@ -54,13 +54,13 @@
   * Monday Range Blueprint: High=`9.49` | Mid=`9.45` | Low=`9.40`
   * Developing Weekly Value Area: Weekly VAH=`9.52` | Weekly POC=`9.45` | Weekly VAL=`9.37`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`9.47` | Low=`9.43`
+  * Asian Session (00:00-08:00 UTC): High=`9.46` | Low=`9.43`
   * London Session (08:00-16:00 UTC): High=`9.48` | Low=`9.41`
   * New York Session (13:00-21:00 UTC): High=`9.50` | Low=`9.39`
   * Initial Balance (First Hour): IB High=`9.47` | IB Low=`9.42`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.41` - `9.48`
-  * Optimal Trade Entry (OTE 0.705): `9.47`
+  * Optimal Trade Entry (OTE 0.705): `9.46`
   * Structural Invalidation Anchor (0.786): `9.52`
 
 ---

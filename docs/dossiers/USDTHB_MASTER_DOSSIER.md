@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDTHB
 **Canonical Key**: `USDTHB` | **Broker Instrument**: `USDTHB.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `33.67` | **Live Ask Quote**: `33.69` | **Mid Price**: `33.68`
+- **Live Bid Quote**: `33.68` | **Live Ask Quote**: `33.69` | **Mid Price**: `33.68`
 - **Spread Points**: `1300.00` | **Spread BPS**: `3.86 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -27,17 +27,17 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `33.92` | Lower -3.00σ Band: `33.44`
+  * Upper +3.00σ Band: `33.92` | Lower -3.00σ Band: `33.45`
   * Upper +2.51σ Band: `33.87` | Lower -2.51σ Band: `33.50`
   * Upper +2.01σ Band: `33.82` | Lower -2.01σ Band: `33.54`
   * Upper +2.00σ Band: `33.82` | Lower -2.00σ Band: `33.55`
-  * Upper +1.28σ Band: `33.77` | Lower -1.28σ Band: `33.59`
-  * Upper +1.00σ Band: `33.75` | Lower -1.00σ Band: `33.61`
+  * Upper +1.28σ Band: `33.78` | Lower -1.28σ Band: `33.59`
+  * Upper +1.00σ Band: `33.75` | Lower -1.00σ Band: `33.62`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`33.68` | EMA-20=`33.68` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`33.68` (Slope: `+0.0000`) | EMA-100=`33.68`
   * Institutional Anchors: EMA-144=`33.68` | EMA-200=`33.68` (Slope: `+0.0000`) | EMA-233=`33.68`
-- **Range Boundaries**: 24H High=`34.02` | 24H Low=`33.34` | Weekly High=`34.35` | Weekly Low=`33.01`
+- **Range Boundaries**: 24H High=`34.02` | 24H Low=`33.35` | Weekly High=`34.36` | Weekly Low=`33.01`
 
 ---
 
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`33.82` | POC=`33.68` | VAL=`33.55`
-  * Prior Day Extremes: PDH=`33.88` | PDL=`33.48` | PDC=`33.68`
-  * Monday Range Blueprint: High=`33.85` | Mid=`33.68` | Low=`33.51`
+  * Prior Day Extremes: PDH=`33.89` | PDL=`33.48` | PDC=`33.68`
+  * Monday Range Blueprint: High=`33.85` | Mid=`33.68` | Low=`33.52`
   * Developing Weekly Value Area: Weekly VAH=`33.95` | Weekly POC=`33.68` | Weekly VAL=`33.41`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`33.75` | Low=`33.61`
+  * Asian Session (00:00-08:00 UTC): High=`33.75` | Low=`33.62`
   * London Session (08:00-16:00 UTC): High=`33.82` | Low=`33.55`
-  * New York Session (13:00-21:00 UTC): High=`33.88` | Low=`33.48`
+  * New York Session (13:00-21:00 UTC): High=`33.89` | Low=`33.48`
   * Initial Balance (First Hour): IB High=`33.78` | IB Low=`33.58`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `33.55` - `33.82`
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `33.78` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `35.00` (Risk Distance: `1.22` pts)
-  * +2.5R Take Profit: `30.73`
+  * +2.5R Take Profit: `30.74`
   * Mathematical Lot Sizing: **`8.20 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

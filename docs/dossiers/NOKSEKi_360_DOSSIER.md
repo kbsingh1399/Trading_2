@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NOKSEK
 **Canonical Key**: `NOKSEK` | **Broker Instrument**: `NOKSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:00:27 IST` (`2026-10-30 10:30:27 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`1.07` | EMA-20=`1.07` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.07` (Slope: `+0.0000`) | EMA-100=`1.07`
   * Institutional Anchors: EMA-144=`1.07` | EMA-200=`1.07` (Slope: `+0.0000`) | EMA-233=`1.07`
-- **Range Boundaries**: 24H High=`1.08` | 24H Low=`1.06` | Weekly High=`1.09` | Weekly Low=`1.05`
+- **Range Boundaries**: 24H High=`1.08` | 24H Low=`1.06` | Weekly High=`1.09` | Weekly Low=`1.04`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`1.07` | POC=`1.07` | VAL=`1.06`
   * Prior Day Extremes: PDH=`1.07` | PDL=`1.06` | PDC=`1.07`
   * Monday Range Blueprint: High=`1.07` | Mid=`1.07` | Low=`1.06`
-  * Developing Weekly Value Area: Weekly VAH=`1.08` | Weekly POC=`1.07` | Weekly VAL=`1.06`
+  * Developing Weekly Value Area: Weekly VAH=`1.07` | Weekly POC=`1.07` | Weekly VAL=`1.06`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1.07` | Low=`1.06`
   * London Session (08:00-16:00 UTC): High=`1.07` | Low=`1.06`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `1.06` - `1.07`
   * Optimal Trade Entry (OTE 0.705): `1.07`
-  * Structural Invalidation Anchor (0.786): `1.08`
+  * Structural Invalidation Anchor (0.786): `1.07`
 
 ---
 
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.06` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.1369` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `-0.1373` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.06`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.08`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1.07`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
