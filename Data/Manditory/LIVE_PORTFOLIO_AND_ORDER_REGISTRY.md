@@ -13,17 +13,17 @@
 
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
-- **Account Balance**: **4,762.83 USD**
-- **Floating Equity**: **4,767.47 USD**
-- **Free Margin**: **4,580.08 USD**
-- **Margin Used**: **187.39 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit compressed to: **-7.53 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit compressed to: **-27.53 USD**)
-- **Active Running Positions**: **1 ACTIVE (AUDUSD.pi Long — RATCHET LOCKED AT 0.70282)**
+- **Account Balance**: **4,763.23 USD**
+- **Floating Equity**: **4,763.23 USD**
+- **Free Margin**: **4,763.23 USD**
+- **Margin Used**: **0.00 USD**
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-11.77 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-31.77 USD**)
+- **Active Running Positions**: **0 ACTIVE (AUDUSD.pi Long closed in profit via trailing ratchet at 0.70282, +0.40 USD net banked)**
 - **Active Resting Pending Orders**: **5 LIVE PENDING MAKER LIMIT ORDERS**
-- **Total Contingent Downside Risk**: **33.27 USD** (Down from 42.87 USD because AUDUSD is now 0.00 USD risk / guaranteed win)
-- **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-30 05:25:00 UTC` (`2026-10-30 10:55:00 IST`)
+- **Total Contingent Downside Risk**: **33.27 USD**
+- **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE (TIER_0_DEFENSIVE)**
+- **Last Synchronized (UTC)**: 2026-10-30 08:26:00 UTC (2026-10-30 13:56:00 IST)
 
 ---
 
