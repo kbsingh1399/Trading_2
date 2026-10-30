@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:46:56 IST` (`2026-10-30 05:16:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -85,7 +85,7 @@
   * Top Defending Ask Wall: `None` (Unarmored)
 | Side | Wall Price (USD) | Size (Coins) | Depth (USD) | Distance (%) | Persistence | Traded % | Venue | Order ID |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| --- | **`126.16`** | **[CURRENT MID]** | --- | --- | --- | --- | --- | --- |
+| `BID/ASK` | None | `0.0000` | 0.00 USD | `0.00%` | Unarmored | `0.0%` | Interbank L2 | NONE |
 
 - **Consolidated L2 Orderbook Depth & Liquidity Skew Ladder (17_Orderbook.parquet)**:
 | Side | Price (USD) | Size (Coins) | Depth (USD) | Cumulative Depth (USD) | Orders Tier | Distance (%) | Wallet / Explorer |
@@ -558,21 +558,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 09:51:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:39:14 IST`: [forex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:40:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:50:40 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:48:40 IST`: [forex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:49:40 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
 
 
 ---
@@ -607,6 +607,6 @@
   * Mathematical Lot Sizing: **`6.11 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
-**Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
+**Postured Action**: **`STAND_ASIDE_MONITOR`**
 - Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`127.17`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

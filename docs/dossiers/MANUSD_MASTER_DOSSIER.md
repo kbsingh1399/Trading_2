@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: MANUSD
 **Canonical Key**: `MANUSD` | **Broker Instrument**: `MANUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:46:56 IST` (`2026-10-30 05:16:56 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:49:58 IST` (`2026-10-30 05:19:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 09:51:14 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:39:14 IST`: [forex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 10:38:14 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 07:40:14 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:40:14 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:40:14 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:50:40 IST`: [cnbc.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:48:40 IST`: [forex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 10:47:40 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:49:40 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:49:40 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:49:40 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
 
 
 ---
