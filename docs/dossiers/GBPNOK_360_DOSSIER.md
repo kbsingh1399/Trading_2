@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNOK
 **Canonical Key**: `GBPNOK` | **Broker Instrument**: `GBPNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:13:37 IST` (`2026-10-30 04:43:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:16:38 IST` (`2026-10-30 04:46:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `12.35` | **Live Ask Quote**: `12.35` | **Mid Price**: `12.35`
-- **Spread Points**: `363.00` | **Spread BPS**: `2.94 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `377.00` | **Spread BPS**: `3.05 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,7 +27,7 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `12.44` | Lower -3.00σ Band: `12.26`
+  * Upper +3.00σ Band: `12.43` | Lower -3.00σ Band: `12.26`
   * Upper +2.51σ Band: `12.42` | Lower -2.51σ Band: `12.28`
   * Upper +2.01σ Band: `12.40` | Lower -2.01σ Band: `12.30`
   * Upper +2.00σ Band: `12.40` | Lower -2.00σ Band: `12.30`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`12.35` | EMA-20=`12.35` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`12.35` (Slope: `+0.0000`) | EMA-100=`12.35`
   * Institutional Anchors: EMA-144=`12.35` | EMA-200=`12.35` (Slope: `+0.0000`) | EMA-233=`12.35`
-- **Range Boundaries**: 24H High=`12.47` | 24H Low=`12.23` | Weekly High=`12.60` | Weekly Low=`12.10`
+- **Range Boundaries**: 24H High=`12.47` | 24H Low=`12.22` | Weekly High=`12.60` | Weekly Low=`12.10`
 
 ---
 

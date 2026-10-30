@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAS
 **Canonical Key**: `GAS` | **Broker Instrument**: `GAS.p` | **Asset Class**: `Energy / Commodity`
-**Timestamp**: `2026-10-30 10:13:37 IST` (`2026-10-30 04:43:37 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:16:38 IST` (`2026-10-30 04:46:38 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.61` | VWAP Z-Score: `-0.55` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0064` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `44.36` (State: `NEUTRAL`)
+  * Session VWAP: `2.61` | VWAP Z-Score: `+0.27` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0062` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `46.52` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.62` | Lower -3.00σ Band: `2.60`
   * Upper +2.51σ Band: `2.62` | Lower -2.51σ Band: `2.60`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.61` | EMA-20=`2.61` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`2.63` (Slope: `+0.0000`) | EMA-100=`2.65`
-  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3170`) | EMA-233=`2.68`
+  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3144`) | EMA-233=`2.68`
 - **Range Boundaries**: 24H High=`2.77` | 24H Low=`2.59` | Weekly High=`2.77` | Weekly Low=`2.59`
 
 ---
