@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHRUSD
 **Canonical Key**: `CHRUSD` | **Broker Instrument**: `CHRUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 14:50:52 IST` (`2026-10-30 09:20:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 14:53:54 IST` (`2026-10-30 09:23:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0144` | VWAP Z-Score: `+2.02` (Regime: `STRETCH_EXTREME`)
+  * Session VWAP: `0.0144` | VWAP Z-Score: `+1.90` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.000102` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `60.19` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0150` | Lower -3.00σ Band: `0.0139`
-  * Upper +2.51σ Band: `0.0149` | Lower -2.51σ Band: `0.0140`
+  * Upper +2.51σ Band: `0.0149` | Lower -2.51σ Band: `0.0139`
   * Upper +2.01σ Band: `0.0148` | Lower -2.01σ Band: `0.0140`
-  * Upper +2.00σ Band: `0.0148` | Lower -2.00σ Band: `0.0141`
+  * Upper +2.00σ Band: `0.0148` | Lower -2.00σ Band: `0.0140`
   * Upper +1.28σ Band: `0.0147` | Lower -1.28σ Band: `0.0142`
   * Upper +1.00σ Band: `0.0146` | Lower -1.00σ Band: `0.0142`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0147` | EMA-20=`0.0146` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0149` (Slope: `+0.0000`) | EMA-100=`0.0153`
-  * Institutional Anchors: EMA-144=`0.0156` | EMA-200=`0.0158` (Slope: `-0.9112`) | EMA-233=`0.0159`
+  * Institutional Anchors: EMA-144=`0.0156` | EMA-200=`0.0158` (Slope: `-0.8860`) | EMA-233=`0.0159`
 - **Range Boundaries**: 24H High=`0.0170` | 24H Low=`0.0139` | Weekly High=`0.0174` | Weekly Low=`0.0139`
 
 ---
