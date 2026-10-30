@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNOK
 **Canonical Key**: `EURNOK` | **Broker Instrument**: `EURNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:51:58 IST` (`2026-10-30 03:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -28,8 +28,8 @@
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `10.39` | Lower -3.00σ Band: `10.25`
-  * Upper +2.51σ Band: `10.38` | Lower -2.51σ Band: `10.27`
-  * Upper +2.01σ Band: `10.37` | Lower -2.01σ Band: `10.28`
+  * Upper +2.51σ Band: `10.38` | Lower -2.51σ Band: `10.26`
+  * Upper +2.01σ Band: `10.36` | Lower -2.01σ Band: `10.28`
   * Upper +2.00σ Band: `10.36` | Lower -2.00σ Band: `10.28`
   * Upper +1.28σ Band: `10.35` | Lower -1.28σ Band: `10.29`
   * Upper +1.00σ Band: `10.34` | Lower -1.00σ Band: `10.30`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`10.32` | EMA-20=`10.32` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`10.32` (Slope: `+0.0000`) | EMA-100=`10.32`
   * Institutional Anchors: EMA-144=`10.32` | EMA-200=`10.32` (Slope: `+0.0000`) | EMA-233=`10.32`
-- **Range Boundaries**: 24H High=`10.43` | 24H Low=`10.22` | Weekly High=`10.53` | Weekly Low=`10.12`
+- **Range Boundaries**: 24H High=`10.42` | 24H Low=`10.22` | Weekly High=`10.53` | Weekly Low=`10.11`
 
 ---
 

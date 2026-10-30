@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAS
 **Canonical Key**: `GAS` | **Broker Instrument**: `GAS.p` | **Asset Class**: `Energy / Commodity`
-**Timestamp**: `2026-10-30 08:51:58 IST` (`2026-10-30 03:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.61` | VWAP Z-Score: `+1.02` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0074` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `2.61` | VWAP Z-Score: `+0.99` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0072` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `47.15` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.62` | Lower -3.00σ Band: `2.60`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.61` | EMA-20=`2.61` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`2.63` (Slope: `+0.0000`) | EMA-100=`2.66`
-  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3376`) | EMA-233=`2.69`
+  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3320`) | EMA-233=`2.68`
 - **Range Boundaries**: 24H High=`2.77` | 24H Low=`2.59` | Weekly High=`2.77` | Weekly Low=`2.59`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2.61` (Distance: `+0.31%`)
-  * Point of Control (POC) = `2.61` (Distance: `+0.42%`)
-  * Value Area Low (VAL) = `2.61` (Distance: `+0.54%`)
+  * Value Area High (VAH) = `2.61` (Distance: `+0.27%`)
+  * Point of Control (POC) = `2.61` (Distance: `+0.38%`)
+  * Value Area Low (VAL) = `2.61` (Distance: `+0.50%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2.70` | POC=`2.65` | VAL=`2.59`
@@ -185,20 +185,20 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 1,220.00 USD | 0.00 USD | **`ACCUMULATION`** |
-| `15m` | -3,290.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30m` | -12,900.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1h` | -14,110.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `2h` | -41,950.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `4h` | -153,940.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `6h` | -196,480.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `8h` | -328,610.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `12h` | -342,340.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `24h` | -485,530.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1w` | -2,160,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30d` | -3,700,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `1h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `2h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `4h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `6h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `8h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `12h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `24h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `1w` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `30d` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
 
-* Spot Capital Netflows: 5m=`+1.22K` | 15m=`-3.29K` | 1h=`-14.11K` | 24h=`-485.53K`
+* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
 * Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `2.61` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `2.58` (Risk Distance: `0.0329` pts)
+  * Spread-Padded Stop Loss: `2.58` (Risk Distance: `0.0326` pts)
   * +2.5R Take Profit: `2.69`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `2.61` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `2.65` (Risk Distance: `0.0329` pts)
+  * Spread-Padded Stop Loss: `2.65` (Risk Distance: `0.0326` pts)
   * +2.5R Take Profit: `2.53`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

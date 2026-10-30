@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XMRUSD
 **Canonical Key**: `XMRUSD` | **Broker Instrument**: `XMRUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:51:58 IST` (`2026-10-30 03:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `611.34` | **Live Ask Quote**: `611.55` | **Mid Price**: `611.44`
-- **Spread Points**: `21.00` | **Spread BPS**: `3.43 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `607.06` | **Live Ask Quote**: `607.45` | **Mid Price**: `607.25`
+- **Spread Points**: `39.00` | **Spread BPS**: `6.42 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `617.73` | VWAP Z-Score: `-0.98` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `8.63` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `45.18` (State: `NEUTRAL`)
+  * Session VWAP: `617.29` | VWAP Z-Score: `-1.07` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `8.30` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `44.20` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `642.16` | Lower -3.00σ Band: `593.30`
-  * Upper +2.51σ Band: `638.17` | Lower -2.51σ Band: `597.29`
-  * Upper +2.01σ Band: `634.10` | Lower -2.01σ Band: `601.36`
-  * Upper +2.00σ Band: `634.02` | Lower -2.00σ Band: `601.44`
-  * Upper +1.28σ Band: `628.16` | Lower -1.28σ Band: `607.31`
-  * Upper +1.00σ Band: `625.88` | Lower -1.00σ Band: `609.59`
+  * Upper +3.00σ Band: `641.67` | Lower -3.00σ Band: `592.91`
+  * Upper +2.51σ Band: `637.69` | Lower -2.51σ Band: `596.89`
+  * Upper +2.01σ Band: `633.63` | Lower -2.01σ Band: `600.96`
+  * Upper +2.00σ Band: `633.54` | Lower -2.00σ Band: `601.04`
+  * Upper +1.28σ Band: `627.69` | Lower -1.28σ Band: `606.89`
+  * Upper +1.00σ Band: `625.42` | Lower -1.00σ Band: `609.16`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`616.02` | EMA-20=`615.78` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`611.65` (Slope: `+0.0000`) | EMA-100=`607.17`
-  * Institutional Anchors: EMA-144=`605.16` | EMA-200=`604.09` (Slope: `+0.2868`) | EMA-233=`604.19`
-- **Range Boundaries**: 24H High=`651.35` | 24H Low=`583.39` | Weekly High=`651.35` | Weekly Low=`583.39`
+  * Fast EMA Array: EMA-9=`614.54` | EMA-20=`615.10` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`611.53` (Slope: `+0.0000`) | EMA-100=`607.19`
+  * Institutional Anchors: EMA-144=`605.21` | EMA-200=`604.16` (Slope: `+0.2851`) | EMA-233=`604.23`
+- **Range Boundaries**: 24H High=`651.35` | 24H Low=`584.03` | Weekly High=`651.35` | Weekly Low=`583.39`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `624.25` (Distance: `-2.05%`)
-  * Point of Control (POC) = `616.06` (Distance: `-0.75%`)
-  * Value Area Low (VAL) = `606.19` (Distance: `+0.87%`)
+  * Value Area High (VAH) = `623.68` (Distance: `-2.59%`)
+  * Point of Control (POC) = `616.06` (Distance: `-1.39%`)
+  * Value Area Low (VAL) = `606.19` (Distance: `+0.22%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`611.25` | POC=`599.93` | VAL=`594.94`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`607.83` | Weekly POC=`594.61` | Weekly VAL=`589.60`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`642.73` | Low=`600.40`
-  * London Session (08:00-16:00 UTC): High=`613.89` | Low=`609.00`
-  * New York Session (13:00-21:00 UTC): High=`615.11` | Low=`607.78`
-  * Initial Balance (First Hour): IB High=`613.28` | IB Low=`609.61`
+  * London Session (08:00-16:00 UTC): High=`609.68` | Low=`604.83`
+  * New York Session (13:00-21:00 UTC): High=`610.90` | Low=`603.61`
+  * Initial Balance (First Hour): IB High=`609.08` | IB Low=`605.43`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `609.00` - `613.89`
-  * Optimal Trade Entry (OTE 0.705): `612.67`
-  * Structural Invalidation Anchor (0.786): `616.34`
+  * Golden Pocket Zone (0.618 - 0.650): `604.83` - `609.68`
+  * Optimal Trade Entry (OTE 0.705): `608.47`
+  * Structural Invalidation Anchor (0.786): `612.11`
 
 ---
 
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 08:40:08 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 08:53:31 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -213,21 +213,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 177,170.00 USD | **`ACCUMULATION`** |
-| `15m` | 0.00 USD | 477,440.00 USD | **`ACCUMULATION`** |
-| `30m` | -10,360.00 USD | 658,740.00 USD | **`ACCUMULATION`** |
-| `1h` | -58,130.00 USD | 1,670,000.00 USD | **`ACCUMULATION`** |
-| `2h` | -64,170.00 USD | 1,450,000.00 USD | **`ACCUMULATION`** |
-| `4h` | -371,910.00 USD | 217,960.00 USD | **`DISTRIBUTION`** |
-| `6h` | 77,970.00 USD | 107,940.00 USD | **`ACCUMULATION`** |
-| `8h` | 443,610.00 USD | 720,130.00 USD | **`ACCUMULATION`** |
-| `12h` | 1,110,000.00 USD | 1,650,000.00 USD | **`ACCUMULATION`** |
-| `24h` | 3,490,000.00 USD | 1,680,000.00 USD | **`ACCUMULATION`** |
-| `1w` | 14,940,000.00 USD | 3,540,000.00 USD | **`ACCUMULATION`** |
-| `30d` | 32,270,000.00 USD | -10,240,000.00 USD | **`ACCUMULATION`** |
+| `5m` | -6,320.00 USD | 86,490.00 USD | **`ACCUMULATION`** |
+| `15m` | -4,960.00 USD | 116,130.00 USD | **`ACCUMULATION`** |
+| `30m` | 155.63 USD | 629,580.00 USD | **`ACCUMULATION`** |
+| `1h` | 9,930.00 USD | 903,510.00 USD | **`ACCUMULATION`** |
+| `2h` | -24,280.00 USD | 2,170,000.00 USD | **`ACCUMULATION`** |
+| `4h` | -437,970.00 USD | 105,760.00 USD | **`DISTRIBUTION`** |
+| `6h` | -176,960.00 USD | 2,000,000.00 USD | **`ACCUMULATION`** |
+| `8h` | 474,830.00 USD | 759,520.00 USD | **`ACCUMULATION`** |
+| `12h` | 1,050,000.00 USD | 1,830,000.00 USD | **`ACCUMULATION`** |
+| `24h` | 3,400,000.00 USD | 2,680,000.00 USD | **`ACCUMULATION`** |
+| `1w` | 14,900,000.00 USD | 3,660,000.00 USD | **`ACCUMULATION`** |
+| `30d` | 32,290,000.00 USD | -10,110,000.00 USD | **`ACCUMULATION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-58.13K` | 24h=`+3.49M`
-* Futures Capital Netflows: 5m=`+177.17K` | 15m=`+477.44K` | 1h=`+1.67M` | 24h=`+1.68M`
+* Spot Capital Netflows: 5m=`-6.32K` | 15m=`-4.96K` | 1h=`+9.93K` | 24h=`+3.40M`
+* Futures Capital Netflows: 5m=`+86.49K` | 15m=`+116.13K` | 1h=`+903.51K` | 24h=`+2.68M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -296,17 +296,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `606.19` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `595.52` (Risk Distance: `10.67` pts)
-  * +2.5R Take Profit: `632.86`
-  * Mathematical Lot Sizing: **`0.93 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `595.64` (Risk Distance: `10.55` pts)
+  * +2.5R Take Profit: `632.56`
+  * Mathematical Lot Sizing: **`0.94 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `624.25` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `634.92` (Risk Distance: `10.67` pts)
-  * +2.5R Take Profit: `597.58`
-  * Mathematical Lot Sizing: **`0.93 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `623.68` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `634.23` (Risk Distance: `10.55` pts)
+  * +2.5R Take Profit: `597.31`
+  * Mathematical Lot Sizing: **`0.94 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`616.34`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`612.11`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

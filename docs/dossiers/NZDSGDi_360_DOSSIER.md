@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDSGD
 **Canonical Key**: `NZDSGD` | **Broker Instrument**: `NZDSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:51:58 IST` (`2026-10-30 03:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -29,7 +29,7 @@
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.7257` | Lower -3.00σ Band: `0.7156`
   * Upper +2.51σ Band: `0.7246` | Lower -2.51σ Band: `0.7167`
-  * Upper +2.01σ Band: `0.7236` | Lower -2.01σ Band: `0.7176`
+  * Upper +2.01σ Band: `0.7237` | Lower -2.01σ Band: `0.7176`
   * Upper +2.00σ Band: `0.7235` | Lower -2.00σ Band: `0.7177`
   * Upper +1.28σ Band: `0.7226` | Lower -1.28σ Band: `0.7186`
   * Upper +1.00σ Band: `0.7221` | Lower -1.00σ Band: `0.7192`

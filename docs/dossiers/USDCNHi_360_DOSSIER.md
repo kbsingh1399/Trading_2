@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCNH
 **Canonical Key**: `USDCNH` | **Broker Instrument**: `USDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:51:57 IST` (`2026-10-30 03:21:57 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `6.65` | **Live Ask Quote**: `6.65` | **Mid Price**: `6.65`
-- **Spread Points**: `4.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `5.00` | **Spread BPS**: `0.08 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `6.66` | VWAP Z-Score: `-0.30` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `6.66` | VWAP Z-Score: `-1.21` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `0.0010` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `44.86` (State: `NEUTRAL`)
+  * 14-Period RSI: `40.98` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `6.66` | Lower -3.00σ Band: `6.65`
   * Upper +2.51σ Band: `6.66` | Lower -2.51σ Band: `6.65`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`6.66` | EMA-20=`6.66` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`6.66` (Slope: `+0.0000`) | EMA-100=`6.66`
-  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `-0.0088`) | EMA-233=`6.66`
+  * Institutional Anchors: EMA-144=`6.66` | EMA-200=`6.66` (Slope: `-0.0089`) | EMA-233=`6.66`
 - **Range Boundaries**: 24H High=`6.66` | 24H Low=`6.65` | Weekly High=`6.67` | Weekly Low=`6.65`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.66` (Distance: `-0.04%`)
+  * Value Area High (VAH) = `6.66` (Distance: `-0.03%`)
   * Point of Control (POC) = `6.66` (Distance: `-0.03%`)
-  * Value Area Low (VAL) = `6.66` (Distance: `-0.01%`)
+  * Value Area Low (VAL) = `6.66` (Distance: `-0.00%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`6.66` | POC=`6.66` | VAL=`6.66`
@@ -56,7 +56,7 @@
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`6.66` | Low=`6.65`
   * London Session (08:00-16:00 UTC): High=`6.68` | Low=`6.63`
-  * New York Session (13:00-21:00 UTC): High=`6.69` | Low=`6.61`
+  * New York Session (13:00-21:00 UTC): High=`6.69` | Low=`6.62`
   * Initial Balance (First Hour): IB High=`6.67` | IB Low=`6.63`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `6.63` - `6.68`

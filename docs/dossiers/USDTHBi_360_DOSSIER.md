@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDTHB
 **Canonical Key**: `USDTHB` | **Broker Instrument**: `USDTHB.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:51:58 IST` (`2026-10-30 03:21:58 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:54:59 IST` (`2026-10-30 03:24:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `33.71` | **Live Ask Quote**: `33.73` | **Mid Price**: `33.72`
-- **Spread Points**: `1400.00` | **Spread BPS**: `4.15 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `33.71` | **Live Ask Quote**: `33.72` | **Mid Price**: `33.72`
+- **Spread Points**: `1200.00` | **Spread BPS**: `3.56 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -269,14 +269,14 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `33.62` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `32.40` (Risk Distance: `1.22` pts)
-  * +2.5R Take Profit: `36.67`
-  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `36.66`
+  * Mathematical Lot Sizing: **`8.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `33.82` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `35.04` (Risk Distance: `1.22` pts)
   * +2.5R Take Profit: `30.77`
-  * Mathematical Lot Sizing: **`8.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.21 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
