@@ -764,19 +764,34 @@ async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: 
                 const sel = window.getSelection();
                 sel.removeAllRanges();
                 sel.addRange(range);
+                document.execCommand('delete');
                 return true;
             })()"""
             await cdp_call("Runtime.evaluate", {"expression": js_clear}, timeout=3.0)
             await asyncio.sleep(0.1)
-            await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}, timeout=1.0)
-            await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}, timeout=1.0)
-            await asyncio.sleep(0.2)
 
-            # 2. Inject text natively via Input.insertText (triggers ProseMirror transactions + React onChange)
-            await cdp_call("Input.insertText", {"text": prompt_text}, timeout=10.0)
-            await asyncio.sleep(0.5)
+            # 2. Inject text via document.execCommand('insertText') which handles large markdown payloads natively in ProseMirror
+            js_inject = f"""(() => {{
+                const el = document.querySelector('.tiptap.ProseMirror');
+                if (!el) return {{ error: 'No tiptap' }};
+                el.focus();
+                const ok = document.execCommand('insertText', false, {json.dumps(prompt_text)});
+                el.dispatchEvent(new InputEvent('input', {{ bubbles: true, inputType: 'insertText', data: ' ' }}));
+                el.dispatchEvent(new KeyboardEvent('keydown', {{ key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true }}));
+                el.dispatchEvent(new KeyboardEvent('keyup', {{ key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true }}));
+                const sendBtn = document.querySelector('button[aria-label="Send message"], button[type="submit"], button:has(svg.lucide-arrow-up)');
+                return {{
+                    ok: ok,
+                    len: el.innerText.length,
+                    sendDisabled: sendBtn ? sendBtn.disabled : null
+                }};
+            }})()"""
+            inject_res = await cdp_call("Runtime.evaluate", {"expression": js_inject, "returnByValue": True}, timeout=6.0)
+            val_inject = inject_res.get("result", {}).get("result", {}).get("value", {})
+            print(f"[{tab_label}] Injection: {val_inject.get('len', 0)} chars, sendDisabled={val_inject.get('sendDisabled')}", file=sys.stderr)
+            await asyncio.sleep(0.3)
 
-            # 3. Click the send button directly
+            # 3. Click the send button or hit Enter
             js_click = """(() => {
                 const sendBtn = document.querySelector('button[aria-label="Send message"], button[type="submit"], button:has(svg.lucide-arrow-up)');
                 if (sendBtn && !sendBtn.disabled) {
@@ -790,21 +805,26 @@ async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: 
             if val.get("clicked"):
                 print(f"[{tab_label}] SUCCESS: Clicked send button!", file=sys.stderr)
             else:
-                # Fallback to Enter key
+                # Fallback to Enter key via CDP
                 await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}, timeout=2.0)
                 await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}, timeout=2.0)
 
-            # 4. Verify generation started
-            await asyncio.sleep(1.0)
-            js_gen = """(() => {
-                const stopBtn = document.querySelector('button[aria-label="Stop generating"], button:has(svg.lucide-square)');
-                return { isGenerating: !!stopBtn };
-            })()"""
-            gen_res = await cdp_call("Runtime.evaluate", {"expression": js_gen, "returnByValue": True}, timeout=3.0)
-            gen_val = gen_res.get("result", {}).get("result", {}).get("value", {})
-            is_gen = gen_val.get("isGenerating", False)
+            # 4. Rigorously verify generation started (poll for up to 3 seconds)
+            is_gen = False
+            for _ in range(6):
+                await asyncio.sleep(0.5)
+                js_gen = """(() => {
+                    const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button:has(svg.lucide-square)');
+                    return { isGenerating: !!stopBtn };
+                })()"""
+                gen_res = await cdp_call("Runtime.evaluate", {"expression": js_gen, "returnByValue": True}, timeout=3.0)
+                gen_val = gen_res.get("result", {}).get("result", {}).get("value", {})
+                is_gen = gen_val.get("isGenerating", False)
+                if is_gen:
+                    break
+
             print(f"[{tab_label}] Generation active: {is_gen}", file=sys.stderr)
-            return True
+            return is_gen
     except Exception as exc:
         print(f"[{tab_label}] post_prompt_to_arena_single error: {exc}", file=sys.stderr)
         return False
