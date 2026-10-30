@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ATMUSD
 **Canonical Key**: `ATMUSD` | **Broker Instrument**: `ATMUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:18:05 IST` (`2026-10-30 09:48:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:21:06 IST` (`2026-10-30 09:51:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.48` | VWAP Z-Score: `+0.56` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0092` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.01` (State: `NEUTRAL`)
+  * Session VWAP: `1.48` | VWAP Z-Score: `+0.44` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0090` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `41.06` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.56` | Lower -3.00σ Band: `1.41`
   * Upper +2.51σ Band: `1.55` | Lower -2.51σ Band: `1.42`
@@ -34,9 +34,9 @@
   * Upper +1.28σ Band: `1.52` | Lower -1.28σ Band: `1.45`
   * Upper +1.00σ Band: `1.51` | Lower -1.00σ Band: `1.46`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1.50` | EMA-20=`1.51` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1.51` (Slope: `+0.0000`) | EMA-100=`1.54`
-  * Institutional Anchors: EMA-144=`1.55` | EMA-200=`1.56` (Slope: `-0.4464`) | EMA-233=`1.57`
+  * Fast EMA Array: EMA-9=`1.50` | EMA-20=`1.50` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1.51` (Slope: `+0.0000`) | EMA-100=`1.53`
+  * Institutional Anchors: EMA-144=`1.55` | EMA-200=`1.56` (Slope: `-0.4619`) | EMA-233=`1.57`
 - **Range Boundaries**: 24H High=`1.63` | 24H Low=`1.42` | Weekly High=`1.65` | Weekly Low=`1.42`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.52` (Distance: `-1.12%`)
-  * Point of Control (POC) = `1.50` (Distance: `+0.05%`)
-  * Value Area Low (VAL) = `1.47` (Distance: `+2.21%`)
+  * Value Area High (VAH) = `1.52` (Distance: `-1.15%`)
+  * Point of Control (POC) = `1.50` (Distance: `+0.02%`)
+  * Value Area Low (VAL) = `1.47` (Distance: `+2.18%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.62` | POC=`1.61` | VAL=`1.57`

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCHF
 **Canonical Key**: `GBPCHF` | **Broker Instrument**: `GBPCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:18:05 IST` (`2026-10-30 09:48:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:21:06 IST` (`2026-10-30 09:51:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,21 +23,21 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1.10` | VWAP Z-Score: `+1.62` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000796` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `58.45` (State: `NEUTRAL`)
+  * Session VWAP: `1.10` | VWAP Z-Score: `+0.00` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1.10` | Lower -3.00σ Band: `1.10`
-  * Upper +2.51σ Band: `1.10` | Lower -2.51σ Band: `1.10`
-  * Upper +2.01σ Band: `1.10` | Lower -2.01σ Band: `1.10`
-  * Upper +2.00σ Band: `1.10` | Lower -2.00σ Band: `1.10`
-  * Upper +1.28σ Band: `1.10` | Lower -1.28σ Band: `1.10`
-  * Upper +1.00σ Band: `1.10` | Lower -1.00σ Band: `1.10`
+  * Upper +3.00σ Band: `1.11` | Lower -3.00σ Band: `1.10`
+  * Upper +2.51σ Band: `1.11` | Lower -2.51σ Band: `1.10`
+  * Upper +2.01σ Band: `1.11` | Lower -2.01σ Band: `1.10`
+  * Upper +2.00σ Band: `1.11` | Lower -2.00σ Band: `1.10`
+  * Upper +1.28σ Band: `1.11` | Lower -1.28σ Band: `1.10`
+  * Upper +1.00σ Band: `1.11` | Lower -1.00σ Band: `1.10`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.10` | EMA-20=`1.10` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.10` (Slope: `+0.0000`) | EMA-100=`1.10`
-  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `-0.0063`) | EMA-233=`1.10`
-- **Range Boundaries**: 24H High=`1.11` | 24H Low=`1.10` | Weekly High=`1.11` | Weekly Low=`1.10`
+  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `+0.0000`) | EMA-233=`1.10`
+- **Range Boundaries**: 24H High=`1.11` | 24H Low=`1.09` | Weekly High=`1.12` | Weekly Low=`1.08`
 
 ---
 
@@ -45,7 +45,7 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `1.10` (Distance: `+0.08%`)
-  * Point of Control (POC) = `1.10` (Distance: `+0.11%`)
+  * Point of Control (POC) = `1.10` (Distance: `+0.12%`)
   * Value Area Low (VAL) = `1.10` (Distance: `+0.30%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -268,15 +268,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.10` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.0011` pts)
-  * +2.5R Take Profit: `1.10`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `-0.1006` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `4.10`
+  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `1.10` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1.10` (Risk Distance: `0.0011` pts)
-  * +2.5R Take Profit: `1.10`
-  * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `2.30` (Risk Distance: `1.20` pts)
+  * +2.5R Take Profit: `-1.90`
+  * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

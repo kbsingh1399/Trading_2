@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDCNH
 **Canonical Key**: `AUDCNH` | **Broker Instrument**: `AUDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:18:05 IST` (`2026-10-30 09:48:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:21:06 IST` (`2026-10-30 09:51:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -30,7 +30,7 @@
   * Upper +3.00σ Band: `4.71` | Lower -3.00σ Band: `4.64`
   * Upper +2.51σ Band: `4.70` | Lower -2.51σ Band: `4.65`
   * Upper +2.01σ Band: `4.70` | Lower -2.01σ Band: `4.66`
-  * Upper +2.00σ Band: `4.70` | Lower -2.00σ Band: `4.66`
+  * Upper +2.00σ Band: `4.69` | Lower -2.00σ Band: `4.66`
   * Upper +1.28σ Band: `4.69` | Lower -1.28σ Band: `4.66`
   * Upper +1.00σ Band: `4.69` | Lower -1.00σ Band: `4.67`
 - **Moving Average Ribbon & Trend Slopes**:
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `4.66` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`4.70` | POC=`4.68` | VAL=`4.66`
+  * Prior Day Value Area: VAH=`4.69` | POC=`4.68` | VAL=`4.66`
   * Prior Day Extremes: PDH=`4.70` | PDL=`4.65` | PDC=`4.68`
   * Monday Range Blueprint: High=`4.70` | Mid=`4.68` | Low=`4.65`
   * Developing Weekly Value Area: Weekly VAH=`4.71` | Weekly POC=`4.68` | Weekly VAL=`4.64`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`4.69` | Low=`4.67`
-  * London Session (08:00-16:00 UTC): High=`4.70` | Low=`4.66`
+  * London Session (08:00-16:00 UTC): High=`4.69` | Low=`4.66`
   * New York Session (13:00-21:00 UTC): High=`4.70` | Low=`4.65`
   * Initial Balance (First Hour): IB High=`4.69` | IB Low=`4.66`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `4.66` - `4.70`
+  * Golden Pocket Zone (0.618 - 0.650): `4.66` - `4.69`
   * Optimal Trade Entry (OTE 0.705): `4.69`
   * Structural Invalidation Anchor (0.786): `4.71`
 

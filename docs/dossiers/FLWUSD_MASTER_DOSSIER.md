@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:18:05 IST` (`2026-10-30 09:48:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:21:06 IST` (`2026-10-30 09:51:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,12 +23,12 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0127` | VWAP Z-Score: `+0.82` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000129` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0127` | VWAP Z-Score: `+0.81` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000120` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `50.42` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0138` | Lower -3.00σ Band: `0.0117`
-  * Upper +2.51σ Band: `0.0136` | Lower -2.51σ Band: `0.0118`
+  * Upper +2.51σ Band: `0.0136` | Lower -2.51σ Band: `0.0119`
   * Upper +2.01σ Band: `0.0134` | Lower -2.01σ Band: `0.0120`
   * Upper +2.00σ Band: `0.0134` | Lower -2.00σ Band: `0.0120`
   * Upper +1.28σ Band: `0.0132` | Lower -1.28σ Band: `0.0123`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0130` | EMA-20=`0.0130` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0132` (Slope: `+0.0000`) | EMA-100=`0.0138`
-  * Institutional Anchors: EMA-144=`0.0142` | EMA-200=`0.0146` (Slope: `-1.3914`) | EMA-233=`0.0148`
+  * Institutional Anchors: EMA-144=`0.0142` | EMA-200=`0.0146` (Slope: `-1.3806`) | EMA-233=`0.0148`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0110` | Weekly High=`0.0170` | Weekly Low=`0.0110`
 
 ---

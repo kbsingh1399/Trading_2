@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURNOK
 **Canonical Key**: `EURNOK` | **Broker Instrument**: `EURNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 15:18:05 IST` (`2026-10-30 09:48:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:21:06 IST` (`2026-10-30 09:51:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.30` | **Live Ask Quote**: `10.30` | **Mid Price**: `10.30`
-- **Spread Points**: `180.00` | **Spread BPS**: `1.75 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `164.00` | **Spread BPS**: `1.59 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`10.30` | EMA-20=`10.30` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`10.30` (Slope: `+0.0000`) | EMA-100=`10.30`
   * Institutional Anchors: EMA-144=`10.30` | EMA-200=`10.30` (Slope: `+0.0000`) | EMA-233=`10.30`
-- **Range Boundaries**: 24H High=`10.40` | 24H Low=`10.20` | Weekly High=`10.50` | Weekly Low=`10.09`
+- **Range Boundaries**: 24H High=`10.40` | 24H Low=`10.20` | Weekly High=`10.51` | Weekly Low=`10.09`
 
 ---
 
@@ -269,7 +269,7 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `10.27` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `9.07` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `13.27`
+  * +2.5R Take Profit: `13.28`
   * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
