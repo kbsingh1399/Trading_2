@@ -161,14 +161,11 @@ def cleanup_browser_tabs() -> int:
                 continue
             url = t.get("url", "").lower()
             title = t.get("title", "").lower()
-            # NEVER close Arena, Z.ai, or default empty tab
-            if "arena.ai" in url or "chat.z.ai" in url or "z.ai" in url:
+            # NEVER close Arena, Z.ai, or default empty/system tab
+            if any(k in url for k in ["arena.ai", "chat.z.ai", "z.ai", "edge://", "chrome://"]):
                 continue
-            if url.startswith("edge://newtab") or url.startswith("chrome://"):
-                continue
-            # Close collector tabs
-            if any(k in url for k in ["coinglass.com", "forexfactory.com", "hyperliquid", "about:blank"]) or \
-               any(k in title for k in ["coinglass", "forex factory"]):
+            # ONLY close specific ephemeral data scrapers
+            if any(k in url for k in ["coinglass.com", "forexfactory.com"]):
                 tab_id = t.get("id")
                 try:
                     urllib.request.urlopen(f"http://127.0.0.1:9222/json/close/{tab_id}", timeout=3)
