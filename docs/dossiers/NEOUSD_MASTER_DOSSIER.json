@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 1.964,
-    "ask": 1.988,
-    "mid": 1.976,
-    "spread_pts": 240.0,
-    "spread_bps": 121.46,
+    "bid": 1.968,
+    "ask": 1.9929999999999999,
+    "mid": 1.9805,
+    "spread_pts": 250.0,
+    "spread_bps": 126.23,
     "thresh_bps": 25.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -64,9 +64,9 @@
     "daily_vah": 1.99,
     "daily_poc": 1.95,
     "daily_val": 1.91,
-    "dist_poc_pct": 1.49,
-    "dist_vah_pct": -0.51,
-    "dist_val_pct": 3.34,
+    "dist_poc_pct": 1.72,
+    "dist_vah_pct": -0.29,
+    "dist_val_pct": 3.58,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 1.94,
     "ib_high": 1.95,
     "ib_low": 1.93,
-    "fib_gp_low": 1.968096,
-    "fib_gp_high": 1.983904,
-    "fib_ote": 1.979952,
-    "fib_inval": 1.991808
+    "fib_gp_low": 1.972578,
+    "fib_gp_high": 1.988422,
+    "fib_ote": 1.984461,
+    "fib_inval": 1.996344
   },
   "cvd": {
     "table": [],
@@ -121,7 +121,108 @@
   },
   "liquidations": {
     "matrix_ladder": [],
-    "hd_liq_ladder": [],
+    "hd_liq_ladder": [
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.365,
+        "cum_liq": 7540.0,
+        "short_liq": 0.0,
+        "long_liq": 4220.0,
+        "dist": "-30.74%",
+        "coins": 3092.17
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.535,
+        "cum_liq": 3320.0,
+        "short_liq": 0.0,
+        "long_liq": 185.75,
+        "dist": "-22.11%",
+        "coins": 121.01
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.655,
+        "cum_liq": 3140.0,
+        "short_liq": 0.0,
+        "long_liq": 2600.0,
+        "dist": "-16.02%",
+        "coins": 1571.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.715,
+        "cum_liq": 534.96,
+        "short_liq": 0.0,
+        "long_liq": 223.21,
+        "dist": "-12.98%",
+        "coins": 130.15
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.855,
+        "cum_liq": 311.75,
+        "short_liq": 0.0,
+        "long_liq": 311.75,
+        "dist": "-5.87%",
+        "coins": 168.06
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 2.555,
+        "cum_liq": 606.99,
+        "short_liq": 606.99,
+        "long_liq": 0.0,
+        "dist": "+29.65%",
+        "coins": 237.57
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 3.235,
+        "cum_liq": 16780.0,
+        "short_liq": 16180.0,
+        "long_liq": 0.0,
+        "dist": "+64.15%",
+        "coins": 5000.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 3.545,
+        "cum_liq": 16890.0,
+        "short_liq": 107.41,
+        "long_liq": 0.0,
+        "dist": "+79.89%",
+        "coins": 30.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 3.785,
+        "cum_liq": 36830.0,
+        "short_liq": 19940.0,
+        "long_liq": 0.0,
+        "dist": "+92.06%",
+        "coins": 5268.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 3.885,
+        "cum_liq": 36970.0,
+        "short_liq": 137.26,
+        "long_liq": 0.0,
+        "dist": "+97.14%",
+        "coins": 35.33
+      }
+    ],
     "hd_stops_ladder": [],
     "mp_24h": {
       "ranking": 335,
@@ -838,16 +939,16 @@
   "formulation": {
     "long": {
       "entry": 1.91,
-      "sl": 1.8597724679573653,
-      "tp": 2.0355688301065866,
-      "dist": 0.05022753204263464,
+      "sl": 1.8582724679573654,
+      "tp": 2.039318830106586,
+      "dist": 0.05172753204263447,
       "lots": 20.0
     },
     "short": {
       "entry": 1.99,
-      "sl": 2.0402275320426346,
-      "tp": 1.8644311698934133,
-      "dist": 0.05022753204263464,
+      "sl": 2.0417275320426347,
+      "tp": 1.8606811698934131,
+      "dist": 0.051727532042634694,
       "lots": 20.0
     },
     "confluence_score": 72,

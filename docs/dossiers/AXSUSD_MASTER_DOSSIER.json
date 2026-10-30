@@ -66,7 +66,7 @@
     "daily_val": 0.75,
     "dist_poc_pct": 14.49,
     "dist_vah_pct": 11.44,
-    "dist_val_pct": 16.54,
+    "dist_val_pct": 16.46,
     "va_position": "ABOVE_VALUE (Imbalance)",
     "session_bias": "BULLISH (Above Pivot)",
     "auction_regime": "RANGE_EXPANSION",
@@ -121,7 +121,98 @@
   },
   "liquidations": {
     "matrix_ladder": [],
-    "hd_liq_ladder": [],
+    "hd_liq_ladder": [
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.3145,
+        "cum_liq": 13530.0,
+        "short_liq": 0.0,
+        "long_liq": 300.03,
+        "dist": "-63.64%",
+        "coins": 954.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.4365,
+        "cum_liq": 13230.0,
+        "short_liq": 0.0,
+        "long_liq": 290.71,
+        "dist": "-49.54%",
+        "coins": 666.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.5225,
+        "cum_liq": 12940.0,
+        "short_liq": 0.0,
+        "long_liq": 1180.0,
+        "dist": "-39.60%",
+        "coins": 2259.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.6315,
+        "cum_liq": 11760.0,
+        "short_liq": 0.0,
+        "long_liq": 330.27,
+        "dist": "-26.99%",
+        "coins": 523.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.7325,
+        "cum_liq": 11430.0,
+        "short_liq": 0.0,
+        "long_liq": 5830.0,
+        "dist": "-15.32%",
+        "coins": 7955.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.7375,
+        "cum_liq": 5600.0,
+        "short_liq": 0.0,
+        "long_liq": 136.81,
+        "dist": "-14.74%",
+        "coins": 185.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.7975,
+        "cum_liq": 5460.0,
+        "short_liq": 0.0,
+        "long_liq": 5330.0,
+        "dist": "-7.80%",
+        "coins": 6689.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.8085,
+        "cum_liq": 128.55,
+        "short_liq": 0.0,
+        "long_liq": 128.55,
+        "dist": "-6.53%",
+        "coins": 159.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 0.9035,
+        "cum_liq": 924.46,
+        "short_liq": 924.46,
+        "long_liq": 0.0,
+        "dist": "+4.45%",
+        "coins": 1023.2
+      }
+    ],
     "hd_stops_ladder": [],
     "mp_24h": {
       "ranking": 192,

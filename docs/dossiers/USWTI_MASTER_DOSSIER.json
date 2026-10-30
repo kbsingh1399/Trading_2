@@ -13,9 +13,9 @@
     "point_value_001_lot": 0.1
   },
   "telemetry": {
-    "bid": 104.513,
-    "ask": 104.573,
-    "mid": 104.543,
+    "bid": 104.533,
+    "ask": 104.593,
+    "mid": 104.563,
     "spread_pts": 60.0,
     "spread_bps": 5.74,
     "thresh_bps": 5.0,
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 104.988,
+    "daily_vah": 104.971,
     "daily_poc": 104.055,
     "daily_val": 103.732,
-    "dist_poc_pct": 0.43,
-    "dist_vah_pct": -0.46,
-    "dist_val_pct": 0.74,
+    "dist_poc_pct": 0.46,
+    "dist_vah_pct": -0.41,
+    "dist_val_pct": 0.78,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BULLISH (Above Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 104.33,
     "ib_high": 104.12,
     "ib_low": 103.507,
-    "fib_gp_low": 104.12482800000001,
-    "fib_gp_high": 104.961172,
-    "fib_ote": 104.752086,
-    "fib_inval": 105.379344
+    "fib_gp_low": 104.144748,
+    "fib_gp_high": 104.981252,
+    "fib_ote": 104.772126,
+    "fib_inval": 105.39950400000001
   },
   "cvd": {
     "table": [
@@ -369,7 +369,7 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 17:36:36 IST"
+        "time": "2026-10-30 17:41:03 IST"
       }
     ],
     "hl_ladder": [],
@@ -982,19 +982,19 @@
   "derivatives": {
     "oi_row": {},
     "funding_row": {
-      "Symbol": "CL",
-      "USDT_Binance": "-0.0220%",
-      "USDT_OKX": "-0.0247%",
-      "USDT_Bybit": "-0.0538%",
-      "USDT_KuCoin": "-0.0239%",
+      "Symbol": "WTI",
+      "USDT_Binance": "-",
+      "USDT_OKX": "-",
+      "USDT_Bybit": "-",
+      "USDT_KuCoin": "-",
       "USDT_MEXC": "-",
       "USDT_BingX": "-",
-      "USDT_Gate": "-0.0386%",
-      "USDT_Bitunix": "-0.0215%",
-      "USDT_Bitget": "-0.0192%",
+      "USDT_Gate": "-",
+      "USDT_Bitunix": "-",
+      "USDT_Bitget": "-",
       "USDT_WhiteBIT": "-",
       "USDT_LBank": "-",
-      "USDT_tradeXYZ": "0.0005%",
+      "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
@@ -1993,16 +1993,16 @@
   "formulation": {
     "long": {
       "entry": 103.732,
-      "sl": 103.19318725797311,
-      "tp": 105.07903185506723,
-      "dist": 0.5388127420268916,
+      "sl": 103.1931872579731,
+      "tp": 105.07903185506726,
+      "dist": 0.5388127420269058,
       "lots": 0.1
     },
     "short": {
-      "entry": 104.988,
-      "sl": 105.52681274202689,
-      "tp": 103.64096814493277,
-      "dist": 0.5388127420268916,
+      "entry": 104.971,
+      "sl": 105.50981274202691,
+      "tp": 103.62396814493275,
+      "dist": 0.5388127420269058,
       "lots": 0.1
     },
     "confluence_score": 77,

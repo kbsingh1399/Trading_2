@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 2.601,
-    "ask": 2.636,
-    "mid": 2.6185,
+    "bid": 2.602,
+    "ask": 2.637,
+    "mid": 2.6195,
     "spread_pts": 35.0,
-    "spread_bps": 133.66,
+    "spread_bps": 133.61,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 2.626,
+    "daily_vah": 2.625,
     "daily_poc": 2.61,
     "daily_val": 2.594,
-    "dist_poc_pct": 0.18,
-    "dist_vah_pct": -0.42,
-    "dist_val_pct": 0.8,
+    "dist_poc_pct": 0.37,
+    "dist_vah_pct": -0.21,
+    "dist_val_pct": 0.99,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 2.567,
     "ib_high": 2.615,
     "ib_low": 2.607,
-    "fib_gp_low": 2.608026,
-    "fib_gp_high": 2.628974,
-    "fib_ote": 2.623737,
-    "fib_inval": 2.6394480000000002
+    "fib_gp_low": 2.609022,
+    "fib_gp_high": 2.629978,
+    "fib_ote": 2.624739,
+    "fib_inval": 2.640456
   },
   "cvd": {
     "table": [],
@@ -121,7 +121,48 @@
   },
   "liquidations": {
     "matrix_ladder": [],
-    "hd_liq_ladder": [],
+    "hd_liq_ladder": [
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.715,
+        "cum_liq": 2370.0,
+        "short_liq": 0.0,
+        "long_liq": 1790.0,
+        "dist": "-37.69%",
+        "coins": 2500.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.805,
+        "cum_liq": 585.6,
+        "short_liq": 0.0,
+        "long_liq": 318.06,
+        "dist": "-29.84%",
+        "coins": 395.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 0.825,
+        "cum_liq": 267.55,
+        "short_liq": 0.0,
+        "long_liq": 267.55,
+        "dist": "-28.10%",
+        "coins": 324.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 2.275,
+        "cum_liq": 347.39,
+        "short_liq": 347.39,
+        "long_liq": 0.0,
+        "dist": "+98.27%",
+        "coins": 152.7
+      }
+    ],
     "hd_stops_ladder": [],
     "mp_24h": {
       "ranking": 580,
@@ -809,9 +850,9 @@
       "lots": 20.0
     },
     "short": {
-      "entry": 2.626,
-      "sl": 2.6931447373536637,
-      "tp": 2.450999999999999,
+      "entry": 2.625,
+      "sl": 2.6921447373536638,
+      "tp": 2.4499999999999993,
       "dist": 0.07000000000000028,
       "lots": 20.0
     },

@@ -13,9 +13,9 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 2845.34,
-    "ask": 2846.04,
-    "mid": 2845.69,
+    "bid": 2843.45,
+    "ask": 2844.15,
+    "mid": 2843.8,
     "spread_pts": 70.0,
     "spread_bps": 2.46,
     "thresh_bps": 5.0,
@@ -64,9 +64,9 @@
     "daily_vah": 2851.39,
     "daily_poc": 2844.95,
     "daily_val": 2841.51,
-    "dist_poc_pct": 0.02,
-    "dist_vah_pct": -0.21,
-    "dist_val_pct": 0.14,
+    "dist_poc_pct": -0.03,
+    "dist_vah_pct": -0.26,
+    "dist_val_pct": 0.09,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 2837.99,
     "ib_high": 2851.58,
     "ib_low": 2849.19,
-    "fib_gp_low": 2834.30724,
-    "fib_gp_high": 2857.07276,
-    "fib_ote": 2851.3813800000003,
-    "fib_inval": 2868.45552
+    "fib_gp_low": 2832.4248000000002,
+    "fib_gp_high": 2855.1752,
+    "fib_ote": 2849.4876000000004,
+    "fib_inval": 2866.5504
   },
   "cvd": {
     "table": [
@@ -969,16 +969,16 @@
   "formulation": {
     "long": {
       "entry": 2841.51,
-      "sl": 2836.0532617221115,
-      "tp": 2855.151845694722,
-      "dist": 5.4567382778886895,
+      "sl": 2836.0532617221106,
+      "tp": 2855.151845694724,
+      "dist": 5.456738277889599,
       "lots": 1.83
     },
     "short": {
       "entry": 2851.39,
-      "sl": 2856.8467382778886,
-      "tp": 2837.748154305278,
-      "dist": 5.4567382778886895,
+      "sl": 2856.8467382778895,
+      "tp": 2837.748154305276,
+      "dist": 5.456738277889599,
       "lots": 1.83
     },
     "confluence_score": 87,

@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 6.872,
-    "ask": 6.895,
-    "mid": 6.8835,
+    "bid": 6.894,
+    "ask": 6.917,
+    "mid": 6.9055,
     "spread_pts": 23.0,
-    "spread_bps": 33.41,
+    "spread_bps": 33.31,
     "thresh_bps": 25.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -64,9 +64,9 @@
     "daily_vah": 6.701,
     "daily_poc": 6.461,
     "daily_val": 6.245,
-    "dist_poc_pct": 6.62,
-    "dist_vah_pct": 2.8,
-    "dist_val_pct": 10.31,
+    "dist_poc_pct": 6.95,
+    "dist_vah_pct": 3.12,
+    "dist_val_pct": 10.65,
     "va_position": "ABOVE_VALUE (Imbalance)",
     "session_bias": "BULLISH (Above Pivot)",
     "auction_regime": "RANGE_EXPANSION",
@@ -90,10 +90,10 @@
     "ny_low": 6.718,
     "ib_high": 6.852,
     "ib_low": 6.72,
-    "fib_gp_low": 6.855966,
-    "fib_gp_high": 6.911034,
-    "fib_ote": 6.897266999999999,
-    "fib_inval": 6.938568
+    "fib_gp_low": 6.877878,
+    "fib_gp_high": 6.933122,
+    "fib_ote": 6.9193109999999995,
+    "fib_inval": 6.960744
   },
   "cvd": {
     "table": [],
@@ -113,18 +113,18 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 17:36:36 IST"
+        "time": "2026-10-30 17:41:03 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.871205",
+        "change_24h": "-0.801525",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "1.28795e-05",
-        "detail": "HL: 11.28% APR | Next: 2026-10-30 16:00"
+        "funding": "1.98475e-05",
+        "detail": "HL: 17.39% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [
@@ -488,7 +488,3748 @@
   },
   "liquidations": {
     "matrix_ladder": [],
-    "hd_liq_ladder": [],
+    "hd_liq_ladder": [
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.405,
+        "cum_liq": 18190000.0,
+        "short_liq": 0.0,
+        "long_liq": 2250.0,
+        "dist": "-79.57%",
+        "coins": 1600.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.425,
+        "cum_liq": 18180000.0,
+        "short_liq": 0.0,
+        "long_liq": 526.68,
+        "dist": "-79.27%",
+        "coins": 369.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.495,
+        "cum_liq": 18180000.0,
+        "short_liq": 0.0,
+        "long_liq": 10470.0,
+        "dist": "-78.26%",
+        "coins": 7004.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.505,
+        "cum_liq": 18170000.0,
+        "short_liq": 0.0,
+        "long_liq": 1400.0,
+        "dist": "-78.11%",
+        "coins": 928.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.515,
+        "cum_liq": 18170000.0,
+        "short_liq": 0.0,
+        "long_liq": 2370.0,
+        "dist": "-77.97%",
+        "coins": 1561.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.545,
+        "cum_liq": 18170000.0,
+        "short_liq": 0.0,
+        "long_liq": 6470.0,
+        "dist": "-77.53%",
+        "coins": 4188.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.615,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 381.46,
+        "dist": "-76.51%",
+        "coins": 236.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.655,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 980.42,
+        "dist": "-75.93%",
+        "coins": 592.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.675,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 108.04,
+        "dist": "-75.64%",
+        "coins": 64.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.765,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 240.22,
+        "dist": "-74.33%",
+        "coins": 136.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.775,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 2730.0,
+        "dist": "-74.18%",
+        "coins": 1540.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.785,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 1010.0,
+        "dist": "-74.04%",
+        "coins": 565.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.815,
+        "cum_liq": 18160000.0,
+        "short_liq": 0.0,
+        "long_liq": 399600.0,
+        "dist": "-73.60%",
+        "coins": 220165.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.855,
+        "cum_liq": 17760000.0,
+        "short_liq": 0.0,
+        "long_liq": 106.48,
+        "dist": "-73.02%",
+        "coins": 57.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.865,
+        "cum_liq": 17760000.0,
+        "short_liq": 0.0,
+        "long_liq": 2050.0,
+        "dist": "-72.87%",
+        "coins": 1099.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 1.945,
+        "cum_liq": 17760000.0,
+        "short_liq": 0.0,
+        "long_liq": 587.78,
+        "dist": "-71.71%",
+        "coins": 302.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.045,
+        "cum_liq": 17750000.0,
+        "short_liq": 0.0,
+        "long_liq": 8180.0,
+        "dist": "-70.26%",
+        "coins": 4000.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.075,
+        "cum_liq": 17750000.0,
+        "short_liq": 0.0,
+        "long_liq": 103.75,
+        "dist": "-69.82%",
+        "coins": 50.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.085,
+        "cum_liq": 17750000.0,
+        "short_liq": 0.0,
+        "long_liq": 6150.0,
+        "dist": "-69.67%",
+        "coins": 2950.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.115,
+        "cum_liq": 17740000.0,
+        "short_liq": 0.0,
+        "long_liq": 2050.0,
+        "dist": "-69.24%",
+        "coins": 970.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.155,
+        "cum_liq": 17740000.0,
+        "short_liq": 0.0,
+        "long_liq": 1690.0,
+        "dist": "-68.66%",
+        "coins": 784.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.195,
+        "cum_liq": 17740000.0,
+        "short_liq": 0.0,
+        "long_liq": 883.05,
+        "dist": "-68.08%",
+        "coins": 402.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.225,
+        "cum_liq": 17740000.0,
+        "short_liq": 0.0,
+        "long_liq": 306.61,
+        "dist": "-67.64%",
+        "coins": 137.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.275,
+        "cum_liq": 17740000.0,
+        "short_liq": 0.0,
+        "long_liq": 2170.0,
+        "dist": "-66.91%",
+        "coins": 953.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.295,
+        "cum_liq": 17730000.0,
+        "short_liq": 0.0,
+        "long_liq": 705.94,
+        "dist": "-66.62%",
+        "coins": 307.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.315,
+        "cum_liq": 17730000.0,
+        "short_liq": 0.0,
+        "long_liq": 113.2,
+        "dist": "-66.33%",
+        "coins": 48.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.415,
+        "cum_liq": 17730000.0,
+        "short_liq": 0.0,
+        "long_liq": 4170.0,
+        "dist": "-64.88%",
+        "coins": 1726.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.425,
+        "cum_liq": 17730000.0,
+        "short_liq": 0.0,
+        "long_liq": 392.12,
+        "dist": "-64.73%",
+        "coins": 161.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.435,
+        "cum_liq": 17730000.0,
+        "short_liq": 0.0,
+        "long_liq": 8470.0,
+        "dist": "-64.58%",
+        "coins": 3477.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.445,
+        "cum_liq": 17720000.0,
+        "short_liq": 0.0,
+        "long_liq": 648.41,
+        "dist": "-64.44%",
+        "coins": 265.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.455,
+        "cum_liq": 17720000.0,
+        "short_liq": 0.0,
+        "long_liq": 10760.0,
+        "dist": "-64.29%",
+        "coins": 4382.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.505,
+        "cum_liq": 17710000.0,
+        "short_liq": 0.0,
+        "long_liq": 218.94,
+        "dist": "-63.57%",
+        "coins": 87.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.515,
+        "cum_liq": 17710000.0,
+        "short_liq": 0.0,
+        "long_liq": 325790.0,
+        "dist": "-63.42%",
+        "coins": 129538.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.525,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 267.4,
+        "dist": "-63.28%",
+        "coins": 105.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.535,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 1230.0,
+        "dist": "-63.13%",
+        "coins": 485.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.545,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 2500.0,
+        "dist": "-62.98%",
+        "coins": 983.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.565,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 199.04,
+        "dist": "-62.69%",
+        "coins": 77.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.595,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 2450.0,
+        "dist": "-62.26%",
+        "coins": 942.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.635,
+        "cum_liq": 17380000.0,
+        "short_liq": 0.0,
+        "long_liq": 893.26,
+        "dist": "-61.68%",
+        "coins": 339.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.645,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 190.44,
+        "dist": "-61.53%",
+        "coins": 72.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.665,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 3620.0,
+        "dist": "-61.24%",
+        "coins": 1358.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.685,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 114.65,
+        "dist": "-60.95%",
+        "coins": 42.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.715,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 642.37,
+        "dist": "-60.51%",
+        "coins": 236.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.735,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 322.18,
+        "dist": "-60.22%",
+        "coins": 117.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.765,
+        "cum_liq": 17370000.0,
+        "short_liq": 0.0,
+        "long_liq": 22880.0,
+        "dist": "-59.78%",
+        "coins": 8274.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.775,
+        "cum_liq": 17350000.0,
+        "short_liq": 0.0,
+        "long_liq": 359.92,
+        "dist": "-59.64%",
+        "coins": 129.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.785,
+        "cum_liq": 17350000.0,
+        "short_liq": 0.0,
+        "long_liq": 171.56,
+        "dist": "-59.49%",
+        "coins": 61.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.795,
+        "cum_liq": 17350000.0,
+        "short_liq": 0.0,
+        "long_liq": 164.35,
+        "dist": "-59.35%",
+        "coins": 58.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.805,
+        "cum_liq": 17350000.0,
+        "short_liq": 0.0,
+        "long_liq": 2640.0,
+        "dist": "-59.20%",
+        "coins": 942.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.915,
+        "cum_liq": 17340000.0,
+        "short_liq": 0.0,
+        "long_liq": 86220.0,
+        "dist": "-57.60%",
+        "coins": 29576.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.935,
+        "cum_liq": 17260000.0,
+        "short_liq": 0.0,
+        "long_liq": 11690.0,
+        "dist": "-57.31%",
+        "coins": 3983.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 2.965,
+        "cum_liq": 17250000.0,
+        "short_liq": 0.0,
+        "long_liq": 251620.0,
+        "dist": "-56.88%",
+        "coins": 84861.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.005,
+        "cum_liq": 16990000.0,
+        "short_liq": 0.0,
+        "long_liq": 152.35,
+        "dist": "-56.29%",
+        "coins": 50.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.065,
+        "cum_liq": 16990000.0,
+        "short_liq": 0.0,
+        "long_liq": 3080.0,
+        "dist": "-55.42%",
+        "coins": 1005.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.165,
+        "cum_liq": 16990000.0,
+        "short_liq": 0.0,
+        "long_liq": 2780.0,
+        "dist": "-53.97%",
+        "coins": 878.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.195,
+        "cum_liq": 16990000.0,
+        "short_liq": 0.0,
+        "long_liq": 2280.0,
+        "dist": "-53.53%",
+        "coins": 713.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.275,
+        "cum_liq": 16990000.0,
+        "short_liq": 0.0,
+        "long_liq": 5430.0,
+        "dist": "-52.37%",
+        "coins": 1657.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.325,
+        "cum_liq": 16980000.0,
+        "short_liq": 0.0,
+        "long_liq": 10970.0,
+        "dist": "-51.64%",
+        "coins": 3299.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.355,
+        "cum_liq": 16970000.0,
+        "short_liq": 0.0,
+        "long_liq": 962.55,
+        "dist": "-51.20%",
+        "coins": 286.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.375,
+        "cum_liq": 16970000.0,
+        "short_liq": 0.0,
+        "long_liq": 273.38,
+        "dist": "-50.91%",
+        "coins": 81.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.405,
+        "cum_liq": 16970000.0,
+        "short_liq": 0.0,
+        "long_liq": 125.64,
+        "dist": "-50.48%",
+        "coins": 36.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.415,
+        "cum_liq": 16970000.0,
+        "short_liq": 0.0,
+        "long_liq": 5260.0,
+        "dist": "-50.33%",
+        "coins": 1539.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.435,
+        "cum_liq": 16960000.0,
+        "short_liq": 0.0,
+        "long_liq": 194.42,
+        "dist": "-50.04%",
+        "coins": 56.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.445,
+        "cum_liq": 16960000.0,
+        "short_liq": 0.0,
+        "long_liq": 156.75,
+        "dist": "-49.89%",
+        "coins": 45.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.455,
+        "cum_liq": 16960000.0,
+        "short_liq": 0.0,
+        "long_liq": 2070.0,
+        "dist": "-49.75%",
+        "coins": 600.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.485,
+        "cum_liq": 16960000.0,
+        "short_liq": 0.0,
+        "long_liq": 408.09,
+        "dist": "-49.31%",
+        "coins": 117.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.495,
+        "cum_liq": 16960000.0,
+        "short_liq": 0.0,
+        "long_liq": 7090.0,
+        "dist": "-49.17%",
+        "coins": 2028.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.505,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 4430.0,
+        "dist": "-49.02%",
+        "coins": 1264.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.515,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 516.71,
+        "dist": "-48.88%",
+        "coins": 147.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.525,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 627.45,
+        "dist": "-48.73%",
+        "coins": 178.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.535,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 310.37,
+        "dist": "-48.59%",
+        "coins": 87.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.545,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 152.44,
+        "dist": "-48.44%",
+        "coins": 43.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.555,
+        "cum_liq": 16950000.0,
+        "short_liq": 0.0,
+        "long_liq": 63990.0,
+        "dist": "-48.29%",
+        "coins": 18000.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.565,
+        "cum_liq": 16880000.0,
+        "short_liq": 0.0,
+        "long_liq": 423.52,
+        "dist": "-48.15%",
+        "coins": 118.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.575,
+        "cum_liq": 16880000.0,
+        "short_liq": 0.0,
+        "long_liq": 48140.0,
+        "dist": "-48.00%",
+        "coins": 13465.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.585,
+        "cum_liq": 16830000.0,
+        "short_liq": 0.0,
+        "long_liq": 2240.0,
+        "dist": "-47.86%",
+        "coins": 624.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.665,
+        "cum_liq": 16830000.0,
+        "short_liq": 0.0,
+        "long_liq": 183.25,
+        "dist": "-46.69%",
+        "coins": 50.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.675,
+        "cum_liq": 16830000.0,
+        "short_liq": 0.0,
+        "long_liq": 118780.0,
+        "dist": "-46.55%",
+        "coins": 32320.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.715,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 133.37,
+        "dist": "-45.97%",
+        "coins": 35.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.725,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 1730.0,
+        "dist": "-45.82%",
+        "coins": 464.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.735,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 178.53,
+        "dist": "-45.68%",
+        "coins": 47.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.745,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 2250.0,
+        "dist": "-45.53%",
+        "coins": 600.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.755,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 2730.0,
+        "dist": "-45.39%",
+        "coins": 726.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.775,
+        "cum_liq": 16710000.0,
+        "short_liq": 0.0,
+        "long_liq": 858.44,
+        "dist": "-45.09%",
+        "coins": 227.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.785,
+        "cum_liq": 16700000.0,
+        "short_liq": 0.0,
+        "long_liq": 696.06,
+        "dist": "-44.95%",
+        "coins": 183.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.815,
+        "cum_liq": 16700000.0,
+        "short_liq": 0.0,
+        "long_liq": 4220.0,
+        "dist": "-44.51%",
+        "coins": 1107.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.825,
+        "cum_liq": 16700000.0,
+        "short_liq": 0.0,
+        "long_liq": 3320.0,
+        "dist": "-44.37%",
+        "coins": 867.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.835,
+        "cum_liq": 16700000.0,
+        "short_liq": 0.0,
+        "long_liq": 1120.0,
+        "dist": "-44.22%",
+        "coins": 292.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.845,
+        "cum_liq": 16700000.0,
+        "short_liq": 0.0,
+        "long_liq": 4140.0,
+        "dist": "-44.08%",
+        "coins": 1076.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.855,
+        "cum_liq": 16690000.000000002,
+        "short_liq": 0.0,
+        "long_liq": 350.42,
+        "dist": "-43.93%",
+        "coins": 90.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.865,
+        "cum_liq": 16690000.000000002,
+        "short_liq": 0.0,
+        "long_liq": 752.52,
+        "dist": "-43.79%",
+        "coins": 194.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.875,
+        "cum_liq": 16690000.000000002,
+        "short_liq": 0.0,
+        "long_liq": 8109.999999999999,
+        "dist": "-43.64%",
+        "coins": 2091.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.885,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 436.67,
+        "dist": "-43.50%",
+        "coins": 112.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.895,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 1020.0,
+        "dist": "-43.35%",
+        "coins": 261.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.915,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 259.56,
+        "dist": "-43.06%",
+        "coins": 66.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.925,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 451.38,
+        "dist": "-42.91%",
+        "coins": 115.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.935,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 105.46,
+        "dist": "-42.77%",
+        "coins": 26.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.945,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 463.93,
+        "dist": "-42.62%",
+        "coins": 117.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.955,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 3540.0,
+        "dist": "-42.48%",
+        "coins": 894.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.965,
+        "cum_liq": 16680000.0,
+        "short_liq": 0.0,
+        "long_liq": 5880.0,
+        "dist": "-42.33%",
+        "coins": 1483.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.975,
+        "cum_liq": 16670000.000000002,
+        "short_liq": 0.0,
+        "long_liq": 199190.0,
+        "dist": "-42.19%",
+        "coins": 50111.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 3.985,
+        "cum_liq": 16469999.999999998,
+        "short_liq": 0.0,
+        "long_liq": 69190.0,
+        "dist": "-42.04%",
+        "coins": 17363.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.025,
+        "cum_liq": 16399999.999999998,
+        "short_liq": 0.0,
+        "long_liq": 6610.0,
+        "dist": "-41.46%",
+        "coins": 1643.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.075,
+        "cum_liq": 16390000.0,
+        "short_liq": 0.0,
+        "long_liq": 4080.0,
+        "dist": "-40.73%",
+        "coins": 1000.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.085,
+        "cum_liq": 16390000.0,
+        "short_liq": 0.0,
+        "long_liq": 3700.0,
+        "dist": "-40.59%",
+        "coins": 904.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.095,
+        "cum_liq": 16390000.0,
+        "short_liq": 0.0,
+        "long_liq": 1100000.0,
+        "dist": "-40.44%",
+        "coins": 269479.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.105,
+        "cum_liq": 15280000.0,
+        "short_liq": 0.0,
+        "long_liq": 651.46,
+        "dist": "-40.30%",
+        "coins": 158.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.135,
+        "cum_liq": 15280000.0,
+        "short_liq": 0.0,
+        "long_liq": 93050.0,
+        "dist": "-39.86%",
+        "coins": 22502.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.175,
+        "cum_liq": 15190000.0,
+        "short_liq": 0.0,
+        "long_liq": 589.09,
+        "dist": "-39.28%",
+        "coins": 141.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.195,
+        "cum_liq": 15190000.0,
+        "short_liq": 0.0,
+        "long_liq": 173950.0,
+        "dist": "-38.99%",
+        "coins": 41464.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.215,
+        "cum_liq": 15020000.0,
+        "short_liq": 0.0,
+        "long_liq": 148990.0,
+        "dist": "-38.70%",
+        "coins": 35348.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.225,
+        "cum_liq": 14870000.0,
+        "short_liq": 0.0,
+        "long_liq": 934.99,
+        "dist": "-38.55%",
+        "coins": 221.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.245,
+        "cum_liq": 14870000.0,
+        "short_liq": 0.0,
+        "long_liq": 184270.0,
+        "dist": "-38.26%",
+        "coins": 43407.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.265,
+        "cum_liq": 14680000.0,
+        "short_liq": 0.0,
+        "long_liq": 1330.0,
+        "dist": "-37.97%",
+        "coins": 310.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.295,
+        "cum_liq": 14680000.0,
+        "short_liq": 0.0,
+        "long_liq": 5550.0,
+        "dist": "-37.53%",
+        "coins": 1292.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.305,
+        "cum_liq": 14670000.0,
+        "short_liq": 0.0,
+        "long_liq": 423.18,
+        "dist": "-37.39%",
+        "coins": 98.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.325,
+        "cum_liq": 14670000.0,
+        "short_liq": 0.0,
+        "long_liq": 8900.0,
+        "dist": "-37.10%",
+        "coins": 2056.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.335,
+        "cum_liq": 14660000.0,
+        "short_liq": 0.0,
+        "long_liq": 175130.0,
+        "dist": "-36.95%",
+        "coins": 40398.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.345,
+        "cum_liq": 14490000.0,
+        "short_liq": 0.0,
+        "long_liq": 932.44,
+        "dist": "-36.80%",
+        "coins": 214.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.365,
+        "cum_liq": 14490000.0,
+        "short_liq": 0.0,
+        "long_liq": 242.26,
+        "dist": "-36.51%",
+        "coins": 55.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.405,
+        "cum_liq": 14490000.0,
+        "short_liq": 0.0,
+        "long_liq": 933.86,
+        "dist": "-35.93%",
+        "coins": 212.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.415,
+        "cum_liq": 14490000.0,
+        "short_liq": 0.0,
+        "long_liq": 201110.0,
+        "dist": "-35.79%",
+        "coins": 45551.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.445,
+        "cum_liq": 14290000.0,
+        "short_liq": 0.0,
+        "long_liq": 571.18,
+        "dist": "-35.35%",
+        "coins": 128.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.475,
+        "cum_liq": 14290000.0,
+        "short_liq": 0.0,
+        "long_liq": 409.91,
+        "dist": "-34.91%",
+        "coins": 91.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.485,
+        "cum_liq": 14290000.0,
+        "short_liq": 0.0,
+        "long_liq": 2250.0,
+        "dist": "-34.77%",
+        "coins": 500.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.495,
+        "cum_liq": 14280000.0,
+        "short_liq": 0.0,
+        "long_liq": 2100.0,
+        "dist": "-34.62%",
+        "coins": 467.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.525,
+        "cum_liq": 14280000.0,
+        "short_liq": 0.0,
+        "long_liq": 11180.0,
+        "dist": "-34.19%",
+        "coins": 2470.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.535,
+        "cum_liq": 14270000.0,
+        "short_liq": 0.0,
+        "long_liq": 3000.0,
+        "dist": "-34.04%",
+        "coins": 660.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.545,
+        "cum_liq": 14270000.0,
+        "short_liq": 0.0,
+        "long_liq": 2910.0,
+        "dist": "-33.90%",
+        "coins": 639.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.555,
+        "cum_liq": 14260000.0,
+        "short_liq": 0.0,
+        "long_liq": 4090.0,
+        "dist": "-33.75%",
+        "coins": 899.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.575,
+        "cum_liq": 14260000.0,
+        "short_liq": 0.0,
+        "long_liq": 6290.0,
+        "dist": "-33.46%",
+        "coins": 1375.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.585,
+        "cum_liq": 14250000.0,
+        "short_liq": 0.0,
+        "long_liq": 1290.0,
+        "dist": "-33.31%",
+        "coins": 280.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.595,
+        "cum_liq": 14250000.0,
+        "short_liq": 0.0,
+        "long_liq": 1710.0,
+        "dist": "-33.17%",
+        "coins": 372.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.605,
+        "cum_liq": 14250000.0,
+        "short_liq": 0.0,
+        "long_liq": 253.28,
+        "dist": "-33.02%",
+        "coins": 55.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.615,
+        "cum_liq": 14250000.0,
+        "short_liq": 0.0,
+        "long_liq": 771.63,
+        "dist": "-32.88%",
+        "coins": 167.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.625,
+        "cum_liq": 14250000.0,
+        "short_liq": 0.0,
+        "long_liq": 13130.0,
+        "dist": "-32.73%",
+        "coins": 2839.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.635,
+        "cum_liq": 14240000.0,
+        "short_liq": 0.0,
+        "long_liq": 30590.0,
+        "dist": "-32.59%",
+        "coins": 6600.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.645,
+        "cum_liq": 14210000.0,
+        "short_liq": 0.0,
+        "long_liq": 1910.0,
+        "dist": "-32.44%",
+        "coins": 412.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.655,
+        "cum_liq": 14200000.0,
+        "short_liq": 0.0,
+        "long_liq": 53830.0,
+        "dist": "-32.30%",
+        "coins": 11563.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.665,
+        "cum_liq": 14150000.0,
+        "short_liq": 0.0,
+        "long_liq": 46650.0,
+        "dist": "-32.15%",
+        "coins": 10000.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.675,
+        "cum_liq": 14100000.0,
+        "short_liq": 0.0,
+        "long_liq": 14780.0,
+        "dist": "-32.00%",
+        "coins": 3161.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.705,
+        "cum_liq": 14090000.0,
+        "short_liq": 0.0,
+        "long_liq": 4940.0,
+        "dist": "-31.57%",
+        "coins": 1049.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.735,
+        "cum_liq": 14080000.0,
+        "short_liq": 0.0,
+        "long_liq": 165960.0,
+        "dist": "-31.13%",
+        "coins": 35050.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.755,
+        "cum_liq": 13920000.0,
+        "short_liq": 0.0,
+        "long_liq": 4140.0,
+        "dist": "-30.84%",
+        "coins": 870.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.765,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 570.85,
+        "dist": "-30.70%",
+        "coins": 119.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.775,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 2720.0,
+        "dist": "-30.55%",
+        "coins": 569.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.795,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 106.93,
+        "dist": "-30.26%",
+        "coins": 22.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.805,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 753.42,
+        "dist": "-30.11%",
+        "coins": 156.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.815,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 431.42,
+        "dist": "-29.97%",
+        "coins": 89.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.825,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 132.69,
+        "dist": "-29.82%",
+        "coins": 27.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.835,
+        "cum_liq": 13910000.0,
+        "short_liq": 0.0,
+        "long_liq": 16129.999999999998,
+        "dist": "-29.68%",
+        "coins": 3336.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.845,
+        "cum_liq": 13890000.0,
+        "short_liq": 0.0,
+        "long_liq": 58760.0,
+        "dist": "-29.53%",
+        "coins": 12128.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.855,
+        "cum_liq": 13830000.0,
+        "short_liq": 0.0,
+        "long_liq": 30730.0,
+        "dist": "-29.39%",
+        "coins": 6328.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.875,
+        "cum_liq": 13800000.0,
+        "short_liq": 0.0,
+        "long_liq": 282.26,
+        "dist": "-29.10%",
+        "coins": 57.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.885,
+        "cum_liq": 13800000.0,
+        "short_liq": 0.0,
+        "long_liq": 4550.0,
+        "dist": "-28.95%",
+        "coins": 931.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.895,
+        "cum_liq": 13800000.0,
+        "short_liq": 0.0,
+        "long_liq": 12800.0,
+        "dist": "-28.81%",
+        "coins": 2614.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.905,
+        "cum_liq": 13790000.0,
+        "short_liq": 0.0,
+        "long_liq": 268.3,
+        "dist": "-28.66%",
+        "coins": 54.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.925,
+        "cum_liq": 13790000.0,
+        "short_liq": 0.0,
+        "long_liq": 114.26,
+        "dist": "-28.37%",
+        "coins": 23.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.945,
+        "cum_liq": 13790000.0,
+        "short_liq": 0.0,
+        "long_liq": 23000.0,
+        "dist": "-28.08%",
+        "coins": 4651.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.955,
+        "cum_liq": 13760000.0,
+        "short_liq": 0.0,
+        "long_liq": 258.65,
+        "dist": "-27.93%",
+        "coins": 52.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.965,
+        "cum_liq": 13760000.0,
+        "short_liq": 0.0,
+        "long_liq": 54430.0,
+        "dist": "-27.79%",
+        "coins": 10961.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.975,
+        "cum_liq": 13710000.0,
+        "short_liq": 0.0,
+        "long_liq": 150.74,
+        "dist": "-27.64%",
+        "coins": 30.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 4.985,
+        "cum_liq": 13710000.0,
+        "short_liq": 0.0,
+        "long_liq": 177.96,
+        "dist": "-27.50%",
+        "coins": 35.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.005,
+        "cum_liq": 13710000.0,
+        "short_liq": 0.0,
+        "long_liq": 126110.0,
+        "dist": "-27.21%",
+        "coins": 25197.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.025,
+        "cum_liq": 13580000.0,
+        "short_liq": 0.0,
+        "long_liq": 6180.0,
+        "dist": "-26.91%",
+        "coins": 1229.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.035,
+        "cum_liq": 13580000.0,
+        "short_liq": 0.0,
+        "long_liq": 2250.0,
+        "dist": "-26.77%",
+        "coins": 447.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.045,
+        "cum_liq": 13570000.0,
+        "short_liq": 0.0,
+        "long_liq": 924.24,
+        "dist": "-26.62%",
+        "coins": 183.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.055,
+        "cum_liq": 13570000.0,
+        "short_liq": 0.0,
+        "long_liq": 210.79,
+        "dist": "-26.48%",
+        "coins": 41.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.065,
+        "cum_liq": 13570000.0,
+        "short_liq": 0.0,
+        "long_liq": 5200.0,
+        "dist": "-26.33%",
+        "coins": 1026.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.075,
+        "cum_liq": 13570000.0,
+        "short_liq": 0.0,
+        "long_liq": 13700.0,
+        "dist": "-26.19%",
+        "coins": 2700.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.085,
+        "cum_liq": 13550000.0,
+        "short_liq": 0.0,
+        "long_liq": 10170.0,
+        "dist": "-26.04%",
+        "coins": 2000.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.105,
+        "cum_liq": 13540000.0,
+        "short_liq": 0.0,
+        "long_liq": 16450.0,
+        "dist": "-25.75%",
+        "coins": 3222.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.115,
+        "cum_liq": 13530000.0,
+        "short_liq": 0.0,
+        "long_liq": 4680.0,
+        "dist": "-25.61%",
+        "coins": 915.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.125,
+        "cum_liq": 13520000.0,
+        "short_liq": 0.0,
+        "long_liq": 700.59,
+        "dist": "-25.46%",
+        "coins": 136.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.135,
+        "cum_liq": 13520000.0,
+        "short_liq": 0.0,
+        "long_liq": 422.1,
+        "dist": "-25.31%",
+        "coins": 82.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.145,
+        "cum_liq": 13520000.0,
+        "short_liq": 0.0,
+        "long_liq": 102.39,
+        "dist": "-25.17%",
+        "coins": 19.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.165,
+        "cum_liq": 13520000.0,
+        "short_liq": 0.0,
+        "long_liq": 2130000.0,
+        "dist": "-24.88%",
+        "coins": 411514.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.175,
+        "cum_liq": 11390000.0,
+        "short_liq": 0.0,
+        "long_liq": 10130.0,
+        "dist": "-24.73%",
+        "coins": 1956.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.195,
+        "cum_liq": 11380000.0,
+        "short_liq": 0.0,
+        "long_liq": 120.0,
+        "dist": "-24.44%",
+        "coins": 23.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.205,
+        "cum_liq": 11380000.0,
+        "short_liq": 0.0,
+        "long_liq": 21370.0,
+        "dist": "-24.30%",
+        "coins": 4106.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.215,
+        "cum_liq": 11360000.0,
+        "short_liq": 0.0,
+        "long_liq": 2170.0,
+        "dist": "-24.15%",
+        "coins": 416.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.225,
+        "cum_liq": 11360000.0,
+        "short_liq": 0.0,
+        "long_liq": 453.53,
+        "dist": "-24.01%",
+        "coins": 86.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.235,
+        "cum_liq": 11360000.0,
+        "short_liq": 0.0,
+        "long_liq": 3350.0,
+        "dist": "-23.86%",
+        "coins": 639.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.245,
+        "cum_liq": 11360000.0,
+        "short_liq": 0.0,
+        "long_liq": 916.83,
+        "dist": "-23.71%",
+        "coins": 174.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.255,
+        "cum_liq": 11360000.0,
+        "short_liq": 0.0,
+        "long_liq": 11800.0,
+        "dist": "-23.57%",
+        "coins": 2244.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.265,
+        "cum_liq": 11340000.0,
+        "short_liq": 0.0,
+        "long_liq": 621.8,
+        "dist": "-23.42%",
+        "coins": 118.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.275,
+        "cum_liq": 11340000.0,
+        "short_liq": 0.0,
+        "long_liq": 5870.0,
+        "dist": "-23.28%",
+        "coins": 1112.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.285,
+        "cum_liq": 11340000.0,
+        "short_liq": 0.0,
+        "long_liq": 5140.0,
+        "dist": "-23.13%",
+        "coins": 972.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.295,
+        "cum_liq": 11330000.0,
+        "short_liq": 0.0,
+        "long_liq": 489.26,
+        "dist": "-22.99%",
+        "coins": 92.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.315,
+        "cum_liq": 11330000.0,
+        "short_liq": 0.0,
+        "long_liq": 51270.0,
+        "dist": "-22.70%",
+        "coins": 9646.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.325,
+        "cum_liq": 11280000.0,
+        "short_liq": 0.0,
+        "long_liq": 783.31,
+        "dist": "-22.55%",
+        "coins": 147.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.345,
+        "cum_liq": 11280000.0,
+        "short_liq": 0.0,
+        "long_liq": 57960.0,
+        "dist": "-22.26%",
+        "coins": 10843.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.355,
+        "cum_liq": 11220000.0,
+        "short_liq": 0.0,
+        "long_liq": 2120000.0,
+        "dist": "-22.11%",
+        "coins": 395842.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.365,
+        "cum_liq": 9100000.0,
+        "short_liq": 0.0,
+        "long_liq": 10130.0,
+        "dist": "-21.97%",
+        "coins": 1888.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.375,
+        "cum_liq": 9090000.0,
+        "short_liq": 0.0,
+        "long_liq": 503.64,
+        "dist": "-21.82%",
+        "coins": 93.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.385,
+        "cum_liq": 9090000.0,
+        "short_liq": 0.0,
+        "long_liq": 2029.9999999999998,
+        "dist": "-21.68%",
+        "coins": 377.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.395,
+        "cum_liq": 9090000.0,
+        "short_liq": 0.0,
+        "long_liq": 8260.0,
+        "dist": "-21.53%",
+        "coins": 1531.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.405,
+        "cum_liq": 9080000.0,
+        "short_liq": 0.0,
+        "long_liq": 101.61,
+        "dist": "-21.39%",
+        "coins": 18.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.425,
+        "cum_liq": 9080000.0,
+        "short_liq": 0.0,
+        "long_liq": 547.92,
+        "dist": "-21.10%",
+        "coins": 101.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.435,
+        "cum_liq": 9080000.0,
+        "short_liq": 0.0,
+        "long_liq": 1920.0,
+        "dist": "-20.95%",
+        "coins": 353.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.445,
+        "cum_liq": 9080000.0,
+        "short_liq": 0.0,
+        "long_liq": 5500.0,
+        "dist": "-20.81%",
+        "coins": 1009.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.455,
+        "cum_liq": 9070000.0,
+        "short_liq": 0.0,
+        "long_liq": 5190.0,
+        "dist": "-20.66%",
+        "coins": 952.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.465,
+        "cum_liq": 9070000.0,
+        "short_liq": 0.0,
+        "long_liq": 46590.0,
+        "dist": "-20.51%",
+        "coins": 8525.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.485,
+        "cum_liq": 9020000.0,
+        "short_liq": 0.0,
+        "long_liq": 4300.0,
+        "dist": "-20.22%",
+        "coins": 784.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.495,
+        "cum_liq": 9020000.0,
+        "short_liq": 0.0,
+        "long_liq": 17120.0,
+        "dist": "-20.08%",
+        "coins": 3115.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.505,
+        "cum_liq": 9000000.0,
+        "short_liq": 0.0,
+        "long_liq": 1310.0,
+        "dist": "-19.93%",
+        "coins": 238.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.515,
+        "cum_liq": 9000000.0,
+        "short_liq": 0.0,
+        "long_liq": 351250.0,
+        "dist": "-19.79%",
+        "coins": 63689.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.535,
+        "cum_liq": 8650000.0,
+        "short_liq": 0.0,
+        "long_liq": 216.97,
+        "dist": "-19.50%",
+        "coins": 39.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.545,
+        "cum_liq": 8650000.0,
+        "short_liq": 0.0,
+        "long_liq": 170960.0,
+        "dist": "-19.35%",
+        "coins": 30831.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.565,
+        "cum_liq": 8480000.0,
+        "short_liq": 0.0,
+        "long_liq": 892.07,
+        "dist": "-19.06%",
+        "coins": 160.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.575,
+        "cum_liq": 8480000.0,
+        "short_liq": 0.0,
+        "long_liq": 437.64,
+        "dist": "-18.91%",
+        "coins": 78.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.585,
+        "cum_liq": 8480000.0,
+        "short_liq": 0.0,
+        "long_liq": 142200.0,
+        "dist": "-18.77%",
+        "coins": 25460.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.595,
+        "cum_liq": 8330000.0,
+        "short_liq": 0.0,
+        "long_liq": 291740.0,
+        "dist": "-18.62%",
+        "coins": 52142.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.605,
+        "cum_liq": 8039999.999999999,
+        "short_liq": 0.0,
+        "long_liq": 536.96,
+        "dist": "-18.48%",
+        "coins": 95.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.615,
+        "cum_liq": 8039999.999999999,
+        "short_liq": 0.0,
+        "long_liq": 856.29,
+        "dist": "-18.33%",
+        "coins": 152.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.625,
+        "cum_liq": 8039999.999999999,
+        "short_liq": 0.0,
+        "long_liq": 831050.0,
+        "dist": "-18.19%",
+        "coins": 147742.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.635,
+        "cum_liq": 7210000.0,
+        "short_liq": 0.0,
+        "long_liq": 2420.0,
+        "dist": "-18.04%",
+        "coins": 428.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.645,
+        "cum_liq": 7210000.0,
+        "short_liq": 0.0,
+        "long_liq": 13250.0,
+        "dist": "-17.90%",
+        "coins": 2346.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.655,
+        "cum_liq": 7190000.0,
+        "short_liq": 0.0,
+        "long_liq": 5740.0,
+        "dist": "-17.75%",
+        "coins": 1015.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.665,
+        "cum_liq": 7190000.0,
+        "short_liq": 0.0,
+        "long_liq": 5670000.0,
+        "dist": "-17.61%",
+        "coins": 1000661.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.675,
+        "cum_liq": 1520000.0,
+        "short_liq": 0.0,
+        "long_liq": 2950.0,
+        "dist": "-17.46%",
+        "coins": 519.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.685,
+        "cum_liq": 1520000.0,
+        "short_liq": 0.0,
+        "long_liq": 21360.0,
+        "dist": "-17.32%",
+        "coins": 3756.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.695,
+        "cum_liq": 1490000.0,
+        "short_liq": 0.0,
+        "long_liq": 7440.0,
+        "dist": "-17.17%",
+        "coins": 1306.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.705,
+        "cum_liq": 1490000.0,
+        "short_liq": 0.0,
+        "long_liq": 59600.0,
+        "dist": "-17.02%",
+        "coins": 10446.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.715,
+        "cum_liq": 1430000.0,
+        "short_liq": 0.0,
+        "long_liq": 330.9,
+        "dist": "-16.88%",
+        "coins": 57.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.725,
+        "cum_liq": 1430000.0,
+        "short_liq": 0.0,
+        "long_liq": 52760.0,
+        "dist": "-16.73%",
+        "coins": 9215.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.735,
+        "cum_liq": 1370000.0,
+        "short_liq": 0.0,
+        "long_liq": 584.4,
+        "dist": "-16.59%",
+        "coins": 101.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.745,
+        "cum_liq": 1370000.0,
+        "short_liq": 0.0,
+        "long_liq": 126540.0,
+        "dist": "-16.44%",
+        "coins": 22025.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.765,
+        "cum_liq": 1250000.0,
+        "short_liq": 0.0,
+        "long_liq": 34300.0,
+        "dist": "-16.15%",
+        "coins": 5948.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.775,
+        "cum_liq": 1210000.0,
+        "short_liq": 0.0,
+        "long_liq": 12850.0,
+        "dist": "-16.01%",
+        "coins": 2224.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.785,
+        "cum_liq": 1200000.0,
+        "short_liq": 0.0,
+        "long_liq": 3750.0,
+        "dist": "-15.86%",
+        "coins": 648.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.795,
+        "cum_liq": 1200000.0,
+        "short_liq": 0.0,
+        "long_liq": 37740.0,
+        "dist": "-15.72%",
+        "coins": 6512.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.805,
+        "cum_liq": 1160000.0,
+        "short_liq": 0.0,
+        "long_liq": 1430.0,
+        "dist": "-15.57%",
+        "coins": 246.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.815,
+        "cum_liq": 1160000.0,
+        "short_liq": 0.0,
+        "long_liq": 316.34,
+        "dist": "-15.42%",
+        "coins": 54.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.825,
+        "cum_liq": 1160000.0,
+        "short_liq": 0.0,
+        "long_liq": 23850.0,
+        "dist": "-15.28%",
+        "coins": 4095.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.835,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 525.73,
+        "dist": "-15.13%",
+        "coins": 90.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.845,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 6290.0,
+        "dist": "-14.99%",
+        "coins": 1076.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.855,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 153.99,
+        "dist": "-14.84%",
+        "coins": 26.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.865,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 185.92,
+        "dist": "-14.70%",
+        "coins": 31.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.875,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 169.79,
+        "dist": "-14.55%",
+        "coins": 28.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.885,
+        "cum_liq": 1130000.0,
+        "short_liq": 0.0,
+        "long_liq": 2950.0,
+        "dist": "-14.41%",
+        "coins": 502.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.895,
+        "cum_liq": 1120000.0,
+        "short_liq": 0.0,
+        "long_liq": 626.64,
+        "dist": "-14.26%",
+        "coins": 106.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.905,
+        "cum_liq": 1120000.0,
+        "short_liq": 0.0,
+        "long_liq": 830.24,
+        "dist": "-14.12%",
+        "coins": 140.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.915,
+        "cum_liq": 1120000.0,
+        "short_liq": 0.0,
+        "long_liq": 4160.0,
+        "dist": "-13.97%",
+        "coins": 703.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.925,
+        "cum_liq": 1120000.0,
+        "short_liq": 0.0,
+        "long_liq": 12720.0,
+        "dist": "-13.82%",
+        "coins": 2147.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.935,
+        "cum_liq": 1100000.0,
+        "short_liq": 0.0,
+        "long_liq": 7970.0,
+        "dist": "-13.68%",
+        "coins": 1343.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.945,
+        "cum_liq": 1100000.0,
+        "short_liq": 0.0,
+        "long_liq": 5760.0,
+        "dist": "-13.53%",
+        "coins": 968.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.955,
+        "cum_liq": 1090000.0,
+        "short_liq": 0.0,
+        "long_liq": 25960.0,
+        "dist": "-13.39%",
+        "coins": 4359.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.965,
+        "cum_liq": 1060000.0,
+        "short_liq": 0.0,
+        "long_liq": 3160.0,
+        "dist": "-13.24%",
+        "coins": 529.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.975,
+        "cum_liq": 1060000.0,
+        "short_liq": 0.0,
+        "long_liq": 2860.0,
+        "dist": "-13.10%",
+        "coins": 478.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.985,
+        "cum_liq": 1060000.0,
+        "short_liq": 0.0,
+        "long_liq": 6680.0,
+        "dist": "-12.95%",
+        "coins": 1115.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 5.995,
+        "cum_liq": 1050000.0,
+        "short_liq": 0.0,
+        "long_liq": 41940.0,
+        "dist": "-12.81%",
+        "coins": 6996.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.005,
+        "cum_liq": 1010000.0,
+        "short_liq": 0.0,
+        "long_liq": 120210.0,
+        "dist": "-12.66%",
+        "coins": 20018.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.015,
+        "cum_liq": 889990.0,
+        "short_liq": 0.0,
+        "long_liq": 147820.0,
+        "dist": "-12.52%",
+        "coins": 24575.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.035,
+        "cum_liq": 742170.0,
+        "short_liq": 0.0,
+        "long_liq": 108550.0,
+        "dist": "-12.22%",
+        "coins": 17986.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.045,
+        "cum_liq": 633620.0,
+        "short_liq": 0.0,
+        "long_liq": 7220.0,
+        "dist": "-12.08%",
+        "coins": 1194.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.055,
+        "cum_liq": 626400.0,
+        "short_liq": 0.0,
+        "long_liq": 1580.0,
+        "dist": "-11.93%",
+        "coins": 261.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.065,
+        "cum_liq": 624820.0,
+        "short_liq": 0.0,
+        "long_liq": 2750.0,
+        "dist": "-11.79%",
+        "coins": 453.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.075,
+        "cum_liq": 622070.0,
+        "short_liq": 0.0,
+        "long_liq": 8000.0,
+        "dist": "-11.64%",
+        "coins": 1317.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.085,
+        "cum_liq": 614070.0,
+        "short_liq": 0.0,
+        "long_liq": 51720.0,
+        "dist": "-11.50%",
+        "coins": 8500.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.095,
+        "cum_liq": 562350.0,
+        "short_liq": 0.0,
+        "long_liq": 10110.0,
+        "dist": "-11.35%",
+        "coins": 1659.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.105,
+        "cum_liq": 552230.0,
+        "short_liq": 0.0,
+        "long_liq": 17580.0,
+        "dist": "-11.21%",
+        "coins": 2879.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.115,
+        "cum_liq": 534650.0,
+        "short_liq": 0.0,
+        "long_liq": 4130.0,
+        "dist": "-11.06%",
+        "coins": 675.4
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.125,
+        "cum_liq": 530520.0,
+        "short_liq": 0.0,
+        "long_liq": 2290.0,
+        "dist": "-10.92%",
+        "coins": 373.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.135,
+        "cum_liq": 528240.0,
+        "short_liq": 0.0,
+        "long_liq": 1460.0,
+        "dist": "-10.77%",
+        "coins": 238.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.145,
+        "cum_liq": 526780.0,
+        "short_liq": 0.0,
+        "long_liq": 100940.0,
+        "dist": "-10.62%",
+        "coins": 16427.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.155,
+        "cum_liq": 425830.0,
+        "short_liq": 0.0,
+        "long_liq": 11960.0,
+        "dist": "-10.48%",
+        "coins": 1942.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.165,
+        "cum_liq": 413870.0,
+        "short_liq": 0.0,
+        "long_liq": 28400.0,
+        "dist": "-10.33%",
+        "coins": 4607.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.175,
+        "cum_liq": 385470.0,
+        "short_liq": 0.0,
+        "long_liq": 3900.0,
+        "dist": "-10.19%",
+        "coins": 631.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.185,
+        "cum_liq": 381570.0,
+        "short_liq": 0.0,
+        "long_liq": 1380.0,
+        "dist": "-10.04%",
+        "coins": 223.2
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.195,
+        "cum_liq": 380190.0,
+        "short_liq": 0.0,
+        "long_liq": 128.86,
+        "dist": "-9.90%",
+        "coins": 20.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.215,
+        "cum_liq": 380060.0,
+        "short_liq": 0.0,
+        "long_liq": 2600.0,
+        "dist": "-9.61%",
+        "coins": 417.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.225,
+        "cum_liq": 377470.0,
+        "short_liq": 0.0,
+        "long_liq": 133630.0,
+        "dist": "-9.46%",
+        "coins": 21466.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.245,
+        "cum_liq": 243840.0,
+        "short_liq": 0.0,
+        "long_liq": 337.85,
+        "dist": "-9.17%",
+        "coins": 54.1
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.305,
+        "cum_liq": 243500.0,
+        "short_liq": 0.0,
+        "long_liq": 9370.0,
+        "dist": "-8.30%",
+        "coins": 1486.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.315,
+        "cum_liq": 234130.0,
+        "short_liq": 0.0,
+        "long_liq": 57910.0,
+        "dist": "-8.15%",
+        "coins": 9169.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.325,
+        "cum_liq": 176230.0,
+        "short_liq": 0.0,
+        "long_liq": 185.32,
+        "dist": "-8.01%",
+        "coins": 29.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.345,
+        "cum_liq": 176040.0,
+        "short_liq": 0.0,
+        "long_liq": 14140.0,
+        "dist": "-7.72%",
+        "coins": 2228.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.375,
+        "cum_liq": 161900.0,
+        "short_liq": 0.0,
+        "long_liq": 610.73,
+        "dist": "-7.28%",
+        "coins": 95.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.395,
+        "cum_liq": 161290.0,
+        "short_liq": 0.0,
+        "long_liq": 64160.0,
+        "dist": "-6.99%",
+        "coins": 10033.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.415,
+        "cum_liq": 97130.0,
+        "short_liq": 0.0,
+        "long_liq": 263.01,
+        "dist": "-6.70%",
+        "coins": 41.0
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.425,
+        "cum_liq": 96870.0,
+        "short_liq": 0.0,
+        "long_liq": 38000.0,
+        "dist": "-6.55%",
+        "coins": 5914.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.435,
+        "cum_liq": 58860.0,
+        "short_liq": 0.0,
+        "long_liq": 1910.0,
+        "dist": "-6.41%",
+        "coins": 296.9
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.445,
+        "cum_liq": 56950.0,
+        "short_liq": 0.0,
+        "long_liq": 5440.0,
+        "dist": "-6.26%",
+        "coins": 844.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.475,
+        "cum_liq": 51510.0,
+        "short_liq": 0.0,
+        "long_liq": 573.04,
+        "dist": "-5.83%",
+        "coins": 88.5
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.485,
+        "cum_liq": 50940.0,
+        "short_liq": 0.0,
+        "long_liq": 217.9,
+        "dist": "-5.68%",
+        "coins": 33.6
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.495,
+        "cum_liq": 50720.0,
+        "short_liq": 0.0,
+        "long_liq": 7000.0,
+        "dist": "-5.53%",
+        "coins": 1078.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.505,
+        "cum_liq": 43720.0,
+        "short_liq": 0.0,
+        "long_liq": 2550.0,
+        "dist": "-5.39%",
+        "coins": 391.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.515,
+        "cum_liq": 41170.0,
+        "short_liq": 0.0,
+        "long_liq": 37680.0,
+        "dist": "-5.24%",
+        "coins": 5783.3
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.535,
+        "cum_liq": 3490.0,
+        "short_liq": 0.0,
+        "long_liq": 2040.0,
+        "dist": "-4.95%",
+        "coins": 311.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 6.545,
+        "cum_liq": 23750.0,
+        "short_liq": 23750.0,
+        "long_liq": 0.0,
+        "dist": "-4.81%",
+        "coins": 3628.7
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.565,
+        "cum_liq": 1450.0,
+        "short_liq": 0.0,
+        "long_liq": 221.9,
+        "dist": "-4.52%",
+        "coins": 33.8
+      },
+      {
+        "window": "Live",
+        "side": "Long",
+        "price": 6.585,
+        "cum_liq": 1230.0,
+        "short_liq": 0.0,
+        "long_liq": 1230.0,
+        "dist": "-4.23%",
+        "coins": 186.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 6.875,
+        "cum_liq": 33720.0,
+        "short_liq": 9970.0,
+        "long_liq": 0.0,
+        "dist": "-0.01%",
+        "coins": 1449.6
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 6.905,
+        "cum_liq": 41300.0,
+        "short_liq": 7580.0,
+        "long_liq": 0.0,
+        "dist": "+0.43%",
+        "coins": 1097.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.075,
+        "cum_liq": 41660.0,
+        "short_liq": 362.24,
+        "long_liq": 0.0,
+        "dist": "+2.90%",
+        "coins": 51.2
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.105,
+        "cum_liq": 43450.0,
+        "short_liq": 1790.0,
+        "long_liq": 0.0,
+        "dist": "+3.34%",
+        "coins": 252.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.145,
+        "cum_liq": 55160.0,
+        "short_liq": 11710.0,
+        "long_liq": 0.0,
+        "dist": "+3.92%",
+        "coins": 1639.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.165,
+        "cum_liq": 55370.0,
+        "short_liq": 212.8,
+        "long_liq": 0.0,
+        "dist": "+4.21%",
+        "coins": 29.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.185,
+        "cum_liq": 498800.0,
+        "short_liq": 443420.0,
+        "long_liq": 0.0,
+        "dist": "+4.50%",
+        "coins": 61715.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.195,
+        "cum_liq": 499110.0,
+        "short_liq": 315.14,
+        "long_liq": 0.0,
+        "dist": "+4.65%",
+        "coins": 43.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.235,
+        "cum_liq": 499270.0,
+        "short_liq": 157.0,
+        "long_liq": 0.0,
+        "dist": "+5.23%",
+        "coins": 21.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.255,
+        "cum_liq": 510740.0,
+        "short_liq": 11470.0,
+        "long_liq": 0.0,
+        "dist": "+5.52%",
+        "coins": 1581.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.275,
+        "cum_liq": 510990.0,
+        "short_liq": 242.99,
+        "long_liq": 0.0,
+        "dist": "+5.81%",
+        "coins": 33.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.285,
+        "cum_liq": 513299.99999999994,
+        "short_liq": 2310.0,
+        "long_liq": 0.0,
+        "dist": "+5.96%",
+        "coins": 317.1
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.315,
+        "cum_liq": 515480.0,
+        "short_liq": 2190.0,
+        "long_liq": 0.0,
+        "dist": "+6.39%",
+        "coins": 298.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.365,
+        "cum_liq": 523110.0,
+        "short_liq": 7630.0,
+        "long_liq": 0.0,
+        "dist": "+7.12%",
+        "coins": 1035.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.385,
+        "cum_liq": 523250.0,
+        "short_liq": 137.36,
+        "long_liq": 0.0,
+        "dist": "+7.41%",
+        "coins": 18.6
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.395,
+        "cum_liq": 524179.99999999994,
+        "short_liq": 936.21,
+        "long_liq": 0.0,
+        "dist": "+7.56%",
+        "coins": 126.6
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.415,
+        "cum_liq": 525190.0,
+        "short_liq": 1010.0,
+        "long_liq": 0.0,
+        "dist": "+7.85%",
+        "coins": 136.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.545,
+        "cum_liq": 526230.0,
+        "short_liq": 1040.0,
+        "long_liq": 0.0,
+        "dist": "+9.74%",
+        "coins": 137.6
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.555,
+        "cum_liq": 527280.0,
+        "short_liq": 1050.0,
+        "long_liq": 0.0,
+        "dist": "+9.88%",
+        "coins": 138.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.565,
+        "cum_liq": 528430.0,
+        "short_liq": 1150.0,
+        "long_liq": 0.0,
+        "dist": "+10.03%",
+        "coins": 151.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.635,
+        "cum_liq": 530000.0,
+        "short_liq": 1570.0,
+        "long_liq": 0.0,
+        "dist": "+11.05%",
+        "coins": 205.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.655,
+        "cum_liq": 530450.0,
+        "short_liq": 453.94,
+        "long_liq": 0.0,
+        "dist": "+11.34%",
+        "coins": 59.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.665,
+        "cum_liq": 544650.0,
+        "short_liq": 14190.0,
+        "long_liq": 0.0,
+        "dist": "+11.48%",
+        "coins": 1851.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.705,
+        "cum_liq": 554930.0,
+        "short_liq": 10280.0,
+        "long_liq": 0.0,
+        "dist": "+12.06%",
+        "coins": 1334.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.735,
+        "cum_liq": 555700.0,
+        "short_liq": 773.5,
+        "long_liq": 0.0,
+        "dist": "+12.50%",
+        "coins": 100.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.765,
+        "cum_liq": 633350.0,
+        "short_liq": 77650.0,
+        "long_liq": 0.0,
+        "dist": "+12.94%",
+        "coins": 10000.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.985,
+        "cum_liq": 635190.0,
+        "short_liq": 1840.0,
+        "long_liq": 0.0,
+        "dist": "+16.14%",
+        "coins": 230.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 7.995,
+        "cum_liq": 635300.0,
+        "short_liq": 102.34,
+        "long_liq": 0.0,
+        "dist": "+16.28%",
+        "coins": 12.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.175,
+        "cum_liq": 638070.0,
+        "short_liq": 2770.0,
+        "long_liq": 0.0,
+        "dist": "+18.90%",
+        "coins": 338.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.185,
+        "cum_liq": 649380.0,
+        "short_liq": 11320.0,
+        "long_liq": 0.0,
+        "dist": "+19.05%",
+        "coins": 1382.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.225,
+        "cum_liq": 650120.0,
+        "short_liq": 736.14,
+        "long_liq": 0.0,
+        "dist": "+19.63%",
+        "coins": 89.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.245,
+        "cum_liq": 651270.0,
+        "short_liq": 1150.0,
+        "long_liq": 0.0,
+        "dist": "+19.92%",
+        "coins": 139.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.365,
+        "cum_liq": 652320.0,
+        "short_liq": 1050.0,
+        "long_liq": 0.0,
+        "dist": "+21.66%",
+        "coins": 125.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.375,
+        "cum_liq": 673900.0,
+        "short_liq": 21580.0,
+        "long_liq": 0.0,
+        "dist": "+21.81%",
+        "coins": 2577.2
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.615,
+        "cum_liq": 674090.0,
+        "short_liq": 184.36,
+        "long_liq": 0.0,
+        "dist": "+25.30%",
+        "coins": 21.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.705,
+        "cum_liq": 761710.0,
+        "short_liq": 87620.0,
+        "long_liq": 0.0,
+        "dist": "+26.61%",
+        "coins": 10065.2
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.815,
+        "cum_liq": 762790.0,
+        "short_liq": 1090.0,
+        "long_liq": 0.0,
+        "dist": "+28.21%",
+        "coins": 123.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 8.895,
+        "cum_liq": 763100.0,
+        "short_liq": 305.99,
+        "long_liq": 0.0,
+        "dist": "+29.37%",
+        "coins": 34.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.035,
+        "cum_liq": 779060.0,
+        "short_liq": 15970.0,
+        "long_liq": 0.0,
+        "dist": "+31.41%",
+        "coins": 1767.1
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.055,
+        "cum_liq": 780710.0,
+        "short_liq": 1640.0,
+        "long_liq": 0.0,
+        "dist": "+31.70%",
+        "coins": 181.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.175,
+        "cum_liq": 786740.0,
+        "short_liq": 6030.0,
+        "long_liq": 0.0,
+        "dist": "+33.44%",
+        "coins": 657.1
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.495,
+        "cum_liq": 787340.0,
+        "short_liq": 605.78,
+        "long_liq": 0.0,
+        "dist": "+38.10%",
+        "coins": 63.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.595,
+        "cum_liq": 788140.0,
+        "short_liq": 795.43,
+        "long_liq": 0.0,
+        "dist": "+39.55%",
+        "coins": 82.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.665,
+        "cum_liq": 794890.0,
+        "short_liq": 6750.0,
+        "long_liq": 0.0,
+        "dist": "+40.57%",
+        "coins": 698.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.675,
+        "cum_liq": 826600.0,
+        "short_liq": 31700.0,
+        "long_liq": 0.0,
+        "dist": "+40.72%",
+        "coins": 3277.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.685,
+        "cum_liq": 836710.0,
+        "short_liq": 10120.0,
+        "long_liq": 0.0,
+        "dist": "+40.86%",
+        "coins": 1044.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 9.905,
+        "cum_liq": 838700.0,
+        "short_liq": 1990.0,
+        "long_liq": 0.0,
+        "dist": "+44.06%",
+        "coins": 200.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.205,
+        "cum_liq": 839070.0,
+        "short_liq": 369.42,
+        "long_liq": 0.0,
+        "dist": "+48.43%",
+        "coins": 36.2
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.285,
+        "cum_liq": 844980.0,
+        "short_liq": 5900.0,
+        "long_liq": 0.0,
+        "dist": "+49.59%",
+        "coins": 574.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.345,
+        "cum_liq": 861290.0,
+        "short_liq": 16309.999999999998,
+        "long_liq": 0.0,
+        "dist": "+50.46%",
+        "coins": 1576.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.435,
+        "cum_liq": 871280.0,
+        "short_liq": 9990.0,
+        "long_liq": 0.0,
+        "dist": "+51.77%",
+        "coins": 957.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.575,
+        "cum_liq": 895740.0,
+        "short_liq": 24450.0,
+        "long_liq": 0.0,
+        "dist": "+53.81%",
+        "coins": 2312.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.635,
+        "cum_liq": 925300.0,
+        "short_liq": 29570.0,
+        "long_liq": 0.0,
+        "dist": "+54.68%",
+        "coins": 2780.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.705,
+        "cum_liq": 940790.0,
+        "short_liq": 15490.0,
+        "long_liq": 0.0,
+        "dist": "+55.70%",
+        "coins": 1447.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 10.975,
+        "cum_liq": 941110.0,
+        "short_liq": 318.28,
+        "long_liq": 0.0,
+        "dist": "+59.62%",
+        "coins": 29.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.085,
+        "cum_liq": 2160000.0,
+        "short_liq": 1220000.0,
+        "long_liq": 0.0,
+        "dist": "+61.22%",
+        "coins": 110000.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.135,
+        "cum_liq": 2160000.0,
+        "short_liq": 810.63,
+        "long_liq": 0.0,
+        "dist": "+61.95%",
+        "coins": 72.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.175,
+        "cum_liq": 2160000.0,
+        "short_liq": 1780.0,
+        "long_liq": 0.0,
+        "dist": "+62.53%",
+        "coins": 159.2
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.205,
+        "cum_liq": 2250000.0,
+        "short_liq": 89640.0,
+        "long_liq": 0.0,
+        "dist": "+62.97%",
+        "coins": 8000.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.235,
+        "cum_liq": 2300000.0,
+        "short_liq": 45530.0,
+        "long_liq": 0.0,
+        "dist": "+63.41%",
+        "coins": 4052.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.425,
+        "cum_liq": 2370000.0,
+        "short_liq": 73910.0,
+        "long_liq": 0.0,
+        "dist": "+66.17%",
+        "coins": 6469.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.605,
+        "cum_liq": 3400000.0,
+        "short_liq": 1030000.0,
+        "long_liq": 0.0,
+        "dist": "+68.79%",
+        "coins": 88800.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.735,
+        "cum_liq": 3410000.0,
+        "short_liq": 8540.0,
+        "long_liq": 0.0,
+        "dist": "+70.68%",
+        "coins": 728.0
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 11.905,
+        "cum_liq": 3410000.0,
+        "short_liq": 1290.0,
+        "long_liq": 0.0,
+        "dist": "+73.15%",
+        "coins": 108.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.005,
+        "cum_liq": 3430000.0,
+        "short_liq": 21710.0,
+        "long_liq": 0.0,
+        "dist": "+74.61%",
+        "coins": 1808.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.265,
+        "cum_liq": 3430000.0,
+        "short_liq": 425.6,
+        "long_liq": 0.0,
+        "dist": "+78.39%",
+        "coins": 34.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.275,
+        "cum_liq": 3520000.0,
+        "short_liq": 84600.0,
+        "long_liq": 0.0,
+        "dist": "+78.53%",
+        "coins": 6891.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.395,
+        "cum_liq": 3530000.0,
+        "short_liq": 9300.0,
+        "long_liq": 0.0,
+        "dist": "+80.28%",
+        "coins": 750.1
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.745,
+        "cum_liq": 3530000.0,
+        "short_liq": 137.65,
+        "long_liq": 0.0,
+        "dist": "+85.37%",
+        "coins": 10.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.755,
+        "cum_liq": 3530000.0,
+        "short_liq": 3400.0,
+        "long_liq": 0.0,
+        "dist": "+85.51%",
+        "coins": 266.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.795,
+        "cum_liq": 3530000.0,
+        "short_liq": 1070.0,
+        "long_liq": 0.0,
+        "dist": "+86.10%",
+        "coins": 83.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 12.895,
+        "cum_liq": 3530000.0,
+        "short_liq": 1820.0,
+        "long_liq": 0.0,
+        "dist": "+87.55%",
+        "coins": 141.1
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.005,
+        "cum_liq": 3540000.0,
+        "short_liq": 304.32,
+        "long_liq": 0.0,
+        "dist": "+89.15%",
+        "coins": 23.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.095,
+        "cum_liq": 3540000.0,
+        "short_liq": 136.19,
+        "long_liq": 0.0,
+        "dist": "+90.46%",
+        "coins": 10.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.225,
+        "cum_liq": 3540000.0,
+        "short_liq": 9180.0,
+        "long_liq": 0.0,
+        "dist": "+92.35%",
+        "coins": 694.5
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.245,
+        "cum_liq": 3540000.0,
+        "short_liq": 144.37,
+        "long_liq": 0.0,
+        "dist": "+92.64%",
+        "coins": 10.9
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.275,
+        "cum_liq": 3560000.0,
+        "short_liq": 19410.0,
+        "long_liq": 0.0,
+        "dist": "+93.08%",
+        "coins": 1462.3
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.365,
+        "cum_liq": 3560000.0,
+        "short_liq": 570.69,
+        "long_liq": 0.0,
+        "dist": "+94.39%",
+        "coins": 42.7
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.625,
+        "cum_liq": 3570000.0,
+        "short_liq": 1420.0,
+        "long_liq": 0.0,
+        "dist": "+98.17%",
+        "coins": 104.4
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.655,
+        "cum_liq": 3570000.0,
+        "short_liq": 2630.0,
+        "long_liq": 0.0,
+        "dist": "+98.60%",
+        "coins": 192.8
+      },
+      {
+        "window": "Live",
+        "side": "Short",
+        "price": 13.735,
+        "cum_liq": 3690000.0,
+        "short_liq": 123590.0,
+        "long_liq": 0.0,
+        "dist": "+99.77%",
+        "coins": 8998.4
+      }
+    ],
     "hd_stops_ladder": [],
     "mp_24h": {
       "ranking": 19,

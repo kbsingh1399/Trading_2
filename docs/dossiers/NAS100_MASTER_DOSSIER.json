@@ -13,9 +13,9 @@
     "point_value_001_lot": 0.01
   },
   "telemetry": {
-    "bid": 28666.47,
-    "ask": 28668.43,
-    "mid": 28667.45,
+    "bid": 28656.47,
+    "ask": 28658.43,
+    "mid": 28657.45,
     "spread_pts": 196.0,
     "spread_bps": 0.68,
     "thresh_bps": 5.0,
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 28847.56,
+    "daily_vah": 28850.31,
     "daily_poc": 28729.11,
     "daily_val": 28679.53,
-    "dist_poc_pct": -0.22,
-    "dist_vah_pct": -0.63,
-    "dist_val_pct": -0.05,
+    "dist_poc_pct": -0.23,
+    "dist_vah_pct": -0.65,
+    "dist_val_pct": -0.06,
     "va_position": "BELOW_VALUE (Imbalance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "TREND_DOWN_ACCEPTANCE",
@@ -81,7 +81,7 @@
     "monday_mid": 29129.89,
     "weekly_vah": 29813.09,
     "weekly_poc": 29371.78,
-    "weekly_val": 29240.32,
+    "weekly_val": 29230.93,
     "asian_high": 29019.72,
     "asian_low": 28667.21,
     "london_high": 28905.82,
@@ -90,10 +90,10 @@
     "ny_low": 28606.53,
     "ib_high": 28885.53,
     "ib_low": 28807.34,
-    "fib_gp_low": 28552.7802,
-    "fib_gp_high": 28782.1198,
-    "fib_ote": 28724.784900000002,
-    "fib_inval": 28896.7896
+    "fib_gp_low": 28542.820200000002,
+    "fib_gp_high": 28772.0798,
+    "fib_ote": 28714.764900000002,
+    "fib_inval": 28886.709600000002
   },
   "cvd": {
     "table": [
@@ -414,18 +414,18 @@
   "derivatives": {
     "oi_row": {},
     "funding_row": {
-      "Symbol": "NAS100",
-      "USDT_Binance": "-",
-      "USDT_OKX": "-",
-      "USDT_Bybit": "-",
-      "USDT_KuCoin": "-",
-      "USDT_MEXC": "0.0039%",
+      "Symbol": "QQQ",
+      "USDT_Binance": "0.0000%",
+      "USDT_OKX": "0.0069%",
+      "USDT_Bybit": "0.0098%",
+      "USDT_KuCoin": "0.0180%",
+      "USDT_MEXC": "0.0000%",
       "USDT_BingX": "-",
-      "USDT_Gate": "0.0200%",
-      "USDT_Bitunix": "-",
-      "USDT_Bitget": "-",
+      "USDT_Gate": "0.0000%",
+      "USDT_Bitunix": "0.0001%",
+      "USDT_Bitget": "0.0000%",
       "USDT_WhiteBIT": "-",
-      "USDT_LBank": "0.0038%",
+      "USDT_LBank": "-",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
@@ -1026,9 +1026,9 @@
       "lots": 0.1
     },
     "short": {
-      "entry": 28847.56,
-      "sl": 28905.63456136706,
-      "tp": 28702.373596582354,
+      "entry": 28850.31,
+      "sl": 28908.38456136706,
+      "tp": 28705.123596582354,
       "dist": 58.07456136705878,
       "lots": 0.1
     },
