@@ -2463,6 +2463,72 @@
         "duration": "-",
         "text": "#AAVE Liquidated Short: 0.49K USD at 124.2500 USD [API]",
         "time": "2026-10-29 20:47:23"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 124.75,
+        "notional": 502.74,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.50K USD at 124.7500 USD [API]",
+        "time": "2026-10-29 20:47:08"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 124.75,
+        "notional": 258.23,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.26K USD at 124.7500 USD [API]",
+        "time": "2026-10-29 20:47:08"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 125.7,
+        "notional": 243.86,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.24K USD at 125.7000 USD [API]",
+        "time": "2026-10-29 20:45:20"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 127.05,
+        "notional": 539.96,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.54K USD at 127.0500 USD [API]",
+        "time": "2026-10-29 20:43:03"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 127.45,
+        "notional": 562.05,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.56K USD at 127.4500 USD [API]",
+        "time": "2026-10-29 20:42:24"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 127.45,
+        "notional": 262.55,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#AAVE Liquidated Short: 0.26K USD at 127.4500 USD [API]",
+        "time": "2026-10-29 20:42:24"
       }
     ]
   },

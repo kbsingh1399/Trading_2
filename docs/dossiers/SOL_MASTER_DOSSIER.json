@@ -3435,17 +3435,6 @@
       {
         "event": "ANNOUNCEMENT",
         "side": "INFO",
-        "price": 98.859,
-        "notional": 2361.74,
-        "metric": "-",
-        "impact": "NEWS_INTEL",
-        "duration": "-",
-        "text": "#SOL Liquidated Short: 2.36K USD at 98.8590 USD [API]",
-        "time": "2026-10-29 20:05:12"
-      },
-      {
-        "event": "ANNOUNCEMENT",
-        "side": "INFO",
         "price": 98.852,
         "notional": 4662.85,
         "metric": "-",
@@ -4311,6 +4300,149 @@
         "duration": "-",
         "text": "#SOL Liquidated Short: 6.21K USD at 96.3550 USD [API]",
         "time": "2026-10-29 20:43:18"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 95.52,
+        "notional": 6804.84,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 6.80K USD at 95.5200 USD [API]",
+        "time": "2026-10-29 20:47:14"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 95.54,
+        "notional": 5327.31,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 5.33K USD at 95.5400 USD [API]",
+        "time": "2026-10-29 20:47:14"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 95.54,
+        "notional": 374.52,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.37K USD at 95.5400 USD [API]",
+        "time": "2026-10-29 20:47:14"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.34,
+        "notional": 7580.99,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 7.58K USD at 96.3400 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 3642.41,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 3.64K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 229.34,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.23K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 11.56,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.01K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 1492.62,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 1.49K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 95.4,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.10K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 96.36,
+        "notional": 302.57,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.30K USD at 96.3600 USD [API]",
+        "time": "2026-10-29 20:43:39"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 97.26,
+        "notional": 188.68,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.19K USD at 97.2600 USD [API]",
+        "time": "2026-10-29 20:42:17"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 97.26,
+        "notional": 923.97,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.92K USD at 97.2600 USD [API]",
+        "time": "2026-10-29 20:42:17"
+      },
+      {
+        "event": "ANNOUNCEMENT",
+        "side": "INFO",
+        "price": 97.26,
+        "notional": 132.27,
+        "metric": "-",
+        "impact": "NEWS_INTEL",
+        "duration": "-",
+        "text": "#SOL Liquidated Short: 0.13K USD at 97.2600 USD [API]",
+        "time": "2026-10-29 20:42:17"
       }
     ]
   },
@@ -41292,602 +41424,26 @@
       {
         "horizon": "15M",
         "exchange": "SOL",
-        "long_pct": "51.04%",
-        "short_pct": "48.96%",
-        "ls_ratio": "1.04",
-        "vol": 38210000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Binance",
-        "long_pct": "51.49%",
-        "short_pct": "48.51%",
-        "ls_ratio": "1.06",
-        "vol": 13450000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "OKX",
-        "long_pct": "56.37%",
-        "short_pct": "43.63%",
-        "ls_ratio": "1.29",
-        "vol": 4590000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bybit",
-        "long_pct": "52%",
-        "short_pct": "48%",
-        "ls_ratio": "1.08",
-        "vol": 4810000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "KuCoin",
-        "long_pct": "52.01%",
-        "short_pct": "47.99%",
-        "ls_ratio": "1.08",
-        "vol": 549030.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Gate",
-        "long_pct": "61.86%",
-        "short_pct": "38.14%",
-        "ls_ratio": "1.62",
-        "vol": 741230.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitget",
-        "long_pct": "53.08%",
-        "short_pct": "46.92%",
-        "ls_ratio": "1.13",
-        "vol": 3660000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "BingX",
-        "long_pct": "36.06%",
-        "short_pct": "63.94%",
-        "ls_ratio": "0.56",
-        "vol": 848840.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "MEXC",
-        "long_pct": "53.29%",
-        "short_pct": "46.71%",
-        "ls_ratio": "1.14",
-        "vol": 5250000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitunix",
-        "long_pct": "50.92%",
-        "short_pct": "49.08%",
-        "ls_ratio": "1.04",
-        "vol": 1670000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Hyperliquid",
-        "long_pct": "40.18%",
-        "short_pct": "59.82%",
-        "ls_ratio": "0.67",
-        "vol": 1060000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
+        "long_pct": "1.00%",
+        "short_pct": "50.00%",
+        "ls_ratio": "0.02",
         "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "LBank",
-        "long_pct": "60.1%",
-        "short_pct": "39.9%",
-        "ls_ratio": "1.51",
-        "vol": 102100.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Crypto.com",
-        "long_pct": "60.92%",
-        "short_pct": "39.08%",
-        "ls_ratio": "1.56",
-        "vol": 96020.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "WhiteBIT",
-        "long_pct": "0.41%",
-        "short_pct": "99.59%",
-        "ls_ratio": "0.00",
-        "vol": 793040.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "HTX",
-        "long_pct": "24.23%",
-        "short_pct": "75.77%",
-        "ls_ratio": "0.32",
-        "vol": 17710.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Kraken",
-        "long_pct": "59.04%",
-        "short_pct": "40.96%",
-        "ls_ratio": "1.44",
-        "vol": 267730.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Aster",
-        "long_pct": "40.6%",
-        "short_pct": "59.4%",
-        "ls_ratio": "0.68",
-        "vol": 254460.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Lighter",
-        "long_pct": "65.66%",
-        "short_pct": "34.34%",
-        "ls_ratio": "1.91",
-        "vol": 47500.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Whale Positions",
-        "long_pct": "51.49%",
-        "short_pct": "48.51%",
-        "ls_ratio": "1.06",
-        "vol": 13450000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Global Accounts",
-        "long_pct": "51.04%",
-        "short_pct": "48.96%",
-        "ls_ratio": "1.04",
-        "vol": 38210000.0
       },
       {
         "horizon": "1H",
         "exchange": "SOL",
-        "long_pct": "52.93%",
-        "short_pct": "47.07%",
-        "ls_ratio": "1.12",
-        "vol": 793450000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Binance",
-        "long_pct": "58.51%",
-        "short_pct": "41.49%",
-        "ls_ratio": "1.41",
-        "vol": 331270000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "OKX",
-        "long_pct": "50.37%",
-        "short_pct": "49.63%",
-        "ls_ratio": "1.01",
-        "vol": 122370000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bybit",
-        "long_pct": "50.07%",
-        "short_pct": "49.93%",
-        "ls_ratio": "1.00",
-        "vol": 54780000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "KuCoin",
-        "long_pct": "46.73%",
-        "short_pct": "53.27%",
-        "ls_ratio": "0.88",
-        "vol": 3920000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Gate",
-        "long_pct": "51.5%",
-        "short_pct": "48.5%",
-        "ls_ratio": "1.06",
-        "vol": 48620000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitget",
-        "long_pct": "46.61%",
-        "short_pct": "53.39%",
-        "ls_ratio": "0.87",
-        "vol": 25940000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "BingX",
-        "long_pct": "47.54%",
-        "short_pct": "52.46%",
-        "ls_ratio": "0.91",
-        "vol": 26030000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "MEXC",
-        "long_pct": "45.5%",
-        "short_pct": "54.5%",
-        "ls_ratio": "0.83",
-        "vol": 61270000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitunix",
-        "long_pct": "47.52%",
-        "short_pct": "52.48%",
-        "ls_ratio": "0.91",
-        "vol": 56670000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Hyperliquid",
-        "long_pct": "49.69%",
-        "short_pct": "50.31%",
-        "ls_ratio": "0.99",
-        "vol": 26730000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
+        "long_pct": "1.00%",
+        "short_pct": "50.00%",
+        "ls_ratio": "0.02",
         "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "LBank",
-        "long_pct": "54.14%",
-        "short_pct": "45.86%",
-        "ls_ratio": "1.18",
-        "vol": 12930000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Crypto.com",
-        "long_pct": "50.2%",
-        "short_pct": "49.8%",
-        "ls_ratio": "1.01",
-        "vol": 2210000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "WhiteBIT",
-        "long_pct": "18.86%",
-        "short_pct": "81.14%",
-        "ls_ratio": "0.23",
-        "vol": 2049999.9999999998
-      },
-      {
-        "horizon": "1H",
-        "exchange": "HTX",
-        "long_pct": "59.94%",
-        "short_pct": "40.06%",
-        "ls_ratio": "1.50",
-        "vol": 1290000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Kraken",
-        "long_pct": "59.71%",
-        "short_pct": "40.29%",
-        "ls_ratio": "1.48",
-        "vol": 6920000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Aster",
-        "long_pct": "37.84%",
-        "short_pct": "62.16%",
-        "ls_ratio": "0.61",
-        "vol": 5050000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Lighter",
-        "long_pct": "43.05%",
-        "short_pct": "56.95%",
-        "ls_ratio": "0.76",
-        "vol": 5410000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Whale Positions",
-        "long_pct": "58.51%",
-        "short_pct": "41.49%",
-        "ls_ratio": "1.41",
-        "vol": 331270000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Global Accounts",
-        "long_pct": "52.93%",
-        "short_pct": "47.07%",
-        "ls_ratio": "1.12",
-        "vol": 793450000.0
       },
       {
         "horizon": "4H",
         "exchange": "SOL",
-        "long_pct": "45.52%",
-        "short_pct": "54.48%",
-        "ls_ratio": "0.84",
-        "vol": 465990000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Binance",
-        "long_pct": "49.33%",
-        "short_pct": "50.67%",
-        "ls_ratio": "0.97",
-        "vol": 152480000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "OKX",
-        "long_pct": "47.32%",
-        "short_pct": "52.68%",
-        "ls_ratio": "0.90",
-        "vol": 52980000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bybit",
-        "long_pct": "47.14%",
-        "short_pct": "52.86%",
-        "ls_ratio": "0.89",
-        "vol": 56860000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "KuCoin",
-        "long_pct": "48.33%",
-        "short_pct": "51.67%",
-        "ls_ratio": "0.94",
-        "vol": 6790000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Gate",
-        "long_pct": "49.8%",
-        "short_pct": "50.2%",
-        "ls_ratio": "0.99",
-        "vol": 10470000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitget",
-        "long_pct": "50.35%",
-        "short_pct": "49.65%",
-        "ls_ratio": "1.01",
-        "vol": 32450000.000000004
-      },
-      {
-        "horizon": "4H",
-        "exchange": "BingX",
-        "long_pct": "32.42%",
-        "short_pct": "67.58%",
-        "ls_ratio": "0.48",
-        "vol": 10820000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "MEXC",
-        "long_pct": "47.06%",
-        "short_pct": "52.94%",
-        "ls_ratio": "0.89",
-        "vol": 77630000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitunix",
-        "long_pct": "51.74%",
-        "short_pct": "48.26%",
-        "ls_ratio": "1.07",
-        "vol": 23560000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Hyperliquid",
-        "long_pct": "48.45%",
-        "short_pct": "51.55%",
-        "ls_ratio": "0.94",
-        "vol": 7470000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
+        "long_pct": "1.00%",
+        "short_pct": "50.00%",
+        "ls_ratio": "0.02",
         "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "LBank",
-        "long_pct": "51.52%",
-        "short_pct": "48.48%",
-        "ls_ratio": "1.06",
-        "vol": 2120000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Crypto.com",
-        "long_pct": "55.22%",
-        "short_pct": "44.78%",
-        "ls_ratio": "1.23",
-        "vol": 852010.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "WhiteBIT",
-        "long_pct": "0.12%",
-        "short_pct": "99.88%",
-        "ls_ratio": "0.00",
-        "vol": 25120000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "HTX",
-        "long_pct": "31.19%",
-        "short_pct": "68.81%",
-        "ls_ratio": "0.45",
-        "vol": 422480.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Kraken",
-        "long_pct": "34.55%",
-        "short_pct": "65.45%",
-        "ls_ratio": "0.53",
-        "vol": 2610000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Aster",
-        "long_pct": "49.25%",
-        "short_pct": "50.75%",
-        "ls_ratio": "0.97",
-        "vol": 2350000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Lighter",
-        "long_pct": "55.77%",
-        "short_pct": "44.23%",
-        "ls_ratio": "1.26",
-        "vol": 986120.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Whale Positions",
-        "long_pct": "49.33%",
-        "short_pct": "50.67%",
-        "ls_ratio": "0.97",
-        "vol": 152480000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Global Accounts",
-        "long_pct": "45.52%",
-        "short_pct": "54.48%",
-        "ls_ratio": "0.84",
-        "vol": 465990000.0
       }
     ]
   },
