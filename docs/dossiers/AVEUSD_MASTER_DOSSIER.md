@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:36:16 IST` (`2026-10-30 10:06:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:39:17 IST` (`2026-10-30 10:09:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -472,7 +472,6 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `0:00 UTC` | `126.06` | `125.45` | `126.06` | `126.25` | `124.81` | 1,613,048.55 USD | 753,514.49 USD | 859,534.06 USD | -106,019.57 USD | `-6.57%` | `16B / 54S` |
 | `5:00 UTC` | `125.06` | `125.16` | `125.06` | `125.59` | `124.80` | 1,451,895.08 USD | 700,314.65 USD | 751,580.42 USD | -51,265.77 USD | `-3.53%` | `14B / 12S` |
 | `0:00 UTC` | `125.19` | `125.12` | `125.19` | `125.45` | `124.72` | 893,258.87 USD | 412,743.87 USD | 480,515.00 USD | -67,771.12 USD | `-7.59%` | `7B / 17S` |
 | `5:00 UTC` | `125.34` | `125.36` | `125.34` | `125.68` | `125.05` | 944,493.33 USD | 470,610.76 USD | 473,882.56 USD | -3,271.80 USD | `-0.35%` | `9B / 6S` |
@@ -481,7 +480,8 @@
 | `0:00 UTC` | `124.45` | `124.82` | `124.45` | `125.66` | `124.31` | 1,781,424.08 USD | 591,700.01 USD | 1,189,724.07 USD | -598,024.06 USD | `-33.57%` | `13B / 39S` |
 | `5:00 UTC` | `124.41` | `124.42` | `124.41` | `124.69` | `124.20` | 1,280,426.88 USD | 695,542.34 USD | 584,884.54 USD | 110,657.80 USD | `+8.64%` | `8B / 5S` |
 | `0:00 UTC` | `124.56` | `124.51` | `124.56` | `124.78` | `124.10` | 675,363.07 USD | 319,234.27 USD | 356,128.80 USD | -36,894.54 USD | `-5.46%` | `7B / 14S` |
-| `5:00 UTC` | `124.98` | `124.67` | `124.98` | `125.03` | `124.30` | 541,745.99 USD | 228,045.95 USD | 313,700.05 USD | -85,654.10 USD | `-15.81%` | `9B / 9S` |
+| `5:00 UTC` | `124.98` | `124.71` | `124.98` | `125.06` | `124.30` | 643,674.29 USD | 263,568.94 USD | 380,105.36 USD | -116,536.42 USD | `-18.10%` | `5B / 12S` |
+| `0:00 UTC` | `124.55` | `124.65` | `124.55` | `125.02` | `124.47` | 328,239.93 USD | 136,561.76 USD | 191,678.16 USD | -55,116.40 USD | `-16.79%` | `4B / 13S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -563,21 +563,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 15:18:36 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:12:36 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:41:36 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:37:36 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:33:36 IST`: [destatis.de] - (Sentiment: `Neutral`)
-  * `2026-10-30 14:32:36 IST`: [istat.it] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:25:36 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:25:36 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:25:36 IST`: [ine.es] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:25:36 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:24:36 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:24:36 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:24:36 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:24:36 IST`: [insee.fr] - (Sentiment: `Neutral`)
-  * `2026-10-30 15:24:36 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:33:00 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:32:00 IST`: [ec.europa.eu] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:19:00 IST`: [dailyforex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:12:00 IST`: [breakingthenews.net] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:41:00 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 14:38:00 IST`: [@FirstSquawk] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:36:00 IST`: [destatis.de] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:36:00 IST`: [istat.it] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:36:00 IST`: [channelnewsasia.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:36:00 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:36:00 IST`: [ine.es] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:35:00 IST`: [kof.ethz.ch] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:35:00 IST`: [gerlachmacro.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:35:00 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 15:35:00 IST`: [insee.fr] - (Sentiment: `Neutral`)
 
 
 ---
