@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: VETUSD
 **Canonical Key**: `VETUSD` | **Broker Instrument**: `VETUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:14:11 IST` (`2026-10-30 05:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:17:13 IST` (`2026-10-30 05:47:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -156,9 +156,9 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0005%` | **USDT OKX** | `-` |
-| **USDT Bybit** | `-0.0096%` | **USDT KuCoin** | `-0.0442%` |
-| **USDT MEXC** | `0.0001%` | **USDT BingX** | `0.0100%` |
+| **USDT Binance** | `0.0013%` | **USDT OKX** | `-` |
+| **USDT Bybit** | `-0.0090%` | **USDT KuCoin** | `-0.0446%` |
+| **USDT MEXC** | `0.0012%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `2h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `4h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `6h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `8h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `12h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `24h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1w` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30d` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `5m` | 0.00 USD | -6,970.00 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | -17,480.00 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | -735.34 USD | **`DISTRIBUTION`** |
+| `1h` | 0.00 USD | 25,910.00 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | 49,780.00 USD | **`ACCUMULATION`** |
+| `4h` | 0.00 USD | 177,920.00 USD | **`ACCUMULATION`** |
+| `6h` | 0.00 USD | 91,040.00 USD | **`ACCUMULATION`** |
+| `8h` | 0.00 USD | -258,070.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -356,530.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -387,160.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -1,340,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -5,140,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Futures Capital Netflows: 5m=`-6.97K` | 15m=`-17.48K` | 1h=`+25.91K` | 24h=`-387.16K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
