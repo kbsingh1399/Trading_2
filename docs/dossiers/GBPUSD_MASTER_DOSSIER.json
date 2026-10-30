@@ -13,11 +13,11 @@
     "point_value_001_lot": 0.01
   },
   "telemetry": {
-    "bid": 1.339,
-    "ask": 1.33905,
-    "mid": 1.339025,
-    "spread_pts": 5.0,
-    "spread_bps": 0.37,
+    "bid": 1.33801,
+    "ask": 1.33802,
+    "mid": 1.338015,
+    "spread_pts": 1.0,
+    "spread_bps": 0.07,
     "thresh_bps": 5.0,
     "gate_status": "PASS",
     "exec_posture": "PASSIVE LIMIT ONLY",
@@ -90,43 +90,13 @@
     "ny_low": 1.33738,
     "ib_high": 1.33913,
     "ib_low": 1.33799,
-    "fib_gp_low": 1.3336689,
-    "fib_gp_high": 1.3443810999999999,
-    "fib_ote": 1.34170305,
-    "fib_inval": 1.3497371999999999
+    "fib_gp_low": 1.3326629399999999,
+    "fib_gp_high": 1.34336706,
+    "fib_ote": 1.34069103,
+    "fib_inval": 1.34871912
   },
   "cvd": {
     "table": [
-      {
-        "timeframe": "5m",
-        "open": 1.34268,
-        "high": 1.34328,
-        "low": 1.34264,
-        "close": 1.34328,
-        "volume": 605.0,
-        "quote_vol": 812.6844,
-        "delta": 731.4159599999999,
-        "delta_pct": 89.99999999999999,
-        "cum_cvd": 8834.221217877384,
-        "cvd_z": 2.3181723730730455,
-        "bias": "BULLISH",
-        "regime": "AGGRESSIVE BUYING"
-      },
-      {
-        "timeframe": "5m",
-        "open": 1.34329,
-        "high": 1.34337,
-        "low": 1.3430900000000001,
-        "close": 1.34313,
-        "volume": 587.0,
-        "quote_vol": 788.4173099999999,
-        "delta": -506.8396992865181,
-        "delta_pct": -64.28571428581624,
-        "cum_cvd": 8327.381518590866,
-        "cvd_z": -1.7997247800542158,
-        "bias": "BEARISH",
-        "regime": "AGGRESSIVE SELLING"
-      },
       {
         "timeframe": "5m",
         "open": 1.34314,
@@ -137,10 +107,40 @@
         "quote_vol": 731.9459,
         "delta": -393.08205740698384,
         "delta_pct": -53.703703703645836,
-        "cum_cvd": 7934.299461183882,
+        "cum_cvd": 8310.825288172728,
         "cvd_z": -1.2892389919508902,
         "bias": "BEARISH",
         "regime": "AGGRESSIVE SELLING"
+      },
+      {
+        "timeframe": "5m",
+        "open": 1.34302,
+        "high": 1.3431,
+        "low": 1.34234,
+        "close": 1.34254,
+        "volume": 443.0,
+        "quote_vol": 594.74522,
+        "delta": -328.6749900000366,
+        "delta_pct": -55.26315789474299,
+        "cum_cvd": 7982.150298172691,
+        "cvd_z": -0.9816994469438313,
+        "bias": "BEARISH",
+        "regime": "AGGRESSIVE SELLING"
+      },
+      {
+        "timeframe": "5m",
+        "open": 1.34253,
+        "high": 1.3428,
+        "low": 1.34247,
+        "close": 1.34268,
+        "volume": 422.0,
+        "quote_vol": 566.6109600000001,
+        "delta": 206.04034909115174,
+        "delta_pct": 36.36363636367918,
+        "cum_cvd": 8188.190647263843,
+        "cvd_z": 0.7004550623944655,
+        "bias": "BULLISH",
+        "regime": "AGGRESSIVE BUYING"
       },
       {
         "timeframe": "15m",
@@ -2463,17 +2463,17 @@
   "formulation": {
     "long": {
       "entry": 1.33798,
-      "sl": 1.3368431282668636,
-      "tp": 1.3408221793328408,
-      "dist": 0.0011368717331363687,
-      "lots": 0.08
+      "sl": 1.3369031282668637,
+      "tp": 1.3406721793328404,
+      "dist": 0.0010768717331361977,
+      "lots": 0.09
     },
     "short": {
       "entry": 1.34114,
-      "sl": 1.3422768717331364,
-      "tp": 1.338297820667159,
-      "dist": 0.0011368717331363687,
-      "lots": 0.08
+      "sl": 1.3422168717331362,
+      "tp": 1.3384478206671595,
+      "dist": 0.0010768717331361977,
+      "lots": 0.09
     },
     "confluence_score": 87,
     "decision": "PASSIVE_MAKER_LIMIT_ARMED"

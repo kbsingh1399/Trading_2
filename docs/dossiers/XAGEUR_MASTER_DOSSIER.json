@@ -13,11 +13,11 @@
     "point_value_001_lot": 0.05
   },
   "telemetry": {
-    "bid": 44.152,
-    "ask": 44.191,
-    "mid": 44.1715,
-    "spread_pts": 39.0,
-    "spread_bps": 8.83,
+    "bid": 44.138,
+    "ask": 44.178,
+    "mid": 44.158,
+    "spread_pts": 40.0,
+    "spread_bps": 9.06,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -90,43 +90,13 @@
     "ny_low": 49.185,
     "ib_high": 51.792,
     "ib_low": 50.871,
-    "fib_gp_low": 43.994814,
-    "fib_gp_high": 44.348186000000005,
-    "fib_ote": 44.259843000000004,
-    "fib_inval": 44.524872
+    "fib_gp_low": 43.981368,
+    "fib_gp_high": 44.334632,
+    "fib_ote": 44.246316,
+    "fib_inval": 44.511264000000004
   },
   "cvd": {
     "table": [
-      {
-        "timeframe": "5m",
-        "open": 50.503,
-        "high": 50.55,
-        "low": 50.412,
-        "close": 50.432,
-        "volume": 1332.0,
-        "quote_vol": 67175.424,
-        "delta": -41132.77773912852,
-        "delta_pct": -61.231884057968166,
-        "cum_cvd": -1511048.7499463796,
-        "cvd_z": -1.4654063911650084,
-        "bias": "BEARISH",
-        "regime": "AGGRESSIVE SELLING"
-      },
-      {
-        "timeframe": "5m",
-        "open": 50.433,
-        "high": 50.464,
-        "low": 50.399,
-        "close": 50.411,
-        "volume": 863.0,
-        "quote_vol": 43504.693,
-        "delta": -21083.043530768384,
-        "delta_pct": -48.46153846153651,
-        "cum_cvd": -1532131.793477148,
-        "cvd_z": -0.5314162919549641,
-        "bias": "BEARISH",
-        "regime": "AGGRESSIVE SELLING"
-      },
       {
         "timeframe": "5m",
         "open": 50.411,
@@ -137,10 +107,40 @@
         "quote_vol": 42409.856,
         "delta": -23917.18623255515,
         "delta_pct": -56.39534883720225,
-        "cum_cvd": -1556048.9797097032,
+        "cum_cvd": -1490247.8812265273,
         "cvd_z": -0.6015975836653293,
         "bias": "BEARISH",
         "regime": "AGGRESSIVE SELLING"
+      },
+      {
+        "timeframe": "5m",
+        "open": 50.369,
+        "high": 50.394,
+        "low": 50.35,
+        "close": 50.364,
+        "volume": 682.0,
+        "quote_vol": 34348.248,
+        "delta": -8196.741000003656,
+        "delta_pct": -23.863636363647007,
+        "cum_cvd": -1498444.622226531,
+        "cvd_z": 0.03470591541526813,
+        "bias": "BEARISH",
+        "regime": "AGGRESSIVE SELLING"
+      },
+      {
+        "timeframe": "5m",
+        "open": 50.364,
+        "high": 50.456,
+        "low": 50.351,
+        "close": 50.45,
+        "volume": 732.0,
+        "quote_vol": 36929.4,
+        "delta": 31477.917142857557,
+        "delta_pct": 85.23809523809635,
+        "cum_cvd": -1466966.7050836734,
+        "cvd_z": 1.5907357136462987,
+        "bias": "BULLISH",
+        "regime": "AGGRESSIVE BUYING"
       },
       {
         "timeframe": "15m",
@@ -1883,16 +1883,16 @@
   "formulation": {
     "long": {
       "entry": 50.39,
-      "sl": 50.05215830378564,
-      "tp": 51.2346042405359,
-      "dist": 0.3378416962143618,
+      "sl": 50.05065830378564,
+      "tp": 51.238354240535905,
+      "dist": 0.33934169621436183,
       "lots": 0.01
     },
     "short": {
       "entry": 52.009,
-      "sl": 52.34684169621436,
-      "tp": 51.1643957594641,
-      "dist": 0.3378416962143618,
+      "sl": 52.34834169621436,
+      "tp": 51.160645759464096,
+      "dist": 0.33934169621436183,
       "lots": 0.01
     },
     "confluence_score": 77,

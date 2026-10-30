@@ -13,9 +13,9 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 62441.5,
-    "ask": 62447.5,
-    "mid": 62444.5,
+    "bid": 62379.5,
+    "ask": 62385.5,
+    "mid": 62382.5,
     "spread_pts": 600.0,
     "spread_bps": 0.96,
     "thresh_bps": 5.0,
@@ -90,10 +90,10 @@
     "ny_low": 62416.5,
     "ib_high": 63330.0,
     "ib_low": 63035.0,
-    "fib_gp_low": 62194.722,
-    "fib_gp_high": 62694.278,
-    "fib_ote": 62569.389,
-    "fib_inval": 62944.056
+    "fib_gp_low": 62132.97,
+    "fib_gp_high": 62632.03,
+    "fib_ote": 62507.265,
+    "fib_inval": 62881.56
   },
   "cvd": {
     "table": [],

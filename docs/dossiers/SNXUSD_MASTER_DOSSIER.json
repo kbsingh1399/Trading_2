@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 0.171,
+    "bid": 0.172,
     "ask": 0.192,
-    "mid": 0.1815,
-    "spread_pts": 21.0,
-    "spread_bps": 1157.02,
+    "mid": 0.182,
+    "spread_pts": 20.0,
+    "spread_bps": 1098.9,
     "thresh_bps": 25.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -90,10 +90,10 @@
     "ny_low": 0.171,
     "ib_high": 0.173,
     "ib_low": 0.171,
-    "fib_gp_low": 0.180774,
-    "fib_gp_high": 0.182226,
-    "fib_ote": 0.181863,
-    "fib_inval": 0.182952
+    "fib_gp_low": 0.181272,
+    "fib_gp_high": 0.182728,
+    "fib_ote": 0.182364,
+    "fib_inval": 0.183456
   },
   "cvd": {
     "table": [],
@@ -804,16 +804,16 @@
   "formulation": {
     "long": {
       "entry": 0.167,
-      "sl": 0.13404973709699522,
-      "tp": 0.27199999999999996,
-      "dist": 0.04199999999999998,
+      "sl": 0.1355497370969952,
+      "tp": 0.2670000000000001,
+      "dist": 0.040000000000000036,
       "lots": 20.0
     },
     "short": {
       "entry": 0.174,
-      "sl": 0.20695026290300478,
-      "tp": 0.06900000000000003,
-      "dist": 0.04199999999999998,
+      "sl": 0.2054502629030048,
+      "tp": 0.0739999999999999,
+      "dist": 0.040000000000000036,
       "lots": 20.0
     },
     "confluence_score": 72,
