@@ -145,8 +145,8 @@ async def dispatch_cycle_036():
         print(f"❌ Error connecting to Chrome CDP on port 9222: {e}")
         return False
 
-    arena_tab = next((t for t in tabs if "arena.ai" in t.get("url", "") and "preview-" not in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
-    zai_tab = next((t for t in tabs if "chat.z.ai" in t.get("url", "") and "preview-" not in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
+    arena_tab = next((t for t in tabs if t.get("type") == "page" and "arena.ai" in t.get("url", "") and "preview-" not in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
+    zai_tab = next((t for t in tabs if t.get("type") == "page" and ("chat.z.ai" in t.get("url", "") or "z.ai" in t.get("url", "")) and "preview-" not in t.get("url", "") and t.get("webSocketDebuggerUrl")), None)
 
     results = {}
 

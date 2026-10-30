@@ -1,8 +1,8 @@
 {
   "schema_version": "2.0.0",
   "format": "JSON_STANDALONE",
-  "timestamp_utc": "2026-10-30 14:18:40 UTC",
-  "timestamp_ist": "2026-10-30 19:48:40 IST",
+  "timestamp_utc": "2026-10-30 14:24:45 UTC",
+  "timestamp_ist": "2026-10-30 19:54:45 IST",
   "total_assets": 162,
   "assets": [
     {
