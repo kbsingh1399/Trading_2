@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPSGD
 **Canonical Key**: `GBPSGD` | **Broker Instrument**: `GBPSGD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:31:47 IST` (`2026-10-30 05:01:47 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:34:49 IST` (`2026-10-30 05:04:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -37,7 +37,7 @@
   * Fast EMA Array: EMA-9=`1.71` | EMA-20=`1.71` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.71` (Slope: `+0.0000`) | EMA-100=`1.71`
   * Institutional Anchors: EMA-144=`1.71` | EMA-200=`1.71` (Slope: `+0.0000`) | EMA-233=`1.71`
-- **Range Boundaries**: 24H High=`1.73` | 24H Low=`1.69` | Weekly High=`1.75` | Weekly Low=`1.68`
+- **Range Boundaries**: 24H High=`1.73` | 24H Low=`1.69` | Weekly High=`1.74` | Weekly Low=`1.68`
 
 ---
 
@@ -268,7 +268,7 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `1.71` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.5058` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `0.5054` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `4.71`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:

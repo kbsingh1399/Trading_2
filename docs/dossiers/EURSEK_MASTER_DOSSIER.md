@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSEK
 **Canonical Key**: `EURSEK` | **Broker Instrument**: `EURSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 10:31:47 IST` (`2026-10-30 05:01:47 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:34:49 IST` (`2026-10-30 05:04:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.99` | **Live Ask Quote**: `10.99` | **Mid Price**: `10.99`
-- **Spread Points**: `236.00` | **Spread BPS**: `2.15 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `234.00` | **Spread BPS**: `2.13 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`11.03` | POC=`10.99` | VAL=`10.95`
-  * Prior Day Extremes: PDH=`11.06` | PDL=`10.92` | PDC=`10.99`
+  * Prior Day Extremes: PDH=`11.06` | PDL=`10.93` | PDC=`10.99`
   * Monday Range Blueprint: High=`11.05` | Mid=`10.99` | Low=`10.94`
   * Developing Weekly Value Area: Weekly VAH=`11.08` | Weekly POC=`10.99` | Weekly VAL=`10.90`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`11.01` | Low=`10.97`
   * London Session (08:00-16:00 UTC): High=`11.03` | Low=`10.95`
-  * New York Session (13:00-21:00 UTC): High=`11.06` | Low=`10.92`
+  * New York Session (13:00-21:00 UTC): High=`11.06` | Low=`10.93`
   * Initial Balance (First Hour): IB High=`11.02` | IB Low=`10.96`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `10.95` - `11.03`

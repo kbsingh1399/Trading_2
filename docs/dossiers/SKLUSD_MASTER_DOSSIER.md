@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SKLUSD
 **Canonical Key**: `SKLUSD` | **Broker Instrument**: `SKLUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 10:31:47 IST` (`2026-10-30 05:01:47 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:34:49 IST` (`2026-10-30 05:04:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,8 +23,8 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0037` | VWAP Z-Score: `+2.20` (Regime: `STRETCH_EXTREME`)
-  * 14-Period ATR: `0.000036` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * Session VWAP: `0.0037` | VWAP Z-Score: `+2.11` (Regime: `STRETCH_EXTREME`)
+  * 14-Period ATR: `0.000034` (Volatility Regime: `NORMAL_COMPRESSION`)
   * 14-Period RSI: `55.22` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `0.0038` | Lower -3.00σ Band: `0.0035`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0037` | EMA-20=`0.0037` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0037` (Slope: `+0.0000`) | EMA-100=`0.0038`
-  * Institutional Anchors: EMA-144=`0.0038` | EMA-200=`0.0038` (Slope: `-0.4938`) | EMA-233=`0.0038`
+  * Institutional Anchors: EMA-144=`0.0038` | EMA-200=`0.0038` (Slope: `-0.4665`) | EMA-233=`0.0038`
 - **Range Boundaries**: 24H High=`0.0040` | 24H Low=`0.0035` | Weekly High=`0.0040` | Weekly Low=`0.0035`
 
 ---
