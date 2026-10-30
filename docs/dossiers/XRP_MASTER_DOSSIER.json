@@ -2978,434 +2978,420 @@
         "rank": "27",
         "user": "0x31b1...1434",
         "side": "LONG",
-        "pos_usd": 43887375.5,
+        "pos_usd": 43761262.36,
         "tokens": 35031430.0,
         "entry_px": 1.1298,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 0.9613,
-        "pnl_usd": 4308492.24,
-        "pnl_pct": 9.82,
-        "margin": 4388737.55,
+        "pnl_usd": 4182379.09,
+        "pnl_pct": 9.56,
+        "margin": 4376126.24,
         "leverage": "10X Cross"
       },
       {
-        "rank": "95",
+        "rank": "93",
         "user": "0x5b5d...c060",
         "side": "SHORT",
-        "pos_usd": 19451829.2,
+        "pos_usd": 19388200.27,
         "tokens": 15519251.0,
         "entry_px": 1.4355,
-        "current_px": 1.254,
-        "liq_px": 10.6414,
-        "pnl_usd": 2825459.11,
-        "pnl_pct": 14.53,
-        "margin": 3890365.84,
+        "current_px": 1.2491,
+        "liq_px": 10.6227,
+        "pnl_usd": 2889088.04,
+        "pnl_pct": 14.9,
+        "margin": 3877640.05,
         "leverage": "5X Cross"
       },
       {
-        "rank": "169",
+        "rank": "167",
         "user": "0xb83d...6e36",
         "side": "SHORT",
-        "pos_usd": 12407774.6,
+        "pos_usd": 12377067.19,
         "tokens": 9905616.0,
         "entry_px": 1.499,
-        "current_px": 1.254,
-        "liq_px": 11.8964,
-        "pnl_usd": 2440696.95,
-        "pnl_pct": 19.67,
-        "margin": 2481554.92,
+        "current_px": 1.2491,
+        "liq_px": 11.8418,
+        "pnl_usd": 2471404.36,
+        "pnl_pct": 19.97,
+        "margin": 2475413.44,
         "leverage": "5X Cross"
       },
       {
-        "rank": "319",
+        "rank": "317",
         "user": "0x58f0...0d20",
         "side": "LONG",
-        "pos_usd": 7440721.36,
+        "pos_usd": 7409258.28,
         "tokens": 5936430.0,
         "entry_px": 1.2457,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 1.2282,
-        "pnl_usd": 45468.26,
-        "pnl_pct": 0.61,
-        "margin": 372036.07,
+        "pnl_usd": 14005.18,
+        "pnl_pct": 0.19,
+        "margin": 370462.91,
         "leverage": "20X Cross"
       },
       {
-        "rank": "394",
+        "rank": "396",
         "user": "0xecb6...2b00",
         "side": "SHORT",
-        "pos_usd": 5782991.66,
-        "tokens": 4614580.0,
+        "pos_usd": 5740002.97,
+        "tokens": 4595311.0,
         "entry_px": 1.2675,
-        "current_px": 1.254,
-        "liq_px": 9.4368,
-        "pnl_usd": 66079.66,
-        "pnl_pct": 1.14,
-        "margin": 578299.17,
+        "current_px": 1.2491,
+        "liq_px": 9.0615,
+        "pnl_usd": 84644.51,
+        "pnl_pct": 1.47,
+        "margin": 574000.3,
         "leverage": "10X Cross"
       },
       {
-        "rank": "434",
+        "rank": "436",
         "user": "0xca49...53c8",
         "side": "SHORT",
-        "pos_usd": 5186851.94,
+        "pos_usd": 5169468.61,
         "tokens": 4138886.0,
         "entry_px": 1.4384,
-        "current_px": 1.254,
-        "liq_px": 4.9789,
-        "pnl_usd": 766470.8,
-        "pnl_pct": 14.78,
-        "margin": 259342.6,
+        "current_px": 1.2491,
+        "liq_px": 4.9782,
+        "pnl_usd": 783854.12,
+        "pnl_pct": 15.16,
+        "margin": 258473.43,
         "leverage": "20X Cross"
       },
       {
-        "rank": "449",
+        "rank": "450",
         "user": "0xdd53...2b13",
         "side": "SHORT",
-        "pos_usd": 5008925.11,
-        "tokens": 3996908.0,
+        "pos_usd": 4991036.36,
+        "tokens": 3995706.0,
         "entry_px": 1.3996,
-        "current_px": 1.254,
-        "liq_px": 16.705,
-        "pnl_usd": 585143.41,
-        "pnl_pct": 11.68,
-        "margin": 1669641.7,
+        "current_px": 1.2491,
+        "liq_px": 16.6372,
+        "pnl_usd": 601349.83,
+        "pnl_pct": 12.05,
+        "margin": 1663678.79,
         "leverage": "3X Cross"
       },
       {
-        "rank": "511",
+        "rank": "514",
         "user": "0x610b...b613",
         "side": "LONG",
-        "pos_usd": 4440564.34,
+        "pos_usd": 4426388.55,
         "tokens": 3543946.0,
         "entry_px": 1.4391,
-        "current_px": 1.254,
-        "liq_px": 0.8364,
-        "pnl_usd": -659428.27,
-        "pnl_pct": -14.85,
-        "margin": 888112.87,
+        "current_px": 1.2491,
+        "liq_px": 0.838,
+        "pnl_usd": -673604.05,
+        "pnl_pct": -15.22,
+        "margin": 885277.71,
         "leverage": "5X Cross"
       },
       {
-        "rank": "534",
+        "rank": "533",
         "user": "0xfc27...9d9d",
         "side": "SHORT",
-        "pos_usd": 4223483.26,
+        "pos_usd": 4209665.61,
         "tokens": 3370159.0,
         "entry_px": 1.2834,
-        "current_px": 1.254,
-        "liq_px": 6.8085,
-        "pnl_usd": 101835.53,
-        "pnl_pct": 2.41,
-        "margin": 211174.16,
+        "current_px": 1.2491,
+        "liq_px": 6.8373,
+        "pnl_usd": 115653.18,
+        "pnl_pct": 2.75,
+        "margin": 210483.28,
         "leverage": "20X Cross"
       },
       {
-        "rank": "595",
+        "rank": "593",
         "user": "0x9946...0852",
         "side": "SHORT",
-        "pos_usd": 3847008.15,
+        "pos_usd": 3838103.75,
         "tokens": 3070483.0,
         "entry_px": 1.4032,
-        "current_px": 1.254,
-        "liq_px": 1.7898,
-        "pnl_usd": 461494.07,
-        "pnl_pct": 12.0,
-        "margin": 192350.41,
+        "current_px": 1.2491,
+        "liq_px": 1.7811,
+        "pnl_usd": 470398.47,
+        "pnl_pct": 12.26,
+        "margin": 191905.19,
         "leverage": "20X Cross"
       },
       {
-        "rank": "652",
+        "rank": "653",
         "user": "0xc30c...a4c9",
         "side": "SHORT",
-        "pos_usd": 3498326.6,
+        "pos_usd": 3486602.23,
         "tokens": 2791515.0,
         "entry_px": 1.4102,
-        "current_px": 1.254,
-        "liq_px": 1.5839,
-        "pnl_usd": 438186.13,
-        "pnl_pct": 12.53,
-        "margin": 388702.96,
+        "current_px": 1.2491,
+        "liq_px": 1.5864,
+        "pnl_usd": 449910.5,
+        "pnl_pct": 12.9,
+        "margin": 387400.25,
         "leverage": "9X Cross"
       },
       {
-        "rank": "706",
+        "rank": "707",
         "user": "0xf48f...10fe",
         "side": "LONG",
-        "pos_usd": 3213894.78,
+        "pos_usd": 3205940.86,
         "tokens": 2565779.0,
         "entry_px": 1.5296,
-        "current_px": 1.254,
-        "liq_px": 1.0401,
-        "pnl_usd": -710745.95,
-        "pnl_pct": -22.11,
-        "margin": 803473.69,
+        "current_px": 1.2491,
+        "liq_px": 1.0318,
+        "pnl_usd": -718699.87,
+        "pnl_pct": -22.42,
+        "margin": 801485.22,
         "leverage": "4X Cross"
+      },
+      {
+        "rank": "758",
+        "user": "0x023a...2355",
+        "side": "SHORT",
+        "pos_usd": 3077977.26,
+        "tokens": 2464156.0,
+        "entry_px": 1.3197,
+        "current_px": 1.2491,
+        "liq_px": 3.3262,
+        "pnl_usd": 173949.68,
+        "pnl_pct": 5.65,
+        "margin": 153898.86,
+        "leverage": "20X Cross"
       },
       {
         "rank": "759",
-        "user": "0x023a...2355",
-        "side": "SHORT",
-        "pos_usd": 3088080.3,
-        "tokens": 2464156.0,
-        "entry_px": 1.3197,
-        "current_px": 1.254,
-        "liq_px": 3.3353,
-        "pnl_usd": 163846.64,
-        "pnl_pct": 5.31,
-        "margin": 154404.02,
-        "leverage": "20X Cross"
-      },
-      {
-        "rank": "761",
         "user": "0x45d2...4029",
         "side": "SHORT",
-        "pos_usd": 3072382.5,
+        "pos_usd": 3063095.44,
         "tokens": 2453000.0,
         "entry_px": 1.4832,
-        "current_px": 1.254,
-        "liq_px": 18.861,
-        "pnl_usd": 565897.92,
-        "pnl_pct": 18.42,
-        "margin": 153619.12,
+        "current_px": 1.2491,
+        "liq_px": 18.8113,
+        "pnl_usd": 575184.98,
+        "pnl_pct": 18.78,
+        "margin": 153154.77,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1074",
+        "rank": "1077",
         "user": "0xeadc...9d55",
         "side": "LONG",
-        "pos_usd": 2030101.61,
+        "pos_usd": 2023460.41,
         "tokens": 1619805.0,
         "entry_px": 1.2093,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 0.0,
-        "pnl_usd": 71258.58,
-        "pnl_pct": 3.51,
-        "margin": 101505.08,
+        "pnl_usd": 64617.38,
+        "pnl_pct": 3.19,
+        "margin": 101173.02,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1091",
+        "rank": "1097",
         "user": "0x94b2...599e",
         "side": "SHORT",
-        "pos_usd": 2007097.28,
+        "pos_usd": 2000531.34,
         "tokens": 1601450.0,
         "entry_px": 1.3587,
-        "current_px": 1.254,
-        "liq_px": 1.8487,
-        "pnl_usd": 168723.32,
-        "pnl_pct": 8.41,
-        "margin": 100354.86,
+        "current_px": 1.2491,
+        "liq_px": 1.85,
+        "pnl_usd": 175289.26,
+        "pnl_pct": 8.76,
+        "margin": 100026.57,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1166",
+        "rank": "1167",
         "user": "0x3fc5...c0c1",
         "side": "SHORT",
-        "pos_usd": 1894259.09,
+        "pos_usd": 1886700.19,
         "tokens": 1511779.0,
         "entry_px": 1.5158,
-        "current_px": 1.254,
-        "liq_px": 2.4674,
-        "pnl_usd": 397355.52,
-        "pnl_pct": 20.98,
-        "margin": 94712.95,
+        "current_px": 1.2491,
+        "liq_px": 2.4784,
+        "pnl_usd": 404914.41,
+        "pnl_pct": 21.46,
+        "margin": 94335.01,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1185",
+        "rank": "1192",
         "user": "0x31ef...f715",
         "side": "LONG",
-        "pos_usd": 1848865.27,
+        "pos_usd": 1841047.35,
         "tokens": 1475080.0,
         "entry_px": 1.4909,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 1.036,
-        "pnl_usd": -350400.13,
-        "pnl_pct": -18.95,
-        "margin": 358925.23,
+        "pnl_usd": -358218.05,
+        "pnl_pct": -19.46,
+        "margin": 351102.6,
         "leverage": "3X Isolated"
       },
       {
-        "rank": "1246",
+        "rank": "1252",
         "user": "0x7737...bf66",
         "side": "SHORT",
-        "pos_usd": 1771355.59,
+        "pos_usd": 1765560.38,
         "tokens": 1413466.0,
         "entry_px": 1.4142,
-        "current_px": 1.254,
-        "liq_px": 14.0442,
-        "pnl_usd": 227513.06,
-        "pnl_pct": 12.84,
-        "margin": 177135.56,
+        "current_px": 1.2491,
+        "liq_px": 14.14,
+        "pnl_usd": 233308.27,
+        "pnl_pct": 13.21,
+        "margin": 176556.04,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1306",
+        "rank": "1311",
         "user": "0x95da...2328",
         "side": "LONG",
-        "pos_usd": 1660599.58,
+        "pos_usd": 1653577.74,
         "tokens": 1324876.0,
         "entry_px": 1.3538,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 0.0,
-        "pnl_usd": -133041.52,
-        "pnl_pct": -8.01,
-        "margin": 332119.92,
+        "pnl_usd": -140063.36,
+        "pnl_pct": -8.47,
+        "margin": 330715.55,
         "leverage": "5X Cross"
       },
       {
-        "rank": "1320",
+        "rank": "1319",
         "user": "0xee2b...d67e",
         "side": "LONG",
-        "pos_usd": 1636643.22,
+        "pos_usd": 1629981.18,
         "tokens": 1306284.0,
         "entry_px": 1.5545,
-        "current_px": 1.254,
-        "liq_px": 0.4754,
-        "pnl_usd": -394011.68,
-        "pnl_pct": -24.07,
-        "margin": 409160.81,
+        "current_px": 1.2491,
+        "liq_px": 0.4845,
+        "pnl_usd": -400673.73,
+        "pnl_pct": -24.58,
+        "margin": 407495.29,
         "leverage": "4X Cross"
       },
       {
-        "rank": "1368",
+        "rank": "1371",
         "user": "0x215d...f80a",
         "side": "LONG",
-        "pos_usd": 1568226.23,
+        "pos_usd": 1563719.83,
         "tokens": 1251777.0,
         "entry_px": 1.3217,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 1.1282,
-        "pnl_usd": -86228.0,
-        "pnl_pct": -5.5,
-        "margin": 112016.16,
+        "pnl_usd": -90734.4,
+        "pnl_pct": -5.8,
+        "margin": 111694.27,
         "leverage": "14X Cross"
       },
       {
-        "rank": "1384",
+        "rank": "1406",
         "user": "0x5fa3...35b7",
         "side": "SHORT",
-        "pos_usd": 1554783.83,
+        "pos_usd": 1548580.58,
         "tokens": 1240651.0,
         "entry_px": 1.3029,
-        "current_px": 1.254,
-        "liq_px": 2.6325,
-        "pnl_usd": 61708.3,
-        "pnl_pct": 3.97,
-        "margin": 77739.19,
+        "current_px": 1.2491,
+        "liq_px": 2.6223,
+        "pnl_usd": 67911.55,
+        "pnl_pct": 4.39,
+        "margin": 77429.03,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1424",
+        "rank": "1431",
         "user": "0x123d...3bff",
         "side": "LONG",
-        "pos_usd": 1518739.29,
+        "pos_usd": 1513770.55,
         "tokens": 1211889.0,
         "entry_px": 1.347,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 0.0,
-        "pnl_usd": -113696.19,
-        "pnl_pct": -7.49,
-        "margin": 151873.93,
+        "pnl_usd": -118664.93,
+        "pnl_pct": -7.84,
+        "margin": 151377.05,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1453",
+        "rank": "1458",
         "user": "0xc179...e0c8",
         "side": "SHORT",
-        "pos_usd": 1485148.52,
+        "pos_usd": 1480289.67,
         "tokens": 1185085.0,
         "entry_px": 1.2671,
-        "current_px": 1.254,
-        "liq_px": 5.6745,
-        "pnl_usd": 16510.95,
-        "pnl_pct": 1.11,
-        "margin": 148514.85,
+        "current_px": 1.2491,
+        "liq_px": 5.6646,
+        "pnl_usd": 21369.8,
+        "pnl_pct": 1.44,
+        "margin": 148028.97,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1571",
+        "rank": "1570",
         "user": "0xdf95...7d72",
         "side": "SHORT",
-        "pos_usd": 1370913.08,
-        "tokens": 1093930.0,
+        "pos_usd": 1366140.67,
+        "tokens": 1093700.0,
         "entry_px": 1.3727,
-        "current_px": 1.254,
-        "liq_px": 37.1062,
-        "pnl_usd": 130729.53,
-        "pnl_pct": 9.54,
-        "margin": 68545.65,
+        "current_px": 1.2491,
+        "liq_px": 37.0981,
+        "pnl_usd": 135186.21,
+        "pnl_pct": 9.9,
+        "margin": 68307.03,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1630",
+        "rank": "1632",
         "user": "0xef96...9383",
         "side": "SHORT",
-        "pos_usd": 1305677.75,
+        "pos_usd": 1300364.19,
         "tokens": 1041875.0,
         "entry_px": 1.3379,
-        "current_px": 1.254,
-        "liq_px": 4.688,
-        "pnl_usd": 88209.17,
-        "pnl_pct": 6.76,
-        "margin": 65283.89,
+        "current_px": 1.2491,
+        "liq_px": 4.6709,
+        "pnl_usd": 93522.73,
+        "pnl_pct": 7.19,
+        "margin": 65018.21,
         "leverage": "20X Cross"
       },
       {
-        "rank": "1661",
+        "rank": "1662",
         "user": "0xb1ce...681b",
         "side": "LONG",
-        "pos_usd": 1280270.29,
+        "pos_usd": 1275891.01,
         "tokens": 1021764.0,
         "entry_px": 1.4916,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 1.1639,
-        "pnl_usd": -243786.2,
-        "pnl_pct": -19.04,
-        "margin": 120751.68,
+        "pnl_usd": -248165.48,
+        "pnl_pct": -19.45,
+        "margin": 116369.15,
         "leverage": "4X Isolated"
       },
       {
-        "rank": "1769",
+        "rank": "1767",
         "user": "0x3c36...461a",
         "side": "LONG",
-        "pos_usd": 1174875.74,
+        "pos_usd": 1173465.66,
         "tokens": 940051.0,
         "entry_px": 1.2968,
-        "current_px": 1.254,
+        "current_px": 1.2491,
         "liq_px": 1.055,
-        "pnl_usd": -44204.87,
-        "pnl_pct": -3.76,
-        "margin": 117487.57,
+        "pnl_usd": -45614.95,
+        "pnl_pct": -3.89,
+        "margin": 117346.57,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1798",
+        "rank": "1801",
         "user": "0x2577...4897",
         "side": "SHORT",
-        "pos_usd": 1155836.58,
+        "pos_usd": 1152330.97,
         "tokens": 922529.0,
         "entry_px": 1.2457,
-        "current_px": 1.254,
-        "liq_px": 4.7002,
-        "pnl_usd": -6610.93,
-        "pnl_pct": -0.57,
-        "margin": 57791.83,
-        "leverage": "20X Cross"
-      },
-      {
-        "rank": "2022",
-        "user": "0xbfc7...80b4",
-        "side": "SHORT",
-        "pos_usd": 1002240.0,
-        "tokens": 800000.0,
-        "entry_px": 1.4793,
-        "current_px": 1.254,
-        "liq_px": 3.2871,
-        "pnl_usd": 181214.65,
-        "pnl_pct": 18.08,
-        "margin": 50112.0,
+        "current_px": 1.2491,
+        "liq_px": 4.7194,
+        "pnl_usd": -3105.32,
+        "pnl_pct": -0.27,
+        "margin": 57616.55,
         "leverage": "20X Cross"
       }
     ],
@@ -15025,66 +15011,66 @@
     "mp_24h": {
       "ranking": 5,
       "symbol": "XRP",
-      "price": 1.2483,
-      "short_max_pain_price": 1.2957,
-      "short_max_pain_vol": 2600000.0,
-      "short_distance_usd": 0.04740000000000011,
-      "short_distance_pct": 3.79,
-      "long_max_pain_price": 1.2257,
+      "price": 1.2488,
+      "short_max_pain_price": 1.3507,
+      "short_max_pain_vol": 2800000.0,
+      "short_distance_usd": 0.1019000000000001,
+      "short_distance_pct": 8.16,
+      "long_max_pain_price": 1.2263,
       "long_max_pain_vol": 1200000.0,
-      "long_distance_usd": -0.022599999999999953,
-      "long_distance_pct": -1.81,
-      "timestamp_ist": "2026-10-30 21:31:07 IST"
+      "long_distance_usd": -0.022499999999999964,
+      "long_distance_pct": -1.8,
+      "timestamp_ist": "2026-10-30 21:42:46 IST"
     },
     "mp_48h": {
       "ranking": 5,
       "symbol": "XRP",
-      "price": 1.2483,
-      "short_max_pain_price": 1.3235,
-      "short_max_pain_vol": 2300000.0,
-      "short_distance_usd": 0.07519999999999993,
-      "short_distance_pct": 6.03,
+      "price": 1.2488,
+      "short_max_pain_price": 1.3507,
+      "short_max_pain_vol": 2800000.0,
+      "short_distance_usd": 0.1019000000000001,
+      "short_distance_pct": 8.16,
       "long_max_pain_price": 1.2263,
       "long_max_pain_vol": 1200000.0,
-      "long_distance_usd": -0.02200000000000002,
-      "long_distance_pct": -1.76,
-      "timestamp_ist": "2026-10-30 21:31:09 IST"
+      "long_distance_usd": -0.022499999999999964,
+      "long_distance_pct": -1.8,
+      "timestamp_ist": "2026-10-30 21:42:47 IST"
     },
     "mp_3d": {
       "ranking": 5,
       "symbol": "XRP",
-      "price": 1.2483,
+      "price": 1.2488,
       "short_max_pain_price": 1.3507,
       "short_max_pain_vol": 2800000.0,
-      "short_distance_usd": 0.10240000000000005,
-      "short_distance_pct": 8.2,
+      "short_distance_usd": 0.1019000000000001,
+      "short_distance_pct": 8.16,
       "long_max_pain_price": 1.2263,
       "long_max_pain_vol": 1200000.0,
-      "long_distance_usd": -0.02200000000000002,
-      "long_distance_pct": -1.76,
-      "timestamp_ist": "2026-10-30 21:31:11 IST"
+      "long_distance_usd": -0.022499999999999964,
+      "long_distance_pct": -1.8,
+      "timestamp_ist": "2026-10-30 21:42:50 IST"
     },
     "mp_7d": {
       "ranking": 5,
       "symbol": "XRP",
-      "price": 1.2483,
+      "price": 1.2488,
       "short_max_pain_price": 1.3507,
       "short_max_pain_vol": 2800000.0,
-      "short_distance_usd": 0.10240000000000005,
-      "short_distance_pct": 8.2,
+      "short_distance_usd": 0.1019000000000001,
+      "short_distance_pct": 8.16,
       "long_max_pain_price": 1.2263,
       "long_max_pain_vol": 1200000.0,
-      "long_distance_usd": -0.02200000000000002,
-      "long_distance_pct": -1.76,
-      "timestamp_ist": "2026-10-30 21:31:13 IST"
+      "long_distance_usd": -0.022499999999999964,
+      "long_distance_pct": -1.8,
+      "timestamp_ist": "2026-10-30 21:42:52 IST"
     },
     "ex_liq_ladder": [
       {
         "horizon": "7D",
         "price": 1.103,
-        "cum": 98150000.0,
+        "cum": 97800000.0,
         "short": 0.0,
-        "long": 98150000.0,
+        "long": 97800000.0,
         "binance": 0.0,
         "okx": 1830.0,
         "bybit": 0.0
@@ -15092,9 +15078,9 @@
       {
         "horizon": "1D",
         "price": 1.104,
-        "cum": 99470000.0,
+        "cum": 98560000.0,
         "short": 0.0,
-        "long": 99470000.0,
+        "long": 98560000.0,
         "binance": 82940.0,
         "okx": 28210.0,
         "bybit": 133730.0
@@ -15102,9 +15088,9 @@
       {
         "horizon": "1D",
         "price": 1.106,
-        "cum": 99230000.0,
+        "cum": 98310000.0,
         "short": 0.0,
-        "long": 99230000.0,
+        "long": 98310000.0,
         "binance": 0.0,
         "okx": 1360.0,
         "bybit": 0.0
@@ -15112,9 +15098,9 @@
       {
         "horizon": "7D",
         "price": 1.107,
-        "cum": 98150000.0,
+        "cum": 97800000.0,
         "short": 0.0,
-        "long": 98150000.0,
+        "long": 97800000.0,
         "binance": 0.0,
         "okx": 5520.0,
         "bybit": 0.0
@@ -15122,9 +15108,9 @@
       {
         "horizon": "1D",
         "price": 1.108,
-        "cum": 99220000.0,
+        "cum": 98310000.0,
         "short": 0.0,
-        "long": 99220000.0,
+        "long": 98310000.0,
         "binance": 2930.0,
         "okx": 2200.0,
         "bybit": 27210.0
@@ -15132,9 +15118,9 @@
       {
         "horizon": "7D",
         "price": 1.109,
-        "cum": 98140000.0,
+        "cum": 97800000.0,
         "short": 0.0,
-        "long": 98140000.0,
+        "long": 97800000.0,
         "binance": 0.0,
         "okx": 2440.0,
         "bybit": 4500.0
@@ -15142,9 +15128,9 @@
       {
         "horizon": "1D",
         "price": 1.11,
-        "cum": 99190000.0,
+        "cum": 98280000.0,
         "short": 0.0,
-        "long": 99190000.0,
+        "long": 98280000.0,
         "binance": 3090.0,
         "okx": 50660.0,
         "bybit": 1930.0
@@ -15152,9 +15138,9 @@
       {
         "horizon": "7D",
         "price": 1.111,
-        "cum": 98140000.0,
+        "cum": 97790000.0,
         "short": 0.0,
-        "long": 98140000.0,
+        "long": 97790000.0,
         "binance": 21430.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -15162,9 +15148,9 @@
       {
         "horizon": "1D",
         "price": 1.112,
-        "cum": 99140000.0,
+        "cum": 98230000.0,
         "short": 0.0,
-        "long": 99140000.0,
+        "long": 98230000.0,
         "binance": 96570.0,
         "okx": 4200.0,
         "bybit": 201670.0
@@ -15172,9 +15158,9 @@
       {
         "horizon": "7D",
         "price": 1.113,
-        "cum": 98120000.0,
+        "cum": 97770000.0,
         "short": 0.0,
-        "long": 98120000.0,
+        "long": 97770000.0,
         "binance": 82840.0,
         "okx": 32070.0,
         "bybit": 2720.0
@@ -15182,9 +15168,9 @@
       {
         "horizon": "1D",
         "price": 1.114,
-        "cum": 98830000.0,
+        "cum": 97920000.0,
         "short": 0.0,
-        "long": 98830000.0,
+        "long": 97920000.0,
         "binance": 64590.0,
         "okx": 12560.0,
         "bybit": 7830.0
@@ -15192,9 +15178,9 @@
       {
         "horizon": "7D",
         "price": 1.115,
-        "cum": 98000000.0,
+        "cum": 97650000.0,
         "short": 0.0,
-        "long": 98000000.0,
+        "long": 97650000.0,
         "binance": 37430.0,
         "okx": 1730.0,
         "bybit": 11030.0
@@ -15202,9 +15188,9 @@
       {
         "horizon": "1D",
         "price": 1.116,
-        "cum": 98750000.0,
+        "cum": 97840000.0,
         "short": 0.0,
-        "long": 98750000.0,
+        "long": 97840000.0,
         "binance": 45870.0,
         "okx": 30100.0,
         "bybit": 5860.0
@@ -15212,9 +15198,9 @@
       {
         "horizon": "7D",
         "price": 1.117,
-        "cum": 97950000.0,
+        "cum": 97600000.0,
         "short": 0.0,
-        "long": 97950000.0,
+        "long": 97600000.0,
         "binance": 10850.0,
         "okx": 79230.0,
         "bybit": 3070.0
@@ -15222,9 +15208,9 @@
       {
         "horizon": "1D",
         "price": 1.118,
-        "cum": 98670000.0,
+        "cum": 97760000.0,
         "short": 0.0,
-        "long": 98670000.0,
+        "long": 97760000.0,
         "binance": 30340.0,
         "okx": 20790.0,
         "bybit": 200760.0
@@ -15232,9 +15218,9 @@
       {
         "horizon": "7D",
         "price": 1.119,
-        "cum": 97850000.0,
+        "cum": 97510000.0,
         "short": 0.0,
-        "long": 97850000.0,
+        "long": 97510000.0,
         "binance": 47940.0,
         "okx": 40470.0,
         "bybit": 0.0
@@ -15242,9 +15228,9 @@
       {
         "horizon": "1D",
         "price": 1.12,
-        "cum": 98410000.0,
+        "cum": 97500000.0,
         "short": 0.0,
-        "long": 98410000.0,
+        "long": 97500000.0,
         "binance": 38980.0,
         "okx": 123290.0,
         "bybit": 134400.0
@@ -15252,9 +15238,9 @@
       {
         "horizon": "7D",
         "price": 1.121,
-        "cum": 97770000.0,
+        "cum": 97420000.0,
         "short": 0.0,
-        "long": 97770000.0,
+        "long": 97420000.0,
         "binance": 17190.0,
         "okx": 79570.0,
         "bybit": 447420.0
@@ -15262,29 +15248,29 @@
       {
         "horizon": "1D",
         "price": 1.122,
-        "cum": 98120000.0,
+        "cum": 97210000.0,
         "short": 0.0,
-        "long": 98120000.0,
+        "long": 97210000.0,
         "binance": 23920.0,
-        "okx": 89540.0,
-        "bybit": 439220.0
+        "okx": 91200.0,
+        "bybit": 461400.0
       },
       {
         "horizon": "7D",
         "price": 1.123,
-        "cum": 97220000.0,
+        "cum": 96870000.0,
         "short": 0.0,
-        "long": 97220000.0,
+        "long": 96870000.0,
         "binance": 0.0,
-        "okx": 167100.0,
+        "okx": 168700.0,
         "bybit": 54860.0
       },
       {
         "horizon": "1D",
         "price": 1.124,
-        "cum": 97570000.0,
+        "cum": 96630000.0,
         "short": 0.0,
-        "long": 97570000.0,
+        "long": 96630000.0,
         "binance": 50680.0,
         "okx": 34280.0,
         "bybit": 91380.0
@@ -15292,9 +15278,9 @@
       {
         "horizon": "7D",
         "price": 1.125,
-        "cum": 97000000.0,
+        "cum": 96650000.0,
         "short": 0.0,
-        "long": 97000000.0,
+        "long": 96650000.0,
         "binance": 0.0,
         "okx": 96670.0,
         "bybit": 304320.0
@@ -15302,9 +15288,9 @@
       {
         "horizon": "1D",
         "price": 1.126,
-        "cum": 97390000.0,
+        "cum": 96450000.0,
         "short": 0.0,
-        "long": 97390000.0,
+        "long": 96450000.0,
         "binance": 147820.0,
         "okx": 126830.0,
         "bybit": 280980.0
@@ -15312,9 +15298,9 @@
       {
         "horizon": "7D",
         "price": 1.127,
-        "cum": 96600000.0,
+        "cum": 96250000.0,
         "short": 0.0,
-        "long": 96600000.0,
+        "long": 96250000.0,
         "binance": 0.0,
         "okx": 94000.0,
         "bybit": 57340.0
@@ -15322,9 +15308,9 @@
       {
         "horizon": "1D",
         "price": 1.128,
-        "cum": 96830000.0,
+        "cum": 95900000.0,
         "short": 0.0,
-        "long": 96830000.0,
+        "long": 95900000.0,
         "binance": 77710.0,
         "okx": 156470.0,
         "bybit": 210640.0
@@ -15332,9 +15318,9 @@
       {
         "horizon": "7D",
         "price": 1.129,
-        "cum": 96450000.0,
+        "cum": 96100000.0,
         "short": 0.0,
-        "long": 96450000.0,
+        "long": 96100000.0,
         "binance": 0.0,
         "okx": 145960.0,
         "bybit": 295180.0
@@ -15342,9 +15328,9 @@
       {
         "horizon": "1D",
         "price": 1.13,
-        "cum": 96390000.0,
+        "cum": 95450000.0,
         "short": 0.0,
-        "long": 96390000.0,
+        "long": 95450000.0,
         "binance": 29530.0,
         "okx": 171330.0,
         "bybit": 458360.0
@@ -15352,9 +15338,9 @@
       {
         "horizon": "7D",
         "price": 1.131,
-        "cum": 96010000.0,
+        "cum": 95660000.0,
         "short": 0.0,
-        "long": 96010000.0,
+        "long": 95660000.0,
         "binance": 5450.0,
         "okx": 55200.0,
         "bybit": 204500.0
@@ -15362,9 +15348,9 @@
       {
         "horizon": "1D",
         "price": 1.132,
-        "cum": 95730000.0,
+        "cum": 94790000.0,
         "short": 0.0,
-        "long": 95730000.0,
+        "long": 94790000.0,
         "binance": 5520.0,
         "okx": 145880.0,
         "bybit": 332970.0
@@ -15372,9 +15358,9 @@
       {
         "horizon": "7D",
         "price": 1.133,
-        "cum": 95740000.0,
+        "cum": 95390000.0,
         "short": 0.0,
-        "long": 95740000.0,
+        "long": 95390000.0,
         "binance": 144660.0,
         "okx": 281890.0,
         "bybit": 294130.0
@@ -15382,9 +15368,9 @@
       {
         "horizon": "1D",
         "price": 1.134,
-        "cum": 95250000.0,
+        "cum": 94310000.0,
         "short": 0.0,
-        "long": 95250000.0,
+        "long": 94310000.0,
         "binance": 93660.0,
         "okx": 107490.0,
         "bybit": 115470.0
@@ -15392,9 +15378,9 @@
       {
         "horizon": "7D",
         "price": 1.135,
-        "cum": 95020000.0,
+        "cum": 94670000.0,
         "short": 0.0,
-        "long": 95020000.0,
+        "long": 94670000.0,
         "binance": 0.0,
         "okx": 143650.0,
         "bybit": 456990.0
@@ -15402,9 +15388,9 @@
       {
         "horizon": "1D",
         "price": 1.136,
-        "cum": 94930000.0,
+        "cum": 93990000.0,
         "short": 0.0,
-        "long": 94930000.0,
+        "long": 93990000.0,
         "binance": 42870.0,
         "okx": 153630.0,
         "bybit": 163320.0
@@ -15412,9 +15398,9 @@
       {
         "horizon": "7D",
         "price": 1.137,
-        "cum": 94420000.0,
+        "cum": 94070000.0,
         "short": 0.0,
-        "long": 94420000.0,
+        "long": 94070000.0,
         "binance": 79780.0,
         "okx": 0.0,
         "bybit": 20240.0
@@ -15422,9 +15408,9 @@
       {
         "horizon": "1D",
         "price": 1.138,
-        "cum": 94570000.0,
+        "cum": 93630000.0,
         "short": 0.0,
-        "long": 94570000.0,
+        "long": 93630000.0,
         "binance": 38180.0,
         "okx": 18650.0,
         "bybit": 49660.0
@@ -15432,9 +15418,9 @@
       {
         "horizon": "7D",
         "price": 1.139,
-        "cum": 94320000.0,
+        "cum": 93970000.0,
         "short": 0.0,
-        "long": 94320000.0,
+        "long": 93970000.0,
         "binance": 9660.0,
         "okx": 54580.0,
         "bybit": 250970.0
@@ -15442,9 +15428,9 @@
       {
         "horizon": "1D",
         "price": 1.14,
-        "cum": 94460000.0,
+        "cum": 93530000.0,
         "short": 0.0,
-        "long": 94460000.0,
+        "long": 93530000.0,
         "binance": 34800.0,
         "okx": 43480.0,
         "bybit": 258540.00000000003
@@ -15452,9 +15438,9 @@
       {
         "horizon": "7D",
         "price": 1.141,
-        "cum": 94010000.0,
+        "cum": 93660000.0,
         "short": 0.0,
-        "long": 94010000.0,
+        "long": 93660000.0,
         "binance": 63050.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -15462,9 +15448,9 @@
       {
         "horizon": "1D",
         "price": 1.142,
-        "cum": 94130000.0,
+        "cum": 93190000.0,
         "short": 0.0,
-        "long": 94130000.0,
+        "long": 93190000.0,
         "binance": 67590.0,
         "okx": 749.15,
         "bybit": 2090.0
@@ -15472,9 +15458,9 @@
       {
         "horizon": "7D",
         "price": 1.143,
-        "cum": 93940000.0,
+        "cum": 93590000.0,
         "short": 0.0,
-        "long": 93940000.0,
+        "long": 93590000.0,
         "binance": 102560.0,
         "okx": 1340.0,
         "bybit": 16250.0
@@ -15482,9 +15468,9 @@
       {
         "horizon": "1D",
         "price": 1.144,
-        "cum": 94050000.0,
+        "cum": 93120000.0,
         "short": 0.0,
-        "long": 94050000.0,
+        "long": 93120000.0,
         "binance": 48530.0,
         "okx": 1070.0,
         "bybit": 83450.0
@@ -15492,9 +15478,9 @@
       {
         "horizon": "7D",
         "price": 1.145,
-        "cum": 93820000.0,
+        "cum": 93470000.0,
         "short": 0.0,
-        "long": 93820000.0,
+        "long": 93470000.0,
         "binance": 0.0,
         "okx": 996.88,
         "bybit": 5880.0
@@ -15502,9 +15488,9 @@
       {
         "horizon": "7D",
         "price": 1.147,
-        "cum": 93820000.0,
+        "cum": 93470000.0,
         "short": 0.0,
-        "long": 93820000.0,
+        "long": 93470000.0,
         "binance": 0.0,
         "okx": 75720.0,
         "bybit": 60830.0
@@ -15512,9 +15498,9 @@
       {
         "horizon": "1D",
         "price": 1.148,
-        "cum": 93920000.0,
+        "cum": 92990000.0,
         "short": 0.0,
-        "long": 93920000.0,
+        "long": 92990000.0,
         "binance": 16030.000000000002,
         "okx": 0.0,
         "bybit": 0.0
@@ -15522,9 +15508,9 @@
       {
         "horizon": "7D",
         "price": 1.149,
-        "cum": 93680000.0,
+        "cum": 93330000.0,
         "short": 0.0,
-        "long": 93680000.0,
+        "long": 93330000.0,
         "binance": 272740.0,
         "okx": 46940.0,
         "bybit": 40030.0
@@ -15532,9 +15518,9 @@
       {
         "horizon": "7D",
         "price": 1.151,
-        "cum": 93320000.0,
+        "cum": 92970000.0,
         "short": 0.0,
-        "long": 93320000.0,
+        "long": 92970000.0,
         "binance": 71870.0,
         "okx": 20210.0,
         "bybit": 74090.0
@@ -15542,9 +15528,9 @@
       {
         "horizon": "1D",
         "price": 1.152,
-        "cum": 93910000.0,
+        "cum": 92970000.0,
         "short": 0.0,
-        "long": 93910000.0,
+        "long": 92970000.0,
         "binance": 1390.0,
         "okx": 225.14,
         "bybit": 64030.0
@@ -15552,9 +15538,9 @@
       {
         "horizon": "7D",
         "price": 1.153,
-        "cum": 93150000.0,
+        "cum": 92800000.0,
         "short": 0.0,
-        "long": 93150000.0,
+        "long": 92800000.0,
         "binance": 86900.0,
         "okx": 37300.0,
         "bybit": 257010.0
@@ -15562,9 +15548,9 @@
       {
         "horizon": "1D",
         "price": 1.154,
-        "cum": 93840000.0,
+        "cum": 92910000.0,
         "short": 0.0,
-        "long": 93840000.0,
+        "long": 92910000.0,
         "binance": 73200.0,
         "okx": 45600.0,
         "bybit": 263680.0
@@ -15572,9 +15558,9 @@
       {
         "horizon": "7D",
         "price": 1.155,
-        "cum": 92770000.0,
+        "cum": 92420000.0,
         "short": 0.0,
-        "long": 92770000.0,
+        "long": 92420000.0,
         "binance": 198150.0,
         "okx": 157090.0,
         "bybit": 290590.0
@@ -15582,9 +15568,9 @@
       {
         "horizon": "1D",
         "price": 1.156,
-        "cum": 93460000.0,
+        "cum": 92520000.0,
         "short": 0.0,
-        "long": 93460000.0,
+        "long": 92520000.0,
         "binance": 20480.0,
         "okx": 24890.0,
         "bybit": 82910.0
@@ -15592,9 +15578,9 @@
       {
         "horizon": "7D",
         "price": 1.157,
-        "cum": 92130000.0,
+        "cum": 91780000.0,
         "short": 0.0,
-        "long": 92130000.0,
+        "long": 91780000.0,
         "binance": 178230.0,
         "okx": 99350.0,
         "bybit": 520789.99999999994
@@ -15602,9 +15588,9 @@
       {
         "horizon": "1D",
         "price": 1.158,
-        "cum": 93330000.0,
+        "cum": 92390000.0,
         "short": 0.0,
-        "long": 93330000.0,
+        "long": 92390000.0,
         "binance": 82260.0,
         "okx": 3670.0,
         "bybit": 369380.0
@@ -15612,9 +15598,9 @@
       {
         "horizon": "7D",
         "price": 1.159,
-        "cum": 91330000.0,
+        "cum": 90980000.0,
         "short": 0.0,
-        "long": 91330000.0,
+        "long": 90980000.0,
         "binance": 265410.0,
         "okx": 70050.0,
         "bybit": 301800.0
@@ -15622,9 +15608,9 @@
       {
         "horizon": "1D",
         "price": 1.16,
-        "cum": 92870000.0,
+        "cum": 91940000.0,
         "short": 0.0,
-        "long": 92870000.0,
+        "long": 91940000.0,
         "binance": 80890.0,
         "okx": 17190.0,
         "bybit": 98410.0
@@ -15632,9 +15618,9 @@
       {
         "horizon": "7D",
         "price": 1.161,
-        "cum": 90690000.0,
+        "cum": 90340000.0,
         "short": 0.0,
-        "long": 90690000.0,
+        "long": 90340000.0,
         "binance": 352520.0,
         "okx": 494920.0,
         "bybit": 654650.0
@@ -15642,9 +15628,9 @@
       {
         "horizon": "1D",
         "price": 1.162,
-        "cum": 92680000.0,
+        "cum": 91740000.0,
         "short": 0.0,
-        "long": 92680000.0,
+        "long": 91740000.0,
         "binance": 18850.0,
         "okx": 201470.0,
         "bybit": 0.0
@@ -15652,9 +15638,9 @@
       {
         "horizon": "7D",
         "price": 1.163,
-        "cum": 89190000.0,
+        "cum": 88840000.0,
         "short": 0.0,
-        "long": 89190000.0,
+        "long": 88840000.0,
         "binance": 485880.0,
         "okx": 177220.0,
         "bybit": 811990.0
@@ -15662,9 +15648,9 @@
       {
         "horizon": "1D",
         "price": 1.164,
-        "cum": 92460000.0,
+        "cum": 91520000.0,
         "short": 0.0,
-        "long": 92460000.0,
+        "long": 91520000.0,
         "binance": 24500.0,
         "okx": 37170.0,
         "bybit": 540200.0
@@ -15672,9 +15658,9 @@
       {
         "horizon": "7D",
         "price": 1.165,
-        "cum": 87710000.0,
+        "cum": 87360000.0,
         "short": 0.0,
-        "long": 87710000.0,
+        "long": 87360000.0,
         "binance": 209000.0,
         "okx": 168650.0,
         "bybit": 491860.0
@@ -15682,9 +15668,9 @@
       {
         "horizon": "1D",
         "price": 1.166,
-        "cum": 91860000.0,
+        "cum": 90920000.0,
         "short": 0.0,
-        "long": 91860000.0,
+        "long": 90920000.0,
         "binance": 42750.0,
         "okx": 3740.0,
         "bybit": 83760.0
@@ -15692,9 +15678,9 @@
       {
         "horizon": "7D",
         "price": 1.167,
-        "cum": 86840000.0,
+        "cum": 86490000.0,
         "short": 0.0,
-        "long": 86840000.0,
+        "long": 86490000.0,
         "binance": 454610.0,
         "okx": 248780.0,
         "bybit": 1060000.0
@@ -15702,9 +15688,9 @@
       {
         "horizon": "1D",
         "price": 1.168,
-        "cum": 91730000.0,
+        "cum": 90790000.0,
         "short": 0.0,
-        "long": 91730000.0,
+        "long": 90790000.0,
         "binance": 101480.0,
         "okx": 154720.0,
         "bybit": 170840.0
@@ -15712,9 +15698,9 @@
       {
         "horizon": "7D",
         "price": 1.169,
-        "cum": 85080000.0,
+        "cum": 84730000.0,
         "short": 0.0,
-        "long": 85080000.0,
+        "long": 84730000.0,
         "binance": 256550.0,
         "okx": 293730.0,
         "bybit": 958180.0
@@ -15722,9 +15708,9 @@
       {
         "horizon": "1D",
         "price": 1.17,
-        "cum": 91300000.0,
+        "cum": 90360000.0,
         "short": 0.0,
-        "long": 91300000.0,
+        "long": 90360000.0,
         "binance": 152210.0,
         "okx": 22380.0,
         "bybit": 357100.0
@@ -15732,9 +15718,9 @@
       {
         "horizon": "7D",
         "price": 1.171,
-        "cum": 83570000.0,
+        "cum": 83220000.0,
         "short": 0.0,
-        "long": 83570000.0,
+        "long": 83220000.0,
         "binance": 474980.0,
         "okx": 180320.0,
         "bybit": 700050.0
@@ -15742,9 +15728,9 @@
       {
         "horizon": "1D",
         "price": 1.172,
-        "cum": 90770000.0,
+        "cum": 89830000.0,
         "short": 0.0,
-        "long": 90770000.0,
+        "long": 89830000.0,
         "binance": 348810.0,
         "okx": 5340.0,
         "bybit": 189580.0
@@ -15752,9 +15738,9 @@
       {
         "horizon": "7D",
         "price": 1.173,
-        "cum": 82220000.0,
+        "cum": 81870000.0,
         "short": 0.0,
-        "long": 82220000.0,
+        "long": 81870000.0,
         "binance": 290530.0,
         "okx": 138330.0,
         "bybit": 1110000.0
@@ -15762,9 +15748,9 @@
       {
         "horizon": "1D",
         "price": 1.174,
-        "cum": 90220000.0,
+        "cum": 89290000.0,
         "short": 0.0,
-        "long": 90220000.0,
+        "long": 89290000.0,
         "binance": 115910.0,
         "okx": 129600.0,
         "bybit": 377820.0
@@ -15772,29 +15758,29 @@
       {
         "horizon": "7D",
         "price": 1.175,
-        "cum": 80680000.0,
+        "cum": 80330000.0,
         "short": 0.0,
-        "long": 80680000.0,
-        "binance": 474690.0,
+        "long": 80330000.0,
+        "binance": 439700.0,
         "okx": 78520.0,
         "bybit": 293560.0
       },
       {
         "horizon": "1D",
         "price": 1.176,
-        "cum": 89600000.0,
+        "cum": 88660000.0,
         "short": 0.0,
-        "long": 89600000.0,
+        "long": 88660000.0,
         "binance": 260360.0,
-        "okx": 68870.0,
-        "bybit": 244810.0
+        "okx": 68630.0,
+        "bybit": 221000.0
       },
       {
         "horizon": "7D",
         "price": 1.177,
-        "cum": 79830000.0,
+        "cum": 79520000.0,
         "short": 0.0,
-        "long": 79830000.0,
+        "long": 79520000.0,
         "binance": 111480.0,
         "okx": 6340.0,
         "bybit": 345520.0
@@ -15802,19 +15788,19 @@
       {
         "horizon": "1D",
         "price": 1.178,
-        "cum": 89030000.0,
+        "cum": 88110000.0,
         "short": 0.0,
-        "long": 89030000.0,
-        "binance": 29010.0,
-        "okx": 72680.0,
-        "bybit": 169440.0
+        "long": 88110000.0,
+        "binance": 8800.0,
+        "okx": 29450.0,
+        "bybit": 167660.0
       },
       {
         "horizon": "7D",
         "price": 1.179,
-        "cum": 79370000.0,
+        "cum": 79060000.0,
         "short": 0.0,
-        "long": 79370000.0,
+        "long": 79060000.0,
         "binance": 262150.0,
         "okx": 62470.0,
         "bybit": 97940.0
@@ -15822,19 +15808,19 @@
       {
         "horizon": "1D",
         "price": 1.18,
-        "cum": 88750000.0,
+        "cum": 87910000.0,
         "short": 0.0,
-        "long": 88750000.0,
+        "long": 87910000.0,
         "binance": 76500.0,
         "okx": 11110.0,
-        "bybit": 24100.0
+        "bybit": 0.0
       },
       {
         "horizon": "7D",
         "price": 1.181,
-        "cum": 78950000.0,
+        "cum": 78630000.0,
         "short": 0.0,
-        "long": 78950000.0,
+        "long": 78630000.0,
         "binance": 66970.0,
         "okx": 86190.0,
         "bybit": 191570.0
@@ -15842,19 +15828,19 @@
       {
         "horizon": "1D",
         "price": 1.182,
-        "cum": 88640000.0,
+        "cum": 87820000.0,
         "short": 0.0,
-        "long": 88640000.0,
-        "binance": 222930.0,
+        "long": 87820000.0,
+        "binance": 201920.0,
         "okx": 13170.0,
-        "bybit": 772060.0
+        "bybit": 747340.0
       },
       {
         "horizon": "7D",
         "price": 1.183,
-        "cum": 78600000.0,
+        "cum": 78290000.0,
         "short": 0.0,
-        "long": 78600000.0,
+        "long": 78290000.0,
         "binance": 254520.0,
         "okx": 93210.0,
         "bybit": 24370.0
@@ -15862,19 +15848,19 @@
       {
         "horizon": "1D",
         "price": 1.184,
-        "cum": 87630000.0,
+        "cum": 86860000.0,
         "short": 0.0,
-        "long": 87630000.0,
-        "binance": 196910.0,
-        "okx": 163960.0,
+        "long": 86860000.0,
+        "binance": 164120.0,
+        "okx": 147310.0,
         "bybit": 150660.0
       },
       {
         "horizon": "7D",
         "price": 1.185,
-        "cum": 78230000.0,
+        "cum": 77920000.0,
         "short": 0.0,
-        "long": 78230000.0,
+        "long": 77920000.0,
         "binance": 121290.0,
         "okx": 580720.0,
         "bybit": 764370.0
@@ -15882,9 +15868,9 @@
       {
         "horizon": "1D",
         "price": 1.186,
-        "cum": 87120000.0,
+        "cum": 86400000.0,
         "short": 0.0,
-        "long": 87120000.0,
+        "long": 86400000.0,
         "binance": 86540.0,
         "okx": 513860.0,
         "bybit": 153890.0
@@ -15892,9 +15878,9 @@
       {
         "horizon": "7D",
         "price": 1.187,
-        "cum": 76770000.0,
+        "cum": 76450000.0,
         "short": 0.0,
-        "long": 76770000.0,
+        "long": 76450000.0,
         "binance": 199430.0,
         "okx": 128270.00000000001,
         "bybit": 567180.0
@@ -15902,9 +15888,9 @@
       {
         "horizon": "1D",
         "price": 1.188,
-        "cum": 86370000.0,
+        "cum": 85640000.0,
         "short": 0.0,
-        "long": 86370000.0,
+        "long": 85640000.0,
         "binance": 606700.0,
         "okx": 109150.0,
         "bybit": 1760000.0
@@ -15912,9 +15898,9 @@
       {
         "horizon": "7D",
         "price": 1.189,
-        "cum": 75870000.0,
+        "cum": 75560000.0,
         "short": 0.0,
-        "long": 75870000.0,
+        "long": 75560000.0,
         "binance": 406630.0,
         "okx": 180820.0,
         "bybit": 710940.0
@@ -15922,9 +15908,9 @@
       {
         "horizon": "1D",
         "price": 1.19,
-        "cum": 83890000.0,
+        "cum": 83170000.0,
         "short": 0.0,
-        "long": 83890000.0,
+        "long": 83170000.0,
         "binance": 251420.0,
         "okx": 145580.0,
         "bybit": 358010.0
@@ -15932,9 +15918,9 @@
       {
         "horizon": "7D",
         "price": 1.191,
-        "cum": 74570000.0,
+        "cum": 74260000.0,
         "short": 0.0,
-        "long": 74570000.0,
+        "long": 74260000.0,
         "binance": 120300.0,
         "okx": 480630.0,
         "bybit": 847650.0
@@ -15942,9 +15928,9 @@
       {
         "horizon": "1D",
         "price": 1.192,
-        "cum": 83140000.0,
+        "cum": 82410000.0,
         "short": 0.0,
-        "long": 83140000.0,
+        "long": 82410000.0,
         "binance": 216500.0,
         "okx": 271280.0,
         "bybit": 697390.0
@@ -15952,9 +15938,9 @@
       {
         "horizon": "7D",
         "price": 1.193,
-        "cum": 73120000.0,
+        "cum": 72810000.0,
         "short": 0.0,
-        "long": 73120000.0,
+        "long": 72810000.0,
         "binance": 266870.0,
         "okx": 193770.0,
         "bybit": 467490.0
@@ -15962,9 +15948,9 @@
       {
         "horizon": "1D",
         "price": 1.194,
-        "cum": 81950000.0,
+        "cum": 81230000.0,
         "short": 0.0,
-        "long": 81950000.0,
+        "long": 81230000.0,
         "binance": 288480.0,
         "okx": 677450.0,
         "bybit": 2110000.0
@@ -15972,9 +15958,9 @@
       {
         "horizon": "7D",
         "price": 1.195,
-        "cum": 72200000.0,
+        "cum": 71880000.0,
         "short": 0.0,
-        "long": 72200000.0,
+        "long": 71880000.0,
         "binance": 405220.0,
         "okx": 312730.0,
         "bybit": 846040.0
@@ -15982,59 +15968,59 @@
       {
         "horizon": "1D",
         "price": 1.196,
-        "cum": 78870000.0,
+        "cum": 78150000.0,
         "short": 0.0,
-        "long": 78870000.0,
+        "long": 78150000.0,
         "binance": 868360.0,
-        "okx": 460760.0,
+        "okx": 464910.0,
         "bybit": 2069999.9999999998
       },
       {
         "horizon": "7D",
         "price": 1.197,
-        "cum": 70630000.0,
+        "cum": 70320000.0,
         "short": 0.0,
-        "long": 70630000.0,
+        "long": 70320000.0,
         "binance": 5350.0,
-        "okx": 1470000.0,
+        "okx": 1480000.0,
         "bybit": 2860000.0
       },
       {
         "horizon": "1D",
         "price": 1.198,
-        "cum": 75470000.0,
+        "cum": 74740000.0,
         "short": 0.0,
-        "long": 75470000.0,
+        "long": 74740000.0,
         "binance": 530110.0,
         "okx": 1140000.0,
-        "bybit": 902370.0
+        "bybit": 957840.0
       },
       {
         "horizon": "7D",
         "price": 1.199,
-        "cum": 66300000.0,
+        "cum": 65980000.00000001,
         "short": 0.0,
-        "long": 66300000.0,
+        "long": 65980000.00000001,
         "binance": 691880.0,
         "okx": 672310.0,
-        "bybit": 949600.0
+        "bybit": 1030000.0
       },
       {
         "horizon": "1D",
         "price": 1.2,
-        "cum": 72900000.0,
+        "cum": 72110000.0,
         "short": 0.0,
-        "long": 72900000.0,
-        "binance": 1010000.0,
-        "okx": 600550.0,
+        "long": 72110000.0,
+        "binance": 1040000.0,
+        "okx": 601450.0,
         "bybit": 2770000.0
       },
       {
         "horizon": "7D",
         "price": 1.201,
-        "cum": 63980000.0,
+        "cum": 63580000.0,
         "short": 0.0,
-        "long": 63980000.0,
+        "long": 63580000.0,
         "binance": 440510.0,
         "okx": 362590.0,
         "bybit": 951510.0
@@ -16042,19 +16028,19 @@
       {
         "horizon": "1D",
         "price": 1.202,
-        "cum": 68530000.0,
+        "cum": 67700000.0,
         "short": 0.0,
-        "long": 68530000.0,
+        "long": 67700000.0,
         "binance": 221270.0,
         "okx": 588870.0,
-        "bybit": 1200000.0
+        "bybit": 1230000.0
       },
       {
         "horizon": "7D",
         "price": 1.203,
-        "cum": 62230000.0,
+        "cum": 61820000.0,
         "short": 0.0,
-        "long": 62230000.0,
+        "long": 61820000.0,
         "binance": 226160.0,
         "okx": 1010000.0,
         "bybit": 400520.0
@@ -16062,9 +16048,9 @@
       {
         "horizon": "1D",
         "price": 1.204,
-        "cum": 66519999.99999999,
+        "cum": 65660000.0,
         "short": 0.0,
-        "long": 66519999.99999999,
+        "long": 65660000.0,
         "binance": 648900.0,
         "okx": 777370.0,
         "bybit": 707370.0
@@ -16072,9 +16058,9 @@
       {
         "horizon": "7D",
         "price": 1.205,
-        "cum": 60590000.0,
+        "cum": 60190000.0,
         "short": 0.0,
-        "long": 60590000.0,
+        "long": 60190000.0,
         "binance": 0.0,
         "okx": 327250.0,
         "bybit": 408730.0
@@ -16082,9 +16068,9 @@
       {
         "horizon": "1D",
         "price": 1.206,
-        "cum": 64379999.99999999,
+        "cum": 63530000.0,
         "short": 0.0,
-        "long": 64379999.99999999,
+        "long": 63530000.0,
         "binance": 466520.0,
         "okx": 730720.0,
         "bybit": 1320000.0
@@ -16092,9 +16078,9 @@
       {
         "horizon": "7D",
         "price": 1.207,
-        "cum": 59860000.0,
+        "cum": 59450000.0,
         "short": 0.0,
-        "long": 59860000.0,
+        "long": 59450000.0,
         "binance": 75100.0,
         "okx": 236470.0,
         "bybit": 423790.0
@@ -16102,9 +16088,9 @@
       {
         "horizon": "1D",
         "price": 1.208,
-        "cum": 61870000.0,
+        "cum": 61010000.0,
         "short": 0.0,
-        "long": 61870000.0,
+        "long": 61010000.0,
         "binance": 1780000.0,
         "okx": 754200.0,
         "bybit": 2170000.0
@@ -16112,9 +16098,9 @@
       {
         "horizon": "7D",
         "price": 1.209,
-        "cum": 59120000.0,
+        "cum": 58720000.0,
         "short": 0.0,
-        "long": 59120000.0,
+        "long": 58720000.0,
         "binance": 676660.0,
         "okx": 393890.0,
         "bybit": 2000000.0
@@ -16122,9 +16108,9 @@
       {
         "horizon": "1D",
         "price": 1.21,
-        "cum": 57170000.0,
+        "cum": 56310000.0,
         "short": 0.0,
-        "long": 57170000.0,
+        "long": 56310000.0,
         "binance": 692050.0,
         "okx": 537250.0,
         "bybit": 1490000.0
@@ -16132,9 +16118,9 @@
       {
         "horizon": "7D",
         "price": 1.211,
-        "cum": 56050000.0,
+        "cum": 55650000.0,
         "short": 0.0,
-        "long": 56050000.0,
+        "long": 55650000.0,
         "binance": 1100000.0,
         "okx": 683880.0,
         "bybit": 2530000.0
@@ -16142,9 +16128,9 @@
       {
         "horizon": "1D",
         "price": 1.212,
-        "cum": 54450000.0,
+        "cum": 53590000.0,
         "short": 0.0,
-        "long": 54450000.0,
+        "long": 53590000.0,
         "binance": 1800000.0,
         "okx": 659890.0,
         "bybit": 1940000.0
@@ -16152,9 +16138,9 @@
       {
         "horizon": "7D",
         "price": 1.213,
-        "cum": 51740000.0,
+        "cum": 51340000.0,
         "short": 0.0,
-        "long": 51740000.0,
+        "long": 51340000.0,
         "binance": 882010.0,
         "okx": 84750.0,
         "bybit": 0.0
@@ -16162,9 +16148,9 @@
       {
         "horizon": "1D",
         "price": 1.214,
-        "cum": 50050000.0,
+        "cum": 49200000.0,
         "short": 0.0,
-        "long": 50050000.0,
+        "long": 49200000.0,
         "binance": 496460.0,
         "okx": 409140.0,
         "bybit": 1120000.0
@@ -16172,9 +16158,9 @@
       {
         "horizon": "7D",
         "price": 1.215,
-        "cum": 50770000.0,
+        "cum": 50370000.0,
         "short": 0.0,
-        "long": 50770000.0,
+        "long": 50370000.0,
         "binance": 104230.0,
         "okx": 136460.0,
         "bybit": 1550000.0
@@ -16182,9 +16168,9 @@
       {
         "horizon": "1D",
         "price": 1.216,
-        "cum": 48030000.0,
+        "cum": 47170000.0,
         "short": 0.0,
-        "long": 48030000.0,
+        "long": 47170000.0,
         "binance": 328530.0,
         "okx": 199040.0,
         "bybit": 1350000.0
@@ -16192,9 +16178,9 @@
       {
         "horizon": "7D",
         "price": 1.217,
-        "cum": 48980000.0,
+        "cum": 48580000.0,
         "short": 0.0,
-        "long": 48980000.0,
+        "long": 48580000.0,
         "binance": 157620.0,
         "okx": 211490.0,
         "bybit": 0.0
@@ -16202,9 +16188,9 @@
       {
         "horizon": "1D",
         "price": 1.218,
-        "cum": 46160000.0,
+        "cum": 45300000.0,
         "short": 0.0,
-        "long": 46160000.0,
+        "long": 45300000.0,
         "binance": 339560.0,
         "okx": 283380.0,
         "bybit": 1190000.0
@@ -16212,9 +16198,9 @@
       {
         "horizon": "7D",
         "price": 1.219,
-        "cum": 48610000.0,
+        "cum": 48210000.0,
         "short": 0.0,
-        "long": 48610000.0,
+        "long": 48210000.0,
         "binance": 662540.0,
         "okx": 13830.0,
         "bybit": 465340.0
@@ -16222,19 +16208,19 @@
       {
         "horizon": "1D",
         "price": 1.22,
-        "cum": 44340000.0,
+        "cum": 43490000.0,
         "short": 0.0,
-        "long": 44340000.0,
+        "long": 43490000.0,
         "binance": 359040.0,
-        "okx": 668050.0,
+        "okx": 671110.0,
         "bybit": 779410.0
       },
       {
         "horizon": "7D",
         "price": 1.221,
-        "cum": 47470000.0,
+        "cum": 47070000.0,
         "short": 0.0,
-        "long": 47470000.0,
+        "long": 47070000.0,
         "binance": 85970.0,
         "okx": 1730000.0,
         "bybit": 2580000.0
@@ -16242,39 +16228,39 @@
       {
         "horizon": "1D",
         "price": 1.222,
-        "cum": 42540000.0,
+        "cum": 41680000.0,
         "short": 0.0,
-        "long": 42540000.0,
+        "long": 41680000.0,
         "binance": 434430.0,
-        "okx": 1410000.0,
-        "bybit": 2470000.0
+        "okx": 1420000.0,
+        "bybit": 2580000.0
       },
       {
         "horizon": "7D",
         "price": 1.223,
-        "cum": 43080000.0,
+        "cum": 42680000.0,
         "short": 0.0,
-        "long": 43080000.0,
+        "long": 42680000.0,
         "binance": 199240.0,
-        "okx": 1500000.0,
-        "bybit": 745260.0
+        "okx": 1510000.0,
+        "bybit": 913100.0
       },
       {
         "horizon": "1D",
         "price": 1.224,
-        "cum": 38220000.0,
+        "cum": 37250000.0,
         "short": 0.0,
-        "long": 38220000.0,
-        "binance": 1200000.0,
-        "okx": 459860.0,
+        "long": 37250000.0,
+        "binance": 1280000.0,
+        "okx": 461660.0,
         "bybit": 3960000.0
       },
       {
         "horizon": "7D",
         "price": 1.225,
-        "cum": 40640000.0,
+        "cum": 40060000.0,
         "short": 0.0,
-        "long": 40640000.0,
+        "long": 40060000.0,
         "binance": 691110.0,
         "okx": 1130000.0,
         "bybit": 478270.0
@@ -16282,19 +16268,19 @@
       {
         "horizon": "1D",
         "price": 1.226,
-        "cum": 32600000.0,
+        "cum": 31550000.0,
         "short": 0.0,
-        "long": 32600000.0,
+        "long": 31550000.0,
         "binance": 1110000.0,
         "okx": 1230000.0,
-        "bybit": 1380000.0
+        "bybit": 1450000.0
       },
       {
         "horizon": "7D",
         "price": 1.227,
-        "cum": 38340000.0,
+        "cum": 37760000.0,
         "short": 0.0,
-        "long": 38340000.0,
+        "long": 37760000.0,
         "binance": 817470.0,
         "okx": 1230000.0,
         "bybit": 802350.0
@@ -16302,9 +16288,9 @@
       {
         "horizon": "1D",
         "price": 1.228,
-        "cum": 28880000.0,
+        "cum": 27760000.0,
         "short": 0.0,
-        "long": 28880000.0,
+        "long": 27760000.0,
         "binance": 1030000.0,
         "okx": 1900000.0,
         "bybit": 980800.0
@@ -16312,9 +16298,9 @@
       {
         "horizon": "7D",
         "price": 1.229,
-        "cum": 35480000.0,
+        "cum": 34910000.0,
         "short": 0.0,
-        "long": 35480000.0,
+        "long": 34910000.0,
         "binance": 0.0,
         "okx": 1800000.0,
         "bybit": 1620000.0
@@ -16322,9 +16308,9 @@
       {
         "horizon": "1D",
         "price": 1.23,
-        "cum": 24970000.0,
+        "cum": 23850000.0,
         "short": 0.0,
-        "long": 24970000.0,
+        "long": 23850000.0,
         "binance": 671280.0,
         "okx": 1580000.0,
         "bybit": 754080.0
@@ -16332,9 +16318,9 @@
       {
         "horizon": "7D",
         "price": 1.231,
-        "cum": 32060000.000000004,
+        "cum": 31480000.0,
         "short": 0.0,
-        "long": 32060000.000000004,
+        "long": 31480000.0,
         "binance": 1450000.0,
         "okx": 1090000.0,
         "bybit": 1300000.0
@@ -16342,9 +16328,9 @@
       {
         "horizon": "1D",
         "price": 1.232,
-        "cum": 21960000.0,
+        "cum": 20840000.0,
         "short": 0.0,
-        "long": 21960000.0,
+        "long": 20840000.0,
         "binance": 1750000.0,
         "okx": 2080000.0,
         "bybit": 3700000.0
@@ -16352,9 +16338,9 @@
       {
         "horizon": "7D",
         "price": 1.233,
-        "cum": 28230000.0,
+        "cum": 27650000.0,
         "short": 0.0,
-        "long": 28230000.0,
+        "long": 27650000.0,
         "binance": 1490000.0,
         "okx": 1300000.0,
         "bybit": 5670000.0
@@ -16362,9 +16348,9 @@
       {
         "horizon": "1D",
         "price": 1.234,
-        "cum": 14430000.0,
+        "cum": 13310000.0,
         "short": 0.0,
-        "long": 14430000.0,
+        "long": 13310000.0,
         "binance": 979610.0,
         "okx": 1160000.0,
         "bybit": 227820.0
@@ -16372,9 +16358,9 @@
       {
         "horizon": "7D",
         "price": 1.235,
-        "cum": 19760000.0,
+        "cum": 19180000.0,
         "short": 0.0,
-        "long": 19760000.0,
+        "long": 19180000.0,
         "binance": 0.0,
         "okx": 1140000.0,
         "bybit": 6390000.0
@@ -16382,39 +16368,39 @@
       {
         "horizon": "1D",
         "price": 1.236,
-        "cum": 12070000.0,
+        "cum": 10950000.0,
         "short": 0.0,
-        "long": 12070000.0,
+        "long": 10950000.0,
         "binance": 21330.0,
         "okx": 2410000.0,
-        "bybit": 441500.0
+        "bybit": 663360.0
       },
       {
         "horizon": "7D",
         "price": 1.237,
-        "cum": 12240000.0,
+        "cum": 11660000.0,
         "short": 0.0,
-        "long": 12240000.0,
+        "long": 11660000.0,
         "binance": 0.0,
         "okx": 933650.0,
-        "bybit": 5100000.0
+        "bybit": 5430000.0
       },
       {
         "horizon": "1D",
         "price": 1.238,
-        "cum": 9190000.0,
+        "cum": 7850000.0,
         "short": 0.0,
-        "long": 9190000.0,
-        "binance": 0.0,
+        "long": 7850000.0,
+        "binance": 146100.0,
         "okx": 828850.0,
-        "bybit": 2830000.0
+        "bybit": 2970000.0
       },
       {
         "horizon": "7D",
         "price": 1.239,
-        "cum": 6210000.0,
+        "cum": 5300000.0,
         "short": 0.0,
-        "long": 6210000.0,
+        "long": 5300000.0,
         "binance": 0.0,
         "okx": 464030.0,
         "bybit": 3900000.0
@@ -16422,9 +16408,9 @@
       {
         "horizon": "1D",
         "price": 1.24,
-        "cum": 5540000.0,
+        "cum": 3910000.0,
         "short": 0.0,
-        "long": 5540000.0,
+        "long": 3910000.0,
         "binance": 0.0,
         "okx": 1260000.0,
         "bybit": 1760000.0
@@ -16432,9 +16418,9 @@
       {
         "horizon": "7D",
         "price": 1.241,
-        "cum": 1840000.0,
+        "cum": 927160.0,
         "short": 0.0,
-        "long": 1840000.0,
+        "long": 927160.0,
         "binance": 0.0,
         "okx": 927160.0,
         "bybit": 0.0
@@ -16442,9 +16428,9 @@
       {
         "horizon": "1D",
         "price": 1.242,
-        "cum": 2520000.0,
+        "cum": 891790.0,
         "short": 0.0,
-        "long": 2520000.0,
+        "long": 891790.0,
         "binance": 0.0,
         "okx": 0.0,
         "bybit": 763550.0
@@ -16452,9 +16438,9 @@
       {
         "horizon": "1D",
         "price": 1.246,
-        "cum": 1750000.0,
+        "cum": 128250.0,
         "short": 0.0,
-        "long": 1750000.0,
+        "long": 128250.0,
         "binance": 128250.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -16462,19 +16448,39 @@
       {
         "horizon": "1D",
         "price": 1.248,
-        "cum": 1630000.0,
-        "short": 0.0,
-        "long": 1630000.0,
+        "cum": 540640.0,
+        "short": 540640.0,
+        "long": 0.0,
+        "binance": 540640.0,
+        "okx": 0.0,
+        "bybit": 0.0
+      },
+      {
+        "horizon": "1D",
+        "price": 1.248,
+        "cum": 1080000.0,
+        "short": 1080000.0,
+        "long": 0.0,
         "binance": 540640.0,
         "okx": 0.0,
         "bybit": 0.0
       },
       {
         "horizon": "7D",
-        "price": 1.249,
-        "cum": 914380.0,
+        "price": 1.248,
+        "cum": 0.0,
         "short": 0.0,
-        "long": 914380.0,
+        "long": 0.0,
+        "binance": 0.0,
+        "okx": 0.0,
+        "bybit": 0.0
+      },
+      {
+        "horizon": "7D",
+        "price": 1.249,
+        "cum": 540090.0,
+        "short": 540090.0,
+        "long": 0.0,
         "binance": 540090.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -16482,9 +16488,9 @@
       {
         "horizon": "1D",
         "price": 1.25,
-        "cum": 1080000.0,
-        "short": 0.0,
-        "long": 1080000.0,
+        "cum": 1470000.0,
+        "short": 1470000.0,
+        "long": 0.0,
         "binance": 393710.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -16492,9 +16498,9 @@
       {
         "horizon": "7D",
         "price": 1.251,
-        "cum": 374290.0,
-        "short": 0.0,
-        "long": 374290.0,
+        "cum": 914380.0,
+        "short": 914380.0,
+        "long": 0.0,
         "binance": 374290.0,
         "okx": 0.0,
         "bybit": 0.0
@@ -16502,48 +16508,28 @@
       {
         "horizon": "1D",
         "price": 1.252,
-        "cum": 691120.0,
-        "short": 0.0,
-        "long": 691120.0,
-        "binance": 497750.0,
-        "okx": 0.0,
-        "bybit": 0.0
-      },
-      {
-        "horizon": "7D",
-        "price": 1.252,
-        "cum": 0.0,
-        "short": 0.0,
+        "cum": 1970000.0,
+        "short": 1970000.0,
         "long": 0.0,
-        "binance": 0.0,
+        "binance": 497750.0,
         "okx": 0.0,
         "bybit": 0.0
       },
       {
         "horizon": "1D",
         "price": 1.254,
-        "cum": 193370.0,
-        "short": 0.0,
-        "long": 193370.0,
-        "binance": 193370.0,
-        "okx": 0.0,
-        "bybit": 0.0
-      },
-      {
-        "horizon": "1D",
-        "price": 1.255,
-        "cum": 0.0,
-        "short": 0.0,
+        "cum": 2170000.0,
+        "short": 2170000.0,
         "long": 0.0,
-        "binance": 0.0,
+        "binance": 193370.0,
         "okx": 0.0,
         "bybit": 0.0
       },
       {
         "horizon": "7D",
         "price": 1.255,
-        "cum": 629390.0,
-        "short": 629390.0,
+        "cum": 1540000.0,
+        "short": 1540000.0,
         "long": 0.0,
         "binance": 629390.0,
         "okx": 0.0,
@@ -16552,8 +16538,8 @@
       {
         "horizon": "1D",
         "price": 1.256,
-        "cum": 882860.0,
-        "short": 882860.0,
+        "cum": 3050000.0,
+        "short": 3050000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 660090.0,
@@ -16562,8 +16548,8 @@
       {
         "horizon": "7D",
         "price": 1.257,
-        "cum": 1580000.0,
-        "short": 1580000.0,
+        "cum": 2490000.0,
+        "short": 2490000.0,
         "long": 0.0,
         "binance": 191270.0,
         "okx": 755240.0,
@@ -16572,8 +16558,8 @@
       {
         "horizon": "1D",
         "price": 1.258,
-        "cum": 2100000.0,
-        "short": 2100000.0,
+        "cum": 4270000.0,
+        "short": 4270000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 1090000.0,
@@ -16582,8 +16568,8 @@
       {
         "horizon": "7D",
         "price": 1.259,
-        "cum": 3610000.0,
-        "short": 3610000.0,
+        "cum": 4530000.0,
+        "short": 4530000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 1150000.0,
@@ -16592,38 +16578,38 @@
       {
         "horizon": "1D",
         "price": 1.26,
-        "cum": 3410000.0,
-        "short": 3410000.0,
+        "cum": 5800000.0,
+        "short": 5800000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 868450.0,
-        "bybit": 441500.0
+        "bybit": 663360.0
       },
       {
         "horizon": "7D",
         "price": 1.261,
-        "cum": 5220000.0,
-        "short": 5220000.0,
+        "cum": 6470000.0,
+        "short": 6470000.0,
         "long": 0.0,
         "binance": 652430.0,
         "okx": 938080.0,
-        "bybit": 13580.0
+        "bybit": 349280.0
       },
       {
         "horizon": "1D",
         "price": 1.262,
-        "cum": 4880000.0,
-        "short": 4880000.0,
+        "cum": 7410000.0,
+        "short": 7410000.0,
         "long": 0.0,
-        "binance": 508320.0,
+        "binance": 654420.0,
         "okx": 103370.0,
         "bybit": 856110.0
       },
       {
         "horizon": "7D",
         "price": 1.263,
-        "cum": 7240000.0,
-        "short": 7240000.0,
+        "cum": 8490000.0,
+        "short": 8490000.0,
         "long": 0.0,
         "binance": 457190.0,
         "okx": 622440.0,
@@ -16632,18 +16618,18 @@
       {
         "horizon": "1D",
         "price": 1.264,
-        "cum": 9910000.0,
-        "short": 9910000.0,
+        "cum": 12580000.0,
+        "short": 12580000.0,
         "long": 0.0,
         "binance": 1310000.0,
         "okx": 1420000.0,
-        "bybit": 2300000.0
+        "bybit": 2440000.0
       },
       {
         "horizon": "7D",
         "price": 1.265,
-        "cum": 12080000.0,
-        "short": 12080000.0,
+        "cum": 13330000.0,
+        "short": 13330000.0,
         "long": 0.0,
         "binance": 2240000.0,
         "okx": 934210.0,
@@ -16652,8 +16638,8 @@
       {
         "horizon": "1D",
         "price": 1.266,
-        "cum": 14150000.0,
-        "short": 14150000.0,
+        "cum": 16830000.0,
+        "short": 16830000.0,
         "long": 0.0,
         "binance": 1310000.0,
         "okx": 1840000.0,
@@ -16662,8 +16648,8 @@
       {
         "horizon": "7D",
         "price": 1.267,
-        "cum": 18500000.0,
-        "short": 18500000.0,
+        "cum": 19750000.0,
+        "short": 19750000.0,
         "long": 0.0,
         "binance": 2620000.0,
         "okx": 2220000.0,
@@ -16672,8 +16658,8 @@
       {
         "horizon": "1D",
         "price": 1.268,
-        "cum": 20020000.0,
-        "short": 20020000.0,
+        "cum": 22690000.0,
+        "short": 22690000.0,
         "long": 0.0,
         "binance": 977470.0,
         "okx": 2180000.0,
@@ -16682,8 +16668,8 @@
       {
         "horizon": "7D",
         "price": 1.269,
-        "cum": 25520000.0,
-        "short": 25520000.0,
+        "cum": 26770000.0,
+        "short": 26770000.0,
         "long": 0.0,
         "binance": 406150.0,
         "okx": 3070000.0,
@@ -16692,18 +16678,18 @@
       {
         "horizon": "1D",
         "price": 1.27,
-        "cum": 30580000.0,
-        "short": 30580000.0,
+        "cum": 33259999.999999996,
+        "short": 33259999.999999996,
         "long": 0.0,
         "binance": 1380000.0,
-        "okx": 2770000.0,
+        "okx": 2780000.0,
         "bybit": 6420000.0
       },
       {
         "horizon": "7D",
         "price": 1.271,
-        "cum": 37680000.0,
-        "short": 37680000.0,
+        "cum": 38930000.0,
+        "short": 38930000.0,
         "long": 0.0,
         "binance": 1410000.0,
         "okx": 4280000.0,
@@ -16712,38 +16698,38 @@
       {
         "horizon": "1D",
         "price": 1.272,
-        "cum": 38320000.0,
-        "short": 38320000.0,
+        "cum": 41110000.0,
+        "short": 41110000.0,
         "long": 0.0,
         "binance": 2060000.0,
         "okx": 2210000.0,
-        "bybit": 3470000.0
+        "bybit": 3580000.0
       },
       {
         "horizon": "7D",
         "price": 1.273,
-        "cum": 47730000.0,
-        "short": 47730000.0,
+        "cum": 49150000.0,
+        "short": 49150000.0,
         "long": 0.0,
         "binance": 616500.0,
-        "okx": 6700000.0,
-        "bybit": 2730000.0
+        "okx": 6710000.0,
+        "bybit": 2900000.0
       },
       {
         "horizon": "1D",
         "price": 1.274,
-        "cum": 47460000.0,
-        "short": 47460000.0,
+        "cum": 50320000.0,
+        "short": 50320000.0,
         "long": 0.0,
-        "binance": 1540000.0,
+        "binance": 1610000.0,
         "okx": 2770000.0,
         "bybit": 4830000.0
       },
       {
         "horizon": "7D",
         "price": 1.275,
-        "cum": 69100000.0,
-        "short": 69100000.0,
+        "cum": 70530000.0,
+        "short": 70530000.0,
         "long": 0.0,
         "binance": 4990000.0,
         "okx": 2830000.0,
@@ -16752,18 +16738,18 @@
       {
         "horizon": "1D",
         "price": 1.276,
-        "cum": 54460000.0,
-        "short": 54460000.0,
+        "cum": 57390000.0,
+        "short": 57390000.0,
         "long": 0.0,
         "binance": 1760000.0,
         "okx": 1920000.0,
-        "bybit": 3320000.0
+        "bybit": 3390000.0
       },
       {
         "horizon": "7D",
         "price": 1.277,
-        "cum": 89740000.0,
-        "short": 89740000.0,
+        "cum": 91160000.0,
+        "short": 91160000.0,
         "long": 0.0,
         "binance": 7690000.0,
         "okx": 3800000.0,
@@ -16772,8 +16758,8 @@
       {
         "horizon": "1D",
         "price": 1.278,
-        "cum": 60150000.0,
-        "short": 60150000.0,
+        "cum": 63090000.0,
+        "short": 63090000.0,
         "long": 0.0,
         "binance": 1560000.0,
         "okx": 1550000.0,
@@ -16782,8 +16768,8 @@
       {
         "horizon": "7D",
         "price": 1.279,
-        "cum": 100630000.0,
-        "short": 100630000.0,
+        "cum": 102060000.0,
+        "short": 102060000.0,
         "long": 0.0,
         "binance": 3260000.0,
         "okx": 3230000.0,
@@ -16792,8 +16778,8 @@
       {
         "horizon": "1D",
         "price": 1.28,
-        "cum": 66239999.99999999,
-        "short": 66239999.99999999,
+        "cum": 69170000.0,
+        "short": 69170000.0,
         "long": 0.0,
         "binance": 551850.0,
         "okx": 1680000.0,
@@ -16802,8 +16788,8 @@
       {
         "horizon": "7D",
         "price": 1.281,
-        "cum": 102340000.0,
-        "short": 102340000.0,
+        "cum": 103760000.0,
+        "short": 103760000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 1090000.0,
@@ -16812,8 +16798,8 @@
       {
         "horizon": "1D",
         "price": 1.282,
-        "cum": 71460000.0,
-        "short": 71460000.0,
+        "cum": 74390000.0,
+        "short": 74390000.0,
         "long": 0.0,
         "binance": 1030000.0,
         "okx": 864970.0,
@@ -16822,8 +16808,8 @@
       {
         "horizon": "7D",
         "price": 1.283,
-        "cum": 106740000.0,
-        "short": 106740000.0,
+        "cum": 108160000.0,
+        "short": 108160000.0,
         "long": 0.0,
         "binance": 1730000.0,
         "okx": 1070000.0,
@@ -16832,8 +16818,8 @@
       {
         "horizon": "1D",
         "price": 1.284,
-        "cum": 75030000.0,
-        "short": 75030000.0,
+        "cum": 77970000.0,
+        "short": 77970000.0,
         "long": 0.0,
         "binance": 1360000.0,
         "okx": 716680.0,
@@ -16842,8 +16828,8 @@
       {
         "horizon": "7D",
         "price": 1.285,
-        "cum": 111990000.0,
-        "short": 111990000.0,
+        "cum": 113410000.0,
+        "short": 113410000.0,
         "long": 0.0,
         "binance": 712000.0,
         "okx": 2250000.0,
@@ -16852,8 +16838,8 @@
       {
         "horizon": "1D",
         "price": 1.286,
-        "cum": 79650000.0,
-        "short": 79650000.0,
+        "cum": 82580000.0,
+        "short": 82580000.0,
         "long": 0.0,
         "binance": 957890.0,
         "okx": 1130000.0,
@@ -16862,8 +16848,8 @@
       {
         "horizon": "7D",
         "price": 1.287,
-        "cum": 115130000.0,
-        "short": 115130000.0,
+        "cum": 116560000.0,
+        "short": 116560000.0,
         "long": 0.0,
         "binance": 1080000.0,
         "okx": 265450.0,
@@ -16872,18 +16858,18 @@
       {
         "horizon": "1D",
         "price": 1.288,
-        "cum": 81610000.0,
-        "short": 81610000.0,
+        "cum": 84430000.0,
+        "short": 84430000.0,
         "long": 0.0,
-        "binance": 889170.0,
+        "binance": 784150.0,
         "okx": 473770.0,
-        "bybit": 594200.0
+        "bybit": 585360.0
       },
       {
         "horizon": "7D",
         "price": 1.289,
-        "cum": 115580000.0,
-        "short": 115580000.0,
+        "cum": 117010000.0,
+        "short": 117010000.0,
         "long": 0.0,
         "binance": 386730.0,
         "okx": 7050.0,
@@ -16892,8 +16878,8 @@
       {
         "horizon": "1D",
         "price": 1.29,
-        "cum": 82720000.0,
-        "short": 82720000.0,
+        "cum": 85540000.0,
+        "short": 85540000.0,
         "long": 0.0,
         "binance": 297090.0,
         "okx": 316750.0,
@@ -16902,8 +16888,8 @@
       {
         "horizon": "7D",
         "price": 1.291,
-        "cum": 119440000.0,
-        "short": 119440000.0,
+        "cum": 120860000.0,
+        "short": 120860000.0,
         "long": 0.0,
         "binance": 1090000.0,
         "okx": 475560.0,
@@ -16912,8 +16898,8 @@
       {
         "horizon": "1D",
         "price": 1.292,
-        "cum": 85200000.0,
-        "short": 85200000.0,
+        "cum": 88020000.0,
+        "short": 88020000.0,
         "long": 0.0,
         "binance": 447360.0,
         "okx": 308390.0,
@@ -16922,8 +16908,8 @@
       {
         "horizon": "7D",
         "price": 1.293,
-        "cum": 120270000.0,
-        "short": 120270000.0,
+        "cum": 121700000.0,
+        "short": 121700000.0,
         "long": 0.0,
         "binance": 239240.0,
         "okx": 101970.0,
@@ -16932,18 +16918,18 @@
       {
         "horizon": "1D",
         "price": 1.294,
-        "cum": 90230000.0,
-        "short": 90230000.0,
+        "cum": 92810000.0,
+        "short": 92810000.0,
         "long": 0.0,
         "binance": 1260000.0,
         "okx": 624790.0,
-        "bybit": 3150000.0
+        "bybit": 2910000.0
       },
       {
         "horizon": "7D",
         "price": 1.295,
-        "cum": 130880000.0,
-        "short": 130880000.0,
+        "cum": 132300000.00000001,
+        "short": 132300000.00000001,
         "long": 0.0,
         "binance": 3480000.0,
         "okx": 1430000.0,
@@ -16952,58 +16938,58 @@
       {
         "horizon": "1D",
         "price": 1.296,
-        "cum": 96620000.0,
-        "short": 96620000.0,
+        "cum": 98770000.0,
+        "short": 98770000.0,
         "long": 0.0,
         "binance": 1550000.0,
-        "okx": 1410000.0,
+        "okx": 985690.0,
         "bybit": 3430000.0
       },
       {
         "horizon": "7D",
         "price": 1.297,
-        "cum": 133630000.0,
-        "short": 133630000.0,
+        "cum": 135060000.0,
+        "short": 135060000.0,
         "long": 0.0,
         "binance": 209360.0,
-        "okx": 855510.0,
+        "okx": 859530.0,
         "bybit": 1680000.0
       },
       {
         "horizon": "1D",
         "price": 1.298,
-        "cum": 98570000.0,
-        "short": 98570000.0,
+        "cum": 100780000.0,
+        "short": 100780000.0,
         "long": 0.0,
         "binance": 730250.0,
         "okx": 325900.0,
-        "bybit": 892480.0
+        "bybit": 947950.0
       },
       {
         "horizon": "7D",
         "price": 1.299,
-        "cum": 136210000.0,
-        "short": 136210000.0,
+        "cum": 137720000.0,
+        "short": 137720000.0,
         "long": 0.0,
         "binance": 164090.0,
         "okx": 456710.0,
-        "bybit": 1960000.0
+        "bybit": 2040000.0
       },
       {
         "horizon": "1D",
         "price": 1.3,
-        "cum": 100640000.0,
-        "short": 100640000.0,
+        "cum": 102890000.0,
+        "short": 102890000.0,
         "long": 0.0,
-        "binance": 501840.0,
-        "okx": 356990.0,
+        "binance": 538370.0,
+        "okx": 357890.0,
         "bybit": 1210000.0
       },
       {
         "horizon": "7D",
         "price": 1.301,
-        "cum": 138690000.0,
-        "short": 138690000.0,
+        "cum": 140210000.0,
+        "short": 140210000.0,
         "long": 0.0,
         "binance": 411550.0,
         "okx": 625980.0,
@@ -17012,18 +16998,18 @@
       {
         "horizon": "1D",
         "price": 1.302,
-        "cum": 103470000.0,
-        "short": 103470000.0,
+        "cum": 105420000.0,
+        "short": 105420000.0,
         "long": 0.0,
-        "binance": 810010.0,
+        "binance": 482070.0,
         "okx": 613830.0,
-        "bybit": 1400000.0
+        "bybit": 1440000.0
       },
       {
         "horizon": "7D",
         "price": 1.303,
-        "cum": 142610000.0,
-        "short": 142610000.0,
+        "cum": 144130000.0,
+        "short": 144130000.0,
         "long": 0.0,
         "binance": 29580.0,
         "okx": 3000000.0,
@@ -17032,8 +17018,8 @@
       {
         "horizon": "1D",
         "price": 1.304,
-        "cum": 105280000.0,
-        "short": 105280000.0,
+        "cum": 107230000.0,
+        "short": 107230000.0,
         "long": 0.0,
         "binance": 481740.0,
         "okx": 513950.00000000006,
@@ -17042,8 +17028,8 @@
       {
         "horizon": "7D",
         "price": 1.305,
-        "cum": 143310000.0,
-        "short": 143310000.0,
+        "cum": 144820000.0,
+        "short": 144820000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 288200.0,
@@ -17052,8 +17038,8 @@
       {
         "horizon": "1D",
         "price": 1.306,
-        "cum": 107800000.0,
-        "short": 107800000.0,
+        "cum": 109750000.0,
+        "short": 109750000.0,
         "long": 0.0,
         "binance": 631950.0,
         "okx": 699530.0,
@@ -17062,8 +17048,8 @@
       {
         "horizon": "7D",
         "price": 1.307,
-        "cum": 146950000.0,
-        "short": 146950000.0,
+        "cum": 148460000.0,
+        "short": 148460000.0,
         "long": 0.0,
         "binance": 2150000.0,
         "okx": 413530.0,
@@ -17072,8 +17058,8 @@
       {
         "horizon": "1D",
         "price": 1.308,
-        "cum": 111970000.0,
-        "short": 111970000.0,
+        "cum": 113930000.0,
+        "short": 113930000.0,
         "long": 0.0,
         "binance": 1010000.0,
         "okx": 721970.0,
@@ -17082,8 +17068,8 @@
       {
         "horizon": "7D",
         "price": 1.309,
-        "cum": 152440000.0,
-        "short": 152440000.0,
+        "cum": 153960000.0,
+        "short": 153960000.0,
         "long": 0.0,
         "binance": 1800000.0,
         "okx": 1380000.0,
@@ -17092,8 +17078,8 @@
       {
         "horizon": "1D",
         "price": 1.31,
-        "cum": 115420000.0,
-        "short": 115420000.0,
+        "cum": 117370000.0,
+        "short": 117370000.0,
         "long": 0.0,
         "binance": 1310000.0,
         "okx": 405620.0,
@@ -17102,8 +17088,8 @@
       {
         "horizon": "7D",
         "price": 1.311,
-        "cum": 156960000.0,
-        "short": 156960000.0,
+        "cum": 158480000.0,
+        "short": 158480000.0,
         "long": 0.0,
         "binance": 839350.0,
         "okx": 650590.0,
@@ -17112,8 +17098,8 @@
       {
         "horizon": "1D",
         "price": 1.312,
-        "cum": 117850000.0,
-        "short": 117850000.0,
+        "cum": 119810000.0,
+        "short": 119810000.0,
         "long": 0.0,
         "binance": 802660.0,
         "okx": 478370.0,
@@ -17122,8 +17108,8 @@
       {
         "horizon": "7D",
         "price": 1.313,
-        "cum": 159810000.0,
-        "short": 159810000.0,
+        "cum": 161320000.0,
+        "short": 161320000.0,
         "long": 0.0,
         "binance": 557940.0,
         "okx": 430030.0,
@@ -17132,8 +17118,8 @@
       {
         "horizon": "1D",
         "price": 1.314,
-        "cum": 119330000.0,
-        "short": 119330000.0,
+        "cum": 121280000.0,
+        "short": 121280000.0,
         "long": 0.0,
         "binance": 469750.0,
         "okx": 115660.0,
@@ -17142,8 +17128,8 @@
       {
         "horizon": "7D",
         "price": 1.315,
-        "cum": 162390000.0,
-        "short": 162390000.0,
+        "cum": 163900000.0,
+        "short": 163900000.0,
         "long": 0.0,
         "binance": 203740.0,
         "okx": 1080000.0,
@@ -17152,8 +17138,8 @@
       {
         "horizon": "1D",
         "price": 1.316,
-        "cum": 120080000.0,
-        "short": 120080000.0,
+        "cum": 122040000.0,
+        "short": 122040000.0,
         "long": 0.0,
         "binance": 136210.0,
         "okx": 251590.0,
@@ -17162,8 +17148,8 @@
       {
         "horizon": "7D",
         "price": 1.317,
-        "cum": 167770000.0,
-        "short": 167770000.0,
+        "cum": 169290000.0,
+        "short": 169290000.0,
         "long": 0.0,
         "binance": 1120000.0,
         "okx": 1340000.0,
@@ -17172,8 +17158,8 @@
       {
         "horizon": "1D",
         "price": 1.318,
-        "cum": 122910000.0,
-        "short": 122910000.0,
+        "cum": 124860000.0,
+        "short": 124860000.0,
         "long": 0.0,
         "binance": 1470000.0,
         "okx": 286870.0,
@@ -17182,8 +17168,8 @@
       {
         "horizon": "7D",
         "price": 1.319,
-        "cum": 170860000.0,
-        "short": 170860000.0,
+        "cum": 172370000.0,
+        "short": 172370000.0,
         "long": 0.0,
         "binance": 815030.0,
         "okx": 495580.0,
@@ -17192,18 +17178,18 @@
       {
         "horizon": "1D",
         "price": 1.32,
-        "cum": 123620000.0,
-        "short": 123620000.0,
+        "cum": 125340000.0,
+        "short": 125340000.0,
         "long": 0.0,
         "binance": 275010.0,
         "okx": 33200.0,
-        "bybit": 406990.0
+        "bybit": 168930.0
       },
       {
         "horizon": "7D",
         "price": 1.321,
-        "cum": 172690000.0,
-        "short": 172690000.0,
+        "cum": 174200000.0,
+        "short": 174200000.0,
         "long": 0.0,
         "binance": 1220000.0,
         "okx": 238530.0,
@@ -17212,18 +17198,18 @@
       {
         "horizon": "1D",
         "price": 1.322,
-        "cum": 125530000.0,
-        "short": 125530000.0,
+        "cum": 126490000.0,
+        "short": 126490000.0,
         "long": 0.0,
-        "binance": 594480.0,
-        "okx": 438930.0,
-        "bybit": 875500.0
+        "binance": 392390.0,
+        "okx": 8760.0,
+        "bybit": 744180.0
       },
       {
         "horizon": "7D",
         "price": 1.323,
-        "cum": 177140000.0,
-        "short": 177140000.0,
+        "cum": 178660000.0,
+        "short": 178660000.0,
         "long": 0.0,
         "binance": 2089999.9999999998,
         "okx": 761100.0,
@@ -17232,18 +17218,18 @@
       {
         "horizon": "1D",
         "price": 1.324,
-        "cum": 126310000.0,
-        "short": 126310000.0,
+        "cum": 127030000.0,
+        "short": 127030000.0,
         "long": 0.0,
         "binance": 334430.0,
         "okx": 6090.0,
-        "bybit": 435830.0
+        "bybit": 206480.0
       },
       {
         "horizon": "7D",
         "price": 1.325,
-        "cum": 179510000.0,
-        "short": 179510000.0,
+        "cum": 181020000.0,
+        "short": 181020000.0,
         "long": 0.0,
         "binance": 1620000.0,
         "okx": 198920.0,
@@ -17252,18 +17238,18 @@
       {
         "horizon": "1D",
         "price": 1.326,
-        "cum": 127340000.0,
-        "short": 127340000.0,
+        "cum": 127630000.0,
+        "short": 127630000.0,
         "long": 0.0,
-        "binance": 405790.0,
+        "binance": 195730.0,
         "okx": 54760.0,
-        "bybit": 570800.0
+        "bybit": 341250.0
       },
       {
         "horizon": "7D",
         "price": 1.327,
-        "cum": 180050000.0,
-        "short": 180050000.0,
+        "cum": 181560000.0,
+        "short": 181560000.0,
         "long": 0.0,
         "binance": 462320.0,
         "okx": 8400.0,
@@ -17272,18 +17258,18 @@
       {
         "horizon": "1D",
         "price": 1.328,
-        "cum": 128050000.00000001,
-        "short": 128050000.00000001,
+        "cum": 127840000.0,
+        "short": 127840000.0,
         "long": 0.0,
-        "binance": 430330.0,
-        "okx": 167860.0,
+        "binance": 102400.0,
+        "okx": 1380.0,
         "bybit": 107710.0
       },
       {
         "horizon": "7D",
         "price": 1.329,
-        "cum": 181340000.0,
-        "short": 181340000.0,
+        "cum": 182860000.0,
+        "short": 182860000.0,
         "long": 0.0,
         "binance": 90750.0,
         "okx": 110720.0,
@@ -17292,8 +17278,8 @@
       {
         "horizon": "1D",
         "price": 1.33,
-        "cum": 129060000.0,
-        "short": 129060000.0,
+        "cum": 128850000.0,
+        "short": 128850000.0,
         "long": 0.0,
         "binance": 630480.0,
         "okx": 67240.0,
@@ -17302,8 +17288,8 @@
       {
         "horizon": "7D",
         "price": 1.331,
-        "cum": 183070000.0,
-        "short": 183070000.0,
+        "cum": 184580000.0,
+        "short": 184580000.0,
         "long": 0.0,
         "binance": 581420.0,
         "okx": 273310.0,
@@ -17312,8 +17298,8 @@
       {
         "horizon": "1D",
         "price": 1.332,
-        "cum": 130030000.0,
-        "short": 130030000.0,
+        "cum": 129820000.0,
+        "short": 129820000.0,
         "long": 0.0,
         "binance": 316850.0,
         "okx": 95850.0,
@@ -17322,8 +17308,8 @@
       {
         "horizon": "7D",
         "price": 1.333,
-        "cum": 187160000.0,
-        "short": 187160000.0,
+        "cum": 188670000.0,
+        "short": 188670000.0,
         "long": 0.0,
         "binance": 1450000.0,
         "okx": 406200.0,
@@ -17332,18 +17318,18 @@
       {
         "horizon": "1D",
         "price": 1.334,
-        "cum": 131430000.0,
-        "short": 131430000.0,
+        "cum": 130930000.0,
+        "short": 130930000.0,
         "long": 0.0,
-        "binance": 396620.0,
-        "okx": 204720.0,
-        "bybit": 799880.0
+        "binance": 295580.0,
+        "okx": 135230.0,
+        "bybit": 677550.0
       },
       {
         "horizon": "7D",
         "price": 1.335,
-        "cum": 187700000.0,
-        "short": 187700000.0,
+        "cum": 189210000.0,
+        "short": 189210000.0,
         "long": 0.0,
         "binance": 157960.0,
         "okx": 194680.0,
@@ -17352,18 +17338,18 @@
       {
         "horizon": "1D",
         "price": 1.336,
-        "cum": 131930000.0,
-        "short": 131930000.0,
+        "cum": 131090000.0,
+        "short": 131090000.0,
         "long": 0.0,
         "binance": 86170.0,
-        "okx": 148630.0,
-        "bybit": 261300.0
+        "okx": 811.55,
+        "bybit": 72050.0
       },
       {
         "horizon": "7D",
         "price": 1.337,
-        "cum": 189650000.0,
-        "short": 189650000.0,
+        "cum": 191160000.0,
+        "short": 191160000.0,
         "long": 0.0,
         "binance": 679750.0,
         "okx": 645230.0,
@@ -17372,18 +17358,18 @@
       {
         "horizon": "1D",
         "price": 1.338,
-        "cum": 132110000.00000001,
-        "short": 132110000.00000001,
+        "cum": 131259999.99999999,
+        "short": 131259999.99999999,
         "long": 0.0,
         "binance": 5070.0,
         "okx": 36970.0,
-        "bybit": 136820.0
+        "bybit": 130970.0
       },
       {
         "horizon": "7D",
         "price": 1.339,
-        "cum": 191990000.0,
-        "short": 191990000.0,
+        "cum": 193510000.0,
+        "short": 193510000.0,
         "long": 0.0,
         "binance": 1240000.0,
         "okx": 361750.0,
@@ -17392,18 +17378,18 @@
       {
         "horizon": "1D",
         "price": 1.34,
-        "cum": 132669999.99999999,
-        "short": 132669999.99999999,
+        "cum": 131509999.99999999,
+        "short": 131509999.99999999,
         "long": 0.0,
-        "binance": 156500.0,
-        "okx": 108940.0,
-        "bybit": 294510.0
+        "binance": 51470.0,
+        "okx": 25700.0,
+        "bybit": 170900.0
       },
       {
         "horizon": "7D",
         "price": 1.341,
-        "cum": 196450000.0,
-        "short": 196450000.0,
+        "cum": 197970000.0,
+        "short": 197970000.0,
         "long": 0.0,
         "binance": 2650000.0,
         "okx": 1390000.0,
@@ -17412,18 +17398,18 @@
       {
         "horizon": "1D",
         "price": 1.342,
-        "cum": 133169999.99999999,
-        "short": 133169999.99999999,
+        "cum": 131850000.0,
+        "short": 131850000.0,
         "long": 0.0,
-        "binance": 319670.0,
+        "binance": 155700.0,
         "okx": 18290.0,
         "bybit": 165680.0
       },
       {
         "horizon": "7D",
         "price": 1.343,
-        "cum": 201750000.0,
-        "short": 201750000.0,
+        "cum": 203260000.0,
+        "short": 203260000.0,
         "long": 0.0,
         "binance": 1700000.0,
         "okx": 2360000.0,
@@ -17432,8 +17418,8 @@
       {
         "horizon": "1D",
         "price": 1.344,
-        "cum": 133449999.99999999,
-        "short": 133449999.99999999,
+        "cum": 132120000.0,
+        "short": 132120000.0,
         "long": 0.0,
         "binance": 50720.0,
         "okx": 114320.0,
@@ -17442,8 +17428,8 @@
       {
         "horizon": "7D",
         "price": 1.345,
-        "cum": 211450000.0,
-        "short": 211450000.0,
+        "cum": 212960000.0,
+        "short": 212960000.0,
         "long": 0.0,
         "binance": 3160000.0,
         "okx": 1690000.0,
@@ -17452,8 +17438,8 @@
       {
         "horizon": "1D",
         "price": 1.346,
-        "cum": 133729999.99999999,
-        "short": 133729999.99999999,
+        "cum": 132410000.0,
+        "short": 132410000.0,
         "long": 0.0,
         "binance": 129789.99999999999,
         "okx": 65239.99999999999,
@@ -17462,8 +17448,8 @@
       {
         "horizon": "7D",
         "price": 1.347,
-        "cum": 217880000.0,
-        "short": 217880000.0,
+        "cum": 219400000.0,
+        "short": 219400000.0,
         "long": 0.0,
         "binance": 2200000.0,
         "okx": 2120000.0,
@@ -17472,8 +17458,8 @@
       {
         "horizon": "1D",
         "price": 1.348,
-        "cum": 134120000.0,
-        "short": 134120000.0,
+        "cum": 132800000.00000001,
+        "short": 132800000.00000001,
         "long": 0.0,
         "binance": 117420.0,
         "okx": 2650.0,
@@ -17482,8 +17468,8 @@
       {
         "horizon": "7D",
         "price": 1.349,
-        "cum": 226800000.0,
-        "short": 226800000.0,
+        "cum": 228310000.0,
+        "short": 228310000.0,
         "long": 0.0,
         "binance": 4000000.0,
         "okx": 1440000.0,
@@ -17492,8 +17478,8 @@
       {
         "horizon": "1D",
         "price": 1.35,
-        "cum": 134440000.0,
-        "short": 134440000.0,
+        "cum": 133120000.0,
+        "short": 133120000.0,
         "long": 0.0,
         "binance": 170740.0,
         "okx": 2270.0,
@@ -17502,8 +17488,8 @@
       {
         "horizon": "7D",
         "price": 1.351,
-        "cum": 234140000.0,
-        "short": 234140000.0,
+        "cum": 235650000.0,
+        "short": 235650000.0,
         "long": 0.0,
         "binance": 2210000.0,
         "okx": 1380000.0,
@@ -17512,8 +17498,8 @@
       {
         "horizon": "1D",
         "price": 1.352,
-        "cum": 134710000.0,
-        "short": 134710000.0,
+        "cum": 133389999.99999999,
+        "short": 133389999.99999999,
         "long": 0.0,
         "binance": 69740.0,
         "okx": 27920.0,
@@ -17522,8 +17508,8 @@
       {
         "horizon": "7D",
         "price": 1.353,
-        "cum": 241800000.0,
-        "short": 241800000.0,
+        "cum": 243310000.0,
+        "short": 243310000.0,
         "long": 0.0,
         "binance": 2540000.0,
         "okx": 1010000.0,
@@ -17532,8 +17518,8 @@
       {
         "horizon": "1D",
         "price": 1.354,
-        "cum": 134780000.0,
-        "short": 134780000.0,
+        "cum": 133460000.00000001,
+        "short": 133460000.00000001,
         "long": 0.0,
         "binance": 47480.0,
         "okx": 2890.0,
@@ -17542,18 +17528,18 @@
       {
         "horizon": "7D",
         "price": 1.355,
-        "cum": 248900000.0,
-        "short": 248900000.0,
+        "cum": 250410000.0,
+        "short": 250410000.0,
         "long": 0.0,
         "binance": 3390000.0,
         "okx": 709240.0,
-        "bybit": 3000000.0
+        "bybit": 2990000.0
       },
       {
         "horizon": "1D",
         "price": 1.356,
-        "cum": 135310000.0,
-        "short": 135310000.0,
+        "cum": 133990000.00000001,
+        "short": 133990000.00000001,
         "long": 0.0,
         "binance": 286670.0,
         "okx": 82910.0,
@@ -17562,18 +17548,18 @@
       {
         "horizon": "7D",
         "price": 1.357,
-        "cum": 252230000.0,
-        "short": 252230000.0,
+        "cum": 253720000.0,
+        "short": 253720000.0,
         "long": 0.0,
         "binance": 1180000.0,
-        "okx": 771230.0,
+        "okx": 754000.0,
         "bybit": 1380000.0
       },
       {
         "horizon": "1D",
         "price": 1.358,
-        "cum": 135410000.0,
-        "short": 135410000.0,
+        "cum": 134090000.0,
+        "short": 134090000.0,
         "long": 0.0,
         "binance": 74090.0,
         "okx": 1780.0,
@@ -17582,28 +17568,28 @@
       {
         "horizon": "7D",
         "price": 1.359,
-        "cum": 255450000.0,
-        "short": 255450000.0,
+        "cum": 256850000.00000003,
+        "short": 256850000.00000003,
         "long": 0.0,
-        "binance": 1390000.0,
+        "binance": 1310000.0,
         "okx": 569700.0,
         "bybit": 1260000.0
       },
       {
         "horizon": "1D",
         "price": 1.36,
-        "cum": 135850000.0,
-        "short": 135850000.0,
+        "cum": 134380000.0,
+        "short": 134380000.0,
         "long": 0.0,
-        "binance": 129780.0,
-        "okx": 37160.0,
-        "bybit": 274530.0
+        "binance": 79260.0,
+        "okx": 2410.0,
+        "bybit": 213360.0
       },
       {
         "horizon": "7D",
         "price": 1.361,
-        "cum": 256720000.00000003,
-        "short": 256720000.00000003,
+        "cum": 258120000.0,
+        "short": 258120000.0,
         "long": 0.0,
         "binance": 432170.0,
         "okx": 428320.0,
@@ -17612,18 +17598,18 @@
       {
         "horizon": "1D",
         "price": 1.362,
-        "cum": 136100000.0,
-        "short": 136100000.0,
+        "cum": 134470000.0,
+        "short": 134470000.0,
         "long": 0.0,
         "binance": 64590.0,
-        "okx": 86460.0,
-        "bybit": 102450.0
+        "okx": 12560.0,
+        "bybit": 7830.0
       },
       {
         "horizon": "7D",
         "price": 1.363,
-        "cum": 260279999.99999997,
-        "short": 260279999.99999997,
+        "cum": 261690000.0,
+        "short": 261690000.0,
         "long": 0.0,
         "binance": 2080000.0,
         "okx": 614260.0,
@@ -17632,18 +17618,18 @@
       {
         "horizon": "1D",
         "price": 1.364,
-        "cum": 136190000.0,
-        "short": 136190000.0,
+        "cum": 134550000.0,
+        "short": 134550000.0,
         "long": 0.0,
         "binance": 45870.0,
         "okx": 30100.0,
-        "bybit": 8790.0
+        "bybit": 5860.0
       },
       {
         "horizon": "7D",
         "price": 1.365,
-        "cum": 262019999.99999997,
-        "short": 262019999.99999997,
+        "cum": 263420000.00000003,
+        "short": 263420000.00000003,
         "long": 0.0,
         "binance": 671020.0,
         "okx": 350000.0,
@@ -17652,18 +17638,18 @@
       {
         "horizon": "1D",
         "price": 1.366,
-        "cum": 136550000.0,
-        "short": 136550000.0,
+        "cum": 134800000.0,
+        "short": 134800000.0,
         "long": 0.0,
-        "binance": 82850.0,
+        "binance": 30340.0,
         "okx": 20790.0,
-        "bybit": 262570.0
+        "bybit": 200760.0
       },
       {
         "horizon": "7D",
         "price": 1.367,
-        "cum": 262589999.99999997,
-        "short": 262589999.99999997,
+        "cum": 263990000.0,
+        "short": 263990000.0,
         "long": 0.0,
         "binance": 287090.0,
         "okx": 252270.0,
@@ -17672,18 +17658,18 @@
       {
         "horizon": "1D",
         "price": 1.368,
-        "cum": 136970000.0,
-        "short": 136970000.0,
+        "cum": 135100000.0,
+        "short": 135100000.0,
         "long": 0.0,
-        "binance": 120960.0,
-        "okx": 164910.0,
+        "binance": 38980.0,
+        "okx": 123290.0,
         "bybit": 134400.0
       },
       {
         "horizon": "7D",
         "price": 1.369,
-        "cum": 263880000.0,
-        "short": 263880000.0,
+        "cum": 265290000.00000003,
+        "short": 265290000.00000003,
         "long": 0.0,
         "binance": 432270.0,
         "okx": 107530.0,
@@ -17692,18 +17678,18 @@
       {
         "horizon": "1D",
         "price": 1.37,
-        "cum": 137020000.0,
-        "short": 137020000.0,
+        "cum": 135150000.0,
+        "short": 135150000.0,
         "long": 0.0,
         "binance": 13990.0,
-        "okx": 10160.0,
+        "okx": 10780.0,
         "bybit": 26630.0
       },
       {
         "horizon": "7D",
         "price": 1.371,
-        "cum": 265329999.99999997,
-        "short": 265329999.99999997,
+        "cum": 266730000.00000003,
+        "short": 266730000.00000003,
         "long": 0.0,
         "binance": 269110.0,
         "okx": 284970.0,
@@ -17712,28 +17698,28 @@
       {
         "horizon": "1D",
         "price": 1.372,
-        "cum": 137530000.0,
-        "short": 137530000.0,
+        "cum": 135670000.0,
+        "short": 135670000.0,
         "long": 0.0,
         "binance": 9930.0,
-        "okx": 79370.0,
-        "bybit": 412590.0
+        "okx": 80420.0,
+        "bybit": 434780.0
       },
       {
         "horizon": "7D",
         "price": 1.373,
-        "cum": 267149999.99999997,
-        "short": 267149999.99999997,
+        "cum": 268560000.0,
+        "short": 268560000.0,
         "long": 0.0,
         "binance": 547980.0,
-        "okx": 444100.0,
+        "okx": 445700.0,
         "bybit": 837440.0
       },
       {
         "horizon": "1D",
         "price": 1.374,
-        "cum": 137700000.0,
-        "short": 137700000.0,
+        "cum": 135850000.0,
+        "short": 135850000.0,
         "long": 0.0,
         "binance": 50680.0,
         "okx": 34280.0,
@@ -17742,8 +17728,8 @@
       {
         "horizon": "7D",
         "price": 1.375,
-        "cum": 268700000.0,
-        "short": 268700000.0,
+        "cum": 270110000.0,
+        "short": 270110000.0,
         "long": 0.0,
         "binance": 401130.0,
         "okx": 312880.0,
@@ -17752,8 +17738,8 @@
       {
         "horizon": "1D",
         "price": 1.376,
-        "cum": 138260000.0,
-        "short": 138260000.0,
+        "cum": 136410000.0,
+        "short": 136410000.0,
         "long": 0.0,
         "binance": 147820.0,
         "okx": 126830.0,
@@ -17762,8 +17748,8 @@
       {
         "horizon": "7D",
         "price": 1.377,
-        "cum": 269880000.0,
-        "short": 269880000.0,
+        "cum": 271290000.0,
+        "short": 271290000.0,
         "long": 0.0,
         "binance": 417010.0,
         "okx": 402370.0,
@@ -17772,8 +17758,8 @@
       {
         "horizon": "1D",
         "price": 1.378,
-        "cum": 138700000.0,
-        "short": 138700000.0,
+        "cum": 136850000.0,
+        "short": 136850000.0,
         "long": 0.0,
         "binance": 77710.0,
         "okx": 156470.0,
@@ -17782,8 +17768,8 @@
       {
         "horizon": "7D",
         "price": 1.379,
-        "cum": 271990000.0,
-        "short": 271990000.0,
+        "cum": 273390000.0,
+        "short": 273390000.0,
         "long": 0.0,
         "binance": 573060.0,
         "okx": 336610.0,
@@ -17792,8 +17778,8 @@
       {
         "horizon": "1D",
         "price": 1.38,
-        "cum": 138930000.0,
-        "short": 138930000.0,
+        "cum": 137080000.0,
+        "short": 137080000.0,
         "long": 0.0,
         "binance": 22650.0,
         "okx": 53670.0,
@@ -17802,8 +17788,8 @@
       {
         "horizon": "7D",
         "price": 1.381,
-        "cum": 274180000.0,
-        "short": 274180000.0,
+        "cum": 275590000.0,
+        "short": 275590000.0,
         "long": 0.0,
         "binance": 1020000.0,
         "okx": 249550.0,
@@ -17812,8 +17798,8 @@
       {
         "horizon": "1D",
         "price": 1.382,
-        "cum": 139360000.0,
-        "short": 139360000.0,
+        "cum": 137510000.0,
+        "short": 137510000.0,
         "long": 0.0,
         "binance": 6880.0,
         "okx": 117660.0,
@@ -17822,8 +17808,8 @@
       {
         "horizon": "7D",
         "price": 1.383,
-        "cum": 275270000.0,
-        "short": 275270000.0,
+        "cum": 276670000.0,
+        "short": 276670000.0,
         "long": 0.0,
         "binance": 297210.0,
         "okx": 325410.0,
@@ -17832,8 +17818,8 @@
       {
         "horizon": "1D",
         "price": 1.384,
-        "cum": 139850000.0,
-        "short": 139850000.0,
+        "cum": 137990000.0,
+        "short": 137990000.0,
         "long": 0.0,
         "binance": 5520.0,
         "okx": 145880.0,
@@ -17842,8 +17828,8 @@
       {
         "horizon": "7D",
         "price": 1.385,
-        "cum": 276800000.0,
-        "short": 276800000.0,
+        "cum": 278200000.0,
+        "short": 278200000.0,
         "long": 0.0,
         "binance": 505510.0,
         "okx": 472340.0,
@@ -17852,8 +17838,8 @@
       {
         "horizon": "1D",
         "price": 1.386,
-        "cum": 140160000.0,
-        "short": 140160000.0,
+        "cum": 138310000.0,
+        "short": 138310000.0,
         "long": 0.0,
         "binance": 93660.0,
         "okx": 107490.0,
@@ -17862,8 +17848,8 @@
       {
         "horizon": "7D",
         "price": 1.387,
-        "cum": 277690000.0,
-        "short": 277690000.0,
+        "cum": 279100000.0,
+        "short": 279100000.0,
         "long": 0.0,
         "binance": 86820.0,
         "okx": 304090.0,
@@ -17872,8 +17858,8 @@
       {
         "horizon": "1D",
         "price": 1.388,
-        "cum": 140520000.0,
-        "short": 140520000.0,
+        "cum": 138670000.0,
+        "short": 138670000.0,
         "long": 0.0,
         "binance": 42870.0,
         "okx": 153630.0,
@@ -17882,8 +17868,8 @@
       {
         "horizon": "7D",
         "price": 1.389,
-        "cum": 278790000.0,
-        "short": 278790000.0,
+        "cum": 280200000.0,
+        "short": 280200000.0,
         "long": 0.0,
         "binance": 690420.0,
         "okx": 162590.0,
@@ -17892,8 +17878,8 @@
       {
         "horizon": "1D",
         "price": 1.39,
-        "cum": 140630000.0,
-        "short": 140630000.0,
+        "cum": 138780000.0,
+        "short": 138780000.0,
         "long": 0.0,
         "binance": 38180.0,
         "okx": 18330.0,
@@ -17902,8 +17888,8 @@
       {
         "horizon": "7D",
         "price": 1.391,
-        "cum": 278960000.0,
-        "short": 278960000.0,
+        "cum": 280370000.0,
+        "short": 280370000.0,
         "long": 0.0,
         "binance": 128419.99999999999,
         "okx": 39430.0,
@@ -17912,8 +17898,8 @@
       {
         "horizon": "7D",
         "price": 1.393,
-        "cum": 279590000.0,
-        "short": 279590000.0,
+        "cum": 281000000.0,
+        "short": 281000000.0,
         "long": 0.0,
         "binance": 82350.0,
         "okx": 90970.0,
@@ -17922,8 +17908,8 @@
       {
         "horizon": "7D",
         "price": 1.395,
-        "cum": 279760000.0,
-        "short": 279760000.0,
+        "cum": 281170000.0,
+        "short": 281170000.0,
         "long": 0.0,
         "binance": 145140.0,
         "okx": 22660.0,
@@ -17932,8 +17918,8 @@
       {
         "horizon": "7D",
         "price": 1.397,
-        "cum": 279880000.0,
-        "short": 279880000.0,
+        "cum": 281290000.0,
+        "short": 281290000.0,
         "long": 0.0,
         "binance": 102560.0,
         "okx": 1340.0,
@@ -17942,8 +17928,8 @@
       {
         "horizon": "7D",
         "price": 1.399,
-        "cum": 279890000.0,
-        "short": 279890000.0,
+        "cum": 281290000.0,
+        "short": 281290000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 996.88,
@@ -17952,8 +17938,8 @@
       {
         "horizon": "7D",
         "price": 1.401,
-        "cum": 280020000.0,
-        "short": 280020000.0,
+        "cum": 281430000.0,
+        "short": 281430000.0,
         "long": 0.0,
         "binance": 0.0,
         "okx": 75720.0,
@@ -17962,8 +17948,8 @@
       {
         "horizon": "7D",
         "price": 1.403,
-        "cum": 280140000.0,
-        "short": 280140000.0,
+        "cum": 281550000.0,
+        "short": 281550000.0,
         "long": 0.0,
         "binance": 94530.0,
         "okx": 21520.0,
@@ -17972,8 +17958,8 @@
       {
         "horizon": "7D",
         "price": 1.405,
-        "cum": 280370000.0,
-        "short": 280370000.0,
+        "cum": 281780000.0,
+        "short": 281780000.0,
         "long": 0.0,
         "binance": 171650.0,
         "okx": 23520.0,
@@ -17982,8 +17968,8 @@
       {
         "horizon": "7D",
         "price": 1.406,
-        "cum": 280450000.0,
-        "short": 280450000.0,
+        "cum": 281860000.0,
+        "short": 281860000.0,
         "long": 0.0,
         "binance": 62850.0,
         "okx": 18420.0,
@@ -17994,11 +17980,11 @@
       {
         "rank": 4,
         "asset": "XRP",
-        "tf_1h": "$239.19K",
-        "tf_4h": "$947.24K",
-        "tf_12h": "$2.49M",
-        "tf_24h": "$39.89M",
-        "timestamp_ist": "2026-10-30 21:29:37 IST"
+        "tf_1h": "$172.69K",
+        "tf_4h": "$956.89K",
+        "tf_12h": "$2.50M",
+        "tf_24h": "$39.82M",
+        "timestamp_ist": "2026-10-30 21:41:13 IST"
       }
     ],
     "live_liq_rows": [],
@@ -18007,225 +17993,225 @@
   "derivatives": {
     "oi_row": {
       "Asset": "XRP",
-      "Total_OI_USD": "$2.84B",
-      "Binance": "$417.60M",
-      "Bybit": "$335.91M",
-      "OKX": "$108.08M",
-      "CME": "$554.12M",
-      "KuCoin": "$121.30M",
-      "Gate": "$273.47M",
-      "Bitget": "$233.12M",
-      "BingX": "$62.31M",
-      "MEXC": "$301.58M",
-      "Bitunix": "$39.76M",
-      "Hyperliquid": "$197.26M",
-      "Others": "$192.57M",
-      "Total_OI_Tokens": "2,262,703,877.9 XRP",
-      "24h_Total_Change": "-6.44%",
-      "4h_Total_Change": "+0.79%",
-      "1h_Total_Change": "+1.60%",
-      "OI___24h_Vol": "0.5512",
-      "Timestamp_IST": "2026-10-30 21:27:59 IST"
+      "Total_OI_USD": "$2.81B",
+      "Binance": "$416.07M",
+      "Bybit": "$335.46M",
+      "OKX": "$107.71M",
+      "CME": "$552.31M",
+      "KuCoin": "$121.03M",
+      "Gate": "$272.09M",
+      "Bitget": "$231.64M",
+      "BingX": "$62.26M",
+      "MEXC": "$284.69M",
+      "Bitunix": "$39.47M",
+      "Hyperliquid": "$196.32M",
+      "Others": "$191.73M",
+      "Total_OI_Tokens": "2,250,385,257.5 XRP",
+      "24h_Total_Change": "-7.51%",
+      "4h_Total_Change": "-0.23%",
+      "1h_Total_Change": "-0.34%",
+      "OI___24h_Vol": "0.5500",
+      "Timestamp_IST": "2026-10-30 21:39:39 IST"
     },
     "funding_row": {
       "Symbol": "XRP",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0107%",
-      "USDT_Bybit": "-0.0180%",
-      "USDT_KuCoin": "-0.0010%",
+      "USDT_OKX": "-0.0118%",
+      "USDT_Bybit": "-0.0310%",
+      "USDT_KuCoin": "-0.0020%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
-      "USDT_Gate": "-0.0015%",
+      "USDT_Gate": "-0.0114%",
       "USDT_Bitunix": "0.0150%",
-      "USDT_Bitget": "-0.0026%",
+      "USDT_Bitget": "-0.0031%",
       "USDT_WhiteBIT": "0.0100%",
       "USDT_LBank": "0.0100%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "0.0100%",
-      "CoinM_OKX": "-0.0087%",
-      "CoinM_Bybit": "0.0100%",
-      "Timestamp_IST": "2026-10-30 21:29:23 IST"
+      "CoinM_OKX": "-0.0094%",
+      "CoinM_Bybit": "0.0009%",
+      "Timestamp_IST": "2026-10-30 21:40:58 IST"
     },
     "settle_row": {
-      "rank": 24,
+      "rank": 18,
       "symbol": "XRP",
-      "price": "$1.2541",
-      "price_24h_pct": "-4.14%",
-      "open_interest": "$757.76M",
-      "current": "-$28.58K",
-      "last_24h": "$21.94K",
-      "last_3d": "$414.05K",
-      "last_7d": "$1.06M",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "price": "$1.2483",
+      "price_24h_pct": "-5.00%",
+      "open_interest": "$755.38M",
+      "current": "-$63.71K",
+      "last_24h": "-$57.82K",
+      "last_3d": "$310.67K",
+      "last_7d": "$950.85K",
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": [
       {
         "horizon": "15M",
         "exchange": "XRP",
-        "long_pct": "44.68%",
-        "short_pct": "55.32%",
-        "ls_ratio": "0.81",
-        "vol": 768720000.0
+        "long_pct": "47.43%",
+        "short_pct": "52.57%",
+        "ls_ratio": "0.90",
+        "vol": 729580000.0
       },
       {
         "horizon": "15M",
         "exchange": "Binance",
-        "long_pct": "42.63%",
-        "short_pct": "57.37%",
-        "ls_ratio": "0.74",
-        "vol": 262390000.0
+        "long_pct": "46.41%",
+        "short_pct": "53.59%",
+        "ls_ratio": "0.87",
+        "vol": 217070000.0
       },
       {
         "horizon": "15M",
         "exchange": "OKX",
-        "long_pct": "44.55%",
-        "short_pct": "55.45%",
-        "ls_ratio": "0.80",
-        "vol": 151290000.0
+        "long_pct": "44.77%",
+        "short_pct": "55.23%",
+        "ls_ratio": "0.81",
+        "vol": 102390000.0
       },
       {
         "horizon": "15M",
         "exchange": "Bybit",
-        "long_pct": "42.26%",
-        "short_pct": "57.74%",
-        "ls_ratio": "0.73",
-        "vol": 56670000.0
+        "long_pct": "47.49%",
+        "short_pct": "52.51%",
+        "ls_ratio": "0.90",
+        "vol": 68710000.0
       },
       {
         "horizon": "15M",
         "exchange": "KuCoin",
-        "long_pct": "49.99%",
-        "short_pct": "50.01%",
-        "ls_ratio": "1.00",
-        "vol": 2940000.0
+        "long_pct": "33.74%",
+        "short_pct": "66.26%",
+        "ls_ratio": "0.51",
+        "vol": 1800000.0
       },
       {
         "horizon": "15M",
         "exchange": "Gate",
-        "long_pct": "50.68%",
-        "short_pct": "49.32%",
-        "ls_ratio": "1.03",
-        "vol": 123890000.0
+        "long_pct": "49.66%",
+        "short_pct": "50.34%",
+        "ls_ratio": "0.99",
+        "vol": 85660000.0
       },
       {
         "horizon": "15M",
         "exchange": "Bitget",
-        "long_pct": "40.34%",
-        "short_pct": "59.66%",
-        "ls_ratio": "0.68",
-        "vol": 27360000.0
+        "long_pct": "46.74%",
+        "short_pct": "53.26%",
+        "ls_ratio": "0.88",
+        "vol": 29210000.0
       },
       {
         "horizon": "15M",
         "exchange": "BingX",
-        "long_pct": "51.95%",
-        "short_pct": "48.05%",
-        "ls_ratio": "1.08",
-        "vol": 6490000.0
+        "long_pct": "45.83%",
+        "short_pct": "54.17%",
+        "ls_ratio": "0.85",
+        "vol": 17580000.0
       },
       {
         "horizon": "15M",
         "exchange": "MEXC",
-        "long_pct": "48.34%",
-        "short_pct": "51.66%",
+        "long_pct": "48.49%",
+        "short_pct": "51.51%",
         "ls_ratio": "0.94",
-        "vol": 38330000.0
+        "vol": 35920000.0
       },
       {
         "horizon": "15M",
         "exchange": "Bitunix",
-        "long_pct": "52.97%",
-        "short_pct": "47.03%",
-        "ls_ratio": "1.13",
-        "vol": 31450000.0
+        "long_pct": "49.84%",
+        "short_pct": "50.16%",
+        "ls_ratio": "0.99",
+        "vol": 52310000.0
       },
       {
         "horizon": "15M",
         "exchange": "Hyperliquid",
-        "long_pct": "50.04%",
-        "short_pct": "49.96%",
-        "ls_ratio": "1.00",
-        "vol": 16649999.999999998
-      },
-      {
-        "horizon": "15M",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "LBank",
-        "long_pct": "20.06%",
-        "short_pct": "79.94%",
-        "ls_ratio": "0.25",
-        "vol": 1080000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Crypto.com",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "WhiteBIT",
-        "long_pct": "61.09%",
-        "short_pct": "38.91%",
-        "ls_ratio": "1.57",
-        "vol": 4940000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "HTX",
-        "long_pct": "19.08%",
-        "short_pct": "80.92%",
-        "ls_ratio": "0.24",
-        "vol": 14480000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Deribit",
-        "long_pct": "51.24%",
-        "short_pct": "48.76%",
-        "ls_ratio": "1.05",
-        "vol": 3440000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitfinex",
         "long_pct": "35.44%",
         "short_pct": "64.56%",
         "ls_ratio": "0.55",
-        "vol": 85710.0
+        "vol": 45060000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "tradeXYZ",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "LBank",
+        "long_pct": "58.44%",
+        "short_pct": "41.56%",
+        "ls_ratio": "1.41",
+        "vol": 2700000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Crypto.com",
+        "long_pct": "47.08%",
+        "short_pct": "52.92%",
+        "ls_ratio": "0.89",
+        "vol": 5850000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "WhiteBIT",
+        "long_pct": "93.12%",
+        "short_pct": "6.88%",
+        "ls_ratio": "13.53",
+        "vol": 9830000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "HTX",
+        "long_pct": "45.51%",
+        "short_pct": "54.49%",
+        "ls_ratio": "0.84",
+        "vol": 3940000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "dYdX",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Deribit",
+        "long_pct": "50.03%",
+        "short_pct": "49.97%",
+        "ls_ratio": "1.00",
+        "vol": 24790000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitfinex",
+        "long_pct": "76.07%",
+        "short_pct": "23.93%",
+        "ls_ratio": "3.18",
+        "vol": 3890000.0
       },
       {
         "horizon": "15M",
         "exchange": "Kraken",
-        "long_pct": "32.74%",
-        "short_pct": "67.26%",
-        "ls_ratio": "0.49",
-        "vol": 2080000.0
+        "long_pct": "53.12%",
+        "short_pct": "46.88%",
+        "ls_ratio": "1.13",
+        "vol": 7870000.0
       },
       {
         "horizon": "15M",
         "exchange": "Aster",
-        "long_pct": "31.7%",
-        "short_pct": "68.3%",
-        "ls_ratio": "0.46",
-        "vol": 10460000.0
+        "long_pct": "53.87%",
+        "short_pct": "46.13%",
+        "ls_ratio": "1.17",
+        "vol": 5120000.0
       },
       {
         "horizon": "15M",
@@ -18238,114 +18224,114 @@
       {
         "horizon": "15M",
         "exchange": "Lighter",
-        "long_pct": "42.57%",
-        "short_pct": "57.43%",
-        "ls_ratio": "0.74",
-        "vol": 14700000.0
+        "long_pct": "49.82%",
+        "short_pct": "50.18%",
+        "ls_ratio": "0.99",
+        "vol": 9850000.0
       },
       {
         "horizon": "15M",
         "exchange": "Whale Positions",
-        "long_pct": "42.63%",
-        "short_pct": "57.37%",
-        "ls_ratio": "0.74",
-        "vol": 262390000.0
+        "long_pct": "46.41%",
+        "short_pct": "53.59%",
+        "ls_ratio": "0.87",
+        "vol": 217070000.0
       },
       {
         "horizon": "15M",
         "exchange": "Global Accounts",
-        "long_pct": "44.68%",
-        "short_pct": "55.32%",
-        "ls_ratio": "0.81",
-        "vol": 768720000.0
+        "long_pct": "47.43%",
+        "short_pct": "52.57%",
+        "ls_ratio": "0.90",
+        "vol": 729580000.0
       },
       {
         "horizon": "1H",
         "exchange": "XRP",
-        "long_pct": "48.96%",
-        "short_pct": "51.04%",
-        "ls_ratio": "0.96",
-        "vol": 4050000000.0
+        "long_pct": "45.71%",
+        "short_pct": "54.29%",
+        "ls_ratio": "0.84",
+        "vol": 5120000000.0
       },
       {
         "horizon": "1H",
         "exchange": "Binance",
-        "long_pct": "47.26%",
-        "short_pct": "52.74%",
-        "ls_ratio": "0.90",
-        "vol": 1350000000.0
+        "long_pct": "45.09%",
+        "short_pct": "54.91%",
+        "ls_ratio": "0.82",
+        "vol": 1480000000.0
       },
       {
         "horizon": "1H",
         "exchange": "OKX",
-        "long_pct": "50.7%",
-        "short_pct": "49.3%",
-        "ls_ratio": "1.03",
-        "vol": 804600000.0
+        "long_pct": "44.45%",
+        "short_pct": "55.55%",
+        "ls_ratio": "0.80",
+        "vol": 726910000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bybit",
-        "long_pct": "52.45%",
-        "short_pct": "47.55%",
-        "ls_ratio": "1.10",
-        "vol": 274060000.0
+        "long_pct": "50.25%",
+        "short_pct": "49.75%",
+        "ls_ratio": "1.01",
+        "vol": 443520000.0
       },
       {
         "horizon": "1H",
         "exchange": "KuCoin",
-        "long_pct": "51.67%",
-        "short_pct": "48.33%",
-        "ls_ratio": "1.07",
-        "vol": 15480000.0
+        "long_pct": "49.58%",
+        "short_pct": "50.42%",
+        "ls_ratio": "0.98",
+        "vol": 13990000.0
       },
       {
         "horizon": "1H",
         "exchange": "Gate",
-        "long_pct": "50.34%",
-        "short_pct": "49.66%",
-        "ls_ratio": "1.01",
-        "vol": 672570000.0
+        "long_pct": "47.47%",
+        "short_pct": "52.53%",
+        "ls_ratio": "0.90",
+        "vol": 570240000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bitget",
-        "long_pct": "47.51%",
-        "short_pct": "52.49%",
-        "ls_ratio": "0.91",
-        "vol": 161980000.0
+        "long_pct": "46.6%",
+        "short_pct": "53.4%",
+        "ls_ratio": "0.87",
+        "vol": 248090000.0
       },
       {
         "horizon": "1H",
         "exchange": "BingX",
-        "long_pct": "50.96%",
-        "short_pct": "49.04%",
-        "ls_ratio": "1.04",
-        "vol": 38760000.0
+        "long_pct": "46.31%",
+        "short_pct": "53.69%",
+        "ls_ratio": "0.86",
+        "vol": 114720000.0
       },
       {
         "horizon": "1H",
         "exchange": "MEXC",
-        "long_pct": "47.57%",
-        "short_pct": "52.43%",
-        "ls_ratio": "0.91",
-        "vol": 152350000.0
+        "long_pct": "47.99%",
+        "short_pct": "52.01%",
+        "ls_ratio": "0.92",
+        "vol": 252430000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bitunix",
-        "long_pct": "50.7%",
-        "short_pct": "49.3%",
-        "ls_ratio": "1.03",
-        "vol": 163190000.0
+        "long_pct": "46.35%",
+        "short_pct": "53.65%",
+        "ls_ratio": "0.86",
+        "vol": 312670000.0
       },
       {
         "horizon": "1H",
         "exchange": "Hyperliquid",
-        "long_pct": "53.7%",
-        "short_pct": "46.3%",
-        "ls_ratio": "1.16",
-        "vol": 120760000.0
+        "long_pct": "46.07%",
+        "short_pct": "53.93%",
+        "ls_ratio": "0.85",
+        "vol": 193710000.0
       },
       {
         "horizon": "1H",
@@ -18358,34 +18344,34 @@
       {
         "horizon": "1H",
         "exchange": "LBank",
-        "long_pct": "41.57%",
-        "short_pct": "58.43%",
-        "ls_ratio": "0.71",
-        "vol": 8780000.0
+        "long_pct": "61.25%",
+        "short_pct": "38.75%",
+        "ls_ratio": "1.58",
+        "vol": 27080000.0
       },
       {
         "horizon": "1H",
         "exchange": "Crypto.com",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
+        "long_pct": "45.35%",
+        "short_pct": "54.65%",
+        "ls_ratio": "0.83",
+        "vol": 28090000.0
       },
       {
         "horizon": "1H",
         "exchange": "WhiteBIT",
-        "long_pct": "34.01%",
-        "short_pct": "65.99%",
-        "ls_ratio": "0.52",
-        "vol": 85270000.0
+        "long_pct": "35.55%",
+        "short_pct": "64.45%",
+        "ls_ratio": "0.55",
+        "vol": 420380000.0
       },
       {
         "horizon": "1H",
         "exchange": "HTX",
-        "long_pct": "46.52%",
-        "short_pct": "53.48%",
-        "ls_ratio": "0.87",
-        "vol": 75200000.0
+        "long_pct": "42.25%",
+        "short_pct": "57.75%",
+        "ls_ratio": "0.73",
+        "vol": 21110000.0
       },
       {
         "horizon": "1H",
@@ -18398,34 +18384,34 @@
       {
         "horizon": "1H",
         "exchange": "Deribit",
-        "long_pct": "55.87%",
-        "short_pct": "44.13%",
-        "ls_ratio": "1.27",
-        "vol": 17260000.0
+        "long_pct": "51.65%",
+        "short_pct": "48.35%",
+        "ls_ratio": "1.07",
+        "vol": 128870000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bitfinex",
-        "long_pct": "72.28%",
-        "short_pct": "27.72%",
-        "ls_ratio": "2.61",
-        "vol": 779890.0
+        "long_pct": "70.72%",
+        "short_pct": "29.28%",
+        "ls_ratio": "2.42",
+        "vol": 5910000.0
       },
       {
         "horizon": "1H",
         "exchange": "Kraken",
-        "long_pct": "50.36%",
-        "short_pct": "49.64%",
-        "ls_ratio": "1.01",
-        "vol": 23140000.0
+        "long_pct": "52.28%",
+        "short_pct": "47.72%",
+        "ls_ratio": "1.10",
+        "vol": 43650000.0
       },
       {
         "horizon": "1H",
         "exchange": "Aster",
-        "long_pct": "45.76%",
-        "short_pct": "54.24%",
-        "ls_ratio": "0.84",
-        "vol": 42550000.0
+        "long_pct": "50.52%",
+        "short_pct": "49.48%",
+        "ls_ratio": "1.02",
+        "vol": 45480000.0
       },
       {
         "horizon": "1H",
@@ -18438,114 +18424,114 @@
       {
         "horizon": "1H",
         "exchange": "Lighter",
-        "long_pct": "48.07%",
-        "short_pct": "51.93%",
-        "ls_ratio": "0.93",
-        "vol": 39590000.0
+        "long_pct": "49.32%",
+        "short_pct": "50.68%",
+        "ls_ratio": "0.97",
+        "vol": 49130000.0
       },
       {
         "horizon": "1H",
         "exchange": "Whale Positions",
-        "long_pct": "47.26%",
-        "short_pct": "52.74%",
-        "ls_ratio": "0.90",
-        "vol": 1350000000.0
+        "long_pct": "45.09%",
+        "short_pct": "54.91%",
+        "ls_ratio": "0.82",
+        "vol": 1480000000.0
       },
       {
         "horizon": "1H",
         "exchange": "Global Accounts",
-        "long_pct": "48.96%",
-        "short_pct": "51.04%",
-        "ls_ratio": "0.96",
-        "vol": 4050000000.0
+        "long_pct": "45.71%",
+        "short_pct": "54.29%",
+        "ls_ratio": "0.84",
+        "vol": 5120000000.0
       },
       {
         "horizon": "4H",
         "exchange": "XRP",
-        "long_pct": "50.17%",
-        "short_pct": "49.83%",
-        "ls_ratio": "1.01",
-        "vol": 17750000000.0
+        "long_pct": "49.91%",
+        "short_pct": "50.09%",
+        "ls_ratio": "1.00",
+        "vol": 17670000000.0
       },
       {
         "horizon": "4H",
         "exchange": "Binance",
-        "long_pct": "51.05%",
-        "short_pct": "48.95%",
-        "ls_ratio": "1.04",
-        "vol": 5320000000.0
+        "long_pct": "50.67%",
+        "short_pct": "49.33%",
+        "ls_ratio": "1.03",
+        "vol": 5310000000.0
       },
       {
         "horizon": "4H",
         "exchange": "OKX",
-        "long_pct": "48.53%",
-        "short_pct": "51.47%",
-        "ls_ratio": "0.94",
+        "long_pct": "47.83%",
+        "short_pct": "52.17%",
+        "ls_ratio": "0.92",
         "vol": 2580000000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bybit",
-        "long_pct": "51.69%",
-        "short_pct": "48.31%",
-        "ls_ratio": "1.07",
-        "vol": 1730000000.0
+        "long_pct": "51.97%",
+        "short_pct": "48.03%",
+        "ls_ratio": "1.08",
+        "vol": 1690000000.0
       },
       {
         "horizon": "4H",
         "exchange": "KuCoin",
-        "long_pct": "52.82%",
-        "short_pct": "47.18%",
-        "ls_ratio": "1.12",
-        "vol": 53980000.0
+        "long_pct": "52.09%",
+        "short_pct": "47.91%",
+        "ls_ratio": "1.09",
+        "vol": 52050000.0
       },
       {
         "horizon": "4H",
         "exchange": "Gate",
-        "long_pct": "50.26%",
-        "short_pct": "49.74%",
-        "ls_ratio": "1.01",
-        "vol": 2049999999.9999998
+        "long_pct": "50.02%",
+        "short_pct": "49.98%",
+        "ls_ratio": "1.00",
+        "vol": 2020000000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bitget",
-        "long_pct": "48.45%",
-        "short_pct": "51.55%",
-        "ls_ratio": "0.94",
-        "vol": 892610000.0
+        "long_pct": "48.2%",
+        "short_pct": "51.8%",
+        "ls_ratio": "0.93",
+        "vol": 887250000.0
       },
       {
         "horizon": "4H",
         "exchange": "BingX",
-        "long_pct": "53.27%",
-        "short_pct": "46.73%",
-        "ls_ratio": "1.14",
-        "vol": 341820000.0
+        "long_pct": "52.73%",
+        "short_pct": "47.27%",
+        "ls_ratio": "1.12",
+        "vol": 345580000.0
       },
       {
         "horizon": "4H",
         "exchange": "MEXC",
-        "long_pct": "50.67%",
-        "short_pct": "49.33%",
-        "ls_ratio": "1.03",
-        "vol": 879770000.0
+        "long_pct": "50.34%",
+        "short_pct": "49.66%",
+        "ls_ratio": "1.01",
+        "vol": 880340000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bitunix",
-        "long_pct": "50.57%",
-        "short_pct": "49.43%",
+        "long_pct": "50.4%",
+        "short_pct": "49.6%",
         "ls_ratio": "1.02",
-        "vol": 998530000.0
+        "vol": 989650000.0
       },
       {
         "horizon": "4H",
         "exchange": "Hyperliquid",
-        "long_pct": "51.26%",
-        "short_pct": "48.74%",
+        "long_pct": "51.2%",
+        "short_pct": "48.8%",
         "ls_ratio": "1.05",
-        "vol": 872890000.0
+        "vol": 880110000.0
       },
       {
         "horizon": "4H",
@@ -18558,34 +18544,34 @@
       {
         "horizon": "4H",
         "exchange": "LBank",
-        "long_pct": "61.95%",
-        "short_pct": "38.05%",
-        "ls_ratio": "1.63",
-        "vol": 86740000.0
+        "long_pct": "62.59%",
+        "short_pct": "37.41%",
+        "ls_ratio": "1.67",
+        "vol": 87110000.0
       },
       {
         "horizon": "4H",
         "exchange": "Crypto.com",
-        "long_pct": "50.23%",
-        "short_pct": "49.77%",
-        "ls_ratio": "1.01",
-        "vol": 114400000.0
+        "long_pct": "50.06%",
+        "short_pct": "49.94%",
+        "ls_ratio": "1.00",
+        "vol": 115350000.0
       },
       {
         "horizon": "4H",
         "exchange": "WhiteBIT",
-        "long_pct": "40.44%",
-        "short_pct": "59.56%",
-        "ls_ratio": "0.68",
-        "vol": 750150000.0
+        "long_pct": "40.84%",
+        "short_pct": "59.16%",
+        "ls_ratio": "0.69",
+        "vol": 753930000.0
       },
       {
         "horizon": "4H",
         "exchange": "HTX",
-        "long_pct": "48.08%",
-        "short_pct": "51.92%",
-        "ls_ratio": "0.93",
-        "vol": 70880000.0
+        "long_pct": "47.37%",
+        "short_pct": "52.63%",
+        "ls_ratio": "0.90",
+        "vol": 71960000.0
       },
       {
         "horizon": "4H",
@@ -18598,34 +18584,34 @@
       {
         "horizon": "4H",
         "exchange": "Deribit",
-        "long_pct": "50.36%",
-        "short_pct": "49.64%",
-        "ls_ratio": "1.01",
-        "vol": 512659999.99999994
+        "long_pct": "50.4%",
+        "short_pct": "49.6%",
+        "ls_ratio": "1.02",
+        "vol": 505340000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bitfinex",
-        "long_pct": "59.85%",
-        "short_pct": "40.15%",
-        "ls_ratio": "1.49",
-        "vol": 9480000.0
+        "long_pct": "65.67%",
+        "short_pct": "34.33%",
+        "ls_ratio": "1.91",
+        "vol": 12790000.0
       },
       {
         "horizon": "4H",
         "exchange": "Kraken",
-        "long_pct": "56.37%",
-        "short_pct": "43.63%",
-        "ls_ratio": "1.29",
-        "vol": 153650000.0
+        "long_pct": "55.87%",
+        "short_pct": "44.13%",
+        "ls_ratio": "1.27",
+        "vol": 154150000.0
       },
       {
         "horizon": "4H",
         "exchange": "Aster",
-        "long_pct": "55.01%",
-        "short_pct": "44.99%",
-        "ls_ratio": "1.22",
-        "vol": 147180000.0
+        "long_pct": "55.17%",
+        "short_pct": "44.83%",
+        "ls_ratio": "1.23",
+        "vol": 147920000.0
       },
       {
         "horizon": "4H",
@@ -18638,26 +18624,26 @@
       {
         "horizon": "4H",
         "exchange": "Lighter",
-        "long_pct": "49.57%",
-        "short_pct": "50.43%",
-        "ls_ratio": "0.98",
-        "vol": 185820000.0
+        "long_pct": "49.09%",
+        "short_pct": "50.91%",
+        "ls_ratio": "0.96",
+        "vol": 185120000.0
       },
       {
         "horizon": "4H",
         "exchange": "Whale Positions",
-        "long_pct": "51.05%",
-        "short_pct": "48.95%",
-        "ls_ratio": "1.04",
-        "vol": 5320000000.0
+        "long_pct": "50.67%",
+        "short_pct": "49.33%",
+        "ls_ratio": "1.03",
+        "vol": 5310000000.0
       },
       {
         "horizon": "4H",
         "exchange": "Global Accounts",
-        "long_pct": "50.17%",
-        "short_pct": "49.83%",
-        "ls_ratio": "1.01",
-        "vol": 17750000000.0
+        "long_pct": "49.91%",
+        "short_pct": "50.09%",
+        "ls_ratio": "1.00",
+        "vol": 17670000000.0
       }
     ]
   },
@@ -19104,21 +19090,21 @@
     },
     "fut_netflow": {
       "Symbol": "XRP",
-      "5_minute": "+$1.42M",
-      "15_minute": "-$1.59M",
-      "30_minute": "-$10.94M",
-      "1_hour": "-$5.85M",
-      "2_hour": "-$3.07M",
-      "4_hour": "-$12.57M",
-      "6_hour": "-$21.12M",
-      "8_hour": "-$42.87M",
-      "12_hour": "-$13.87M",
-      "24_hour": "-$164.89M",
-      "1_week": "-$234.14M",
-      "15_day": "-$386.30M",
+      "5_minute": "+$141.46K",
+      "15_minute": "+$532.86K",
+      "30_minute": "-$1.02M",
+      "1_hour": "-$9.48M",
+      "2_hour": "-$3.97M",
+      "4_hour": "-$11.35M",
+      "6_hour": "-$17.90M",
+      "8_hour": "-$40.52M",
+      "12_hour": "-$13.74M",
+      "24_hour": "-$163.23M",
+      "1_week": "-$236.50M",
+      "15_day": "-$386.61M",
       "30_day": "-$1.28B",
-      "Market_Cap": "$78.75B",
-      "Timestamp_IST": "2026-10-30 21:26:29 IST"
+      "Market_Cap": "$79.14B",
+      "Timestamp_IST": "2026-10-30 21:38:05 IST"
     },
     "calendar": [
       {

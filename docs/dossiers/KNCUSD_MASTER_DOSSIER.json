@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 423,
+      "rank": 516,
       "symbol": "KNC",
-      "price": "$0.121500",
-      "price_24h_pct": "+2.02%",
+      "price": "$0.121400",
+      "price_24h_pct": "+1.51%",
       "open_interest": "$1.70M",
-      "current": "$170.27",
-      "last_24h": "$484.56",
+      "current": "$117.81",
+      "last_24h": "$485.64",
       "last_3d": "$1.45K",
-      "last_7d": "$2.38K",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "last_7d": "$2.37K",
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": []
   },

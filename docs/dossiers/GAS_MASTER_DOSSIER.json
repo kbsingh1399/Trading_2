@@ -188,16 +188,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 522,
+      "rank": 542,
       "symbol": "GAS",
-      "price": "$1.1610",
-      "price_24h_pct": "-4.99%",
-      "open_interest": "$2.05M",
-      "current": "$102.70",
-      "last_24h": "$255.65",
-      "last_3d": "$1.45K",
-      "last_7d": "$3.61K",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "price": "$1.1650",
+      "price_24h_pct": "-5.05%",
+      "open_interest": "$2.06M",
+      "current": "$102.97",
+      "last_24h": "$325.07",
+      "last_3d": "$1.44K",
+      "last_7d": "$3.59K",
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": []
   },
@@ -205,24 +205,7 @@
     "footprint_ladder": [],
     "signals": [],
     "spot_netflow": {},
-    "fut_netflow": {
-      "Symbol": "GAS",
-      "5_minute": "-$948.13",
-      "15_minute": "-$3.65K",
-      "30_minute": "-$17.06K",
-      "1_hour": "-$26.37K",
-      "2_hour": "-$36.67K",
-      "4_hour": "-$63.87K",
-      "6_hour": "-$53.99K",
-      "8_hour": "-$55.21K",
-      "12_hour": "-$59.30K",
-      "24_hour": "-$239.77K",
-      "1_week": "-$198.03K",
-      "15_day": "-$421.45K",
-      "30_day": "-$1.59M",
-      "Market_Cap": "$75.42M",
-      "Timestamp_IST": "2026-10-30 21:26:29 IST"
-    },
+    "fut_netflow": {},
     "calendar": [
       {
         "date": "Sun Oct 25",

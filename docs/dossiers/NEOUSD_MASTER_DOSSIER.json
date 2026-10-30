@@ -189,9 +189,9 @@
     "funding_row": {
       "Symbol": "NEO",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0023%",
+      "USDT_OKX": "-0.0004%",
       "USDT_Bybit": "0.0100%",
-      "USDT_KuCoin": "-0.0453%",
+      "USDT_KuCoin": "-0.0410%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
@@ -203,19 +203,19 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:29:23 IST"
+      "Timestamp_IST": "2026-10-30 21:40:58 IST"
     },
     "settle_row": {
-      "rank": 299,
+      "rank": 309,
       "symbol": "NEO",
-      "price": "$1.9780",
-      "price_24h_pct": "-8.21%",
-      "open_interest": "$3.83M",
-      "current": "$352.38",
-      "last_24h": "$1.16K",
-      "last_3d": "$2.80K",
-      "last_7d": "$6.26K",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "price": "$1.9830",
+      "price_24h_pct": "-8.32%",
+      "open_interest": "$3.84M",
+      "current": "$358.47",
+      "last_24h": "$1.05K",
+      "last_3d": "$3.18K",
+      "last_7d": "$6.41K",
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": []
   },
@@ -242,21 +242,21 @@
     },
     "fut_netflow": {
       "Symbol": "NEO",
-      "5_minute": "+$1.62K",
-      "15_minute": "-$1.40K",
-      "30_minute": "-$3.02K",
-      "1_hour": "+$7.87K",
-      "2_hour": "+$8.83K",
-      "4_hour": "+$31.83K",
-      "6_hour": "+$37.05K",
-      "8_hour": "+$57.41K",
-      "12_hour": "+$48.82K",
-      "24_hour": "-$435.51K",
-      "1_week": "-$482.34K",
-      "15_day": "-$1.48M",
-      "30_day": "-$6.52M",
-      "Market_Cap": "$139.17M",
-      "Timestamp_IST": "2026-10-30 21:26:29 IST"
+      "5_minute": "+$4.84K",
+      "15_minute": "+$8.77K",
+      "30_minute": "-$1.64K",
+      "1_hour": "+$8.84K",
+      "2_hour": "+$16.07K",
+      "4_hour": "+$37.81K",
+      "6_hour": "+$48.89K",
+      "8_hour": "+$61.70K",
+      "12_hour": "+$71.43K",
+      "24_hour": "-$397.76K",
+      "1_week": "-$472.49K",
+      "15_day": "-$1.47M",
+      "30_day": "-$6.48M",
+      "Market_Cap": "$139.22M",
+      "Timestamp_IST": "2026-10-30 21:38:05 IST"
     },
     "calendar": [
       {

@@ -129,17 +129,17 @@
     ],
     "hl_analysis_ladder": [
       {
-        "rank": "1829",
+        "rank": "1827",
         "user": "0x12d2...f97f",
         "side": "LONG",
-        "pos_usd": 1134838.52,
+        "pos_usd": 1133527.48,
         "tokens": 3972828.7,
         "entry_px": 0.3272,
-        "current_px": 0.28611,
+        "current_px": 0.28532,
         "liq_px": 0.0,
-        "pnl_usd": -165000.22,
-        "pnl_pct": -14.54,
-        "margin": 113483.85,
+        "pnl_usd": -166311.25,
+        "pnl_pct": -14.67,
+        "margin": 113352.75,
         "leverage": "10X Cross"
       }
     ],
@@ -1698,13 +1698,13 @@
     "ex_liq_ladder": [],
     "heapmap_rows": [
       {
-        "rank": 29,
+        "rank": 28,
         "asset": "CRV",
         "tf_1h": "-",
         "tf_4h": "-",
         "tf_12h": "-",
         "tf_24h": "$6.10M",
-        "timestamp_ist": "2026-10-30 21:29:37 IST"
+        "timestamp_ist": "2026-10-30 21:41:13 IST"
       }
     ],
     "live_liq_rows": [],
@@ -1714,34 +1714,34 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "CRV",
-      "USDT_Binance": "-0.0222%",
-      "USDT_OKX": "-0.0099%",
-      "USDT_Bybit": "-0.0204%",
-      "USDT_KuCoin": "-0.0053%",
-      "USDT_MEXC": "-0.0098%",
-      "USDT_BingX": "-0.0062%",
-      "USDT_Gate": "-0.0253%",
-      "USDT_Bitunix": "-0.0229%",
-      "USDT_Bitget": "-0.0080%",
+      "USDT_Binance": "-0.0217%",
+      "USDT_OKX": "-0.0097%",
+      "USDT_Bybit": "-0.0594%",
+      "USDT_KuCoin": "-0.0051%",
+      "USDT_MEXC": "-0.0099%",
+      "USDT_BingX": "-0.0064%",
+      "USDT_Gate": "0.0060%",
+      "USDT_Bitunix": "-0.0222%",
+      "USDT_Bitget": "-0.0083%",
       "USDT_WhiteBIT": "0.0100%",
-      "USDT_LBank": "-0.0099%",
+      "USDT_LBank": "-0.0097%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:29:23 IST"
+      "Timestamp_IST": "2026-10-30 21:40:58 IST"
     },
     "settle_row": {
-      "rank": 43,
+      "rank": 60,
       "symbol": "CRV",
-      "price": "$0.286200",
-      "price_24h_pct": "-14.69%",
-      "open_interest": "$49.73M",
-      "current": "-$9.75K",
+      "price": "$0.285500",
+      "price_24h_pct": "-14.78%",
+      "open_interest": "$49.56M",
+      "current": "-$6.23K",
       "last_24h": "$967.59",
       "last_3d": "$19.73K",
       "last_7d": "$53.52K",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": []
   },
@@ -1768,21 +1768,21 @@
     },
     "fut_netflow": {
       "Symbol": "CRV",
-      "5_minute": "+$119.58K",
-      "15_minute": "+$78.51K",
-      "30_minute": "-$620.36K",
-      "1_hour": "-$562.85K",
-      "2_hour": "-$298.92K",
-      "4_hour": "-$574.27K",
-      "6_hour": "-$186.90K",
-      "8_hour": "+$2.07M",
-      "12_hour": "+$2.06M",
-      "24_hour": "-$8.77M",
-      "1_week": "-$20.70M",
-      "15_day": "-$27.53M",
-      "30_day": "-$62.80M",
-      "Market_Cap": "$448.70M",
-      "Timestamp_IST": "2026-10-30 21:26:29 IST"
+      "5_minute": "-$23.02K",
+      "15_minute": "-$89.07K",
+      "30_minute": "-$16.02K",
+      "1_hour": "-$814.16K",
+      "2_hour": "-$468.98K",
+      "4_hour": "-$694.11K",
+      "6_hour": "-$377.36K",
+      "8_hour": "+$1.96M",
+      "12_hour": "+$1.97M",
+      "24_hour": "-$8.71M",
+      "1_week": "-$21.17M",
+      "15_day": "-$27.60M",
+      "30_day": "-$63.11M",
+      "Market_Cap": "$452.00M",
+      "Timestamp_IST": "2026-10-30 21:38:05 IST"
     },
     "calendar": [
       {

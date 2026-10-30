@@ -1,58 +1,58 @@
 {
   "cycle_id": "Cycle_038",
-  "timestamp_utc": "2026-10-30 15:50:18 UTC",
+  "timestamp_utc": "2026-10-30 16:11:36 UTC",
   "total_assets_audited": 88,
   "missing_dossiers": [],
   "ranked_assets": [
     {
       "symbol": "BTCUSD.pi",
-      "dossier_bytes": 1474386,
+      "dossier_bytes": 1567814,
       "confluence_score": 98.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 76045.48,
-      "sl": 75475.14,
-      "tp": 77471.33,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 77437.57,
+      "sl": 78017.19,
+      "tp": 75988.52,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (7 clusters)",
-        "Bearish Absorption detected (8 clusters)",
-        "Trapped Shorts provide squeeze fuel",
+        "Bullish Absorption (7 clusters)",
+        "Bearish Absorption (8 clusters)",
+        "Trapped Shorts fuel squeeze",
         "Trapped Longs overhead",
-        "Delta Divergences active (6)",
-        "Heavy Institutional Whale Armor (212 orders)",
-        "Trading near Long Max Pain sweep pool (76,045.48)"
+        "Delta Divergences (6)",
+        "Whale Armor (545 orders)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (77,437.57)"
       ],
       "telemetry": {
-        "bid": 77293.5,
-        "ask": 77309.5,
-        "mid": 77301.5,
-        "spread_bps": 2.07,
+        "bid": 77274.5,
+        "ask": 77291.5,
+        "mid": 77283.0,
+        "spread_bps": 2.2,
         "contract_size": 1.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 77492.23435630949,
-        "vwap_z": -0.014099367486427143,
-        "rsi_14": 53.05117990016248,
-        "atr_14": 363.81188193084193,
-        "u1": 78040.79487272531,
-        "l1": 76943.67383989367
+        "vwap": 77488.2691681161,
+        "vwap_z": -0.04959056315396063,
+        "rsi_14": 52.49672332455593,
+        "atr_14": 362.7255512622179,
+        "u1": 78028.07284070166,
+        "l1": 76948.46549553053
       },
       "auction": {
         "daily_poc": 77315.92,
-        "daily_vah": 78308.56,
+        "daily_vah": 78286.0,
         "daily_val": 76616.56,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": -18.02056370124508,
-        "delta_1h": -23.475141856352955,
+        "delta_5m": -9.116536274863888,
+        "delta_1h": 3.601064236822612,
         "bias": "BEARISH"
       },
       "whales": {
-        "whale_count": 212,
-        "stop_clusters_count": 934,
+        "whale_count": 545,
+        "stop_clusters_count": 946,
         "ob_depth_count": 41
       },
       "liquidations": {
@@ -61,8 +61,8 @@
       },
       "derivatives": {
         "funding_binance": "0.0100%",
-        "total_oi": "$53.32B",
-        "oi_change_24h": "-3.09%"
+        "total_oi": "$53.27B",
+        "oi_change_24h": "-3.32%"
       },
       "footprint_signals": {
         "total_count": 28,
@@ -80,127 +80,52 @@
       }
     },
     {
-      "symbol": "BCHUSD.p",
-      "dossier_bytes": 358816,
-      "confluence_score": 98.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 265.34,
-      "sl": 261.2,
-      "tp": 275.69,
-      "rr": 2.5,
-      "reasons": [
-        "Bullish Absorption detected (9 clusters)",
-        "Bearish Absorption detected (8 clusters)",
-        "Trapped Shorts provide squeeze fuel",
-        "Trapped Longs overhead",
-        "Delta Divergences active (26)",
-        "Price (291.95) testing/above Developing VAH (285.97)",
-        "Heavy Institutional Whale Armor (182 orders)"
-      ],
-      "telemetry": {
-        "bid": 291.66,
-        "ask": 292.24,
-        "mid": 291.95000000000005,
-        "spread_bps": 19.87,
-        "contract_size": 1.0,
-        "point": 0.01
-      },
-      "technicals": {
-        "vwap": 279.8553349741186,
-        "vwap_z": 1.98924498382543,
-        "rsi_14": 73.92239751325457,
-        "atr_14": 2.7605428411353157,
-        "u1": 286.69444485575764,
-        "l1": 273.01622509247954
-      },
-      "auction": {
-        "daily_poc": 283.9,
-        "daily_vah": 285.97,
-        "daily_val": 273.29,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BULLISH (Above Pivot)"
-      },
-      "cvd": {
-        "delta_5m": -37.310697174091686,
-        "delta_1h": -27.683164636418432,
-        "bias": "BEARISH"
-      },
-      "whales": {
-        "whale_count": 182,
-        "stop_clusters_count": 125,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 299.02,
-        "long_max_pain": 265.34
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "$317.31M",
-        "oi_change_24h": "+1.49%"
-      },
-      "footprint_signals": {
-        "total_count": 60,
-        "bullish_absorptions": 9,
-        "bearish_absorptions": 8,
-        "trapped_longs": 4,
-        "trapped_shorts": 4,
-        "divergences": 26,
-        "exhaustions": 9,
-        "top_signals": [
-          "[10-30 21:04] Range 1 \u00b7 Absorption (BULLISH) @ 291.61 | Selling absorbed at the low",
-          "[10-30 21:04] Range 1 \u00b7 Trapped shorts (BULLISH) @ 291.61 | Failed breakdown",
-          "[10-30 20:42] Volume 10K BCH \u00b7 Divergence (BEARISH) @ 295.83 | Rally without taker buying"
-        ]
-      }
-    },
-    {
       "symbol": "ETHUSD.pi",
-      "dossier_bytes": 788523,
-      "confluence_score": 96.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 2174.37,
-      "sl": 2152.95,
-      "tp": 2227.92,
+      "dossier_bytes": 779301,
+      "confluence_score": 88.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 2222.64,
+      "sl": 2243.83,
+      "tp": 2169.66,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (4 clusters)",
-        "Bearish Absorption detected (2 clusters)",
-        "Delta Divergences active (2)",
-        "Heavy Institutional Whale Armor (420 orders)",
-        "Trading near Long Max Pain sweep pool (2,174.37)"
+        "Bullish Absorption (4 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (2)",
+        "Whale Armor (403 orders)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (2,222.64)"
       ],
       "telemetry": {
-        "bid": 2221.9,
-        "ask": 2225.3,
-        "mid": 2223.6000000000004,
-        "spread_bps": 15.29,
+        "bid": 2218.0,
+        "ask": 2221.3,
+        "mid": 2219.65,
+        "spread_bps": 14.87,
         "contract_size": 1.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 2222.591848049873,
-        "vwap_z": 0.791677639273299,
-        "rsi_14": 52.98849027198775,
-        "atr_14": 14.280807783544528,
-        "u1": 2237.2545736016295,
-        "l1": 2207.9291224981166
+        "vwap": 2222.6372851499164,
+        "vwap_z": -0.07947275981534074,
+        "rsi_14": 46.08872693036229,
+        "atr_14": 14.124267935917187,
+        "u1": 2236.947662096167,
+        "l1": 2208.326908203666
       },
       "auction": {
         "daily_poc": 2224.76,
-        "daily_vah": 2247.42,
+        "daily_vah": 2246.61,
         "daily_val": 2203.72,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": -2.306779645342885,
-        "delta_1h": -26.438423642957165,
-        "bias": "BEARISH"
+        "delta_5m": 16.129333708761635,
+        "delta_1h": 9.624687486275516,
+        "bias": "BULLISH"
       },
       "whales": {
-        "whale_count": 420,
-        "stop_clusters_count": 332,
+        "whale_count": 403,
+        "stop_clusters_count": 334,
         "ob_depth_count": 41
       },
       "liquidations": {
@@ -208,18 +133,18 @@
         "long_max_pain": 2174.37
       },
       "derivatives": {
-        "funding_binance": "-0.0039%",
-        "total_oi": "$28.35B",
-        "oi_change_24h": "-7.26%"
+        "funding_binance": "-0.0049%",
+        "total_oi": "$28.41B",
+        "oi_change_24h": "-7.07%"
       },
       "footprint_signals": {
-        "total_count": 13,
+        "total_count": 11,
         "bullish_absorptions": 4,
-        "bearish_absorptions": 2,
+        "bearish_absorptions": 1,
         "trapped_longs": 0,
         "trapped_shorts": 0,
         "divergences": 2,
-        "exhaustions": 5,
+        "exhaustions": 4,
         "top_signals": [
           "[10-30 20:40] Range 10 \u00b7 Absorption (BULLISH) @ 2248.2 | Selling absorbed at the low",
           "[10-30 19:03] Volume 100K ETH \u00b7 Exhaustion (BULLISH) @ 2215.0 | Seller exhaustion",
@@ -228,114 +153,116 @@
       }
     },
     {
-      "symbol": "XAUUSD.pi",
-      "dossier_bytes": 149783,
-      "confluence_score": 93.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 3864.25,
-      "sl": 3835.27,
-      "tp": 3936.7,
+      "symbol": "BCHUSD.p",
+      "dossier_bytes": 307378,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_BUY",
+      "entry": 291.43,
+      "sl": 287.43,
+      "tp": 301.43,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (3 clusters)",
-        "Delta Divergences active (3)",
-        "Price (3,899.28) testing/below Developing VAL (3,948.67)",
-        "Trading near Long Max Pain sweep pool (3,864.25)"
+        "Bullish Absorption (9 clusters)",
+        "Bearish Absorption (10 clusters)",
+        "Trapped Shorts fuel squeeze",
+        "Trapped Longs overhead",
+        "Delta Divergences (26)",
+        "Model 2 Bull Trend: Pullback to dynamic shelf (291.43)"
       ],
       "telemetry": {
-        "bid": 3899.23,
-        "ask": 3899.32,
-        "mid": 3899.275,
-        "spread_bps": 0.23,
-        "contract_size": 100.0,
+        "bid": 292.36,
+        "ask": 292.84,
+        "mid": 292.6,
+        "spread_bps": 16.4,
+        "contract_size": 1.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 3968.080409228216,
-        "vwap_z": -1.7214988961431286,
-        "rsi_14": 21.98741600780916,
-        "atr_14": 11.476032955667588,
-        "u1": 4003.3928972956855,
-        "l1": 3932.7679211607465
+        "vwap": 280.3391940925895,
+        "vwap_z": 1.646746221388935,
+        "rsi_14": 68.57924225024175,
+        "atr_14": 2.667508878350336,
+        "u1": 287.4567485494776,
+        "l1": 273.22163963570137
       },
       "auction": {
-        "daily_poc": 3990.88,
-        "daily_vah": 4024.83,
-        "daily_val": 3948.67,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
+        "daily_poc": 283.9,
+        "daily_vah": 285.97,
+        "daily_val": 272.59,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BULLISH (Above Pivot)"
       },
       "cvd": {
-        "delta_5m": 8.584902624024974,
-        "delta_1h": -63.983964482663616,
+        "delta_5m": 25.829120040183444,
+        "delta_1h": -35.127399442422366,
         "bias": "BULLISH"
       },
       "whales": {
         "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 41
+        "stop_clusters_count": 126,
+        "ob_depth_count": 0
       },
       "liquidations": {
-        "short_max_pain": 4043.22,
-        "long_max_pain": 3864.25
+        "short_max_pain": 299.02,
+        "long_max_pain": 265.34
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0100%",
+        "total_oi": "$319.49M",
+        "oi_change_24h": "-0.78%"
       },
       "footprint_signals": {
-        "total_count": 13,
-        "bullish_absorptions": 3,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 3,
-        "exhaustions": 3,
+        "total_count": 62,
+        "bullish_absorptions": 9,
+        "bearish_absorptions": 10,
+        "trapped_longs": 4,
+        "trapped_shorts": 4,
+        "divergences": 26,
+        "exhaustions": 9,
         "top_signals": [
-          "[10-30 18:35] Range 10 \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion",
-          "[10-30 17:45] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion",
-          "[10-30 17:17] Range 10 \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion"
+          "[10-30 21:19] Range 1 \u00b7 Absorption (BEARISH) @ 293.49 | Buying absorbed at the high",
+          "[10-30 21:09] Range 1 \u00b7 Absorption (BEARISH) @ 294.19 | Buying absorbed at the high",
+          "[10-30 21:04] Range 1 \u00b7 Absorption (BULLISH) @ 291.61 | Selling absorbed at the low"
         ]
       }
     },
     {
       "symbol": "ZECUSD.p",
-      "dossier_bytes": 87630,
-      "confluence_score": 91.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 1176.48,
-      "sl": 1167.6564,
-      "tp": 1198.539,
+      "dossier_bytes": 88475,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 1230.3708,
+      "sl": 1251.9062,
+      "tp": 1176.5323,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (8 clusters)",
-        "Bearish Absorption detected (1 clusters)",
-        "Trapped Shorts provide squeeze fuel",
+        "Bullish Absorption (8 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Trapped Shorts fuel squeeze",
         "Trapped Longs overhead",
-        "Delta Divergences active (16)",
-        "Trading near Long Max Pain sweep pool (1,176.48)"
+        "Delta Divergences (17)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (1,230.37)"
       ],
       "telemetry": {
-        "bid": 1234.02,
-        "ask": 1234.85,
-        "mid": 1234.435,
-        "spread_bps": 6.72,
+        "bid": 1227.38,
+        "ask": 1228.45,
+        "mid": 1227.915,
+        "spread_bps": 8.71,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1234.435,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 3.0860875,
-        "u1": 1236.9038699999999,
-        "l1": 1231.96613
+        "vwap": 1249.806403697,
+        "vwap_z": -1.2418627971651854,
+        "rsi_14": 41.1305920494929,
+        "atr_14": 14.356936052547423,
+        "u1": 1268.6139593708763,
+        "l1": 1230.9988480231236
       },
       "auction": {
         "daily_poc": 1247.68,
-        "daily_vah": 1267.78,
-        "daily_val": 1224.49,
+        "daily_vah": 1266.23,
+        "daily_val": 1222.17,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
@@ -354,66 +281,67 @@
         "long_max_pain": 1176.48
       },
       "derivatives": {
-        "funding_binance": "0.0062%",
+        "funding_binance": "0.0065%",
         "total_oi": "N/A",
         "oi_change_24h": "N/A"
       },
       "footprint_signals": {
-        "total_count": 39,
+        "total_count": 42,
         "bullish_absorptions": 8,
         "bearish_absorptions": 1,
         "trapped_longs": 1,
-        "trapped_shorts": 1,
-        "divergences": 16,
-        "exhaustions": 12,
+        "trapped_shorts": 2,
+        "divergences": 17,
+        "exhaustions": 13,
         "top_signals": [
-          "[10-30 20:48] Range 5 \u00b7 Absorption (BEARISH) @ 1260.8 | Buying absorbed at the high",
-          "[10-30 20:48] Range 5 \u00b7 Trapped longs (BEARISH) @ 1260.8 | Failed breakout",
-          "[10-30 20:46] Range 5 \u00b7 Divergence (BEARISH) @ 1259.3 | Rally without taker buying"
+          "[10-30 21:12] Range 5 \u00b7 Exhaustion (BULLISH) @ 1231.0 | Seller exhaustion",
+          "[10-30 21:12] Range 5 \u00b7 Trapped shorts (BULLISH) @ 1231.0 | Failed breakdown",
+          "[10-30 20:48] Range 5 \u00b7 Absorption (BEARISH) @ 1260.8 | Buying absorbed at the high"
         ]
       }
     },
     {
       "symbol": "XAUAUD.pi",
-      "dossier_bytes": 149785,
-      "confluence_score": 85.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 3864.25,
-      "sl": 3835.27,
-      "tp": 3936.7,
+      "dossier_bytes": 149447,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 5553.51,
+      "sl": 5595.08,
+      "tp": 5449.59,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (3 clusters)",
-        "Delta Divergences active (3)",
-        "Price (5,545.63) testing/above Developing VAH (4,024.83)"
+        "Bullish Absorption (1 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (3)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (5,553.51)"
       ],
       "telemetry": {
-        "bid": 5545.43,
-        "ask": 5545.83,
-        "mid": 5545.63,
+        "bid": 5542.23,
+        "ask": 5542.63,
+        "mid": 5542.43,
         "spread_bps": 0.72,
         "contract_size": 100.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 3968.080409228216,
-        "vwap_z": -1.7214988961431286,
-        "rsi_14": 21.98741600780916,
-        "atr_14": 11.476032955667588,
-        "u1": 4003.3928972956855,
-        "l1": 3932.7679211607465
+        "vwap": 3965.896152027699,
+        "vwap_z": -1.8384328062117412,
+        "rsi_14": 19.477993186622285,
+        "atr_14": 10.793008007884792,
+        "u1": 4002.648189850025,
+        "l1": 3929.1441142053727
       },
       "auction": {
         "daily_poc": 3990.88,
         "daily_vah": 4024.83,
-        "daily_val": 3948.67,
+        "daily_val": 3945.0,
         "regime": "TREND_DOWN_ACCEPTANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": 8.584902624024974,
-        "delta_1h": -63.983964482663616,
-        "bias": "BULLISH"
+        "delta_5m": -6.595879930553339,
+        "delta_1h": -33.47343316137492,
+        "bias": "BEARISH"
       },
       "whales": {
         "whale_count": 0,
@@ -425,66 +353,67 @@
         "long_max_pain": 3864.25
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
       },
       "footprint_signals": {
         "total_count": 13,
-        "bullish_absorptions": 3,
-        "bearish_absorptions": 0,
+        "bullish_absorptions": 1,
+        "bearish_absorptions": 1,
         "trapped_longs": 0,
         "trapped_shorts": 0,
         "divergences": 3,
-        "exhaustions": 3,
+        "exhaustions": 4,
         "top_signals": [
-          "[2026-10-30 21:01:49 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 5552.64 | GOLD_AUD (XAUAUD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
-          "[10-30 18:35] Range 10 \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion",
-          "[10-30 17:45] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion"
+          "[2026-10-30 21:25:46 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 5541.88 | GOLD_AUD (XAUAUD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
+          "[10-30 19:41] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3913.2 | Seller exhaustion",
+          "[10-30 19:05] Volume 20K XAU \u00b7 Divergence (BEARISH) @ 3944.4 | Rally without taker buying"
         ]
       }
     },
     {
       "symbol": "XAUEUR.pi",
-      "dossier_bytes": 149788,
-      "confluence_score": 85.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 3864.25,
-      "sl": 3835.27,
-      "tp": 3936.7,
+      "dossier_bytes": 149452,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 3497.9,
+      "sl": 3524.08,
+      "tp": 3432.45,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (3 clusters)",
-        "Delta Divergences active (3)",
-        "Price (3,494.30) testing/below Developing VAL (3,948.67)"
+        "Bullish Absorption (1 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (3)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (3,497.90)"
       ],
       "telemetry": {
-        "bid": 3494.19,
-        "ask": 3494.4,
-        "mid": 3494.295,
-        "spread_bps": 0.6,
+        "bid": 3490.81,
+        "ask": 3491.03,
+        "mid": 3490.92,
+        "spread_bps": 0.63,
         "contract_size": 100.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 3968.080409228216,
-        "vwap_z": -1.7214988961431286,
-        "rsi_14": 21.98741600780916,
-        "atr_14": 11.476032955667588,
-        "u1": 4003.3928972956855,
-        "l1": 3932.7679211607465
+        "vwap": 3965.896152027699,
+        "vwap_z": -1.8384328062117412,
+        "rsi_14": 19.477993186622285,
+        "atr_14": 10.793008007884792,
+        "u1": 4002.648189850025,
+        "l1": 3929.1441142053727
       },
       "auction": {
         "daily_poc": 3990.88,
         "daily_vah": 4024.83,
-        "daily_val": 3948.67,
+        "daily_val": 3945.0,
         "regime": "TREND_DOWN_ACCEPTANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": 8.584902624024974,
-        "delta_1h": -63.983964482663616,
-        "bias": "BULLISH"
+        "delta_5m": -6.595879930553339,
+        "delta_1h": -33.47343316137492,
+        "bias": "BEARISH"
       },
       "whales": {
         "whale_count": 0,
@@ -496,66 +425,67 @@
         "long_max_pain": 3864.25
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
       },
       "footprint_signals": {
         "total_count": 13,
-        "bullish_absorptions": 3,
-        "bearish_absorptions": 0,
+        "bullish_absorptions": 1,
+        "bearish_absorptions": 1,
         "trapped_longs": 0,
         "trapped_shorts": 0,
         "divergences": 3,
-        "exhaustions": 3,
+        "exhaustions": 4,
         "top_signals": [
-          "[2026-10-30 21:01:49 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 3499.87 | GOLD_EUR (XAUEUR.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
-          "[10-30 18:35] Range 10 \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion",
-          "[10-30 17:45] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion"
+          "[2026-10-30 21:25:46 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 3493.2 | GOLD_EUR (XAUEUR.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
+          "[10-30 19:41] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3913.2 | Seller exhaustion",
+          "[10-30 19:05] Volume 20K XAU \u00b7 Divergence (BEARISH) @ 3944.4 | Rally without taker buying"
         ]
       }
     },
     {
       "symbol": "XAUGBP.pi",
-      "dossier_bytes": 149784,
-      "confluence_score": 85.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 3864.25,
-      "sl": 3835.27,
-      "tp": 3936.7,
+      "dossier_bytes": 149468,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 2915.18,
+      "sl": 2937.0,
+      "tp": 2860.63,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (3 clusters)",
-        "Delta Divergences active (3)",
-        "Price (2,911.79) testing/below Developing VAL (3,948.67)"
+        "Bullish Absorption (1 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (3)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (2,915.18)"
       ],
       "telemetry": {
-        "bid": 2911.7,
-        "ask": 2911.88,
-        "mid": 2911.79,
-        "spread_bps": 0.62,
+        "bid": 2909.27,
+        "ask": 2909.46,
+        "mid": 2909.365,
+        "spread_bps": 0.65,
         "contract_size": 100.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 3968.080409228216,
-        "vwap_z": -1.7214988961431286,
-        "rsi_14": 21.98741600780916,
-        "atr_14": 11.476032955667588,
-        "u1": 4003.3928972956855,
-        "l1": 3932.7679211607465
+        "vwap": 3965.896152027699,
+        "vwap_z": -1.8384328062117412,
+        "rsi_14": 19.477993186622285,
+        "atr_14": 10.793008007884792,
+        "u1": 4002.648189850025,
+        "l1": 3929.1441142053727
       },
       "auction": {
         "daily_poc": 3990.88,
         "daily_vah": 4024.83,
-        "daily_val": 3948.67,
+        "daily_val": 3945.0,
         "regime": "TREND_DOWN_ACCEPTANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": 8.584902624024974,
-        "delta_1h": -63.983964482663616,
-        "bias": "BULLISH"
+        "delta_5m": -6.595879930553339,
+        "delta_1h": -33.47343316137492,
+        "bias": "BEARISH"
       },
       "whales": {
         "whale_count": 0,
@@ -567,66 +497,67 @@
         "long_max_pain": 3864.25
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
       },
       "footprint_signals": {
         "total_count": 13,
-        "bullish_absorptions": 3,
-        "bearish_absorptions": 0,
+        "bullish_absorptions": 1,
+        "bearish_absorptions": 1,
         "trapped_longs": 0,
         "trapped_shorts": 0,
         "divergences": 3,
-        "exhaustions": 3,
+        "exhaustions": 4,
         "top_signals": [
-          "[2026-10-30 21:01:49 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 2915.54 | GOLD_GBP (XAUGBP.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
-          "[10-30 18:35] Range 10 \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion",
-          "[10-30 17:45] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion"
+          "[2026-10-30 21:25:46 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 2911.28 | GOLD_GBP (XAUGBP.pi) Metal Auction: TREND_DOWN_ACCEPTANCE",
+          "[10-30 19:41] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3913.2 | Seller exhaustion",
+          "[10-30 19:05] Volume 20K XAU \u00b7 Divergence (BEARISH) @ 3944.4 | Rally without taker buying"
         ]
       }
     },
     {
       "symbol": "XAUSGD.pi",
-      "dossier_bytes": 149791,
-      "confluence_score": 85.0,
-      "action": "BUY_LIMIT_CANDIDATE",
-      "entry": 3864.25,
-      "sl": 3835.27,
-      "tp": 3936.7,
+      "dossier_bytes": 149445,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 4990.87,
+      "sl": 5028.23,
+      "tp": 4897.47,
       "rr": 2.5,
       "reasons": [
-        "Bullish Absorption detected (3 clusters)",
-        "Delta Divergences active (3)",
-        "Price (4,983.11) testing/above Developing VAH (4,024.83)"
+        "Bullish Absorption (1 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (3)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (4,990.87)"
       ],
       "telemetry": {
-        "bid": 4982.98,
-        "ask": 4983.24,
-        "mid": 4983.11,
-        "spread_bps": 0.52,
+        "bid": 4980.72,
+        "ask": 4981.1,
+        "mid": 4980.91,
+        "spread_bps": 0.76,
         "contract_size": 100.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 3968.080409228216,
-        "vwap_z": -1.7214988961431286,
-        "rsi_14": 21.98741600780916,
-        "atr_14": 11.476032955667588,
-        "u1": 4003.3928972956855,
-        "l1": 3932.7679211607465
+        "vwap": 3965.896152027699,
+        "vwap_z": -1.8384328062117412,
+        "rsi_14": 19.477993186622285,
+        "atr_14": 10.793008007884792,
+        "u1": 4002.648189850025,
+        "l1": 3929.1441142053727
       },
       "auction": {
         "daily_poc": 3990.88,
         "daily_vah": 4024.83,
-        "daily_val": 3948.67,
+        "daily_val": 3945.0,
         "regime": "TREND_DOWN_ACCEPTANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": 8.584902624024974,
-        "delta_1h": -63.983964482663616,
-        "bias": "BULLISH"
+        "delta_5m": -6.595879930553339,
+        "delta_1h": -33.47343316137492,
+        "bias": "BEARISH"
       },
       "whales": {
         "whale_count": 0,
@@ -638,67 +569,138 @@
         "long_max_pain": 3864.25
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
       },
       "footprint_signals": {
         "total_count": 13,
-        "bullish_absorptions": 3,
-        "bearish_absorptions": 0,
+        "bullish_absorptions": 1,
+        "bearish_absorptions": 1,
         "trapped_longs": 0,
         "trapped_shorts": 0,
         "divergences": 3,
-        "exhaustions": 3,
+        "exhaustions": 4,
         "top_signals": [
-          "[10-30 18:35] Range 10 \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion",
-          "[10-30 17:45] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion",
-          "[10-30 17:17] Range 10 \u00b7 Exhaustion (BULLISH) @ 3969.1 | Seller exhaustion"
+          "[10-30 19:41] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3913.2 | Seller exhaustion",
+          "[10-30 19:05] Volume 20K XAU \u00b7 Divergence (BEARISH) @ 3944.4 | Rally without taker buying",
+          "[10-30 18:38] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion"
+        ]
+      }
+    },
+    {
+      "symbol": "XAUUSD.pi",
+      "dossier_bytes": 149464,
+      "confluence_score": 83.0,
+      "action": "MODEL_2_TREND_PULLBACK_SELL",
+      "entry": 3906.83,
+      "sl": 3936.07,
+      "tp": 3833.73,
+      "rr": 2.5,
+      "reasons": [
+        "Bullish Absorption (1 clusters)",
+        "Bearish Absorption (1 clusters)",
+        "Delta Divergences (3)",
+        "Model 2 Bear Trend: Pullback to dynamic resistance (3,906.83)"
+      ],
+      "telemetry": {
+        "bid": 3898.99,
+        "ask": 3899.08,
+        "mid": 3899.035,
+        "spread_bps": 0.23,
+        "contract_size": 100.0,
+        "point": 0.01
+      },
+      "technicals": {
+        "vwap": 3965.896152027699,
+        "vwap_z": -1.8384328062117412,
+        "rsi_14": 19.477993186622285,
+        "atr_14": 10.793008007884792,
+        "u1": 4002.648189850025,
+        "l1": 3929.1441142053727
+      },
+      "auction": {
+        "daily_poc": 3990.88,
+        "daily_vah": 4024.83,
+        "daily_val": 3945.0,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": -6.595879930553339,
+        "delta_1h": -33.47343316137492,
+        "bias": "BEARISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 41
+      },
+      "liquidations": {
+        "short_max_pain": 4043.22,
+        "long_max_pain": 3864.25
+      },
+      "derivatives": {
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
+      },
+      "footprint_signals": {
+        "total_count": 13,
+        "bullish_absorptions": 1,
+        "bearish_absorptions": 1,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 3,
+        "exhaustions": 4,
+        "top_signals": [
+          "[10-30 19:41] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3913.2 | Seller exhaustion",
+          "[10-30 19:05] Volume 20K XAU \u00b7 Divergence (BEARISH) @ 3944.4 | Rally without taker buying",
+          "[10-30 18:38] Volume 20K XAU \u00b7 Exhaustion (BULLISH) @ 3947.4 | Seller exhaustion"
         ]
       }
     },
     {
       "symbol": "USWTI.p",
-      "dossier_bytes": 64775,
-      "confluence_score": 69.0,
+      "dossier_bytes": 64784,
+      "confluence_score": 66.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
       "reasons": [
-        "Bearish Absorption detected (4 clusters)",
+        "Bearish Absorption (4 clusters)",
         "Trapped Longs overhead",
-        "Delta Divergences active (9)",
-        "Trading near Long Max Pain sweep pool (103.13)"
+        "Delta Divergences (9)"
       ],
       "telemetry": {
-        "bid": 104.681,
-        "ask": 104.715,
-        "mid": 104.69800000000001,
-        "spread_bps": 3.25,
+        "bid": 104.743,
+        "ask": 104.773,
+        "mid": 104.758,
+        "spread_bps": 2.86,
         "contract_size": 1000.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 104.69800000000001,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 1.0,
-        "u1": 104.907396,
-        "l1": 104.48860400000001
+        "vwap": 104.3959782919868,
+        "vwap_z": 0.6185963879194945,
+        "rsi_14": 52.49151143382345,
+        "atr_14": 0.4462273933415166,
+        "u1": 104.87613257968344,
+        "l1": 103.91582400429014
       },
       "auction": {
         "daily_poc": 104.75,
         "daily_vah": 105.056,
-        "daily_val": 104.038,
+        "daily_val": 104.055,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },
       "cvd": {
-        "delta_5m": 53.40909090909106,
-        "delta_1h": 54.90196078431213,
-        "bias": "BULLISH"
+        "delta_5m": -90.0,
+        "delta_1h": 52.32558139534683,
+        "bias": "BEARISH"
       },
       "whales": {
         "whale_count": 0,
@@ -715,13 +717,13 @@
         "oi_change_24h": "N/A"
       },
       "footprint_signals": {
-        "total_count": 19,
+        "total_count": 18,
         "bullish_absorptions": 0,
         "bearish_absorptions": 4,
         "trapped_longs": 2,
         "trapped_shorts": 0,
         "divergences": 9,
-        "exhaustions": 4,
+        "exhaustions": 3,
         "top_signals": [
           "[2026-10-30 17:30:00 IST] 4h \u00b7 BEARISH ABSORPTION (BEARISH) @ 104.378 | WTI_OIL Macro Delta Flow: BEARISH ABSORPTION",
           "[10-30 20:04] Volume 200K CL \u00b7 Divergence (BEARISH) @ 104.5 | Rally without taker buying",
@@ -731,35 +733,33 @@
     },
     {
       "symbol": "AUDCAD.pi",
-      "dossier_bytes": 23522,
-      "confluence_score": 65.0,
+      "dossier_bytes": 23540,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (0.98) testing/below Developing VAL (0.98)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 0.98047,
-        "ask": 0.9805,
-        "mid": 0.980485,
+        "bid": 0.98147,
+        "ask": 0.9815,
+        "mid": 0.9814849999999999,
         "spread_bps": 0.31,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 0.9816721042712485,
-        "vwap_z": -0.03954260118798899,
-        "rsi_14": 52.78211798061188,
-        "atr_14": 0.0006747562217157659,
-        "u1": 0.9824839949988192,
-        "l1": 0.9808602135436778
+        "vwap": 0.9816539447084233,
+        "vwap_z": 0.28267124901028357,
+        "rsi_14": 54.30562696630143,
+        "atr_14": 0.0007698663340414469,
+        "u1": 0.9824536556530921,
+        "l1": 0.9808542337637545
       },
       "auction": {
-        "daily_poc": 0.98139,
-        "daily_vah": 0.98223,
+        "daily_poc": 0.98141,
+        "daily_vah": 0.98221,
         "daily_val": 0.98054,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
@@ -796,166 +796,34 @@
     },
     {
       "symbol": "AUDCHF.pi",
-      "dossier_bytes": 23519,
-      "confluence_score": 65.0,
+      "dossier_bytes": 23522,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (0.58) testing/above Developing VAH (0.58)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 0.57928,
-        "ask": 0.5793,
-        "mid": 0.5792900000000001,
-        "spread_bps": 0.35,
+        "bid": 0.57875,
+        "ask": 0.57879,
+        "mid": 0.57877,
+        "spread_bps": 0.69,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 0.578018296193542,
-        "vwap_z": 2.262558386987106,
-        "rsi_14": 70.04751506829064,
-        "atr_14": 0.0006151712129735115,
-        "u1": 0.5789472020810301,
-        "l1": 0.5770893903060538
+        "vwap": 0.5780715169619909,
+        "vwap_z": 0.9301678964924168,
+        "rsi_14": 53.573628688601765,
+        "atr_14": 0.0006675200764997009,
+        "u1": 0.5790159518767216,
+        "l1": 0.5771270820472602
       },
       "auction": {
         "daily_poc": 0.57781,
-        "daily_vah": 0.57898,
+        "daily_vah": 0.57901,
         "daily_val": 0.57721,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "CADCHF.pi",
-      "dossier_bytes": 23469,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (0.59) testing/above Developing VAH (0.59)"
-      ],
-      "telemetry": {
-        "bid": 0.59076,
-        "ask": 0.59084,
-        "mid": 0.5908,
-        "spread_bps": 1.35,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 0.5887633621828767,
-        "vwap_z": 2.3150647550466723,
-        "rsi_14": 71.83167870322501,
-        "atr_14": 0.0005423423388147389,
-        "u1": 0.5897035682019,
-        "l1": 0.5878231561638535
-      },
-      "auction": {
-        "daily_poc": 0.58851,
-        "daily_vah": 0.58897,
-        "daily_val": 0.58764,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BULLISH (Above Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "CADJPY.pi",
-      "dossier_bytes": 23536,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (112.78) testing/above Developing VAH (112.78)"
-      ],
-      "telemetry": {
-        "bid": 112.777,
-        "ask": 112.788,
-        "mid": 112.7825,
-        "spread_bps": 0.98,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 112.66847974990311,
-        "vwap_z": 0.18877693925124922,
-        "rsi_14": 53.299857066094,
-        "atr_14": 0.12055867300602122,
-        "u1": 112.76128902081504,
-        "l1": 112.57567047899119
-      },
-      "auction": {
-        "daily_poc": 112.676,
-        "daily_vah": 112.781,
-        "daily_val": 112.557,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
@@ -990,37 +858,163 @@
       }
     },
     {
-      "symbol": "CHFJPY.pi",
-      "dossier_bytes": 23554,
-      "confluence_score": 65.0,
+      "symbol": "AUDJPY.pi",
+      "dossier_bytes": 23564,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (190.90) testing/below Developing VAL (191.28)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 190.901,
-        "ask": 190.906,
-        "mid": 190.9035,
-        "spread_bps": 0.26,
+        "bid": 110.737,
+        "ask": 110.741,
+        "mid": 110.739,
+        "spread_bps": 0.36,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 191.38056578750138,
-        "vwap_z": -1.8662323274801267,
-        "rsi_14": 32.16840391171276,
-        "atr_14": 0.16314583729218604,
-        "u1": 191.7441677771945,
-        "l1": 191.01696379780827
+        "vwap": 110.61158117549401,
+        "vwap_z": 1.091256066613779,
+        "rsi_14": 60.42768489063373,
+        "atr_14": 0.13588681471973155,
+        "u1": 110.76225050924276,
+        "l1": 110.46091184174526
       },
       "auction": {
-        "daily_poc": 191.633,
-        "daily_vah": 191.831,
-        "daily_val": 191.276,
+        "daily_poc": 110.789,
+        "daily_vah": 110.847,
+        "daily_val": 110.493,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "AUDUSD.pi",
+      "dossier_bytes": 37036,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 0.70343,
+        "ask": 0.70344,
+        "mid": 0.703435,
+        "spread_bps": 0.14,
+        "contract_size": 100000.0,
+        "point": 1e-05
+      },
+      "technicals": {
+        "vwap": 0.7029148103434241,
+        "vwap_z": 1.144550029103727,
+        "rsi_14": 55.30668589839117,
+        "atr_14": 0.0006277168240192325,
+        "u1": 0.7033824086510272,
+        "l1": 0.702447212035821
+      },
+      "auction": {
+        "daily_poc": 0.70287,
+        "daily_vah": 0.70334,
+        "daily_val": 0.7023,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 82.89473684209757,
+        "delta_1h": 9.374999999975069,
+        "bias": "BULLISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 1,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": [
+          "[2026-10-30 17:30:00 IST] 4h \u00b7 AGGRESSIVE SELLING (BEARISH) @ 0.70275 | AUDUSD Macro Delta Flow: AGGRESSIVE SELLING"
+        ]
+      }
+    },
+    {
+      "symbol": "CADCHF.pi",
+      "dossier_bytes": 23485,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 0.58967,
+        "ask": 0.58976,
+        "mid": 0.589715,
+        "spread_bps": 1.53,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 0.5889172131659282,
+        "vwap_z": 0.6478563609737128,
+        "rsi_14": 49.69757799894716,
+        "atr_14": 0.0006107441594895844,
+        "u1": 0.5899248236076791,
+        "l1": 0.5879096027241772
+      },
+      "auction": {
+        "daily_poc": 0.58851,
+        "daily_vah": 0.5892,
+        "daily_val": 0.58752,
         "regime": "RANGE_EXPANSION",
         "bias": "BEARISH (Below Pivot)"
       },
@@ -1055,36 +1049,160 @@
       }
     },
     {
-      "symbol": "EURAUD.pi",
-      "dossier_bytes": 23579,
-      "confluence_score": 65.0,
+      "symbol": "CADJPY.pi",
+      "dossier_bytes": 23572,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (1.59) testing/below Developing VAL (1.59)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 1.5870199999999999,
-        "ask": 1.58709,
-        "mid": 1.5870549999999999,
-        "spread_bps": 0.44,
+        "bid": 112.829,
+        "ask": 112.84,
+        "mid": 112.83449999999999,
+        "spread_bps": 0.97,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.5907241345836725,
-        "vwap_z": -2.1366519422208365,
-        "rsi_14": 26.610872481599998,
-        "atr_14": 0.0012782494533715263,
-        "u1": 1.5932019057540998,
-        "l1": 1.588246363413245
+        "vwap": 112.67259599867765,
+        "vwap_z": 1.5904547820609067,
+        "rsi_14": 60.27223858715233,
+        "atr_14": 0.12189497825584948,
+        "u1": 112.76590515967753,
+        "l1": 112.57928683767777
+      },
+      "auction": {
+        "daily_poc": 112.676,
+        "daily_vah": 112.795,
+        "daily_val": 112.564,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BULLISH (Above Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "CHFJPY.pi",
+      "dossier_bytes": 23590,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 191.354,
+        "ask": 191.365,
+        "mid": 191.35950000000003,
+        "spread_bps": 0.57,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 191.36673500906647,
+        "vwap_z": -0.02123081329592134,
+        "rsi_14": 59.48114061588664,
+        "atr_14": 0.1967175841981195,
+        "u1": 191.73106439007756,
+        "l1": 191.00240562805539
+      },
+      "auction": {
+        "daily_poc": 191.633,
+        "daily_vah": 191.841,
+        "daily_val": 191.266,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BULLISH (Above Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "EURAUD.pi",
+      "dossier_bytes": 23582,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 1.5876299999999999,
+        "ask": 1.58771,
+        "mid": 1.58767,
+        "spread_bps": 0.5,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 1.5905134431321046,
+        "vwap_z": -1.4351399730883683,
+        "rsi_14": 37.19020236424007,
+        "atr_14": 0.0013683885592967828,
+        "u1": 1.5930939880277604,
+        "l1": 1.587932898236449
       },
       "auction": {
         "daily_poc": 1.5918,
-        "daily_vah": 1.5942,
+        "daily_vah": 1.59466,
         "daily_val": 1.58909,
         "regime": "RANGE_EXPANSION",
         "bias": "BULLISH (Above Pivot)"
@@ -1121,36 +1239,34 @@
     },
     {
       "symbol": "EURCAD.pi",
-      "dossier_bytes": 23584,
-      "confluence_score": 65.0,
+      "dossier_bytes": 23572,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (1.56) testing/below Developing VAL (1.56)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 1.55605,
-        "ask": 1.5561099999999999,
-        "mid": 1.55608,
+        "bid": 1.55824,
+        "ask": 1.5583,
+        "mid": 1.55827,
         "spread_bps": 0.39,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.561562298879659,
-        "vwap_z": -1.9318093973657537,
-        "rsi_14": 26.701700563072137,
-        "atr_14": 0.0010738577783160647,
-        "u1": 1.5642552658394184,
-        "l1": 1.5588693319198994
+        "vwap": 1.5613184580332164,
+        "vwap_z": -1.1391527132534325,
+        "rsi_14": 42.28733512095914,
+        "atr_14": 0.001201642676206748,
+        "u1": 1.5641349882454414,
+        "l1": 1.5585019278209915
       },
       "auction": {
         "daily_poc": 1.56327,
         "daily_vah": 1.56551,
-        "daily_val": 1.56097,
+        "daily_val": 1.56034,
         "regime": "RANGE_EXPANSION",
         "bias": "BEARISH (Below Pivot)"
       },
@@ -1185,37 +1301,98 @@
       }
     },
     {
-      "symbol": "EURGBP.pi",
-      "dossier_bytes": 23525,
-      "confluence_score": 65.0,
+      "symbol": "EURCHF.pi",
+      "dossier_bytes": 23542,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (0.83) testing/below Developing VAL (0.83)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 0.83329,
-        "ask": 0.8333,
-        "mid": 0.833295,
+        "bid": 0.91888,
+        "ask": 0.91893,
+        "mid": 0.9189050000000001,
+        "spread_bps": 0.54,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 0.9195182704321779,
+        "vwap_z": -1.742129491942024,
+        "rsi_14": 42.34058895416975,
+        "atr_14": 0.0006836433483278174,
+        "u1": 0.9199764857576576,
+        "l1": 0.9190600551066983
+      },
+      "auction": {
+        "daily_poc": 0.91976,
+        "daily_vah": 0.92001,
+        "daily_val": 0.9189,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "EURGBP.pi",
+      "dossier_bytes": 23538,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 0.83341,
+        "ask": 0.83342,
+        "mid": 0.833415,
         "spread_bps": 0.12,
         "contract_size": 100000.0,
         "point": 1e-05
       },
       "technicals": {
-        "vwap": 0.8344133286306441,
-        "vwap_z": -1.3813687929215783,
-        "rsi_14": 36.05036820296443,
-        "atr_14": 0.00042055025068551326,
-        "u1": 0.8355740097165785,
-        "l1": 0.8332526475447097
+        "vwap": 0.8343567092708811,
+        "vwap_z": -0.9044252156323925,
+        "rsi_14": 46.508819545113525,
+        "atr_14": 0.0004360866957529225,
+        "u1": 0.83551402913856,
+        "l1": 0.8331993894032023
       },
       "auction": {
         "daily_poc": 0.83593,
         "daily_vah": 0.83648,
-        "daily_val": 0.83367,
+        "daily_val": 0.83359,
         "regime": "TREND_DOWN_ACCEPTANCE",
         "bias": "BEARISH (Below Pivot)"
       },
@@ -1251,37 +1428,35 @@
     },
     {
       "symbol": "EURJPY.pi",
-      "dossier_bytes": 23521,
-      "confluence_score": 65.0,
+      "dossier_bytes": 23530,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (175.50) testing/below Developing VAL (175.82)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 175.496,
-        "ask": 175.501,
-        "mid": 175.4985,
-        "spread_bps": 0.28,
+        "bid": 175.822,
+        "ask": 175.828,
+        "mid": 175.825,
+        "spread_bps": 0.34,
         "contract_size": 100000.0,
         "point": 0.001
       },
       "technicals": {
-        "vwap": 175.9807004445137,
-        "vwap_z": -1.600484238345818,
-        "rsi_14": 38.590413552881245,
-        "atr_14": 0.1791824016918444,
-        "u1": 176.34977652184153,
-        "l1": 175.61162436718587
+        "vwap": 175.96343117800626,
+        "vwap_z": -0.45471553419637806,
+        "rsi_14": 53.91182315313936,
+        "atr_14": 0.19328992799129646,
+        "u1": 176.33384117137484,
+        "l1": 175.59302118463768
       },
       "auction": {
         "daily_poc": 176.303,
         "daily_vah": 176.526,
-        "daily_val": 175.817,
-        "regime": "RANGE_EXPANSION",
+        "daily_val": 175.786,
+        "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
@@ -1316,1731 +1491,41 @@
     },
     {
       "symbol": "EURUSD.pi",
-      "dossier_bytes": 59012,
-      "confluence_score": 65.0,
+      "dossier_bytes": 58999,
+      "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
       "sl": null,
       "tp": null,
       "rr": null,
-      "reasons": [
-        "Price (1.12) testing/below Developing VAL (1.12)"
-      ],
+      "reasons": [],
       "telemetry": {
-        "bid": 1.11586,
-        "ask": 1.11587,
-        "mid": 1.1158649999999999,
+        "bid": 1.11685,
+        "ask": 1.11686,
+        "mid": 1.116855,
         "spread_bps": 0.09,
         "contract_size": 100000.0,
         "point": 1e-05
       },
       "technicals": {
-        "vwap": 1.1181672374997396,
-        "vwap_z": -1.3883671353668094,
-        "rsi_14": 38.34551733827548,
-        "atr_14": 0.0009166187374445111,
-        "u1": 1.1201315864318533,
-        "l1": 1.1162028885676258
+        "vwap": 1.1180501284689373,
+        "vwap_z": -0.8875463359421858,
+        "rsi_14": 45.08961982906172,
+        "atr_14": 0.0009546355440260571,
+        "u1": 1.1200220012580682,
+        "l1": 1.1160782556798063
       },
       "auction": {
         "daily_poc": 1.11962,
-        "daily_vah": 1.12077,
-        "daily_val": 1.11706,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BULLISH (Above Pivot)"
-      },
-      "cvd": {
-        "delta_5m": -12.857142857160985,
-        "delta_1h": -81.39534883719249,
-        "bias": "BEARISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "GBPCAD.pi",
-      "dossier_bytes": 23553,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (1.87) testing/below Developing VAL (1.87)"
-      ],
-      "telemetry": {
-        "bid": 1.86735,
-        "ask": 1.8673899999999999,
-        "mid": 1.86737,
-        "spread_bps": 0.21,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 1.871606536830472,
-        "vwap_z": -1.742831266287617,
-        "rsi_14": 37.31674300824888,
-        "atr_14": 0.0013536822847900747,
-        "u1": 1.8732111309667874,
-        "l1": 1.8700019426941565
-      },
-      "auction": {
-        "daily_poc": 1.87059,
-        "daily_vah": 1.87341,
-        "daily_val": 1.86977,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "GBPJPY.pi",
-      "dossier_bytes": 23511,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (210.60) testing/below Developing VAL (210.72)"
-      ],
-      "telemetry": {
-        "bid": 210.595,
-        "ask": 210.607,
-        "mid": 210.601,
-        "spread_bps": 0.57,
-        "contract_size": 100000.0,
-        "point": 0.001
-      },
-      "technicals": {
-        "vwap": 210.87377350972167,
-        "vwap_z": -1.2054221955575484,
-        "rsi_14": 42.665243073671476,
-        "atr_14": 0.18712254494956732,
-        "u1": 211.1075285465545,
-        "l1": 210.64001847288884
-      },
-      "auction": {
-        "daily_poc": 210.85,
-        "daily_vah": 211.263,
-        "daily_val": 210.717,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "USDCAD.pi",
-      "dossier_bytes": 23391,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (1.39) testing/below Developing VAL (1.40)"
-      ],
-      "telemetry": {
-        "bid": 1.39456,
-        "ask": 1.3945699999999999,
-        "mid": 1.394565,
-        "spread_bps": 0.07,
-        "contract_size": 100000.0,
-        "point": 1e-05
-      },
-      "technicals": {
-        "vwap": 1.394565,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 0.0034864125,
-        "u1": 1.39735413,
-        "l1": 1.39177587
-      },
-      "auction": {
-        "daily_poc": 1.39657,
-        "daily_vah": 1.39754,
-        "daily_val": 1.39592,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "USDCHF.pi",
-      "dossier_bytes": 23475,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (0.82) testing/above Developing VAH (0.82)"
-      ],
-      "telemetry": {
-        "bid": 0.82388,
-        "ask": 0.82394,
-        "mid": 0.8239099999999999,
-        "spread_bps": 0.73,
-        "contract_size": 100000.0,
-        "point": 1e-05
-      },
-      "technicals": {
-        "vwap": 0.8239099999999999,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 0.002059775,
-        "u1": 0.8255578199999999,
-        "l1": 0.82226218
-      },
-      "auction": {
-        "daily_poc": 0.82136,
-        "daily_vah": 0.82346,
-        "daily_val": 0.82037,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "EURNZD.pi",
-      "dossier_bytes": 23634,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (1.98) testing/below Developing VAL (1.98)"
-      ],
-      "telemetry": {
-        "bid": 1.97967,
-        "ask": 1.9798,
-        "mid": 1.979735,
-        "spread_bps": 0.66,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 1.9838996933547848,
-        "vwap_z": -2.188392314972582,
-        "rsi_14": 30.55963493914723,
-        "atr_14": 0.0015038593946970545,
-        "u1": 1.9864859267810595,
-        "l1": 1.98131345992851
-      },
-      "auction": {
-        "daily_poc": 1.98210085,
-        "daily_vah": 1.98590605,
-        "daily_val": 1.9812854500000001,
-        "regime": "BALANCED_AUCTION",
-        "bias": "NEUTRAL"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "NZDCAD.pi",
-      "dossier_bytes": 23086,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (0.79) testing/below Developing VAL (0.79)"
-      ],
-      "telemetry": {
-        "bid": 0.78598,
-        "ask": 0.78601,
-        "mid": 0.785995,
-        "spread_bps": 0.38,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 0.7871273106683238,
-        "vwap_z": -0.5216667445847515,
-        "rsi_14": 47.31609334424974,
-        "atr_14": 0.0006883110771704034,
-        "u1": 0.7879080977753263,
-        "l1": 0.7863465235613212
-      },
-      "auction": {
-        "daily_poc": 0.78771685,
-        "daily_vah": 0.78831045,
-        "daily_val": 0.7865296499999999,
-        "regime": "BALANCED_AUCTION",
-        "bias": "NEUTRAL"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "NZDCHF.pi",
-      "dossier_bytes": 23240,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (0.46) testing/above Developing VAH (0.46)"
-      ],
-      "telemetry": {
-        "bid": 0.46438,
-        "ask": 0.4644,
-        "mid": 0.46438999999999997,
-        "spread_bps": 0.43,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 0.4634874484687292,
-        "vwap_z": 2.3615239595728044,
-        "rsi_14": 68.03390847519483,
-        "atr_14": 0.000410057219207015,
-        "u1": 0.4640983046598863,
-        "l1": 0.4628765922775721
-      },
-      "auction": {
-        "daily_poc": 0.46357655,
-        "daily_vah": 0.46403025,
-        "daily_val": 0.46308795,
-        "regime": "BALANCED_AUCTION",
-        "bias": "NEUTRAL"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "AU200.p",
-      "dossier_bytes": 23008,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (8,876.90) testing/below Developing VAL (8,889.72)"
-      ],
-      "telemetry": {
-        "bid": 8876.3,
-        "ask": 8877.5,
-        "mid": 8876.9,
-        "spread_bps": 1.35,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 8919.48352420381,
-        "vwap_z": -1.4408422248959505,
-        "rsi_14": 35.949283331378695,
-        "atr_14": 10.731031760770936,
-        "u1": 8945.290322173307,
-        "l1": 8893.676726234313
-      },
-      "auction": {
-        "daily_poc": 8907.9,
-        "daily_vah": 8939.3,
-        "daily_val": 8889.72,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "DJ30.p",
-      "dossier_bytes": 24130,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (51,955.30) testing/below Developing VAL (52,216.52)"
-      ],
-      "telemetry": {
-        "bid": 51954.66,
-        "ask": 51955.94,
-        "mid": 51955.3,
-        "spread_bps": 0.25,
-        "contract_size": 10.0,
-        "point": 0.1
-      },
-      "technicals": {
-        "vwap": 52260.46987165629,
-        "vwap_z": -2.076012303577311,
-        "rsi_14": 32.11126156799895,
-        "atr_14": 81.63289946359643,
-        "u1": 52375.0211540579,
-        "l1": 52145.91858925469
-      },
-      "auction": {
-        "daily_poc": 52272.32,
-        "daily_vah": 52403.83,
-        "daily_val": 52216.52,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "FR40.p",
-      "dossier_bytes": 23030,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (7,957.45) testing/below Developing VAL (7,958.50)"
-      ],
-      "telemetry": {
-        "bid": 7956.8,
-        "ask": 7958.1,
-        "mid": 7957.450000000001,
-        "spread_bps": 1.63,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 7971.629591010518,
-        "vwap_z": -0.6358626738588519,
-        "rsi_14": 45.3071257594974,
-        "atr_14": 11.731067473114834,
-        "u1": 7981.583927490289,
-        "l1": 7961.675254530747
-      },
-      "auction": {
-        "daily_poc": 7973.76,
-        "daily_vah": 7982.39,
-        "daily_val": 7958.5,
+        "daily_vah": 1.12062,
+        "daily_val": 1.11649,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },
       "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "JP225.p",
-      "dossier_bytes": 23831,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (62,444.50) testing/below Developing VAL (62,540.40)"
-      ],
-      "telemetry": {
-        "bid": 62441.5,
-        "ask": 62447.5,
-        "mid": 62444.5,
-        "spread_bps": 0.96,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 62751.173974646605,
-        "vwap_z": -0.7038780930830507,
-        "rsi_14": 42.66307924406676,
-        "atr_14": 197.6179714591489,
-        "u1": 63006.436890785415,
-        "l1": 62495.911058507794
-      },
-      "auction": {
-        "daily_poc": 62666.7,
-        "daily_vah": 62747.1,
-        "daily_val": 62540.4,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "NAS100.p",
-      "dossier_bytes": 31754,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (28,478.64) testing/below Developing VAL (28,597.76)"
-      ],
-      "telemetry": {
-        "bid": 28478.06,
-        "ask": 28479.22,
-        "mid": 28478.64,
-        "spread_bps": 0.41,
-        "contract_size": 10.0,
-        "point": 0.1
-      },
-      "technicals": {
-        "vwap": 28710.81490708513,
-        "vwap_z": -1.5899961054043028,
-        "rsi_14": 39.72242766677682,
-        "atr_14": 76.55483461939068,
-        "u1": 28815.183028818945,
-        "l1": 28606.446785351312
-      },
-      "auction": {
-        "daily_poc": 28631.52,
-        "daily_vah": 28852.81,
-        "daily_val": 28597.76,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 57.52042287361168,
-        "delta_1h": -73.06374228924163,
+        "delta_5m": 21.27659574469341,
+        "delta_1h": 34.259259259258506,
         "bias": "BULLISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0153%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "SP500.p",
-      "dossier_bytes": 59704,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (7,595.77) testing/below Developing VAL (7,622.07)"
-      ],
-      "telemetry": {
-        "bid": 7595.39,
-        "ask": 7596.16,
-        "mid": 7595.775,
-        "spread_bps": 1.01,
-        "contract_size": 10.0,
-        "point": 0.01
-      },
-      "technicals": {
-        "vwap": 7635.2179812521845,
-        "vwap_z": -1.9301760474111054,
-        "rsi_14": 35.97970578221434,
-        "atr_14": 11.203213098317457,
-        "u1": 7650.650760708824,
-        "l1": 7619.785201795545
-      },
-      "auction": {
-        "daily_poc": 7637.22,
-        "daily_vah": 7658.54,
-        "daily_val": 7622.07,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 84.45454545453686,
-        "delta_1h": -76.1390887290089,
-        "bias": "BULLISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 41
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "STOXX50.p",
-      "dossier_bytes": 23021,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (6,134.40) testing/below Developing VAL (6,144.60)"
-      ],
-      "telemetry": {
-        "bid": 6133.6,
-        "ask": 6135.2,
-        "mid": 6134.4,
-        "spread_bps": 2.61,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 6160.278110213651,
-        "vwap_z": -0.8924038468273228,
-        "rsi_14": 43.83769645862841,
-        "atr_14": 10.351131456685108,
-        "u1": 6178.967081886,
-        "l1": 6141.589138541302
-      },
-      "auction": {
-        "daily_poc": 6177.22,
-        "daily_vah": 6202.31,
-        "daily_val": 6144.6,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "UK100.p",
-      "dossier_bytes": 23087,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (10,720.62) testing/below Developing VAL (10,726.88)"
-      ],
-      "telemetry": {
-        "bid": 10720.12,
-        "ask": 10721.12,
-        "mid": 10720.62,
-        "spread_bps": 0.93,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 10744.218808543386,
-        "vwap_z": -1.0308013415105242,
-        "rsi_14": 46.49212812782735,
-        "atr_14": 15.359326773049544,
-        "u1": 10755.965794170745,
-        "l1": 10732.471822916028
-      },
-      "auction": {
-        "daily_poc": 10734.6,
-        "daily_vah": 10754.57,
-        "daily_val": 10726.88,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "NETH25.p",
-      "dossier_bytes": 25127,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (1,135.25) testing/below Developing VAL (1,136.71)"
-      ],
-      "telemetry": {
-        "bid": 1135.1,
-        "ask": 1135.4,
-        "mid": 1135.25,
-        "spread_bps": 2.64,
-        "contract_size": 1.0,
-        "point": 0.01
-      },
-      "technicals": {
-        "vwap": 1138.6171741076425,
-        "vwap_z": -1.110961155106035,
-        "rsi_14": 42.2398176909232,
-        "atr_14": 1.641142730759144,
-        "u1": 1140.1178333340972,
-        "l1": 1137.1165148811879
-      },
-      "auction": {
-        "daily_poc": 1139.56,
-        "daily_vah": 1140.38,
-        "daily_val": 1136.71,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 351.53,
-        "long_max_pain": 317.61
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "US2000.p",
-      "dossier_bytes": 30512,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (2,808.57) testing/below Developing VAL (2,827.02)"
-      ],
-      "telemetry": {
-        "bid": 2808.41,
-        "ask": 2808.73,
-        "mid": 2808.5699999999997,
-        "spread_bps": 1.14,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 2808.5699999999997,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 7.021425,
-        "u1": 2814.1871399999995,
-        "l1": 2802.95286
-      },
-      "auction": {
-        "daily_poc": 2844.87,
-        "daily_vah": 2858.17,
-        "daily_val": 2827.02,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 86.95652173913201,
-        "delta_1h": -75.95818815330524,
-        "bias": "BULLISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "XAGSGD.pi",
-      "dossier_bytes": 54598,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (62.88) testing/above Developing VAH (52.15)"
-      ],
-      "telemetry": {
-        "bid": 62.877,
-        "ask": 62.892,
-        "mid": 62.8845,
-        "spread_bps": 2.39,
-        "contract_size": 5000.0,
-        "point": 0.001
-      },
-      "technicals": {
-        "vwap": 50.592510826065805,
-        "vwap_z": -1.633086829061023,
-        "rsi_14": 29.026692703603246,
-        "atr_14": 0.2575168475358166,
-        "u1": 51.39498550331203,
-        "l1": 49.79003614881958
-      },
-      "auction": {
-        "daily_poc": 51.445,
-        "daily_vah": 52.147,
-        "daily_val": 50.018,
-        "regime": "TREND_DOWN_ACCEPTANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 74.54128440366917,
-        "delta_1h": -50.0,
-        "bias": "BULLISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 41
-      },
-      "liquidations": {
-        "short_max_pain": 52.722,
-        "long_max_pain": 49.026
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 1,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": [
-          "[2026-10-30 21:01:49 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 49.212 | SILVER (XAGUSD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE"
-        ]
-      }
-    },
-    {
-      "symbol": "GAUUSD.pi",
-      "dossier_bytes": 23174,
-      "confluence_score": 65.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (125.37) testing/below Developing VAL (126.77)"
-      ],
-      "telemetry": {
-        "bid": 125.3643,
-        "ask": 125.3694,
-        "mid": 125.36685,
-        "spread_bps": 0.41,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 127.45560701173824,
-        "vwap_z": -1.6179864812236449,
-        "rsi_14": 21.98377399485402,
-        "atr_14": 0.3699871173053855,
-        "u1": 128.590355066215,
-        "l1": 126.32085895726148
-      },
-      "auction": {
-        "daily_poc": 128.2831375,
-        "daily_vah": 129.1028375,
-        "daily_val": 126.7666925,
-        "regime": "BALANCED_AUCTION",
-        "bias": "NEUTRAL"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "GER30.p",
-      "dossier_bytes": 23650,
-      "confluence_score": 60.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (19,372.85) testing/below Developing VAL (25,860.29)"
-      ],
-      "telemetry": {
-        "bid": 19368.8,
-        "ask": 19376.9,
-        "mid": 19372.85,
-        "spread_bps": 4.18,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 19238.819106098,
-        "vwap_z": 1.4504156704573148,
-        "rsi_14": 61.012545238468995,
-        "atr_14": 20.958463943953905,
-        "u1": 19327.056496598372,
-        "l1": 19150.581715597626
-      },
-      "auction": {
-        "daily_poc": 25995.26,
-        "daily_vah": 26029.01,
-        "daily_val": 25860.29,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "GER40.p",
-      "dossier_bytes": 23627,
-      "confluence_score": 60.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (19,372.85) testing/below Developing VAL (25,860.29)"
-      ],
-      "telemetry": {
-        "bid": 19368.8,
-        "ask": 19376.9,
-        "mid": 19372.85,
-        "spread_bps": 4.18,
-        "contract_size": 10.0,
-        "point": 0.1
-      },
-      "technicals": {
-        "vwap": 19238.819106098,
-        "vwap_z": 1.4504156704573148,
-        "rsi_14": 61.012545238468995,
-        "atr_14": 20.958463943953905,
-        "u1": 19327.056496598372,
-        "l1": 19150.581715597626
-      },
-      "auction": {
-        "daily_poc": 25995.26,
-        "daily_vah": 26029.01,
-        "daily_val": 25860.29,
-        "regime": "RANGE_EXPANSION",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "GAUCNH.pi",
-      "dossier_bytes": 23127,
-      "confluence_score": 60.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Price (834.01) testing/below Developing VAL (843.85)"
-      ],
-      "telemetry": {
-        "bid": 833.811,
-        "ask": 834.211,
-        "mid": 834.011,
-        "spread_bps": 4.8,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 848.0174955014862,
-        "vwap_z": -1.6683067925694373,
-        "rsi_14": 21.813248580830333,
-        "atr_14": 2.4367597120088305,
-        "u1": 855.5445855771346,
-        "l1": 840.4904054258378
-      },
-      "auction": {
-        "daily_poc": 852.70262,
-        "daily_vah": 859.0681,
-        "daily_val": 843.8462999999999,
-        "regime": "BALANCED_AUCTION",
-        "bias": "NEUTRAL"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "0.0100%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "XMRUSD.p",
-      "dossier_bytes": 37121,
-      "confluence_score": 58.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [
-        "Trading near Long Max Pain sweep pool (589.35)"
-      ],
-      "telemetry": {
-        "bid": 601.32,
-        "ask": 601.67,
-        "mid": 601.495,
-        "spread_bps": 5.82,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 601.495,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 1.5037375,
-        "u1": 602.69799,
-        "l1": 600.29201
-      },
-      "auction": {
-        "daily_poc": 591.83,
-        "daily_vah": 613.74,
-        "daily_val": 586.35,
-        "regime": "ROTATIONAL_BALANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 654.33,
-        "long_max_pain": 589.35
-      },
-      "derivatives": {
-        "funding_binance": "0.0357%",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "AUDJPY.pi",
-      "dossier_bytes": 23535,
-      "confluence_score": 55.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [],
-      "telemetry": {
-        "bid": 110.573,
-        "ask": 110.576,
-        "mid": 110.5745,
-        "spread_bps": 0.27,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 110.60980072794179,
-        "vwap_z": 0.04057579738224299,
-        "rsi_14": 54.306973570688605,
-        "atr_14": 0.12930068452631654,
-        "u1": 110.76258323520372,
-        "l1": 110.45701822067986
-      },
-      "auction": {
-        "daily_poc": 110.805,
-        "daily_vah": 110.847,
-        "daily_val": 110.488,
-        "regime": "ROTATIONAL_BALANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 0,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": []
-      }
-    },
-    {
-      "symbol": "AUDUSD.pi",
-      "dossier_bytes": 37104,
-      "confluence_score": 55.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [],
-      "telemetry": {
-        "bid": 0.70309,
-        "ask": 0.7031,
-        "mid": 0.703095,
-        "spread_bps": 0.14,
-        "contract_size": 100000.0,
-        "point": 1e-05
-      },
-      "technicals": {
-        "vwap": 0.7028677925891034,
-        "vwap_z": 1.4131367669476873,
-        "rsi_14": 56.54110401518857,
-        "atr_14": 0.0006291863757830692,
-        "u1": 0.7033364007425286,
-        "l1": 0.7023991844356782
-      },
-      "auction": {
-        "daily_poc": 0.70287,
-        "daily_vah": 0.7033,
-        "daily_val": 0.70232,
-        "regime": "ROTATIONAL_BALANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 46.42857142860684,
-        "delta_1h": -82.69230769231058,
-        "bias": "BULLISH"
-      },
-      "whales": {
-        "whale_count": 0,
-        "stop_clusters_count": 0,
-        "ob_depth_count": 0
-      },
-      "liquidations": {
-        "short_max_pain": 0.0,
-        "long_max_pain": 0.0
-      },
-      "derivatives": {
-        "funding_binance": "-",
-        "total_oi": "N/A",
-        "oi_change_24h": "N/A"
-      },
-      "footprint_signals": {
-        "total_count": 1,
-        "bullish_absorptions": 0,
-        "bearish_absorptions": 0,
-        "trapped_longs": 0,
-        "trapped_shorts": 0,
-        "divergences": 0,
-        "exhaustions": 0,
-        "top_signals": [
-          "[2026-10-30 17:30:00 IST] 4h \u00b7 AGGRESSIVE SELLING (BEARISH) @ 0.70275 | AUDUSD Macro Delta Flow: AGGRESSIVE SELLING"
-        ]
-      }
-    },
-    {
-      "symbol": "EURCHF.pi",
-      "dossier_bytes": 23506,
-      "confluence_score": 55.0,
-      "action": "STAND_ASIDE_MONITOR",
-      "entry": null,
-      "sl": null,
-      "tp": null,
-      "rr": null,
-      "reasons": [],
-      "telemetry": {
-        "bid": 0.91935,
-        "ask": 0.9194,
-        "mid": 0.919375,
-        "spread_bps": 0.54,
-        "contract_size": 1.0,
-        "point": 0.0001
-      },
-      "technicals": {
-        "vwap": 0.9195512697849438,
-        "vwap_z": 0.39344485414223396,
-        "rsi_14": 52.83909110840041,
-        "atr_14": 0.0006600834098856297,
-        "u1": 0.920005539838738,
-        "l1": 0.9190969997311497
-      },
-      "auction": {
-        "daily_poc": 0.91976,
-        "daily_vah": 0.92008,
-        "daily_val": 0.91899,
-        "regime": "ROTATIONAL_BALANCE",
-        "bias": "BEARISH (Below Pivot)"
-      },
-      "cvd": {
-        "delta_5m": 0.0,
-        "delta_1h": 0.0,
-        "bias": "NEUTRAL"
       },
       "whales": {
         "whale_count": 0,
@@ -3069,7 +1554,7 @@
     },
     {
       "symbol": "GBPAUD.pi",
-      "dossier_bytes": 23607,
+      "dossier_bytes": 23569,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3078,25 +1563,88 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.90452,
-        "ask": 1.90457,
-        "mid": 1.9045450000000002,
-        "spread_bps": 0.26,
+        "bid": 1.905,
+        "ask": 1.90506,
+        "mid": 1.90503,
+        "spread_bps": 0.31,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.9063308288139156,
-        "vwap_z": -1.0435602628023612,
-        "rsi_14": 35.7830940564491,
-        "atr_14": 0.0014566589472752992,
-        "u1": 1.9088326764857546,
-        "l1": 1.9038289811420765
+        "vwap": 1.9062284407256063,
+        "vwap_z": -0.7897552142528704,
+        "rsi_14": 38.993392534783425,
+        "atr_14": 0.0014631396025315488,
+        "u1": 1.9087209101516784,
+        "l1": 1.903735971299534
       },
       "auction": {
-        "daily_poc": 1.90404,
+        "daily_poc": 1.90417,
         "daily_vah": 1.90882,
         "daily_val": 1.90325,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BULLISH (Above Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "GBPCAD.pi",
+      "dossier_bytes": 23588,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 1.86974,
+        "ask": 1.86978,
+        "mid": 1.8697599999999999,
+        "spread_bps": 0.21,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 1.8714657794368654,
+        "vwap_z": -0.9671328634964981,
+        "rsi_14": 45.531787392299954,
+        "atr_14": 0.0015284301333343918,
+        "u1": 1.8731674892008325,
+        "l1": 1.8697640696728983
+      },
+      "auction": {
+        "daily_poc": 1.8708,
+        "daily_vah": 1.87279,
+        "daily_val": 1.86882,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },
@@ -3141,25 +1689,88 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.10324,
-        "ask": 1.10334,
-        "mid": 1.1032899999999999,
-        "spread_bps": 0.91,
+        "bid": 1.10252,
+        "ask": 1.10265,
+        "mid": 1.102585,
+        "spread_bps": 1.18,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.1019440304184143,
-        "vwap_z": 1.6419628937005528,
-        "rsi_14": 63.692588965958265,
-        "atr_14": 0.0008045055638010579,
-        "u1": 1.1034276020575369,
-        "l1": 1.1004604587792917
+        "vwap": 1.1019901627734565,
+        "vwap_z": 0.3333014859517134,
+        "rsi_14": 44.47094475256098,
+        "atr_14": 0.0008909257157370404,
+        "u1": 1.1034598148667998,
+        "l1": 1.1005205106801133
       },
       "auction": {
         "daily_poc": 1.10276,
         "daily_vah": 1.10354,
-        "daily_val": 1.1003,
+        "daily_val": 1.10039,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "GBPJPY.pi",
+      "dossier_bytes": 23517,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 210.96,
+        "ask": 210.968,
+        "mid": 210.964,
+        "spread_bps": 0.38,
+        "contract_size": 100000.0,
+        "point": 0.001
+      },
+      "technicals": {
+        "vwap": 210.86581141725043,
+        "vwap_z": 0.3658793964403099,
+        "rsi_14": 56.4644435639258,
+        "atr_14": 0.20850362294389033,
+        "u1": 211.09864383027607,
+        "l1": 210.63297900422478
+      },
+      "auction": {
+        "daily_poc": 210.906,
+        "daily_vah": 211.263,
+        "daily_val": 210.717,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },
@@ -3195,7 +1806,7 @@
     },
     {
       "symbol": "GBPUSD.pi",
-      "dossier_bytes": 64194,
+      "dossier_bytes": 64190,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3204,32 +1815,32 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.3390900000000001,
-        "ask": 1.3391,
-        "mid": 1.339095,
+        "bid": 1.3401,
+        "ask": 1.3401100000000001,
+        "mid": 1.340105,
         "spread_bps": 0.07,
         "contract_size": 100000.0,
         "point": 1e-05
       },
       "technicals": {
-        "vwap": 1.3401226950032998,
-        "vwap_z": -0.49972299090863137,
-        "rsi_14": 44.84706985329279,
-        "atr_14": 0.0010544682607076165,
-        "u1": 1.3416089083991443,
-        "l1": 1.3386364816074554
+        "vwap": 1.3400808535124062,
+        "vwap_z": -0.3217977510620293,
+        "rsi_14": 46.83947571987229,
+        "atr_14": 0.001059107837063746,
+        "u1": 1.3415440505386511,
+        "l1": 1.3386176564861614
       },
       "auction": {
         "daily_poc": 1.33917,
-        "daily_vah": 1.34073,
+        "daily_vah": 1.3406,
         "daily_val": 1.33798,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },
       "cvd": {
-        "delta_5m": -7.692307692355875,
-        "delta_1h": -83.98058252427602,
-        "bias": "BEARISH"
+        "delta_5m": 57.01754385961768,
+        "delta_1h": 26.612903225816844,
+        "bias": "BULLISH"
       },
       "whales": {
         "whale_count": 0,
@@ -3259,8 +1870,8 @@
       }
     },
     {
-      "symbol": "USDJPY.pi",
-      "dossier_bytes": 60545,
+      "symbol": "USDCAD.pi",
+      "dossier_bytes": 23561,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3269,32 +1880,158 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 157.268,
-        "ask": 157.269,
-        "mid": 157.26850000000002,
-        "spread_bps": 0.06,
+        "bid": 1.39529,
+        "ask": 1.3953,
+        "mid": 1.395295,
+        "spread_bps": 0.07,
+        "contract_size": 100000.0,
+        "point": 1e-05
+      },
+      "technicals": {
+        "vwap": 1.3965080112276502,
+        "vwap_z": -0.9140214705350189,
+        "rsi_14": 48.20871841386039,
+        "atr_14": 0.0009714269822846703,
+        "u1": 1.3972169784111794,
+        "l1": 1.395799044044121
+      },
+      "auction": {
+        "daily_poc": 1.39658,
+        "daily_vah": 1.39753,
+        "daily_val": 1.39584,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "USDCHF.pi",
+      "dossier_bytes": 23536,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 0.82273,
+        "ask": 0.82281,
+        "mid": 0.82277,
+        "spread_bps": 0.97,
+        "contract_size": 100000.0,
+        "point": 1e-05
+      },
+      "technicals": {
+        "vwap": 0.8223560284495512,
+        "vwap_z": 0.44174516973817657,
+        "rsi_14": 48.76604010067963,
+        "atr_14": 0.0008974995306125727,
+        "u1": 0.8237911806456115,
+        "l1": 0.820920876253491
+      },
+      "auction": {
+        "daily_poc": 0.82136,
+        "daily_vah": 0.82354,
+        "daily_val": 0.82049,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "USDJPY.pi",
+      "dossier_bytes": 60585,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 157.423,
+        "ask": 157.425,
+        "mid": 157.424,
+        "spread_bps": 0.13,
         "contract_size": 100000.0,
         "point": 0.001
       },
       "technicals": {
-        "vwap": 157.26850000000002,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 0.39317125,
-        "u1": 157.58303700000002,
-        "l1": 156.95396300000002
+        "vwap": 157.34353035538803,
+        "vwap_z": 0.8027407557230282,
+        "rsi_14": 59.35180893619657,
+        "atr_14": 0.15559420342080113,
+        "u1": 157.5097977881307,
+        "l1": 157.17726292264535
       },
       "auction": {
         "daily_poc": 157.281,
-        "daily_vah": 157.537,
+        "daily_vah": 157.531,
         "daily_val": 157.132,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
       },
       "cvd": {
-        "delta_5m": -3.6231884058135067,
-        "delta_1h": 65.16393442624546,
-        "bias": "BEARISH"
+        "delta_5m": 17.647058823562194,
+        "delta_1h": -38.98305084747681,
+        "bias": "BULLISH"
       },
       "whales": {
         "whale_count": 0,
@@ -3325,7 +2062,7 @@
     },
     {
       "symbol": "AUDCNH.pi",
-      "dossier_bytes": 23467,
+      "dossier_bytes": 23526,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3334,25 +2071,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 4.67686,
-        "ask": 4.67807,
-        "mid": 4.677465,
-        "spread_bps": 2.59,
+        "bid": 4.67961,
+        "ask": 4.68086,
+        "mid": 4.680235,
+        "spread_bps": 2.67,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 4.677465,
+        "vwap": 4.680235,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 4.6868199299999995,
-        "l1": 4.66811007
+        "u1": 4.6895954699999995,
+        "l1": 4.67087453
       },
       "auction": {
-        "daily_poc": 4.677465,
-        "daily_vah": 4.691497394999999,
-        "daily_val": 4.663432605,
+        "daily_poc": 4.680235,
+        "daily_vah": 4.694275704999999,
+        "daily_val": 4.6661942949999995,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3388,7 +2125,7 @@
     },
     {
       "symbol": "AUDNZD.pi",
-      "dossier_bytes": 23666,
+      "dossier_bytes": 23746,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3397,25 +2134,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.2474,
-        "ask": 1.24749,
-        "mid": 1.247445,
+        "bid": 1.24798,
+        "ask": 1.24807,
+        "mid": 1.2480250000000002,
         "spread_bps": 0.72,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.247064156637491,
-        "vwap_z": 0.5286439761610175,
-        "rsi_14": 57.03665852358844,
-        "atr_14": 0.0008993976887029535,
-        "u1": 1.2483047711003128,
-        "l1": 1.245823542174669
+        "vwap": 1.2471000873099025,
+        "vwap_z": 1.1636424437483488,
+        "rsi_14": 62.586309328184804,
+        "atr_14": 0.0009174398438533195,
+        "u1": 1.2483289121072272,
+        "l1": 1.2458712625125778
       },
       "auction": {
         "daily_poc": 1.2478728,
-        "daily_vah": 1.2488584,
-        "daily_val": 1.246148,
+        "daily_vah": 1.2487968,
+        "daily_val": 1.2462096,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3451,7 +2188,7 @@
     },
     {
       "symbol": "AUDSGD.pi",
-      "dossier_bytes": 23583,
+      "dossier_bytes": 23616,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3460,25 +2197,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 0.89852,
-        "ask": 0.89856,
-        "mid": 0.89854,
-        "spread_bps": 0.45,
+        "bid": 0.89864,
+        "ask": 0.89867,
+        "mid": 0.898655,
+        "spread_bps": 0.33,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 0.8984187807867375,
-        "vwap_z": 1.1024959289656593,
-        "rsi_14": 58.76638475042156,
-        "atr_14": 0.0006305990202564316,
-        "u1": 0.8990910909457037,
-        "l1": 0.8977464706277714
+        "vwap": 0.8984348163386725,
+        "vwap_z": 0.566187692230789,
+        "rsi_14": 54.45135204284578,
+        "atr_14": 0.0006429654817530608,
+        "u1": 0.8990974652561177,
+        "l1": 0.8977721674212273
       },
       "auction": {
         "daily_poc": 0.8980119,
-        "daily_vah": 0.8991423000000001,
-        "daily_val": 0.8975723,
+        "daily_vah": 0.8992051000000001,
+        "daily_val": 0.8976979,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3514,7 +2251,7 @@
     },
     {
       "symbol": "CHFSGD.pi",
-      "dossier_bytes": 23435,
+      "dossier_bytes": 23512,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3523,25 +2260,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.55104,
-        "ask": 1.5511300000000001,
-        "mid": 1.551085,
-        "spread_bps": 0.58,
+        "bid": 1.55266,
+        "ask": 1.55279,
+        "mid": 1.552725,
+        "spread_bps": 0.84,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.551085,
+        "vwap": 1.552725,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 1.55418717,
-        "l1": 1.54798283
+        "u1": 1.55583045,
+        "l1": 1.5496195499999998
       },
       "auction": {
-        "daily_poc": 1.551085,
-        "daily_vah": 1.5557382549999998,
-        "daily_val": 1.546431745,
+        "daily_poc": 1.552725,
+        "daily_vah": 1.5573831749999998,
+        "daily_val": 1.5480668249999998,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3577,7 +2314,7 @@
     },
     {
       "symbol": "CNHJPY.pi",
-      "dossier_bytes": 23000,
+      "dossier_bytes": 22930,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3586,25 +2323,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 23.642,
-        "ask": 23.643,
-        "mid": 23.6425,
+        "bid": 23.663,
+        "ask": 23.664,
+        "mid": 23.6635,
         "spread_bps": 0.42,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 23.6425,
+        "vwap": 23.6635,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 23.689784999999997,
-        "l1": 23.595215
+        "u1": 23.710827,
+        "l1": 23.616173
       },
       "auction": {
-        "daily_poc": 23.6425,
-        "daily_vah": 23.713427499999995,
-        "daily_val": 23.5715725,
+        "daily_poc": 23.6635,
+        "daily_vah": 23.734490499999996,
+        "daily_val": 23.5925095,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3640,7 +2377,7 @@
     },
     {
       "symbol": "EURCNH.pi",
-      "dossier_bytes": 23440,
+      "dossier_bytes": 23422,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3649,25 +2386,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 7.42321,
-        "ask": 7.42369,
-        "mid": 7.42345,
-        "spread_bps": 0.65,
+        "bid": 7.4303799999999995,
+        "ask": 7.43088,
+        "mid": 7.43063,
+        "spread_bps": 0.67,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 7.42345,
+        "vwap": 7.43063,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 7.4382969,
-        "l1": 7.4086031
+        "u1": 7.44549126,
+        "l1": 7.41576874
       },
       "auction": {
-        "daily_poc": 7.42345,
-        "daily_vah": 7.445720349999999,
-        "daily_val": 7.4011796499999996,
+        "daily_poc": 7.43063,
+        "daily_vah": 7.452921889999999,
+        "daily_val": 7.40833811,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3703,7 +2440,7 @@
     },
     {
       "symbol": "EURHKD.pi",
-      "dossier_bytes": 23430,
+      "dossier_bytes": 23630,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3712,25 +2449,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 8.75401,
-        "ask": 8.75409,
-        "mid": 8.75405,
-        "spread_bps": 0.09,
+        "bid": 8.76186,
+        "ask": 8.76192,
+        "mid": 8.761890000000001,
+        "spread_bps": 0.07,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 8.75405,
+        "vwap": 8.761890000000001,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 8.7715581,
-        "l1": 8.736541899999999
+        "u1": 8.77941378,
+        "l1": 8.744366220000002
       },
       "auction": {
-        "daily_poc": 8.75405,
-        "daily_vah": 8.780312149999999,
-        "daily_val": 8.727787849999999,
+        "daily_poc": 8.761890000000001,
+        "daily_vah": 8.78817567,
+        "daily_val": 8.735604330000001,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3766,7 +2503,7 @@
     },
     {
       "symbol": "EURMXN.pi",
-      "dossier_bytes": 23467,
+      "dossier_bytes": 23523,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3775,25 +2512,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 20.98132,
-        "ask": 20.98499,
-        "mid": 20.983155,
-        "spread_bps": 1.75,
+        "bid": 20.99454,
+        "ask": 20.99743,
+        "mid": 20.995985,
+        "spread_bps": 1.38,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 20.983155,
+        "vwap": 20.995985,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 21.02512131,
-        "l1": 20.94118869
+        "u1": 21.037976970000003,
+        "l1": 20.95399303
       },
       "auction": {
-        "daily_poc": 20.983155,
-        "daily_vah": 21.046104465,
-        "daily_val": 20.920205535,
+        "daily_poc": 20.995985,
+        "daily_vah": 21.058972954999998,
+        "daily_val": 20.932997045,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3829,7 +2566,7 @@
     },
     {
       "symbol": "EURNOK.pi",
-      "dossier_bytes": 23463,
+      "dossier_bytes": 23504,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3838,25 +2575,88 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 10.2866,
-        "ask": 10.28783,
-        "mid": 10.287215,
-        "spread_bps": 1.2,
+        "bid": 10.27514,
+        "ask": 10.27668,
+        "mid": 10.27591,
+        "spread_bps": 1.5,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 10.287215,
+        "vwap": 10.27591,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 10.30778943,
-        "l1": 10.26664057
+        "u1": 10.29646182,
+        "l1": 10.25535818
       },
       "auction": {
-        "daily_poc": 10.287215,
-        "daily_vah": 10.318076644999998,
-        "daily_val": 10.256353355,
+        "daily_poc": 10.27591,
+        "daily_vah": 10.306737729999998,
+        "daily_val": 10.24508227,
+        "regime": "BALANCED_AUCTION",
+        "bias": "NEUTRAL"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "EURNZD.pi",
+      "dossier_bytes": 23631,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 1.98136,
+        "ask": 1.98148,
+        "mid": 1.98142,
+        "spread_bps": 0.61,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 1.983727512532894,
+        "vwap_z": -0.9297758236450784,
+        "rsi_14": 47.946827407061484,
+        "atr_14": 0.0015545522332043034,
+        "u1": 1.9863813915326944,
+        "l1": 1.9810736335330934
+      },
+      "auction": {
+        "daily_poc": 1.98210085,
+        "daily_vah": 1.98590605,
+        "daily_val": 1.98101365,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3892,7 +2692,7 @@
     },
     {
       "symbol": "EURSEK.pi",
-      "dossier_bytes": 23541,
+      "dossier_bytes": 23423,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3901,25 +2701,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 10.97036,
-        "ask": 10.97133,
-        "mid": 10.970845,
-        "spread_bps": 0.88,
+        "bid": 10.9672,
+        "ask": 10.969,
+        "mid": 10.9681,
+        "spread_bps": 1.64,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 10.970845,
+        "vwap": 10.9681,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 10.99278669,
-        "l1": 10.94890331
+        "u1": 10.9900362,
+        "l1": 10.946163799999999
       },
       "auction": {
-        "daily_poc": 10.970845,
-        "daily_vah": 11.003757535,
-        "daily_val": 10.937932465000001,
+        "daily_poc": 10.9681,
+        "daily_vah": 11.001004299999998,
+        "daily_val": 10.9351957,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -3955,7 +2755,7 @@
     },
     {
       "symbol": "EURSGD.pi",
-      "dossier_bytes": 23698,
+      "dossier_bytes": 23453,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -3964,25 +2764,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.426,
-        "ask": 1.42604,
-        "mid": 1.4260199999999998,
-        "spread_bps": 0.28,
+        "bid": 1.4267699999999999,
+        "ask": 1.4268,
+        "mid": 1.426785,
+        "spread_bps": 0.21,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.4260199999999998,
+        "vwap": 1.426785,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 1.42887204,
-        "l1": 1.4231679599999998
+        "u1": 1.42963857,
+        "l1": 1.4239314299999999
       },
       "auction": {
-        "daily_poc": 1.4260199999999998,
-        "daily_vah": 1.4302980599999997,
-        "daily_val": 1.4217419399999998,
+        "daily_poc": 1.426785,
+        "daily_vah": 1.4310653549999999,
+        "daily_val": 1.422504645,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4018,7 +2818,7 @@
     },
     {
       "symbol": "EURZAR.pi",
-      "dossier_bytes": 23526,
+      "dossier_bytes": 23510,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4027,25 +2827,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 18.63178,
-        "ask": 18.63592,
-        "mid": 18.63385,
-        "spread_bps": 2.22,
+        "bid": 18.65398,
+        "ask": 18.65753,
+        "mid": 18.655755,
+        "spread_bps": 1.9,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 18.63385,
+        "vwap": 18.655755,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 18.6711177,
-        "l1": 18.596582299999998
+        "u1": 18.693066509999998,
+        "l1": 18.61844349
       },
       "auction": {
-        "daily_poc": 18.63385,
-        "daily_vah": 18.689751549999997,
-        "daily_val": 18.577948449999997,
+        "daily_poc": 18.655755,
+        "daily_vah": 18.711722265,
+        "daily_val": 18.599787735,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4081,7 +2881,7 @@
     },
     {
       "symbol": "GBPCNH.pi",
-      "dossier_bytes": 23450,
+      "dossier_bytes": 23360,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4090,25 +2890,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 8.90827,
-        "ask": 8.908619999999999,
-        "mid": 8.908445,
-        "spread_bps": 0.39,
+        "bid": 8.9158,
+        "ask": 8.9162,
+        "mid": 8.916,
+        "spread_bps": 0.45,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 8.908445,
+        "vwap": 8.916,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 8.926261890000001,
-        "l1": 8.89062811
+        "u1": 8.933832,
+        "l1": 8.898168
       },
       "auction": {
-        "daily_poc": 8.908445,
-        "daily_vah": 8.935170334999999,
-        "daily_val": 8.881719665,
+        "daily_poc": 8.916,
+        "daily_vah": 8.942748,
+        "daily_val": 8.889252,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4144,7 +2944,7 @@
     },
     {
       "symbol": "GBPHKD.pi",
-      "dossier_bytes": 23442,
+      "dossier_bytes": 23711,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4153,25 +2953,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 10.50516,
-        "ask": 10.50552,
-        "mid": 10.50534,
-        "spread_bps": 0.34,
+        "bid": 10.51322,
+        "ask": 10.51348,
+        "mid": 10.513349999999999,
+        "spread_bps": 0.25,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 10.50534,
+        "vwap": 10.513349999999999,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 10.52635068,
-        "l1": 10.48432932
+        "u1": 10.5343767,
+        "l1": 10.492323299999999
       },
       "auction": {
-        "daily_poc": 10.50534,
-        "daily_vah": 10.536856019999998,
-        "daily_val": 10.47382398,
+        "daily_poc": 10.513349999999999,
+        "daily_vah": 10.544890049999998,
+        "daily_val": 10.481809949999999,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4207,7 +3007,7 @@
     },
     {
       "symbol": "GBPNOK.pi",
-      "dossier_bytes": 23647,
+      "dossier_bytes": 23495,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4216,25 +3016,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 12.34393,
-        "ask": 12.34595,
-        "mid": 12.344940000000001,
-        "spread_bps": 1.64,
+        "bid": 12.32882,
+        "ask": 12.33069,
+        "mid": 12.329755,
+        "spread_bps": 1.52,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 12.344940000000001,
+        "vwap": 12.329755,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 12.369629880000002,
-        "l1": 12.32025012
+        "u1": 12.35441451,
+        "l1": 12.305095490000001
       },
       "auction": {
-        "daily_poc": 12.344940000000001,
-        "daily_vah": 12.38197482,
-        "daily_val": 12.30790518,
+        "daily_poc": 12.329755,
+        "daily_vah": 12.366744265,
+        "daily_val": 12.292765735,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4270,7 +3070,7 @@
     },
     {
       "symbol": "GBPNZD.pi",
-      "dossier_bytes": 23704,
+      "dossier_bytes": 23634,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4279,25 +3079,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 2.37573,
-        "ask": 2.37583,
-        "mid": 2.37578,
-        "spread_bps": 0.42,
+        "bid": 2.37743,
+        "ask": 2.3775399999999998,
+        "mid": 2.377485,
+        "spread_bps": 0.46,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 2.377437532380917,
-        "vwap_z": -1.0934803966467377,
-        "rsi_14": 40.34023672525438,
-        "atr_14": 0.0017032839599166723,
-        "u1": 2.3793191686564525,
-        "l1": 2.3755558961053818
+        "vwap": 2.377381525005441,
+        "vwap_z": 0.12792305603210144,
+        "rsi_14": 50.20250221240157,
+        "atr_14": 0.0017523723940403768,
+        "u1": 2.3792457315211055,
+        "l1": 2.3755173184897767
       },
       "auction": {
         "daily_poc": 2.3777026,
         "daily_vah": 2.3798817999999997,
-        "daily_val": 2.3756142000000002,
+        "daily_val": 2.3755234,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4333,7 +3133,7 @@
     },
     {
       "symbol": "GBPSEK.pi",
-      "dossier_bytes": 23539,
+      "dossier_bytes": 23511,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4342,25 +3142,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 13.16433,
-        "ask": 13.16662,
-        "mid": 13.165475,
-        "spread_bps": 1.74,
+        "bid": 13.15947,
+        "ask": 13.16174,
+        "mid": 13.160605,
+        "spread_bps": 1.72,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 13.165475,
+        "vwap": 13.160605,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 13.191805950000001,
-        "l1": 13.13914405
+        "u1": 13.186926210000001,
+        "l1": 13.13428379
       },
       "auction": {
-        "daily_poc": 13.165475,
-        "daily_vah": 13.204971425,
-        "daily_val": 13.125978575000001,
+        "daily_poc": 13.160605,
+        "daily_vah": 13.200086814999999,
+        "daily_val": 13.121123185,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4396,7 +3196,7 @@
     },
     {
       "symbol": "GBPSGD.pi",
-      "dossier_bytes": 23644,
+      "dossier_bytes": 23699,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4405,25 +3205,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.7112699999999998,
-        "ask": 1.71135,
-        "mid": 1.7113099999999999,
-        "spread_bps": 0.47,
+        "bid": 1.71194,
+        "ask": 1.71204,
+        "mid": 1.7119900000000001,
+        "spread_bps": 0.58,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.7113099999999999,
+        "vwap": 1.7119900000000001,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 1.71473262,
-        "l1": 1.7078873799999998
+        "u1": 1.7154139800000001,
+        "l1": 1.7085660200000001
       },
       "auction": {
-        "daily_poc": 1.7113099999999999,
-        "daily_vah": 1.7164439299999996,
-        "daily_val": 1.70617607,
+        "daily_poc": 1.7119900000000001,
+        "daily_vah": 1.71712597,
+        "daily_val": 1.7068540300000001,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4459,7 +3259,7 @@
     },
     {
       "symbol": "NOKSEK.pi",
-      "dossier_bytes": 23792,
+      "dossier_bytes": 23736,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4468,25 +3268,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.06632,
-        "ask": 1.0665499999999999,
-        "mid": 1.0664349999999998,
-        "spread_bps": 2.16,
+        "bid": 1.06729,
+        "ask": 1.06746,
+        "mid": 1.0673750000000002,
+        "spread_bps": 1.59,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.0664349999999998,
+        "vwap": 1.0673750000000002,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 1.0685678699999999,
-        "l1": 1.0643021299999997
+        "u1": 1.0695097500000001,
+        "l1": 1.0652402500000002
       },
       "auction": {
-        "daily_poc": 1.0664349999999998,
-        "daily_vah": 1.0696343049999997,
-        "daily_val": 1.0632356949999997,
+        "daily_poc": 1.0673750000000002,
+        "daily_vah": 1.070577125,
+        "daily_val": 1.0641728750000001,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4521,8 +3321,8 @@
       }
     },
     {
-      "symbol": "NZDCNH.pi",
-      "dossier_bytes": 22922,
+      "symbol": "NZDCAD.pi",
+      "dossier_bytes": 23107,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4531,25 +3331,151 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 3.74962,
-        "ask": 3.74977,
-        "mid": 3.749695,
-        "spread_bps": 0.4,
+        "bid": 0.78642,
+        "ask": 0.78645,
+        "mid": 0.786435,
+        "spread_bps": 0.38,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 3.749695,
+        "vwap": 0.7870858441795971,
+        "vwap_z": -0.8720661503590758,
+        "rsi_14": 44.99657430395528,
+        "atr_14": 0.0007205335308341724,
+        "u1": 0.7878723030730134,
+        "l1": 0.7862993852861809
+      },
+      "auction": {
+        "daily_poc": 0.78771685,
+        "daily_vah": 0.78831045,
+        "daily_val": 0.7864554500000001,
+        "regime": "BALANCED_AUCTION",
+        "bias": "NEUTRAL"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "NZDCHF.pi",
+      "dossier_bytes": 23106,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 0.46374,
+        "ask": 0.46378,
+        "mid": 0.46376,
+        "spread_bps": 0.86,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 0.4635167111610347,
+        "vwap_z": 0.28076719668778255,
+        "rsi_14": 46.22924460978333,
+        "atr_14": 0.00046106974513591265,
+        "u1": 0.4641339087575117,
+        "l1": 0.4628995135645577
+      },
+      "auction": {
+        "daily_poc": 0.46357655,
+        "daily_vah": 0.46403025,
+        "daily_val": 0.46301815,
+        "regime": "BALANCED_AUCTION",
+        "bias": "NEUTRAL"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "NZDCNH.pi",
+      "dossier_bytes": 23202,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 3.75009,
+        "ask": 3.75027,
+        "mid": 3.7501800000000003,
+        "spread_bps": 0.48,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 3.7501800000000003,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 3.75719439,
-        "l1": 3.74219561
+        "u1": 3.75768036,
+        "l1": 3.7426796400000004
       },
       "auction": {
-        "daily_poc": 3.749695,
-        "daily_vah": 3.7609440849999998,
-        "daily_val": 3.738445915,
+        "daily_poc": 3.7501800000000003,
+        "daily_vah": 3.76143054,
+        "daily_val": 3.7389294600000005,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4585,7 +3511,7 @@
     },
     {
       "symbol": "NZDJPY.pi",
-      "dossier_bytes": 22991,
+      "dossier_bytes": 22986,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4594,20 +3520,20 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 88.645,
-        "ask": 88.648,
-        "mid": 88.6465,
-        "spread_bps": 0.34,
+        "bid": 88.735,
+        "ask": 88.74,
+        "mid": 88.7375,
+        "spread_bps": 0.56,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 88.69679778243498,
-        "vwap_z": -0.34587301951678034,
-        "rsi_14": 51.111943627818206,
-        "atr_14": 0.09768515969154833,
-        "u1": 88.81475373775054,
-        "l1": 88.57884182711943
+        "vwap": 88.69567087135775,
+        "vwap_z": 0.2616421017997904,
+        "rsi_14": 55.45447113900245,
+        "atr_14": 0.0986213876941076,
+        "u1": 88.81158925159404,
+        "l1": 88.57975249112145
       },
       "auction": {
         "daily_poc": 88.799,
@@ -4648,7 +3574,7 @@
     },
     {
       "symbol": "NZDSGD.pi",
-      "dossier_bytes": 23250,
+      "dossier_bytes": 23003,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4657,25 +3583,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 0.72025,
-        "ask": 0.72034,
-        "mid": 0.7202949999999999,
-        "spread_bps": 1.25,
+        "bid": 0.72004,
+        "ask": 0.72012,
+        "mid": 0.72008,
+        "spread_bps": 1.11,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 0.7202949999999999,
+        "vwap": 0.72008,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 0.7217355899999999,
-        "l1": 0.7188544099999999
+        "u1": 0.7215201600000001,
+        "l1": 0.71863984
       },
       "auction": {
-        "daily_poc": 0.7202949999999999,
-        "daily_vah": 0.7224558849999998,
-        "daily_val": 0.7181341149999999,
+        "daily_poc": 0.72008,
+        "daily_vah": 0.72224024,
+        "daily_val": 0.71791976,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4711,7 +3637,7 @@
     },
     {
       "symbol": "NZDUSD.pi",
-      "dossier_bytes": 23028,
+      "dossier_bytes": 23046,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4720,24 +3646,24 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 0.56363,
-        "ask": 0.56364,
-        "mid": 0.563635,
+        "bid": 0.56365,
+        "ask": 0.56366,
+        "mid": 0.563655,
         "spread_bps": 0.18,
         "contract_size": 100000.0,
         "point": 1e-05
       },
       "technicals": {
-        "vwap": 0.5636222900468929,
-        "vwap_z": 0.3203507323249248,
-        "rsi_14": 52.36153817566302,
-        "atr_14": 0.0006055301621659721,
-        "u1": 0.5643018887839618,
-        "l1": 0.562942691309824
+        "vwap": 0.5636219634988106,
+        "vwap_z": -0.3178903953150118,
+        "rsi_14": 47.57473085532197,
+        "atr_14": 0.0005994622316684876,
+        "u1": 0.5642887452007256,
+        "l1": 0.5629551817968955
       },
       "auction": {
         "daily_poc": 0.56347,
-        "daily_vah": 0.56438,
+        "daily_vah": 0.56436,
         "daily_val": 0.56286,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
@@ -4774,7 +3700,7 @@
     },
     {
       "symbol": "SGDJPY.pi",
-      "dossier_bytes": 22952,
+      "dossier_bytes": 23022,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4783,25 +3709,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 123.066,
-        "ask": 123.077,
-        "mid": 123.0715,
-        "spread_bps": 0.89,
+        "bid": 123.228,
+        "ask": 123.241,
+        "mid": 123.2345,
+        "spread_bps": 1.05,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 123.0715,
+        "vwap": 123.2345,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 123.317643,
-        "l1": 122.825357
+        "u1": 123.480969,
+        "l1": 122.98803099999999
       },
       "auction": {
-        "daily_poc": 123.0715,
-        "daily_vah": 123.44071449999998,
-        "daily_val": 122.7022855,
+        "daily_poc": 123.2345,
+        "daily_vah": 123.60420349999998,
+        "daily_val": 122.8647965,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4837,7 +3763,7 @@
     },
     {
       "symbol": "USDCNH.pi",
-      "dossier_bytes": 22931,
+      "dossier_bytes": 23004,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4846,24 +3772,24 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 6.6526,
-        "ask": 6.65261,
-        "mid": 6.652604999999999,
-        "spread_bps": 0.02,
+        "bid": 6.65319,
+        "ask": 6.65324,
+        "mid": 6.653215,
+        "spread_bps": 0.08,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 6.652604999999999,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 1.0,
-        "u1": 6.66591021,
-        "l1": 6.639299789999999
+        "vwap": 6.652668342750384,
+        "vwap_z": 0.37413655645269855,
+        "rsi_14": 63.41773755014394,
+        "atr_14": 0.0007612618095603051,
+        "u1": 6.654463562271257,
+        "l1": 6.650873123229511
       },
       "auction": {
         "daily_poc": 6.6518,
-        "daily_vah": 6.6545,
+        "daily_vah": 6.6544,
         "daily_val": 6.6496,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BEARISH (Below Pivot)"
@@ -4900,7 +3826,7 @@
     },
     {
       "symbol": "USDHKD.pi",
-      "dossier_bytes": 22992,
+      "dossier_bytes": 23095,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4909,25 +3835,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 7.84508,
-        "ask": 7.84512,
-        "mid": 7.8451,
-        "spread_bps": 0.05,
+        "bid": 7.84512,
+        "ask": 7.84521,
+        "mid": 7.845165,
+        "spread_bps": 0.11,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 7.8451,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 1.0,
-        "u1": 7.8607902,
-        "l1": 7.8294098000000005
+        "vwap": 7.844913159041395,
+        "vwap_z": 0.18850344180626133,
+        "rsi_14": 46.87018670153962,
+        "atr_14": 0.0006764906168246562,
+        "u1": 7.8454268947996235,
+        "l1": 7.844399423283167
       },
       "auction": {
-        "daily_poc": 7.8451,
-        "daily_vah": 7.868635299999999,
-        "daily_val": 7.821564700000001,
+        "daily_poc": 7.845113,
+        "daily_vah": 7.845637399999999,
+        "daily_val": 7.8445333999999995,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -4963,7 +3889,7 @@
     },
     {
       "symbol": "USDHUF.pi",
-      "dossier_bytes": 23000,
+      "dossier_bytes": 22912,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -4972,25 +3898,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 327.675,
-        "ask": 327.765,
-        "mid": 327.72,
-        "spread_bps": 2.75,
+        "bid": 327.199,
+        "ask": 327.296,
+        "mid": 327.2475,
+        "spread_bps": 2.96,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 327.72,
+        "vwap": 327.2475,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 328.37544,
-        "l1": 327.06456000000003
+        "u1": 327.901995,
+        "l1": 326.593005
       },
       "auction": {
-        "daily_poc": 327.72,
-        "daily_vah": 328.70315999999997,
-        "daily_val": 326.73684000000003,
+        "daily_poc": 327.2475,
+        "daily_vah": 328.22924249999994,
+        "daily_val": 326.2657575,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5026,7 +3952,7 @@
     },
     {
       "symbol": "USDMXN.pi",
-      "dossier_bytes": 22978,
+      "dossier_bytes": 22994,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5035,25 +3961,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 18.8018,
-        "ask": 18.80516,
-        "mid": 18.80348,
-        "spread_bps": 1.79,
+        "bid": 18.79717,
+        "ask": 18.79961,
+        "mid": 18.79839,
+        "spread_bps": 1.3,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 18.80348,
+        "vwap": 18.79839,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 18.841086960000002,
-        "l1": 18.76587304
+        "u1": 18.835986780000002,
+        "l1": 18.76079322
       },
       "auction": {
-        "daily_poc": 18.80348,
-        "daily_vah": 18.859890439999997,
-        "daily_val": 18.74706956,
+        "daily_poc": 18.79839,
+        "daily_vah": 18.85478517,
+        "daily_val": 18.74199483,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5089,7 +4015,7 @@
     },
     {
       "symbol": "USDNOK.pi",
-      "dossier_bytes": 23014,
+      "dossier_bytes": 22961,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5098,25 +4024,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 9.21848,
-        "ask": 9.21944,
-        "mid": 9.21896,
-        "spread_bps": 1.04,
+        "bid": 9.19978,
+        "ask": 9.20179,
+        "mid": 9.200785,
+        "spread_bps": 2.18,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 9.21896,
+        "vwap": 9.200785,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 9.23739792,
-        "l1": 9.200522079999999
+        "u1": 9.21918657,
+        "l1": 9.18238343
       },
       "auction": {
-        "daily_poc": 9.21896,
-        "daily_vah": 9.246616879999998,
-        "daily_val": 9.191303119999999,
+        "daily_poc": 9.200785,
+        "daily_vah": 9.228387354999999,
+        "daily_val": 9.173182644999999,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5152,7 +4078,7 @@
     },
     {
       "symbol": "USDSEK.pi",
-      "dossier_bytes": 22894,
+      "dossier_bytes": 22873,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5161,25 +4087,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 9.8312,
-        "ask": 9.83219,
-        "mid": 9.831695,
-        "spread_bps": 1.01,
+        "bid": 9.81994,
+        "ask": 9.8212,
+        "mid": 9.82057,
+        "spread_bps": 1.28,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 9.831695,
+        "vwap": 9.82057,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 9.85135839,
-        "l1": 9.81203161
+        "u1": 9.84021114,
+        "l1": 9.80092886
       },
       "auction": {
-        "daily_poc": 9.831695,
-        "daily_vah": 9.861190084999999,
-        "daily_val": 9.802199915,
+        "daily_poc": 9.82057,
+        "daily_vah": 9.85003171,
+        "daily_val": 9.79110829,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5215,7 +4141,7 @@
     },
     {
       "symbol": "USDSGD.pi",
-      "dossier_bytes": 22972,
+      "dossier_bytes": 23169,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5224,25 +4150,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 1.2779099999999999,
-        "ask": 1.27797,
-        "mid": 1.27794,
-        "spread_bps": 0.47,
+        "bid": 1.27748,
+        "ask": 1.27752,
+        "mid": 1.2774999999999999,
+        "spread_bps": 0.31,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 1.27794,
-        "vwap_z": 0.0,
-        "rsi_14": 50.0,
-        "atr_14": 1.0,
-        "u1": 1.2804958800000001,
-        "l1": 1.27538412
+        "vwap": 1.278014752852704,
+        "vwap_z": -0.6242973314930164,
+        "rsi_14": 44.26018688887353,
+        "atr_14": 0.0004439225320193241,
+        "u1": 1.2785509602587222,
+        "l1": 1.2774785454466857
       },
       "auction": {
-        "daily_poc": 1.27794,
-        "daily_vah": 1.28177382,
-        "daily_val": 1.27410618,
+        "daily_poc": 1.2778173000000002,
+        "daily_vah": 1.2785229,
+        "daily_val": 1.2774057,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5278,7 +4204,7 @@
     },
     {
       "symbol": "USDZAR.pi",
-      "dossier_bytes": 22983,
+      "dossier_bytes": 23044,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5287,25 +4213,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 16.6983,
-        "ask": 16.70039,
-        "mid": 16.699345,
-        "spread_bps": 1.25,
+        "bid": 16.70244,
+        "ask": 16.70414,
+        "mid": 16.70329,
+        "spread_bps": 1.02,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 16.699345,
+        "vwap": 16.70329,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 16.73274369,
-        "l1": 16.665946310000002
+        "u1": 16.73669658,
+        "l1": 16.669883419999998
       },
       "auction": {
-        "daily_poc": 16.699345,
-        "daily_vah": 16.749443035,
-        "daily_val": 16.649246965,
+        "daily_poc": 16.70329,
+        "daily_vah": 16.753399869999996,
+        "daily_val": 16.65318013,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5340,8 +4266,8 @@
       }
     },
     {
-      "symbol": "HK50.p",
-      "dossier_bytes": 23043,
+      "symbol": "AU200.p",
+      "dossier_bytes": 23039,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5350,24 +4276,528 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 23356.3,
-        "ask": 23362.8,
-        "mid": 23359.55,
-        "spread_bps": 2.78,
+        "bid": 8878.3,
+        "ask": 8879.5,
+        "mid": 8878.9,
+        "spread_bps": 1.35,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 23282.78966602611,
-        "vwap_z": 1.092361661909917,
-        "rsi_14": 58.41619606526072,
-        "atr_14": 44.52244860853907,
-        "u1": 23381.942115027767,
-        "l1": 23183.637217024454
+        "vwap": 8918.618205114704,
+        "vwap_z": -1.6136247667026178,
+        "rsi_14": 32.974392072166935,
+        "atr_14": 10.145634528586328,
+        "u1": 8944.843760143325,
+        "l1": 8892.392650086083
+      },
+      "auction": {
+        "daily_poc": 8907.9,
+        "daily_vah": 8939.3,
+        "daily_val": 8888.07,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "DJ30.p",
+      "dossier_bytes": 24146,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 51954.66,
+        "ask": 51955.94,
+        "mid": 51955.3,
+        "spread_bps": 0.25,
+        "contract_size": 10.0,
+        "point": 0.1
+      },
+      "technicals": {
+        "vwap": 52251.151307992295,
+        "vwap_z": -2.255283499134137,
+        "rsi_14": 30.719859640911366,
+        "atr_14": 78.51000005026155,
+        "u1": 52375.078658189996,
+        "l1": 52127.223957794595
+      },
+      "auction": {
+        "daily_poc": 52272.32,
+        "daily_vah": 52415.79,
+        "daily_val": 52216.52,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "FR40.p",
+      "dossier_bytes": 23027,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 7955.7,
+        "ask": 7957.0,
+        "mid": 7956.35,
+        "spread_bps": 1.63,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 7971.166548057637,
+        "vwap_z": -1.2699830404369596,
+        "rsi_14": 41.90952038263161,
+        "atr_14": 11.094644913139563,
+        "u1": 7981.219082344429,
+        "l1": 7961.114013770844
+      },
+      "auction": {
+        "daily_poc": 7973.76,
+        "daily_vah": 7981.4,
+        "daily_val": 7957.5,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BULLISH (Above Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "JP225.p",
+      "dossier_bytes": 23619,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 62431.5,
+        "ask": 62437.5,
+        "mid": 62434.5,
+        "spread_bps": 0.96,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 62434.5,
+        "vwap_z": 0.0,
+        "rsi_14": 50.0,
+        "atr_14": 156.08625,
+        "u1": 62559.369,
+        "l1": 62309.631
+      },
+      "auction": {
+        "daily_poc": 62666.7,
+        "daily_vah": 62747.1,
+        "daily_val": 62540.4,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "NAS100.p",
+      "dossier_bytes": 32023,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 28441.3,
+        "ask": 28442.46,
+        "mid": 28441.879999999997,
+        "spread_bps": 0.41,
+        "contract_size": 10.0,
+        "point": 0.1
+      },
+      "technicals": {
+        "vwap": 28699.704227798444,
+        "vwap_z": -1.6577500022735407,
+        "rsi_14": 39.41860970775966,
+        "atr_14": 76.11814822010851,
+        "u1": 28812.05182396374,
+        "l1": 28587.35663163315
+      },
+      "auction": {
+        "daily_poc": 28631.01,
+        "daily_vah": 28863.08,
+        "daily_val": 28596.2,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 82.45064243183832,
+        "delta_1h": -81.6684378320958,
+        "bias": "BULLISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0182%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "SP500.p",
+      "dossier_bytes": 61048,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 7590.66,
+        "ask": 7591.43,
+        "mid": 7591.045,
+        "spread_bps": 1.01,
+        "contract_size": 10.0,
+        "point": 0.01
+      },
+      "technicals": {
+        "vwap": 7633.6262382288305,
+        "vwap_z": -1.9684096779256497,
+        "rsi_14": 36.29156644852422,
+        "atr_14": 11.151494967790544,
+        "u1": 7650.521216241678,
+        "l1": 7616.731260215983
+      },
+      "auction": {
+        "daily_poc": 7637.29,
+        "daily_vah": 7657.75,
+        "daily_val": 7619.17,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 85.02475247524693,
+        "delta_1h": -88.59416445626044,
+        "bias": "BULLISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 41
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "STOXX50.p",
+      "dossier_bytes": 23076,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 6126.6,
+        "ask": 6128.2,
+        "mid": 6127.4,
+        "spread_bps": 2.61,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 6160.2068602151985,
+        "vwap_z": -1.4753416599540448,
+        "rsi_14": 38.09427207841129,
+        "atr_14": 9.875975592743384,
+        "u1": 6178.91904124048,
+        "l1": 6141.494679189917
+      },
+      "auction": {
+        "daily_poc": 6177.15,
+        "daily_vah": 6202.3,
+        "daily_val": 6144.8,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "UK100.p",
+      "dossier_bytes": 23092,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 10721.1,
+        "ask": 10722.1,
+        "mid": 10721.6,
+        "spread_bps": 0.93,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 10743.305559168193,
+        "vwap_z": -1.600850227793391,
+        "rsi_14": 43.64964194607859,
+        "atr_14": 14.92824604440194,
+        "u1": 10755.571265745415,
+        "l1": 10731.039852590971
+      },
+      "auction": {
+        "daily_poc": 10734.96,
+        "daily_vah": 10754.23,
+        "daily_val": 10725.78,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "HK50.p",
+      "dossier_bytes": 23068,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 23368.2,
+        "ask": 23374.9,
+        "mid": 23371.550000000003,
+        "spread_bps": 2.87,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 23371.550000000003,
+        "vwap_z": 0.0,
+        "rsi_14": 50.0,
+        "atr_14": 58.428875000000005,
+        "u1": 23418.293100000003,
+        "l1": 23324.806900000003
       },
       "auction": {
         "daily_poc": 23310.36,
-        "daily_vah": 23406.0,
+        "daily_vah": 23402.81,
         "daily_val": 23265.73,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
@@ -5403,8 +4833,8 @@
       }
     },
     {
-      "symbol": "SWISS20.p",
-      "dossier_bytes": 23046,
+      "symbol": "NETH25.p",
+      "dossier_bytes": 25143,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5413,24 +4843,87 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 14805.5,
-        "ask": 14809.5,
-        "mid": 14807.5,
+        "bid": 1132.6,
+        "ask": 1132.9,
+        "mid": 1132.75,
+        "spread_bps": 2.65,
+        "contract_size": 1.0,
+        "point": 0.01
+      },
+      "technicals": {
+        "vwap": 1138.5040680135955,
+        "vwap_z": -2.5042859677210143,
+        "rsi_14": 34.647722302796055,
+        "atr_14": 1.6158322525127295,
+        "u1": 1140.1029541093553,
+        "l1": 1136.9051819178358
+      },
+      "auction": {
+        "daily_poc": 1139.53,
+        "daily_vah": 1140.3,
+        "daily_val": 1136.53,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 351.53,
+        "long_max_pain": 317.61
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "SWISS20.p",
+      "dossier_bytes": 23053,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 14808.0,
+        "ask": 14812.0,
+        "mid": 14810.0,
         "spread_bps": 2.7,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 14803.61343265478,
-        "vwap_z": 0.7163693213641628,
-        "rsi_14": 54.48144307705757,
-        "atr_14": 20.650634365219933,
-        "u1": 14828.581792984838,
-        "l1": 14778.645072324722
+        "vwap": 14803.915052790968,
+        "vwap_z": 0.3502336629957289,
+        "rsi_14": 50.78747386126386,
+        "atr_14": 19.859475549638823,
+        "u1": 14828.42710892972,
+        "l1": 14779.402996652216
       },
       "auction": {
         "daily_poc": 14809.62,
-        "daily_vah": 14836.9,
+        "daily_vah": 14835.14,
         "daily_val": 14786.74,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
@@ -5466,8 +4959,8 @@
       }
     },
     {
-      "symbol": "XAUCNH.pi",
-      "dossier_bytes": 120244,
+      "symbol": "US2000.p",
+      "dossier_bytes": 30546,
       "confluence_score": 55.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5476,25 +4969,153 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 25938.66,
-        "ask": 25940.34,
-        "mid": 25939.5,
-        "spread_bps": 0.65,
+        "bid": 2807.78,
+        "ask": 2808.1,
+        "mid": 2807.94,
+        "spread_bps": 1.14,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 2835.547777155715,
+        "vwap_z": -1.8153665977373548,
+        "rsi_14": 25.539868557861325,
+        "atr_14": 6.022298436141321,
+        "u1": 2848.9983811197562,
+        "l1": 2822.0971731916734
+      },
+      "auction": {
+        "daily_poc": 2845.12,
+        "daily_vah": 2859.54,
+        "daily_val": 2823.85,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 89.99999999999999,
+        "delta_1h": -49.720670391029934,
+        "bias": "BULLISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "XAGSGD.pi",
+      "dossier_bytes": 54674,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 62.86,
+        "ask": 62.871,
+        "mid": 62.8655,
+        "spread_bps": 1.75,
+        "contract_size": 5000.0,
+        "point": 0.001
+      },
+      "technicals": {
+        "vwap": 50.55630582194874,
+        "vwap_z": -1.6204885471050476,
+        "rsi_14": 28.41012286271608,
+        "atr_14": 0.23928748588892276,
+        "u1": 51.37846888155744,
+        "l1": 49.73414276234004
+      },
+      "auction": {
+        "daily_poc": 51.445,
+        "daily_vah": 52.147,
+        "daily_val": 49.976,
+        "regime": "TREND_DOWN_ACCEPTANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": -36.0360360360307,
+        "delta_1h": -43.20113314447757,
+        "bias": "BEARISH"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 41
+      },
+      "liquidations": {
+        "short_max_pain": 52.722,
+        "long_max_pain": 49.026
+      },
+      "derivatives": {
+        "funding_binance": "-",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 1,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": [
+          "[2026-10-30 21:25:46 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 49.225 | SILVER (XAGUSD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE"
+        ]
+      }
+    },
+    {
+      "symbol": "XAUCNH.pi",
+      "dossier_bytes": 120010,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 25938.95,
+        "ask": 25940.83,
+        "mid": 25939.89,
+        "spread_bps": 0.72,
         "contract_size": 100.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 25939.5,
+        "vwap": 25939.89,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
-        "atr_14": 64.84875,
-        "u1": 25991.379,
-        "l1": 25887.621
+        "atr_14": 64.849725,
+        "u1": 25991.76978,
+        "l1": 25888.01022
       },
       "auction": {
-        "daily_poc": 25939.5,
-        "daily_vah": 26017.318499999998,
-        "daily_val": 25861.6815,
+        "daily_poc": 25939.89,
+        "daily_vah": 26017.709669999997,
+        "daily_val": 25862.07033,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5513,9 +5134,9 @@
         "long_max_pain": 0.0
       },
       "derivatives": {
-        "funding_binance": "0.0125%",
-        "total_oi": "$850.36M",
-        "oi_change_24h": "-0.39%"
+        "funding_binance": "0.0152%",
+        "total_oi": "$852.94M",
+        "oi_change_24h": "-0.75%"
       },
       "footprint_signals": {
         "total_count": 1,
@@ -5526,13 +5147,76 @@
         "divergences": 0,
         "exhaustions": 0,
         "top_signals": [
-          "[2026-10-30 21:01:49 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 5552.64 | GOLD_AUD (XAUAUD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE"
+          "[2026-10-30 21:25:46 IST] Auction \u00b7 AUCTION_TREND_DOWN_ACCEPTANCE (BEARISH (BELOW PIVOT)) @ 5541.88 | GOLD_AUD (XAUAUD.pi) Metal Auction: TREND_DOWN_ACCEPTANCE"
         ]
       }
     },
     {
-      "symbol": "USDTHB.pi",
-      "dossier_bytes": 22963,
+      "symbol": "GAUUSD.pi",
+      "dossier_bytes": 23278,
+      "confluence_score": 55.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 125.3505,
+        "ask": 125.3588,
+        "mid": 125.35464999999999,
+        "spread_bps": 0.66,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 127.38164023749572,
+        "vwap_z": -1.7409772487033455,
+        "rsi_14": 19.459829361491572,
+        "atr_14": 0.34802154502978866,
+        "u1": 128.56013940457203,
+        "l1": 126.20314107041939
+      },
+      "auction": {
+        "daily_poc": 128.2831375,
+        "daily_vah": 129.1028375,
+        "daily_val": 126.60275250000001,
+        "regime": "BALANCED_AUCTION",
+        "bias": "NEUTRAL"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "XMRUSD.p",
+      "dossier_bytes": 37689,
       "confluence_score": 50.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5541,25 +5225,88 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 33.742,
-        "ask": 33.757,
-        "mid": 33.7495,
-        "spread_bps": 4.44,
+        "bid": 599.04,
+        "ask": 599.46,
+        "mid": 599.25,
+        "spread_bps": 7.01,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 33.7495,
+        "vwap": 601.0599414810162,
+        "vwap_z": 0.024731067170166175,
+        "rsi_14": 59.20291968495992,
+        "atr_14": 5.941093748615005,
+        "u1": 613.1927991906839,
+        "l1": 588.9270837713484
+      },
+      "auction": {
+        "daily_poc": 591.83,
+        "daily_vah": 613.74,
+        "daily_val": 586.35,
+        "regime": "ROTATIONAL_BALANCE",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 654.33,
+        "long_max_pain": 589.35
+      },
+      "derivatives": {
+        "funding_binance": "0.0368%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "USDTHB.pi",
+      "dossier_bytes": 23160,
+      "confluence_score": 50.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 33.759,
+        "ask": 33.775,
+        "mid": 33.766999999999996,
+        "spread_bps": 4.74,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 33.766999999999996,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 33.816998999999996,
-        "l1": 33.682001
+        "u1": 33.834534,
+        "l1": 33.699465999999994
       },
       "auction": {
-        "daily_poc": 33.7495,
-        "daily_vah": 33.850748499999995,
-        "daily_val": 33.6482515,
+        "daily_poc": 33.766999999999996,
+        "daily_vah": 33.868300999999995,
+        "daily_val": 33.665699,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5595,7 +5342,7 @@
     },
     {
       "symbol": "ZARJPY.pi",
-      "dossier_bytes": 22852,
+      "dossier_bytes": 23134,
       "confluence_score": 50.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5604,25 +5351,214 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 9.414,
-        "ask": 9.4171,
-        "mid": 9.41555,
-        "spread_bps": 3.29,
+        "bid": 9.42037,
+        "ask": 9.42464,
+        "mid": 9.422505000000001,
+        "spread_bps": 4.53,
         "contract_size": 1.0,
         "point": 0.0001
       },
       "technicals": {
-        "vwap": 9.41555,
+        "vwap": 9.422505000000001,
         "vwap_z": 0.0,
         "rsi_14": 50.0,
         "atr_14": 1.0,
-        "u1": 9.4343811,
-        "l1": 9.3967189
+        "u1": 9.44135001,
+        "l1": 9.403659990000001
       },
       "auction": {
-        "daily_poc": 9.41555,
-        "daily_vah": 9.44379665,
-        "daily_val": 9.38730335,
+        "daily_poc": 9.422505000000001,
+        "daily_vah": 9.450772515,
+        "daily_val": 9.394237485000001,
+        "regime": "BALANCED_AUCTION",
+        "bias": "NEUTRAL"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "GER30.p",
+      "dossier_bytes": 23663,
+      "confluence_score": 50.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 19368.8,
+        "ask": 19376.9,
+        "mid": 19372.85,
+        "spread_bps": 4.18,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 19238.819106098,
+        "vwap_z": 1.4504156704573148,
+        "rsi_14": 61.012545238468995,
+        "atr_14": 20.958463943953905,
+        "u1": 19327.056496598372,
+        "l1": 19150.581715597626
+      },
+      "auction": {
+        "daily_poc": 25995.26,
+        "daily_vah": 26029.01,
+        "daily_val": 25858.18,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "GER40.p",
+      "dossier_bytes": 23640,
+      "confluence_score": 50.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 19368.8,
+        "ask": 19376.9,
+        "mid": 19372.85,
+        "spread_bps": 4.18,
+        "contract_size": 10.0,
+        "point": 0.1
+      },
+      "technicals": {
+        "vwap": 19238.819106098,
+        "vwap_z": 1.4504156704573148,
+        "rsi_14": 61.012545238468995,
+        "atr_14": 20.958463943953905,
+        "u1": 19327.056496598372,
+        "l1": 19150.581715597626
+      },
+      "auction": {
+        "daily_poc": 25995.26,
+        "daily_vah": 26029.01,
+        "daily_val": 25858.18,
+        "regime": "RANGE_EXPANSION",
+        "bias": "BEARISH (Below Pivot)"
+      },
+      "cvd": {
+        "delta_5m": 0.0,
+        "delta_1h": 0.0,
+        "bias": "NEUTRAL"
+      },
+      "whales": {
+        "whale_count": 0,
+        "stop_clusters_count": 0,
+        "ob_depth_count": 0
+      },
+      "liquidations": {
+        "short_max_pain": 0.0,
+        "long_max_pain": 0.0
+      },
+      "derivatives": {
+        "funding_binance": "0.0100%",
+        "total_oi": "N/A",
+        "oi_change_24h": "N/A"
+      },
+      "footprint_signals": {
+        "total_count": 0,
+        "bullish_absorptions": 0,
+        "bearish_absorptions": 0,
+        "trapped_longs": 0,
+        "trapped_shorts": 0,
+        "divergences": 0,
+        "exhaustions": 0,
+        "top_signals": []
+      }
+    },
+    {
+      "symbol": "GAUCNH.pi",
+      "dossier_bytes": 23230,
+      "confluence_score": 50.0,
+      "action": "STAND_ASIDE_MONITOR",
+      "entry": null,
+      "sl": null,
+      "tp": null,
+      "rr": null,
+      "reasons": [],
+      "telemetry": {
+        "bid": 833.804,
+        "ask": 834.204,
+        "mid": 834.0039999999999,
+        "spread_bps": 4.8,
+        "contract_size": 1.0,
+        "point": 0.0001
+      },
+      "technicals": {
+        "vwap": 847.4469485795865,
+        "vwap_z": -1.7482354692419366,
+        "rsi_14": 19.470895369608826,
+        "atr_14": 2.2905173027420793,
+        "u1": 855.3234325097275,
+        "l1": 839.5704646494456
+      },
+      "auction": {
+        "daily_poc": 852.70262,
+        "daily_vah": 859.0681,
+        "daily_val": 842.4625,
         "regime": "BALANCED_AUCTION",
         "bias": "NEUTRAL"
       },
@@ -5658,7 +5594,7 @@
     },
     {
       "symbol": "UKBRENT.p",
-      "dossier_bytes": 23536,
+      "dossier_bytes": 23529,
       "confluence_score": 50.0,
       "action": "STAND_ASIDE_MONITOR",
       "entry": null,
@@ -5667,25 +5603,25 @@
       "rr": null,
       "reasons": [],
       "telemetry": {
-        "bid": 118.044,
-        "ask": 118.09,
-        "mid": 118.06700000000001,
-        "spread_bps": 3.9,
+        "bid": 118.203,
+        "ask": 118.242,
+        "mid": 118.2225,
+        "spread_bps": 3.3,
         "contract_size": 1000.0,
         "point": 0.01
       },
       "technicals": {
-        "vwap": 117.29004375365095,
-        "vwap_z": 0.7436918818295959,
-        "rsi_14": 51.756513803453416,
-        "atr_14": 0.4459632471638556,
-        "u1": 117.95558315033144,
-        "l1": 116.62450435697046
+        "vwap": 117.31293819978548,
+        "vwap_z": 1.2576703595988767,
+        "rsi_14": 57.906482215019885,
+        "atr_14": 0.4634938202574202,
+        "u1": 117.97691329774426,
+        "l1": 116.6489631018267
       },
       "auction": {
-        "daily_poc": 117.898,
-        "daily_vah": 118.242,
-        "daily_val": 116.827,
+        "daily_poc": 117.918,
+        "daily_vah": 118.262,
+        "daily_val": 116.868,
         "regime": "ROTATIONAL_BALANCE",
         "bias": "BULLISH (Above Pivot)"
       },

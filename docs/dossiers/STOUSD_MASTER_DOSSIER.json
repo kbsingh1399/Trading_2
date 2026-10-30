@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 454,
+      "rank": 479,
       "symbol": "STO",
-      "price": "$0.029810",
-      "price_24h_pct": "-9.34%",
+      "price": "$0.029800",
+      "price_24h_pct": "-9.61%",
       "open_interest": "$2.95M",
-      "current": "$147.37",
-      "last_24h": "$739.38",
-      "last_3d": "$2.35K",
-      "last_7d": "$5.28K",
-      "timestamp_ist": "2026-10-30 21:29:30 IST"
+      "current": "$147.36",
+      "last_24h": "$724.05",
+      "last_3d": "$2.34K",
+      "last_7d": "$5.27K",
+      "timestamp_ist": "2026-10-30 21:41:05 IST"
     },
     "ls_ladder": []
   },
