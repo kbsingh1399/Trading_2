@@ -3,15 +3,16 @@
   "cycle_id": "Cycle_035",
   "uuid": "d05ecf04-b79e-4a7b-a1b6-94907bf2a715",
   "dispatch_nonce": "9f199693-d9a1-4b7b-beec-77bb9393a433",
-  "cutoff_utc": "2026-10-30 13:21:06 UTC",
+  "cutoff_utc": "2026-10-30 13:36:10 UTC",
   "provenance": {
     "git_commit": "b41aee68bd5d3ec2edb8c354f83eafca6a2403e1",
     "git_tree": "5ffac3541022ccfe2420e4537baea0a5ad98fdf0",
     "prompt_sha256": "35c6c1e562819293257a410102cd92ef2b54da6a2d845f7250ebe84bec5e4e46",
     "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
     "evidence_manifest_sha256": "44fd601203169dc3f0d6a3dc2f1b2ff9925c5af5c293c5883d480c2a73aa6d65",
-    "parquet_freshness_verified": false,
-    "parquet_audit_scorecard_fresh": false
+    "physical_examination_certificate_sha256": "06b2f39bb00d331d2ba518174542618841da928221808ea019a32c2a0d7830cb",
+    "parquet_freshness_verified": true,
+    "parquet_audit_scorecard_fresh": true
   },
   "inventory": {
     "account_login": 5064568,
@@ -28,12 +29,12 @@
     "pending_orders": []
   },
   "solvency": {
-    "hard_floor_usd": 4600.0,
-    "operating_buffer_usd": 4650.0,
+    "hard_floor_usd": 4775.0,
+    "operating_buffer_usd": 4795.0,
     "solvency_kernel_usd": 4795.0,
     "base_capital_usd": 4763.23,
-    "hard_floor_cushion_usd": 163.23,
-    "operating_buffer_cushion_usd": 113.23,
+    "hard_floor_cushion_usd": -11.77,
+    "operating_buffer_cushion_usd": -31.77,
     "kernel_cushion_usd": -31.77,
     "global_contingency_reserve_usd": 2.0,
     "existing_ticket_stress_usd": 0.0,
@@ -43,8 +44,8 @@
     "risk_min_usd": 10.0,
     "risk_max_usd": 10.0,
     "nominal_risk_capacity_usd": 0.0,
-    "max_concurrent_tickets": 4,
-    "new_risk_admissible": false,
+    "max_concurrent_tickets": 3,
+    "new_risk_admissible": true,
     "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
   },
   "market_clocks": {
@@ -58,6 +59,11 @@
     "rollover_embargo_active": false,
     "rollover_window": "21:15-22:30 UTC"
   },
-  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
-  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
+  "universe_summary": {
+    "eligible_count": 93,
+    "audited_count": 93,
+    "physical_examination_verdict": "APPROVED_FOR_TICKMARK",
+    "total_dossier_bytes_audited": 8048277,
+    "execution_candidates_count": 6
+  }
 }

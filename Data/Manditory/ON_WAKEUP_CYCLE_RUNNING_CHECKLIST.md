@@ -67,12 +67,14 @@ On every wakeup, execute these steps in strict sequential order. Do NOT check a 
 > 9. **Section 9: TradFi & Interbank Market Mechanics**: Friday rollover spread widening buffer (21:15–22:30 UTC), session open/close boundaries (Asian, London, NY), and weekend gap exposure.
 > 10. **Section 10: Quantitative Trade Formulation & Autonomous Broker Execution Card**: Exact Action (BUY_LIMIT / SELL_LIMIT / STAND_ASIDE), Entry, SL, TP, lot sizing calculated strictly for nominal risk <= $10.00 USD, Reward-to-Risk ratio >= 2.50R, and explicit setup rationale.
 > 
-> **STRICT TICK-MARK GATE CONDITION**:
+> **STRICT TICK-MARK GATE CONDITION & MECHANICAL EXAMINATION REQUIREMENT**:
 > The Step 2 checkbox `- [ ]` CANNOT be marked `- [x]` until:
-> 1. All 10 section data points for 100% of spread-cleared assets are physically extracted, audited, and compiled into `docs/trade_plans/CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json`.
-> 2. Zero missing attributes or empty placeholders exist across any of the 10 structural dimensions.
-> 3. The trade formulation card is mathematically verified against Pitfall 24 immunity, nominal risk <= $10.00 USD, and R:R >= 2.50R.
-> Pre-checking or marking Step 2 complete without this verified artifact is a catastrophic protocol violation.
+> 1. The **Mechanical Asset Forensics Examiner** (`scripts/mechanical_asset_forensics_examiner.py`) is executed to physically open, read bytes, and verify all 10 structural dimensions across 100% of spread-cleared assets.
+> 2. The **Physical Examination Certificate** (`docs/trade_plans/CYCLE_NNN_PHYSICAL_EXAMINATION_CERTIFICATE.json`) is generated with `mechanical_gate_verdict: "APPROVED_FOR_TICKMARK"`, 0 failed assets, and a verified SHA-256 hash.
+> 3. All 10 section data points for 100% of spread-cleared assets are physically extracted, audited, and compiled into `docs/trade_plans/CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json`.
+> 4. Zero missing attributes or empty placeholders exist across any of the 10 structural dimensions.
+> 5. The trade formulation card is mathematically verified against Pitfall 24 immunity, nominal risk <= $10.00 USD, and R:R >= 2.50R.
+> Pre-checking or marking Step 2 complete without this verified mechanical certificate is a catastrophic protocol violation.
 
 ### Step 3: Synchronise the Intelligence Ledger and Portfolio Registry
 - Review and update `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md` using the latest information from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`.

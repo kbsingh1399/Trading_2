@@ -2,7 +2,7 @@
   "feed_name": "3_Exchanges_LS_Ratio_1H",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 20,
+  "row_count": 500,
   "column_count": 11,
   "columns": [
     "Asset",
@@ -17,9 +17,9 @@
     "Timeframe",
     "Timestamp_IST"
   ],
-  "byte_size": 6946,
-  "timestamp_ist": "2026-10-30 18:59:19 IST",
-  "timestamp_utc": "2026-10-30 13:29:19 UTC",
-  "epoch_utc": 1793366959.277402,
-  "write_duration_ms": 29.87
+  "byte_size": 17994,
+  "timestamp_ist": "2026-10-30 19:06:26 IST",
+  "timestamp_utc": "2026-10-30 13:36:26 UTC",
+  "epoch_utc": 1793367386.759908,
+  "write_duration_ms": 31.33
 }

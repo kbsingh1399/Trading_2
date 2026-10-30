@@ -167,6 +167,21 @@ def execute_pipeline_cycle(cycle_id: int, api_only: bool = False) -> dict:
     if auditor_script.exists():
         run_collector(auditor_script, 60)
 
+    # Phase 4: Autonomous IP Rotation (Cloudflare WARP Tunnel Egress)
+    ip_rotator_script = ROOT_DIR / "Terminal" / "rotate_ip.py"
+    ip_rotation_info = {"status": "SKIPPED", "ip": "UNKNOWN"}
+    if ip_rotator_script.exists():
+        log.info(">> Phase 4: Executing Autonomous IP Rotation via Cloudflare WARP...")
+        name, ok, dt, err = run_collector(ip_rotator_script, 30)
+        results["rotate_ip.py"] = {"success": ok, "elapsed": round(dt, 2), "error": err}
+        if ok:
+            log.info(f"   [IP_ROTATOR] Successfully rotated egress IP ({dt:.2f}s)")
+            ip_rotation_info["status"] = "SUCCESS"
+        else:
+            log.warning(f"   [IP_ROTATOR] Rotation failed/warn ({dt:.2f}s) - {err[:120]}")
+            ip_rotation_info["status"] = "FAIL"
+            ip_rotation_info["error"] = err
+
     elapsed_total = time.perf_counter() - t_start
     parquet_files = list(FEEDS_DIR.glob("*.parquet"))
     log.info(f"✅ [CYCLE #{cycle_id}] Completed in {elapsed_total:.2f}s | Passed: {passed} | Failed: {failed} | Active Feeds: {len(parquet_files)}")
@@ -180,6 +195,7 @@ def execute_pipeline_cycle(cycle_id: int, api_only: bool = False) -> dict:
         "passed": passed,
         "failed": failed,
         "parquet_feeds_count": len(parquet_files),
+        "ip_rotation": ip_rotation_info,
         "api_only": api_only,
     }
     try:
