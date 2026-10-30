@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SGDJPY
 **Canonical Key**: `SGDJPY` | **Broker Instrument**: `SGDJPY.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -31,13 +31,13 @@
   * Upper +2.51σ Band: `123.91` | Lower -2.51σ Band: `122.55`
   * Upper +2.01σ Band: `123.75` | Lower -2.01σ Band: `122.71`
   * Upper +2.00σ Band: `123.72` | Lower -2.00σ Band: `122.74`
-  * Upper +1.28σ Band: `123.58` | Lower -1.28σ Band: `122.88`
+  * Upper +1.28σ Band: `123.57` | Lower -1.28σ Band: `122.88`
   * Upper +1.00σ Band: `123.48` | Lower -1.00σ Band: `122.98`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`123.23` | EMA-20=`123.23` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`123.23` (Slope: `+0.0000`) | EMA-100=`123.23`
   * Institutional Anchors: EMA-144=`123.23` | EMA-200=`123.23` (Slope: `+0.0000`) | EMA-233=`123.23`
-- **Range Boundaries**: 24H High=`124.46` | 24H Low=`122.00` | Weekly High=`125.69` | Weekly Low=`120.77`
+- **Range Boundaries**: 24H High=`124.46` | 24H Low=`122.00` | Weekly High=`125.69` | Weekly Low=`120.76`
 
 ---
 
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`123.72` | POC=`123.23` | VAL=`122.74`
   * Prior Day Extremes: PDH=`123.97` | PDL=`122.49` | PDC=`123.23`
   * Monday Range Blueprint: High=`123.85` | Mid=`123.23` | Low=`122.61`
-  * Developing Weekly Value Area: Weekly VAH=`124.22` | Weekly POC=`123.23` | Weekly VAL=`122.24`
+  * Developing Weekly Value Area: Weekly VAH=`124.21` | Weekly POC=`123.23` | Weekly VAL=`122.24`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`123.48` | Low=`122.98`
   * London Session (08:00-16:00 UTC): High=`123.72` | Low=`122.74`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `122.74` - `123.72`
   * Optimal Trade Entry (OTE 0.705): `123.48`
-  * Structural Invalidation Anchor (0.786): `124.22`
+  * Structural Invalidation Anchor (0.786): `124.21`
 
 ---
 
@@ -268,17 +268,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `122.86` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `121.65` (Risk Distance: `1.22` pts)
+  * Spread-Padded Stop Loss: `121.64` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `125.90`
   * Mathematical Lot Sizing: **`8.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `123.60` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `124.81` (Risk Distance: `1.22` pts)
+  * Spread-Padded Stop Loss: `124.81` (Risk Distance: `1.21` pts)
   * +2.5R Take Profit: `120.56`
   * Mathematical Lot Sizing: **`8.23 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`124.22`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`124.21`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

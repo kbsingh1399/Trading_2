@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SWISS20
 **Canonical Key**: `SWISS20` | **Broker Instrument**: `SWISS20.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `14767.29` | VWAP Z-Score: `-0.92` (Regime: `BALANCED_FAIR_VALUE`)
+  * Session VWAP: `14766.29` | VWAP Z-Score: `-0.51` (Regime: `BALANCED_FAIR_VALUE`)
   * 14-Period ATR: `16.01` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `37.34` (State: `NEUTRAL`)
+  * 14-Period RSI: `41.79` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `14831.61` | Lower -3.00σ Band: `14702.97`
-  * Upper +2.51σ Band: `14821.11` | Lower -2.51σ Band: `14713.48`
-  * Upper +2.01σ Band: `14810.39` | Lower -2.01σ Band: `14724.20`
-  * Upper +2.00σ Band: `14810.17` | Lower -2.00σ Band: `14724.41`
-  * Upper +1.28σ Band: `14794.74` | Lower -1.28σ Band: `14739.85`
-  * Upper +1.00σ Band: `14788.73` | Lower -1.00σ Band: `14745.85`
+  * Upper +3.00σ Band: `14829.47` | Lower -3.00σ Band: `14703.12`
+  * Upper +2.51σ Band: `14819.15` | Lower -2.51σ Band: `14713.44`
+  * Upper +2.01σ Band: `14808.62` | Lower -2.01σ Band: `14723.97`
+  * Upper +2.00σ Band: `14808.41` | Lower -2.00σ Band: `14724.18`
+  * Upper +1.28σ Band: `14793.25` | Lower -1.28σ Band: `14739.34`
+  * Upper +1.00σ Band: `14787.35` | Lower -1.00σ Band: `14745.24`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`14761.38` | EMA-20=`14772.06` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`14767.31` (Slope: `+0.0000`) | EMA-100=`14732.68`
-  * Institutional Anchors: EMA-144=`14705.30` | EMA-200=`14678.74` (Slope: `+0.0817`) | EMA-233=`14664.65`
+  * Fast EMA Array: EMA-9=`14760.21` | EMA-20=`14770.48` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`14766.85` (Slope: `+0.0000`) | EMA-100=`14733.13`
+  * Institutional Anchors: EMA-144=`14706.06` | EMA-200=`14679.57` (Slope: `+0.0782`) | EMA-233=`14665.20`
 - **Range Boundaries**: 24H High=`14872.50` | 24H Low=`14576.50` | Weekly High=`14872.50` | Weekly Low=`14468.00`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `14790.25` (Distance: `-0.19%`)
-  * Point of Control (POC) = `14749.25` (Distance: `+0.09%`)
-  * Value Area Low (VAL) = `14733.75` (Distance: `+0.20%`)
+  * Value Area High (VAH) = `14789.25` (Distance: `-0.19%`)
+  * Point of Control (POC) = `14751.25` (Distance: `+0.07%`)
+  * Value Area Low (VAL) = `14733.75` (Distance: `+0.19%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`14839.72` | POC=`14778.13` | VAL=`14726.48`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.26 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `14790.25` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `14827.46` (Risk Distance: `37.21` pts)
-  * +2.5R Take Profit: `14697.23`
+  * Execution Entry: `14789.25` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `14826.46` (Risk Distance: `37.21` pts)
+  * +2.5R Take Profit: `14696.23`
   * Mathematical Lot Sizing: **`0.26 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

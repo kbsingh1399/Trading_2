@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SNXUSD
 **Canonical Key**: `SNXUSD` | **Broker Instrument**: `SNXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1663` | VWAP Z-Score: `+1.22` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0029` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `39.34` (State: `NEUTRAL`)
+  * Session VWAP: `0.1663` | VWAP Z-Score: `+0.75` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0028` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `37.50` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1730` | Lower -3.00σ Band: `0.1595`
-  * Upper +2.51σ Band: `0.1719` | Lower -2.51σ Band: `0.1606`
-  * Upper +2.01σ Band: `0.1708` | Lower -2.01σ Band: `0.1617`
+  * Upper +3.00σ Band: `0.1730` | Lower -3.00σ Band: `0.1596`
+  * Upper +2.51σ Band: `0.1720` | Lower -2.51σ Band: `0.1607`
+  * Upper +2.01σ Band: `0.1708` | Lower -2.01σ Band: `0.1618`
   * Upper +2.00σ Band: `0.1708` | Lower -2.00σ Band: `0.1618`
-  * Upper +1.28σ Band: `0.1691` | Lower -1.28σ Band: `0.1634`
-  * Upper +1.00σ Band: `0.1685` | Lower -1.00σ Band: `0.1640`
+  * Upper +1.28σ Band: `0.1692` | Lower -1.28σ Band: `0.1635`
+  * Upper +1.00σ Band: `0.1686` | Lower -1.00σ Band: `0.1641`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1682` | EMA-20=`0.1713` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1780` (Slope: `+0.0000`) | EMA-100=`0.1824`
-  * Institutional Anchors: EMA-144=`0.1840` | EMA-200=`0.1851` (Slope: `-1.1714`) | EMA-233=`0.1857`
+  * Fast EMA Array: EMA-9=`0.1681` | EMA-20=`0.1710` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1776` (Slope: `+0.0000`) | EMA-100=`0.1821`
+  * Institutional Anchors: EMA-144=`0.1838` | EMA-200=`0.1849` (Slope: `-1.1873`) | EMA-233=`0.1856`
 - **Range Boundaries**: 24H High=`0.1950` | 24H Low=`0.1590` | Weekly High=`0.1960` | Weekly Low=`0.1590`
 
 ---
@@ -44,7 +44,7 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.1740` (Distance: `+2.54%`)
+  * Value Area High (VAH) = `0.1730` (Distance: `+2.71%`)
   * Point of Control (POC) = `0.1670` (Distance: `+6.59%`)
   * Value Area Low (VAL) = `0.1600` (Distance: `+11.28%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | -1,210.00 USD | **`DISTRIBUTION`** |
-| `15m` | 0.00 USD | -37,150.00 USD | **`DISTRIBUTION`** |
-| `30m` | 0.00 USD | -24,300.00 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -40,170.00 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | 1,930.00 USD | **`ACCUMULATION`** |
-| `4h` | 0.00 USD | 109,920.00 USD | **`ACCUMULATION`** |
-| `6h` | 0.00 USD | 5,830.00 USD | **`ACCUMULATION`** |
-| `8h` | 0.00 USD | -60,830.00 USD | **`DISTRIBUTION`** |
-| `12h` | 0.00 USD | -123,410.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -181,860.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | -1,020,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | 0.00 USD | -4,920,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | -756.52 USD | **`DISTRIBUTION`** |
+| `15m` | 0.00 USD | 37,580.00 USD | **`ACCUMULATION`** |
+| `30m` | 0.00 USD | 427.27 USD | **`ACCUMULATION`** |
+| `1h` | 0.00 USD | 5,340.00 USD | **`ACCUMULATION`** |
+| `2h` | 0.00 USD | 32,660.00 USD | **`ACCUMULATION`** |
+| `4h` | 0.00 USD | 157,340.00 USD | **`ACCUMULATION`** |
+| `6h` | 0.00 USD | 133,420.00 USD | **`ACCUMULATION`** |
+| `8h` | 0.00 USD | -24,580.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -62,180.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -139,030.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -985,700.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -4,890,000.00 USD | **`DISTRIBUTION`** |
 
 * Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-1.21K` | 15m=`-37.15K` | 1h=`-40.17K` | 24h=`-181.86K`
+* Futures Capital Netflows: 5m=`-756.52` | 15m=`+37.58K` | 1h=`+5.34K` | 24h=`-139.03K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1600` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.1265` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `0.1267` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.2600`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.1740` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.2075` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `0.0740`
+  * Execution Entry: `0.1730` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.2063` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `0.0730`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

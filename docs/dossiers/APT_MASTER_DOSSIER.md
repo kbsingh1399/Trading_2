@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: APT
 **Canonical Key**: `APT` | **Broker Instrument**: `APTUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:43 IST` (`2026-10-30 02:57:43 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -86,7 +86,7 @@
 | `4h` | `0.6713` | `0.7047` | `0.6676` | `0.7036` | `13,569,736` | 9,297,285.20 USD | -148,086.76 USD | `-1.59%` | -575,126.84 USD | `+0.34` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.7037` | `0.7077` | `0.6665` | `0.6721` | `16,607,110` | 11,368,753.45 USD | -1,468,928.13 USD | `-12.92%` | -2,044,054.97 USD | `-1.70` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.6721` | `0.6728` | `0.6003` | `0.6161` | `56,944,695` | 35,933,598.81 USD | -3,666,266.35 USD | `-10.20%` | -5,710,321.32 USD | `-1.86` | **`BEARISH`** | `DELTA ALIGNED` |
-| `4h` | `0.6162` | `0.6185` | `0.5736` | `0.6093` | `21,498,116` | 12,847,178.29 USD | -748,306.96 USD | `-5.82%` | -6,458,628.28 USD | `+0.26` | **`BEARISH`** | `DELTA ALIGNED` |
+| `4h` | `0.6162` | `0.6185` | `0.5736` | `0.6035` | `22,677,896` | 13,560,806.24 USD | -660,557.70 USD | `-4.87%` | -6,370,879.02 USD | `+0.32` | **`BEARISH`** | `NEUTRAL CHOP` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 08:13:17 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 08:26:34 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -1185,21 +1185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 19,480.00 USD | -19,640.00 USD | **`DISTRIBUTION`** |
-| `15m` | 11,920.00 USD | -105,250.00 USD | **`DISTRIBUTION`** |
-| `30m` | 11,160.00 USD | -78,990.00 USD | **`DISTRIBUTION`** |
-| `1h` | 19,850.00 USD | 119,200.00 USD | **`ACCUMULATION`** |
-| `2h` | -30,550.00 USD | 510,980.00 USD | **`ACCUMULATION`** |
-| `4h` | -719,760.00 USD | -1,410,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -855,540.00 USD | -4,380,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -1,170,000.00 USD | -6,570,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -1,080,000.00 USD | -8,010,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -1,370,000.00 USD | -9,450,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -5,910,000.00 USD | -26,490,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -28,680,000.00 USD | -106,230,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 23,470.00 USD | 111,470.00 USD | **`ACCUMULATION`** |
+| `15m` | 42,560.00 USD | 138,810.00 USD | **`ACCUMULATION`** |
+| `30m` | 32,630.00 USD | 29,350.00 USD | **`ACCUMULATION`** |
+| `1h` | 29,660.00 USD | 24,060.00 USD | **`ACCUMULATION`** |
+| `2h` | -80,650.00 USD | 512,830.00 USD | **`ACCUMULATION`** |
+| `4h` | -569,800.00 USD | -1,110,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | -704,220.00 USD | -1,040,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | -1,180,000.00 USD | -6,450,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -1,090,000.00 USD | -7,400,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -1,350,000.00 USD | -9,180,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -5,910,000.00 USD | -26,360,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -28,630,000.00 USD | -106,100,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+19.48K` | 15m=`+11.92K` | 1h=`+19.85K` | 24h=`-1.37M`
-* Futures Capital Netflows: 5m=`-19.64K` | 15m=`-105.25K` | 1h=`+119.20K` | 24h=`-9.45M`
+* Spot Capital Netflows: 5m=`+23.47K` | 15m=`+42.56K` | 1h=`+29.66K` | 24h=`-1.35M`
+* Futures Capital Netflows: 5m=`+111.47K` | 15m=`+138.81K` | 1h=`+24.06K` | 24h=`-9.18M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

@@ -1,9 +1,9 @@
-# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION — [Cycle_021]
+# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION — [Cycle_022]
 ## Dossier-Centric Multi-Agent Squad Audit & Full-Length Forensic Candidate Discovery Specification
 
 > **Document Status**: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
-> **Active Execution Cycle**: **Cycle_021** (Cutoff Timestamp: 2026-10-30 02:31:11 UTC)  
-> **Mandatory Cycle Stamping**: Every prompt, deliberation section, and JSON response MUST be explicitly stamped with this exact Cycle Number: **Cycle_021**.  
+> **Active Execution Cycle**: **Cycle_022** (Cutoff Timestamp: 2026-10-30 02:56:13 UTC)  
+> **Mandatory Cycle Stamping**: Every prompt, deliberation section, and JSON response MUST be explicitly stamped with this exact Cycle Number: **Cycle_022**.  
 > **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md` & `docs/specs/Arena_GLM_Standard_Prompt.md`)  
 > **Council Architecture**:  
 >   1. **Antigravity Executive Desk**: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents (Seat #1 — Final Boss).  
@@ -31,16 +31,16 @@
 ### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE & TELEMETRY RECEIPT:
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle_021",
-  "uuid": "2926374b-4616-4da1-9739-c6eab62ae6ff",
-  "dispatch_nonce": "d51f60cc-7657-480b-bc8d-54b3070b0c1c",
-  "cutoff_utc": "2026-10-30 02:30:50 UTC",
+  "cycle_id": "Cycle_022",
+  "uuid": "cdd38445-7ae0-4e41-973e-b6a32fe798c6",
+  "dispatch_nonce": "60001ad2-6ec5-4c24-8a53-f0ebac736aef",
+  "cutoff_utc": "2026-10-30 02:55:09 UTC",
   "provenance": {
-    "git_commit": "8062db085c59fb8bf657ca5e7ac468f42e147cac",
-    "git_tree": "e707b35d1cbddf932dbe39263dad73cd385f4c61",
-    "prompt_sha256": "07e6d35184574c0eb32cc4049ce51122f22fe4abfd3e00d817c13c7778a299fe",
+    "git_commit": "d36c578778cae1fab8d49c358969a0cf17771900",
+    "git_tree": "e4fcb2358ade7e3ea245c576c73149fd880bd466",
+    "prompt_sha256": "ec1eb15c6bf68dcb5dfedf8aa07fc3b5bae4f1f9077c759aa8dfb8c8b8e3726d",
     "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
-    "evidence_manifest_sha256": "4111d5a3d3af3dbdd18f6845d46a164d75e3f8bdc956eb614e6022cab983d919",
+    "evidence_manifest_sha256": "bb70aa8756c69b840a49d001a398c4bef98a7854bc2e390350ccd4e35d6da4e7",
     "parquet_freshness_verified": true,
     "parquet_audit_scorecard_fresh": true
   },
@@ -49,10 +49,10 @@
     "server": "BlueberryMarketsSVG-Live",
     "currency": "USD",
     "balance": 4762.83,
-    "equity": 4768.35,
+    "equity": 4770.91,
     "margin_used": 187.39,
-    "margin_free": 4580.96,
-    "margin_level": 2544.612839532526,
+    "margin_free": 4583.52,
+    "margin_level": 2545.978974331608,
     "active_positions_count": 1,
     "pending_orders_count": 5,
     "active_positions": [
@@ -68,11 +68,11 @@
         "reason": 3,
         "volume": 0.08,
         "price_open": 0.7027,
-        "sl": 0.7015,
+        "sl": 0.70282,
         "tp": 0.7057,
-        "price_current": 0.70339,
+        "price_current": 0.70371,
         "swap": 0.0,
-        "profit": 5.52,
+        "profit": 8.08,
         "symbol": "AUDUSD.pi",
         "comment": "TriCouncil C11 AUDUSD",
         "external_id": ""
@@ -99,7 +99,7 @@
         "price_open": 81084.0,
         "sl": 81680.0,
         "tp": 80180.0,
-        "price_current": 77171.0,
+        "price_current": 77161.0,
         "price_stoplimit": 0.0,
         "symbol": "BTCUSD.pi",
         "comment": "TC_BTC_VAH_Fade",
@@ -125,7 +125,7 @@
         "price_open": 753.3,
         "sl": 761.5,
         "tp": 743.5,
-        "price_current": 710.9,
+        "price_current": 706.9,
         "price_stoplimit": 0.0,
         "symbol": "BNBUSD.p",
         "comment": "TC_BNB_Wall_Fade",
@@ -151,7 +151,7 @@
         "price_open": 4040.5,
         "sl": 4049.5,
         "tp": 4018.0,
-        "price_current": 4005.88,
+        "price_current": 3997.58,
         "price_stoplimit": 0.0,
         "symbol": "XAUUSD.pi",
         "comment": "TC_XAU_VAH_Fade",
@@ -177,7 +177,7 @@
         "price_open": 29535.0,
         "sl": 29620.0,
         "tp": 29320.0,
-        "price_current": 28734.68,
+        "price_current": 28742.96,
         "price_stoplimit": 0.0,
         "symbol": "NAS100.p",
         "comment": "TC_NAS_VAH_Fade",
@@ -203,7 +203,7 @@
         "price_open": 52638.0,
         "sl": 52732.0,
         "tp": 52402.0,
-        "price_current": 52235.46,
+        "price_current": 52260.56,
         "price_stoplimit": 0.0,
         "symbol": "DJ30.p",
         "comment": "TC_DJ_VAH_Fade",
@@ -220,9 +220,9 @@
     "operating_buffer_cushion_usd": 112.83,
     "kernel_cushion_usd": -32.17,
     "global_contingency_reserve_usd": 2.0,
-    "existing_ticket_stress_usd": 72.4875,
-    "realized_headroom_usd": -106.66,
-    "post_joint_stress_equity_usd": 4688.34,
+    "existing_ticket_stress_usd": 62.4875,
+    "realized_headroom_usd": -96.66,
+    "post_joint_stress_equity_usd": 4698.34,
     "capital_mode": "TIER_0_DEFENSIVE",
     "risk_min_usd": 10.0,
     "risk_max_usd": 10.0,
@@ -250,7 +250,7 @@
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "d51f60cc-7657-480b-bc8d-54b3070b0c1c",
+  "dispatch_nonce": "60001ad2-6ec5-4c24-8a53-f0ebac736aef",
   "observed_at_utc": "2026-10-27 13:12:05 UTC",
   "account": {
     "login": 5064568,
@@ -310,7 +310,7 @@
     "margin_free_post_order": 4435.33
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "f187870dc34c4640323b8b14caeae5a8eaad1d8a2cab2b12c01158e275918824"
+  "receipt_sha256": "3339852a0f19b26de478620b18ff3151bfc3a991b0045137b5734e2534abd319"
 }
 ```
 
@@ -327,7 +327,7 @@
 > 3. **Autonomous Multi-Agent Squad Mobilization**:
 >    - You MUST mobilize deep cognitive reasoning and orchestrate a complete **Autonomous Multi-Agent Quantitative Squad** deploying 4 exhaustive, specialized personas.
 > 4. **Mandatory Cycle Identifier Stamping (Strict Non-Negotiable Mandate)**:
->    - Every prompt, deliberation section, persona output, and final broker execution block MUST explicitly state and be stamped with the active Cycle ID: **Cycle_021**.
+>    - Every prompt, deliberation section, persona output, and final broker execution block MUST explicitly state and be stamped with the active Cycle ID: **Cycle_022**.
 >    - Responses omitting or citing an inconsistent Cycle ID are strictly rejected fail-closed as non-compliant and non-verifiable.
 
 ---
@@ -403,7 +403,7 @@ Conduct a formal skills-gap audit demonstrating how specialized toolkits sharpen
 Your response must strictly adhere to the following 7-section structure:
 
 ### §1. Provenance, Telemetry & Solvency Kernel Audit
-- Explicitly declare and verify the active Cycle Identifier: **Cycle_021** (Cutoff: 2026-10-30 02:31:11 UTC).
+- Explicitly declare and verify the active Cycle Identifier: **Cycle_022** (Cutoff: 2026-10-30 02:56:13 UTC).
 - Reconcile live MT5 balance, equity, margin level, and capital floor distance.
 - Confirm feed timestamps and verify parity across git main and local state.
 
@@ -435,4 +435,4 @@ Your response must strictly adhere to the following 7-section structure:
 - Evaluate structural validity, whale wall persistence, and time decay.
 
 ### §7. Standardized Machine-Readable JSON Output Block
-- Return the standardized JSON payload explicitly bound with `"cycle_id": "Cycle_021"`, `account_solvency`, `active_staged_orders`, `high_confluence_formulated_trades`, and `disputes_or_rejections`.
+- Return the standardized JSON payload explicitly bound with `"cycle_id": "Cycle_022"`, `account_solvency`, `active_staged_orders`, `high_confluence_formulated_trades`, and `disputes_or_rejections`.

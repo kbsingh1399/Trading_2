@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FLWUSD
 **Canonical Key**: `FLWUSD` | **Broker Instrument**: `FLWUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0124` | VWAP Z-Score: `+1.90` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000538` (Volatility Regime: `HIGH_EXPANSION`)
+  * Session VWAP: `0.0124` | VWAP Z-Score: `+1.64` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000500` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `48.78` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0134` | Lower -3.00σ Band: `0.0114`
-  * Upper +2.51σ Band: `0.0132` | Lower -2.51σ Band: `0.0115`
-  * Upper +2.01σ Band: `0.0130` | Lower -2.01σ Band: `0.0117`
-  * Upper +2.00σ Band: `0.0130` | Lower -2.00σ Band: `0.0117`
-  * Upper +1.28σ Band: `0.0128` | Lower -1.28σ Band: `0.0119`
-  * Upper +1.00σ Band: `0.0127` | Lower -1.00σ Band: `0.0120`
+  * Upper +3.00σ Band: `0.0135` | Lower -3.00σ Band: `0.0113`
+  * Upper +2.51σ Band: `0.0133` | Lower -2.51σ Band: `0.0115`
+  * Upper +2.01σ Band: `0.0131` | Lower -2.01σ Band: `0.0117`
+  * Upper +2.00σ Band: `0.0131` | Lower -2.00σ Band: `0.0117`
+  * Upper +1.28σ Band: `0.0129` | Lower -1.28σ Band: `0.0120`
+  * Upper +1.00σ Band: `0.0128` | Lower -1.00σ Band: `0.0121`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.0125` | EMA-20=`0.0129` (Slope: `+0.0000`)
+  * Fast EMA Array: EMA-9=`0.0126` | EMA-20=`0.0129` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0138` (Slope: `+0.0000`) | EMA-100=`0.0145`
-  * Institutional Anchors: EMA-144=`0.0148` | EMA-200=`0.0151` (Slope: `-2.1586`) | EMA-233=`0.0153`
+  * Institutional Anchors: EMA-144=`0.0148` | EMA-200=`0.0151` (Slope: `-2.1407`) | EMA-233=`0.0153`
 - **Range Boundaries**: 24H High=`0.0160` | 24H Low=`0.0110` | Weekly High=`0.0170` | Weekly Low=`0.0110`
 
 ---
@@ -44,8 +44,8 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0128` (Distance: `+0.00%`)
-  * Point of Control (POC) = `0.0120` (Distance: `+0.00%`)
+  * Value Area High (VAH) = `0.0130` (Distance: `+0.00%`)
+  * Point of Control (POC) = `0.0130` (Distance: `+0.00%`)
   * Value Area Low (VAL) = `0.0120` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.0120` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `-0.0187` (Risk Distance: `0.0400` pts)
+  * Spread-Padded Stop Loss: `-0.0186` (Risk Distance: `0.0400` pts)
   * +2.5R Take Profit: `0.1120`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.0128` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.0434` (Risk Distance: `0.0400` pts)
-  * +2.5R Take Profit: `-0.0872`
+  * Execution Entry: `0.0130` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.0436` (Risk Distance: `0.0400` pts)
+  * +2.5R Take Profit: `-0.0870`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

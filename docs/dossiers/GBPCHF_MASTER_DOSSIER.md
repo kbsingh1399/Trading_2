@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPCHF
 **Canonical Key**: `GBPCHF` | **Broker Instrument**: `GBPCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:24:42 IST` (`2026-10-30 02:54:42 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:27:44 IST` (`2026-10-30 02:57:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -24,8 +24,8 @@
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
   * Session VWAP: `1.10` | VWAP Z-Score: `-0.34` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000709` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `34.33` (State: `OVERSOLD`)
+  * 14-Period ATR: `0.000685` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `34.25` (State: `OVERSOLD`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `1.10` | Lower -3.00σ Band: `1.10`
   * Upper +2.51σ Band: `1.10` | Lower -2.51σ Band: `1.10`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`1.10` | EMA-20=`1.10` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`1.10` (Slope: `+0.0000`) | EMA-100=`1.10`
-  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `-0.0303`) | EMA-233=`1.10`
+  * Institutional Anchors: EMA-144=`1.10` | EMA-200=`1.10` (Slope: `-0.0318`) | EMA-233=`1.10`
 - **Range Boundaries**: 24H High=`1.11` | 24H Low=`1.10` | Weekly High=`1.11` | Weekly Low=`1.10`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.10` (Distance: `-0.14%`)
-  * Point of Control (POC) = `1.10` (Distance: `-0.01%`)
-  * Value Area Low (VAL) = `1.10` (Distance: `+0.13%`)
+  * Value Area High (VAH) = `1.10` (Distance: `-0.12%`)
+  * Point of Control (POC) = `1.10` (Distance: `+0.00%`)
+  * Value Area Low (VAL) = `1.10` (Distance: `+0.14%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.10` | POC=`1.10` | VAL=`1.10`
