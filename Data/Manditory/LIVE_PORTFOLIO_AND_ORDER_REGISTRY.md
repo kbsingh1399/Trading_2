@@ -14,16 +14,16 @@
 ## 🏛️ 1. ACCOUNT SOLVENCY & CAPITAL METRICS
 - **Broker & Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)
 - **Account Balance**: **4,762.83 USD**
-- **Floating Equity**: **4,770.91 USD**
-- **Free Margin**: **4,583.52 USD**
+- **Floating Equity**: **4,772.99 USD**
+- **Free Margin**: **4,585.60 USD**
 - **Margin Used**: **187.39 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit compressed to: **-4.09 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit compressed to: **-24.09 USD**)
+- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit compressed to: **-2.01 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit compressed to: **-22.01 USD**)
 - **Active Running Positions**: **1 ACTIVE (AUDUSD.pi Long — RATCHET LOCKED AT 0.70282)**
 - **Active Resting Pending Orders**: **5 LIVE PENDING MAKER LIMIT ORDERS**
 - **Total Contingent Downside Risk**: **33.27 USD** (Down from 42.87 USD because AUDUSD is now 0.00 USD risk / guaranteed win)
 - **Execution Posture**: **ARMED_MAKER_LIMITS_ACTIVE**
-- **Last Synchronized (UTC)**: `2026-10-30 02:54:00 UTC` (`2026-10-30 08:24:00 IST`)
+- **Last Synchronized (UTC)**: `2026-10-30 03:20:00 UTC` (`2026-10-30 08:50:00 IST`)
 
 ---
 
@@ -31,7 +31,7 @@
 
 | Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70370` | `0.70282` | `0.70570` | `+8.00 USD` | **BE+ Locked (+0.83R Gain)** | **LET RUN. Early-BE ratchet successfully executed on MT5! SL moved to 0.70282 (+1.2 pips above entry). Trade is now 100% risk-free ex-ante. 5m CVD buying (+83% delta) continuing. Target: 0.70570 (+2.5R).** |
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70397` | `0.70282` | `0.70570` | `+10.16 USD` | **BE+ Locked (+1.06R Gain)** | **LET RUN. Early-BE ratchet successfully executed on MT5! SL moved to 0.70282 (+1.2 pips above entry). Trade is 100% risk-free ex-ante. Surge toward +1.50R (0.70450) underway. Target: 0.70570 (+2.5R).** |
 
 ---
 
