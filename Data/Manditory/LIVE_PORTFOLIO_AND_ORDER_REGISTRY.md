@@ -27,11 +27,13 @@
 
 ---
 
-## 🚀 2. LIVE RUNNING POSITIONS (1 ACTIVE — RISK-FREE RATCHET LOCKED)
+## 🚀 2. LIVE RUNNING POSITIONS (0 ACTIVE — BANKED IN GREEN VIA RATCHET)
 
-| Ticket | Symbol | Type | Volume | Entry Price | Current Price | Live SL | Live TP | Floating PnL | Dynamic Ratchet State | Interrogation: "Should I let it run or cut it?" |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70328` | `0.70282` | `0.70570` | `+4.64 USD` | **BE+ Locked (+1.09R Gain)** | **LET RUN. Early-BE ratchet successfully executed on MT5! SL moved to 0.70282 (+1.2 pips above entry). Trade is 100% risk-free ex-ante. Floating profit expanding (+1.09R) toward +1.50R target (0.70450). TP: 0.70570 (+2.5R).** |
+| Ticket | Symbol | Type | Volume | Entry Price | Exit Price | Exit SL | Realized PnL | Dynamic Ratchet Exit Outcome |
+|---|---|---|---|---|---|---|---|---|
+| **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70282` | `0.70282` | **+0.96 USD (+0.40 USD net)** | **CLOSED IN PROFIT VIA RATCHET (+1.2 pips). Stop loss locked in green protected gains. Realized capital banked into balance (4,763.23 USD).** |
+
+*(Currently 0 active running positions. 100% capital preserved in cash under TIER_0_DEFENSIVE posture).*
 
 ---
 
