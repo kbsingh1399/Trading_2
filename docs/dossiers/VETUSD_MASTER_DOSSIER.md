@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: VETUSD
 **Canonical Key**: `VETUSD` | **Broker Instrument**: `VETUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:11 IST` (`2026-10-30 05:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0058` | **Live Ask Quote**: `0.0059` | **Mid Price**: `0.0059`
-- **Spread Points**: `4.00` | **Spread BPS**: `68.38 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0058` | **Live Ask Quote**: `0.0059` | **Mid Price**: `0.0058`
+- **Spread Points**: `4.00` | **Spread BPS**: `68.49 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,10 +49,10 @@
   * Value Area Low (VAL) = `0.0056` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0059` | POC=`0.0059` | VAL=`0.0058`
-  * Prior Day Extremes: PDH=`0.0059` | PDL=`0.0058` | PDC=`0.0059`
-  * Monday Range Blueprint: High=`0.0059` | Mid=`0.0059` | Low=`0.0058`
-  * Developing Weekly Value Area: Weekly VAH=`0.0059` | Weekly POC=`0.0059` | Weekly VAL=`0.0058`
+  * Prior Day Value Area: VAH=`0.0059` | POC=`0.0058` | VAL=`0.0058`
+  * Prior Day Extremes: PDH=`0.0059` | PDL=`0.0058` | PDC=`0.0058`
+  * Monday Range Blueprint: High=`0.0059` | Mid=`0.0058` | Low=`0.0058`
+  * Developing Weekly Value Area: Weekly VAH=`0.0059` | Weekly POC=`0.0058` | Weekly VAL=`0.0058`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.0059` | Low=`0.0058`
   * London Session (08:00-16:00 UTC): High=`0.0059` | Low=`0.0058`

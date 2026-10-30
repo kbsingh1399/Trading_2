@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: APT
 **Canonical Key**: `APT` | **Broker Instrument**: `APTUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 11:11:08 IST` (`2026-10-30 05:41:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:10 IST` (`2026-10-30 05:44:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -70,23 +70,23 @@
 - **Multi-Timeframe CVD Execution Table (18_CVD_30D_ALL.parquet, 18_CVD.parquet)**:
 | Timeframe | Open | High | Low | Close | Total Volume | Quote Vol (USD) | Candle Delta (USD) | Delta % | Cumulative CVD | CVD Z-Score | Directional Bias | Regime |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `5m` | `0.6253` | `0.6265` | `0.6238` | `0.6252` | `123,485` | 77,192.10 USD | -4,483.15 USD | `-5.81%` | -6,431,394.97 USD | `+0.21` | **`BEARISH`** | `DELTA ALIGNED` |
-| `5m` | `0.6253` | `0.6265` | `0.6250` | `0.6262` | `77,152` | 48,283.36 USD | 1,671.97 USD | `+3.46%` | -6,429,723.00 USD | `+0.44` | **`BULLISH`** | `NEUTRAL CHOP` |
-| `5m` | `0.6263` | `0.6282` | `0.6250` | `0.6266` | `115,419` | 72,299.95 USD | -15,398.43 USD | `-21.30%` | -6,445,121.44 USD | `-0.00` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `0.6263` | `0.6282` | `0.6250` | `0.6266` | `158,969` | 99,608.07 USD | -16,383.00 USD | `-16.45%` | -6,429,525.74 USD | `-0.03` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `5m` | `0.6266` | `0.6281` | `0.6258` | `0.6261` | `132,680` | 83,169.08 USD | -38,703.52 USD | `-46.54%` | -6,468,229.26 USD | `-0.55` | **`BEARISH`** | `AGGRESSIVE SELLING` |
+| `5m` | `0.6261` | `0.6278` | `0.6249` | `0.6272` | `86,965` | 54,447.69 USD | 3,619.36 USD | `+6.65%` | -6,464,609.90 USD | `+0.46` | **`BULLISH`** | `DELTA ALIGNED` |
 | `15m` | `0.6200` | `0.6265` | `0.6192` | `0.6230` | `850,201` | 529,221.91 USD | -81,784.28 USD | `-15.45%` | -6,370,965.66 USD | `-0.21` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `15m` | `0.6231` | `0.6265` | `0.6226` | `0.6262` | `374,269` | 233,847.44 USD | -42,177.08 USD | `-18.04%` | -6,413,142.74 USD | `-0.75` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `15m` | `0.6263` | `0.6282` | `0.6250` | `0.6267` | `116,534` | 72,999.16 USD | -15,115.10 USD | `-20.71%` | -6,428,257.84 USD | `-0.40` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `15m` | `0.6263` | `0.6282` | `0.6249` | `0.6272` | `378,513` | 237,162.00 USD | -51,486.24 USD | `-21.71%` | -6,464,628.98 USD | `-0.81` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `1h` | `0.6032` | `0.6175` | `0.6026` | `0.6161` | `2,079,930` | 1,271,652.33 USD | 258,052.55 USD | `+20.29%` | -6,034,035.00 USD | `+0.71` | **`BULLISH`** | `AGGRESSIVE BUYING` |
 | `1h` | `0.6161` | `0.6222` | `0.6117` | `0.6199` | `2,874,646` | 1,774,946.15 USD | -165,613.15 USD | `-9.33%` | -6,199,648.15 USD | `+0.18` | **`BEARISH`** | `BEARISH ABSORPTION` |
-| `1h` | `0.6200` | `0.6282` | `0.6192` | `0.6266` | `1,339,889` | 835,369.30 USD | -139,359.80 USD | `-16.68%` | -6,339,007.95 USD | `+0.23` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `1h` | `0.6200` | `0.6282` | `0.6192` | `0.6272` | `1,603,069` | 1,000,285.41 USD | -175,419.75 USD | `-17.54%` | -6,375,067.90 USD | `+0.18` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.6721` | `0.6728` | `0.6003` | `0.6161` | `56,944,695` | 35,933,598.81 USD | -3,666,266.35 USD | `-10.20%` | -5,343,422.64 USD | `-1.60` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.6162` | `0.6185` | `0.5736` | `0.6161` | `24,927,742` | 14,934,999.44 USD | -377,825.53 USD | `-2.53%` | -5,721,248.17 USD | `+0.56` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.6161` | `0.6282` | `0.6117` | `0.6267` | `4,215,796` | 2,611,105.79 USD | -304,734.86 USD | `-11.67%` | -6,025,983.03 USD | `+0.55` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `4h` | `0.6161` | `0.6282` | `0.6117` | `0.6272` | `4,477,629` | 2,775,177.50 USD | -341,060.76 USD | `-12.29%` | -6,062,308.92 USD | `+0.52` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.6713` | `0.7047` | `0.6676` | `0.7036` | `13,569,736` | 9,297,285.20 USD | -148,086.76 USD | `-1.59%` | -208,228.16 USD | `-1.00` | **`BEARISH`** | `BEARISH ABSORPTION` |
 | `4h` | `0.7037` | `0.7077` | `0.6665` | `0.6721` | `16,607,110` | 11,368,753.45 USD | -1,468,928.13 USD | `-12.92%` | -1,677,156.29 USD | `-1.41` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.6721` | `0.6728` | `0.6003` | `0.6161` | `56,944,695` | 35,933,598.81 USD | -3,666,266.35 USD | `-10.20%` | -5,343,422.64 USD | `-1.60` | **`BEARISH`** | `DELTA ALIGNED` |
 | `4h` | `0.6162` | `0.6185` | `0.5736` | `0.6161` | `24,927,742` | 14,934,999.44 USD | -377,825.53 USD | `-2.53%` | -5,721,248.17 USD | `+0.56` | **`BEARISH`** | `NEUTRAL CHOP` |
-| `4h` | `0.6161` | `0.6282` | `0.6117` | `0.6267` | `4,215,796` | 2,611,105.79 USD | -304,734.86 USD | `-11.67%` | -6,025,983.03 USD | `+0.55` | **`BEARISH`** | `BEARISH ABSORPTION` |
+| `4h` | `0.6161` | `0.6282` | `0.6117` | `0.6272` | `4,477,629` | 2,775,177.50 USD | -341,060.76 USD | `-12.29%` | -6,062,308.92 USD | `+0.52` | **`BEARISH`** | `BEARISH ABSORPTION` |
 
 - **Deribit Institutional Options Max Pain & Volatility Surface (21_Tradfye_Orderflow.parquet)**:
   * Options Max Pain Price: `0.000000`
@@ -111,7 +111,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 11:04:06 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 11:13:49 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -121,7 +121,6 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `0.6667` | 375.48 USD | `-` | `NEWS_INTEL` | `-` | #APT Liquidated Short: 0.38K USD at 0.6667 USD [API] | `2026-10-29 02:05:24` |
 | `ANNOUNCEMENT` | `INFO` | `0.6610` | 105.51 USD | `-` | `NEWS_INTEL` | `-` | #APT Liquidated Short: 0.11K USD at 0.6610 USD [API] | `2026-10-29 02:35:44` |
 | `ANNOUNCEMENT` | `INFO` | `0.6668` | 238.82 USD | `-` | `NEWS_INTEL` | `-` | #APT Liquidated Short: 0.24K USD at 0.6668 USD [API] | `2026-10-29 02:05:24` |
 

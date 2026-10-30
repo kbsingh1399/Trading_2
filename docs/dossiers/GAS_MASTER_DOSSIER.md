@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAS
 **Canonical Key**: `GAS` | **Broker Instrument**: `GAS.p` | **Asset Class**: `Energy / Commodity`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:11 IST` (`2026-10-30 05:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2.61` | **Live Ask Quote**: `2.62` | **Mid Price**: `2.62`
-- **Spread Points**: `16.00` | **Spread BPS**: `61.16 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `2.61` | **Live Ask Quote**: `2.63` | **Mid Price**: `2.62`
+- **Spread Points**: `16.00` | **Spread BPS**: `61.07 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2.61` (Distance: `+0.09%`)
-  * Point of Control (POC) = `2.61` (Distance: `+0.23%`)
-  * Value Area Low (VAL) = `2.61` (Distance: `+0.31%`)
+  * Value Area High (VAH) = `2.61` (Distance: `+0.24%`)
+  * Point of Control (POC) = `2.61` (Distance: `+0.38%`)
+  * Value Area Low (VAL) = `2.61` (Distance: `+0.46%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2.70` | POC=`2.65` | VAL=`2.59`
@@ -55,12 +55,12 @@
   * Developing Weekly Value Area: Weekly VAH=`2.76` | Weekly POC=`2.74` | Weekly VAL=`2.65`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`2.62` | Low=`2.60`
-  * London Session (08:00-16:00 UTC): High=`2.61` | Low=`2.61`
-  * New York Session (13:00-21:00 UTC): High=`2.63` | Low=`2.60`
-  * Initial Balance (First Hour): IB High=`2.61` | IB Low=`2.61`
+  * London Session (08:00-16:00 UTC): High=`2.62` | Low=`2.61`
+  * New York Session (13:00-21:00 UTC): High=`2.64` | Low=`2.60`
+  * Initial Balance (First Hour): IB High=`2.62` | IB Low=`2.61`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `2.61` - `2.63`
-  * Optimal Trade Entry (OTE 0.705): `2.62`
+  * Optimal Trade Entry (OTE 0.705): `2.63`
   * Structural Invalidation Anchor (0.786): `2.64`
 
 ---

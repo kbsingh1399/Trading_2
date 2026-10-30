@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURHKD
 **Canonical Key**: `EURHKD` | **Broker Instrument**: `EURHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:10 IST` (`2026-10-30 05:44:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -27,8 +27,8 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `8.84` | Lower -3.00σ Band: `8.71`
-  * Upper +2.51σ Band: `8.82` | Lower -2.51σ Band: `8.73`
+  * Upper +3.00σ Band: `8.83` | Lower -3.00σ Band: `8.71`
+  * Upper +2.51σ Band: `8.82` | Lower -2.51σ Band: `8.72`
   * Upper +2.01σ Band: `8.81` | Lower -2.01σ Band: `8.74`
   * Upper +2.00σ Band: `8.81` | Lower -2.00σ Band: `8.74`
   * Upper +1.28σ Band: `8.80` | Lower -1.28σ Band: `8.75`

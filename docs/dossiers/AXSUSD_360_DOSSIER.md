@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AXSUSD
 **Canonical Key**: `AXSUSD` | **Broker Instrument**: `AXSUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:11 IST` (`2026-10-30 05:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -132,14 +132,7 @@
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Live` | `Long` | `0.3195` | 13,200.00 USD | 0.00 USD | 304.80 USD | `-62.15%` | `954.00` |
-| `Live` | `Long` | `0.4365` | 12,900.00 USD | 0.00 USD | 290.71 USD | `-48.28%` | `666.00` |
-| `Live` | `Long` | `0.5225` | 12,610.00 USD | 0.00 USD | 1,180.00 USD | `-38.09%` | `2,259.30` |
-| `Live` | `Long` | `0.7325` | 11,430.00 USD | 0.00 USD | 5,830.00 USD | `-13.21%` | `7,955.00` |
-| `Live` | `Long` | `0.7365` | 5,600.00 USD | 0.00 USD | 136.62 USD | `-12.74%` | `185.50` |
-| `Live` | `Long` | `0.7975` | 5,460.00 USD | 0.00 USD | 5,330.00 USD | `-5.51%` | `6,689.50` |
-| `Live` | `Long` | `0.8085` | 128.55 USD | 0.00 USD | 128.55 USD | `-4.21%` | `159.00` |
-| `Live` | `Short` | `0.8985` | 710.35 USD | 710.35 USD | 0.00 USD | `+6.45%` | `790.60` |
+| Map | Near Money | - | - | - | - | 0.00% | - |
 
 - **Near-Money Retail Stop-Loss Cascade Map Table (15_Hyperdash_Stops_Map.parquet)**:
 | Stop Type | Price Level (USD) | Cumulative Stops (USD) | Buy Stops (USD) | Sell Stops (USD) | Distance (%) | Cascade Risk Tier |

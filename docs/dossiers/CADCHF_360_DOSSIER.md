@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADCHF
 **Canonical Key**: `CADCHF` | **Broker Instrument**: `CADCHF.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:11 IST` (`2026-10-30 05:44:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.5887` | **Live Ask Quote**: `0.5887` | **Mid Price**: `0.5887`
+- **Live Bid Quote**: `0.5887` | **Live Ask Quote**: `0.5888` | **Mid Price**: `0.5887`
 - **Spread Points**: `6.00` | **Spread BPS**: `1.02 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -44,8 +44,8 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5888` (Distance: `-0.02%`)
-  * Point of Control (POC) = `0.5883` (Distance: `+0.07%`)
+  * Value Area High (VAH) = `0.5888` (Distance: `-0.01%`)
+  * Point of Control (POC) = `0.5883` (Distance: `+0.08%`)
   * Value Area Low (VAL) = `0.5878` (Distance: `+0.16%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -55,9 +55,9 @@
   * Developing Weekly Value Area: Weekly VAH=`0.5919` | Weekly POC=`0.5909` | Weekly VAL=`0.5897`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`0.5894` | Low=`0.5870`
-  * London Session (08:00-16:00 UTC): High=`0.5887` | Low=`0.5883`
-  * New York Session (13:00-21:00 UTC): High=`0.5922` | Low=`0.5852`
-  * Initial Balance (First Hour): IB High=`0.5887` | IB Low=`0.5883`
+  * London Session (08:00-16:00 UTC): High=`0.5888` | Low=`0.5883`
+  * New York Session (13:00-21:00 UTC): High=`0.5923` | Low=`0.5852`
+  * Initial Balance (First Hour): IB High=`0.5888` | IB Low=`0.5883`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.5864` - `0.5911`
   * Optimal Trade Entry (OTE 0.705): `0.5899`

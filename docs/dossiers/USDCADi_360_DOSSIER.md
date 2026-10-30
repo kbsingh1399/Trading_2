@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCAD
 **Canonical Key**: `USDCAD` | **Broker Instrument**: `USDCAD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:10 IST` (`2026-10-30 05:44:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.40` (Distance: `-0.01%`)
-  * Point of Control (POC) = `1.40` (Distance: `+0.04%`)
-  * Value Area Low (VAL) = `1.40` (Distance: `+0.09%`)
+  * Value Area High (VAH) = `1.40` (Distance: `-0.02%`)
+  * Point of Control (POC) = `1.40` (Distance: `+0.02%`)
+  * Value Area Low (VAL) = `1.40` (Distance: `+0.07%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.40` | POC=`1.40` | VAL=`1.40`

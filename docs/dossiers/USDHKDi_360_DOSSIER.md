@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDHKD
 **Canonical Key**: `USDHKD` | **Broker Instrument**: `USDHKD.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:10 IST` (`2026-10-30 05:44:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `7.85` | **Live Ask Quote**: `7.85` | **Mid Price**: `7.85`
-- **Spread Points**: `3.00` | **Spread BPS**: `0.04 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `7.84` | **Live Ask Quote**: `7.84` | **Mid Price**: `7.84`
+- **Spread Points**: `5.00` | **Spread BPS**: `0.06 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,10 +49,10 @@
   * Value Area Low (VAL) = `7.84` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`7.88` | POC=`7.85` | VAL=`7.81`
-  * Prior Day Extremes: PDH=`7.89` | PDL=`7.80` | PDC=`7.85`
-  * Monday Range Blueprint: High=`7.88` | Mid=`7.85` | Low=`7.81`
-  * Developing Weekly Value Area: Weekly VAH=`7.91` | Weekly POC=`7.85` | Weekly VAL=`7.78`
+  * Prior Day Value Area: VAH=`7.88` | POC=`7.84` | VAL=`7.81`
+  * Prior Day Extremes: PDH=`7.89` | PDL=`7.80` | PDC=`7.84`
+  * Monday Range Blueprint: High=`7.88` | Mid=`7.84` | Low=`7.81`
+  * Developing Weekly Value Area: Weekly VAH=`7.91` | Weekly POC=`7.84` | Weekly VAL=`7.78`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`7.86` | Low=`7.83`
   * London Session (08:00-16:00 UTC): High=`7.88` | Low=`7.81`

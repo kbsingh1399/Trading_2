@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GBPNZD
 **Canonical Key**: `GBPNZD` | **Broker Instrument**: `GBPNZD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 11:11:09 IST` (`2026-10-30 05:41:09 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 11:14:10 IST` (`2026-10-30 05:44:10 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2.38` | **Live Ask Quote**: `2.38` | **Mid Price**: `2.38`
-- **Spread Points**: `11.00` | **Spread BPS**: `0.46 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `2.37` | **Live Ask Quote**: `2.37` | **Mid Price**: `2.37`
+- **Spread Points**: `10.00` | **Spread BPS**: `0.42 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,17 +49,17 @@
   * Value Area Low (VAL) = `2.37` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`2.38` | POC=`2.38` | VAL=`2.37`
-  * Prior Day Extremes: PDH=`2.39` | PDL=`2.36` | PDC=`2.38`
-  * Monday Range Blueprint: High=`2.39` | Mid=`2.38` | Low=`2.36`
-  * Developing Weekly Value Area: Weekly VAH=`2.39` | Weekly POC=`2.38` | Weekly VAL=`2.36`
+  * Prior Day Value Area: VAH=`2.38` | POC=`2.37` | VAL=`2.36`
+  * Prior Day Extremes: PDH=`2.39` | PDL=`2.36` | PDC=`2.37`
+  * Monday Range Blueprint: High=`2.39` | Mid=`2.37` | Low=`2.36`
+  * Developing Weekly Value Area: Weekly VAH=`2.39` | Weekly POC=`2.37` | Weekly VAL=`2.36`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`2.38` | Low=`2.37`
-  * London Session (08:00-16:00 UTC): High=`2.38` | Low=`2.37`
+  * London Session (08:00-16:00 UTC): High=`2.38` | Low=`2.36`
   * New York Session (13:00-21:00 UTC): High=`2.39` | Low=`2.36`
   * Initial Balance (First Hour): IB High=`2.38` | IB Low=`2.37`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `2.37` - `2.38`
+  * Golden Pocket Zone (0.618 - 0.650): `2.36` - `2.38`
   * Optimal Trade Entry (OTE 0.705): `2.38`
   * Structural Invalidation Anchor (0.786): `2.39`
 
