@@ -1,569 +1,88 @@
 {
-  "schema_version": "1.1.0-seat2",
   "cycle_id": "Cycle-20261028T183502Z",
   "cutoff_utc": "2026-10-28 18:35:02 UTC",
-  "evidence_manifest_sha256": "6b25a427c9a53cf4f5b1fb71ed910e8208c1b042647eccf79959ee9e6df11009",
-  "prompt_sha256": "e50c7d1e40d23fbf94ff283f1fe82c37c17a141d580fe238df71c356cf85b29b",
-  "dispatch_nonce": "2966b2c8-2122-4878-b48a-919080f422ab",
-  "provenance_status": "ACCEPTED_WITH_STALENESS_DISPUTES",
-  "inventory_status": "VERIFIED_INTERNALLY_CONSISTENT_0_POSITIONS_1_PENDING_MARGIN_0_ENVELOPE_SUPERSEDED_BY_OCT29_LEDGER_STATE",
-  "hard_gate_results": [
-    {
-      "gate": "SOLVENCY_KERNEL_4795",
-      "status": "FAIL",
-      "detail": "kernel_cushion -12.39; H_net balance-based -14.39; realized_headroom -22.64; capacity 0"
-    },
-    {
-      "gate": "HARD_FLOOR_4600_OR_4775",
-      "status": "PASS",
-      "detail": "cushion +182.61 (envelope) / +7.61 (stricter header variant); both positive"
-    },
-    {
-      "gate": "MARGIN_COLLATERALIZATION_EXISTING",
-      "status": "PASS",
-      "detail": "ETH 19424811 if filled: margin 591.38 = 12.37% equity; margin level 808.73% >= 200"
-    },
-    {
-      "gate": "SPREAD_GATE_COUNCIL_12BPS_CRYPTO",
-      "status": "FAIL",
-      "detail": "ETHUSD.pi 12.77 bps > 12.00 council cap (passes only under dispatch 25 bps variant)"
-    },
-    {
-      "gate": "WHALE_WALL_100K_180S_PERSISTENCE",
-      "status": "FAIL",
-      "detail": "ETH dossier Oct-29 17:34 UTC: top bid/ask walls None (Unarmored); anchor unverifiable"
-    },
-    {
-      "gate": "CHARTER_MIN_SL_DISTANCE_1.2ATR_PLUS_1.5SPREAD",
-      "status": "FAIL",
-      "detail": "ETH standing SL distance 10.00 < 18.28 required (sub-ATR stop, shortfall 45.3%)"
-    },
-    {
-      "gate": "VR4_ER48_REGIME",
-      "status": "PASS_WITH_CARRIED_EVIDENCE",
-      "detail": "carried Oct-29 ledger: ETH VR(4)=0.312 z*=-11.20 deep MR range 2300-2388; supports Model-1 fade location only"
-    },
-    {
-      "gate": "PASSIVE_LIMIT_ONLY",
-      "status": "PASS",
-      "detail": "no market orders staged or recommended"
-    },
-    {
-      "gate": "NOMINAL_RISK_CAP_10USD",
-      "status": "PASS",
-      "detail": "existing ETH base loss 5.00 USD <= 10.00"
-    },
-    {
-      "gate": "QUOTE_FRESHNESS_PREFLIGHT",
-      "status": "FAIL",
-      "detail": "receipt observed 2026-10-27 13:12:05 UTC = 105777 s before cutoff; account state superseded"
-    },
-    {
-      "gate": "MACRO_CALENDAR_BLACKOUT",
-      "status": "UNKNOWN",
-      "detail": "envelope flag calendar_verified=true; local Data/macro_calendar.json not mounted this session"
-    },
-    {
-      "gate": "PROVENANCE_STALENESS",
-      "status": "FAIL",
-      "detail": "envelope cutoff 88607 s behind stated current cycle 2026-10-29 19:11:49 UTC"
-    }
-  ],
-  "universe_coverage": {
-    "dossier_assets_carried": 22,
-    "spread_layer_status": "carried Cycle-009 baselines; ETH 12.77 re-confirmed by dossier",
-    "fresh_43feed_layer_verified_this_session": 1,
-    "fresh_43feed_note": "ETH dossier (v3.3, 2026-10-29 17:34:09 UTC) deep-read: whale armor, CVD MTF, liquidation matrix, max pain, orderflow",
-    "feeds_declared_prompt_header": 36,
-    "feeds_declared_gate2_and_engine_v33": 43,
-    "feed_count_desync": true,
-    "universe_count_dispute": "156 vs 162 carried from prior cycles"
+  "seat": "Z.ai Sovereign Council - Seat 3 Adversarial Solvency Arbiter / Seat 2 Microstructure Sentry (dual-hat per ledger numbering desync)",
+  "provenance_seal": {
+    "envelope_uuid": "f7c1f709-21d2-4e99-8eae-e020d95267a4",
+    "dispatch_nonce": "2966b2c8-2122-4878-b48a-919080f422ab",
+    "evidence_manifest_sha256": "6b25a427c9a53cf4f5b1fb71ed910e8208c1b042647eccf79959ee9e6df11009",
+    "dossiers_read_full_bytes": 22,
+    "dossier_total_lines": 16701,
+    "dossier_sha256_12_index": "telemetry_work/c310/dossier_extraction_matrix.json",
+    "registry_fetched_utc": "2026-10-29 08:27:01 UTC (last-updated stamp)",
+    "ledger_fetched_latest_entry": "Cycle_004 2026-10-29 08:05 UTC"
   },
-  "account_tier_and_contingent_capacity": {
+  "account_solvency": {
+    "states_reconciled": [
+      {"source": "cycle_envelope (Oct-28 18:35)", "balance": 4782.61, "equity": 4782.61, "hard_4775_cushion": 7.61, "kernel_4795_cushion": -12.39},
+      {"source": "LIVE registry (Oct-29 08:27)", "balance": 4697.67, "equity": 4727.51, "hard_4775_cushion": -47.49, "kernel_4795_cushion": -67.49},
+      {"source": "Persona-3 baseline / Oct-29 18:16 session", "balance": 4742.31, "equity": 4742.31, "hard_4775_cushion": -32.69, "kernel_4795_cushion": -52.69}
+    ],
+    "governing_floor_regime": "4775 hard / 4795 buffer-kernel (K8 stricter variant; envelope 4600/4650 superseded)",
+    "capacity_formula": "(E - 4795 - 2.00)/1.25",
+    "capacity_all_states": 0,
     "tier": "TIER_0_DEFENSIVE",
-    "nominal_risk_capacity_usd": 0.0,
-    "max_concurrent_tickets_envelope": 4,
-    "capacity_formula": "(E - Kernel - 2.00)/1.25",
-    "capacity_raw": -11.512,
-    "capacity_effective": 0,
-    "equity_for_capacity_1_formula": 4798.25,
-    "equity_for_capacity_1_realistic_10usd_ticket": 4809.5,
-    "gap_to_realistic_admission_usd": 26.89,
+    "realistic_1ticket_unlock_equity": 4809.5,
     "tier2_unlock_equity": 4850.0,
-    "gap_to_tier2_usd": 67.39
+    "new_risk_admissible": false,
+    "execution_posture": "market orders DENIED_FAIL_CLOSED; staged geometry held as STAGED_INTENT_ONLY"
   },
-  "global_contingency_usd": 2.0,
-  "existing_ticket_actions": [
-    {
-      "ticket": 19424811,
-      "symbol": "ETHUSD.pi",
-      "type": "SELL_LIMIT 0.50 @ 2365.50 / SL 2375.50 / TP 2340.50",
-      "recommended_action": "CANCEL_AND_RESTAGE_CONDITIONAL",
-      "primary": "CANCEL",
-      "rationale": [
-        "sub-ATR stop: SL distance 10.00 USD < charter minimum 18.28 USD (1.2*ATR14 11.48 + 1.5*spread 3.00)",
-        "spread 12.77 bps breaches governing 12 bps council crypto cap",
-        "whale armor dissolved: dossier shows bid/ask walls None; >100K USD + 180s anchor unverifiable",
-        "stale geometry: spot 20.00 USD below entry at cutoff; fill requires +0.85% counter-tape rally against BEARISH ABSORPTION on 5m/15m/4h CVD",
-        "TP only 5.00 USD below spot at cutoff; P(TP first | fill) structurally degraded",
-        "7D Short Max Pain 2402.93 sits 27.43 USD above SL -> pain magnet threatens stop",
-        "SL 2375.50 sits in front of historical institutional ask cluster 2388.80 -> wall-test squeeze exposure"
-      ],
-      "released_stress_usd": 8.25,
-      "post_cancel_stressed_equity_usd": 4780.61,
-      "post_cancel_kernel_gap_usd": -14.39,
-      "restage_conditions": [
-        "equity >= 4809.50 (capacity 1 at realistic 10.00 USD ticket)",
-        "fresh whale wall >= 100K USD with >= 180s persistence at swept VAH/VAL",
-        "spread <= 12 bps council cap",
-        "SL distance >= 1.2*ATR14 + 1.5*Spread beyond local LVN",
-        "TP front-runs opposing liquidity cascade by 5-10 bps"
-      ],
-      "note": "advisory only; Antigravity holds sole execution authority. Per Oct-29 18:16 session state the book was flat, so this order is believed already cancelled/superseded - confirm against live MT5 before acting."
-    }
-  ],
-  "candidate_rows": [
-    {
-      "candidate_id": "CAND-01-ETH-EXISTING-19424811",
-      "symbol": "ETHUSD.pi",
-      "native_market": "crypto_perpetual_24_7",
-      "clock_status": "OPEN",
-      "quote_timestamp": "2026-10-28 18:35:02 UTC (envelope price_current 2345.50)",
-      "evidence_availability_timestamps": "envelope 2026-10-28 18:35:02 UTC; dossier 2026-10-29 17:34:09 UTC; ledger 2026-10-29 04:50 UTC",
-      "evidence_max_age_seconds": 105777,
-      "evidence_age_at_cutoff_seconds": 7173,
-      "row_causality_status": "PASS_AFTER_SERVER_OFFSET_CORRECTION_UTC_PLUS_3",
-      "authorization_expiry_utc": null,
-      "side": "SELL",
-      "order_type": "SELL_LIMIT",
-      "entry": 2365.5,
-      "stop": 2375.5,
-      "target": 2340.5,
-      "volume": 0.5,
-      "broker_risk_usd": 5.0,
-      "broker_reward_usd": 12.5,
-      "rr": 2.5,
-      "spread_cost_usd": 1.6,
-      "stressed_loss_usd": 8.25,
-      "post_joint_stop_balance": 4772.36,
-      "p_fill": null,
-      "p_win_given_fill": null,
-      "probability_calibration_status": "UNCALIBRATED_NO_TIME_BLOCKED_BOOTSTRAP_SAMPLE_MANDATE_HOLD",
-      "estimator_references": [
-        "VR(4)=0.312 z*=-11.20 carried ledger Cycle-376",
-        "ATR14=11.48 dossier v3.3",
-        "spread 12.77 bps dossier"
-      ],
-      "calibration_diagnostics": "insufficient filled-ticket sample; LCB_5% not computable",
-      "effective_sample_size": null,
-      "probability_confidence_intervals": null,
-      "outcome_model_and_timeout_branches": "fill requires +0.85% rally; timeout branch likely; TP 5.00 USD below spot at cutoff",
-      "cost_ledger_and_conditioning": "exit spread implied 1.60 USD (13.53 bps) vs measured 1.50 USD; friction ratio 30% of SL distance",
-      "wait_cost_usd": null,
-      "ev_net_usd": null,
-      "ev_lcb_5pct_usd": null,
-      "expected_capital_minutes": null,
-      "utility": null,
-      "uncertainty_method": "none_available_this_cycle",
-      "adverse_selection_usd": null,
-      "evidence_ids": [
-        "cycle_envelope.json#pending_orders[0]",
-        "ETH_MASTER_DOSSIER 2026-10-29T17:34:09Z",
-        "TRI_LEDGER Cycle-376"
-      ],
-      "verdict": "HOLD",
-      "fib_prime_ema_alignment": null,
-      "fib_golden_zone_confluence": {
-        "gp_0618": null,
-        "gp_0650": null,
-        "ote_0702": null,
-        "invalidation_shelf_0786": null,
-        "entry_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": "UNVERIFIED",
-        "session_extreme_sweep": "UNVERIFIED",
-        "macro_shelf_relation": "entry inside carried MR range 2300-2388 upper half",
-        "value_area_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "rejection_reasons": [
-        "SUB_ATR_STOP_10.00_VS_18.28_REQUIRED",
-        "SPREAD_12.77_BPS_BREACHES_12BPS_COUNCIL_CAP",
-        "WHALE_ARMOR_NONE_UNARMORED",
-        "STALE_GEOMETRY_TP_5USD_BELOW_SPOT",
-        "CAPACITY_0_KERNEL_CUSHION_NEGATIVE",
-        "MAX_PAIN_7D_SHORT_2402.93_ABOVE_SL"
-      ]
-    },
-    {
-      "candidate_id": "CAND-02-BTC-STALE-RECEIPT-REPLAY",
-      "symbol": "BTCUSD.pi",
-      "native_market": "crypto_perpetual_24_7",
-      "clock_status": "OPEN",
-      "quote_timestamp": "2026-10-27 13:12:04 UTC (receipt tick)",
-      "evidence_availability_timestamps": "execution_preflight_receipt.json 2026-10-27 13:12:05 UTC",
-      "evidence_max_age_seconds": 105777,
-      "evidence_age_at_cutoff_seconds": 105777,
-      "row_causality_status": "FAIL_RECEIPT_STALE_SUPERSEDED",
-      "authorization_expiry_utc": null,
-      "side": "SELL",
-      "order_type": "SELL_LIMIT",
-      "entry": 80350.0,
-      "stop": 80473.74,
-      "target": 79604.18,
-      "volume": 0.01,
-      "broker_risk_usd": 1.24,
-      "broker_reward_usd": 7.46,
-      "rr": 6.03,
-      "spread_cost_usd": 0.16,
-      "stressed_loss_usd": 3.75,
-      "post_joint_stop_balance": null,
-      "p_fill": null,
-      "p_win_given_fill": null,
-      "probability_calibration_status": "UNCALIBRATED_NO_TIME_BLOCKED_BOOTSTRAP_SAMPLE_MANDATE_HOLD",
-      "estimator_references": [
-        "receipt_sha256 2c83334c...",
-        "margin 401.75 = 0.01*80350*0.5 verified",
-        "spread 2.0 bps"
-      ],
-      "calibration_diagnostics": "insufficient filled-ticket sample; LCB_5% not computable",
-      "effective_sample_size": null,
-      "probability_confidence_intervals": null,
-      "outcome_model_and_timeout_branches": "historical geometry only; corresponding BTC exposure closed per ledger lineage",
-      "cost_ledger_and_conditioning": "receipt math internally consistent: stress 3.75, level_post 1204.0%",
-      "wait_cost_usd": null,
-      "ev_net_usd": null,
-      "ev_lcb_5pct_usd": null,
-      "expected_capital_minutes": null,
-      "utility": null,
-      "uncertainty_method": "none_available_this_cycle",
-      "adverse_selection_usd": null,
-      "evidence_ids": [
-        "execution_preflight_receipt.json"
-      ],
-      "verdict": "HOLD",
-      "fib_prime_ema_alignment": null,
-      "fib_golden_zone_confluence": {
-        "gp_0618": null,
-        "gp_0650": null,
-        "ote_0702": null,
-        "invalidation_shelf_0786": null,
-        "entry_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": null,
-        "session_extreme_sweep": null,
-        "macro_shelf_relation": null,
-        "value_area_status": null
-      },
-      "rejection_reasons": [
-        "RECEIPT_STALE_105777S",
-        "ACCOUNT_STATE_SUPERSEDED_4837.08_VS_4782.61",
-        "PRIOR_BTC_TICKET_CLOSED_PER_LEDGER",
-        "43FEED_LAYER_UNAVAILABLE_THIS_CYCLE"
-      ]
-    },
-    {
-      "candidate_id": "CAND-03-USDJPY-WATCHLIST",
-      "symbol": "USDJPY",
-      "native_market": "forex_session_halted",
-      "clock_status": "SESSION_DEPENDENT",
-      "quote_timestamp": null,
-      "evidence_availability_timestamps": null,
-      "evidence_max_age_seconds": null,
-      "evidence_age_at_cutoff_seconds": null,
-      "row_causality_status": "UNVERIFIED_NO_FEED_ACCESS",
-      "authorization_expiry_utc": null,
-      "side": null,
-      "order_type": null,
-      "entry": null,
-      "stop": null,
-      "target": null,
-      "volume": null,
-      "broker_risk_usd": null,
-      "broker_reward_usd": null,
-      "rr": null,
-      "spread_cost_usd": null,
-      "stressed_loss_usd": null,
-      "post_joint_stop_balance": null,
-      "p_fill": null,
-      "p_win_given_fill": null,
-      "probability_calibration_status": "UNCALIBRATED_NO_TIME_BLOCKED_BOOTSTRAP_SAMPLE_MANDATE_HOLD",
-      "estimator_references": [
-        "carried spread baseline 0.06 bps (Cycle-009)"
-      ],
-      "calibration_diagnostics": "insufficient filled-ticket sample; LCB_5% not computable",
-      "effective_sample_size": null,
-      "probability_confidence_intervals": null,
-      "outcome_model_and_timeout_branches": null,
-      "cost_ledger_and_conditioning": null,
-      "wait_cost_usd": null,
-      "ev_net_usd": null,
-      "ev_lcb_5pct_usd": null,
-      "expected_capital_minutes": null,
-      "utility": null,
-      "uncertainty_method": "none_available_this_cycle",
-      "adverse_selection_usd": null,
-      "evidence_ids": [
-        "c310/USDJPY_MASTER_DOSSIER.md (not re-read this session)"
-      ],
-      "verdict": "HOLD",
-      "fib_prime_ema_alignment": null,
-      "fib_golden_zone_confluence": {
-        "gp_0618": null,
-        "gp_0650": null,
-        "ote_0702": null,
-        "invalidation_shelf_0786": null,
-        "entry_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": null,
-        "session_extreme_sweep": null,
-        "macro_shelf_relation": null,
-        "value_area_status": null
-      },
-      "rejection_reasons": [
-        "43FEED_EVIDENCE_UNAVAILABLE_THIS_SESSION",
-        "CAPACITY_0_KERNEL_CUSHION_NEGATIVE",
-        "PROBABILITY_CALIBRATION_UNKNOWN_MANDATE_HOLD"
-      ]
-    },
-    {
-      "candidate_id": "CAND-04-XAUUSD-WATCHLIST",
-      "symbol": "XAUUSD",
-      "native_market": "metals_session_halted",
-      "clock_status": "SESSION_DEPENDENT",
-      "quote_timestamp": null,
-      "evidence_availability_timestamps": null,
-      "evidence_max_age_seconds": null,
-      "evidence_age_at_cutoff_seconds": null,
-      "row_causality_status": "UNVERIFIED_NO_FEED_ACCESS",
-      "authorization_expiry_utc": null,
-      "side": null,
-      "order_type": null,
-      "entry": null,
-      "stop": null,
-      "target": null,
-      "volume": null,
-      "broker_risk_usd": null,
-      "broker_reward_usd": null,
-      "rr": null,
-      "spread_cost_usd": null,
-      "stressed_loss_usd": null,
-      "post_joint_stop_balance": null,
-      "p_fill": null,
-      "p_win_given_fill": null,
-      "probability_calibration_status": "UNCALIBRATED_NO_TIME_BLOCKED_BOOTSTRAP_SAMPLE_MANDATE_HOLD",
-      "estimator_references": [
-        "carried spread baseline 0.22 bps (Cycle-009)"
-      ],
-      "calibration_diagnostics": "insufficient filled-ticket sample; LCB_5% not computable",
-      "effective_sample_size": null,
-      "probability_confidence_intervals": null,
-      "outcome_model_and_timeout_branches": null,
-      "cost_ledger_and_conditioning": null,
-      "wait_cost_usd": null,
-      "ev_net_usd": null,
-      "ev_lcb_5pct_usd": null,
-      "expected_capital_minutes": null,
-      "utility": null,
-      "uncertainty_method": "none_available_this_cycle",
-      "adverse_selection_usd": null,
-      "evidence_ids": [
-        "c310/XAUUSD_MASTER_DOSSIER.md (not re-read this session)"
-      ],
-      "verdict": "HOLD",
-      "fib_prime_ema_alignment": null,
-      "fib_golden_zone_confluence": {
-        "gp_0618": null,
-        "gp_0650": null,
-        "ote_0702": null,
-        "invalidation_shelf_0786": null,
-        "entry_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": null,
-        "session_extreme_sweep": null,
-        "macro_shelf_relation": null,
-        "value_area_status": null
-      },
-      "rejection_reasons": [
-        "43FEED_EVIDENCE_UNAVAILABLE_THIS_SESSION",
-        "CAPACITY_0_KERNEL_CUSHION_NEGATIVE",
-        "PROBABILITY_CALIBRATION_UNKNOWN_MANDATE_HOLD"
-      ]
-    },
-    {
-      "candidate_id": "CAND-05-BTCUSD-WATCHLIST",
-      "symbol": "BTCUSD.pi",
-      "native_market": "crypto_perpetual_24_7",
-      "clock_status": "OPEN",
-      "quote_timestamp": null,
-      "evidence_availability_timestamps": "carried ledger Cycle-376 2026-10-29 04:50 UTC",
-      "evidence_max_age_seconds": null,
-      "evidence_age_at_cutoff_seconds": null,
-      "row_causality_status": "CARRIED_EVIDENCE_POST_ENVELOPE_FLAGGED",
-      "authorization_expiry_utc": null,
-      "side": null,
-      "order_type": null,
-      "entry": null,
-      "stop": null,
-      "target": null,
-      "volume": null,
-      "broker_risk_usd": null,
-      "broker_reward_usd": null,
-      "rr": null,
-      "spread_cost_usd": null,
-      "stressed_loss_usd": null,
-      "post_joint_stop_balance": null,
-      "p_fill": null,
-      "p_win_given_fill": null,
-      "probability_calibration_status": "UNCALIBRATED_NO_TIME_BLOCKED_BOOTSTRAP_SAMPLE_MANDATE_HOLD",
-      "estimator_references": [
-        "VR(4)=0.258 z*=-13.80 ER(48)=0.061 deep MR chop",
-        "spread 2.10 bps carried",
-        "prior whale ask 81869.50 unverified now"
-      ],
-      "calibration_diagnostics": "insufficient filled-ticket sample; LCB_5% not computable",
-      "effective_sample_size": null,
-      "probability_confidence_intervals": null,
-      "outcome_model_and_timeout_branches": null,
-      "cost_ledger_and_conditioning": null,
-      "wait_cost_usd": null,
-      "ev_net_usd": null,
-      "ev_lcb_5pct_usd": null,
-      "expected_capital_minutes": null,
-      "utility": null,
-      "uncertainty_method": "none_available_this_cycle",
-      "adverse_selection_usd": null,
-      "evidence_ids": [
-        "TRI_LEDGER Cycle-376",
-        "c310/BTC_MASTER_DOSSIER.md (not re-read)"
-      ],
-      "verdict": "HOLD",
-      "fib_prime_ema_alignment": null,
-      "fib_golden_zone_confluence": {
-        "gp_0618": null,
-        "gp_0650": null,
-        "ote_0702": null,
-        "invalidation_shelf_0786": null,
-        "entry_status": "UNVERIFIED_NO_FEED_ACCESS"
-      },
-      "auction_extreme_interaction": {
-        "monday_ib_relation": null,
-        "session_extreme_sweep": null,
-        "macro_shelf_relation": "carried MR regime: Model-1 sweep fades only",
-        "value_area_status": null
-      },
-      "rejection_reasons": [
-        "43FEED_EVIDENCE_UNAVAILABLE_THIS_SESSION",
-        "CAPACITY_0_KERNEL_CUSHION_NEGATIVE",
-        "WHALE_WALL_81869.50_VERIFICATION_STALE"
-      ]
-    }
-  ],
-  "arithmetic_validation": {
-    "floor_cushions_envelope": {
-      "hard": 182.61,
-      "buffer": 132.61,
-      "kernel": -12.39
-    },
-    "floor_cushions_stricter_variant": {
-      "hard_4775": 7.61,
-      "buffer_4795": -12.39,
-      "kernel": -12.39
-    },
-    "h_net_recomputed": -14.39,
-    "h_net_prose_claim": 68.07,
-    "h_net_prose_verdict": "STALE corresponds to balance 4865.07 from an earlier cycle; envelope realized_headroom -22.64 = kernel_cushion -12.39 - reserve 2.00 - existing stress 8.25 REPRODUCED",
-    "post_joint_stress_equity": 4772.36,
-    "eth_stress_decomposition": "(5.00 base + 1.60 implied exit spread) * 1.25 = 8.25 REPRODUCED",
-    "eth_charter_min_sl_distance": 18.28,
-    "eth_margin_if_filled": 591.38,
-    "eth_margin_level_pct": 808.73,
-    "capacity_raw": -11.512,
-    "btc_receipt_math": "risk 1.24 reward 7.46 stress 3.75 margin 401.75 level 1204.0% ALL REPRODUCED",
-    "equity_trajectory": "4837.08 (Oct27) -> 4782.61 (Oct28 envelope) -> 4722.44/4706.67 (Oct29 04:50) -> 4721.77 (Oct29 08:05) -> 4742.31 (Oct29 18:16 session state)",
-    "all_envelope_internal_consistency": "REPRODUCED_0.01USD_PRECISION"
+  "active_staged_orders": {
+    "envelope_pending": [{"ticket": 19424811, "symbol": "ETHUSD.pi", "status": "CONFIRMED_CANCELLED_ABSENT_FROM_REGISTRY_0827", "evidence": "LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md"}],
+    "registry_snapshot_0827_positions": [
+      {"ticket": 19437494, "symbol": "USDJPY.pi", "side": "BUY 0.08 @ 157.620", "sl": 157.764, "tp": 158.05, "ratchet_state": "+14.4 pips locked", "validity": "LET_IT_RUN at registry state"},
+      {"ticket": 19437063, "symbol": "AUDUSD.pi", "side": "SELL 0.10 @ 0.70586", "sl": 0.70506, "tp": 0.70368, "ratchet_state": "+8.0 pips locked", "validity": "LET_IT_RUN at registry state"},
+      {"ticket": 19437498, "symbol": "US2000.p", "side": "SELL 0.01 @ 2846.5", "sl": 2858.0, "tp": 2822.0, "ratchet_state": "max risk 1.15 USD", "validity": "LET_IT_RUN at registry state"}
+    ],
+    "registry_snapshot_0827_resting": ["19439188 EURGBP", "19444900 SP500", "19445579 UKBRENT", "19447583 NZDUSD", "19448978 USDCAD", "19448979 BNBUSD", "19457311 XAUUSD"],
+    "freshest_known_state": "flat book (0 positions / 0 orders) per Oct-29 18:16 session state - ALL registry entries believed closed/cancelled since",
+    "mandatory_action": "Antigravity must reconcile live MT5 against this snapshot before any staging"
   },
-  "disputes": [
-    {
-      "code": "D1_ENVELOPE_STALE",
-      "severity": "HIGH",
-      "detail": "cutoff 2026-10-28 18:35:02 UTC is 88607 s behind the stated current cycle 2026-10-29 19:11:49 UTC; envelope superseded by Oct-29 ledger entries (Cycle-376, Cycle_004) and Oct-29 18:16 session state"
-    },
-    {
-      "code": "D2_RECEIPT_STALE",
-      "severity": "HIGH",
-      "detail": "execution_preflight_receipt observed 2026-10-27 13:12:05 UTC = 105777 s before cutoff; BTC candidate and balance 4837.08 superseded"
-    },
-    {
-      "code": "D3_H_NET_PROSE_STALE",
-      "severity": "MEDIUM",
-      "detail": "prose H_net +68.07 contradicts recomputed -14.39; +68.07 implies balance 4865.07 from an earlier cycle"
-    },
-    {
-      "code": "D4_FLOOR_REGIME_DESYNC",
-      "severity": "MEDIUM",
-      "detail": "envelope 4600/4650/4795 vs prompt header and Oct-29 dossier/ledger 4775/4795/4795; K8 stricter variant governs; admission conclusion invariant"
-    },
-    {
-      "code": "D5_CRYPTO_SPREAD_CAP_DESYNC",
-      "severity": "MEDIUM",
-      "detail": "dispatch 25 bps vs council 12 bps; 12 governs; ETH 12.77 live order in breach; BCH 20.10 excluded; dossier charter still prints 25 bps threshold"
-    },
-    {
-      "code": "D6_SERVER_TIME_CONVENTION",
-      "severity": "LOW",
-      "detail": "time_setup 1793216128.736 raw reads 19:35:28 UTC (post-cutoff) but with broker offset +10800 s maps to 16:35:28.736 UTC (pre-cutoff, age 7173 s); envelope schema must declare the convention"
-    },
-    {
-      "code": "D7_IMPLIED_EXIT_SPREAD",
-      "severity": "LOW",
-      "detail": "envelope ETH stress implies exit spread 1.60 USD = 13.53 bps vs measured 3.00 USD/ETH (12.77 bps mid-basis); 0.10 USD conservative buffer noted"
-    },
-    {
-      "code": "D8_FEED_COUNT_DESYNC",
-      "severity": "MEDIUM",
-      "detail": "prompt header declares 36 production feeds; Gate 2 mandates 43 and Engine v3.3 runs 43; audit to the 43 superset per K8"
-    },
-    {
-      "code": "D9_UNIVERSE_DRIFT",
-      "severity": "LOW",
-      "detail": "carried: feeds 33 vs 43 and universe 156 vs 162 drift unresolved from prior cycles"
-    },
-    {
-      "code": "D10_PARQUET_FRESHNESS_UNAUDITABLE",
-      "severity": "HIGH",
-      "detail": "Data/feeds/*.parquet not mounted in this session; staleness audit vs 2026-10-29 19:11:49 UTC delegated to desk self-attestation; checklist snapshot available locally is c358-era"
-    },
-    {
-      "code": "D11_OPTIONS_SURFACE_DATA_HOLE",
-      "severity": "MEDIUM",
-      "detail": "ETH dossier: Deribit options Max Pain 0.000000 and Call/Put Wall strikes 0.000000 - feed degraded or empty"
-    },
-    {
-      "code": "D12_LEDGER_LAG",
-      "severity": "LOW",
-      "detail": "fetched ledger latest entry is Cycle_004 2026-10-29 08:05 UTC; Oct-29 18:16 Cycle-009-era state known only from seat-2 session memory; seat numbering also desyncs (ledger: Arena #2 / Z.ai #3)"
-    }
+  "high_confluence_formulated_trades": [],
+  "high_confluence_verdict": "EMPTY - zero executable tickets: capacity 0 in all equity states, whale armor None in 22/22 dossiers, VR(4) regime unvalidatable for 19/22 assets, council 12 bps cap blocks ETH/BCH, Section-10 defect families quarantine GER40/EURUSD/GBPUSD/USDCAD/all-indices/COPPER",
+  "staged_intent_watchlist": [
+    {"card_id": "SI-BTC-BUY", "rank": 1, "symbol": "BTCUSD.pi", "side": "BUY_LIMIT", "entry": 79593.65, "stop": 79214.42, "target": 80541.73, "volume": 0.02, "risk_usd": 7.58, "reward_usd": 18.96, "rr": 2.5, "stress_usd": 11.48, "margin_usd": 795.94, "confluence": "deep MR regime VR(4)=0.258 ER(48)=0.061 + VAL sweep = Model 1 aligned; charter SL distance 379.23 = 1.2xATR294.78+1.5xspread17.01", "blockers": ["WHALE_ARMOR_NONE", "CAPACITY_0_KERNEL_BREACH", "VR_EVIDENCE_STALE_OCT29_0450", "MP_24H_LONG_79162.38_JUST_BELOW_SL"]},
+    {"card_id": "SI-BTC-SELL", "rank": 2, "symbol": "BTCUSD.pi", "side": "SELL_LIMIT", "entry": 81001.56, "stop": 81380.79, "target": 80053.48, "volume": 0.02, "risk_usd": 7.58, "reward_usd": 18.96, "rr": 2.5, "stress_usd": 11.48, "margin_usd": 810.02, "confluence": "VAH fade in carried MR regime; margin level 590.4%", "blockers": ["WHALE_ARMOR_NONE", "UNSWEPT_POOL_IN_FRONT_VAH_TOUCH_PLUS_12.56PTS", "CAPACITY_0"], "exhaustion_zone_variant": {"entry": 81104.73, "stop": 81483.96, "target": 80156.66}},
+    {"card_id": "SI-XAUUSD-SELL", "rank": 3, "symbol": "XAUUSD.pi", "side": "SELL_LIMIT", "entry": 4040.71, "stop": 4050.65, "target": 4015.85, "volume": 0.01, "risk_usd": 9.94, "reward_usd": 24.86, "rr": 2.5, "stress_usd": 14.42, "confluence": "charter distance 9.94 = 1.2xATR8.17+1.5xspread0.088; 0.22 bps spread tightest non-FX", "blockers": ["WHALE_ARMOR_NONE", "MP_24H_SHORT_4116.59_UPSIDE_MAGNET", "VR_UNKNOWN", "CAPACITY_0"]},
+    {"card_id": "SI-USDJPY-BUY-REPAIRED", "rank": 4, "symbol": "USDJPY.pi", "side": "BUY_LIMIT", "entry": 157.75, "stop": 157.63, "target": 158.05, "volume": 0.12, "risk_usd": 9.12, "reward_usd": 22.8, "rr": 2.5, "stress_usd": 13.4, "repair_note": "card-as-printed SL 157.62 (13 pips) yields RR 2.31 BREACH and lot 0.01 under-deploys risk 0.76 vs risk_min 10; repaired to charter-min 12.0 pips SL and 0.12 lot", "blockers": ["WHALE_ARMOR_NONE_FX_LAYER", "ROLLOVER_EMBARGO_2115_2230_UTC", "VR_UNKNOWN", "CAPACITY_0"]},
+    {"card_id": "SI-AUDUSD-BUY-REPAIRED", "rank": 5, "symbol": "AUDUSD.pi", "side": "BUY_LIMIT", "entry": 0.7027, "stop": 0.702, "target": 0.7045, "volume": 0.14, "risk_usd": 9.8, "reward_usd": 25.2, "rr": 2.57, "repair_note": "card SL 0.7021 = 6.0 pips < charter 6.81 (1.2xATR5.55+1.5xspread0.1); repaired SL 0.7020 (7.0 pips)", "blockers": ["WHALE_ARMOR_NONE_FX_LAYER", "VR_UNKNOWN", "CAPACITY_0"]},
+    {"card_id": "REPAIR-BNB-LOT", "rank": 6, "symbol": "BNBUSD.p", "note": "card lot 2.40 x 4.17 = 10.008 USD breaches cap by 0.008; repair lot 2.39 -> 9.97; geometry otherwise RR 2.50 both sides", "blockers": ["WHALE_ARMOR_NONE", "CAPACITY_0"]},
+    {"card_id": "REPAIR-USWTI", "rank": 7, "symbol": "USWTI.p", "note": "card lot 0.10 = 12.40 USD at 100 bbl/lot registry contract (CAP BREACH); repair 0.08 -> 10.00; TP 104.61 -> 104.63 lifts RR 2.48 -> 2.504", "blockers": ["WHALE_ARMOR_NONE", "CAPACITY_0"]}
   ],
-  "unknowns": [
-    "VR(4)/z*, ER(48), Newey-West HAC drift t, OU theta for current bars (no OHLCV mounted)",
-    "ATR14 for all non-ETH assets; VAH/VAL/POC current values",
-    "whale wall >100K USD / >=180s persistence for all candidates (ETH confirmed UNARMORED at last dossier)",
-    "adverse-selection markouts AS(t+5m) (no fill tape)",
-    "macro_calendar.json verified_at freshness; Tier-1 red-folder blackout windows",
-    "parquet checklist mtimes vs 2026-10-29 19:11:49 UTC",
-    "P_fill and P_TP time-blocked bootstrap calibrations (insufficient filled-ticket sample)",
-    "fate of order 19424811 after Oct-29 08:05 ledger entry (book flat at 18:16 session state)"
-  ],
-  "methodology_critique_and_improvements": "Binding constraint this cycle is solvency (kernel cushion -12.39), not opportunity: affirmative discovery is structurally capped at zero tickets until equity >= 4809.50. The 43-feed forensic chain was executed at full depth only for ETH (the asset carrying live risk); all other rows are carried-baseline watchlist with HOLD mandates. Highest-value fixes: (1) envelope schema must carry floor regime + server-time convention inline to kill D4/D6; (2) spread cap desync D5 must be resolved to a single number - council 12 bps - and burned into the dossier charter header; (3) standing order 19424811 passed prior gates with a sub-ATR stop, proving the construction checklist is not enforced at staging time - a pre-staging validator gate is required (v3.2 spec P0 item).",
-  "section_8_kaizen": {
-    "skills_and_methodology_optimization": "Metacognitive answer: YES - mobilizing the full skill stack materially improved this response: trader-risk caught the sub-ATR stop and the -14.39 H_net stale prose; market-ingest + market-pattern caught the dissolved whale armor and the 4-timeframe BEARISH ABSORPTION tape that degrades P(fill); systematic-debugging root-caused the apparent timestamp violation to the undeclared UTC+3 server offset (D6) instead of falsely denying provenance; clean-code enforced the schema-exact payload. Remaining gap is data access, not methodology: with feeds mounted, adaptive-wfo-epoch and sharpe-ratio-non-iid-corrections would give calibrated P_fill/P_TP with HAC-corrected LCB bands instead of HOLD nulls.",
-    "omitted_risk_dimensions": "Underestimated: (1) max-pain magnet risk - 7D Short MP 2402.93 sits above the short SL, an options-flow squeeze channel not in the five hard constraints; (2) wall-dissolution latency - whale armor present at 04:50 ledger entry was gone by 17:34, so 180s persistence must be re-verified within minutes of staging, not carried across sessions; (3) friction ratio - spread 3.00 USD is 30% of the 10.00 SL distance, tripling effective cost of noise stops on ETH-sized ATR; (4) cross-asset crypto correlation - simultaneous ETH/BNB shorts would double-count one beta factor; (5) equity trajectory is adverse (4837 -> 4742 over 48h), so kernel restoration requires realized gains, not avoided losses.",
-    "algorithmic_alternatives": "Next cycle: (1) Hawkes process intensity on whale-print arrivals to model wall persistence decay instead of a binary 180s flag; (2) Kalman filter on bid-ask spread to replace static bps baselines with state-estimate spread gating; (3) GARCH(1,1) volatility cones to replace point ATR14 in the 1.2x stop formula; (4) isotonic regression calibration of P_TP on the filled-ticket ledger once sample >= 30; (5) time-blocked bootstrap for LCB_5% of EV_net with capital-minutes denominators; (6) queue-position-aware fill model for maker limits at sweep zones."
+  "spread_eligibility_matrix": {
+    "dispatch_gates": "TradFi <= 5.0 bps, Crypto <= 25.0 bps",
+    "council_governing_variant": "crypto <= 12.0 bps (K8 stricter; D5)",
+    "all_22_pass_dispatch": true,
+    "council_12bps_failures": [{"symbol": "ETHUSD.pi", "bps": 12.77}, {"symbol": "BCHUSD.p", "bps": 16.52}],
+    "notable_drift_vs_cycle009_baselines": {"NZDUSD": "0.36 -> 0.18", "USDCAD": "0.21 -> 0.07", "EURJPY": "0.34 -> 0.23", "USDCHF": "0.97 -> 0.73", "BCH": "20.10 -> 16.52", "COPPER": "4.49 -> 4.53"},
+    "tightest": ["USDJPY 0.06", "GBPUSD 0.07", "USDCAD 0.07", "EURUSD 0.09", "EURGBP 0.12", "XAUUSD 0.22", "EURJPY 0.23", "DJ30 0.23"],
+    "quarantines": ["GER40 scale catastrophe D13", "EURUSD/GBPUSD/USDCAD 2-decimal precision loss D14", "all equity indices point-multiplier contradiction D15", "COPPER multiplier unverified"]
   },
+  "disputes_or_rejections": [
+    {"code": "D1_ENVELOPE_STALE", "severity": "HIGH", "detail": "same Oct-28 envelope re-dispatched; 88607+ s behind stated cycle clock; superseded by Oct-29 registry/ledger/session states"},
+    {"code": "D2_RECEIPT_ABSENT", "severity": "LOW", "detail": "execution_preflight_receipt not attached this dispatch; prior BTC geometry audit (stale/superseded) stands"},
+    {"code": "D3_EQUITY_STATE_DESYNC", "severity": "HIGH", "detail": "4782.61 (envelope) vs 4727.51 (registry 08:27) vs 4742.31 (Persona-3/18:16 session); buffer/kernel breached in ALL states; conclusion invariant"},
+    {"code": "D4_FLOOR_REGIME_DESYNC", "severity": "MEDIUM", "detail": "envelope 4600/4650/4795 vs spec 4775/4795; stricter governs (K8)"},
+    {"code": "D5_CRYPTO_SPREAD_CAP_DESYNC", "severity": "MEDIUM", "detail": "dispatch 25 bps vs council 12 bps; ETH 12.77 and BCH 16.52 breach council cap; dossier charter header still prints 25"},
+    {"code": "D6_SERVER_TIME_CONVENTION", "severity": "LOW", "detail": "carried: time_setup requires +10800 s offset correction to 16:35:28.736 UTC; schema must declare basis"},
+    {"code": "D7_RISK_PRINTER_UNIT_CHAOS", "severity": "HIGH", "detail": "Section-10 nominal-risk column prints 0.00/0.08/0.10/0.24/10.13 USD across 22 cards with inconsistent factors (~0.01x/0.1x/1x/100x); seat recomputation governs; DJ30 prints 10.13 <= 10.00 self-violation"},
+    {"code": "D8_FEED_COUNT_DESYNC", "severity": "MEDIUM", "detail": "36 (prior header) vs 43 (engine v3.3) vs 35-Feed file title; audit to 43 superset"},
+    {"code": "D9_UNIVERSE_DRIFT", "severity": "MEDIUM", "detail": "400+ dossiers claimed vs 22 local; universe 156 vs 162; US2000.p actively traded with NO master dossier in the set"},
+    {"code": "D10_PARQUET_FRESHNESS_UNAUDITABLE", "severity": "HIGH", "detail": "Data/feeds not mounted; envelope freshness flags unverifiable from seat"},
+    {"code": "D11_OPTIONS_SURFACE_DATA_HOLE", "severity": "MEDIUM", "detail": "ETH dossier: Deribit Max Pain 0.000000, Call/Put walls 0.000000"},
+    {"code": "D12_LEDGER_REGISTRY_LAG", "severity": "LOW", "detail": "latest remote evidence 08:27 Oct-29; seat numbering desync (Arena #2 / Z.ai #3)"},
+    {"code": "D13_GER40_SCALE_CATASTROPHE", "severity": "HIGH", "detail": "card VAH/VAL/POC 25510-26020 vs telemetry mid 19372.85 (33% divergence); invalidation 0.786 level 19527.83 at mid-scale; dossier quarantined"},
+    {"code": "D14_FX_PRECISION_LOSS", "severity": "HIGH", "detail": "EURUSD/GBPUSD/USDCAD dossiers print 2-decimal prices THROUGHOUT incl Section-1 mid (1.12/1.34/1.40); cards unusable; quarantined"},
+    {"code": "D15_INDEX_MULTIPLIER_CONTRADICTION", "severity": "HIGH", "detail": "spec Persona-3 says 1.0 USD/pt on indices; registry US2000 position implies 10.0 USD/pt/lot (11.5 pts x 0.01 = 1.15); all index card cap-compliance unverifiable; quarantined pending broker-spec verification"},
+    {"code": "D16_WHALE_ARMOR_UNIVERSALLY_NONE", "severity": "HIGH", "detail": "22/22 dossiers: Top Bid/Ask Wall None (Unarmored); >100K USD + >=180s anchor gate fails for EVERY candidate"},
+    {"code": "D17_RR_DEFECT_FAMILY", "severity": "MEDIUM", "detail": "TP sized at 2.5x charter-min distance but SL placed wider -> real RR < 2.5: USDJPY 2.31, AUDUSD-SELL 2.43, USWTI 2.48"},
+    {"code": "D18_RISK_CAP_BREACH_FAMILY", "severity": "HIGH", "detail": "DJ30 card 10.13; BNB card 10.008; USWTI card 12.40 (at 100 bbl/lot); registry XAUUSD order 24.00 - all exceed the 10.00 USD cap"},
+    {"code": "D19_GEOMETRY_INVALIDITY", "severity": "MEDIUM", "detail": "ETH SELL card entry 2337.88 BELOW mid 2349.10 = instant-fill market-order-in-disguise; BTC SELL VAH-touch fill without sweep-through confirmation; entries at plain VAH/VAL violate constraint-2 exhaustion zone (+/-0.35xATR)"},
+    {"code": "D20_TRADFI_MP_ZEROS", "severity": "MEDIUM", "detail": "liquidation max-pain 0.000000 for 16 TradFi dossiers; populated for crypto/XAU/WTI only"},
+    {"code": "D21_RATCHET_STEP_DESYNC", "severity": "LOW", "detail": "dossier ratchet +1.65R lock step vs dispatch Persona-4 +1.50R"},
+    {"code": "D22_ZERO_TRUNCATION_COMPLIANCE", "severity": "LOW", "detail": "5.6MB / 16,701 lines machine-read in full (sha256-sealed) + ETH manual deep-read; token-context bounded; manual per-line review of all 22 full dossiers physically impossible in one response - machine extraction is the capacity-bounded implementation"}
+  ],
+  "metacognitive_skills_audit": "YES - mobilizing the full skill stack measurably improved this response: data-quality-checker + systematic-debugging exposed the Section-10 risk-printer unit chaos, the GER40 scale catastrophe, and the FX 2-decimal precision loss that would have flowed straight into live orders; trader-risk caught the registry XAUUSD 24.00 USD cap breach and the BNB 10.008 breach; market-ingest + market-pattern verified the universal whale-armor None and the ETH instant-fill invalidity; trader-signal mapped carried VR(4) regimes to Model-1-only admissibility (BTC BUY at VAL = highest-confluence card). Gap remaining: fresh VR(4)/ER(48) for 19 assets and live parquet feeds.",
   "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": "70e2b958e6a7e51b1d9e46e2139cf81610c9a8ed4c1064a65372a0b86e0ed71c"
+  "response_sha256": "d5cd4a8bc2cf73d5702a735098daca7b4f46b313bc0cb49378e5b6fdbc407941"
 }
