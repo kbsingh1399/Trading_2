@@ -99,63 +99,48 @@
     "table": [
       {
         "timeframe": "5m",
-        "open": 0.8972,
-        "high": 0.8992,
-        "low": 0.8905,
-        "close": 0.8908,
-        "volume": 1879980.5,
-        "quote_vol": 1682986.03413,
-        "delta": -334309.32935,
-        "delta_pct": -19.86405843960656,
-        "cum_cvd": -21722041.722860016,
-        "cvd_z": -1.2748448631250402,
+        "open": 0.8864,
+        "high": 0.8874,
+        "low": 0.8815,
+        "close": 0.8855,
+        "volume": 2087330.2,
+        "quote_vol": 1845963.99894,
+        "delta": -318885.2667200001,
+        "delta_pct": -17.274728375153153,
+        "cum_cvd": -22011371.486370016,
+        "cvd_z": -1.0993873940427445,
         "bias": "BEARISH",
         "regime": "AGGRESSIVE SELLING"
       },
       {
         "timeframe": "5m",
-        "open": 0.8907,
-        "high": 0.8938,
-        "low": 0.8893,
-        "close": 0.891,
-        "volume": 1465508.8,
-        "quote_vol": 1306067.26097,
-        "delta": 112722.12565000006,
-        "delta_pct": 8.630652418795242,
-        "cum_cvd": -21609319.597210016,
-        "cvd_z": 0.7001587858398962,
+        "open": 0.8855,
+        "high": 0.8891,
+        "low": 0.8843,
+        "close": 0.8858,
+        "volume": 1419512.8,
+        "quote_vol": 1259026.73663,
+        "delta": 185701.64447000017,
+        "delta_pct": 14.74961881802942,
+        "cum_cvd": -21825669.841900017,
+        "cvd_z": 0.9711632022497361,
         "bias": "BULLISH",
         "regime": "DELTA ALIGNED"
       },
       {
         "timeframe": "5m",
-        "open": 0.8911,
-        "high": 0.8912,
-        "low": 0.8861,
-        "close": 0.8867,
-        "volume": 1109063.9,
-        "quote_vol": 984821.90436,
-        "delta": -171773.5284800001,
-        "delta_pct": -17.442090566784202,
-        "cum_cvd": -21781093.125690017,
-        "cvd_z": -0.5126656012936617,
-        "bias": "BEARISH",
-        "regime": "AGGRESSIVE SELLING"
-      },
-      {
-        "timeframe": "15m",
-        "open": 0.8908,
-        "high": 0.9007,
-        "low": 0.8905,
-        "close": 0.8989,
-        "volume": 6216901.6,
-        "quote_vol": 5577867.90945,
-        "delta": -151380.8275500005,
-        "delta_pct": -2.7139550453235324,
-        "cum_cvd": -20960161.338729993,
-        "cvd_z": -0.4092865127288068,
-        "bias": "BEARISH",
-        "regime": "BEARISH ABSORPTION"
+        "open": 0.8858,
+        "high": 0.8875,
+        "low": 0.8858,
+        "close": 0.8861,
+        "volume": 172500.9,
+        "quote_vol": 152916.22435,
+        "delta": 62184.628809999995,
+        "delta_pct": 40.665814941696205,
+        "cum_cvd": -21763485.213090017,
+        "cvd_z": 0.5012711401962876,
+        "bias": "BULLISH",
+        "regime": "AGGRESSIVE BUYING"
       },
       {
         "timeframe": "15m",
@@ -167,7 +152,7 @@
         "quote_vol": 6710717.92258,
         "delta": -427571.0547799999,
         "delta_pct": -6.371465165318946,
-        "cum_cvd": -21387732.39350999,
+        "cum_cvd": -21372942.189929992,
         "cvd_z": -1.7340935040268772,
         "bias": "BEARISH",
         "regime": "DELTA ALIGNED"
@@ -177,15 +162,30 @@
         "open": 0.8972,
         "high": 0.8992,
         "low": 0.8861,
-        "close": 0.8868,
-        "volume": 4456444.8,
-        "quote_vol": 3975552.53118,
-        "delta": -391683.40046000015,
-        "delta_pct": -9.852300966671997,
-        "cum_cvd": -21779415.793969993,
-        "cvd_z": -1.4193944285739521,
+        "close": 0.8863,
+        "volume": 5125268.2,
+        "quote_vol": 4569064.14958,
+        "delta": -319544.02972,
+        "delta_pct": -6.993642883069902,
+        "cum_cvd": -21692486.219649993,
+        "cvd_z": -1.0797058594143492,
         "bias": "BEARISH",
         "regime": "DELTA ALIGNED"
+      },
+      {
+        "timeframe": "15m",
+        "open": 0.8864,
+        "high": 0.8891,
+        "low": 0.8815,
+        "close": 0.8861,
+        "volume": 3679343.9,
+        "quote_vol": 3257906.95992,
+        "delta": -70998.99343999987,
+        "delta_pct": -2.179282413938037,
+        "cum_cvd": -21763485.21308999,
+        "cvd_z": 0.3312804600084523,
+        "bias": "BEARISH",
+        "regime": "NEUTRAL CHOP"
       },
       {
         "timeframe": "1h",
@@ -221,16 +221,16 @@
         "timeframe": "1h",
         "open": 0.8908,
         "high": 0.9088,
-        "low": 0.8861,
-        "close": 0.8866,
-        "volume": 18109721.5,
-        "quote_vol": 16260649.35092,
-        "delta": -971943.0817599976,
-        "delta_pct": -5.977271022728295,
-        "cum_cvd": -21765933.38935999,
-        "cvd_z": -0.006344504638666645,
+        "low": 0.8815,
+        "close": 0.8867,
+        "volume": 22501190.0,
+        "quote_vol": 20150455.10631,
+        "delta": -935032.7466700003,
+        "delta_pct": -4.6402562211967116,
+        "cum_cvd": -21729023.05426999,
+        "cvd_z": 0.011724743970123653,
         "bias": "BEARISH",
-        "regime": "DELTA ALIGNED"
+        "regime": "NEUTRAL CHOP"
       },
       {
         "timeframe": "4h",
@@ -267,13 +267,13 @@
         "open": 0.8854,
         "high": 0.9088,
         "low": 0.8755,
-        "close": 0.8866,
-        "volume": 47965185.1,
-        "quote_vol": 42643805.23048,
-        "delta": -1994885.48618,
-        "delta_pct": -4.678019410786868,
-        "cum_cvd": -21766937.19553,
-        "cvd_z": 0.7677769767802494,
+        "close": 0.8861,
+        "volume": 52303274.6,
+        "quote_vol": 46486286.78822,
+        "delta": -1991420.5666800067,
+        "delta_pct": -4.28388822654824,
+        "cum_cvd": -21763472.276030008,
+        "cvd_z": 0.768974161713775,
         "bias": "BEARISH",
         "regime": "BEARISH ABSORPTION"
       },
@@ -342,13 +342,13 @@
         "open": 0.8854,
         "high": 0.9088,
         "low": 0.8755,
-        "close": 0.8866,
-        "volume": 47965185.1,
-        "quote_vol": 42643805.23048,
-        "delta": -1994885.48618,
-        "delta_pct": -4.678019410786868,
-        "cum_cvd": -21766937.19553,
-        "cvd_z": 0.7677769767802494,
+        "close": 0.8861,
+        "volume": 52303274.6,
+        "quote_vol": 46486286.78822,
+        "delta": -1991420.5666800067,
+        "delta_pct": -4.28388822654824,
+        "cum_cvd": -21763472.276030008,
+        "cvd_z": 0.768974161713775,
         "bias": "BEARISH",
         "regime": "BEARISH ABSORPTION"
       }
@@ -2364,208 +2364,1498 @@
     ],
     "ob_ladder": [
       {
-        "side": "BID",
-        "price": 0.8853,
-        "coins": 16923.5,
-        "notional": 14982.71,
-        "cum_depth": 121242.4,
-        "tier": "1 orders",
-        "dist": "-0.11%",
-        "wallet": "-"
+        "side": "BUY",
+        "price": 0.8694,
+        "coins": 9056.1,
+        "notional": 7873.55,
+        "cum_depth": 7715767.76,
+        "tier": "STANDARD",
+        "dist": "-1.93%",
+        "wallet": "0xa5e44f0e70722bc35516bc8b0c059100d7402f2c"
       },
       {
-        "side": "BID",
-        "price": 0.8853,
-        "coins": 56.4,
-        "notional": 49.93,
-        "cum_depth": 121292.33,
-        "tier": "1 orders",
-        "dist": "-0.11%",
-        "wallet": "-"
+        "side": "BUY",
+        "price": 0.8702,
+        "coins": 740.6,
+        "notional": 644.51,
+        "cum_depth": 8188224.29,
+        "tier": "STANDARD",
+        "dist": "-1.84%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
       },
       {
-        "side": "BID",
-        "price": 0.8853,
-        "coins": 64588.3,
-        "notional": 57180.02,
-        "cum_depth": 178472.36,
-        "tier": "2 orders",
-        "dist": "-0.11%",
-        "wallet": "-"
+        "side": "BUY",
+        "price": 0.8703,
+        "coins": 3793.5,
+        "notional": 3301.48,
+        "cum_depth": 8031615.85,
+        "tier": "STANDARD",
+        "dist": "-1.83%",
+        "wallet": "0x07fd993f0fa3a185f7207adccd29f7a87404689d"
       },
       {
-        "side": "BID",
+        "side": "BUY",
+        "price": 0.8705,
+        "coins": 819.6,
+        "notional": 713.44,
+        "cum_depth": 8179385.12,
+        "tier": "STANDARD",
+        "dist": "-1.81%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8721,
+        "coins": 3446.3,
+        "notional": 3005.66,
+        "cum_depth": 8052975.27,
+        "tier": "STANDARD",
+        "dist": "-1.62%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8725,
+        "coins": 2292.1,
+        "notional": 1999.95,
+        "cum_depth": 8127576.11,
+        "tier": "STANDARD",
+        "dist": "-1.58%",
+        "wallet": "0xfe349476557a04e68c46b986cbcf4e8a19e8cb6f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8736,
+        "coins": 166248.8,
+        "notional": 145226.64,
+        "cum_depth": 4544975.85,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-1.46%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8749,
+        "coins": 211211.9,
+        "notional": 184785.07,
+        "cum_depth": 3955911.89,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-1.31%",
+        "wallet": "0x47f5a6397b79deaaca5c456503e7c1a49357b942"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8749,
+        "coins": 72282.6,
+        "notional": 63237.16,
+        "cum_depth": 5710431.99,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-1.32%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8755,
+        "coins": 5256.0,
+        "notional": 4601.68,
+        "cum_depth": 8005334.83,
+        "tier": "STANDARD",
+        "dist": "-1.24%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8757,
+        "coins": 16835.4,
+        "notional": 14742.59,
+        "cum_depth": 7378866.48,
+        "tier": "STANDARD",
+        "dist": "-1.22%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8759,
+        "coins": 3420.4,
+        "notional": 2996.07,
+        "cum_depth": 8058972.17,
+        "tier": "STANDARD",
+        "dist": "-1.20%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8761,
+        "coins": 2706.2,
+        "notional": 2370.93,
+        "cum_depth": 8117009.47,
+        "tier": "STANDARD",
+        "dist": "-1.18%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8764,
+        "coins": 753.6,
+        "notional": 660.45,
+        "cum_depth": 8186934.36,
+        "tier": "STANDARD",
+        "dist": "-1.14%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8766,
+        "coins": 36474.0,
+        "notional": 31972.38,
+        "cum_depth": 6736480.61,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-1.12%",
+        "wallet": "0x2e1aa624f04fa7ab7198c6fbfeaa42a707b42c1a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8768,
+        "coins": 18409.2,
+        "notional": 16141.19,
+        "cum_depth": 7210571.18,
+        "tier": "STANDARD",
+        "dist": "-1.10%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "BUY",
+        "price": 0.877,
+        "coins": 55742.0,
+        "notional": 48887.96,
+        "cum_depth": 6224655.62,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-1.07%",
+        "wallet": "0xe86b057f5eb764c9738d6b0d38170befd0723664"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8772,
+        "coins": 166282.1,
+        "notional": 145856.01,
+        "cum_depth": 4399749.21,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-1.06%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8772,
+        "coins": 5256.0,
+        "notional": 4610.35,
+        "cum_depth": 8000733.15,
+        "tier": "STANDARD",
+        "dist": "-1.06%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8775,
+        "coins": 2702.9,
+        "notional": 2371.88,
+        "cum_depth": 8114638.54,
+        "tier": "STANDARD",
+        "dist": "-1.02%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8779,
+        "coins": 592.1,
+        "notional": 519.8,
+        "cum_depth": 8191633.36,
+        "tier": "STANDARD",
+        "dist": "-0.97%",
+        "wallet": "0xd15d7898098d77bd7a5827274bcb77509cb147bf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.878,
+        "coins": 40567.9,
+        "notional": 35616.59,
+        "cum_depth": 6704508.23,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.97%",
+        "wallet": "0xa24c5ca26c41cc52aeac1d6886d37f6dd5d6949f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8781,
+        "coins": 805.8,
+        "notional": 707.57,
+        "cum_depth": 8180092.7,
+        "tier": "STANDARD",
+        "dist": "-0.95%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8783,
+        "coins": 13610.0,
+        "notional": 11954.34,
+        "cum_depth": 7403587.32,
+        "tier": "STANDARD",
+        "dist": "-0.92%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8788,
+        "coins": 34881.7,
+        "notional": 30652.64,
+        "cum_depth": 6829758.59,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.88%",
+        "wallet": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077"
+      },
+      {
+        "side": "BUY",
+        "price": 0.879,
+        "coins": 2702.3,
+        "notional": 2375.21,
+        "cum_depth": 8112266.66,
+        "tier": "STANDARD",
+        "dist": "-0.85%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8792,
+        "coins": 792901.2,
+        "notional": 697118.74,
+        "cum_depth": 2801842.5,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-0.83%",
+        "wallet": "0xeac842b2214cfece3f0d288293da19f408d91ede"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8796,
+        "coins": 75100.0,
+        "notional": 66057.21,
+        "cum_depth": 5582261.95,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.78%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.88,
+        "coins": 3410.0,
+        "notional": 3000.83,
+        "cum_depth": 8055976.1,
+        "tier": "STANDARD",
+        "dist": "-0.74%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8804,
+        "coins": 12272.8,
+        "notional": 10804.97,
+        "cum_depth": 7459926.14,
+        "tier": "STANDARD",
+        "dist": "-0.69%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8804,
+        "coins": 2721.6,
+        "notional": 2396.07,
+        "cum_depth": 8107511.62,
+        "tier": "STANDARD",
+        "dist": "-0.69%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8806,
+        "coins": 22762.6,
+        "notional": 20044.97,
+        "cum_depth": 7087131.69,
+        "tier": "STANDARD",
+        "dist": "-0.67%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.881,
+        "coins": 144274.0,
+        "notional": 127112.61,
+        "cum_depth": 5322208.25,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-0.62%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.881,
+        "coins": 5256.0,
+        "notional": 4630.59,
+        "cum_depth": 7996122.8,
+        "tier": "STANDARD",
+        "dist": "-0.62%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8811,
+        "coins": 2722.9,
+        "notional": 2399.26,
+        "cum_depth": 8095520.0,
+        "tier": "STANDARD",
+        "dist": "-0.61%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8812,
+        "coins": 150156.3,
+        "notional": 132325.24,
+        "cum_depth": 4810045.6,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-0.60%",
+        "wallet": "0x07fe8986162d7f68bcfe15822ec062123dd45f9f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8812,
+        "coins": 773.6,
+        "notional": 681.68,
+        "cum_depth": 8184929.74,
+        "tier": "STANDARD",
+        "dist": "-0.60%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8812,
+        "coins": 771.4,
+        "notional": 679.74,
+        "cum_depth": 8185609.48,
+        "tier": "STANDARD",
+        "dist": "-0.60%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8813,
+        "coins": 11233.5,
+        "notional": 9900.53,
+        "cum_depth": 7631078.85,
+        "tier": "STANDARD",
+        "dist": "-0.59%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8818,
+        "coins": 405063.1,
+        "notional": 357184.64,
+        "cum_depth": 3520686.97,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-0.53%",
+        "wallet": "0xeac842b2214cfece3f0d288293da19f408d91ede"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8818,
+        "coins": 1985.8,
+        "notional": 1751.12,
+        "cum_depth": 8154236.12,
+        "tier": "STANDARD",
+        "dist": "-0.53%",
+        "wallet": "0xfd66e330954b1d33772a78a70874cc2600754eec"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8818,
+        "coins": 1985.8,
+        "notional": 1751.1,
+        "cum_depth": 8155987.22,
+        "tier": "STANDARD",
+        "dist": "-0.53%",
+        "wallet": "0xd0956a1eba0a9060baf5f73ee26b9601dc47ec43"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8819,
+        "coins": 50000.0,
+        "notional": 44093.0,
+        "cum_depth": 6362197.07,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.53%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8819,
+        "coins": 2720.1,
+        "notional": 2398.91,
+        "cum_depth": 8102716.9,
+        "tier": "STANDARD",
+        "dist": "-0.52%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8819,
+        "coins": 1986.1,
+        "notional": 1751.56,
+        "cum_depth": 8152485.0,
+        "tier": "STANDARD",
+        "dist": "-0.52%",
+        "wallet": "0x53136b4a7c432585f28903b77c7816a723e0271f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8821,
+        "coins": 10423.5,
+        "notional": 9195.09,
+        "cum_depth": 7649989.03,
+        "tier": "STANDARD",
+        "dist": "-0.49%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8822,
+        "coins": 1985.9,
+        "notional": 1752.06,
+        "cum_depth": 8148981.84,
+        "tier": "STANDARD",
+        "dist": "-0.48%",
+        "wallet": "0x63f6411ca61733af716c9a50a56a84ea38a0af59"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8822,
+        "coins": 1985.4,
+        "notional": 1751.6,
+        "cum_depth": 8150733.44,
+        "tier": "STANDARD",
+        "dist": "-0.48%",
+        "wallet": "0x53136b4a7c432585f28903b77c7816a723e0271f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8823,
+        "coins": 2060.4,
+        "notional": 1817.89,
+        "cum_depth": 8133088.21,
+        "tier": "STANDARD",
+        "dist": "-0.48%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8824,
+        "coins": 8051.4,
+        "notional": 7104.56,
+        "cum_depth": 7825210.23,
+        "tier": "STANDARD",
+        "dist": "-0.47%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8826,
+        "coins": 839.4,
+        "notional": 740.86,
+        "cum_depth": 8177219.3,
+        "tier": "STANDARD",
+        "dist": "-0.44%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8826,
+        "coins": 752.8,
+        "notional": 664.43,
+        "cum_depth": 8186273.91,
+        "tier": "STANDARD",
+        "dist": "-0.44%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8827,
+        "coins": 8590.9,
+        "notional": 7582.76,
+        "cum_depth": 7723350.52,
+        "tier": "STANDARD",
+        "dist": "-0.44%",
+        "wallet": "0x47a4471457e2e7040bb803c566203c0eddf2bfea"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8827,
+        "coins": 8468.1,
+        "notional": 7474.96,
+        "cum_depth": 7745823.5,
+        "tier": "STANDARD",
+        "dist": "-0.43%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8828,
+        "coins": 2718.4,
+        "notional": 2399.72,
+        "cum_depth": 8093120.75,
+        "tier": "STANDARD",
+        "dist": "-0.42%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8831,
+        "coins": 8468.1,
+        "notional": 7478.01,
+        "cum_depth": 7738348.54,
+        "tier": "STANDARD",
+        "dist": "-0.39%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8832,
+        "coins": 6166.9,
+        "notional": 5446.36,
+        "cum_depth": 7947364.39,
+        "tier": "STANDARD",
+        "dist": "-0.38%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8832,
+        "coins": 3493.1,
+        "notional": 3085.18,
+        "cum_depth": 8037795.06,
+        "tier": "STANDARD",
+        "dist": "-0.37%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8833,
+        "coins": 56690.5,
+        "notional": 50074.72,
+        "cum_depth": 6077991.7,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.36%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8833,
+        "coins": 9786.3,
+        "notional": 8643.95,
+        "cum_depth": 7658632.97,
+        "tier": "STANDARD",
+        "dist": "-0.37%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8833,
+        "coins": 9522.1,
+        "notional": 8410.78,
+        "cum_depth": 7667043.75,
+        "tier": "STANDARD",
+        "dist": "-0.37%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8835,
+        "coins": 2693.7,
+        "notional": 2379.83,
+        "cum_depth": 8109891.45,
+        "tier": "STANDARD",
+        "dist": "-0.34%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8836,
+        "coins": 7866.0,
+        "notional": 6950.55,
+        "cum_depth": 7916142.99,
+        "tier": "STANDARD",
+        "dist": "-0.33%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8837,
+        "coins": 31120.5,
+        "notional": 27499.94,
+        "cum_depth": 6939840.21,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.32%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8838,
+        "coins": 144480.4,
+        "notional": 127688.89,
+        "cum_depth": 5195095.65,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "-0.31%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8838,
+        "coins": 23575.4,
+        "notional": 20836.88,
+        "cum_depth": 7047041.68,
+        "tier": "STANDARD",
+        "dist": "-0.30%",
+        "wallet": "0x08a49e7f7133577aa942f1c24119ff1c6797126d"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8838,
+        "coins": 9493.9,
+        "notional": 8390.71,
+        "cum_depth": 7675434.46,
+        "tier": "STANDARD",
+        "dist": "-0.31%",
+        "wallet": "0xf8bb7fcd93d7b07e178eac143c185662c226e2e3"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8838,
+        "coins": 1061.1,
+        "notional": 937.75,
+        "cum_depth": 8174215.37,
+        "tier": "STANDARD",
+        "dist": "-0.31%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8839,
+        "coins": 11521.0,
+        "notional": 10183.53,
+        "cum_depth": 7500761.86,
+        "tier": "STANDARD",
+        "dist": "-0.30%",
+        "wallet": "0x34fb5ec7d4e939161946340ea2a1f29254b893de"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8839,
+        "coins": 11418.4,
+        "notional": 10092.84,
+        "cum_depth": 7541233.92,
+        "tier": "STANDARD",
+        "dist": "-0.30%",
+        "wallet": "0x39475d17bcd20adc540e647dae6781b153fbf3b1"
+      },
+      {
+        "side": "BUY",
+        "price": 0.884,
+        "coins": 25000.0,
+        "notional": 22100.0,
+        "cum_depth": 6984156.46,
+        "tier": "STANDARD",
+        "dist": "-0.29%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.884,
+        "coins": 8507.0,
+        "notional": 7520.02,
+        "cum_depth": 7730870.53,
+        "tier": "STANDARD",
+        "dist": "-0.29%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8841,
+        "coins": 22621.3,
+        "notional": 19999.94,
+        "cum_depth": 7107131.64,
+        "tier": "STANDARD",
+        "dist": "-0.27%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8841,
+        "coins": 11222.3,
+        "notional": 9921.52,
+        "cum_depth": 7611262.61,
+        "tier": "STANDARD",
+        "dist": "-0.28%",
+        "wallet": "0x07fe8986162d7f68bcfe15822ec062123dd45f9f"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8841,
+        "coins": 5617.9,
+        "notional": 4967.01,
+        "cum_depth": 7972683.4,
+        "tier": "STANDARD",
+        "dist": "-0.27%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8842,
+        "coins": 13335.1,
+        "notional": 11791.16,
+        "cum_depth": 7415378.48,
+        "tier": "STANDARD",
+        "dist": "-0.26%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8843,
+        "coins": 43877.8,
+        "notional": 38803.33,
+        "cum_depth": 6479879.27,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.25%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8843,
+        "coins": 8238.1,
+        "notional": 7285.28,
+        "cum_depth": 7782428.43,
+        "tier": "STANDARD",
+        "dist": "-0.25%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8843,
+        "coins": 2454.6,
+        "notional": 2170.73,
+        "cum_depth": 8123576.21,
+        "tier": "STANDARD",
+        "dist": "-0.25%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8844,
+        "coins": 774.0,
+        "notional": 684.51,
+        "cum_depth": 8183564.64,
+        "tier": "STANDARD",
+        "dist": "-0.24%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8845,
+        "coins": 16958.9,
+        "notional": 14999.98,
+        "cum_depth": 7364123.89,
+        "tier": "STANDARD",
+        "dist": "-0.23%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8845,
+        "coins": 8238.1,
+        "notional": 7286.85,
+        "cum_depth": 7775143.15,
+        "tier": "STANDARD",
+        "dist": "-0.23%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8845,
+        "coins": 822.7,
+        "notional": 727.68,
+        "cum_depth": 8177946.97,
+        "tier": "STANDARD",
+        "dist": "-0.23%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8845,
+        "coins": 651.3,
+        "notional": 576.09,
+        "cum_depth": 8190023.79,
+        "tier": "STANDARD",
+        "dist": "-0.23%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8846,
+        "coins": 55263.1,
+        "notional": 48887.95,
+        "cum_depth": 6273543.57,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.21%",
+        "wallet": "0xe86b057f5eb764c9738d6b0d38170befd0723664"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8846,
+        "coins": 9166.5,
+        "notional": 8108.5,
+        "cum_depth": 7691932.03,
+        "tier": "STANDARD",
+        "dist": "-0.22%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8846,
+        "coins": 2711.5,
+        "notional": 2398.65,
+        "cum_depth": 8105115.55,
+        "tier": "STANDARD",
+        "dist": "-0.22%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8847,
+        "coins": 11207.6,
+        "notional": 9915.7,
+        "cum_depth": 7621178.31,
+        "tier": "STANDARD",
+        "dist": "-0.20%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8847,
+        "coins": 4923.1,
+        "notional": 4355.47,
+        "cum_depth": 8009690.3,
+        "tier": "STANDARD",
+        "dist": "-0.21%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 11521.0,
+        "notional": 10193.67,
+        "cum_depth": 7490578.33,
+        "tier": "STANDARD",
+        "dist": "-0.20%",
+        "wallet": "0x34fb5ec7d4e939161946340ea2a1f29254b893de"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 11418.4,
+        "notional": 10102.89,
+        "cum_depth": 7531141.09,
+        "tier": "STANDARD",
+        "dist": "-0.20%",
+        "wallet": "0x39475d17bcd20adc540e647dae6781b153fbf3b1"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 11301.4,
+        "notional": 9999.93,
+        "cum_depth": 7581389.64,
+        "tier": "STANDARD",
+        "dist": "-0.19%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 7838.7,
+        "notional": 6935.92,
+        "cum_depth": 7930014.9,
+        "tier": "STANDARD",
+        "dist": "-0.19%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 1489.2,
+        "notional": 1317.64,
+        "cum_depth": 8165626.67,
+        "tier": "STANDARD",
+        "dist": "-0.20%",
+        "wallet": "0x63f6411ca61733af716c9a50a56a84ea38a0af59"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8848,
+        "coins": 613.6,
+        "notional": 542.93,
+        "cum_depth": 8191113.55,
+        "tier": "STANDARD",
+        "dist": "-0.19%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8849,
+        "coins": 1985.7,
+        "notional": 1757.23,
+        "cum_depth": 8145472.76,
+        "tier": "STANDARD",
+        "dist": "-0.18%",
+        "wallet": "0xf30120f0487a9093dbd47a69527ac9a9edbb7895"
+      },
+      {
+        "side": "BUY",
+        "price": 0.885,
+        "coins": 7924.6,
+        "notional": 7012.95,
+        "cum_depth": 7860283.18,
+        "tier": "STANDARD",
+        "dist": "-0.18%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.885,
+        "coins": 2711.8,
+        "notional": 2399.97,
+        "cum_depth": 8088321.06,
+        "tier": "STANDARD",
+        "dist": "-0.17%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.885,
+        "coins": 1985.4,
+        "notional": 1757.02,
+        "cum_depth": 8147229.78,
+        "tier": "STANDARD",
+        "dist": "-0.18%",
+        "wallet": "0x63f6411ca61733af716c9a50a56a84ea38a0af59"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8851,
+        "coins": 31111.7,
+        "notional": 27538.52,
+        "cum_depth": 6884840.29,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "-0.16%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8851,
+        "coins": 7924.6,
+        "notional": 7014.38,
+        "cum_depth": 7846256.47,
+        "tier": "STANDARD",
+        "dist": "-0.16%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8851,
+        "coins": 1985.8,
+        "notional": 1757.73,
+        "cum_depth": 8143715.53,
+        "tier": "STANDARD",
+        "dist": "-0.16%",
+        "wallet": "0xea0e878d5da1f786c035355cd7a8d381a6276766"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8852,
+        "coins": 1971.0,
+        "notional": 1744.77,
+        "cum_depth": 8161225.92,
+        "tier": "STANDARD",
+        "dist": "-0.15%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8852,
+        "coins": 1971.0,
+        "notional": 1744.75,
+        "cum_depth": 8162970.67,
+        "tier": "STANDARD",
+        "dist": "-0.15%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8853,
+        "coins": 2956.2,
+        "notional": 2617.04,
+        "cum_depth": 8061589.2,
+        "tier": "STANDARD",
+        "dist": "-0.14%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8853,
+        "coins": 2709.6,
+        "notional": 2398.92,
+        "cum_depth": 8100317.99,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8853,
+        "coins": 1985.8,
+        "notional": 1758.13,
+        "cum_depth": 8141957.8,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0xa382fa9f4bb1dd4e3120cf0507a67384ad1ef1f7"
+      },
+      {
+        "side": "BUY",
         "price": 0.8854,
-        "coins": 1918.5,
-        "notional": 1698.7,
-        "cum_depth": 100893.28,
-        "tier": "1 orders",
-        "dist": "-0.09%",
-        "wallet": "-"
+        "coins": 18378.2,
+        "notional": 16272.79,
+        "cum_depth": 7194429.99,
+        "tier": "STANDARD",
+        "dist": "-0.12%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 8051.4,
+        "notional": 7128.47,
+        "cum_depth": 7818105.67,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 6713.1,
+        "notional": 5943.98,
+        "cum_depth": 7941918.03,
+        "tier": "STANDARD",
+        "dist": "-0.12%",
+        "wallet": "0x7717a7a245d9f950e586822b8c9b46863ed7bd7e"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 4608.0,
+        "notional": 4079.92,
+        "cum_depth": 8017850.2,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 2823.5,
+        "notional": 2499.96,
+        "cum_depth": 8066589.12,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 1985.8,
+        "notional": 1758.27,
+        "cum_depth": 8140199.67,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0xfd66e330954b1d33772a78a70874cc2600754eec"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8854,
+        "coins": 1971.0,
+        "notional": 1745.14,
+        "cum_depth": 8159481.15,
+        "tier": "STANDARD",
+        "dist": "-0.13%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
       },
       {
         "side": "BID",
-        "price": 0.8854,
-        "coins": 3111.2,
-        "notional": 2754.63,
-        "cum_depth": 103647.91,
-        "tier": "2 orders",
+        "price": 0.8855,
+        "coins": 18377.7,
+        "notional": 16274.19,
+        "cum_depth": 118383.11,
+        "tier": "1 orders",
+        "dist": "-0.11%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8855,
+        "coins": 8051.4,
+        "notional": 7129.92,
+        "cum_depth": 7810977.21,
+        "tier": "STANDARD",
+        "dist": "-0.11%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BID",
+        "price": 0.8856,
+        "coins": 1971.0,
+        "notional": 1745.58,
+        "cum_depth": 87127.29,
+        "tier": "1 orders",
         "dist": "-0.10%",
         "wallet": "-"
       },
       {
         "side": "BID",
-        "price": 0.8854,
-        "coins": 2949.9,
-        "notional": 2611.78,
-        "cum_depth": 106259.69,
+        "price": 0.8856,
+        "coins": 16917.5,
+        "notional": 14981.63,
+        "cum_depth": 102108.92,
+        "tier": "1 orders",
+        "dist": "-0.11%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8856,
+        "coins": 1312.3,
+        "notional": 1162.23,
+        "cum_depth": 8170286.18,
+        "tier": "STANDARD",
+        "dist": "-0.10%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "BID",
+        "price": 0.8857,
+        "coins": 225.1,
+        "notional": 199.38,
+        "cum_depth": 65831.64,
+        "tier": "2 orders",
+        "dist": "-0.09%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.8857,
+        "coins": 6713.1,
+        "notional": 5945.79,
+        "cum_depth": 71777.43,
+        "tier": "1 orders",
+        "dist": "-0.09%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.8857,
+        "coins": 1971.0,
+        "notional": 1745.69,
+        "cum_depth": 73523.13,
         "tier": "1 orders",
         "dist": "-0.10%",
         "wallet": "-"
       },
       {
         "side": "BID",
-        "price": 0.8855,
-        "coins": 18376.3,
-        "notional": 16272.03,
-        "cum_depth": 92668.15,
-        "tier": "1 orders",
+        "price": 0.8857,
+        "coins": 13389.4,
+        "notional": 11858.59,
+        "cum_depth": 85381.72,
+        "tier": "2 orders",
+        "dist": "-0.10%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8857,
+        "coins": 23704.4,
+        "notional": 20994.75,
+        "cum_depth": 7026204.8,
+        "tier": "STANDARD",
+        "dist": "-0.10%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8857,
+        "coins": 8051.4,
+        "notional": 7131.37,
+        "cum_depth": 7803847.29,
+        "tier": "STANDARD",
         "dist": "-0.09%",
-        "wallet": "-"
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8857,
+        "coins": 3470.0,
+        "notional": 3073.31,
+        "cum_depth": 8040868.37,
+        "tier": "STANDARD",
+        "dist": "-0.10%",
+        "wallet": "0xdf83170d313813a71fd6b50fb981198833b73cff"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8857,
+        "coins": 2097.1,
+        "notional": 1857.32,
+        "cum_depth": 8129433.42,
+        "tier": "STANDARD",
+        "dist": "-0.10%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
       },
       {
         "side": "BID",
-        "price": 0.8855,
-        "coins": 7370.5,
-        "notional": 6526.43,
-        "cum_depth": 99194.58,
-        "tier": "2 orders",
-        "dist": "-0.09%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8856,
-        "coins": 2488.3,
-        "notional": 2203.69,
-        "cum_depth": 76188.54,
+        "price": 0.8858,
+        "coins": 2256.0,
+        "notional": 1998.39,
+        "cum_depth": 55510.64,
         "tier": "1 orders",
-        "dist": "-0.07%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8856,
-        "coins": 234.4,
-        "notional": 207.59,
-        "cum_depth": 76396.12,
-        "tier": "2 orders",
-        "dist": "-0.07%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8857,
-        "coins": 14406.6,
-        "notional": 12760.36,
-        "cum_depth": 46025.46,
-        "tier": "3 orders",
-        "dist": "-0.06%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8857,
-        "coins": 1136.4,
-        "notional": 1006.49,
-        "cum_depth": 47031.95,
-        "tier": "1 orders",
-        "dist": "-0.07%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8857,
-        "coins": 22939.4,
-        "notional": 20316.74,
-        "cum_depth": 67348.69,
-        "tier": "2 orders",
-        "dist": "-0.07%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8857,
-        "coins": 7492.9,
-        "notional": 6636.16,
-        "cum_depth": 73984.85,
-        "tier": "1 orders",
-        "dist": "-0.07%",
+        "dist": "-0.08%",
         "wallet": "-"
       },
       {
         "side": "BID",
         "price": 0.8858,
-        "coins": 30.5,
-        "notional": 27.02,
-        "cum_depth": 7256.5,
+        "coins": 8051.4,
+        "notional": 7131.93,
+        "cum_depth": 62642.57,
+        "tier": "1 orders",
+        "dist": "-0.08%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.8858,
+        "coins": 3375.2,
+        "notional": 2989.68,
+        "cum_depth": 65632.26,
+        "tier": "2 orders",
+        "dist": "-0.09%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8859,
+        "coins": 11354.5,
+        "notional": 10058.5,
+        "cum_depth": 7561372.27,
+        "tier": "STANDARD",
+        "dist": "-0.08%",
+        "wallet": "0x621c5551678189b9a6c94d929924c225ff1d63ab"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8859,
+        "coins": 8051.4,
+        "notional": 7132.82,
+        "cum_depth": 7796715.92,
+        "tier": "STANDARD",
+        "dist": "-0.07%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8859,
+        "coins": 3837.9,
+        "notional": 3400.0,
+        "cum_depth": 8024914.44,
+        "tier": "STANDARD",
+        "dist": "-0.07%",
+        "wallet": "0x0eecd62efb05009e2b72964b4bcdbcf653afd4c5"
+      },
+      {
+        "side": "BID",
+        "price": 0.886,
+        "coins": 23713.7,
+        "notional": 21010.58,
+        "cum_depth": 42978.88,
+        "tier": "1 orders",
+        "dist": "-0.06%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.886,
+        "coins": 8051.4,
+        "notional": 7133.38,
+        "cum_depth": 50112.26,
+        "tier": "1 orders",
+        "dist": "-0.06%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.886,
+        "coins": 3837.6,
+        "notional": 3400.0,
+        "cum_depth": 53512.26,
+        "tier": "1 orders",
+        "dist": "-0.06%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.886,
+        "coins": 5650.9,
+        "notional": 5006.53,
+        "cum_depth": 7967716.39,
+        "tier": "STANDARD",
+        "dist": "-0.06%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "BID",
+        "price": 0.8861,
+        "coins": 2708.6,
+        "notional": 2399.98,
+        "cum_depth": 21968.3,
         "tier": "1 orders",
         "dist": "-0.05%",
         "wallet": "-"
       },
       {
-        "side": "BID",
-        "price": 0.8858,
-        "coins": 5652.3,
-        "notional": 5006.58,
-        "cum_depth": 12263.09,
-        "tier": "1 orders",
-        "dist": "-0.06%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8858,
-        "coins": 23711.0,
-        "notional": 21002.02,
-        "cum_depth": 33265.1,
-        "tier": "1 orders",
-        "dist": "-0.06%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8859,
-        "coins": 142.6,
-        "notional": 126.33,
-        "cum_depth": 726.6,
-        "tier": "2 orders",
-        "dist": "-0.04%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
-        "price": 0.8859,
-        "coins": 7340.6,
-        "notional": 6502.89,
-        "cum_depth": 7229.49,
-        "tier": "1 orders",
-        "dist": "-0.04%",
-        "wallet": "-"
-      },
-      {
-        "side": "BID",
+        "side": "BUY",
         "price": 0.8861,
-        "coins": 677.4,
-        "notional": 600.26,
-        "cum_depth": 600.26,
+        "coins": 2707.3,
+        "notional": 2399.07,
+        "cum_depth": 8097919.08,
+        "tier": "STANDARD",
+        "dist": "-0.04%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8861,
+        "coins": 2000.0,
+        "notional": 1772.28,
+        "cum_depth": 8138441.41,
+        "tier": "STANDARD",
+        "dist": "-0.04%",
+        "wallet": "0xfc27136e42af1732ddc9ce2605ea9bff1b959d9d"
+      },
+      {
+        "side": "BID",
+        "price": 0.8862,
+        "coins": 2000.0,
+        "notional": 1772.46,
+        "cum_depth": 12433.49,
+        "tier": "1 orders",
+        "dist": "-0.03%",
+        "wallet": "-"
+      },
+      {
+        "side": "BID",
+        "price": 0.8862,
+        "coins": 8051.4,
+        "notional": 7134.83,
+        "cum_depth": 19568.32,
+        "tier": "1 orders",
+        "dist": "-0.04%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8862,
+        "coins": 2000.0,
+        "notional": 1772.46,
+        "cum_depth": 8136669.13,
+        "tier": "STANDARD",
+        "dist": "-0.03%",
+        "wallet": "0xfc27136e42af1732ddc9ce2605ea9bff1b959d9d"
+      },
+      {
+        "side": "BID",
+        "price": 0.8863,
+        "coins": 5649.7,
+        "notional": 5007.5,
+        "cum_depth": 8888.39,
         "tier": "1 orders",
         "dist": "-0.02%",
         "wallet": "-"
       },
       {
-        "side": "MID_SPREAD",
+        "side": "BID",
         "price": 0.8863,
+        "coins": 2000.0,
+        "notional": 1772.64,
+        "cum_depth": 10661.03,
+        "tier": "1 orders",
+        "dist": "-0.02%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8863,
+        "coins": 1510.1,
+        "notional": 1338.36,
+        "cum_depth": 8164309.02,
+        "tier": "STANDARD",
+        "dist": "-0.03%",
+        "wallet": "0x9aa589355bf745db9784c8ef3c646360f11b58af"
+      },
+      {
+        "side": "BID",
+        "price": 0.8864,
+        "coins": 2488.3,
+        "notional": 2205.55,
+        "cum_depth": 3880.89,
+        "tier": "1 orders",
+        "dist": "-0.02%",
+        "wallet": "-"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8864,
+        "coins": 1187.3,
+        "notional": 1052.38,
+        "cum_depth": 8171338.56,
+        "tier": "STANDARD",
+        "dist": "-0.02%",
+        "wallet": "0xf5d81a135f756ca16544e53c20fc20643ec3ad53"
+      },
+      {
+        "side": "BUY",
+        "price": 0.8864,
+        "coins": 784.9,
+        "notional": 695.73,
+        "cum_depth": 8182185.45,
+        "tier": "STANDARD",
+        "dist": "-0.02%",
+        "wallet": "0x727956612a8700627451204a3ae26268bd1a1525"
+      },
+      {
+        "side": "MID_SPREAD",
+        "price": 0.8865,
         "coins": 0.0,
         "notional": 0.0,
         "cum_depth": 0.0,
@@ -2574,204 +3864,1484 @@
         "wallet": "-"
       },
       {
-        "side": "ASK",
-        "price": 0.8864,
-        "coins": 668.5,
-        "notional": 592.57,
-        "cum_depth": 592.57,
-        "tier": "1 orders",
-        "dist": "+0.02%",
-        "wallet": "-"
-      },
-      {
-        "side": "ASK",
-        "price": 0.8867,
-        "coins": 5078.6,
-        "notional": 4503.4,
-        "cum_depth": 29149.82,
+        "side": "BID",
+        "price": 0.8865,
+        "coins": 1889.9,
+        "notional": 1675.34,
+        "cum_depth": 1675.34,
         "tier": "2 orders",
-        "dist": "+0.05%",
+        "dist": "-0.01%",
         "wallet": "-"
       },
       {
         "side": "ASK",
-        "price": 0.8867,
-        "coins": 13336.6,
-        "notional": 11825.56,
-        "cum_depth": 24646.42,
-        "tier": "6 orders",
-        "dist": "+0.05%",
-        "wallet": "-"
-      },
-      {
-        "side": "ASK",
-        "price": 0.8867,
-        "coins": 4597.0,
-        "notional": 4076.11,
-        "cum_depth": 12820.86,
+        "price": 0.8866,
+        "coins": 1129.8,
+        "notional": 1001.68,
+        "cum_depth": 1001.68,
         "tier": "1 orders",
-        "dist": "+0.05%",
+        "dist": "+0.01%",
         "wallet": "-"
       },
       {
+        "side": "SELL",
+        "price": 0.8866,
+        "coins": 5649.3,
+        "notional": 5008.67,
+        "cum_depth": 7957702.29,
+        "tier": "STANDARD",
+        "dist": "+0.01%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
+      },
+      {
         "side": "ASK",
-        "price": 0.8867,
-        "coins": 4597.0,
-        "notional": 4076.07,
-        "cum_depth": 8744.74,
+        "price": 0.8868,
+        "coins": 5648.0,
+        "notional": 5008.65,
+        "cum_depth": 12010.44,
         "tier": "1 orders",
-        "dist": "+0.05%",
+        "dist": "+0.03%",
         "wallet": "-"
       },
       {
         "side": "ASK",
-        "price": 0.8867,
-        "coins": 4597.1,
-        "notional": 4076.11,
-        "cum_depth": 4668.68,
+        "price": 0.8868,
+        "coins": 6766.1,
+        "notional": 6000.11,
+        "cum_depth": 7001.79,
         "tier": "1 orders",
-        "dist": "+0.05%",
+        "dist": "+0.03%",
         "wallet": "-"
       },
       {
-        "side": "ASK",
+        "side": "SELL",
+        "price": 0.8868,
+        "coins": 4131.8,
+        "notional": 3664.25,
+        "cum_depth": 8021514.44,
+        "tier": "STANDARD",
+        "dist": "+0.03%",
+        "wallet": "0xdf83170d313813a71fd6b50fb981198833b73cff"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8869,
+        "coins": 8236.3,
+        "notional": 7304.36,
+        "cum_depth": 7767856.3,
+        "tier": "STANDARD",
+        "dist": "+0.04%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8869,
+        "coins": 5646.4,
+        "notional": 5007.57,
+        "cum_depth": 7962709.86,
+        "tier": "STANDARD",
+        "dist": "+0.04%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "SELL",
         "price": 0.887,
-        "coins": 2000.0,
-        "notional": 1774.08,
-        "cum_depth": 41181.4,
+        "coins": 2818.6,
+        "notional": 2499.96,
+        "cum_depth": 8064089.16,
+        "tier": "STANDARD",
+        "dist": "+0.05%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8871,
+        "coins": 2021.1,
+        "notional": 1793.02,
+        "cum_depth": 54891.58,
         "tier": "1 orders",
-        "dist": "+0.09%",
+        "dist": "+0.07%",
         "wallet": "-"
       },
       {
         "side": "ASK",
-        "price": 0.887,
-        "coins": 3917.5,
-        "notional": 3474.94,
-        "cum_depth": 39407.32,
+        "price": 0.8871,
+        "coins": 2818.0,
+        "notional": 2499.96,
+        "cum_depth": 53098.56,
+        "tier": "1 orders",
+        "dist": "+0.07%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8871,
+        "coins": 1325.8,
+        "notional": 1176.14,
+        "cum_depth": 50598.6,
+        "tier": "1 orders",
+        "dist": "+0.07%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8871,
+        "coins": 8236.3,
+        "notional": 7306.17,
+        "cum_depth": 49422.46,
+        "tier": "1 orders",
+        "dist": "+0.06%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8871,
+        "coins": 16999.6,
+        "notional": 15079.67,
+        "cum_depth": 42116.29,
         "tier": "2 orders",
-        "dist": "+0.09%",
+        "dist": "+0.06%",
         "wallet": "-"
       },
       {
         "side": "ASK",
-        "price": 0.887,
-        "coins": 5647.0,
-        "notional": 5008.66,
-        "cum_depth": 35932.38,
+        "price": 0.8871,
+        "coins": 16939.5,
+        "notional": 15026.18,
+        "cum_depth": 27036.62,
         "tier": "1 orders",
-        "dist": "+0.08%",
+        "dist": "+0.06%",
         "wallet": "-"
       },
       {
-        "side": "ASK",
-        "price": 0.887,
-        "coins": 2000.0,
-        "notional": 1773.9,
-        "cum_depth": 30923.72,
-        "tier": "1 orders",
-        "dist": "+0.08%",
-        "wallet": "-"
+        "side": "SELL",
+        "price": 0.8871,
+        "coins": 11292.1,
+        "notional": 10017.45,
+        "cum_depth": 7571389.71,
+        "tier": "STANDARD",
+        "dist": "+0.07%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
       },
       {
-        "side": "ASK",
+        "side": "SELL",
+        "price": 0.8871,
+        "coins": 8236.3,
+        "notional": 7306.17,
+        "cum_depth": 7760551.94,
+        "tier": "STANDARD",
+        "dist": "+0.06%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8871,
+        "coins": 3832.8,
+        "notional": 3399.92,
+        "cum_depth": 8028314.36,
+        "tier": "STANDARD",
+        "dist": "+0.06%",
+        "wallet": "0x0eecd62efb05009e2b72964b4bcdbcf653afd4c5"
+      },
+      {
+        "side": "SELL",
         "price": 0.8871,
         "coins": 2488.3,
         "notional": 2207.35,
-        "cum_depth": 50622.55,
-        "tier": "1 orders",
-        "dist": "+0.09%",
-        "wallet": "-"
+        "cum_depth": 8119216.81,
+        "tier": "STANDARD",
+        "dist": "+0.06%",
+        "wallet": "0x7717a7a245d9f950e586822b8c9b46863ed7bd7e"
       },
       {
-        "side": "ASK",
+        "side": "SELL",
         "price": 0.8871,
-        "coins": 8154.9,
-        "notional": 7233.8,
-        "cum_depth": 48415.21,
-        "tier": "1 orders",
+        "coins": 1314.0,
+        "notional": 1165.72,
+        "cum_depth": 8167958.27,
+        "tier": "STANDARD",
+        "dist": "+0.07%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8871,
+        "coins": 1314.0,
+        "notional": 1165.69,
+        "cum_depth": 8169123.96,
+        "tier": "STANDARD",
+        "dist": "+0.07%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8873,
+        "coins": 6319.9,
+        "notional": 5607.96,
+        "cum_depth": 61740.41,
+        "tier": "2 orders",
         "dist": "+0.09%",
-        "wallet": "-"
-      },
-      {
-        "side": "ASK",
-        "price": 0.8872,
-        "coins": 11290.5,
-        "notional": 10017.38,
-        "cum_depth": 78089.21,
-        "tier": "1 orders",
-        "dist": "+0.11%",
-        "wallet": "-"
-      },
-      {
-        "side": "ASK",
-        "price": 0.8872,
-        "coins": 18342.6,
-        "notional": 16274.1,
-        "cum_depth": 68071.83,
-        "tier": "1 orders",
-        "dist": "+0.11%",
-        "wallet": "-"
-      },
-      {
-        "side": "ASK",
-        "price": 0.8872,
-        "coins": 1324.6,
-        "notional": 1175.17,
-        "cum_depth": 51797.72,
-        "tier": "1 orders",
-        "dist": "+0.10%",
         "wallet": "-"
       },
       {
         "side": "ASK",
         "price": 0.8873,
-        "coins": 9498.1,
-        "notional": 8427.66,
-        "cum_depth": 86516.88,
+        "coins": 84.5,
+        "notional": 74.98,
+        "cum_depth": 56132.45,
         "tier": "1 orders",
-        "dist": "+0.12%",
+        "dist": "+0.09%",
         "wallet": "-"
       },
       {
         "side": "ASK",
-        "price": 0.8874,
-        "coins": 11268.2,
-        "notional": 9999.96,
-        "cum_depth": 119082.27,
+        "price": 0.8873,
+        "coins": 1314.0,
+        "notional": 1165.89,
+        "cum_depth": 56057.47,
         "tier": "1 orders",
-        "dist": "+0.13%",
+        "dist": "+0.08%",
         "wallet": "-"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8873,
+        "coins": 1971.0,
+        "notional": 1748.79,
+        "cum_depth": 8157736.01,
+        "tier": "STANDARD",
+        "dist": "+0.08%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8873,
+        "coins": 1314.0,
+        "notional": 1165.89,
+        "cum_depth": 8166792.55,
+        "tier": "STANDARD",
+        "dist": "+0.08%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
       },
       {
         "side": "ASK",
         "price": 0.8874,
         "coins": 22939.4,
         "notional": 20357.34,
-        "cum_depth": 109082.31,
+        "cum_depth": 93403.31,
         "tier": "2 orders",
-        "dist": "+0.13%",
+        "dist": "+0.10%",
         "wallet": "-"
       },
       {
         "side": "ASK",
         "price": 0.8874,
-        "coins": 2488.3,
-        "notional": 2208.09,
-        "cum_depth": 88724.97,
+        "coins": 2706.6,
+        "notional": 2401.89,
+        "cum_depth": 73045.97,
         "tier": "1 orders",
-        "dist": "+0.13%",
+        "dist": "+0.10%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8874,
+        "coins": 8062.7,
+        "notional": 7154.68,
+        "cum_depth": 70644.08,
+        "tier": "1 orders",
+        "dist": "+0.10%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8874,
+        "coins": 1971.0,
+        "notional": 1748.99,
+        "cum_depth": 63489.4,
+        "tier": "1 orders",
+        "dist": "+0.09%",
+        "wallet": "-"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 18343.3,
+        "notional": 16277.29,
+        "cum_depth": 7178157.2,
+        "tier": "STANDARD",
+        "dist": "+0.09%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 11521.0,
+        "notional": 10224.2,
+        "cum_depth": 7480384.67,
+        "tier": "STANDARD",
+        "dist": "+0.10%",
+        "wallet": "0x34fb5ec7d4e939161946340ea2a1f29254b893de"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 11418.4,
+        "notional": 10133.14,
+        "cum_depth": 7521038.2,
+        "tier": "STANDARD",
+        "dist": "+0.10%",
+        "wallet": "0x39475d17bcd20adc540e647dae6781b153fbf3b1"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 8062.7,
+        "notional": 7154.68,
+        "cum_depth": 7789583.11,
+        "tier": "STANDARD",
+        "dist": "+0.10%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 2706.6,
+        "notional": 2401.89,
+        "cum_depth": 8081119.89,
+        "tier": "STANDARD",
+        "dist": "+0.10%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8874,
+        "coins": 2070.0,
+        "notional": 1836.9,
+        "cum_depth": 8131270.32,
+        "tier": "STANDARD",
+        "dist": "+0.10%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8875,
+        "coins": 418.2,
+        "notional": 371.17,
+        "cum_depth": 127764.47,
+        "tier": "1 orders",
+        "dist": "+0.11%",
         "wallet": "-"
       },
       {
         "side": "ASK",
         "price": 0.8875,
-        "coins": 413.3,
-        "notional": 366.8,
-        "cum_depth": 119449.08,
+        "coins": 16930.8,
+        "notional": 15026.25,
+        "cum_depth": 127393.3,
         "tier": "1 orders",
-        "dist": "+0.14%",
+        "dist": "+0.11%",
         "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8875,
+        "coins": 18338.7,
+        "notional": 16275.6,
+        "cum_depth": 112367.05,
+        "tier": "1 orders",
+        "dist": "+0.11%",
+        "wallet": "-"
+      },
+      {
+        "side": "ASK",
+        "price": 0.8875,
+        "coins": 3029.0,
+        "notional": 2688.15,
+        "cum_depth": 96091.45,
+        "tier": "1 orders",
+        "dist": "+0.11%",
+        "wallet": "-"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8876,
+        "coins": 16929.1,
+        "notional": 15026.1,
+        "cum_depth": 7334123.93,
+        "tier": "STANDARD",
+        "dist": "+0.12%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8876,
+        "coins": 5256.0,
+        "notional": 4665.44,
+        "cum_depth": 7991492.21,
+        "tier": "STANDARD",
+        "dist": "+0.12%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8877,
+        "coins": 17077.1,
+        "notional": 15159.85,
+        "cum_depth": 7319097.83,
+        "tier": "STANDARD",
+        "dist": "+0.13%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8877,
+        "coins": 11354.5,
+        "notional": 10079.84,
+        "cum_depth": 7551313.77,
+        "tier": "STANDARD",
+        "dist": "+0.14%",
+        "wallet": "0x621c5551678189b9a6c94d929924c225ff1d63ab"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8877,
+        "coins": 6713.1,
+        "notional": 5959.15,
+        "cum_depth": 7935974.05,
+        "tier": "STANDARD",
+        "dist": "+0.13%",
+        "wallet": "0x7717a7a245d9f950e586822b8c9b46863ed7bd7e"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8877,
+        "coins": 2703.7,
+        "notional": 2399.97,
+        "cum_depth": 8090721.02,
+        "tier": "STANDARD",
+        "dist": "+0.13%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8878,
+        "coins": 11263.2,
+        "notional": 9999.92,
+        "cum_depth": 7591389.56,
+        "tier": "STANDARD",
+        "dist": "+0.15%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8879,
+        "coins": 7891.8,
+        "notional": 7007.21,
+        "cum_depth": 7888321.72,
+        "tier": "STANDARD",
+        "dist": "+0.16%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8879,
+        "coins": 1125.3,
+        "notional": 999.1,
+        "cum_depth": 8172337.65,
+        "tier": "STANDARD",
+        "dist": "+0.15%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8881,
+        "coins": 43698.1,
+        "notional": 38809.16,
+        "cum_depth": 6441075.94,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.18%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8881,
+        "coins": 31014.3,
+        "notional": 27543.18,
+        "cum_depth": 6857301.76,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.17%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8881,
+        "coins": 23706.6,
+        "notional": 21053.59,
+        "cum_depth": 7005210.05,
+        "tier": "STANDARD",
+        "dist": "+0.18%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8881,
+        "coins": 16889.4,
+        "notional": 14999.98,
+        "cum_depth": 7349123.91,
+        "tier": "STANDARD",
+        "dist": "+0.18%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8881,
+        "coins": 7891.8,
+        "notional": 7008.63,
+        "cum_depth": 7881314.51,
+        "tier": "STANDARD",
+        "dist": "+0.18%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8883,
+        "coins": 11521.0,
+        "notional": 10234.33,
+        "cum_depth": 7470160.47,
+        "tier": "STANDARD",
+        "dist": "+0.20%",
+        "wallet": "0x34fb5ec7d4e939161946340ea2a1f29254b893de"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8883,
+        "coins": 11418.4,
+        "notional": 10143.19,
+        "cum_depth": 7510905.05,
+        "tier": "STANDARD",
+        "dist": "+0.20%",
+        "wallet": "0x39475d17bcd20adc540e647dae6781b153fbf3b1"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8883,
+        "coins": 7891.8,
+        "notional": 7010.36,
+        "cum_depth": 7874305.88,
+        "tier": "STANDARD",
+        "dist": "+0.20%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8883,
+        "coins": 2701.9,
+        "notional": 2400.12,
+        "cum_depth": 8085921.09,
+        "tier": "STANDARD",
+        "dist": "+0.20%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8884,
+        "coins": 9102.0,
+        "notional": 8086.4,
+        "cum_depth": 7700018.43,
+        "tier": "STANDARD",
+        "dist": "+0.21%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8884,
+        "coins": 4592.4,
+        "notional": 4079.98,
+        "cum_depth": 8013770.28,
+        "tier": "STANDARD",
+        "dist": "+0.21%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8885,
+        "coins": 22509.0,
+        "notional": 19999.92,
+        "cum_depth": 7127131.56,
+        "tier": "STANDARD",
+        "dist": "+0.23%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8885,
+        "coins": 653.1,
+        "notional": 580.27,
+        "cum_depth": 8189447.69,
+        "tier": "STANDARD",
+        "dist": "+0.22%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8886,
+        "coins": 7891.8,
+        "notional": 7012.34,
+        "cum_depth": 7867295.52,
+        "tier": "STANDARD",
+        "dist": "+0.23%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8886,
+        "coins": 5256.0,
+        "notional": 4670.48,
+        "cum_depth": 7986826.77,
+        "tier": "STANDARD",
+        "dist": "+0.23%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8887,
+        "coins": 45087.5,
+        "notional": 40069.71,
+        "cum_depth": 6402266.78,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.25%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8887,
+        "coins": 25000.0,
+        "notional": 22216.25,
+        "cum_depth": 6962056.46,
+        "tier": "STANDARD",
+        "dist": "+0.24%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8887,
+        "coins": 7891.8,
+        "notional": 7013.76,
+        "cum_depth": 7853270.23,
+        "tier": "STANDARD",
+        "dist": "+0.25%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8887,
+        "coins": 7804.3,
+        "notional": 6935.99,
+        "cum_depth": 7923078.99,
+        "tier": "STANDARD",
+        "dist": "+0.25%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8887,
+        "coins": 5256.0,
+        "notional": 4671.22,
+        "cum_depth": 7982156.29,
+        "tier": "STANDARD",
+        "dist": "+0.25%",
+        "wallet": "0xf27ebb91ea420f73b59b205ac7e0b77a90ec8f3c"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8888,
+        "coins": 865.6,
+        "notional": 769.33,
+        "cum_depth": 8174984.7,
+        "tier": "STANDARD",
+        "dist": "+0.25%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8888,
+        "coins": 815.4,
+        "notional": 724.71,
+        "cum_depth": 8178671.69,
+        "tier": "STANDARD",
+        "dist": "+0.25%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8889,
+        "coins": 7891.8,
+        "notional": 7015.18,
+        "cum_depth": 7839242.09,
+        "tier": "STANDARD",
+        "dist": "+0.27%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8889,
+        "coins": 5402.0,
+        "notional": 4801.68,
+        "cum_depth": 7977485.07,
+        "tier": "STANDARD",
+        "dist": "+0.26%",
+        "wallet": "0x2eddf3aa5c4df34f9263a98b564bec3b4ec78179"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8889,
+        "coins": 615.2,
+        "notional": 546.83,
+        "cum_depth": 8190570.62,
+        "tier": "STANDARD",
+        "dist": "+0.26%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8891,
+        "coins": 7891.8,
+        "notional": 7016.68,
+        "cum_depth": 7832226.91,
+        "tier": "STANDARD",
+        "dist": "+0.29%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8892,
+        "coins": 144598.0,
+        "notional": 128572.2,
+        "cum_depth": 5067406.76,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.30%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8892,
+        "coins": 54981.6,
+        "notional": 48887.99,
+        "cum_depth": 6126879.69,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.30%",
+        "wallet": "0xe86b057f5eb764c9738d6b0d38170befd0723664"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8892,
+        "coins": 30927.0,
+        "notional": 27499.98,
+        "cum_depth": 6912340.27,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.30%",
+        "wallet": "0x0efb38a5fa35325ed7524197c0c8ae942aa6d8dc"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8893,
+        "coins": 8345.9,
+        "notional": 7422.26,
+        "cum_depth": 7753245.76,
+        "tier": "STANDARD",
+        "dist": "+0.32%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8893,
+        "coins": 2461.0,
+        "notional": 2188.67,
+        "cum_depth": 8121405.48,
+        "tier": "STANDARD",
+        "dist": "+0.32%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8894,
+        "coins": 56304.0,
+        "notional": 50077.34,
+        "cum_depth": 6027916.98,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.32%",
+        "wallet": "0x32051a0c36af1449e0eee08146a808115ccc40bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8895,
+        "coins": 11187.4,
+        "notional": 9951.53,
+        "cum_depth": 7601341.09,
+        "tier": "STANDARD",
+        "dist": "+0.34%",
+        "wallet": "0x07fe8986162d7f68bcfe15822ec062123dd45f9f"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8895,
+        "coins": 7818.3,
+        "notional": 6954.46,
+        "cum_depth": 7909192.44,
+        "tier": "STANDARD",
+        "dist": "+0.34%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8895,
+        "coins": 2699.2,
+        "notional": 2401.07,
+        "cum_depth": 8083520.96,
+        "tier": "STANDARD",
+        "dist": "+0.34%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8897,
+        "coins": 13252.5,
+        "notional": 11791.15,
+        "cum_depth": 7427169.62,
+        "tier": "STANDARD",
+        "dist": "+0.36%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8897,
+        "coins": 9429.2,
+        "notional": 8389.06,
+        "cum_depth": 7683823.52,
+        "tier": "STANDARD",
+        "dist": "+0.36%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8899,
+        "coins": 7818.3,
+        "notional": 6957.27,
+        "cum_depth": 7902237.98,
+        "tier": "STANDARD",
+        "dist": "+0.38%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.89,
+        "coins": 3476.6,
+        "notional": 3094.03,
+        "cum_depth": 8034709.88,
+        "tier": "STANDARD",
+        "dist": "+0.39%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8901,
+        "coins": 7818.3,
+        "notional": 6958.99,
+        "cum_depth": 7895280.71,
+        "tier": "STANDARD",
+        "dist": "+0.40%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8901,
+        "coins": 783.9,
+        "notional": 697.75,
+        "cum_depth": 8181489.72,
+        "tier": "STANDARD",
+        "dist": "+0.40%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8901,
+        "coins": 767.8,
+        "notional": 683.42,
+        "cum_depth": 8184248.06,
+        "tier": "STANDARD",
+        "dist": "+0.40%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8902,
+        "coins": 8847.1,
+        "notional": 7875.78,
+        "cum_depth": 7707894.2,
+        "tier": "STANDARD",
+        "dist": "+0.41%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8902,
+        "coins": 1055.9,
+        "notional": 939.97,
+        "cum_depth": 8173277.63,
+        "tier": "STANDARD",
+        "dist": "+0.41%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8904,
+        "coins": 17464.5,
+        "notional": 15551.26,
+        "cum_depth": 7303937.98,
+        "tier": "STANDARD",
+        "dist": "+0.44%",
+        "wallet": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8905,
+        "coins": 17464.5,
+        "notional": 15553.01,
+        "cum_depth": 7288386.71,
+        "tier": "STANDARD",
+        "dist": "+0.45%",
+        "wallet": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8905,
+        "coins": 5984.2,
+        "notional": 5329.23,
+        "cum_depth": 7952693.62,
+        "tier": "STANDARD",
+        "dist": "+0.45%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8905,
+        "coins": 2030.9,
+        "notional": 1808.46,
+        "cum_depth": 8134896.67,
+        "tier": "STANDARD",
+        "dist": "+0.44%",
+        "wallet": "0x023a3d058020fb76cca98f01b3c48c8938a22355"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8906,
+        "coins": 17464.5,
+        "notional": 15554.23,
+        "cum_depth": 7272833.7,
+        "tier": "STANDARD",
+        "dist": "+0.46%",
+        "wallet": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8906,
+        "coins": 2721.6,
+        "notional": 2423.78,
+        "cum_depth": 8078718.0,
+        "tier": "STANDARD",
+        "dist": "+0.46%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8907,
+        "coins": 42840.6,
+        "notional": 38158.98,
+        "cum_depth": 6632526.24,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.47%",
+        "wallet": "0xc926ddba8b7617dbc65712f20cf8e1b58b8598d3"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8907,
+        "coins": 17464.5,
+        "notional": 15555.63,
+        "cum_depth": 7257279.47,
+        "tier": "STANDARD",
+        "dist": "+0.47%",
+        "wallet": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8907,
+        "coins": 10907.5,
+        "notional": 9715.09,
+        "cum_depth": 7640793.94,
+        "tier": "STANDARD",
+        "dist": "+0.47%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8908,
+        "coins": 42840.6,
+        "notional": 38162.83,
+        "cum_depth": 6556206.56,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.48%",
+        "wallet": "0xc926ddba8b7617dbc65712f20cf8e1b58b8598d3"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8908,
+        "coins": 42840.6,
+        "notional": 38160.69,
+        "cum_depth": 6594367.26,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.48%",
+        "wallet": "0xc926ddba8b7617dbc65712f20cf8e1b58b8598d3"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8908,
+        "coins": 17464.5,
+        "notional": 15556.85,
+        "cum_depth": 7241723.84,
+        "tier": "STANDARD",
+        "dist": "+0.48%",
+        "wallet": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8909,
+        "coins": 42840.5,
+        "notional": 38164.46,
+        "cum_depth": 6518043.73,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.49%",
+        "wallet": "0xc926ddba8b7617dbc65712f20cf8e1b58b8598d3"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8912,
+        "coins": 50000.0,
+        "notional": 44560.5,
+        "cum_depth": 6318104.07,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.53%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8914,
+        "coins": 22487.9,
+        "notional": 20045.04,
+        "cum_depth": 7067086.72,
+        "tier": "STANDARD",
+        "dist": "+0.55%",
+        "wallet": "0xa38f19c4ccbcfd64cff676d72c436f7e6239dccf"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8917,
+        "coins": 12301.1,
+        "notional": 10968.77,
+        "cum_depth": 7449121.17,
+        "tier": "STANDARD",
+        "dist": "+0.58%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8919,
+        "coins": 2718.9,
+        "notional": 2424.88,
+        "cum_depth": 8076294.22,
+        "tier": "STANDARD",
+        "dist": "+0.60%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8921,
+        "coins": 144361.2,
+        "notional": 128788.96,
+        "cum_depth": 4938834.55,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.63%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8922,
+        "coins": 67370.1,
+        "notional": 60106.93,
+        "cum_depth": 5770538.92,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.64%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8923,
+        "coins": 783.7,
+        "notional": 699.27,
+        "cum_depth": 8180791.97,
+        "tier": "STANDARD",
+        "dist": "+0.65%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8923,
+        "coins": 723.3,
+        "notional": 645.42,
+        "cum_depth": 8187579.78,
+        "tier": "STANDARD",
+        "dist": "+0.65%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8925,
+        "coins": 405221.1,
+        "notional": 361659.83,
+        "cum_depth": 3163502.33,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.67%",
+        "wallet": "0xeac842b2214cfece3f0d288293da19f408d91ede"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8926,
+        "coins": 12304.8,
+        "notional": 10982.77,
+        "cum_depth": 7438152.4,
+        "tier": "STANDARD",
+        "dist": "+0.68%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8927,
+        "coins": 56964.0,
+        "notional": 50851.19,
+        "cum_depth": 5977839.64,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.69%",
+        "wallet": "0xc179e03922afe8fa9533d3f896338b9fb87ce0c8"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8931,
+        "coins": 2715.4,
+        "notional": 2425.21,
+        "cum_depth": 8073869.34,
+        "tier": "STANDARD",
+        "dist": "+0.74%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8932,
+        "coins": 14292.5,
+        "notional": 12766.49,
+        "cum_depth": 7391632.97,
+        "tier": "STANDARD",
+        "dist": "+0.76%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8934,
+        "coins": 75100.0,
+        "notional": 67096.59,
+        "cum_depth": 5516204.74,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.78%",
+        "wallet": "0xb7bd9cef0e2826d783f2704d578efbaf705c2f3a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8941,
+        "coins": 148470.5,
+        "notional": 132744.5,
+        "cum_depth": 4677720.36,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.85%",
+        "wallet": "0x07fe8986162d7f68bcfe15822ec062123dd45f9f"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8946,
+        "coins": 17432.3,
+        "notional": 15595.81,
+        "cum_depth": 7226166.99,
+        "tier": "STANDARD",
+        "dist": "+0.92%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8946,
+        "coins": 3391.3,
+        "notional": 3033.82,
+        "cum_depth": 8046943.14,
+        "tier": "STANDARD",
+        "dist": "+0.91%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8947,
+        "coins": 2712.9,
+        "notional": 2427.31,
+        "cum_depth": 8071444.14,
+        "tier": "STANDARD",
+        "dist": "+0.92%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.895,
+        "coins": 795521.7,
+        "notional": 711991.92,
+        "cum_depth": 2104723.76,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.95%",
+        "wallet": "0xeac842b2214cfece3f0d288293da19f408d91ede"
+      },
+      {
+        "side": "SELL",
+        "price": 0.895,
+        "coins": 54621.6,
+        "notional": 48887.97,
+        "cum_depth": 6175767.66,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+0.96%",
+        "wallet": "0xe86b057f5eb764c9738d6b0d38170befd0723664"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8951,
+        "coins": 166166.5,
+        "notional": 148740.62,
+        "cum_depth": 4253893.21,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.97%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8951,
+        "coins": 776.1,
+        "notional": 694.69,
+        "cum_depth": 8182880.13,
+        "tier": "STANDARD",
+        "dist": "+0.97%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8951,
+        "coins": 718.5,
+        "notional": 643.13,
+        "cum_depth": 8188867.42,
+        "tier": "STANDARD",
+        "dist": "+0.97%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8952,
+        "coins": 141757.5,
+        "notional": 126899.9,
+        "cum_depth": 5449108.15,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+0.98%",
+        "wallet": "0xa20fb0c9e04063eec5be286e9269028d966646fa"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8961,
+        "coins": 18457.3,
+        "notional": 16540.14,
+        "cum_depth": 7161879.91,
+        "tier": "STANDARD",
+        "dist": "+1.08%",
+        "wallet": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8963,
+        "coins": 2708.5,
+        "notional": 2427.71,
+        "cum_depth": 8069016.83,
+        "tier": "STANDARD",
+        "dist": "+1.10%",
+        "wallet": "0x57d8e75f473cd6346495c9b6760a580018e840e6"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8965,
+        "coins": 40563.3,
+        "notional": 36365.4,
+        "cum_depth": 6668891.64,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.13%",
+        "wallet": "0xa24c5ca26c41cc52aeac1d6886d37f6dd5d6949f"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8972,
+        "coins": 34164.8,
+        "notional": 30653.0,
+        "cum_depth": 6799105.94,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.20%",
+        "wallet": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8976,
+        "coins": 35620.2,
+        "notional": 31972.34,
+        "cum_depth": 6768452.94,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.25%",
+        "wallet": "0x2e1aa624f04fa7ab7198c6fbfeaa42a707b42c1a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8981,
+        "coins": 72302.7,
+        "notional": 64932.89,
+        "cum_depth": 5647194.84,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.30%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8986,
+        "coins": 166072.1,
+        "notional": 149240.69,
+        "cum_depth": 4105152.59,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+1.37%",
+        "wallet": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8989,
+        "coins": 3366.9,
+        "notional": 3026.47,
+        "cum_depth": 8049969.61,
+        "tier": "STANDARD",
+        "dist": "+1.39%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.8999,
+        "coins": 825.1,
+        "notional": 742.47,
+        "cum_depth": 8176478.43,
+        "tier": "STANDARD",
+        "dist": "+1.50%",
+        "wallet": "0x31ca8395cf837de08b24da3f660e77761dfb974b"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9001,
+        "coins": 278232.5,
+        "notional": 250439.86,
+        "cum_depth": 3771126.83,
+        "tier": "LARGE (>= USD 100K)",
+        "dist": "+1.53%",
+        "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9001,
+        "coins": 57734.9,
+        "notional": 51965.45,
+        "cum_depth": 5926988.44,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.53%",
+        "wallet": "0xc179e03922afe8fa9533d3f896338b9fb87ce0c8"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9002,
+        "coins": 834.6,
+        "notional": 751.27,
+        "cum_depth": 8175735.97,
+        "tier": "STANDARD",
+        "dist": "+1.54%",
+        "wallet": "0x010461c14e146ac35fe42271bdc1134ee31c703a"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9009,
+        "coins": 2219.9,
+        "notional": 1999.95,
+        "cum_depth": 8125576.16,
+        "tier": "STANDARD",
+        "dist": "+1.62%",
+        "wallet": "0xfe349476557a04e68c46b986cbcf4e8a19e8cb6f"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9013,
+        "coins": 1545247.8,
+        "notional": 1392731.84,
+        "cum_depth": 1392731.84,
+        "tier": "WHALE (>= USD 1M)",
+        "dist": "+1.67%",
+        "wallet": "0xeac842b2214cfece3f0d288293da19f408d91ede"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9019,
+        "coins": 57734.9,
+        "notional": 52071.68,
+        "cum_depth": 5875022.99,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.73%",
+        "wallet": "0xc179e03922afe8fa9533d3f896338b9fb87ce0c8"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9022,
+        "coins": 20182.9,
+        "notional": 18208.21,
+        "cum_depth": 7145339.77,
+        "tier": "STANDARD",
+        "dist": "+1.76%",
+        "wallet": "0xd3943e40080322c21c65d94966d4212331302c92"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9032,
+        "coins": 3366.9,
+        "notional": 3040.95,
+        "cum_depth": 8043909.32,
+        "tier": "STANDARD",
+        "dist": "+1.88%",
+        "wallet": "0x14f8e042905350cee7ae0cec27f092f10dd912bb"
+      },
+      {
+        "side": "SELL",
+        "price": 0.9038,
+        "coins": 57993.7,
+        "notional": 52412.39,
+        "cum_depth": 5822951.31,
+        "tier": "MEDIUM (>= USD 25K)",
+        "dist": "+1.94%",
+        "wallet": "0xc179e03922afe8fa9533d3f896338b9fb87ce0c8"
       }
     ],
     "hd_ladder": [
@@ -2783,14 +5353,14 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 21:13:34 IST"
+        "time": "2026-10-30 21:25:59 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.7062999999999999",
+        "change_24h": "-0.6792",
         "vol_24h": 0.0,
         "oi": 0.0,
         "funding": "1.25e-05",
@@ -2799,59 +5369,59 @@
     ],
     "hl_analysis_ladder": [
       {
-        "rank": "673",
+        "rank": "672",
         "user": "0xb83d...6e36",
         "side": "SHORT",
-        "pos_usd": 3393129.41,
+        "pos_usd": 3390113.5,
         "tokens": 3817609.4,
         "entry_px": 1.1051,
-        "current_px": 0.88658,
-        "liq_px": 27.0197,
-        "pnl_usd": 825605.91,
-        "pnl_pct": 24.33,
-        "margin": 1131043.14,
+        "current_px": 0.88896,
+        "liq_px": 27.2837,
+        "pnl_usd": 828621.82,
+        "pnl_pct": 24.44,
+        "margin": 1130037.83,
         "leverage": "3X Cross"
       },
       {
         "rank": "1004",
         "user": "0xa2ce...3126",
         "side": "LONG",
-        "pos_usd": 2216009.22,
+        "pos_usd": 2219884.23,
         "tokens": 2500010.4,
         "entry_px": 0.8597,
-        "current_px": 0.88658,
+        "current_px": 0.88896,
         "liq_px": 0.0,
-        "pnl_usd": 66802.69,
-        "pnl_pct": 3.01,
-        "margin": 221600.92,
+        "pnl_usd": 70677.7,
+        "pnl_pct": 3.18,
+        "margin": 221988.42,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1510",
+        "rank": "1509",
         "user": "0x9946...0852",
         "side": "SHORT",
-        "pos_usd": 1433501.72,
+        "pos_usd": 1431920.94,
         "tokens": 1613032.2,
         "entry_px": 1.0593,
-        "current_px": 0.88658,
-        "liq_px": 1.8979,
-        "pnl_usd": 275176.37,
-        "pnl_pct": 19.2,
-        "margin": 143350.17,
+        "current_px": 0.88896,
+        "liq_px": 1.8854,
+        "pnl_usd": 276757.14,
+        "pnl_pct": 19.33,
+        "margin": 143192.09,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1920",
+        "rank": "1918",
         "user": "0x9df2...c665",
         "side": "SHORT",
-        "pos_usd": 1066572.0,
+        "pos_usd": 1065420.0,
         "tokens": 1200000.0,
         "entry_px": 0.7465,
-        "current_px": 0.88658,
-        "liq_px": 17.9834,
-        "pnl_usd": -170719.6,
-        "pnl_pct": -16.01,
-        "margin": 106657.2,
+        "current_px": 0.88896,
+        "liq_px": 18.0186,
+        "pnl_usd": -169567.6,
+        "pnl_pct": -15.92,
+        "margin": 106542.0,
         "leverage": "10X Cross"
       }
     ],
@@ -17355,109 +19925,309 @@
       {
         "horizon": "15M",
         "exchange": "SUI",
-        "long_pct": "52.01%",
-        "short_pct": "47.99%",
-        "ls_ratio": "1.08",
-        "vol": 12210000.0
+        "long_pct": "47.25%",
+        "short_pct": "52.75%",
+        "ls_ratio": "0.90",
+        "vol": 3700000.0
       },
       {
         "horizon": "15M",
         "exchange": "Binance",
-        "long_pct": "54.3%",
-        "short_pct": "45.7%",
-        "ls_ratio": "1.19",
-        "vol": 4120000.0
+        "long_pct": "44.25%",
+        "short_pct": "55.75%",
+        "ls_ratio": "0.79",
+        "vol": 1350000.0
       },
       {
         "horizon": "15M",
         "exchange": "OKX",
-        "long_pct": "41.69%",
-        "short_pct": "58.31%",
-        "ls_ratio": "0.71",
-        "vol": 1730000.0
+        "long_pct": "63.71%",
+        "short_pct": "36.29%",
+        "ls_ratio": "1.76",
+        "vol": 466610.0
       },
       {
         "horizon": "15M",
         "exchange": "Bybit",
-        "long_pct": "51.51%",
-        "short_pct": "48.49%",
-        "ls_ratio": "1.06",
+        "long_pct": "51.59%",
+        "short_pct": "48.41%",
+        "ls_ratio": "1.07",
+        "vol": 796490.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "KuCoin",
+        "long_pct": "50.1%",
+        "short_pct": "49.9%",
+        "ls_ratio": "1.00",
+        "vol": 155770.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Gate",
+        "long_pct": "53.55%",
+        "short_pct": "46.45%",
+        "ls_ratio": "1.15",
+        "vol": 37720.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitget",
+        "long_pct": "76.6%",
+        "short_pct": "23.4%",
+        "ls_ratio": "3.27",
+        "vol": 58180.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "BingX",
+        "long_pct": "28.37%",
+        "short_pct": "71.63%",
+        "ls_ratio": "0.40",
+        "vol": 59360.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "MEXC",
+        "long_pct": "18.42%",
+        "short_pct": "81.58%",
+        "ls_ratio": "0.23",
+        "vol": 81900.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitunix",
+        "long_pct": "55.84%",
+        "short_pct": "44.16%",
+        "ls_ratio": "1.26",
+        "vol": 83840.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Hyperliquid",
+        "long_pct": "36.01%",
+        "short_pct": "63.99%",
+        "ls_ratio": "0.56",
+        "vol": 439580.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "tradeXYZ",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "LBank",
+        "long_pct": "51.09%",
+        "short_pct": "48.91%",
+        "ls_ratio": "1.04",
+        "vol": 37400.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Crypto.com",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "WhiteBIT",
+        "long_pct": "0%",
+        "short_pct": "100%",
+        "ls_ratio": "0.00",
+        "vol": 1070.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "HTX",
+        "long_pct": "44.39%",
+        "short_pct": "55.61%",
+        "ls_ratio": "0.80",
+        "vol": 26970.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "dYdX",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Deribit",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitfinex",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Kraken",
+        "long_pct": "39%",
+        "short_pct": "61%",
+        "ls_ratio": "0.64",
+        "vol": 29790.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Aster",
+        "long_pct": "35.84%",
+        "short_pct": "64.16%",
+        "ls_ratio": "0.56",
+        "vol": 8380.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Coinbase",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Lighter",
+        "long_pct": "23.58%",
+        "short_pct": "76.42%",
+        "ls_ratio": "0.31",
+        "vol": 61180.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Whale Positions",
+        "long_pct": "44.25%",
+        "short_pct": "55.75%",
+        "ls_ratio": "0.79",
+        "vol": 1350000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Global Accounts",
+        "long_pct": "47.25%",
+        "short_pct": "52.75%",
+        "ls_ratio": "0.90",
+        "vol": 3700000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "SUI",
+        "long_pct": "52.92%",
+        "short_pct": "47.08%",
+        "ls_ratio": "1.12",
+        "vol": 48340000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Binance",
+        "long_pct": "55.07%",
+        "short_pct": "44.93%",
+        "ls_ratio": "1.23",
+        "vol": 16230000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "OKX",
+        "long_pct": "56.54%",
+        "short_pct": "43.46%",
+        "ls_ratio": "1.30",
+        "vol": 5930000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Bybit",
+        "long_pct": "53.49%",
+        "short_pct": "46.51%",
+        "ls_ratio": "1.15",
+        "vol": 4820000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "KuCoin",
+        "long_pct": "39.53%",
+        "short_pct": "60.47%",
+        "ls_ratio": "0.65",
+        "vol": 361720.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Gate",
+        "long_pct": "46.14%",
+        "short_pct": "53.86%",
+        "ls_ratio": "0.86",
+        "vol": 807060.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Bitget",
+        "long_pct": "52.84%",
+        "short_pct": "47.16%",
+        "ls_ratio": "1.12",
+        "vol": 1420000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "BingX",
+        "long_pct": "46.33%",
+        "short_pct": "53.67%",
+        "ls_ratio": "0.86",
+        "vol": 878190.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "MEXC",
+        "long_pct": "50.23%",
+        "short_pct": "49.77%",
+        "ls_ratio": "1.01",
+        "vol": 8000000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Bitunix",
+        "long_pct": "50.38%",
+        "short_pct": "49.62%",
+        "ls_ratio": "1.02",
+        "vol": 6480000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Hyperliquid",
+        "long_pct": "48.63%",
+        "short_pct": "51.37%",
+        "ls_ratio": "0.95",
+        "vol": 1020000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "tradeXYZ",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "LBank",
+        "long_pct": "49.53%",
+        "short_pct": "50.47%",
+        "ls_ratio": "0.98",
         "vol": 1680000.0
       },
       {
-        "horizon": "15M",
-        "exchange": "KuCoin",
-        "long_pct": "40.45%",
-        "short_pct": "59.55%",
-        "ls_ratio": "0.68",
-        "vol": 46210.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Gate",
-        "long_pct": "45.18%",
-        "short_pct": "54.82%",
-        "ls_ratio": "0.82",
-        "vol": 184980.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitget",
-        "long_pct": "39.59%",
-        "short_pct": "60.41%",
-        "ls_ratio": "0.66",
-        "vol": 347250.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "BingX",
-        "long_pct": "42.23%",
-        "short_pct": "57.77%",
-        "ls_ratio": "0.73",
-        "vol": 149810.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "MEXC",
-        "long_pct": "48.59%",
-        "short_pct": "51.41%",
-        "ls_ratio": "0.95",
-        "vol": 1960000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitunix",
-        "long_pct": "71.29%",
-        "short_pct": "28.71%",
-        "ls_ratio": "2.48",
-        "vol": 1160000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Hyperliquid",
-        "long_pct": "60.95%",
-        "short_pct": "39.05%",
-        "ls_ratio": "1.56",
-        "vol": 198180.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "LBank",
-        "long_pct": "50.8%",
-        "short_pct": "49.2%",
-        "ls_ratio": "1.03",
-        "vol": 464570.0
-      },
-      {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Crypto.com",
         "long_pct": "0%",
         "short_pct": "0%",
@@ -17465,23 +20235,23 @@
         "vol": 0.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "WhiteBIT",
-        "long_pct": "100%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 2590.0
+        "long_pct": "84.78%",
+        "short_pct": "15.22%",
+        "ls_ratio": "5.57",
+        "vol": 39900.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "HTX",
-        "long_pct": "71.73%",
-        "short_pct": "28.27%",
-        "ls_ratio": "2.54",
-        "vol": 180.14
+        "long_pct": "56.03%",
+        "short_pct": "43.97%",
+        "ls_ratio": "1.27",
+        "vol": 22340.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "dYdX",
         "long_pct": "0%",
         "short_pct": "0%",
@@ -17489,7 +20259,7 @@
         "vol": 0.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Deribit",
         "long_pct": "0%",
         "short_pct": "0%",
@@ -17497,7 +20267,7 @@
         "vol": 0.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Bitfinex",
         "long_pct": "0%",
         "short_pct": "0%",
@@ -17505,23 +20275,23 @@
         "vol": 0.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Kraken",
-        "long_pct": "60.37%",
-        "short_pct": "39.63%",
-        "ls_ratio": "1.52",
-        "vol": 99370.0
+        "long_pct": "59.64%",
+        "short_pct": "40.36%",
+        "ls_ratio": "1.48",
+        "vol": 435210.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Aster",
-        "long_pct": "13.99%",
-        "short_pct": "86.01%",
-        "ls_ratio": "0.16",
-        "vol": 4019.9999999999995
+        "long_pct": "71.42%",
+        "short_pct": "28.58%",
+        "ls_ratio": "2.50",
+        "vol": 65090.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Coinbase",
         "long_pct": "0%",
         "short_pct": "0%",
@@ -17529,316 +20299,116 @@
         "vol": 0.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Lighter",
-        "long_pct": "40.06%",
-        "short_pct": "59.94%",
-        "ls_ratio": "0.67",
-        "vol": 67830.0
+        "long_pct": "49.62%",
+        "short_pct": "50.38%",
+        "ls_ratio": "0.98",
+        "vol": 144720.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Whale Positions",
-        "long_pct": "54.3%",
-        "short_pct": "45.7%",
-        "ls_ratio": "1.19",
-        "vol": 4120000.0
+        "long_pct": "55.07%",
+        "short_pct": "44.93%",
+        "ls_ratio": "1.23",
+        "vol": 16230000.0
       },
       {
-        "horizon": "15M",
+        "horizon": "1H",
         "exchange": "Global Accounts",
-        "long_pct": "52.01%",
-        "short_pct": "47.99%",
+        "long_pct": "52.92%",
+        "short_pct": "47.08%",
+        "ls_ratio": "1.12",
+        "vol": 48340000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "SUI",
+        "long_pct": "48.92%",
+        "short_pct": "51.08%",
+        "ls_ratio": "0.96",
+        "vol": 130449999.99999999
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Binance",
+        "long_pct": "51.56%",
+        "short_pct": "48.44%",
+        "ls_ratio": "1.06",
+        "vol": 43780000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "OKX",
+        "long_pct": "51.96%",
+        "short_pct": "48.04%",
         "ls_ratio": "1.08",
-        "vol": 12210000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "SUI",
-        "long_pct": "47.75%",
-        "short_pct": "52.25%",
-        "ls_ratio": "0.91",
-        "vol": 30250000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Binance",
-        "long_pct": "48.41%",
-        "short_pct": "51.59%",
-        "ls_ratio": "0.94",
-        "vol": 10360000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "OKX",
-        "long_pct": "38.22%",
-        "short_pct": "61.78%",
-        "ls_ratio": "0.62",
-        "vol": 2270000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bybit",
-        "long_pct": "53.03%",
-        "short_pct": "46.97%",
-        "ls_ratio": "1.13",
-        "vol": 3200000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "KuCoin",
-        "long_pct": "50.08%",
-        "short_pct": "49.92%",
-        "ls_ratio": "1.00",
-        "vol": 135720.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Gate",
-        "long_pct": "58.79%",
-        "short_pct": "41.21%",
-        "ls_ratio": "1.43",
-        "vol": 457570.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitget",
-        "long_pct": "48.9%",
-        "short_pct": "51.1%",
-        "ls_ratio": "0.96",
-        "vol": 714430.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "BingX",
-        "long_pct": "32.23%",
-        "short_pct": "67.77%",
-        "ls_ratio": "0.48",
-        "vol": 4510000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "MEXC",
-        "long_pct": "41.42%",
-        "short_pct": "58.58%",
-        "ls_ratio": "0.71",
-        "vol": 1860000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitunix",
-        "long_pct": "48.05%",
-        "short_pct": "51.95%",
-        "ls_ratio": "0.92",
-        "vol": 1100000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Hyperliquid",
-        "long_pct": "50.08%",
-        "short_pct": "49.92%",
-        "ls_ratio": "1.00",
-        "vol": 548830.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "LBank",
-        "long_pct": "67.88%",
-        "short_pct": "32.12%",
-        "ls_ratio": "2.11",
-        "vol": 4750000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Crypto.com",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 11100.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "WhiteBIT",
-        "long_pct": "84%",
-        "short_pct": "16%",
-        "ls_ratio": "5.25",
-        "vol": 88560.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "HTX",
-        "long_pct": "61.11%",
-        "short_pct": "38.89%",
-        "ls_ratio": "1.57",
-        "vol": 31480.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Kraken",
-        "long_pct": "45.91%",
-        "short_pct": "54.09%",
-        "ls_ratio": "0.85",
-        "vol": 158630.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Aster",
-        "long_pct": "75.14%",
-        "short_pct": "24.86%",
-        "ls_ratio": "3.02",
-        "vol": 5120.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Lighter",
-        "long_pct": "52.52%",
-        "short_pct": "47.48%",
-        "ls_ratio": "1.11",
-        "vol": 45790.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Whale Positions",
-        "long_pct": "48.41%",
-        "short_pct": "51.59%",
-        "ls_ratio": "0.94",
-        "vol": 10360000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Global Accounts",
-        "long_pct": "47.75%",
-        "short_pct": "52.25%",
-        "ls_ratio": "0.91",
-        "vol": 30250000.0
+        "vol": 14590000.0
       },
       {
         "horizon": "4H",
-        "exchange": "SUI",
-        "long_pct": "48.67%",
-        "short_pct": "51.33%",
+        "exchange": "Bybit",
+        "long_pct": "48.61%",
+        "short_pct": "51.39%",
         "ls_ratio": "0.95",
-        "vol": 160930000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Binance",
-        "long_pct": "51.02%",
-        "short_pct": "48.98%",
-        "ls_ratio": "1.04",
-        "vol": 58620000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "OKX",
-        "long_pct": "49.43%",
-        "short_pct": "50.57%",
-        "ls_ratio": "0.98",
-        "vol": 13060000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bybit",
-        "long_pct": "50.22%",
-        "short_pct": "49.78%",
-        "ls_ratio": "1.01",
-        "vol": 16390000.0
+        "vol": 11750000.0
       },
       {
         "horizon": "4H",
         "exchange": "KuCoin",
-        "long_pct": "50.51%",
-        "short_pct": "49.49%",
+        "long_pct": "40.34%",
+        "short_pct": "59.66%",
+        "ls_ratio": "0.68",
+        "vol": 818670.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Gate",
+        "long_pct": "44.15%",
+        "short_pct": "55.85%",
+        "ls_ratio": "0.79",
+        "vol": 1940000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Bitget",
+        "long_pct": "42.77%",
+        "short_pct": "57.23%",
+        "ls_ratio": "0.75",
+        "vol": 5160000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "BingX",
+        "long_pct": "28.34%",
+        "short_pct": "71.66%",
+        "ls_ratio": "0.40",
+        "vol": 5220000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "MEXC",
+        "long_pct": "50.41%",
+        "short_pct": "49.59%",
         "ls_ratio": "1.02",
-        "vol": 773980.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Gate",
-        "long_pct": "48.55%",
-        "short_pct": "51.45%",
-        "ls_ratio": "0.94",
-        "vol": 2640000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitget",
-        "long_pct": "49.42%",
-        "short_pct": "50.58%",
-        "ls_ratio": "0.98",
-        "vol": 5770000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "BingX",
-        "long_pct": "48.99%",
-        "short_pct": "51.01%",
-        "ls_ratio": "0.96",
-        "vol": 14190000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "MEXC",
-        "long_pct": "54.16%",
-        "short_pct": "45.84%",
-        "ls_ratio": "1.18",
-        "vol": 9490000.0
+        "vol": 25670000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bitunix",
-        "long_pct": "56.65%",
-        "short_pct": "43.35%",
-        "ls_ratio": "1.31",
-        "vol": 4059999.9999999995
+        "long_pct": "53.4%",
+        "short_pct": "46.6%",
+        "ls_ratio": "1.15",
+        "vol": 10240000.0
       },
       {
         "horizon": "4H",
         "exchange": "Hyperliquid",
-        "long_pct": "46.4%",
-        "short_pct": "53.6%",
-        "ls_ratio": "0.87",
-        "vol": 2350000.0
+        "long_pct": "50.44%",
+        "short_pct": "49.56%",
+        "ls_ratio": "1.02",
+        "vol": 2000000.0
       },
       {
         "horizon": "4H",
@@ -17851,34 +20421,34 @@
       {
         "horizon": "4H",
         "exchange": "LBank",
-        "long_pct": "49.7%",
-        "short_pct": "50.3%",
-        "ls_ratio": "0.99",
-        "vol": 25600000.0
+        "long_pct": "50.23%",
+        "short_pct": "49.77%",
+        "ls_ratio": "1.01",
+        "vol": 4480000.0
       },
       {
         "horizon": "4H",
         "exchange": "Crypto.com",
-        "long_pct": "43.34%",
-        "short_pct": "56.66%",
-        "ls_ratio": "0.76",
-        "vol": 223480.0
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
       },
       {
         "horizon": "4H",
         "exchange": "WhiteBIT",
-        "long_pct": "3.64%",
-        "short_pct": "96.36%",
-        "ls_ratio": "0.04",
-        "vol": 5900000.0
+        "long_pct": "13.01%",
+        "short_pct": "86.99%",
+        "ls_ratio": "0.15",
+        "vol": 1630000.0
       },
       {
         "horizon": "4H",
         "exchange": "HTX",
-        "long_pct": "32.39%",
-        "short_pct": "67.61%",
-        "ls_ratio": "0.48",
-        "vol": 44150.0
+        "long_pct": "34.69%",
+        "short_pct": "65.31%",
+        "ls_ratio": "0.53",
+        "vol": 83730.0
       },
       {
         "horizon": "4H",
@@ -17907,18 +20477,18 @@
       {
         "horizon": "4H",
         "exchange": "Kraken",
-        "long_pct": "41.27%",
-        "short_pct": "58.73%",
-        "ls_ratio": "0.70",
-        "vol": 1290000.0
+        "long_pct": "36.64%",
+        "short_pct": "63.36%",
+        "ls_ratio": "0.58",
+        "vol": 2550000.0
       },
       {
         "horizon": "4H",
         "exchange": "Aster",
-        "long_pct": "15.46%",
-        "short_pct": "84.54%",
-        "ls_ratio": "0.18",
-        "vol": 248230.0
+        "long_pct": "48.41%",
+        "short_pct": "51.59%",
+        "ls_ratio": "0.94",
+        "vol": 178630.0
       },
       {
         "horizon": "4H",
@@ -17931,50 +20501,31 @@
       {
         "horizon": "4H",
         "exchange": "Lighter",
-        "long_pct": "38.54%",
-        "short_pct": "61.46%",
-        "ls_ratio": "0.63",
-        "vol": 273320.0
+        "long_pct": "42.61%",
+        "short_pct": "57.39%",
+        "ls_ratio": "0.74",
+        "vol": 355930.0
       },
       {
         "horizon": "4H",
         "exchange": "Whale Positions",
-        "long_pct": "51.02%",
-        "short_pct": "48.98%",
-        "ls_ratio": "1.04",
-        "vol": 58620000.0
+        "long_pct": "51.56%",
+        "short_pct": "48.44%",
+        "ls_ratio": "1.06",
+        "vol": 43780000.0
       },
       {
         "horizon": "4H",
         "exchange": "Global Accounts",
-        "long_pct": "48.67%",
-        "short_pct": "51.33%",
-        "ls_ratio": "0.95",
-        "vol": 160930000.0
+        "long_pct": "48.92%",
+        "short_pct": "51.08%",
+        "ls_ratio": "0.96",
+        "vol": 130449999.99999999
       }
     ]
   },
   "footprint_and_macro": {
     "footprint_ladder": [
-      {
-        "time_utc": "2026-10-30 13:15:00 UTC",
-        "close": 0.88315,
-        "vwap": 0.8837538025620822,
-        "poc": 0.88315,
-        "vah": 0.88685,
-        "val": 0.88205,
-        "vol_usd": 1467553.49726,
-        "buy_vol": 715104.00537,
-        "sell_vol": 752449.4918900001,
-        "delta_usd": -37345.486520000035,
-        "delta_pct": -2.544744473692171,
-        "max_delta": 379.30427,
-        "min_delta": -139063.92956999998,
-        "cum_delta": -37345.486520000035,
-        "oi_usd": 0.0,
-        "buy_imb": 12,
-        "sell_imb": 6
-      },
       {
         "time_utc": "2026-10-30 13:30:00 UTC",
         "close": 0.88205,
@@ -17989,7 +20540,7 @@
         "delta_pct": -9.104292667895779,
         "max_delta": 0.0,
         "min_delta": -456671.72709999996,
-        "cum_delta": -374589.75506999926,
+        "cum_delta": -337244.2685499992,
         "oi_usd": 0.0,
         "buy_imb": 6,
         "sell_imb": 7
@@ -18008,7 +20559,7 @@
         "delta_pct": -6.695202940308227,
         "max_delta": 0.0,
         "min_delta": -695273.0626599999,
-        "cum_delta": -724594.3148799993,
+        "cum_delta": -687248.8283599992,
         "oi_usd": 0.0,
         "buy_imb": 19,
         "sell_imb": 13
@@ -18027,7 +20578,7 @@
         "delta_pct": -9.651363731647045,
         "max_delta": 7927.310729999999,
         "min_delta": -275551.89683999994,
-        "cum_delta": -946165.8022999992,
+        "cum_delta": -908820.3157799991,
         "oi_usd": 0.0,
         "buy_imb": 7,
         "sell_imb": 20
@@ -18046,7 +20597,7 @@
         "delta_pct": 12.263847430392026,
         "max_delta": 257777.7832900001,
         "min_delta": -8571.52878,
-        "cum_delta": -691034.8656199991,
+        "cum_delta": -653689.3790999991,
         "oi_usd": 0.0,
         "buy_imb": 22,
         "sell_imb": 10
@@ -18065,7 +20616,7 @@
         "delta_pct": -2.517290144471973,
         "max_delta": 6670.07127,
         "min_delta": -268989.66725999996,
-        "cum_delta": -764320.8311399978,
+        "cum_delta": -726975.3446199978,
         "oi_usd": 0.0,
         "buy_imb": 31,
         "sell_imb": 23
@@ -18084,7 +20635,7 @@
         "delta_pct": -3.112911950220827,
         "max_delta": 21929.670669999996,
         "min_delta": -125060.86925000002,
-        "cum_delta": -839490.754419998,
+        "cum_delta": -802145.267899998,
         "oi_usd": 0.0,
         "buy_imb": 5,
         "sell_imb": 5
@@ -18103,7 +20654,7 @@
         "delta_pct": -2.713955045323499,
         "max_delta": 1465.13965,
         "min_delta": -443084.69675,
-        "cum_delta": -990871.5819699967,
+        "cum_delta": -953526.0954499966,
         "oi_usd": 0.0,
         "buy_imb": 20,
         "sell_imb": 14
@@ -18122,29 +20673,48 @@
         "delta_pct": -6.371465165318925,
         "max_delta": 26305.024929999996,
         "min_delta": -935838.3850000004,
-        "cum_delta": -1418442.6367499952,
+        "cum_delta": -1381097.1502299951,
         "oi_usd": 0.0,
         "buy_imb": 9,
         "sell_imb": 32
       },
       {
         "time_utc": "2026-10-30 15:30:00 UTC",
-        "close": 0.89085,
-        "vwap": 0.8933244091333654,
-        "poc": 0.89085,
+        "close": 0.89005,
+        "vwap": 0.891542459167924,
+        "poc": 0.89005,
         "vah": 0.89925,
-        "val": 0.88895,
-        "vol_usd": 3158964.511860001,
-        "buy_vol": 1461774.8198799998,
-        "sell_vol": 1697189.691980001,
-        "delta_usd": -235414.8721000012,
-        "delta_pct": -7.4522797333164315,
-        "max_delta": 132681.53581000003,
-        "min_delta": -237274.23786,
-        "cum_delta": -1653857.5088499964,
+        "val": 0.88615,
+        "vol_usd": 4569064.14958,
+        "buy_vol": 2124760.0599300005,
+        "sell_vol": 2444304.08965,
+        "delta_usd": -319544.0297199995,
+        "delta_pct": -6.9936428830698905,
+        "max_delta": 138403.61351,
+        "min_delta": -321403.39548,
+        "cum_delta": -1700641.1799499947,
         "oi_usd": 0.0,
-        "buy_imb": 14,
-        "sell_imb": 29
+        "buy_imb": 17,
+        "sell_imb": 35
+      },
+      {
+        "time_utc": "2026-10-30 15:45:00 UTC",
+        "close": 0.88505,
+        "vwap": 0.8850761715336131,
+        "poc": 0.88505,
+        "vah": 0.88915,
+        "val": 0.8815500000000001,
+        "vol_usd": 2650516.85601,
+        "buy_vol": 1222840.0292199997,
+        "sell_vol": 1427676.8267900008,
+        "delta_usd": -204836.7975700011,
+        "delta_pct": -7.728183169465128,
+        "max_delta": 8626.51789,
+        "min_delta": -297585.28420000005,
+        "cum_delta": -1905477.9775199958,
+        "oi_usd": 0.0,
+        "buy_imb": 13,
+        "sell_imb": 10
       }
     ],
     "signals": [
@@ -18907,39 +21477,39 @@
     ],
     "spot_netflow": {
       "Symbol": "SUI",
-      "5_minute": "-$175.63K",
-      "15_minute": "-$265.79K",
-      "30_minute": "-$37.21K",
-      "1_hour": "+$83.38K",
-      "2_hour": "+$496.50K",
-      "4_hour": "-$23.52K",
-      "6_hour": "-$493.11K",
-      "8_hour": "-$352.35K",
-      "12_hour": "+$826.06K",
+      "5_minute": "+$33.97K",
+      "15_minute": "-$391.11K",
+      "30_minute": "-$644.08K",
+      "1_hour": "+$105.23K",
+      "2_hour": "+$630.82K",
+      "4_hour": "+$253.89K",
+      "6_hour": "-$675.77K",
+      "8_hour": "-$427.97K",
+      "12_hour": "+$588.57K",
       "24_hour": "-$13.20M",
-      "1_week": "-$26.13M",
-      "15_day": "-$54.41M",
-      "30_day": "-$147.32M",
-      "Market_Cap": "$3.67B",
-      "Timestamp_IST": "2026-10-30 21:13:45 IST"
+      "1_week": "-$26.21M",
+      "15_day": "-$54.34M",
+      "30_day": "-$147.74M",
+      "Market_Cap": "$3.65B",
+      "Timestamp_IST": "2026-10-30 21:26:09 IST"
     },
     "fut_netflow": {
       "Symbol": "SUI",
-      "5_minute": "-$457.06K",
-      "15_minute": "-$2.03M",
-      "30_minute": "-$3.21M",
-      "1_hour": "-$2.33M",
-      "2_hour": "-$1.74M",
-      "4_hour": "-$2.18M",
-      "6_hour": "-$2.07M",
-      "8_hour": "-$7.24M",
-      "12_hour": "-$9.55M",
-      "24_hour": "-$36.75M",
-      "1_week": "-$86.66M",
-      "15_day": "-$154.75M",
-      "30_day": "-$486.44M",
-      "Market_Cap": "$3.67B",
-      "Timestamp_IST": "2026-10-30 21:13:59 IST"
+      "5_minute": "+$402.19K",
+      "15_minute": "-$1.85M",
+      "30_minute": "-$4.98M",
+      "1_hour": "-$5.09M",
+      "2_hour": "-$1.76M",
+      "4_hour": "-$3.75M",
+      "6_hour": "-$3.79M",
+      "8_hour": "-$8.61M",
+      "12_hour": "-$10.78M",
+      "24_hour": "-$37.81M",
+      "1_week": "-$88.06M",
+      "15_day": "-$156.14M",
+      "30_day": "-$487.84M",
+      "Market_Cap": "$3.63B",
+      "Timestamp_IST": "2026-10-30 21:26:29 IST"
     },
     "calendar": [
       {
@@ -19340,119 +21910,119 @@
         "#": "1",
         "Ticker": "IBIT BTC",
         "ETF_Name": "iShares Bitcoin Trust",
-        "Price": "$43.732",
-        "Price_Change": "-1.978 -4.33%",
-        "Volume_USD": "$2.40B",
-        "Volume_Shares": "54.85M",
-        "Turnover_Rate": "3.810%",
+        "Price": "$43.833",
+        "Price_Change": "-1.877 -4.11%",
+        "Volume_USD": "$2.55B",
+        "Volume_Shares": "58.28M",
+        "Turnover_Rate": "4.044%",
         "Shares_Outstanding": "1.44B",
         "AUM": "$66.17B",
-        "Market_Cap": "$62.94B",
+        "Market_Cap": "$63.08B",
         "Expense_Ratio": "0.25%",
         "Asset_Category": "Bitcoin",
         "Issuer": "BlackRock / iShares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "2",
         "Ticker": "FBTC BTC",
         "ETF_Name": "Fidelity Wise Origin Bitcoin Fund",
-        "Price": "$67.195",
-        "Price_Change": "-3.035 -4.32%",
-        "Volume_USD": "$301.41M",
-        "Volume_Shares": "4.49M",
-        "Turnover_Rate": "2.220%",
+        "Price": "$67.346",
+        "Price_Change": "-2.884 -4.11%",
+        "Volume_USD": "$309.43M",
+        "Volume_Shares": "4.60M",
+        "Turnover_Rate": "2.273%",
         "Shares_Outstanding": "202.10M",
         "AUM": "$14.92B",
-        "Market_Cap": "$13.58B",
+        "Market_Cap": "$13.61B",
         "Expense_Ratio": "0.25%",
         "Asset_Category": "Bitcoin",
         "Issuer": "Fidelity",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "3",
         "Ticker": "GBTC BTC",
         "ETF_Name": "Grayscale Bitcoin Trust ETF",
-        "Price": "$59.636",
-        "Price_Change": "-2.674 -4.29%",
-        "Volume_USD": "$123.60M",
-        "Volume_Shares": "2.07M",
-        "Turnover_Rate": "1.277%",
+        "Price": "$59.745",
+        "Price_Change": "-2.565 -4.12%",
+        "Volume_USD": "$129.43M",
+        "Volume_Shares": "2.17M",
+        "Turnover_Rate": "1.335%",
         "Shares_Outstanding": "162.29M",
         "AUM": "$10.11B",
-        "Market_Cap": "$9.68B",
+        "Market_Cap": "$9.70B",
         "Expense_Ratio": "1.50%",
         "Asset_Category": "Bitcoin",
         "Issuer": "Grayscale",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "4",
         "Ticker": "BTC",
         "ETF_Name": "Grayscale Bitcoin Mini Trust ETF",
-        "Price": "$34.157",
-        "Price_Change": "-1.513 -4.24%",
-        "Volume_USD": "$55.62M",
-        "Volume_Shares": "1.63M",
-        "Turnover_Rate": "1.145%",
+        "Price": "$34.227",
+        "Price_Change": "-1.443 -4.05%",
+        "Volume_USD": "$60.62M",
+        "Volume_Shares": "1.77M",
+        "Turnover_Rate": "1.245%",
         "Shares_Outstanding": "142.23M",
         "AUM": "$5.42B",
-        "Market_Cap": "$4.86B",
+        "Market_Cap": "$4.87B",
         "Expense_Ratio": "0.15%",
         "Asset_Category": "Bitcoin",
         "Issuer": "Grayscale",
         "Daily_Net_Inflow": "-$15,300,000",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "5",
         "Ticker": "BITB BTC",
         "ETF_Name": "Bitwise Bitcoin ETF",
-        "Price": "$41.92",
-        "Price_Change": "-1.9 -4.34%",
-        "Volume_USD": "$49.25M",
-        "Volume_Shares": "1.18M",
-        "Turnover_Rate": "1.713%",
+        "Price": "$42.007",
+        "Price_Change": "-1.813 -4.14%",
+        "Volume_USD": "$50.72M",
+        "Volume_Shares": "1.21M",
+        "Turnover_Rate": "1.761%",
         "Shares_Outstanding": "68.58M",
         "AUM": "$3.00B",
-        "Market_Cap": "$2.87B",
+        "Market_Cap": "$2.88B",
         "Expense_Ratio": "0.20%",
         "Asset_Category": "Bitcoin",
         "Issuer": "Bitwise",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "6",
         "Ticker": "ARKB BTC",
         "ETF_Name": "ARK 21Shares Bitcoin ETF",
-        "Price": "$25.604",
-        "Price_Change": "-1.146 -4.28%",
-        "Volume_USD": "$51.01M",
-        "Volume_Shares": "1.99M",
-        "Turnover_Rate": "2.148%",
+        "Price": "$25.664",
+        "Price_Change": "-1.086 -4.06%",
+        "Volume_USD": "$53.43M",
+        "Volume_Shares": "2.08M",
+        "Turnover_Rate": "2.245%",
         "Shares_Outstanding": "92.75M",
         "AUM": "$2.48B",
-        "Market_Cap": "$2.37B",
+        "Market_Cap": "$2.38B",
         "Expense_Ratio": "0.21%",
         "Asset_Category": "Bitcoin",
         "Issuer": "ARK / 21Shares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "7",
         "Ticker": "BITO BTC",
         "ETF_Name": "ProShares Bitcoin ETF",
-        "Price": "$10.305",
-        "Price_Change": "-0.465 -4.32%",
-        "Volume_USD": "$350.42M",
-        "Volume_Shares": "34.00M",
-        "Turnover_Rate": "21.401%",
+        "Price": "$10.331",
+        "Price_Change": "-0.439 -4.08%",
+        "Volume_USD": "$380.00M",
+        "Volume_Shares": "36.84M",
+        "Turnover_Rate": "23.149%",
         "Shares_Outstanding": "158.89M",
         "AUM": "$1.62B",
         "Market_Cap": "$1.64B",
@@ -19460,61 +22030,61 @@
         "Asset_Category": "Bitcoin",
         "Issuer": "ProShares",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "8",
         "Ticker": "HODL BTC",
         "ETF_Name": "VanEck Bitcoin ETF",
-        "Price": "$21.845",
-        "Price_Change": "-0.985 -4.31%",
-        "Volume_USD": "$10.13M",
-        "Volume_Shares": "463.87K",
-        "Turnover_Rate": "0.894%",
+        "Price": "$21.883",
+        "Price_Change": "-0.947 -4.15%",
+        "Volume_USD": "$10.73M",
+        "Volume_Shares": "490.70K",
+        "Turnover_Rate": "0.945%",
         "Shares_Outstanding": "51.87M",
         "AUM": "$1.18B",
-        "Market_Cap": "$1.13B",
+        "Market_Cap": "$1.14B",
         "Expense_Ratio": "0.00%",
         "Asset_Category": "Bitcoin",
         "Issuer": "VanEck",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "9",
         "Ticker": "EZBC BTC",
         "ETF_Name": "Franklin Bitcoin ETF",
-        "Price": "$44.699",
-        "Price_Change": "-1.921 -4.12%",
-        "Volume_USD": "$6.74M",
-        "Volume_Shares": "150.83K",
-        "Turnover_Rate": "1.516%",
+        "Price": "$44.721",
+        "Price_Change": "-1.899 -4.07%",
+        "Volume_USD": "$6.87M",
+        "Volume_Shares": "153.78K",
+        "Turnover_Rate": "1.545%",
         "Shares_Outstanding": "9.95M",
         "AUM": "$464.03M",
-        "Market_Cap": "$444.72M",
+        "Market_Cap": "$444.94M",
         "Expense_Ratio": "0.19%",
         "Asset_Category": "Bitcoin",
         "Issuer": "Franklin Templeton",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       },
       {
         "#": "10",
         "Ticker": "BRRR BTC",
         "ETF_Name": "Coinshares Bitcoin ETF Common Shares of Beneficial Interest",
-        "Price": "$21.77",
-        "Price_Change": "-0.99 -4.35%",
-        "Volume_USD": "$1.48M",
-        "Volume_Shares": "68.20K",
-        "Turnover_Rate": "0.338%",
+        "Price": "$21.801",
+        "Price_Change": "-0.959 -4.21%",
+        "Volume_USD": "$1.71M",
+        "Volume_Shares": "78.47K",
+        "Turnover_Rate": "0.389%",
         "Shares_Outstanding": "20.16M",
         "AUM": "$472.12M",
-        "Market_Cap": "$438.86M",
+        "Market_Cap": "$439.48M",
         "Expense_Ratio": "0.25%",
         "Asset_Category": "Bitcoin",
         "Issuer": "CoinShares / Valkyrie",
         "Daily_Net_Inflow": "-",
-        "Timestamp_IST": "2026-10-30 21:13:35 IST"
+        "Timestamp_IST": "2026-10-30 21:26:00 IST"
       }
     ]
   },
