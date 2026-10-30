@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AVEUSD
 **Canonical Key**: `AVEUSD` | **Broker Instrument**: `AVEUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:33:14 IST` (`2026-10-30 10:03:14 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:36:16 IST` (`2026-10-30 10:06:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -449,15 +449,15 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `2.43K` | Last 24h: `2.78K` | Last 3d: `40.34K` | Last 7d: `111.39K`
+  * Current Rate: `2.97K` | Last 24h: `2.78K` | Last 3d: `40.34K` | Last 7d: `111.39K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0001%` | **USDT OKX** | `-0.0029%` |
-| **USDT Bybit** | `0.0066%` | **USDT KuCoin** | `0.0011%` |
-| **USDT MEXC** | `0.0001%` | **USDT BingX** | `0.0076%` |
-| **USDT Gate** | `0.0005%` | **USDT Bitget** | `0.0024%` |
-| **CoinM Binance** | `0.1437%` | **CoinM OKX** | `-` |
+| **USDT Binance** | `0.0003%` | **USDT OKX** | `-0.0025%` |
+| **USDT Bybit** | `0.0065%` | **USDT KuCoin** | `0.0017%` |
+| **USDT MEXC** | `0.0003%` | **USDT BingX** | `0.0066%` |
+| **USDT Gate** | `0.0005%` | **USDT Bitget** | `0.0020%` |
+| **CoinM Binance** | `0.1501%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |

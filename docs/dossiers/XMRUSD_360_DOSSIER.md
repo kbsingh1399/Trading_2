@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XMRUSD
 **Canonical Key**: `XMRUSD` | **Broker Instrument**: `XMRUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 15:33:14 IST` (`2026-10-30 10:03:14 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:36:16 IST` (`2026-10-30 10:06:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -180,14 +180,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `35.43K` | Last 24h: `116.53K` | Last 3d: `202.38K` | Last 7d: `345.10K`
+  * Current Rate: `33.94K` | Last 24h: `116.53K` | Last 3d: `202.38K` | Last 7d: `345.10K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0399%` | **USDT OKX** | `-` |
-| **USDT Bybit** | `0.0304%` | **USDT KuCoin** | `0.0938%` |
-| **USDT MEXC** | `0.0401%` | **USDT BingX** | `0.0805%` |
-| **USDT Gate** | `0.0137%` | **USDT Bitget** | `0.0824%` |
+| **USDT Binance** | `0.0390%` | **USDT OKX** | `-` |
+| **USDT Bybit** | `0.0249%` | **USDT KuCoin** | `0.0903%` |
+| **USDT MEXC** | `0.0392%` | **USDT BingX** | `0.0778%` |
+| **USDT Gate** | `0.0114%` | **USDT Bitget** | `0.0802%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
