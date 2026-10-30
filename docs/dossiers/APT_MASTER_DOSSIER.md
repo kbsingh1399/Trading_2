@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: APT
 **Canonical Key**: `APT` | **Broker Instrument**: `APTUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 09:22:11 IST` (`2026-10-30 03:52:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:25:13 IST` (`2026-10-30 03:55:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1011,18 +1011,18 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `86.79M` | Total OI Tokens: `141,332,057.4 APT`
-  * 1h OI Change: `-0.02%` | 4h OI Change: `-0.18%` | 24h OI Change: `-8.56%`
-  * Exchange Breakdown: Binance=`15.29M` | Bybit=`17.31M` | OKX=`4.01M` | Hyperliquid=`3.35M`
+  * Total Open Interest: `87.02M` | Total OI Tokens: `141,315,408.3 APT`
+  * 1h OI Change: `+1.93%` | 4h OI Change: `+0.72%` | 24h OI Change: `-8.44%`
+  * Exchange Breakdown: Binance=`15.43M` | Bybit=`17.31M` | OKX=`4.05M` | Hyperliquid=`3.36M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-5.09K` | Last 24h: `2.90K` | Last 3d: `7.60K` | Last 7d: `2.85K`
+  * Current Rate: `-5.47K` | Last 24h: `2.90K` | Last 3d: `7.60K` | Last 7d: `2.85K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0147%` | **USDT OKX** | `-0.0108%` |
-| **USDT Bybit** | `-0.0141%` | **USDT KuCoin** | `-0.0090%` |
-| **USDT MEXC** | `-0.0147%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0056%` | **USDT Bitget** | `0.0100%` |
+| **USDT Binance** | `-0.0156%` | **USDT OKX** | `-0.0128%` |
+| **USDT Bybit** | `-0.0166%` | **USDT KuCoin** | `-0.0112%` |
+| **USDT MEXC** | `-0.0155%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `0.0036%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -1078,31 +1078,31 @@
 | `1H` | `Lighter` | `35.32%` | `64.68%` | `0.55` | 525.40 USD |
 | `1H` | `Whale Positions` | `64.08%` | `35.92%` | `1.78` | 1,450,000.00 USD |
 | `1H` | `Global Accounts` | `56.79%` | `43.21%` | `1.31` | 3,650,000.00 USD |
-| `4H` | `APT` | `49.30%` | `50.70%` | `0.97` | 107,800,000.00 USD |
-| `4H` | `Binance` | `49.4%` | `50.6%` | `0.98` | 40,750,000.00 USD |
-| `4H` | `OKX` | `53.11%` | `46.89%` | `1.13` | 22,780,000.00 USD |
-| `4H` | `Bybit` | `53.91%` | `46.09%` | `1.17` | 8,160,000.00 USD |
-| `4H` | `KuCoin` | `51.81%` | `48.19%` | `1.08` | 2,800,000.00 USD |
-| `4H` | `Gate` | `48.21%` | `51.79%` | `0.93` | 2,910,000.00 USD |
-| `4H` | `Bitget` | `46.57%` | `53.43%` | `0.87` | 3,950,000.00 USD |
-| `4H` | `BingX` | `31.69%` | `68.31%` | `0.46` | 2,680,000.00 USD |
-| `4H` | `MEXC` | `47.88%` | `52.12%` | `0.92` | 2,070,000.00 USD |
-| `4H` | `Bitunix` | `53.99%` | `46.01%` | `1.17` | 3,330,000.00 USD |
-| `4H` | `Hyperliquid` | `37.64%` | `62.36%` | `0.60` | 1,400,000.00 USD |
+| `4H` | `APT` | `44.43%` | `55.57%` | `0.80` | 109,290,000.00 USD |
+| `4H` | `Binance` | `48.96%` | `51.04%` | `0.96` | 41,080,000.00 USD |
+| `4H` | `OKX` | `47.64%` | `52.36%` | `0.91` | 23,700,000.00 USD |
+| `4H` | `Bybit` | `50.75%` | `49.25%` | `1.03` | 8,780,000.00 USD |
+| `4H` | `KuCoin` | `49.33%` | `50.67%` | `0.97` | 2,790,000.00 USD |
+| `4H` | `Gate` | `49.81%` | `50.19%` | `0.99` | 3,030,000.00 USD |
+| `4H` | `Bitget` | `45.91%` | `54.09%` | `0.85` | 3,730,000.00 USD |
+| `4H` | `BingX` | `16.44%` | `83.56%` | `0.20` | 2,620,000.00 USD |
+| `4H` | `MEXC` | `35.14%` | `64.86%` | `0.54` | 1,970,000.00 USD |
+| `4H` | `Bitunix` | `41.15%` | `58.85%` | `0.70` | 3,260,000.00 USD |
+| `4H` | `Hyperliquid` | `55.38%` | `44.62%` | `1.24` | 1,390,000.00 USD |
 | `4H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `LBank` | `48.36%` | `51.64%` | `0.94` | 15,070,000.00 USD |
-| `4H` | `Crypto.com` | `47.94%` | `52.06%` | `0.92` | 2,470.00 USD |
-| `4H` | `WhiteBIT` | `5.79%` | `94.21%` | `0.06` | 1,370,000.00 USD |
-| `4H` | `HTX` | `47.05%` | `52.95%` | `0.89` | 104,600.00 USD |
+| `4H` | `LBank` | `48.53%` | `51.47%` | `0.94` | 15,050,000.00 USD |
+| `4H` | `Crypto.com` | `0%` | `0%` | `1.00` | 2,480.00 USD |
+| `4H` | `WhiteBIT` | `42.02%` | `57.98%` | `0.72` | 1,380,000.00 USD |
+| `4H` | `HTX` | `41.15%` | `58.85%` | `0.70` | 102,890.00 USD |
 | `4H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Kraken` | `66.99%` | `33.01%` | `2.03` | 195,700.00 USD |
-| `4H` | `Aster` | `58.77%` | `41.23%` | `1.43` | 124,170.00 USD |
+| `4H` | `Kraken` | `37.12%` | `62.88%` | `0.59` | 187,150.00 USD |
+| `4H` | `Aster` | `44.48%` | `55.52%` | `0.80` | 139,270.00 USD |
 | `4H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Lighter` | `39.98%` | `60.02%` | `0.67` | 82,550.00 USD |
-| `4H` | `Whale Positions` | `49.4%` | `50.6%` | `0.98` | 40,750,000.00 USD |
-| `4H` | `Global Accounts` | `49.30%` | `50.70%` | `0.97` | 107,800,000.00 USD |
+| `4H` | `Lighter` | `39.15%` | `60.85%` | `0.64` | 75,940.00 USD |
+| `4H` | `Whale Positions` | `48.96%` | `51.04%` | `0.96` | 41,080,000.00 USD |
+| `4H` | `Global Accounts` | `44.43%` | `55.57%` | `0.80` | 109,290,000.00 USD |
 
 
 ---

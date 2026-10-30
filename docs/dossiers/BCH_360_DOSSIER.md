@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BCH
 **Canonical Key**: `BCH` | **Broker Instrument**: `BCHUSD.p` | **Asset Class**: `Crypto PoW`
-**Timestamp**: `2026-10-30 09:22:11 IST` (`2026-10-30 03:52:11 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:25:13 IST` (`2026-10-30 03:55:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,7 +116,7 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1962` | `0x12d2...f97f` | `LONG` | 1,020,923.81 USD | `3,627,243,000,000.00` | `303.26` | `282.33` | `0.000000` | -79,075.52 USD | `-7.75%` | `10X Cross` |
+| `1960` | `0x12d2...f97f` | `LONG` | 1,027,416.58 USD | `3,627,243,000,000.00` | `303.26` | `283.70` | `0.000000` | -72,582.76 USD | `-7.06%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -1091,16 +1091,16 @@
 ## 7. Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates
 *(Sources: 5_OI.parquet, 5_Funding_Rate.parquet, 6_Funding_Fee_Settlement.parquet, 3_Exchanges_LS_Ratio_15M/1H/4H.parquet)*
 - **Open Interest Profile & Capitalization (5_OI.parquet)**:
-  * Total Open Interest: `305.31M` | Total OI Tokens: `1,083,806.2 BCH`
-  * 1h OI Change: `+1.37%` | 4h OI Change: `+3.80%` | 24h OI Change: `-1.54%`
-  * Exchange Breakdown: Binance=`89.40M` | Bybit=`38.17M` | OKX=`23.99M` | Hyperliquid=`7.24M`
+  * Total Open Interest: `307.18M` | Total OI Tokens: `1,081,880.5 BCH`
+  * 1h OI Change: `+2.50%` | 4h OI Change: `+4.88%` | 24h OI Change: `-0.55%`
+  * Exchange Breakdown: Binance=`90.36M` | Bybit=`38.40M` | OKX=`24.12M` | Hyperliquid=`7.25M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `11.94K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
+  * Current Rate: `11.95K` | Last 24h: `11.48K` | Last 3d: `73.36K` | Last 7d: `145.01K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0100%` |
-| **USDT Bybit** | `0.0034%` | **USDT KuCoin** | `0.0100%` |
+| **USDT Bybit** | `0.0037%` | **USDT KuCoin** | `0.0100%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
@@ -1158,31 +1158,31 @@
 | `1H` | `Lighter` | `21.46%` | `78.54%` | `0.27` | 8,480.00 USD |
 | `1H` | `Whale Positions` | `50.89%` | `49.11%` | `1.04` | 6,020,000.00 USD |
 | `1H` | `Global Accounts` | `50.37%` | `49.63%` | `1.01` | 17,750,000.00 USD |
-| `4H` | `BCH` | `48.63%` | `51.37%` | `0.95` | 107,800,000.00 USD |
-| `4H` | `Binance` | `46.43%` | `53.57%` | `0.87` | 40,750,000.00 USD |
-| `4H` | `OKX` | `49.03%` | `50.97%` | `0.96` | 22,780,000.00 USD |
-| `4H` | `Bybit` | `51.8%` | `48.2%` | `1.07` | 8,160,000.00 USD |
-| `4H` | `KuCoin` | `38.93%` | `61.07%` | `0.64` | 2,800,000.00 USD |
-| `4H` | `Gate` | `47.3%` | `52.7%` | `0.90` | 2,910,000.00 USD |
-| `4H` | `Bitget` | `53.39%` | `46.61%` | `1.15` | 3,950,000.00 USD |
-| `4H` | `BingX` | `42.88%` | `57.12%` | `0.75` | 2,680,000.00 USD |
-| `4H` | `MEXC` | `43.33%` | `56.67%` | `0.76` | 2,070,000.00 USD |
-| `4H` | `Bitunix` | `50.99%` | `49.01%` | `1.04` | 3,330,000.00 USD |
-| `4H` | `Hyperliquid` | `43.36%` | `56.64%` | `0.77` | 1,400,000.00 USD |
+| `4H` | `BCH` | `49.85%` | `50.15%` | `0.99` | 109,290,000.00 USD |
+| `4H` | `Binance` | `49.92%` | `50.08%` | `1.00` | 41,080,000.00 USD |
+| `4H` | `OKX` | `52.92%` | `47.08%` | `1.12` | 23,700,000.00 USD |
+| `4H` | `Bybit` | `55.22%` | `44.78%` | `1.23` | 8,780,000.00 USD |
+| `4H` | `KuCoin` | `52.02%` | `47.98%` | `1.08` | 2,790,000.00 USD |
+| `4H` | `Gate` | `48.45%` | `51.55%` | `0.94` | 3,030,000.00 USD |
+| `4H` | `Bitget` | `50.32%` | `49.68%` | `1.01` | 3,730,000.00 USD |
+| `4H` | `BingX` | `32.46%` | `67.54%` | `0.48` | 2,620,000.00 USD |
+| `4H` | `MEXC` | `47.18%` | `52.82%` | `0.89` | 1,970,000.00 USD |
+| `4H` | `Bitunix` | `55.18%` | `44.82%` | `1.23` | 3,260,000.00 USD |
+| `4H` | `Hyperliquid` | `38.94%` | `61.06%` | `0.64` | 1,390,000.00 USD |
 | `4H` | `tradeXYZ` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `LBank` | `50.33%` | `49.67%` | `1.01` | 15,070,000.00 USD |
-| `4H` | `Crypto.com` | `0%` | `0%` | `1.00` | 2,470.00 USD |
-| `4H` | `WhiteBIT` | `78.02%` | `21.98%` | `3.55` | 1,370,000.00 USD |
-| `4H` | `HTX` | `53.67%` | `46.33%` | `1.16` | 104,600.00 USD |
+| `4H` | `LBank` | `48.33%` | `51.67%` | `0.94` | 15,050,000.00 USD |
+| `4H` | `Crypto.com` | `48.39%` | `51.61%` | `0.94` | 2,480.00 USD |
+| `4H` | `WhiteBIT` | `6.93%` | `93.07%` | `0.07` | 1,380,000.00 USD |
+| `4H` | `HTX` | `47.63%` | `52.37%` | `0.91` | 102,890.00 USD |
 | `4H` | `dYdX` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Deribit` | `0%` | `0%` | `1.00` | 0.00 USD |
 | `4H` | `Bitfinex` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Kraken` | `33.72%` | `66.28%` | `0.51` | 195,700.00 USD |
-| `4H` | `Aster` | `58.8%` | `41.2%` | `1.43` | 124,170.00 USD |
+| `4H` | `Kraken` | `69.22%` | `30.78%` | `2.25` | 187,150.00 USD |
+| `4H` | `Aster` | `58.36%` | `41.64%` | `1.40` | 139,270.00 USD |
 | `4H` | `Coinbase` | `0%` | `0%` | `1.00` | 0.00 USD |
-| `4H` | `Lighter` | `20.82%` | `79.18%` | `0.26` | 82,550.00 USD |
-| `4H` | `Whale Positions` | `46.43%` | `53.57%` | `0.87` | 40,750,000.00 USD |
-| `4H` | `Global Accounts` | `48.63%` | `51.37%` | `0.95` | 107,800,000.00 USD |
+| `4H` | `Lighter` | `39.81%` | `60.19%` | `0.66` | 75,940.00 USD |
+| `4H` | `Whale Positions` | `49.92%` | `50.08%` | `1.00` | 41,080,000.00 USD |
+| `4H` | `Global Accounts` | `49.85%` | `50.15%` | `0.99` | 109,290,000.00 USD |
 
 
 ---
