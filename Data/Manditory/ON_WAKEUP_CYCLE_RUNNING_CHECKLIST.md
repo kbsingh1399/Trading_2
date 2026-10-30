@@ -52,20 +52,27 @@ On every wakeup, execute these steps in strict sequential order. Do NOT check a 
 - Establish the complete list of eligible candidates (across Crypto, Forex, Indices, and Metals) before proceeding.
 
 ### Step 2: Conduct Comprehensive Asset-Level Forensics & Mandatory 10-Section Audit
-- **Read, analyse, and perform forensic examination of every individual dossier FULL LENGTH document** belonging to every eligible asset across CRYPTO, FOREX, INDICES and METALS.
-- **Physical Examination Execution Mandate**: Every single `.md` dossier file associated with each eligible asset must be physically opened and parsed to EOF. Surface-only inspection (skipping sections or only checking Value Area boundaries) is strictly prohibited.
-- **Mandatory 10-Section Audit Gate per Asset Dossier**:
-  1. *Section 1: MT5 Live Broker Telemetry & True Contract Specifications* (Bid, Ask, Spread BPS, Contract Size, Margin).
-  2. *Section 2: Technical Profile, VWAP Dispersion Grid & ATR-14* (VWAP Mid, ±1.0σ to ±3.0σ dispersion, ATR).
-  3. *Section 3: Auction Market Structure & Volume Profile Framework* (Developing VAH, VAL, POC, Session High/Low, LVN shelves).
-  4. *Section 4: Multi-Timeframe Cumulative Volume Delta (CVD) & Options Surface* (5m, 15m, 1h, 4h Delta, CVD Z-Score, Absorption vs. Aggressive flow).
-  5. *Section 5: Institutional Whale Armor, Hyperdash Intel & L2 Depth Ladders* (Top defending Bid/Ask walls, depth in USD, persistence > 180s, orders ≥ $100K).
-  6. *Section 6: Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map* (24H, 48H, 7D Short & Long Max Pain strikes, liquidation clusters; mandatory Pitfall 24 immunity check).
-  7. *Section 7: Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates* (Funding rate baseline, long/short ratio skew).
-  8. *Section 8: Microstructure Footprint Bars, Tape Imbalances & Macro Capital Netflows* (Stacked imbalances, delta divergence).
-  9. *Section 9: TradFi & Interbank Market Mechanics* (Rollover spread buffer, session open/close boundaries).
-  10. *Section 10: Quantitative Trade Formulation & Autonomous Broker Execution Card* (Stated postured action, Candidate Long/Short Cards, exact Entry/SL/TP, R:R ≥ 2.5R, nominal risk ≤ $10.00 USD).
-- **Verification Evidence Artifact**: All 10 extracted section attributes must be programmatically compiled and saved to `docs/trade_plans/CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json` with zero missing fields before marking this step complete.
+> ⚠️ **MANDATORY COMPLETE DATA POINT FORENSICS & TICK-MARK GOVERNANCE GATE**:
+> Antigravity is STRICTLY FORBIDDEN from surface-only scanning, batch skimming, or checking only high-level parameters (e.g. only VAL/VAH or VWAP).
+> For EVERY eligible asset that passes the spread test, Antigravity MUST physically open the standalone individual JSON dossier (`docs/dossiers/<SYMBOL>_MASTER_DOSSIER.json`) and fetch, analyze, and forensically evaluate **EACH AND EVERY DATA POINT** across all 10 structural dimensions:
+> 
+> 1. **Section 1: MT5 Live Broker Telemetry & True Contract Specifications**: Bid, Ask, Mid, live Spread BPS, digits, point size, contract size, min lot, step lot, margin currency, and broker clearance status.
+> 2. **Section 2: Technical Profile, VWAP Dispersion Grid & ATR-14**: VWAP Mid, VWAP Z-Score, ±1.0σ, ±2.0σ, ±2.51σ, ±3.0σ volatility bands, ATR-14, RSI-14, and EMAs (20, 50, 200).
+> 3. **Section 3: Auction Market Structure & Volume Profile Framework**: Developing VAL, VAH, POC, Previous Day VAL/VAH/POC, Value Area positioning, session bias, and auction regime (Rotational Balance vs Trend).
+> 4. **Section 4: Multi-Timeframe Cumulative Volume Delta (CVD) & Orderflow Regimes**: 5m, 15m, 1h, 4h Delta, delta percentage, cumulative CVD, CVD Z-Score, and tape regime (Aggressive Selling/Buying vs Bullish/Bearish Absorption).
+> 5. **Section 5: Institutional Whale Armor, Hyperdash Intel & L2 Depth Ladders**: Orderbook depth ladders, defending bid/ask walls >= $100K, wall persistence duration (> 180s), and spoof-wall rejection.
+> 6. **Section 6: Liquidation Max Pain, Heatmaps & Retail Stops Cascade Map**: Multi-horizon Short & Long Max Pain strikes (24H, 48H, 7D), forced liquidation volume ladders, and mandatory Pitfall 24 immunity check (ensuring proposed Entry and SL are never placed in the path of a Max Pain magnet).
+> 7. **Section 7: Derivatives Sentiment, Long/Short Positioning & 12-Venue Funding Rates**: 12-venue funding rate baselines, open interest expansion/contraction, and taker long/short volume ratios.
+> 8. **Section 8: Microstructure Footprint Bars, Tape Imbalances & Macro Capital Netflows**: Footprint tape exhaustion/absorption signals, stacked imbalances, 1h and 24h Spot Netflow, and 1h and 24h Futures Netflow.
+> 9. **Section 9: TradFi & Interbank Market Mechanics**: Friday rollover spread widening buffer (21:15–22:30 UTC), session open/close boundaries (Asian, London, NY), and weekend gap exposure.
+> 10. **Section 10: Quantitative Trade Formulation & Autonomous Broker Execution Card**: Exact Action (BUY_LIMIT / SELL_LIMIT / STAND_ASIDE), Entry, SL, TP, lot sizing calculated strictly for nominal risk <= $10.00 USD, Reward-to-Risk ratio >= 2.50R, and explicit setup rationale.
+> 
+> **STRICT TICK-MARK GATE CONDITION**:
+> The Step 2 checkbox `- [ ]` CANNOT be marked `- [x]` until:
+> 1. All 10 section data points for 100% of spread-cleared assets are physically extracted, audited, and compiled into `docs/trade_plans/CYCLE_NNN_FULL_SCALE_UNIVERSE_DATABASE.json`.
+> 2. Zero missing attributes or empty placeholders exist across any of the 10 structural dimensions.
+> 3. The trade formulation card is mathematically verified against Pitfall 24 immunity, nominal risk <= $10.00 USD, and R:R >= 2.50R.
+> Pre-checking or marking Step 2 complete without this verified artifact is a catastrophic protocol violation.
 
 ### Step 3: Synchronise the Intelligence Ledger and Portfolio Registry
 - Review and update `TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md` using the latest information from `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`.
