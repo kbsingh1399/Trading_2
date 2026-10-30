@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALUMINIUM
 **Canonical Key**: `ALUMINIUM` | **Broker Instrument**: `ALUMINIUM.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,17 +44,17 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `3078.71` (Distance: `+0.20%`)
-  * Point of Control (POC) = `3073.16` (Distance: `+0.38%`)
-  * Value Area Low (VAL) = `3063.20` (Distance: `+0.71%`)
+  * Value Area High (VAH) = `3078.81` (Distance: `+0.23%`)
+  * Point of Control (POC) = `3073.26` (Distance: `+0.41%`)
+  * Value Area Low (VAL) = `3061.78` (Distance: `+0.78%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`3073.86` | POC=`3069.38` | VAL=`3060.71`
   * Prior Day Extremes: PDH=`3087.70` | PDL=`3045.75` | PDC=`3048.55`
   * Monday Range Blueprint: High=`3060.80` | Mid=`3038.80` | Low=`3016.80`
-  * Developing Weekly Value Area: Weekly VAH=`3082.90` | Weekly POC=`3069.49` | Weekly VAL=`3033.72`
+  * Developing Weekly Value Area: Weekly VAH=`3104.62` | Weekly POC=`3069.49` | Weekly VAL=`3050.97`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`3082.55` | Low=`3058.05`
+  * Asian Session (00:00-08:00 UTC): High=`3086.75` | Low=`3058.05`
   * London Session (08:00-16:00 UTC): High=`3098.14` | Low=`3073.46`
   * New York Session (13:00-21:00 UTC): High=`3104.31` | Low=`3067.29`
   * Initial Balance (First Hour): IB High=`3095.06` | IB Low=`3076.54`
@@ -267,15 +267,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `3063.20` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `3041.49` (Risk Distance: `21.71` pts)
-  * +2.5R Take Profit: `3117.47`
+  * Execution Entry: `3061.78` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `3040.07` (Risk Distance: `21.71` pts)
+  * +2.5R Take Profit: `3116.05`
   * Mathematical Lot Sizing: **`0.46 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `3078.71` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `3100.42` (Risk Distance: `21.71` pts)
-  * +2.5R Take Profit: `3024.44`
+  * Execution Entry: `3078.81` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `3100.52` (Risk Distance: `21.71` pts)
+  * +2.5R Take Profit: `3024.54`
   * Mathematical Lot Sizing: **`0.46 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

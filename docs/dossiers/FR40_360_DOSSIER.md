@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FR40
 **Canonical Key**: `FR40` | **Broker Instrument**: `FR40.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `7986.58` (Distance: `-0.37%`)
-  * Point of Control (POC) = `7980.30` (Distance: `-0.29%`)
-  * Value Area Low (VAL) = `7955.70` (Distance: `+0.02%`)
+  * Value Area High (VAH) = `7986.58` (Distance: `-0.39%`)
+  * Point of Control (POC) = `7980.30` (Distance: `-0.31%`)
+  * Value Area Low (VAL) = `7954.88` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7992.48` | POC=`7982.52` | VAL=`7942.68`
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `7955.70` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7934.15` (Risk Distance: `21.55` pts)
-  * +2.5R Take Profit: `8009.57`
+  * Execution Entry: `7954.88` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `7933.33` (Risk Distance: `21.55` pts)
+  * +2.5R Take Profit: `8008.75`
   * Mathematical Lot Sizing: **`0.46 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPTUSD
 **Canonical Key**: `XPTUSD` | **Broker Instrument**: `XPTUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,17 +44,17 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1492.82` (Distance: `-2.21%`)
-  * Point of Control (POC) = `1483.67` (Distance: `-1.61%`)
-  * Value Area Low (VAL) = `1467.79` (Distance: `-0.54%`)
+  * Value Area High (VAH) = `1492.82` (Distance: `-2.31%`)
+  * Point of Control (POC) = `1484.80` (Distance: `-1.79%`)
+  * Value Area Low (VAL) = `1467.30` (Distance: `-0.62%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1521.17` | POC=`1482.15` | VAL=`1475.72`
   * Prior Day Extremes: PDH=`1544.35` | PDL=`1475.49` | PDC=`1483.15`
   * Monday Range Blueprint: High=`1564.57` | Mid=`1540.25` | Low=`1515.93`
-  * Developing Weekly Value Area: Weekly VAH=`1554.87` | Weekly POC=`1533.33` | Weekly VAL=`1516.09`
+  * Developing Weekly Value Area: Weekly VAH=`1554.84` | Weekly POC=`1538.27` | Weekly VAL=`1515.93`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`1492.94` | Low=`1456.84`
+  * Asian Session (00:00-08:00 UTC): High=`1492.94` | Low=`1456.49`
   * London Session (08:00-16:00 UTC): High=`1465.07` | Low=`1453.39`
   * New York Session (13:00-21:00 UTC): High=`1467.99` | Low=`1450.47`
   * Initial Balance (First Hour): IB High=`1463.61` | IB Low=`1454.85`
@@ -267,9 +267,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `1467.79` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `1458.35` (Risk Distance: `9.44` pts)
-  * +2.5R Take Profit: `1491.40`
+  * Execution Entry: `1467.30` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `1457.86` (Risk Distance: `9.44` pts)
+  * +2.5R Take Profit: `1490.91`
   * Mathematical Lot Sizing: **`1.05 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`

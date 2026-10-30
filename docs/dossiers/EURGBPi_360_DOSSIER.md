@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURGBP
 **Canonical Key**: `EURGBP` | **Broker Instrument**: `EURGBP.pi` | **Asset Class**: `FX Cross`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8363` (Distance: `-0.05%`)
-  * Point of Control (POC) = `0.8359` (Distance: `-0.01%`)
-  * Value Area Low (VAL) = `0.8358` (Distance: `+0.01%`)
-  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
+  * Value Area High (VAH) = `0.8362` (Distance: `-0.06%`)
+  * Point of Control (POC) = `0.8359` (Distance: `-0.02%`)
+  * Value Area Low (VAL) = `0.8357` (Distance: `+0.00%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8372` | POC=`0.8366` | VAL=`0.8355`
   * Prior Day Extremes: PDH=`0.8373` | PDL=`0.8345` | PDC=`0.8357`
@@ -267,15 +267,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `0.8358` (Daily VAL sweep / Bullish OTE)
+  * Execution Entry: `0.8357` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `0.8332` (Risk Distance: `0.0025` pts)
-  * +2.5R Take Profit: `0.8421`
+  * +2.5R Take Profit: `0.8420`
   * Mathematical Lot Sizing: **`0.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.8363` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.8388` (Risk Distance: `0.0025` pts)
-  * +2.5R Take Profit: `0.8300`
+  * Execution Entry: `0.8362` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.8387` (Risk Distance: `0.0025` pts)
+  * +2.5R Take Profit: `0.8299`
   * Mathematical Lot Sizing: **`0.03 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

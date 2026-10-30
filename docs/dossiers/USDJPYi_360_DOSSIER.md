@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `157.65` (Distance: `-0.10%`)
-  * Point of Control (POC) = `157.45` (Distance: `+0.03%`)
-  * Value Area Low (VAL) = `157.19` (Distance: `+0.19%`)
+  * Value Area High (VAH) = `157.65` (Distance: `-0.16%`)
+  * Point of Control (POC) = `157.45` (Distance: `-0.03%`)
+  * Value Area Low (VAL) = `157.24` (Distance: `+0.11%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`157.99` | POC=`157.87` | VAL=`157.76`
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `203` | `0x0911...129a` | `SHORT` | 10,426,180.61 USD | `66,223.20` | `156.58` | `157.48` | `167.72` | -57,160.38 USD | `-0.55%` | `20X Isolated` |
-| `1012` | `0x9dea...d617` | `LONG` | 2,135,849.66 USD | `13,566.98` | `157.66` | `157.48` | `149.22` | -3,164.09 USD | `-0.15%` | `50X Isolated` |
-| `1091` | `0xec0b...b078` | `SHORT` | 1,986,371.45 USD | `12,617.49` | `158.22` | `157.48` | `162.95` | 9,994.22 USD | `+0.50%` | `20X Isolated` |
-| `1115` | `0xc966...f6b6` | `SHORT` | 1,942,750.75 USD | `12,340.41` | `157.61` | `157.48` | `215.27` | 2,165.28 USD | `+0.11%` | `5X Isolated` |
-| `1168` | `0xbef1...d2e5` | `LONG` | 1,861,262.11 USD | `11,821.29` | `157.63` | `157.48` | `155.50` | -2,098.50 USD | `-0.11%` | `50X Isolated` |
-| `1855` | `0x3d89...eb14` | `LONG` | 1,086,405.00 USD | `6,900.00` | `158.17` | `157.48` | `127.35` | -4,984.60 USD | `-0.46%` | `5X Isolated` |
+| `202` | `0x0911...129a` | `SHORT` | 10,413,598.20 USD | `66,223.20` | `156.58` | `157.19` | `167.72` | -44,577.97 USD | `-0.43%` | `20X Isolated` |
+| `1017` | `0x9dea...d617` | `LONG` | 2,133,678.94 USD | `13,566.98` | `157.66` | `157.19` | `149.22` | -5,334.80 USD | `-0.25%` | `50X Isolated` |
+| `1094` | `0xec0b...b078` | `SHORT` | 1,984,352.65 USD | `12,617.49` | `158.22` | `157.19` | `162.95` | 12,013.02 USD | `+0.61%` | `20X Isolated` |
+| `1120` | `0xc966...f6b6` | `SHORT` | 1,938,925.22 USD | `12,340.41` | `157.61` | `157.19` | `215.27` | 5,990.80 USD | `+0.31%` | `5X Isolated` |
+| `1173` | `0xbef1...d2e5` | `LONG` | 1,858,897.85 USD | `11,821.29` | `157.63` | `157.19` | `155.50` | -4,462.76 USD | `-0.24%` | `50X Isolated` |
+| `1862` | `0x3d89...eb14` | `LONG` | 1,084,956.00 USD | `6,900.00` | `158.17` | `157.19` | `127.35` | -6,433.60 USD | `-0.59%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -387,15 +387,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `157.19` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `157.04` (Risk Distance: `0.1509` pts)
-  * +2.5R Take Profit: `157.57`
+  * Execution Entry: `157.24` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `157.09` (Risk Distance: `0.1509` pts)
+  * +2.5R Take Profit: `157.62`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.15 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `157.65` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `157.80` (Risk Distance: `0.1509` pts)
-  * +2.5R Take Profit: `157.27`
+  * +2.5R Take Profit: `157.28`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.15 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,8 +44,8 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `28893.99` (Distance: `-0.51%`)
-  * Point of Control (POC) = `28710.69` (Distance: `+0.13%`)
+  * Value Area High (VAH) = `28889.29` (Distance: `-0.49%`)
+  * Point of Control (POC) = `28738.89` (Distance: `+0.03%`)
   * Value Area Low (VAL) = `28668.39` (Distance: `+0.28%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
@@ -289,9 +289,9 @@
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `8.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `28893.99` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `28974.02` (Risk Distance: `80.03` pts)
-  * +2.5R Take Profit: `28693.91`
+  * Execution Entry: `28889.29` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `28969.32` (Risk Distance: `80.03` pts)
+  * +2.5R Take Profit: `28689.21`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `8.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

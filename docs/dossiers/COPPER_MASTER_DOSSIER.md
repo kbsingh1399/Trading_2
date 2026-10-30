@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: COPPER
 **Canonical Key**: `COPPER` | **Broker Instrument**: `COPPER.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `14352.92` (Distance: `-0.12%`)
-  * Point of Control (POC) = `14338.44` (Distance: `-0.02%`)
-  * Value Area Low (VAL) = `14322.65` (Distance: `+0.09%`)
+  * Value Area High (VAH) = `14351.17` (Distance: `-0.10%`)
+  * Point of Control (POC) = `14338.44` (Distance: `-0.01%`)
+  * Value Area Low (VAL) = `14323.53` (Distance: `+0.09%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`14387.09` | POC=`14357.38` | VAL=`14290.88`
@@ -267,15 +267,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `14322.65` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `14271.56` (Risk Distance: `51.09` pts)
-  * +2.5R Take Profit: `14450.38`
+  * Execution Entry: `14323.53` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `14272.44` (Risk Distance: `51.09` pts)
+  * +2.5R Take Profit: `14451.26`
   * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `14352.92` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `14404.01` (Risk Distance: `51.09` pts)
-  * +2.5R Take Profit: `14225.20`
+  * Execution Entry: `14351.17` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `14402.26` (Risk Distance: `51.09` pts)
+  * +2.5R Take Profit: `14223.44`
   * Mathematical Lot Sizing: **`0.19 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

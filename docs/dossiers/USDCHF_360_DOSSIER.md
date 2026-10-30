@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCHF
 **Canonical Key**: `USDCHF` | **Broker Instrument**: `USDCHF.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8225` (Distance: `-0.15%`)
-  * Point of Control (POC) = `0.8212` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `0.8194` (Distance: `+0.22%`)
+  * Value Area High (VAH) = `0.8223` (Distance: `-0.17%`)
+  * Point of Control (POC) = `0.8212` (Distance: `-0.03%`)
+  * Value Area Low (VAL) = `0.8194` (Distance: `+0.19%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.8294` | POC=`0.8281` | VAL=`0.8272`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.8225` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.8234` (Risk Distance: `0.000911` pts)
-  * +2.5R Take Profit: `0.8202`
+  * Execution Entry: `0.8223` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.8232` (Risk Distance: `0.000911` pts)
+  * +2.5R Take Profit: `0.8200`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

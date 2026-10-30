@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.12` (Distance: `-0.03%`)
-  * Point of Control (POC) = `1.12` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `1.12` (Distance: `+0.13%`)
+  * Value Area High (VAH) = `1.12` (Distance: `-0.02%`)
+  * Point of Control (POC) = `1.12` (Distance: `+0.03%`)
+  * Value Area Low (VAL) = `1.12` (Distance: `+0.14%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.12` | POC=`1.11` | VAL=`1.11`
@@ -116,10 +116,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `212` | `0x0911...129a` | `LONG` | 9,967,646.58 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -255,095.85 USD | `-2.56%` | `20X Isolated` |
-| `1112` | `0xe03b...ed11` | `SHORT` | 1,951,229.44 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 41,973.88 USD | `+2.15%` | `50X Isolated` |
-| `1709` | `0x3f31...a3d7` | `SHORT` | 1,205,908.85 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -5,977.41 USD | `-0.50%` | `50X Isolated` |
-| `1812` | `0x9df2...c665` | `SHORT` | 1,120,129.54 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 440.30 USD | `+0.04%` | `5X Isolated` |
+| `213` | `0x0911...129a` | `LONG` | 9,969,426.36 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -253,316.07 USD | `-2.54%` | `20X Isolated` |
+| `1112` | `0xe03b...ed11` | `SHORT` | 1,951,403.63 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 41,799.69 USD | `+2.14%` | `50X Isolated` |
+| `1712` | `0x3f31...a3d7` | `SHORT` | 1,206,124.16 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -6,192.71 USD | `-0.51%` | `50X Isolated` |
+| `1818` | `0x9df2...c665` | `SHORT` | 1,120,229.53 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 340.30 USD | `+0.03%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |

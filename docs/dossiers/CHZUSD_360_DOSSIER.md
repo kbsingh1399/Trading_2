@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHZUSD
 **Canonical Key**: `CHZUSD` | **Broker Instrument**: `CHZUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 430.52 USD | 0.00 USD | **`ACCUMULATION`** |
-| `15m` | 23.36 USD | 0.00 USD | **`ACCUMULATION`** |
-| `30m` | -2,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1h` | -23,660.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `2h` | -61,330.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `4h` | -96,050.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `6h` | -134,880.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `8h` | -178,720.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `12h` | -163,550.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `24h` | -89,410.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `1w` | -1,060,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
-| `30d` | -7,160,000.00 USD | 0.00 USD | **`DISTRIBUTION`** |
+| `5m` | -855.86 USD | 4,150.00 USD | **`ACCUMULATION`** |
+| `15m` | -8,310.00 USD | 3,780.00 USD | **`DISTRIBUTION`** |
+| `30m` | -8,970.00 USD | -24,570.00 USD | **`DISTRIBUTION`** |
+| `1h` | -16,890.00 USD | -33,700.00 USD | **`DISTRIBUTION`** |
+| `2h` | -68,880.00 USD | -110,460.00 USD | **`DISTRIBUTION`** |
+| `4h` | -76,930.00 USD | -441,060.00 USD | **`DISTRIBUTION`** |
+| `6h` | -164,510.00 USD | -544,750.00 USD | **`DISTRIBUTION`** |
+| `8h` | -188,850.00 USD | -122,360.00 USD | **`DISTRIBUTION`** |
+| `12h` | -197,890.00 USD | -170,030.00 USD | **`DISTRIBUTION`** |
+| `24h` | -97,440.00 USD | -258,020.00 USD | **`DISTRIBUTION`** |
+| `1w` | -1,070,000.00 USD | -922,960.00 USD | **`DISTRIBUTION`** |
+| `30d` | -7,160,000.00 USD | -11,180,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+430.52` | 15m=`+23.36` | 1h=`-23.66K` | 24h=`-89.41K`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Spot Capital Netflows: 5m=`-855.86` | 15m=`-8.31K` | 1h=`-16.89K` | 24h=`-97.44K`
+* Futures Capital Netflows: 5m=`+4.15K` | 15m=`+3.78K` | 1h=`-33.70K` | 24h=`-258.02K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZINC
 **Canonical Key**: `ZINC` | **Broker Instrument**: `ZINC.p` | **Asset Class**: `Base Metal`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,17 +44,17 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `3876.03` (Distance: `+0.00%`)
-  * Point of Control (POC) = `3870.94` (Distance: `+0.13%`)
-  * Value Area Low (VAL) = `3859.28` (Distance: `+0.43%`)
-  * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `3878.07` (Distance: `-0.06%`)
+  * Point of Control (POC) = `3872.35` (Distance: `+0.09%`)
+  * Value Area Low (VAL) = `3859.77` (Distance: `+0.42%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`3882.81` | POC=`3859.92` | VAL=`3855.82`
   * Prior Day Extremes: PDH=`3899.04` | PDL=`3847.79` | PDC=`3851.14`
   * Monday Range Blueprint: High=`3832.29` | Mid=`3784.81` | Low=`3737.34`
   * Developing Weekly Value Area: Weekly VAH=`3894.19` | Weekly POC=`3860.77` | Weekly VAL=`3818.73`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`3876.14` | Low=`3844.34`
+  * Asian Session (00:00-08:00 UTC): High=`3878.64` | Low=`3844.34`
   * London Session (08:00-16:00 UTC): High=`3891.50` | Low=`3860.50`
   * New York Session (13:00-21:00 UTC): High=`3899.26` | Low=`3852.74`
   * Initial Balance (First Hour): IB High=`3887.63` | IB Low=`3864.37`
@@ -267,15 +267,15 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `3859.28` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `3839.75` (Risk Distance: `19.53` pts)
-  * +2.5R Take Profit: `3908.10`
+  * Execution Entry: `3859.77` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `3840.24` (Risk Distance: `19.53` pts)
+  * +2.5R Take Profit: `3908.59`
   * Mathematical Lot Sizing: **`0.51 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `3876.03` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `3895.56` (Risk Distance: `19.53` pts)
-  * +2.5R Take Profit: `3827.21`
+  * Execution Entry: `3878.07` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `3897.60` (Risk Distance: `19.53` pts)
+  * +2.5R Take Profit: `3829.25`
   * Mathematical Lot Sizing: **`0.51 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

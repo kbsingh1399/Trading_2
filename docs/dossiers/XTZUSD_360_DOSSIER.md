@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XTZUSD
 **Canonical Key**: `XTZUSD` | **Broker Instrument**: `XTZUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `15m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30m` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `2h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `4h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `6h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `8h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `12h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `24h` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `1w` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
-| `30d` | 0.00 USD | 0.00 USD | **`NEUTRAL`** |
+| `5m` | 1,040.00 USD | 2,130.00 USD | **`ACCUMULATION`** |
+| `15m` | -992.10 USD | -13,180.00 USD | **`DISTRIBUTION`** |
+| `30m` | -1,850.00 USD | -16,410.00 USD | **`DISTRIBUTION`** |
+| `1h` | -541.05 USD | -10,560.00 USD | **`DISTRIBUTION`** |
+| `2h` | -18,140.00 USD | 11,810.00 USD | **`DISTRIBUTION`** |
+| `4h` | -73,880.00 USD | -69,230.00 USD | **`DISTRIBUTION`** |
+| `6h` | -56,450.00 USD | -89,090.00 USD | **`DISTRIBUTION`** |
+| `8h` | -121,080.00 USD | -337,140.00 USD | **`DISTRIBUTION`** |
+| `12h` | -158,270.00 USD | -417,390.00 USD | **`DISTRIBUTION`** |
+| `24h` | -93,110.00 USD | -348,820.00 USD | **`DISTRIBUTION`** |
+| `1w` | -75,530.00 USD | -750,590.00 USD | **`DISTRIBUTION`** |
+| `30d` | -737,430.00 USD | -4,280,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Spot Capital Netflows: 5m=`+1.04K` | 15m=`-992.10` | 1h=`-541.05` | 24h=`-93.11K`
+* Futures Capital Netflows: 5m=`+2.13K` | 15m=`-13.18K` | 1h=`-10.56K` | 24h=`-348.82K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

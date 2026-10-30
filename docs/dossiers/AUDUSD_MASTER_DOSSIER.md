@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: AUDUSD
 **Canonical Key**: `AUDUSD` | **Broker Instrument**: `AUDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.7034` (Distance: `+0.06%`)
-  * Point of Control (POC) = `0.7027` (Distance: `+0.16%`)
-  * Value Area Low (VAL) = `0.7022` (Distance: `+0.23%`)
+  * Value Area High (VAH) = `0.7034` (Distance: `+0.08%`)
+  * Point of Control (POC) = `0.7027` (Distance: `+0.18%`)
+  * Value Area Low (VAL) = `0.7022` (Distance: `+0.25%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.7044` | POC=`0.7035` | VAL=`0.7028`
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`0.7040` | Mid=`0.7026` | Low=`0.7012`
   * Developing Weekly Value Area: Weekly VAH=`0.7041` | Weekly POC=`0.7034` | Weekly VAL=`0.7023`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.7038` | Low=`0.7018`
+  * Asian Session (00:00-08:00 UTC): High=`0.7040` | Low=`0.7018`
   * London Session (08:00-16:00 UTC): High=`0.7068` | Low=`0.7012`
   * New York Session (13:00-21:00 UTC): High=`0.7082` | Low=`0.6998`
   * Initial Balance (First Hour): IB High=`0.7061` | IB Low=`0.7019`
@@ -299,7 +299,7 @@
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.7034` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.7039` (Risk Distance: `0.000581` pts)
+  * Spread-Padded Stop Loss: `0.7040` (Risk Distance: `0.000581` pts)
   * +2.5R Take Profit: `0.7019`
   * Mathematical Lot Sizing: **`0.17 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

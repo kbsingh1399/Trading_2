@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDUSD
 **Canonical Key**: `NZDUSD` | **Broker Instrument**: `NZDUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.5635` (Distance: `+0.02%`)
-  * Point of Control (POC) = `0.5629` (Distance: `+0.14%`)
-  * Value Area Low (VAL) = `0.5626` (Distance: `+0.19%`)
+  * Value Area High (VAH) = `0.5636` (Distance: `+0.08%`)
+  * Point of Control (POC) = `0.5629` (Distance: `+0.21%`)
+  * Value Area Low (VAL) = `0.5626` (Distance: `+0.25%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `TREND_UP_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.5626` | POC=`0.5621` | VAL=`0.5611`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `0.5635` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.5642` (Risk Distance: `0.000654` pts)
-  * +2.5R Take Profit: `0.5619`
+  * Execution Entry: `0.5636` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `0.5643` (Risk Distance: `0.000654` pts)
+  * +2.5R Take Profit: `0.5620`
   * Mathematical Lot Sizing: **`0.15 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

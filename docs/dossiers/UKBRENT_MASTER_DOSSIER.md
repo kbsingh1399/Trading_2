@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UKBRENT
 **Canonical Key**: `UKBRENT` | **Broker Instrument**: `UKBRENT.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,15 +44,15 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `117.66` (Distance: `-0.67%`)
-  * Point of Control (POC) = `115.94` (Distance: `+0.81%`)
-  * Value Area Low (VAL) = `115.55` (Distance: `+1.14%`)
+  * Value Area High (VAH) = `117.61` (Distance: `-0.59%`)
+  * Point of Control (POC) = `115.94` (Distance: `+0.85%`)
+  * Value Area Low (VAL) = `115.55` (Distance: `+1.18%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`115.53` | POC=`115.20` | VAL=`114.53`
   * Prior Day Extremes: PDH=`116.49` | PDL=`113.71` | PDC=`116.20`
   * Monday Range Blueprint: High=`117.62` | Mid=`115.92` | Low=`114.21`
-  * Developing Weekly Value Area: Weekly VAH=`116.13` | Weekly POC=`115.19` | Weekly VAL=`114.47`
+  * Developing Weekly Value Area: Weekly VAH=`116.16` | Weekly POC=`115.19` | Weekly VAL=`114.47`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`118.58` | Low=`115.54`
   * London Session (08:00-16:00 UTC): High=`117.38` | Low=`116.44`
@@ -273,9 +273,9 @@
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.63 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `117.66` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `118.28` (Risk Distance: `0.6288` pts)
-  * +2.5R Take Profit: `116.08`
+  * Execution Entry: `117.61` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `118.24` (Risk Distance: `0.6288` pts)
+  * +2.5R Take Profit: `116.04`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `0.63 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

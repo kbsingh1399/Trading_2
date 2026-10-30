@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADJPY
 **Canonical Key**: `CADJPY` | **Broker Instrument**: `CADJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 08:39:51 IST` (`2026-10-30 03:09:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:42:53 IST` (`2026-10-30 03:12:53 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `112.83` (Distance: `-0.06%`)
-  * Point of Control (POC) = `112.76` (Distance: `+0.00%`)
-  * Value Area Low (VAL) = `112.69` (Distance: `+0.07%`)
+  * Value Area High (VAH) = `112.84` (Distance: `-0.10%`)
+  * Point of Control (POC) = `112.77` (Distance: `-0.04%`)
+  * Value Area Low (VAL) = `112.69` (Distance: `+0.03%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`112.96` | POC=`112.83` | VAL=`112.78`
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `112.69` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `112.57` (Risk Distance: `0.1118` pts)
-  * +2.5R Take Profit: `112.96`
+  * Spread-Padded Stop Loss: `112.58` (Risk Distance: `0.1118` pts)
+  * +2.5R Take Profit: `112.97`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `112.83` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `112.94` (Risk Distance: `0.1118` pts)
-  * +2.5R Take Profit: `112.55`
+  * Execution Entry: `112.84` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `112.95` (Risk Distance: `0.1118` pts)
+  * +2.5R Take Profit: `112.56`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
