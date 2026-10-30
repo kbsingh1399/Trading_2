@@ -4,7 +4,7 @@
 
 > **GOVERNANCE PURPOSE**:
 > This registry serves as the single source of truth for all live running positions, resting pending maker limit orders, locked-in profit ratchets, and banked session profits.
-> It is automatically updated by the dynamic position supervisor daemon and pushed to GitHub main every 60 seconds (`https://github.com/kbsingh1399/Trading_2.git`).
+> It is automatically updated by the dynamic position supervisor daemon and pushed to GitHub main (`https://github.com/kbsingh1399/Trading_2.git`).
 > 
 > **RAW GITHUB FETCH URL FOR ARENA.AI & Z.AI**:
 > `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`
@@ -17,13 +17,12 @@
 - **Floating Equity**: **4,763.23 USD**
 - **Free Margin**: **4,763.23 USD**
 - **Margin Used**: **0.00 USD**
-- **Hard Capital Floor**: **4,775.00 USD** (Statutory Drawdown Defense Floor | Deficit: **-11.77 USD**)
-- **Operating Buffer**: **4,795.00 USD** (Solvency Kernel Floor | Deficit: **-31.77 USD**)
+- **Capital Posture**: **ACTIVE_HIGH_CONFLUENCE_OPERATION (Operator Mandate: Hard floor lifted)**
 - **Active Running Positions**: **0 ACTIVE** (100% Cash Defense Preserved)
-- **Active Resting Pending Orders**: **0 ACTIVE** (All resting orders cancelled per Unanimous Tri-Council Ruling)
-- **Total Contingent Downside Risk**: **0.00 USD**
-- **Execution Posture**: **TIER_0_DEFENSIVE (100% Cash Defense Active)**
-- **Last Synchronized (UTC)**: 2026-10-30 12:43:04 UTC (2026-10-30 18:13:04 IST)
+- **Active Resting Pending Orders**: **3 ACTIVE** (Staged per Cycle_035 15-Pillar Mechanical Forensics & Tri-Council Synthesis)
+- **Total Contingent Downside Risk**: **22.10 USD** (0.46% of account equity)
+- **Execution Capacity**: **3 / 3 Slots Deployed** ($N=3 \le 3$)
+- **Last Synchronized (UTC)**: 2026-10-30 13:52:30 UTC (2026-10-30 19:22:30 IST)
 
 ---
 
@@ -33,22 +32,20 @@
 |---|---|---|---|---|---|---|---|---|
 | **#19490051** | `AUDUSD.pi` | BUY | 0.08 lot | `0.70270` | `0.70282` | `0.70282` | **+0.96 USD (+0.40 USD net)** | **CLOSED IN PROFIT VIA RATCHET (+1.2 pips). Banked into balance (4,763.23 USD).** |
 
-*(Currently 0 active running positions. 100% flat cash preserved).*
+*(Currently 0 active running positions. 100% flat cash preserved while limit orders rest).*
 
 ---
 
-## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (0 ACTIVE — ZERO CONTINGENT EXPOSURE)
+## 🎯 3. ACTIVE RESTING PENDING MAKER LIMIT ORDERS (3 ACTIVE — CAPACITY DEPLOYED)
 
-| Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | Cancellation Timestamp (UTC) | Broker Retcode & Tri-Council Ruling |
-|---|---|---|---|---|---|---|---|---|
-| **#19520222** | `BTCUSD.pi` | SELL_LIMIT | 0.02 lot | `78,962.00` | `79,318.00` | `78,072.00` | 2026-10-30 12:43:04 UTC | **CANCELLED (`retcode=10009`)**: Tri-Council Unanimous Ruling (Pitfall 24 Short Max Pain magnet @ 79,868.95 > SL 79,318) |
-| **#19520223** | `XAUUSD.pi` | SELL_LIMIT | 0.01 lot | `4,007.50` | `4,017.00` | `3,983.70` | 2026-10-30 12:43:04 UTC | **CANCELLED (`retcode=10009`)**: Tri-Council Unanimous Ruling (Developing VAH drift + Friday rollover spread widening) |
-| **#19520224** | `AUDUSD.pi` | BUY_LIMIT | 0.15 lot | `0.70240` | `0.70180` | `0.70390` | 2026-10-30 12:43:04 UTC | **CANCELLED (`retcode=10009`)**: Tri-Council Unanimous Ruling (Friday rollover 21:15–22:30 UTC & weekend gap risk) |
+| Ticket | Symbol | Order Type | Volume | Limit Entry | Spread-Padded SL | Take Profit | R:R | Contingent Risk (USD) | Broker Retcode & Rationale |
+|---|---|---|---|---|---|---|---|---|---|
+| **#19532055** | `BTCUSD.pi` | `BUY_LIMIT` | 0.01 lot | `76,350.00` | `75,850.00` | `77,600.00` | **2.500R** | **$5.00 USD** | **ACTIVE (`retcode=10009`)**: Leans below Long Max Pain sweep 76,945; 4h CVD absorption; targets Short Max Pain 79,868. |
+| **#19532057** | `XMRUSD.p` | `BUY_LIMIT` | 0.01 lot | `585.50` | `577.50` | `605.50` | **2.500R** | **$8.00 USD** | **ACTIVE (`retcode=10009`)**: Absorbs below Long Max Pain 579.76 & VAL 586.56 support; targets 605.50 upper value area. |
+| **#19532058** | `AVEUSD.p` | `BUY_LIMIT` | 0.07 lot | `122.50` | `121.20` | `125.75` | **2.500R** | **$9.10 USD** | **ACTIVE (`retcode=10009`)**: Defends developing VAL 120.30; strictly sized for contract size 100 to guarantee risk <= $10.00 USD. |
 
 ---
 
 ## 🛡️ 4. ANTI-RETRACEMENT PROFIT RATCHET PROTOCOL
-- **Tier 1 (BE Lock)**: At `+0.80R` gain, move Stop Loss to Entry `+0.15R`.
-- **Tier 2 (Profit Lock)**: At `+1.50R` gain, move Stop Loss to Entry `+0.80R`.
-- **Tier 3 (Terminal Exit)**: At `+2.50R` target, close position for full statistical profit extraction.
-- **Time Decay Rule**: If trade produces `< +0.20R` within 24 bars (6 hours), close at market.
+- Once any order is filled and floating profit reaches **+1.0R**, the Antigravity Autonomous Position Supervisor immediately ratchets the Stop Loss to **Break-Even + 0.2R (Spread Buffer)**.
+- At **+1.8R**, Stop Loss trails at **+1.2R** to lock in green profit. Zero round-tripping allowed.

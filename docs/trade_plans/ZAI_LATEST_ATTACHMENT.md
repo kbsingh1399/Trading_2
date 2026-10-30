@@ -1,51 +1,15 @@
-{
-  "cycle_id": "Cycle_027",
-  "cutoff_utc": "2026-10-30 05:51:14",
-  "generated_by": "Seat #3 - Z.ai Sovereign Council (Risk Arbiter)",
-  "account_solvency": {
-    "login": 5064568, "server": "BlueberryMarketsSVG-Live",
-    "balance_usd": 4762.83, "equity_usd": 4770.67, "floating_usd": 7.84,
-    "hard_floor_usd": 4775.00, "operating_buffer_usd": 4795.00,
-    "hard_floor_cushion_usd": -4.33, "operating_buffer_cushion_usd": -24.33,
-    "balance_floor_deficit_usd": -12.17, "margin_level": 2545.850899194194,
-    "capital_mode": "TIER_0_DEFENSIVE", "nominal_risk_capacity_usd": 0.00,
-    "new_risk_admissible": false, "market_order_posture": "DENIED_FAIL_CLOSED",
-    "authorization": "DENIED_PENDING_FULL_HARD_GATES"
-  },
-  "active_staged_orders": [],
-  "governance_directives": [
-    {"card": "C27-AUD-RATCHET", "action": "SL 0.70282 -> 0.70288", "ticket": 19490051,
-     "trigger": "LIVE (0.70368 >= 0.70366)", "lock_usd": 1.44, "status": "REISSUED_3RD", "compliance": "NON_COMPLIANT_X2"},
-    {"card": "C27-AUD-RECOVERY-EXIT", "action": "market close at bid >= 0.70450",
-     "profit_usd": 14.40, "balance_after": 4777.23, "floor_cushion_after": 2.23,
-     "min_repair_bid": "0.70423", "fallback": "HARD CLOSE 2026-10-30 20:45 UTC", "status": "ARMED", "compliance": "NOT_TRIGGERED"},
-    {"card": "C27-CANCEL-ALL-PENDINGS", "tickets": [19489155, 19489157, 19489158, 19489159, 19489160],
-     "status": "REISSUED_3RD", "compliance": "NON_COMPLIANT_X2"}
-  ],
-  "high_confluence_formulated_trades": [],
-  "spread_screening": {"evaluated": 27, "conditional_pass_supplemental": ["AUDUSD:0.14bps", "BTCUSD:2.04bps"],
-                       "not_evaluable": 25, "root_cause": "EVIDENCE_VOID_FRESH_TICK_ABSENT_3RD_CYCLE"},
-  "econometric_grid": {"vr4": "NOT_COMPUTABLE", "er48": "NOT_COMPUTABLE", "hac_t": "NOT_COMPUTABLE",
-                       "ev_net_r": "NOT_COMPUTABLE", "p_win": "NOT_COMPUTABLE", "lcb_5pct": "NOT_COMPUTABLE"},
-  "active_position_ruling": {"ticket": 19490051, "ruling": "RUN",
-    "r_multiple": 0.8167, "be_ratchet_trigger": "LIVE", "time_decay": "EXEMPT (dual-clock: exec 17.49 bars / signal 28.84 bars)",
-    "weekend_gap_defense": "Card B fallback close 20:45 UTC tonight"},
-  "disputes_or_rejections": [
-    {"id": "D1", "issue": "Preflight nonce-rebind: identical observed_at 2026-10-27 13:12:05 on distinct digests (C26 d2407f19, C27 cf3e7ea7)", "status": "RECURRENCE_3_OF_3_UPGRADED_PIPELINE_SYSTEMIC"},
-    {"id": "D2", "issue": "BTC RR 1.5168R / BNB RR 1.1951R < 2.5R floor", "status": "PERSISTS"},
-    {"id": "D3", "issue": "5 pendings stale 28.84 bars; BTC VAH_Fade anchor invalidated (+1512.08 pts above refreshed VAH 79571.92)", "status": "PERSISTS_DOSSIER_EVIDENCED"},
-    {"id": "D4", "issue": "Concurrency 6 > max 4", "status": "PERSISTS"},
-    {"id": "D5", "issue": "Card A unexecuted: SL 0.70282 vs directed 0.70288, $0.48 lock gap", "status": "PERSISTS_X2_ESCALATED"},
-    {"id": "D6", "issue": "Cutoff drift +6s/+39s/+23s across C25/C26/C27", "status": "PERSISTS_NON_MONOTONIC"},
-    {"id": "D7", "issue": "Provenance freeze: all 5 hashes refreshed; commit 7466befe verified real (2026-10-30T03:59:07Z, predates cutoff 1h52m)", "status": "RESOLVED_THIS_CYCLE"},
-    {"id": "D8", "issue": "Unexplained balance decomposition 4837.08 -> 4762.83 = -74.25, no MT5 deal history provided", "status": "PERSISTS"},
-    {"id": "D9", "issue": "Spread evidence void", "status": "PARTIALLY_RESOLVED (2/27 dossier-attested, post-cutoff +123s)"},
-    {"id": "D10", "issue": "Ghost ledger (Cycle_004 tail) + registry content 21.40h stale with 3 phantom positions / 7 phantom pendings, zero mention of ticket 19490051, actively re-committed (05:51:16Z +2s post-cutoff)", "status": "UPGRADED_GHOST_WITH_HEARTBEAT"},
-    {"id": "D11", "issue": "Time-decay clock baseline ambiguity (exec-epoch vs signal-epoch)", "status": "OPEN_DUAL_CLOCK_DISCLOSED"},
-    {"id": "D12", "issue": "Margin-model heterogeneity: BTC implied 1.99:1 vs AUD 30:1", "status": "OPEN_MOOT_WHILE_RECEIPT_VOID"},
-    {"id": "D13", "issue": "Spec-repo structural drift: mandated _MASTER_DOSSIER.md (10 sections) absent; repo uses _360_DOSSIER.md (8 sections)", "status": "OPEN"}
-  ],
-  "verification": {"script": "cycle_027_seat3_math.py", "script_sha256": "b9a779e996cf4dd00319580bd40118ff0fd15c39b635296f0d5b2485e2a88dcd",
-                   "sidecar": "Cycle_027_seat3_sidecar.json", "sidecar_sha256": "7d8050d1a8b3be643d9fc8ee773f4cc426c5745293fa83a49f59f87de398f637",
-                   "checks": "40/40 EXACT", "github_fetches": "7/7 reached"}
-}
+[元数据 3/3 PASS] 周五✓ | C34→C35=54min✓ | IST 18:52✓
+[Registry 5/5 FAIL] 滞后28.92h✗ | 挂单7≠0✗ | 持仓3≠0✗ | equity 4727.51≠4763.23✗ | 撤销声称无佐证✗
+[Dossier 10/15 PASS] BTC 404✗ | ETH 404✗ | XAU存在✓ | XMR存在✓ | 缓存存在✓
+  XAU: mid✗ VWAP✗ POC✗ VAH✗ VAL✓ spread✓ SMP/LMP缺席✗ 时间戳缺席✗
+  XMR: mid✗ VAL✓ POC✓ SMP✓ LMP✓ VAH✗ spread✓
+[偿付 4/6 PASS] floor_gap −11.77✓ | buffer_gap −31.77✓ | margin自洽✓ | TIER_0容量0.00触发✓
+  Override未批准✗(第3周期) | 4票>N≤3自违✗
+[算术 20/26 PASS] 四票 stop/risk/paper-RR/size 全部✓ (9.00/5.00/4.00/8.00, paper RR 全 2.500)
+  可执行RR A/B: XAU 2.439/2.456✗ | BTC 2.346/2.390✗ | ETH 2.211/2.294✗ | XMR 2.341/2.387✗ (全部<2.5)
+  Pitfall-24: BTC✓(入场−65.12于磁体外/SL−565.12) | ETH✗薄弱(−4.37/−44.37) | XMR✗(SL距磁体仅1.26)
+  XAU✗(SL +55.98 位于入场与磁体之间) | XAU入场高于档案mid✗ | XMR入场距fresh mid仅0.09✓(但=即时成交)
+[数据完整性 0/5 FAIL] mid冻结✗ | XAU SMP/LMP漂移且无出处✗ | 宇宙94→93无解释✗ | 分数漂移+15/+15/+15✗ | "零售止损簇外"无数据✗
+[反事实/周末 3/7 FAIL] 四票全挂26.00→最坏4737.23(−37.77)✗ | registry基准4701.51(−73.49)✗
+  跳空中度→4715.23 | 严重→4664.23 | 撤单死线20:45✓ | 距rollover窗口7.883h✓
+[条件候选 2/2 PASS] BTC-改TP 2.509/2.553✓ | XMR-修复 2.511/2.568✓
