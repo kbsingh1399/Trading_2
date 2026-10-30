@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 07:39:18 IST` (`2026-10-30 02:09:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:45:23 IST` (`2026-10-30 02:15:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.82` | **Live Ask Quote**: `9.83` | **Mid Price**: `9.83`
-- **Spread Points**: `260.00` | **Spread BPS**: `2.65 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `220.00` | **Spread BPS**: `2.24 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 05:01:10 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:15:10 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:01:10 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:02:10 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---
@@ -269,14 +269,14 @@
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `9.80` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `8.59` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `12.81`
-  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * +2.5R Take Profit: `12.80`
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `9.86` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `11.06` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `6.85`
-  * Mathematical Lot Sizing: **`8.30 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

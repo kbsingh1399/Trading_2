@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCNH
 **Canonical Key**: `EURCNH` | **Broker Instrument**: `EURCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 07:39:18 IST` (`2026-10-30 02:09:18 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:45:23 IST` (`2026-10-30 02:15:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `7.45` | **Live Ask Quote**: `7.45` | **Mid Price**: `7.45`
-- **Spread Points**: `48.00` | **Spread BPS**: `0.64 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `43.00` | **Spread BPS**: `0.58 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,12 +32,12 @@
   * Upper +2.01σ Band: `7.48` | Lower -2.01σ Band: `7.42`
   * Upper +2.00σ Band: `7.48` | Lower -2.00σ Band: `7.42`
   * Upper +1.28σ Band: `7.47` | Lower -1.28σ Band: `7.43`
-  * Upper +1.00σ Band: `7.47` | Lower -1.00σ Band: `7.44`
+  * Upper +1.00σ Band: `7.46` | Lower -1.00σ Band: `7.43`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`7.45` | EMA-20=`7.45` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`7.45` (Slope: `+0.0000`) | EMA-100=`7.45`
   * Institutional Anchors: EMA-144=`7.45` | EMA-200=`7.45` (Slope: `+0.0000`) | EMA-233=`7.45`
-- **Range Boundaries**: 24H High=`7.53` | 24H Low=`7.38` | Weekly High=`7.60` | Weekly Low=`7.30`
+- **Range Boundaries**: 24H High=`7.52` | 24H Low=`7.37` | Weekly High=`7.60` | Weekly Low=`7.30`
 
 ---
 
@@ -50,17 +50,17 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7.48` | POC=`7.45` | VAL=`7.42`
-  * Prior Day Extremes: PDH=`7.50` | PDL=`7.41` | PDC=`7.45`
+  * Prior Day Extremes: PDH=`7.49` | PDL=`7.40` | PDC=`7.45`
   * Monday Range Blueprint: High=`7.49` | Mid=`7.45` | Low=`7.41`
   * Developing Weekly Value Area: Weekly VAH=`7.51` | Weekly POC=`7.45` | Weekly VAL=`7.39`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`7.47` | Low=`7.44`
+  * Asian Session (00:00-08:00 UTC): High=`7.46` | Low=`7.43`
   * London Session (08:00-16:00 UTC): High=`7.48` | Low=`7.42`
-  * New York Session (13:00-21:00 UTC): High=`7.50` | Low=`7.41`
+  * New York Session (13:00-21:00 UTC): High=`7.49` | Low=`7.40`
   * Initial Balance (First Hour): IB High=`7.47` | IB Low=`7.43`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `7.42` - `7.48`
-  * Optimal Trade Entry (OTE 0.705): `7.47`
+  * Optimal Trade Entry (OTE 0.705): `7.46`
   * Structural Invalidation Anchor (0.786): `7.51`
 
 ---
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 05:01:10 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:15:10 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:01:10 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:02:10 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---

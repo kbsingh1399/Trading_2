@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPDUSD
 **Canonical Key**: `XPDUSD` | **Broker Instrument**: `XPDUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 07:39:19 IST` (`2026-10-30 02:09:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:45:23 IST` (`2026-10-30 02:15:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `989.14` | **Live Ask Quote**: `993.04` | **Mid Price**: `991.09`
-- **Spread Points**: `3900.00` | **Spread BPS**: `39.35 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `992.09` | **Live Ask Quote**: `995.99` | **Mid Price**: `994.04`
+- **Spread Points**: `3900.00` | **Spread BPS**: `39.23 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,30 +23,30 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `1006.13` | VWAP Z-Score: `-0.45` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `3.37` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `47.49` (State: `NEUTRAL`)
+  * Session VWAP: `993.18` | VWAP Z-Score: `-0.04` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `5.39` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `40.19` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `1022.28` | Lower -3.00σ Band: `989.98`
-  * Upper +2.51σ Band: `1019.64` | Lower -2.51σ Band: `992.62`
-  * Upper +2.01σ Band: `1016.95` | Lower -2.01σ Band: `995.31`
-  * Upper +2.00σ Band: `1016.89` | Lower -2.00σ Band: `995.36`
-  * Upper +1.28σ Band: `1013.02` | Lower -1.28σ Band: `999.24`
-  * Upper +1.00σ Band: `1011.51` | Lower -1.00σ Band: `1000.74`
+  * Upper +3.00σ Band: `1010.27` | Lower -3.00σ Band: `976.08`
+  * Upper +2.51σ Band: `1007.48` | Lower -2.51σ Band: `978.88`
+  * Upper +2.01σ Band: `1004.63` | Lower -2.01σ Band: `981.72`
+  * Upper +2.00σ Band: `1004.57` | Lower -2.00σ Band: `981.78`
+  * Upper +1.28σ Band: `1000.47` | Lower -1.28σ Band: `985.88`
+  * Upper +1.00σ Band: `998.87` | Lower -1.00σ Band: `987.48`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`1004.39` | EMA-20=`1004.54` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`1005.30` (Slope: `+0.0000`) | EMA-100=`1008.98`
-  * Institutional Anchors: EMA-144=`1012.57` | EMA-200=`1017.08` (Slope: `-0.1613`) | EMA-233=`1019.83`
-- **Range Boundaries**: 24H High=`1026.11` | 24H Low=`995.50` | Weekly High=`1064.58` | Weekly Low=`995.50`
+  * Fast EMA Array: EMA-9=`995.37` | EMA-20=`999.15` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`1002.57` (Slope: `+0.0000`) | EMA-100=`1006.94`
+  * Institutional Anchors: EMA-144=`1010.67` | EMA-200=`1015.39` (Slope: `-0.2118`) | EMA-233=`1018.24`
+- **Range Boundaries**: 24H High=`1026.11` | 24H Low=`982.90` | Weekly High=`1064.58` | Weekly Low=`982.90`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `999.13` (Distance: `-0.78%`)
-  * Point of Control (POC) = `987.25` (Distance: `+0.41%`)
-  * Value Area Low (VAL) = `982.98` (Distance: `+0.85%`)
+  * Value Area High (VAH) = `998.50` (Distance: `-0.43%`)
+  * Point of Control (POC) = `989.47` (Distance: `+0.48%`)
+  * Value Area Low (VAL) = `984.56` (Distance: `+0.98%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1008.75` | POC=`1005.91` | VAL=`1000.67`
@@ -55,13 +55,13 @@
   * Developing Weekly Value Area: Weekly VAH=`1039.26` | Weekly POC=`1004.95` | Weekly VAL=`998.96`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`1006.65` | Low=`982.90`
-  * London Session (08:00-16:00 UTC): High=`995.05` | Low=`987.13`
-  * New York Session (13:00-21:00 UTC): High=`997.04` | Low=`985.14`
-  * Initial Balance (First Hour): IB High=`994.06` | IB Low=`988.12`
+  * London Session (08:00-16:00 UTC): High=`998.01` | Low=`990.06`
+  * New York Session (13:00-21:00 UTC): High=`1000.00` | Low=`988.07`
+  * Initial Balance (First Hour): IB High=`997.02` | IB Low=`991.05`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `987.13` - `995.05`
-  * Optimal Trade Entry (OTE 0.705): `993.07`
-  * Structural Invalidation Anchor (0.786): `999.02`
+  * Golden Pocket Zone (0.618 - 0.650): `990.06` - `998.01`
+  * Optimal Trade Entry (OTE 0.705): `996.02`
+  * Structural Invalidation Anchor (0.786): `1001.99`
 
 ---
 
@@ -230,21 +230,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 05:01:10 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:15:10 IST`: [economics.td.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:01:10 IST`: [investinglive.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [msn.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:00:10 IST`: [morningstar.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 02:02:10 IST`: [sec.gov] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [cnbc.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [@LiveSquawk] - (Sentiment: `Neutral`)
-  * `2026-10-30 01:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@DeItaone] - (Sentiment: `Neutral`)
-  * `2026-10-30 00:02:10 IST`: [@mb_ghalibaf] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [snb.ch] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [@Tenz_News] - (Sentiment: `Neutral`)
-  * `2026-10-29 23:02:10 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:16:34 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:38:34 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 07:37:34 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:39:34 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [investinglive.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 03:39:34 IST`: [msn.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 02:39:34 IST`: [morningstar.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 01:39:34 IST`: [sec.gov] - (Sentiment: `Neutral`)
 
 
 ---
@@ -267,18 +267,18 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `982.98` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `973.08` (Risk Distance: `9.90` pts)
-  * +2.5R Take Profit: `1007.72`
-  * Mathematical Lot Sizing: **`1.01 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `984.56` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `972.24` (Risk Distance: `12.32` pts)
+  * +2.5R Take Profit: `1015.35`
+  * Mathematical Lot Sizing: **`0.81 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
-  * Execution Entry: `999.13` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `1009.03` (Risk Distance: `9.90` pts)
-  * +2.5R Take Profit: `974.39`
-  * Mathematical Lot Sizing: **`1.01 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Execution Entry: `998.50` (Daily VAH sweep / Bearish OTE)
+  * Spread-Padded Stop Loss: `1010.82` (Risk Distance: `12.32` pts)
+  * +2.5R Take Profit: `967.71`
+  * Mathematical Lot Sizing: **`0.81 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`999.02`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1001.99`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

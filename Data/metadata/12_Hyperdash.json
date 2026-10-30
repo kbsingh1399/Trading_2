@@ -2,7 +2,7 @@
   "feed_name": "12_Hyperdash",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 295,
+  "row_count": 280,
   "column_count": 9,
   "columns": [
     "Section",
@@ -15,9 +15,9 @@
     "Wallet_or_Address",
     "Timestamp_IST"
   ],
-  "byte_size": 10121,
-  "timestamp_ist": "2026-10-30 07:43:17 IST",
-  "timestamp_utc": "2026-10-30 02:13:17 UTC",
-  "epoch_utc": 1793326397.158424,
-  "write_duration_ms": 5.19
+  "byte_size": 8918,
+  "timestamp_ist": "2026-10-30 07:45:31 IST",
+  "timestamp_utc": "2026-10-30 02:15:31 UTC",
+  "epoch_utc": 1793326531.878571,
+  "write_duration_ms": 9.38
 }
