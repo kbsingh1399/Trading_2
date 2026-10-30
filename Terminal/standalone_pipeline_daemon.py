@@ -27,6 +27,11 @@ import sys
 import time
 import traceback
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT_DIR = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
