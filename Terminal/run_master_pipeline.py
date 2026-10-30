@@ -153,8 +153,8 @@ def cleanup_browser_tabs() -> int:
     """Closes all collector ephemeral tabs via CDP while protecting Arena and Z.ai."""
     closed_count = 0
     try:
-        req = urllib.request.Request("http://127.0.0.1:9222/json", timeout=3)
-        with urllib.request.urlopen(req) as resp:
+        req = urllib.request.Request("http://127.0.0.1:9222/json")
+        with urllib.request.urlopen(req, timeout=3) as resp:
             tabs = json.loads(resp.read().decode("utf-8"))
         for t in tabs:
             if t.get("type") != "page":
