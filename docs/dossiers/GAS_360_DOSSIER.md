@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GAS
 **Canonical Key**: `GAS` | **Broker Instrument**: `GAS.p` | **Asset Class**: `Energy / Commodity`
-**Timestamp**: `2026-10-30 09:31:16 IST` (`2026-10-30 04:01:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:34:19 IST` (`2026-10-30 04:04:19 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `2.61` | **Live Ask Quote**: `2.62` | **Mid Price**: `2.62`
-- **Spread Points**: `17.00` | **Spread BPS**: `65.00 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `2.61` | **Live Ask Quote**: `2.63` | **Mid Price**: `2.62`
+- **Spread Points**: `17.00` | **Spread BPS**: `64.95 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,9 +23,9 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `2.61` | VWAP Z-Score: `-1.00` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0070` (Volatility Regime: `NORMAL_COMPRESSION`)
-  * 14-Period RSI: `43.20` (State: `NEUTRAL`)
+  * Session VWAP: `2.61` | VWAP Z-Score: `-0.16` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0068` (Volatility Regime: `NORMAL_COMPRESSION`)
+  * 14-Period RSI: `45.21` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
   * Upper +3.00σ Band: `2.62` | Lower -3.00σ Band: `2.60`
   * Upper +2.51σ Band: `2.62` | Lower -2.51σ Band: `2.60`
@@ -35,8 +35,8 @@
   * Upper +1.00σ Band: `2.61` | Lower -1.00σ Band: `2.61`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`2.61` | EMA-20=`2.61` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`2.63` (Slope: `+0.0000`) | EMA-100=`2.66`
-  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3249`) | EMA-233=`2.68`
+  * Core Structural Array: EMA-50=`2.63` (Slope: `+0.0000`) | EMA-100=`2.65`
+  * Institutional Anchors: EMA-144=`2.67` | EMA-200=`2.68` (Slope: `-0.3204`) | EMA-233=`2.68`
 - **Range Boundaries**: 24H High=`2.77` | 24H Low=`2.59` | Weekly High=`2.77` | Weekly Low=`2.59`
 
 ---
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `2.61` (Distance: `+0.05%`)
-  * Point of Control (POC) = `2.61` (Distance: `+0.17%`)
-  * Value Area Low (VAL) = `2.61` (Distance: `+0.29%`)
+  * Value Area High (VAH) = `2.61` (Distance: `+0.13%`)
+  * Point of Control (POC) = `2.61` (Distance: `+0.29%`)
+  * Value Area Low (VAL) = `2.61` (Distance: `+0.37%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`2.70` | POC=`2.65` | VAL=`2.59`
@@ -57,7 +57,7 @@
   * Asian Session (00:00-08:00 UTC): High=`2.62` | Low=`2.60`
   * London Session (08:00-16:00 UTC): High=`2.63` | Low=`2.61`
   * New York Session (13:00-21:00 UTC): High=`2.63` | Low=`2.60`
-  * Initial Balance (First Hour): IB High=`2.62` | IB Low=`2.61`
+  * Initial Balance (First Hour): IB High=`2.63` | IB Low=`2.61`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `2.61` - `2.63`
   * Optimal Trade Entry (OTE 0.705): `2.62`
@@ -185,20 +185,20 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 218.19 USD | 941.44 USD | **`ACCUMULATION`** |
-| `15m` | 10,110.00 USD | 3,930.00 USD | **`ACCUMULATION`** |
-| `30m` | 8,730.00 USD | 5,790.00 USD | **`ACCUMULATION`** |
-| `1h` | 3,240.00 USD | 1,790.00 USD | **`ACCUMULATION`** |
-| `2h` | -14,270.00 USD | 10,870.00 USD | **`DISTRIBUTION`** |
-| `4h` | -110,720.00 USD | -66,220.00 USD | **`DISTRIBUTION`** |
-| `6h` | -177,610.00 USD | -81,100.00 USD | **`DISTRIBUTION`** |
-| `8h` | -315,960.00 USD | -105,370.00 USD | **`DISTRIBUTION`** |
-| `12h` | -336,020.00 USD | -175,560.00 USD | **`DISTRIBUTION`** |
-| `24h` | -468,440.00 USD | -127,980.00 USD | **`DISTRIBUTION`** |
-| `1w` | -2,150,000.00 USD | -167,290.00 USD | **`DISTRIBUTION`** |
-| `30d` | -3,700,000.00 USD | -1,470,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -31,560.00 USD | 941.44 USD | **`DISTRIBUTION`** |
+| `15m` | -60,430.00 USD | 3,930.00 USD | **`DISTRIBUTION`** |
+| `30m` | -56,390.00 USD | 5,790.00 USD | **`DISTRIBUTION`** |
+| `1h` | -57,250.00 USD | 1,790.00 USD | **`DISTRIBUTION`** |
+| `2h` | -87,870.00 USD | 10,870.00 USD | **`DISTRIBUTION`** |
+| `4h` | -171,570.00 USD | -66,220.00 USD | **`DISTRIBUTION`** |
+| `6h` | -246,460.00 USD | -81,100.00 USD | **`DISTRIBUTION`** |
+| `8h` | -379,440.00 USD | -105,370.00 USD | **`DISTRIBUTION`** |
+| `12h` | -401,420.00 USD | -175,560.00 USD | **`DISTRIBUTION`** |
+| `24h` | -542,360.00 USD | -127,980.00 USD | **`DISTRIBUTION`** |
+| `1w` | -2,220,000.00 USD | -167,290.00 USD | **`DISTRIBUTION`** |
+| `30d` | -3,770,000.00 USD | -1,470,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+218.19` | 15m=`+10.11K` | 1h=`+3.24K` | 24h=`-468.44K`
+* Spot Capital Netflows: 5m=`-31.56K` | 15m=`-60.43K` | 1h=`-57.25K` | 24h=`-542.36K`
 * Futures Capital Netflows: 5m=`+941.44` | 15m=`+3.93K` | 1h=`+1.79K` | 24h=`-127.98K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
