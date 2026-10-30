@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-30 04:25:29 UTC",
+  "timestamp_utc": "2026-10-30 04:28:30 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -323,7 +323,7 @@
       "mid_price": 4.1785,
       "spread_bps": 74.19,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 3.979,
@@ -349,7 +349,7 @@
       "mid_price": 0.9295,
       "spread_bps": 225.93,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.8927,
@@ -375,7 +375,7 @@
       "mid_price": 56.125,
       "spread_bps": 53.45,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 77,
+      "confluence_score": 85,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 54.181,
@@ -401,7 +401,7 @@
       "mid_price": 285.8505,
       "spread_bps": 20.33,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 269.91,
@@ -453,7 +453,7 @@
       "mid_price": 0.110011,
       "spread_bps": 1.9998000199974773,
       "gate_status": "PASS",
-      "confluence_score": 95,
+      "confluence_score": 87,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.109680967,
@@ -479,7 +479,7 @@
       "mid_price": 0.17001700000000003,
       "spread_bps": 1.9998000199983672,
       "gate_status": "PASS",
-      "confluence_score": 95,
+      "confluence_score": 87,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.16950694900000002,
@@ -2897,7 +2897,7 @@
       "mid_price": 123.67500000000001,
       "spread_bps": 26.68,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 80,
+      "confluence_score": 72,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 117.73,
@@ -3235,7 +3235,7 @@
       "mid_price": 6.732,
       "spread_bps": 38.62,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 80,
+      "confluence_score": 72,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 6.254,
