@@ -1,525 +1,62 @@
-\n# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION — [Cycle_022]\n\n\n## Dossier-Centric Multi-Agent Squad Audit & Full-Length Forensic Candidate Discovery Specification\n\n\n> **Document Status**: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)\n\n> **Active Execution Cycle**: **Cycle_022** (Cutoff Timestamp: 2026-10-30 02:56:13 UTC)\n\n> **Mandatory Cycle Stamping**: Every prompt, deliberation section, and JSON response MUST be explicitly stamped with this exact Cycle Number: **Cycle_022**.\n\n> **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md` & `docs/specs/Arena_GLM_Standard_Prompt.md`)\n\n> **Council Architecture**:\n\n>   1. **Antigravity Executive Desk**: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents (Seat #1 — Final Boss).\n\n>   2. **Arena.ai Frontier Council**: Co-Equal Autonomous Quantitative Strategist & Deep Reasoning Engine (Seat #2 — Lead Quant).\n\n>   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Adversarial Solvency Arbiter (Seat #3 — Risk Arbiter).\n\n> **Target Account**: Blueberry Markets MT5 Account #5064568 (`BlueberryMarketsSVG-Live`, Raw Spread)\n\n> **Active Capital Floor & Solvency Invariant**:\n\n>   - Hard Capital Floor: **4,775.00 USD** (Statutory Drawdown Defense Floor | Zero breach allowed)\n\n>   - Operating Buffer: **4,795.00 USD** (Solvency Kernel Floor)\n\n>   - Maximum Nominal Risk per Ticket: Strictly **<= 10.00 USD** (0.20% of capital)\n\n>   - Minimum Reward-to-Risk: Strictly **>= +2.5R** (Purged legacy 5R fantasy)\n\n> **Canonical Repositories & Shared Infrastructure**:\n\n>   - Core Trading: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)\n\n>   - Live Collaborative Ledger: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/TRI_COUNCIL_COLLABORATIVE_INTELLIGENCE_LEDGER.md`\n\n>   - Live Portfolio & Order aw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`\n\n>   - Master Dossier Repository: `docs/dossiers/*_MASTER_DOSSIER.md` (Over 400 institutional asset dossiers across Crypto, Forex, Indices, and Metals)\n\n> **Governing Standards**:\n\n>   - Canonical Decision Chain: `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`\n\n>   - 10 Lethal Pitfalls & Autopsy: `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`\n\n>   - 35-Feed Interrogation Questions: `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`\n\n>   - On-Wakeup Protocol: `Data/Manditory/ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`\n\n---\n\n### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE & TELEMETRY RECEIPT:\n\n\n{\n\n"schema_version": "1.1.0",\n\n"cycle_id": "Cycle_022",\n\n"uuid": "cdd38445-7ae0-4e41-973e-b6a32fe798c6",\n\n"dispatch_nonce": "60001ad2-6ec5-4c24-8a53-f0ebac736aef",\n\n"cutoff_utc": "2026-10-30 02:55:09 UTC",\n\n"provenance": {\n\n```\n"git_commit": "d36c578778cae1fab8d49c358969a0cf17771900",
-
-"git_tree": "e4fcb2358ade7e3ea245c576c73149fd880bd466",
-
-"prompt_sha256": "ec1eb15c6bf68dcb5dfedf8aa07fc3b5bae4f1f9077c759aa8dfb8c8b8e3726d",
-
-"risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
-
-"evidence_manifest_sha256": "bb70aa8756c69b840a49d001a398c4bef98a7854bc2e390350ccd4e35d6da4e7",
-
-"parquet_freshness_verified": true,
-
-"parquet_audit_scorecard_fresh": true\n```\n\n},\n\n"inventory": {\n\n```\n"account_login": 5064568,
-
-"server": "BlueberryMarketsSVG-Live",
-
-"currency": "USD",
-
-"balance": 4762.83,
-
-"equity": 4770.91,
-
-"margin_used": 187.39,
-
-"margin_free": 4583.52,
-
-"margin_level": 2545.978974331608,
-
-"active_positions_count": 1,
-
-"pending_orders_count": 5,
-
-"active_positions": [
-
-  {
-
-    "ticket": 19490051,
-
-    "time": 1793323735,
-
-    "time_msc": 1793323735372,
-
-    "time_update": 1793323735,
-
-    "time_update_m    "magic": 20261030,
-
-    "identifier": 19490051,
-
-    "reason": 3,
-
-    "volume": 0.08,
-
-    "price_open": 0.7027,
-
-    "sl": 0.70282,
-
-    "tp": 0.7057,
-
-    "price_current": 0.70371,
-
-    "swap": 0.0,
-
-    "profit": 8.08,
-
-    "symbol": "AUDUSD.pi",
-
-    "comment": "TriCouncil C11 AUDUSD",
-
-    "external_id": ""
-
-  }
-
-],
-
-"pending_orders": [
-
-  {
-
-    "ticket": 19489155,
-
-    "time_setup": 1793313519,
-
-    "time_setup_msc": 1793313519559,
-
-    "time_done": 0,
-
-    "time_done_msc": 0,
-
-    "time_expiration": 0,
-
-    "type": 3,
-
-    "type_time": 0,
-
-    "type_filling": 2,
-
-    "state": 1,
-
-    "magic": 20261030,
-
-    "position_id": 0,
-
-    "position_by_id": 0,
-
-    "reason": 3,
-
-    "volume_initial": 0.01,
-
-    "volume_current": 0.01,
-
-    "price_open": 81084.0,
-
-    "sl": 81680.0,
-
-    "tp": 80180.0,
-
-    "price_current": 77161.0,
-
-    "price_stoplimit": 0.0,
-
-    "symbol": "BTCUSD.pi",
-
-    "comment": "TC_BTC_VAH_Fade",
-
-    "external_id": ""
-
+\n📚 **Active Skills Loaded & Applied:** @[trader-signal], @[trader-risk], @[market-ingest], @[clean-code], @[systematic-debugging], @[data-quality-checker]\n
+\n**Skills-Gap Audit — "If it use all the available skills related will it improve our response?"** — **[Cycle_022]**: **YES — and all six are already engaged at maximum depth.** @[market-ingest] performed the full `git archive` tree extraction of envelope commit `d36c5787` (162 dossiers, 173 parquet feeds); @[data-quality-checker] re-detected the frozen `Data/Candles` corpus (last bar `2026-10-29 17:45 UTC`, ~9h stale) and re-quarantined the stale preflight receipt (KS-4); @[trader-signal] reran the dual-track econometric screen (frozen w=100 candles cross-validated against live `18_CVD_30D_15m` to `02:30 UTC`); @[trader-risk] enforced the TIER_0 solvency arithmetic; @[systematic-debugging] reconciled the envelope XAUUSD print (`3,997.58`) against the fresher `00_MT5` quote (`4,003.01` mid); @[clean-code] kept every extraction script deterministic and reproducible. No additional registered skill exists whose activation would materially alter the verdict below. Proceeding at full fidelity.\n\n---\n\n# 🏛️ DOSSIER-CENTRIC MULTI-AGENT SQUAD AUDIT — [Cycle_022]\n\n\n**Cutoff: `2026-10-30 02:56:13 UTC` | Envelope `cutoff_utc 2026-10-30 02:55:09 UTC` | `uuid cdd38445-7ae0-4e41-973e-b6a32fe798c6` | `dispatch_nonce 60001ad2-6ec5-4c24-8a53-f0ebac736aef`**\n\n---\n\n## §1 — VAULT INTAKE, CHAIN-OF-CUSTODY & INTEGRITY AUDIT — [Cycle_022]\n\n\n*(Persona 4: Execution & Market Clock Architect, assisted by @[data-quality-checker])*\n\n**1.1 Git envelope verification — PASS.** Envelope commit `d36c578778cae1fab8d49c358969a0cf17771900` verified locally post-fetch: `feat(sync): mirror full local workspace and telemetry [as_of 2026-10-30 02:53:28 UTC]`, committed `02:53:46 UTC`, tree hash `e4fcb2358ade7e3ea245c576c73149fd880bd466` — **exact match** to envelope `git_tree`. Git-to-envelope drift: **1m 41s** (vs 6m 54s in Cycle_021 — best custody tightness of the campaign). Chronology: `8062db0` (C021 envelope) → `db43d69` (C021 verification) → sync mirrors → `5f0bede` (post-cycle #47 feed sync `02:53:18 UTC`) → **`d36c578`** → `f9d87cd` → `5c3d48a` (**C022 verification: "execute +0.80R BE ratchet on AUDUSD.pi"**, `02:56:48 UTC`) = current `origin/main`.\n\n**1.2 Canonical feed checklist — 37/37 PASS** at `2026-10-30 02:53:18 UTC` (2m 55s before envelope cutoff). `all_passed: true`.\n\n**1.3 Dossier census — Zero Truncation Rule honored.** **162** full-length `_MASTER_DOSSIER.md` files ingested end-to-end (Sections 1→10), totaling **7,290,949 chars**, generated `02:51:40–41 UTC` (3m 28s pre-cutoff). **0** dossiers missing Section 10. All spread-cleared assets interrogated whole-file; no sub-range reads were performed.\n\n**1.4 Intra-vault clock skew matrix (vs cutoff `02:55:09 UTC`):**\n\n| Feed | Stamp (UTC) | Skew | Status |\n| --- | --- | --- | --- |\n| `parquet_all_feeds_checklist.json` | 02:53:18 | 1m 51s | FRESH |\n| Dossiers (×162) | 02:51:40 | 3m 29s | FRESH |\n| `10_Whale_Orders` (fresh batch) | 02:50–02:52 | ~4m | FRESH |\n| `00_MT5_Account_Telemetry` | 02:42:46 | 12m 23s | ACCEPTABLE |\n| `20_Auction_Market_Structure` | 02:42:55–43:03 | ~12m | ACCEPTABLE |\n| `18_CVD_30D_5m` | 02:40:00 | 15m | ACCEPTABLE |\n| `18_CVD_30D_15m` | 02:30:00 | 25m | ACCEPTABLE |\n| `9_Liquidation_Max_Pain_24H/7D` | 23:30:48 (Oct 29) | **3h 24m** | ADVISORY-STALE |\n| `Data/Candles/*_15m` (800-bar) | 17:45:00 (Oct 29) | **9h 10m** | **FROZEN — regime calls deferred to live CVD15** |\n\n\n**1.5 KILL-SWITCH KS-4 — STALE PREFLIGHT RECEIPT QUARANTINE (REPEAT OFFENSE, 3rd consecutive cycle).** The attached `execution_preflight_receipt.json` is stamped `2026-10-27 13:12:05 UTC` — **61h 44m stale** against the Cycle_022 cutoff, despite carrying the fresh nonce `60001ad2...` and `receipt_sha256 3339852a0f...`. A receipt cannot attest to a preflight that predates the telemetry it escorts by two and a half days. **Ruling: receipt QUARANTINED; any directive requiring a live preflight attestation resolves FAIL-CLOSED.** This compounds, rather than relaxes, the TIER_0 lockout in §2.\n\n**1.6 Data-contradiction note** (@[systematic-debugging]): envelope `price_current` for XAUUSD = `3,997.58` (below dossier D_VAL `4,000.33`), but the fresher `00_MT5` gate row (`02:42:46 UTC`) prints `4,002.97/4,003.05` and CVD5m closes `4,005.19` at `02:40 UTC`. The envelope snapshot caught a momentary wick; canonical state = XAU **INSIDE_VALUE, lower third**. All §4/§5 reasoning uses the reconciled print. Same for BNB (`706.9` envelope vs `710.9/714.1` MT5) and BTC (`77,161` envelope vs `77,341/77,356` MT5).\n\n---\n\n## §2 — ADVERSARIAL SOLVENCY GATEKEEPER — [Cycle_022]\n\n\n*(Persona 3 — fail-closed veto authority)*\n\n| Metric | Value (USD) |\n| --- | --- |\n| Realized Balance | 4,762.83 |\n| Floating Equity | **4,770.91** (`+8.08` float, all on `#19490051` = `+0.8417R`) |\n| Margin Used / Free Margin | 187.39 / 4,583.52 |\n| Margin Level | ≈ 2,546% |\n| vs Inviolate Hard Floor 4,775.00 | **−4.09** (deficit compressed from −12.17 in C021) |\n| vs Solvency Kernel 4,795.00 | **−24.09** |\n| vs 4,650 / 4,600 reference floors | +120.91 / +170.91 |\n| Envelope `existing_ticket_stress_usd` | **62.4875** |\n| Envelope `realized_headroom_usd` | **−96.66** |\n| Envelope `post_joint_stress_equity_usd` | **4,698.34** |\n\n\n**2.1 Stress decomposition (audited).** `62.4875 = (40.39 spot-to-SL aggregate × 1.25 shock multiplier) + 12.00 fixed friction`. The spot-to-SL aggregate = pending-book entry risk `33.27` + AUDUSD give-back-to-SL `≈ 7.04` (8.8 pips × 8.00 USD/pip). The gatekeeper notes — as in C020/C021 — that this formula **double-penalizes** the AUDUSD ticket: its SL now sits at `0.70282`, **+1.2 pips in profit**, so its true worst-case is a **guaranteed +0.96 USD credit**, not a debit. True ex-ante contingent downside of the entire 6-ticket book = **33.27 USD** (BTC 5.96 + BNB 0.41 + XAU 9.00 + NAS 8.50 + DJ30 9.40 + AUDUSD 0.00). The envelope figure nonetheless **governs** under fail-closed doctrine.\n\n**2.2 Verdict.** Headroom is negative (`−96.66`), equity sits below both the Hard Floor and the Kernel, and KS-4 is quarantined. Therefore, stamped for **Cycle_022**:\n\n- **`capital_mode = TIER_0_DEFENSIVE`** (envelope-confirmed)\n- **`new_risk_admissible = false`** — zero new broker tickets of any kind\n- Every §6 candidate is **STAGED_INTENT_ONLY**; **`new_candidate_orders: []`**\n- Management of the 6 existing tickets (hold/ratchet/cull) remains fully permitted — risk-reducing actions are always admissible.\n\n**Material improvement vs C021**: stress fell `72.49 → 62.49`, headroom improved `−106.66 → −96.66`, Hard-Floor deficit compressed `−12.17 → −4.09`, and the book's largest single risk (AUDUSD `9.60`) was **extinguished to 0.00** by the executed BE ratchet. The account is grinding toward floor reclamation without taking new risk — exactly the TIER_0 design intent.\n\n---\n\n## §3 — ECONOMETRICIAN / SCREENER — [Cycle_022]\n\n\n*(Persona 1: dual-track VR(4), Newey-West t, ER(48), ATR(14), VWAP Z)*\n\n**3.1 Spread gate (`00_MT5`, `02:42:46 UTC`): 156 gate rows — 89 PASS / 67 FAIL** (vs 88/68 in C021).\n
+**Sole flip C021→C022:** `SOLUSD.p` **FAIL 25.51 → PASS 24.16 bps** (re-admitted to the tradable universe). All C021 clearances held: HK50 `2.07`, UK100 `2.14`, STOXX50 `2.59`, GER40 `0.31`, SP500 `0.44`, NAS100 `0.42`, DJ30 `0.30`, XAU `0.20`, BTC `1.94`, ETH `13.56`, XMR `3.41`, ZEC `10.12`, XLM `19.63`, YFI `24.35`, BCH `17.32`, DSH `10.49`, USWTI `4.80`, UKBRENT `3.50`, all majors ≤ `0.9`. Persona-1 strict vetoes within the PASS set: **NETH25 `7.04 bps`** (mislabeled against a 25.0 crypto threshold; true TradFi gate is 5.0 → **VETO**, 88 strict) and boundary-caution flags on SOL (`24.16/25.0`) and YFI (`24.35/25.0`). Notable FAILs: **BNB `44.91`**, XRP `32.71`, LTC `54.41`, AVE `26.38`, SILVER `7.00`, COPPER `10.14`, FR40 `10.18`, SWISS20 `8.13`, CHINA50 `6.25`.\n\n**3.2 Regime screen.** The 800-bar candle corpus remains **frozen at `2026-10-29 17:45 UTC`** — identical to C021's matrix (headline survivors: **MR**: HK50 `0.4752`, NZDUSD `0.5446`, GOLD `0.6142`, UK100 `0.6234`, AUDCAD `0.6267` (t=−2.01), USDCNH `0.6094` (t=−1.66), USDCHF `0.7056`, USDJPY `0.7118`, SP500 `0.7203`, XMR `0.7275`, AU200 `0.7386`, STOXX50 `0.7490`, AUDUSD `0.7590`, GER40 `0.7834`; **TREND**: BTC `1.3738`, ETH `1.3241`, XLM `1.1985`, US2000 `1.1569`; **RW vetoes**: DJ30 `0.8735`, GBPUSD, USDCAD, EURJPY, GBPJPY, ZEC, BCH, DSH, YFI, USWTI, UKBRENT). Per protocol, the **live CVD15 track (fresh to `02:30 UTC`, n=92–96) supersedes** where it disagrees:\n\n| Symbol | VR(4) live | Regime | t_NW | ER(48) | 15m Δ% / Z | Confirmation |\n| --- | --- | --- | --- | --- | --- | --- |\n| GOLD | **0.5784** | MR | −1.44 | 0.202 | +14.0% / +0.58 | MR confirmed on both tracks |\n| USDJPY | **0.6418** | MR | −0.08 | 0.080 | **+87.5% / +1.25** (5m **+90% / +1.82**) | MR + violent buy absorption |\n| TRX | 0.6684 | MR | +1.16 | 0.230 | −2.4% / −0.25 | spread-vetoed (95.5 bps) |\n| NAS100 | **0.6847** | MR | −1.34 | 0.300 | −12.6% / +0.02 | MR strengthens vs C021 frozen 0.8451 |\n| SP500 | **0.7087** | MR | −0.98 | 0.216 | −70.8% / −0.22 | MR confirmed; sell deltas now dominate (flow flip vs C021 buy absorption) |\n| SILVER | 0.7161 | MR | −1.64 | 0.182 | −76.9% / −0.59 | spread-vetoed (7.0 bps) |\n| AUDUSD | **0.7446** | MR | −1.23 | 0.108 | −20.6% / −0.12 | MR confirmed on both tracks |\n| XRP | 0.8371 | MR | −1.37 | 0.337 | −4.3% / −0.20 | spread-vetoed (32.7 bps) |\n| BTC | **1.1702** | TREND | −0.90 | 0.390 | +1.4% / +0.56 | trend regime, downward drift sign |\n| US2000 | **1.2697** | TREND | +0.58 | 0.134 | −72.8% / −0.40 | trend-up but heavy sell delta — conflicted, stand aside |\n| BNB | 0.9362 | RW | −0.72 | 0.183 | −11.1% / −0.42 | RW + spread FAIL |\n| ETH | 0.9503 | RW | −1.04 | 0.349 | +1.7% / +0.44 | live RW tempers frozen-trend call |\n\n\n**Multi-timeframe CVD tension (macro):** 4h deltas are uniformly negative across risk assets (BTC `−7.2%` Z−0.70, BNB `−6.7%` **Z−1.58**, GOLD `−11.5%` **Z−1.53**, NAS `−90%`, SP500 `−79.1%`), while 1h deltas flipped positive (BTC +7.1%, ETH +12.5%, NAS +56.4%, SP500 +50.0%). Read: an intraday relief bid inside a dominant distribution tape — supportive of the existing **fade-the-rip SELL_LIMIT grid**, hostile to chasing longs. The standout directional signal of the cycle is **USDJPY buy pressure (5m Z +1.82, 15m Z +1.25, 1h +61.8%)** pressing price `157.795` toward W_VAH `158.07`.\n\n---\n\n## §4 — DOSSIER MICROSTRUCTURE FORENSICS — [Cycle_022]\n\n\n*(Persona 2: full Sections 1–10 interrogation of every spread-cleared asset; highlights below)*\n\n**AUDUSD** (`#19490051` host): AMS **ABOVE_VALUE / RANGE_EXPANSION**. D: `0.70317/0.70268/0.70198`; W: `0.70413/0.70339/0.70226`. VWAP `0.7029`, **Z +1.06**; bands: +1.28σ `0.7035`, **+2.51σ `0.7040`**, +3σ `0.7042`. Spot `0.70368/0.70369` (tightest spread on the board, `0.14 bps`) sits **above D_VAH**, between +1.28σ and +2.51σ. TP `0.70570` lies beyond +3σ and W_VAH `0.70413` — full extraction requires continued range expansion. Flow: 1h delta **+90% Z+0.52** (buyers), but 15m `−20.6%` and 5m `−2.4%` show the thrust pausing. Dossier §10 ratchet law verified: *"At +0.80R lock to Entry ± 0.15R; at +1.65R lock to Entry ± 0.80R"* — **Tier-1 executed on-broker** (`TRADE_ACTION_SLTP`, retcode `10009`, SL `0.70150 → 0.70282`).\n\n**XAUUSD** (`#19489158` host): INSIDE_VALUE / ROTATIONAL_BALANCE. D: `4013.39/4006.86/4000.33`; W_VAH `4049.63`; PD_VAH `4,039.67`. VWAP `4003.01`, **Z +0.00** — dead-center fair value. GOLD live VR4 `0.5784` = strongest MR on the cleared TradFi board. The short's entry `4,040.50` = PD_VAH sweep + 1.3 pts, SL `4,049.50` tucked under W_VAH/`4,050` institutional barrier. Distance to fill: `0.93%` from reconciled spot `4,003`.\n\n**BTC** (`#19489155` host): AMS regime shifted **BELOW_VALUE → INSIDE_VALUE** (D recalc: `79,684.72/78,804.88/77,090.32`). Spot `77,348` mid. **C021's 14.00M ask fortress at `77,214` is gone — price traded through it**; the fresh whale batch (`02:50 UTC`) shows a re-formed ask shelf **3.90M @ 77,500 + 3.34M @ 77,611 + 2.51M @ 77,590** (asks 14.33M vs bids 10.63M — sell-skewed book) over bids `3.46M @ 76,868` / `3.15M @ 76,950`. Max pain (3h24m stale, advisory): 24H S_MP `79,867`, 7D S_MP `82,181`. Flag retained: ticket SL `81,680` is **inside** the 7D short-max-pain magnet `82,181` — acceptable only because entry `81,084` is 4.8% away and PD_VAH `81,003` anchors the fade.\n\n**ETH**: INSIDE_VALUE (D: `2,288.70/2,264.42/2,206.95`). VWAP `2,207.25` Z `+0.05`. Monster ask ladder intact and higher: **9.89M @ 2,315, 6.87M @ 2,375, 5.41M @ 2,400** (asks 75.0M vs bids 63.7M); bid floor 5.34M @ `2,150` / 4.97M @ `2,140`. 24H S_MP `2,303.89`. The C021 staged fade at `2,219.50` has been overtaken by value migration — restaged at D_VAH `2,288.70` (§6).\n\n**BNB** (`#19489157` host): INSIDE_VALUE (D_VAH `714.01`; W_VAH `751.69`). Spot `710.9/714.1`, **spread FAIL 44.91 bps** (new-entry veto stands; resting maker ticket unaffected). Whale book mildly bid-skewed (bids 4.89M vs asks 3.08M), ask wall cluster `715–718`. Entry `753.30` sits at W_VAH/PD_VAH confluence, 5.9% away; SL `761.50` still above 24H S_MP `758.49` (7D S_MP `767.93` remains the documented residual-squeeze caveat on a `0.41` USD risk stub).\n\n**NAS100** (`#19489159` host): INSIDE_VALUE. D: `28,898.69/28,710.69/28,668.39`; W_VAL `29,246.74`. VWAP `28,782.74` Z `−0.60`. Live MR `0.6847`. Entry `29,535` > W_VAL > PD_VAH `29,520` — 2.7% away. **DJ30** (`#19489160` host): INSIDE_VALUE. D: `52,398.41/52,370.09/52,233.21`; VWAP `52,275.47` Z `−0.80`; +2.51σ `52,444.61`. Entry `52,638` is now the **nearest pending fill on the board: 0.72%** from envelope spot `52,260.56` (vs NY session high `52,581.36`, PD_VAH `52,579.18`). DJ30 stays RW (`0.8735` frozen) — the ticket's edge is structural (exhaustion node), not statistical; retained on grandfather status with the 94-pt pad.\n\n**HK50**: **ABOVE_VALUE / TREND_UP_ACCEPTANCE** (regime upgrade from C021 balance) — D_VAH `23,214.29`, W_VAH `23,183.04`, OTE `23,280.17`, +2.51σ `23,363.99`. MR VR4 `0.4752` (frozen) vs acceptance-trend AMS: fade only at deep stretch (§6 card at OTE/+2.51σ). **UK100**: INSIDE_VALUE, VWAP Z `+0.11`, W_VAH `10,767.32`, OTE `10,775.28`. **SP500**: INSIDE_VALUE, VWAP Z `−0.81`, D_VAL `7,630.05` = staged long trigger; 15m/5m sell deltas (−70.8%/−70.5%) demand the limit be passive, never chased. **USDJPY**: INSIDE_VALUE, W_VAH `158.07`, OTE `157.81`, D_VAL `157.19`; the live buy-side CVD surge makes the D_VAL BUY_LIMIT the highest-conviction staged card this cycle. **NZDUSD**: ABOVE_VALUE expansion but VWAP Z `+0.04` — not stretched; no card. **USDCNH/AUDCAD**: MR with negative drift but Z-compressed; monitor-only. **Known §10 card defects re-confirmed** (BTC/ETH point-value mislabels, `0.00 USD` risk labels on FX/index cards, e.g. AUDUSD `0.17 lots = 0.00 USD`, US2000 `1.77 lots`, STOXX50 `0.82 lots`): all §6 sizing below is **recomputed with true MT5 multipliers**, never trusted from the dossier.\n\n---\n\n## §5 — LIVE POSITION & RESTING ORDER INTERROGATION — [Cycle_022]\n\n\n*(All four personas, unanimous rulings; cross-checked against the `5c3d48a` registry/ledger state)*\n\n**Ticket `#19490051` — AUDUSD.pi BUY 0.08 @ `0.70270` | SL `0.70282` (BE-LOCKED) | TP `0.70570` | spot `0.70371` | `+8.08 USD` = `+0.8417R`**\n
+*"Should I let it run or cut it? Is it still a valid trade?"* — **LET RUN — HOLD_EXISTING. Valid, and now mathematically risk-free.** The Tier-1 ratchet fired correctly between cycles at the dossier-mandated `+0.80R` trigger (`0.70366`): SL advanced `0.70150 → 0.70282` (Entry +0.15R region, +1.2 pips), converting worst-case from `−9.60 USD` to a **guaranteed `+0.96 USD`**. Structure: price holds ABOVE_VALUE in RANGE_EXPANSION, riding above D_VAH `0.70317` and W_POC `0.70339` (now support), 1h CVD +90% delta. The 15m delta softening (−20.6%) is tolerable precisely because downside is extinguished — this is a free option on the +2.5R target. Time-decay rule (<+0.20R in 24 bars) long since satisfied at +0.84R. **Next action is mechanical, not discretionary: at `+1.50R = 0.70450`, ratchet SL → `0.70366` (+0.80R lock). No early exit; cutting a risk-free runner in an MR-confirmed up-expansion forfeits expectancy for nothing.**\n\n**Ticket `#19489155` — BTCUSD.pi SELL_LIMIT 0.01 @ `81,084` | SL `81,680` | TP `80,180` | risk `5.96 USD`** — *Let run or cut? Valid?* — **KEEP_RESTING_UNCHANGED.** Entry 4.8–5.1% above spot; fade anchored at PD_VAH `81,003` with the 7D liquidation magnet caveat documented. Live trend regime is bearish-drift (t=−0.90) under a sell-skewed whale book — a rip to `81,084` would be exhaustion into supply. Zero margin consumed until fill.\n
+**Ticket `#19489157` — BNBUSD.p SELL_LIMIT 0.05 @ `753.30` | SL `761.50` | TP `743.50` | risk `0.41 USD`** — **KEEP_RESTING_UNCHANGED.** 5.9% away, W_VAH/PD_VAH confluence, SL above 24H S_MP. Spread (44.9 bps) vetoes any *new* BNB ticket but a resting maker limit pays no spread at placement; `0.41` risk is noise-level.\n
+**Ticket `#19489158` — XAUUSD.pi SELL_LIMIT 0.01 @ `4,040.50` | SL `4,049.50` | TP `4,018.00` | risk `9.00 USD`** — **KEEP_RESTING_UNCHANGED.** Nearest structural fade (0.93% away): PD_VAH sweep into the `4,050` barrier, on the board's strongest MR asset (live VR4 `0.5784`), VWAP Z 0.00 confirming balance. The envelope's sub-D_VAL wick print does not alter the short's fade logic at `4,040.50`.\n
+**Ticket `#19489159` — NAS100.p SELL_LIMIT 0.01 @ `29,535` | SL `29,620` | TP `29,320` | risk `8.50 USD`** — **KEEP_RESTING_UNCHANGED.** 2.76% away; MR regime strengthening (0.6847) makes a W_VAL/PD_VAH retest a statistically favored fade; LVN shelf + 85-pt pad intact.\n
+**Ticket `#19489160` — DJ30.p SELL_LIMIT 0.01 @ `52,638` | SL `52,732` | TP `52,402` | risk `9.40 USD`** — **KEEP_RESTING_UNCHANGED — now the watch ticket.** Only **0.72%** from fill after the DJ30 bid; a push through D_VAH `52,398` → +2.51σ `52,444` → NY high `52,581` lands directly on the exhaustion node at entry. RW statistics demand the structural pad do the work — it does (94 pts above PD_VAH `52,579`).\n\n**Book posture ratified: 1 risk-free runner + 5 asymmetric maker fades, total contingent downside `33.27 USD` (0.70% of equity), total open float `+8.08 USD`. No cull, no modification beyond the scheduled AUDUSD Tier-2 ratchet.**\n\n---\n\n## §6 — FORENSIC CANDIDATE DISCOVERY — STAGED_INTENT_ONLY — [Cycle_022]\n\n\n*(Persona 1 screens → Persona 2 levels → Persona 3 veto → Persona 4 clocking. `new_risk_admissible = false`: nothing below may touch the broker. All sizing recomputed with true MT5 multipliers, risk ≤ 10.00 USD.)*\n\n| # | Asset | Card (STAGED_INTENT_ONLY) | Entry | SL | TP | Lot | Risk (USD) | Thesis |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 | **USDJPY** | BUY_LIMIT | `157.19` (D_VAL) | `157.04` | `157.57` | 0.10 | ≈9.57 | MR `0.6418` + fiercest buy CVD on the board (5m Z+1.82); passive bid at value edge below W_VAL `157.46` |\n| 2 | **ETH** | SELL_LIMIT | `2,288.70` (D_VAH) | `2,318.22` | `2,214.90` | 0.33 | ≈9.74 | Restaged from C021 `2,219.50` after value migration; fade into 9.89M/6.87M ask fortress `2,315–2,375`; 24H S_MP `2,303.89` inside SL shadow — flagged |\n| 3 | **GOLD (XAU)** | BUY_LIMIT | `4,000.33` (D_VAL) | `3,988.20` | `4,030.65` | 0.08 | ≈9.70 | Strongest live MR (0.5784), VWAP Z 0.00; *bracket-neutral* vs resting short `4,040.50` — both legs fade opposing value edges |\n| 4 | **SP500** | BUY_LIMIT | `7,630.05` (D_VAL) | `7,618.30` | `7,659.43` | 0.84 | ≈9.87 | MR 0.7087; passive only — 15m sell delta −70.8% forbids chasing |\n| 5 | **HK50** | SELL_LIMIT | `23,280.17` (OTE) | `23,322.40` | `23,174.60` | 0.23 | ≈9.71 | VR4 0.4752 fade of TREND_UP_ACCEPTANCE stretch into +2.51σ `23,364`; tightened vs C021 |\n| 6 | **UK100** | SELL_LIMIT | `10,767.32` (W_VAH) | `10,788.63` | `10,714.05` | 0.45 | ≈9.59 | MR 0.6234; W_VAH/OTE `10,775` confluence unchanged from C021 |\n| 7 | **USDCHF** | SELL_LIMIT | `0.82253` (D_VAH) | `0.82324` | `0.82075` | 0.11 | ≈9.50 | MR 0.7056; refreshed to C022 D_VAH |\n| 8 | **BTC** | SELL_LIMIT | `79,684.72` (D_VAH) | `80,283.15` | `78,188.65` | 0.01 | ≈5.98 | Contingent on rotation/cancel of `#19489155`; never co-live with it |\n\n\nRejected at persona level: **NETH25** (strict spread veto 7.04 bps), **US2000 long** (trend-up stats vs −72.8% sell delta — unresolvable conflict), **NZDUSD fade** (Z +0.04, no stretch), **SOL** (boundary spread 24.16/25.0 + RW 0.9070), **BNB new entry** (spread 44.91), **SILVER/XRP/TRX/LTC** (spread FAIL), **DJ30 new card** (RW 0.8735; existing ticket already owns the level), **EURUSD/GBPUSD** (RW + heavy sell deltas against no structure edge).\n\n---\n\n## §7 — FINAL VERDICT, DISPATCH LEDGER & MACHINE BLOCK — [Cycle_022]\n\n\n**Unanimous 4-persona consensus:** TIER_0_DEFENSIVE sustained; **zero new broker orders**; hold the risk-free AUDUSD runner with the Tier-2 ratchet armed at `0.70450 → SL 0.70366`; retain all five resting maker limits unchanged; re-demand a fresh `execution_preflight_receipt.json` (KS-4 quarantined, third consecutive cycle); re-demand a Candles pipeline thaw (9h10m frozen) and a max-pain rescrape (3h24m). Equity trajectory: `4,768.35 → 4,770.91` cycle-over-cycle with risk stripped out of the book — floor reclamation at `4,775.00` is now `4.09 USD` away.\n\n```\n{
+  "cycle_id": "Cycle_022",
+  "cutoff_utc": "2026-10-30 02:56:13 UTC",
+  "envelope": {
+    "uuid": "cdd38445-7ae0-4e41-973e-b6a32fe798c6",
+    "dispatch_nonce": "60001ad2-6ec5-4c24-8a53-f0ebac736aef",
+    "envelope_cutoff_utc": "2026-10-30 02:55:09 UTC",
+    "git_commit": "d36c578778cae1fab8d49c358969a0cf17771900",
+    "git_tree": "e4fcb2358ade7e3ea245c576c73149fd880bd466",
+    "git_verification": "PASS_LOCAL_FETCH_TREE_MATCH_DRIFT_1M41S"
   },
-
-  {
-
-    "ticket": 19489157,
-
-    "time_setup": 1793313519,
-
-    "time_setup_msc": 1793313519904,
-
-    "time_done": 0,
-
-    "time_done_msc": 0,
-
-    "time_expiration": 0,
-
-    "type": 3,
-
-    "type_time": 0,
-
-    "type_filling": 2,
-
-    "state": 1,
-
-    "magic": 20261030,
-
-    "position_id": 0,
-
-    "position_by_id": 0,
-
-    "reason": 3,
-
-    "volume_initial": 0.05,
-
-    "volume_current": 0.05,
-
-    "price_open": 753.3,
-
-    "sl": 761.5,
-
-    "tp": 743.5,
-
-    "price_current": 706.9,
-
-    "price_stoplimit": 0.0,
-
-    "symbol": "BNBUSD.p",
-
-    "comment": "TC_BNB_Wall_Fade",
-
-    "external_id": ""
-
+  "integrity": {
+    "checklist": "37/37 PASS @ 2026-10-30 02:53:18 UTC",
+    "dossier_census": {"count": 162, "total_chars": 7290949, "missing_section_10": 0, "zero_truncation_rule": "HONORED_FULL_LENGTH_READS"},
+    "frozen_feeds": ["Data/Candles/*_15m last bar 2026-10-29 17:45 UTC (9h10m)", "9_Liquidation_Max_Pain 23:30:48 UTC Oct 29 (3h24m)"],
+    "kill_switches": [{"id": "KS-4", "finding": "execution_preflight_receipt.json stamped 2026-10-27 13:12:05 UTC = 61h44m stale vs cutoff", "action": "RECEIPT_QUARANTINED_FAIL_CLOSED", "repeat_offense_cycles": ["Cycle_020", "Cycle_021", "Cycle_022"]}]
   },
-
-  {
-
-    "ticket": 19489158,
-
-    "time_setup": 1793313520,
-
-    "time_setup_msc": 1793313520072,
-
-    "time_done": 0,
-
-    "tim"type_time": 0,
-
-    "type_filling": 2,
-
-    "state": 1,
-
-    "magic": 20261030,
-
-    "position_id": 0,
-
-    "position_by_id": 0,
-
-    "reason": 3,
-
-    "volume_initial": 0.01,
-
-    "volume_current": 0.01,
-
-    "price_open": 4040.5,
-
-    "sl": 4049.5,
-
-    "tp": 4018.0,
-
-    "price_current": 3997.58,
-
-    "price_stoplimit": 0.0,
-
-    "symbol": "XAUUSD.pi",
-
-    "comment": "TC_XAU_VAH_Fade",
-
-    "external_id": ""
-
+  "solvency": {
+    "balance_usd": 4762.83, "equity_usd": 4770.91, "floating_pnl_usd": 8.08,
+    "margin_used_usd": 187.39, "margin_level_pct": 2546.0,
+    "hard_floor_4775_gap_usd": -4.09, "kernel_4795_gap_usd": -24.09,
+    "existing_ticket_stress_usd": 62.4875, "realized_headroom_usd": -96.66,
+    "post_joint_stress_equity_usd": 4698.34, "true_book_contingent_risk_usd": 33.27,
+    "capital_mode": "TIER_0_DEFENSIVE", "new_risk_admissible": false
   },
-
-  {
-
-    "ticket": 19489159,
-
-    "time_setup": 1793313520,
-
-    "time_setup_msc": 1793313520245,
-
-    "time_done": 0,
-
-    "time_done_msc": 0,
-
-    "time_expiration": 0,
-
-    "type": 3,
-
-    "type_time": 0,
-
-    "type_filling": 2,
-
-    "state": 1,
-
-    "magic": 20261030,
-
-    "position_id": 0,
-
-    "position_by_id": 0,
-
-    "reason": 3,
-
-    "volume_initial": 0.01,
-
-    "volume_current": 0.01,
-
-    "price_open": 29535.0,
-
-    "sl": 29620.0,
-
-    "tp": 29320.0,
-
-    "price_current": 28742.96,
-
-    "price_stoplimit": 0.0,
-
-    "symbol": "NAS100.p",
-
-    "comment": "TC_NAS_VAH_Fade",
-
-    "external_id": ""
-
-  },
-
-  {
-
-    "ticket": 19489160,
-
-    "time_setup": 1793313520,
-
-    "time_setup_msc": 1793313520413,
-
-    "time_done": 0,
-
-    "time_done_msc": 0,
-
-    "time_expiration": 0,
-
-    "type": 3,
-
-    "type_time": 0,
-
-    "type_filling": 2,
-
-    "state": 1,
-
-    "magic": 20261030,
-
-    "position_id": 0,
-
-    "position_by_id": 0,
-
-    "reason": 3,
-
-    "volume_initial": 0.01,
-
-    "volume_current": 0.01,
-
-    "price_open": 52638.0,
-
-    "sl": 52732.0,
-
-    "tp": 52402.0,
-
-    "price_current": 52260.56,
-
-    "price_stoplimit": 0.0,
-
-    "symbol": "DJ30.p",
-
-    "comment": "TC_DJ_VAH_Fade",
-
-    "external_id": ""
-
-  }
-
-]\n```\n\n},\n\n"solvency": {\n\n```\n"hard_floor_usd": 4600.0,
-
-"e_capital_usd": 4762.83,
-
-"hard_floor_cushion_usd": 162.83,
-
-"operating_buffer_cushion_usd": 112.83,
-
-"kernel_cushion_usd": -32.17,
-
-"global_contingency_reserve_usd": 2.0,
-
-"existing_ticket_stress_usd": 62.4875,
-
-"realized_headroom_usd": -96.66,
-
-"post_joint_stress_equity_usd": 4698.34,
-
-"capital_mode": "TIER_0_DEFENSIVE",
-
-"risk_min_usd": 10.0,
-
-"risk_max_usd": 10.0,
-
-"nominal_risk_capacity_usd": 0.0,
-
-"max_concurrent_tickets": 4,
-
-"new_risk_admissible": false,
-
-"admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"\n```\n\n},\n\n"market_clocks": {\n\n```\n"broker_clock_open": true,
-
-"native_market_open": true,
-
-"calendar_verified": true,
-
-"day_of_week": "Friday",
-
-"market_regime": "FULL_MARKET_OPEN",
-
-"tradfi_markets_open": true,
-
-"crypto_perpetuals_open": true,
-
-"rollover_embargo_active": false,
-
-"rollover_window": "21:15-22:30 UTC"\n```\n\n},\n\n"status": "ACCOUNT_AND_SOLVENCY_VERIFIED",\n\n"authorization": "DENIED_PENDING_FULL_HARD_GATES"\n\n}\n\n### ⚡ VERIFIED LIVE EXECUTION PREFLIGHT RECEIPT (execution_preflight_receipt.json):\n\n\n```\n
-{
-
-  "schema_version": "1.0.0",
-
-  "dispatch_nonce": "60001ad2-6ec5-4c24-8a53-f0ebac736aef",
-
-  "observed_at_utc": "2026-10-27 13:12:05 UTC",
-
-  "account": {
-
-    "login": 5064568,
-
-    "server": "BlueberryMarketsSVG-Live",
-
-    "balance": 4837.08,
-
-    "equity": 4837.08,
-
-    "margin_free": 4837.08
-
-  },
-
-  "candidate": {
-
-    "symbol": "BTCUSD.pi",
-
-    "action": "SELL_LIMIT",
-
-    "volume": 0.01,
-
-    "price": 80350.0,
-
-    "sl": 80473.74,
-
-    "tp": 79604.18
-
-  },
-
-  "broker_tick": {
-
-    "bid": 80110.0,
-
-    "ask": 80126.0,
-
-    "mid": 80118.0,
-
-    "spread_raw": 16.0,
-
-    "spread_bps": 2.0,
-
-    "spread_cost_usd": 0.16,
-
-    "broker_server_time_raw": 1793117524,
-
-    "broker_server_offset_seconds": 10800.0,
-
-    "tick_time_utc": "2026-10-27 13:12:04 UTC",
-
-    "tick_age_seconds": 1.0,
-
-    "clock_skew_seconds": -3.19,
-
-    "quoint": 0.01,
-
-    "trade_mode": 4,
-
-    "trade_mode_desc": "FULL",
-
-    "volume_min": 0.01,
-
-    "volume_step": 0.01,
-
-    "volume_max": 100.0,
-
-    "stops_level": 0,
-
-    "contract_size": 1.0
-
-  },
-
-  "broker_valuation": {
-
-    "profit_at_sl_usd": -1.24,
-
-    "profit_at_tp_usd": 7.46,
-
-    "margin_required_usd": 401.75,
-
-    "base_nominal_risk_usd": 1.24,
-
-    "exit_spread_cost_usd": 0.16,
-
-    "total_nominal_risk_usd": 1.4,
-
-    "ticket_stress_usd": 3.75,
-
-    "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
-
-  },
-
-  "order_check": {
-
-    "pass": true,
-
-    "retcode": 0,
-
-    "comment": "Done",
-
-    "margin_level_post_order": 1204.0,
-
-    "margin_free_post_order": 4435.33
-
-  },
-
-  "preflight_verdict": "PREFLIGHT_PASS",
-
-  "receipt_sha256": "3339852a0f19b26de478620b18ff3151bfc3a991b0045137b5734e2534abd319"
-
-}
-\n```\n\n---\n\n## 🛑 CANONICAL OPERATOR MANDATE: FULL-LENGTH DOSSIER FORENSICS ONLY\n\n\n> **STRICT PROHIBITION ON TRUNCATION, SUMMARIES, OR SELECTIVE READING**:\n\n> 1. **Zero Truncation Rule**:\n\n>    - You are strictly FORBIDDEN from reading truncated sub-ranges (e.g. lines 1–90 or lines 1–100) or relying on superficial heuristics.\n\n>    - Every candidate asset that clears broker spread tolerances (TradFi <= 5.0 bps, Crypto <= 25.0 bps) MUST be evaluated by reading and forensically interrogating its **FULL-LENGTH** master dossier (`docs/dossiers/&lt;SYMBOL&gt;_MASTER_DOSSIER.md`) from Section 1 (Contract Specifications & Live Telemetry) through Section 10 (Quantitative Trade Formulation & Broker Execution Card).\n\n> 2. **Dossier-Centric Evidence Extraction**:\n\n>    - All entry levels, stop losses, and take profits must be extracted and verified directly against the asset's Value Area auction boundaries (VAH, VAL, POC), resting institutional whale armor (> 100K USD, > 180s persistence), multi-timeframe CVD delta absorption, and liquidation cascade zones.\n\n> 3. **Autonomous Multi-Agent Squad Mobilization**:\n\n>    - You MUST mobilize deep cognitive reasoning ati-Agent Quantitative Squad** deploying 4 exhaustive, specialized personas.\n\n> 4. **Mandatory Cycle Identifier Stamping (Strict Non-Negotiable Mandate)**:\n\n>    - Every prompt, deliberation section, persona output, and final broker execution block MUST explicitly state and be stamped with the active Cycle ID: **Cycle_022**.\n\n>    - Responses omitting or citing an inconsistent Cycle ID are strictly rejected fail-closed as non-compliant and non-verifiable.\n\n---\n\n## 👥 THE 4 SPECIALIZED MULTI-AGENT SQUAD PERSONAS\n\n\nYou are FORBIDDEN from generating an unstructured or single-voice output. Your deliberation MUST systematically reflect the independent forensic rigor of each of the following 4 specialized personas:\n\n### Persona 1: Lead Quantitative Econometrician & Universe Screener\n\n\n- \n**Mandate**: Screen the multi-asset universe and validate market regime, diffusion parameters, and statistical edge.\n\n- \n**Key Protocols**:\n
-\n- \nVerify broker spread friction across all 4 orthogonal macro sectors:\n
-\n- \n**Forex Majors & Crosses**: EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, NZDUSD, EURJPY, GBPJPY (Strictly <= 5.0 bps; quarantine 21:15–22:30 UTC rollover).\n\n- \n**Precious Metals & Commodities**: XAUUSD (Gold), USWTI (Crude Oil), UKBRENT (Brent), Copper (Strictly <= 5.0 bps).\n\n- \n**Global Equity Indices**: DJ30, NAS100, SP500, GER40, JP225, AU200, UK100 (Strictly <= 5.0 bps).\n\n- \n**Crypto Perpetuals & CFDs**: BTCUSD, ETHUSD, BNBUSD, SOLUSD, XRPUSD, BCHUSD, XMRUSD (Strictly <= 25.0 bps).\n\n\n- \nCompute Lo-MacKinlay Variance Ratio VR(4)VR(4)VR(4), Newey-West HAC drift t-statistic, and Kaufman Efficiency Ratio (ER48ER_{48}ER48​).\n\n- \nEnsure Model 1 Mean-Reversion Fades are applied only when VR(4) &lt; 0.85, and Model 2 Trend-Continuation Pullbacks are applied only when VR(4) &gt; 1.15. Eliminate random-walk fades (0.85≤VR(4)≤1.150.85 \le VR(4) \le 1.150.85≤VR(4)≤1.15).\n\n\n\n### Persona 2: Full-Length Dossier Microstructure & Orderbook Forensics Specialist\n\n\n- \n**Mandate**: Conduct an exhaustive, section-by-sect every eligible asset's `_MASTER_DOSSIER.md`.\n\n- \n**Key Protocols**:\n
-\n- \nInterrogate **Section 2 & 3 (Auction Market Structure & VWAP Dispersion Grid)**: Extract daily VAH, VAL, POC, Session VWAP, and VWAP Z-score. Verify whether price is probing liquidity at value area boundaries.\n\n- \nInterrogate **Section 4 (Multi-Timeframe Cumulative Volume Delta)**: Examine 1m, 5m, 15m, 1h, and 4h CVD delta. Verify taker delta absorption vs exhaustion (e.g. price sweeps VAH while delta exhibits severe negative divergence).\n\n- \nInterrogate **Section 5 (Institutional Whale Armor & L2/L3 Depth Ladders)**: Forensically verify resting whale limit walls (> 100K USD nominal, > 180s persistence). Ensure orders lean behind verified resting walls (Pitfall 1 elimination: Zero ghost walls).\n\n- \nInterrogate **Section 6 (Liquidation Max Pain & Retail Stops Cascade Map)**: Check 1D and 7D liquidation maps. Verify that NO stop loss is placed inside an un-swept retail liquidation cluster (Pitfall 2 elimination).\n\n- \nInterrogate **Section 10 (Quantitative Trade Formulation & Broker Execution Card)**: Extract the precise candidate trade parameters (Order Type, Limit Entry, Spread-Padded Stop Loss, +2.5R Take Profit, Lot Sizing).\n\n\n\n### Persona 3: Adversarial Solvency, Risk & Drawdown Gatekeeper\n\n\n- \n**Mandate**: Protect account solvency, prevent catastrophic ruin, and enforce capital defense invariants.\n\n- \n**Key Protocols**:\n
-\n- \nEnforce the **Triple Capital Floor Defense**:\n
-\n- \nCurrent Realized Balance: **4,762.83 USD**\n\n- \nHard Capital Floor: **4,775.00 USD** (Statutory Drawdown Floor | Deficit: -12.17 USD)\n\n- \nOperating Buffer: **4,795.00 USD** (Solvency Kernel Floor | Deficit: -32.17 USD)\n\n\n- \nSizing & Capacity Policy:\n
-\n- \nNominal risk per single ticket strictly capped at **<= 10.00 USD** (0.20%0.20\%0.20% base risk).\n\n- \nTrue contract point multipliers on MT5 verified (e.g. 1.0 USD/pt on Indices/Metals vs lot size).\n\n- \nEnforce the mandatory **Spread-Padded SL Invariant**:\n
-\nshort}} = \text{Resistance} + 1.2 \times \text{ATR}_{14} + 1.5 \times \text{Spread}$$\n
-\nSLlong=Support−1.2×ATR14−1.5×Spread\text{SL}_{\text{long}} = \text{Support} - 1.2 \times \text{ATR}_{14} - 1.5 \times \text{Spread}SLlong​=Support−1.2×ATR14​−1.5×Spread\n\n\n- \nEvaluate Catastrophic Joint Stressed Loss: Compute worst-case equity under simultaneous fill and stopout (Lossstressed=1.25×Lossnominal+2.00 USDLoss_{\text{stressed}} = 1.25 \times Loss_{\text{nominal}} + 2.00\text{ USD}Lossstressed​=1.25×Lossnominal​+2.00 USD).\n\n- \nRule on Execution Posture: When equity is below 4,775.00 USD, market orders remain strictly `DENIED_FAIL_CLOSED`; high-confluence setups are maintained as active `STAGED_INTENT_ONLY` or resting maker limits with micro-lot sizing.\n\n\n\n### Persona 4: Multi-Asset Execution & Market Clock Architect\n\n\n- \n**Mandate**: Orchestrate high-expectancy trade geometry, execution timing, and dynamic profit ratchets.\n\n- \n**Key Protocols**:\n
-\n- \nVerify **Market Clock & Session Timing**: Asian, London, and New York overlap dynamics. Respect the 21:15–22:30 UTC interbank rollover blackout window for Forex pairs.\n\n- \nStructural Target Calibration: Take Profit strictly anchored at +2.5R+2.5\text{R}+2.5R (opposing Value Area boundary, POC, or major LVN shelf).\n\n- \nAnti-Retracement Microstructure Profit Ratchet:\n
-\n- \nAt +0.80R+0.80\text{R}+0.80R unrealized gain: Move stop to Entry ±0.15R\pm 0.15\text{R}±0.15R (Breakeven lock).\n\n- \nAt +1.50R+1.50\text{R}+1.50R unrealized gain: Move stop to Entry ±0.80R\pm 0.80\text{R}±0.80R (Profit lock).\n\n- \nTime Decay Rule: If trade produces &lt; +0.20\text{R} within 24 bars (6 hours), exit at market.\n\n\n- \nFormulate final harmonized trade execution cards for the Tri-Council deliberative consensus.\n\n\n\n---\n\n## 📝 MANDATORY UNIVERSAL SKILL AUDIT & METACOGNITIVE INQUEST\n\n\nAt the very beginning of your written response, you MUST include an explicit header confirming the active methodologies and skills mobilized:\n\n```\n
-&gt; 📚 **Active Skills Loaded &amp; Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[clean-code]`, `@[systematic-debugging]`, `@[data-quality-checker]`
-\n```\n\nYou MUST explicitnswer this exact question across your entire deliberation:\n\n**"If it use all the available skills related will it improve our response?"**\n\nConduct a formal skills-gap audit demonstrating how specialized toolkits sharpen econometric precision, orderbook depth analysis, and solvency defense.\n\n---\n\n## 🏛️ STEP-BY-STEP DELIBERATION REPORT STRUCTURE\n\n\nYour response must strictly adhere to the following 7-section structure:\n\n### §1. Provenance, Telemetry & Solvency Kernel Audit\n\n\n- \nExplicitly declare and verify the active Cycle Identifier: **Cycle_022** (Cutoff: 2026-10-30 02:56:13 UTC).\n\n- \nReconcile live MT5 balance, equity, margin level, and capital floor distance.\n\n- \nConfirm feed timestamps and verify parity across git main and local state.\n\n\n### §2. Multi-Sector Spread Screening & Asset Eligibility Matrix\n\n\n- \nTable of all assets evaluated across Crypto, Forex, Indices, and Metals.\n\n- \nExplicit classification of PASS (≤5.0 bps\le 5.0\text{ bps}≤5.0 bps TradFi, ≤25.0 bps\le 25.0\text{ bps}≤25.0 bps Crypto) vs FAIL.\n\n\n### §3. Full-Length Master Dossier Forensics & Microstructure Extraction\n\n\n- \nFor EACH spread-cleared asset, provide the dedicated forensic autopsy extracted from its full master dossier:\n
-\n- \nAuction Profile (VAH, VAL, POC, VWAP Z-score)\n\n- \nOrderbook & Whale Armor (resting wall prices, size in USD, persistence)\n\n- \nCVD & Footprint Signals (15m/1h/4h delta direction and absorption)\n\n- \nLiquidation Matrix & Max Pain bands\n\n\n\n### §4. Econometric & Machine Learning Scoring Grid\n\n\n- Tabular breakdown of Variance Ratio VR(4)VR(4)VR(4), Efficiency Ratio ER48ER_{48}ER48​, Expected Value (EVnetEV_{\text{net}}EVnet​ in R), Win Probability (PwinP_{\text{win}}Pwin​), and Lower Confidence Bound (LCB5%LCB_{5\%}LCB5%​).\n\n### §5. Candidate Trade Formulation & Broker Execution Cards\n\n\n- \nFull execution cards for top high-confluence candidates:\n
-\n- \nSymbol & Direction (BUY_LIMIT / SELL_LIMIT)\n\n- \nLimit Entry Price (Sweep exhaustion zone)\n\n- \nSpread-Padded Stop Loss & Defending Wall Price\n\n- \nTake Profit Target (+2.5R)\n\n- \nMathemati≤10.00 USD\le 10.00\text{ USD}≤10.00 USD)\n\n- \nStressed Loss & Post-Fill Solvency Check\n\n\n\n### §6. Active Positions & Resting Orders Interrogation\n\n\n- \nSystematically interrogate every live position and resting order: **"Should I let it run or cut it? Is it still a valid trade?"**\n\n- \nEvaluate structural validity, whale wall persistence, and time decay.\n\n\n### §7. Standardized Machine-Readable JSON Output Block\n\n\n- \nReturn the standardized JSON payload explicitly bound with `"cycle_id": "Cycle_022"`, `account_solvency`, `active_staged_orders`, `high_confluence_formulated_trades`, and `disputes_or_rejections`.cal Lot Sizing & Nominal Risk USD (ly evaluate, state, and a$$\text{SL}_{\text{ion forensic autopsy ofnd orchestrate a complete **Autonomous Mulote_fresh": true\n
-\n},\n
-\n"broker_spec": {\n
-\n"digits": 2,\n
-\n"poperating_buffer_usd": 4650.0,\n
-\n"solvency_kernel_usd": 4795.0,\n
-\n"base_done_msc": 0,\n
-\n```\n  "time_expiration": 0,
-
-  "type": 3,
-
-  sc": 1793323735372,
-
-  "type": 0,\n```\n
-\nRegistry: `https://r\n\n
+  "spread_gate": {"pass": 89, "fail": 67, "strict_pass_after_persona_veto": 88, "vetoed_within_pass": ["NETH25.p 7.04bps vs true 5.0 TradFi gate"], "flips_vs_cycle_021": [{"symbol": "SOLUSD.p", "from": "FAIL 25.51", "to": "PASS 24.16"}]},
+  "position_rulings": [
+    {"ticket": 19490051, "symbol": "AUDUSD.pi", "state": "BUY 0.08 @ 0.70270, SL 0.70282 BE-LOCKED, TP 0.70570, +8.08 USD = +0.8417R", "interrogation": "Should I let it run or cut it? Is it still a valid trade?", "ruling": "LET_RUN_HOLD_EXISTING_RISK_FREE", "next_ratchet": "at +1.50R = 0.70450 move SL to 0.70366", "locked_min_outcome_usd": 0.96},
+    {"ticket": 19489155, "symbol": "BTCUSD.pi", "ruling": "KEEP_RESTING_UNCHANGED", "risk_usd": 5.96, "distance_pct": 5.08, "flag": "SL 81680 inside 7D short max pain 82181"},
+    {"ticket": 19489157, "symbol": "BNBUSD.p", "ruling": "KEEP_RESTING_UNCHANGED", "risk_usd": 0.41, "distance_pct": 6.56, "flag": "new-entry spread veto 44.91bps does not touch resting maker"},
+    {"ticket": 19489158, "symbol": "XAUUSD.pi", "ruling": "KEEP_RESTING_UNCHANGED", "risk_usd": 9.0, "distance_pct": 0.93},
+    {"ticket": 19489159, "symbol": "NAS100.p", "ruling": "KEEP_RESTING_UNCHANGED", "risk_usd": 8.5, "distance_pct": 2.76},
+    {"ticket": 19489160, "symbol": "DJ30.p", "ruling": "KEEP_RESTING_UNCHANGED_WATCH_NEAREST_FILL", "risk_usd": 9.4, "distance_pct": 0.72}
+  ],
+  "staged_cards_intent_only": [
+    {"rank": 1, "symbol": "USDJPY.pi", "type": "BUY_LIMIT", "entry": 157.19, "sl": 157.04, "tp": 157.57, "lot": 0.10, "risk_usd": 9.57},
+    {"rank": 2, "symbol": "ETHUSD.pi", "type": "SELL_LIMIT", "entry": 2288.70, "sl": 2318.22, "tp": 2214.90, "lot": 0.33, "risk_usd": 9.74},
+    {"rank": 3, "symbol": "XAUUSD.pi", "type": "BUY_LIMIT", "entry": 4000.33, "sl": 3988.20, "tp": 4030.65, "lot": 0.08, "risk_usd": 9.70},
+    {"rank": 4, "symbol": "SP500.p", "type": "BUY_LIMIT", "entry": 7630.05, "sl": 7618.30, "tp": 7659.43, "lot": 0.84, "risk_usd": 9.87},
+    {"rank": 5, "symbol": "HK50.p", "type": "SELL_LIMIT", "entry": 23280.17, "sl": 23322.40, "tp": 23174.60, "lot": 0.23, "risk_usd": 9.71},
+    {"rank": 6, "symbol": "UK100.p", "type": "SELL_LIMIT", "entry": 10767.32, "sl": 10788.63, "tp": 10714.05, "lot": 0.45, "risk_usd": 9.59},
+    {"rank": 7, "symbol": "USDCHF.pi", "type": "SELL_LIMIT", "entry": 0.82253, "sl": 0.82324, "tp": 0.82075, "lot": 0.11, "risk_usd": 9.50},
+    {"rank": 8, "symbol": "BTCUSD.pi", "type": "SELL_LIMIT", "entry": 79684.72, "sl": 80283.15, "tp": 78188.65, "lot": 0.01, "risk_usd": 5.98, "contingency": "only_on_rotation_of_19489155"}
+  ],
+  "new_candidate_orders": [],
+  "disputes_or_rejections": [
+    {"item": "KS-4 stale preflight receipt", "resolution": "quarantined fail-closed; fresh receipt demanded"},
+    {"item": "Envelope stress double-deduction of BE-locked AUDUSD float", "resolution": "noted; envelope figure governs under fail-closed doctrine"},
+    {"item": "Envelope XAUUSD print 3997.58 vs fresher MT5 4003.01 mid", "resolution": "reconciled to MT5; wick print discarded"},
+    {"item": "NETH25 PASS label at 7.04bps", "resolution": "persona strict veto (TradFi 5.0 gate)"},
+    {"item": "US2000 long candidate", "resolution": "rejected: trend stats vs -72.8% sell delta conflict"}
+  ],
+  "skills_gap_audit": {"question": "If it use all the available skills related will it improve our response?", "answer": "YES_ALL_SIX_ALREADY_ENGAGED_NO_UNUSED_SKILL_IDENTIFIED"},
+  "verdict": "TIER_0_DEFENSIVE | ZERO NEW ORDERS | HOLD RISK-FREE AUDUSD RUNNER (Tier-2 ratchet armed 0.70450→SL 0.70366) | RETAIN ALL 5 RESTING MAKER LIMITS | UNANIMOUS 4-PERSONA RATIFICATION"
+}\n```\n\n**Cycle_022 deliberation complete.** The defining event of this cycle is structural: the Tier-1 breakeven ratchet executed on-broker converted the book's only live exposure into a guaranteed-green free option, collapsing total contingent risk from `42.87` to `33.27 USD` while equity closed to within `4.09 USD` of Hard Floor reclamation. Awaiting the Cycle_023 envelope.\n
