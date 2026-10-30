@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USWTI
 **Canonical Key**: `USWTI` | **Broker Instrument**: `USWTI.p` | **Asset Class**: `Energy Commodity`
-**Timestamp**: `2026-10-30 09:28:14 IST` (`2026-10-30 03:58:14 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:31:16 IST` (`2026-10-30 04:01:16 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -171,7 +171,8 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Matrix | Interbank Flow | - | - | - | - | - | - | Interbank Tier |
+| `Envelope` | `Long Liquidation` | `102.95` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| `Envelope` | `Short Liquidation` | `104.78` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -226,17 +227,16 @@
 - **Recent Completed 15m Footprint Bars Profile Table (26_Aggregated_Footprint_Bar_Metrics.parquet)**:
 | Bar Time (UTC) | Close | VWAP | POC | VAH | VAL | Volume (USD) | Buy Vol | Sell Vol | Delta (USD) | Delta % | Imbalances (B/S) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `03:00:00` | `103.47` | `103.47` | `103.47` | `103.52` | `103.39` | 11,278.23 USD | 6,506.67 USD | 4,771.56 USD | 1,735.11 USD | `+15.38%` | `1B / 0S` |
-| `03:05:00` | `103.35` | `103.35` | `103.35` | `103.53` | `103.30` | 14,675.70 USD | 3,429.65 USD | 11,246.05 USD | -7,816.41 USD | `-53.26%` | `0B / 1S` |
-| `03:10:00` | `103.32` | `103.32` | `103.32` | `103.39` | `103.27` | 14,981.40 USD | 6,438.29 USD | 8,543.11 USD | -2,104.82 USD | `-14.05%` | `0B / 1S` |
 | `03:15:00` | `103.38` | `103.38` | `103.38` | `103.41` | `103.31` | 8,787.30 USD | 6,370.79 USD | 2,416.51 USD | 3,954.28 USD | `+45.00%` | `1B / 0S` |
-| `03:15:00` | `103.36` | `103.36` | `103.36` | `103.41` | `103.31` | 26,254.71 USD | 16,081.01 USD | 10,173.70 USD | 5,907.31 USD | `+22.50%` | `1B / 0S` |
 | `03:20:00` | `103.41` | `103.41` | `103.41` | `103.41` | `103.32` | 6,514.83 USD | 5,971.93 USD | 542.90 USD | 5,429.02 USD | `+83.33%` | `1B / 0S` |
 | `03:25:00` | `103.36` | `103.36` | `103.36` | `103.41` | `103.31` | 10,956.69 USD | 4,793.55 USD | 6,163.14 USD | -1,369.59 USD | `-12.50%` | `0B / 1S` |
-| `03:30:00` | `103.34` | `103.34` | `103.34` | `103.43` | `103.28` | 33,275.48 USD | 12,755.60 USD | 20,519.88 USD | -7,764.28 USD | `-23.33%` | `0B / 1S` |
 | `03:30:00` | `103.30` | `103.30` | `103.30` | `103.42` | `103.28` | 10,536.09 USD | 1,599.23 USD | 8,936.86 USD | -7,337.63 USD | `-69.64%` | `0B / 1S` |
+| `03:30:00` | `103.34` | `103.34` | `103.34` | `103.43` | `103.28` | 33,275.48 USD | 12,755.60 USD | 20,519.88 USD | -7,764.28 USD | `-23.33%` | `0B / 1S` |
 | `03:35:00` | `103.39` | `103.39` | `103.39` | `103.43` | `103.28` | 10,132.22 USD | 8,021.34 USD | 2,110.88 USD | 5,910.46 USD | `+58.33%` | `1B / 0S` |
-| `0:00 UTC` | `104.23` | `103.97` | `104.23` | `104.72` | `102.88` | 80,432,525.97 USD | 47,963,579.07 USD | 32,468,946.89 USD | 15,494,632.18 USD | `+19.26%` | `55B / 11S` |
+| `03:40:00` | `103.34` | `103.34` | `103.34` | `103.39` | `103.29` | 12,607.48 USD | 5,142.52 USD | 7,464.96 USD | -2,322.43 USD | `-18.42%` | `0B / 1S` |
+| `03:45:00` | `103.07` | `103.07` | `103.07` | `103.39` | `103.06` | 45,763.08 USD | 2,288.15 USD | 43,474.93 USD | -41,186.77 USD | `-90.00%` | `0B / 1S` |
+| `03:45:00` | `103.33` | `103.33` | `103.33` | `103.39` | `103.31` | 11,986.28 USD | 4,120.28 USD | 7,866.00 USD | -3,745.71 USD | `-31.25%` | `0B / 1S` |
+| `03:50:00` | `103.19` | `103.19` | `103.19` | `103.33` | `103.17` | 17,232.73 USD | 1,292.45 USD | 15,940.28 USD | -14,647.82 USD | `-85.00%` | `0B / 1S` |
 | `5:00 UTC` | `104.70` | `104.79` | `104.70` | `105.12` | `104.31` | 57,288,800.08 USD | 26,593,078.99 USD | 30,695,721.09 USD | -4,102,642.10 USD | `-7.16%` | `9B / 11S` |
 | `0:00 UTC` | `104.60` | `104.57` | `104.60` | `104.78` | `104.25` | 37,381,511.82 USD | 18,039,773.84 USD | 19,341,737.99 USD | -1,301,964.15 USD | `-3.48%` | `2B / 5S` |
 | `5:00 UTC` | `104.16` | `104.05` | `104.16` | `104.37` | `103.80` | 17,456,844.99 USD | 6,372,777.32 USD | 11,084,067.66 USD | -4,711,290.34 USD | `-26.99%` | `4B / 16S` |
@@ -245,7 +245,8 @@
 | `0:00 UTC` | `103.60` | `103.57` | `103.60` | `103.66` | `103.45` | 4,757,917.11 USD | 2,812,614.52 USD | 1,945,302.59 USD | 867,311.92 USD | `+18.23%` | `3B / 2S` |
 | `5:00 UTC` | `103.53` | `103.52` | `103.53` | `103.59` | `103.44` | 3,389,658.00 USD | 1,302,314.80 USD | 2,087,343.19 USD | -785,028.39 USD | `-23.16%` | `2B / 3S` |
 | `0:00 UTC` | `103.50` | `103.53` | `103.50` | `103.66` | `103.41` | 4,898,115.03 USD | 2,100,565.02 USD | 2,797,550.01 USD | -696,984.99 USD | `-14.23%` | `4B / 8S` |
-| `5:00 UTC` | `103.45` | `103.46` | `103.45` | `103.50` | `103.41` | 853,533.97 USD | 562,410.44 USD | 291,123.54 USD | 271,286.90 USD | `+31.78%` | `3B / 1S` |
+| `5:00 UTC` | `103.32` | `103.37` | `103.32` | `103.50` | `103.30` | 5,800,580.27 USD | 3,315,920.42 USD | 2,484,659.85 USD | 831,260.57 USD | `+14.33%` | `4B / 1S` |
+| `0:00 UTC` | `103.38` | `103.37` | `103.38` | `103.41` | `103.35` | 313,079.69 USD | 93,440.85 USD | 219,638.84 USD | -126,198.00 USD | `-40.31%` | `1B / 1S` |
 
 - **CoinGlass Algorithmic Footprint Signals Table (25_CoinGlass_Footprint_Signals.parquet)**:
 | Time | Timeframe | Signal Type | Bias | Headline | Price Level | Absorbed Vol (USD) | Bar Delta (USD) |
@@ -303,21 +304,21 @@
   * `Tue Oct 27` [USD - Low Impact]: Core Durable Goods Orders m/m (Forecast: 0.6%, Previous: 0.2%)
 
 - **Breaking Institutional News & Market Intelligence (19_News.parquet)**:
-  * `2026-10-30 09:09:58 IST`: [forex.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:33:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 08:32:58 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 09:15:58 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 09:14:58 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 09:14:58 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [think.ing.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [@NodeWire] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 06:16:58 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:16:58 IST`: [@financialjuice] - (Sentiment: `Neutral`)
-  * `2026-10-30 05:16:58 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
-  * `2026-10-30 04:16:58 IST`: [economics.td.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:09:56 IST`: [forex.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:33:56 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 08:32:56 IST`: [boj.or.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:28:56 IST`: [financemagnates.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:27:56 IST`: [finance.yahoo.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 09:27:56 IST`: [kathleenhays.substack.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:29:56 IST`: [rba.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:29:56 IST`: [abs.gov.au] - (Sentiment: `Neutral`)
+  * `2026-10-30 06:29:56 IST`: [think.ing.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:29:56 IST`: [@NodeWire] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:29:56 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:29:56 IST`: [meti.go.jp] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:29:56 IST`: [@financialjuice] - (Sentiment: `Neutral`)
+  * `2026-10-30 05:29:56 IST`: [media.rabobank.com] - (Sentiment: `Neutral`)
+  * `2026-10-30 04:29:56 IST`: [economics.td.com] - (Sentiment: `Neutral`)
 
 
 ---

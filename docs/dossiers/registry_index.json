@@ -1,6 +1,6 @@
 {
   "version": "3.3",
-  "timestamp_utc": "2026-10-30 03:58:15 UTC",
+  "timestamp_utc": "2026-10-30 04:01:17 UTC",
   "total_assets": 162,
   "radar_candidates": [
     "BTC",
@@ -295,7 +295,7 @@
       "mid_price": 0.910091,
       "spread_bps": 1.9998000199981703,
       "gate_status": "PASS",
-      "confluence_score": 87,
+      "confluence_score": 95,
       "decision": "PASSIVE_MAKER_LIMIT_ARMED",
       "long_setup": {
         "entry": 0.907360727,
@@ -347,7 +347,7 @@
       "mid_price": 0.9319999999999999,
       "spread_bps": 214.59,
       "gate_status": "SPREAD_DISQUALIFIED",
-      "confluence_score": 85,
+      "confluence_score": 77,
       "decision": "STAND_ASIDE_MONITOR",
       "long_setup": {
         "entry": 0.8923,
