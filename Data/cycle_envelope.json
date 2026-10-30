@@ -1,15 +1,15 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle_031",
-  "uuid": "05b0ca34-904a-4591-8184-6641297af748",
-  "dispatch_nonce": "6a6c0701-1aa7-47e3-afd2-76d3c2fa03c7",
-  "cutoff_utc": "2026-10-30 09:37:53 UTC",
+  "cycle_id": "Cycle_032",
+  "uuid": "a45b7208-6cab-454f-9539-91d898f5f803",
+  "dispatch_nonce": "348cbf5d-d22d-41f2-a540-98f0870abd23",
+  "cutoff_utc": "2026-10-30 10:37:13 UTC",
   "provenance": {
-    "git_commit": "7fbacf6319bed2bea9337960bb5bb83cb65d2f20",
-    "git_tree": "6b9107a00d6df6ef19ccc2dd7d8ad7f260fc0f9a",
+    "git_commit": "5b249b189a33f6c12f84a20f3dace6089e36d1ee",
+    "git_tree": "e6e634bc13413df35a925bb554c16b882eb4d003",
     "prompt_sha256": "35c6c1e562819293257a410102cd92ef2b54da6a2d845f7250ebe84bec5e4e46",
     "risk_policy_sha256": "ac458a34d634da9dd90765d736926bacff08426f9f07d38e308db77a01fc083d",
-    "evidence_manifest_sha256": "3ebdda2a856d25437e212aa84eb406fa4a9d478d53fa2128acc3defbe14471b1",
+    "evidence_manifest_sha256": "e1d75264f79740add33811cb9245820932a5f64dcedb174f3319f90bf2271339",
     "parquet_freshness_verified": true,
     "parquet_audit_scorecard_fresh": true
   },
