@@ -1,0 +1,4796 @@
+{
+  "USDHKD": {
+    "file": "docs\\dossiers\\USDHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18106,
+    "telemetry": {
+      "bid": "7.84",
+      "ask": "7.85",
+      "spread_bps": "0.05 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "7.87",
+      "val": "7.82",
+      "poc": "7.85",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "7.82",
+        "sl": "6.62",
+        "tp": "10.82",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "7.87",
+        "sl": "9.07",
+        "tp": "4.87",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "EURGBP": {
+    "file": "docs\\dossiers\\EURGBP_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18265,
+    "telemetry": {
+      "bid": "0.8339",
+      "ask": "0.8339",
+      "spread_bps": "0.12 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.8365",
+      "val": "0.8348",
+      "poc": "0.8359",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.8348",
+        "sl": "0.8322",
+        "tp": "0.8411",
+        "lot": "0.03 lots"
+      },
+      "short_card": {
+        "entry": "0.8365",
+        "sl": "0.8390",
+        "tp": "0.8302",
+        "lot": "0.03 lots"
+      }
+    }
+  },
+  "EURHKD": {
+    "file": "docs\\dossiers\\EURHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18115,
+    "telemetry": {
+      "bid": "8.79",
+      "ask": "8.79",
+      "spread_bps": "0.14 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "8.81",
+      "val": "8.76",
+      "poc": "8.79",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "8.76",
+        "sl": "7.56",
+        "tp": "11.76",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "8.81",
+        "sl": "10.01",
+        "tp": "5.81",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "USDCNH": {
+    "file": "docs\\dossiers\\USDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18125,
+    "telemetry": {
+      "bid": "6.65",
+      "ask": "6.65",
+      "spread_bps": "0.14 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "6.66",
+      "val": "6.65",
+      "poc": "6.65",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "6.65",
+        "sl": "5.45",
+        "tp": "9.65",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "6.66",
+        "sl": "7.86",
+        "tp": "3.66",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "USDSGD": {
+    "file": "docs\\dossiers\\USDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18119,
+    "telemetry": {
+      "bid": "1.28",
+      "ask": "1.28",
+      "spread_bps": "0.31 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.28",
+      "val": "1.28",
+      "poc": "1.28",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.28",
+        "sl": "1.28",
+        "tp": "1.28",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "1.28",
+        "sl": "1.28",
+        "tp": "1.28",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "EURUSD": {
+    "file": "docs\\dossiers\\EURUSD_MASTER_DOSSIER.md",
+    "lines": 426,
+    "bytes": 33226,
+    "telemetry": {
+      "bid": "1.12",
+      "ask": "1.12",
+      "spread_bps": "0.09 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.12",
+      "val": "1.12",
+      "poc": "1.12",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.12",
+        "sl": "1.12",
+        "tp": "1.13",
+        "lot": "0.02 lots"
+      },
+      "short_card": {
+        "entry": "1.12",
+        "sl": "1.12",
+        "tp": "1.11",
+        "lot": "0.02 lots"
+      }
+    }
+  },
+  "XAUUSD": {
+    "file": "docs\\dossiers\\XAUUSD_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103444,
+    "telemetry": {
+      "bid": "3978.06",
+      "ask": "3978.14",
+      "spread_bps": "0.20 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4006.65",
+      "val": "3979.46",
+      "poc": "3990.50",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3979.46",
+        "sl": "3967.41",
+        "tp": "4009.60",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "4006.65",
+        "sl": "4018.70",
+        "tp": "3976.51",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "USDCAD": {
+    "file": "docs\\dossiers\\USDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18142,
+    "telemetry": {
+      "bid": "1.40",
+      "ask": "1.40",
+      "spread_bps": "0.14 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.40",
+      "val": "1.40",
+      "poc": "1.40",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.40",
+        "sl": "1.39",
+        "tp": "1.41",
+        "lot": "0.02 lots"
+      },
+      "short_card": {
+        "entry": "1.40",
+        "sl": "1.40",
+        "tp": "1.39",
+        "lot": "0.02 lots"
+      }
+    }
+  },
+  "EURJPY": {
+    "file": "docs\\dossiers\\EURJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18261,
+    "telemetry": {
+      "bid": "175.94",
+      "ask": "175.94",
+      "spread_bps": "0.40 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "176.36",
+      "val": "176.09",
+      "poc": "176.30",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "176.09",
+        "sl": "175.55",
+        "tp": "177.43",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "176.36",
+        "sl": "176.90",
+        "tp": "175.02",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "DJ30": {
+    "file": "docs\\dossiers\\DJ30_MASTER_DOSSIER.md",
+    "lines": 286,
+    "bytes": 18612,
+    "telemetry": {
+      "bid": "52450.16",
+      "ask": "52451.34",
+      "spread_bps": "0.22 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "52417.40",
+      "val": "52259.12",
+      "poc": "52377.27",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "52259.12",
+        "sl": "52100.00",
+        "tp": "52656.93",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "52417.40",
+        "sl": "52576.52",
+        "tp": "52019.59",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "USDJPY": {
+    "file": "docs\\dossiers\\USDJPY_MASTER_DOSSIER.md",
+    "lines": 415,
+    "bytes": 33359,
+    "telemetry": {
+      "bid": "157.08",
+      "ask": "157.08",
+      "spread_bps": "0.06 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "157.62",
+      "val": "157.24",
+      "poc": "157.34",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "157.24",
+        "sl": "157.08",
+        "tp": "157.65",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "157.62",
+        "sl": "157.78",
+        "tp": "157.21",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "AUDUSD": {
+    "file": "docs\\dossiers\\AUDUSD_MASTER_DOSSIER.md",
+    "lines": 310,
+    "bytes": 22455,
+    "telemetry": {
+      "bid": "0.7039",
+      "ask": "0.7039",
+      "spread_bps": "0.14 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.7033",
+      "val": "0.7024",
+      "poc": "0.7029",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.7024",
+        "sl": "0.7018",
+        "tp": "0.7037",
+        "lot": "0.19 lots"
+      },
+      "short_card": {
+        "entry": "0.7033",
+        "sl": "0.7038",
+        "tp": "0.7020",
+        "lot": "0.19 lots"
+      }
+    }
+  },
+  "GBPUSD": {
+    "file": "docs\\dossiers\\GBPUSD_MASTER_DOSSIER.md",
+    "lines": 424,
+    "bytes": 32907,
+    "telemetry": {
+      "bid": "1.34",
+      "ask": "1.34",
+      "spread_bps": "0.07 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.34",
+      "val": "1.34",
+      "poc": "1.34",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.34",
+        "sl": "1.33",
+        "tp": "1.35",
+        "lot": "0.02 lots"
+      },
+      "short_card": {
+        "entry": "1.34",
+        "sl": "1.34",
+        "tp": "1.33",
+        "lot": "0.02 lots"
+      }
+    }
+  },
+  "GER40": {
+    "file": "docs\\dossiers\\GER40_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18370,
+    "telemetry": {
+      "bid": "19368.80",
+      "ask": "19376.90",
+      "spread_bps": "4.18 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "26028.56",
+      "val": "25917.28",
+      "poc": "25991.47",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "25917.28",
+        "sl": "25879.98",
+        "tp": "26010.53",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "26028.56",
+        "sl": "26065.86",
+        "tp": "25935.31",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "AUDSGD": {
+    "file": "docs\\dossiers\\AUDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18247,
+    "telemetry": {
+      "bid": "0.8990",
+      "ask": "0.8991",
+      "spread_bps": "0.33 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.8992",
+      "val": "0.8972",
+      "poc": "0.8980",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.8972",
+        "sl": "0.8966",
+        "tp": "0.8997",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.8992",
+        "sl": "0.8998",
+        "tp": "0.8967",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "GBPHKD": {
+    "file": "docs\\dossiers\\GBPHKD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18171,
+    "telemetry": {
+      "bid": "10.54",
+      "ask": "10.54",
+      "spread_bps": "0.18 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "10.57",
+      "val": "10.51",
+      "poc": "10.54",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "10.51",
+        "sl": "9.31",
+        "tp": "13.51",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "10.57",
+        "sl": "11.77",
+        "tp": "7.57",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "USDCHF": {
+    "file": "docs\\dossiers\\USDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18261,
+    "telemetry": {
+      "bid": "0.8210",
+      "ask": "0.8211",
+      "spread_bps": "0.49 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.8227",
+      "val": "0.8208",
+      "poc": "0.8213",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.8208",
+        "sl": "0.8183",
+        "tp": "0.8271",
+        "lot": "0.03 lots"
+      },
+      "short_card": {
+        "entry": "0.8227",
+        "sl": "0.8252",
+        "tp": "0.8164",
+        "lot": "0.03 lots"
+      }
+    }
+  },
+  "NAS100": {
+    "file": "docs\\dossiers\\NAS100_MASTER_DOSSIER.md",
+    "lines": 301,
+    "bytes": 21712,
+    "telemetry": {
+      "bid": "28687.23",
+      "ask": "28688.29",
+      "spread_bps": "0.37 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "28849.63",
+      "val": "28695.00",
+      "poc": "28728.30",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "28695.00",
+        "sl": "28638.41",
+        "tp": "28836.48",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "28849.63",
+        "sl": "28906.22",
+        "tp": "28708.15",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "SP500": {
+    "file": "docs\\dossiers\\SP500_MASTER_DOSSIER.md",
+    "lines": 742,
+    "bytes": 74865,
+    "telemetry": {
+      "bid": "7639.61",
+      "ask": "7639.91",
+      "spread_bps": "0.39 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "7651.88",
+      "val": "7634.79",
+      "poc": "7637.32",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 113
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "7634.79",
+        "sl": "7611.42",
+        "tp": "7693.21",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "7651.88",
+        "sl": "7675.25",
+        "tp": "7593.46",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "GBPJPY": {
+    "file": "docs\\dossiers\\GBPJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18263,
+    "telemetry": {
+      "bid": "210.98",
+      "ask": "211.00",
+      "spread_bps": "0.62 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "211.26",
+      "val": "210.85",
+      "poc": "211.08",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "210.85",
+        "sl": "210.20",
+        "tp": "212.49",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "211.26",
+        "sl": "211.91",
+        "tp": "209.63",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "EURCAD": {
+    "file": "docs\\dossiers\\EURCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18128,
+    "telemetry": {
+      "bid": "1.56",
+      "ask": "1.56",
+      "spread_bps": "0.26 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.56",
+      "val": "1.56",
+      "poc": "1.56",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.56",
+        "sl": "0.3626",
+        "tp": "4.56",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.56",
+        "sl": "2.76",
+        "tp": "-1.44",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "GAUUSD": {
+    "file": "docs\\dossiers\\GAUUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18232,
+    "telemetry": {
+      "bid": "127.89",
+      "ask": "127.90",
+      "spread_bps": "0.45 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "128.28",
+      "val": "127.51",
+      "poc": "127.90",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "127.51",
+        "sl": "126.30",
+        "tp": "130.53",
+        "lot": "8.27 lots"
+      },
+      "short_card": {
+        "entry": "128.28",
+        "sl": "129.49",
+        "tp": "125.26",
+        "lot": "8.27 lots"
+      }
+    }
+  },
+  "GBPCNH": {
+    "file": "docs\\dossiers\\GBPCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18114,
+    "telemetry": {
+      "bid": "8.93",
+      "ask": "8.93",
+      "spread_bps": "0.36 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "8.96",
+      "val": "8.91",
+      "poc": "8.93",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "8.91",
+        "sl": "7.71",
+        "tp": "11.91",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "8.96",
+        "sl": "10.16",
+        "tp": "5.96",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "AUDCAD": {
+    "file": "docs\\dossiers\\AUDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18262,
+    "telemetry": {
+      "bid": "0.9821",
+      "ask": "0.9821",
+      "spread_bps": "0.31 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.9829",
+      "val": "0.9812",
+      "poc": "0.9822",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.9812",
+        "sl": "0.9804",
+        "tp": "0.9837",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.9829",
+        "sl": "0.9837",
+        "tp": "0.9805",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "GBPCAD": {
+    "file": "docs\\dossiers\\GBPCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18131,
+    "telemetry": {
+      "bid": "1.87",
+      "ask": "1.87",
+      "spread_bps": "0.37 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.87",
+      "val": "1.87",
+      "poc": "1.87",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.87",
+        "sl": "0.6699",
+        "tp": "4.87",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.87",
+        "sl": "3.07",
+        "tp": "-1.13",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "NZDCNH": {
+    "file": "docs\\dossiers\\NZDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18108,
+    "telemetry": {
+      "bid": "3.76",
+      "ask": "3.76",
+      "spread_bps": "0.64 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "3.77",
+      "val": "3.75",
+      "poc": "3.76",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3.75",
+        "sl": "2.55",
+        "tp": "6.75",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "3.77",
+        "sl": "4.97",
+        "tp": "0.7684",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "CADCHF": {
+    "file": "docs\\dossiers\\CADCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18262,
+    "telemetry": {
+      "bid": "0.5885",
+      "ask": "0.5885",
+      "spread_bps": "0.85 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.5889",
+      "val": "0.5881",
+      "poc": "0.5885",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.5881",
+        "sl": "0.5875",
+        "tp": "0.5906",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.5889",
+        "sl": "0.5895",
+        "tp": "0.5864",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "CHFJPY": {
+    "file": "docs\\dossiers\\CHFJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18260,
+    "telemetry": {
+      "bid": "191.32",
+      "ask": "191.34",
+      "spread_bps": "0.57 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "191.72",
+      "val": "191.45",
+      "poc": "191.62",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "191.45",
+        "sl": "191.26",
+        "tp": "191.93",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "191.72",
+        "sl": "191.91",
+        "tp": "191.23",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "AUDCHF": {
+    "file": "docs\\dossiers\\AUDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18262,
+    "telemetry": {
+      "bid": "0.5780",
+      "ask": "0.5780",
+      "spread_bps": "0.52 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.5787",
+      "val": "0.5772",
+      "poc": "0.5778",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.5772",
+        "sl": "0.5765",
+        "tp": "0.5797",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.5787",
+        "sl": "0.5794",
+        "tp": "0.5762",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "EURAUD": {
+    "file": "docs\\dossiers\\EURAUD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18130,
+    "telemetry": {
+      "bid": "1.59",
+      "ask": "1.59",
+      "spread_bps": "0.38 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.59",
+      "val": "1.59",
+      "poc": "1.59",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.59",
+        "sl": "0.3906",
+        "tp": "4.59",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.59",
+        "sl": "2.79",
+        "tp": "-1.41",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "GBPSGD": {
+    "file": "docs\\dossiers\\GBPSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18115,
+    "telemetry": {
+      "bid": "1.72",
+      "ask": "1.72",
+      "spread_bps": "0.70 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.72",
+      "val": "1.71",
+      "poc": "1.72",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.71",
+        "sl": "0.5102",
+        "tp": "4.71",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.72",
+        "sl": "2.92",
+        "tp": "-1.28",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "CHFSGD": {
+    "file": "docs\\dossiers\\CHFSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18116,
+    "telemetry": {
+      "bid": "1.56",
+      "ask": "1.56",
+      "spread_bps": "0.64 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.56",
+      "val": "1.55",
+      "poc": "1.56",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.55",
+        "sl": "0.3507",
+        "tp": "4.55",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.56",
+        "sl": "2.76",
+        "tp": "-1.44",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "NZDUSD": {
+    "file": "docs\\dossiers\\NZDUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18261,
+    "telemetry": {
+      "bid": "0.5650",
+      "ask": "0.5651",
+      "spread_bps": "0.71 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.5645",
+      "val": "0.5631",
+      "poc": "0.5636",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.5631",
+        "sl": "0.5626",
+        "tp": "0.5645",
+        "lot": "0.17 lots"
+      },
+      "short_card": {
+        "entry": "0.5645",
+        "sl": "0.5651",
+        "tp": "0.5631",
+        "lot": "0.17 lots"
+      }
+    }
+  },
+  "XAUSGD": {
+    "file": "docs\\dossiers\\XAUSGD_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103444,
+    "telemetry": {
+      "bid": "5080.45",
+      "ask": "5080.83",
+      "spread_bps": "0.75 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4006.65",
+      "val": "3979.46",
+      "poc": "3990.50",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3979.46",
+        "sl": "3963.65",
+        "tp": "4018.99",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "4006.65",
+        "sl": "4022.46",
+        "tp": "3967.12",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "EURCNH": {
+    "file": "docs\\dossiers\\EURCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18114,
+    "telemetry": {
+      "bid": "7.45",
+      "ask": "7.45",
+      "spread_bps": "0.67 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "7.47",
+      "val": "7.43",
+      "poc": "7.45",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "7.43",
+        "sl": "6.23",
+        "tp": "10.43",
+        "lot": "8.32 lots"
+      },
+      "short_card": {
+        "entry": "7.47",
+        "sl": "8.67",
+        "tp": "4.47",
+        "lot": "8.32 lots"
+      }
+    }
+  },
+  "XAUCNH": {
+    "file": "docs\\dossiers\\XAUCNH_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103442,
+    "telemetry": {
+      "bid": "3978.06",
+      "ask": "3978.14",
+      "spread_bps": "0.20 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4006.65",
+      "val": "3979.46",
+      "poc": "3990.50",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3979.46",
+        "sl": "3967.41",
+        "tp": "4009.60",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "4006.65",
+        "sl": "4018.70",
+        "tp": "3976.51",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "GBPAUD": {
+    "file": "docs\\dossiers\\GBPAUD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18129,
+    "telemetry": {
+      "bid": "1.91",
+      "ask": "1.91",
+      "spread_bps": "0.37 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.91",
+      "val": "1.90",
+      "poc": "1.90",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.90",
+        "sl": "0.7030",
+        "tp": "4.90",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.91",
+        "sl": "3.11",
+        "tp": "-1.09",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "AUDJPY": {
+    "file": "docs\\dossiers\\AUDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18264,
+    "telemetry": {
+      "bid": "110.57",
+      "ask": "110.57",
+      "spread_bps": "0.45 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "110.86",
+      "val": "110.60",
+      "poc": "110.79",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "110.60",
+        "sl": "110.47",
+        "tp": "110.92",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "110.86",
+        "sl": "110.98",
+        "tp": "110.54",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "XAUEUR": {
+    "file": "docs\\dossiers\\XAUEUR_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103442,
+    "telemetry": {
+      "bid": "3551.60",
+      "ask": "3551.81",
+      "spread_bps": "0.59 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "3581.36",
+      "val": "3557.86",
+      "poc": "3566.44",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3557.86",
+        "sl": "3546.89",
+        "tp": "3585.29",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "3581.36",
+        "sl": "3592.33",
+        "tp": "3553.93",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "CNHJPY": {
+    "file": "docs\\dossiers\\CNHJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18166,
+    "telemetry": {
+      "bid": "23.62",
+      "ask": "23.62",
+      "spread_bps": "0.42 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "23.69",
+      "val": "23.55",
+      "poc": "23.62",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "23.55",
+        "sl": "22.35",
+        "tp": "26.55",
+        "lot": "8.32 lots"
+      },
+      "short_card": {
+        "entry": "23.69",
+        "sl": "24.89",
+        "tp": "20.69",
+        "lot": "8.32 lots"
+      }
+    }
+  },
+  "NZDCHF": {
+    "file": "docs\\dossiers\\NZDCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18240,
+    "telemetry": {
+      "bid": "0.4639",
+      "ask": "0.4640",
+      "spread_bps": "0.86 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.4639",
+      "val": "0.4630",
+      "poc": "0.4635",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.4630",
+        "sl": "0.4624",
+        "tp": "0.4655",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.4639",
+        "sl": "0.4644",
+        "tp": "0.4614",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "GBPNZD": {
+    "file": "docs\\dossiers\\GBPNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18114,
+    "telemetry": {
+      "bid": "2.38",
+      "ask": "2.38",
+      "spread_bps": "0.63 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "2.38",
+      "val": "2.37",
+      "poc": "2.38",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "2.37",
+        "sl": "1.17",
+        "tp": "5.37",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "2.38",
+        "sl": "3.58",
+        "tp": "-0.6163",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "XAUAUD": {
+    "file": "docs\\dossiers\\XAUAUD_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103441,
+    "telemetry": {
+      "bid": "3978.06",
+      "ask": "3978.14",
+      "spread_bps": "0.20 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4006.65",
+      "val": "3979.46",
+      "poc": "3990.50",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3979.46",
+        "sl": "3967.41",
+        "tp": "4009.60",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "4006.65",
+        "sl": "4018.70",
+        "tp": "3976.51",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "NZDJPY": {
+    "file": "docs\\dossiers\\NZDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18193,
+    "telemetry": {
+      "bid": "88.76",
+      "ask": "88.76",
+      "spread_bps": "0.56 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "88.84",
+      "val": "88.73",
+      "poc": "88.80",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "88.73",
+        "sl": "88.63",
+        "tp": "88.97",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "88.84",
+        "sl": "88.94",
+        "tp": "88.60",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "EURSGD": {
+    "file": "docs\\dossiers\\EURSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18115,
+    "telemetry": {
+      "bid": "1.43",
+      "ask": "1.43",
+      "spread_bps": "0.56 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.43",
+      "val": "1.43",
+      "poc": "1.43",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.43",
+        "sl": "0.2261",
+        "tp": "4.43",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.43",
+        "sl": "2.63",
+        "tp": "-1.57",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "JP225": {
+    "file": "docs\\dossiers\\JP225_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18480,
+    "telemetry": {
+      "bid": "62829.50",
+      "ask": "62835.50",
+      "spread_bps": "0.95 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "63304.20",
+      "val": "62814.30",
+      "poc": "62925.20",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "62814.30",
+        "sl": "62616.80",
+        "tp": "63308.04",
+        "lot": "0.05 lots"
+      },
+      "short_card": {
+        "entry": "63304.20",
+        "sl": "63501.70",
+        "tp": "62810.46",
+        "lot": "0.05 lots"
+      }
+    }
+  },
+  "XAUGBP": {
+    "file": "docs\\dossiers\\XAUGBP_MASTER_DOSSIER.md",
+    "lines": 1022,
+    "bytes": 103441,
+    "telemetry": {
+      "bid": "3978.06",
+      "ask": "3978.14",
+      "spread_bps": "0.20 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4006.65",
+      "val": "3979.46",
+      "poc": "3990.50",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 66
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "4071.25",
+      "long_mp_24h": "3950.06",
+      "short_mp_48h": "4076.12",
+      "long_mp_48h": "3969.36"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "3979.46",
+        "sl": "3967.41",
+        "tp": "4009.60",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "4006.65",
+        "sl": "4018.70",
+        "tp": "3976.51",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "EURNZD": {
+    "file": "docs\\dossiers\\EURNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18115,
+    "telemetry": {
+      "bid": "1.98",
+      "ask": "1.98",
+      "spread_bps": "0.81 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.99",
+      "val": "1.98",
+      "poc": "1.98",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.98",
+        "sl": "0.7760",
+        "tp": "4.98",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.99",
+        "sl": "3.19",
+        "tp": "-1.01",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "AUDNZD": {
+    "file": "docs\\dossiers\\AUDNZD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18125,
+    "telemetry": {
+      "bid": "1.25",
+      "ask": "1.25",
+      "spread_bps": "0.96 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.25",
+      "val": "1.25",
+      "poc": "1.25",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.25",
+        "sl": "1.25",
+        "tp": "1.25",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "1.25",
+        "sl": "1.25",
+        "tp": "1.25",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "CADJPY": {
+    "file": "docs\\dossiers\\CADJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18258,
+    "telemetry": {
+      "bid": "112.59",
+      "ask": "112.60",
+      "spread_bps": "0.71 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "112.82",
+      "val": "112.64",
+      "poc": "112.67",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "112.64",
+        "sl": "112.52",
+        "tp": "112.94",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "112.82",
+        "sl": "112.94",
+        "tp": "112.52",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "US2000": {
+    "file": "docs\\dossiers\\US2000_MASTER_DOSSIER.md",
+    "lines": 301,
+    "bytes": 21420,
+    "telemetry": {
+      "bid": "2844.72",
+      "ask": "2845.04",
+      "spread_bps": "1.12 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "2853.18",
+      "val": "2843.00",
+      "poc": "2848.69",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "2843.00",
+        "sl": "2833.99",
+        "tp": "2865.54",
+        "lot": "1.10 lots"
+      },
+      "short_card": {
+        "entry": "2853.18",
+        "sl": "2862.19",
+        "tp": "2830.64",
+        "lot": "1.10 lots"
+      }
+    }
+  },
+  "GBPSEK": {
+    "file": "docs\\dossiers\\GBPSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18174,
+    "telemetry": {
+      "bid": "13.17",
+      "ask": "13.17",
+      "spread_bps": "1.16 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "13.21",
+      "val": "13.13",
+      "poc": "13.17",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "13.13",
+        "sl": "11.93",
+        "tp": "16.13",
+        "lot": "8.31 lots"
+      },
+      "short_card": {
+        "entry": "13.21",
+        "sl": "14.41",
+        "tp": "10.20",
+        "lot": "8.31 lots"
+      }
+    }
+  },
+  "GBPCHF": {
+    "file": "docs\\dossiers\\GBPCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18131,
+    "telemetry": {
+      "bid": "1.10",
+      "ask": "1.10",
+      "spread_bps": "1.09 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.10",
+      "val": "1.10",
+      "poc": "1.10",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.10",
+        "sl": "-0.0998",
+        "tp": "4.10",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.10",
+        "sl": "2.30",
+        "tp": "-1.90",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "USDZAR": {
+    "file": "docs\\dossiers\\USDZAR_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18169,
+    "telemetry": {
+      "bid": "16.63",
+      "ask": "16.64",
+      "spread_bps": "2.01 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "16.69",
+      "val": "16.59",
+      "poc": "16.64",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "16.59",
+        "sl": "15.38",
+        "tp": "19.60",
+        "lot": "8.29 lots"
+      },
+      "short_card": {
+        "entry": "16.69",
+        "sl": "17.89",
+        "tp": "13.67",
+        "lot": "8.29 lots"
+      }
+    }
+  },
+  "AU200": {
+    "file": "docs\\dossiers\\AU200_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18308,
+    "telemetry": {
+      "bid": "8917.95",
+      "ask": "8919.05",
+      "spread_bps": "1.23 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "8947.06",
+      "val": "8905.33",
+      "poc": "8932.30",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "8905.33",
+        "sl": "8892.26",
+        "tp": "8938.02",
+        "lot": "0.76 lots"
+      },
+      "short_card": {
+        "entry": "8947.06",
+        "sl": "8960.13",
+        "tp": "8914.37",
+        "lot": "0.76 lots"
+      }
+    }
+  },
+  "NZDSGD": {
+    "file": "docs\\dossiers\\NZDSGD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18223,
+    "telemetry": {
+      "bid": "0.7216",
+      "ask": "0.7217",
+      "spread_bps": "0.97 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.7238",
+      "val": "0.7195",
+      "poc": "0.7217",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.7195",
+        "sl": "-0.4806",
+        "tp": "3.72",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "0.7238",
+        "sl": "1.92",
+        "tp": "-2.28",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "EURMXN": {
+    "file": "docs\\dossiers\\EURMXN_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18175,
+    "telemetry": {
+      "bid": "21.11",
+      "ask": "21.12",
+      "spread_bps": "1.33 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "21.18",
+      "val": "21.05",
+      "poc": "21.11",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "21.05",
+        "sl": "19.85",
+        "tp": "24.06",
+        "lot": "8.30 lots"
+      },
+      "short_card": {
+        "entry": "21.18",
+        "sl": "22.38",
+        "tp": "18.17",
+        "lot": "8.30 lots"
+      }
+    }
+  },
+  "EURSEK": {
+    "file": "docs\\dossiers\\EURSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18173,
+    "telemetry": {
+      "bid": "10.98",
+      "ask": "10.98",
+      "spread_bps": "1.20 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "11.01",
+      "val": "10.95",
+      "poc": "10.98",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "10.95",
+        "sl": "9.75",
+        "tp": "13.95",
+        "lot": "8.31 lots"
+      },
+      "short_card": {
+        "entry": "11.01",
+        "sl": "12.22",
+        "tp": "8.01",
+        "lot": "8.31 lots"
+      }
+    }
+  },
+  "NZDCAD": {
+    "file": "docs\\dossiers\\NZDCAD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18240,
+    "telemetry": {
+      "bid": "0.7883",
+      "ask": "0.7884",
+      "spread_bps": "1.14 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.7883",
+      "val": "0.7869",
+      "poc": "0.7877",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.7869",
+        "sl": "0.7861",
+        "tp": "0.7894",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.7883",
+        "sl": "0.7891",
+        "tp": "0.7858",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "EURCHF": {
+    "file": "docs\\dossiers\\EURCHF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18246,
+    "telemetry": {
+      "bid": "0.9196",
+      "ask": "0.9197",
+      "spread_bps": "1.41 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.9203",
+      "val": "0.9192",
+      "poc": "0.9198",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.9192",
+        "sl": "-0.2810",
+        "tp": "3.92",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "0.9203",
+        "sl": "2.12",
+        "tp": "-2.08",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "SGDJPY": {
+    "file": "docs\\dossiers\\SGDJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18232,
+    "telemetry": {
+      "bid": "122.99",
+      "ask": "123.00",
+      "spread_bps": "0.89 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "123.36",
+      "val": "122.63",
+      "poc": "122.99",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "122.63",
+        "sl": "121.41",
+        "tp": "125.67",
+        "lot": "8.22 lots"
+      },
+      "short_card": {
+        "entry": "123.36",
+        "sl": "124.58",
+        "tp": "120.32",
+        "lot": "8.22 lots"
+      }
+    }
+  },
+  "USDSEK": {
+    "file": "docs\\dossiers\\USDSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18111,
+    "telemetry": {
+      "bid": "9.80",
+      "ask": "9.80",
+      "spread_bps": "1.25 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "9.83",
+      "val": "9.77",
+      "poc": "9.80",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "9.77",
+        "sl": "8.57",
+        "tp": "12.78",
+        "lot": "8.32 lots"
+      },
+      "short_card": {
+        "entry": "9.83",
+        "sl": "11.03",
+        "tp": "6.83",
+        "lot": "8.32 lots"
+      }
+    }
+  },
+  "UK100": {
+    "file": "docs\\dossiers\\UK100_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18370,
+    "telemetry": {
+      "bid": "10765.78",
+      "ask": "10767.48",
+      "spread_bps": "1.58 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "10768.19",
+      "val": "10740.05",
+      "poc": "10750.03",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "10740.05",
+        "sl": "10705.20",
+        "tp": "10827.17",
+        "lot": "0.28 lots"
+      },
+      "short_card": {
+        "entry": "10768.19",
+        "sl": "10803.04",
+        "tp": "10681.07",
+        "lot": "0.28 lots"
+      }
+    }
+  },
+  "EURNOK": {
+    "file": "docs\\dossiers\\EURNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18173,
+    "telemetry": {
+      "bid": "10.30",
+      "ask": "10.30",
+      "spread_bps": "1.36 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "10.33",
+      "val": "10.27",
+      "poc": "10.30",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "10.27",
+        "sl": "9.07",
+        "tp": "13.28",
+        "lot": "8.31 lots"
+      },
+      "short_card": {
+        "entry": "10.33",
+        "sl": "11.54",
+        "tp": "7.33",
+        "lot": "8.31 lots"
+      }
+    }
+  },
+  "FR40": {
+    "file": "docs\\dossiers\\FR40_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18304,
+    "telemetry": {
+      "bid": "7990.30",
+      "ask": "7991.60",
+      "spread_bps": "1.63 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "7983.06",
+      "val": "7956.17",
+      "poc": "7958.83",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "7956.17",
+        "sl": "7930.25",
+        "tp": "8020.98",
+        "lot": "0.38 lots"
+      },
+      "short_card": {
+        "entry": "7983.06",
+        "sl": "8008.98",
+        "tp": "7918.25",
+        "lot": "0.38 lots"
+      }
+    }
+  },
+  "USDMXN": {
+    "file": "docs\\dossiers\\USDMXN_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18169,
+    "telemetry": {
+      "bid": "18.85",
+      "ask": "18.85",
+      "spread_bps": "1.95 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "18.91",
+      "val": "18.79",
+      "poc": "18.85",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "18.79",
+        "sl": "17.59",
+        "tp": "21.81",
+        "lot": "8.29 lots"
+      },
+      "short_card": {
+        "entry": "18.91",
+        "sl": "20.11",
+        "tp": "15.89",
+        "lot": "8.29 lots"
+      }
+    }
+  },
+  "GBPNOK": {
+    "file": "docs\\dossiers\\GBPNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18173,
+    "telemetry": {
+      "bid": "12.35",
+      "ask": "12.36",
+      "spread_bps": "1.74 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "12.39",
+      "val": "12.32",
+      "poc": "12.36",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "12.32",
+        "sl": "11.12",
+        "tp": "15.33",
+        "lot": "8.31 lots"
+      },
+      "short_card": {
+        "entry": "12.39",
+        "sl": "13.60",
+        "tp": "9.38",
+        "lot": "8.31 lots"
+      }
+    }
+  },
+  "BTCUSD": {
+    "file": "docs\\dossiers\\BTCUSDi_360_DOSSIER.md",
+    "lines": 5728,
+    "bytes": 726903,
+    "telemetry": {
+      "bid": "77536.00",
+      "ask": "77552.00",
+      "spread_bps": "2.06 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "78646.96",
+      "val": "76932.40",
+      "poc": "77902.48",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 304
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "79868.95",
+      "long_mp_24h": "76945.12",
+      "short_mp_48h": "79868.95",
+      "long_mp_48h": "76945.12"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "76932.40",
+        "sl": "76561.31",
+        "tp": "77860.12",
+        "lot": "0.02 lots"
+      },
+      "short_card": {
+        "entry": "78646.96",
+        "sl": "79018.05",
+        "tp": "77719.24",
+        "lot": "0.02 lots"
+      }
+    }
+  },
+  "USDNOK": {
+    "file": "docs\\dossiers\\USDNOK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18110,
+    "telemetry": {
+      "bid": "9.20",
+      "ask": "9.20",
+      "spread_bps": "1.23 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "9.23",
+      "val": "9.17",
+      "poc": "9.20",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "9.17",
+        "sl": "7.97",
+        "tp": "12.18",
+        "lot": "8.32 lots"
+      },
+      "short_card": {
+        "entry": "9.23",
+        "sl": "10.43",
+        "tp": "6.22",
+        "lot": "8.32 lots"
+      }
+    }
+  },
+  "EURZAR": {
+    "file": "docs\\dossiers\\EURZAR_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18175,
+    "telemetry": {
+      "bid": "18.63",
+      "ask": "18.63",
+      "spread_bps": "1.97 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "18.69",
+      "val": "18.58",
+      "poc": "18.63",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "18.58",
+        "sl": "17.37",
+        "tp": "21.59",
+        "lot": "8.29 lots"
+      },
+      "short_card": {
+        "entry": "18.69",
+        "sl": "19.89",
+        "tp": "15.68",
+        "lot": "8.29 lots"
+      }
+    }
+  },
+  "XAGSGD": {
+    "file": "docs\\dossiers\\XAGSGD_MASTER_DOSSIER.md",
+    "lines": 737,
+    "bytes": 72363,
+    "telemetry": {
+      "bid": "64.40",
+      "ask": "64.42",
+      "spread_bps": "2.79 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "52.07",
+      "val": "50.87",
+      "poc": "51.44",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 63
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "52.71",
+      "long_mp_24h": "50.23",
+      "short_mp_48h": "54.87",
+      "long_mp_48h": "50.60"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "50.87",
+        "sl": "49.64",
+        "tp": "53.94",
+        "lot": "0.01 lots"
+      },
+      "short_card": {
+        "entry": "52.07",
+        "sl": "53.30",
+        "tp": "49.00",
+        "lot": "0.01 lots"
+      }
+    }
+  },
+  "NOKSEK": {
+    "file": "docs\\dossiers\\NOKSEK_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18141,
+    "telemetry": {
+      "bid": "1.07",
+      "ask": "1.07",
+      "spread_bps": "2.25 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.07",
+      "val": "1.06",
+      "poc": "1.07",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.06",
+        "sl": "-0.1378",
+        "tp": "4.06",
+        "lot": "8.33 lots"
+      },
+      "short_card": {
+        "entry": "1.07",
+        "sl": "2.27",
+        "tp": "-1.93",
+        "lot": "8.33 lots"
+      }
+    }
+  },
+  "HK50": {
+    "file": "docs\\dossiers\\HK50_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18367,
+    "telemetry": {
+      "bid": "23346.10",
+      "ask": "23353.10",
+      "spread_bps": "3.00 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "23390.34",
+      "val": "23218.01",
+      "poc": "23298.02",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "23218.01",
+        "sl": "23137.46",
+        "tp": "23419.38",
+        "lot": "0.12 lots"
+      },
+      "short_card": {
+        "entry": "23390.34",
+        "sl": "23470.89",
+        "tp": "23188.97",
+        "lot": "0.12 lots"
+      }
+    }
+  },
+  "STOXX50": {
+    "file": "docs\\dossiers\\STOXX50_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18313,
+    "telemetry": {
+      "bid": "6159.60",
+      "ask": "6161.20",
+      "spread_bps": "2.60 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "6180.39",
+      "val": "6166.10",
+      "poc": "6177.46",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "6166.10",
+        "sl": "6145.22",
+        "tp": "6218.30",
+        "lot": "0.47 lots"
+      },
+      "short_card": {
+        "entry": "6180.39",
+        "sl": "6201.27",
+        "tp": "6128.19",
+        "lot": "0.47 lots"
+      }
+    }
+  },
+  "NETH25": {
+    "file": "docs\\dossiers\\NETH25_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18364,
+    "telemetry": {
+      "bid": "1140.30",
+      "ask": "1140.60",
+      "spread_bps": "2.63 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1139.93",
+      "val": "1135.96",
+      "poc": "1136.70",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "351.53",
+      "long_mp_24h": "317.61",
+      "short_mp_48h": "351.50",
+      "long_mp_48h": "318.25"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1135.96",
+        "sl": "1133.59",
+        "tp": "1141.89",
+        "lot": "4.21 lots"
+      },
+      "short_card": {
+        "entry": "1139.93",
+        "sl": "1142.30",
+        "tp": "1134.00",
+        "lot": "4.21 lots"
+      }
+    }
+  },
+  "SWISS20": {
+    "file": "docs\\dossiers\\SWISS20_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18374,
+    "telemetry": {
+      "bid": "14824.00",
+      "ask": "14828.00",
+      "spread_bps": "2.70 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "14825.46",
+      "val": "14761.22",
+      "poc": "14799.06",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "14761.22",
+        "sl": "14710.74",
+        "tp": "14887.41",
+        "lot": "0.19 lots"
+      },
+      "short_card": {
+        "entry": "14825.46",
+        "sl": "14875.94",
+        "tp": "14699.27",
+        "lot": "0.19 lots"
+      }
+    }
+  },
+  "AUDCNH": {
+    "file": "docs\\dossiers\\AUDCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18113,
+    "telemetry": {
+      "bid": "4.68",
+      "ask": "4.68",
+      "spread_bps": "2.56 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "4.70",
+      "val": "4.67",
+      "poc": "4.68",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "4.67",
+        "sl": "3.47",
+        "tp": "7.67",
+        "lot": "8.32 lots"
+      },
+      "short_card": {
+        "entry": "4.70",
+        "sl": "5.90",
+        "tp": "1.69",
+        "lot": "8.32 lots"
+      }
+    }
+  },
+  "UKBRENT": {
+    "file": "docs\\dossiers\\UKBRENT_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18266,
+    "telemetry": {
+      "bid": "118.03",
+      "ask": "118.07",
+      "spread_bps": "3.73 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "117.90",
+      "val": "116.34",
+      "poc": "116.87",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "116.34",
+        "sl": "115.08",
+        "tp": "119.51",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "117.90",
+        "sl": "119.16",
+        "tp": "114.73",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "GAUCNH": {
+    "file": "docs\\dossiers\\GAUCNH_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18233,
+    "telemetry": {
+      "bid": "850.46",
+      "ask": "850.72",
+      "spread_bps": "3.06 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "853.15",
+      "val": "848.04",
+      "poc": "850.59",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "848.04",
+        "sl": "845.10",
+        "tp": "855.40",
+        "lot": "3.39 lots"
+      },
+      "short_card": {
+        "entry": "853.15",
+        "sl": "856.09",
+        "tp": "845.79",
+        "lot": "3.39 lots"
+      }
+    }
+  },
+  "USDHUF": {
+    "file": "docs\\dossiers\\USDHUF_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18233,
+    "telemetry": {
+      "bid": "326.49",
+      "ask": "326.57",
+      "spread_bps": "2.48 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "327.51",
+      "val": "325.55",
+      "poc": "326.53",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "325.55",
+        "sl": "324.23",
+        "tp": "328.85",
+        "lot": "7.56 lots"
+      },
+      "short_card": {
+        "entry": "327.51",
+        "sl": "328.83",
+        "tp": "324.21",
+        "lot": "7.56 lots"
+      }
+    }
+  },
+  "USDTHB": {
+    "file": "docs\\dossiers\\USDTHB_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18170,
+    "telemetry": {
+      "bid": "33.67",
+      "ask": "33.69",
+      "spread_bps": "4.45 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "33.78",
+      "val": "33.58",
+      "poc": "33.68",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "33.58",
+        "sl": "32.36",
+        "tp": "36.64",
+        "lot": "8.17 lots"
+      },
+      "short_card": {
+        "entry": "33.78",
+        "sl": "35.00",
+        "tp": "30.73",
+        "lot": "8.17 lots"
+      }
+    }
+  },
+  "GER30": {
+    "file": "docs\\dossiers\\GER30_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18368,
+    "telemetry": {
+      "bid": "19368.80",
+      "ask": "19376.90",
+      "spread_bps": "4.18 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "26028.56",
+      "val": "25917.28",
+      "poc": "25991.47",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "25917.28",
+        "sl": "25879.98",
+        "tp": "26010.53",
+        "lot": "0.26 lots"
+      },
+      "short_card": {
+        "entry": "26028.56",
+        "sl": "26065.86",
+        "tp": "25935.31",
+        "lot": "0.26 lots"
+      }
+    }
+  },
+  "USWTI": {
+    "file": "docs\\dossiers\\USWTI_MASTER_DOSSIER.md",
+    "lines": 360,
+    "bytes": 30461,
+    "telemetry": {
+      "bid": "104.77",
+      "ask": "104.82",
+      "spread_bps": "5.34 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "104.97",
+      "val": "103.63",
+      "poc": "104.06",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "105.21",
+      "long_mp_24h": "99.16",
+      "short_mp_48h": "105.21",
+      "long_mp_48h": "101.83"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "103.63",
+        "sl": "102.35",
+        "tp": "106.84",
+        "lot": "0.10 lots"
+      },
+      "short_card": {
+        "entry": "104.97",
+        "sl": "106.25",
+        "tp": "101.76",
+        "lot": "0.10 lots"
+      }
+    }
+  },
+  "ZARJPY": {
+    "file": "docs\\dossiers\\ZARJPY_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18109,
+    "telemetry": {
+      "bid": "9.44",
+      "ask": "9.44",
+      "spread_bps": "4.80 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "9.47",
+      "val": "9.41",
+      "poc": "9.44",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "9.41",
+        "sl": "8.20",
+        "tp": "12.43",
+        "lot": "8.28 lots"
+      },
+      "short_card": {
+        "entry": "9.47",
+        "sl": "10.67",
+        "tp": "6.45",
+        "lot": "8.28 lots"
+      }
+    }
+  },
+  "XMRUSD": {
+    "file": "docs\\dossiers\\XMRUSD_MASTER_DOSSIER.md",
+    "lines": 313,
+    "bytes": 23021,
+    "telemetry": {
+      "bid": "591.04",
+      "ask": "591.25",
+      "spread_bps": "3.55 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "615.14",
+      "val": "587.74",
+      "poc": "592.04",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "654.54",
+      "long_mp_24h": "579.76",
+      "short_mp_48h": "648.23",
+      "long_mp_48h": "580.12"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "587.74",
+        "sl": "581.08",
+        "tp": "604.40",
+        "lot": "1.50 lots"
+      },
+      "short_card": {
+        "entry": "615.14",
+        "sl": "621.80",
+        "tp": "598.48",
+        "lot": "1.50 lots"
+      }
+    }
+  },
+  "ZECUSD": {
+    "file": "docs\\dossiers\\ZECUSD_MASTER_DOSSIER.md",
+    "lines": 432,
+    "bytes": 40892,
+    "telemetry": {
+      "bid": "1265.62",
+      "ask": "1266.74",
+      "spread_bps": "8.85 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1278.60",
+      "val": "1239.95",
+      "poc": "1247.68",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "1404.55",
+      "long_mp_24h": "1176.48",
+      "short_mp_48h": "1404.55",
+      "long_mp_48h": "1176.48"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1239.95",
+        "sl": "1222.78",
+        "tp": "1282.87",
+        "lot": "0.58 lots"
+      },
+      "short_card": {
+        "entry": "1278.60",
+        "sl": "1295.77",
+        "tp": "1235.68",
+        "lot": "0.58 lots"
+      }
+    }
+  },
+  "DSHUSD": {
+    "file": "docs\\dossiers\\DSHUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18192,
+    "telemetry": {
+      "bid": "50.12",
+      "ask": "50.18",
+      "spread_bps": "11.96 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "48.80",
+      "val": "47.24",
+      "poc": "48.17",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.000000",
+      "long_mp_24h": "0.000000",
+      "short_mp_48h": "0.000000",
+      "long_mp_48h": "0.000000"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "47.24",
+        "sl": "46.61",
+        "tp": "48.81",
+        "lot": "15.88 lots"
+      },
+      "short_card": {
+        "entry": "48.80",
+        "sl": "49.43",
+        "tp": "47.23",
+        "lot": "15.88 lots"
+      }
+    }
+  },
+  "YFIUSD": {
+    "file": "docs\\dossiers\\YFIUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18634,
+    "telemetry": {
+      "bid": "1819.90",
+      "ask": "1823.10",
+      "spread_bps": "17.57 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1885.90",
+      "val": "1722.20",
+      "poc": "1760.60",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "2132.30",
+      "long_mp_24h": "2047.30",
+      "short_mp_48h": "2173.80",
+      "long_mp_48h": "2053.10"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1722.20",
+        "sl": "1697.03",
+        "tp": "1785.12",
+        "lot": "0.39 lots"
+      },
+      "short_card": {
+        "entry": "1885.90",
+        "sl": "1911.07",
+        "tp": "1822.98",
+        "lot": "0.39 lots"
+      }
+    }
+  },
+  "ETHUSD": {
+    "file": "docs\\dossiers\\ETHUSDi_360_DOSSIER.md",
+    "lines": 2934,
+    "bytes": 358824,
+    "telemetry": {
+      "bid": "2239.70",
+      "ask": "2242.60",
+      "spread_bps": "12.94 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "2251.47",
+      "val": "2196.43",
+      "poc": "2241.75",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 160
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "2275.30",
+      "long_mp_24h": "2174.37",
+      "short_mp_48h": "2270.12",
+      "long_mp_48h": "2174.00"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "2196.43",
+        "sl": "2185.36",
+        "tp": "2224.11",
+        "lot": "0.90 lots"
+      },
+      "short_card": {
+        "entry": "2251.47",
+        "sl": "2262.54",
+        "tp": "2223.79",
+        "lot": "0.90 lots"
+      }
+    }
+  },
+  "XLMUSD": {
+    "file": "docs\\dossiers\\XLMUSD_MASTER_DOSSIER.md",
+    "lines": 285,
+    "bytes": 18674,
+    "telemetry": {
+      "bid": "0.1648",
+      "ask": "0.1651",
+      "spread_bps": "18.19 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "0.1659",
+      "val": "0.1606",
+      "poc": "0.1644",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "0.1705",
+      "long_mp_24h": "0.1573",
+      "short_mp_48h": "0.1765",
+      "long_mp_48h": "0.1573"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "0.1606",
+        "sl": "0.1591",
+        "tp": "0.1644",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "0.1659",
+        "sl": "0.1674",
+        "tp": "0.1621",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "AVEUSD": {
+    "file": "docs\\dossiers\\AVEUSD_MASTER_DOSSIER.md",
+    "lines": 618,
+    "bytes": 57421,
+    "telemetry": {
+      "bid": "125.63",
+      "ask": "125.89",
+      "spread_bps": "20.67 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "127.07",
+      "val": "119.87",
+      "poc": "124.41",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "128.80",
+      "long_mp_24h": "116.52",
+      "short_mp_48h": "128.82",
+      "long_mp_48h": "116.52"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "119.87",
+        "sl": "118.28",
+        "tp": "123.85",
+        "lot": "6.27 lots"
+      },
+      "short_card": {
+        "entry": "127.07",
+        "sl": "128.66",
+        "tp": "123.09",
+        "lot": "6.27 lots"
+      }
+    }
+  },
+  "SOLUSD": {
+    "file": "docs\\dossiers\\SOLUSD_360_DOSSIER.md",
+    "lines": 4410,
+    "bytes": 499957,
+    "telemetry": {
+      "bid": "96.59",
+      "ask": "96.81",
+      "spread_bps": "22.75 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "98.09",
+      "val": "95.22",
+      "poc": "96.89",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 97
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "101.22",
+      "long_mp_24h": "92.18",
+      "short_mp_48h": "101.12",
+      "long_mp_48h": "92.16"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "95.22",
+        "sl": "93.69",
+        "tp": "99.05",
+        "lot": "6.53 lots"
+      },
+      "short_card": {
+        "entry": "98.09",
+        "sl": "99.62",
+        "tp": "94.27",
+        "lot": "6.53 lots"
+      }
+    }
+  },
+  "XRPUSD": {
+    "file": "docs\\dossiers\\XRPUSDi_360_DOSSIER.md",
+    "lines": 2168,
+    "bytes": 252213,
+    "telemetry": {
+      "bid": "1.25",
+      "ask": "1.25",
+      "spread_bps": "23.99 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "1.26",
+      "val": "1.23",
+      "poc": "1.25",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 46
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "1.30",
+      "long_mp_24h": "1.20",
+      "short_mp_48h": "1.32",
+      "long_mp_48h": "1.20"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "1.23",
+        "sl": "1.22",
+        "tp": "1.27",
+        "lot": "20.00 lots"
+      },
+      "short_card": {
+        "entry": "1.26",
+        "sl": "1.27",
+        "tp": "1.23",
+        "lot": "20.00 lots"
+      }
+    }
+  },
+  "BCHUSD": {
+    "file": "docs\\dossiers\\BCHUSD_360_DOSSIER.md",
+    "lines": 1427,
+    "bytes": 155536,
+    "telemetry": {
+      "bid": "284.16",
+      "ask": "284.74",
+      "spread_bps": "20.43 bps",
+      "vwap": null,
+      "atr_14": null
+    },
+    "auction_structure": {
+      "vah": "284.87",
+      "val": "273.18",
+      "poc": "283.72",
+      "session_high": null,
+      "session_low": null
+    },
+    "orderflow_cvd": {
+      "cvd_15m_delta": null,
+      "cvd_15m_regime": null,
+      "cvd_1h_regime": null,
+      "cvd_4h_regime": null
+    },
+    "whale_armor_l2": {
+      "top_bid_wall": "None",
+      "top_ask_wall": "None",
+      "large_orders_ge_100k_count": 0
+    },
+    "liquidation_max_pain": {
+      "short_mp_24h": "288.85",
+      "long_mp_24h": "265.44",
+      "short_mp_48h": "296.90",
+      "long_mp_48h": "265.44"
+    },
+    "execution": {
+      "postured_action": null,
+      "long_card": {
+        "entry": "273.18",
+        "sl": "269.75",
+        "tp": "281.76",
+        "lot": "2.91 lots"
+      },
+      "short_card": {
+        "entry": "284.87",
+        "sl": "288.30",
+        "tp": "276.29",
+        "lot": "2.91 lots"
+      }
+    }
+  }
+}
