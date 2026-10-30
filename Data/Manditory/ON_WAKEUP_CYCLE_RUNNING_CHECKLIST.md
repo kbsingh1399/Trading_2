@@ -1087,12 +1087,12 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
   - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_027 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
+  - [x] Launch `rock_hard_dual_watchdog.py --cycle Cycle_027 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
   - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
 - [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
