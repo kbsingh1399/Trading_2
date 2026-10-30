@@ -259,7 +259,7 @@ class DataLakeMemoryStore:
 
     def _load_all(self):
         t0 = time.time()
-        parquet_files = sorted(list(self.feeds_dir.glob("*.parquet")))
+        parquet_files = sorted([p for p in self.feeds_dir.glob("*.parquet") if not p.name.startswith(".")])
 
         def _load_one(p):
             try:
