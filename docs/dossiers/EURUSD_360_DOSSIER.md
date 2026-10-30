@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 16:12:33 IST` (`2026-10-30 10:42:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:15:35 IST` (`2026-10-30 10:45:35 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,11 +116,11 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `215` | `0x0911...129a` | `LONG` | 9,972,985.91 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -249,756.51 USD | `-2.50%` | `20X Isolated` |
-| `1112` | `0xe03b...ed11` | `SHORT` | 1,952,100.37 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 41,102.95 USD | `+2.11%` | `50X Isolated` |
-| `1721` | `0x3f31...a3d7` | `SHORT` | 1,206,447.11 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -6,515.67 USD | `-0.54%` | `50X Isolated` |
-| `1822` | `0x9df2...c665` | `SHORT` | 1,120,629.51 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | -59.67 USD | `-0.01%` | `5X Isolated` |
-| `1983` | `0x5e91...76ca` | `SHORT` | 1,005,267.90 USD | `897,000.00` | `1.11` | `1.12` | `1.16` | -5,596.09 USD | `-0.56%` | `20X Isolated` |
+| `214` | `0x0911...129a` | `LONG` | 9,971,206.13 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -251,536.29 USD | `-2.52%` | `20X Isolated` |
+| `1116` | `0xe03b...ed11` | `SHORT` | 1,951,752.00 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 41,451.32 USD | `+2.12%` | `50X Isolated` |
+| `1726` | `0x3f31...a3d7` | `SHORT` | 1,206,231.81 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -6,300.36 USD | `-0.52%` | `50X Isolated` |
+| `1840` | `0x9df2...c665` | `SHORT` | 1,120,429.52 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 140.32 USD | `+0.01%` | `5X Isolated` |
+| `1993` | `0x5e91...76ca` | `SHORT` | 1,005,088.50 USD | `897,000.00` | `1.11` | `1.12` | `1.16` | -5,416.69 USD | `-0.54%` | `20X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -298,9 +298,9 @@
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
-| **USDT Bybit** | `0.0650%` | **USDT KuCoin** | `-` |
+| **USDT Bybit** | `0.0620%` | **USDT KuCoin** | `-` |
 | **USDT MEXC** | `-` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0620%` |
+| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0597%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
