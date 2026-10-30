@@ -329,7 +329,8 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                 has_anchor = astate.get("hasCopyButton") or astate.get("hasYesNoBanner")
                 has_cycle = (expected_cycle in cur_text) or (cur_hash != a_initial_hash and len(cur_text) >= 1000) if expected_cycle else (cur_hash != a_initial_hash)
                 
-                if has_cycle and not is_gen and has_anchor and len(cur_text) > 50:
+                is_text_complete = (not is_gen and has_anchor) or (len(cur_text) >= 10000 and ("Final Execution" in cur_text or "Candidate Trade" in cur_text or "COUNCIL REPORT" in cur_text))
+                if has_cycle and is_text_complete and len(cur_text) > 50:
                     if cur_hash == last_a_hash:
                         stable_a_ticks += 1
                     else:
