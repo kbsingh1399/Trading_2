@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURSEK
 **Canonical Key**: `EURSEK` | **Broker Instrument**: `EURSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:39:49 IST` (`2026-10-30 11:09:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `10.98` | **Live Ask Quote**: `10.98` | **Mid Price**: `10.98`
-- **Spread Points**: `90.00` | **Spread BPS**: `0.82 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `132.00` | **Spread BPS**: `1.20 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -51,7 +51,7 @@
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`11.02` | POC=`10.98` | VAL=`10.94`
   * Prior Day Extremes: PDH=`11.05` | PDL=`10.91` | PDC=`10.98`
-  * Monday Range Blueprint: High=`11.03` | Mid=`10.98` | Low=`10.93`
+  * Monday Range Blueprint: High=`11.04` | Mid=`10.98` | Low=`10.93`
   * Developing Weekly Value Area: Weekly VAH=`11.07` | Weekly POC=`10.98` | Weekly VAL=`10.89`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`11.00` | Low=`10.96`
@@ -270,13 +270,13 @@
   * Execution Entry: `10.95` (Daily VAL sweep / Bullish OTE)
   * Spread-Padded Stop Loss: `9.75` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `13.95`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `11.01` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `12.21` (Risk Distance: `1.20` pts)
+  * Spread-Padded Stop Loss: `12.22` (Risk Distance: `1.20` pts)
   * +2.5R Take Profit: `8.01`
-  * Mathematical Lot Sizing: **`8.32 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Mathematical Lot Sizing: **`8.31 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**

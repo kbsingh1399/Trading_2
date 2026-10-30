@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDSEK
 **Canonical Key**: `USDSEK` | **Broker Instrument**: `USDSEK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 16:39:49 IST` (`2026-10-30 11:09:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.80` | **Live Ask Quote**: `9.80` | **Mid Price**: `9.80`
-- **Spread Points**: `106.00` | **Spread BPS**: `1.08 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `123.00` | **Spread BPS**: `1.25 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -27,9 +27,9 @@
   * 14-Period ATR: `1.00` (Volatility Regime: `HIGH_EXPANSION`)
   * 14-Period RSI: `50.00` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `9.87` | Lower -3.00σ Band: `9.74`
+  * Upper +3.00σ Band: `9.87` | Lower -3.00σ Band: `9.73`
   * Upper +2.51σ Band: `9.86` | Lower -2.51σ Band: `9.75`
-  * Upper +2.01σ Band: `9.85` | Lower -2.01σ Band: `9.76`
+  * Upper +2.01σ Band: `9.84` | Lower -2.01σ Band: `9.76`
   * Upper +2.00σ Band: `9.84` | Lower -2.00σ Band: `9.76`
   * Upper +1.28σ Band: `9.83` | Lower -1.28σ Band: `9.78`
   * Upper +1.00σ Band: `9.82` | Lower -1.00σ Band: `9.78`
@@ -50,13 +50,13 @@
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`9.84` | POC=`9.80` | VAL=`9.76`
-  * Prior Day Extremes: PDH=`9.86` | PDL=`9.75` | PDC=`9.80`
+  * Prior Day Extremes: PDH=`9.86` | PDL=`9.74` | PDC=`9.80`
   * Monday Range Blueprint: High=`9.85` | Mid=`9.80` | Low=`9.75`
   * Developing Weekly Value Area: Weekly VAH=`9.88` | Weekly POC=`9.80` | Weekly VAL=`9.73`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.82` | Low=`9.78`
   * London Session (08:00-16:00 UTC): High=`9.84` | Low=`9.76`
-  * New York Session (13:00-21:00 UTC): High=`9.86` | Low=`9.75`
+  * New York Session (13:00-21:00 UTC): High=`9.86` | Low=`9.74`
   * Initial Balance (First Hour): IB High=`9.83` | IB Low=`9.77`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.76` - `9.84`

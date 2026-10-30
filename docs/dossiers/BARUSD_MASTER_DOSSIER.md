@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BARUSD
 **Canonical Key**: `BARUSD` | **Broker Instrument**: `BARUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 16:39:49 IST` (`2026-10-30 11:09:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0716` | **Live Ask Quote**: `0.0718` | **Mid Price**: `0.0717`
-- **Spread Points**: `24.00` | **Spread BPS**: `33.48 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `23.00` | **Spread BPS**: `32.08 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,21 +32,21 @@
   * Upper +2.01σ Band: `0.0720` | Lower -2.01σ Band: `0.0714`
   * Upper +2.00σ Band: `0.0720` | Lower -2.00σ Band: `0.0714`
   * Upper +1.28σ Band: `0.0719` | Lower -1.28σ Band: `0.0715`
-  * Upper +1.00σ Band: `0.0718` | Lower -1.00σ Band: `0.0715`
+  * Upper +1.00σ Band: `0.0718` | Lower -1.00σ Band: `0.0716`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0717` | EMA-20=`0.0717` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0717` (Slope: `+0.0000`) | EMA-100=`0.0717`
   * Institutional Anchors: EMA-144=`0.0717` | EMA-200=`0.0717` (Slope: `+0.0000`) | EMA-233=`0.0717`
-- **Range Boundaries**: 24H High=`0.0724` | 24H Low=`0.0710` | Weekly High=`0.0731` | Weekly Low=`0.0702`
+- **Range Boundaries**: 24H High=`0.0724` | 24H Low=`0.0710` | Weekly High=`0.0731` | Weekly Low=`0.0703`
 
 ---
 
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0708` (Distance: `+1.31%`)
-  * Point of Control (POC) = `0.0696` (Distance: `+3.04%`)
-  * Value Area Low (VAL) = `0.0681` (Distance: `+5.39%`)
+  * Value Area High (VAH) = `0.0708` (Distance: `+1.21%`)
+  * Point of Control (POC) = `0.0696` (Distance: `+3.00%`)
+  * Value Area Low (VAL) = `0.0681` (Distance: `+5.35%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0751` | POC=`0.0737` | VAL=`0.0730`

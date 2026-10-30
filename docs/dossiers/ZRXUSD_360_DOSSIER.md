@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZRXUSD
 **Canonical Key**: `ZRXUSD` | **Broker Instrument**: `ZRXUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:39:49 IST` (`2026-10-30 11:09:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0932` | **Live Ask Quote**: `0.0955` | **Mid Price**: `0.0944`
-- **Spread Points**: `23.00` | **Spread BPS**: `243.77 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0929` | **Live Ask Quote**: `0.0952` | **Mid Price**: `0.0940`
+- **Spread Points**: `23.00` | **Spread BPS**: `244.55 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -49,19 +49,19 @@
   * Value Area Low (VAL) = `0.0921` (Distance: `+0.00%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`NEUTRAL`** | Market Regime: `BALANCED_AUCTION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
-  * Prior Day Value Area: VAH=`0.0947` | POC=`0.0944` | VAL=`0.0940`
-  * Prior Day Extremes: PDH=`0.0949` | PDL=`0.0938` | PDC=`0.0944`
-  * Monday Range Blueprint: High=`0.0948` | Mid=`0.0944` | Low=`0.0939`
-  * Developing Weekly Value Area: Weekly VAH=`0.0951` | Weekly POC=`0.0944` | Weekly VAL=`0.0936`
+  * Prior Day Value Area: VAH=`0.0944` | POC=`0.0940` | VAL=`0.0937`
+  * Prior Day Extremes: PDH=`0.0946` | PDL=`0.0935` | PDC=`0.0940`
+  * Monday Range Blueprint: High=`0.0945` | Mid=`0.0940` | Low=`0.0936`
+  * Developing Weekly Value Area: Weekly VAH=`0.0948` | Weekly POC=`0.0940` | Weekly VAL=`0.0933`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0945` | Low=`0.0942`
-  * London Session (08:00-16:00 UTC): High=`0.0947` | Low=`0.0940`
-  * New York Session (13:00-21:00 UTC): High=`0.0949` | Low=`0.0938`
-  * Initial Balance (First Hour): IB High=`0.0946` | IB Low=`0.0941`
+  * Asian Session (00:00-08:00 UTC): High=`0.0942` | Low=`0.0939`
+  * London Session (08:00-16:00 UTC): High=`0.0944` | Low=`0.0937`
+  * New York Session (13:00-21:00 UTC): High=`0.0946` | Low=`0.0935`
+  * Initial Balance (First Hour): IB High=`0.0943` | IB Low=`0.0938`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0940` - `0.0947`
-  * Optimal Trade Entry (OTE 0.705): `0.0945`
-  * Structural Invalidation Anchor (0.786): `0.0951`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0937` - `0.0944`
+  * Optimal Trade Entry (OTE 0.705): `0.0942`
+  * Structural Invalidation Anchor (0.786): `0.0948`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.0951`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.0948`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

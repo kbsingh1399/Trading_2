@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: UNIUSD
 **Canonical Key**: `UNIUSD` | **Broker Instrument**: `UNIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 16:39:49 IST` (`2026-10-30 11:09:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `6.85` | **Live Ask Quote**: `6.88` | **Mid Price**: `6.87`
-- **Spread Points**: `23.00` | **Spread BPS**: `33.50 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `25.00` | **Spread BPS**: `36.41 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `6.69` (Distance: `+2.68%`)
-  * Point of Control (POC) = `6.46` (Distance: `+6.30%`)
-  * Value Area Low (VAL) = `6.25` (Distance: `+9.90%`)
+  * Value Area High (VAH) = `6.69` (Distance: `+2.66%`)
+  * Point of Control (POC) = `6.46` (Distance: `+6.29%`)
+  * Value Area Low (VAL) = `6.25` (Distance: `+9.86%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7.32` | POC=`7.16` | VAL=`6.99`
@@ -55,8 +55,8 @@
   * Developing Weekly Value Area: Weekly VAH=`7.26` | Weekly POC=`7.05` | Weekly VAL=`6.85`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`6.79` | Low=`6.23`
-  * London Session (08:00-16:00 UTC): High=`6.86` | Low=`6.64`
-  * New York Session (13:00-21:00 UTC): High=`6.86` | Low=`6.72`
+  * London Session (08:00-16:00 UTC): High=`6.89` | Low=`6.64`
+  * New York Session (13:00-21:00 UTC): High=`6.89` | Low=`6.72`
   * Initial Balance (First Hour): IB High=`6.85` | IB Low=`6.72`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `6.84` - `6.89`
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 16:32:44 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 16:42:20 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -123,17 +123,12 @@
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---:|
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 3,706.21 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 3.71K USD at 6.8532 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 3,708.27 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 3.71K USD at 6.8532 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.32 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8533 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.33 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8534 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.33 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8534 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.34 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8535 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.36 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8536 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.37 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8537 USD [API] | `2026-10-23 22:51:50` |
-| `ANNOUNCEMENT` | `INFO` | `6.85` | 966.39 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Long: 0.97K USD at 6.8538 USD [API] | `2026-10-23 22:51:50` |
 | `ANNOUNCEMENT` | `INFO` | `6.85` | 1,773.88 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 1.77K USD at 6.8516 USD [API] | `2026-10-29 20:33:43` |
 | `ANNOUNCEMENT` | `INFO` | `6.92` | 1,918.14 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 1.92K USD at 6.9172 USD [API] | `2026-10-29 20:33:15` |
+| `ANNOUNCEMENT` | `INFO` | `6.83` | 1,000.29 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 1.00K USD at 6.8326 USD [API] | `2026-10-29 20:34:11` |
+| `ANNOUNCEMENT` | `INFO` | `6.83` | 11.62 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 0.01K USD at 6.8326 USD [API] | `2026-10-29 20:34:11` |
+| `ANNOUNCEMENT` | `INFO` | `6.83` | 283.55 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 0.28K USD at 6.8326 USD [API] | `2026-10-29 20:34:11` |
+| `ANNOUNCEMENT` | `INFO` | `6.83` | 102.49 USD | `-` | `NEWS_INTEL` | `-` | #UNI Liquidated Short: 0.10K USD at 6.8326 USD [API] | `2026-10-29 20:34:11` |
 
 
 ---
@@ -331,15 +326,15 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `6.25` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `5.01` (Risk Distance: `1.23` pts)
-  * +2.5R Take Profit: `9.33`
-  * Mathematical Lot Sizing: **`8.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `5.01` (Risk Distance: `1.24` pts)
+  * +2.5R Take Profit: `9.34`
+  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `6.69` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `7.92` (Risk Distance: `1.23` pts)
-  * +2.5R Take Profit: `3.60`
-  * Mathematical Lot Sizing: **`8.10 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
+  * Spread-Padded Stop Loss: `7.92` (Risk Distance: `1.24` pts)
+  * +2.5R Take Profit: `3.59`
+  * Mathematical Lot Sizing: **`8.08 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
