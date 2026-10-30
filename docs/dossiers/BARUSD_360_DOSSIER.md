@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BARUSD
 **Canonical Key**: `BARUSD` | **Broker Instrument**: `BARUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 08:06:33 IST` (`2026-10-30 02:36:33 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 08:09:34 IST` (`2026-10-30 02:39:34 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
