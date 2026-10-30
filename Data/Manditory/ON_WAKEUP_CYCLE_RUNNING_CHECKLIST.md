@@ -724,66 +724,66 @@ Every cycle must systematically evaluate, execute, and document completion by ex
 
 ---
 
-### ⏳ Cycle_022 Scorecard: PRE-INITIALIZED & ARMED
+### 🟢 Cycle_022 Scorecard: COMPLETED & FULLY VERIFIED
 **Target Interval**: `20 Minutes` | **Pacing Engine**: Dynamic AutoWake Timer
 
-- [ ] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
-  - [ ] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
-  - [ ] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
-  - [ ] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
-  - [ ] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
+- [x] **Step 0: Mandatory 4-Document Governance & Pitfall Avoidance Read Gate**
+  - [x] Full-length read & study: `STANDARDIZED_TRADING_DECISION_CHAIN.md` (SOP, In-Memory Lake Cache, Dynamic Capacity).
+  - [x] Full-length read & study: `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Zero ghost walls [Pitfall 1], zero staging above un-swept stops [Pitfall 2], zero unabsorbed CVD waterfalls [Pitfall 3], zero sub-ATR stops [Pitfall 4], zero random-walk fades [Pitfall 5], zero high spread friction [Pitfall 6], zero rollover traps [Pitfall 7], zero correlated double-bets [Pitfall 8]).
+  - [x] Full-length read & study: `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (35-feed row-by-row interrogation across all 4 strategic groups).
+  - [x] Full-length read & study: `ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md` (Active cycle scorecard verification).
 
-- [ ] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
-  - [ ] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
-  - [ ] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
-  - [ ] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
+- [x] **Step 1: Identify Eligible Assets (Spread Filtering Across All 4 Macro Classes)**
+  - [x] Interrogate live MT5 account telemetry (`00_MT5_Account_Telemetry.parquet`).
+  - [x] Filter all tradeable assets against broker spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
+  - [x] Catalog complete list of eligible candidates partitioned into 4 macro sectors:
     * Sector 1: Crypto Perpetuals & CFDs (<= 25.0 bps)
     * Sector 2: Precious Metals & Commodities/Energy (<= 5.0 bps)
     * Sector 3: Global Equity Indices (<= 5.0 bps)
     * Sector 4: Foreign Exchange Majors & Crosses (<= 5.0 bps outside 21:15-22:30 UTC rollover)
 
-- [ ] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
-  - [ ] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
+- [x] **Step 2: Conduct Comprehensive Asset-Level Forensics (3-Phase Zero-Omission Protocol — USE ONLY DOSSIER FILES)**
+  - [x] **Phase 2A: Comprehensive Sector-Wide Forensic Screening Across ALL Qualifying Assets (USE ONLY DOSSIER FILES)**:
     * Perform deep quantitative interrogation across ALL assets that passed Step 1 spread gate exclusively using their 360° master dossier files (NEVER hardcode an isolated subset).
     * Class 1 (Crypto Perpetuals & CFDs): Interrogate dossier Section 5 (Liquidation Geometry & Max Pain Magnets), Section 4 (Multi-Timeframe CVD Delta Absorption), Section 2/3 (Auction Profile VAH/VAL/POC), and Section 7/8 (Persistent Whale Armor > 100K USD, > 180s).
     * Class 2 (Precious Metals & Commodities/Energy): Interrogate dossier Section 2 (Session Extremes & Auction Value Areas), Section 4 (Institutional Delta Absorption), Section 6 (Orderbook Resting Walls), and Section 9 (Variance Ratio VR(4) Regime).
     * Class 3 (Global Equity Indices): Interrogate dossier Section 2 (Value Area Boundaries & Low-Volume Nodes), Section 4 (Footprint Delta Imbalances), and Section 10 (Sweep Exhaustion Levels).
     * Class 4 (FX Majors & Crosses): Interrogate dossier Section 2 (Asian/London Range Extremes), Section 4 (Interbank CVD Flow), and Section 8 (Rollover Spread Expansion Buffer).
     * For candidate assets showing high-confluence trade potential, physically read and examine their full-length markdown dossier to EOF (zero sub-range clamping, zero `#L1-90` truncation).
-  - [ ] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2B: Running Trade & Resting Order Microstructure Inspection on Dossiers (USE ONLY DOSSIER FILES)**:
     * Dynamically inspect every active filled position and resting limit order on MT5 by cross-referencing against its respective 360° asset dossier file.
     * Orderflow & Absorption Tape Verification: Inspect dossier MTF CVD tape and footprint imbalances to verify delta absorption vs adverse waterfalls.
     * Real-Time Liquidation Cascade & Max Pain Immunity Audit: Calculate live distance between Stop Loss and current 24H/48H/7D Max Pain magnets and 1D/7D liquidation cascade clusters to guarantee structural immunization beyond sweep zones.
     * Defending Whale Armor Persistence Verification: Verify that resting orders remain backed by verified institutional whale walls in dossier Section 7 (> 100K USD, > 180s persistence).
     * Dynamic Ratchet & Capital Solvency Enforcement: Enforce monotone non-loosening stop ratchets on filled positions and verify that nominal downside risk for every single ticket remains strictly <= 10.00 USD (0.20% capital risk) within the 4,775.00 USD hard solvency floor.
-  - [ ] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
+  - [x] **Phase 2C: Active Order Microstructure Optimization & Dynamic Re-Calibration (USE ONLY DOSSIER FILES)**:
     * Dynamically cross-reference all qualifying resting orders against fresh sector-wide dossier parameters.
     * Sweep Exhaustion Node Alignment: Re-calibrate limit entry prices if auction Value Area boundaries (VAH/VAL) or high-volume nodes have migrated.
     * Spread-Padded SL Re-Anchoring: Adjust Stop Loss levels to maintain mandatory buffer (`Resistance + 1.2 * ATR_14 + 1.5 * Spread_Price`) if volatility or liquidation bands have expanded.
     * Profit Target Liquidity Tuning: Adjust Take Profit targets to front-run newly formed opposing institutional walls or liquidity pools.
     * Fail-Closed Invalidation: Immediately purge and cancel any resting order whose spread widens beyond tolerance (TradFi > 5.0 bps, Crypto > 25.0 bps) or whose structural thesis has been invalidated.
 
-- [ ] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
-  - [ ] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
-  - [ ] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
-  - [ ] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
+- [x] **Step 3: Synchronise Intelligence Ledger & Portfolio Registry (USE ONLY DOSSIER FILES)**
+  - [x] Regenerate `cycle_envelope.json` with active Cycle ID, live MT5 balance, equity, margin, and ticket inventory.
+  - [x] Reconcile `LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md` with live MT5 tickets and modified SL/TP levels.
+  - [x] Guarantee byte-for-byte consistency across local state and GitHub push daemon.
 
-- [ ] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
-  - [ ] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
-  - [ ] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
+- [x] **Step 4: Dispatch Independent Analysis to Arena.ai & Z.ai (USE ONLY DOSSIER FILES)**
+  - [x] Explicitly stamp and embed the active Cycle ID in the prompt title, metadata header, instructions, and JSON schema.
+  - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
-- [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_022 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
-  - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
+- [x] **Step 5: Activate AutoWake Hard-Rock Daemon**
+  - [x] Launch `rock_hard_dual_watchdog.py --cycle Cycle_022 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
+  - [x] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
-- [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
-  - [ ] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
-  - [ ] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
-  - [ ] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
+- [x] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
+  - [x] Conduct 3-way Tri-Council comparative analysis across Antigravity, Arena.ai, and Z.ai grounded exclusively in dossier evidence.
+  - [x] Interrogate live orders on dossiers: purge invalidated tickets, trail stops on winning trades.
+  - [x] Punch validated consensus limit orders on MT5 strictly adhering to <= 10.00 USD nominal risk and dynamic capacity limits.
 
-- [ ] **Step 7: Restart the 20-Minute AutoWake Cycle**
-  - [ ] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
-  - [ ] Advance to `Cycle_023`.
+- [x] **Step 7: Restart the 20-Minute AutoWake Cycle**
+  - [x] Re-arm dynamic 20-minute cycle timer via `schedule` tool with strict 7-step canonical scorecard prompt.
+  - [x] Advance to `Cycle_023`.
 
 ---
 
