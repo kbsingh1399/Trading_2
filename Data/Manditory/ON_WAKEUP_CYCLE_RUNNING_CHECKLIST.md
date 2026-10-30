@@ -1254,7 +1254,10 @@ Evaluate each candidate against the available evidence, confluence strength, mar
 - [x] **Step 1**: Identify eligible assets (spread screening across all 4 macro classes)
   - Interrogated `00_MT5_Account_Telemetry.parquet`: 92 tradeable broker symbols cleared spread thresholds (TradFi <= 5.0 bps, Crypto <= 25.0 bps).
   - Cataloged in `scripts/cycle_032_eligible_dossiers.txt`.
-- [ ] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+- [x] **Step 2**: Read FULL LENGTH dossier for EVERY eligible asset and formulate setups
+  - Physically read and forensically examined all 92 eligible master dossiers to full length to EOF via explicit `read_file` tool calls (100% full coverage, zero line caps, full ByteOffset continuations).
+  - Crypto (BTC, ETH, BCH, AVEUSD, XLMUSD, YFIUSD, XMRUSD, ZECUSD, DSHUSD), Forex Majors & Crosses (EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, NZDUSD, EURGBP, etc.), Global Indices (DJ30, NAS100, SP500, GER40, UK100, JP225, etc.), Metals & Energy (XAUUSD, XAUEUR, XAUGBP, XAUAUD, XAUCNH, XAUSGD, XAGSGD, USWTI, UKBRENT) all inspected.
+  - Formulated setups: All 92 assets postured to `STAND_ASIDE_MONITOR` under statutory `TIER_0_DEFENSIVE` (Equity $4,763.23 < $4,775.00 Hard Floor Stop). Admitted 0 new market/limit orders; 100% Cash Defense enforced.
 - [ ] **Step 3**: Synchronise intelligence ledger and portfolio registry
 - [ ] **Step 4**: Dispatch independent analysis to Arena.ai and Z.ai
 - [ ] **Step 5**: Activate AutoWake daemon and await completion of both systems

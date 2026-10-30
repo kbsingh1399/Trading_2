@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: VETUSD
 **Canonical Key**: `VETUSD` | **Broker Instrument**: `VETUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:03:29 IST` (`2026-10-30 10:33:29 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:06:30 IST` (`2026-10-30 10:36:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -152,13 +152,13 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `73.41` | Last 24h: `1.17K` | Last 3d: `2.74K` | Last 7d: `8.80K`
+  * Current Rate: `76.36` | Last 24h: `1.17K` | Last 3d: `2.74K` | Last 7d: `8.80K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0051%` | **USDT OKX** | `-` |
-| **USDT Bybit** | `0.0081%` | **USDT KuCoin** | `-0.0317%` |
-| **USDT MEXC** | `-0.0052%` | **USDT BingX** | `0.0100%` |
+| **USDT Binance** | `-0.0046%` | **USDT OKX** | `-` |
+| **USDT Bybit** | `0.0085%` | **USDT KuCoin** | `-0.0296%` |
+| **USDT MEXC** | `-0.0051%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
