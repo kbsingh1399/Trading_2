@@ -109,11 +109,11 @@
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-1.0481490000000002",
+        "change_24h": "-1.112286",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "-4.8149e-06",
-        "detail": "HL: -4.22% APR | Next: 2026-10-30 16:00"
+        "funding": "-1.12286e-05",
+        "detail": "HL: -9.84% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [],

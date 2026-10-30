@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 1439.84,
-    "ask": 1441.33,
-    "mid": 1440.585,
-    "spread_pts": 149.0,
-    "spread_bps": 10.34,
+    "bid": 1432.91,
+    "ask": 1434.45,
+    "mid": 1433.68,
+    "spread_pts": 154.0,
+    "spread_bps": 10.74,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 1466.77,
-    "daily_poc": 1442.03,
-    "daily_val": 1432.96,
-    "dist_poc_pct": -0.06,
-    "dist_vah_pct": -1.75,
-    "dist_val_pct": 0.57,
+    "daily_vah": 1466.35,
+    "daily_poc": 1441.21,
+    "daily_val": 1432.55,
+    "dist_poc_pct": -0.54,
+    "dist_vah_pct": -2.24,
+    "dist_val_pct": 0.06,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -81,19 +81,19 @@
     "monday_mid": 1540.25,
     "weekly_vah": 1555.23,
     "weekly_poc": 1536.54,
-    "weekly_val": 1504.51,
+    "weekly_val": 1503.62,
     "asian_high": 1492.94,
     "asian_low": 1454.72,
     "london_high": 1465.71,
     "london_low": 1431.11,
     "ny_high": 1451.09,
-    "ny_low": 1433.13,
+    "ny_low": 1432.7,
     "ib_high": 1465.71,
     "ib_low": 1448.48,
-    "fib_gp_low": 1434.82266,
-    "fib_gp_high": 1446.34734,
-    "fib_ote": 1443.4661700000001,
-    "fib_inval": 1452.10968
+    "fib_gp_low": 1427.9452800000001,
+    "fib_gp_high": 1439.41472,
+    "fib_ote": 1436.54736,
+    "fib_inval": 1445.1494400000001
   },
   "cvd": {
     "table": [],
@@ -806,18 +806,18 @@
   },
   "formulation": {
     "long": {
-      "entry": 1432.96,
-      "sl": 1423.3863574168101,
-      "tp": 1456.8941064579749,
-      "dist": 9.573642583189894,
-      "lots": 1.04
+      "entry": 1432.55,
+      "sl": 1422.9013574168102,
+      "tp": 1456.6716064579741,
+      "dist": 9.648642583189712,
+      "lots": 1.03
     },
     "short": {
-      "entry": 1466.77,
-      "sl": 1476.3436425831899,
-      "tp": 1442.8358935420251,
-      "dist": 9.573642583189894,
-      "lots": 1.04
+      "entry": 1466.35,
+      "sl": 1475.9986425831896,
+      "tp": 1442.2283935420255,
+      "dist": 9.648642583189712,
+      "lots": 1.03
     },
     "confluence_score": 72,
     "decision": "STAND_ASIDE_MONITOR"

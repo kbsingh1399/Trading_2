@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 0.0939,
-    "ask": 0.0972,
-    "mid": 0.09555,
+    "bid": 0.0938,
+    "ask": 0.0971,
+    "mid": 0.09545000000000001,
     "spread_pts": 33.0,
-    "spread_bps": 345.37,
+    "spread_bps": 345.73,
     "thresh_bps": 25.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -64,9 +64,9 @@
     "daily_vah": 0.0946,
     "daily_poc": 0.0941,
     "daily_val": 0.0915,
-    "dist_poc_pct": 1.54,
-    "dist_vah_pct": 1.04,
-    "dist_val_pct": 4.45,
+    "dist_poc_pct": 1.39,
+    "dist_vah_pct": 0.88,
+    "dist_val_pct": 4.28,
     "va_position": "ABOVE_VALUE (Imbalance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "RANGE_EXPANSION",
@@ -90,10 +90,10 @@
     "ny_low": 0.093,
     "ib_high": 0.0945,
     "ib_low": 0.0933,
-    "fib_gp_low": 0.0951678,
-    "fib_gp_high": 0.0959322,
-    "fib_ote": 0.0957411,
-    "fib_inval": 0.0963144
+    "fib_gp_low": 0.0950682,
+    "fib_gp_high": 0.09583180000000001,
+    "fib_ote": 0.0956409,
+    "fib_inval": 0.09621360000000001
   },
   "cvd": {
     "table": [],
@@ -113,18 +113,18 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 18:03:46 IST"
+        "time": "2026-10-30 18:14:09 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.6937139999999999",
+        "change_24h": "-0.832134",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "-6.6114e-06",
-        "detail": "HL: -5.79% APR | Next: 2026-10-30 16:00"
+        "funding": "-2.27534e-05",
+        "detail": "HL: -19.93% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [],
@@ -1740,16 +1740,16 @@
   "formulation": {
     "long": {
       "entry": 0.0915,
-      "sl": 0.08577918508156536,
-      "tp": 0.10799999999999998,
-      "dist": 0.006599999999999995,
+      "sl": 0.08577918508156533,
+      "tp": 0.10800000000000005,
+      "dist": 0.0066000000000000225,
       "lots": 20.0
     },
     "short": {
       "entry": 0.0946,
-      "sl": 0.10032081491843464,
-      "tp": 0.07810000000000002,
-      "dist": 0.006599999999999995,
+      "sl": 0.10032081491843467,
+      "tp": 0.07809999999999995,
+      "dist": 0.0066000000000000225,
       "lots": 20.0
     },
     "confluence_score": 72,

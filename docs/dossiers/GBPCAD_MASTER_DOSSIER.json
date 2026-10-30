@@ -13,9 +13,9 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 1.87336,
-    "ask": 1.87351,
-    "mid": 1.873435,
+    "bid": 1.87239,
+    "ask": 1.8725399999999999,
+    "mid": 1.872465,
     "spread_pts": 15.0,
     "spread_bps": 0.8,
     "thresh_bps": 5.0,
@@ -61,15 +61,15 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 1.87304,
+    "daily_vah": 1.87308,
     "daily_poc": 1.87127,
     "daily_val": 1.87,
-    "dist_poc_pct": 0.12,
-    "dist_vah_pct": 0.03,
-    "dist_val_pct": 0.19,
-    "va_position": "ABOVE_VALUE (Imbalance)",
+    "dist_poc_pct": 0.06,
+    "dist_vah_pct": -0.04,
+    "dist_val_pct": 0.13,
+    "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BULLISH (Above Pivot)",
-    "auction_regime": "TREND_UP_ACCEPTANCE",
+    "auction_regime": "ROTATIONAL_BALANCE",
     "pd_vah": 1.86676,
     "pd_poc": 1.86252,
     "pd_val": 1.86103,
@@ -87,13 +87,13 @@
     "london_high": 1.87497,
     "london_low": 1.86985,
     "ny_high": 1.87497,
-    "ny_low": 1.87271,
+    "ny_low": 1.87233,
     "ib_high": 1.87093,
     "ib_low": 1.86985,
-    "fib_gp_low": 1.86594126,
-    "fib_gp_high": 1.8809287399999999,
-    "fib_ote": 1.87718187,
-    "fib_inval": 1.88842248
+    "fib_gp_low": 1.86497514,
+    "fib_gp_high": 1.87995486,
+    "fib_ote": 1.8762099300000001,
+    "fib_inval": 1.88744472
   },
   "cvd": {
     "table": [],
@@ -731,16 +731,16 @@
   "formulation": {
     "long": {
       "entry": 1.87,
-      "sl": 1.8687033346202375,
-      "tp": 1.8732416634494067,
-      "dist": 0.0012966653797625849,
+      "sl": 1.8687033346202377,
+      "tp": 1.873241663449406,
+      "dist": 0.0012966653797623628,
       "lots": 20.0
     },
     "short": {
-      "entry": 1.87304,
-      "sl": 1.8743366653797626,
-      "tp": 1.8697983365505935,
-      "dist": 0.0012966653797625849,
+      "entry": 1.87308,
+      "sl": 1.8743766653797624,
+      "tp": 1.8698383365505942,
+      "dist": 0.0012966653797623628,
       "lots": 20.0
     },
     "confluence_score": 82,

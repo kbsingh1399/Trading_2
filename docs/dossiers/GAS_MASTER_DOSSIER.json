@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 2.584,
-    "ask": 2.6189999999999998,
-    "mid": 2.6014999999999997,
+    "bid": 2.5709999999999997,
+    "ask": 2.606,
+    "mid": 2.5885,
     "spread_pts": 35.0,
-    "spread_bps": 134.54,
+    "spread_bps": 135.21,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 2.62,
+    "daily_vah": 2.621,
     "daily_poc": 2.61,
-    "daily_val": 2.587,
-    "dist_poc_pct": -0.32,
-    "dist_vah_pct": -0.72,
-    "dist_val_pct": 0.58,
+    "daily_val": 2.584,
+    "dist_poc_pct": -0.82,
+    "dist_vah_pct": -1.22,
+    "dist_val_pct": 0.19,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -81,19 +81,19 @@
     "monday_mid": 2.662,
     "weekly_vah": 2.757,
     "weekly_poc": 2.741,
-    "weekly_val": 2.647,
+    "weekly_val": 2.648,
     "asian_high": 2.623,
     "asian_low": 2.602,
     "london_high": 2.645,
-    "london_low": 2.567,
+    "london_low": 2.566,
     "ny_high": 2.627,
-    "ny_low": 2.567,
+    "ny_low": 2.566,
     "ib_high": 2.615,
     "ib_low": 2.607,
-    "fib_gp_low": 2.5910939999999996,
-    "fib_gp_high": 2.611906,
-    "fib_ote": 2.6067029999999995,
-    "fib_inval": 2.6223119999999995
+    "fib_gp_low": 2.578146,
+    "fib_gp_high": 2.5988539999999998,
+    "fib_ote": 2.593677,
+    "fib_inval": 2.6092079999999997
   },
   "cvd": {
     "table": [],
@@ -109,11 +109,11 @@
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.37500000000000006",
+        "change_24h": "-0.381937",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "1.25e-05",
-        "detail": "HL: 10.95% APR | Next: 2026-10-30 16:00"
+        "funding": "1.18063e-05",
+        "detail": "HL: 10.34% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [],
@@ -785,17 +785,17 @@
   },
   "formulation": {
     "long": {
-      "entry": 2.587,
-      "sl": 2.517409384628801,
-      "tp": 2.7619999999999987,
-      "dist": 0.0699999999999994,
+      "entry": 2.584,
+      "sl": 2.5144093846288005,
+      "tp": 2.759000000000001,
+      "dist": 0.07000000000000028,
       "lots": 20.0
     },
     "short": {
-      "entry": 2.62,
-      "sl": 2.6895906153711993,
-      "tp": 2.4450000000000016,
-      "dist": 0.0699999999999994,
+      "entry": 2.621,
+      "sl": 2.6905906153711996,
+      "tp": 2.4459999999999993,
+      "dist": 0.07000000000000028,
       "lots": 20.0
     },
     "confluence_score": 72,

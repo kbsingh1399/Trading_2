@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 110.443,
-    "ask": 110.455,
-    "mid": 110.449,
-    "spread_pts": 12.0,
-    "spread_bps": 1.09,
+    "bid": 110.497,
+    "ask": 110.506,
+    "mid": 110.5015,
+    "spread_pts": 9.0,
+    "spread_bps": 0.81,
     "thresh_bps": 5.0,
     "gate_status": "PASS",
     "exec_posture": "PASSIVE LIMIT ONLY",
@@ -63,10 +63,10 @@
   "auction": {
     "daily_vah": 110.852,
     "daily_poc": 110.793,
-    "daily_val": 110.558,
-    "dist_poc_pct": -0.31,
-    "dist_vah_pct": -0.36,
-    "dist_val_pct": -0.1,
+    "daily_val": 110.553,
+    "dist_poc_pct": -0.27,
+    "dist_vah_pct": -0.32,
+    "dist_val_pct": -0.05,
     "va_position": "BELOW_VALUE (Imbalance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "TREND_DOWN_ACCEPTANCE",
@@ -81,7 +81,7 @@
     "monday_mid": 110.419,
     "weekly_vah": 111.262,
     "weekly_poc": 111.064,
-    "weekly_val": 110.531,
+    "weekly_val": 110.521,
     "asian_high": 110.958,
     "asian_low": 110.371,
     "london_high": 110.979,
@@ -90,10 +90,10 @@
     "ny_low": 110.289,
     "ib_high": 110.979,
     "ib_low": 110.779,
-    "fib_gp_low": 110.007204,
-    "fib_gp_high": 110.890796,
-    "fib_ote": 110.669898,
-    "fib_inval": 111.332592
+    "fib_gp_low": 110.05949399999999,
+    "fib_gp_high": 110.943506,
+    "fib_ote": 110.72250299999999,
+    "fib_inval": 111.38551199999999
   },
   "cvd": {
     "table": [],
@@ -730,17 +730,17 @@
   },
   "formulation": {
     "long": {
-      "entry": 110.558,
-      "sl": 110.41045373973851,
-      "tp": 110.92686565065374,
-      "dist": 0.14754626026149253,
+      "entry": 110.553,
+      "sl": 110.4099537397385,
+      "tp": 110.91061565065374,
+      "dist": 0.14304626026149947,
       "lots": 20.0
     },
     "short": {
       "entry": 110.852,
-      "sl": 110.9995462602615,
-      "tp": 110.48313434934627,
-      "dist": 0.14754626026149253,
+      "sl": 110.9950462602615,
+      "tp": 110.49438434934626,
+      "dist": 0.14304626026149947,
       "lots": 20.0
     },
     "confluence_score": 82,

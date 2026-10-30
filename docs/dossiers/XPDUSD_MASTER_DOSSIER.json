@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 969.075,
-    "ask": 974.575,
-    "mid": 971.825,
+    "bid": 966.825,
+    "ask": 972.325,
+    "mid": 969.575,
     "spread_pts": 5500.0,
-    "spread_bps": 56.59,
+    "spread_bps": 56.73,
     "thresh_bps": 5.0,
     "gate_status": "SPREAD_DISQUALIFIED",
     "exec_posture": "DISQUALIFIED",
@@ -63,10 +63,10 @@
   "auction": {
     "daily_vah": 993.74,
     "daily_poc": 989.49,
-    "daily_val": 979.56,
-    "dist_poc_pct": -1.79,
-    "dist_vah_pct": -2.21,
-    "dist_val_pct": -0.79,
+    "daily_val": 979.28,
+    "dist_poc_pct": -2.04,
+    "dist_vah_pct": -2.46,
+    "dist_val_pct": -1.01,
     "va_position": "BELOW_VALUE (Imbalance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "TREND_DOWN_ACCEPTANCE",
@@ -90,10 +90,10 @@
     "ny_low": 964.1,
     "ib_high": 999.09,
     "ib_low": 987.05,
-    "fib_gp_low": 967.9377000000001,
-    "fib_gp_high": 975.7123,
-    "fib_ote": 973.7686500000001,
-    "fib_inval": 979.5996
+    "fib_gp_low": 965.6967000000001,
+    "fib_gp_high": 973.4533,
+    "fib_ote": 971.5141500000001,
+    "fib_inval": 977.3316000000001
   },
   "cvd": {
     "table": [],
@@ -816,9 +816,9 @@
   },
   "formulation": {
     "long": {
-      "entry": 979.56,
-      "sl": 966.8689811598108,
-      "tp": 1011.2875471004728,
+      "entry": 979.28,
+      "sl": 966.5889811598108,
+      "tp": 1011.0075471004728,
       "dist": 12.691018840189145,
       "lots": 0.78
     },

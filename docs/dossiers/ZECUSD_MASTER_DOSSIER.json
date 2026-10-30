@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 1246.96,
-    "ask": 1247.93,
-    "mid": 1247.4450000000002,
-    "spread_pts": 97.0,
-    "spread_bps": 7.78,
+    "bid": 1241.67,
+    "ask": 1242.6,
+    "mid": 1242.135,
+    "spread_pts": 93.0,
+    "spread_bps": 7.49,
     "thresh_bps": 25.0,
     "gate_status": "PASS",
     "exec_posture": "PASSIVE LIMIT ONLY",
@@ -64,9 +64,9 @@
     "daily_vah": 1277.83,
     "daily_poc": 1247.68,
     "daily_val": 1239.95,
-    "dist_poc_pct": 0.06,
-    "dist_vah_pct": -2.31,
-    "dist_val_pct": 0.68,
+    "dist_poc_pct": -0.45,
+    "dist_vah_pct": -2.8,
+    "dist_val_pct": 0.17,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 1230.95,
     "ib_high": 1283.82,
     "ib_low": 1264.92,
-    "fib_gp_low": 1242.45522,
-    "fib_gp_high": 1252.4347800000003,
-    "fib_ote": 1249.93989,
-    "fib_inval": 1257.4245600000002
+    "fib_gp_low": 1237.16646,
+    "fib_gp_high": 1247.10354,
+    "fib_ote": 1244.61927,
+    "fib_inval": 1252.07208
   },
   "cvd": {
     "table": [],
@@ -113,18 +113,18 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 18:03:46 IST"
+        "time": "2026-10-30 18:14:09 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.8699280000000001",
+        "change_24h": "-0.875",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "1.30072e-05",
-        "detail": "HL: 11.39% APR | Next: 2026-10-30 16:00"
+        "funding": "1.25e-05",
+        "detail": "HL: 10.95% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [
@@ -1829,7 +1829,7 @@
         "total_liq": 1750.0,
         "net_delta": 1750.0,
         "orders_count": 1,
-        "window": "2026-10-30 12:30:00 UTC - 2026-10-30 12:35:00 UTC"
+        "window": "2026-10-30 12:40:00 UTC - 2026-10-30 12:45:00 UTC"
       },
       {
         "timeframe": "15m",
@@ -2073,22 +2073,22 @@
       },
       {
         "time_utc": "2026-10-30 12:30:00 UTC",
-        "close": 1244.85,
-        "vwap": 1245.4337301414625,
-        "poc": 1244.85,
-        "vah": 1248.75,
-        "val": 1243.65,
-        "vol_usd": 877787.12258,
-        "buy_vol": 361629.77204999997,
-        "sell_vol": 516157.35052999994,
-        "delta_usd": -154527.57847999997,
-        "delta_pct": -17.604220260808916,
+        "close": 1248.75,
+        "vwap": 1247.2263370097812,
+        "poc": 1248.75,
+        "vah": 1251.15,
+        "val": 1242.75,
+        "vol_usd": 8885944.030110002,
+        "buy_vol": 3932398.6585,
+        "sell_vol": 4953545.371610001,
+        "delta_usd": -1021146.7131100008,
+        "delta_pct": -11.49170768631726,
         "max_delta": 0.0,
-        "min_delta": -181241.46012,
-        "cum_delta": -2230972.446189985,
+        "min_delta": -1675838.8822599999,
+        "cum_delta": -3097591.580819986,
         "oi_usd": 0.0,
         "buy_imb": 2,
-        "sell_imb": 4
+        "sell_imb": 7
       }
     ],
     "signals": [
@@ -3357,16 +3357,16 @@
   "formulation": {
     "long": {
       "entry": 1239.95,
-      "sl": 1222.7097134673836,
-      "tp": 1283.050716331541,
-      "dist": 17.240286532616437,
+      "sl": 1222.769713467384,
+      "tp": 1282.90071633154,
+      "dist": 17.180286532616037,
       "lots": 0.58
     },
     "short": {
       "entry": 1277.83,
-      "sl": 1295.0702865326164,
-      "tp": 1234.7292836684587,
-      "dist": 17.240286532616437,
+      "sl": 1295.010286532616,
+      "tp": 1234.8792836684597,
+      "dist": 17.180286532616037,
       "lots": 0.58
     },
     "confluence_score": 82,

@@ -13,11 +13,11 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 592.12,
-    "ask": 592.53,
-    "mid": 592.325,
-    "spread_pts": 41.0,
-    "spread_bps": 6.92,
+    "bid": 592.04,
+    "ask": 592.4,
+    "mid": 592.22,
+    "spread_pts": 36.0,
+    "spread_bps": 6.08,
     "thresh_bps": 25.0,
     "gate_status": "PASS",
     "exec_posture": "PASSIVE LIMIT ONLY",
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 614.74,
+    "daily_vah": 614.35,
     "daily_poc": 592.04,
     "daily_val": 586.96,
-    "dist_poc_pct": 0.09,
-    "dist_vah_pct": -3.61,
-    "dist_val_pct": 0.96,
+    "dist_poc_pct": 0.04,
+    "dist_vah_pct": -3.59,
+    "dist_val_pct": 0.91,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -90,10 +90,10 @@
     "ny_low": 586.31,
     "ib_high": 603.14,
     "ib_low": 589.28,
-    "fib_gp_low": 589.9557000000001,
-    "fib_gp_high": 594.6943,
-    "fib_ote": 593.5096500000001,
-    "fib_inval": 597.0636000000001
+    "fib_gp_low": 589.85112,
+    "fib_gp_high": 594.58888,
+    "fib_ote": 593.40444,
+    "fib_inval": 596.95776
   },
   "cvd": {
     "table": [],
@@ -113,14 +113,14 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 18:03:46 IST"
+        "time": "2026-10-30 18:14:09 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-2.5573",
+        "change_24h": "-2.6954000000000002",
         "vol_24h": 0.0,
         "oi": 0.0,
         "funding": "1.25e-05",
@@ -1266,17 +1266,17 @@
   "formulation": {
     "long": {
       "entry": 586.96,
-      "sl": 579.8689981721075,
-      "tp": 604.6875045697315,
-      "dist": 7.091001827892569,
-      "lots": 1.41
+      "sl": 579.9439981721074,
+      "tp": 604.5000045697316,
+      "dist": 7.016001827892637,
+      "lots": 1.42
     },
     "short": {
-      "entry": 614.74,
-      "sl": 621.8310018278926,
-      "tp": 597.0124954302686,
-      "dist": 7.091001827892569,
-      "lots": 1.41
+      "entry": 614.35,
+      "sl": 621.3660018278927,
+      "tp": 596.8099954302684,
+      "dist": 7.016001827892637,
+      "lots": 1.42
     },
     "confluence_score": 82,
     "decision": "STAND_ASIDE_MONITOR"

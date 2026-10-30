@@ -13,9 +13,9 @@
     "point_value_001_lot": 1.0000000000000002e-06
   },
   "telemetry": {
-    "bid": 62642.73,
-    "ask": 62651.23,
-    "mid": 62646.98,
+    "bid": 62588.27,
+    "ask": 62596.77,
+    "mid": 62592.52,
     "spread_pts": 850.0,
     "spread_bps": 1.36,
     "thresh_bps": 5.0,
@@ -61,12 +61,12 @@
     "btc_ribbon_ladder": []
   },
   "auction": {
-    "daily_vah": 62938.2,
+    "daily_vah": 62897.7,
     "daily_poc": 62654.2,
     "daily_val": 62522.3,
-    "dist_poc_pct": -0.01,
-    "dist_vah_pct": -0.46,
-    "dist_val_pct": 0.2,
+    "dist_poc_pct": -0.12,
+    "dist_vah_pct": -0.5,
+    "dist_val_pct": 0.1,
     "va_position": "INSIDE_VALUE (Balance)",
     "session_bias": "BEARISH (Below Pivot)",
     "auction_regime": "ROTATIONAL_BALANCE",
@@ -79,9 +79,9 @@
     "monday_high": 63168.5,
     "monday_low": 62010.0,
     "monday_mid": 62589.2,
-    "weekly_vah": 64868.1,
-    "weekly_poc": 64509.5,
-    "weekly_val": 62873.0,
+    "weekly_vah": 64397.4,
+    "weekly_poc": 62671.3,
+    "weekly_val": 62267.8,
     "asian_high": 64039.0,
     "asian_low": 62652.5,
     "london_high": 63401.0,
@@ -90,10 +90,10 @@
     "ny_low": 62517.2,
     "ib_high": 63330.0,
     "ib_low": 63035.0,
-    "fib_gp_low": 62396.392080000005,
-    "fib_gp_high": 62897.56792,
-    "fib_ote": 62772.273960000006,
-    "fib_inval": 63148.15584000001
+    "fib_gp_low": 62342.149919999996,
+    "fib_gp_high": 62842.89008,
+    "fib_ote": 62717.70503999999,
+    "fib_inval": 63093.26016
   },
   "cvd": {
     "table": [],
@@ -747,9 +747,9 @@
       "lots": 0.05
     },
     "short": {
-      "entry": 62938.2,
-      "sl": 63133.99359438164,
-      "tp": 62448.716014045895,
+      "entry": 62897.7,
+      "sl": 63093.49359438164,
+      "tp": 62408.216014045895,
       "dist": 195.79359438164101,
       "lots": 0.05
     },
