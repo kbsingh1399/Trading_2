@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:52:59 IST` (`2026-10-30 05:22:59 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:56:00 IST` (`2026-10-30 05:26:00 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -95,7 +95,7 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:43:23 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 10:53:16 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
@@ -353,21 +353,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 6,280.00 USD | 12,280.00 USD | **`ACCUMULATION`** |
-| `15m` | 29,430.00 USD | 25,610.00 USD | **`ACCUMULATION`** |
-| `30m` | 37,560.00 USD | 5,480.00 USD | **`ACCUMULATION`** |
-| `1h` | 17,520.00 USD | -1,860.00 USD | **`ACCUMULATION`** |
-| `2h` | 59,370.00 USD | 31,510.00 USD | **`ACCUMULATION`** |
-| `4h` | 4,030.00 USD | -61,110.00 USD | **`DISTRIBUTION`** |
-| `6h` | -334,540.00 USD | -593,290.00 USD | **`DISTRIBUTION`** |
-| `8h` | -370,550.00 USD | -1,540,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -1,070,000.00 USD | -1,650,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -1,040,000.00 USD | -1,810,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -2,410,000.00 USD | -3,940,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -14,020,000.00 USD | -20,300,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 28,850.00 USD | 39,630.00 USD | **`ACCUMULATION`** |
+| `15m` | 30,430.00 USD | 16,510.00 USD | **`ACCUMULATION`** |
+| `30m` | 48,030.00 USD | 24,630.00 USD | **`ACCUMULATION`** |
+| `1h` | 39,440.00 USD | 23,330.00 USD | **`ACCUMULATION`** |
+| `2h` | 73,810.00 USD | 42,690.00 USD | **`ACCUMULATION`** |
+| `4h` | 26,100.00 USD | -27,300.00 USD | **`DISTRIBUTION`** |
+| `6h` | -320,950.00 USD | -584,600.00 USD | **`DISTRIBUTION`** |
+| `8h` | -393,540.00 USD | -1,380,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | -1,040,000.00 USD | -1,610,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -1,030,000.00 USD | -1,810,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -2,390,000.00 USD | -3,930,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -13,990,000.00 USD | -20,290,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+6.28K` | 15m=`+29.43K` | 1h=`+17.52K` | 24h=`-1.04M`
-* Futures Capital Netflows: 5m=`+12.28K` | 15m=`+25.61K` | 1h=`-1.86K` | 24h=`-1.81M`
+* Spot Capital Netflows: 5m=`+28.85K` | 15m=`+30.43K` | 1h=`+39.44K` | 24h=`-1.03M`
+* Futures Capital Netflows: 5m=`+39.63K` | 15m=`+16.51K` | 1h=`+23.33K` | 24h=`-1.81M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
