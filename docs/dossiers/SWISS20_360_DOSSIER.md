@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SWISS20
 **Canonical Key**: `SWISS20` | **Broker Instrument**: `SWISS20.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 07:48:24 IST` (`2026-10-30 02:18:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:51:26 IST` (`2026-10-30 02:21:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 

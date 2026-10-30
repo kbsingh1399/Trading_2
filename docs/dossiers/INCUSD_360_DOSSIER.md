@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: INCUSD
 **Canonical Key**: `INCUSD` | **Broker Instrument**: `INCUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 07:48:25 IST` (`2026-10-30 02:18:25 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 07:51:26 IST` (`2026-10-30 02:21:26 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
