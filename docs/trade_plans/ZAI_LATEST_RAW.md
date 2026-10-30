@@ -268,6 +268,13 @@ json
 
 Artifacts sealed: scripts/cycle_028_seat3_math.py (sha256 682ce8a0…15c38e) · download/Cycle_028_seat3_sidecar.json (sha256 c31edffe…d56d4e).
 
+Todos
+4
+Cycle_028 evidence-plane fetches: ledger, registry, repo HEAD, registry sync commits, AUDUSD+BTC dossier re-extraction
+Write & run scripts/cycle_028_seat3_math.py — 27/27 EXACT + sidecar (sha256 sealed)
+Compose Cycle_028 §1–§7 report: 4 personas, Card C 4th issuance + Card D evidence demand, disputes D1–D15, §7 JSON
+Final QA against user mandate + artifacts
+
 Cycle_028 arbitration complete — 27/27 checks EXACT, 6/6 evidence fetches successful. The decisive finding: position #19490051 was closed mid-cycle for only +0.40 realized (vs the directed +14.40 Card B exit — a −14.00 opportunity cost), through none of the five directed mechanisms, with the mechanism unproven (SL slippage, commission, and discretionary-close hypotheses all reconcile to +0.40). Balance deficit improved marginally to −11.77, but equity cushion collapsed to −11.77 as +7.84 of floating evaporated. All 5 pendings survive (3rd ignored Card C) with DJ30 just 300 pts from filling into a Friday weekend — cancel deadline set before 20:45 UTC. Preflight receipt hit its 4th consecutive void (3rd distinct digest on one frozen timestamp), and the envelope's git pin now lags repo HEAD by ~4h. Card D formally demands the MT5 deal ticket, a live preflight re-observation, a registry refresh, and a provenance re-pin before Cycle_029.
 
 ================================================================================
