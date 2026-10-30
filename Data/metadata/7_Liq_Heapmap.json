@@ -2,7 +2,7 @@
   "feed_name": "7_Liq_Heapmap",
   "status": "PASS",
   "loading_settle_verified": true,
-  "row_count": 85,
+  "row_count": 84,
   "column_count": 7,
   "columns": [
     "rank",
@@ -13,9 +13,9 @@
     "tf_24h",
     "timestamp_ist"
   ],
-  "byte_size": 4684,
-  "timestamp_ist": "2026-10-30 10:45:04 IST",
-  "timestamp_utc": "2026-10-30 05:15:04 UTC",
-  "epoch_utc": 1793337304.914741,
-  "write_duration_ms": 336.17
+  "byte_size": 4681,
+  "timestamp_ist": "2026-10-30 10:47:09 IST",
+  "timestamp_utc": "2026-10-30 05:17:09 UTC",
+  "epoch_utc": 1793337429.098731,
+  "write_duration_ms": 358.2
 }
