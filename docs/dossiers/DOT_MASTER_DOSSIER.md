@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: DOT
 **Canonical Key**: `DOT` | **Broker Instrument**: `DOTUSD.pi` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 09:10:06 IST` (`2026-10-30 03:40:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:13:07 IST` (`2026-10-30 03:43:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1103,15 +1103,15 @@
   * 1h OI Change: `-10.62%` | 4h OI Change: `-9.62%` | 24h OI Change: `-15.85%`
   * Exchange Breakdown: Binance=`35.37M` | Bybit=`21.89M` | OKX=`10.38M` | Hyperliquid=`5.77M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `1.87K` | Last 24h: `2.25K` | Last 3d: `-11.45K` | Last 7d: `-19.60K`
+  * Current Rate: `2.57K` | Last 24h: `2.25K` | Last 3d: `-11.45K` | Last 7d: `-19.60K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0071%` | **USDT OKX** | `-0.0270%` |
-| **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `-0.0066%` |
-| **USDT MEXC** | `0.0071%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0068%` | **USDT Bitget** | `-0.0034%` |
-| **CoinM Binance** | `-0.0064%` | **CoinM OKX** | `0.0100%` |
+| **USDT Binance** | `0.0100%` | **USDT OKX** | `-0.0268%` |
+| **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `-0.0071%` |
+| **USDT MEXC** | `0.0096%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `0.0074%` | **USDT Bitget** | `-0.0018%` |
+| **CoinM Binance** | `-0.0036%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |

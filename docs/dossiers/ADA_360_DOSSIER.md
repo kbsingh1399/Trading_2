@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ADA
 **Canonical Key**: `ADA` | **Broker Instrument**: `ADAUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 09:10:05 IST` (`2026-10-30 03:40:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:13:07 IST` (`2026-10-30 03:43:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -827,14 +827,14 @@
   * 1h OI Change: `+0.60%` | 4h OI Change: `-0.87%` | 24h OI Change: `-6.49%`
   * Exchange Breakdown: Binance=`76.23M` | Bybit=`50.87M` | OKX=`28.95M` | Hyperliquid=`28.20M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-310.89` | Last 24h: `10.44K` | Last 3d: `50.88K` | Last 7d: `82.10K`
+  * Current Rate: `-645.74` | Last 24h: `10.44K` | Last 3d: `50.88K` | Last 7d: `82.10K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0079%` |
-| **USDT Bybit** | `-0.0186%` | **USDT KuCoin** | `0.0040%` |
+| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0083%` |
+| **USDT Bybit** | `-0.0195%` | **USDT KuCoin** | `0.0041%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0038%` | **USDT Bitget** | `0.0100%` |
+| **USDT Gate** | `0.0044%` | **USDT Bitget** | `0.0100%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

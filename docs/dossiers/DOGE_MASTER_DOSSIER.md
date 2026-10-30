@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: DOGE
 **Canonical Key**: `DOGE` | **Broker Instrument**: `DOGUSD.p` | **Asset Class**: `Crypto Meme`
-**Timestamp**: `2026-10-30 09:10:05 IST` (`2026-10-30 03:40:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:13:07 IST` (`2026-10-30 03:43:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1779,14 +1779,14 @@
   * 1h OI Change: `+0.79%` | 4h OI Change: `-1.53%` | 24h OI Change: `-5.59%`
   * Exchange Breakdown: Binance=`244.49M` | Bybit=`106.57M` | OKX=`110.00M` | Hyperliquid=`76.30M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-5.34K` | Last 24h: `35.55K` | Last 3d: `229.21K` | Last 7d: `310.17K`
+  * Current Rate: `-5.02K` | Last 24h: `35.55K` | Last 3d: `229.21K` | Last 7d: `310.17K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0004%` | **USDT OKX** | `-0.0051%` |
-| **USDT Bybit** | `-0.0023%` | **USDT KuCoin** | `-0.0123%` |
-| **USDT MEXC** | `-0.0004%` | **USDT BingX** | `-0.0006%` |
-| **USDT Gate** | `0.0061%` | **USDT Bitget** | `-0.0025%` |
+| **USDT Binance** | `0.0005%` | **USDT OKX** | `-0.0057%` |
+| **USDT Bybit** | `-0.0028%` | **USDT KuCoin** | `-0.0113%` |
+| **USDT MEXC** | `0.0003%` | **USDT BingX** | `0.0019%` |
+| **USDT Gate** | `0.0062%` | **USDT Bitget** | `-0.0018%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

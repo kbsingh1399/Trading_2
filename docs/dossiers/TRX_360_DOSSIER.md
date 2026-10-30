@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: TRX
 **Canonical Key**: `TRX` | **Broker Instrument**: `TRXUSD.p` | **Asset Class**: `Crypto Alt L1`
-**Timestamp**: `2026-10-30 09:10:05 IST` (`2026-10-30 03:40:05 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:13:07 IST` (`2026-10-30 03:43:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -1236,15 +1236,15 @@
   * 1h OI Change: `+1.74%` | 4h OI Change: `+6.63%` | 24h OI Change: `+46.42%`
   * Exchange Breakdown: Binance=`115.32M` | Bybit=`86.01M` | OKX=`25.20M` | Hyperliquid=`20.11M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-700.50K` | Last 24h: `-591.71K` | Last 3d: `-625.30K` | Last 7d: `-857.35K`
+  * Current Rate: `-655.09K` | Last 24h: `-591.71K` | Last 3d: `-625.30K` | Last 7d: `-857.35K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.3366%` | **USDT OKX** | `-0.7361%` |
-| **USDT Bybit** | `-0.1480%` | **USDT KuCoin** | `-0.0365%` |
-| **USDT MEXC** | `-0.3365%` | **USDT BingX** | `-0.5000%` |
-| **USDT Gate** | `-0.1990%` | **USDT Bitget** | `-0.3782%` |
-| **CoinM Binance** | `-0.5560%` | **CoinM OKX** | `-` |
+| **USDT Binance** | `-0.3182%` | **USDT OKX** | `-0.7045%` |
+| **USDT Bybit** | `-0.1344%` | **USDT KuCoin** | `-0.0323%` |
+| **USDT MEXC** | `-0.3217%` | **USDT BingX** | `-0.5000%` |
+| **USDT Gate** | `-0.1980%` | **USDT Bitget** | `-0.3669%` |
+| **CoinM Binance** | `-0.5251%` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
 | Horizon | Exchange | Long % | Short % | L/S Ratio | Total Volume (USD) |

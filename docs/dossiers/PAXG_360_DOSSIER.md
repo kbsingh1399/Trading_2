@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: PAXG
 **Canonical Key**: `PAXG` | **Broker Instrument**: `XAUUSD.pi` | **Asset Class**: `Tokenized Metal`
-**Timestamp**: `2026-10-30 09:10:06 IST` (`2026-10-30 03:40:06 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 09:13:07 IST` (`2026-10-30 03:43:07 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -608,7 +608,7 @@
   * 1h OI Change: `-0.15%` | 4h OI Change: `+0.54%` | 24h OI Change: `+0.51%`
   * Exchange Breakdown: Binance=`107.41M` | Bybit=`20.82M` | OKX=`-` | Hyperliquid=`24.64M`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `4.48K` | Last 24h: `27.84K` | Last 3d: `98.08K` | Last 7d: `223.34K`
+  * Current Rate: `2.97K` | Last 24h: `27.84K` | Last 3d: `98.08K` | Last 7d: `223.34K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
