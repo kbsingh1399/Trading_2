@@ -180,9 +180,10 @@ def build_council_prompt(cycle_id: str = "Cycle_037") -> str:
 **Canonical Checklist**: `Data/Manditory/ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`
 
 > ⚠️ **CRITICAL OPERATOR MANDATE & OUTPUT CONSTRAINTS**:
-> 1. **NO ARTIFICIAL HARD FLOOR RESTRICTION**: Per explicit operator directive ("no hard floor... keep punching and trading"), active high-confluence maker limit trading is authorized (Capacity N <= 3, Risk <= $10.00 USD, R:R >= 2.50R).
-> 2. **PRINT INLINE ALL-IN-ONE**: PRINT YOUR COMPLETE EVALUATION, AUDIT FINDINGS, CANDIDATE SETUPS, AND VERDICTS DIRECTLY INLINE. DO NOT REFERENCE EXTERNAL ATTACHMENTS OR SIDECARS.
-> 3. **GRAVITAS SCIENTIFIC RIGOR**: Zero hallucinations, zero ungrounded assertions. Every statement must be physically rooted in the master dossier JSONs or Parquet feeds.
+> 1. **EXPLICIT INTENT: ACTIVE HUNT FOR NEW HIGH-CONFLUENCE TRADING OPPORTUNITIES**: Our unambiguous objective is to discover, analyze, and execute NEW prime trading opportunities across the 92 spread-cleared assets. We are actively trading with real buying power ($4,755.23 USD), low contingent exposure ($14.10 USD / 0.29%), and an open execution slot (Capacity N <= 3). We do NOT accept passive inaction or blanket "stand aside" defaults. Dig deep into the 15 quantitative pillars of each asset to formulate actionable, high-probability trades.
+> 2. **NO ARTIFICIAL HARD FLOOR RESTRICTION**: Per explicit operator directive ("no hard floor... keep punching and trading"), active high-confluence maker limit trading is authorized (Capacity N <= 3, Risk <= $10.00 USD, R:R >= 2.50R).
+> 3. **PRINT INLINE ALL-IN-ONE**: PRINT YOUR COMPLETE EVALUATION, AUDIT FINDINGS, CANDIDATE SETUPS, AND VERDICTS DIRECTLY INLINE. DO NOT REFERENCE EXTERNAL ATTACHMENTS OR SIDECARS.
+> 4. **GRAVITAS SCIENTIFIC RIGOR**: Zero hallucinations, zero ungrounded assertions. Every statement must be physically rooted in the master dossier JSONs or Parquet feeds.
 
 ---
 
@@ -190,12 +191,12 @@ def build_council_prompt(cycle_id: str = "Cycle_037") -> str:
 - **MT5 Account**: #5064568 (Blueberry Markets, Live Raw Spread)
 - **Balance & Floating Equity**: **{balance:,.2f} USD**
 - **Margin Used**: **{telemetry['margin_used']:.2f} USD** | **Free Margin**: **{free_margin:,.2f} USD**
-- **Capital Posture**: `ACTIVE_HIGH_CONFLUENCE_OPERATION` (Operator Mandate: Active trading authorized)
+- **Capital Posture**: `ACTIVE_HIGH_CONFLUENCE_EXPANSION` (Intent: Aggressively seek and deploy new high-confluence setups)
 - **Active Open Positions**: **{len(positions)}** (100% Cash Defense Preserved)
 - **Active Resting Pending Orders**: **{len(orders)} ACTIVE** ({len(orders)}/3 slots deployed):
 {orders_text}
 - **Total Contingent Downside Risk**: **{tot_risk:.2f} USD** ({round(tot_risk/max(1.0, equity)*100, 2)}% of account equity)
-- **Execution Capacity Remaining**: **{max(0, 3 - len(orders))} Available Slot(s)**
+- **Execution Capacity Remaining**: **{max(0, 3 - len(orders))} Available Slot(s)** (Ready for immediate new candidate deployment)
 
 ---
 
@@ -241,11 +242,14 @@ def build_council_prompt(cycle_id: str = "Cycle_037") -> str:
 
 ---
 
-## ⚖️ 4. MANDATORY TRI-COUNCIL DELIVERABLES
+## ⚖️ 4. MANDATORY TRI-COUNCIL DELIVERABLES (OPPORTUNITY DISCOVERY)
 Arena.ai (Seat #2) and Z.ai (Seat #3) are commanded to deliver:
-1. **Audit of 2 Active Resting Limit Orders**: Validate tickets #19532055 (BTC) and #19532058 (AVE). Should these remain resting as placed, or are there adverse orderflow/liquidation shifts warranting immediate cancellation or modification?
-2. **Full Universe Forensic Screening via Raw URLs**: Fetch and inspect individual JSON dossiers across the spread-cleared assets via the exact GitHub URLs provided and nominate candidate setups for the 3rd available execution slot (R:R >= 2.50R, nominal risk <= $10.00 USD).
-3. **Execution Ruling**: Deliver your clear verdict on whether to HOLD active limit orders, stage candidate #3, or modify.
+1. **PRIMARY OBJECTIVE: Nominate NEW High-Confluence Trade Opportunities**: 
+   - Our clear intent is to FIND NEW TRADES. Fetch and inspect individual JSON dossiers across the 92 spread-cleared assets via the exact raw GitHub URLs provided.
+   - Propose 1 to 3 concrete NEW candidate setups for deployment into our open execution slot (or to upgrade/replace resting tickets if higher quality).
+   - For every nominated trade, specify exact numeric levels: Asset Symbol, Action (BUY_LIMIT / SELL_LIMIT), Limit Entry Price, Stop Loss, Take Profit, Reward-to-Risk ratio (>= 2.50R), Nominal Dollar Risk (<= $10.00 USD), and the 15-pillar physical confluence evidence (POC/VAL/VAH, Max Pain sweep, Whale Armor, CVD regime).
+2. **Audit of 2 Active Resting Limit Orders**: Validate tickets #19532055 (BTC) and #19532058 (AVE). Should these remain resting as placed, or are there adverse shifts warranting replacement with your superior nominated setups?
+3. **Execution Ruling**: Deliver your clear, actionable verdict on whether to HOLD active limit orders, stage your new high-confluence candidate into slot #3, or modify.
 
 > ⚠️ **REMINDER**: PRINT YOUR COMPLETE VERDICT, ANALYSIS, AND CANDIDATE SETUPS INLINE HERE ALL-IN-ONE.
 """
