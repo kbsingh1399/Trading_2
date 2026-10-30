@@ -1,25 +1,5 @@
 [
   {
-    "type": "LIQUIDATION",
-    "coin": "XYZ:SOXL",
-    "side": "SHORT_LIQUIDATED",
-    "market_impact": "BUY_PRESSURE",
-    "notional_usd": 212.79,
-    "distance_pct": null,
-    "duration_hours": null,
-    "rate_usd_per_min": null,
-    "price": 98.513,
-    "wallet_address": "0xfc667adba8d4837586078f4fdcdc29804337ca06",
-    "asset_slug": "XYZ:SOXL",
-    "raw_text": "#XYZ:SOXL Liquidated Short: 0.21K USD at 98.5130 USD [API]",
-    "msg_id": "HL_LIQ_0xfc667adba8d4837586078f4fdcdc29804337ca06_XYZ:SOXL_215580495539332",
-    "timestamp_epoch": 1793238442,
-    "time_label": "01:47",
-    "date_heading": "October 29",
-    "source": "HYPERLIQUID_L1_NATIVE_API",
-    "identity_basis": "NATIVE_TID"
-  },
-  {
     "type": "WHALE_TRADE",
     "coin": "XRP",
     "side": "BUY",
@@ -199996,6 +199976,26 @@
     "timestamp_epoch": 1790345183,
     "time_label": "14:06",
     "date_heading": "September 25",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "NEAR",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 10146.44,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 4.2582,
+    "wallet_address": "0x95995f302ad58138d791ce49f9f3b1274e80c60a",
+    "asset_slug": "NEAR",
+    "raw_text": "#NEAR Whale SELL: 10.15K USD at 4.2582 USD [API]",
+    "msg_id": "HL_TRADE_NEAR_653180400397768",
+    "timestamp_epoch": 1793337649,
+    "time_label": "05:20",
+    "date_heading": "October 30",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
   }
