@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPTUSD
 **Canonical Key**: `XPTUSD` | **Broker Instrument**: `XPTUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:42:50 IST` (`2026-10-30 11:12:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:45:52 IST` (`2026-10-30 11:15:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -156,10 +156,10 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0372%` | **USDT OKX** | `0.0811%` |
-| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0427%` |
-| **USDT MEXC** | `0.0369%` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0300%` | **USDT Bitget** | `0.0506%` |
+| **USDT Binance** | `0.0388%` | **USDT OKX** | `0.0845%` |
+| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0459%` |
+| **USDT MEXC** | `0.0386%` | **USDT BingX** | `-` |
+| **USDT Gate** | `0.0302%` | **USDT Bitget** | `0.0520%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
