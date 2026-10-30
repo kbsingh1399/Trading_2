@@ -181,7 +181,7 @@
       "USDT_Binance": "0.0050%",
       "USDT_OKX": "0.0050%",
       "USDT_Bybit": "-0.0022%",
-      "USDT_KuCoin": "-0.0115%",
+      "USDT_KuCoin": "-0.0118%",
       "USDT_MEXC": "0.0050%",
       "USDT_BingX": "0.0050%",
       "USDT_Gate": "0.0050%",
@@ -193,7 +193,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 531,

@@ -178,22 +178,22 @@
     "oi_row": {},
     "funding_row": {
       "Symbol": "MANA",
-      "USDT_Binance": "-0.0042%",
-      "USDT_OKX": "-0.0110%",
+      "USDT_Binance": "-0.0051%",
+      "USDT_OKX": "-0.0146%",
       "USDT_Bybit": "0.0100%",
       "USDT_KuCoin": "0.0100%",
-      "USDT_MEXC": "-0.0041%",
+      "USDT_MEXC": "-0.0051%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
       "USDT_Bitunix": "-0.0015%",
       "USDT_Bitget": "0.0100%",
       "USDT_WhiteBIT": "0.0100%",
-      "USDT_LBank": "-0.0042%",
+      "USDT_LBank": "-0.0051%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 607,
@@ -213,24 +213,7 @@
     "footprint_ladder": [],
     "signals": [],
     "spot_netflow": {},
-    "fut_netflow": {
-      "Symbol": "MANA",
-      "5_minute": "-$9.18K",
-      "15_minute": "-$11.42K",
-      "30_minute": "+$734.38",
-      "1_hour": "+$1.81K",
-      "2_hour": "-$14.44K",
-      "4_hour": "-$110.74K",
-      "6_hour": "-$134.94K",
-      "8_hour": "-$65.09K",
-      "12_hour": "-$84.87K",
-      "24_hour": "-$477.11K",
-      "1_week": "-$1.04M",
-      "15_day": "-$1.79M",
-      "30_day": "-$16.58M",
-      "Market_Cap": "$146.95M",
-      "Timestamp_IST": "2026-10-30 21:02:40 IST"
-    },
+    "fut_netflow": {},
     "calendar": [
       {
         "date": "Sun Oct 25",

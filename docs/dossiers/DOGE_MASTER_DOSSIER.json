@@ -2890,238 +2890,238 @@
         "rank": "305",
         "user": "0xb83d...6e36",
         "side": "SHORT",
-        "pos_usd": 7786617.22,
+        "pos_usd": 7781792.87,
         "tokens": 102645925.0,
         "entry_px": 0.0946,
-        "current_px": 0.075767,
-        "liq_px": 1.0399,
-        "pnl_usd": 1920724.43,
-        "pnl_pct": 24.67,
-        "margin": 2595539.07,
+        "current_px": 0.075671,
+        "liq_px": 1.0457,
+        "pnl_usd": 1925548.79,
+        "pnl_pct": 24.74,
+        "margin": 2593930.96,
         "leverage": "3X Cross"
       },
       {
-        "rank": "315",
+        "rank": "316",
         "user": "0xc63a...a3cd",
         "side": "LONG",
-        "pos_usd": 7587200.0,
+        "pos_usd": 7566000.0,
         "tokens": 100000000.0,
         "entry_px": 0.0856,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0,
-        "pnl_usd": -977621.96,
-        "pnl_pct": -12.89,
-        "margin": 758720.0,
+        "pnl_usd": -998821.96,
+        "pnl_pct": -13.2,
+        "margin": 756600.0,
         "leverage": "10X Cross"
       },
       {
-        "rank": "317",
+        "rank": "318",
         "user": "0x610b...b613",
         "side": "LONG",
-        "pos_usd": 7489570.91,
+        "pos_usd": 7465989.64,
         "tokens": 98666424.0,
         "entry_px": 0.0872,
-        "current_px": 0.075767,
-        "liq_px": 0.0604,
-        "pnl_usd": -1110610.99,
-        "pnl_pct": -14.83,
-        "margin": 1497914.18,
+        "current_px": 0.075671,
+        "liq_px": 0.0607,
+        "pnl_usd": -1134192.26,
+        "pnl_pct": -15.19,
+        "margin": 1493197.93,
         "leverage": "5X Cross"
       },
       {
         "rank": "551",
         "user": "0xecb6...2b00",
         "side": "SHORT",
-        "pos_usd": 4097327.11,
-        "tokens": 54022376.0,
-        "entry_px": 0.0782,
-        "current_px": 0.075767,
-        "liq_px": 0.7683,
-        "pnl_usd": 125150.85,
-        "pnl_pct": 3.05,
-        "margin": 409732.71,
+        "pos_usd": 4112730.01,
+        "tokens": 54292032.0,
+        "entry_px": 0.0781,
+        "current_px": 0.075671,
+        "liq_px": 0.7383,
+        "pnl_usd": 130170.59,
+        "pnl_pct": 3.17,
+        "margin": 411273.0,
         "leverage": "10X Cross"
       },
       {
-        "rank": "613",
+        "rank": "612",
         "user": "0x5b5d...c060",
         "side": "SHORT",
-        "pos_usd": 3752731.34,
+        "pos_usd": 3748624.59,
         "tokens": 49478955.0,
         "entry_px": 0.0946,
-        "current_px": 0.075767,
-        "liq_px": 2.8749,
-        "pnl_usd": 928785.26,
-        "pnl_pct": 24.75,
-        "margin": 1250910.45,
+        "current_px": 0.075671,
+        "liq_px": 2.8875,
+        "pnl_usd": 932892.02,
+        "pnl_pct": 24.89,
+        "margin": 1249541.53,
         "leverage": "3X Cross"
       },
       {
-        "rank": "646",
+        "rank": "649",
         "user": "0xca49...53c8",
         "side": "SHORT",
-        "pos_usd": 3531516.58,
+        "pos_usd": 3521416.82,
         "tokens": 46542649.0,
         "entry_px": 0.0929,
-        "current_px": 0.075767,
-        "liq_px": 0.3986,
-        "pnl_usd": 794528.1,
-        "pnl_pct": 22.5,
-        "margin": 353151.66,
+        "current_px": 0.075671,
+        "liq_px": 0.4016,
+        "pnl_usd": 804627.86,
+        "pnl_pct": 22.85,
+        "margin": 352141.68,
         "leverage": "10X Cross"
       },
       {
         "rank": "659",
         "user": "0x45d2...4029",
         "side": "SHORT",
-        "pos_usd": 3448196.81,
+        "pos_usd": 3440110.98,
         "tokens": 45426000.0,
         "entry_px": 0.0954,
-        "current_px": 0.075767,
-        "liq_px": 0.9656,
-        "pnl_usd": 887432.41,
-        "pnl_pct": 25.74,
-        "margin": 344819.68,
+        "current_px": 0.075671,
+        "liq_px": 0.9787,
+        "pnl_usd": 895518.24,
+        "pnl_pct": 26.03,
+        "margin": 344011.1,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1188",
+        "rank": "1184",
         "user": "0x458d...ab3b",
         "side": "LONG",
-        "pos_usd": 1854718.41,
+        "pos_usd": 1852444.18,
         "tokens": 24454063.0,
         "entry_px": 0.1002,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0714,
-        "pnl_usd": -596203.49,
-        "pnl_pct": -32.15,
-        "margin": 196466.8,
+        "pnl_usd": -598477.72,
+        "pnl_pct": -32.31,
+        "margin": 194192.58,
         "leverage": "3X Isolated"
       },
       {
-        "rank": "1197",
+        "rank": "1198",
         "user": "0xeadc...9d55",
         "side": "LONG",
-        "pos_usd": 1844356.24,
+        "pos_usd": 1842337.89,
         "tokens": 24317440.0,
         "entry_px": 0.0926,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0,
-        "pnl_usd": -407238.34,
-        "pnl_pct": -22.08,
-        "margin": 184435.62,
+        "pnl_usd": -409256.68,
+        "pnl_pct": -22.21,
+        "margin": 184233.79,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1328",
+        "rank": "1334",
         "user": "0xf48f...10fe",
         "side": "LONG",
-        "pos_usd": 1625605.13,
+        "pos_usd": 1623312.71,
         "tokens": 21424497.0,
         "entry_px": 0.0968,
-        "current_px": 0.075767,
-        "liq_px": 0.0482,
-        "pnl_usd": -448699.47,
-        "pnl_pct": -27.6,
-        "margin": 406401.28,
+        "current_px": 0.075671,
+        "liq_px": 0.0489,
+        "pnl_usd": -450991.89,
+        "pnl_pct": -27.78,
+        "margin": 405828.18,
         "leverage": "4X Cross"
       },
       {
-        "rank": "1355",
+        "rank": "1357",
         "user": "0x9946...0852",
         "side": "SHORT",
-        "pos_usd": 1581884.78,
+        "pos_usd": 1580133.77,
         "tokens": 20845267.0,
         "entry_px": 0.0859,
-        "current_px": 0.075767,
-        "liq_px": 0.1523,
-        "pnl_usd": 209401.24,
-        "pnl_pct": 13.24,
-        "margin": 158188.48,
+        "current_px": 0.075671,
+        "liq_px": 0.1539,
+        "pnl_usd": 211152.24,
+        "pnl_pct": 13.36,
+        "margin": 158013.38,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1598",
+        "rank": "1601",
         "user": "0x0d6a...ca57",
         "side": "LONG",
-        "pos_usd": 1337354.39,
+        "pos_usd": 1333846.73,
         "tokens": 17626455.0,
         "entry_px": 0.0875,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0626,
-        "pnl_usd": -204750.56,
-        "pnl_pct": -15.31,
-        "margin": 289333.27,
+        "pnl_usd": -208258.23,
+        "pnl_pct": -15.61,
+        "margin": 285825.6,
         "leverage": "3X Isolated"
       },
       {
         "rank": "1662",
         "user": "0x4808...a82c",
         "side": "LONG",
-        "pos_usd": 1275707.86,
+        "pos_usd": 1274933.77,
         "tokens": 16828143.0,
         "entry_px": 0.0883,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0632,
-        "pnl_usd": -210765.12,
-        "pnl_pct": -16.52,
-        "margin": 425235.95,
+        "pnl_usd": -211539.21,
+        "pnl_pct": -16.59,
+        "margin": 424977.92,
         "leverage": "3X Cross"
       },
       {
-        "rank": "1745",
+        "rank": "1752",
         "user": "0x9aa5...58af",
         "side": "SHORT",
-        "pos_usd": 1203387.29,
-        "tokens": 15859920.0,
+        "pos_usd": 1199909.24,
+        "tokens": 15837877.0,
         "entry_px": 0.0907,
-        "current_px": 0.075767,
-        "liq_px": 0.6398,
-        "pnl_usd": 234607.78,
-        "pnl_pct": 19.5,
-        "margin": 120338.73,
+        "current_px": 0.075671,
+        "liq_px": 0.6409,
+        "pnl_usd": 236087.23,
+        "pnl_pct": 19.68,
+        "margin": 119990.92,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1797",
+        "rank": "1802",
         "user": "0x31ef...f715",
         "side": "LONG",
-        "pos_usd": 1155127.09,
+        "pos_usd": 1153710.69,
         "tokens": 15230102.0,
         "entry_px": 0.0936,
-        "current_px": 0.075767,
+        "current_px": 0.075671,
         "liq_px": 0.0668,
-        "pnl_usd": -270568.84,
-        "pnl_pct": -23.42,
-        "margin": 187932.68,
+        "pnl_usd": -271985.24,
+        "pnl_pct": -23.57,
+        "margin": 186516.28,
         "leverage": "3X Isolated"
       },
       {
-        "rank": "1820",
+        "rank": "1822",
         "user": "0xbfc7...80b4",
         "side": "SHORT",
-        "pos_usd": 1138636.16,
+        "pos_usd": 1137945.24,
         "tokens": 15020000.0,
         "entry_px": 0.092,
-        "current_px": 0.075767,
-        "liq_px": 0.1799,
-        "pnl_usd": 243763.13,
-        "pnl_pct": 21.41,
-        "margin": 113863.62,
+        "current_px": 0.075671,
+        "liq_px": 0.1821,
+        "pnl_usd": 244454.05,
+        "pnl_pct": 21.48,
+        "margin": 113794.52,
         "leverage": "10X Cross"
       },
       {
-        "rank": "1927",
+        "rank": "1928",
         "user": "0x7cee...fc93",
         "side": "SHORT",
-        "pos_usd": 1062220.87,
+        "pos_usd": 1061954.62,
         "tokens": 14013468.0,
         "entry_px": 0.0863,
-        "current_px": 0.075767,
-        "liq_px": 0.2504,
-        "pnl_usd": 146656.49,
-        "pnl_pct": 13.81,
-        "margin": 212444.17,
+        "current_px": 0.075671,
+        "liq_px": 0.2512,
+        "pnl_usd": 146922.74,
+        "pnl_pct": 13.84,
+        "margin": 212390.92,
         "leverage": "5X Cross"
       }
     ],
@@ -21309,43 +21309,43 @@
     "oi_row": {
       "Asset": "DOGE",
       "Total_OI_USD": "$1.05B",
-      "Binance": "$240.17M",
-      "Bybit": "$106.19M",
-      "OKX": "$108.62M",
+      "Binance": "$239.77M",
+      "Bybit": "$105.73M",
+      "OKX": "$108.52M",
       "CME": "-",
-      "KuCoin": "$47.56M",
-      "Gate": "$182.64M",
-      "Bitget": "$95.34M",
-      "BingX": "$29.87M",
-      "MEXC": "$84.33M",
-      "Bitunix": "$11.55M",
-      "Hyperliquid": "$75.85M",
-      "Others": "$72.27M",
-      "Total_OI_Tokens": "13,917,931,808.7 DOGE",
-      "24h_Total_Change": "-5.86%",
-      "4h_Total_Change": "-1.09%",
-      "1h_Total_Change": "+0.57%",
-      "OI___24h_Vol": "0.4928",
-      "Timestamp_IST": "2026-10-30 21:04:05 IST"
+      "KuCoin": "$47.46M",
+      "Gate": "$182.12M",
+      "Bitget": "$95.20M",
+      "BingX": "$29.65M",
+      "MEXC": "$84.40M",
+      "Bitunix": "$11.52M",
+      "Hyperliquid": "$75.88M",
+      "Others": "$72.03M",
+      "Total_OI_Tokens": "13,908,173,666.5 DOGE",
+      "24h_Total_Change": "-6.50%",
+      "4h_Total_Change": "-0.88%",
+      "1h_Total_Change": "-0.08%",
+      "OI___24h_Vol": "0.4916",
+      "Timestamp_IST": "2026-10-30 21:15:26 IST"
     },
     "funding_row": {
       "Symbol": "DOGE",
-      "USDT_Binance": "0.0056%",
-      "USDT_OKX": "0.0081%",
-      "USDT_Bybit": "-0.0030%",
-      "USDT_KuCoin": "-0.0076%",
-      "USDT_MEXC": "0.0056%",
-      "USDT_BingX": "0.0080%",
-      "USDT_Gate": "-0.0015%",
-      "USDT_Bitunix": "0.0062%",
-      "USDT_Bitget": "-0.0003%",
+      "USDT_Binance": "0.0058%",
+      "USDT_OKX": "0.0076%",
+      "USDT_Bybit": "-0.0029%",
+      "USDT_KuCoin": "-0.0074%",
+      "USDT_MEXC": "0.0058%",
+      "USDT_BingX": "0.0077%",
+      "USDT_Gate": "-0.0011%",
+      "USDT_Bitunix": "0.0058%",
+      "USDT_Bitget": "-0.0001%",
       "USDT_WhiteBIT": "0.0100%",
-      "USDT_LBank": "0.0056%",
+      "USDT_LBank": "0.0058%",
       "USDT_tradeXYZ": "-",
       "CoinM_Binance": "0.0100%",
-      "CoinM_OKX": "0.0074%",
-      "CoinM_Bybit": "0.0052%",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "CoinM_OKX": "0.0078%",
+      "CoinM_Bybit": "0.0057%",
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 27,
@@ -21363,290 +21363,290 @@
       {
         "horizon": "15M",
         "exchange": "DOGE",
-        "long_pct": "40.54%",
-        "short_pct": "59.46%",
-        "ls_ratio": "0.68",
-        "vol": 26300000.0
+        "long_pct": "41.39%",
+        "short_pct": "58.61%",
+        "ls_ratio": "0.71",
+        "vol": 36070000.0
       },
       {
         "horizon": "15M",
         "exchange": "Binance",
-        "long_pct": "35.24%",
-        "short_pct": "64.76%",
-        "ls_ratio": "0.54",
-        "vol": 17960000.0
+        "long_pct": "37.72%",
+        "short_pct": "62.28%",
+        "ls_ratio": "0.61",
+        "vol": 22430000.0
       },
       {
         "horizon": "15M",
         "exchange": "OKX",
-        "long_pct": "65.41%",
-        "short_pct": "34.59%",
-        "ls_ratio": "1.89",
-        "vol": 2520000.0
+        "long_pct": "41.65%",
+        "short_pct": "58.35%",
+        "ls_ratio": "0.71",
+        "vol": 2790000.0
       },
       {
         "horizon": "15M",
         "exchange": "Bybit",
-        "long_pct": "45.74%",
-        "short_pct": "54.26%",
-        "ls_ratio": "0.84",
-        "vol": 1450000.0
+        "long_pct": "49.18%",
+        "short_pct": "50.82%",
+        "ls_ratio": "0.97",
+        "vol": 4370000.0
       },
       {
         "horizon": "15M",
         "exchange": "KuCoin",
+        "long_pct": "33.08%",
+        "short_pct": "66.92%",
+        "ls_ratio": "0.49",
+        "vol": 259880.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Gate",
+        "long_pct": "49.01%",
+        "short_pct": "50.99%",
+        "ls_ratio": "0.96",
+        "vol": 1180000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitget",
+        "long_pct": "33.03%",
+        "short_pct": "66.97%",
+        "ls_ratio": "0.49",
+        "vol": 1380000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "BingX",
+        "long_pct": "33.35%",
+        "short_pct": "66.65%",
+        "ls_ratio": "0.50",
+        "vol": 403680.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "MEXC",
+        "long_pct": "49.26%",
+        "short_pct": "50.74%",
+        "ls_ratio": "0.97",
+        "vol": 454790.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitunix",
+        "long_pct": "38.17%",
+        "short_pct": "61.83%",
+        "ls_ratio": "0.62",
+        "vol": 904160.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Hyperliquid",
+        "long_pct": "21.25%",
+        "short_pct": "78.75%",
+        "ls_ratio": "0.27",
+        "vol": 1120000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "tradeXYZ",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "LBank",
         "long_pct": "44.9%",
         "short_pct": "55.1%",
         "ls_ratio": "0.81",
-        "vol": 213780.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Gate",
-        "long_pct": "55.99%",
-        "short_pct": "44.01%",
-        "ls_ratio": "1.27",
-        "vol": 800670.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitget",
-        "long_pct": "41.4%",
-        "short_pct": "58.6%",
-        "ls_ratio": "0.71",
-        "vol": 412820.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "BingX",
-        "long_pct": "39.94%",
-        "short_pct": "60.06%",
-        "ls_ratio": "0.67",
-        "vol": 400640.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "MEXC",
-        "long_pct": "18.52%",
-        "short_pct": "81.48%",
-        "ls_ratio": "0.23",
-        "vol": 453240.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitunix",
-        "long_pct": "59%",
-        "short_pct": "41%",
-        "ls_ratio": "1.44",
-        "vol": 989720.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Hyperliquid",
-        "long_pct": "41.06%",
-        "short_pct": "58.94%",
-        "ls_ratio": "0.70",
-        "vol": 296050.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "LBank",
-        "long_pct": "46.55%",
-        "short_pct": "53.45%",
-        "ls_ratio": "0.87",
-        "vol": 346920.0
+        "vol": 151930.0
       },
       {
         "horizon": "15M",
         "exchange": "Crypto.com",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "WhiteBIT",
-        "long_pct": "100%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 6560.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "HTX",
-        "long_pct": "34.71%",
-        "short_pct": "65.29%",
-        "ls_ratio": "0.53",
-        "vol": 76430.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Deribit",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Bitfinex",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Kraken",
-        "long_pct": "52.96%",
-        "short_pct": "47.04%",
-        "ls_ratio": "1.13",
-        "vol": 10140.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Aster",
-        "long_pct": "57.57%",
-        "short_pct": "42.43%",
-        "ls_ratio": "1.36",
-        "vol": 255280.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Coinbase",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Lighter",
-        "long_pct": "9.97%",
-        "short_pct": "90.03%",
-        "ls_ratio": "0.11",
-        "vol": 112680.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Whale Positions",
-        "long_pct": "35.24%",
-        "short_pct": "64.76%",
-        "ls_ratio": "0.54",
-        "vol": 17960000.0
-      },
-      {
-        "horizon": "15M",
-        "exchange": "Global Accounts",
-        "long_pct": "40.54%",
-        "short_pct": "59.46%",
-        "ls_ratio": "0.68",
-        "vol": 26300000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "DOGE",
-        "long_pct": "51.39%",
-        "short_pct": "48.61%",
-        "ls_ratio": "1.06",
-        "vol": 617350000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Binance",
-        "long_pct": "50.99%",
-        "short_pct": "49.01%",
-        "ls_ratio": "1.04",
-        "vol": 221630000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "OKX",
-        "long_pct": "49.25%",
-        "short_pct": "50.75%",
-        "ls_ratio": "0.97",
-        "vol": 120650000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Bybit",
-        "long_pct": "59.93%",
-        "short_pct": "40.07%",
-        "ls_ratio": "1.50",
-        "vol": 46960000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "KuCoin",
-        "long_pct": "55.66%",
-        "short_pct": "44.34%",
-        "ls_ratio": "1.26",
-        "vol": 4280000.0
-      },
-      {
-        "horizon": "1H",
-        "exchange": "Gate",
-        "long_pct": "51.29%",
-        "short_pct": "48.71%",
+        "long_pct": "51.2%",
+        "short_pct": "48.8%",
         "ls_ratio": "1.05",
-        "vol": 39010000.0
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "WhiteBIT",
+        "long_pct": "1.46%",
+        "short_pct": "98.54%",
+        "ls_ratio": "0.01",
+        "vol": 26500.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "HTX",
+        "long_pct": "47.92%",
+        "short_pct": "52.08%",
+        "ls_ratio": "0.92",
+        "vol": 113560.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "dYdX",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Deribit",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Bitfinex",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Kraken",
+        "long_pct": "42.6%",
+        "short_pct": "57.4%",
+        "ls_ratio": "0.74",
+        "vol": 30800.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Aster",
+        "long_pct": "30.88%",
+        "short_pct": "69.12%",
+        "ls_ratio": "0.45",
+        "vol": 409170.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Coinbase",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Lighter",
+        "long_pct": "37.46%",
+        "short_pct": "62.54%",
+        "ls_ratio": "0.60",
+        "vol": 49540.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Whale Positions",
+        "long_pct": "37.72%",
+        "short_pct": "62.28%",
+        "ls_ratio": "0.61",
+        "vol": 22430000.0
+      },
+      {
+        "horizon": "15M",
+        "exchange": "Global Accounts",
+        "long_pct": "41.39%",
+        "short_pct": "58.61%",
+        "ls_ratio": "0.71",
+        "vol": 36070000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "DOGE",
+        "long_pct": "51.18%",
+        "short_pct": "48.82%",
+        "ls_ratio": "1.05",
+        "vol": 111130000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Binance",
+        "long_pct": "47.34%",
+        "short_pct": "52.66%",
+        "ls_ratio": "0.90",
+        "vol": 71350000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "OKX",
+        "long_pct": "59.27%",
+        "short_pct": "40.73%",
+        "ls_ratio": "1.46",
+        "vol": 8710000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Bybit",
+        "long_pct": "59.31%",
+        "short_pct": "40.69%",
+        "ls_ratio": "1.46",
+        "vol": 8720000.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "KuCoin",
+        "long_pct": "51.05%",
+        "short_pct": "48.95%",
+        "ls_ratio": "1.04",
+        "vol": 840840.0
+      },
+      {
+        "horizon": "1H",
+        "exchange": "Gate",
+        "long_pct": "62.42%",
+        "short_pct": "37.58%",
+        "ls_ratio": "1.66",
+        "vol": 3750000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bitget",
-        "long_pct": "59.08%",
-        "short_pct": "40.92%",
-        "ls_ratio": "1.44",
-        "vol": 19970000.0
+        "long_pct": "60.26%",
+        "short_pct": "39.74%",
+        "ls_ratio": "1.52",
+        "vol": 2640000.0
       },
       {
         "horizon": "1H",
         "exchange": "BingX",
-        "long_pct": "54.2%",
-        "short_pct": "45.8%",
-        "ls_ratio": "1.18",
-        "vol": 19850000.0
+        "long_pct": "50.76%",
+        "short_pct": "49.24%",
+        "ls_ratio": "1.03",
+        "vol": 1990000.0
       },
       {
         "horizon": "1H",
         "exchange": "MEXC",
-        "long_pct": "44.22%",
-        "short_pct": "55.78%",
-        "ls_ratio": "0.79",
-        "vol": 57110000.0
+        "long_pct": "51.45%",
+        "short_pct": "48.55%",
+        "ls_ratio": "1.06",
+        "vol": 1990000.0
       },
       {
         "horizon": "1H",
         "exchange": "Bitunix",
-        "long_pct": "53.39%",
-        "short_pct": "46.61%",
-        "ls_ratio": "1.15",
-        "vol": 39370000.0
+        "long_pct": "55.91%",
+        "short_pct": "44.09%",
+        "ls_ratio": "1.27",
+        "vol": 3220000.0
       },
       {
         "horizon": "1H",
         "exchange": "Hyperliquid",
-        "long_pct": "45.88%",
-        "short_pct": "54.12%",
-        "ls_ratio": "0.85",
-        "vol": 19030000.0
+        "long_pct": "48.6%",
+        "short_pct": "51.4%",
+        "ls_ratio": "0.95",
+        "vol": 3210000.0
       },
       {
         "horizon": "1H",
@@ -21659,34 +21659,34 @@
       {
         "horizon": "1H",
         "exchange": "LBank",
-        "long_pct": "49.5%",
-        "short_pct": "50.5%",
-        "ls_ratio": "0.98",
-        "vol": 8790000.0
+        "long_pct": "52.93%",
+        "short_pct": "47.07%",
+        "ls_ratio": "1.12",
+        "vol": 1410000.0
       },
       {
         "horizon": "1H",
         "exchange": "Crypto.com",
-        "long_pct": "47.45%",
-        "short_pct": "52.55%",
-        "ls_ratio": "0.90",
-        "vol": 1560000.0
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
       },
       {
         "horizon": "1H",
         "exchange": "WhiteBIT",
-        "long_pct": "47.38%",
-        "short_pct": "52.62%",
-        "ls_ratio": "0.90",
-        "vol": 1700000.0
+        "long_pct": "99.8%",
+        "short_pct": "0.2%",
+        "ls_ratio": "499.00",
+        "vol": 89370.0
       },
       {
         "horizon": "1H",
         "exchange": "HTX",
-        "long_pct": "72.63%",
-        "short_pct": "27.37%",
-        "ls_ratio": "2.65",
-        "vol": 1860000.0
+        "long_pct": "59.98%",
+        "short_pct": "40.02%",
+        "ls_ratio": "1.50",
+        "vol": 315650.0
       },
       {
         "horizon": "1H",
@@ -21715,18 +21715,18 @@
       {
         "horizon": "1H",
         "exchange": "Kraken",
-        "long_pct": "70.45%",
-        "short_pct": "29.55%",
-        "ls_ratio": "2.38",
-        "vol": 7120000.0
+        "long_pct": "82.71%",
+        "short_pct": "17.29%",
+        "ls_ratio": "4.78",
+        "vol": 1330000.0
       },
       {
         "horizon": "1H",
         "exchange": "Aster",
-        "long_pct": "48.66%",
-        "short_pct": "51.34%",
-        "ls_ratio": "0.95",
-        "vol": 4580000.0
+        "long_pct": "61.34%",
+        "short_pct": "38.66%",
+        "ls_ratio": "1.59",
+        "vol": 986480.0
       },
       {
         "horizon": "1H",
@@ -21739,194 +21739,194 @@
       {
         "horizon": "1H",
         "exchange": "Lighter",
-        "long_pct": "57.77%",
-        "short_pct": "42.23%",
-        "ls_ratio": "1.37",
-        "vol": 3880000.0
+        "long_pct": "49.06%",
+        "short_pct": "50.94%",
+        "ls_ratio": "0.96",
+        "vol": 581510.0
       },
       {
         "horizon": "1H",
         "exchange": "Whale Positions",
-        "long_pct": "50.99%",
-        "short_pct": "49.01%",
-        "ls_ratio": "1.04",
-        "vol": 221630000.0
+        "long_pct": "47.34%",
+        "short_pct": "52.66%",
+        "ls_ratio": "0.90",
+        "vol": 71350000.0
       },
       {
         "horizon": "1H",
         "exchange": "Global Accounts",
-        "long_pct": "51.39%",
-        "short_pct": "48.61%",
-        "ls_ratio": "1.06",
-        "vol": 617350000.0
+        "long_pct": "51.18%",
+        "short_pct": "48.82%",
+        "ls_ratio": "1.05",
+        "vol": 111130000.0
       },
       {
         "horizon": "4H",
         "exchange": "DOGE",
-        "long_pct": "49.40%",
-        "short_pct": "50.60%",
-        "ls_ratio": "0.98",
-        "vol": 17390000000.0
+        "long_pct": "47.02%",
+        "short_pct": "52.98%",
+        "ls_ratio": "0.89",
+        "vol": 305390000.0
       },
       {
         "horizon": "4H",
         "exchange": "Binance",
-        "long_pct": "50.51%",
-        "short_pct": "49.49%",
-        "ls_ratio": "1.02",
-        "vol": 5210000000.0
+        "long_pct": "46.07%",
+        "short_pct": "53.93%",
+        "ls_ratio": "0.85",
+        "vol": 194430000.0
       },
       {
         "horizon": "4H",
         "exchange": "OKX",
-        "long_pct": "47.47%",
-        "short_pct": "52.53%",
-        "ls_ratio": "0.90",
-        "vol": 2510000000.0
+        "long_pct": "47.94%",
+        "short_pct": "52.06%",
+        "ls_ratio": "0.92",
+        "vol": 26950000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bybit",
-        "long_pct": "50.7%",
-        "short_pct": "49.3%",
-        "ls_ratio": "1.03",
-        "vol": 1720000000.0
+        "long_pct": "50.61%",
+        "short_pct": "49.39%",
+        "ls_ratio": "1.02",
+        "vol": 17940000.0
       },
       {
         "horizon": "4H",
         "exchange": "KuCoin",
-        "long_pct": "54.05%",
-        "short_pct": "45.95%",
-        "ls_ratio": "1.18",
-        "vol": 53210000.0
+        "long_pct": "52.43%",
+        "short_pct": "47.57%",
+        "ls_ratio": "1.10",
+        "vol": 3240000.0
       },
       {
         "horizon": "4H",
         "exchange": "Gate",
-        "long_pct": "50.27%",
-        "short_pct": "49.73%",
-        "ls_ratio": "1.01",
-        "vol": 1960000000.0
+        "long_pct": "43.39%",
+        "short_pct": "56.61%",
+        "ls_ratio": "0.77",
+        "vol": 15370000.0
       },
       {
         "horizon": "4H",
         "exchange": "Bitget",
-        "long_pct": "47.99%",
-        "short_pct": "52.01%",
-        "ls_ratio": "0.92",
-        "vol": 882800000.0
+        "long_pct": "53.82%",
+        "short_pct": "46.18%",
+        "ls_ratio": "1.17",
+        "vol": 5040000.0
       },
       {
         "horizon": "4H",
         "exchange": "BingX",
-        "long_pct": "52.77%",
-        "short_pct": "47.23%",
-        "ls_ratio": "1.12",
-        "vol": 335140000.0
+        "long_pct": "37.42%",
+        "short_pct": "62.58%",
+        "ls_ratio": "0.60",
+        "vol": 7380000.0
       },
       {
         "horizon": "4H",
         "exchange": "MEXC",
-        "long_pct": "49.71%",
-        "short_pct": "50.29%",
-        "ls_ratio": "0.99",
-        "vol": 862630000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitunix",
-        "long_pct": "50.67%",
-        "short_pct": "49.33%",
-        "ls_ratio": "1.03",
-        "vol": 960830000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Hyperliquid",
-        "long_pct": "47.32%",
-        "short_pct": "52.68%",
-        "ls_ratio": "0.90",
-        "vol": 901850000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "tradeXYZ",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "LBank",
-        "long_pct": "59.46%",
-        "short_pct": "40.54%",
-        "ls_ratio": "1.47",
-        "vol": 87010000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Crypto.com",
-        "long_pct": "50.31%",
-        "short_pct": "49.69%",
-        "ls_ratio": "1.01",
-        "vol": 109660000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "WhiteBIT",
-        "long_pct": "39.82%",
-        "short_pct": "60.18%",
-        "ls_ratio": "0.66",
-        "vol": 754470000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "HTX",
-        "long_pct": "46.92%",
-        "short_pct": "53.08%",
-        "ls_ratio": "0.88",
-        "vol": 70560000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "dYdX",
-        "long_pct": "0%",
-        "short_pct": "0%",
-        "ls_ratio": "1.00",
-        "vol": 0.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Deribit",
-        "long_pct": "49.86%",
-        "short_pct": "50.14%",
-        "ls_ratio": "0.99",
-        "vol": 493070000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Bitfinex",
-        "long_pct": "57.5%",
-        "short_pct": "42.5%",
-        "ls_ratio": "1.35",
-        "vol": 9250000.0
-      },
-      {
-        "horizon": "4H",
-        "exchange": "Kraken",
         "long_pct": "54.46%",
         "short_pct": "45.54%",
         "ls_ratio": "1.20",
-        "vol": 147010000.0
+        "vol": 4770000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Bitunix",
+        "long_pct": "51.99%",
+        "short_pct": "48.01%",
+        "ls_ratio": "1.08",
+        "vol": 9420000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Hyperliquid",
+        "long_pct": "41.81%",
+        "short_pct": "58.19%",
+        "ls_ratio": "0.72",
+        "vol": 8930000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "tradeXYZ",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "LBank",
+        "long_pct": "51.47%",
+        "short_pct": "48.53%",
+        "ls_ratio": "1.06",
+        "vol": 3340000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Crypto.com",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "WhiteBIT",
+        "long_pct": "78.08%",
+        "short_pct": "21.92%",
+        "ls_ratio": "3.56",
+        "vol": 558040.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "HTX",
+        "long_pct": "52.28%",
+        "short_pct": "47.72%",
+        "ls_ratio": "1.10",
+        "vol": 1190000.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "dYdX",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Deribit",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Bitfinex",
+        "long_pct": "0%",
+        "short_pct": "0%",
+        "ls_ratio": "1.00",
+        "vol": 0.0
+      },
+      {
+        "horizon": "4H",
+        "exchange": "Kraken",
+        "long_pct": "79.23%",
+        "short_pct": "20.77%",
+        "ls_ratio": "3.81",
+        "vol": 1870000.0
       },
       {
         "horizon": "4H",
         "exchange": "Aster",
-        "long_pct": "55.58%",
-        "short_pct": "44.42%",
-        "ls_ratio": "1.25",
-        "vol": 133070000.0
+        "long_pct": "49.64%",
+        "short_pct": "50.36%",
+        "ls_ratio": "0.99",
+        "vol": 3000000.0
       },
       {
         "horizon": "4H",
@@ -21939,26 +21939,26 @@
       {
         "horizon": "4H",
         "exchange": "Lighter",
-        "long_pct": "49.66%",
-        "short_pct": "50.34%",
-        "ls_ratio": "0.99",
-        "vol": 183170000.0
+        "long_pct": "60.28%",
+        "short_pct": "39.72%",
+        "ls_ratio": "1.52",
+        "vol": 1960000.0
       },
       {
         "horizon": "4H",
         "exchange": "Whale Positions",
-        "long_pct": "50.51%",
-        "short_pct": "49.49%",
-        "ls_ratio": "1.02",
-        "vol": 5210000000.0
+        "long_pct": "46.07%",
+        "short_pct": "53.93%",
+        "ls_ratio": "0.85",
+        "vol": 194430000.0
       },
       {
         "horizon": "4H",
         "exchange": "Global Accounts",
-        "long_pct": "49.40%",
-        "short_pct": "50.60%",
-        "ls_ratio": "0.98",
-        "vol": 17390000000.0
+        "long_pct": "47.02%",
+        "short_pct": "52.98%",
+        "ls_ratio": "0.89",
+        "vol": 305390000.0
       }
     ]
   },
@@ -22807,39 +22807,39 @@
     ],
     "spot_netflow": {
       "Symbol": "DOGE",
-      "5_minute": "-$627.30K",
-      "15_minute": "-$654.68K",
-      "30_minute": "+$201.59K",
-      "1_hour": "+$1.10M",
-      "2_hour": "+$296.67K",
-      "4_hour": "-$646.00K",
-      "6_hour": "-$42.52K",
-      "8_hour": "-$1.13M",
-      "12_hour": "+$12.73K",
-      "24_hour": "-$21.52M",
-      "1_week": "-$56.43M",
-      "15_day": "-$89.26M",
-      "30_day": "-$281.57M",
-      "Market_Cap": "$13.12B",
-      "Timestamp_IST": "2026-10-30 21:02:30 IST"
+      "5_minute": "+$172.60K",
+      "15_minute": "-$1.04M",
+      "30_minute": "-$862.44K",
+      "1_hour": "+$215.63K",
+      "2_hour": "+$127.77K",
+      "4_hour": "-$1.11M",
+      "6_hour": "-$384.75K",
+      "8_hour": "-$967.29K",
+      "12_hour": "-$456.74K",
+      "24_hour": "-$22.03M",
+      "1_week": "-$56.68M",
+      "15_day": "-$90.13M",
+      "30_day": "-$281.72M",
+      "Market_Cap": "$13.04B",
+      "Timestamp_IST": "2026-10-30 21:13:45 IST"
     },
     "fut_netflow": {
       "Symbol": "DOGE",
-      "5_minute": "-$3.19M",
-      "15_minute": "-$3.42M",
-      "30_minute": "-$1.98M",
-      "1_hour": "-$1.30M",
-      "2_hour": "-$6.67M",
-      "4_hour": "-$8.55M",
-      "6_hour": "-$7.95M",
-      "8_hour": "-$17.26M",
-      "12_hour": "-$17.20M",
-      "24_hour": "-$73.02M",
-      "1_week": "-$194.21M",
-      "15_day": "-$321.94M",
-      "30_day": "-$818.97M",
-      "Market_Cap": "$13.14B",
-      "Timestamp_IST": "2026-10-30 21:02:40 IST"
+      "5_minute": "-$469.05K",
+      "15_minute": "-$2.83M",
+      "30_minute": "-$6.74M",
+      "1_hour": "-$4.61M",
+      "2_hour": "-$9.29M",
+      "4_hour": "-$11.15M",
+      "6_hour": "-$11.17M",
+      "8_hour": "-$21.14M",
+      "12_hour": "-$21.61M",
+      "24_hour": "-$77.02M",
+      "1_week": "-$197.48M",
+      "15_day": "-$325.21M",
+      "30_day": "-$822.24M",
+      "Market_Cap": "$13.04B",
+      "Timestamp_IST": "2026-10-30 21:13:59 IST"
     },
     "calendar": [
       {

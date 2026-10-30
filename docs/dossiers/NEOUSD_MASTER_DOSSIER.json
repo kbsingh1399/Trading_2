@@ -189,9 +189,9 @@
     "funding_row": {
       "Symbol": "NEO",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0000%",
+      "USDT_OKX": "-0.0028%",
       "USDT_Bybit": "0.0100%",
-      "USDT_KuCoin": "-0.0480%",
+      "USDT_KuCoin": "-0.0485%",
       "USDT_MEXC": "0.0100%",
       "USDT_BingX": "0.0100%",
       "USDT_Gate": "0.0100%",
@@ -203,7 +203,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 294,
@@ -223,7 +223,24 @@
     "footprint_ladder": [],
     "signals": [],
     "spot_netflow": {},
-    "fut_netflow": {},
+    "fut_netflow": {
+      "Symbol": "NEO",
+      "5_minute": "-$7.12K",
+      "15_minute": "-$2.67K",
+      "30_minute": "+$3.28K",
+      "1_hour": "+$2.42K",
+      "2_hour": "+$21.77K",
+      "4_hour": "+$20.33K",
+      "6_hour": "+$38.72K",
+      "8_hour": "+$60.61K",
+      "12_hour": "+$43.12K",
+      "24_hour": "-$434.13K",
+      "1_week": "-$481.12K",
+      "15_day": "-$1.48M",
+      "30_day": "-$6.52M",
+      "Market_Cap": "$139.76M",
+      "Timestamp_IST": "2026-10-30 21:13:59 IST"
+    },
     "calendar": [
       {
         "date": "Sun Oct 25",

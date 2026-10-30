@@ -176,25 +176,7 @@
   },
   "derivatives": {
     "oi_row": {},
-    "funding_row": {
-      "Symbol": "ONT",
-      "USDT_Binance": "0.0050%",
-      "USDT_OKX": "-0.0071%",
-      "USDT_Bybit": "0.0050%",
-      "USDT_KuCoin": "0.0050%",
-      "USDT_MEXC": "0.0050%",
-      "USDT_BingX": "0.0050%",
-      "USDT_Gate": "0.0050%",
-      "USDT_Bitunix": "0.0050%",
-      "USDT_Bitget": "0.0050%",
-      "USDT_WhiteBIT": "0.0050%",
-      "USDT_LBank": "0.0050%",
-      "USDT_tradeXYZ": "-",
-      "CoinM_Binance": "-",
-      "CoinM_OKX": "-",
-      "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
-    },
+    "funding_row": {},
     "settle_row": {
       "rank": 574,
       "symbol": "ONT",

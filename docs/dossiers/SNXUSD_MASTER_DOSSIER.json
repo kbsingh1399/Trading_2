@@ -189,7 +189,7 @@
     "funding_row": {
       "Symbol": "SNX",
       "USDT_Binance": "0.0100%",
-      "USDT_OKX": "-0.0064%",
+      "USDT_OKX": "-0.0087%",
       "USDT_Bybit": "0.0100%",
       "USDT_KuCoin": "0.0100%",
       "USDT_MEXC": "0.0100%",
@@ -203,7 +203,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 314,
@@ -222,24 +222,41 @@
   "footprint_and_macro": {
     "footprint_ladder": [],
     "signals": [],
-    "spot_netflow": {},
+    "spot_netflow": {
+      "Symbol": "SNX",
+      "5_minute": "-$608.94",
+      "15_minute": "-$1.96K",
+      "30_minute": "+$13.63K",
+      "1_hour": "+$16.22K",
+      "2_hour": "+$10.95K",
+      "4_hour": "-$21.88K",
+      "6_hour": "-$11.39K",
+      "8_hour": "-$12.20K",
+      "12_hour": "-$1.42K",
+      "24_hour": "+$10.69K",
+      "1_week": "-$224.52K",
+      "15_day": "-$331.79K",
+      "30_day": "-$1.26M",
+      "Market_Cap": "$63.74M",
+      "Timestamp_IST": "2026-10-30 21:13:45 IST"
+    },
     "fut_netflow": {
       "Symbol": "SNX",
-      "5_minute": "-$7.98K",
-      "15_minute": "-$374.95",
-      "30_minute": "-$2.59K",
-      "1_hour": "+$12.15K",
-      "2_hour": "+$20.56K",
-      "4_hour": "-$11.86K",
-      "6_hour": "-$41.93K",
-      "8_hour": "-$38.91K",
-      "12_hour": "-$103.58K",
-      "24_hour": "-$145.30K",
-      "1_week": "-$1.02M",
-      "15_day": "-$1.31M",
-      "30_day": "-$4.75M",
-      "Market_Cap": "$64.22M",
-      "Timestamp_IST": "2026-10-30 21:02:40 IST"
+      "5_minute": "-$1.39K",
+      "15_minute": "-$3.05K",
+      "30_minute": "-$3.96K",
+      "1_hour": "-$8.75K",
+      "2_hour": "+$14.14K",
+      "4_hour": "-$18.62K",
+      "6_hour": "-$50.05K",
+      "8_hour": "-$43.87K",
+      "12_hour": "-$98.01K",
+      "24_hour": "-$130.33K",
+      "1_week": "-$1.03M",
+      "15_day": "-$1.32M",
+      "30_day": "-$4.76M",
+      "Market_Cap": "$63.74M",
+      "Timestamp_IST": "2026-10-30 21:13:59 IST"
     },
     "calendar": [
       {

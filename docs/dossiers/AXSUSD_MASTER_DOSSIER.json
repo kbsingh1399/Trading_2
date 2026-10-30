@@ -294,7 +294,7 @@
       "CoinM_Binance": "-",
       "CoinM_OKX": "-",
       "CoinM_Bybit": "-",
-      "Timestamp_IST": "2026-10-30 21:05:25 IST"
+      "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
       "rank": 255,
@@ -314,24 +314,7 @@
     "footprint_ladder": [],
     "signals": [],
     "spot_netflow": {},
-    "fut_netflow": {
-      "Symbol": "AXS",
-      "5_minute": "-$2.67K",
-      "15_minute": "-$39.79K",
-      "30_minute": "-$25.95K",
-      "1_hour": "-$19.91K",
-      "2_hour": "-$25.05K",
-      "4_hour": "-$46.20K",
-      "6_hour": "-$94.23K",
-      "8_hour": "+$41.21K",
-      "12_hour": "+$298.43K",
-      "24_hour": "-$716.01K",
-      "1_week": "-$3.29M",
-      "15_day": "-$4.46M",
-      "30_day": "-$25.93M",
-      "Market_Cap": "$153.99M",
-      "Timestamp_IST": "2026-10-30 21:02:40 IST"
-    },
+    "fut_netflow": {},
     "calendar": [
       {
         "date": "Sun Oct 25",
