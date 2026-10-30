@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 10:34:49 IST` (`2026-10-30 05:04:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:37:50 IST` (`2026-10-30 05:07:50 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -116,10 +116,10 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `216` | `0x0911...129a` | `LONG` | 9,958,747.69 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -263,994.73 USD | `-2.65%` | `20X Isolated` |
-| `1137` | `0xe03b...ed11` | `SHORT` | 1,949,313.40 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 43,889.92 USD | `+2.25%` | `50X Isolated` |
-| `1735` | `0x3f31...a3d7` | `SHORT` | 1,204,724.69 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -4,793.25 USD | `-0.40%` | `50X Isolated` |
-| `1851` | `0x9df2...c665` | `SHORT` | 1,119,029.61 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 1,540.23 USD | `+0.14%` | `5X Isolated` |
+| `216` | `0x0911...129a` | `LONG` | 9,957,857.80 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -264,884.62 USD | `-2.66%` | `20X Isolated` |
+| `1140` | `0xe03b...ed11` | `SHORT` | 1,949,139.21 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 44,064.11 USD | `+2.26%` | `50X Isolated` |
+| `1734` | `0x3f31...a3d7` | `SHORT` | 1,204,617.04 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -4,685.59 USD | `-0.39%` | `50X Isolated` |
+| `1849` | `0x9df2...c665` | `SHORT` | 1,119,029.61 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 1,540.23 USD | `+0.14%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -294,7 +294,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `382.48` | Last 24h: `95.44` | Last 3d: `198.32` | Last 7d: `265.06`
+  * Current Rate: `410.54` | Last 24h: `95.44` | Last 3d: `198.32` | Last 7d: `265.06`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|

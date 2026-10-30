@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CRVUSD
 **Canonical Key**: `CRVUSD` | **Broker Instrument**: `CRVUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 10:34:49 IST` (`2026-10-30 05:04:49 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:37:51 IST` (`2026-10-30 05:07:51 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -100,7 +100,7 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1911` | `0x12d2...f97f` | `LONG` | 1,064,638.64 USD | `3,972,828.70` | `0.3272` | `0.2690` | `0.000000` | -235,200.10 USD | `-22.09%` | `10X Cross` |
+| `1892` | `0x12d2...f97f` | `LONG` | 1,078,781.91 USD | `3,972,828.70` | `0.3272` | `0.2712` | `0.000000` | -221,056.83 USD | `-20.49%` | `10X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -280,7 +280,7 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-1.19K` | Last 24h: `9.20K` | Last 3d: `30.42K` | Last 7d: `57.33K`
+  * Current Rate: `-1.20K` | Last 24h: `9.20K` | Last 3d: `30.42K` | Last 7d: `57.33K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
@@ -313,21 +313,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | -55,820.00 USD | -195,440.00 USD | **`DISTRIBUTION`** |
-| `15m` | -112,160.00 USD | -133,520.00 USD | **`DISTRIBUTION`** |
-| `30m` | -228,180.00 USD | -344,120.00 USD | **`DISTRIBUTION`** |
-| `1h` | -255,440.00 USD | -520,410.00 USD | **`DISTRIBUTION`** |
-| `2h` | -208,540.00 USD | -660,950.00 USD | **`DISTRIBUTION`** |
-| `4h` | -453,390.00 USD | -5,140,000.00 USD | **`DISTRIBUTION`** |
-| `6h` | -515,860.00 USD | -6,510,000.00 USD | **`DISTRIBUTION`** |
-| `8h` | -434,300.00 USD | -9,340,000.00 USD | **`DISTRIBUTION`** |
-| `12h` | -971,350.00 USD | -10,940,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -938,390.00 USD | -12,290,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -2,310,000.00 USD | -24,010,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -15,280,000.00 USD | -67,510,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 0.00 USD | 108,510.00 USD | **`ACCUMULATION`** |
+| `15m` | 0.00 USD | -31,870.00 USD | **`DISTRIBUTION`** |
+| `30m` | 0.00 USD | 84,580.00 USD | **`ACCUMULATION`** |
+| `1h` | 0.00 USD | -476,190.00 USD | **`DISTRIBUTION`** |
+| `2h` | 0.00 USD | -617,900.00 USD | **`DISTRIBUTION`** |
+| `4h` | 0.00 USD | -5,110,000.00 USD | **`DISTRIBUTION`** |
+| `6h` | 0.00 USD | -6,330,000.00 USD | **`DISTRIBUTION`** |
+| `8h` | 0.00 USD | -9,200,000.00 USD | **`DISTRIBUTION`** |
+| `12h` | 0.00 USD | -10,850,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | 0.00 USD | -12,170,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | 0.00 USD | -23,850,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | 0.00 USD | -67,350,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-55.82K` | 15m=`-112.16K` | 1h=`-255.44K` | 24h=`-938.39K`
-* Futures Capital Netflows: 5m=`-195.44K` | 15m=`-133.52K` | 1h=`-520.41K` | 24h=`-12.29M`
+* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
+* Futures Capital Netflows: 5m=`+108.51K` | 15m=`-31.87K` | 1h=`-476.19K` | 24h=`-12.17M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
