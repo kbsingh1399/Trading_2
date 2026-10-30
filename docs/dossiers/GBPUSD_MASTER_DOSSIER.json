@@ -1641,16 +1641,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 743,
+      "rank": 742,
       "symbol": "GBPUSD",
-      "price": "$1.3383",
-      "price_24h_pct": "+0.03%",
-      "open_interest": "$401.12K",
+      "price": "$1.3388",
+      "price_24h_pct": "+0.04%",
+      "open_interest": "$396.47K",
       "current": "$0.00",
       "last_24h": "$0.00",
       "last_3d": "$0.00",
       "last_7d": "$0.00",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

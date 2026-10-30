@@ -3635,58 +3635,58 @@
     "mp_24h": {
       "ranking": 40,
       "symbol": "PAXG",
-      "price": 3917.5,
-      "short_max_pain_price": 4022.54,
-      "short_max_pain_vol": 320700.0,
-      "short_distance_usd": 105.03999999999996,
-      "short_distance_pct": 2.68,
-      "long_max_pain_price": 3867.25,
-      "long_max_pain_vol": 222800.0,
-      "long_distance_usd": -50.25,
-      "long_distance_pct": -1.28,
-      "timestamp_ist": "2026-10-30 21:07:08 IST"
+      "price": 3910.2,
+      "short_max_pain_price": 4000.35,
+      "short_max_pain_vol": 447500.0,
+      "short_distance_usd": 90.15000000000009,
+      "short_distance_pct": 2.31,
+      "long_max_pain_price": 3835.56,
+      "long_max_pain_vol": 438600.0,
+      "long_distance_usd": -74.63999999999987,
+      "long_distance_pct": -1.91,
+      "timestamp_ist": "2026-10-30 21:18:35 IST"
     },
     "mp_48h": {
       "ranking": 40,
       "symbol": "PAXG",
-      "price": 3917.5,
+      "price": 3910.2,
       "short_max_pain_price": 4109.96,
       "short_max_pain_vol": 351700.0,
-      "short_distance_usd": 192.46000000000004,
-      "short_distance_pct": 4.91,
+      "short_distance_usd": 199.76000000000022,
+      "short_distance_pct": 5.11,
       "long_max_pain_price": 3866.6,
       "long_max_pain_vol": 309500.0,
-      "long_distance_usd": -50.90000000000009,
-      "long_distance_pct": -1.3,
-      "timestamp_ist": "2026-10-30 21:07:10 IST"
+      "long_distance_usd": -43.59999999999991,
+      "long_distance_pct": -1.12,
+      "timestamp_ist": "2026-10-30 21:18:38 IST"
     },
     "mp_3d": {
       "ranking": 40,
       "symbol": "PAXG",
-      "price": 3917.5,
+      "price": 3910.2,
       "short_max_pain_price": 3998.42,
       "short_max_pain_vol": 406400.0,
-      "short_distance_usd": 80.92000000000007,
-      "short_distance_pct": 2.07,
+      "short_distance_usd": 88.22000000000025,
+      "short_distance_pct": 2.26,
       "long_max_pain_price": 3866.6,
       "long_max_pain_vol": 309500.0,
-      "long_distance_usd": -50.90000000000009,
-      "long_distance_pct": -1.3,
-      "timestamp_ist": "2026-10-30 21:07:12 IST"
+      "long_distance_usd": -43.59999999999991,
+      "long_distance_pct": -1.12,
+      "timestamp_ist": "2026-10-30 21:18:40 IST"
     },
     "mp_7d": {
       "ranking": 40,
       "symbol": "PAXG",
-      "price": 3917.5,
+      "price": 3910.2,
       "short_max_pain_price": 4089.68,
       "short_max_pain_vol": 828800.0,
-      "short_distance_usd": 172.17999999999984,
-      "short_distance_pct": 4.4,
+      "short_distance_usd": 179.48000000000002,
+      "short_distance_pct": 4.59,
       "long_max_pain_price": 3842.94,
       "long_max_pain_vol": 754200.0,
-      "long_distance_usd": -74.55999999999995,
-      "long_distance_pct": -1.9,
-      "timestamp_ist": "2026-10-30 21:07:14 IST"
+      "long_distance_usd": -67.25999999999976,
+      "long_distance_pct": -1.72,
+      "timestamp_ist": "2026-10-30 21:18:43 IST"
     },
     "ex_liq_ladder": [
       {
@@ -6242,22 +6242,22 @@
     ],
     "heapmap_rows": [
       {
-        "rank": 40,
+        "rank": 42,
         "asset": "XYZ:GOLD",
         "tf_1h": "-",
-        "tf_4h": "$3.09M",
+        "tf_4h": "-",
         "tf_12h": "$3.30M",
         "tf_24h": "$3.56M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
-        "rank": 58,
+        "rank": 59,
         "asset": "PAXG",
         "tf_1h": "-",
-        "tf_4h": "$845.95K",
-        "tf_12h": "$946.65K",
+        "tf_4h": "-",
+        "tf_12h": "$948.96K",
         "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -6306,16 +6306,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 127,
+      "rank": 171,
       "symbol": "PAXG",
-      "price": "$3,917.65",
-      "price_24h_pct": "-2.71%",
-      "open_interest": "$132.85M",
-      "current": "-$1.63K",
+      "price": "$3,911.47",
+      "price_24h_pct": "-2.86%",
+      "open_interest": "$133.50M",
+      "current": "-$997.89",
       "last_24h": "$16.33K",
       "last_3d": "$80.86K",
       "last_7d": "$212.71K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": [
       {

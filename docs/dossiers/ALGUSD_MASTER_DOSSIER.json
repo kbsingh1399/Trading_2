@@ -1098,16 +1098,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 227,
+      "rank": 232,
       "symbol": "ALGO",
-      "price": "$0.095310",
-      "price_24h_pct": "-6.08%",
-      "open_interest": "$17.45M",
-      "current": "$610.74",
+      "price": "$0.095060",
+      "price_24h_pct": "-6.98%",
+      "open_interest": "$17.43M",
+      "current": "$600.02",
       "last_24h": "-$2.41K",
       "last_3d": "-$9.10K",
       "last_7d": "-$8.18K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

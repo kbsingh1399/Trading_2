@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 359,
+      "rank": 295,
       "symbol": "YFI",
-      "price": "$1,863.00",
-      "price_24h_pct": "-10.90%",
-      "open_interest": "$3.64M",
-      "current": "-$237.33",
+      "price": "$1,857.00",
+      "price_24h_pct": "-11.40%",
+      "open_interest": "$3.63M",
+      "current": "-$355.20",
       "last_24h": "$292.54",
       "last_3d": "$960.78",
       "last_7d": "$3.45K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

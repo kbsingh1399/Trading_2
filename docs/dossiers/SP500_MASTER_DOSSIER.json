@@ -1492,17 +1492,7 @@
     "mp_3d": {},
     "mp_7d": {},
     "ex_liq_ladder": [],
-    "heapmap_rows": [
-      {
-        "rank": 75,
-        "asset": "XYZ:SP500",
-        "tf_1h": "-",
-        "tf_4h": "$298.79K",
-        "tf_12h": "-",
-        "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
-      }
-    ],
+    "heapmap_rows": [],
     "live_liq_rows": [],
     "forced_liq_ladder": []
   },
@@ -1528,16 +1518,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 904,
+      "rank": 905,
       "symbol": "US500",
-      "price": "$7,613.40",
-      "price_24h_pct": "-1.46%",
-      "open_interest": "$325.67K",
+      "price": "$7,606.80",
+      "price_24h_pct": "-1.41%",
+      "open_interest": "$325.40K",
       "current": "$0.00",
       "last_24h": "$16.38",
       "last_3d": "$16.38",
       "last_7d": "$453.87",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

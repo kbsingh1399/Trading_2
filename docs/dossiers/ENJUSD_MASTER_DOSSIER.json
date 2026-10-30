@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 531,
+      "rank": 541,
       "symbol": "ENJ",
-      "price": "$0.023710",
-      "price_24h_pct": "-7.24%",
-      "open_interest": "$3.20M",
-      "current": "$99.07",
+      "price": "$0.023580",
+      "price_24h_pct": "-8.07%",
+      "open_interest": "$3.18M",
+      "current": "$93.54",
       "last_24h": "$860.24",
       "last_3d": "$1.93K",
       "last_7d": "$3.01K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

@@ -397,17 +397,7 @@
     "mp_3d": {},
     "mp_7d": {},
     "ex_liq_ladder": [],
-    "heapmap_rows": [
-      {
-        "rank": 69,
-        "asset": "QQQ",
-        "tf_1h": "-",
-        "tf_4h": "$374.16K",
-        "tf_12h": "-",
-        "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
-      }
-    ],
+    "heapmap_rows": [],
     "live_liq_rows": [],
     "forced_liq_ladder": []
   },

@@ -1459,13 +1459,13 @@
       "rank": 500,
       "symbol": "USDJPY",
       "price": "$156.8920",
-      "price_24h_pct": "-0.50%",
-      "open_interest": "$337.88K",
-      "current": "-$113.25",
+      "price_24h_pct": "-0.43%",
+      "open_interest": "$337.92K",
+      "current": "-$114.05",
       "last_24h": "-$325.46",
       "last_3d": "-$948.57",
       "last_7d": "-$948.57",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

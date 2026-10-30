@@ -208,13 +208,13 @@
     "ex_liq_ladder": [],
     "heapmap_rows": [
       {
-        "rank": 27,
+        "rank": 26,
         "asset": "FIL",
         "tf_1h": "-",
         "tf_4h": "-",
         "tf_12h": "-",
         "tf_24h": "$6.35M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -242,16 +242,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 54,
+      "rank": 53,
       "symbol": "FIL",
-      "price": "$0.864400",
-      "price_24h_pct": "-5.71%",
-      "open_interest": "$82.44M",
-      "current": "$6.48K",
+      "price": "$0.865000",
+      "price_24h_pct": "-5.32%",
+      "open_interest": "$82.63M",
+      "current": "$6.50K",
       "last_24h": "$2.79K",
       "last_3d": "-$1.74K",
       "last_7d": "$3.54K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 778,
+      "rank": 777,
       "symbol": "NET",
-      "price": "$278.2500",
-      "price_24h_pct": "-8.83%",
-      "open_interest": "$1.52M",
+      "price": "$274.1900",
+      "price_24h_pct": "-9.07%",
+      "open_interest": "$1.31M",
       "current": "$0.00",
       "last_24h": "-$324.09",
       "last_3d": "-$205.15",
       "last_7d": "$1.93K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

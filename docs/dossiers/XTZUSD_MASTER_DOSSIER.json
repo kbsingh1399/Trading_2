@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 311,
+      "rank": 314,
       "symbol": "XTZ",
-      "price": "$0.256300",
-      "price_24h_pct": "-9.18%",
-      "open_interest": "$5.64M",
-      "current": "$324.18",
+      "price": "$0.255300",
+      "price_24h_pct": "-9.92%",
+      "open_interest": "$5.61M",
+      "current": "$322.42",
       "last_24h": "$1.31K",
       "last_3d": "$4.00K",
       "last_7d": "$9.41K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

@@ -1684,7 +1684,7 @@
         "tf_4h": "-",
         "tf_12h": "-",
         "tf_24h": "$6.10M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -1712,16 +1712,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 41,
+      "rank": 42,
       "symbol": "CRV",
-      "price": "$0.284700",
-      "price_24h_pct": "-14.48%",
-      "open_interest": "$49.69M",
-      "current": "-$9.57K",
+      "price": "$0.283800",
+      "price_24h_pct": "-15.36%",
+      "open_interest": "$49.39M",
+      "current": "-$9.55K",
       "last_24h": "$967.59",
       "last_3d": "$19.73K",
       "last_7d": "$53.52K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

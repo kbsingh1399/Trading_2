@@ -3563,31 +3563,31 @@
     ],
     "heapmap_rows": [
       {
-        "rank": 40,
+        "rank": 42,
         "asset": "XYZ:GOLD",
         "tf_1h": "-",
-        "tf_4h": "$3.09M",
+        "tf_4h": "-",
         "tf_12h": "$3.30M",
         "tf_24h": "$3.56M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
         "rank": 51,
         "asset": "XAUT",
         "tf_1h": "-",
-        "tf_4h": "$1.24M",
-        "tf_12h": "$1.36M",
+        "tf_4h": "-",
+        "tf_12h": "$1.38M",
         "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
         "rank": 5,
         "asset": "XAU",
         "tf_1h": "-",
-        "tf_4h": "$18.49M",
-        "tf_12h": "$20.71M",
-        "tf_24h": "$31.39M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "tf_4h": "-",
+        "tf_12h": "$20.89M",
+        "tf_24h": "$31.57M",
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],

@@ -1644,58 +1644,58 @@
     "mp_24h": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1240.44,
+      "price": 1224.92,
       "short_max_pain_price": 1300.09,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 59.649999999999864,
-      "short_distance_pct": 4.81,
+      "short_distance_usd": 75.16999999999985,
+      "short_distance_pct": 6.14,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -63.960000000000036,
-      "long_distance_pct": -5.16,
-      "timestamp_ist": "2026-10-30 21:07:08 IST"
+      "long_distance_usd": -48.440000000000055,
+      "long_distance_pct": -3.95,
+      "timestamp_ist": "2026-10-30 21:18:35 IST"
     },
     "mp_48h": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1240.44,
+      "price": 1224.92,
       "short_max_pain_price": 1300.09,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 59.649999999999864,
-      "short_distance_pct": 4.81,
+      "short_distance_usd": 75.16999999999985,
+      "short_distance_pct": 6.14,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -63.960000000000036,
-      "long_distance_pct": -5.16,
-      "timestamp_ist": "2026-10-30 21:07:10 IST"
+      "long_distance_usd": -48.440000000000055,
+      "long_distance_pct": -3.95,
+      "timestamp_ist": "2026-10-30 21:18:38 IST"
     },
     "mp_3d": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1240.44,
+      "price": 1224.92,
       "short_max_pain_price": 1300.09,
       "short_max_pain_vol": 3000000.0,
-      "short_distance_usd": 59.649999999999864,
-      "short_distance_pct": 4.81,
+      "short_distance_usd": 75.16999999999985,
+      "short_distance_pct": 6.14,
       "long_max_pain_price": 1176.48,
       "long_max_pain_vol": 3400000.0,
-      "long_distance_usd": -63.960000000000036,
-      "long_distance_pct": -5.16,
-      "timestamp_ist": "2026-10-30 21:07:12 IST"
+      "long_distance_usd": -48.440000000000055,
+      "long_distance_pct": -3.95,
+      "timestamp_ist": "2026-10-30 21:18:40 IST"
     },
     "mp_7d": {
       "ranking": 6,
       "symbol": "ZEC",
-      "price": 1240.44,
+      "price": 1224.92,
       "short_max_pain_price": 1299.31,
       "short_max_pain_vol": 3600000.0,
-      "short_distance_usd": 58.86999999999989,
-      "short_distance_pct": 4.75,
+      "short_distance_usd": 74.38999999999987,
+      "short_distance_pct": 6.07,
       "long_max_pain_price": 1176.74,
       "long_max_pain_vol": 4900000.0,
-      "long_distance_usd": -63.700000000000045,
-      "long_distance_pct": -5.14,
-      "timestamp_ist": "2026-10-30 21:07:14 IST"
+      "long_distance_usd": -48.180000000000064,
+      "long_distance_pct": -3.93,
+      "timestamp_ist": "2026-10-30 21:18:43 IST"
     },
     "ex_liq_ladder": [],
     "heapmap_rows": [
@@ -1703,10 +1703,10 @@
         "rank": 9,
         "asset": "ZEC",
         "tf_1h": "-",
-        "tf_4h": "$2.05M",
-        "tf_12h": "$3.95M",
-        "tf_24h": "$23.09M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "tf_4h": "-",
+        "tf_12h": "$3.96M",
+        "tf_24h": "$23.15M",
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [
@@ -1788,14 +1788,14 @@
     "settle_row": {
       "rank": 15,
       "symbol": "ZEC",
-      "price": "$1,247.34",
-      "price_24h_pct": "-5.30%",
-      "open_interest": "$846.84M",
-      "current": "$65.54K",
+      "price": "$1,236.04",
+      "price_24h_pct": "-7.57%",
+      "open_interest": "$836.88M",
+      "current": "$62.41K",
       "last_24h": "$172.80K",
       "last_3d": "$285.40K",
       "last_7d": "$848.74K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

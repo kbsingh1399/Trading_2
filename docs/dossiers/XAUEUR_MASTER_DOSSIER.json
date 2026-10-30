@@ -1355,58 +1355,58 @@
     "mp_24h": {
       "ranking": 15,
       "symbol": "XAUT",
-      "price": 3906.29,
+      "price": 3897.04,
       "short_max_pain_price": 4043.22,
       "short_max_pain_vol": 310600.0,
-      "short_distance_usd": 136.92999999999984,
-      "short_distance_pct": 3.51,
+      "short_distance_usd": 146.17999999999984,
+      "short_distance_pct": 3.75,
       "long_max_pain_price": 3864.25,
       "long_max_pain_vol": 286100.0,
-      "long_distance_usd": -42.039999999999964,
-      "long_distance_pct": -1.08,
-      "timestamp_ist": "2026-10-30 21:07:08 IST"
+      "long_distance_usd": -32.789999999999964,
+      "long_distance_pct": -0.84,
+      "timestamp_ist": "2026-10-30 21:18:35 IST"
     },
     "mp_48h": {
       "ranking": 15,
       "symbol": "XAUT",
-      "price": 3906.29,
+      "price": 3897.04,
       "short_max_pain_price": 4043.45,
       "short_max_pain_vol": 310600.0,
-      "short_distance_usd": 137.15999999999985,
-      "short_distance_pct": 3.51,
+      "short_distance_usd": 146.40999999999985,
+      "short_distance_pct": 3.76,
       "long_max_pain_price": 3883.65,
       "long_max_pain_vol": 249900.0,
-      "long_distance_usd": -22.639999999999873,
-      "long_distance_pct": -0.58,
-      "timestamp_ist": "2026-10-30 21:07:10 IST"
+      "long_distance_usd": -13.389999999999873,
+      "long_distance_pct": -0.34,
+      "timestamp_ist": "2026-10-30 21:18:38 IST"
     },
     "mp_3d": {
       "ranking": 15,
       "symbol": "XAUT",
-      "price": 3906.29,
+      "price": 3897.04,
       "short_max_pain_price": 4118.25,
       "short_max_pain_vol": 403600.0,
-      "short_distance_usd": 211.96000000000004,
-      "short_distance_pct": 5.43,
+      "short_distance_usd": 221.21000000000004,
+      "short_distance_pct": 5.68,
       "long_max_pain_price": 3883.65,
       "long_max_pain_vol": 286800.0,
-      "long_distance_usd": -22.639999999999873,
-      "long_distance_pct": -0.58,
-      "timestamp_ist": "2026-10-30 21:07:12 IST"
+      "long_distance_usd": -13.389999999999873,
+      "long_distance_pct": -0.34,
+      "timestamp_ist": "2026-10-30 21:18:40 IST"
     },
     "mp_7d": {
       "ranking": 15,
       "symbol": "XAUT",
-      "price": 3906.29,
+      "price": 3897.04,
       "short_max_pain_price": 4080.85,
       "short_max_pain_vol": 433300.0,
-      "short_distance_usd": 174.55999999999995,
-      "short_distance_pct": 4.47,
+      "short_distance_usd": 183.80999999999995,
+      "short_distance_pct": 4.72,
       "long_max_pain_price": 3836.05,
       "long_max_pain_vol": 391900.0,
-      "long_distance_usd": -70.23999999999978,
-      "long_distance_pct": -1.8,
-      "timestamp_ist": "2026-10-30 21:07:14 IST"
+      "long_distance_usd": -60.98999999999978,
+      "long_distance_pct": -1.57,
+      "timestamp_ist": "2026-10-30 21:18:43 IST"
     },
     "ex_liq_ladder": [
       {
@@ -4282,31 +4282,31 @@
     ],
     "heapmap_rows": [
       {
-        "rank": 40,
+        "rank": 42,
         "asset": "XYZ:GOLD",
         "tf_1h": "-",
-        "tf_4h": "$3.09M",
+        "tf_4h": "-",
         "tf_12h": "$3.30M",
         "tf_24h": "$3.56M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
         "rank": 51,
         "asset": "XAUT",
         "tf_1h": "-",
-        "tf_4h": "$1.24M",
-        "tf_12h": "$1.36M",
+        "tf_4h": "-",
+        "tf_12h": "$1.38M",
         "tf_24h": "-",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
         "rank": 5,
         "asset": "XAU",
         "tf_1h": "-",
-        "tf_4h": "$18.49M",
-        "tf_12h": "$20.71M",
-        "tf_24h": "$31.39M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "tf_4h": "-",
+        "tf_12h": "$20.89M",
+        "tf_24h": "$31.57M",
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -4355,16 +4355,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 3,
+      "rank": 4,
       "symbol": "XAU",
-      "price": "$3,917.18",
-      "price_24h_pct": "-2.82%",
+      "price": "$3,910.34",
+      "price_24h_pct": "-3.02%",
       "open_interest": "$1.13B",
-      "current": "$230.28K",
+      "current": "$242.92K",
       "last_24h": "$308.37K",
       "last_3d": "$863.94K",
       "last_7d": "$1.92M",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": [
       {

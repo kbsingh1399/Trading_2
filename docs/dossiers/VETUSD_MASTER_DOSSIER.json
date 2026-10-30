@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 397,
+      "rank": 274,
       "symbol": "VET",
-      "price": "$0.005866",
-      "price_24h_pct": "-5.90%",
-      "open_interest": "$7.09M",
-      "current": "-$195.11",
+      "price": "$0.005824",
+      "price_24h_pct": "-7.08%",
+      "open_interest": "$7.03M",
+      "current": "-$424.82",
       "last_24h": "$1.17K",
       "last_3d": "$2.74K",
       "last_7d": "$8.80K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

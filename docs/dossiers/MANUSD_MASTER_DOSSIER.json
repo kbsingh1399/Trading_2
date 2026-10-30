@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 607,
+      "rank": 708,
       "symbol": "MANA",
-      "price": "$0.073580",
-      "price_24h_pct": "-6.81%",
-      "open_interest": "$5.66M",
-      "current": "$55.40",
+      "price": "$0.072930",
+      "price_24h_pct": "-7.80%",
+      "open_interest": "$5.61M",
+      "current": "-$2.31",
       "last_24h": "$495.97",
       "last_3d": "$1.62K",
       "last_7d": "$1.69K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

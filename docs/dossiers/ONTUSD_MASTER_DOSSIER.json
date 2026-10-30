@@ -178,16 +178,16 @@
     "oi_row": {},
     "funding_row": {},
     "settle_row": {
-      "rank": 574,
+      "rank": 576,
       "symbol": "ONT",
-      "price": "$0.047410",
-      "price_24h_pct": "-4.42%",
-      "open_interest": "$2.63M",
-      "current": "$74.49",
+      "price": "$0.047030",
+      "price_24h_pct": "-5.52%",
+      "open_interest": "$2.60M",
+      "current": "$76.17",
       "last_24h": "$618.79",
       "last_3d": "$736.31",
       "last_7d": "$1.52K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

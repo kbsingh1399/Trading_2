@@ -297,16 +297,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 255,
+      "rank": 257,
       "symbol": "AXS",
-      "price": "$0.870400",
-      "price_24h_pct": "-8.16%",
-      "open_interest": "$7.71M",
-      "current": "$468.84",
+      "price": "$0.866000",
+      "price_24h_pct": "-8.80%",
+      "open_interest": "$7.65M",
+      "current": "$465.42",
       "last_24h": "$1.43K",
       "last_3d": "$3.69K",
       "last_7d": "$2.70K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

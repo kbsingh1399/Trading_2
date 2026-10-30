@@ -1201,58 +1201,58 @@
     "mp_24h": {
       "ranking": 17,
       "symbol": "XAG",
-      "price": 49.41,
+      "price": 49.33,
       "short_max_pain_price": 52.722,
       "short_max_pain_vol": 4000000.0,
-      "short_distance_usd": 3.3120000000000047,
-      "short_distance_pct": 6.7,
-      "long_max_pain_price": 49.314,
-      "long_max_pain_vol": 1400000.0,
-      "long_distance_usd": -0.09599999999999653,
-      "long_distance_pct": -0.19,
-      "timestamp_ist": "2026-10-30 21:07:08 IST"
+      "short_distance_usd": 3.392000000000003,
+      "short_distance_pct": 6.88,
+      "long_max_pain_price": 49.026,
+      "long_max_pain_vol": 2000000.0,
+      "long_distance_usd": -0.30399999999999494,
+      "long_distance_pct": -0.62,
+      "timestamp_ist": "2026-10-30 21:18:35 IST"
     },
     "mp_48h": {
       "ranking": 17,
       "symbol": "XAG",
-      "price": 49.41,
+      "price": 49.33,
       "short_max_pain_price": 53.276,
       "short_max_pain_vol": 4800000.0,
-      "short_distance_usd": 3.8660000000000068,
-      "short_distance_pct": 7.82,
+      "short_distance_usd": 3.946000000000005,
+      "short_distance_pct": 8.0,
       "long_max_pain_price": 49.286,
       "long_max_pain_vol": 1400000.0,
-      "long_distance_usd": -0.12399999999999523,
-      "long_distance_pct": -0.25,
-      "timestamp_ist": "2026-10-30 21:07:10 IST"
+      "long_distance_usd": -0.04399999999999693,
+      "long_distance_pct": -0.09,
+      "timestamp_ist": "2026-10-30 21:18:38 IST"
     },
     "mp_3d": {
       "ranking": 16,
       "symbol": "XAG",
-      "price": 49.41,
+      "price": 49.33,
       "short_max_pain_price": 54.986,
       "short_max_pain_vol": 5400000.0,
-      "short_distance_usd": 5.5760000000000005,
-      "short_distance_pct": 11.29,
+      "short_distance_usd": 5.655999999999999,
+      "short_distance_pct": 11.47,
       "long_max_pain_price": 49.286,
       "long_max_pain_vol": 1400000.0,
-      "long_distance_usd": -0.12399999999999523,
-      "long_distance_pct": -0.25,
-      "timestamp_ist": "2026-10-30 21:07:12 IST"
+      "long_distance_usd": -0.04399999999999693,
+      "long_distance_pct": -0.09,
+      "timestamp_ist": "2026-10-30 21:18:40 IST"
     },
     "mp_7d": {
       "ranking": 17,
       "symbol": "XAG",
-      "price": 49.41,
+      "price": 49.33,
       "short_max_pain_price": 54.815,
       "short_max_pain_vol": 7000000.0,
-      "short_distance_usd": 5.405000000000001,
-      "short_distance_pct": 10.94,
+      "short_distance_usd": 5.484999999999999,
+      "short_distance_pct": 11.12,
       "long_max_pain_price": 49.058,
       "long_max_pain_vol": 1900000.0,
-      "long_distance_usd": -0.35199999999999676,
-      "long_distance_pct": -0.71,
-      "timestamp_ist": "2026-10-30 21:07:14 IST"
+      "long_distance_usd": -0.27199999999999847,
+      "long_distance_pct": -0.55,
+      "timestamp_ist": "2026-10-30 21:18:43 IST"
     },
     "ex_liq_ladder": [],
     "heapmap_rows": [
@@ -1260,19 +1260,19 @@
         "rank": 6,
         "asset": "XAG",
         "tf_1h": "-",
-        "tf_4h": "$9.85M",
-        "tf_12h": "$13.88M",
-        "tf_24h": "$26.49M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "tf_4h": "-",
+        "tf_12h": "$13.91M",
+        "tf_24h": "$26.51M",
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       },
       {
-        "rank": 41,
+        "rank": 40,
         "asset": "XYZ:SILVER",
         "tf_1h": "-",
-        "tf_4h": "$1.47M",
+        "tf_4h": "-",
         "tf_12h": "$2.22M",
         "tf_24h": "$3.68M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -1302,14 +1302,14 @@
     "settle_row": {
       "rank": 18,
       "symbol": "XAG",
-      "price": "$49.4600",
-      "price_24h_pct": "-5.92%",
-      "open_interest": "$400.25M",
-      "current": "$53.87K",
+      "price": "$49.4000",
+      "price_24h_pct": "-6.08%",
+      "open_interest": "$399.60M",
+      "current": "$58.34K",
       "last_24h": "$168.63K",
       "last_3d": "$397.37K",
       "last_7d": "$575.95K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

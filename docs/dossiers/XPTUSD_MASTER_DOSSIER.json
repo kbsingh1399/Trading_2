@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 91,
+      "rank": 96,
       "symbol": "XPT",
-      "price": "$1,444.66",
-      "price_24h_pct": "-3.01%",
-      "open_interest": "$7.04M",
-      "current": "$2.55K",
+      "price": "$1,439.61",
+      "price_24h_pct": "-3.38%",
+      "open_interest": "$7.06M",
+      "current": "$2.49K",
       "last_24h": "$8.80K",
       "last_3d": "$10.84K",
       "last_7d": "$24.66K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 272,
+      "rank": 309,
       "symbol": "BAT",
-      "price": "$0.129480",
-      "price_24h_pct": "-6.38%",
-      "open_interest": "$10.50M",
-      "current": "$426.29",
+      "price": "$0.129250",
+      "price_24h_pct": "-6.65%",
+      "open_interest": "$10.49M",
+      "current": "$328.19",
       "last_24h": "$1.51K",
       "last_3d": "$3.32K",
       "last_7d": "$12.75K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

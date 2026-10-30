@@ -3910,58 +3910,58 @@
     "mp_24h": {
       "ranking": 36,
       "symbol": "AAVE",
-      "price": 125.78,
+      "price": 124.57,
       "short_max_pain_price": 128.8,
       "short_max_pain_vol": 368100.0,
-      "short_distance_usd": 3.0200000000000102,
-      "short_distance_pct": 2.4,
+      "short_distance_usd": 4.230000000000018,
+      "short_distance_pct": 3.4,
       "long_max_pain_price": 116.52,
       "long_max_pain_vol": 253400.0,
-      "long_distance_usd": -9.260000000000005,
-      "long_distance_pct": -7.36,
-      "timestamp_ist": "2026-10-30 21:07:08 IST"
+      "long_distance_usd": -8.049999999999997,
+      "long_distance_pct": -6.46,
+      "timestamp_ist": "2026-10-30 21:18:35 IST"
     },
     "mp_48h": {
       "ranking": 36,
       "symbol": "AAVE",
-      "price": 125.78,
+      "price": 124.57,
       "short_max_pain_price": 128.64,
       "short_max_pain_vol": 362300.0,
-      "short_distance_usd": 2.859999999999985,
-      "short_distance_pct": 2.28,
+      "short_distance_usd": 4.069999999999993,
+      "short_distance_pct": 3.27,
       "long_max_pain_price": 116.52,
       "long_max_pain_vol": 253400.0,
-      "long_distance_usd": -9.260000000000005,
-      "long_distance_pct": -7.37,
-      "timestamp_ist": "2026-10-30 21:07:10 IST"
+      "long_distance_usd": -8.049999999999997,
+      "long_distance_pct": -6.47,
+      "timestamp_ist": "2026-10-30 21:18:38 IST"
     },
     "mp_3d": {
       "ranking": 36,
       "symbol": "AAVE",
-      "price": 125.78,
+      "price": 124.57,
       "short_max_pain_price": 128.64,
       "short_max_pain_vol": 362300.0,
-      "short_distance_usd": 2.859999999999985,
-      "short_distance_pct": 2.28,
+      "short_distance_usd": 4.069999999999993,
+      "short_distance_pct": 3.27,
       "long_max_pain_price": 116.52,
       "long_max_pain_vol": 253400.0,
-      "long_distance_usd": -9.260000000000005,
-      "long_distance_pct": -7.37,
-      "timestamp_ist": "2026-10-30 21:07:12 IST"
+      "long_distance_usd": -8.049999999999997,
+      "long_distance_pct": -6.47,
+      "timestamp_ist": "2026-10-30 21:18:40 IST"
     },
     "mp_7d": {
       "ranking": 36,
       "symbol": "AAVE",
-      "price": 125.78,
+      "price": 124.57,
       "short_max_pain_price": 128.73,
       "short_max_pain_vol": 508600.0,
-      "short_distance_usd": 2.9499999999999886,
-      "short_distance_pct": 2.34,
+      "short_distance_usd": 4.159999999999997,
+      "short_distance_pct": 3.34,
       "long_max_pain_price": 116.58,
       "long_max_pain_vol": 253400.0,
-      "long_distance_usd": -9.200000000000003,
-      "long_distance_pct": -7.32,
-      "timestamp_ist": "2026-10-30 21:07:14 IST"
+      "long_distance_usd": -7.989999999999995,
+      "long_distance_pct": -6.42,
+      "timestamp_ist": "2026-10-30 21:18:43 IST"
     },
     "ex_liq_ladder": [],
     "heapmap_rows": [
@@ -3972,7 +3972,7 @@
         "tf_4h": "-",
         "tf_12h": "-",
         "tf_24h": "$4.84M",
-        "timestamp_ist": "2026-10-30 21:05:39 IST"
+        "timestamp_ist": "2026-10-30 21:17:00 IST"
       }
     ],
     "live_liq_rows": [],
@@ -4000,16 +4000,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 30,
+      "rank": 32,
       "symbol": "AAVE",
-      "price": "$126.0600",
-      "price_24h_pct": "-6.88%",
-      "open_interest": "$124.91M",
-      "current": "-$14.96K",
+      "price": "$125.0400",
+      "price_24h_pct": "-8.45%",
+      "open_interest": "$124.13M",
+      "current": "-$15.52K",
       "last_24h": "$2.40K",
       "last_3d": "$39.97K",
       "last_7d": "$111.02K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

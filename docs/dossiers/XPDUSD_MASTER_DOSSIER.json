@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 109,
+      "rank": 105,
       "symbol": "XPD",
-      "price": "$986.7200",
-      "price_24h_pct": "-2.36%",
-      "open_interest": "$5.86M",
-      "current": "$1.98K",
+      "price": "$983.6400",
+      "price_24h_pct": "-2.66%",
+      "open_interest": "$5.90M",
+      "current": "$2.15K",
       "last_24h": "$4.39K",
       "last_3d": "$19.47K",
       "last_7d": "$27.13K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },

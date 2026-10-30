@@ -196,16 +196,16 @@
       "Timestamp_IST": "2026-10-30 21:16:45 IST"
     },
     "settle_row": {
-      "rank": 315,
+      "rank": 319,
       "symbol": "KSM",
-      "price": "$3.5490",
-      "price_24h_pct": "-5.99%",
-      "open_interest": "$3.47M",
-      "current": "$317.79",
+      "price": "$3.5230",
+      "price_24h_pct": "-7.24%",
+      "open_interest": "$3.44M",
+      "current": "$311.92",
       "last_24h": "$839.82",
       "last_3d": "$2.16K",
       "last_7d": "$4.66K",
-      "timestamp_ist": "2026-10-30 21:05:32 IST"
+      "timestamp_ist": "2026-10-30 21:16:52 IST"
     },
     "ls_ladder": []
   },
