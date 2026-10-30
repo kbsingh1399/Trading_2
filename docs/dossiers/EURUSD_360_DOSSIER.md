@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURUSD
 **Canonical Key**: `EURUSD` | **Broker Instrument**: `EURUSD.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `1.12` (Distance: `-0.07%`)
-  * Point of Control (POC) = `1.12` (Distance: `-0.02%`)
-  * Value Area Low (VAL) = `1.12` (Distance: `+0.07%`)
+  * Value Area High (VAH) = `1.12` (Distance: `-0.08%`)
+  * Point of Control (POC) = `1.12` (Distance: `-0.04%`)
+  * Value Area Low (VAL) = `1.12` (Distance: `+0.06%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1.12` | POC=`1.11` | VAL=`1.11`
@@ -116,11 +116,11 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `213` | `0x0911...129a` | `LONG` | 9,965,866.80 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -256,875.62 USD | `-2.58%` | `20X Isolated` |
-| `1122` | `0xe03b...ed11` | `SHORT` | 1,950,358.51 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 42,844.81 USD | `+2.20%` | `50X Isolated` |
-| `1739` | `0x3f31...a3d7` | `SHORT` | 1,205,585.90 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -5,654.46 USD | `-0.47%` | `50X Isolated` |
-| `1846` | `0x9df2...c665` | `SHORT` | 1,119,729.56 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 840.27 USD | `+0.08%` | `5X Isolated` |
-| `2003` | `0x5e91...76ca` | `SHORT` | 1,004,550.30 USD | `897,000.00` | `1.11` | `1.12` | `1.16` | -4,878.49 USD | `-0.49%` | `20X Isolated` |
+| `217` | `0x0911...129a` | `LONG` | 9,963,197.13 USD | `8,898,889.90` | `1.15` | `1.12` | `1.06` | -259,545.29 USD | `-2.61%` | `20X Isolated` |
+| `1114` | `0xe03b...ed11` | `SHORT` | 1,950,184.33 USD | `1,741,858.10` | `1.14` | `1.12` | `1.20` | 43,018.99 USD | `+2.21%` | `50X Isolated` |
+| `1731` | `0x3f31...a3d7` | `SHORT` | 1,205,262.95 USD | `1,076,512.10` | `1.11` | `1.12` | `1.13` | -5,331.50 USD | `-0.44%` | `50X Isolated` |
+| `1836` | `0x9df2...c665` | `SHORT` | 1,119,429.58 USD | `999,937.10` | `1.12` | `1.12` | `1.46` | 1,140.25 USD | `+0.10%` | `5X Isolated` |
+| `1994` | `0x5e91...76ca` | `SHORT` | 1,004,281.20 USD | `897,000.00` | `1.11` | `1.12` | `1.16` | -4,609.39 USD | `-0.46%` | `20X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -298,14 +298,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `617.19` | Last 24h: `658.59` | Last 3d: `761.48` | Last 7d: `828.22`
+  * Current Rate: `555.70` | Last 24h: `658.59` | Last 3d: `761.48` | Last 7d: `828.22`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
-| **USDT Bybit** | `0.0775%` | **USDT KuCoin** | `-` |
+| **USDT Bybit** | `0.0669%` | **USDT KuCoin** | `-` |
 | **USDT MEXC** | `-` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0492%` |
+| **USDT Gate** | `0.0000%` | **USDT Bitget** | `-0.0410%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:

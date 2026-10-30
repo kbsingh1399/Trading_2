@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CHINAH
 **Canonical Key**: `CHINAH` | **Broker Instrument**: `CHINAH.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `7848.47` | **Live Ask Quote**: `7873.88` | **Mid Price**: `7861.18`
-- **Spread Points**: `2541.00` | **Spread BPS**: `32.32 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `7848.40` | **Live Ask Quote**: `7873.95` | **Mid Price**: `7861.17`
+- **Spread Points**: `2555.00` | **Spread BPS**: `32.50 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -268,14 +268,14 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `7828.83` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `7773.84` (Risk Distance: `54.99` pts)
-  * +2.5R Take Profit: `7966.30`
+  * Spread-Padded Stop Loss: `7773.63` (Risk Distance: `55.20` pts)
+  * +2.5R Take Profit: `7966.82`
   * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `7888.23` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `7943.22` (Risk Distance: `54.99` pts)
-  * +2.5R Take Profit: `7750.76`
+  * Spread-Padded Stop Loss: `7943.43` (Risk Distance: `55.20` pts)
+  * +2.5R Take Profit: `7750.24`
   * Mathematical Lot Sizing: **`0.18 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

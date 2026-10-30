@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FILUSD
 **Canonical Key**: `FILUSD` | **Broker Instrument**: `FILUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.8200` | **Live Ask Quote**: `0.8600` | **Mid Price**: `0.8400`
-- **Spread Points**: `40.00` | **Spread BPS**: `476.19 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.8210` | **Live Ask Quote**: `0.8610` | **Mid Price**: `0.8410`
+- **Spread Points**: `40.00` | **Spread BPS**: `475.62 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.8290` (Distance: `+1.49%`)
-  * Point of Control (POC) = `0.8140` (Distance: `+3.35%`)
-  * Value Area Low (VAL) = `0.7930` (Distance: `+6.06%`)
+  * Value Area High (VAH) = `0.8290` (Distance: `+1.37%`)
+  * Point of Control (POC) = `0.8140` (Distance: `+3.23%`)
+  * Value Area Low (VAL) = `0.7930` (Distance: `+5.94%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.9030` | POC=`0.8930` | VAL=`0.8560`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`0.8260` | Low=`0.8110`
   * Initial Balance (First Hour): IB High=`0.8300` | IB Low=`0.8190`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.8366` - `0.8434`
-  * Optimal Trade Entry (OTE 0.705): `0.8417`
-  * Structural Invalidation Anchor (0.786): `0.8467`
+  * Golden Pocket Zone (0.618 - 0.650): `0.8376` - `0.8444`
+  * Optimal Trade Entry (OTE 0.705): `0.8427`
+  * Structural Invalidation Anchor (0.786): `0.8477`
 
 ---
 
@@ -95,12 +95,12 @@
 - **Hyperdash Verified Whale Orders & Resting Book (12_Hyperdash.parquet)**:
 | Section | Side / Type | Price (USD) | Size | Notional (USD) | Detail | Wallet / Address | Timestamp (IST) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 17:20:49 IST` |
+| `UNIVERSE_FLOW` | `NEUTRAL` | `0.000000` | `0.00` | 0.00 USD | `Delta: +0` | `None` | `2026-10-30 17:23:48 IST` |
 
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `1286` | `0xeadc...9d55` | `LONG` | 1,682,880.00 USD | `2,000,000.00` | `0.9824` | `0.8411` | `0.000000` | -281,886.39 USD | `-16.75%` | `5X Cross` |
+| `1290` | `0xeadc...9d55` | `LONG` | 1,678,900.00 USD | `2,000,000.00` | `0.9824` | `0.8394` | `0.000000` | -285,866.39 USD | `-17.03%` | `5X Cross` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `2.04K` | Last 24h: `2.79K` | Last 3d: `-1.74K` | Last 7d: `3.54K`
+  * Current Rate: `2.52K` | Last 24h: `2.79K` | Last 3d: `-1.74K` | Last 7d: `3.54K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0088%` | **USDT OKX** | `0.0013%` |
-| **USDT Bybit** | `-0.0192%` | **USDT KuCoin** | `-0.0041%` |
-| **USDT MEXC** | `-` | **USDT BingX** | `0.0098%` |
-| **USDT Gate** | `-0.0033%` | **USDT Bitget** | `-0.0005%` |
+| **USDT Binance** | `0.0086%` | **USDT OKX** | `0.0027%` |
+| **USDT Bybit** | `-0.0169%` | **USDT KuCoin** | `-0.0041%` |
+| **USDT MEXC** | `-` | **USDT BingX** | `0.0085%` |
+| **USDT Gate** | `-0.0027%` | **USDT Bitget** | `-0.0006%` |
 | **CoinM Binance** | `0.0100%` | **CoinM OKX** | `0.0100%` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 610.35 USD | -23,660.00 USD | **`DISTRIBUTION`** |
-| `15m` | 1,580.00 USD | -62,740.00 USD | **`DISTRIBUTION`** |
-| `30m` | 42,810.00 USD | 173,610.00 USD | **`ACCUMULATION`** |
-| `1h` | 42,210.00 USD | 904,870.00 USD | **`ACCUMULATION`** |
-| `2h` | 73,420.00 USD | 1,420,000.00 USD | **`ACCUMULATION`** |
-| `4h` | 123,630.00 USD | 603,420.00 USD | **`ACCUMULATION`** |
-| `6h` | -162,310.00 USD | -261,380.00 USD | **`DISTRIBUTION`** |
-| `8h` | -394,800.00 USD | 1,660,000.00 USD | **`ACCUMULATION`** |
-| `12h` | -1,980,000.00 USD | -6,540,000.00 USD | **`DISTRIBUTION`** |
-| `24h` | -4,150,000.00 USD | -22,470,000.00 USD | **`DISTRIBUTION`** |
-| `1w` | -12,850,000.00 USD | -63,360,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -54,250,000.00 USD | -309,760,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | -8,720.00 USD | 115,220.00 USD | **`ACCUMULATION`** |
+| `15m` | -60,740.00 USD | 9,200.00 USD | **`DISTRIBUTION`** |
+| `30m` | -31,870.00 USD | 118,850.00 USD | **`ACCUMULATION`** |
+| `1h` | 35,860.00 USD | 305,180.00 USD | **`ACCUMULATION`** |
+| `2h` | 61,060.00 USD | 1,540,000.00 USD | **`ACCUMULATION`** |
+| `4h` | 137,920.00 USD | 1,310,000.00 USD | **`ACCUMULATION`** |
+| `6h` | -179,450.00 USD | 121,030.00 USD | **`DISTRIBUTION`** |
+| `8h` | -300,900.00 USD | 1,160,000.00 USD | **`ACCUMULATION`** |
+| `12h` | -1,880,000.00 USD | -6,610,000.00 USD | **`DISTRIBUTION`** |
+| `24h` | -4,140,000.00 USD | -22,020,000.00 USD | **`DISTRIBUTION`** |
+| `1w` | -12,810,000.00 USD | -63,250,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -54,220,000.00 USD | -309,640,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+610.35` | 15m=`+1.58K` | 1h=`+42.21K` | 24h=`-4.15M`
-* Futures Capital Netflows: 5m=`-23.66K` | 15m=`-62.74K` | 1h=`+904.87K` | 24h=`-22.47M`
+* Spot Capital Netflows: 5m=`-8.72K` | 15m=`-60.74K` | 1h=`+35.86K` | 24h=`-4.14M`
+* Futures Capital Netflows: 5m=`+115.22K` | 15m=`+9.20K` | 1h=`+305.18K` | 24h=`-22.02M`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.8467`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`0.8477`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: YFIUSD
 **Canonical Key**: `YFIUSD` | **Broker Instrument**: `YFIUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `1824.00` | **Live Ask Quote**: `1826.00` | **Mid Price**: `1825.00`
-- **Spread Points**: `200.00` | **Spread BPS**: `10.96 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `1826.00` | **Live Ask Quote**: `1828.00` | **Mid Price**: `1827.00`
+- **Spread Points**: `200.00` | **Spread BPS**: `10.95 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`1832.90` | Low=`1782.90`
   * Initial Balance (First Hour): IB High=`1769.90` | IB Low=`1750.90`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `1817.70` - `1832.30`
-  * Optimal Trade Entry (OTE 0.705): `1828.65`
-  * Structural Invalidation Anchor (0.786): `1839.60`
+  * Golden Pocket Zone (0.618 - 0.650): `1819.69` - `1834.31`
+  * Optimal Trade Entry (OTE 0.705): `1830.65`
+  * Structural Invalidation Anchor (0.786): `1841.62`
 
 ---
 
@@ -152,12 +152,12 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-130.70` | Last 24h: `292.54` | Last 3d: `960.78` | Last 7d: `3.45K`
+  * Current Rate: `-107.39` | Last 24h: `292.54` | Last 3d: `960.78` | Last 7d: `3.45K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0018%` |
-| **USDT Bybit** | `-0.0291%` | **USDT KuCoin** | `0.0100%` |
+| **USDT Binance** | `0.0100%` | **USDT OKX** | `0.0007%` |
+| **USDT Bybit** | `-0.0263%` | **USDT KuCoin** | `0.0100%` |
 | **USDT MEXC** | `0.0100%` | **USDT BingX** | `0.0100%` |
 | **USDT Gate** | `0.0100%` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 0.00 USD | 2,570.00 USD | **`ACCUMULATION`** |
-| `15m` | 0.00 USD | -1,210.00 USD | **`DISTRIBUTION`** |
-| `30m` | 0.00 USD | -2,310.00 USD | **`DISTRIBUTION`** |
-| `1h` | 0.00 USD | -21,850.00 USD | **`DISTRIBUTION`** |
-| `2h` | 0.00 USD | -27,500.00 USD | **`DISTRIBUTION`** |
-| `4h` | 0.00 USD | -116,190.00 USD | **`DISTRIBUTION`** |
-| `6h` | 0.00 USD | -34,940.00 USD | **`DISTRIBUTION`** |
-| `8h` | 0.00 USD | 101,260.00 USD | **`ACCUMULATION`** |
-| `12h` | 0.00 USD | -130,720.00 USD | **`DISTRIBUTION`** |
-| `24h` | 0.00 USD | -160,590.00 USD | **`DISTRIBUTION`** |
-| `1w` | 0.00 USD | -585,510.00 USD | **`DISTRIBUTION`** |
-| `30d` | 0.00 USD | -2,750,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 2,690.00 USD | -1,640.00 USD | **`ACCUMULATION`** |
+| `15m` | 4,270.00 USD | -1,610.00 USD | **`ACCUMULATION`** |
+| `30m` | 8,630.00 USD | -3,050.00 USD | **`ACCUMULATION`** |
+| `1h` | 19,040.00 USD | -11,000.00 USD | **`ACCUMULATION`** |
+| `2h` | 101,630.00 USD | -38,550.00 USD | **`ACCUMULATION`** |
+| `4h` | 161,850.00 USD | -96,370.00 USD | **`ACCUMULATION`** |
+| `6h` | 291,280.00 USD | -45,070.00 USD | **`ACCUMULATION`** |
+| `8h` | 348,290.00 USD | 138,780.00 USD | **`ACCUMULATION`** |
+| `12h` | 256,640.00 USD | -138,440.00 USD | **`ACCUMULATION`** |
+| `24h` | 235,360.00 USD | -160,820.00 USD | **`ACCUMULATION`** |
+| `1w` | 58,750.00 USD | -592,420.00 USD | **`DISTRIBUTION`** |
+| `30d` | -812,190.00 USD | -2,760,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`-` | 15m=`-` | 1h=`-` | 24h=`-`
-* Futures Capital Netflows: 5m=`+2.57K` | 15m=`-1.21K` | 1h=`-21.85K` | 24h=`-160.59K`
+* Spot Capital Netflows: 5m=`+2.69K` | 15m=`+4.27K` | 1h=`+19.04K` | 24h=`+235.36K`
+* Futures Capital Netflows: 5m=`-1.64K` | 15m=`-1.61K` | 1h=`-11.00K` | 24h=`-160.82K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1839.60`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`1841.62`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

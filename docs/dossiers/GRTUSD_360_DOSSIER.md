@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GRTUSD
 **Canonical Key**: `GRTUSD` | **Broker Instrument**: `GRTUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0199` | **Live Ask Quote**: `0.0201` | **Mid Price**: `0.0200`
-- **Spread Points**: `23.00` | **Spread BPS**: `115.03 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `22.00` | **Spread BPS**: `109.95 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -54,13 +54,13 @@
   * Monday Range Blueprint: High=`0.0201` | Mid=`0.0200` | Low=`0.0199`
   * Developing Weekly Value Area: Weekly VAH=`0.0202` | Weekly POC=`0.0200` | Weekly VAL=`0.0198`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0200` | Low=`0.0200`
+  * Asian Session (00:00-08:00 UTC): High=`0.0201` | Low=`0.0200`
   * London Session (08:00-16:00 UTC): High=`0.0201` | Low=`0.0199`
   * New York Session (13:00-21:00 UTC): High=`0.0201` | Low=`0.0199`
   * Initial Balance (First Hour): IB High=`0.0201` | IB Low=`0.0199`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.0199` - `0.0201`
-  * Optimal Trade Entry (OTE 0.705): `0.0200`
+  * Optimal Trade Entry (OTE 0.705): `0.0201`
   * Structural Invalidation Anchor (0.786): `0.0202`
 
 ---
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `-1.51K` | Last 24h: `231.54` | Last 3d: `1.01K` | Last 7d: `1.98K`
+  * Current Rate: `-1.86K` | Last 24h: `231.54` | Last 3d: `1.01K` | Last 7d: `1.98K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0417%` | **USDT OKX** | `-0.0264%` |
-| **USDT Bybit** | `-0.0099%` | **USDT KuCoin** | `-0.0322%` |
-| **USDT MEXC** | `-0.0411%` | **USDT BingX** | `-0.0052%` |
-| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0247%` |
+| **USDT Binance** | `-0.0421%` | **USDT OKX** | `-0.0305%` |
+| **USDT Bybit** | `-0.0171%` | **USDT KuCoin** | `-0.0360%` |
+| **USDT MEXC** | `-0.0416%` | **USDT BingX** | `-0.0091%` |
+| **USDT Gate** | `0.0100%` | **USDT Bitget** | `-0.0276%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -185,21 +185,21 @@
 - **12-Horizon Macro Capital Netflows Table (2_Spot_Netflow_S.parquet, 2_Future_Netflow.parquet)**:
 | Horizon | Spot Netflow (USD) | Futures Netflow (USD) | Institutional Bias |
 |:---:|:---:|:---:|:---:|
-| `5m` | 4,170.00 USD | -5,780.00 USD | **`DISTRIBUTION`** |
-| `15m` | 13,670.00 USD | -5,640.00 USD | **`ACCUMULATION`** |
-| `30m` | 29,380.00 USD | -10,520.00 USD | **`ACCUMULATION`** |
-| `1h` | 24,580.00 USD | -15,980.00 USD | **`ACCUMULATION`** |
-| `2h` | 63,150.00 USD | 8,870.00 USD | **`ACCUMULATION`** |
-| `4h` | 112,140.00 USD | 43,850.00 USD | **`ACCUMULATION`** |
-| `6h` | 128,780.00 USD | 31,850.00 USD | **`ACCUMULATION`** |
-| `8h` | 140,950.00 USD | 170,580.00 USD | **`ACCUMULATION`** |
-| `12h` | -124,510.00 USD | -248,780.00 USD | **`DISTRIBUTION`** |
-| `24h` | -230,440.00 USD | -747,210.00 USD | **`DISTRIBUTION`** |
-| `1w` | -669,620.00 USD | -1,310,000.00 USD | **`DISTRIBUTION`** |
-| `30d` | -2,700,000.00 USD | -6,190,000.00 USD | **`DISTRIBUTION`** |
+| `5m` | 1,650.00 USD | -2,530.00 USD | **`DISTRIBUTION`** |
+| `15m` | -10,150.00 USD | -9,270.00 USD | **`DISTRIBUTION`** |
+| `30m` | -11,400.00 USD | -11,410.00 USD | **`DISTRIBUTION`** |
+| `1h` | 17,610.00 USD | -21,700.00 USD | **`DISTRIBUTION`** |
+| `2h` | 28,760.00 USD | -14,350.00 USD | **`ACCUMULATION`** |
+| `4h` | 92,670.00 USD | 25,970.00 USD | **`ACCUMULATION`** |
+| `6h` | 148,670.00 USD | 162,880.00 USD | **`ACCUMULATION`** |
+| `8h` | 157,800.00 USD | 77,110.00 USD | **`ACCUMULATION`** |
+| `12h` | -108,070.00 USD | -243,810.00 USD | **`DISTRIBUTION`** |
+| `24h` | -239,560.00 USD | -749,110.00 USD | **`DISTRIBUTION`** |
+| `1w` | -693,740.00 USD | -1,320,000.00 USD | **`DISTRIBUTION`** |
+| `30d` | -2,750,000.00 USD | -6,200,000.00 USD | **`DISTRIBUTION`** |
 
-* Spot Capital Netflows: 5m=`+4.17K` | 15m=`+13.67K` | 1h=`+24.58K` | 24h=`-230.44K`
-* Futures Capital Netflows: 5m=`-5.78K` | 15m=`-5.64K` | 1h=`-15.98K` | 24h=`-747.21K`
+* Spot Capital Netflows: 5m=`+1.65K` | 15m=`-10.15K` | 1h=`+17.61K` | 24h=`-239.56K`
+* Futures Capital Netflows: 5m=`-2.53K` | 15m=`-9.27K` | 1h=`-21.70K` | 24h=`-749.11K`
 - **Institutional Crypto ETF Capital Flows (1_Crypto_ETF_Flows.parquet)**:
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)
   * `-`: ETF Net Flow = 0.00 USD (Inflows: 0.00 USD, Outflows: 0.00 USD)

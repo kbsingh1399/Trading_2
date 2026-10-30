@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: FR40
 **Canonical Key**: `FR40` | **Broker Instrument**: `FR40.p` | **Asset Class**: `Equity Index`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `7967.10` | **Live Ask Quote**: `7968.60` | **Mid Price**: `7967.85`
+- **Live Bid Quote**: `7969.10` | **Live Ask Quote**: `7970.60` | **Mid Price**: `7969.85`
 - **Spread Points**: `150.00` | **Spread BPS**: `1.88 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `7987.37` (Distance: `-0.24%`)
-  * Point of Control (POC) = `7981.40` (Distance: `-0.17%`)
-  * Value Area Low (VAL) = `7960.49` (Distance: `+0.10%`)
+  * Value Area High (VAH) = `7987.37` (Distance: `-0.21%`)
+  * Point of Control (POC) = `7973.76` (Distance: `-0.04%`)
+  * Value Area Low (VAL) = `7960.49` (Distance: `+0.13%`)
   * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`7992.48` | POC=`7982.52` | VAL=`7942.68`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`7992.50` | Low=`7964.10`
   * Initial Balance (First Hour): IB High=`7963.22` | IB Low=`7956.22`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `7935.98` - `7999.72`
-  * Optimal Trade Entry (OTE 0.705): `7983.79`
-  * Structural Invalidation Anchor (0.786): `8031.59`
+  * Golden Pocket Zone (0.618 - 0.650): `7937.97` - `8001.73`
+  * Optimal Trade Entry (OTE 0.705): `7985.79`
+  * Structural Invalidation Anchor (0.786): `8033.61`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`8031.59`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`8033.61`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

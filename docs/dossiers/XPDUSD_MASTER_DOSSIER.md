@@ -1,12 +1,12 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XPDUSD
 **Canonical Key**: `XPDUSD` | **Broker Instrument**: `XPDUSD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `972.75` | **Live Ask Quote**: `978.25` | **Mid Price**: `975.50`
+- **Live Bid Quote**: `972.80` | **Live Ask Quote**: `978.30` | **Mid Price**: `975.55`
 - **Spread Points**: `5500.00` | **Spread BPS**: `56.38 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `993.65` (Distance: `-1.80%`)
+  * Value Area High (VAH) = `993.65` (Distance: `-1.79%`)
   * Point of Control (POC) = `988.90` (Distance: `-1.32%`)
-  * Value Area Low (VAL) = `980.54` (Distance: `-0.48%`)
+  * Value Area Low (VAL) = `980.54` (Distance: `-0.47%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`1008.75` | POC=`1005.91` | VAL=`1000.67`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`983.27` | Low=`972.74`
   * Initial Balance (First Hour): IB High=`999.09` | IB Low=`987.05`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `971.60` - `979.40`
-  * Optimal Trade Entry (OTE 0.705): `977.45`
-  * Structural Invalidation Anchor (0.786): `983.30`
+  * Golden Pocket Zone (0.618 - 0.650): `971.65` - `979.45`
+  * Optimal Trade Entry (OTE 0.705): `977.50`
+  * Structural Invalidation Anchor (0.786): `983.35`
 
 ---
 
@@ -152,14 +152,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `1.51K` | Last 24h: `3.60K` | Last 3d: `18.58K` | Last 7d: `28.06K`
+  * Current Rate: `1.55K` | Last 24h: `3.60K` | Last 3d: `18.58K` | Last 7d: `28.06K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0236%` | **USDT OKX** | `0.0376%` |
-| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0024%` |
-| **USDT MEXC** | `0.0236%` | **USDT BingX** | `-` |
-| **USDT Gate** | `0.0136%` | **USDT Bitget** | `0.0381%` |
+| **USDT Binance** | `0.0238%` | **USDT OKX** | `0.0432%` |
+| **USDT Bybit** | `-` | **USDT KuCoin** | `0.0004%` |
+| **USDT MEXC** | `0.0240%` | **USDT BingX** | `-` |
+| **USDT Gate** | `0.0135%` | **USDT Bitget** | `0.0385%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`983.30`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`983.35`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

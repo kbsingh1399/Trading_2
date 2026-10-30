@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: CADJPY
 **Canonical Key**: `CADJPY` | **Broker Instrument**: `CADJPY.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `112.83` (Distance: `-0.30%`)
-  * Point of Control (POC) = `112.67` (Distance: `-0.16%`)
-  * Value Area Low (VAL) = `112.64` (Distance: `-0.13%`)
+  * Value Area High (VAH) = `112.83` (Distance: `-0.29%`)
+  * Point of Control (POC) = `112.68` (Distance: `-0.16%`)
+  * Value Area Low (VAL) = `112.64` (Distance: `-0.12%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`112.96` | POC=`112.83` | VAL=`112.78`
@@ -55,8 +55,8 @@
   * Developing Weekly Value Area: Weekly VAH=`112.98` | Weekly POC=`112.83` | Weekly VAL=`112.34`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`112.92` | Low=`112.53`
-  * London Session (08:00-16:00 UTC): High=`112.90` | Low=`112.49`
-  * New York Session (13:00-21:00 UTC): High=`112.75` | Low=`112.49`
+  * London Session (08:00-16:00 UTC): High=`112.90` | Low=`112.47`
+  * New York Session (13:00-21:00 UTC): High=`112.75` | Low=`112.47`
   * Initial Balance (First Hour): IB High=`112.87` | IB Low=`112.65`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `112.06` - `112.96`

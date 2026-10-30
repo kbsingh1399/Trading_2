@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: BARUSD
 **Canonical Key**: `BARUSD` | **Broker Instrument**: `BARUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0720` | **Live Ask Quote**: `0.0722` | **Mid Price**: `0.0721`
-- **Spread Points**: `25.00` | **Spread BPS**: `34.67 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0720` | **Live Ask Quote**: `0.0723` | **Mid Price**: `0.0721`
+- **Spread Points**: `24.00` | **Spread BPS**: `33.26 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `0.0709` (Distance: `+1.70%`)
-  * Point of Control (POC) = `0.0696` (Distance: `+3.62%`)
-  * Value Area Low (VAL) = `0.0681` (Distance: `+5.99%`)
+  * Value Area High (VAH) = `0.0709` (Distance: `+1.68%`)
+  * Point of Control (POC) = `0.0696` (Distance: `+3.59%`)
+  * Value Area Low (VAL) = `0.0681` (Distance: `+5.96%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BULLISH (Above Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.0751` | POC=`0.0737` | VAL=`0.0730`
@@ -59,8 +59,8 @@
   * New York Session (13:00-21:00 UTC): High=`0.0724` | Low=`0.0709`
   * Initial Balance (First Hour): IB High=`0.0714` | IB Low=`0.0706`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `0.0718` - `0.0724`
-  * Optimal Trade Entry (OTE 0.705): `0.0722`
+  * Golden Pocket Zone (0.618 - 0.650): `0.0719` - `0.0724`
+  * Optimal Trade Entry (OTE 0.705): `0.0723`
   * Structural Invalidation Anchor (0.786): `0.0727`
 
 ---

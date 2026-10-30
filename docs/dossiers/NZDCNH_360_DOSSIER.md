@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NZDCNH
 **Canonical Key**: `NZDCNH` | **Broker Instrument**: `NZDCNH.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `3.75` | **Live Ask Quote**: `3.76` | **Mid Price**: `3.75`
-- **Spread Points**: `15.00` | **Spread BPS**: `0.40 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `3.75` | **Live Ask Quote**: `3.75` | **Mid Price**: `3.75`
+- **Spread Points**: `12.00` | **Spread BPS**: `0.32 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -31,7 +31,7 @@
   * Upper +2.51σ Band: `3.78` | Lower -2.51σ Band: `3.73`
   * Upper +2.01σ Band: `3.77` | Lower -2.01σ Band: `3.74`
   * Upper +2.00σ Band: `3.77` | Lower -2.00σ Band: `3.74`
-  * Upper +1.28σ Band: `3.77` | Lower -1.28σ Band: `3.74`
+  * Upper +1.28σ Band: `3.76` | Lower -1.28σ Band: `3.74`
   * Upper +1.00σ Band: `3.76` | Lower -1.00σ Band: `3.75`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`3.75` | EMA-20=`3.75` (Slope: `+0.0000`)
@@ -275,7 +275,7 @@
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `3.77` (Daily VAH sweep / Bearish OTE)
   * Spread-Padded Stop Loss: `4.97` (Risk Distance: `1.20` pts)
-  * +2.5R Take Profit: `0.7656`
+  * +2.5R Take Profit: `0.7653`
   * Mathematical Lot Sizing: **`8.33 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:

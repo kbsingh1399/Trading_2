@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDJPY
 **Canonical Key**: `USDJPY` | **Broker Instrument**: `USDJPY.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 17:22:13 IST` (`2026-10-30 11:52:13 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:28:17 IST` (`2026-10-30 11:58:17 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `157.03` | **Live Ask Quote**: `157.03` | **Mid Price**: `157.03`
-- **Spread Points**: `3.00` | **Spread BPS**: `0.19 bps` (Charter Threshold: `5.00 bps`)
+- **Live Bid Quote**: `157.06` | **Live Ask Quote**: `157.06` | **Mid Price**: `157.06`
+- **Spread Points**: `2.00` | **Spread BPS**: `0.13 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `100,000.0` | Digits: `3` | Point: `0.001`
@@ -44,9 +44,9 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `157.65` (Distance: `-0.40%`)
-  * Point of Control (POC) = `157.34` (Distance: `-0.21%`)
-  * Value Area Low (VAL) = `157.24` (Distance: `-0.14%`)
+  * Value Area High (VAH) = `157.65` (Distance: `-0.37%`)
+  * Point of Control (POC) = `157.34` (Distance: `-0.17%`)
+  * Value Area Low (VAL) = `157.24` (Distance: `-0.11%`)
   * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `TREND_DOWN_ACCEPTANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`157.99` | POC=`157.87` | VAL=`157.76`
@@ -59,9 +59,9 @@
   * New York Session (13:00-21:00 UTC): High=`157.36` | Low=`156.99`
   * Initial Balance (First Hour): IB High=`157.70` | IB Low=`157.40`
 - **Fibonacci Institutional Confluence Nodes**:
-  * Golden Pocket Zone (0.618 - 0.650): `156.41` - `157.66`
-  * Optimal Trade Entry (OTE 0.705): `157.35`
-  * Structural Invalidation Anchor (0.786): `158.29`
+  * Golden Pocket Zone (0.618 - 0.650): `156.43` - `157.69`
+  * Optimal Trade Entry (OTE 0.705): `157.38`
+  * Structural Invalidation Anchor (0.786): `158.32`
 
 ---
 
@@ -116,12 +116,12 @@
 - **Hyperliquid Analysis Trader Leaderboard & Leveraged Positions (4_Hyperliquid_Analysis.parquet)**:
 | Rank | User Display | Side | Position (USD) | Size (Tokens) | Entry Price | Current Price | Liq Price | PnL (USD) | PnL (%) | Leverage |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `200` | `0x0911...129a` | `SHORT` | 10,399,691.33 USD | `66,223.20` | `156.58` | `157.06` | `167.71` | -30,671.10 USD | `-0.29%` | `20X Isolated` |
-| `1022` | `0x9dea...d617` | `LONG` | 2,130,558.54 USD | `13,566.98` | `157.66` | `157.06` | `149.21` | -8,455.21 USD | `-0.40%` | `50X Isolated` |
-| `1097` | `0xec0b...b078` | `SHORT` | 1,981,702.98 USD | `12,617.49` | `158.22` | `157.06` | `162.94` | 14,662.69 USD | `+0.74%` | `20X Isolated` |
-| `1159` | `0xc966...f6b6` | `SHORT` | 1,896,314.53 USD | `12,075.36` | `157.61` | `157.06` | `215.26` | 6,828.16 USD | `+0.36%` | `5X Isolated` |
-| `1192` | `0xbef1...d2e5` | `LONG` | 1,856,770.02 USD | `11,821.29` | `157.63` | `157.06` | `155.50` | -6,590.59 USD | `-0.35%` | `50X Isolated` |
-| `1884` | `0x3d89...eb14` | `LONG` | 1,083,576.00 USD | `6,900.00` | `158.17` | `157.06` | `127.34` | -7,813.60 USD | `-0.72%` | `5X Isolated` |
+| `200` | `0x0911...129a` | `SHORT` | 10,398,366.86 USD | `66,223.20` | `156.58` | `157.01` | `167.71` | -29,346.63 USD | `-0.28%` | `20X Isolated` |
+| `1019` | `0x9dea...d617` | `LONG` | 2,130,422.87 USD | `13,566.98` | `157.66` | `157.01` | `149.21` | -8,590.88 USD | `-0.40%` | `50X Isolated` |
+| `1093` | `0xec0b...b078` | `SHORT` | 1,981,324.45 USD | `12,617.49` | `158.22` | `157.01` | `162.94` | 15,041.22 USD | `+0.76%` | `20X Isolated` |
+| `1160` | `0xc966...f6b6` | `SHORT` | 1,896,073.03 USD | `12,075.36` | `157.61` | `157.01` | `215.26` | 7,069.67 USD | `+0.37%` | `5X Isolated` |
+| `1176` | `0xbef1...d2e5` | `LONG` | 1,856,178.96 USD | `11,821.29` | `157.63` | `157.01` | `155.50` | -7,181.65 USD | `-0.39%` | `50X Isolated` |
+| `1879` | `0x3d89...eb14` | `LONG` | 1,083,231.00 USD | `6,900.00` | `158.17` | `157.01` | `127.34` | -8,158.60 USD | `-0.75%` | `5X Isolated` |
 
 - **Hyperdash Telegram Institutional Intelligence Alerts (16_Hyperdash_telegram_Intel.parquet)**:
 | Event Type | Side | Price (USD) | Notional (USD) | Metric / Distance | Impact | Duration | Intelligence Detail | Time (IST) |
@@ -396,17 +396,17 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `157.24` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `157.07` (Risk Distance: `0.1718` pts)
+  * Spread-Padded Stop Loss: `157.07` (Risk Distance: `0.1703` pts)
   * +2.5R Take Profit: `157.67`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.17 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `157.65` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `157.82` (Risk Distance: `0.1718` pts)
-  * +2.5R Take Profit: `157.22`
+  * Spread-Padded Stop Loss: `157.82` (Risk Distance: `0.1703` pts)
+  * +2.5R Take Profit: `157.23`
   * Mathematical Lot Sizing: **`0.01 lots`** (Nominal Risk = `0.17 USD <= 10.00 USD`)
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`PASSIVE_MAKER_LIMIT_ARMED`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.29`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`158.32`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.
