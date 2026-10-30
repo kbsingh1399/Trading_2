@@ -1,0 +1,266 @@
+[
+  {
+    "symbol": "XAUUSD.pi",
+    "action": "SELL_LIMIT",
+    "signal_anchor": {
+      "signal_type": "AUCTION_TREND_DOWN_ACCEPTANCE",
+      "bias": "BEARISH (BELOW PIVOT)",
+      "signal_price": 3898.78,
+      "signal_time": "2026-10-30 21:37:17 IST",
+      "absorbed_vol_usd": 0.0,
+      "detail": "Daily POC: 3990.880 | VAH: 4024.830 | VAL: 3945.000 | IB: [3988.180 - 4011.550] | Spread: 0.2 bps"
+    },
+    "trade_geometry": {
+      "current_mid": 3899.035,
+      "entry": 3906.83,
+      "sl": 3930.22,
+      "tp": 3848.36,
+      "risk_distance": 23.39,
+      "reward_distance": 58.47,
+      "rr": 2.5,
+      "volume": 0.42,
+      "nominal_risk_usd": 9.82
+    },
+    "15_pillar_context": {
+      "spread_bps": 0.23,
+      "vwap": 3965.896152027699,
+      "poc": 3990.88,
+      "val": 3945.0,
+      "vah": 4024.83,
+      "cvd_bias": "NEUTRAL",
+      "whales": 0,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "XAGUSD.pi",
+    "action": "SELL_LIMIT",
+    "signal_anchor": {
+      "signal_type": "AUCTION_TREND_DOWN_ACCEPTANCE",
+      "bias": "BEARISH (BELOW PIVOT)",
+      "signal_price": 49.217,
+      "signal_time": "2026-10-30 21:37:17 IST",
+      "absorbed_vol_usd": 0.0,
+      "detail": "Daily POC: 51.445 | VAH: 52.147 | VAL: 49.976 | IB: [50.871 - 51.792] | Spread: 11.8 bps"
+    },
+    "trade_geometry": {
+      "current_mid": 49.209999999999994,
+      "entry": 49.22,
+      "sl": 49.52,
+      "tp": 48.47,
+      "risk_distance": 0.3,
+      "reward_distance": 0.75,
+      "rr": 2.5,
+      "volume": 33.33,
+      "nominal_risk_usd": 10.0
+    },
+    "15_pillar_context": {
+      "spread_bps": 11.79,
+      "vwap": 50.55630582194874,
+      "poc": 51.445,
+      "val": 49.976,
+      "vah": 52.147,
+      "cvd_bias": "NEUTRAL",
+      "whales": 0,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "USWTI.p",
+    "action": "BUY_LIMIT",
+    "signal_anchor": {
+      "signal_type": "AGGRESSIVE BUYING",
+      "bias": "BULLISH",
+      "signal_price": 104.743,
+      "signal_time": "2026-10-30 21:30:00 IST",
+      "absorbed_vol_usd": 647403.1905384734,
+      "detail": "Bar Delta: 647,403.19 USD | Cumulative CVD: 2,163,585.24 | CVD Z-Score: 0.41 | Vol: 2,382,589.02 USD"
+    },
+    "trade_geometry": {
+      "current_mid": 104.758,
+      "entry": 104.74,
+      "sl": 104.11,
+      "tp": 106.31,
+      "risk_distance": 0.63,
+      "reward_distance": 1.57,
+      "rr": 2.5,
+      "volume": 15.87,
+      "nominal_risk_usd": 10.0
+    },
+    "15_pillar_context": {
+      "spread_bps": 2.86,
+      "vwap": 104.3959782919868,
+      "poc": 104.75,
+      "val": 104.055,
+      "vah": 105.056,
+      "cvd_bias": "NEUTRAL",
+      "whales": 0,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "SOLUSD.p",
+    "action": "BUY_LIMIT",
+    "signal_anchor": {
+      "signal_type": "Divergence",
+      "bias": "BULLISH",
+      "signal_price": 94.81,
+      "signal_time": "10-30 21:38",
+      "absorbed_vol_usd": 0.0,
+      "detail": "Closed down on positive Delta (+27%), bullish \u00b7 94.810"
+    },
+    "trade_geometry": {
+      "current_mid": 94.58500000000001,
+      "entry": 94.4,
+      "sl": 93.5,
+      "tp": 96.65,
+      "risk_distance": 0.9,
+      "reward_distance": 2.25,
+      "rr": 2.5,
+      "volume": 11.11,
+      "nominal_risk_usd": 10.0
+    },
+    "15_pillar_context": {
+      "spread_bps": 24.32,
+      "vwap": 95.63588384763045,
+      "poc": 96.55,
+      "val": 94.83,
+      "vah": 97.96,
+      "cvd_bias": "NEUTRAL",
+      "whales": 308,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "BCHUSD.p",
+    "action": "SELL_LIMIT",
+    "signal_anchor": {
+      "signal_type": "Divergence",
+      "bias": "BEARISH",
+      "signal_price": 294.48,
+      "signal_time": "10-30 21:35",
+      "absorbed_vol_usd": 0.0,
+      "detail": "Closed up on negative Delta (\u221216%), bearish \u00b7 294.48"
+    },
+    "trade_geometry": {
+      "current_mid": 292.6,
+      "entry": 294.48,
+      "sl": 297.68,
+      "tp": 286.48,
+      "risk_distance": 3.2,
+      "reward_distance": 8.0,
+      "rr": 2.5,
+      "volume": 3.12,
+      "nominal_risk_usd": 9.98
+    },
+    "15_pillar_context": {
+      "spread_bps": 16.4,
+      "vwap": 280.3391940925895,
+      "poc": 283.9,
+      "val": 272.59,
+      "vah": 285.97,
+      "cvd_bias": "NEUTRAL",
+      "whales": 0,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "ZECUSD.p",
+    "action": "BUY_LIMIT",
+    "signal_anchor": {
+      "signal_type": "Exhaustion",
+      "bias": "BULLISH",
+      "signal_price": 1231.0,
+      "signal_time": "10-30 21:12",
+      "absorbed_vol_usd": 0.0,
+      "detail": "New 10-bar low with almost no volume in the bottom 10% of the bar, closed in the upper half, bullish \u00b7 1,231.0"
+    },
+    "trade_geometry": {
+      "current_mid": 1227.915,
+      "entry": 1225.46,
+      "sl": 1208.23,
+      "tp": 1268.54,
+      "risk_distance": 17.23,
+      "reward_distance": 43.08,
+      "rr": 2.5,
+      "volume": 0.58,
+      "nominal_risk_usd": 9.99
+    },
+    "15_pillar_context": {
+      "spread_bps": 8.71,
+      "vwap": 1249.806403697,
+      "poc": 1247.68,
+      "val": 1222.17,
+      "vah": 1266.23,
+      "cvd_bias": "NEUTRAL",
+      "whales": 0,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "BTCUSD.pi",
+    "action": "SELL_LIMIT",
+    "signal_anchor": {
+      "signal_type": "Absorption",
+      "bias": "BEARISH",
+      "signal_price": 78081.3,
+      "signal_time": "10-30 20:48",
+      "absorbed_vol_usd": 0.0,
+      "detail": "583 of taker buying at the high (30%+ of the bar's buying), yet closed near the low, bearish \u00b7 78,081.3"
+    },
+    "trade_geometry": {
+      "current_mid": 77283.0,
+      "entry": 78081.3,
+      "sl": 78545.0,
+      "tp": 76922.05,
+      "risk_distance": 463.7,
+      "reward_distance": 1159.25,
+      "rr": 2.5,
+      "volume": 0.02,
+      "nominal_risk_usd": 9.27
+    },
+    "15_pillar_context": {
+      "spread_bps": 2.2,
+      "vwap": 77488.2691681161,
+      "poc": 77315.92,
+      "val": 76616.56,
+      "vah": 78286.0,
+      "cvd_bias": "NEUTRAL",
+      "whales": 545,
+      "stops": 0
+    }
+  },
+  {
+    "symbol": "ETHUSD.pi",
+    "action": "SELL_LIMIT",
+    "signal_anchor": {
+      "signal_type": "Absorption",
+      "bias": "BEARISH",
+      "signal_price": 2261.5,
+      "signal_time": "10-30 20:48",
+      "absorbed_vol_usd": 39000.0,
+      "detail": "39K of taker buying at the high (30%+ of the bar's buying), yet closed near the low, bearish \u00b7 2,261.5"
+    },
+    "trade_geometry": {
+      "current_mid": 2219.65,
+      "entry": 2261.5,
+      "sl": 2278.45,
+      "tp": 2219.13,
+      "risk_distance": 16.95,
+      "reward_distance": 42.37,
+      "rr": 2.5,
+      "volume": 0.58,
+      "nominal_risk_usd": 9.83
+    },
+    "15_pillar_context": {
+      "spread_bps": 14.87,
+      "vwap": 2222.6372851499164,
+      "poc": 2224.76,
+      "val": 2203.72,
+      "vah": 2246.61,
+      "cvd_bias": "NEUTRAL",
+      "whales": 403,
+      "stops": 0
+    }
+  }
+]
