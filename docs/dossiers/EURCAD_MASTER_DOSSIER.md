@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURCAD
 **Canonical Key**: `EURCAD` | **Broker Instrument**: `EURCAD.pi` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:10:08 IST` (`2026-10-30 11:40:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -158,7 +158,7 @@
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `-0.0149%` | **USDT BingX** | `-` |
+| **USDT MEXC** | `0.0200%` | **USDT BingX** | `-` |
 | **USDT Gate** | `-` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 

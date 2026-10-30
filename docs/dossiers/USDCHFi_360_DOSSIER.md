@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDCHF
 **Canonical Key**: `USDCHF` | **Broker Instrument**: `USDCHF.pi` | **Asset Class**: `FX Major`
-**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:10:08 IST` (`2026-10-30 11:40:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -158,7 +158,7 @@
 |:---|:---:|:---|:---:|
 | **USDT Binance** | `-` | **USDT OKX** | `-` |
 | **USDT Bybit** | `-` | **USDT KuCoin** | `-` |
-| **USDT MEXC** | `-0.0048%` | **USDT BingX** | `-` |
+| **USDT MEXC** | `-0.0061%` | **USDT BingX** | `-` |
 | **USDT Gate** | `-` | **USDT Bitget** | `-` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 

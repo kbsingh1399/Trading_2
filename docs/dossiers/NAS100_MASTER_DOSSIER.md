@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: NAS100
 **Canonical Key**: `NAS100` | **Broker Instrument**: `NAS100.p` | **Asset Class**: `Equity Index US`
-**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:10:08 IST` (`2026-10-30 11:40:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -136,8 +136,7 @@
 - **Multi-Venue Complete Liquidation Matrix Ladder Table (14_Liquidation_Matrix.parquet)**:
 | Timeframe | Side | Price Level (USD) | Liquidation Vol (USD) | Cumulative Liq (USD) | Binance Vol (USD) | OKX Vol (USD) | Bybit Vol (USD) | Venue Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `Envelope` | `Long Liquidation` | `28589.89` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
-| `Envelope` | `Short Liquidation` | `28819.07` | 25,000,000.00 USD | 50,000,000.00 USD | 0.00 USD | 0.00 USD | 0.00 USD | `Tier 4 Macro Envelope` |
+| Matrix | Interbank Flow | - | - | - | - | - | - | Interbank Tier |
 
 - **Hyperdash Liquidation Clusters Profile Table (14_Hyperdash_Liq_Map.parquet)**:
 | Window | Side | Strike Price (USD) | Cumulative Liq (USD) | Short Liq (USD) | Long Liq (USD) | Distance (%) | Size (Coins) |
@@ -173,8 +172,8 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0074%` |
-| **USDT Bybit** | `0.0137%` | **USDT KuCoin** | `0.0000%` |
+| **USDT Binance** | `0.0000%` | **USDT OKX** | `0.0073%` |
+| **USDT Bybit** | `0.0122%` | **USDT KuCoin** | `0.0019%` |
 | **USDT MEXC** | `0.0000%` | **USDT BingX** | `-` |
 | **USDT Gate** | `0.0000%` | **USDT Bitget** | `0.0000%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |

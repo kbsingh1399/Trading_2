@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ALGUSD
 **Canonical Key**: `ALGUSD` | **Broker Instrument**: `ALGUSD.p` | **Asset Class**: `Crypto Altcoin`
-**Timestamp**: `2026-10-30 16:55:01 IST` (`2026-10-30 11:25:01 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 17:10:08 IST` (`2026-10-30 11:40:08 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -330,14 +330,14 @@
   * 1h OI Change: `0.00%` | 4h OI Change: `0.00%` | 24h OI Change: `0.00%`
   * Exchange Breakdown: Binance=`-` | Bybit=`-` | OKX=`-` | Hyperliquid=`-`
 - **Funding Settlement Yield (6_Funding_Fee_Settlement.parquet)**:
-  * Current Rate: `356.03` | Last 24h: `-2.41K` | Last 3d: `-9.10K` | Last 7d: `-8.18K`
+  * Current Rate: `450.51` | Last 24h: `-2.41K` | Last 3d: `-9.10K` | Last 7d: `-8.18K`
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `0.0007%` | **USDT OKX** | `-0.0128%` |
+| **USDT Binance** | `0.0020%` | **USDT OKX** | `-0.0102%` |
 | **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `0.0100%` |
-| **USDT MEXC** | `0.0004%` | **USDT BingX** | `0.0100%` |
-| **USDT Gate** | `0.0009%` | **USDT Bitget** | `0.0083%` |
+| **USDT MEXC** | `0.0017%` | **USDT BingX** | `0.0100%` |
+| **USDT Gate** | `0.0015%` | **USDT Bitget** | `0.0089%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
