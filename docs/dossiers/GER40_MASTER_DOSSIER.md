@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: GER40
 **Canonical Key**: `GER40` | **Broker Instrument**: `GER40.p` | **Asset Class**: `Equity Index EU`
-**Timestamp**: `2026-10-30 16:30:44 IST` (`2026-10-30 11:00:44 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 16:33:46 IST` (`2026-10-30 11:03:46 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -44,10 +44,10 @@
 ## 3. Auction Market Structure & Volume Profile Framework
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
-  * Value Area High (VAH) = `26028.56` (Distance: `-0.54%`)
-  * Point of Control (POC) = `25991.47` (Distance: `-0.39%`)
-  * Value Area Low (VAL) = `25921.74` (Distance: `-0.13%`)
-  * Auction Positioning: `BELOW_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
+  * Value Area High (VAH) = `26028.56` (Distance: `-0.42%`)
+  * Point of Control (POC) = `25991.47` (Distance: `-0.27%`)
+  * Value Area Low (VAL) = `25918.77` (Distance: `+0.01%`)
+  * Auction Positioning: `INSIDE_VALUE (Balance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `ROTATIONAL_BALANCE`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`26052.09` | POC=`25717.66` | VAL=`25667.18`
   * Prior Day Extremes: PDH=`26138.85` | PDL=`25665.60` | PDC=`26082.70`
@@ -268,9 +268,9 @@
 *(Sources: Canonical Quant Rules, STANDARDIZED_TRADING_DECISION_CHAIN.md, 10 lethal traps)*
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
-  * Execution Entry: `25921.74` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `25884.44` (Risk Distance: `37.30` pts)
-  * +2.5R Take Profit: `26014.99`
+  * Execution Entry: `25918.77` (Daily VAL sweep / Bullish OTE)
+  * Spread-Padded Stop Loss: `25881.47` (Risk Distance: `37.30` pts)
+  * +2.5R Take Profit: `26012.02`
   * Mathematical Lot Sizing: **`0.10 lots`** (Nominal Risk = `3.73 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
