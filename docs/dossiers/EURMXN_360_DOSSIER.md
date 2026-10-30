@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: EURMXN
 **Canonical Key**: `EURMXN` | **Broker Instrument**: `EURMXN.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 09:58:30 IST` (`2026-10-30 04:28:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:01:31 IST` (`2026-10-30 04:31:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `21.13` | **Live Ask Quote**: `21.13` | **Mid Price**: `21.13`
-- **Spread Points**: `258.00` | **Spread BPS**: `1.22 bps` (Charter Threshold: `5.00 bps`)
+- **Spread Points**: `243.00` | **Spread BPS**: `1.15 bps` (Charter Threshold: `5.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -32,7 +32,7 @@
   * Upper +2.01σ Band: `21.22` | Lower -2.01σ Band: `21.04`
   * Upper +2.00σ Band: `21.21` | Lower -2.00σ Band: `21.04`
   * Upper +1.28σ Band: `21.19` | Lower -1.28σ Band: `21.07`
-  * Upper +1.00σ Band: `21.17` | Lower -1.00σ Band: `21.09`
+  * Upper +1.00σ Band: `21.17` | Lower -1.00σ Band: `21.08`
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`21.13` | EMA-20=`21.13` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`21.13` (Slope: `+0.0000`) | EMA-100=`21.13`
@@ -54,7 +54,7 @@
   * Monday Range Blueprint: High=`21.23` | Mid=`21.13` | Low=`21.02`
   * Developing Weekly Value Area: Weekly VAH=`21.30` | Weekly POC=`21.13` | Weekly VAL=`20.96`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`21.17` | Low=`21.09`
+  * Asian Session (00:00-08:00 UTC): High=`21.17` | Low=`21.08`
   * London Session (08:00-16:00 UTC): High=`21.21` | Low=`21.04`
   * New York Session (13:00-21:00 UTC): High=`21.25` | Low=`21.00`
   * Initial Balance (First Hour): IB High=`21.19` | IB Low=`21.06`

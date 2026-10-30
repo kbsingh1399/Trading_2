@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: USDNOK
 **Canonical Key**: `USDNOK` | **Broker Instrument**: `USDNOK.pi` | **Asset Class**: `Forex Exotic`
-**Timestamp**: `2026-10-30 09:58:30 IST` (`2026-10-30 04:28:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:01:31 IST` (`2026-10-30 04:31:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `9.22` | **Live Ask Quote**: `9.22` | **Mid Price**: `9.22`
-- **Spread Points**: `280.00` | **Spread BPS**: `3.04 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `264.00` | **Spread BPS**: `2.86 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`PASS`** | **Execution Posture**: `PASSIVE LIMIT ONLY` | **Order Type Allowed**: `BUY_LIMIT / SELL_LIMIT`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -52,7 +52,7 @@
   * Prior Day Value Area: VAH=`9.26` | POC=`9.22` | VAL=`9.18`
   * Prior Day Extremes: PDH=`9.28` | PDL=`9.17` | PDC=`9.22`
   * Monday Range Blueprint: High=`9.27` | Mid=`9.22` | Low=`9.18`
-  * Developing Weekly Value Area: Weekly VAH=`9.30` | Weekly POC=`9.22` | Weekly VAL=`9.15`
+  * Developing Weekly Value Area: Weekly VAH=`9.29` | Weekly POC=`9.22` | Weekly VAL=`9.15`
 - **Session High/Low Liquidity Pockets**:
   * Asian Session (00:00-08:00 UTC): High=`9.24` | Low=`9.20`
   * London Session (08:00-16:00 UTC): High=`9.26` | Low=`9.18`
@@ -61,7 +61,7 @@
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `9.18` - `9.26`
   * Optimal Trade Entry (OTE 0.705): `9.24`
-  * Structural Invalidation Anchor (0.786): `9.30`
+  * Structural Invalidation Anchor (0.786): `9.29`
 
 ---
 
@@ -280,5 +280,5 @@
 
 ### ⚡ Sovereign Autonomous Execution Decision:
 **Postured Action**: **`STAND_ASIDE_MONITOR`**
-- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.30`) or if 21:15 UTC rollover blackout begins.
+- Invalidation Rule: Cancel all resting orders if price penetrates beyond 0.786 Fibonacci level (`9.29`) or if 21:15 UTC rollover blackout begins.
 - Monotone Non-Loosening Ratchet: At +0.80R unrealized profit, lock stop to Entry ± 0.15R; at +1.65R profit, lock stop to Entry ± 0.80R.

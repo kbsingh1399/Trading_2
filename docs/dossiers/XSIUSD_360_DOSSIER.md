@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: XSIUSD
 **Canonical Key**: `XSIUSD` | **Broker Instrument**: `XSIUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 09:58:30 IST` (`2026-10-30 04:28:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:01:31 IST` (`2026-10-30 04:31:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -23,20 +23,20 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.1743` | VWAP Z-Score: `+1.76` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.0023` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `48.02` (State: `NEUTRAL`)
+  * Session VWAP: `0.1745` | VWAP Z-Score: `+1.98` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.0022` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `50.99` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.1823` | Lower -3.00σ Band: `0.1663`
-  * Upper +2.51σ Band: `0.1810` | Lower -2.51σ Band: `0.1676`
-  * Upper +2.01σ Band: `0.1797` | Lower -2.01σ Band: `0.1689`
-  * Upper +2.00σ Band: `0.1796` | Lower -2.00σ Band: `0.1690`
-  * Upper +1.28σ Band: `0.1777` | Lower -1.28σ Band: `0.1709`
-  * Upper +1.00σ Band: `0.1770` | Lower -1.00σ Band: `0.1716`
+  * Upper +3.00σ Band: `0.1829` | Lower -3.00σ Band: `0.1661`
+  * Upper +2.51σ Band: `0.1815` | Lower -2.51σ Band: `0.1675`
+  * Upper +2.01σ Band: `0.1801` | Lower -2.01σ Band: `0.1689`
+  * Upper +2.00σ Band: `0.1801` | Lower -2.00σ Band: `0.1689`
+  * Upper +1.28σ Band: `0.1780` | Lower -1.28σ Band: `0.1709`
+  * Upper +1.00σ Band: `0.1773` | Lower -1.00σ Band: `0.1717`
 - **Moving Average Ribbon & Trend Slopes**:
-  * Fast EMA Array: EMA-9=`0.1777` | EMA-20=`0.1784` (Slope: `+0.0000`)
-  * Core Structural Array: EMA-50=`0.1835` (Slope: `+0.0000`) | EMA-100=`0.1879`
-  * Institutional Anchors: EMA-144=`0.1897` | EMA-200=`0.1910` (Slope: `-0.9452`) | EMA-233=`0.1918`
+  * Fast EMA Array: EMA-9=`0.1782` | EMA-20=`0.1785` (Slope: `+0.0000`)
+  * Core Structural Array: EMA-50=`0.1834` (Slope: `+0.0000`) | EMA-100=`0.1877`
+  * Institutional Anchors: EMA-144=`0.1896` | EMA-200=`0.1909` (Slope: `-0.9072`) | EMA-233=`0.1917`
 - **Range Boundaries**: 24H High=`0.2050` | 24H Low=`0.1670` | Weekly High=`0.2100` | Weekly Low=`0.1670`
 
 ---
@@ -45,8 +45,8 @@
 *(Sources: 20_Auction_Market_Structure.parquet, 11_Technical.parquet)*
 - **Daily Developing Value Area**:
   * Value Area High (VAH) = `0.1800` (Distance: `+6.02%`)
-  * Point of Control (POC) = `0.1780` (Distance: `+7.35%`)
-  * Value Area Low (VAL) = `0.1720` (Distance: `+11.20%`)
+  * Point of Control (POC) = `0.1790` (Distance: `+6.68%`)
+  * Value Area Low (VAL) = `0.1720` (Distance: `+11.08%`)
   * Auction Positioning: `ABOVE_VALUE (Imbalance)` | Session Bias: **`BEARISH (Below Pivot)`** | Market Regime: `RANGE_EXPANSION`
 - **Prior Day & Multi-Session Structural Reference Levels**:
   * Prior Day Value Area: VAH=`0.1970` | POC=`0.1930` | VAL=`0.1880`
@@ -268,13 +268,13 @@
 - **Candidate Long Setup (Model 1 / Model 2 VAL Sweep Fade)**:
   * Order Type: `BUY_LIMIT`
   * Execution Entry: `0.1720` (Daily VAL sweep / Bullish OTE)
-  * Spread-Padded Stop Loss: `0.1362` (Risk Distance: `0.0440` pts)
+  * Spread-Padded Stop Loss: `0.1364` (Risk Distance: `0.0440` pts)
   * +2.5R Take Profit: `0.2820`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 - **Candidate Short Setup (Model 1 / Model 2 VAH Sweep Fade)**:
   * Order Type: `SELL_LIMIT`
   * Execution Entry: `0.1800` (Daily VAH sweep / Bearish OTE)
-  * Spread-Padded Stop Loss: `0.2158` (Risk Distance: `0.0440` pts)
+  * Spread-Padded Stop Loss: `0.2156` (Risk Distance: `0.0440` pts)
   * +2.5R Take Profit: `0.0700`
   * Mathematical Lot Sizing: **`20.00 lots`** (Nominal Risk = `0.00 USD <= 10.00 USD`)
 

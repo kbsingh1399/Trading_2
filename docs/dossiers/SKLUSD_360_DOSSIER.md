@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: SKLUSD
 **Canonical Key**: `SKLUSD` | **Broker Instrument**: `SKLUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 09:58:30 IST` (`2026-10-30 04:28:30 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:01:31 IST` (`2026-10-30 04:31:31 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
 - **Live Bid Quote**: `0.0037` | **Live Ask Quote**: `0.0039` | **Mid Price**: `0.0038`
-- **Spread Points**: `20.00` | **Spread BPS**: `526.32 bps` (Charter Threshold: `25.00 bps`)
+- **Spread Points**: `20.00` | **Spread BPS**: `524.93 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -23,11 +23,11 @@
 ## 2. Technical Profile, VWAP Dispersion Grid & BTC Ribbon
 *(Sources: 11_Technical.parquet, 11_Technical_BTC_Ribbon.parquet)*
 - **Session Anchor & Volatility**:
-  * Session VWAP: `0.0036` | VWAP Z-Score: `+1.55` (Regime: `BALANCED_FAIR_VALUE`)
-  * 14-Period ATR: `0.000039` (Volatility Regime: `HIGH_EXPANSION`)
-  * 14-Period RSI: `49.76` (State: `NEUTRAL`)
+  * Session VWAP: `0.0036` | VWAP Z-Score: `+1.76` (Regime: `BALANCED_FAIR_VALUE`)
+  * 14-Period ATR: `0.000038` (Volatility Regime: `HIGH_EXPANSION`)
+  * 14-Period RSI: `51.63` (State: `NEUTRAL`)
 - **Multi-Sigma VWAP Dispersion Grid (Mean Reversion & Volatility Boundaries)**:
-  * Upper +3.00σ Band: `0.0037` | Lower -3.00σ Band: `0.0035`
+  * Upper +3.00σ Band: `0.0038` | Lower -3.00σ Band: `0.0035`
   * Upper +2.51σ Band: `0.0037` | Lower -2.51σ Band: `0.0036`
   * Upper +2.01σ Band: `0.0037` | Lower -2.01σ Band: `0.0036`
   * Upper +2.00σ Band: `0.0037` | Lower -2.00σ Band: `0.0036`
@@ -36,7 +36,7 @@
 - **Moving Average Ribbon & Trend Slopes**:
   * Fast EMA Array: EMA-9=`0.0037` | EMA-20=`0.0037` (Slope: `+0.0000`)
   * Core Structural Array: EMA-50=`0.0037` (Slope: `+0.0000`) | EMA-100=`0.0038`
-  * Institutional Anchors: EMA-144=`0.0038` | EMA-200=`0.0038` (Slope: `-0.5388`) | EMA-233=`0.0038`
+  * Institutional Anchors: EMA-144=`0.0038` | EMA-200=`0.0038` (Slope: `-0.5163`) | EMA-233=`0.0038`
 - **Range Boundaries**: 24H High=`0.0040` | 24H Low=`0.0035` | Weekly High=`0.0040` | Weekly Low=`0.0035`
 
 ---
