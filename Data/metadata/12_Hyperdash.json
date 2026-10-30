@@ -15,9 +15,9 @@
     "Wallet_or_Address",
     "Timestamp_IST"
   ],
-  "byte_size": 9816,
-  "timestamp_ist": "2026-10-30 08:39:51 IST",
-  "timestamp_utc": "2026-10-30 03:09:51 UTC",
-  "epoch_utc": 1793329791.066772,
-  "write_duration_ms": 14.24
+  "byte_size": 9678,
+  "timestamp_ist": "2026-10-30 08:42:16 IST",
+  "timestamp_utc": "2026-10-30 03:12:16 UTC",
+  "epoch_utc": 1793329936.806519,
+  "write_duration_ms": 4.03
 }
