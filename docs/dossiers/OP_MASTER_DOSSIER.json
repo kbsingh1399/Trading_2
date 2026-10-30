@@ -1250,18 +1250,18 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 18:40:09 IST"
+        "time": "2026-10-30 18:56:10 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "0.5338",
+        "change_24h": "0.44975800000000005",
         "vol_24h": 0.0,
         "oi": 0.0,
-        "funding": "1.25e-05",
-        "detail": "HL: 10.95% APR | Next: 2026-10-30 16:00"
+        "funding": "6.3858e-06",
+        "detail": "HL: 5.59% APR | Next: 2026-10-30 16:00"
       }
     ],
     "hl_analysis_ladder": [],

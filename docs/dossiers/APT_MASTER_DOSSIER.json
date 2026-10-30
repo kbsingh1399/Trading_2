@@ -1668,14 +1668,14 @@
         "notional": 0.0,
         "detail": "Delta: +0",
         "wallet": "None",
-        "time": "2026-10-30 18:40:09 IST"
+        "time": "2026-10-30 18:56:10 IST"
       }
     ],
     "hl_ladder": [
       {
         "section": "FUNDING_ARBITRAGE",
         "price": 0.0,
-        "change_24h": "-0.8649999999999999",
+        "change_24h": "-0.875",
         "vol_24h": 0.0,
         "oi": 0.0,
         "funding": "1.25e-05",
