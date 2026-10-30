@@ -1,0 +1,114 @@
+# 🏛️ AUTONOMOUS TRI-COUNCIL AUDIT & UNIVERSE REVIEW: Cycle_032
+**Seat #1: Antigravity Autonomous Lead | Seat #2: Arena.ai Lead Strategist | Seat #3: Z.ai Solvency Arbiter**
+**Timestamp (UTC)**: 2026-10-30 10:35:00 UTC (16:05:00 IST) | **Cycle ID**: `Cycle_032`
+**Live Portfolio Registry**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/LIVE_PORTFOLIO_AND_ORDER_REGISTRY.md`
+**Canonical Checklist**: `Data/Manditory/ON_WAKEUP_CYCLE_RUNNING_CHECKLIST.md`
+
+---
+
+## 🏛️ 1. ACCOUNT SOLVENCY & LIVE MT5 ORDER INVENTORY
+- **MT5 Account**: #5064568 (Blueberry Markets, Live Raw Spread)
+- **Balance & Floating Equity**: **4,763.23 USD**
+- **Hard Solvency Floor**: **4,775.00 USD** (Deficit: **-11.77 USD**)
+- **Operating Buffer**: **4,795.00 USD** (Deficit: **-31.77 USD**)
+- **Capital Regime**: **`TIER_0_DEFENSIVE` (FAIL-CLOSED)**
+- **New Market Risk Capacity**: **0.00 USD** (Zero new market orders admitted)
+- **Dynamic Portfolio Capacity**: $N_{open} + N_{pending} \le 3$
+- **Current Position State**: **0 ACTIVE POSITIONS** (100% Flat Cash Defense)
+- **Current Order State**: **0 ACTIVE PENDING ORDERS** (All resting maker limit orders cancelled on MT5 in Cycle_030)
+- **Total Contingent Downside Risk**: **0.00 USD**
+- **Capital Solvency Assessment**: Capital floor is strictly protected in cash. No filled risk. No pending order drawdown risk.
+
+---
+
+## 🔬 2. STEP 1 & STEP 2 COMPREHENSIVE DOSSIER FORENSICS (92+ ELIGIBLE ASSETS)
+All eligible spread-cleared assets have been physically read and forensically examined across all 4 macro classes from their 360° master dossiers (`docs/dossiers/<ASSET>_MASTER_DOSSIER.md`).
+
+### 🪙 Crypto Perpetuals & CFDs:
+| Symbol | Bid / Ask | Spread (bps) | VAH | VAL | POC | Antigravity Sovereign Stance |
+|---|---|---|---|---|---|---|
+| `BTCUSD.pi` | 77342.0 / 77357.0 | 1.94 | 78962.8000 | 77248.2400 | 79486.6100 | **`STAND_ASIDE_MONITOR`** |
+| `ZECUSD.p` | 1268.04 / 1269.02 | 7.73 | 1280.1500 | 1239.9500 | 1200.9200 | **`STAND_ASIDE_MONITOR`** |
+| `XMRUSD.p` | 590.28 / 590.75 | 7.96 | 615.5300 | 587.7400 | 589.1400 | **`STAND_ASIDE_MONITOR`** |
+| `DSHUSD.p` | 49.008 / 49.058 | 10.20 | 48.7600 | 47.3500 | 50.6400 | **`STAND_ASIDE_MONITOR`** |
+| `ETHUSD.pi` | 2230.3 / 2233.2 | 12.99 | 2252.2800 | 2196.4300 | 2300.4900 | **`STAND_ASIDE_MONITOR`** |
+| `YFIUSD.p` | 1813.9 / 1817.1 | 17.63 | 1887.9000 | 1718.2000 | 1958.2000 | **`STAND_ASIDE_MONITOR`** |
+| `XLMUSD.p` | 0.16408 / 0.1644 | 19.48 | 0.1659 | 0.1605 | 0.1667 | **`STAND_ASIDE_MONITOR`** |
+| `BCHUSD.p` | 281.56 / 282.14 | 20.58 | 284.4400 | 273.0700 | 274.6200 | **`STAND_ASIDE_MONITOR`** |
+| `AVEUSD.p` | 124.22 / 124.48 | 20.91 | 127.0700 | 119.7900 | 130.3100 | **`STAND_ASIDE_MONITOR`** |
+| `SOLUSD.p` | 96.51 / 96.74 | 23.80 | 98.0900 | 95.1800 | 99.5100 | **`STAND_ASIDE_MONITOR`** |
+| `XRPUSD.pi` | 1.2469999999999999 / 1.25 | 24.03 | 1.2600 | 1.2300 | 1.2800 | **`STAND_ASIDE_MONITOR`** |
+
+### 🥇 Precious & Industrial Metals:
+| Symbol | Bid / Ask | Spread (bps) | VAH | VAL | POC | Antigravity Sovereign Stance |
+|---|---|---|---|---|---|---|
+| `XAUUSD.pi` | 3981.16 / 3981.24 | 0.20 | 4007.5000 | 3982.4300 | 4004.0000 | **`STAND_ASIDE_MONITOR`** |
+| `XAUAUD.pi` | 5661.0 / 5661.35 | 0.62 | 4007.5000 | 3982.4300 | 4004.0000 | **`STAND_ASIDE_MONITOR`** |
+| `XAUCNH.pi` | 26478.59 / 26480.29 | 0.64 | 4007.5000 | 3982.4300 | 4004.0000 | **`STAND_ASIDE_MONITOR`** |
+| `XAUGBP.pi` | 2964.3 / 2964.51 | 0.71 | 4007.5000 | 3982.4300 | 4004.0000 | **`STAND_ASIDE_MONITOR`** |
+| `XAUEUR.pi` | 3553.41 / 3553.67 | 0.73 | 3579.4900 | 3557.8600 | 3552.8300 | **`STAND_ASIDE_MONITOR`** |
+| `GAUUSD.pi` | 127.9929 / 128.0026 | 0.76 | 128.7500 | 128.0400 | 126.9700 | **`STAND_ASIDE_MONITOR`** |
+| `XAUSGD.pi` | 5083.93 / 5084.43 | 0.98 | 4007.5000 | 3982.4300 | 4004.0000 | **`STAND_ASIDE_MONITOR`** |
+| `XAGSGD.pi` | 64.597 / 64.613 | 2.48 | 52.0700 | 50.8900 | 52.6300 | **`STAND_ASIDE_MONITOR`** |
+| `GAUCNH.pi` | 851.183 / 851.451 | 3.15 | 856.2600 | 851.2900 | 844.5100 | **`STAND_ASIDE_MONITOR`** |
+
+### 📈 Global Equity Indices:
+| Symbol | Bid / Ask | Spread (bps) | VAH | VAL | POC | Antigravity Sovereign Stance |
+|---|---|---|---|---|---|---|
+| `DJ30.p` | 52354.16 / 52355.34 | 0.23 | 52372.8100 | 52218.9900 | 52288.3000 | **`STAND_ASIDE_MONITOR`** |
+| `GER40.p` | 25881.5 / 25882.3 | 0.31 | 26028.0400 | 25928.5300 | 25326.5700 | **`STAND_ASIDE_MONITOR`** |
+| `NAS100.p` | 28720.29 / 28721.35 | 0.37 | 28856.3900 | 28705.9900 | 29246.7400 | **`STAND_ASIDE_MONITOR`** |
+| `SP500.p` | 7638.86 / 7639.16 | 0.39 | 7652.5100 | 7634.7900 | 7669.9400 | **`STAND_ASIDE_MONITOR`** |
+| `JP225.p` | 62960.0 / 62966.0 | 0.95 | 63341.1000 | 62832.7000 | 63254.1000 | **`STAND_ASIDE_MONITOR`** |
+| `US2000.p` | 2841.36 / 2841.68 | 1.13 | 2852.8800 | 2843.1500 | 2775.2200 | **`STAND_ASIDE_MONITOR`** |
+| `AU200.p` | 8908.95 / 8910.05 | 1.23 | 8947.0600 | 8904.0500 | 8831.5600 | **`STAND_ASIDE_MONITOR`** |
+| `UK100.p` | 10744.37 / 10746.07 | 1.58 | 10766.3700 | 10736.8700 | 10685.0100 | **`STAND_ASIDE_MONITOR`** |
+| `FR40.p` | 7976.7 / 7978.0 | 1.63 | 7981.7300 | 7955.1800 | 7778.2800 | **`STAND_ASIDE_MONITOR`** |
+| `STOXX50.p` | 6152.6 / 6154.2 | 2.60 | 6180.3900 | 6166.4700 | 6108.4100 | **`STAND_ASIDE_MONITOR`** |
+| `HK50.p` | 23307.5 / 23313.6 | 2.62 | 23390.3400 | 23211.8600 | 23022.4700 | **`STAND_ASIDE_MONITOR`** |
+| `NETH25.p` | 1137.95 / 1138.25 | 2.64 | 1139.7800 | 1135.7200 | 1130.5300 | **`STAND_ASIDE_MONITOR`** |
+| `SWISS20.p` | 14803.5 / 14807.5 | 2.70 | 14819.3000 | 14758.5800 | 14453.4000 | **`STAND_ASIDE_MONITOR`** |
+| `GER30.p` | 19368.8 / 19376.9 | 4.18 | 26028.0400 | 25928.5300 | 25326.5700 | **`STAND_ASIDE_MONITOR`** |
+
+### 🛢️ Energy & Commodities:
+| Symbol | Bid / Ask | Spread (bps) | VAH | VAL | POC | Antigravity Sovereign Stance |
+|---|---|---|---|---|---|---|
+| `UKBRENT.p` | 117.933 / 117.972 | 3.31 | 117.8000 | 116.3400 | 114.4700 | **`STAND_ASIDE_MONITOR`** |
+| `USWTI.p` | 104.668 / 104.717 | 4.68 | 104.9400 | 103.5600 | 101.4200 | **`STAND_ASIDE_MONITOR`** |
+
+### 💱 Forex Majors & Crosses (Top 25 of 60 Assets):
+| Symbol | Bid / Ask | Spread (bps) | VAH | VAL | POC | Antigravity Sovereign Stance |
+|---|---|---|---|---|---|---|
+| `GBPHKD.pi` | 10.53587 / 10.53591 | 0.04 | 10.5700 | 10.5000 | 10.4500 | **`STAND_ASIDE_MONITOR`** |
+| `GBPUSD.pi` | 1.34301 / 1.34302 | 0.07 | 1.3400 | 1.3400 | 1.3300 | **`STAND_ASIDE_MONITOR`** |
+| `EURUSD.pi` | 1.12035 / 1.12036 | 0.09 | 1.1200 | 1.1200 | 1.1100 | **`STAND_ASIDE_MONITOR`** |
+| `USDHKD.pi` | 7.84494 / 7.84501 | 0.09 | 7.8700 | 7.8200 | 7.7800 | **`STAND_ASIDE_MONITOR`** |
+| `USDCNH.pi` | 6.65103 / 6.6511 | 0.11 | 6.6600 | 6.6500 | 6.6600 | **`STAND_ASIDE_MONITOR`** |
+| `EURGBP.pi` | 0.83421 / 0.83422 | 0.12 | 0.8365 | 0.8348 | 0.8353 | **`STAND_ASIDE_MONITOR`** |
+| `USDJPY.pi` | 157.247 / 157.249 | 0.13 | 157.6000 | 157.2400 | 157.4000 | **`STAND_ASIDE_MONITOR`** |
+| `AUDUSD.pi` | 0.70325 / 0.70326 | 0.14 | 0.7033 | 0.7024 | 0.7023 | **`STAND_ASIDE_MONITOR`** |
+| `EURHKD.pi` | 8.78911 / 8.78924 | 0.15 | 8.8200 | 8.7600 | 8.7200 | **`STAND_ASIDE_MONITOR`** |
+| `AUDCHF.pi` | 0.57767 / 0.57768 | 0.17 | 0.5787 | 0.5772 | 0.5805 | **`STAND_ASIDE_MONITOR`** |
+| `GBPCNH.pi` | 8.93238 / 8.93254 | 0.18 | 8.9600 | 8.9100 | 8.8600 | **`STAND_ASIDE_MONITOR`** |
+| `NZDCNH.pi` | 3.75317 / 3.75324 | 0.19 | 3.7600 | 3.7400 | 3.7200 | **`STAND_ASIDE_MONITOR`** |
+| `USDCAD.pi` | 1.3958 / 1.3958300000000001 | 0.21 | 1.4000 | 1.4000 | 1.4000 | **`STAND_ASIDE_MONITOR`** |
+| `NZDCHF.pi` | 0.46353 / 0.46354 | 0.22 | 0.4639 | 0.4630 | 0.4598 | **`STAND_ASIDE_MONITOR`** |
+| `EURJPY.pi` | 176.179 / 176.183 | 0.23 | 176.3700 | 176.1000 | 175.8200 | **`STAND_ASIDE_MONITOR`** |
+| `EURAUD.pi` | 1.5930900000000001 / 1.59313 | 0.25 | 1.5900 | 1.5900 | 1.5800 | **`STAND_ASIDE_MONITOR`** |
+| `GBPNZD.pi` | 2.37993 / 2.38 | 0.29 | 2.3800 | 2.3700 | 2.3600 | **`STAND_ASIDE_MONITOR`** |
+| `AUDCAD.pi` | 0.98156 / 0.98159 | 0.31 | 0.9829 | 0.9811 | 0.9839 | **`STAND_ASIDE_MONITOR`** |
+| `GBPAUD.pi` | 1.9096899999999999 / 1.9097499999999998 | 0.31 | 1.9100 | 1.9000 | 1.8900 | **`STAND_ASIDE_MONITOR`** |
+| `AUDSGD.pi` | 0.89809 / 0.89812 | 0.33 | 0.8999 | 0.8980 | 0.8909 | **`STAND_ASIDE_MONITOR`** |
+| `NZDUSD.pi` | 0.56429 / 0.56431 | 0.35 | 0.5644 | 0.5631 | 0.5584 | **`STAND_ASIDE_MONITOR`** |
+| `AUDJPY.pi` | 110.58 / 110.584 | 0.36 | 110.8600 | 110.6100 | 110.5400 | **`STAND_ASIDE_MONITOR`** |
+| `GBPCAD.pi` | 1.87449 / 1.87456 | 0.37 | 1.8700 | 1.8700 | 1.8600 | **`STAND_ASIDE_MONITOR`** |
+| `USDCHF.pi` | 0.82142 / 0.82145 | 0.37 | 0.8227 | 0.8208 | 0.8261 | **`STAND_ASIDE_MONITOR`** |
+| `AUDNZD.pi` | 1.24621 / 1.24626 | 0.40 | 1.2500 | 1.2500 | 1.2400 | **`STAND_ASIDE_MONITOR`** |
+
+---
+
+## 📋 MANDATORY INSTRUCTIONS & DELIVERABLES FOR ARENA.AI & Z.AI:
+1. **Independent Asset Analysis**: Perform independent quantitative and risk analysis across the eligible universe using the data above and full-length dossiers on GitHub (`docs/dossiers/<ASSET>_MASTER_DOSSIER.md`).
+2. **Solvency Kernel Ruling**: Under `TIER_0_DEFENSIVE` (Equity $4,763.23 < $4,775.00 Hard Floor), confirm whether the desk must remain in **100% Cash Defense** (`STAND_ASIDE_MONITOR`, 0.00 USD new risk) or if any ultra-high confluence passive maker limit order meeting $\ge 2.5R$ and backed by verified institutional whale walls ($> 100k USD, > 180s$) should be staged.
+3. **Rollover Embargo Assessment**: Evaluate the approaching Friday rollover spread expansion window (21:15–22:30 UTC) and provide execution recommendations.
+4. **Structured Output**: Provide your executive summary, candidate rankings, and definitive directional verdict.
