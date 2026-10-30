@@ -1,13 +1,13 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: VETUSD
 **Canonical Key**: `VETUSD` | **Broker Instrument**: `VETUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 10:40:52 IST` (`2026-10-30 05:10:52 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 10:43:54 IST` (`2026-10-30 05:13:54 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
 ## 1. MT5 Live Broker Telemetry & True Contract Specifications
 *(Sources: 00_MT5_Account_Telemetry.parquet, 23_Master_Pipeline_Telemetry.parquet, master_asset_catalog.json)*
-- **Live Bid Quote**: `0.0058` | **Live Ask Quote**: `0.0059` | **Mid Price**: `0.0059`
-- **Spread Points**: `4.00` | **Spread BPS**: `68.38 bps` (Charter Threshold: `25.00 bps`)
+- **Live Bid Quote**: `0.0059` | **Live Ask Quote**: `0.0059` | **Mid Price**: `0.0059`
+- **Spread Points**: `4.00` | **Spread BPS**: `68.14 bps` (Charter Threshold: `25.00 bps`)
 - **Gate 1 Clearance**: **`SPREAD_DISQUALIFIED`** | **Execution Posture**: `DISQUALIFIED` | **Order Type Allowed**: `NONE`
 - **True Broker Contract Specifications**:
   * Contract Size: `1.0` | Digits: `4` | Point: `0.0001`
@@ -54,10 +54,10 @@
   * Monday Range Blueprint: High=`0.0059` | Mid=`0.0059` | Low=`0.0058`
   * Developing Weekly Value Area: Weekly VAH=`0.0059` | Weekly POC=`0.0059` | Weekly VAL=`0.0058`
 - **Session High/Low Liquidity Pockets**:
-  * Asian Session (00:00-08:00 UTC): High=`0.0059` | Low=`0.0058`
+  * Asian Session (00:00-08:00 UTC): High=`0.0059` | Low=`0.0059`
   * London Session (08:00-16:00 UTC): High=`0.0059` | Low=`0.0058`
   * New York Session (13:00-21:00 UTC): High=`0.0059` | Low=`0.0058`
-  * Initial Balance (First Hour): IB High=`0.0059` | IB Low=`0.0058`
+  * Initial Balance (First Hour): IB High=`0.0059` | IB Low=`0.0059`
 - **Fibonacci Institutional Confluence Nodes**:
   * Golden Pocket Zone (0.618 - 0.650): `0.0058` - `0.0059`
   * Optimal Trade Entry (OTE 0.705): `0.0059`
