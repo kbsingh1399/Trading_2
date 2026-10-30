@@ -1156,7 +1156,7 @@ Every cycle must systematically evaluate, execute, and document completion by ex
   - [x] Dispatch prompt embedding dossier evidence to Arena.ai (Chrome CDP), Z.ai (GLM-5.3-Flash, Chrome CDP), and Gemini Web2API (port 8081).
 
 - [ ] **Step 5: Activate AutoWake Hard-Rock Daemon**
-  - [ ] Launch `rock_hard_dual_watchdog.py --cycle Cycle_028 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
+  - [x] Launch `rock_hard_dual_watchdog.py --cycle Cycle_028 --timeout 1200` to monitor completion status with robust 5-minute CDP auto-refresh.
   - [ ] Await watchdog completion and harvest outputs (`ARENA_LATEST_RAW.md` and `ZAI_LATEST_RAW.md`).
 
 - [ ] **Step 6: Compare Intelligence, Actively Manage Existing Orders & Execute New Trades (USE ONLY DOSSIER FILES)**
