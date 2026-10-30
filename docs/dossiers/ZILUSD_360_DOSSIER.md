@@ -1,6 +1,6 @@
 # 🏛️ SOVEREIGN CANDIDATE DOSSIER: ZILUSD
 **Canonical Key**: `ZILUSD` | **Broker Instrument**: `ZILUSD.p` | **Asset Class**: `Forex Cross`
-**Timestamp**: `2026-10-30 15:51:23 IST` (`2026-10-30 10:21:23 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
+**Timestamp**: `2026-10-30 15:54:24 IST` (`2026-10-30 10:24:24 UTC`) | **Execution Engine**: `Antigravity Sovereign Dossier Engine v3.3 (100% 43-Feed Parquet Lake)`
 
 ---
 
@@ -156,10 +156,10 @@
 - **12-Venue Comprehensive Funding Rates Matrix (5_Funding_Rate.parquet)**:
 | Venue | Funding Rate | Venue | Funding Rate |
 |:---|:---:|:---|:---:|
-| **USDT Binance** | `-0.0031%` | **USDT OKX** | `0.0050%` |
+| **USDT Binance** | `-0.0023%` | **USDT OKX** | `0.0050%` |
 | **USDT Bybit** | `0.0100%` | **USDT KuCoin** | `0.0050%` |
-| **USDT MEXC** | `-0.0033%` | **USDT BingX** | `-0.0035%` |
-| **USDT Gate** | `0.0050%` | **USDT Bitget** | `0.0017%` |
+| **USDT MEXC** | `-0.0023%` | **USDT BingX** | `-0.0025%` |
+| **USDT Gate** | `0.0050%` | **USDT Bitget** | `0.0021%` |
 | **CoinM Binance** | `-` | **CoinM OKX** | `-` |
 
 - **Multi-Horizon Long/Short Ratio Positioning Table (3_Exchanges_LS_Ratio_*.parquet)**:
