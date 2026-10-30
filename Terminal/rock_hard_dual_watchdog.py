@@ -332,7 +332,7 @@ async def wait_for_dual_completion(expected_cycle: str, timeout_s: float = 600.0
                 # Must be a model response (NOT the user prompt)
                 is_user_prompt = cur_text.strip().startswith("# 🏛️ AUTONOMOUS") or "Dossier-Centric Multi-Agent Squad Audit" in cur_text[:400]
                 is_text_complete = not is_user_prompt and ((not is_gen and has_anchor) or (len(cur_text) >= 20000 and ("Final Execution Summary" in cur_text or "COUNCIL REPORT" in cur_text)))
-                if has_cycle and not is_user_prompt and is_text_complete and len(cur_text) > 1000:
+                if has_cycle and not is_user_prompt and is_text_complete and len(cur_text) >= 200:
                     if cur_hash == last_a_hash:
                         stable_a_ticks += 1
                     else:
